@@ -27,7 +27,8 @@ eso la evidencia tiene que probarse a sí misma.
 | `docs/peldanos/peldano-NN-*.md` | El contrato de cada peldaño: contexto requerido, prompts textuales, resultado esperado y verificación de completitud. Es lo que un alumno ejecuta y lo que después se exporta a Forge. |
 | `docs/peldanos/README.md` | El índice de los contratos, con el tramo de cada uno. |
 | `docs/DECISIONES.md` | Las decisiones del proyecto, con fecha, quién decidió y las palabras textuales. El método se aplica a sí mismo. |
-| `docs/PLAN_CURSO_MENTORING.md` | El borrador del curso, el mentoring y el plan de LinkedIn. |
+| `docs/MANUAL_CURSO.md` | El curso: dieciséis lecciones, una por peldaño, con el concepto explicado, la tarea práctica paso a paso con los prompts, la verificación de completitud, el entregable, los errores típicos y el ejemplo sobre el proyecto guía ("Turnera"). Termina con la lista de salida a producción. |
+| `docs/PLAN_CURSO_MENTORING.md` | El borrador del plan comercial del curso, el mentoring y el plan de LinkedIn. |
 | `docs/html/` | Las versiones HTML para lectura cómoda, generadas con `node build/build.mjs`. No se editan a mano. |
 | `build/` | El conversor de markdown a HTML y el script que arma los HTML. |
 
@@ -42,7 +43,9 @@ una palabra rara, el glosario está al final. Después, el contrato del peldaño
 node build/build.mjs
 ```
 
-Produce `docs/html/ESCALERA_METODOLOGICA.html` y `docs/html/CONTRATOS_DE_PELDANO.html`.
+Produce `docs/html/ESCALERA_METODOLOGICA.html`, `docs/html/MANUAL_CURSO.html` y
+`docs/html/CONTRATOS_DE_PELDANO.html`, y verifica que los prompts en inglés sean idénticos en todas
+las versiones.
 
 ## Idiomas
 

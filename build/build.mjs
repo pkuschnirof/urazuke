@@ -17,6 +17,10 @@ mkdirSync(join(raiz, 'docs', 'html'), { recursive: true });
 execFileSync(process.execPath, [conv, join(raiz, 'docs', 'ESCALERA_METODOLOGICA.md'),
   join(raiz, 'docs', 'html', 'ESCALERA_METODOLOGICA.html')], { stdio: 'inherit' });
 
+// 1b) manual-curso
+execFileSync(process.execPath, [conv, join(raiz, 'docs', 'MANUAL_CURSO.md'),
+  join(raiz, 'docs', 'html', 'MANUAL_CURSO.html')], { stdio: 'inherit' });
+
 // 2) contratos: se concatenan en un markdown temporal (en memoria) y se convierten.
 const dir = join(raiz, 'docs', 'peldanos');
 const archivos = readdirSync(dir).filter(f => /^peldano-\d\d-.*\.md$/.test(f)).sort();
