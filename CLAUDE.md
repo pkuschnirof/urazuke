@@ -1,6 +1,7 @@
 # CLAUDE.md — instrucciones para el agente en este repositorio
 
-Este es el repositorio del **método** (la escalera metodológica), no de un producto. No hay código
+Este es el repositorio de **Urazuke, el método de la evidencia** (裏付け: el respaldo que tiene una
+afirmación). Es el repositorio del método, no de un producto. No hay código
 de aplicación: hay documentos, contratos de peldaño y un conversor a HTML.
 
 ## Qué leer primero
@@ -9,6 +10,8 @@ de aplicación: hay documentos, contratos de peldaño y un conversor a HTML.
 2. `docs/ESCALERA_METODOLOGICA.md` — el documento principal. Su "Parte D" es la lista de lo que
    falta; es el plan de trabajo de este repositorio.
 3. `docs/peldanos/README.md` — el índice de los contratos.
+4. `docs/DECISIONES.md` — las decisiones del proyecto, con las palabras textuales de Pablo. Toda
+   decisión nueva se agrega ahí, el mismo día.
 
 ## Reglas de estilo (distintas del resto de Yujin, a propósito)
 
@@ -39,8 +42,12 @@ de aplicación: hay documentos, contratos de peldaño y un conversor a HTML.
 
 ## Publicación
 
-- Nombre definitivo ("Método …") y publicación como código abierto colaborativo: cuando Pablo
-  diga que la elaboración terminó. Hasta entonces, repositorio privado y nombre provisorio.
+- El nombre es Urazuke (decisión D-014, 2026-10-17). No se traduce; el subtítulo sí. La
+  publicación como código abierto colaborativo es cuando Pablo diga que la elaboración terminó;
+  hasta entonces, repositorio privado.
+- Idiomas (D-013): castellano como fuente de verdad; traducción a los otros siete idiomas de
+  NAC3; los prompts para el modelo son UNA pieza en inglés, idéntica en todas las versiones,
+  explicada en el idioma del lector.
 - Los clientes están anonimizados: "la Obra Social" (con "el Autorizador") y "la Asociación";
   sus sistemas, "Autorizaciones" y "Kikan". **Los nombres reales no se escriben en este
   repositorio**, ni en los documentos ni en los mensajes de commit. Las rutas locales de los

@@ -1,6 +1,6 @@
 # Cómo contribuir
 
-Gracias por querer mejorar el método. Para que las mejoras mantengan la calidad del original,
+Gracias por querer mejorar Urazuke. Para que las mejoras mantengan la calidad del original,
 el proceso es corto pero estricto. Está pensado para que **nada llegue a `main` sin revisión y
 autorización de los mantenedores**, y para que el repositorio no se llene de ramas.
 

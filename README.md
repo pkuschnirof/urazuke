@@ -1,13 +1,16 @@
-# Escalera metodológica (nombre provisorio)
+# Urazuke — el método de la evidencia
+
+*Urazuke* (裏付け) es una palabra japonesa que nombra el respaldo que tiene una afirmación: lo
+que la sostiene por detrás. El verbo, *urazukeru*, es "respaldar con pruebas". Ese es el método.
 
 Un método para construir software con inteligencia artificial que salga robusto, listo para
 producción, **sin que el dueño del proyecto tenga que leer una sola línea de código**. Destilado
 de tres sistemas reales que hoy están en producción, con los golpes incluidos.
 
-Este repositorio es el proyecto del método en sí: el documento principal, los contratos de cada
-peldaño, el plan del curso y el mentoring, y más adelante la presentación pública. **Nombre
-definitivo y publicación como código abierto colaborativo: cuando terminemos de elaborarlo.**
-Hasta entonces el repositorio es privado y el nombre es provisorio.
+Este repositorio es el proyecto del método en sí: el documento principal (la escalera
+metodológica), los contratos de cada peldaño, el registro de decisiones, el plan del curso y el
+mentoring, y más adelante la presentación pública. Se publicará como código abierto colaborativo
+cuando termine la elaboración; hasta entonces es privado.
 
 ## La tesis en una frase
 
@@ -23,6 +26,7 @@ eso la evidencia tiene que probarse a sí misma.
 | `docs/ESCALERA_METODOLOGICA.md` | El documento principal: la tesis, el relevamiento de los tres repositorios (momentos e hitos con su commit), los dieciséis peldaños con su ficha, los fallos reales mapeados a peldaños, lo que falta, y el glosario. |
 | `docs/peldanos/peldano-NN-*.md` | El contrato de cada peldaño: contexto requerido, prompts textuales, resultado esperado y verificación de completitud. Es lo que un alumno ejecuta y lo que después se exporta a Forge. |
 | `docs/peldanos/README.md` | El índice de los contratos, con el tramo de cada uno. |
+| `docs/DECISIONES.md` | Las decisiones del proyecto, con fecha, quién decidió y las palabras textuales. El método se aplica a sí mismo. |
 | `docs/PLAN_CURSO_MENTORING.md` | El borrador del curso, el mentoring y el plan de LinkedIn. |
 | `docs/html/` | Las versiones HTML para lectura cómoda, generadas con `node build/build.mjs`. No se editan a mano. |
 | `build/` | El conversor de markdown a HTML y el script que arma los HTML. |
@@ -39,6 +43,14 @@ node build/build.mjs
 ```
 
 Produce `docs/html/ESCALERA_METODOLOGICA.html` y `docs/html/CONTRATOS_DE_PELDANO.html`.
+
+## Idiomas
+
+El castellano es la fuente de verdad. La documentación se traducirá a los otros siete idiomas de
+NAC3 (inglés, portugués, francés, alemán, italiano, japonés y chino). Los prompts para el modelo
+son una sola pieza en inglés, idéntica en todas las versiones, explicada en el idioma del lector.
+El nombre no se traduce; el subtítulo sí: *the evidence method*, *o método da evidência*, *la
+méthode de la preuve*, *die Nachweis-Methode*, *il metodo del riscontro*, 裏付けの方法, 验证方法.
 
 ## Licencia y cómo contribuir
 

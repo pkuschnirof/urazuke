@@ -1,4 +1,4 @@
-# Escalera metodológica — versión 2 (relevamiento, escalera y contratos de peldaño)
+# Urazuke, el método de la evidencia — la escalera metodológica (versión 2)
 
 Conversación entre Pablo y Sumi, 17 de octubre de 2026 (versión 1 por la mañana; versión 2 por
 la tarde, con la tesis de apertura, los contratos de peldaño y el repositorio propio). Este es un
@@ -12,6 +12,17 @@ no vivieron estos proyectos. Por eso explica las cosas con calma, repite cuando 
 falta, usa lenguaje de todos los días, y tiene al final un **glosario** con cada sigla y
 cada expresión coloquial que aparece. Si en algún momento te encontrás con una palabra
 rara —"trinquete", "candado", "PND", "fail-closed"— andá al glosario; está todo ahí.
+
+## El nombre
+
+**Urazuke** (裏付け) es una palabra japonesa que nombra el respaldo que tiene una afirmación: lo
+que la sostiene por detrás (literalmente, "el forro de atrás"). El verbo *urazukeru* es "respaldar
+con pruebas". Pablo lo eligió el 17 de octubre de 2026 ("Vamos con Urazuke"), después de que el
+chequeo de nombres descartara Hashigo, Kaidan y Shōko por colisiones con empresas y proyectos
+existentes. El nombre no se traduce; el subtítulo, "el método de la evidencia", sí: *the evidence
+method*, *o método da evidência*, *la méthode de la preuve*, *die Nachweis-Methode*, *il metodo
+del riscontro*, 裏付けの方法, 验证方法. En este documento, "la escalera" es la estructura del
+método —sus dieciséis peldaños— y "Urazuke" es el método entero.
 
 ## ¿De qué se trata esto?
 
@@ -801,11 +812,12 @@ propio del método. Queda:
    cuando se funde); la rotación de secretos como rutina y no como incidente; y un criterio
    para cuándo el humano SÍ tiene que mirar código —hoy la respuesta es "nunca", pero los
    dos informes de esta semana sugieren que hay momentos puntuales en los que conviene.
-8. **El nombre.** Esto tiene que llamarse "Método [algo]". Pablo lo pidió el 17 de octubre;
-   hay que elegirlo antes de publicar nada.
+8. ~~El nombre~~ — **hecho**: Urazuke, el método de la evidencia (D-014, 17 de octubre).
 9. **La presentación pública en yujin.app**: una página del método con sus puntos destacados,
    en varios idiomas, construida con NAC3 (el repositorio de las páginas es
-   `pkuschnirof/rpaforce`, carpeta `C:\RPAForce\web\yujin.app\`). Depende del nombre.
+   `pkuschnirof/rpaforce`, carpeta `C:\RPAForce\web\yujin.app\`). Ya tiene nombre; falta la estructura multilingüe
+   (D-013): castellano como fuente, siete traducciones, y los prompts en inglés como una sola pieza
+   explicada en cada idioma.
 10. **Probar los contratos en un proyecto real.** Los dieciséis prompts están escritos desde
     lo que hicimos, no ejecutados tal cual. El primer proyecto que los use de punta a punta
     va a corregir varios; eso es parte del peldaño 15.
@@ -1132,6 +1144,10 @@ sin `await` que solo puede bajar: si sube, el test falla.
 trabaja y responde.
 
 **UAT** — El entorno donde el cliente prueba antes de producción.
+
+**Urazuke** (裏付け) — El nombre del método. En japonés, el respaldo que tiene una afirmación, lo
+que la sostiene por detrás; *urazukeru*, respaldar con pruebas. Se pronuncia u-ra-ZU-ke. No se
+traduce.
 
 **Vibecoding / vibecoder** — Construir software conversando con una IA, describiendo lo
 que se quiere, en vez de escribir el código a mano. Un vibecoder es quien lo hace.
