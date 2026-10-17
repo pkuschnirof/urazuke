@@ -1,0 +1,1029 @@
+# Urazuke — 课程。带实践任务的手册，逐级台阶，直到应用上线生产
+
+第 1 版，2026 年 10 月 17 日。这是 Urazuke 项目的工作文档：会随着第一批使用它的学员修正。
+它用日常语言写成，每个缩写或陌生表达都在主文档（`ESCALERA_METODOLOGICA.md`）的术语表里。
+这是中文版，西班牙语是事实来源。给模型的提示词是英文的，在所有语言中完全相同。
+
+## 开始之前
+
+### 这门课是给谁的
+
+给想用人工智能构建软件、**并且希望这个软件真正被使用**的人：被真实的人用，用好几个月。这不
+是编程课：你不会学一门语言或一个框架。也不是"提示词"课：你不会学让模型写得更好的技巧。这是
+**方法**课：按什么顺序做什么，每个时刻向模型要求什么，它必须交给你什么，以及如何——不读代
+码——知道它交付的是完整的。
+
+如果你是下面这些人之一，它对你有用：
+
+- 你有一家公司、一间诊所、一家小咨询公司，想要自己的系统而不雇一个开发团队。
+- 你是自动化顾问或自由职业者，客户向你要的"不只是一个机器人"。
+- 你会编程，但想让模型做重活，自己只负责决定。
+- 你已经"vibecoding"过某个东西，它用了两周，第三个月就垮了。
+
+如果你要的是周五演示用的原型，它对你没用。那有更快的工具，而这个方法会让你觉得慢。方法是给
+演示之后还必须继续运转的东西用的。
+
+### 最后你会得到什么
+
+一个你自己的应用，在生产中运行，带着：通过之前被看到失败过的测试；可复现的部署，带回退；
+配置和密钥在仓库之外；带日期写下的业务决定；所有扣款、发送或删除的动作都上了锁；三本人无需
+AI 就能遵循的手册；一次由与构建者不同的代理做的审计；以及一份带数字的复盘。这就是我们在这里
+说的"production grade"：不是它能用，而是**它撑得住**。
+
+你还会得到另一样东西，那才是你真正带走的：不凭证据就不信模型的反射，以及确切知道每一步该向
+它要什么证据。
+
+### 你需要什么
+
+1. **一个用来编程的 AI 工具。** 任何能读写你仓库里的文件并执行命令的：Claude Code、Cursor、
+   Codex CLI、Gemini CLI、Forge。方法不依赖是哪一个；主文档里有一张每个产出物在每个工具里放
+   哪的表。本手册里我们说"代理"来指你用的那个。
+2. **一个 GitHub 账号**（或等价物）以及关于仓库、提交和推送是什么的最基本概念。没有的话，开
+   始前花一个下午；任何入门教程都够。不需要更多。
+3. **一个项目。** 最好是你自己的：一个你需要或客户向你要的系统，有将要使用它的用户。如果没
+   有，用下面描述的**引导项目**；它被设计成能走完十六级台阶、一级不跳。
+4. **时间。** 课程有十六节课，每级台阶一节。启动的（0 到 4）每节一到三小时；循环的（5 到
+   10）一个下午学会，整个项目期间练习；运维的（11 到 15）每节两到四小时。一个小项目，从头到
+   尾，是四到八周的兼职工作。
+5. **一个有时间做决定的领域所有者。** 如果项目是你的，那就是你。如果是客户的，那就是客户，
+   而且他得知道整个项目期间都要回答问题。这一点不可协商：没有做决定的所有者，模型就会做决
+   定，方法在那里就断了。
+
+### 课程怎么上
+
+每节课有同样的结构：
+
+- **你得理解什么**：概念，像对一个人解释那样解释。
+- **任务**：一步一步，附你要给代理的确切提示词（英文的，因为模型用英文遵循指令更精确；每条
+  之下用中文解释你在要求什么）以及拿到返回后怎么做。
+- **完整性检验**：关于代理交付的东西你要问自己的问题清单，不打开代码。有一项是"否"，课就没
+  上完。
+- **交付物**：最后必须存在的文件或证据。
+- **常见错误**：几乎每个人第一次都会碰到的。
+- **在引导项目中**：这节课应用到示例项目上是什么样子。
+
+整门课的一条规则：**不要带着一项"否"的检验进入下一级台阶**。"以后再修"的诱惑正是方法存在
+要避免的。一级台阶没登完整，下一级就建在沙上。
+
+### 引导项目："Turnera"
+
+如果你没有自己的项目，用这个。它小，但有让十六级台阶没有一级是假的所需的一切：真实用户、个
+人数据、发向外界的消息，以及钱。
+
+**业务。** 一家诊所（可以是事务所、理发店、修理铺：任何给预约的地方）。今天预约记在本子上，
+靠手动发 WhatsApp 确认。因为人们忘了而丢掉预约，因为两个人记在不同本子上而出现重叠预约，而
+且没人知道上个月取消了多少预约。
+
+**他们想要的。** 一个网页排班表，两位前台和三位专业人员都能看到预约；提前 24 小时通过
+WhatsApp 或邮件自动提醒；对某些预约可以通过支付链接收定金；以及月底的几个数字（多少预约、多
+少缺席、多少定金）。
+
+**所有者。** 诊所的负责人。她对业务有判断力（知道哪些预约要定金、提前多久能取消、对一个爽约
+三次的病人该说什么），每天有十五分钟回答问题。她不编程，也不会读代码。
+
+**只有她知道的数字。** 每天大约四十个预约，一年二百五十天。每个预约大约三条消息（确认、提
+醒，有时改期）。病人数据保留五年。高峰是周一早上，两位前台同时录入。还有一个她不知道答案但很
+重要的问题：如果这个行得通，会卖给其他诊所吗？（答案会把容量估算改变十倍。）
+
+**有后果的事。** 发送提醒（发两次就烦人；发错号码就是隐私问题）。收定金（钱）。取消预约（对
+失去它的病人来说不可逆）。删除病人（个人数据）。
+
+有这些就够起步了。其他一切代理会问，而让它问正是练习的一部分。
+
+---
+
+## 启动阶段：第 0 到 4 课
+
+这五节课每个项目做一次，在写功能之前。它们是最让人想跳过的（"我想看点能跑的东西"），也是跳
+过代价最高的。一个实用的建议：一周内连着做完，然后再开启循环。
+
+### 第 0 课 — 这个项目能这样做吗？
+
+**你得理解什么。** 方法不适用于所有项目，在开始之前知道这一点是第一个质量决定。有两个条件，
+没有它们方法就不行：有一个标准仓库来留证据（X1），以及界面能程序化操作，以便从界面到后端端
+到端测试（X2）。任何一个不满足，代理就无法自我验证，于是你最终会去读代码，而那正是方法承诺
+避免的。之后还有加权的准则（有没有有时间的所有者、错误有没有后果、能不能在单独的环境里测
+试，等等），我们还在用最初几个项目校准。
+
+对引导项目来说两个条件都满足：它是新项目（没有遗留）而且我们会用一个可程序化操作的网页界面
+构建它。对你自己的项目，这节课可能以"不可"结束，而那是课程的一个有效结果。
+
+**任务。**
+
+1. 在文件 `docs/INITIAL_SURVEY.md` 里手写你知道的关于项目的事：客户想要什么，为谁，今天没有
+   系统会怎样，有什么技术或提议什么技术，有没有先前的系统、它有没有仓库，谁是所有者、有多少
+   时间，错误有什么后果，会有哪些环境。半页。不完整没关系；实际上，不完整正是练习的一部分。
+2. 把主文档里的准则表（排除性的 X1 和 X2，候选的 D1 到 D10）复制到
+   `docs/ELIGIBILITY_CRITERIA.md`。
+3. 在项目文件夹里打开代理（除了那两个文件还是空的），粘上这条提示词：
+
+> We are going to assess whether this project can be run with the Urazuke method. Read the
+> initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
+> `docs/ELIGIBILITY_CRITERIA.md`. First, evaluate whether the survey is sufficient to answer
+> every criterion. If any criterion cannot be answered from the survey, ask me for the missing
+> information before going on; do not assume. Then fill in the sheet criterion by criterion:
+> the answer, where it comes from, and for each exclusionary criterion whether it is green or
+> red. Do not decide: present me the completed sheet with your reading and your doubts, and I
+> will decide. Reply in my language.
+
+   你在要求它读两个文件，**评估调研够不够并在回答之前问缺的东西**（这个条款在课程的所有提示
+   词里重复；它是方法的核心），填表并说明每个答案从哪来，而且不做决定：决定是你的。
+
+4. 回答它的问题。如果它一个都没问，要起疑，问它假设了什么。
+5. 当它把表呈现给你，读完并决定。然后粘上收尾提示词：
+
+> Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
+> `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
+> source, and the conditions if any. Include the questions you asked and my answers.
+
+**完整性检验。** 打开 `docs/ELIGIBILITY.md` 问自己：两条排除性准则有没有明确的答案和来源？
+有没有准则是用"大概"回答的？（有的话，代理应该提问。）决定有日期和名字吗？条件（如果有）能
+验证吗？它问的问题和你的回答在吗？
+
+**交付物。** 一页的 `docs/ELIGIBILITY.md`。
+
+**常见错误。** 把调研写"完整"好让代理不提问：你丢了练习，更糟的是，你习惯了替模型干活。用
+五个条件回答"可"：那是伪装的"不可"。还有最常见的：因为"显然可"而跳过这节课。显然的东西不会
+被写下，而没写下的东西之后会被争论。
+
+**在引导项目中。** 代理至少应该问：界面是网页还是移动端（因为 X2 取决于它），有没有先前的系
+统哪怕是一个 Excel，以及会用哪个消息渠道（WhatsApp 有邮件没有的要求）。表以"可"结束，附一
+个合理的条件：在第 12 级台阶之前定下消息渠道。
+
+### 第 1 课 — 协作契约
+
+**你得理解什么。** 代理每次会话到来时都不记得上一次。它就像每天早上一个新同事。协作契约是你
+第一天告诉它、它每天都会重读的东西：你怎么工作，你不容忍什么，你给它多大的自主权。没有契
+约，你每次会话都要重复同样的事，而且每次说得都有点不一样。
+
+六条最低规则每条背后都有一个故障："我的时间是神圣的"避免它每个细节都来问你；"零债务"避免
+"以后再修"；"精确范围"避免"顺便"给你加东西；"同一次提交里的文档"避免过时的手册；"永远不把
+未验证的报告为已做"避免那个其实没做的"完成了"；"说我的语言"避免因为提示词是英文就用英文回
+答你。
+
+**任务。**
+
+1. 花五分钟想想你怎么工作：你希望它多问还是少问？用什么语言？和别人共事时什么让你抓狂？记
+   成一个短清单；它问的时候你告诉它。
+2. 粘上这条提示词：
+
+> Before we write any code, we are going to set the working agreement between you and me.
+> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
+> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
+> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
+> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
+> no more and no less than what was asked; if you see something else, log it as a pending item,
+> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
+> as done something you have not verified; always separate what you verified from what you
+> believe. (6) Speak my language. Add any rules you think this project needs, marked as
+> proposals. If you need to know something about how I work in order to write this, ask me.
+
+   你在要求六条规则，附每条避免的故障，自己的规则标为提案让你接受或拒绝，以及问你关于你自
+   己的事。
+
+3. 回答它的问题。读提案：接受对你有用的，拒绝没用的，始终附一行理由。
+4. 这样收尾：
+
+> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> agreement with today's date and a version number. Then add to the project file the
+> instruction to read this agreement at the start of every session.
+
+   如果还没有项目文件（第 2 课做），它会创建一个带那条指令的最小文件；没问题。
+
+**完整性检验。** 六条规则都在，每条附它避免的故障吗？有没有写成愿望的（"尽量……"）？项目文
+件是否命令每次会话开始时读它？它至少问了你一个关于你怎么工作的问题吗？
+
+**交付物。** 带日期和版本的 `docs/WORKING_AGREEMENT.md`，挂在项目文件上。
+
+**常见错误。** 因为都听起来不错就接受二十条规则：没人遵守二十条；六到八条才遵守得了。留一
+条说代理可以改契约的规则：不行。还有最静默的一个：从不测试它是否在读。第 2 课你会看到怎么
+测。
+
+**在引导项目中。** 代理通常会为 Turnera 提议、而且值得接受的一条自己的规则："永远不从非生
+产环境向病人发真实消息；在测试中，消息进入一个假收件箱"。这是第 12 级台阶提前露头。
+
+### 第 2 课 — 项目定义与必读
+
+**你得理解什么。** 项目文件（`PROJECT.md`，或 `CLAUDE.md`，或你的工具用的名字）是代理每次
+会话开始时读的地图。它必须**简短**：系统是什么，为谁，不是什么，模块，带日期的决定，以及读
+契约的命令。每天发生的事不放这里：放活状态（`docs/STATUS.md`）和待办项记录。方法的一个源系
+统让这个文件长到了 9,661 行；在那种状态下，没人读，模型也不读。
+
+"不是什么"一节是最重要、也是所有人都留空的一节。没写下的，就是模型碰到空缺时会编造的。
+
+**任务。**
+
+1. 用第 0 课学到的（代理问题的答案）补全 `docs/INITIAL_SURVEY.md`。加一节"系统不该做什么"，
+   哪怕只有两条。
+2. 粘上：
+
+> We are going to define the project in writing. Read the business survey in
+> `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
+> whether the survey is sufficient to describe the system, its users and its boundaries; if it
+> is not, ask me for what is missing before writing anything. Then write `PROJECT.md`, three
+> hundred lines at most, with: what the system is and for whom; what it is NOT; the main
+> modules as a list; the decisions already made, each with its date; and the instruction to
+> read this file and the working agreement at the start of every session. Separately, create
+> `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
+> changes every day; `PROJECT.md` almost never does. Reply in my language.
+
+   你在要求它起草前先提问，一份带"不是什么"一节的简短项目文件，带日期的决定，以及放在另一
+   个文件里的活状态。
+
+3. 通读 `PROJECT.md`。它必须能在五分钟内读完。改掉不真实或不是你的东西。
+4. 这样收尾：
+
+> Apply these corrections: [list]. Finalize `PROJECT.md` with today's date. Add to the working
+> agreement that the change history never goes into `PROJECT.md`: it goes to `docs/STATUS.md`
+> or to the pending-items register.
+
+5. **读取测试。** 关掉代理的会话，开一个新的。不多说别的，问它："这个系统不该做什么？"。如
+   果它用 `PROJECT.md` 里说的回答你，挂接起作用了。如果它回答别的任何东西，它没在读地图：检
+   查你的工具是怎么加载项目文件的。
+
+**完整性检验。** `PROJECT.md` 五分钟能读完吗？它说了系统不做什么吗？每个决定有日期和决定者
+吗？代理起草前问了什么吗？活状态在另一个文件里吗？通过读取测试了吗？
+
+**交付物。** `PROJECT.md`（最多三百行）和 `docs/STATUS.md`，以及通过的读取测试。
+
+**常见错误。** 把你已有的整份规格说明粘进 `PROJECT.md`：它是纲领，不是规格说明。把"不是什
+么"留空。不做读取测试：这是知道第 1 级和第 2 级在起作用而不只是存在的唯一办法。
+
+**在引导项目中。** Turnera 的"不是什么"里至少应该有：它不是病历系统（不保存医疗数据），不是
+支付网关（用一个供应商的支付链接，不处理银行卡），不发营销消息（只发确认和提醒）。这三个
+"不"每一个都为你省下之后半小时的谈话。
+
+### 第 3 课 — 在设计架构之前先做容量估算
+
+**你得理解什么。** 有些决定做错了要花几周：哪个数据库，对数据库的调用是同步还是异步，多少人
+能同时用系统。而它们都依赖于**只有业务方才有**的数字：每天多少预约，每个预约多少消息，保存多
+少年。模型推断不出这些数字；它能推断的是由它们派生的东西（每年的行数，五年后的大小）。所以
+提示词要求它区分原始数据和派生数据，并且**索要缺的原始数据而不是估算它们**。当模型估算一个
+原始数据时，它的表情和它计算时一样笃定；你没法从语气分辨。
+
+还有一类决定总是值得做：**非对称的**，多了便宜，缺了极贵。经典例子是从第一天起就让与数据库
+的接口是异步的，哪怕第一个数据库是一个文件：如果你永远不换数据库，多了一个 `await`；如果
+换了，你省下了全部重写。
+
+**任务。**
+
+1. 和所有者坐下来（如果项目是你的，就和你自己）写 `docs/VOLUME_SURVEY.md`：主要实体和它们有
+   多少，每月增加多少，每个实体多少事件，高峰时多少人操作、高峰是什么时候，数据保留多久，有没
+   有异常负载，期望什么增长。对每个数字，记下它从哪来："负责人说的"、"在九月的本子上数的"、
+   "假设"。故意留几个是"假设"：你会看到代理怎么处理它们。
+2. 粘上：
+
+> Before proposing any architecture we are going to size the system. Read `PROJECT.md` and the
+> volume survey in `docs/VOLUME_SURVEY.md`. Distinguish primary data (facts only the business
+> knows) from derived data (what can be computed from the primary data). Evaluate whether the
+> primary data is complete enough to compute what follows; if any primary figure is missing, or
+> is marked as an assumption, ask me for all the missing figures before going on. Never estimate
+> a primary figure. If a previous system can be queried, use its real numbers and state where
+> each came from. With the primary data complete, compute, showing the arithmetic: rows per year
+> for the three largest tables, peak concurrency, data size at five years, and what breaks first
+> if everything is multiplied by ten. Then present three options for persistence and concurrency,
+> each with the cost of migrating to the others later. Do not choose: I choose. Do not write code.
+> Reply in my language.
+
+   你在要求：区分原始和派生；**向你索要缺的或标为"假设"的原始数据，而且永远不估算**；把派生
+   的连算式一起算出来；"乘以十"的场景；三个选项附彼此迁移的成本；以及不选择。
+
+3. 如果它向你要"假设"，好：那正是练习。弄到数字（问所有者，在本子上数）给它。如果它没要就
+   照样算了，停下来问它拿假设怎么办了：这是台阶的一个故障，现在看到比较好。
+4. 读三个选项。手算一个（比如最大的表每年的行数）：必须得到同样的结果。选。
+5. 这样收尾：
+
+> I choose option [B]. Record in `docs/SIZING.md`: the primary data with its source, the derived
+> data with its arithmetic, the three options, the chosen one and why, and the decisions we are
+> taking "just in case" even though they are not needed today (for example: the persistence
+> interface is asynchronous from line one, even if the first engine is synchronous). Include the
+> questions you asked and my answers.
+
+**完整性检验。** 有没有来源是"假设"或没有来源的原始数据？每个派生数据都显示了算式，你重算
+一遍能得到吗？有三个选项并且选了一个附理由吗？它说了"乘以十"会怎样吗？非对称决定写下来了
+吗？它问你了吗？
+
+**交付物。** `docs/SIZING.md`。
+
+**常见错误。** 用你自己编的数字填满调研好让代理不提问（和第 0 课一样的错误，在这里更糟，因
+为这些数字决定架构）。为保险起见选"最强"的选项：迁移成本放在表里正是为了让你选能扛住"乘以
+十"的最小那个。不写下非对称决定：没写下，第 4 课代理就不会遵守。
+
+**在引导项目中。** 原始：40 个预约/天 × 250 天 = 10,000 个预约/年；每个预约 3 条消息 =
+30,000 条消息/年；5 年保留；两位前台同时的高峰。"乘以十"是会不会卖给其他诊所的问题：每年
+100,000 个预约和 300,000 条消息。典型的三个选项：一个 SQLite 文件（一家诊所够用好几年，多人
+写入时扛不住乘以十），一开始就 PostgreSQL（什么都扛得住，基础设施稍贵），或者现在 SQLite 加
+异步接口、并计划迁移到 PostgreSQL（非对称的那个）。课程里我们选第三个：它教得最多。
+
+### 第 4 课 — 带闸门的骨架
+
+**你得理解什么。** 在系统做任何有用的事之前，它必须**空着**启动、测试和部署。看起来是浪费
+时间（"部署什么，什么都没有？"），其实相反：通往生产的路是产品的一部分，而知道它通不通的唯
+一办法，是在还没有什么可失去的时候走一遍。在一个源系统中，部署在启动一个月后才到来，连续花
+了五个待办项；如果骨架第一周就部署了，那五次打击本会在空的状态下承受。
+
+**闸门**是从一个阶段进入另一个阶段的条件（"测试套件是绿的"、"部署到测试环境成功了"）。现在
+就把它们写下来，哪怕看起来显而易见，是之后能不争论就说"这个过不去"的前提。
+
+**任务。**
+
+1. 写 `docs/ENVIRONMENTS_SURVEY.md`：系统将在哪里运行（你已有的服务器、云上的服务），会不会
+   有测试环境和生产环境，谁有权访问什么，如果已经有东西现在怎么部署。如果什么都没有，就这么
+   说：代理会向你提议最简单的选项。
+2. 确保你有部署目的地的凭证，哪怕是一个免费服务。没有它，骨架就留在你的机器上，这节课就完不
+   成。
+3. 粘上：
+
+> We are going to build the skeleton of the system, with no functionality at all. Read
+> `PROJECT.md`, `docs/SIZING.md` and the environments survey. Evaluate whether you have what is
+> needed for the skeleton to run in the test environment (access, URL, deployment method); if
+> anything is missing, ask me before starting. Then build: the folder structure; the server and
+> the UI starting up; the test structure with one smoke test that passes; continuous
+> integration running that test suite on every push; and the deployment to the test
+> environment. Declare the gates of the workflow (what must be green to move from one stage to
+> the next) in `docs/GATES.md`. When done, take a screenshot of the empty UI running in the
+> test environment and show it to me. Do not add any functionality "while you are at it".
+> Reply in my language.
+
+   你在要求它开始前核实访问权，骨架是什么的确切清单，写下的闸门，测试环境的一张真实截图，以
+   及禁止添加功能。
+
+4. 这个任务很长（代理一两个小时的工作）并且会有来回：缺的凭证、一个要求确认邮件的服务，等
+   等。正常。不正常的是它没给测试环境的截图就说"完成了"。
+5. 当它给你看截图，你自己在浏览器里打开 URL。必须看到同样的东西。
+6. 这样收尾：
+
+> Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
+> the tests and the command to deploy, and mark this step as done. Then run the deployment a
+> second time and show me that the second run changed nothing.
+
+**完整性检验。** 你自己打开了测试环境的 URL 并看到空界面了吗？有绿色持续集成运行的链接吗？
+部署跑了两次，第二次没弄坏任何东西吗？闸门每个都有可验证的条件吗？有你没要求的功能吗？
+
+**交付物。** 带骨架的仓库，绿色的持续集成，可用的测试环境 URL，`docs/GATES.md`，以及带三个
+命令的 `docs/STATUS.md`。
+
+**常见错误。** 接受"本地能用，部署以后再看"：不行，部署就是骨架。接受一张来自代理机器而不是
+测试环境的截图。让它"顺便"给你加一个登录页、一个菜单、一个 logo：每一个没有待办项就进来的东
+西都是溜走的范围。
+
+**在引导项目中。** Turnera 的骨架是一个在测试环境的公共 URL 上运行、写着"Turnera — 版本
+0.0.1"的网页，一个在健康路由上回答"ok"的服务器，一个调用那条路由的冒烟测试，每次推送都跑那
+个测试的持续集成，以及到测试环境的自动部署。闸门："合并需测试套件为绿"、"提升到生产需测试
+环境为绿"、"第一次生产部署需回滚已测试"。再无其他。而在一个真实的 URL 上看到那个空页面，满
+足感出奇地强。
+
+---
+
+## 循环阶段：第 5 到 10 课
+
+这六节课是你**每次变更**都要用的，贯穿整个项目。一个下午学会，但要练习几周。目标是阶段结束
+时你有了反射：取一个待办项，构建，先证红，更新另一端，该测量的测量，然后把已验证和相信分开
+来报告。那个反射就是方法。
+
+练习它们你需要真实的功能。在引导项目中，第一块待办项是基本排班表：看当天的预约，录入一个预
+约，取消它。暂时没有消息也没有支付；那在锁（第 12 课）之后。
+### 第 5 课 — 计划就是待办项
+
+**你得理解什么。** 没有"计划"在一边、"任务清单"在另一边：**待办项列表就是计划**。每个待办
+项有编号、从哪来（引发它的决定或请求）、如何验证已完成，以及关闭时的证据。最后那个是你要看
+的东西，代替看代码。还有给代理的黄金规则：列表之外出现的东西记为新待办项，不做。
+
+**任务。**
+
+1. 在 `docs/INITIAL_SURVEY.md`（或单独的文件）里写下客户对第一块功能的请求，按客户会说的那
+   样，带着它的含糊。对 Turnera："我想看当天的预约，录一个新的，还有取消"。
+2. 粘上：
+
+> We are going to turn everything that must be done into numbered pending items. Read
+> `PROJECT.md`, the client's request and whatever is in `docs/STATUS.md`. If the request is
+> ambiguous on any point such that you cannot write a verifiable pending item for it, ask me;
+> do not resolve it by assuming. Create `docs/PENDING.md` with one item per thing to do: number
+> (PND-001 onwards), one-line title, what is requested, which decision originates it (or
+> "client request, date"), how it will be verified as done, and status. Order them by the
+> priority I gave you; if I gave none, propose an order and tell me why. Reply in my language.
+
+   你在要求它把请求转成可验证的条目，**在请求模糊到写不出可验证条目时提问**，并附理由提议一
+   个顺序。
+
+3. 回答问题（对 Turnera 它会问，比如，"当天"是什么：今天，还是任选的一天？取消是删除还是标
+   记？）。那些问题是业务决定；第 6 课你会看到它们写在哪。
+4. 把每次会话的例行加进协作契约。粘上：
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "Before touching any code, open
+> `docs/PENDING.md`, tell me which item you are taking and why. Every commit cites its pending
+> item. A pending item is closed with written evidence (the test, the screenshot, the number),
+> never with 'done'. If along the way you see something that is not on the list, add it as a new
+> pending item; do not do it."
+
+5. 现在，开始构建。让它取第一个待办项。从这里起，每次会话都以"你取哪个待办项，为什么"开
+   始。
+
+**完整性检验。** 每个待办项都说了如何验证吗？有没有既无证据也无提交就关闭的待办项？随机取三
+个提交：引用了它们的待办项吗？代码里出现没有待办项的东西了吗？它就模糊的地方问你了吗？
+
+**交付物。** 带第一块的 `docs/PENDING.md`，契约里的例行，以及进行中的第一个待办项。
+
+**常见错误。** 写没有"如何验证"的待办项（"改进预约界面"）：关不了，于是用"完成了"关。因为
+"我已经看到它能用了"就让代理无证据地关闭待办项。最难纠正的：让它做列表之外"再一个小东西"。
+第一次你放行，精确范围就丢了。
+
+**在引导项目中。** Turnera 的第一块大约六个待办项：PND-001 查看某一天的预约；PND-002 录入一
+个带病人、专业人员、日期和时间的预约；PND-003 阻止同一专业人员同一时间的两个预约；PND-004
+取消一个预约（标记，不删除：第 6 课的决定）；PND-005 按姓名或电话查找病人；PND-006 用最少数
+据登记病人。每个带它的验证："在界面上能看到并且留在了库里"、"尝试重叠预约时界面提醒而库不保
+存"，等等。
+
+### 第 6 课 — 决策写在代码旁边
+
+**你得理解什么。** 模型碰到业务规则里的空缺时，**会把它填上**。它不停下来问；它用它觉得最可
+能的东西补全，和写其他东西一样自然。所以这节课不是"写下决定"，而是"要求它在缺一条时停下来
+问"。当你决定时，决定用你的原话、你的名字和日期写在提交和记录里。六周后，当有人问"为什么取消
+不删除？"，答案是写下的，而且是你的。
+
+**任务。**
+
+1. 把决定的例行加进契约。粘上：
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "Whenever implementing something requires a
+> business rule that is not written down, or you must choose between two approaches that change
+> what the user sees, stop and ask me, in prose, with your recommendation and the alternative. Do
+> not implement the one you prefer. When I decide, write the decision with my name and the date
+> in the commit message and in `docs/DECISIONS.md`, with the exact words I used. If I do not
+> answer and you must move on, implement the most reversible option and mark it 'decision by
+> omission, pending confirmation', so that I can review it."
+
+   你在要求它面对未写下的规则时停下，带推荐和备选方案提问（让你十秒就能决定），记录你的原
+   话，以及你不回答时选最可逆的并标出来。
+
+2. 继续构建这一块的待办项。每次它问你一条业务规则，决定并用收尾格式回答：
+
+> Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
+
+3. 故意做一次相反的测试：让一个问题整整一次会话不回答，看它怎么做。它必须选最可逆的并标为
+   "因缺省"。如果它选了它觉得好的而没标，这是台阶的故障：在契约里纠正它。
+
+**完整性检验。** 打开三个涉及业务规则的提交：引用了谁决定、何时决定吗？有未确认的"因缺省"
+决定吗？系统里有你不认得是自己的规则吗？句子是原话还是"改进过的"？
+
+**交付物。** 不断增长的 `docs/DECISIONS.md`，至少有第一块的五个决定，以及引用它们的提交。
+
+**常见错误。** 在聊天里回答问题而不要求写下来：到第三次会话就没人记得了。让代理"改进"你的
+话：一条被转述的规则是另一条规则。最严重的：在生产中发现一条没人决定过的规则。发生时（会发
+生的），它不是 bug：是第 6 级台阶的故障，要在契约里修，而不只是在代码里。
+
+**在引导项目中。** Turnera 第一块的典型决定："取消把预约标为已取消并保存谁、何时；什么都不
+删除"；"一个专业人员不能在同一时间有两个预约，但如果专业人员启用了，一个双人时段里可以有两
+个病人"；"病人的电话必填；邮件不必"。每条带日期和负责人的名字。
+
+### 第 7 课 — 作为锁的测试，先证红
+
+**你得理解什么。** 这是课程的核心一课。一个你从没见它失败过的测试，你不知道它是否证明了什
+么。模型在同一次会话、用同一种理解写代码和测试：如果它误解了请求，测试证明它理解的东西，并
+且通过。知道测试在看重要的东西的唯一廉价办法是**看它对旧代码变红**：如果变更之前的代码也能
+通过，测试就区分不了前后，那它就没用。所以要求不是"写测试"，而是"给我看红，然后绿，然后回
+归"。
+
+还有第二个想法：端到端测试。一个从界面验证（点击、输入、读取）并检查后端效果（那一行留下
+了，状态变了）的测试，就是替代你读代码的那个。它是第 0 课的准则 X2 变成了实践。
+
+**任务。**
+
+1. 把证据的例行加进契约。粘上：
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
+> not your word. (1) Write the test that proves what the item asks for. (2) Demonstrate that this
+> test fails against the previous code: you may temporarily revert the change, or run the test
+> against the old version, but show me the red output. (3) Show me the green output with the
+> change. (4) Run the regression suite for the neighbouring items and show me it is still green.
+> (5) Do not replace with mocks the very part you are trying to test. If testing end to end
+> requires something you lack (data, access, an environment), ask me for it; do not simulate what
+> you do not have. Finally, the commit message says 'proved red against [what]' and the test
+> counts."
+
+   你在要求测试，**展示出来、输出可见的红**，绿，同一会话里邻近项的回归，不模拟恰好要测的东
+   西，以及端到端测试缺什么就索要而不是模拟。
+
+2. 取重叠预约的待办项（Turnera 的 PND-003，或你项目里的等价物：一条阻止某事的规则）。让它
+   用例行关闭它。读报告：必须有一个带数字的红色输出（"1 of 1 对没有规则的版本失败"），然后
+   是绿。
+3. 为同一个待办项要一个端到端测试：打开界面，尝试录入重叠预约，读提示，并在库里检查它没被
+   保存。如果它说做不到，因为界面不能程序化操作，停下：那是 X2 在失败，必须现在修（给界面元
+   素加标识符）再继续。
+4. 当代理说某事"没法测"，粘上：
+
+> Explain why it cannot be tested, what would have to be added so that it can, and open a
+> pending item for that. The change is not closed until it can be tested.
+
+**完整性检验。** 报告展示了带数字的红吗？回归在同一会话里跑了，带数字吗？变更所在的地方有
+模拟的部分吗？提交写了"先证红"吗？界面测试也验证了后端吗？
+
+**交付物。** 至少三个用完整例行（红、绿、回归）关闭的待办项，其中一个带端到端测试。
+
+**常见错误。** 接受没有数字、没有红的"测试通过"。接受用模拟替换端到端测试来让套件"提速"。
+让"没法测"过去而不开待办项：不可测试性是债务，债务要记录。
+
+**在引导项目中。** 重叠预约的红是这样的：代理临时去掉规则，跑测试，输出说测试失败了，因为第
+二个预约被保存了。它把规则放回去，跑，绿。然后回归：PND-001 和 PND-002 的测试仍然是绿的。然
+后端到端：一个程序控制的浏览器加载表单，按"保存"，读到消息"那个时段已被占用"，一条对库的查
+询确认那个时间只有一个预约。你第一次看到那份报告时，你会明白整个方法是为了什么。
+
+### 第 8 课 — 生产者与消费者的对称性，以及反模式记录
+
+**你得理解什么。** 当你改动系统的一端（服务器、库、一个机器人），另一端（界面、一个计数器、
+一份报表）必须在同一次提交里改动。否则它们分叉，用户在一边看到一个数字，另一边看到另一个。避
+免它的原则说起来简单、坚持起来难：**每个列表只有一个所有者**。预约的可能状态、报表的列、某事
+等待的原因：只由一方（生产者）定义，其他方从那里读。一旦有两份副本，有一份就过时了；只差知道
+是哪一份。
+
+这节课的后半是反模式记录（GOTCHAS）：你已经吃过一次亏的错误，记下它们的气味、根因、修复和
+如何提前检测。重要的不是记下来：是加上能检测它们的自动检查，因为一个记下但没自动化的反模式
+在换会话时会重演。
+
+**任务。**
+
+1. 要契约地图：
+
+> Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
+> a file format, a list of values), who produces it and who consumes it. If there are parts of
+> the system you cannot access or do not understand, tell me instead of leaving them out of the
+> map. Reply in my language.
+
+   你在要求带两端的契约清单，以及它看不见的要声明而不是省略。
+
+2. 把例行加进契约：
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "Before closing any change that touches a
+> contract, look up every consumer in the map and update them in the same commit. Always prefer
+> that the producer defines the list (columns, causes, states) and the consumer reads it, rather
+> than each keeping its own copy. If the map does not have that relationship, add it."
+
+3. 做列表测试：选一个出现在界面上的列表（在 Turnera 里，预约的状态：待确认、已确认、已取消、
+   缺席），让代理给你看它在哪定义、在哪读。如果有两个定义，让它只留一个。
+4. 第一次有东西第二次坏掉时（接下来几周会发生），粘上：
+
+> This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
+> sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
+> possible, a test or an automatic check that detects it.
+
+**完整性检验。** 从地图里选一个契约：每个消费者是从生产者读还是有自己的副本？有一个在两个界
+面显示且一致的数字吗？GOTCHAS 的每条都有四个部分吗？已经记下的东西重演了吗？
+
+**交付物。** `docs/PRODUCER_CONSUMER_MAP.md`，契约里的例行，以及 `docs/GOTCHAS.md`（哪怕只
+有一条起步）。
+
+**常见错误。** 做一次地图然后再不看：它必须随每个新契约增长。把反模式记成轶事（"有一次发生
+了……"）而没有"如何提前检测"部分。还有经典的：同一个状态的文本在服务器和界面上各手写一份；
+一个改了那天，另一个留着。
+
+**在引导项目中。** Turnera 的地图一开始有四五个契约：预约状态列表（服务器定义，界面和月报
+读）；预约表（录入写，当天排班表和报表读）；病人表；以及之后的消息队列（排班表写，发送器
+读）。第一个 GOTCHA 通常是日期的：排班表把预约显示在了错误的一天，因为服务器用一个时区保存
+而界面用另一个时区显示。气味："23 点的预约出现在明天"。根因：两个时区。修复：只用一个，在服
+务器。检测：一个 23:30 预约的测试。
+
+### 第 9 课 — 构建之前先测量，用一把自身也被验证的量具
+
+**你得理解什么。** 模型会产出带数字的断言（"那类查询大约有 120 个"），它们在测量出来和估算
+出来时听起来一模一样。你没法从语气分辨。唯一的办法是索要量具："你用什么测的？给我看命令"。
+这级台阶的规则是**任何决定某事的数字都不来自印象**：它来自一把住在仓库里、有一个对已知案例
+验证它的测试、并且你能运行的量具。
+
+还有一件我们吃亏学来的事：量具也会撒谎。在一个源系统里，一把量具给出零，因为它没看见代码的
+一部分；另一把说 27，实际是 44。所以要双向审计：从代码到测量（该数的都数了吗？）和从测量到
+代码（数的都真的存在吗？）。
+
+在小项目里，"测量"是朴素的：数一个界面加载时做多少次查询，月报要多久，昨天发了多少条消息。
+不需要棘轮也不需要每条路径的预算。需要的是数字背后有一条命令。
+
+**任务。**
+
+1. 选一个假设。对 Turnera，一个好的："当天排班表为它显示的每个预约做一次库查询"（经典的
+   N+1 循环）。如果它不成立，更好：你会看到一个假的假设怎么被验证。
+2. 粘上：
+
+> Before building anything, we are going to measure. The hypothesis is: [the day view runs one
+> database query per appointment shown]. Write a meter (a script that lives in the repository)
+> that measures [the number of queries the day view runs for a day with N appointments], and a
+> test for the meter that checks it against a known case where the answer is known in advance.
+> If measuring requires access or data you lack, ask me; do not approximate silently. If some
+> part can only be approximated, mark it as approximate and tell me the margin. Run the meter,
+> show me the number together with the command that produces it, and audit it in both
+> directions: from the code to the measurement (is everything that should be counted, counted?)
+> and from the measurement to the code (does everything counted actually exist?). Only then
+> propose what to build. Reply in my language.
+
+   你在要求仓库里的量具，量具的测试，缺什么就索要而不是近似，标出近似值，数字连同命令，双
+   向审计，以及顺序：先测量，后提议。
+
+3. 你自己运行它给你的命令。必须得到同样的数字。你不需要懂那个脚本；但要执行它。
+4. 如果假设成立并且代理提议修，向它要一个预算：
+
+> Set the budget for [queries] on this path at the measured value plus a small margin, and
+> protect it with a test that fails if it is exceeded. Tell me the number and the margin.
+
+   这样，如果三个月后有人又把循环塞回去，测试套件会发现。
+
+5. 把规则五加进契约，用于计划带数字的时候：
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "Before executing a plan that asserts
+> numbers, verify every number with the meter. If any does not match, stop and tell me; do not
+> execute on a wrong number."
+
+**完整性检验。** 你运行了量具并得到相同的结果吗？它有测试吗，对哪个已知案例？报告里有没有
+量具支撑的数字吗？近似值标出来了吗？有带测试的预算吗？
+
+**交付物。** 仓库里一把带测试的量具，一个带命令和日期的数字在 `docs/STATUS.md` 或待办项
+里，以及（如果适用）一个由测试保护的预算。
+
+**常见错误。** 不运行命令就接受数字：这节课一半的价值在于你自己运行。一把给出零的量具：几乎
+从不是零；几乎总是没看见什么。让代理"边测边修"：顺序就是方法。
+
+**在引导项目中。** Turnera 的量具是一个脚本，在测试库里加载一个有 10、50 和 200 个预约的日
+子，打开那天的排班表并数查询，写下三个数字。量具的测试验证 0 个预约时它恰好数到基础查询数
+（比如 2）。如果有循环，数字是 12、52 和 202；修好后，变成 3、3 和 3，预算定为 4，带一个如
+果排班表对任何数量的预约做超过 4 次查询就失败的测试。
+
+### 第 10 课 — 诚实的验证与相称的报告
+
+**你得理解什么。** 如果你不读代码，代理的报告就必须可信，而这不会自动发生。模型被训练成有用
+和完整，一份说"这个我没能验证"的报告感觉不如一份说"完成了"的有用。所以必须**明确向它要**坏
+消息、盲点和它没做的事。你不要，它就不给；不是因为它藏着，而是因为它不认为那是回答的一部
+分。
+
+让它诚实的结构是三个块：**已验证**（证据在旁边），**相信**（它认为能用但为什么没测），以及
+**盲点**（它从所在位置看不见的）。还有一条规则：坏消息先说。
+
+**任务。**
+
+1. 把报告的例行加进契约：
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "When you report, separate three blocks:
+> VERIFIED (what you tested, with the command and its output), BELIEVED (what you think works but
+> did not test, and why not), and BLIND SPOTS (what you cannot see from where you are: another
+> environment, real data, the user's browser). Cover every item I asked for, one by one, even when
+> the answer is 'I did not do it'. No claim without its proof next to it. Do not say 'done': say
+> what is done and how you know it. If something went wrong, say it first."
+
+2. 让它关闭下一个待办项，用下面的检验清单读报告。第一次，几乎肯定，"盲点"块会是空的。问它：
+   "你从所在位置看不见什么？"。必须有东西（你的浏览器、生产环境、真实数据）。如果它坚持什么
+   都没有，你也坚持。
+3. 练习"还是坏的"。向它要一件小事，在测试环境验证，如果因为任何原因你看不到变更（很常见：部
+   署慢，或者没做），告诉它"还是坏的"并粘上：
+
+> Before diagnosing again, compare the version running where I see the problem with the version
+> that contains your fix. Tell me both. If they differ, the problem is publication, not code.
+
+   一半的"还是坏的"是修复在仓库里、而不在你看的地方。这个条款为你省下几小时。
+
+**完整性检验。** 三个块都在吗？你随机选了一条"已验证"的断言，它旁边有证据，你能复现吗？覆
+盖了你要求的每一项吗？坏消息在开头吗？它有没有说过干巴巴的"完成了"？
+
+**交付物。** 契约里的例行和连续三份带三个块的报告，其中一份带一个真实的盲点。
+
+**常见错误。** 只读"已验证"块、跳过另外两个：另外两个才是保护你的。接受"已验证"里的"应该能
+用"：那是伪装的"相信"。习惯于越来越长的报告：膨胀的报告在用篇幅掩盖什么。
+
+**在引导项目中。** Turnera 中 PND-004（取消预约）的一份好的收尾报告："已验证：取消测试通过
+（1/1，对删除的版本先证红）；回归 6/6；在测试环境，11 月 3 日的 17 号预约显示由 'reception1'
+于 10:42 取消（截图）。相信：月报会正确地数取消，但我没测，因为报表是 PND-011，还不存在。盲
+点：我看不到'已取消'状态在前台的手机上是什么样；你来试。"
+
+---
+
+## 运维阶段：第 11 到 15 课
+
+这五节课把"能用"变成"撑得住"。它们在第一块功能用循环构建完之后、系统作用于世界（发消息、收
+款）或有真实用户之前做。在引导项目里，这是加提醒和定金的时刻，所以第 12 课（锁）在构建那些
+功能之前，不是之后。
+
+### 第 11 课 — 作为计划输入的定期审计
+
+**你得理解什么。** 时不时要用新鲜的眼光看整个系统，而看到的东西不进归档的报告：进待办项列
+表。重要的部分是"新鲜的眼光"：审计的不能是构建的，因为它共享构建者的前提。一个构建了某模块
+的模型"知道"写在代码里的密码是临时的；一个第一次看到它的模型会照实报告。不需要另一家公司：
+**另一个会话、另一个指令文件、没参与过的**就够了。
+
+**任务。**
+
+1. 在仓库的一个干净副本里（克隆到另一个文件夹）打开一个新的代理会话。如果你的工具允许，给它
+   一个不同的指令文件，只说"你是审计者；你没有构建这个系统"。给它测试环境的只读访问。
+2. 粘上：
+
+> Audit this system for [integrity, security, performance and code quality]. Read-only: change
+> nothing except writing your report to `docs/AUDIT_[date].md`. If auditing some part requires
+> access you lack (the database, the log, an environment), tell me and mark that part as not
+> audited; do not pass it as fine. Go through all of the code, not a sample. For every finding:
+> where it is (file and line), what the risk is, what evidence proves it (the command, the
+> query, the number), and its priority: P0 must be fixed now, P1 soon, P2 when possible. Give a
+> grade to every dimension you audited. End with the list of P0 findings turned into proposed
+> pending items. Reply in my language.
+
+   你在要求只读，没能审计的要声明而不是因省略而放行，全部代码而非抽样，每个发现附位置、风
+   险、证据和优先级，按维度评分，以及 P0 已作为建议的待办项。
+
+3. 读报告。选两个发现，让审计者给你看证据（命令、行号）。它必须能做到。
+4. 回到构建者的会话，粘上：
+
+> Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
+> If you disagree with any of them, tell me with the evidence against; do not ignore it.
+
+5. 在第一次生产部署（第 13 课）之前重复这节课，之后每一两个月一次。
+
+**完整性检验。** 报告说了它没能审计什么吗？随机两个发现有文件、行号和可复现的证据吗？每个 P0
+都开了待办项吗？评分能和下次审计比较吗？审计的是与构建不同的会话吗？
+
+**交付物。** `docs/AUDIT_[日期].md` 和已开的 P0/P1 待办项。
+
+**常见错误。** 用构建的同一会话审计：它会确认自己的前提。在一个超过一个月的系统上接受没有任
+何 P0 的报告：几乎从不成立。归档报告而不开待办项：那样审计就白做了。
+
+**在引导项目中。** Turnera 的第一次审计通常发现：日志里有病人数据（发消息时打印的电话号码：
+P0）；按姓名查找病人没有索引（P1，到 5,000 个病人时会显现）；预约表单没有验证日期是未来的
+（P1）；以及某个有已知漏洞的依赖（P1）。四个新待办项，都带文件和行号。
+
+### 第 12 课 — 失败即关闭、锁与零静默损害
+
+**你得理解什么。** 软件默认在疑问面前继续：校验失败了，代码继续；服务不响应，假定一切正常。
+这是"失败即打开"，像一扇断电就开的门。方法把默认反过来：**有疑问，就不做**。每个有后果的动作
+（收款、发送、删除、批准）都带锁，有写下的回退路径，而且每个新自动化都以演练模式启动，记录它
+本会做什么，直到你启用它。
+
+这节课在构建作用于世界的功能**之前**。在 Turnera 里，在提醒和定金之前。
+
+**任务。**
+
+1. 和所有者一起写 `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`：系统做什么或将做什么会收款、发送、
+   批准、删除或通知外面的人；做两次会怎样；做错会怎样；怎么撤销。
+2. 粘上：
+
+> We are going to decide which actions of the system need a lock. Read the survey of
+> consequential actions, and go through the code looking for everything that charges, sends,
+> approves, deletes or notifies outwards. Compare the two lists: if the code has actions the
+> survey does not mention, or the other way round, ask me before going on. For every action
+> propose: whether it is reversible, which lock it gets (explicit confirmation, double safety,
+> dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong.
+> General rule: on any doubt or failure along the way, the action is NOT executed and the reason
+> is logged. Present me the table; I confirm lock by lock. Reply in my language.
+
+   你在要求它比较业务方说的和代码做的（没人记得的动作就在那里出现），差异要问，以及每个动作
+   的可逆性、锁和回退路径，附写下的失败即关闭规则。
+
+3. 一把锁一把锁地确认。这样收尾：
+
+> I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves
+> that, under the doubt condition, the action does NOT happen (proved red against the version
+> without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
+> dry-run mode first, logging what it would have done, until I enable it.
+
+4. 现在用第 5 到 10 课的循环构建有后果的功能（提醒、定金），并让它们保持演练模式。在启用真
+   实发送之前，看几天"本会发送"的记录。
+
+**完整性检验。** 每个收款、发送、批准或删除的动作都在表里吗？每把锁都有先证红的测试吗？每个
+不可逆动作都有写下的回退路径吗？新自动化以演练模式启动了，你在启用前看了记录吗？
+
+**交付物。** `docs/LOCKS.md`，每把锁一个先证红的测试，以及带记录的演练模式自动化。
+
+**常见错误。** "为了给我自己的手机发条消息测一下"就启用真实发送：演练模式正是为了这个。一把
+用"测试用"参数就能绕过的锁：那个参数会留在生产里。不看"本会做"的记录：那是在错误到达病人之前
+看到它的唯一窗口。
+
+**在引导项目中。** Turnera 的锁表：发送提醒（不可逆；锁：按预约幂等，每个预约每个渠道只发一
+次，每天 200 条上限，先演练模式；回退：无，所以有上限）；收定金（可通过退款逆转；锁：前台的
+显式确认，金额由专业人员设定；回退：通过支付供应商退款）；取消预约（对病人不可逆；锁：确认并
+记录谁做的；回退：重建预约）；删除病人（不可逆；锁：双重确认，只有负责人，且只在没有未来预约
+时；回退：无，所以双重）。每把锁带一个测试，显示没有锁时动作会发生。
+
+### 第 13 课 — 作为产品一部分的持续集成、环境、密钥与部署
+
+**你得理解什么。** 上线生产必须是一个可复现的包：测试跑**一次**，部署只打包上传，配置住在服
+务器而不是仓库，有一个可以跑两次的从测试提升到生产的流程，而且回滚是**测试过的**（从没测过的
+回滚不存在）。关于密钥，一条没有例外的规则：**在聊天、日志或提交里被看到的密钥就不再是密
+钥**；轮换它，没别的。
+
+这里的大部分你从骨架（第 4 课）起就有了。这节课把它补全到生产。
+
+**任务。**
+
+1. 用生产缺的东西补全 `docs/ENVIRONMENTS_SURVEY.md`：域名，密钥将住在哪，你有多少持续集成配
+   额（如果用 GitHub Actions，看看套餐的上限：一个源系统每次提交跑三遍测试把它烧光了）。
+2. 粘上：
+
+> We are going to close the path to production. Read the environments and access survey.
+> Evaluate whether you have what is needed to deploy to production safely (access, domain,
+> where the secrets live, how to roll back); if anything is missing, ask me. Then set up: (1)
+> continuous integration runs the full test suite exactly once per commit; (2) the deployment
+> waits for that run's result and only packages and uploads, without running tests again; (3)
+> each environment's configuration lives on the server (environment file or vault), never in the
+> repository; (4) a written procedure to promote from the test environment to production, which
+> can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check
+> that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
+> can do it by hand without you. Reply in my language.
+
+   你在要求开始前的访问权，每次提交只跑一次测试，只打包的部署，配置在外，可重复的提升，测试
+   过的回滚，防密钥的锁，以及给人看的文档。
+
+3. 第一次生产部署之前，如果还没做第 11 课的审计，做一次。
+4. 把部署例行加进契约：
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "Before touching production: the test
+> environment is green with the same version; the rollback is ready; and tell me what changes in
+> the configuration. After deploying: show me the version running in production and an
+> end-to-end check on production, read-only."
+
+5. 做第一次生产部署，系统还没有真实用户。然后**测试回滚**：让它回到上一个版本并给你看它在
+   运行，然后再回到新版本。
+6. 如果课程中的某个时刻你把密钥（API 密钥、密码）粘到了聊天里，粘上：
+
+> That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
+> check that would have caught it.
+
+**完整性检验。** 每次提交测试套件跑几次？（一次；要链接）。仓库里有真实的配置值吗？（向它要
+空的搜索结果）。你能独自照着 `docs/DEPLOYMENT.md` 做吗？回滚测试过了，什么时候，用什么证
+据？出现在聊天里的每个密钥都轮换了吗？你知道还剩多少持续集成配额吗？
+
+**交付物。** 每次提交一次的持续集成，只打包的部署，`docs/DEPLOYMENT.md`，测试过的回滚，启用
+的防密钥锁，以及在生产中运行的系统（还没有用户）。
+
+**常见错误。** "手动、快速，因为是个小改动"的部署：小改动才会弄坏生产，因为没人测它们。配置
+示例文件里有看起来像真的值（就是真的）。直到需要那天才测试回滚。
+
+**在引导项目中。** 对 Turnera，持续集成在每次推送时跑测试套件（此时大约 30 个测试，包括端到
+端的）；合并到 `main` 时自动部署到测试环境；提升到生产是一条命令，把测试环境里的版本打包上
+传，配置（消息供应商的密钥、支付供应商的密钥、库的 URL）在服务器上一个不在仓库里的环境文件
+里。回滚是同一条命令带上一个版本。防密钥的锁是每次提交时拒绝任何看起来像密钥的东西的检查。
+
+### 第 14 课 — 活的文档与人无需 AI 即可遵循的手册
+
+**你得理解什么。** 系统必须能在没有代理、没有你的情况下使用、维护和恢复。恢复手册的标准是具
+体的：**一个不编程的可信的人，在凌晨三点，系统宕机、代理断线的情况下，必须能照着做**。如果
+一步写着"咨询开发者"，它就是不完整的。而因为用模型重新生成文档是免费的，规则变成"在同一次提
+交中"：每个触及用户看到的、操作员做的或如何部署的变更，都在同一次提交中更新手册。
+
+**任务。**
+
+1. 把例行加进契约：
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "Every change that modifies what the user
+> sees, what the operator does, or how the system is deployed, updates the corresponding manual in
+> the same commit. If you do not know which manual, ask."
+
+2. 粘上：
+
+> Generate three manuals from the system as it is today in the test environment: the user
+> manual (screen by screen, with real screenshots, in the user's language, no jargon); the
+> maintenance manual (how it is built, where everything is, how to run the test suite, how to
+> add a module); and the infrastructure and recovery manual (how to deploy, how to roll back,
+> how to restore a backup, what to do if it goes down; written for a person who has to do it by
+> hand, without AI, at three in the morning). If for any section you need something only the
+> business knows (who is responsible for what, which phone number to call), ask me; do not leave
+> a gap and do not invent. Each manual carries a date and the system version. Reply in my
+> language.
+
+   你在要求三本带真实截图的手册，恢复手册的凌晨三点标准，问只有业务方知道的而不是留空洞，以
+   及日期和版本。
+
+3. 真正的测试：把恢复手册交给一个不编程的人（所有者、一个家人），让他在测试环境里照着"宕机
+   了"那一节做。卡住的地方，就要修手册。
+4. 在下一次界面变更之后，验证提交动了用户手册。
+
+**完整性检验。** 随机一张截图和今天的测试环境一致吗？一个不编程的人能照着"宕机了"那一节做
+吗？最后一次改界面的提交动了手册吗？有"[待补充]"之类的空洞吗？每本手册说了它对哪个版本有
+效吗？
+
+**交付物。** 三本带日期和版本的手册，以及做过的真人测试。
+
+**常见错误。** 生成一次手册而不把例行加进契约：两个月后它们的截图是已不存在的界面。一本以
+"打开一个与代理的会话"开头的恢复手册。不做真人测试：这是唯一有价值的验证。
+
+**在引导项目中。** Turnera 的用户手册有六个带截图的界面；维护手册解释每个模块在哪、怎么跑测
+试套件；恢复手册按顺序、带命令地说：怎么知道系统宕了，怎么重启，怎么回到上一个版本，怎么从
+最近的备份恢复库（每晚都做：这也是这节课的产物），以及打电话给谁。负责人在测试环境照着做，
+在"恢复库"卡住了，因为命令假定了一个她没有的文件夹；修了手册。
+
+### 第 15 课 — 系统里的代理，以及带数字的复盘
+
+**你得理解什么。** 两件事闭合循环。第一件是可选的：让代理以受限范围驻留在生产中，在你不在时
+诊断和支持。统领它的规则是**它以某人的名义行动**：它的凭证映射到一个负责的人，它做的一切都以
+那个人的名义记录；它不是匿名账号，是一个有上司的雇员。第二件是必需的：带数字的复盘。花了多
+少，多少待办项，哪些兜了圈子，有什么事故、落在哪级台阶，以及**至少一条对梯子的修改提议**。
+一次什么都不改变的复盘不是复盘。
+
+**任务（驻留代理，如果适用）。**
+
+1. 和所有者决定系统是否需要驻留代理。在 Turnera 里需要：前台会有问题（"为什么这个病人没收
+   到提醒？"），代理可以读日志回答，不用谁去打电话给开发者。
+2. 粘上：
+
+> We are going to leave you resident in production. First, build the map of the system you will
+> need in order to operate it: modules, environments, where each configuration lives, which
+> actions are consequential (read `docs/LOCKS.md`), whom to notify. If there are parts of the
+> system you cannot see from where you are, tell me; the map must not have hidden gaps. Then
+> propose your scope in three levels: read-only and diagnosis; configuration changes with my
+> approval; consequential actions behind locks. I choose the level. Your credential acts as the
+> person who created it: everything you do is logged under that person's name. Reply in my
+> language.
+
+   你在要求运维之前的地图，地图的空洞要声明，三个层级的范围让你选一个，以及以某人名义的凭
+   证。
+
+3. 选层级（一开始，永远是第一级：只读和诊断）。这样收尾：
+
+> Level [1: read-only and diagnosis]. Write in `docs/RESIDENT_AGENT.md` the map, the scope, the
+> credential (never its value), and the procedure to request my approval. Then prove, with a real
+> attempt recorded in the log, that something outside your scope is rejected.
+
+**任务（复盘，始终）。**
+
+4. 收集只有你有的数字：你投入了多少小时，在 AI 工具上花了多少，用了多少持续集成配额。
+5. 粘上：
+
+> [The project] is over. Do the retrospective with numbers, not impressions: what it cost
+> (tokens, quota, my time), how many pending items, which ones took the most rounds and why,
+> which incidents happened and which step of the ladder each falls into, and which step failed
+> or was missing. If you lack the data for any figure (my time, for instance), ask me for it or
+> mark it as an estimate; do not invent it. End with a concrete proposal to change the ladder:
+> which step is modified, how, and which incident justifies it. Write it to
+> `docs/RETROSPECTIVE_[date].md`. Reply in my language.
+
+   你在要求带来源的数字，每个事故映射到一级台阶（不落在任何一级的事故就是缺的那一级），向你
+   要它没有的数字，以及一条对梯子的具体修改提议。
+
+6. 读修改提议。如果你觉得有效，把它作为改进提议发到 Urazuke 的仓库（见 `CONTRIBUTING.md`）：
+   这是方法从每个项目学习的方式。
+
+**完整性检验。** 地图说了代理看不见什么吗？你在日志里看到范围之外的动作被拒绝了吗？凭证以某
+人的名义行动吗？复盘有带来源的数字，还是形容词？每个事故都落在一级台阶上吗？至少有一条具体
+的修改提议吗？
+
+**交付物。** `docs/RESIDENT_AGENT.md`（如果适用）和 `docs/RETROSPECTIVE_[日期].md`。
+
+**常见错误。** 给驻留代理一个高层级"让它什么都能解决"：从只读开始，有证据再升。一份说一切顺
+利的复盘：从来不会一切顺利；它是写给你看的，不是写给方法的。不发修改提议：第 15 级台阶在梯子
+改变时闭合，而不是在文档写完时。
+
+**在引导项目中。** 一门典型课程里 Turnera 的复盘：六周，学员大约四十小时，二十八个待办项，
+兜圈最多的是消息的（时区和 WhatsApp 供应商）；两次事故，一次在第 8 级台阶（"缺席"状态在界面
+上有而服务器上没有），一次在第 13 级（一次用测试配置做的生产部署，被部署后的端到端验证发
+现）。修改提议：让第 13 级的部署例行在提升之前要求展示测试和生产之间的配置差异，而不只是"什
+么变了"。
+
+---
+
+## 上线生产清单
+
+十六节课做完后，系统满足这份清单。它是 Urazuke 对"production grade"的操作性定义，可以和所
+有者一起、不打开代码，用作最终检查清单：
+
+1. 有一张带决定、日期和姓名的适格性表（P0）。
+2. 有一份代理每次会话都读的协作契约，并且测试过它在读（P1、P2）。
+3. 项目文件五分钟能读完并说了系统不是什么（P2）。
+4. 有一份容量估算，带有来源的原始数据、带算式的派生数据，以及"乘以十"的场景（P3）。
+5. 骨架空着部署了，部署跑了两次（P4）。
+6. 每个变更有它的待办项，每个关闭的待办项有它的证据（P5）。
+7. 每条业务规则有所有者、日期和原话（P6）。
+8. 每个重要的测试在绿之前被看到过红；有从界面验证后端的端到端测试（P7）。
+9. 每个列表只有一个所有者；有一张生产者/消费者地图；有一份带自动检查的反模式记录（P8）。
+10. 每个决定了某事的数字有一把你能运行的带测试的量具（P9）。
+11. 每份报告分开已验证、相信和盲点（P10）。
+12. 至少有一次由不同会话做的审计，它的 P0 是待办项（P11）。
+13. 每个有后果的动作有带先证红测试的锁和回退路径；自动化经过了演练模式（P12）。
+14. 测试每次提交跑一次；配置在仓库之外；回滚测试过；没有未轮换的密钥留在仓库或聊天里
+    （P13）。
+15. 有三本带日期和版本的手册，一个不编程的人照着恢复手册做过（P14）。
+16. 有一份带数字的复盘和一条对梯子的修改提议（P15）。
+
+如果十六项都是"是"，系统就准备好实施了。如果有一项是"否"，你已经知道该重登哪级台阶。
+
+---
+
+## 附录 A — 如何评估（给授课者或自我评估者）
+
+一份简单的评分表，按课，三个等级：
+
+- **未登上**：缺交付物，或某项完整性检验是"否"。
+- **已登上**：交付物存在，所有检验都是"是"。
+- **带判断力证据地登上**：此外，学员能讲出一个在这节课里代理做错了什么（假设了、编造了、多报
+  了）以及他如何发现的案例。那才是课程的真正目标：不是产出物，而是反射。
+
+不评估的：代码质量。没人读它。评估的是证据的质量。
+
+## 附录 B — 课程对各工具的适配
+
+提示词在任何工具里都一样。变的是课程中加进 `docs/WORKING_AGREEMENT.md` 的那些例行放在哪：
+
+- 在 **Claude Code** 里，例行放进项目的 `CLAUDE.md`（或从那里包含契约），每次会话自动读。
+- 在 **Cursor** 里，放进 `.cursor/rules/`，作为始终生效的规则。
+- 在 **Codex CLI** 或 **Gemini CLI** 里，放在根目录的 `AGENTS.md` 或 `GEMINI.md`。
+- 在 **Forge** 里，契约和例行是教义，台阶的提示词在跨过每道闸门时自动注入；待办项记录是原生
+  的。用 Forge 上的课是同一门课，少了些复制粘贴。
+
+第 2 课的读取测试对所有工具都有效：如果一个新会话不知道系统不做什么，工具就没在加载你放契约
+的那个文件。
+
+## 附录 C — 这本手册还没有的东西
+
+- 一批上过它的学员。时间、常见错误和引导项目是从三个源系统写出来的，不是从学员。第一批学员
+  会修正它们（而那，字面意义上，就是第 15 级台阶应用于课程）。
+- 适格性准则的权重（第 0 课），正在制定中。
+- 每次修改时其他语言版本与西班牙语版保持一致的检验。
