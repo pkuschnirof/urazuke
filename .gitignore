@@ -1,0 +1,4 @@
+node_modules/
+.DS_Store
+Thumbs.db
+docs/html/.contratos.tmp.md

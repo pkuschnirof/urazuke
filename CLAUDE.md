@@ -1,0 +1,52 @@
+# CLAUDE.md — instrucciones para el agente en este repositorio
+
+Este es el repositorio del **método** (la escalera metodológica), no de un producto. No hay código
+de aplicación: hay documentos, contratos de peldaño y un conversor a HTML.
+
+## Qué leer primero
+
+1. `README.md`.
+2. `docs/ESCALERA_METODOLOGICA.md` — el documento principal. Su "Parte D" es la lista de lo que
+   falta; es el plan de trabajo de este repositorio.
+3. `docs/peldanos/README.md` — el índice de los contratos.
+
+## Reglas de estilo (distintas del resto de Yujin, a propósito)
+
+- **Caracteres latinos**: tildes, eñes, signos de apertura. NO la convención ASCII de los otros
+  repositorios. Pablo lo pidió el 2026-10-17 para este proyecto.
+- **Prosa explicada y coloquial**: el lector no vivió los proyectos. Explicar completo, con
+  calificativos e interjecciones si hacen falta; no "lenguaje como fórmula lógica". Definir cada
+  sigla la primera vez.
+- **Glosario obligatorio**: toda sigla, nombre propio o expresión coloquial que aparezca en
+  `docs/ESCALERA_METODOLOGICA.md` tiene que estar en su glosario, en orden alfabético.
+- **Evidencia citada**: cada afirmación sobre lo que pasó cita commit o documento del repositorio
+  de origen. Lo que es interpretación va marcado `[hipótesis]`.
+- **Las palabras de Pablo van textuales** cuando se cita una decisión suya.
+
+## Reglas de trabajo
+
+- Los HTML de `docs/html/` se regeneran con `node build/build.mjs`; nunca se editan a mano. El
+  markdown es la única fuente.
+- Cada contrato de peldaño tiene exactamente cuatro secciones numeradas: contexto requerido,
+  prompts, resultado esperado, verificación de completitud. Más un encabezado con tramo y forma,
+  y un "Para qué sirve". No agregar secciones sin acordarlo con Pablo.
+- Todo prompt de contrato lleva la cláusula de completitud: el modelo evalúa si el contexto
+  alcanza, pide lo que falte, y no estima ni inventa un dato que solo el negocio tiene.
+- El peldaño 0 (elegibilidad) se elabora CON Pablo: los criterios X1 y X2 están confirmados; los
+  D1 a D10 son hipótesis sin peso. No cerrarlos solo.
+- Repositorios de origen (solo lectura desde acá): `[repositorio yujin-forge]`, `[repositorio Kikan]`,
+  `[repositorio Autorizaciones]`.
+
+## Publicación
+
+- Nombre definitivo ("Método …") y publicación como código abierto colaborativo: cuando Pablo
+  diga que la elaboración terminó. Hasta entonces, repositorio privado y nombre provisorio.
+- Los clientes están anonimizados: "la Obra Social" (con "el Autorizador") y "la Asociación";
+  sus sistemas, "Autorizaciones" y "Kikan". **Los nombres reales no se escriben en este
+  repositorio**, ni en los documentos ni en los mensajes de commit. Las rutas locales de los
+  repositorios de origen tampoco (están en la memoria de Sumi).
+- Licencia: CC BY-SA 4.0 (`LICENSE`). Gobernanza: `CONTRIBUTING.md` + `.github/CODEOWNERS`;
+  en GitHub, `main` protegida (pull request + aprobación de un propietario, sin excepciones),
+  ramas de contribuidores solo en forks, borrado automático de la rama al fusionar.
+- La presentación pública va en yujin.app (repositorio `pkuschnirof/rpaforce`, carpeta
+  `C:\RPAForce\web\yujin.app\`), multilingüe, con NAC3.
