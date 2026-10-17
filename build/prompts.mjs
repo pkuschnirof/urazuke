@@ -43,7 +43,7 @@ for (const f of archivos) {
   }
   for (const idioma of idiomas) {
     const dir = join(raiz, 'docs', idioma, 'peldanos');
-    if (!existsSync(dir) || readdirSync(dir).length === 0) continue;
+    if (!existsSync(dir) || !readdirSync(dir).some(x => /^peldano-\d\d-/.test(x))) continue;
     const candidatos = readdirSync(dir).filter(x => x.startsWith(`peldano-${n}-`) || x.startsWith(`step-${n}-`));
     if (!candidatos.length) { console.error(`[${idioma}] falta la traducción del peldaño ${n}`); errores++; continue; }
     const otros = extraerPrompts(readFileSync(join(dir, candidatos[0]), 'utf8'));
@@ -53,5 +53,5 @@ for (const f of archivos) {
     otros.forEach((p, i) => { if (p !== prompts[i]) { console.error(`[${idioma}] peldaño ${n}: el prompt ${i + 1} difiere de la fuente`); errores++; } });
   }
 }
-console.log(`prompts: ${total} en ${archivos.length} contratos; traducciones verificadas: ${idiomas.filter(i => existsSync(join(raiz, 'docs', i, 'peldanos')) && readdirSync(join(raiz, 'docs', i, 'peldanos')).length).join(', ') || 'ninguna todavía'}; errores: ${errores}`);
+console.log(`prompts: ${total} en ${archivos.length} contratos; traducciones verificadas: ${idiomas.filter(i => existsSync(join(raiz, 'docs', i, 'peldanos')) && readdirSync(join(raiz, 'docs', i, 'peldanos')).some(x => /^peldano-\d\d-/.test(x))).join(', ') || 'ninguna todavía'}; errores: ${errores}`);
 if (errores) process.exit(1);
