@@ -835,11 +835,11 @@ explanation), the guide by project size and the guide by tool. Remaining:
    code — today the answer is "never", but this week's two reports suggest there are specific
    moments when it is worth it.
 8. ~~The name~~ — **done**: Urazuke, the evidence method (D-014, 17 October).
-9. **The public presentation on yujin.app**: a page for the method with its highlights, in several
-   languages, built with NAC3 (the repository for the pages is `pkuschnirof/rpaforce`, folder
-   `C:\RPAForce\web\yujin.app\`). It now has a name; the multilingual structure is missing
-   (D-013): Spanish as source, seven translations, and the prompts in English as a single piece
-   explained in each language.
+9. ~~The public presentation on yujin.app~~ — **done** (17 October, evening): the subpage
+   `yujin.app/urazuke` (repository `pkuschnirof/rpaforce`, folder `web/yujin.app/urazuke/`), with
+   the landing in the site's ten interface languages, the three HTML documents in the method's
+   eight languages, and a highlighted card on the yujin.app home page. What remains is to publish
+   it with a push to that repository's `main` and, once this repository opens, link it from there.
 10. **Test the contracts on a real project.** The sixteen prompts are written from what we did,
     not executed as-is. The first project that uses them end to end will correct several; that is
     part of step 15.

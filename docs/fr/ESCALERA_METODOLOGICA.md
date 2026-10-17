@@ -873,11 +873,11 @@ prompts en anglais avec explication), le guide par taille de projet et le guide 
    quand l'humain DOIT regarder le code — aujourd'hui la réponse est « jamais », mais les deux
    rapports de cette semaine suggèrent qu'il y a des moments précis où cela vaut la peine.
 8. ~~Le nom~~ — **fait** : Urazuke, la méthode de la preuve (D-014, 17 octobre).
-9. **La présentation publique sur yujin.app** : une page de la méthode avec ses points saillants,
-   en plusieurs langues, construite avec NAC3 (le dépôt des pages est `pkuschnirof/rpaforce`,
-   dossier `C:\RPAForce\web\yujin.app\`). Elle a déjà un nom ; il manque la structure multilingue
-   (D-013) : l'espagnol comme source, sept traductions, et les prompts en anglais comme pièce
-   unique expliquée dans chaque langue.
+9. ~~La présentation publique sur yujin.app~~ — **fait** (17 octobre, soir) : la sous-page
+   `yujin.app/urazuke` (dépôt `pkuschnirof/rpaforce`, dossier `web/yujin.app/urazuke/`), avec la
+   landing dans les dix langues d'interface du site, les trois documents HTML dans les huit langues
+   de la méthode, et une carte mise en avant sur l'accueil de yujin.app. Reste à la publier par un
+   push sur `main` de ce dépôt et, quand ce dépôt-ci s'ouvrira, à le lier depuis là.
 10. **Tester les contrats sur un projet réel.** Les seize prompts sont écrits à partir de ce que
     nous avons fait, pas exécutés tels quels. Le premier projet qui les utilisera de bout en bout en
     corrigera plusieurs ; cela fait partie de l'échelon 15.

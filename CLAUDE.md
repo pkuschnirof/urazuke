@@ -49,9 +49,14 @@ de aplicación: hay documentos, contratos de peldaño y un conversor a HTML.
 - El nombre es Urazuke (decisión D-014, 2026-10-17). No se traduce; el subtítulo sí. La
   publicación como código abierto colaborativo es cuando Pablo diga que la elaboración terminó;
   hasta entonces, repositorio privado.
-- Idiomas (D-013): castellano como fuente de verdad; traducción a los otros siete idiomas de
-  NAC3; los prompts para el modelo son UNA pieza en inglés, idéntica en todas las versiones,
-  explicada en el idioma del lector.
+- Idiomas (D-013): castellano como fuente de verdad (`docs/`); las otras siete versiones de NAC3
+  están en `docs/<idioma>/` (en, pt, fr, de, it, ja, zh), cada una con README, documento principal,
+  dieciséis contratos y manual-curso; los prompts para el modelo son UNA pieza en inglés, idéntica
+  en todas las versiones, explicada en el idioma del lector (`node build/prompts.mjs --check` lo
+  verifica). Un cambio en el castellano se replica en las siete traducciones en el mismo commit.
+- Presentación pública: `yujin.app/urazuke` vive en el repositorio `pkuschnirof/rpaforce`
+  (`C:\RPAForce\web\yujin.app\urazuke\`): landing con i18n propio (diez idiomas de interfaz) y
+  copia de `docs/html/` en `urazuke/docs/`. Al regenerar los HTML acá, copiarlos allá.
 - Los clientes están anonimizados: "la Obra Social" (con "el Autorizador") y "la Asociación";
   sus sistemas, "Autorizaciones" y "Kikan". **Los nombres reales no se escriben en este
   repositorio**, ni en los documentos ni en los mensajes de commit. Las rutas locales de los

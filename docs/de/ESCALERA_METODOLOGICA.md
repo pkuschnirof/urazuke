@@ -891,11 +891,12 @@ Werkzeug. Es bleibt:
    der Mensch DOCH Code anschauen muss — heute lautet die Antwort „nie“, aber die beiden Berichte
    dieser Woche deuten darauf hin, dass es bestimmte Momente gibt, in denen es sich lohnt.
 8. ~~Der Name~~ — **erledigt**: Urazuke, die Nachweis-Methode (D-014, 17. Oktober).
-9. **Die öffentliche Präsentation auf yujin.app**: eine Seite der Methode mit ihren Highlights, in
-   mehreren Sprachen, mit NAC3 gebaut (das Repository der Seiten ist `pkuschnirof/rpaforce`,
-   Ordner `C:\RPAForce\web\yujin.app\`). Sie hat schon einen Namen; es fehlt die mehrsprachige
-   Struktur (D-013): Spanisch als Quelle, sieben Übersetzungen und die Prompts auf Englisch als
-   einziges, in jeder Sprache erklärtes Stück.
+9. ~~Die öffentliche Präsentation auf yujin.app~~ — **erledigt** (17. Oktober, abends): die
+   Unterseite `yujin.app/urazuke` (Repository `pkuschnirof/rpaforce`, Ordner
+   `web/yujin.app/urazuke/`), mit der Landing in den zehn Oberflächensprachen der Website, den drei
+   HTML-Dokumenten in den acht Sprachen der Methode und einer hervorgehobenen Karte auf der
+   Startseite von yujin.app. Bleibt: sie mit einem Push auf `main` jenes Repositorys zu
+   veröffentlichen und, sobald dieses Repository öffnet, es von dort zu verlinken.
 10. **Die Verträge an einem realen Projekt erproben.** Die sechzehn Prompts sind aus dem
     geschrieben, was wir getan haben, nicht eins zu eins ausgeführt. Das erste Projekt, das sie von
     Anfang bis Ende nutzt, wird mehrere korrigieren; das ist Teil von Sprosse 15.

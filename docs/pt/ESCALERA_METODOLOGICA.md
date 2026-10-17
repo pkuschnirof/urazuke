@@ -825,10 +825,11 @@ com explicação), o guia por tamanho de projeto e o guia por ferramenta. Falta:
    código — hoje a resposta é "nunca", mas os dois relatórios desta semana sugerem que há momentos
    pontuais em que convém.
 8. ~~O nome~~ — **feito**: Urazuke, o método da evidência (D-014, 17 de outubro).
-9. **A apresentação pública em yujin.app**: uma página do método com seus pontos de destaque, em
-   vários idiomas, construída com NAC3 (o repositório das páginas é `pkuschnirof/rpaforce`, pasta
-   `C:\RPAForce\web\yujin.app\`). Já tem nome; falta a estrutura multilíngue (D-013): espanhol como
-   fonte, sete traduções, e os prompts em inglês como uma única peça explicada em cada idioma.
+9. ~~A apresentação pública em yujin.app~~ — **feito** (17 de outubro, à noite): a subpágina
+   `yujin.app/urazuke` (repositório `pkuschnirof/rpaforce`, pasta `web/yujin.app/urazuke/`), com a
+   landing nos dez idiomas de interface do site, os três documentos HTML nos oito idiomas do método,
+   e um cartão em destaque na página inicial de yujin.app. Falta publicá-la com um push para `main`
+   desse repositório e, quando este repositório abrir, ligá-lo a partir dali.
 10. **Provar os contratos num projeto real.** Os dezesseis prompts estão escritos a partir do que
     fizemos, não executados tal como estão. O primeiro projeto que os usar de ponta a ponta vai
     corrigir vários; isso faz parte do degrau 15.

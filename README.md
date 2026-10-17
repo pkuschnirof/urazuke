@@ -43,17 +43,24 @@ una palabra rara, el glosario está al final. Después, el contrato del peldaño
 node build/build.mjs
 ```
 
-Produce `docs/html/ESCALERA_METODOLOGICA.html`, `docs/html/MANUAL_CURSO.html` y
-`docs/html/CONTRATOS_DE_PELDANO.html`, y verifica que los prompts en inglés sean idénticos en todas
-las versiones.
+Produce, para cada idioma, `ESCALERA_METODOLOGICA.html`, `MANUAL_CURSO.html` y
+`CONTRATOS_DE_PELDANO.html` (el castellano en `docs/html/`, los demás en `docs/html/<idioma>/`), y
+verifica antes que los prompts en inglés sean idénticos en todas las versiones.
 
 ## Idiomas
 
-El castellano es la fuente de verdad. La documentación se traducirá a los otros siete idiomas de
-NAC3 (inglés, portugués, francés, alemán, italiano, japonés y chino). Los prompts para el modelo
-son una sola pieza en inglés, idéntica en todas las versiones, explicada en el idioma del lector.
-El nombre no se traduce; el subtítulo sí: *the evidence method*, *o método da evidência*, *la
-méthode de la preuve*, *die Nachweis-Methode*, *il metodo del riscontro*, 裏付けの方法, 验证方法.
+El castellano es la fuente de verdad. La documentación existe en los ocho idiomas de NAC3:
+castellano (`docs/`), inglés (`docs/en/`), portugués (`docs/pt/`), francés (`docs/fr/`), alemán
+(`docs/de/`), italiano (`docs/it/`), japonés (`docs/ja/`) y chino (`docs/zh/`). Cada carpeta tiene
+su README, el documento principal, los dieciséis contratos y el manual-curso; los HTML están en
+`docs/html/<idioma>/`. Los prompts para el modelo son una sola pieza en inglés, idéntica en todas
+las versiones, explicada en el idioma del lector; `node build/prompts.mjs --check` falla si una
+traducción los alteró. El nombre no se traduce; el subtítulo sí: *the evidence method*, *o método
+da evidência*, *la méthode de la preuve*, *die Nachweis-Methode*, *il metodo del riscontro*,
+裏付けの方法, 验证方法.
+
+Las decisiones (`docs/DECISIONES.md`) y el plan del curso quedan solo en castellano porque citan
+palabras textuales.
 
 ## Licencia y cómo contribuir
 

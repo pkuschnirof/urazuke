@@ -846,10 +846,11 @@ Resta:
    codice — oggi la risposta è "mai", ma i due rapporti di questa settimana suggeriscono che ci sono
    momenti puntuali in cui conviene.
 8. ~~Il nome~~ — **fatto**: Urazuke, il metodo del riscontro (D-014, 17 ottobre).
-9. **La presentazione pubblica su yujin.app**: una pagina del metodo con i suoi punti salienti, in
-   più lingue, costruita con NAC3 (il repository delle pagine è `pkuschnirof/rpaforce`, cartella
-   `C:\RPAForce\web\yujin.app\`). Ha già un nome; manca la struttura multilingue (D-013): spagnolo
-   come fonte, sette traduzioni, e i prompt in inglese come pezzo unico spiegato in ogni lingua.
+9. ~~La presentazione pubblica su yujin.app~~ — **fatto** (17 ottobre, sera): la sottopagina
+   `yujin.app/urazuke` (repository `pkuschnirof/rpaforce`, cartella `web/yujin.app/urazuke/`), con
+   la landing nelle dieci lingue di interfaccia del sito, i tre documenti HTML nelle otto lingue
+   del metodo, e una scheda in evidenza nella home di yujin.app. Resta da pubblicarla con un push
+   su `main` di quel repository e, quando questo repository si aprirà, collegarlo da lì.
 10. **Provare i contratti su un progetto reale.** I sedici prompt sono scritti a partire da ciò che
     abbiamo fatto, non eseguiti così come sono. Il primo progetto che li userà dall'inizio alla fine
     ne correggerà diversi; fa parte del gradino 15.

@@ -881,11 +881,11 @@ herramienta. Queda:
    para cuándo el humano SÍ tiene que mirar código —hoy la respuesta es "nunca", pero los
    dos informes de esta semana sugieren que hay momentos puntuales en los que conviene.
 8. ~~El nombre~~ — **hecho**: Urazuke, el método de la evidencia (D-014, 17 de octubre).
-9. **La presentación pública en yujin.app**: una página del método con sus puntos destacados,
-   en varios idiomas, construida con NAC3 (el repositorio de las páginas es
-   `pkuschnirof/rpaforce`, carpeta `C:\RPAForce\web\yujin.app\`). Ya tiene nombre; falta la estructura multilingüe
-   (D-013): castellano como fuente, siete traducciones, y los prompts en inglés como una sola pieza
-   explicada en cada idioma.
+9. ~~La presentación pública en yujin.app~~ — **hecho** (17 de octubre, noche): la subpágina
+   `yujin.app/urazuke` (repositorio `pkuschnirof/rpaforce`, carpeta `web/yujin.app/urazuke/`), con
+   la landing en los diez idiomas de interfaz del sitio, los tres documentos HTML en los ocho
+   idiomas del método, y una tarjeta destacada en la portada de yujin.app. Queda publicarla con un
+   push a `main` de ese repositorio y, cuando este repositorio se abra, enlazarlo desde ahí.
 10. **Probar los contratos en un proyecto real.** Los dieciséis prompts están escritos desde
     lo que hicimos, no ejecutados tal cual. El primer proyecto que los use de punta a punta
     va a corregir varios; eso es parte del peldaño 15.
