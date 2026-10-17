@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>段の契約</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+section > p:first-of-type{}
+.prompt{margin:.8em 0 1.2em;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="">段の契約</h1><nav class="toc"><div class="toc-t">Contenido</div><ul><li class="l2"><a href="#0">ステップ 0 — このプロジェクトはこの方法で取り組めるか？（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#1">ステップ 1 — 共働の約束（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#2">ステップ 2 — プロジェクトの定義と必読（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#3">ステップ 3 — アーキテクチャを設計する前にサイジングする（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#4">ステップ 4 — ゲート付きの骨組み（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#5">ステップ 5 — 計画とは保留項目のこと（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#6">ステップ 6 — 決定はコードの隣に書く（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#7">ステップ 7 — 錠としてのテスト、赤で証明（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#8">ステップ 8 — 生産者と消費者の対称性、そしてアンチパターンの記録（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#9">ステップ 9 — 構築の前に計測する、自身も検証される計器で（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#10">ステップ 10 — 誠実な検証と釣り合った報告（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#11">ステップ 11 — 計画への入力としての定期監査（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#12">ステップ 12 — フェイルクローズド、錠、静かな損害ゼロ（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#13">ステップ 13 — プロダクトの一部としての継続的インテグレーション、環境、秘密、デプロイ（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#14-ai">ステップ 14 — 生きた文書と、人がAIなしで追えるマニュアル（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li><li class="l2"><a href="#15">ステップ 15 — システムの中のエージェント、そして数字による振り返り（段の契約）</a></li><li class="l3"><a href="#">何のためか</a></li></ul></nav>
+<p>段ごとに一ファイル。すべて同じ骨格です。ヘッダにフェーズ、形式、規模（必須か比例か）。 何のためか。(1) 必要な文脈、一般的な名前で。(2) プロンプト、<strong>英語</strong>で、それぞれの後に 読者の言語で「何を求めているのか、なぜ各条項があるのか」の説明。(3) 期待される成果物と その特徴。(4) 完全性の検証、オーナーがコードを読まずに行うもの。(5) 警告サイン、段を 登り損ねた兆候。</p>
+<p>英語のプロンプトは単一の原本で、八言語すべての版で同一です。<code>node build/build.mjs</code> が それらを <code>prompts/</code> に抽出し、どの翻訳もプロンプトを変えていないことを検証します。</p>
+<p>これらは三つのリポジトリで実際に行ったことから書かれたもので、このままの形でまだ実行 されたことはありません。最初から最後までこれを使う最初のプロジェクトが、いくつかを 修正するでしょう。それは第15段の一部です。</p>
+<div class="tw"><table><thead><tr><th>段</th><th>ファイル</th><th>フェーズ</th><th>形式</th></tr></thead><tbody><tr><td>0 — このプロジェクトはこの方法で取り組めるか？</td><td><code>peldano-00-elegibilidad.md</code></td><td>立ち上げ</td><td>対話（Pabloと策定中）</td></tr><tr><td>1 — 共働の約束</td><td><code>peldano-01-contrato-de-convivencia.md</code></td><td>立ち上げ</td><td>一回の送信 + 調整</td></tr><tr><td>2 — プロジェクトの定義と必読</td><td><code>peldano-02-definicion-y-lectura.md</code></td><td>立ち上げ</td><td>対話</td></tr><tr><td>3 — アーキテクチャの前にサイジング</td><td><code>peldano-03-dimensionar.md</code></td><td>立ち上げ</td><td>対話</td></tr><tr><td>4 — ゲート付きの骨組み</td><td><code>peldano-04-esqueleto.md</code></td><td>立ち上げ</td><td>長い一回の送信 + 目視承認</td></tr><tr><td>5 — 計画とは保留項目のこと</td><td><code>peldano-05-pendientes.md</code></td><td>ループ</td><td>一回の送信 + ルーチン</td></tr><tr><td>6 — 決定はコードの隣に書く</td><td><code>peldano-06-decisiones.md</code></td><td>ループ</td><td>短い対話、毎回</td></tr><tr><td>7 — 錠としてのテスト、赤で証明</td><td><code>peldano-07-tests-en-rojo.md</code></td><td>ループ</td><td>変更ごとのルーチン</td></tr><tr><td>8 — 生産者/消費者の対称性とアンチパターン</td><td><code>peldano-08-simetria-y-antipatrones.md</code></td><td>ループ</td><td>自動 + 育つファイル</td></tr><tr><td>9 — 構築の前に計測</td><td><code>peldano-09-medir.md</code></td><td>ループ</td><td>計測ごとに一回の送信</td></tr><tr><td>10 — 誠実な検証と釣り合った報告</td><td><code>peldano-10-verificacion-honesta.md</code></td><td>ループ</td><td>報告ごとのルーチン</td></tr><tr><td>11 — 計画への入力としての定期監査</td><td><code>peldano-11-auditoria.md</code></td><td>運用</td><td>長い一回の送信、別の監査者</td></tr><tr><td>12 — フェイルクローズド、錠、静かな損害ゼロ</td><td><code>peldano-12-fail-closed.md</code></td><td>運用</td><td>対話</td></tr><tr><td>13 — 継続的インテグレーション、環境、秘密、デプロイ</td><td><code>peldano-13-ci-entornos-secretos-deploy.md</code></td><td>運用</td><td>一回の送信 + デプロイのルーチン</td></tr><tr><td>14 — 生きた文書とAIなしで追えるマニュアル</td><td><code>peldano-14-documentacion-viva.md</code></td><td>運用</td><td>ルーチン + 長い一回の送信</td></tr><tr><td>15 — 常駐エージェントと数字による振り返り</td><td><code>peldano-15-agente-residente-y-retrospectiva.md</code></td><td>運用と締め</td><td>二部構成</td></tr></tbody></table></div>
+<p>フェーズ：<strong>立ち上げ</strong>はプロジェクトごとに一度登る。<strong>ループ</strong>は変更のたびに繰り返す。 <strong>運用</strong>はシステムが稼働してから。第15段は次のプロジェクトのために第0段へ戻る。ファイル 名はビルドツールが認識できるよう、すべての言語でスペイン語のままです。</p>
+<hr>
+</section><section>
+<h2 id="0">ステップ 0 — このプロジェクトはこの方法で取り組めるか？（段の契約）</h2>
+<p><strong>フェーズ：</strong> 立ち上げ（プロジェクトごとに一度、リポジトリを開く前に）。 <strong>形式：</strong> 対話（エージェントが評価して質問し、オーナーが決める）。 <strong>規模：</strong> どんなに小さくてもすべてのプロジェクトで必須。一時間かかり、数か月を節約する。 <strong>状態：</strong> Pabloと策定中。排除基準X1とX2は確定済み。重み付け基準（D1からD10）はまだ重みの ない仮説。</p>
+<h3 id="">何のためか</h3>
+<p>方法が機能しないプロジェクトに入り込まないため。エージェントがエンドツーエンドで自分を 検証できないなら、あるいは決定するドメインのオーナーがいないなら、方法は「AIでプログラ ミングする」に退化し、人間がコードを読む羽目になる。この段は入口である。一度だけ通り、 通れないなら後で知るより先に知る方がよい。</p>
+<p>はっきり言っておくべき根本の考えがある。<strong>この方法はどんなプロジェクトにも使えるわけでは なく、それは欠陥ではない</strong>。何にでも使えると約束する方法は何も言っていないに等しい。この 段がするのは境界を文章にすることであり、入るか入らないかの決定が、希望ではなく決定に なるようにすることだ。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<p>一般的な名前で示す。エージェントが十分かどうかを評価し、足りないものを求める。</p>
+<ul><li>依頼の調査：顧客は何を望み、誰のためで、今システムなしで何が起きているか。</li><li>技術の調査：どんな技術があるか、または提案されているか。以前のシステムが存在するか、 そのシステムにリポジトリがあり、どう管理されているか。</li><li>テスト可能性の調査：画面をプログラムから実行でき、インターフェースの各要素にその各種の 操作（クリック、入力、状態の読み取り）でアクセスできるか。テストが画面を辿り、バック エンドへの効果を検証できるように。</li><li>ドメインのオーナーは誰で、決定に使える時間はどれだけか。</li><li>誤りの帰結は何か（金銭、健康、運用、何もなし）。</li><li>環境とアクセス：テスト環境があるか、エージェントがアクセスできるか、読み取り専用で 参照できる本番があるか。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p>プロンプトは英語で書く。モデルがより正確に、より少ないトークンで指示に従う言語だから だ。各プロンプトの下に、何を求めているのか、なぜ各条項があるのかを日本語で説明する。</p>
+<p><strong>最初：</strong></p>
+<blockquote class="prompt"><p>We are going to assess whether this project can be run with the Urazuke method. Read the initial survey in <code>docs/INITIAL_SURVEY.md</code> and the criteria sheet in <code>docs/ELIGIBILITY_CRITERIA.md</code>. First, evaluate whether the survey is sufficient to answer every criterion. If any criterion cannot be answered from the survey, ask me for the missing information before going on; do not assume. Then fill in the sheet criterion by criterion: the answer, where it comes from, and for each exclusionary criterion whether it is green or red. Do not decide: present me the completed sheet with your reading and your doubts, and I will decide. Reply in my language.</p></blockquote>
+<p>何を求めているか：二つの入力（調査と基準シート）を読むこと。<strong>答える前に調査が十分か 評価し</strong>、不十分なら推測せずに質問すること（これは方法のすべてのプロンプトに共通する 中心条項）。後で追跡できるよう各回答の出所を添えてシートを埋めること。排除基準を緑か赤で 印すこと。そして<strong>決定しないこと</strong>。適格性はオーナーが決めるからだ。最後の行は、オーナー の言語で答えるよう求めている。プロンプトは英語でも会話まで英語である必要はない。</p>
+<p><strong>締め：</strong></p>
+<blockquote class="prompt"><p>Decision: [go / no-go / go under these conditions: …]. Write the final sheet to <code>docs/ELIGIBILITY.md</code> with the date, who decided, the answer to every criterion with its source, and the conditions if any. Include the questions you asked and my answers.</p></blockquote>
+<p>何を求めているか：決定を日付とオーナー付きで書き残すこと（第6段）。条件があれば条件も。 そして質問と回答の痕跡も。それが何も推測しなかったことの証拠になる。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<p>一ページの <code>docs/ELIGIBILITY.md</code>（またはプロジェクトが使う名前）に以下を含む：</p>
+<ul><li>日付と決定者。</li><li>二つの排除基準、それぞれの回答と出所：</li><li>X1：アクセス可能で標準的に管理されたリポジトリがある（またはプロジェクトが新規）。</li><li>X2：インターフェースをプログラムから実行でき、各要素にその各種の操作でアクセスでき、 バックエンドへの効果を検証できる。</li><li>重み付け基準（はしごのD1からD10、確定したら）、それぞれ回答、出所、重み付き。</li><li>決定：可、不可、または条件付き可。条件は明記。</li><li>エージェントがした質問と回答。痕跡が残るように。</li></ul>
+<h3 id="4">4. 完全性の検証（オーナーがコードを読まずに行う）</h3>
+<ul><li>二つの排除基準に明示的な回答と出所があるか。どちらかが赤なら、決定は「不可」か、それを 解消する条件があるか。</li><li>「たぶん」「おそらく」で答えられた基準はないか。あれば段は登れていない。エージェントは 質問すべきだった。</li><li>決定は日付と名前付きで書かれているか。</li><li>条件（あれば）は検証可能か。（「第3段の前に本番の読み取りアクセスを得る」は可。「顧客が 協力する」は不可。）</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>エージェントが一つも質問せずにシート全体を埋めた。調査が完璧だったか（決してない）、 推測したかのどちらか。</li><li>決定が「条件付き可」で、条件が三つを超える。言いたくない「不可」である可能性が高い。</li><li>基準X2に「はい、少し手を入れれば」と答えられた。今日画面をプログラムから操作できない なら、その「少し」がプロジェクト全体になる。</li></ul>
+<hr>
+</section><section>
+<h2 id="1">ステップ 1 — 共働の約束（段の契約）</h2>
+<p><strong>フェーズ：</strong> 立ち上げ（プロジェクトごとに一度。痛い目に遭ったら見直す）。 <strong>形式：</strong> 一回の送信、オーナーの調整を一往復。 <strong>規模：</strong> すべてのプロジェクトで必須。最も安価で、最も多くの苛立ちを防ぐ段。</p>
+<h3 id="">何のためか</h3>
+<p>人間とエージェントが、最初の一行のコードの前に、どう働くかを合意するため。形式的に見える がそうではない。エージェントが範囲を広げて「助け」たり、負債を後回しにしたり、やったと 思うことをやったと報告したりするのを防ぐのがこれだ。Forgeではこのファイルは <code>SQ.md</code> （品質基準）と呼ばれる。名前は重要ではなく、中身が重要だ。</p>
+<p>こう理解するとよい。エージェントは毎朝、昨日の記憶なしにやって来る新しい同僚だ。約束とは 初日に伝えることであり、毎日読み返すものだ。書かなければ毎回言わなければならず、毎回 違う言い方になる。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li>プロジェクトからは何も不要。最初のファイルである。</li><li>オーナーから：仕事上の好み（言語、どう質問してほしいか、何を時間の無駄と考えるか、 エージェントにどの程度の自律を与えるか）。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>最初：</strong></p>
+<blockquote class="prompt"><p>Before we write any code, we are going to set the working agreement between you and me. Write <code>docs/WORKING_AGREEMENT.md</code> with at least these rules, each with one line explaining what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope: no more and no less than what was asked; if you see something else, log it as a pending item, do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report as done something you have not verified; always separate what you verified from what you believe. (6) Speak my language. Add any rules you think this project needs, marked as proposals. If you need to know something about how I work in order to write this, ask me.</p></blockquote>
+<p>何を求めているか：六つの最小ルール、それぞれが防ぐ失敗付き（これが助言ではなくルール にする）。プロジェクト固有のルールを提案するが、提案と印すこと。オーナーが受け入れるか 却下できるように。そしてオーナーについて知る必要があることを質問すること。一つも質問 せずに書かれた約束は怪しい。エージェントは一緒に働く人を知らないのだから。</p>
+<p><strong>締め：</strong></p>
+<blockquote class="prompt"><p>I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the agreement with today's date and a version number. Then add to the project file the instruction to read this agreement at the start of every session.</p></blockquote>
+<p>何を求めているか：約束を日付とバージョン付きで確定し、プロジェクトファイルに結び付けて 毎セッションで読まれるようにすること。この結び付けがなければ、約束は存在しても機能しない。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<p><code>docs/WORKING_AGREEMENT.md</code>（または <code>SQ.md</code>、<code>CONTRATO.md</code>）に以下を含む：</p>
+<ul><li>日付とバージョン。</li><li>番号付きの各ルール、一、二文で、防ぐ失敗付き。</li><li>プロジェクト固有のルール、そうと印して。</li><li>末尾に一行：エージェントは変更を提案するが、約束を単独では編集しない。</li></ul>
+<p>そしてプロジェクトファイル（<code>PROJECT.md</code> または <code>CLAUDE.md</code>）に、毎セッション開始時に 読むよう命じる一行。</p>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>六つの最小ルールがあり、それぞれに防ぐ失敗が付いているか。</li><li>願望として書かれたルール（「〜するよう努める」「可能な限り」）はないか。あれば役に 立たない。ルールは守るか守らないかだ。</li><li>プロジェクトファイルは毎セッションで読むよう命じているか。</li><li>エージェントはあなたの働き方について少なくとも一つ質問したか。何も聞かずに全部書いた なら怪しい。あなたを知らないのだ。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>約束のルールが二十を超える。人間もモデルも二十のルールは守らない。守れるのは六から八。</li><li>あるルールが「エージェントは必要と判断したらこの約束を修正できる」と言う。否。</li><li>二週間後、エージェントが約束の禁じることをして誰も気づかない。約束は読まれていない。 プロジェクトファイルの結び付けを確認せよ。</li></ul>
+<hr>
+</section><section>
+<h2 id="2">ステップ 2 — プロジェクトの定義と必読（段の契約）</h2>
+<p><strong>フェーズ：</strong> 立ち上げ（一度。プロジェクト全体を通じて最新に保つ）。 <strong>形式：</strong> 対話（エージェントが起草し、足りないものを質問し、オーナーが修正する）。 <strong>規模：</strong> すべてのプロジェクトで必須。小さいプロジェクトならプロジェクトファイルは五十行 でよい。存在しないことだけは許されない。</p>
+<h3 id="">何のためか</h3>
+<p>エージェントの各セッションはゼロから始まる。昨日を覚えていない。だから短い地図が必要だ。 プロジェクトとは何で、どんな状態で、どの決定が既になされたかを伝える地図が。そして何かに 触れる前にそれを読む義務が。防ぐ失敗は二重だ。地図を読まなかったことによる捨てる仕事と、 読めなくなるまで育つ地図（起源システムの一つでプロジェクトファイルは9,661行に達し、その 状態では誰も、モデルさえも読まない）。</p>
+<p>その痛手から出た実践ルール：<strong>プロジェクトファイルは綱領であって履歴ではない</strong>。起きた ことは別の場所へ（保留項目の記録、生きた状態、日誌）。プロジェクトファイルはシステムが 何で、誰のためで、何でないか、何が決まったかを言う。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li>事業の調査：顧客は何をし、誰がシステムを使い、どの問題を解決し、何をしてはならないか。</li><li>共働の約束（第1段）。</li><li>以前のシステムがあれば：そのコードまたは文書への読み取りアクセス。</li><li>既になされた決定、あれば。口頭でも。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>最初：</strong></p>
+<blockquote class="prompt"><p>We are going to define the project in writing. Read the business survey in <code>docs/INITIAL_SURVEY.md</code> and the working agreement in <code>docs/WORKING_AGREEMENT.md</code>. Evaluate whether the survey is sufficient to describe the system, its users and its boundaries; if it is not, ask me for what is missing before writing anything. Then write <code>PROJECT.md</code>, three hundred lines at most, with: what the system is and for whom; what it is NOT; the main modules as a list; the decisions already made, each with its date; and the instruction to read this file and the working agreement at the start of every session. Separately, create <code>docs/STATUS.md</code> for the living state (what is being worked on, what is open): that file changes every day; <code>PROJECT.md</code> almost never does. Reply in my language.</p></blockquote>
+<p>何を求めているか：調査を評価し、起草前に質問すること。プロジェクトファイルが<strong>短い</strong>こと （三百行の上限は恣意的だが必要。上限なしでは育つ）。システムが何<strong>でない</strong>かを明示する こと。言われていないことこそモデルが発明するものだから。決定に日付があること。そして生きた 状態を別ファイルに分けること。プロジェクトファイルが履歴にならないように。</p>
+<p><strong>締め：</strong></p>
+<blockquote class="prompt"><p>Apply these corrections: [list]. Finalize <code>PROJECT.md</code> with today's date. Add to the working agreement that the change history never goes into <code>PROJECT.md</code>: it goes to <code>docs/STATUS.md</code> or to the pending-items register.</p></blockquote>
+<p>何を求めているか：オーナーの修正、日付、そしてプロジェクトファイルが変更履歴になるのを 防ぐ新しいルールを約束に加えること。そのルールこそ9,661行の事例に欠けていたものだ。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<ul><li><code>PROJECT.md</code>（または <code>CLAUDE.md</code>）：短く、必読で、何か、誰のためか、何でないか、 モジュール、日付付きの決定、読む命令を含む。最大三百行。</li><li><code>docs/STATUS.md</code>：生きた状態、前者とは分離。</li><li>両方に最終更新日。</li><li>約束に、履歴は <code>PROJECT.md</code> に入れないというルール。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li><code>PROJECT.md</code> は五分で読み切れるか。読めないなら間違っている。綱領であって履歴ではない。</li><li>システムが何をしないかを明示しているか。（欠けているものがエージェントの発明するものだ。）</li><li>各決定に日付と決定者があるか。</li><li>エージェントは起草前に事業について何か質問したか。何も聞かなかったなら、何を推測したか 確認せよ。</li><li>生きた状態は別ファイルにあるか。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>プロジェクトファイルが一か月で20%以上育った。綱領でないものが入り込んでいる。</li><li>エージェントがセッションの冒頭で、既に決まって書かれていることを提案する。地図を読んで いない。必読の結び付けが失敗している。</li><li>「何でないか」の節が空か、「特になし」と言う。すべてのシステムに限界がある。書かれて いなければ、モデルはそれを越える。</li></ul>
+<hr>
+</section><section>
+<h2 id="3">ステップ 3 — アーキテクチャを設計する前にサイジングする（段の契約）</h2>
+<p><strong>フェーズ：</strong> 立ち上げ（一度。事業の規模が変われば再実施）。 <strong>形式：</strong> 対話（エージェントが計算して選択肢を示し、オーナーが選ぶ）。 <strong>規模：</strong> 常に必須だが比例する。小さいプロジェクトならサイジングは半ページと一つの決定 （「SQLiteで何年ももつ」）でよい。許されないのはしないことだ。「どれだけ育つか」という問い は五分で済み、間違った答えは数週間を費やす。</p>
+<h3 id="">何のためか</h3>
+<p>構造的な決定（どのデータベースエンジンか、インターフェースは同期か非同期か、どれだけの 並行性か）を、好みではなく数字で行うため。飛ばすと最も高くつく段だ。KikanではJSONファイル で始め、計測してみるとシステムは年間340万行を生成していた。後からインターフェースを変える のに再設計の一段階まるごとを要した。</p>
+<p>この契約を策定する中で浮かんだ要点：<strong>事業だけが持つデータがある</strong>（エンティティがいくつ、 エンティティごとのイベントがいくつ、ピーク時のオペレータが何人、どれだけ保持するか）。 モデルはそれを推論できない。推論できるのは派生データだ。だからプロンプトは、一次データが 完全か評価し、足りないものを自信ありげに推定する代わりに求めるよう要求する。計算に何が 足りないかを知っているのはモデルであって、フォームではない。</p>
+<p>もう一つ名前を付ける価値のある考え：<strong>非対称な決定</strong>。取っても不要だったなら非常に安く、 取らずに必要だったなら非常に高くつく決定がある。一行目から非同期の永続化インターフェース はその典型例だ。エンジンが結局同期なら <code>await</code> が一つ余るだけ。非同期になって予見して いなければ全部書き直しだ。そうした決定は、今日は不要でも、安い限り常に取る。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li>事業の<strong>ボリューム調査</strong>、一般的な名前で：主要エンティティとその成長、エンティティごとの イベント、同時オペレータ数とピークの時間帯、データの保持期間、例外的な負荷（キャンペーン、 締め）、期待される成長。調査は本質的に不完全。エージェントが評価して求める。</li><li>以前のシステムがあれば：推定の代わりに実数を得るため、そのデータベースへの読み取り アクセス。</li><li><code>PROJECT.md</code>（第2段）。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>最初：</strong></p>
+<blockquote class="prompt"><p>Before proposing any architecture we are going to size the system. Read <code>PROJECT.md</code> and the volume survey in <code>docs/VOLUME_SURVEY.md</code>. Distinguish primary data (facts only the business knows) from derived data (what can be computed from the primary data). Evaluate whether the primary data is complete enough to compute what follows; if any primary figure is missing, or is marked as an assumption, ask me for all the missing figures before going on. Never estimate a primary figure. If a previous system can be queried, use its real numbers and state where each came from. With the primary data complete, compute, showing the arithmetic: rows per year for the three largest tables, peak concurrency, data size at five years, and what breaks first if everything is multiplied by ten. Then present three options for persistence and concurrency, each with the cost of migrating to the others later. Do not choose: I choose. Do not write code. Reply in my language.</p></blockquote>
+<p>何を求めているか、条項ごとに：一次と派生を区別すること（発明を防ぐ区別）。<strong>足りない一次 データを求め、決して推定しないこと</strong>。以前のシステムがあれば出所付きでその実数を使うこと。 派生データを計算の過程を見せて算出し、オーナーが再計算できるようにすること。「十倍」の シナリオ、何が最初に壊れるかを明かすもの。互いに移行するコスト付きの三つの選択肢、決定は 「どれか」だけでなく「間違えるといくらか」だから。そして選ばず、コードも書かないこと。 この段は決定の段であって構築の段ではない。</p>
+<p><strong>締め：</strong></p>
+<blockquote class="prompt"><p>I choose option [B]. Record in <code>docs/SIZING.md</code>: the primary data with its source, the derived data with its arithmetic, the three options, the chosen one and why, and the decisions we are taking "just in case" even though they are not needed today (for example: the persistence interface is asynchronous from line one, even if the first engine is synchronous). Include the questions you asked and my answers.</p></blockquote>
+<p>何を求めているか：出所と計算付きの完全な記録。選んだものと理由。そして非対称な決定を 書き残すこと。暗黙のままでは守られないから。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<p><code>docs/SIZING.md</code> に以下を含む：</p>
+<ul><li>日付と決定者。</li><li>一次データの表：値、出所（事業からの報告 / 以前のシステムで計測）、日付。出所が「推定」 のものは一つもない。</li><li>派生データの表：値、どの一次データから、計算式。</li><li>「十倍」のシナリオ：何が最初に壊れるか。</li><li>番号付きの三つの選択肢、互いに移行するコスト付き。</li><li>選んだものと理由、一、二文で。</li><li>非対称な決定（間違えても安く、取らないと非常に高い）のリスト。</li><li>エージェントがした質問と回答。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>出所が「推定」か、出所のない一次データはないか。あれば段は登れていない。エージェントは 求めるべきだった。</li><li>各派生データはどの一次データからどの計算で出たかを示しているか。一つ手計算して合うか。</li><li>三つの選択肢があり、理由を書いて一つ選ばれているか。</li><li>ボリュームが十倍になったら何が起きるか書いてあるか。</li><li>非対称な決定は書かれているか、それとも暗黙のままか。</li><li>エージェントは質問したか。一つも質問せずに数字を出したなら疑え。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>三つの選択肢が同じ結論に至る。エージェントは既に選んでいて、残り二つは形式のために 作った。</li><li>派生の数字が元の一次データより精密（「約5,000家族」から「1,234,567行」）。その精度は 偽物だ。</li><li>「十倍」のシナリオが「何も起きない」と言う。必ず何かが起きる。見つからなかったなら、 探していない。</li></ul>
+<hr>
+</section><section>
+<h2 id="4">ステップ 4 — ゲート付きの骨組み（段の契約）</h2>
+<p><strong>フェーズ：</strong> 立ち上げ（一度）。 <strong>形式：</strong> 長い一回の送信、最後にオーナーの目視承認。 <strong>規模：</strong> ユーザーを持つことになるすべてのプロジェクトで必須。使い捨てのプロトタイプなら 飛ばせる。だがプロトタイプが生き延びたら（必ず生き延びる）、この段が最初に払うべきもの になる。</p>
+<h3 id="">何のためか</h3>
+<p>システムが機能を持つ前に、<strong>空のまま</strong>起動し、テストされ、デプロイされるため。最後に デプロイを発見するのは非常に高くつく。Kikanでは立ち上げの一か月後に来て、五つの保留項目 を連続で費やした。骨組みを最初の週にデプロイしていれば、その痛手は機能ゼロの状態で受けて いた。</p>
+<p>背後の一般的な考え：<strong>本番への道はプロダクトの一部</strong>であって、最後の手続きではない。 プログラマのマシンでは動くがデプロイできないシステムはシステムではない。デモだ。そして 道が機能すると知る唯一の方法は、まだ失うものがないうちにそれを辿ることだ。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li><code>docs/SIZING.md</code>（第3段）：選んだ選択肢が骨組みを定める。</li><li>環境の調査：どこで動くか（クラウド、自前のサーバー）、テスト環境と本番環境があるか、 誰がアクセスを持つか、今何かあるならどうデプロイしているか。</li><li>プロジェクトの種類：新規（グリーンフィールド）、修正、または既存のものの進化。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>最初：</strong></p>
+<blockquote class="prompt"><p>We are going to build the skeleton of the system, with no functionality at all. Read <code>PROJECT.md</code>, <code>docs/SIZING.md</code> and the environments survey. Evaluate whether you have what is needed for the skeleton to run in the test environment (access, URL, deployment method); if anything is missing, ask me before starting. Then build: the folder structure; the server and the UI starting up; the test structure with one smoke test that passes; continuous integration running that test suite on every push; and the deployment to the test environment. Declare the gates of the workflow (what must be green to move from one stage to the next) in <code>docs/GATES.md</code>. When done, take a screenshot of the empty UI running in the test environment and show it to me. Do not add any functionality "while you are at it". Reply in my language.</p></blockquote>
+<p>何を求めているか：始める前にアクセスがあることを確認すること（それなしでは骨組みは エージェントのマシンに留まる）。骨組みとは何かの正確なリスト（構造、起動、一つのテスト、 継続的インテグレーション、テスト環境へのデプロイ）。書かれたゲート。テスト環境の実際の スクリーンショット、デプロイされたことの唯一有効な証拠。そして機能を追加することの明示的 な禁止。モデルは「ついでに」をしがちで、それが正確な範囲を壊すからだ。</p>
+<p><strong>締め：</strong></p>
+<blockquote class="prompt"><p>Skeleton approved. Record in <code>docs/STATUS.md</code> the test environment URL, the command to run the tests and the command to deploy, and mark this step as done. Then run the deployment a second time and show me that the second run changed nothing.</p></blockquote>
+<p>何を求めているか：三つのコマンドを次のセッションが見つけられる場所に残すこと。そして デプロイが繰り返し可能であることを証明すること（二度実行して何も壊れない）。その二度目の 実行が、手順が幸運ではなく手順であることの証明だ。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<ul><li>構造、サーバー、画面が起動するリポジトリ。</li><li>緑のスモークテストと、継続的インテグレーションで走るテスト群（緑の実行へのリンク付き）。</li><li>テスト環境へのデプロイが機能し、URLがあり、二度実行済み。</li><li><code>docs/GATES.md</code>：ゲートのリスト、それぞれ通過条件付き。</li><li>テスト環境で動く空のシステムのスクリーンショット。</li><li>三つのコマンド（起動、テスト、デプロイ）で更新された <code>docs/STATUS.md</code>。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>テスト環境のURLを開いて空の画面を見られるか。（エージェントではなくあなたが行う。）</li><li>緑の継続的インテグレーション実行へのリンクがあるか。</li><li>デプロイは二度実行され、二度目は何も壊さなかったか。</li><li>ゲートはそれぞれ検証可能な条件で書かれているか。</li><li>頼んでいない機能があるか。あればエージェントは正確な範囲に違反した。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>骨組みは「ローカルで動く」がデプロイは「後で見る」。否。デプロイが骨組みだ。</li><li>スクリーンショットがテスト環境ではなくエージェントのマシンのもの。URLを求めよ。</li><li>ゲートが「コードの品質が良い」のようなことを言う。ゲートは検証可能な条件だ。「テスト群が 緑」「テスト環境へのデプロイが成功」。</li></ul>
+<hr>
+</section><section>
+<h2 id="5">ステップ 5 — 計画とは保留項目のこと（段の契約）</h2>
+<p><strong>フェーズ：</strong> ループ（変更のたびに、プロジェクト全体を通じて使う）。 <strong>形式：</strong> 作成時に一回の送信。その後は毎セッションのルーチン。 <strong>規模：</strong> すべてのプロジェクトで必須。他のすべての段を追跡可能にする段。番号付きの保留 項目がなければ証拠を掛ける場所がない。</p>
+<h3 id="">何のためか</h3>
+<p>順序とゲートを持つ単一の作業キューが、プロジェクトの真実であるため。「計画」が一方に 「タスク」が他方にあるのではない。保留項目のリストが計画そのものだ。二週間で追い越されて 陳腐化する仕様書と、なぜやったのか誰も知らない仕事を防ぐ。</p>
+<p>よく書かれた保留項目には、タスクリストの項目には通常ない三つのものがある。どこから来たか （それを生んだ決定または依頼）、完了をどう検証するか、そして閉じたときの証拠。一つ目は 仕事が理由を失うのを防ぎ、二つ目は「完了」で閉じるのを防ぎ、三つ目はオーナーがコードの 代わりに見るものだ。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li>仕様書または顧客の最初の依頼、どれほど不完全でも。</li><li>監査、既にあれば。</li><li><code>PROJECT.md</code> と <code>docs/STATUS.md</code>。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>記録を作るために：</strong></p>
+<blockquote class="prompt"><p>We are going to turn everything that must be done into numbered pending items. Read <code>PROJECT.md</code>, the client's request and whatever is in <code>docs/STATUS.md</code>. If the request is ambiguous on any point such that you cannot write a verifiable pending item for it, ask me; do not resolve it by assuming. Create <code>docs/PENDING.md</code> with one item per thing to do: number (PND-001 onwards), one-line title, what is requested, which decision originates it (or "client request, date"), how it will be verified as done, and status. Order them by the priority I gave you; if I gave none, propose an order and tell me why. Reply in my language.</p></blockquote>
+<p>何を求めているか：依頼を検証可能な項目に変換し、<strong>検証可能な項目を書けないほど依頼が 曖昧なときは質問すること</strong>（曖昧さは選ぶのではなく質問して解決する）。各保留項目の フィールド、特に「どう検証するか」、後で証拠付きで閉じられるようにするもの。そして理由 付きの順序の提案、オーナーが確認または変更できるように。</p>
+<p><strong>毎セッションのルーチン（共働の約束または <code>PROJECT.md</code> に入れる）：</strong></p>
+<blockquote class="prompt"><p>Before touching any code, open <code>docs/PENDING.md</code>, tell me which item you are taking and why. Every commit cites its pending item. A pending item is closed with written evidence (the test, the screenshot, the number), never with "done". If along the way you see something that is not on the list, add it as a new pending item; do not do it.</p></blockquote>
+<p>何を求めているか：毎セッションの規律。何を取るか宣言し、各コミットで保留項目を引用し、 証拠で閉じ、リスト外に現れたものは<strong>やる代わりに書き留める</strong>。最後の条項が、モデルが 「他にも何か見つけた」ときに正確な範囲を守るものだ。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<p><code>docs/PENDING.md</code>（またはプロジェクトが使うツール）に、保留項目ごとに：</p>
+<ul><li>番号、タイトル、状態（開 / 進行中 / 閉）、開始日と終了日。</li><li>何が求められているか、二、三文で。</li><li>出所：決定または依頼、日付付き。</li><li>完了をどう検証するか：テスト、画面、数字。</li><li>閉じるとき：証拠とコミット。</li></ul>
+<p>そして約束または <code>PROJECT.md</code> にルーチン。</p>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>各保留項目はどう検証するか言っているか。検証のない保留項目は閉じられない。</li><li>証拠もコミットもなく「閉じた」保留項目があるか。あれば再開せよ。</li><li>コミットを三つ無作為に取る。保留項目を引用しているか。</li><li>保留項目のないものがコードに現れたか。そこでエージェントは範囲を外れた。</li><li>エージェントは依頼の曖昧な点について質問したか、それとも自分で解決したか。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>ある保留項目が三セッション以上「進行中」のまま。三つの保留項目であるか、誰も取らなかった 決定で詰まっている（第6段）。</li><li>ある日に閉じた保留項目がその日のコミットより多い。証拠なしで閉じている。</li><li>開いた保留項目が五十を超える。計画ではなく不安の目録だ。優先順位を付けて保管せよ。</li></ul>
+<hr>
+</section><section>
+<h2 id="6">ステップ 6 — 決定はコードの隣に書く（段の契約）</h2>
+<p><strong>フェーズ：</strong> ループ（事業ルールや構造的決定が現れるたびに）。 <strong>形式：</strong> 短い対話：エージェントが決定があることを検知し、質問し、書き残す。 <strong>規模：</strong> すべてのプロジェクトで必須。小さいプロジェクトなら記録は十行の表でよい。重要 なのは事業ルールにオーナーがいることだ。</p>
+<h3 id="">何のためか</h3>
+<p>各事業ルールと各構造的決定に、オーナー、日付、場所があるため。さもなければ六週間後、 「承認済み＋残高はキューに戻る」が顧客の決定だったのかエージェントの思いつきだったのか 誰も知らない。そして最悪の事態を防ぐ。エージェントが妥当に思えたからという理由でドメイン のルールを発明すること。</p>
+<p>これには声に出して言う価値のある帰結がある。モデルはルールの穴に出会うと、<strong>それを 埋める</strong>。立ち止まらない。最もありそうなもので補完し、他のことを書くのと同じ自然さで そうする。だからこの段のルーチンは「決定を書け」ではなく「欠けているときは止まって聞け」 だ。後者が難しく、約束で要求すべきものだ。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li>オーナーとの対話：唯一の文脈。エージェントは事業ルールを決められない。</li><li>決定を書く合意された場所：コミットメッセージ、保留項目の文書、または <code>docs/DECISIONS.md</code> の記録。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>ルーチン（共働の約束に入れる）：</strong></p>
+<blockquote class="prompt"><p>Whenever implementing something requires a business rule that is not written down, or you must choose between two approaches that change what the user sees, stop and ask me, in prose, with your recommendation and the alternative. Do not implement the one you prefer. When I decide, write the decision with my name and the date in the commit message and in <code>docs/DECISIONS.md</code>, with the exact words I used. If I do not answer and you must move on, implement the most reversible option and mark it "decision by omission, pending confirmation", so that I can review it.</p></blockquote>
+<p>何を求めているか：書かれていないルールや目に見える分岐の前で<strong>止まる</strong>こと。推奨と代替案 を添えて質問すること（オーナーが十分ではなく十秒で決められるように）。決定を「改善した」 言い換えではなくオーナーの言葉そのままで記録すること。そしてオーナーが答えないときは、 最も可逆な選択肢を「省略による決定」と印すこと。それが決定を消さずに進むことを可能にする。</p>
+<p><strong>締め（各決定）：</strong></p>
+<blockquote class="prompt"><p>Rule: [exact wording]. Decided by me, [date]. Write it down and continue.</p></blockquote>
+<p>何を求めているか：決定の最小形式：ルールの原文、誰が、いつ。三つ。どれか一つ欠けても 記録された決定ではない。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<ul><li><code>docs/DECISIONS.md</code>：決定ごとに一行または一段落、日付、決定者、原文、適用された保留項目 またはコミット、「省略による」かどうか。</li><li>事業ルールを実装する各コミットに：出所の文（"rule from the owner: approved + balance = back to the queue"、"owner decision 2026-08-10"）。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>事業ルールに触れるコミットを三つ開く。それぞれ誰がいつ決めたか引用しているか。</li><li>未確認の「省略による」決定があるか。確認するか戻すかせよ。放置するな。</li><li>自分のものと認識できないルールがシステムにあるか。あればエージェントが発明した。段の 失敗であり、保留項目として書き、見直す。</li><li>文は原文か、エージェントが「改善」したか。あなたの言葉でなければならない。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>一週間の作業を経て決定の記録が育っていない。作業が純粋に機械的だったか（まれ）、 エージェントが単独で決めたか。</li><li>記録された決定がすべて同じ洗練された文体で書かれている。エージェントの言い換えであって、 あなたの言葉ではない。</li><li>システムのユーザーが「なぜこうなるのか」と尋ね、誰も決定を見つけられない。</li></ul>
+<hr>
+</section><section>
+<h2 id="7">ステップ 7 — 錠としてのテスト、赤で証明（段の契約）</h2>
+<p><strong>フェーズ：</strong> ループ（変更ごと）。 <strong>形式：</strong> 一回の送信。エージェントが実行して報告し、オーナーが報告を読む。 <strong>規模：</strong> すべてのプロジェクトで必須。方法の心臓部。交渉できない段が一つあるなら、これだ。</p>
+<h3 id="">何のためか</h3>
+<p>一度も失敗するのを見ていないテストは、何かを証明しているかわからない。ここでのルールは 「テストを書け」ではない。「古いコードに対してテストが赤になり、新しいコードで緑になる ことを示せ」だ。何も証明しないから通るテストと、バグを隠す緑を防ぐ。</p>
+<p>人間のプログラマよりモデルでこれがより重要な理由：モデルはコードとテストを<strong>同じ セッションで、同じ理解で</strong>書く。依頼を誤解していれば、テストは誤解したものを証明し、通る。 古いコードに対する赤は、テストが重要なものを見ていることを確かめる唯一の安価な方法だ。古い コードが通るなら、テストは前後を区別しておらず、役に立たない。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li>既に実装された変更（既定ではテストは実装の後。「テストが先」は小さく明確な範囲の選択肢 として残る）。</li><li>変更の元となる保留項目、その「どう検証するか」付き。</li><li>既存のテスト群と実行コマンド（第4段）。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>ルーチン（共働の約束に入れる。変更ごとに適用）：</strong></p>
+<blockquote class="prompt"><p>To close this pending item I need evidence, not your word. (1) Write the test that proves what the item asks for. (2) Demonstrate that this test fails against the previous code: you may temporarily revert the change, or run the test against the old version, but show me the red output. (3) Show me the green output with the change. (4) Run the regression suite for the neighbouring items and show me it is still green. (5) Do not replace with mocks the very part you are trying to test. If testing end to end requires something you lack (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the commit message says "proved red against [what]" and the test counts.</p></blockquote>
+<p>何を求めているか、条項ごとに：(1) テスト。(2) <strong>示された赤</strong>、出力を見せて。この方法を 「テストを書け」と区別する条項。(3) 緑。(4) 同じセッションでの隣接項目の回帰。変更は隣の ものを壊すから。(5) まさに試す部分をモックしないこと。そしてこの段に合わせた完全性の条項： エンドツーエンドで試すのに何か欠けているなら、<strong>シミュレートせず求める</strong>こと。数字付きの コミットメッセージが、証拠をコードの住む場所に残す。</p>
+<p><strong>エージェントがテストできないと言うとき：</strong></p>
+<blockquote class="prompt"><p>Explain why it cannot be tested, what would have to be added so that it can, and open a pending item for that. The change is not closed until it can be tested.</p></blockquote>
+<p>何を求めているか：「テストできない」が会話の終わりではなく保留項目の始まりであること。 テスト不能は負債であり、負債は記録する。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<ul><li>リポジトリ内の新しいテスト、閉じる保留項目の名前付き。</li><li>エージェントの報告とコミットメッセージに：赤の出力（いくつ失敗、どのバージョンに対して）、 緑の出力、数字付きの緑の回帰。</li><li>エンドツーエンド（画面 → バックエンド）で試したなら、バックエンドが変わった証拠（行、 記録、状態）。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>報告は赤を示しているか。数字付きで：「古い基準に対して8のうち4が失敗」。緑だけなら段は 登れていない。</li><li>回帰は同じセッションで走ったか。テストはいくつ、緑はいくつ。</li><li>変更のまさにその場所に「シミュレート」（モック）された部分があるか。エージェントに何を なぜシミュレートしたか尋ねよ。</li><li>コミットは保留項目を引用し、「赤で証明」と言っているか。</li><li>画面のテストなら、バックエンドへの効果も検証しているか。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>今週の新しいテストがすべて一発で緑になり、赤が一度も示されなかった。エージェントが手順 を省いているか、テストが何も証明していない。</li><li>テスト群がどんどん遅くなり、誰も理由を知らない。たいてい「速く走るように」とエンドツー エンドのテストがシミュレーションに置き換えられている。</li><li>エージェントが数を言わずに「テストは通る」と報告する。常に数字付きで。</li></ul>
+<hr>
+</section><section>
+<h2 id="8">ステップ 8 — 生産者と消費者の対称性、そしてアンチパターンの記録（段の契約）</h2>
+<p><strong>フェーズ：</strong> ループ（二者間の契約に触れるすべての変更）。 <strong>形式：</strong> ループ内で自動。加えて、痛い目に遭うたびに育つファイル。 <strong>規模：</strong> 対称性は常に必須。生産者/消費者の地図は単一モジュールのプロジェクトでは任意、 画面とサーバーが分かれた瞬間から必須。</p>
+<h3 id="">何のためか</h3>
+<p>一方の端（サーバー、ロボット、データベースのスキーマ）を変えたら、もう一方の端（画面、 カウンタ、消費者）も同じコミットで変わらなければならない。さもなければ遅かれ早かれ乖離し、 ユーザーは一方である数字を、他方で別の数字を見る（1,355対1,234の事例）。そして一度払った 誤りは、二度払わないように書き留める。</p>
+<p>背後の一般原則：<strong>すべてのリストには唯一の所有者がいる</strong>。テーブルの列、注文の取りうる 状態、何かが待つ理由。それらはシステムの一部分（生産者）だけが定義し、他はすべてそこから 読む。同じリストのコピーが二つある瞬間、どちらかがずれている。どちらかを知るだけだ。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li>システムのどの部分が何を消費するかの地図：どの画面がどのサービスを読み、どのプロセスが どのテーブルに書くか。なければ最初のプロンプトが作る。</li><li>アンチパターンの記録 <code>docs/GOTCHAS.md</code>、空でも。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>地図を作るために（一度）：</strong></p>
+<blockquote class="prompt"><p>Build <code>docs/PRODUCER_CONSUMER_MAP.md</code>: for every contract in the system (a service, a table, a file format, a list of values), who produces it and who consumes it. If there are parts of the system you cannot access or do not understand, tell me instead of leaving them out of the map. Reply in my language.</p></blockquote>
+<p>何を求めているか：契約とその両側の目録。そしてこの段向けの完全性条項：見えないものは 省くのではなく宣言する。隠れた穴のある地図は、地図がないより悪い。</p>
+<p><strong>ルーチン（共働の約束に入れる）：</strong></p>
+<blockquote class="prompt"><p>Before closing any change that touches a contract, look up every consumer in the map and update them in the same commit. Always prefer that the producer defines the list (columns, causes, states) and the consumer reads it, rather than each keeping its own copy. If the map does not have that relationship, add it.</p></blockquote>
+<p>何を求めているか：反射としての対称性（閉じる前に相手側を探す）、唯一の所有者を持つリストの ルール、そして使うにつれて地図が自ら保守されること。</p>
+<p><strong>何かが二度目に壊れたとき：</strong></p>
+<blockquote class="prompt"><p>This has happened to us before. Record it in <code>docs/GOTCHAS.md</code> with: how it smells (the early sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if possible, a test or an automatic check that detects it.</p></blockquote>
+<p>何を求めているか：アンチパターンの固定形式（匂い、根本原因、修正、早期検知）、そして何より 自動検査。書き留めただけで自動化されていないアンチパターンは、人やセッションが変わると 繰り返される。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<ul><li><code>docs/PRODUCER_CONSUMER_MAP.md</code>：契約のリスト、生産者と消費者付き。</li><li>契約に触れる各コミットに：更新された消費者、メッセージに名前付きで。</li><li><code>docs/GOTCHAS.md</code>：アンチパターンごとに一項目、四つの部分（匂い、根本原因、修正、事前の 検知法）と最初に起きた日付付き。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>地図から契約を一つ選び、エージェントに各消費者がどこでそれを読むか見せてもらう。誰かが リストの自分のコピーを持っていれば負債がある。</li><li>二つの異なる画面に表示される数字はあるか。比べよ。同じか。</li><li>GOTCHASの各項目に四つの部分があるか。</li><li>既にGOTCHASにある誤りが繰り返されたか。そうなら自動検査が欠けている。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>同じ値が複数のファイルに手書きで現れる（サーバーと画面に「保留」「承認済み」）。二つの コピー。どちらかが乖離する。</li><li>サーバーの変更がサーバーのテストが緑で閉じられ、誰も画面に触れていない。</li><li>GOTCHASに「事前の検知法」の部分がない項目がある。逸話であってアンチパターンではない。</li></ul>
+<hr>
+</section><section>
+<h2 id="9">ステップ 9 — 構築の前に計測する、自身も検証される計器で（段の契約）</h2>
+<p><strong>フェーズ：</strong> ループ（数字が決定に入力されるたびに）。 <strong>形式：</strong> 計測ごとに一回の送信。仮説がオーナーのものなら対話になることも。 <strong>規模：</strong> 比例する。小さいプロジェクトなら「計測」はコマンドで数えて日付付きで数字を記す ことでよい。ラチェットとクエリ予算はボリュームのあるシステム向け。規模で変わらないもの： 何かを決める数字は印象からは出ない。</p>
+<h3 id="">何のためか</h3>
+<p>決定に入力されるすべての数字が、テキスト検索でも、印象でも、「百くらいだと思う」でもなく、 テスト付きのプログラムから出るため。そして計器自体が監査されるため。計器は嘘をつく。 Kikanではある計器がカウンタゼロで84回の呼び出しを見落とし、別の計器は44のところ27と言った。 五つのルール：ガード付きの計器。計器がなければ作る。双方向で監査する。近似は印す。実行者は 計画者の数字を検証する。</p>
+<p>この段が存在する根本的な理由：モデルは数字付きの主張（「この種のループは約120ある」）を 作るのがとても上手で、それらは計測されたときも推定されたときもまったく同じに聞こえる。 オーナーには口調で区別する術がない。唯一の方法は計器を要求すること：「何で測った？コマンド を見せて」。コマンドがなければ、小数点が何桁あろうと印象だ。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li>オーナーまたはエージェントの仮説：「問題はXだと思う」「百くらいのはずだ」。</li><li>計測したいものへのアクセス：コード、読み取り専用のデータベース、ログ。</li><li>リポジトリに既にある計器、あれば。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>最初：</strong></p>
+<blockquote class="prompt"><p>Before building anything, we are going to measure. The hypothesis is: [X]. Write a meter (a script that lives in the repository) that measures [the quantity], and a test for the meter that checks it against a known case where the answer is known in advance. If measuring requires access or data you lack, ask me; do not approximate silently. If some part can only be approximated, mark it as approximate and tell me the margin. Run the meter, show me the number together with the command that produces it, and audit it in both directions: from the code to the measurement (is everything that should be counted, counted?) and from the measurement to the code (does everything counted actually exist?). Only then propose what to build. Reply in my language.</p></blockquote>
+<p>何を求めているか、条項ごとに：<strong>リポジトリ内</strong>の計器（失われる野良コマンドではなく）。既知 の事例に対する<strong>計器のテスト</strong>（ガード）。計測向けの完全性条項（アクセスを求め、黙って近似 しない）。近似をその誤差幅付きで印すこと。オーナーが実行できるよう、数字を<strong>生成する コマンドとともに</strong>。双方向の監査、嘘をついた二つの計器を暴いたもの。そして順序：まず計測、 次に提案。</p>
+<p><strong>予算があるとき：</strong></p>
+<blockquote class="prompt"><p>Set the budget for [queries / loops / time] on this path at the measured value plus a small margin, and protect it with a test that fails if it is exceeded. Tell me the number and the margin.</p></blockquote>
+<p>何を求めているか：予算が丸い数字ではなく計測値プラス少しであること。超えたら失敗する テストがあること。こうして性能の退行は本番ではなくテスト群で現れる。</p>
+<p><strong>計画者が数字を出したとき（ルール五）：</strong></p>
+<blockquote class="prompt"><p>Before executing the plan, verify every number the plan asserts with the meter. If any does not match, stop and tell me; do not execute on a wrong number.</p></blockquote>
+<p>何を求めているか：実行者が計画者の数字を信用しないこと。別セッションの同じモデルであって も。Kikanでは計画の四つの主張のうち三つが誤っていた。計器があったところでは数字は正確 だった。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<ul><li>リポジトリ内の計器（<code>tools/measure_*.py</code>、<code>scripts/meter-*.mjs</code> など）、そのテスト付き。</li><li>数字、生成するコマンドと日付付き。</li><li>双方向の監査、二、三行で書かれたもの。</li><li>近似はそうと印され、誤差幅付き。</li><li>予算があれば：値、誤差幅、守るテスト。</li><li>コミットに："measured: [number] with [meter]"。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>計器のコマンドを自分で実行して同じ数字が出るか。（あなたが実行する。理解する必要はない、 実行するだけ。）</li><li>計器にテストはあるか。どの既知の事例に対して。</li><li>報告に計器の裏付けのない数字があるか。出所を尋ねよ。</li><li>近似は印されているか。</li><li>計画に数字があったなら、エージェントは実行前に検証し、合わなかったものを告げたか。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>コードが変わっていないのに二つの報告の間で数字が変わった。どちらかは計測されていない。</li><li>計器がゼロを出す。ほとんどゼロではない。ほとんど常に計器が何かを見落としている（Kikanで 二度）。</li><li>エージェントが時間節約のため「計測しながら」構築を提案する。順序が方法だ：まず数字、次に 計画。</li></ul>
+<hr>
+</section><section>
+<h2 id="10">ステップ 10 — 誠実な検証と釣り合った報告（段の契約）</h2>
+<p><strong>フェーズ：</strong> ループ（各変更の締めで）。 <strong>形式：</strong> ルーチン。エージェントのすべての報告が持つべき形式。 <strong>規模：</strong> 例外なくすべてのプロジェクトで必須。費用はかからず、オーナーがコードを読まずに 済むことを可能にするもの。</p>
+<h3 id="">何のためか</h3>
+<p>オーナーがコードを読まないなら、エージェントの報告は信頼できなければならない。楽観的で なく、「見かけ上完全」でもなく、信頼できる。これが方法の中で本当に新しいところだ。コードの 書き手が証拠も作り、正しいときも間違っているときも同じ自信のある声でそうする。だから証拠は 自身を証明しなければならず、報告は検証済みと信じていることを分けなければならない。</p>
+<p>モデルがなぜ多めに報告しがちか理解する必要がある。悪意ではない。有用で完全であるように 訓練されたからで、「これは検証できなかった」と言う報告は「完了」と言う報告より有用でなく 見える。だから悪い知らせ、盲点、やらなかったことを<strong>明示的に求める</strong>必要がある。求めなけ れば出てこない。隠しているからではなく、答えの一部と考えていないからだ。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li>なされた仕事と、それを求めた保留項目。</li><li>共働の約束（第1段）、既にやっていないことを報告するのを禁じている。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>ルーチン（共働の約束に入れる。すべての報告に適用）：</strong></p>
+<blockquote class="prompt"><p>When you report, separate three blocks: VERIFIED (what you tested, with the command and its output), BELIEVED (what you think works but did not test, and why not), and BLIND SPOTS (what you cannot see from where you are: another environment, real data, the user's browser). Cover every item I asked for, one by one, even when the answer is "I did not do it". No claim without its proof next to it. Do not say "done": say what is done and how you know it. If something went wrong, say it first. Reply in my language.</p></blockquote>
+<p>何を求めているか、条項ごとに：三つのブロック、報告を誠実にする構造（証拠付きの検証済み、 試さなかった理由付きの信じていること、見えないもの）。何も「忘れ」ないよう項目ごとの網羅。 各主張の隣に証拠。素っ気ない「完了」の禁止。そして悪い知らせを最初に。モデルはそれを最後か 永遠に残しがちだから。</p>
+<p><strong>オーナーの「まだ壊れている」に対して：</strong></p>
+<blockquote class="prompt"><p>Before diagnosing again, compare the version running where I see the problem with the version that contains your fix. Tell me both. If they differ, the problem is publication, not code.</p></blockquote>
+<p>何を求めているか：「まだ壊れている」に対してゼロから診断し直さず、まずバージョンを比べる こと。「まだ壊れている」の半分は、リポジトリにはあるがオーナーが見る場所にはない修正だ。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<p>エージェントのすべての報告に：</p>
+<ul><li>三つのブロック（検証済み / 信じている / 盲点）、どれかが空でも。</li><li>求められた各項目に一行、状態付き。</li><li>各「検証済み」に：コマンドと出力、またはテストと結果、または数字と計器。</li><li>うまくいかなかったことは、最後ではなく最初に。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>三つのブロックがあるか。「信じている」と「盲点」が常に空なら、エージェントは誠実ではない。 見なかったものは常にある。</li><li>「検証済み」ブロックから主張を無作為に一つ選ぶ。隣に証拠があるか。再現できるか。</li><li>求めた各項目を網羅しているか、それとも「忘れた」ものがあるか。</li><li>悪い知らせは最初にあるか。</li><li>素っ気ない「完了」と言ったことがあるか。約束違反だ。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>十回連続で盲点のない報告。誰もすべては見えない。ブロックが空なのは真実ではなく習慣だ。</li><li>「検証済み」ブロックに「動くはず」のような文がある。変装した「信じている」だ。</li><li>報告が変更より長い。釣り合った報告は言うべきことを言う。膨らんだ報告は量で何かを覆って いる。</li></ul>
+<hr>
+</section><section>
+<h2 id="11">ステップ 11 — 計画への入力としての定期監査（段の契約）</h2>
+<p><strong>フェーズ：</strong> 運用（ときどき：大きな段階の締め、重要なデプロイの前、または一、二か月ごと）。 <strong>形式：</strong> 長い一回の送信、理想的には構築するエージェントとは別のエージェントに。 <strong>規模：</strong> どのプロジェクトでも最初の本番デプロイの前に必須。その後は変更の速度に比例 （毎週変わるシステムは毎月監査、安定したものは半年ごと）。</p>
+<h3 id="">何のためか</h3>
+<p>ときどきシステム全体を新鮮な目で見て、見えたものを保留項目に変換するため。監査は保管する 報告書ではない。計画だ。誰も見ていなかったコードに書かれたパスワード、テーブル全体を読む 264のクエリ、依存関係の既知の脆弱性、2,679行のコンポーネントを防ぐ。そして品質管理の独立性 を一歩内側に持ち込んだものだ。監査する者は構築した者ではない。</p>
+<p>独立性について：別の会社も別のツールも要らない。<strong>別のセッション、別の指示ファイル、構築に 参加していないもの</strong>で十分だ。求めるのは監査者が構築者の前提を共有しないことだ。モジュール を構築したモデルはハードコードされたパスワードが暫定だと「知っている」。初めて見るモデルは それをあるがままに報告する。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li>完全なリポジトリ、読み取り専用。</li><li>本番またはテスト環境、読み取り専用（データベース、ログ）。</li><li>前回の監査、あれば。何が変わったか測るため。</li><li>範囲：整合性、セキュリティ、性能、コード品質、または全部。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>最初（可能なら構築者とは別のエージェントに）：</strong></p>
+<blockquote class="prompt"><p>Audit this system for [scope]. Read-only: change nothing except writing your report to <code>docs/AUDIT_[date].md</code>. If auditing some part requires access you lack (the database, the log, an environment), tell me and mark that part as not audited; do not pass it as fine. Go through all of the code, not a sample. For every finding: where it is (file and line), what the risk is, what evidence proves it (the command, the query, the number), and its priority: P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited. End with the list of P0 findings turned into proposed pending items. Reply in my language.</p></blockquote>
+<p>何を求めているか、条項ごとに：読み取り専用（監査者は修正せず提案する）。監査向けの完全性 条項：<strong>検証できなかったものは宣言し、省略で合格にしない</strong>。サンプルではなくすべてのコード。 重大な発見はたいてい誰も見ない場所にあるから。各発見に位置、リスク、証拠、優先度。報告を 読み返さずに行動できるように。次元ごとの評点、前回の監査と比べるため。そしてP0は既に提案 保留項目に変換済み。</p>
+<p><strong>締め（構築者に）：</strong></p>
+<blockquote class="prompt"><p>Read <code>docs/AUDIT_[date].md</code>. Open one pending item for every P0 and P1, citing the finding. If you disagree with any of them, tell me with the evidence against; do not ignore it.</p></blockquote>
+<p>何を求めているか：監査が保留項目に変換されること（さもなければ保管される報告書だ）。そして 不同意は黙ってではなく、明示的に証拠付きで。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<ul><li><code>docs/AUDIT_[date].md</code>：範囲、検証できたものとできなかったもの（と理由）、位置・リスク・ 証拠・優先度付きの発見、次元ごとの評点、提案保留項目のリスト。</li><li><code>docs/PENDING.md</code> に：各P0とP1に一項目、発見を引用して。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>報告は何を検証できなかったか言っているか。すべて検証したと言うなら疑え。</li><li>発見を二つ選ぶ。ファイルと行、再現できる証拠があるか。</li><li>監査を閉じる前に各P0に項目が開かれているか。</li><li>次元ごとの評点は前回の監査と比べられるか。</li><li>構築したのと同じエージェントが監査したか。そうならP0に第二の目を求めよ。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>監査がP0を一つも見つけなかった。三か月以上稼働したシステムではほとんどあり得ない。範囲が 小さかったか、監査者が前提を共有していた可能性が高い。</li><li>発見にファイルの行がない。意見であって発見ではない。</li><li>二週間経ってもP0に保留項目がない。監査は保管された。</li></ul>
+<hr>
+</section><section>
+<h2 id="12">ステップ 12 — フェイルクローズド、錠、静かな損害ゼロ（段の契約）</h2>
+<p><strong>フェーズ：</strong> 運用（システムが世界に作用する前に設計。帰結のある新しい行動ごとに見直す）。 <strong>形式：</strong> 対話：エージェントが帰結のある行動を列挙し、オーナーがどれにどんな錠を付けるか 確認する。 <strong>規模：</strong> システムが不可逆なこと（請求、送信、削除、承認）をする瞬間から必須。読み取り専用 のシステムは飛ばせる。世界に作用する最初のボタンを得た瞬間、この段が最も重要になる。</p>
+<h3 id="">何のためか</h3>
+<p>システムが疑いや故障の前で、行動<strong>しない</strong>で、そう言うため。当たり前に聞こえるが、ソフト ウェアが既定でやることの逆だ。ソフトウェアは疑いの前で進む。二重請求、人を通さない自動 承認、認証情報をアップロードする <code>git add -A</code>、顧客データの削除を防ぐ。</p>
+<p>この原則には「フェイルクローズド」という名前があり、物理的セキュリティから来ている。停電 したとき閉じたままの防火扉だ。逆の「フェイルオープン」は開く扉。ソフトウェアではほとんどが 既定でフェイルオープンだ。検証が失敗してもコードは続き、サービスが応答しなくても問題なしと 仮定する。方法は既定を反転する：<strong>疑わしきは、否</strong>。システムにも、それを運用するエージェント にも適用される。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li><strong>帰結のある行動の調査</strong>、一般的な名前で：システムが何を請求し、送信し、承認し、削除し、 外部の誰かに通知するか。二度やったら何が起きるか。誤ったら何が起きるか。どう取り消すか。 事業が知っている。エージェントがリストが完全か評価して質問する。</li><li>エージェント自身がシステムに対してできる行動（組み込まれているなら）。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>最初：</strong></p>
+<blockquote class="prompt"><p>We are going to decide which actions of the system need a lock. Read the survey of consequential actions, and go through the code looking for everything that charges, sends, approves, deletes or notifies outwards. Compare the two lists: if the code has actions the survey does not mention, or the other way round, ask me before going on. For every action propose: whether it is reversible, which lock it gets (explicit confirmation, double safety, dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong. General rule: on any doubt or failure along the way, the action is NOT executed and the reason is logged. Present me the table; I confirm lock by lock. Reply in my language.</p></blockquote>
+<p>何を求めているか：事業が言ったこととコードがすることの比較（そこに誰も覚えていなかった 行動が現れる）。この段向けの完全性条項：二つのリストの差異は解決せず質問する。各行動に 可逆性、錠、戻り道。そしてプロンプトに書かれたフェイルクローズドの一般ルール、表とコードに 残るように。</p>
+<p><strong>締め：</strong></p>
+<blockquote class="prompt"><p>I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves that, under the doubt condition, the action does NOT happen (proved red against the version without the lock). Record the final table in <code>docs/LOCKS.md</code>. And for any new automation: dry-run mode first, logging what it would have done, until I enable it.</p></blockquote>
+<p>何を求めているか：<strong>赤で証明された</strong>錠ごとのテスト（錠なしでは行動が起きた。錠ありでは 起きない）、セキュリティに適用した第7段。最終の表。そして新しい自動化すべてにドライラン モードのルール、やらせる前に何をしたはずか見られるようにするもの。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<ul><li><code>docs/LOCKS.md</code>：帰結のある行動ごとに一行：何をするか、可逆か、錠、戻り道、誰がいつ 承認したか。</li><li>錠ごとに一つのテスト、赤で証明、疑いの下で行動が起きないことを検証。</li><li>ドライランモードで始まる新しい自動化、「したはず」の記録付き。</li><li>エージェントが組み込まれているなら：その権限を書いたもの（何を読めるか、何を変えられる か、何に承認が要るか）。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>請求、送信、承認、削除するすべての行動が表にあるか。ないものを一つ考えて尋ねよ。</li><li>各錠に赤のテストがあるか。（「錠なしでは行動が起きた。錠ありでは起きない。」）</li><li>不可逆な行動すべてに書かれた戻り道があるか。なければ二重の安全装置が要る。</li><li>新しい自動化はドライランモードで始まったか。有効にする前に「したはず」の記録を見たか。</li><li>組み込まれたエージェントが権限外のことを試みたら何が起きるか。試させて、ログの拒否を 見せてもらえ。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>自動化がドライラン期間なしに「存在しない」から「自走している」になった。</li><li>ログに「疑いにより未実行」の項目が一つもない。システムが決して疑わない（不可能）か、 疑っても進んでいる。</li><li>錠を「テスト用」パラメータで迂回できる。そのパラメータは本番で有効のままになる。</li></ul>
+<hr>
+</section><section>
+<h2 id="13">ステップ 13 — プロダクトの一部としての継続的インテグレーション、環境、秘密、デプロイ（段の契約）</h2>
+<p><strong>フェーズ：</strong> 運用（第4段の骨組みの上に組む。インフラの変更ごとに見直す）。 <strong>形式：</strong> 組むのに一回の送信。デプロイごとにルーチン。 <strong>規模：</strong> ユーザーのいるすべてのプロジェクトで必須。小さいものなら「継続的インテグレー ション」はGitHubのアクション一つ、「環境」は同じサーバーの二つのフォルダでよい。譲れない のは、テストが自動で走ること、設定がリポジトリにないこと、戻り道があること。</p>
+<h3 id="">何のためか</h3>
+<p>本番に至ることが再現可能なパッケージであるため：テストは<strong>一度</strong>走り、設定はリポジトリの 外に住み、秘密は出回らない。コミットごとに三度走るテスト（16日で2,000分のクォータ）、 トランスクリプトに印字されたデータベースの鍵、最初のドメインしか知らないCORS、テスト群に 上書きされた設定を防ぐ。</p>
+<p>秘密については例外なく反射として採用すべきルールがある：<strong>チャット、ログ、コミットで見ら れた秘密はもう秘密ではない</strong>。「誰も見ていない」も「後で消した」も関係ない。ローテーション する。ローテーションは十分で済む。誰かが使ったか突き止めるのは不可能だ。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li><strong>環境とアクセスの調査</strong>、一般的に：どんな環境があるか（テスト、本番）、どこで動くか、 誰がアクセスを持つか、一方から他方へどう昇格するか、どんな秘密があり今どこに住んでいる か、継続的インテグレーションのクォータはどれだけか。エージェントが十分か評価して質問する。</li><li>継続的インテグレーションとテスト環境へのデプロイ付きの骨組み（第4段）。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>最初：</strong></p>
+<blockquote class="prompt"><p>We are going to close the path to production. Read the environments and access survey. Evaluate whether you have what is needed to deploy to production safely (access, domain, where the secrets live, how to roll back); if anything is missing, ask me. Then set up: (1) continuous integration runs the full test suite exactly once per commit; (2) the deployment waits for that run's result and only packages and uploads, without running tests again; (3) each environment's configuration lives on the server (environment file or vault), never in the repository; (4) a written procedure to promote from the test environment to production, which can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check that prevents committing a secret. Document all of it in <code>docs/DEPLOYMENT.md</code> so that a person can do it by hand without you. Reply in my language.</p></blockquote>
+<p>何を求めているか、条項ごとに：始める前のアクセス。コミットごとに<strong>一度だけ</strong>のテスト（三度 走らせたのがクォータを燃やした）。パッケージするだけのデプロイ。リポジトリ外の設定。繰り 返し可能な手順としての昇格。<strong>試された</strong>ロールバック（試されたことのないロールバックは存在 しない）。コミット内の秘密に対する錠。そして人のための文書、インフラに適用した第14段。</p>
+<p><strong>デプロイごとのルーチン：</strong></p>
+<blockquote class="prompt"><p>Before touching production: the test environment is green with the same version; the rollback is ready; and tell me what changes in the configuration. After deploying: show me the version running in production and an end-to-end check on production, read-only.</p></blockquote>
+<p>何を求めているか：三つの前提条件（同じバージョンでテスト環境が緑、ロールバック準備済み、 設定の変更を告知）と二つの事後の証拠（動いているバージョンと、何も書かないエンドツー エンドの検査）。</p>
+<p><strong>秘密がチャットやコミットに現れたら：</strong></p>
+<blockquote class="prompt"><p>That secret is compromised: rotate it now, tell me everywhere else it was used, and add the check that would have caught it.</p></blockquote>
+<p>何を求めているか：即時のローテーション、他にどこにあったかの目録、そして検知したはずの 検査。次はチャットに届かないように。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<ul><li>コミットごとに一度走る継続的インテグレーション、実行へのリンク付き。</li><li>インテグレーションを待ってパッケージするだけのデプロイ。計測済み：前後でどれだけかかるか。</li><li>リポジトリ外の設定。リポジトリには値のない例のみ。</li><li><code>docs/DEPLOYMENT.md</code>：デプロイ、昇格、ロールバックの方法、一歩ずつ、人のために。</li><li>少なくとも一度試されたロールバック、その証拠付き。</li><li>有効な秘密検査（アップロードの試みが一つ拒否された）。</li><li>月ごとに消費した継続的インテグレーションのクォータの記録。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>コミットごとにテスト群は何度走るか。一度でなければならない。リンクを求めよ。</li><li>リポジトリに実際の設定値（鍵、パスワード、内部URL）があるか。エージェントに検索させて 空の結果を見せてもらえ。</li><li>エージェントなしで <code>docs/DEPLOYMENT.md</code> を一人で追えるか。その問いを持って読め。</li><li>ロールバックは試されたか。いつ。どんな証拠があるか。</li><li>プロジェクト中にチャットに秘密を貼ったか。そうならローテーションしたか。</li><li>今月の継続的インテグレーションのクォータがどれだけ残っているか知っているか。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>本番デプロイを「手で、速く、小さな変更だから」で行う。小さな変更こそ本番を壊す。誰も テストしないから。</li><li>設定の例ファイルに実際に見える値がある。おそらく実際の値だ。</li><li>最後にロールバックを試したのがいつか誰も言えない。</li></ul>
+<hr>
+</section><section>
+<h2 id="14-ai">ステップ 14 — 生きた文書と、人がAIなしで追えるマニュアル（段の契約）</h2>
+<p><strong>フェーズ：</strong> 運用（システムとともに生まれる。変更ごとに保守する）。 <strong>形式：</strong> ルーチン。加えて、マニュアルを生成するときに長い一回の送信。 <strong>規模：</strong> 比例する。小さいシステムは最低限、インフラと復旧のマニュアル（どう立ち上げ直す か、どう復元するか）が要る。ユーザー向けは一ページでよい。変わらないもの：構築した人が消え ても、別の人が続けられなければならない。</p>
+<h3 id="">何のためか</h3>
+<p>エージェントなしで、構築した人なしで、システムを使い、保守し、復旧できるため。エージェント がいない日にデプロイできないなら、完成していない。古典的方法では文書は高価で古びた。ここ では再生成は無料なので、ルールは「同じコミットで」と「手で再現可能」になる。間違った リポジトリへのコミットを引き起こした古い文書と、履歴と化したプロジェクトファイルを防ぐ。</p>
+<p>技術者でなくても判断できる、復旧マニュアルの品質基準：<strong>プログラミングをしない信頼できる人 が、午前三時に、システムがダウンしエージェントが接続できない状態で追えなければならない</strong>。 どこかの手順に「開発者に相談」や「場合による」とあれば、その手順は不完全だ。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<ul><li>各マニュアルの読者は誰か：エンドユーザー、保守する人、インフラを運用する人。事業が知って いる。不明ならエージェントが質問する。</li><li>テスト環境で動くシステム、実際のスクリーンショットを撮るため。</li><li><code>docs/DEPLOYMENT.md</code>（第13段）と <code>docs/LOCKS.md</code>（第12段）、入力となるもの。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>ルーチン（共働の約束に入れる）：</strong></p>
+<blockquote class="prompt"><p>Every change that modifies what the user sees, what the operator does, or how the system is deployed, updates the corresponding manual in the same commit. If you do not know which manual, ask.</p></blockquote>
+<p>何を求めているか：同じコミットのルール、マニュアルを最新に保つ唯一のもの。そしてどの マニュアルか不明なときの質問。</p>
+<p><strong>マニュアルを生成するために：</strong></p>
+<blockquote class="prompt"><p>Generate three manuals from the system as it is today in the test environment: the user manual (screen by screen, with real screenshots, in the user's language, no jargon); the maintenance manual (how it is built, where everything is, how to run the test suite, how to add a module); and the infrastructure and recovery manual (how to deploy, how to roll back, how to restore a backup, what to do if it goes down; written for a person who has to do it by hand, without AI, at three in the morning). If for any section you need something only the business knows (who is responsible for what, which phone number to call), ask me; do not leave a gap and do not invent. Each manual carries a date and the system version. Reply in my language.</p></blockquote>
+<p>何を求めているか：それぞれの読者を持つ三つのマニュアル。テスト環境の<strong>実際の</strong>スクリーン ショット（図でも説明でもなく）。復旧マニュアルの午前三時基準。文書化向けの完全性条項： 事業だけが知ることは質問し、<strong>穴を残さず、発明しない</strong>。そして日付とバージョン、各マニュアル がどのシステムに対応するか分かるように。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<ul><li><code>docs/USER_MANUAL.md</code>（またはHTML）、埋め込まれた実際のスクリーンショット付き。</li><li><code>docs/MAINTENANCE_MANUAL.md</code>。</li><li><code>docs/INFRASTRUCTURE_AND_RECOVERY_MANUAL.md</code>：一歩ずつ、人のために。</li><li>それぞれに日付と文書化するシステムのバージョン。</li><li>画面、運用、デプロイを変えるコミットに：更新されたマニュアル。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>ユーザーマニュアルを無作為の画面で開く。スクリーンショットは今日のテスト環境にあるものと 一致するか。</li><li>復旧マニュアルをあなた自身か、プログラミングをしない信頼できる人が追えるか。「ダウン した」の節を読め。何をするか、順に、コマンド付きで言っているか。</li><li>画面を変えた最近のコミットを選ぶ。マニュアルに触れたか。</li><li>「[要記入]」や「担当者に相談」のような穴があるか。そこでエージェントは質問すべきだった。</li><li>各マニュアルはどのバージョンに有効か言っているか。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>ユーザーマニュアルにもう存在しないバージョンのスクリーンショットがある。一度生成され 保守されていない。同じコミットのルールが約束にないか、適用されていない。</li><li>復旧マニュアルが「エージェントとのセッションを開く」で始まる。エージェントが前提なら、 人のためのマニュアルではない。</li><li>構築者以外の誰も復旧マニュアルを読んだことがない。誰かにテスト環境で追ってもらえ。詰まる ところが直すべきところだ。</li></ul>
+<hr>
+</section><section>
+<h2 id="15">ステップ 15 — システムの中のエージェント、そして数字による振り返り（段の契約）</h2>
+<p><strong>フェーズ：</strong> 運用（システムが既に本番にあるとき）と締め（次のプロジェクトのため第0段へ 戻る）。 <strong>形式：</strong> 二部構成：常駐エージェントの範囲を定める対話と、振り返りのための長い一回の送信。 <strong>規模：</strong> 常駐エージェントは任意（多くのシステムには不要。サポートを求めるユーザーがいる ものには必要）。振り返りはすべてのプロジェクトで必須、一ページでも。それなしでは方法は 学ばない。</p>
+<h3 id="">何のためか</h3>
+<p>同じサイクルを閉じる二つのこと。第一：エージェントが限定された範囲で本番に常駐し、構築者が いなくても診断、運用、サポートを行う。第二：方法自体が数字で見直され、学んだことがはしごを 変える。システムの地図なしに運用するエージェントと、プロジェクトごとに学ばず同じことを 繰り返す方法を防ぐ（マルチエージェントのチームは振り返りで閉じられた：60ドルと73分対90分）。</p>
+<p>常駐エージェントについて、すべてを律するルール：<strong>誰かの名において行動する</strong>。その認証情報 は責任ある人に紐付けられ、することはすべてその人の名で記録される。匿名のシステムアカウント ではない。上司のいる従業員だ。これがその範囲（その人が許可したこと）と追跡可能性（したこと に誰が責任を負うか）を定める。</p>
+<h3 id="1">1. 必要な文脈</h3>
+<p>常駐エージェントのために：</p>
+<ul><li>エージェントが本番で何をできて何をできないか：読む、診断する、設定を変える、行動を実行 する。オーナーが決める。</li><li>エージェントがシステムに対してどう身元を示すか（責任ある人に紐付いた自身の認証情報）。</li><li>解決できないものを見つけたとき誰に知らせるか（チケット、メール）。</li></ul>
+<p>振り返りのために：</p>
+<ul><li>プロジェクトのインシデント、コスト（トークン、クォータ、オーナーの時間）、最も往復した 保留項目、日付。</li></ul>
+<h3 id="2">2. プロンプト</h3>
+<p><strong>常駐エージェントのために（最初）：</strong></p>
+<blockquote class="prompt"><p>We are going to leave you resident in production. First, build the map of the system you will need in order to operate it: modules, environments, where each configuration lives, which actions are consequential (read <code>docs/LOCKS.md</code>), whom to notify. If there are parts of the system you cannot see from where you are, tell me; the map must not have hidden gaps. Then propose your scope in three levels: read-only and diagnosis; configuration changes with my approval; consequential actions behind locks. I choose the level. Your credential acts as the person who created it: everything you do is logged under that person's name. Reply in my language.</p></blockquote>
+<p>何を求めているか：運用する前のシステムの地図（地図なしの運用がこの段の防ぐ失敗）。この段向け の完全性条項：<strong>地図の穴は隠さず宣言する</strong>。オーナーが「場合による」ではなく一つ選べるよう 三段階の範囲。そして人の名における認証情報のルール。</p>
+<p><strong>常駐エージェントのために（締め）：</strong></p>
+<blockquote class="prompt"><p>Level [X]. Write in <code>docs/RESIDENT_AGENT.md</code> the map, the scope, the credential (never its value), and the procedure to request my approval. Then prove, with a real attempt recorded in the log, that something outside your scope is rejected.</p></blockquote>
+<p>何を求めているか：常駐エージェントの文書（認証情報の値は決して含めない）、そして範囲の赤の 証明：レベル外のことをする実際の記録された試みが拒否されること。権限に適用した第7段だ。</p>
+<p><strong>振り返りのために：</strong></p>
+<blockquote class="prompt"><p>[The stage / the project] is over. Do the retrospective with numbers, not impressions: what it cost (tokens, quota, my time), how many pending items, which ones took the most rounds and why, which incidents happened and which step of the ladder each falls into, and which step failed or was missing. If you lack the data for any figure (my time, for instance), ask me for it or mark it as an estimate; do not invent it. End with a concrete proposal to change the ladder: which step is modified, how, and which incident justifies it. Write it to <code>docs/RETROSPECTIVE_[date].md</code>. Reply in my language.</p></blockquote>
+<p>何を求めているか：出所付きの数字（コスト、項目、往復、インシデント）。各インシデントを段に 対応付けること、どの段にも落ちないインシデントは欠けている段だから。持っていない数字のための 完全性条項（求めるか推定と印す）。そして<strong>はしごへの具体的な変更提案を少なくとも一つ</strong>、 何も変えない振り返りは振り返りではなかったから。</p>
+<h3 id="3">3. 期待される成果物</h3>
+<ul><li><code>docs/RESIDENT_AGENT.md</code>：システムの地図、選んだ範囲、人に紐付いた認証情報、承認手順、 ログに記録された拒否の証拠。</li><li><code>docs/RETROSPECTIVE_[date].md</code>：出所付きの数字、段に対応付けられたインシデント、理由付きの はしごへの変更提案を少なくとも一つ。</li></ul>
+<h3 id="4">4. 完全性の検証</h3>
+<ul><li>システムの地図はエージェントが見られないものを言っているか。言っていなければ隠れた穴が ある。</li><li>範囲外の行動が拒否されるのを試した（またはログで見た）か。</li><li>エージェントの認証情報は特定可能な人の名で行動するか。</li><li>振り返りには出所付きの数字があるか、それとも形容詞か。（「高くついた」は数字ではない。）</li><li>各インシデントはある段に落ちるか。どれにも落ちないものがあれば段が欠けている。それが 変更提案だ。</li><li>はしごへの具体的な変更提案が少なくとも一つあるか。振り返りが何も変えないなら、振り返り ではなかった。</li></ul>
+<h3 id="5">5. 警告サイン</h3>
+<ul><li>常駐エージェントが毎週より高い権限レベルを「必要とする」。求めているものがシステムの 問題の解決のためか、自身の制限のためか確認せよ。</li><li>振り返りがすべてうまくいったと言う。すべてうまくいくことはない。方法ではなくオーナーの ために書かれている。</li><li>二つ連続のプロジェクトで同じインシデントがあり、間ではしごが変わらなかった。第15段が 閉じていない。振り返りを書いて適用していない。</li></ul>
+<hr></section>
+</div></body></html>

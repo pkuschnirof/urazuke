@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Urazuke — コース。段ごとの実践課題付きマニュアル、アプリケーションが本番に出るまで</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+section > p:first-of-type{}
+.prompt{margin:.8em 0 1.2em;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="urazuke">Urazuke — コース。段ごとの実践課題付きマニュアル、アプリケーションが本番に出るまで</h1><nav class="toc"><div class="toc-t">Contenido</div><ul><li class="l2"><a href="#">始める前に</a></li><li class="l3"><a href="#">このコースは誰のためか</a></li><li class="l3"><a href="#">最後に何を手にするか</a></li><li class="l3"><a href="#">必要なもの</a></li><li class="l3"><a href="#">コースの進め方</a></li><li class="l3"><a href="#turnera">ガイドプロジェクト：「Turnera」</a></li><li class="l2"><a href="#0-4">立ち上げフェーズ：レッスン0から4</a></li><li class="l3"><a href="#0">レッスン 0 — このプロジェクトはこの方法で取り組めるか？</a></li><li class="l3"><a href="#1">レッスン 1 — 共働の約束</a></li><li class="l3"><a href="#2">レッスン 2 — プロジェクトの定義と必読</a></li><li class="l3"><a href="#3">レッスン 3 — アーキテクチャを設計する前にサイジングする</a></li><li class="l3"><a href="#4">レッスン 4 — ゲート付きの骨組み</a></li><li class="l2"><a href="#5-10">ループフェーズ：レッスン5から10</a></li><li class="l3"><a href="#5">レッスン 5 — 計画とは保留項目のこと</a></li><li class="l3"><a href="#6">レッスン 6 — 決定はコードの隣に書く</a></li><li class="l3"><a href="#7">レッスン 7 — 錠としてのテスト、赤で証明</a></li><li class="l3"><a href="#8">レッスン 8 — 生産者と消費者の対称性、そしてアンチパターンの記録</a></li><li class="l3"><a href="#9">レッスン 9 — 構築の前に計測する、自身も検証される計器で</a></li><li class="l3"><a href="#10">レッスン 10 — 誠実な検証と釣り合った報告</a></li><li class="l2"><a href="#11-15">運用フェーズ：レッスン11から15</a></li><li class="l3"><a href="#11">レッスン 11 — 計画への入力としての定期監査</a></li><li class="l3"><a href="#12">レッスン 12 — フェイルクローズド、錠、静かな損害ゼロ</a></li><li class="l3"><a href="#13">レッスン 13 — プロダクトの一部としての継続的インテグレーション、環境、秘密、デプロイ</a></li><li class="l3"><a href="#14-ai">レッスン 14 — 生きた文書と、人がAIなしで追えるマニュアル</a></li><li class="l3"><a href="#15">レッスン 15 — システムの中のエージェント、そして数字による振り返り</a></li><li class="l2"><a href="#">本番リリースのチェックリスト</a></li><li class="l2"><a href="#a">付録A — 評価の仕方（コースを教える人、または自己評価する人のために）</a></li><li class="l2"><a href="#b">付録B — 各ツールへのコースの適応</a></li><li class="l2"><a href="#c">付録C — このマニュアルにまだないもの</a></li></ul></nav>
+<p>第1版、2026年10月17日。Urazukeプロジェクトの作業文書である。これを使う最初の受講生とともに 修正していく。日常の言葉で書かれており、略語や見慣れない表現はすべて主文書 （<code>ESCALERA_METODOLOGICA.md</code>）の用語集にある。これは日本語版で、スペイン語が正本である。 モデルへのプロンプトは英語で、すべての言語で同一である。</p>
+</section><section>
+<h2 id="">始める前に</h2>
+<h3 id="">このコースは誰のためか</h3>
+<p>人工知能でソフトウェアを構築し、<strong>そのソフトウェアが本当に使われる</strong>ことを望む人のため。 本物の人々に、何か月も。プログラミングのコースではない。言語もフレームワークも学ばない。 「プロンプト」のコースでもない。モデルにうまく書かせるコツは学ばない。<strong>方法</strong>のコースだ。 何をどの順でするか、各時点でモデルに何を頼むか、何を納めてもらうべきか、そして納められた ものが完全だとコードを読まずにどう知るか。</p>
+<p>次のような人に役立つ：</p>
+<ul><li>事業、診療所、小さなコンサルティング会社を持ち、開発チームを雇わずに自分のシステムが 欲しい。</li><li>自動化のコンサルタントやフリーランスで、顧客がロボット以上の「何か」を求めてくる。</li><li>プログラミングはできるが、モデルに重労働をさせて自分は決定だけを握りたい。</li><li>既に何かを「バイブコーディング」し、二週間動いて、三か月目に崩れた。</li></ul>
+<p>金曜のデモのためのプロトタイプが欲しいなら役に立たない。それにはもっと速いツールがあり、 この方法は遅く感じるだろう。方法はデモの後も動き続けなければならないもののためにある。</p>
+<h3 id="">最後に何を手にするか</h3>
+<p>本番で動く自分のアプリケーション。それには：通る前に失敗するのを見たテスト。ロールバック 付きの再現可能なデプロイ。リポジトリの外にある設定と秘密。日付付きで書かれた事業の決定。 請求、送信、削除するすべてに錠。人がAIなしで追える三つのマニュアル。構築したのとは別の エージェントによる監査。そして数字付きの振り返り。これがここで「production grade」と呼ぶ ものだ。動くことではなく、<strong>維持できる</strong>こと。</p>
+<p>そしてもう一つ、本当に持ち帰るもの：証拠なしにモデルを信じない反射、そして各ステップで どんな証拠を求めるべきか正確に知っていること。</p>
+<h3 id="">必要なもの</h3>
+<ol><li><strong>プログラミング用のAIツール。</strong> リポジトリのファイルを読み書きしコマンドを実行できる ものなら何でも：Claude Code、Cursor、Codex CLI、Gemini CLI、Forge。方法はどれかに 依存しない。主文書に各ツールでの各成果物の置き場所の表がある。このマニュアルでは使う ものを指して「エージェント」と言う。</li><li><strong>GitHubのアカウント</strong>（または同等品）と、リポジトリ、コミット、プッシュが何かの最低限 の知識。なければ始める前に午後一つを充てること。入門チュートリアルで十分。それ以上は 不要。</li><li><strong>プロジェクト。</strong> 理想は自分のもの：必要なシステム、または顧客に頼まれたシステムで、 使うユーザーがいるもの。なければ下の<strong>ガイドプロジェクト</strong>を使うこと。十六の段を一つも 飛ばさずに通るよう設計されている。</li><li><strong>時間。</strong> コースには段ごとに一つ、十六のレッスンがある。立ち上げ（0から4）はそれぞれ 一〜三時間。ループ（5から10）は午後一つで学び、プロジェクト全体で練習する。運用（11から 15）はそれぞれ二〜四時間。小さいプロジェクトを端から端まで、パートタイムで四〜八週間。</li><li><strong>決定する時間のあるドメインのオーナー。</strong> プロジェクトが自分のものならあなただ。顧客の ものなら顧客で、プロジェクト全体を通じて質問に答えなければならないことを知っておく必要が ある。この点は譲れない。決めるオーナーがいなければモデルが決め、そこで方法は壊れる。</li></ol>
+<h3 id="">コースの進め方</h3>
+<p>各レッスンは同じ構造を持つ：</p>
+<ul><li><strong>理解すべきこと</strong>：概念、人に説明するように説明。</li><li><strong>課題</strong>：一歩ずつ、エージェントに与える正確なプロンプト付き（英語で。モデルは英語で より正確に指示に従うから。各プロンプトの下に何を頼んでいるか日本語で説明）、そして 返ってきたものをどうするか。</li><li><strong>完全性の検証</strong>：エージェントが納めたものについて、コードを開かずに自問する質問のリスト。 一つでも「否」ならレッスンは終わっていない。</li><li><strong>提出物</strong>：最後に存在しなければならないファイルまたは証拠。</li><li><strong>よくある間違い</strong>：初回にほぼ全員に起きること。</li><li><strong>ガイドプロジェクトでは</strong>：このレッスンを例のプロジェクトに適用するとどう見えるか。</li></ul>
+<p>コース全体のルール：<strong>検証に「否」があるまま次の段に進まない</strong>。「後で直す」の誘惑こそ、 方法が防ぐために存在するものだ。段を完全に登らなければ、次の段は砂の上に建つ。</p>
+<h3 id="turnera">ガイドプロジェクト：「Turnera」</h3>
+<p>自分のプロジェクトがなければこれを使うこと。小さいが、十六の段のどれも偽物にならないため に必要なすべてを持つ：実際のユーザー、個人データ、世界に出るメッセージ、そして金銭。</p>
+<p><strong>事業。</strong> 診療所（事務所、美容院、工房でもよい：予約を取るところならどこでも）。今日、 予約はノートに書かれ、手でWhatsAppで確認される。人が忘れて予約が失われ、二人が別々のノート に書いたために二重予約があり、先月いくつの予約がキャンセルされたか誰も知らない。</p>
+<p><strong>望むもの。</strong> 二人の受付と三人の専門家が予約を見るウェブの予約表。24時間前のWhatsAppか メールでの自動リマインダー。特定の予約に支払いリンクで手付金を求める可能性。そして月末の いくつかの数字（予約数、無断キャンセル数、手付金数）。</p>
+<p><strong>オーナー。</strong> 診療所の責任者。事業について判断力がある（どの予約に手付金が要るか、どれ だけ前ならキャンセルできるか、三度来なかった患者に何を言うか）、そして質問に答える時間が 一日十五分ある。プログラミングはせず、コードは読まない。</p>
+<p><strong>彼女だけが知る数字。</strong> 一日約四十件の予約、年二百五十日。予約ごとに約三通のメッセージ （確認、リマインダー、時に再調整）。患者データは五年保管。ピークは月曜の朝、二人の受付が 同時に入力する。そして彼女が答えられず、しかも重要な問い：もしうまくいったら、他の診療所 に売るのか？（答えはサイジングを十倍変える。）</p>
+<p><strong>帰結のあるもの。</strong> リマインダーの送信（二度送れば迷惑、間違った番号に送れば個人情報の 問題）。手付金の請求（金銭）。予約のキャンセル（失う患者にとって不可逆）。患者の削除（個人 データ）。</p>
+<p>始めるにはこれで足りる。他のすべてはエージェントが質問し、質問することが演習の一部だ。</p>
+<hr>
+</section><section>
+<h2 id="0-4">立ち上げフェーズ：レッスン0から4</h2>
+<p>この五つのレッスンは機能を書く前に、プロジェクトごとに一度行う。飛ばす誘惑が最も強く （「動くものを見たい」）、飛ばすと最も高くつくものだ。実践的な助言：一週間で、続けて行い、 その後で初めてループを開くこと。</p>
+<h3 id="0">レッスン 0 — このプロジェクトはこの方法で取り組めるか？</h3>
+<p><strong>理解すべきこと。</strong> 方法はどんなプロジェクトにも使えるわけではなく、始める前にそれを知る ことが最初の品質の決定だ。それなしでは機能しない二つの条件がある：証拠を残す標準リポジトリ があること（X1）、そして画面からバックエンドまでエンドツーエンドでテストするため、画面を プログラムから操作できること（X2）。どちらかが欠ければ、エージェントは自分を検証できず、 あなたがコードを読む羽目になる。それこそ方法が避けると約束するものだ。その後に重み付けの 基準がある（時間のあるオーナーがいるか、誤りに帰結があるか、別環境でテストできるか等）。 最初のプロジェクトで較正中だ。</p>
+<p>ガイドプロジェクトでは二つの条件が満たされる：新規プロジェクト（レガシーなし）で、プロ グラムから操作可能なウェブインターフェースで構築する。自分のプロジェクトなら、このレッスン は「不可」で終わることもあり、それはコースの有効な結果だ。</p>
+<p><strong>課題。</strong></p>
+<ol><li>ファイル <code>docs/INITIAL_SURVEY.md</code> に、手で、プロジェクトについて知っていることを書く： 顧客は何を望むか、誰のためか、今システムなしで何が起きているか、どんな技術があるか提案 されているか、以前のシステムがありリポジトリがあるか、オーナーは誰で時間はどれだけか、 誤りの帰結は何か、どんな環境があるか。半ページ。不完全でも構わない。実際、不完全で あることが演習の一部だ。</li><li>主文書の基準シート（排除基準X1とX2、候補D1からD10）を <code>docs/ELIGIBILITY_CRITERIA.md</code> にコピーする。</li><li>プロジェクトのフォルダ（その二ファイル以外はまだ空）でエージェントを開き、このプロンプト を貼る：</li></ol>
+<blockquote class="prompt"><p>We are going to assess whether this project can be run with the Urazuke method. Read the initial survey in <code>docs/INITIAL_SURVEY.md</code> and the criteria sheet in <code>docs/ELIGIBILITY_CRITERIA.md</code>. First, evaluate whether the survey is sufficient to answer every criterion. If any criterion cannot be answered from the survey, ask me for the missing information before going on; do not assume. Then fill in the sheet criterion by criterion: the answer, where it comes from, and for each exclusionary criterion whether it is green or red. Do not decide: present me the completed sheet with your reading and your doubts, and I will decide. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：二つのファイルを読むこと、<strong>調査が十分か評価し、答える前に足りないもの を質問すること</strong>（この条項はコースのすべてのプロンプトで繰り返される。方法の核心だ）、 各回答の出所を言ってシートを埋めること、そして決定しないこと。決定はあなたのものだ。</p>
+<ol><li>質問に答える。一つも質問されなかったら疑い、何を仮定したか尋ねる。</li><li>シートが提示されたら、読んで決める。それから締めのプロンプトを貼る：</li></ol>
+<blockquote class="prompt"><p>Decision: [go / no-go / go under these conditions: …]. Write the final sheet to <code>docs/ELIGIBILITY.md</code> with the date, who decided, the answer to every criterion with its source, and the conditions if any. Include the questions you asked and my answers.</p></blockquote>
+<p><strong>完全性の検証。</strong> <code>docs/ELIGIBILITY.md</code> を開いて自問する：二つの排除基準に明示的な回答と 出所があるか。「おそらく」で答えられた基準があるか。（あればエージェントは質問すべき だった。）決定に日付と名前があるか。条件があれば検証可能か。した質問とあなたの回答がある か。</p>
+<p><strong>提出物。</strong> 一ページの <code>docs/ELIGIBILITY.md</code>。</p>
+<p><strong>よくある間違い。</strong> エージェントが質問しないよう「完全な」調査を書くこと：演習を失い、 さらに悪いことに、モデルの仕事を自分でする癖がつく。五つの条件付きで「可」と答えること： 変装した「不可」だ。そして最も多いもの：「明らかに可」だからとレッスンを飛ばすこと。 明らかなことは書かれず、書かれないことが後で議論になる。</p>
+<p><strong>ガイドプロジェクトでは。</strong> エージェントは最低限、インターフェースがウェブかモバイルか （X2がそれに依存するから）、Excelでも以前のシステムがあるか、どのメッセージチャネルを使う か（WhatsAppにはメールにない要件がある）を質問すべきだ。シートは妥当な条件付きで「可」で 終わる：第12段の前にメッセージチャネルを定めておくこと。</p>
+<h3 id="1">レッスン 1 — 共働の約束</h3>
+<p><strong>理解すべきこと。</strong> エージェントは毎セッション、前回の記憶なしにやって来る。毎朝新しい 同僚のようなものだ。共働の約束とは初日に伝え、毎日読み返すもの：どう働くか、何を許さないか、 どの程度の自律を与えるか。約束なしには毎セッション同じことを、毎回少しずつ違って繰り返す ことになる。</p>
+<p>六つの最小ルールにはそれぞれ背後に失敗がある：「私の時間は神聖」は細部ごとの相談を防ぐ。 「負債ゼロ」は「後で直す」を防ぐ。「正確な範囲」は「ついでに」の追加を防ぐ。「同じコミット での文書」は古いマニュアルを防ぐ。「検証していないものを完了と報告しない」はそうでなかった 「完了」を防ぐ。「私の言語で話す」はプロンプトが英語だったから英語で答えることを防ぐ。</p>
+<p><strong>課題。</strong></p>
+<ol><li>五分、自分の働き方を考える：多く質問されたいか少なくか。どの言語で。他の人と働くとき 何に苛立つか。短いリストに書く。質問されたら伝える。</li><li>このプロンプトを貼る：</li></ol>
+<blockquote class="prompt"><p>Before we write any code, we are going to set the working agreement between you and me. Write <code>docs/WORKING_AGREEMENT.md</code> with at least these rules, each with one line explaining what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope: no more and no less than what was asked; if you see something else, log it as a pending item, do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report as done something you have not verified; always separate what you verified from what you believe. (6) Speak my language. Add any rules you think this project needs, marked as proposals. If you need to know something about how I work in order to write this, ask me.</p></blockquote>
+<p>頼んでいるのは：それぞれが防ぐ失敗付きの六つのルール、受け入れるか却下できるよう提案と 印された独自のルール、そしてあなたについて質問すること。</p>
+<ol><li>質問に答える。提案を読む：役立つものを受け入れ、そうでないものを却下し、常に一行の理由 を添える。</li><li>こう締める：</li></ol>
+<blockquote class="prompt"><p>I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the agreement with today's date and a version number. Then add to the project file the instruction to read this agreement at the start of every session.</p></blockquote>
+<p>まだプロジェクトファイルがなければ（レッスン2で作る）、その指示付きの最小のものを作る だろう。それでよい。</p>
+<p><strong>完全性の検証。</strong> 六つのルールがそれぞれ防ぐ失敗付きであるか。願望（「〜するよう努める」） として書かれたものがあるか。プロジェクトファイルは毎セッション開始時に読むよう命じている か。あなたの働き方について少なくとも一つ質問したか。</p>
+<p><strong>提出物。</strong> 日付とバージョン付きの <code>docs/WORKING_AGREEMENT.md</code>、プロジェクトファイルに 結び付けられたもの。</p>
+<p><strong>よくある間違い。</strong> すべて良さそうだからと二十のルールを受け入れること：誰も二十は守ら ない。六から八は守れる。エージェントが約束を変えられるというルールを残すこと：否。そして 最も静かなもの：読んでいるか一度も試さないこと。レッスン2でその方法を見る。</p>
+<p><strong>ガイドプロジェクトでは。</strong> エージェントがTurneraでよく提案し、受け入れる価値のある独自 ルール：「本番以外の環境から患者に本物のメッセージを決して送らない。テストではメッセージは 偽の受信箱に行く」。第12段が早くも顔を出している。</p>
+<h3 id="2">レッスン 2 — プロジェクトの定義と必読</h3>
+<p><strong>理解すべきこと。</strong> プロジェクトファイル（<code>PROJECT.md</code>、<code>CLAUDE.md</code>、またはツールが使う 名前）はエージェントが各セッションの最初に読む地図だ。<strong>短く</strong>なければならない：システムは 何で、誰のためで、何でないか、モジュール、日付付きの決定、約束を読む命令。日々起きたこと はそこには入らない。生きた状態（<code>docs/STATUS.md</code>）と保留項目の記録に行く。方法の起源 システムの一つはこのファイルを9,661行まで育てた。その状態では誰も読まず、モデルも読まない。</p>
+<p>「何でないか」の節が最も重要で、全員が空にする節だ。書かれていないことが、穴に出会った モデルが発明するものだ。</p>
+<p><strong>課題。</strong></p>
+<ol><li>レッスン0で学んだこと（エージェントの質問への回答）で <code>docs/INITIAL_SURVEY.md</code> を補完 する。「システムがしてはならないこと」の節を、二項目でも加える。</li><li>貼る：</li></ol>
+<blockquote class="prompt"><p>We are going to define the project in writing. Read the business survey in <code>docs/INITIAL_SURVEY.md</code> and the working agreement in <code>docs/WORKING_AGREEMENT.md</code>. Evaluate whether the survey is sufficient to describe the system, its users and its boundaries; if it is not, ask me for what is missing before writing anything. Then write <code>PROJECT.md</code>, three hundred lines at most, with: what the system is and for whom; what it is NOT; the main modules as a list; the decisions already made, each with its date; and the instruction to read this file and the working agreement at the start of every session. Separately, create <code>docs/STATUS.md</code> for the living state (what is being worked on, what is open): that file changes every day; <code>PROJECT.md</code> almost never does. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：起草前に質問すること、「何でないか」の節を持つ短いプロジェクトファイル、 日付付きの決定、そして別ファイルの生きた状態。</p>
+<ol><li><code>PROJECT.md</code> を全部読む。五分に収まらなければならない。真実でないもの、自分のでないもの を直す。</li><li>こう締める：</li></ol>
+<blockquote class="prompt"><p>Apply these corrections: [list]. Finalize <code>PROJECT.md</code> with today's date. Add to the working agreement that the change history never goes into <code>PROJECT.md</code>: it goes to <code>docs/STATUS.md</code> or to the pending-items register.</p></blockquote>
+<ol><li><strong>読み取りテスト。</strong> エージェントのセッションを閉じて新しいものを開く。他に何も言わず 頼む：「このシステムがしてはならないことは何？」。<code>PROJECT.md</code> にあることで答えれば、 結び付けは機能している。他の何かで答えれば地図を読んでいない：ツールがプロジェクト ファイルをどう読み込むか確認せよ。</li></ol>
+<p><strong>完全性の検証。</strong> <code>PROJECT.md</code> は五分で読めるか。システムが何をしないか言っているか。各 決定に日付と決定者があるか。エージェントは起草前に何か質問したか。生きた状態は別ファイル にあるか。読み取りテストに合格したか。</p>
+<p><strong>提出物。</strong> <code>PROJECT.md</code>（最大三百行）と <code>docs/STATUS.md</code>、そして合格した読み取りテスト。</p>
+<p><strong>よくある間違い。</strong> 既にあった仕様全体を <code>PROJECT.md</code> に貼ること：綱領であって仕様では ない。「何でないか」を空にすること。そして読み取りテストをしないこと：第1段と第2段が 存在するだけでなく機能していると知る唯一の方法だ。</p>
+<p><strong>ガイドプロジェクトでは。</strong> Turneraの「何でないか」には最低限：診療記録システムではない （医療データを保存しない）、決済ゲートウェイではない（プロバイダの支払いリンクを使い、 カードを処理しない）、マーケティングメッセージを送らない（確認とリマインダーのみ）。この 三つの「否」のそれぞれが、後の三十分の会話を節約する。</p>
+<h3 id="3">レッスン 3 — アーキテクチャを設計する前にサイジングする</h3>
+<p><strong>理解すべきこと。</strong> 誤ると数週間を費やす決定がある：どのデータベースか、データベースへの 呼び出しは同期か非同期か、何人が同時にシステムを使えるか。そしてすべては<strong>事業だけが持つ</strong> 数字に依存する：一日何件の予約、予約ごとに何通のメッセージ、何年保管するか。モデルはその 数字を推論できない。そこから導かれるもの（年間の行数、五年後のサイズ）は推論できる。だから プロンプトは一次データと派生データを区別し、<strong>足りない一次データを推定する代わりに求める</strong> よう要求する。モデルが一次データを推定するとき、計算するときと同じ自信ありげな顔でそうする。 口調で区別する術はない。</p>
+<p>さらに常に取るべき種類の決定がある：<strong>非対称な</strong>決定、余れば安く、欠ければ非常に高い。 典型例は、最初のデータベースがファイルでも初日からデータベースとのインターフェースを非同期 にすること。データベースを変えなければ <code>await</code> が一つ余るだけ。変えれば全部書き直すのを 免れる。</p>
+<p><strong>課題。</strong></p>
+<ol><li>オーナー（プロジェクトが自分のものなら自分自身）と座って <code>docs/VOLUME_SURVEY.md</code> を 書く：主要エンティティとその数、月に何件追加されるか、エンティティごとに何件のイベント、 ピークで何人が操作しいつがピークか、データをどれだけ保管するか、例外的な負荷があるか、 どんな成長を期待するか。各数字に出所を記す：「責任者が言った」「9月のノートで数えた」 「仮定」。いくつかはわざと「仮定」のまま残す。エージェントがそれをどうするか見るために。</li><li>貼る：</li></ol>
+<blockquote class="prompt"><p>Before proposing any architecture we are going to size the system. Read <code>PROJECT.md</code> and the volume survey in <code>docs/VOLUME_SURVEY.md</code>. Distinguish primary data (facts only the business knows) from derived data (what can be computed from the primary data). Evaluate whether the primary data is complete enough to compute what follows; if any primary figure is missing, or is marked as an assumption, ask me for all the missing figures before going on. Never estimate a primary figure. If a previous system can be queried, use its real numbers and state where each came from. With the primary data complete, compute, showing the arithmetic: rows per year for the three largest tables, peak concurrency, data size at five years, and what breaks first if everything is multiplied by ten. Then present three options for persistence and concurrency, each with the cost of migrating to the others later. Do not choose: I choose. Do not write code. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：一次と派生を区別すること。<strong>足りないか「仮定」の一次データを求め、決して 推定しないこと</strong>。計算を見せて派生を算出すること。「十倍」のシナリオ。互いに移行する コスト付きの三つの選択肢。そして選ばないこと。</p>
+<ol><li>「仮定」を求められたら、よい：それが演習だった。数字を手に入れ（オーナーに聞く、ノート で数える）、与える。求めずに計算したなら、止めて仮定をどうしたか尋ねる：段の失敗であり、 今見ておく方がよい。</li><li>三つの選択肢を読む。一つ手計算し直す（例えば最大テーブルの年間行数）：同じにならなければ ならない。選ぶ。</li><li>こう締める：</li></ol>
+<blockquote class="prompt"><p>I choose option [B]. Record in <code>docs/SIZING.md</code>: the primary data with its source, the derived data with its arithmetic, the three options, the chosen one and why, and the decisions we are taking "just in case" even though they are not needed today (for example: the persistence interface is asynchronous from line one, even if the first engine is synchronous). Include the questions you asked and my answers.</p></blockquote>
+<p><strong>完全性の検証。</strong> 出所が「仮定」か出所のない一次データがあるか。各派生データは計算を示し、 再計算して合うか。三つの選択肢があり理由付きで一つ選ばれているか。「十倍」で何が起きるか 言っているか。非対称な決定は書かれているか。質問したか。</p>
+<p><strong>提出物。</strong> <code>docs/SIZING.md</code>。</p>
+<p><strong>よくある間違い。</strong> エージェントが質問しないよう自分で作った数字で調査を埋めること （レッスン0と同じ誤りで、その数字がアーキテクチャを決めるからここではより悪い）。念のため 「最も強力な」選択肢を選ぶこと：移行コストが表にあるのは、まさに「十倍」に耐える最小のもの を選ぶためだ。そして非対称な決定を書かないこと：書かれていなければ、レッスン4でエージェント は守らない。</p>
+<p><strong>ガイドプロジェクトでは。</strong> 一次：40件/日 × 250日 = 10,000件/年。予約ごとに3通 = 30,000 通/年。5年保管。二人の受付の同時ピーク。「十倍」は他の診療所に売るかの問い：年間100,000件 と300,000通。典型的な三つの選択肢：SQLiteファイル（一診療所なら何年ももつ、複数が書き込む 十倍には耐えない）、最初からPostgreSQL（すべてに耐える、インフラが少し高い）、または今は SQLiteで非同期インターフェース、PostgreSQLへの移行を予定（非対称）。コースでは三番目を 選ぶ：最も学べるから。</p>
+<h3 id="4">レッスン 4 — ゲート付きの骨組み</h3>
+<p><strong>理解すべきこと。</strong> システムが何か役立つことをする前に、<strong>空のまま</strong>起動し、テストされ、 デプロイされなければならない。時間の無駄に見える（「何もないのに何をデプロイ？」）が逆だ： 本番への道はプロダクトの一部であり、機能すると知る唯一の方法は、まだ失うものがないうちに 辿ることだ。起源システムの一つではデプロイが立ち上げの一か月後に来て、五つの保留項目を 連続で費やした。最初の週に骨組みをデプロイしていれば、その五つの痛手は空の状態で受けていた。</p>
+<p><strong>ゲート</strong>とは段階から段階へ進む条件（「テスト群が緑」「テストへのデプロイが成功」）。明らか に見えても今書くことが、後で「これは通らない」と議論なしに言えるようにする。</p>
+<p><strong>課題。</strong></p>
+<ol><li><code>docs/ENVIRONMENTS_SURVEY.md</code> を書く：システムはどこで動くか（既にあるサーバー、クラウド サービス）、テスト環境と本番環境があるか、誰が何にアクセスできるか、今何かあるならどう デプロイしているか。何もなければそう言う：エージェントが最も簡単な選択肢を提案する。</li><li>デプロイ先の認証情報を、無料サービスでも、持っていることを確認する。なければ骨組みは 自分のマシンに留まり、レッスンは終えられない。</li><li>貼る：</li></ol>
+<blockquote class="prompt"><p>We are going to build the skeleton of the system, with no functionality at all. Read <code>PROJECT.md</code>, <code>docs/SIZING.md</code> and the environments survey. Evaluate whether you have what is needed for the skeleton to run in the test environment (access, URL, deployment method); if anything is missing, ask me before starting. Then build: the folder structure; the server and the UI starting up; the test structure with one smoke test that passes; continuous integration running that test suite on every push; and the deployment to the test environment. Declare the gates of the workflow (what must be green to move from one stage to the next) in <code>docs/GATES.md</code>. When done, take a screenshot of the empty UI running in the test environment and show it to me. Do not add any functionality "while you are at it". Reply in my language.</p></blockquote>
+<p>頼んでいるのは：始める前にアクセスを確認すること、骨組みとは何かの正確なリスト、書かれた ゲート、テスト環境の実際のスクリーンショット、そして機能追加の禁止。</p>
+<ol><li>この課題は長く（エージェントの作業で一、二時間）、行き来がある：足りない認証情報、メール 確認を求めるサービス等。正常だ。正常でないのは、テスト環境のスクリーンショットなしに 「完了」と言うことだ。</li><li>スクリーンショットが示されたら、自分でブラウザでURLを開く。同じものが見えなければなら ない。</li><li>こう締める：</li></ol>
+<blockquote class="prompt"><p>Skeleton approved. Record in <code>docs/STATUS.md</code> the test environment URL, the command to run the tests and the command to deploy, and mark this step as done. Then run the deployment a second time and show me that the second run changed nothing.</p></blockquote>
+<p><strong>完全性の検証。</strong> 自分でテスト環境のURLを開いて空の画面を見たか。緑の継続的インテグレー ション実行へのリンクがあるか。デプロイは二度実行され二度目は何も壊さなかったか。ゲートは それぞれ検証可能な条件を持つか。頼んでいない機能があるか。</p>
+<p><strong>提出物。</strong> 骨組みのあるリポジトリ、緑の継続的インテグレーション、機能するテスト環境の URL、<code>docs/GATES.md</code>、三つのコマンド付きの <code>docs/STATUS.md</code>。</p>
+<p><strong>よくある間違い。</strong> 「ローカルで動く、デプロイは後で見る」を受け入れること：否、デプロイが 骨組みだ。テスト環境ではなくエージェントのマシンのスクリーンショットを受け入れること。 そして「ついでに」ログイン画面、メニュー、ロゴを追加させること：保留項目なしに入るものは すべて逃げた範囲だ。</p>
+<p><strong>ガイドプロジェクトでは。</strong> Turneraの骨組みは、テスト環境の公開URLで動く「Turnera — バージョン0.0.1」と言うウェブページ、ヘルスルートで「ok」と答えるサーバー、そのルートを 呼ぶスモークテスト、各プッシュでそのテストを走らせる継続的インテグレーション、テスト環境 への自動デプロイ。ゲート：「マージには緑のテスト群」「本番への昇格には緑のテスト環境」 「最初の本番デプロイには試されたロールバック」。それ以上なし。そして実際のURLでその空の ページを見るのが不思議なほど満足感があることだ。</p>
+<hr>
+</section><section>
+<h2 id="5-10">ループフェーズ：レッスン5から10</h2>
+<p>この六つのレッスンは<strong>変更のたびに</strong>、プロジェクト全体を通じて使うものだ。午後一つで学ぶが、 数週間練習する。フェーズの終わりに反射を持つことが狙いだ：保留項目を取り、構築し、赤で試し、 もう一方の側を更新し、測るべきものを測り、検証済みと信じていることを分けて報告する。その 反射が方法だ。</p>
+<p>練習するには実際の機能が必要だ。ガイドプロジェクトでは、最初の保留項目ブロックは基本の 予約表：その日の予約を見る、予約を入力する、キャンセルする。メッセージも支払いもまだない。 それは錠（レッスン12）の後に来る。</p>
+<h3 id="5">レッスン 5 — 計画とは保留項目のこと</h3>
+<p><strong>理解すべきこと。</strong> 「計画」が一方に「タスクリスト」が他方にあるのではない：<strong>保留項目の リストが計画だ</strong>。各保留項目には番号、どこから来たか（生んだ決定または依頼）、完了をどう 検証するか、そして閉じたときの証拠がある。最後のものが、コードを見る代わりにあなたが見る ものだ。そしてエージェントへの黄金律：リスト外に現れたものは新しい保留項目として書き留め、 やらない。</p>
+<p><strong>課題。</strong></p>
+<ol><li><code>docs/INITIAL_SURVEY.md</code>（または別ファイル）に、最初の機能ブロックへの顧客の依頼を、 顧客が言うままに、曖昧さを含めて書く。Turneraでは：「その日の予約を見て、新しいのを 入れて、キャンセルしたい」。</li><li>貼る：</li></ol>
+<blockquote class="prompt"><p>We are going to turn everything that must be done into numbered pending items. Read <code>PROJECT.md</code>, the client's request and whatever is in <code>docs/STATUS.md</code>. If the request is ambiguous on any point such that you cannot write a verifiable pending item for it, ask me; do not resolve it by assuming. Create <code>docs/PENDING.md</code> with one item per thing to do: number (PND-001 onwards), one-line title, what is requested, which decision originates it (or "client request, date"), how it will be verified as done, and status. Order them by the priority I gave you; if I gave none, propose an order and tell me why. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：依頼を検証可能な項目に変換すること、<strong>検証可能な項目を書けないほど依頼 が曖昧なら質問すること</strong>、そして理由付きで順序を提案すること。</p>
+<ol><li>質問に答える（Turneraでは例えば「その日」とは何か：今日か、選んだ任意の日か。キャンセル は削除か印か）。それらの質問は事業の決定だ。レッスン6でどこに書くか見る。</li><li>共働の約束に毎セッションのルーチンを加える。貼る：</li></ol>
+<blockquote class="prompt"><p>Add this routine to <code>docs/WORKING_AGREEMENT.md</code>: "Before touching any code, open <code>docs/PENDING.md</code>, tell me which item you are taking and why. Every commit cites its pending item. A pending item is closed with written evidence (the test, the screenshot, the number), never with 'done'. If along the way you see something that is not on the list, add it as a new pending item; do not do it."</p></blockquote>
+<ol><li>いよいよ構築を始める。最初の保留項目を取るよう頼む。ここから、各セッションは「どの項目 をなぜ取るか」で始まる。</li></ol>
+<p><strong>完全性の検証。</strong> 各保留項目はどう検証するか言っているか。証拠もコミットもなく閉じた項目 があるか。コミットを三つ無作為に取る：項目を引用しているか。項目のないものがコードに現れた か。曖昧な点を質問したか。</p>
+<p><strong>提出物。</strong> 最初のブロックを持つ <code>docs/PENDING.md</code>、約束内のルーチン、進行中の最初の項目。</p>
+<p><strong>よくある間違い。</strong> 「どう検証するか」のない項目を書くこと（「予約画面を改善する」）： 閉じられず、だから「完了」で閉じられる。「動くのを見たから」と証拠なしに項目を閉じさせる こと。そして最も直しにくいもの：リスト外の「もう一つ小さいこと」をやらせること。一度許せば、 正確な範囲は失われた。</p>
+<p><strong>ガイドプロジェクトでは。</strong> Turneraの最初のブロックは六項目ほど：PND-001 ある日の予約を 見る。PND-002 患者、専門家、日付、時刻で予約を入力する。PND-003 同じ専門家の同時刻の二重 予約を防ぐ。PND-004 予約をキャンセルする（削除ではなく印：レッスン6の決定）。PND-005 名前 または電話で患者を検索する。PND-006 最小データでの患者登録。それぞれ検証付き：「画面に見え データベースに残る」「二重予約を試みると画面が警告しデータベースは保存しない」等。</p>
+<h3 id="6">レッスン 6 — 決定はコードの隣に書く</h3>
+<p><strong>理解すべきこと。</strong> モデルは事業ルールの穴を見つけると、<strong>それを埋める</strong>。止まって質問 しない。最もありそうなもので補完し、他のことを書くのと同じ自然さでそうする。だからこの レッスンは「決定を書け」ではなく、「欠けているときは止まって聞くよう要求せよ」だ。そして あなたが決めるとき、決定はあなたの原文の言葉、名前、日付で、コミットと記録に書かれる。六週間 後、誰かが「なぜキャンセルは削除しないのか」と尋ねたとき、答えは書かれていてあなたのものだ。</p>
+<p><strong>課題。</strong></p>
+<ol><li>約束に決定のルーチンを加える。貼る：</li></ol>
+<blockquote class="prompt"><p>Add this routine to <code>docs/WORKING_AGREEMENT.md</code>: "Whenever implementing something requires a business rule that is not written down, or you must choose between two approaches that change what the user sees, stop and ask me, in prose, with your recommendation and the alternative. Do not implement the one you prefer. When I decide, write the decision with my name and the date in the commit message and in <code>docs/DECISIONS.md</code>, with the exact words I used. If I do not answer and you must move on, implement the most reversible option and mark it 'decision by omission, pending confirmation', so that I can review it."</p></blockquote>
+<p>頼んでいるのは：書かれていないルールの前で止まること、推奨と代替案付きで質問すること （十秒で決められるように）、原文の言葉を記録すること、答えないときは最も可逆なものを 選んで印すこと。</p>
+<ol><li>ブロックの保留項目の構築を続ける。事業ルールを質問されるたびに、決めて締めの形式で 答える：</li></ol>
+<blockquote class="prompt"><p>Rule: [exact wording]. Decided by me, [date]. Write it down and continue.</p></blockquote>
+<ol><li>逆のテストを一度、わざと行う：一セッションの間質問に答えず、何をするか見る。最も可逆な ものを選び「省略による」と印さなければならない。好きなものを選んで印さなかったなら、段の 失敗だ：約束で直す。</li></ol>
+<p><strong>完全性の検証。</strong> 事業ルールに触れるコミットを三つ開く：誰がいつ決めたか引用しているか。 未確認の「省略による」決定があるか。自分のものと認識できないルールがシステムにあるか。文は 原文か「改善」されたか。</p>
+<p><strong>提出物。</strong> 育っていく <code>docs/DECISIONS.md</code>、最初のブロックの少なくとも五つの決定付き、 そしてそれを引用するコミット。</p>
+<p><strong>よくある間違い。</strong> チャットで質問に答えて書き残すよう要求しないこと：三セッション目には 誰も覚えていない。エージェントにあなたの言葉を「改善」させること：言い換えられたルールは 別のルールだ。そして最も重大：誰も決めなかったルールを本番で発見すること。起きたら（起きる）、 バグではない：第6段の失敗であり、コードだけでなく約束で直す。</p>
+<p><strong>ガイドプロジェクトでは。</strong> Turneraの最初のブロックの典型的な決定：「キャンセルは予約を キャンセル済みと印し、誰がいつかを保存する。何も削除しない」「専門家は同時刻に二つの予約を 持てないが、専門家が有効にしていればダブル予約で二人の患者は可」「患者の電話は必須、メール は任意」。それぞれ日付と責任者の名前付き。</p>
+<h3 id="7">レッスン 7 — 錠としてのテスト、赤で証明</h3>
+<p><strong>理解すべきこと。</strong> コースの中心のレッスンだ。一度も失敗するのを見ていないテストは何かを 証明しているかわからない。モデルはコードとテストを同じセッションで同じ理解で書く：依頼を 誤解していれば、テストは誤解したものを証明し、通る。テストが重要なものを見ていると知る唯一 の安価な方法は、<strong>古いコードに対して赤で見ること</strong>：変更前のコードも通るなら、テストは前後 を区別せず、役に立たない。だから依頼は「テストを書け」ではなく「赤を見せ、次に緑、次に回帰」 だ。</p>
+<p>そして第二の考え：エンドツーエンドのテスト。画面から検証し（クリック、入力、読み取り） バックエンドへの効果を確認する（行が残った、状態が変わった）テストが、あなたのコード読みを 置き換えるものだ。レッスン0の基準X2が実践になったものだ。</p>
+<p><strong>課題。</strong></p>
+<ol><li>約束に証拠のルーチンを加える。貼る：</li></ol>
+<blockquote class="prompt"><p>Add this routine to <code>docs/WORKING_AGREEMENT.md</code>: "To close a pending item I need evidence, not your word. (1) Write the test that proves what the item asks for. (2) Demonstrate that this test fails against the previous code: you may temporarily revert the change, or run the test against the old version, but show me the red output. (3) Show me the green output with the change. (4) Run the regression suite for the neighbouring items and show me it is still green. (5) Do not replace with mocks the very part you are trying to test. If testing end to end requires something you lack (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the commit message says 'proved red against [what]' and the test counts."</p></blockquote>
+<p>頼んでいるのは：テスト、<strong>出力を見せて示された赤</strong>、緑、同じセッションでの近隣の回帰、 まさに試すものをシミュレートしないこと、そしてエンドツーエンドで試すのに足りないものを シミュレートする代わりに求めること。</p>
+<ol><li>二重予約の保留項目（TurneraのPND-003、または自分のプロジェクトでの同等品：何かを防ぐ ルール）を取る。ルーチンで閉じるよう頼む。報告を読む：数字付きの赤の出力（「ルールなし のバージョンに対して1のうち1が失敗」）、次に緑がなければならない。</li><li>同じ項目にエンドツーエンドのテストを頼む：画面を開き、二重予約を試み、警告を読み、データ ベースで保存されなかったことを確認する。画面をプログラムから操作できないからできないと 言われたら、止まる：それはX2の失敗で、続ける前に今直す（画面要素に識別子を加える）。</li><li>エージェントが何かを「テストできない」と言ったら、貼る：</li></ol>
+<blockquote class="prompt"><p>Explain why it cannot be tested, what would have to be added so that it can, and open a pending item for that. The change is not closed until it can be tested.</p></blockquote>
+<p><strong>完全性の検証。</strong> 報告は数字付きで赤を示しているか。回帰は同じセッションで数字付きで走った か。変更のまさにその場所にシミュレートされた部分があるか。コミットは「赤で証明」と言って いるか。画面のテストはバックエンドも検証しているか。</p>
+<p><strong>提出物。</strong> 完全なルーチン（赤、緑、回帰）で閉じた少なくとも三つの保留項目、うち一つは エンドツーエンドのテスト付き。</p>
+<p><strong>よくある間違い。</strong> 数字も赤もなしに「テストは通る」を受け入れること。エンドツーエンドの テストをシミュレーションに置き換えてテスト群を「高速化」するのを受け入れること。そして 「テストできない」を保留項目を開かずに通すこと：テスト不能は負債であり、負債は記録する。</p>
+<p><strong>ガイドプロジェクトでは。</strong> 二重予約の赤はこう見える：エージェントが一時的にルールを外し、 テストを走らせ、出力は二番目の予約が保存されたためテストが失敗したと言う。ルールを戻し、 走らせ、緑。次に回帰：PND-001とPND-002のテストは緑のまま。そしてエンドツーエンド：プログラム で制御されたブラウザがフォームを読み込み、「保存」を押し、「その時間は既に埋まっています」 のメッセージを読み、データベースへのクエリがその時刻に予約が一つだけであることを確認する。 初めてその報告を見たとき、方法全体が何のためかわかるだろう。</p>
+<h3 id="8">レッスン 8 — 生産者と消費者の対称性、そしてアンチパターンの記録</h3>
+<p><strong>理解すべきこと。</strong> システムの一方の端（サーバー、データベース、ロボット）を変えたら、 もう一方の端（画面、カウンタ、レポート）も同じコミットで変わらなければならない。さもなければ 乖離し、ユーザーは一方である数字を、他方で別の数字を見る。これを防ぐ原則は述べるのは簡単で 維持するのは難しい：<strong>すべてのリストには唯一の所有者がいる</strong>。予約の取りうる状態、レポート の列、何かが待つ理由：一つの部分（生産者）だけが定義し、他はそこから読む。コピーが二つある 瞬間、どちらかが古い。どちらかを知るだけだ。</p>
+<p>レッスンの後半はアンチパターンの記録（GOTCHAS）：既に一度払った誤りを、匂い、根本原因、 修正、事前の検知法付きで書き留める。重要なのは書き留めることではなく、検知する自動検査を 加えることだ。書き留めただけで自動化されていないアンチパターンは、セッションが変わると 繰り返される。</p>
+<p><strong>課題。</strong></p>
+<ol><li>契約の地図を頼む：</li></ol>
+<blockquote class="prompt"><p>Build <code>docs/PRODUCER_CONSUMER_MAP.md</code>: for every contract in the system (a service, a table, a file format, a list of values), who produces it and who consumes it. If there are parts of the system you cannot access or do not understand, tell me instead of leaving them out of the map. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：両側付きの契約の目録、そして見えないものを省く代わりに宣言すること。</p>
+<ol><li>約束にルーチンを加える：</li></ol>
+<blockquote class="prompt"><p>Add this routine to <code>docs/WORKING_AGREEMENT.md</code>: "Before closing any change that touches a contract, look up every consumer in the map and update them in the same commit. Always prefer that the producer defines the list (columns, causes, states) and the consumer reads it, rather than each keeping its own copy. If the map does not have that relationship, add it."</p></blockquote>
+<ol><li>リストのテストをする：画面に現れるリストを一つ選び（Turneraでは予約の状態：保留、確認 済み、キャンセル済み、不在）、どこで定義されどこで読まれるかエージェントに見せてもらう。 定義が二つあれば、一つだけ残すよう頼む。</li><li>初めて何かが二度目に壊れたら（今後数週間に起きる）、貼る：</li></ol>
+<blockquote class="prompt"><p>This has happened to us before. Record it in <code>docs/GOTCHAS.md</code> with: how it smells (the early sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if possible, a test or an automatic check that detects it.</p></blockquote>
+<p><strong>完全性の検証。</strong> 地図から契約を一つ選ぶ：各消費者は生産者から読むか、自分のコピーを持つか。 二つの画面に表示されて同じになる数字があるか。GOTCHASの各項目に四つの部分があるか。既に 書き留めたものが繰り返されたか。</p>
+<p><strong>提出物。</strong> <code>docs/PRODUCER_CONSUMER_MAP.md</code>、約束内のルーチン、そして <code>docs/GOTCHAS.md</code> （一項目で始まっても）。</p>
+<p><strong>よくある間違い。</strong> 地図を一度作って二度と見ないこと：新しい契約ごとに育たねばならない。 「事前の検知法」の部分なしにアンチパターンを逸話（「一度こんなことが…」）として書くこと。 そして古典：同じ状態のテキストがサーバーと画面に手書きで。一方が変わる日、他方は残る。</p>
+<p><strong>ガイドプロジェクトでは。</strong> Turneraの地図には最初、四、五の契約がある：予約状態のリスト （サーバーが定義、画面と月次レポートが読む）。予約テーブル（入力が書き、日の予約表とレポート が読む）。患者テーブル。そして後に、メッセージキュー（予約表が書き、送信者が読む）。最初の GOTCHAはたいてい日付のもの：サーバーがあるタイムゾーンで保存し画面が別のタイムゾーンで 表示したため、予約表が予約を間違った日に表示した。匂い：「23時の予約が明日に現れる」。根本 原因：二つのタイムゾーン。修正：サーバーで一つだけ。検知：23:30の予約でのテスト。</p>
+<h3 id="9">レッスン 9 — 構築の前に計測する、自身も検証される計器で</h3>
+<p><strong>理解すべきこと。</strong> モデルは数字付きの主張（「その種のクエリは約120ある」）を作り、計測 されたときも推定されたときもまったく同じに聞こえる。口調で区別できない。唯一の方法は計器を 要求すること：「何で測った？コマンドを見せて」。段のルールは、<strong>何かを決める数字は印象からは 出ない</strong>：リポジトリに住み、既知の事例に対して検証するテストを持ち、あなたが実行できる計器 から出る。</p>
+<p>そしてもう一つ、痛手を重ねて学んだこと：計器も嘘をつく。起源システムの一つで、ある計器は コードの一部を見ていなかったためゼロを出し、別のものは44のところ27と言った。だから双方向の 監査：コードから計測へ（数えるべきものはすべて数えられているか）、計測からコードへ（数えら れたものはすべて本当に存在するか）。</p>
+<p>小さいプロジェクトでは「計測」はささやかだ：画面の読み込みで何回クエリするか、月次レポート にどれだけかかるか、昨日何通送ったか。ラチェットも経路ごとの予算も要らない。要るのは数字の 背後にコマンドがあることだ。</p>
+<p><strong>課題。</strong></p>
+<ol><li>仮説を選ぶ。Turneraではよいもの：「日の予約表は表示する予約ごとにデータベースに一回 クエリする」（古典的なN+1ループ）。真でなければなおよい：偽の仮説がどう検証されるか見る。</li><li>貼る：</li></ol>
+<blockquote class="prompt"><p>Before building anything, we are going to measure. The hypothesis is: [the day view runs one database query per appointment shown]. Write a meter (a script that lives in the repository) that measures [the number of queries the day view runs for a day with N appointments], and a test for the meter that checks it against a known case where the answer is known in advance. If measuring requires access or data you lack, ask me; do not approximate silently. If some part can only be approximated, mark it as approximate and tell me the margin. Run the meter, show me the number together with the command that produces it, and audit it in both directions: from the code to the measurement (is everything that should be counted, counted?) and from the measurement to the code (does everything counted actually exist?). Only then propose what to build. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：リポジトリ内の計器、計器のテスト、近似する代わりに足りないものを求める こと、近似を印すこと、コマンド付きの数字、双方向の監査、そして順序：まず計測、次に提案。</p>
+<ol><li>与えられたコマンドを自分で実行する。同じ数字が出なければならない。スクリプトを理解する 必要はない。実行することが必要だ。</li><li>仮説が真でエージェントが修正を提案したら、予算を頼む：</li></ol>
+<blockquote class="prompt"><p>Set the budget for [queries] on this path at the measured value plus a small margin, and protect it with a test that fails if it is exceeded. Tell me the number and the margin.</p></blockquote>
+<p>こうして、三か月後に誰かがループを戻しても、テスト群が検知する。</p>
+<ol><li>計画が数字を伴うときのために、約束にルール五を加える：</li></ol>
+<blockquote class="prompt"><p>Add this routine to <code>docs/WORKING_AGREEMENT.md</code>: "Before executing a plan that asserts numbers, verify every number with the meter. If any does not match, stop and tell me; do not execute on a wrong number."</p></blockquote>
+<p><strong>完全性の検証。</strong> 計器を実行して同じになったか。テストがあり、どの既知の事例に対してか。 報告に計器の裏付けのない数字があるか。近似は印されているか。テスト付きの予算があるか。</p>
+<p><strong>提出物。</strong> テスト付きのリポジトリ内の計器、<code>docs/STATUS.md</code> または保留項目内のコマンドと 日付付きの数字、そして（該当すれば）テストで守られた予算。</p>
+<p><strong>よくある間違い。</strong> コマンドを実行せずに数字を受け入れること：このレッスンの価値の半分は あなたが実行することにある。ゼロを出す計器：ほとんどゼロではない。ほとんど常に何かを見て いない。そしてエージェントに「測りながら直す」ことを許すこと：順序が方法だ。</p>
+<p><strong>ガイドプロジェクトでは。</strong> Turneraの計器は、テストデータベースに10、50、200件の予約の日を 読み込み、クエリを数えながらその日の予約表を開き、三つの数字を書くスクリプト。計器のテスト は0件で基本クエリ（たとえば2）を正確に数えることを検証する。ループがあれば数字は12、52、202。 直すと3、3、3になり、予算は4に置かれ、予約表がどんな件数でも4回を超えてクエリすれば失敗 するテスト付き。</p>
+<h3 id="10">レッスン 10 — 誠実な検証と釣り合った報告</h3>
+<p><strong>理解すべきこと。</strong> コードを読まないなら、エージェントの報告は信頼できなければならず、それは 自然には起きない。モデルは有用で完全であるよう訓練され、「これは検証できなかった」と言う報告 は「完了」と言う報告より有用でなく感じられる。だから悪い知らせ、盲点、やらなかったことを <strong>明示的に求める</strong>必要がある。求めなければ出てこない。隠すからではなく、答えの一部と考えて いないからだ。</p>
+<p>誠実にする構造は三つのブロック：<strong>検証済み</strong>（隣に証拠付き）、<strong>信じている</strong>（動くと思うが なぜ試さなかったか）、<strong>盲点</strong>（いる場所から見えないもの）。そしてルール：悪い知らせを最初に。</p>
+<p><strong>課題。</strong></p>
+<ol><li>約束に報告のルーチンを加える：</li></ol>
+<blockquote class="prompt"><p>Add this routine to <code>docs/WORKING_AGREEMENT.md</code>: "When you report, separate three blocks: VERIFIED (what you tested, with the command and its output), BELIEVED (what you think works but did not test, and why not), and BLIND SPOTS (what you cannot see from where you are: another environment, real data, the user's browser). Cover every item I asked for, one by one, even when the answer is 'I did not do it'. No claim without its proof next to it. Do not say 'done': say what is done and how you know it. If something went wrong, say it first."</p></blockquote>
+<ol><li>次の保留項目を閉じるよう頼み、下の検証リストで報告を読む。初回はほぼ確実に「盲点」 ブロックが空だろう。尋ねる：「いる場所から何が見えない？」。何かあるはずだ（あなたの ブラウザ、本番環境、実データ）。何もないと言い張るなら、あなたが言い張る。</li><li>「まだ壊れている」を練習する。小さいことを頼み、テスト環境で検証し、何らかの理由で変更が 見えなければ（よくある：デプロイが遅い、または行われていない）、「まだ壊れている」と言って 貼る：</li></ol>
+<blockquote class="prompt"><p>Before diagnosing again, compare the version running where I see the problem with the version that contains your fix. Tell me both. If they differ, the problem is publication, not code.</p></blockquote>
+<p>「まだ壊れている」の半分は、リポジトリにはあってあなたが見る場所にはない修正だ。この 条項は何時間も節約する。</p>
+<p><strong>完全性の検証。</strong> 三つのブロックがあるか。「検証済み」の主張を無作為に選んで隣に証拠があり、 再現できたか。頼んだ各項目を網羅しているか。悪い知らせは最初にあるか。素っ気ない「完了」と 言ったことがあるか。</p>
+<p><strong>提出物。</strong> 約束内のルーチンと、三つのブロックを持つ連続三つの報告、うち一つは実際の盲点 付き。</p>
+<p><strong>よくある間違い。</strong> 「検証済み」ブロックだけ読んで他の二つを飛ばすこと：他の二つがあなたを 守るものだ。「検証済み」の中の「動くはず」を受け入れること：変装した「信じている」だ。そして ますます長い報告に慣れること：膨らんだ報告は量で何かを覆っている。</p>
+<p><strong>ガイドプロジェクトでは。</strong> TurneraのPND-004（予約のキャンセル）の良い締めの報告： 「検証済み：キャンセルのテストが通る（1/1、削除していたバージョンに対して赤で証明）。回帰 6/6。テスト環境で、11月3日の予約17が10:42に'reception1'によりキャンセル済みと表示（スクリー ンショット）。信じている：月次レポートはキャンセルを正しく数えるだろうが、レポートはPND-011 でまだ存在しないため試していない。盲点：受付の携帯で'キャンセル済み'状態がどう見えるかは 見えない。あなたが試して」。</p>
+<hr>
+</section><section>
+<h2 id="11-15">運用フェーズ：レッスン11から15</h2>
+<p>この五つのレッスンは「動く」を「維持できる」に変えるものだ。最初の機能ブロックがループで 構築され、システムが世界に作用する（メッセージを送る、請求する）前、実際のユーザーを持つ前 に行う。ガイドプロジェクトでは、リマインダーと手付金を加える時点で、だからレッスン12（錠） はそれらの機能を構築する前に来る。後ではなく。</p>
+<h3 id="11">レッスン 11 — 計画への入力としての定期監査</h3>
+<p><strong>理解すべきこと。</strong> ときどきシステム全体を新鮮な目で見なければならず、見えたものは保管 される報告ではなく保留項目のリストに行く。重要な部分は「新鮮な目」：監査する者は構築した者 であってはならない。前提を共有するからだ。モジュールを構築したモデルはコードに書かれた パスワードが暫定だと「知っている」。初めて見るモデルはそれをあるがままに報告する。別の会社 は要らない。<strong>別のセッション、別の指示ファイル、参加していないもの</strong>で十分だ。</p>
+<p><strong>課題。</strong></p>
+<ol><li>リポジトリのクリーンなコピー（別フォルダにクローン）で新しいエージェントセッションを開く。 ツールが許すなら、「あなたは監査者です。このシステムを構築していません」とだけ言う別の 指示ファイルを与える。テスト環境への読み取り専用アクセスを与える。</li><li>貼る：</li></ol>
+<blockquote class="prompt"><p>Audit this system for [integrity, security, performance and code quality]. Read-only: change nothing except writing your report to <code>docs/AUDIT_[date].md</code>. If auditing some part requires access you lack (the database, the log, an environment), tell me and mark that part as not audited; do not pass it as fine. Go through all of the code, not a sample. For every finding: where it is (file and line), what the risk is, what evidence proves it (the command, the query, the number), and its priority: P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited. End with the list of P0 findings turned into proposed pending items. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：読み取り専用、監査できなかったものを省略で合格にする代わりに宣言する こと、サンプルではなくすべてのコード、各発見に位置、リスク、証拠、優先度、次元ごとの 評点、そして提案保留項目としてのP0。</p>
+<ol><li>報告を読む。発見を二つ選び、監査者に証拠（コマンド、行）を見せてもらう。できなければ ならない。</li><li>構築者のセッションに戻り、貼る：</li></ol>
+<blockquote class="prompt"><p>Read <code>docs/AUDIT_[date].md</code>. Open one pending item for every P0 and P1, citing the finding. If you disagree with any of them, tell me with the evidence against; do not ignore it.</p></blockquote>
+<ol><li>最初の本番デプロイ（レッスン13）の前に、そしてその後一、二か月ごとにこのレッスンを 繰り返す。</li></ol>
+<p><strong>完全性の検証。</strong> 報告は何を監査できなかったか言っているか。無作為の二つの発見にファイル、 行、再現可能な証拠があるか。各P0に保留項目が開かれているか。評点は次の監査と比べられるか。 構築したのとは別のセッションが監査したか。</p>
+<p><strong>提出物。</strong> <code>docs/AUDIT_[日付].md</code> と開かれたP0/P1の保留項目。</p>
+<p><strong>よくある間違い。</strong> 構築したのと同じセッションで監査すること：自分の前提を確認する。一か月 以上のシステムでP0のない報告を受け入れること：ほとんど真ではない。そして保留項目を開かずに 報告を保管すること：そこで監査は何の役にも立たなかった。</p>
+<p><strong>ガイドプロジェクトでは。</strong> Turneraの最初の監査はたいてい見つける：ログ内の患者データ （メッセージ送信時に印字された電話番号：P0）。インデックスなしの名前による患者検索（P1、 5,000人で目立つ）。日付が未来であることを検証しない予約フォーム（P1）。既知の脆弱性を持つ 依存関係（P1）。四つの新しい保留項目、すべてファイルと行付き。</p>
+<h3 id="12">レッスン 12 — フェイルクローズド、錠、静かな損害ゼロ</h3>
+<p><strong>理解すべきこと。</strong> ソフトウェアは既定で疑いの前で進む：検証が失敗してもコードは続き、 サービスが応答しなくても問題なしと仮定する。「フェイルオープン」、停電すると開く扉のようだ。 方法は既定を反転する：<strong>疑わしきは、否</strong>。帰結のあるすべての行動（請求、送信、削除、承認）は 錠を持ち、書かれた戻り道があり、すべての新しい自動化はあなたが有効にするまで、したはずの ことを記録しながらドライランモードで始まる。</p>
+<p>このレッスンは世界に作用する機能を構築する<strong>前</strong>に来る。Turneraではリマインダーと手付金の前。</p>
+<p><strong>課題。</strong></p>
+<ol><li>オーナーと <code>docs/CONSEQUENTIAL_ACTIONS_SURVEY.md</code> を書く：システムが請求、送信、承認、 削除、外部への通知で何をするか、またはするようになるか。二度やったら何が起きるか。誤ったら 何が起きるか。どう取り消すか。</li><li>貼る：</li></ol>
+<blockquote class="prompt"><p>We are going to decide which actions of the system need a lock. Read the survey of consequential actions, and go through the code looking for everything that charges, sends, approves, deletes or notifies outwards. Compare the two lists: if the code has actions the survey does not mention, or the other way round, ask me before going on. For every action propose: whether it is reversible, which lock it gets (explicit confirmation, double safety, dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong. General rule: on any doubt or failure along the way, the action is NOT executed and the reason is logged. Present me the table; I confirm lock by lock. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：事業が言ったこととコードがすることの比較（そこに誰も覚えていなかった 行動が現れる）、差異を質問すること、各行動に可逆性、錠、戻り道、そしてフェイルクローズド のルールを書くこと。</p>
+<ol><li>錠ごとに確認する。こう締める：</li></ol>
+<blockquote class="prompt"><p>I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves that, under the doubt condition, the action does NOT happen (proved red against the version without the lock). Record the final table in <code>docs/LOCKS.md</code>. And for any new automation: dry-run mode first, logging what it would have done, until I enable it.</p></blockquote>
+<ol><li>今、レッスン5から10のループで帰結のある機能（リマインダー、手付金）を構築し、ドライラン モードのままにする。実際の送信を有効にする前に数日、「送ったはず」の記録を見る。</li></ol>
+<p><strong>完全性の検証。</strong> 請求、送信、承認、削除するすべての行動が表にあるか。各錠に赤のテストが あるか。不可逆なすべての行動に書かれた戻り道があるか。新しい自動化はドライランモードで始まり、 有効にする前に記録を見たか。</p>
+<p><strong>提出物。</strong> <code>docs/LOCKS.md</code>、赤で証明された錠ごとのテスト、記録付きのドライランモードの 自動化。</p>
+<p><strong>よくある間違い。</strong> 「自分の電話にメッセージを送って試すため」に実際の送信を有効にする こと：ドライランモードはまさにそのためにある。「テスト用」パラメータで迂回できる錠：その パラメータは本番で有効のままになる。そして「したはず」の記録を見ないこと：患者に届く前に 誤りを見る唯一の窓だ。</p>
+<p><strong>ガイドプロジェクトでは。</strong> Turneraの錠の表：リマインダー送信（不可逆。錠：予約ごとの冪等 性、予約とチャネルごとに一回の送信、一日200の上限、まずドライラン。戻り：なし、だから上限）。 手付金の請求（返金で可逆。錠：受付の明示的確認、専門家が定めた金額。戻り：決済プロバイダ 経由の返金）。予約のキャンセル（患者にとって不可逆。錠：確認と誰がの記録。戻り：予約の再 作成）。患者の削除（不可逆。錠：二重確認、責任者のみ、将来の予約がない場合のみ。戻り：なし、 だから二重）。各錠に、錠なしでは行動が起きたことを示すテスト付き。</p>
+<h3 id="13">レッスン 13 — プロダクトの一部としての継続的インテグレーション、環境、秘密、デプロイ</h3>
+<p><strong>理解すべきこと。</strong> 本番に至ることは再現可能なパッケージでなければならない：テストは<strong>一度</strong> 走り、デプロイはパッケージしてアップロードするだけ、設定はリポジトリではなくサーバーに住み、 二度実行できるテストから本番への昇格手順があり、ロールバックは<strong>試されている</strong>（試された ことのないロールバックは存在しない）。秘密については例外なしのルール：<strong>チャット、ログ、 コミットで見られた秘密はもう秘密ではない</strong>。ローテーションする、以上。</p>
+<p>この大部分は骨組み（レッスン4）から既にある。このレッスンはそれを本番に向けて完成させる。</p>
+<p><strong>課題。</strong></p>
+<ol><li>本番に欠けているもので <code>docs/ENVIRONMENTS_SURVEY.md</code> を補完する：ドメイン、秘密がどこに 住むか、継続的インテグレーションのクォータはどれだけか（GitHub Actionsを使うならプランの 上限を確認：起源システムの一つはコミットごとに三度テストを走らせて使い切った）。</li><li>貼る：</li></ol>
+<blockquote class="prompt"><p>We are going to close the path to production. Read the environments and access survey. Evaluate whether you have what is needed to deploy to production safely (access, domain, where the secrets live, how to roll back); if anything is missing, ask me. Then set up: (1) continuous integration runs the full test suite exactly once per commit; (2) the deployment waits for that run's result and only packages and uploads, without running tests again; (3) each environment's configuration lives on the server (environment file or vault), never in the repository; (4) a written procedure to promote from the test environment to production, which can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check that prevents committing a secret. Document all of it in <code>docs/DEPLOYMENT.md</code> so that a person can do it by hand without you. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：始める前のアクセス、コミットごとに一度だけのテスト、パッケージするだけの デプロイ、外にある設定、繰り返し可能な昇格、試されたロールバック、秘密に対する錠、そして 人のための文書。</p>
+<ol><li>最初の本番デプロイの前に、していなければレッスン11の監査をする。</li><li>約束にデプロイのルーチンを加える：</li></ol>
+<blockquote class="prompt"><p>Add this routine to <code>docs/WORKING_AGREEMENT.md</code>: "Before touching production: the test environment is green with the same version; the rollback is ready; and tell me what changes in the configuration. After deploying: show me the version running in production and an end-to-end check on production, read-only."</p></blockquote>
+<ol><li>システムにまだ実際のユーザーがいない状態で最初の本番デプロイをする。そして<strong>ロールバック を試す</strong>：前のバージョンに戻して動いていることを見せ、次に新しいものに戻すよう頼む。</li><li>コースのどこかでチャットに秘密（APIキー、パスワード）を貼ったなら、貼る：</li></ol>
+<blockquote class="prompt"><p>That secret is compromised: rotate it now, tell me everywhere else it was used, and add the check that would have caught it.</p></blockquote>
+<p><strong>完全性の検証。</strong> コミットごとにテスト群は何度走るか（一度。リンクを求める）。リポジトリに 実際の設定値があるか（空の検索を求める）。<code>docs/DEPLOYMENT.md</code> を一人で追えるか。ロールバック は試されたか、いつ、どんな証拠で。チャットに現れたすべての秘密はローテーションされたか。 継続的インテグレーションのクォータがどれだけ残っているか知っているか。</p>
+<p><strong>提出物。</strong> コミットごとに一度の継続的インテグレーション、パッケージするだけのデプロイ、 <code>docs/DEPLOYMENT.md</code>、試されたロールバック、有効な秘密検査、本番で動くシステム（まだ ユーザーなし）。</p>
+<p><strong>よくある間違い。</strong> 「手で、速く、小さな変更だから」のデプロイ：小さな変更こそ本番を壊す。 誰もテストしないから。実際に見える値を持つ設定の例ファイル（実際の値だ）。そして必要な日まで ロールバックを試さないこと。</p>
+<p><strong>ガイドプロジェクトでは。</strong> Turneraでは、継続的インテグレーションが各プッシュでテスト群 （この時点で約30のテスト、エンドツーエンドを含む）を走らせる。テストへのデプロイは <code>main</code> へのマージで自動。本番への昇格はテストにあるバージョンをパッケージしてアップロードする コマンドで、設定（メッセージプロバイダの鍵、決済プロバイダの鍵、データベースのURL）は リポジトリにないサーバー上の環境ファイルに。ロールバックは前のバージョンでの同じコマンド。 そして秘密検査は鍵に見えるものを拒否する各コミットでの検証。</p>
+<h3 id="14-ai">レッスン 14 — 生きた文書と、人がAIなしで追えるマニュアル</h3>
+<p><strong>理解すべきこと。</strong> システムはエージェントなしで、あなたなしで、使い、保守し、復旧できな ければならない。復旧マニュアルの基準は具体的だ：<strong>プログラミングをしない信頼できる人が、 午前三時に、システムがダウンしエージェントが接続できない状態で追えなければならない</strong>。手順 が「開発者に相談」と言えば不完全だ。そしてモデルで文書を再生成するのは無料なので、ルールは 「同じコミットで」になる：ユーザーが見るもの、オペレータがすること、デプロイの仕方に触れる すべての変更は、同じコミットでマニュアルを更新する。</p>
+<p><strong>課題。</strong></p>
+<ol><li>約束にルーチンを加える：</li></ol>
+<blockquote class="prompt"><p>Add this routine to <code>docs/WORKING_AGREEMENT.md</code>: "Every change that modifies what the user sees, what the operator does, or how the system is deployed, updates the corresponding manual in the same commit. If you do not know which manual, ask."</p></blockquote>
+<ol><li>貼る：</li></ol>
+<blockquote class="prompt"><p>Generate three manuals from the system as it is today in the test environment: the user manual (screen by screen, with real screenshots, in the user's language, no jargon); the maintenance manual (how it is built, where everything is, how to run the test suite, how to add a module); and the infrastructure and recovery manual (how to deploy, how to roll back, how to restore a backup, what to do if it goes down; written for a person who has to do it by hand, without AI, at three in the morning). If for any section you need something only the business knows (who is responsible for what, which phone number to call), ask me; do not leave a gap and do not invent. Each manual carries a date and the system version. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：実際のスクリーンショット付きの三つのマニュアル、復旧マニュアルの午前三時 基準、穴を残す代わりに事業だけが知ることを質問すること、そして日付とバージョン。</p>
+<ol><li>実際のテスト：復旧マニュアルをプログラミングをしない誰か（オーナー、家族）に渡し、テスト 環境で「ダウンした」の節を追ってもらう。詰まるところは、マニュアルを直す。</li><li>次の画面変更の後、コミットがユーザーマニュアルに触れたことを確認する。</li></ol>
+<p><strong>完全性の検証。</strong> 無作為のスクリーンショットは今日のテスト環境と一致するか。プログラミング をしない誰かが「ダウンした」の節を追えたか。画面を変えた最後のコミットはマニュアルに触れた か。「[要記入]」のような穴があるか。各マニュアルはどのバージョンに有効か言っているか。</p>
+<p><strong>提出物。</strong> 日付とバージョン付きの三つのマニュアル、そして人とのテスト済み。</p>
+<p><strong>よくある間違い。</strong> マニュアルを一度生成して約束にルーチンを入れないこと：二か月後にはもう 存在しない画面のスクリーンショットになる。「エージェントとのセッションを開く」で始まる復旧 マニュアル。そして人とのテストをしないこと：唯一価値のある検証だ。</p>
+<p><strong>ガイドプロジェクトでは。</strong> Turneraのユーザーマニュアルはスクリーンショット付きの六画面。 保守マニュアルは各モジュールの場所とテスト群の実行方法を説明。復旧マニュアルは順に、コマンド 付きで：システムがダウンしているかどう知るか、どう再起動するか、前のバージョンにどう戻すか、 最後のバックアップからデータベースをどう復元するか（毎晩行われる：これもこのレッスンから出る）、 誰に電話するか。責任者がテスト環境で追い、「データベースの復元」で詰まった。コマンドが彼女 にないフォルダを仮定していたからだ。マニュアルを直した。</p>
+<h3 id="15">レッスン 15 — システムの中のエージェント、そして数字による振り返り</h3>
+<p><strong>理解すべきこと。</strong> 二つのことがサイクルを閉じる。第一は任意：限定された範囲でエージェント を本番に常駐させ、あなたがいなくても診断とサポートをさせる。これを律するルールは<strong>誰かの名 において行動する</strong>：認証情報は責任ある人に紐付けられ、することはすべてその人の名で記録 される。匿名アカウントではなく、上司のいる従業員だ。第二は必須：数字付きの振り返り。何が かかったか、保留項目はいくつか、どれが往復したか、どんなインシデントがありどの段に落ちるか、 そして<strong>はしごへの少なくとも一つの変更提案</strong>。何も変えない振り返りは振り返りではなかった。</p>
+<p><strong>課題（常駐エージェント、該当する場合）。</strong></p>
+<ol><li>オーナーとシステムに常駐エージェントが必要か決める。Turneraでは必要：受付は質問を持つ だろう（「なぜこの患者にリマインダーが届かなかった？」）。エージェントは誰も開発者を呼ば ずにログを読んで答えられる。</li><li>貼る：</li></ol>
+<blockquote class="prompt"><p>We are going to leave you resident in production. First, build the map of the system you will need in order to operate it: modules, environments, where each configuration lives, which actions are consequential (read <code>docs/LOCKS.md</code>), whom to notify. If there are parts of the system you cannot see from where you are, tell me; the map must not have hidden gaps. Then propose your scope in three levels: read-only and diagnosis; configuration changes with my approval; consequential actions behind locks. I choose the level. Your credential acts as the person who created it: everything you do is logged under that person's name. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：運用前の地図、地図の穴を宣言すること、一つ選べるよう三段階の範囲、そして 人の名における認証情報。</p>
+<ol><li>レベルを選ぶ（始めるには常に最初のもの：読み取り専用と診断）。こう締める：</li></ol>
+<blockquote class="prompt"><p>Level [1: read-only and diagnosis]. Write in <code>docs/RESIDENT_AGENT.md</code> the map, the scope, the credential (never its value), and the procedure to request my approval. Then prove, with a real attempt recorded in the log, that something outside your scope is rejected.</p></blockquote>
+<p><strong>課題（振り返り、常に）。</strong></p>
+<ol><li>あなただけが持つ数字を集める：何時間充てたか、AIツールにいくら使ったか、継続的インテグ レーションのクォータをどれだけ使ったか。</li><li>貼る：</li></ol>
+<blockquote class="prompt"><p>[The project] is over. Do the retrospective with numbers, not impressions: what it cost (tokens, quota, my time), how many pending items, which ones took the most rounds and why, which incidents happened and which step of the ladder each falls into, and which step failed or was missing. If you lack the data for any figure (my time, for instance), ask me for it or mark it as an estimate; do not invent it. End with a concrete proposal to change the ladder: which step is modified, how, and which incident justifies it. Write it to <code>docs/RETROSPECTIVE_[date].md</code>. Reply in my language.</p></blockquote>
+<p>頼んでいるのは：出所付きの数字、各インシデントを段に対応付けること（どの段にも落ちない インシデントは欠けている段）、持っていない数字を求めること、そしてはしごへの具体的な変更 提案。</p>
+<ol><li>変更提案を読む。妥当と思えば、改善提案としてUrazukeのリポジトリに送る（<code>CONTRIBUTING.md</code> 参照）：それが方法が各プロジェクトから学ぶ方法だ。</li></ol>
+<p><strong>完全性の検証。</strong> 地図はエージェントが見られないものを言っているか。範囲外の行動が拒否 されるのをログで見たか。認証情報は人の名で行動するか。振り返りには出所付きの数字があるか、 形容詞か。各インシデントは段に落ちるか。少なくとも一つの具体的な変更提案があるか。</p>
+<p><strong>提出物。</strong> <code>docs/RESIDENT_AGENT.md</code>（該当する場合）と <code>docs/RETROSPECTIVE_[日付].md</code>。</p>
+<p><strong>よくある間違い。</strong> 「すべて解決できるように」常駐エージェントに高いレベルを与えること： 読み取り専用から始め、証拠があれば上げる。すべてうまくいったと言う振り返り：すべてうまく いくことはない。方法ではなくあなたのために書かれている。そして変更提案を送らないこと：第15段 は文書が書かれたときではなく、はしごが変わったときに閉じる。</p>
+<p><strong>ガイドプロジェクトでは。</strong> 典型的なコースでのTurneraの振り返り：六週間、受講者の約四十 時間、二十八の保留項目、最も往復したのはメッセージのもの（タイムゾーンとWhatsAppプロバイダ）。 二つのインシデント、一つは第8段（「不在」状態が画面にあってサーバーになかった）、一つは第13段 （テストの設定での本番デプロイ、デプロイ後のエンドツーエンド検証で検知）。変更提案：第13段の デプロイルーチンが昇格前に「何が変わるか」だけでなくテストと本番の設定の差分を見せるよう 要求すること。</p>
+<hr>
+</section><section>
+<h2 id="">本番リリースのチェックリスト</h2>
+<p>十六のレッスンが終わったとき、システムはこのリストを満たす。Urazukeにおける「production grade」の運用上の定義であり、オーナーとともに、コードを開かずに最終チェックリストとして 使える：</p>
+<ol><li>決定、日付、名前付きの適格性シートがある（G0）。</li><li>エージェントが毎セッション読む共働の約束があり、読むことが試された（G1、G2）。</li><li>プロジェクトファイルは五分で読め、システムが何でないかを言う（G2）。</li><li>出所付きの一次データ、計算付きの派生データ、「十倍」シナリオを持つサイジングがある（G3）。</li><li>骨組みは空でデプロイされ、デプロイは二度実行された（G4）。</li><li>すべての変更に保留項目があり、閉じたすべての項目に証拠がある（G5）。</li><li>すべての事業ルールにオーナー、日付、原文の言葉がある（G6）。</li><li>すべての重要なテストは緑の前に赤で見られた。画面からバックエンドを検証するエンドツー エンドのテストがある（G7）。</li><li>すべてのリストに唯一の所有者がいる。生産者/消費者の地図がある。自動検査付きのアンチ パターンの記録がある（G8）。</li><li>何かを決めたすべての数字に、あなたが実行できるテスト付きの計器がある（G9）。</li><li>すべての報告が検証済み、信じている、盲点を分ける（G10）。</li><li>別のセッションによる監査が少なくとも一度あり、そのP0は保留項目である（G11）。</li><li>帰結のあるすべての行動に赤のテスト付きの錠と戻り道がある。自動化はドライランモードを 経た（G12）。</li><li>テストはコミットごとに一度走る。設定はリポジトリの外。ロールバックは試された。ローテー ションされていない秘密はリポジトリにもチャットにもない（G13）。</li><li>日付とバージョン付きの三つのマニュアルがあり、プログラミングをしない人が復旧マニュアル を追った（G14）。</li><li>数字付きの振り返りとはしごへの変更提案がある（G15）。</li></ol>
+<p>十六すべてが「はい」なら、システムは実装の準備ができている。どれかが「否」なら、どの段を 登り直すべきかもうわかっている。</p>
+<hr>
+</section><section>
+<h2 id="a">付録A — 評価の仕方（コースを教える人、または自己評価する人のために）</h2>
+<p>レッスンごとの三段階の簡単なルーブリック：</p>
+<ul><li><strong>登れていない</strong>：提出物が欠けている、または完全性の検証のどれかが「否」。</li><li><strong>登れた</strong>：提出物が存在し、すべての検証が「はい」。</li><li><strong>判断力の証拠付きで登れた</strong>：加えて、受講者がそのレッスンでエージェントが何か間違った こと（仮定した、発明した、多めに報告した）をした事例と、どう検知したかを語れる。それが コースの本当の目標だ：成果物ではなく反射。</li></ul>
+<p>評価しないもの：コードの品質。誰も読まない。証拠の品質を評価する。</p>
+</section><section>
+<h2 id="b">付録B — 各ツールへのコースの適応</h2>
+<p>プロンプトはどのツールでも同じだ。変わるのは、コースで <code>docs/WORKING_AGREEMENT.md</code> に加える ルーチンがどこに行くかだ：</p>
+<ul><li><strong>Claude Code</strong>では、ルーチンはプロジェクトの <code>CLAUDE.md</code> に入り（またはそこから約束を 含め）、各セッションで自動で読まれる。</li><li><strong>Cursor</strong>では、常に有効なルールとして <code>.cursor/rules/</code> に。</li><li><strong>Codex CLI</strong>または<strong>Gemini CLI</strong>では、ルートの <code>AGENTS.md</code> または <code>GEMINI.md</code> に。</li><li><strong>Forge</strong>では、約束とルーチンは教義であり、段のプロンプトは各ゲートを通過するとき自動で 注入される。保留項目の記録はネイティブ。Forgeでのコースは、コピー＆ペーストの少ない同じ コースだ。</li></ul>
+<p>レッスン2の読み取りテストはすべてに有効：新しいセッションがシステムが何をしないか知らなけ れば、ツールは約束を置いたファイルを読み込んでいない。</p>
+</section><section>
+<h2 id="c">付録C — このマニュアルにまだないもの</h2>
+<ul><li>受講した受講生。時間、よくある間違い、ガイドプロジェクトは受講者からではなく三つの起源 システムから書かれている。最初の受講生がそれらを修正する（そしてそれは文字通り、コースに 適用された第15段だ）。</li><li>適格性基準の重み（レッスン0）、策定中。</li><li>変更のたびに他言語版がスペイン語版と整合しているかの検証。</li></ul></section>
+</div></body></html>
