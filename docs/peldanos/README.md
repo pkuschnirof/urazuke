@@ -1,9 +1,15 @@
 # Los contratos de peldaño
 
-Un archivo por peldaño. Cada uno tiene el mismo esqueleto: para qué sirve; (1) contexto requerido,
-nombrado en forma genérica; (2) los prompts textuales, con la cláusula de completitud; (3) el
-resultado esperado, con sus características; (4) la verificación de completitud, que hace el dueño
-sin leer código.
+Un archivo por peldaño. Cada uno tiene el mismo esqueleto: el encabezado con tramo, forma y
+tamaño (obligatorio o proporcional); para qué sirve; (1) contexto requerido, nombrado en forma
+genérica; (2) los prompts, **en inglés**, cada uno seguido de la explicación en el idioma del lector
+de qué le estamos pidiendo y por qué cada cláusula está ahí; (3) el resultado esperado, con sus
+características; (4) la verificación de completitud, que hace el dueño sin leer código; (5) las
+señales de alarma, los síntomas de que el peldaño se subió mal.
+
+Los prompts en inglés son una sola pieza, idéntica en todas las versiones del documento en los
+ocho idiomas; `node build/build.mjs` los extrae a `prompts/` y verifica que ninguna traducción los
+haya alterado.
 
 Están escritos desde lo que hicimos en los tres repositorios, no ejecutados tal cual todavía. El
 primer proyecto que los use de punta a punta va a corregir varios: eso es parte del peldaño 15.

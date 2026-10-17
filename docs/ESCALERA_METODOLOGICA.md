@@ -1,8 +1,9 @@
-# Urazuke, el método de la evidencia — la escalera metodológica (versión 2)
+# Urazuke, el método de la evidencia — la escalera metodológica (versión 3)
 
 Conversación entre Pablo y Sumi, 17 de octubre de 2026 (versión 1 por la mañana; versión 2 por
-la tarde, con la tesis de apertura, los contratos de peldaño y el repositorio propio). Este es un
-documento de trabajo:
+la tarde, con la tesis de apertura, los contratos de peldaño y el repositorio propio; versión 3
+con el nombre, los contratos enriquecidos, los prompts en inglés, la guía por tamaño de proyecto
+y la guía por herramienta). Este es un documento de trabajo:
 lo vamos a seguir elaborando en varias pasadas, así que nada de lo que dice es doctrina
 todavía. Es, simplemente, el primer destilado honesto de lo que hicimos de verdad en tres
 repositorios que hoy están en producción, con gente real usándolos.
@@ -328,10 +329,74 @@ dentro de `docs/peldanos/`, siempre con las mismas cuatro secciones:
 4. **Verificación de completitud** — la lista de comprobaciones que hace el dueño sobre el
    artefacto, **sin leer código**. Si una da "no", el peldaño no está subido.
 
+5. **Señales de alarma** — dos o tres síntomas de que el peldaño se subió mal aunque parezca
+   subido. Son los que se ven semanas después, cuando ya duele.
+
+Y en el encabezado de cada contrato, además del tramo y la forma, el **tamaño**: si el peldaño es
+obligatorio en todo proyecto o proporcional, y qué significa "proporcional" en uno chico.
+
+**Los prompts están en inglés.** Es una decisión (D-013) y tiene tres razones: el mismo contenido
+en castellano ocupa entre un 30 y un 50 % más de tokens; la capacidad de seguir instrucciones de
+los modelos está mejor calibrada en inglés, así que un prompt en inglés tolera mejor la brevedad
+sin volverse ambiguo; y el vocabulario del oficio (test, commit, rollback, mock) es inglés. Debajo
+de cada prompt va la explicación, en el idioma del lector, de qué le estamos pidiendo y por qué
+cada cláusula está ahí: el prompt es una sola pieza idéntica en las ocho versiones del documento;
+la explicación es lo que se traduce. Y todos terminan con "Reply in my language", porque el prompt
+está en inglés pero la conversación no tiene por qué estarlo.
+
 Esos dieciséis contratos son, además, lo que después se exporta a Forge: hoy Forge inyecta una
 doctrina cuando se cruza una compuerta; el contrato del peldaño *es* esa doctrina, y el prompt
 *es* lo que se inyecta. Escribirlos para el curso y escribirlos para el flujo de Forge es el mismo
 trabajo.
+
+### Qué es obligatorio y qué es proporcional, según el tamaño del proyecto
+
+Una pregunta que aparece enseguida: "¿todo esto para un sistema chico?". La respuesta es que
+dieciséis peldaños no son dieciséis semanas; varios se suben en una hora, y los que son
+proporcionales se achican con el proyecto. Lo que no se achica es la lista de los que no se
+negocian. Esta tabla es una propuesta `[hipótesis]` para confirmar con el primer proyecto que use
+el método de punta a punta:
+
+| Peldaño | Proyecto chico (un dueño, pocos usuarios, sin dinero en juego) | Proyecto con usuarios y consecuencias |
+|---|---|---|
+| 0 Elegibilidad | obligatorio (una hora) | obligatorio |
+| 1 Contrato | obligatorio (media hora) | obligatorio |
+| 2 Definición | obligatorio, cincuenta líneas alcanzan | obligatorio |
+| 3 Dimensionar | obligatorio, media página y una decisión | obligatorio, completo |
+| 4 Esqueleto | obligatorio si va a tener usuarios | obligatorio |
+| 5 Pendientes | obligatorio | obligatorio |
+| 6 Decisiones | obligatorio | obligatorio |
+| 7 Tests en rojo | obligatorio | obligatorio |
+| 8 Simetría | la regla sí; el mapa, opcional | obligatorio con mapa |
+| 9 Medir | proporcional: contar y anotar | obligatorio, con medidores y presupuestos |
+| 10 Verificación honesta | obligatorio | obligatorio |
+| 11 Auditoría | una, antes de producción | periódica |
+| 12 Fail-closed | opcional si es solo lectura | obligatorio |
+| 13 Integración y despliegue | mínimo: tests solos, configuración afuera, vuelta atrás | obligatorio, completo |
+| 14 Documentación | mínimo: recuperación | los tres manuales |
+| 15 Residente y retrospectiva | retrospectiva de una página | ambos |
+
+En resumen: hay nueve peldaños que no se negocian en ningún proyecto (0, 1, 2, 3, 5, 6, 7, 10 y
+la retrospectiva del 15), y siete que se dimensionan con el proyecto.
+
+### Cómo se usa con cualquier herramienta
+
+El método es neutral de herramienta; lo que cambia entre una y otra es **dónde se pone cada
+artefacto** para que el modelo lo lea. La correspondencia, para las herramientas más usadas a
+fines de 2026:
+
+| Artefacto del método | Claude Code | Cursor | Codex CLI / Gemini CLI | Forge |
+|---|---|---|---|---|
+| Contrato de convivencia (P1) y rutinas (P5, P6, P7, P8, P10, P14) | `CLAUDE.md` del proyecto | `.cursor/rules/` | `AGENTS.md` / `GEMINI.md` | doctrinas inyectadas por compuerta |
+| Definición del proyecto (P2) | `CLAUDE.md` + `docs/STATUS.md` | igual, en reglas y docs | igual | `PROJECT.md` + `.forge/sumi-context.md` |
+| Registro de pendientes (P5) | `docs/PENDING.md` o issues | igual | igual | registro de pendientes nativo con verbos |
+| Prompts de peldaño (todos) | se pegan en el chat al subir el peldaño | igual | igual | se inyectan al cruzar la compuerta |
+| Compuertas (P4) | `docs/GATES.md`, manual | igual | igual | G1 a G9, automáticas |
+| Medidores y presupuestos (P9) | scripts en el repo con test | igual | igual | igual, más el trinquete estático |
+
+La columna de Forge es la que automatiza más; las otras tres funcionan igual de bien si el dueño
+hace a mano lo que Forge hace solo: pegar el prompt del peldaño en el momento correcto y exigir la
+verificación de completitud antes de pasar al siguiente. Esa es, de hecho, la práctica del curso.
 
 ### Peldaño 0 — ¿Este proyecto se puede encarar así? (la elegibilidad)
 
@@ -789,7 +854,9 @@ que caer en algún peldaño. Si hay un golpe que no cae en ninguno, falta un pel
 
 Hecho en la versión 2 (17 de octubre, tarde): la tesis de apertura ("la IA no interrumpe el
 método: lo continúa"), los dieciséis contratos de peldaño en `docs/peldanos/`, y el repositorio
-propio del método. Queda:
+propio del método. Hecho en la versión 3: el nombre, los contratos enriquecidos (tamaño, señales
+de alarma, prompts en inglés con explicación), la guía por tamaño de proyecto y la guía por
+herramienta. Queda:
 
 1. **El peldaño 0 completo**: la lista real de criterios (los de Pablo más mis hipótesis),
    cuáles excluyen y cuáles ponderan, los pesos, el umbral, y los proyectos rechazados
@@ -799,14 +866,15 @@ propio del método. Queda:
    conviene empezar por el bucle, que es lo que un alumno va a usar todos los días.
 3. **Un nombre memorable para cada peldaño**, de una frase, para los manuales y las
    publicaciones.
-4. **Qué es mínimo y qué es opcional según el tamaño del proyecto.** Un sistema chico de
-   un freelancer no necesita un trinquete; pero sí necesita, sin discusión, los peldaños
-   1, 5, 7, 10 y 13.
+4. ~~Qué es mínimo y qué es opcional según el tamaño del proyecto~~ — **propuesto** en la
+   tabla "Qué es obligatorio y qué es proporcional", marcada como hipótesis hasta que un
+   proyecto la confirme.
 5. **El mapeo a Forge**: qué peldaños ya son compuertas o comandos (G1 a G9, el registro
    de pendientes, el dimensionamiento, las doctrinas) y cuáles faltan para poder exportar
    la escalera como un flujo de ejecución.
-6. **La práctica**: para cada peldaño, un ejercicio con el caso real (Kikan o Autorizaciones) que un
-   alumno pueda repetir en su propio repositorio.
+6. **La práctica**: el manual-curso (`docs/MANUAL_CURSO.md`), con una tarea práctica por
+   peldaño que un alumno pueda repetir en su propio repositorio hasta tener la aplicación en
+   producción. En curso.
 7. **Lo que NO está en la escalera y debería estar** `[hipótesis]`: el manejo del costo
    de tokens y de cuotas como un presupuesto explícito (hoy es reactivo: nos enteramos
    cuando se funde); la rotación de secretos como rutina y no como incidente; y un criterio

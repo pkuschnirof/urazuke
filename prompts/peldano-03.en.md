@@ -1,0 +1,11 @@
+# Urazuke — step 3 prompts (English, single source)
+
+Generated from `docs/peldanos/peldano-03-dimensionar.md` by `build/prompts.mjs`. Do not edit by hand.
+
+## Prompt 1
+
+Before proposing any architecture we are going to size the system. Read `PROJECT.md` and the volume survey in `docs/VOLUME_SURVEY.md`. Distinguish primary data (facts only the business knows) from derived data (what can be computed from the primary data). Evaluate whether the primary data is complete enough to compute what follows; if any primary figure is missing, or is marked as an assumption, ask me for all the missing figures before going on. Never estimate a primary figure. If a previous system can be queried, use its real numbers and state where each came from. With the primary data complete, compute, showing the arithmetic: rows per year for the three largest tables, peak concurrency, data size at five years, and what breaks first if everything is multiplied by ten. Then present three options for persistence and concurrency, each with the cost of migrating to the others later. Do not choose: I choose. Do not write code. Reply in my language.
+
+## Prompt 2
+
+I choose option [B]. Record in `docs/SIZING.md`: the primary data with its source, the derived data with its arithmetic, the three options, the chosen one and why, and the decisions we are taking "just in case" even though they are not needed today (for example: the persistence interface is asynchronous from line one, even if the first engine is synchronous). Include the questions you asked and my answers.

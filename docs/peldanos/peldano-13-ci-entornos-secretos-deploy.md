@@ -3,6 +3,10 @@
 **Tramo:** operación (se arma sobre el esqueleto del peldaño 4; se revisa con cada cambio de
 infraestructura).
 **Forma:** un solo tiro para armarlo; rutina para cada despliegue.
+**Tamaño:** obligatorio en todo proyecto con usuarios. En uno chico, "integración continua" puede
+ser una sola acción de GitHub y "entornos" pueden ser dos carpetas en el mismo servidor; lo que
+no se negocia es que los tests corran solos, que la configuración no esté en el repositorio, y
+que haya vuelta atrás.
 
 ## Para qué sirve
 
@@ -11,6 +15,11 @@ configuración vive fuera del repositorio, y los secretos no andan dando vueltas
 corriendo tres veces por commit (2.000 minutos de cuota en 16 días), la clave de la base impresa
 en una transcripción, el CORS que solo conocía el primer dominio, y la configuración pisada por
 la batería de tests.
+
+Sobre los secretos hay una regla que conviene adoptar como reflejo, sin excepciones: **un secreto
+que se vio en un chat, en un log o en un commit ya no es un secreto**. No importa si "nadie lo
+vio" o si "se borró después". Se rota. La rotación cuesta diez minutos; averiguar si alguien lo
+usó es imposible.
 
 ## 1. Contexto requerido
 
@@ -24,29 +33,41 @@ la batería de tests.
 
 **Inicial:**
 
-> Vamos a cerrar el circuito hasta producción. Leé el relevamiento de entornos y accesos.
-> **Evaluá si tenés lo necesario para desplegar a producción de forma segura (accesos,
-> dominio, dónde viven los secretos, cómo se vuelve atrás); si falta algo, pedímelo.**
-> Después armá: (1) la integración continua corre la batería completa una sola vez por
-> commit; (2) el despliegue espera el resultado de esa corrida y solamente empaqueta y sube,
-> sin volver a correr tests; (3) la configuración de cada entorno vive en el servidor (archivo
-> de entorno o bóveda), nunca en el repositorio; (4) un procedimiento escrito para promover
-> del entorno de prueba a producción, que se pueda correr dos veces sin romper nada; (5) la
-> vuelta atrás, probada; (6) una verificación automática que impida subir un secreto al
-> repositorio. Documentá todo en `docs/DESPLIEGUE.md` de forma que una persona lo pueda hacer
-> a mano sin vos.
+> We are going to close the path to production. Read the environments and access survey.
+> Evaluate whether you have what is needed to deploy to production safely (access, domain,
+> where the secrets live, how to roll back); if anything is missing, ask me. Then set up: (1)
+> continuous integration runs the full test suite exactly once per commit; (2) the deployment
+> waits for that run's result and only packages and uploads, without running tests again; (3)
+> each environment's configuration lives on the server (environment file or vault), never in the
+> repository; (4) a written procedure to promote from the test environment to production, which
+> can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check
+> that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
+> can do it by hand without you. Reply in my language.
+
+Qué le estamos pidiendo, cláusula por cláusula: los accesos antes de empezar; los tests **una
+sola vez** por commit (correrlos tres veces fue lo que fundió la cuota); el despliegue que solo
+empaqueta; la configuración fuera del repositorio; la promoción como procedimiento repetible; la
+vuelta atrás **probada** (una vuelta atrás que nunca se probó no existe); el candado contra
+secretos en commits; y la documentación para una persona, que es el peldaño 14 aplicado a la
+infraestructura.
 
 **Rutina de cada despliegue:**
 
-> Antes de tocar producción: el entorno de prueba en verde con la misma versión; la vuelta
-> atrás lista; y decime qué cambia en la configuración. Después del despliegue: mostrame la
-> versión corriendo en producción y una prueba de punta a punta sobre producción, en solo
-> lectura.
+> Before touching production: the test environment is green with the same version; the
+> rollback is ready; and tell me what changes in the configuration. After deploying: show me
+> the version running in production and an end-to-end check on production, read-only.
+
+Qué le estamos pidiendo: las tres condiciones previas (prueba en verde con la misma versión,
+vuelta atrás lista, cambios de configuración anunciados) y las dos evidencias posteriores (la
+versión corriendo y una prueba de punta a punta sin escribir nada).
 
 **Si un secreto apareció en el chat o en un commit:**
 
-> Ese secreto está comprometido: rotalo ahora, decime dónde más estaba, y agregá la
-> verificación que lo habría detectado.
+> That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
+> check that would have caught it.
+
+Qué le estamos pidiendo: rotación inmediata, inventario de dónde más estaba, y la verificación
+que lo habría detectado, para que la próxima vez no llegue al chat.
 
 ## 3. Resultado esperado
 
@@ -54,7 +75,7 @@ la batería de tests.
 - El despliegue que espera a la integración y solo empaqueta; medido: cuánto tarda antes y
   después.
 - La configuración fuera del repositorio; en el repo, solo un ejemplo sin valores.
-- `docs/DESPLIEGUE.md`: cómo desplegar, promover y volver atrás, paso a paso, para una persona.
+- `docs/DEPLOYMENT.md`: cómo desplegar, promover y volver atrás, paso a paso, para una persona.
 - La vuelta atrás probada al menos una vez, con su evidencia.
 - La verificación anti-secretos activa (un intento de subir uno, rechazado).
 - Un registro de la cuota de integración continua consumida por mes.
@@ -64,7 +85,14 @@ la batería de tests.
 - ¿Cuántas veces corre la batería por cada commit? Tiene que ser una. Pedí el enlace.
 - ¿Hay algún valor de configuración real (una clave, una contraseña, una URL interna) en el
   repositorio? Pedile al agente que busque y te muestre la búsqueda vacía.
-- ¿Podrías seguir `docs/DESPLIEGUE.md` vos, sin el agente? Leelo con esa pregunta.
+- ¿Podrías seguir `docs/DEPLOYMENT.md` vos, sin el agente? Leelo con esa pregunta.
 - ¿La vuelta atrás se probó? ¿Cuándo? ¿Qué evidencia hay?
 - ¿Se pegó algún secreto en el chat durante el proyecto? Si sí, ¿se rotó?
 - ¿Sabés cuánta cuota de integración continua queda este mes?
+
+## 5. Señales de alarma
+
+- El despliegue a producción se hace "a mano, rápido, porque es un cambio chico". Los cambios
+  chicos son los que rompen producción, porque nadie los prueba.
+- El archivo de ejemplo de configuración tiene valores que parecen reales. Probablemente lo son.
+- Nadie puede decir cuándo fue la última vez que se probó la vuelta atrás.

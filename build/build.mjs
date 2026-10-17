@@ -7,6 +7,9 @@ import { dirname, join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
+
+// 0) prompts en inglés: se extraen de la fuente y se verifica que las traducciones no los alteren.
+execFileSync(process.execPath, [join(raiz, 'build', 'prompts.mjs')], { stdio: 'inherit' });
 const conv = join(raiz, 'build', 'md2html.mjs');
 mkdirSync(join(raiz, 'docs', 'html'), { recursive: true });
 

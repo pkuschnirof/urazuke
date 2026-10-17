@@ -2,6 +2,8 @@
 
 **Tramo:** arranque (una vez por proyecto; se revisa cuando un golpe lo exige).
 **Forma:** un solo tiro, con una vuelta de ajuste del dueño.
+**Tamaño:** obligatorio en todo proyecto. Es el peldaño más barato de todos y el que más
+frustración evita.
 
 ## Para qué sirve
 
@@ -9,6 +11,10 @@ Para que humano y agente acuerden cómo van a trabajar antes de la primera líne
 Parece una formalidad y no lo es: es lo que evita que el agente "ayude" expandiendo el alcance,
 deje deuda para después, o reporte como hecho lo que cree que hizo. En Forge este archivo se
 llama `SQ.md` (estándares de calidad); el nombre no importa, el contenido sí.
+
+Una forma de entenderlo: el agente es un colaborador nuevo que llega cada mañana sin memoria de
+ayer. El contrato es lo que le decís el primer día, y lo que va a releer cada día. Si no lo
+escribís, se lo vas a tener que decir cada vez, y lo vas a decir distinto cada vez.
 
 ## 1. Contexto requerido
 
@@ -20,26 +26,35 @@ llama `SQ.md` (estándares de calidad); el nombre no importa, el contenido sí.
 
 **Inicial:**
 
-> Antes de escribir código vamos a fijar el contrato de convivencia entre vos y yo. Redactá
-> `docs/CONTRATO.md` con estas reglas como mínimo, cada una con una línea que explique qué
-> evita: (1) mi tiempo es sagrado: no me consultás lo que podés resolver solo, y cuando me
-> consultás es en prosa, con tu recomendación; (2) cero deuda técnica: lo que se rompe se
-> arregla de raíz, con su test de regresión, en la misma sesión; (3) alcance exacto: ni más ni
-> menos de lo pedido; si ves algo más, lo anotás como pendiente; (4) la documentación se
-> actualiza en el mismo commit que el cambio; (5) jamás anunciás como hecho algo que no
-> verificaste, y separás siempre lo verificado de lo que creés; (6) hablás en mi idioma.
-> Agregá las reglas que te parezcan necesarias para este proyecto, marcadas como propuestas.
-> **Si te falta saber algo de cómo trabajo yo para redactarlo, preguntámelo.**
+> Before we write any code, we are going to set the working agreement between you and me.
+> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
+> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
+> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
+> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
+> no more and no less than what was asked; if you see something else, log it as a pending item,
+> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
+> as done something you have not verified; always separate what you verified from what you
+> believe. (6) Speak my language. Add any rules you think this project needs, marked as
+> proposals. If you need to know something about how I work in order to write this, ask me.
+
+Qué le estamos pidiendo: las seis reglas mínimas, cada una con el fallo que evita (eso es lo que
+las vuelve reglas y no consejos); que proponga reglas propias del proyecto pero las marque como
+propuestas, para que el dueño las acepte o rechace; y que pregunte lo que necesite saber sobre
+el dueño. Un contrato redactado sin una sola pregunta es sospechoso: el agente no conoce a la
+persona con la que va a trabajar.
 
 **De cierre:**
 
-> Acepto las reglas 1 a 6 y las propuestas [tales]; rechazo [tales] por [motivo]. Dejá el
-> contrato final con fecha. Y agregá al archivo de proyecto la instrucción de leerlo al empezar
-> cada sesión.
+> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> agreement with today's date and a version number. Then add to the project file the
+> instruction to read this agreement at the start of every session.
+
+Qué le estamos pidiendo: que cierre el contrato con fecha y versión, y que lo enganche al archivo
+de proyecto para que se lea en cada sesión. Sin ese enganche el contrato existe pero no actúa.
 
 ## 3. Resultado esperado
 
-Un archivo `docs/CONTRATO.md` (o `SQ.md`) con:
+Un archivo `docs/WORKING_AGREEMENT.md` (o `SQ.md`, o `CONTRATO.md`) con:
 
 - Fecha y versión.
 - Cada regla numerada, en una o dos frases, con el fallo que evita.
@@ -57,3 +72,11 @@ empezar cada sesión.
 - ¿El archivo de proyecto ordena leerlo en cada sesión?
 - ¿El agente te hizo al menos una pregunta sobre cómo trabajás? Si redactó todo sin preguntar
   nada, es sospechoso: no te conoce.
+
+## 5. Señales de alarma
+
+- El contrato tiene más de veinte reglas. Nadie, ni humano ni modelo, respeta veinte reglas; se
+  respetan seis u ocho.
+- Una regla dice "el agente puede modificar este contrato cuando lo considere necesario". No.
+- Dos semanas después, el agente hace algo que el contrato prohíbe y nadie lo nota. El contrato
+  no se está leyendo: revisá el enganche en el archivo de proyecto.

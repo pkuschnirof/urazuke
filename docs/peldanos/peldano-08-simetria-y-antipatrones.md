@@ -2,6 +2,8 @@
 
 **Tramo:** bucle (cada cambio que toca un contrato entre dos partes).
 **Forma:** automática en el bucle; más un archivo que crece con cada golpe.
+**Tamaño:** la simetría es obligatoria siempre; el mapa productor/consumidor es opcional en un
+proyecto de un solo módulo, y obligatorio en cuanto hay una pantalla y un servidor separados.
 
 ## Para qué sirve
 
@@ -9,6 +11,11 @@ Cuando cambiás una punta (el servidor, el robot, el esquema de la base), la otr
 pantalla, el contador, el que consume) tiene que cambiar en el mismo commit. Si no, tarde o
 temprano divergen, y el usuario ve un número en un lado y otro número en el otro (el caso 1.355
 contra 1.234). Y los errores que ya nos comimos una vez se anotan para no comerlos dos veces.
+
+El principio general detrás: **toda lista tiene un solo dueño**. Las columnas de una tabla, los
+estados posibles de una orden, las causas por las que algo espera: las define una sola parte del
+sistema (el productor) y todas las demás las leen de ahí. En cuanto hay dos copias de la misma
+lista, una de las dos está desactualizada; solo falta saber cuál.
 
 ## 1. Contexto requerido
 
@@ -20,27 +27,38 @@ contra 1.234). Y los errores que ya nos comimos una vez se anotan para no comerl
 
 **Para construir el mapa (una vez):**
 
-> Armá `docs/MAPA_PRODUCTOR_CONSUMIDOR.md`: para cada contrato del sistema (un servicio, una
-> tabla, un formato de archivo, una lista de valores), quién lo produce y quiénes lo consumen.
-> **Si hay partes del sistema a las que no tenés acceso o que no entendés, decímelo en vez de
-> dejarlas fuera del mapa.**
+> Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
+> a file format, a list of values), who produces it and who consumes it. If there are parts of
+> the system you cannot access or do not understand, tell me instead of leaving them out of the
+> map. Reply in my language.
 
-**Rutina (va en el contrato):**
+Qué le estamos pidiendo: el inventario de contratos con sus dos lados, y la cláusula de
+completitud en su forma para este peldaño: lo que no se ve se declara, no se omite. Un mapa con
+huecos tapados es peor que ningún mapa.
 
-> Antes de cerrar cualquier cambio que toque un contrato, buscá en el mapa todos los
-> consumidores y actualizalos en el mismo commit. Preferí siempre que el productor defina la
-> lista (columnas, causas, estados) y el consumidor la lea, en vez de que cada uno tenga su
-> copia. Si el mapa no tiene esa relación, agregala.
+**Rutina (va en el contrato de convivencia):**
+
+> Before closing any change that touches a contract, look up every consumer in the map and
+> update them in the same commit. Always prefer that the producer defines the list (columns,
+> causes, states) and the consumer reads it, rather than each keeping its own copy. If the map
+> does not have that relationship, add it.
+
+Qué le estamos pidiendo: la simetría como reflejo (buscar el otro lado antes de cerrar), la
+regla de la lista con un solo dueño, y que el mapa se mantenga solo a medida que se usa.
 
 **Cuando algo se rompe por segunda vez:**
 
-> Esto ya nos pasó. Anotalo en `docs/GOTCHAS.md` con: cómo se huele (la señal temprana), la
-> causa raíz, el arreglo, y cómo detectarlo la próxima vez antes de que duela. Y agregá, si se
-> puede, un test o una verificación automática que lo detecte.
+> This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
+> sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
+> possible, a test or an automatic check that detects it.
+
+Qué le estamos pidiendo: el formato fijo de un anti-patrón (olor, causa raíz, arreglo, detección
+temprana) y, lo más importante, la verificación automática: un anti-patrón anotado y no
+automatizado se va a repetir cuando cambie la persona o la sesión.
 
 ## 3. Resultado esperado
 
-- `docs/MAPA_PRODUCTOR_CONSUMIDOR.md`: la lista de contratos con productor y consumidores.
+- `docs/PRODUCER_CONSUMER_MAP.md`: la lista de contratos con productor y consumidores.
 - En cada commit que toca un contrato: los consumidores actualizados, nombrados en el mensaje.
 - `docs/GOTCHAS.md`: una entrada por anti-patrón, con las cuatro partes (olor, causa raíz,
   arreglo, cómo detectarlo antes), y la fecha de la primera vez.
@@ -52,3 +70,10 @@ contra 1.234). Y los errores que ya nos comimos una vez se anotan para no comerl
 - ¿Hay un número que se muestre en dos pantallas distintas? Compará: ¿dan igual?
 - ¿Cada entrada de GOTCHAS tiene las cuatro partes?
 - ¿Se repitió algún error que ya estaba en GOTCHAS? Si sí, falta la verificación automática.
+
+## 5. Señales de alarma
+
+- El mismo valor aparece escrito a mano en más de un archivo ("PENDIENTE", "APROBADA" en el
+  servidor y en la pantalla). Dos copias; una va a divergir.
+- Un cambio en el servidor se cerró con el test del servidor en verde y nadie tocó la pantalla.
+- GOTCHAS tiene entradas sin la parte "cómo detectarlo antes". Son anécdotas, no anti-patrones.

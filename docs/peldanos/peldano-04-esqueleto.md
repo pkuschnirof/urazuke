@@ -2,6 +2,9 @@
 
 **Tramo:** arranque (una vez).
 **Forma:** un solo tiro largo, con aprobación visual del dueño al final.
+**Tamaño:** obligatorio en todo proyecto que vaya a tener usuarios. En un prototipo descartable
+se puede saltear; pero si el prototipo sobrevive (siempre sobreviven), este peldaño es lo primero
+que hay que pagar.
 
 ## Para qué sirve
 
@@ -9,6 +12,11 @@ Para que el sistema arranque, se pruebe y se despliegue VACÍO antes de tener fu
 Descubrir el despliegue al final es carísimo: en Kikan llegó un mes después del arranque y
 costó cinco pendientes seguidos. Si el esqueleto se despliega la primera semana, esos golpes se
 dan con cero funcionalidad en juego.
+
+La idea general detrás: **el camino a producción es parte del producto**, no un trámite del
+final. Un sistema que funciona en la máquina del programador y no se puede desplegar no es un
+sistema; es una demo. Y la única forma de saber que el camino funciona es recorrerlo cuando
+todavía no hay nada que perder.
 
 ## 1. Contexto requerido
 
@@ -21,37 +29,57 @@ dan con cero funcionalidad en juego.
 
 **Inicial:**
 
-> Vamos a armar el esqueleto del sistema, sin ninguna funcionalidad. Leé `PROJECT.md`,
-> `docs/SIZING.md` y el relevamiento de entornos. **Evaluá si tenés lo necesario para que el
-> esqueleto corra en el entorno de prueba (accesos, URL, forma de desplegar); si falta algo,
-> pedímelo antes de empezar.** Después construí: la estructura de carpetas, el arranque del
-> servidor y de la pantalla, la estructura de tests con un test de humo que pase, la integración
-> continua que corra esa batería en cada push, y el despliegue al entorno de prueba. Declará las
-> compuertas del flujo (qué tiene que estar en verde para pasar de una etapa a otra) en
-> `docs/COMPUERTAS.md`. Al terminar, generá una captura de la pantalla vacía corriendo en el
-> entorno de prueba y mostrámela. No agregues funcionalidad "ya que estás".
+> We are going to build the skeleton of the system, with no functionality at all. Read
+> `PROJECT.md`, `docs/SIZING.md` and the environments survey. Evaluate whether you have what is
+> needed for the skeleton to run in the test environment (access, URL, deployment method); if
+> anything is missing, ask me before starting. Then build: the folder structure; the server and
+> the UI starting up; the test structure with one smoke test that passes; continuous
+> integration running that test suite on every push; and the deployment to the test
+> environment. Declare the gates of the workflow (what must be green to move from one stage to
+> the next) in `docs/GATES.md`. When done, take a screenshot of the empty UI running in the
+> test environment and show it to me. Do not add any functionality "while you are at it".
+> Reply in my language.
+
+Qué le estamos pidiendo: que verifique que tiene los accesos antes de empezar (sin eso el
+esqueleto se queda en la máquina del agente); la lista exacta de lo que es un esqueleto
+(estructura, arranque, un test, integración continua, despliegue a prueba); las compuertas
+escritas; una captura real del entorno de prueba, que es la única evidencia válida de que se
+desplegó; y la prohibición explícita de agregar funcionalidad, porque el modelo tiende a "ya que
+estoy" y eso rompe el alcance exacto.
 
 **De cierre:**
 
-> Aprobado el esqueleto. Dejá en `docs/ESTADO.md` la URL del entorno de prueba, el comando para
-> correr los tests y el comando para desplegar, y marcá el peldaño como subido.
+> Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
+> the tests and the command to deploy, and mark this step as done. Then run the deployment a
+> second time and show me that the second run changed nothing.
+
+Qué le estamos pidiendo: dejar los tres comandos donde la próxima sesión los encuentre, y
+probar que el despliegue es repetible (correrlo dos veces sin romper nada). Esa segunda corrida
+es la prueba de que el procedimiento es un procedimiento y no una suerte.
 
 ## 3. Resultado esperado
 
 - El repositorio con la estructura, el servidor y la pantalla arrancando.
 - Un test de humo en verde y la batería corriendo en integración continua (con el enlace a la
   corrida en verde).
-- El despliegue al entorno de prueba funcionando, con la URL.
-- `docs/COMPUERTAS.md`: la lista de compuertas, cada una con la condición para pasar.
+- El despliegue al entorno de prueba funcionando, con la URL, y corrido dos veces.
+- `docs/GATES.md`: la lista de compuertas, cada una con la condición para pasar.
 - Una captura de pantalla del sistema vacío corriendo en el entorno de prueba.
-- `docs/ESTADO.md` actualizado con los tres comandos (correr, testear, desplegar).
+- `docs/STATUS.md` actualizado con los tres comandos (correr, testear, desplegar).
 
 ## 4. Verificación de completitud
 
 - ¿Podés abrir la URL del entorno de prueba y ver la pantalla vacía? (Lo hacés vos, no el
   agente.)
 - ¿Hay un enlace a una corrida de integración continua en verde?
-- ¿El despliegue se puede repetir? Pedile al agente que lo corra dos veces seguidas y que te
-  muestre que la segunda no rompió nada.
+- ¿El despliegue se corrió dos veces y la segunda no rompió nada?
 - ¿Las compuertas están escritas con una condición verificable cada una?
 - ¿Hay alguna funcionalidad que no pediste? Si la hay, el agente violó el alcance exacto.
+
+## 5. Señales de alarma
+
+- El esqueleto "funciona en local" pero el despliegue "lo vemos después". No: el despliegue es
+  el esqueleto.
+- La captura de pantalla es de la máquina del agente, no del entorno de prueba. Pedí la URL.
+- Las compuertas dicen cosas como "el código tiene buena calidad". Una compuerta es una
+  condición verificable: "la batería está en verde", "el despliegue a prueba funcionó".

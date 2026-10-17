@@ -30,9 +30,13 @@ de aplicación: hay documentos, contratos de peldaño y un conversor a HTML.
 
 - Los HTML de `docs/html/` se regeneran con `node build/build.mjs`; nunca se editan a mano. El
   markdown es la única fuente.
-- Cada contrato de peldaño tiene exactamente cuatro secciones numeradas: contexto requerido,
-  prompts, resultado esperado, verificación de completitud. Más un encabezado con tramo y forma,
-  y un "Para qué sirve". No agregar secciones sin acordarlo con Pablo.
+- Cada contrato de peldaño tiene exactamente cinco secciones numeradas: contexto requerido,
+  prompts, resultado esperado, verificación de completitud, señales de alarma. Más un encabezado
+  con tramo, forma y tamaño, y un "Para qué sirve". No agregar secciones sin acordarlo con Pablo.
+- Los prompts van EN INGLÉS, en bloque de cita (`> `), y cada uno seguido de un párrafo "Qué le
+  estamos pidiendo" en el idioma del documento. Terminan con "Reply in my language". Son una sola
+  pieza idéntica en las ocho versiones: `node build/build.mjs` los extrae a `prompts/` desde la
+  fuente en castellano y falla si una traducción los alteró.
 - Todo prompt de contrato lleva la cláusula de completitud: el modelo evalúa si el contexto
   alcanza, pide lo que falte, y no estima ni inventa un dato que solo el negocio tiene.
 - El peldaño 0 (elegibilidad) se elabora CON Pablo: los criterios X1 y X2 están confirmados; los
