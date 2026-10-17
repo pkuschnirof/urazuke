@@ -35,7 +35,7 @@ while (i < md.length) {
     const lvl = h[1].length, txt = h[2], id = slug(txt);
     if (lvl === 2) { out.push(/^Glosario/.test(txt) ? '</section><section class="glos">' : '</section><section>'); }
     if (lvl === 2 || (lvl === 3 && !/^\d\. /.test(txt))) toc.push({ lvl, txt, id });
-    const esPeldano = lvl === 3 && /^Pelda[nñ]o \d+/.test(txt);
+    const esPeldano = lvl === 3 && /^(Pelda[nñ]o|Step|Passo|[ÉE]tape|Schritt|ステップ|步骤|第)\s*\d+/.test(txt);
     if (esPeldano) enPeldano = true;
     const cls = esPeldano ? ' class="peldano"' : '';
     out.push(`<h${lvl} id="${id}"${cls}>${inline(txt)}</h${lvl}>`);
@@ -141,4 +141,4 @@ const html = `<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta n
 ${body.replace(/(<h1[^>]*>.*?<\/h1>)/, '$1' + tocHtml)}
 </div></body></html>`;
 writeFileSync(destino, html, 'utf8');
-console.log('escrito', destino, html.length, 'bytes | secciones:', toc.filter(t => t.lvl === 2).length, '| peldanos:', toc.filter(t => /^Pelda[nñ]o/.test(t.txt)).length);
+console.log('escrito', destino, html.length, 'bytes | secciones:', toc.filter(t => t.lvl === 2).length, '| peldanos:', toc.filter(t => /^(Pelda[nñ]o|Step|Passo|[ÉE]tape|Schritt|ステップ|步骤|第)\s*\d+/.test(t.txt)).length);
