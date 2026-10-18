@@ -1,46 +1,51 @@
-# Schritt 0 — Lässt sich dieses Projekt so angehen? (Sprossenvertrag)
+# Schritt 0 — Lässt sich dieses Projekt so angehen? (Schrittvertrag)
 
-**Phase:** Start (einmal pro Projekt, vor dem Öffnen des Repositories).
-**Form:** Gespräch (der Agent bewertet und fragt; der Eigentümer entscheidet).
+**Abschnitt:** Start.
+**Wann:** ein einziges Mal, in der ersten Woche, bevor das Repository geöffnet wird und vor allem
+anderen. Eine Stunde Arbeit.
+**Form:** Gespräch: der Agent bewertet und fragt; du entscheidest.
 **Größe:** verpflichtend in jedem Projekt, so klein es auch sei. Dauert eine Stunde; spart Monate.
-**Stand:** in Ausarbeitung mit Pablo. Die Ausschlusskriterien X1 und X2 sind bestätigt; die
-gewichteten Kriterien (D1 bis D10) sind noch Hypothesen ohne Gewicht.
+**Stand:** die Ausschlusskriterien X1 und X2 sind geschlossen; die gewichtenden Kriterien (D1 bis
+D10) kalibriere ich noch und markiere sie als Hypothese.
 
-## Wozu sie dient
+## Wozu er dient
 
-Um sich nicht in ein Projekt zu begeben, in dem die Methode nicht funktionieren kann. Wenn der Agent
-sich nicht selbst von Anfang bis Ende verifizieren kann, oder wenn es keinen Fachbereichs-Eigentümer
-gibt, der entscheidet, verkommt die Methode zu „Programmieren mit KI“, und der Mensch liest am Ende
-Code. Diese Sprosse ist die Eingangstür: man geht einmal hindurch, und wenn man nicht hindurchkommt,
-weiß man es besser vorher als nachher.
+Steig in kein Projekt ein, in dem die Methode nicht funktionieren kann. Wenn der Agent sich nicht
+von Ende zu Ende selbst wird prüfen können, oder wenn es keinen Eigentümer der Domäne gibt, der
+entscheidet, verkommt die Methode zu „mit KI programmieren“, und am Ende liest du Code. Dieser
+Schritt ist die Eingangstür: man geht einmal hindurch, und wenn man nicht hindurchgeht, weiß man
+das besser vorher als nachher.
 
-Es gibt einen Grundgedanken, den man ausdrücklich sagen sollte: **die Methode taugt nicht für jedes
-Projekt, und das ist kein Mangel**. Eine Methode, die verspricht, für alles zu taugen, sagt nichts.
-Was diese Sprosse tut, ist, die Grenze schriftlich festzuhalten, damit die Entscheidung, einzusteigen
-oder nicht, eine Entscheidung ist und keine Hoffnung.
+Und eine Grundidee, die ich dir klar mitgeben will: **die Methode taugt nicht für jedes Projekt,
+und das ist kein Mangel**. Eine Methode, die verspricht, für alles zu taugen, sagt gar nichts. Was
+dieser Schritt tut, ist die Grenze schriftlich festzulegen, damit die Entscheidung, einzusteigen
+oder nicht, eine Entscheidung ist und keine Hoffnung. Die beiden Ausschlusskriterien stammen aus
+Projekten, die ich abgelehnt habe, nicht aus denen, die ich angenommen habe
+[Ref. 46](../REFERENCIAS.md#ref-46).
 
 ## 1. Benötigter Kontext
 
-Generisch benannt; der Agent bewertet, ob es reicht, und fragt nach dem, was fehlt.
+Generisch benannt; der Agent bewertet, ob er ausreicht, und fragt nach dem, was fehlt.
 
 - Erhebung der Anfrage: was der Kunde will, für wen, und was heute ohne das System passiert.
-- Technologische Erhebung: welche Technologie existiert oder vorgeschlagen wird, ob es ein
+- Technologische Erhebung: welche Technologie vorhanden ist oder vorgeschlagen wird, ob es ein
   Vorgängersystem gibt, ob dieses System ein Repository hat und wie es verwaltet wird.
-- Erhebung der Testbarkeit: ob die Bildschirme programmatisch bedient werden können und ob jedes
-  Element der Oberfläche mit seinen verschiedenen Methoden erreichbar ist (Klick, Eingabe,
-  Zustandsabfrage), sodass ein Test den Bildschirm durchläuft und die Wirkung im Backend prüft.
-- Wer der Fachbereichs-Eigentümer ist und wie viel Zeit er zum Entscheiden hat.
-- Welche Folge ein Fehler hat (Geld, Gesundheit, Betrieb, keine).
-- Umgebungen und Zugänge: ob es eine Testumgebung geben wird, ob der Agent darauf zugreifen kann,
-  ob die Produktion nur lesend abgefragt werden kann.
+- Erhebung der Testbarkeit: ob die Bildschirme programmatisch ausgeführt werden können und ob
+  jedes Element der Oberfläche mit seinen verschiedenen Methoden zugänglich ist (Klick, Tippen,
+  Zustand lesen), so dass ein Test den Bildschirm durchläuft und die Wirkung im Backend prüft.
+- Wer der Eigentümer der Domäne ist und wie viel Zeit er zum Entscheiden hat.
+- Welche Konsequenz ein Fehler hat (Geld, Gesundheit, Betrieb, keine).
+- Umgebungen und Zugänge: ob es eine Testumgebung geben wird, ob der Agent Zugang hat, ob es eine
+  nur lesend abfragbare Produktion gibt.
 
 ## 2. Prompts
 
-Die Prompts sind auf Englisch, der Sprache, in der Modelle Anweisungen am präzisesten und mit den
-wenigsten Tokens befolgen. Unter jedem steht die Erklärung auf Deutsch, was wir verlangen und warum
-jede Klausel dort steht.
+Die Prompts sind auf Englisch, der Sprache, in der die Modelle Anweisungen am präzisesten und mit
+den wenigsten Tokens befolgen. Jeder bringt seine Übersetzung mit (im HTML über einen Knopf) und
+darunter die Erklärung, was ich verlange und warum jede Klausel dort steht. Dem Modell wird das
+Englische eingefügt.
 
-**Eröffnung:**
+**Zu Beginn:**
 
 > We are going to assess whether this project can be run with the Urazuke method. Read the
 > initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
@@ -51,53 +56,69 @@ jede Klausel dort steht.
 > red. Do not decide: present me the completed sheet with your reading and your doubts, and I
 > will decide. Reply in my language.
 
-Was wir verlangen: dass er die beiden Eingaben liest (die Erhebung und das Kriterienblatt); dass er
-**vor dem Antworten bewertet, ob die Erhebung ausreicht**, und, wenn nicht, fragt statt anzunehmen
-(das ist die zentrale Klausel aller Prompts der Methode); dass er das Blatt mit der Quelle jeder
-Antwort ausfüllt, damit sie später nachvollziehbar ist; dass er die Ausschlusskriterien grün oder
-rot markiert; und dass er **nicht entscheidet**, weil die Eignung der Eigentümer entscheidet. Die
-letzte Zeile bittet ihn, in der Sprache des Eigentümers zu antworten, denn der Prompt ist auf
-Englisch, das Gespräch muss es aber nicht sein.
+> [de]
+> Wir werden bewerten, ob dieses Projekt mit der Urazuke-Methode angegangen werden kann. Lies die
+> Ersterhebung in `docs/INITIAL_SURVEY.md` und das Kriterienblatt in
+> `docs/ELIGIBILITY_CRITERIA.md`. Bewerte zuerst, ob die Erhebung ausreicht, um jedes Kriterium
+> zu beantworten. Wenn sich ein Kriterium aus der Erhebung nicht beantworten lässt, bitte mich um
+> die fehlende Information, bevor du weitermachst; nimm nichts an. Fülle dann das Blatt Kriterium
+> für Kriterium aus: die Antwort, woher sie stammt, und für jedes Ausschlusskriterium, ob es grün
+> oder rot ist. Entscheide nicht: lege mir das ausgefüllte Blatt mit deiner Lesart und deinen
+> Zweifeln vor, und ich entscheide. Antworte in meiner Sprache.
 
-**Abschluss:**
+Was ich hier verlange: dass er die beiden Eingaben liest (die Erhebung und das Kriterienblatt);
+dass er **vor dem Antworten bewertet, ob die Erhebung ausreicht**, und, wenn sie nicht ausreicht,
+fragt statt anzunehmen (das ist die zentrale Klausel aller Prompts der Methode); dass er das Blatt
+mit der Quelle jeder Antwort ausfüllt, damit sie sich später nachverfolgen lässt; dass er die
+Ausschlusskriterien grün oder rot markiert; und dass er **nicht entscheidet**, weil die Eignung
+ich entscheide. Die letzte Zeile bittet ihn, in meiner Sprache zu antworten, denn der Prompt ist
+auf Englisch, aber das Gespräch muss es nicht sein.
+
+**Zum Abschluss:**
 
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
 > source, and the conditions if any. Include the questions you asked and my answers.
 
-Was wir verlangen: dass die Entscheidung mit Datum und Eigentümer schriftlich festgehalten wird
-(Sprosse 6), mit den Bedingungen, falls es welche gibt, und mit der Spur der Fragen und Antworten,
-die der Beleg dafür ist, dass nichts angenommen wurde.
+> [de]
+> Entscheidung: [go / no-go / go unter diesen Bedingungen: …]. Schreibe das endgültige Blatt nach
+> `docs/ELIGIBILITY.md` mit dem Datum, wer entschieden hat, der Antwort auf jedes Kriterium mit
+> ihrer Quelle, und den Bedingungen, falls es welche gibt. Nimm die Fragen auf, die du gestellt
+> hast, und meine Antworten.
+
+Was ich hier verlange: dass er die Entscheidung schriftlich hinterlässt, mit Datum und
+Eigentümer (Schritt 6), mit den Bedingungen, falls es welche gibt, und mit der Spur aus Fragen und
+Antworten, die der Beleg dafür ist, dass er nichts angenommen hat.
 
 ## 3. Erwartetes Ergebnis
 
-Eine Datei `docs/ELIGIBILITY.md` (oder der Name, den das Projekt verwendet), eine Seite, mit:
+Eine Datei `docs/ELIGIBILITY.md` (oder der Name, den dein Projekt verwendet), eine Seite lang, mit:
 
 - Datum und wer entschieden hat.
-- Die beiden Ausschlusskriterien mit ihrer Antwort und ihrer Quelle:
+- Den beiden Ausschlusskriterien mit ihrer Antwort und ihrer Quelle:
   - X1: es gibt ein zugängliches, standardmäßig verwaltetes Repository (oder das Projekt ist neu).
-  - X2: die Oberfläche lässt sich programmatisch bedienen und jedes Element ist mit seinen
-    verschiedenen Methoden erreichbar, mit Prüfung der Wirkung im Backend.
-- Die gewichteten Kriterien (D1 bis D10 der Leiter, sobald sie festgelegt sind), jedes mit Antwort,
-  Quelle und Gewicht.
-- Die Entscheidung: go, no-go oder go unter Bedingungen, mit den Bedingungen schriftlich.
-- Die Fragen, die der Agent gestellt hat, und die Antworten, damit die Spur bleibt.
+  - X2: die Oberfläche lässt sich programmatisch ausführen und jedes Element ist mit seinen
+    verschiedenen Methoden zugänglich, mit Prüfung der Wirkung im Backend.
+- Den gewichtenden Kriterien, jedes mit Antwort, Quelle und Gewicht (sobald das Gewicht kalibriert
+  ist).
+- Der Entscheidung: go, no-go oder go mit Bedingungen, und die Bedingungen ausgeschrieben.
+- Den Fragen, die der Agent gestellt hat, und den Antworten, damit die Spur bleibt.
 
-## 4. Vollständigkeitsprüfung (macht der Eigentümer, ohne Code zu lesen)
+## 4. Vollständigkeitsprüfung (du machst sie, ohne Code zu lesen)
 
-- Haben die beiden Ausschlusskriterien eine ausdrückliche Antwort und eine Quelle? Wenn eines rot
-  ist, lautet die Entscheidung „no-go“, oder gibt es eine Bedingung, die es auflöst?
-- Ist ein Kriterium mit „ich nehme an, ja“ oder „wahrscheinlich“ beantwortet? Wenn ja, ist die
-  Sprosse nicht erklommen: der Agent hätte fragen müssen.
+- Haben die beiden Ausschlusskriterien eine explizite Antwort und eine Quelle? Wenn eines rot ist,
+  lautet die Entscheidung „no-go“ oder gibt es eine Bedingung, die es auflöst?
+- Ist irgendein Kriterium mit „ich nehme an, ja“ oder „wahrscheinlich“ beantwortet? Wenn ja, ist
+  der Schritt nicht erklommen: der Agent hätte fragen müssen.
 - Ist die Entscheidung mit Datum und Namen festgehalten?
-- Sind die Bedingungen (falls vorhanden) überprüfbar? („Lesezugriff auf die Produktion vor
-  Sprosse 3 haben“ ja; „dass der Kunde mitarbeitet“ nein.)
+- Sind die Bedingungen (falls es welche gibt) prüfbar? („Lesezugang zur Produktion vor Schritt 3
+  haben“ ja; „dass der Kunde mitwirkt“ nein.)
 
 ## 5. Warnsignale
 
 - Der Agent hat das ganze Blatt ausgefüllt, ohne eine einzige Frage zu stellen. Entweder war die
   Erhebung perfekt (das ist sie nie) oder er hat angenommen.
-- Die Entscheidung lautet „go unter Bedingungen“ und die Bedingungen sind mehr als drei.
-  Wahrscheinlich ist es ein „no-go“, das niemand aussprechen will.
-- Kriterium X2 wurde mit „ja, mit etwas Arbeit“ beantwortet. Wenn die Bildschirme heute nicht
-  programmatisch bedient werden können, ist dieses „etwas Arbeit“ das ganze Projekt.
+- Die Entscheidung lautet „go mit Bedingungen“ und die Bedingungen sind mehr als drei.
+  Wahrscheinlich ist es ein „no-go“, das man nicht aussprechen will.
+- Das Kriterium X2 wurde mit „ja, mit ein bisschen Arbeit“ beantwortet. Wenn sich die Bildschirme
+  heute nicht programmatisch bedienen lassen, ist dieses „bisschen Arbeit“ das ganze Projekt.

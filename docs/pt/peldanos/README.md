@@ -1,39 +1,45 @@
 # Os contratos de degrau
 
-Um arquivo por degrau. Cada um tem o mesmo esqueleto: o cabeçalho com fase, forma e tamanho
-(obrigatório ou proporcional); para que serve; (1) contexto necessário, nomeado de forma genérica;
-(2) os prompts, **em inglês**, cada um seguido da explicação no idioma do leitor sobre o que
-estamos pedindo e por que cada cláusula está ali; (3) o resultado esperado, com suas
-características; (4) a verificação de completude, que o dono faz sem ler código; (5) os sinais de
-alerta, os sintomas de que o degrau foi subido mal.
+Um arquivo por degrau. Todos têm o mesmo esqueleto, e o têm de propósito, para que você possa
+compará-los e para que, com o tempo, o reflexo de lê-los seja automático: o cabeçalho com a fase,
+o quando, a forma e o tamanho (obrigatório ou proporcional); para que serve; (1) o contexto
+necessário, nomeado de forma genérica; (2) os prompts, **em inglês**, cada um com sua tradução e,
+abaixo, a explicação do que estou pedindo ao modelo e por que cada cláusula está ali; (3) o
+resultado esperado, com suas características; (4) a verificação de completude, que você faz sem
+ler código; (5) os sinais de alerta, os sintomas de um degrau mal subido.
 
-Os prompts em inglês são uma peça única, idêntica em todas as versões do documento nos oito
-idiomas; `node build/build.mjs` os extrai para `prompts/` e verifica que nenhuma tradução os tenha
-alterado.
+Os prompts em inglês são uma peça única, idêntica nas oito versões do documento;
+`node build/build.mjs` os extrai para `prompts/` e verifica que nenhuma tradução os tenha
+alterado. A tradução que acompanha cada prompt é para que você o entenda; ao modelo se cola o
+inglês.
 
-Estão escritos a partir do que fizemos nos três repositórios, ainda não executados tal como
-estão. O primeiro projeto que os usar de ponta a ponta vai corrigir vários: isso faz parte do
-degrau 15.
+Eu os escrevi a partir do que fiz em três sistemas que hoje estão em produção, ainda não os
+executei tal como estão. O primeiro projeto que os usar de ponta a ponta vai corrigir vários;
+isso faz parte do degrau 15. Quando um contrato cita um caso real, faz isso com uma marca
+`[Ref. N]` que leva ao [documento de referências](../REFERENCIAS.md); o procedimento fica limpo e
+o detalhe continua a um clique.
 
-| Degrau | Arquivo | Fase | Forma |
+| Degrau | Arquivo | Fase | Quando |
 |---|---|---|---|
-| 0 — Este projeto pode ser encarado assim? | `peldano-00-elegibilidad.md` | arranque | conversa (em elaboração com Pablo) |
-| 1 — O contrato de convivência | `peldano-01-contrato-de-convivencia.md` | arranque | um disparo + ajuste |
-| 2 — Definição do projeto e leitura obrigatória | `peldano-02-definicion-y-lectura.md` | arranque | conversa |
-| 3 — Dimensionar antes da arquitetura | `peldano-03-dimensionar.md` | arranque | conversa |
-| 4 — O esqueleto com suas comportas | `peldano-04-esqueleto.md` | arranque | um disparo longo + aprovação visual |
-| 5 — O plano são as pendências | `peldano-05-pendientes.md` | ciclo | um disparo + rotina |
-| 6 — As decisões se escrevem junto ao código | `peldano-06-decisiones.md` | ciclo | conversa curta, toda vez |
-| 7 — Testes como cadeados, provados em vermelho | `peldano-07-tests-en-rojo.md` | ciclo | rotina de cada mudança |
-| 8 — Simetria produtor/consumidor e antipadrões | `peldano-08-simetria-y-antipatrones.md` | ciclo | automática + um arquivo que cresce |
-| 9 — Medir antes de construir | `peldano-09-medir.md` | ciclo | um disparo por medição |
-| 10 — Verificação honesta e relatório proporcional | `peldano-10-verificacion-honesta.md` | ciclo | rotina de todo relatório |
-| 11 — A auditoria periódica como insumo do plano | `peldano-11-auditoria.md` | operação | um disparo longo, auditor diferente |
-| 12 — Fail-closed, cadeados e zero dano silencioso | `peldano-12-fail-closed.md` | operação | conversa |
-| 13 — Integração contínua, ambientes, segredos e implantação | `peldano-13-ci-entornos-secretos-deploy.md` | operação | um disparo + rotina de implantação |
-| 14 — Documentação viva e manuais sem IA | `peldano-14-documentacion-viva.md` | operação | rotina + um disparo longo |
-| 15 — O agente residente e a retrospectiva com números | `peldano-15-agente-residente-y-retrospectiva.md` | operação e encerramento | duas partes |
+| 0 — Este projeto pode ser encarado assim? | `peldano-00-elegibilidad.md` | arranque | primeira semana, antes de tudo |
+| 1 — O contrato de convivência | `peldano-01-contrato-de-convivencia.md` | arranque | primeira semana, depois da elegibilidade |
+| 2 — Definição do projeto e leitura obrigatória | `peldano-02-definicion-y-lectura.md` | arranque | primeira semana; mantém-se sempre |
+| 3 — Dimensionar antes da arquitetura | `peldano-03-dimensionar.md` | arranque | primeira semana, antes do esqueleto |
+| 4 — O esqueleto com suas comportas | `peldano-04-esqueleto.md` | arranque | fechamento da primeira semana |
+| 5 — O plano são as pendências | `peldano-05-pendientes.md` | ciclo | ao abrir cada bloco; cada sessão |
+| 6 — As decisões se escrevem junto ao código | `peldano-06-decisiones.md` | ciclo | cada vez que falta uma regra |
+| 7 — Testes como cadeados, provados em vermelho | `peldano-07-tests-en-rojo.md` | ciclo | ao fechar cada pendência |
+| 8 — Simetria produtor/consumidor e antipadrões | `peldano-08-simetria-y-antipatrones.md` | ciclo | com cada mudança de contrato |
+| 9 — Medir antes de construir | `peldano-09-medir.md` | ciclo | antes de construir sobre um número |
+| 10 — Verificação honesta e relatório proporcional | `peldano-10-verificacion-honesta.md` | ciclo | em cada relatório |
+| 11 — A auditoria periódica como insumo do plano | `peldano-11-auditoria.md` | operação | antes da produção; depois, periódica |
+| 12 — Fail-closed, cadeados e zero dano silencioso | `peldano-12-fail-closed.md` | operação | antes de construir o que age sobre o mundo |
+| 13 — Integração contínua, ambientes, segredos e implantação | `peldano-13-ci-entornos-secretos-deploy.md` | operação | fechamento rumo à produção; rotina em cada implantação |
+| 14 — Documentação viva e manuais sem IA | `peldano-14-documentacion-viva.md` | operação | ao fechar cada bloco; completos antes da produção |
+| 15 — O agente residente e a retrospectiva com número | `peldano-15-agente-residente-y-retrospectiva.md` | operação e encerramento | ao entrar em operação; ao fechar cada etapa |
 
 Fases: **arranque** se sobe uma vez por projeto; **ciclo** se repete a cada mudança; **operação**
-quando o sistema já está vivo. O 15 volta ao 0 para o próximo projeto. Os nomes dos arquivos ficam
-em espanhol em todos os idiomas para que as ferramentas de build os reconheçam.
+quando o sistema já está vivo. O 15 volta ao 0 para o projeto seguinte. A linha do tempo
+completa, com o que acontece entre degrau e degrau, está na Parte B do documento principal. Os
+nomes dos arquivos ficam em espanhol em todos os idiomas para que as ferramentas de build os
+reconheçam.

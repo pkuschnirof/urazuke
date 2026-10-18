@@ -1,28 +1,33 @@
 # Étape 1 — Le contrat de collaboration (contrat de l'échelon)
 
-**Phase :** démarrage (une fois par projet ; révisé quand un coup dur l'exige).
-**Forme :** un seul envoi, avec un tour d'ajustement du propriétaire.
+**Tronçon :** démarrage.
+**Quand :** une seule fois, la première semaine, immédiatement après l'éligibilité ; on le révise
+quand un coup dur l'exige. Une demi-heure.
+**Forme :** un seul envoi, avec un tour d'ajustement de votre part.
 **Taille :** obligatoire dans tout projet. C'est l'échelon le moins cher de tous et celui qui évite
 le plus de frustration.
 
 ## À quoi il sert
 
-À ce que l'humain et l'agent conviennent de la façon dont ils vont travailler avant la première
-ligne de code. Cela ressemble à une formalité et ce n'en est pas une : c'est ce qui empêche l'agent
-d'« aider » en élargissant le périmètre, de laisser de la dette pour plus tard, ou de rapporter
-comme fait ce qu'il croit avoir fait. Dans Forge ce fichier s'appelle `SQ.md` (standards de
-qualité) ; le nom n'a pas d'importance, le contenu, si.
+Mettez par écrit, avant la première ligne de code, comment vous et l'agent allez travailler. Cela
+ressemble à une formalité et ce n'en est pas une : c'est ce qui évite que l'agent « aide » en
+élargissant le périmètre, laisse de la dette pour plus tard, ou rapporte comme fait ce qu'il croit
+avoir fait. Dans mon outil, ce fichier s'appelle `SQ.md` (standards de qualité) ; le nom n'a pas
+d'importance, le contenu, si.
 
-Une façon de le comprendre : l'agent est un nouveau collègue qui arrive chaque matin sans mémoire
-de la veille. Le contrat est ce que vous lui dites le premier jour, et ce qu'il relira chaque jour.
-Si vous ne l'écrivez pas, vous devrez le dire à chaque fois, et vous le direz différemment à chaque
-fois.
+Voyez-le ainsi : l'agent est un collaborateur nouveau qui arrive chaque matin sans mémoire de la
+veille. Le contrat, c'est ce que vous lui dites le premier jour, et ce qu'il relira chaque jour. Si
+vous ne l'écrivez pas, vous allez devoir le lui dire à chaque fois, et vous le direz différemment
+à chaque fois. Moi, je l'ai écrit pour la première fois alors que je répétais la même chose à
+chaque session depuis deux semaines [Ref. 1](../REFERENCIAS.md#ref-1), et rien de ce que j'y ai mis
+n'était nouveau en ingénierie des systèmes ; ce qui était nouveau, c'était de devoir l'écrire pour
+quelqu'un sans mémoire.
 
 ## 1. Contexte requis
 
 - Rien du projet : c'est le premier fichier.
-- Du propriétaire : ses préférences de travail (langue, comment il veut qu'on lui pose des
-  questions, ce qu'il considère comme une perte de temps, quel niveau d'autonomie il donne à
+- De vous : vos préférences de travail (langue, comment vous voulez qu'on vous pose des questions,
+  ce que vous considérez comme une perte de votre temps, quel niveau d'autonomie vous donnez à
   l'agent).
 
 ## 2. Prompts
@@ -40,11 +45,24 @@ fois.
 > believe. (6) Speak my language. Add any rules you think this project needs, marked as
 > proposals. If you need to know something about how I work in order to write this, ask me.
 
-Ce que nous demandons : les six règles minimales, chacune avec l'échec qu'elle évite (c'est ce qui
-en fait des règles et non des conseils) ; qu'il propose des règles propres au projet mais les marque
-comme propositions, pour que le propriétaire les accepte ou les rejette ; et qu'il demande ce qu'il
-a besoin de savoir sur le propriétaire. Un contrat rédigé sans une seule question est suspect :
-l'agent ne connaît pas la personne avec qui il va travailler.
+> [fr]
+> Avant d'écrire du code, nous allons fixer le contrat de collaboration entre toi et moi. Écris
+> `docs/WORKING_AGREEMENT.md` avec au moins ces règles, chacune avec une ligne expliquant ce
+> qu'elle évite : (1) Mon temps est sacré : ne me demande pas ce que tu peux résoudre seul, et
+> quand tu demandes, demande en prose, avec ta recommandation. (2) Zéro dette technique : ce qui
+> casse se répare à la racine, avec son test de régression, dans la même session. (3) Périmètre
+> exact : ni plus ni moins que ce qui a été demandé ; si tu vois autre chose, note-le comme
+> élément en attente, ne le fais pas. (4) La documentation se met à jour dans le même commit que
+> le changement. (5) Ne rapporte jamais comme fait quelque chose que tu n'as pas vérifié ; sépare
+> toujours ce que tu as vérifié de ce que tu crois. (6) Parle ma langue. Ajoute les règles dont tu
+> penses que ce projet a besoin, marquées comme propositions. Si tu as besoin de savoir quelque
+> chose sur ma façon de travailler pour écrire ceci, demande-le-moi.
+
+Ce que je lui demande : les six règles minimales, chacune avec l'échec qu'elle évite (c'est ce
+qui en fait des règles et non des conseils) ; qu'il propose des règles propres au projet mais les
+marque comme propositions, pour que vous les acceptiez ou les refusiez ; et qu'il demande ce qu'il
+a besoin de savoir sur vous. Un contrat rédigé sans une seule question est suspect : l'agent ne
+connaît pas la personne avec qui il va travailler.
 
 **De clôture :**
 
@@ -52,35 +70,42 @@ l'agent ne connaît pas la personne avec qui il va travailler.
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 
-Ce que nous demandons : qu'il clôture le contrat avec date et version, et qu'il l'accroche au
-fichier de projet pour qu'il soit lu à chaque session. Sans cet accrochage le contrat existe mais
-n'agit pas.
+> [fr]
+> J'accepte les règles 1 à 6 et tes propositions [X, Y] ; je refuse [Z] parce que [raison].
+> Finalise le contrat avec la date d'aujourd'hui et un numéro de version. Ensuite ajoute au
+> fichier de projet l'instruction de lire ce contrat au début de chaque session.
+
+Ce que je lui demande : qu'il clôture le contrat avec une date et une version, et qu'il l'accroche
+au fichier de projet pour qu'il soit lu à chaque session. Sans cet accrochage, le contrat existe
+mais n'agit pas.
 
 ## 3. Résultat attendu
 
 Un fichier `docs/WORKING_AGREEMENT.md` (ou `SQ.md`, ou `CONTRATO.md`) avec :
 
-- Date et version.
+- Une date et une version.
 - Chaque règle numérotée, en une ou deux phrases, avec l'échec qu'elle évite.
 - Les règles propres au projet, marquées comme telles.
-- Une ligne au bas disant que l'agent propose des changements mais ne modifie pas le contrat seul.
+- Une ligne en bas de page qui dise que l'agent propose des changements mais ne modifie pas le
+  contrat seul.
 
 Et une ligne dans le fichier de projet (`PROJECT.md` ou `CLAUDE.md`) qui ordonne de le lire au
 début de chaque session.
 
 ## 4. Vérification de complétude
 
-- Les six règles minimales sont-elles là, chacune avec l'échec qu'elle évite ?
+- Les six règles minimales y sont-elles, chacune avec l'échec qu'elle évite ?
 - Y a-t-il une règle écrite comme une aspiration (« essayer de… », « dans la mesure du
-  possible… ») ? Si oui, elle ne sert à rien : les règles se respectent ou non.
+  possible… ») ? S'il y en a une, elle ne sert à rien : les règles se respectent ou ne se
+  respectent pas.
 - Le fichier de projet ordonne-t-il de le lire à chaque session ?
-- L'agent vous a-t-il posé au moins une question sur votre façon de travailler ? S'il a tout rédigé
-  sans rien demander, c'est suspect : il ne vous connaît pas.
+- L'agent vous a-t-il posé au moins une question sur votre façon de travailler ? S'il a tout
+  rédigé sans rien demander, c'est suspect : il ne vous connaît pas.
 
 ## 5. Signaux d'alarme
 
-- Le contrat a plus de vingt règles. Personne, ni humain ni modèle, ne respecte vingt règles ; six
-  à huit se respectent.
+- Le contrat a plus de vingt règles. Personne, ni humain ni modèle, ne respecte vingt règles ; on
+  en respecte six ou huit.
 - Une règle dit « l'agent peut modifier ce contrat quand il le juge nécessaire ». Non.
 - Deux semaines plus tard, l'agent fait quelque chose que le contrat interdit et personne ne s'en
   aperçoit. Le contrat n'est pas lu : vérifiez l'accrochage dans le fichier de projet.

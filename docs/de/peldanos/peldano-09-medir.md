@@ -1,38 +1,45 @@
-# Schritt 9 — Messen vor dem Bauen, mit einem Instrument, das selbst geprüft wird (Sprossenvertrag)
+# Schritt 9 — Messen vor dem Bauen, mit einem Instrument, das ebenfalls geprüft wird (Schrittvertrag)
 
-**Phase:** Schleife (jedes Mal, wenn eine Zahl eine Entscheidung speist).
-**Form:** ein Durchgang pro Messung; manchmal ein Gespräch, wenn die Hypothese vom Eigentümer
-stammt.
-**Größe:** proportional. In einem kleinen Projekt kann „messen“ heißen, mit einem Befehl zu zählen
-und die Zahl mit Datum zu notieren; die Ratsche und das Abfragebudget sind für Systeme mit Volumen.
-Was sich mit der Größe nicht ändert: keine Zahl, die etwas entscheidet, stammt aus einem Eindruck.
+**Abschnitt:** Schleife.
+**Wann:** jedes Mal, wenn ein offener Posten von einer Zahl oder einer Ursachenhypothese abhängt,
+BEVOR gebaut wird. Im Start ist die Dimensionierung der erste Fall. In einem kleinen Projekt heißt
+„messen“: mit einem Befehl zählen und die Zahl mit dem Datum notieren.
+**Form:** ein einziger Durchgang pro Messung; manchmal ein Gespräch, wenn die Hypothese deine ist.
+**Größe:** proportional. Die Ratsche und das Abfragebudget sind für Systeme mit Volumen. Was sich
+mit der Größe nicht ändert: keine Zahl, die etwas entscheidet, stammt aus einem Eindruck.
 
-## Wozu sie dient
+## Wozu er dient
 
-Damit jede Zahl, die eine Entscheidung speist, aus einem Programm mit Test stammt und nicht aus
-einer Textsuche, einem Eindruck oder „ich glaube, es sind so um die hundert“. Und damit das
-Instrument selbst geprüft wird, denn Messgeräte lügen: in Kikan sah eines 84 Aufrufe nicht, mit dem
-Zähler auf null, und ein anderes sagte 27, als es 44 waren. Die fünf Regeln lauten: Messgerät mit
-Schutz; wenn das Instrument nicht existiert, wird es gebaut; in beide Richtungen prüfen;
-Näherungen markieren; und wer ausführt, prüft die Zahlen dessen, der geplant hat.
+Sorg dafür, dass jede Zahl, die eine Entscheidung speist, aus einem Programm mit Test stammt und
+nicht aus einer Textsuche, einem Eindruck oder einem „ich glaube, es sind so an die hundert“. Und
+sorg dafür, dass das Instrument selbst auditiert wird, denn Messgeräte lügen: eines von meinen sah
+84 Aufrufe nicht, mit dem Zähler auf null, und ein anderes sagte 27, wo es 44 waren
+[Ref. 35](../REFERENCIAS.md#ref-35), [Ref. 36](../REFERENCIAS.md#ref-36). Die fünf Regeln, die ich
+danach geschrieben habe, sind: Messgerät mit Schutz; wenn das Instrument nicht existiert, wird es
+gebaut; es wird in zwei Richtungen auditiert; das Näherungsweise wird markiert; und wer ausführt,
+verifiziert die Zahlen dessen, der geplant hat.
 
-Es gibt einen tiefen Grund für diese Sprosse: das Modell ist sehr gut darin, Behauptungen mit Zahl
-zu produzieren („es gibt etwa 120 Schleifen dieser Art“), und diese Behauptungen klingen genau
-gleich, ob gemessen oder geschätzt. Der Eigentümer hat keine Möglichkeit, sie am Ton zu
-unterscheiden. Die einzige Art ist, das Instrument zu verlangen: „womit hast du es gemessen? zeig
-mir den Befehl“. Wenn es keinen Befehl gibt, ist es ein Eindruck, so viele Dezimalstellen er auch
-hat.
+Dieser Schritt ist der, den ich am spätesten formalisiert habe, und aus einem Grund, der es wert
+ist, erzählt zu werden: ich ging davon aus, dass ein Modell etwas so Grundlegendes der Ingenieurs-
+kunst wie „miss, bevor du anfasst“ von allein anwenden würde. Tut es nicht. Das Modell ist sehr gut
+darin, Behauptungen mit Zahl zu produzieren („es gibt etwa 120 Schleifen dieser Art“), und diese
+Behauptungen klingen exakt gleich, wenn sie gemessen sind und wenn sie geschätzt sind. Du hast
+keine Möglichkeit, sie am Tonfall zu unterscheiden. Die einzige Art ist, das Instrument zu
+verlangen: „womit hast du das gemessen? zeig mir den Befehl“. Wenn es keinen Befehl gibt, ist es
+ein Eindruck, so viele Nachkommastellen er auch hat. Die Regeln habe ich in der Sitzung
+durchgesetzt, indem ich den Agenten korrigierte, bevor sie Doktrin wurden
+[Ref. 45](../REFERENCIAS.md#ref-45).
 
 ## 1. Benötigter Kontext
 
-- Die Hypothese, vom Eigentümer oder vom Agenten: „ich glaube, das Problem ist X“, „es müssen so
-  um die hundert sein“.
+- Die Hypothese, deine oder die des Agenten: „ich glaube, das Problem ist X“, „es müssten so an
+  die hundert sein“.
 - Zugang zu dem, was gemessen werden soll: der Code, die Datenbank nur lesend, das Log.
 - Die Messgeräte, die es im Repository schon gibt, falls vorhanden.
 
 ## 2. Prompts
 
-**Eröffnung:**
+**Zu Beginn:**
 
 > Before building anything, we are going to measure. The hypothesis is: [X]. Write a meter (a
 > script that lives in the repository) that measures [the quantity], and a test for the meter
@@ -44,12 +51,23 @@ hat.
 > measurement to the code (does everything counted actually exist?). Only then propose what to
 > build. Reply in my language.
 
-Was wir verlangen, Klausel für Klausel: das Messgerät **im Repository** (keinen losen Befehl, der
-verloren geht); den **Test des Messgeräts** gegen einen bekannten Fall (den Schutz); die
-Vollständigkeitsklausel in ihrer Messform (den Zugang erfragen, nicht stillschweigend nähern);
-Näherungen mit ihrer Spanne markieren; die Zahl **mit dem Befehl**, der sie erzeugt, damit der
-Eigentümer ihn ausführen kann; die Prüfung in beide Richtungen, die die beiden lügenden Messgeräte
-enttarnt hat; und die Reihenfolge: erst messen, dann vorschlagen.
+> [de]
+> Bevor wir irgendetwas bauen, messen wir. Die Hypothese ist: [X]. Schreib ein Messgerät (ein
+> Skript, das im Repository lebt), das [die Größe] misst, und einen Test für das Messgerät, der
+> es gegen einen bekannten Fall prüft, bei dem die Antwort im Voraus bekannt ist. Wenn das Messen
+> Zugang oder Daten erfordert, die dir fehlen, frag mich; nähere nicht stillschweigend an. Wenn
+> sich ein Teil nur annähern lässt, markiere ihn als Näherung und nenn mir die Toleranz. Lass das
+> Messgerät laufen, zeig mir die Zahl zusammen mit dem Befehl, der sie erzeugt, und auditiere sie
+> in beide Richtungen: vom Code zur Messung (ist alles gezählt, was gezählt werden sollte?) und
+> von der Messung zum Code (existiert alles Gezählte wirklich?). Erst dann schlag vor, was zu
+> bauen ist. Antworte in meiner Sprache.
+
+Was ich hier verlange, Klausel für Klausel: das Messgerät **im Repository** (keinen losen Befehl,
+der verloren geht); den **Test des Messgeräts** gegen einen bekannten Fall (den Schutz); die
+Vollständigkeitsklausel in ihrer Form fürs Messen (um den Zugang bitten, nicht stillschweigend
+annähern); das Näherungsweise mit seiner Toleranz markieren; die Zahl **mit dem Befehl**, der sie
+erzeugt, damit du ihn ausführen kannst; das Audit in zwei Richtungen, das meine zwei lügenden
+Messgeräte entlarvt hat; und die Reihenfolge: erst messen, dann vorschlagen.
 
 **Wenn es ein Budget gibt:**
 
@@ -57,44 +75,52 @@ enttarnt hat; und die Reihenfolge: erst messen, dann vorschlagen.
 > margin, and protect it with a test that fails if it is exceeded. Tell me the number and the
 > margin.
 
-Was wir verlangen: dass das Budget das Gemessene plus wenig ist, keine runde Zahl, und dass es einen
-Test hat, der fehlschlägt, wenn es überschritten wird. So taucht eine Leistungsregression in der
-Batterie auf und nicht in der Produktion.
+> [de]
+> Setze das Budget für [Abfragen / Schleifen / Zeit] auf diesem Pfad auf den gemessenen Wert
+> plus eine kleine Marge, und schütze es mit einem Test, der fehlschlägt, wenn es überschritten
+> wird. Nenn mir die Zahl und die Marge.
 
-**Wenn der Planende Zahlen geliefert hat (Regel fünf):**
+Was ich hier verlange: dass das Budget das Gemessene plus wenig ist, keine runde Zahl, und dass es
+einen Test hat, der fehlschlägt, wenn es überschritten wird. So taucht eine Leistungsregression in
+der Batterie auf und nicht in der Produktion [Ref. 37](../REFERENCIAS.md#ref-37).
+
+**Wenn derjenige, der geplant hat, Zahlen geliefert hat (Regel fünf):**
 
 > Before executing the plan, verify every number the plan asserts with the meter. If any does
 > not match, stop and tell me; do not execute on a wrong number.
 
-Was wir verlangen: dass der Ausführende den Zahlen des Planenden nicht vertraut, auch wenn es
-dasselbe Modell in einer anderen Sitzung ist. In Kikan waren drei von vier Behauptungen des Plans
-falsch; wo ein Instrument existierte, war die Zahl exakt.
+> [de]
+> Bevor du den Plan ausführst, verifiziere jede Zahl, die der Plan behauptet, mit dem Messgerät.
+> Wenn eine nicht übereinstimmt, halt an und sag es mir; führe nicht auf einer falschen Zahl aus.
+
+Was ich hier verlange: dass derjenige, der ausführt, den Zahlen dessen, der geplant hat, nicht
+vertraut, auch wenn es dasselbe Modell in einer anderen Sitzung ist. In meinem Fall waren drei von
+vier Behauptungen des Plans falsch; wo es ein Instrument gab, war die Zahl exakt.
 
 ## 3. Erwartetes Ergebnis
 
 - Das Messgerät im Repository (`tools/measure_*.py`, `scripts/meter-*.mjs` oder ähnlich), mit
   seinem Test.
 - Die Zahl, mit dem Befehl, der sie erzeugt, und dem Datum.
-- Die Prüfung in beide Richtungen, in zwei oder drei Zeilen aufgeschrieben.
-- Näherungen als solche markiert, mit ihrer Spanne.
-- Falls es ein Budget gibt: der Wert, die Spanne und der Test, der es schützt.
-- Im Commit: „measured: [number] with [meter]“.
+- Das Audit in zwei Richtungen, in zwei oder drei Zeilen geschrieben.
+- Das Näherungsweise als solches markiert, mit seiner Toleranz.
+- Wenn es ein Budget gibt: der Wert, die Marge und der Test, der es schützt.
+- Im Commit: "measured: [number] with [meter]".
 
 ## 4. Vollständigkeitsprüfung
 
-- Kannst du selbst den Befehl des Messgeräts ausführen und bekommst dieselbe Zahl? (Du führst ihn
-  aus; du musst ihn nicht verstehen, nur ausführen.)
+- Kannst du den Befehl des Messgeräts selbst ausführen, und er gibt dir dieselbe Zahl? (Du führst
+  ihn aus; du musst ihn nicht verstehen, nur ausführen.)
 - Hat das Messgerät einen Test? Gegen welchen bekannten Fall?
 - Gibt es im Bericht eine Zahl ohne Messgerät dahinter? Frag, woher sie stammt.
-- Sind Näherungen markiert?
-- Falls der Plan Zahlen enthielt, hat der Agent sie vor der Ausführung geprüft und dir gesagt,
-  welche nicht stimmten?
+- Ist das Näherungsweise markiert?
+- Wenn der Plan Zahlen mitbrachte: hat der Agent sie vor dem Ausführen verifiziert und dir
+  gesagt, welche nicht stimmten?
 
 ## 5. Warnsignale
 
-- Eine Zahl hat sich zwischen zwei Berichten geändert, ohne dass der Code sich geändert hat. Eine
+- Eine Zahl hat sich zwischen zwei Berichten geändert, ohne dass sich der Code geändert hat. Eine
   der beiden wurde nicht gemessen.
-- Das Messgerät zeigt null. Es ist fast nie null; fast immer sieht das Messgerät etwas nicht (in
-  Kikan zweimal).
-- Der Agent schlägt vor, „während des Messens“ zu bauen, um Zeit zu sparen. Die Reihenfolge ist
+- Das Messgerät liefert null. Es ist fast nie null; fast immer sieht das Messgerät etwas nicht.
+- Der Agent schlägt vor, „während des Messens“ zu bauen, um Zeit zu gewinnen. Die Reihenfolge ist
   die Methode: erst die Zahl, dann der Plan.

@@ -1,27 +1,34 @@
 # Passo 8 — Simetria entre produtor e consumidor, e o registro de antipadrões (contrato do degrau)
 
-**Fase:** ciclo (cada mudança que toca um contrato entre duas partes).
-**Forma:** automática no ciclo; mais um arquivo que cresce a cada tropeço.
-**Tamanho:** a simetria é sempre obrigatória; o mapa produtor/consumidor é opcional num projeto
+**Fase:** ciclo.
+**Quando:** com cada pendência que toca um contrato entre duas partes do sistema. O mapa de
+contratos se constrói ao abrir o segundo bloco funcional, quando já há tela e servidor. O
+registro de antipadrões cresce cada vez que algo quebra pela segunda vez.
+**Forma:** automática dentro do ciclo; mais um arquivo que cresce com cada tropeço.
+**Tamanho:** a simetria é obrigatória sempre; o mapa produtor/consumidor é opcional num projeto
 de um único módulo, e obrigatório assim que há uma tela e um servidor separados.
 
 ## Para que serve
 
-Quando você muda uma ponta (o servidor, o robô, o esquema do banco), a outra ponta (a tela, o
-contador, o consumidor) tem que mudar no mesmo commit. Se não, cedo ou tarde divergem, e o usuário
-vê um número de um lado e outro número do outro (o caso 1.355 contra 1.234). E os erros que já
-pagamos uma vez se anotam para não pagá-los duas vezes.
+Quando você muda uma ponta (o servidor, o robô, o esquema do banco), faça com que a outra ponta
+(a tela, o contador, o consumidor) mude no mesmo commit. Se não, cedo ou tarde divergem, e o
+usuário vê um número de um lado e outro número do outro [Ref. 26](../REFERENCIAS.md#ref-26). E os
+erros que você já pagou uma vez, anote-os para não pagá-los duas vezes
+[Ref. 2](../REFERENCIAS.md#ref-2).
 
-O princípio geral por trás: **toda lista tem um único dono**. As colunas de uma tabela, os estados
-possíveis de uma ordem, as causas pelas quais algo espera: define-as uma única parte do sistema (o
-produtor) e todas as demais as leem de lá. Assim que há duas cópias da mesma lista, uma das duas
-está desatualizada; só falta saber qual.
+O princípio geral por trás, que impus no Plano de Saúde e que vale para todo sistema
+[Ref. 27](../REFERENCIAS.md#ref-27): **toda lista tem um único dono**. As colunas de uma tabela,
+os estados possíveis de uma ordem, as causas pelas quais algo espera: define-as uma única parte
+do sistema (o produtor) e todas as demais as leem dali. Assim que há duas cópias da mesma lista,
+uma está desatualizada; só falta saber qual. A árvore semântica do degrau 2 é o primeiro lugar
+onde essas listas se declaram: os estados de uma entidade estão ali, e o código tem que lê-los
+de uma única fonte.
 
 ## 1. Contexto necessário
 
-- Um mapa de quais partes do sistema consomem o quê: que telas leem que serviços, que processos
+- Um mapa de que partes do sistema consomem o quê: que telas leem que serviços, que processos
   escrevem que tabelas. Se não existe, o primeiro prompt o constrói.
-- O registro de antipadrões `docs/GOTCHAS.md`, ainda que vazio.
+- O registro de antipadrões `docs/GOTCHAS.md`, mesmo que vazio.
 
 ## 2. Prompts
 
@@ -32,9 +39,15 @@ está desatualizada; só falta saber qual.
 > the system you cannot access or do not understand, tell me instead of leaving them out of the
 > map. Reply in my language.
 
-O que estamos pedindo: o inventário de contratos com seus dois lados, e a cláusula de completude na
-sua forma para este degrau: o que não se vê se declara, não se omite. Um mapa com lacunas tapadas é
-pior do que nenhum mapa.
+> [pt]
+> Construa `docs/PRODUCER_CONSUMER_MAP.md`: para cada contrato do sistema (um serviço, uma
+> tabela, um formato de arquivo, uma lista de valores), quem o produz e quem o consome. Se há
+> partes do sistema que você não consegue acessar ou que não entende, diga-me em vez de
+> deixá-las fora do mapa. Responda no meu idioma.
+
+O que estou pedindo: o inventário de contratos com seus dois lados, e a cláusula de completude na
+sua forma para este degrau: o que não se vê se declara, não se omite. Um mapa com buracos
+escondidos é pior do que nenhum mapa.
 
 **Rotina (vai no contrato de convivência):**
 
@@ -43,7 +56,13 @@ pior do que nenhum mapa.
 > causes, states) and the consumer reads it, rather than each keeping its own copy. If the map
 > does not have that relationship, add it.
 
-O que estamos pedindo: a simetria como reflexo (procurar o outro lado antes de fechar), a regra da
+> [pt]
+> Antes de fechar qualquer mudança que toque um contrato, procure no mapa cada consumidor e
+> atualize-os no mesmo commit. Prefira sempre que o produtor defina a lista (colunas, causas,
+> estados) e o consumidor a leia, em vez de cada um ter sua cópia. Se o mapa não tem essa
+> relação, acrescente-a.
+
+O que estou pedindo: a simetria como reflexo (procurar o outro lado antes de fechar), a regra da
 lista com um único dono, e que o mapa se mantenha sozinho à medida que se usa.
 
 **Quando algo quebra pela segunda vez:**
@@ -52,9 +71,14 @@ lista com um único dono, e que o mapa se mantenha sozinho à medida que se usa.
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
 > possible, a test or an automatic check that detects it.
 
-O que estamos pedindo: o formato fixo de um antipadrão (cheiro, causa raiz, correção, detecção
-precoce) e, o mais importante, a verificação automática: um antipadrão anotado e não automatizado
-vai se repetir quando mudar a pessoa ou a sessão.
+> [pt]
+> Isto já nos aconteceu. Registre em `docs/GOTCHAS.md` com: como cheira (o sinal precoce), a
+> causa raiz, a correção, e como detectá-lo da próxima vez antes que doa. E acrescente, se
+> possível, um teste ou uma verificação automática que o detecte.
+
+O que estou pedindo: o formato fixo de um antipadrão (cheiro, causa raiz, correção, detecção
+precoce) e, sobretudo, a verificação automática: um antipadrão anotado e não automatizado vai se
+repetir quando mudar a pessoa ou a sessão.
 
 ## 3. Resultado esperado
 
@@ -65,15 +89,15 @@ vai se repetir quando mudar a pessoa ou a sessão.
 
 ## 4. Verificação de completude
 
-- Escolha um contrato do mapa e peça ao agente que mostre onde cada consumidor o lê. Se algum tem
-  sua própria cópia da lista, há dívida.
-- Há um número que se mostre em duas telas diferentes? Compare: são iguais?
-- Cada entrada do GOTCHAS tem as quatro partes?
-- Repetiu-se algum erro que já estava no GOTCHAS? Se sim, falta a verificação automática.
+- Escolha um contrato do mapa e peça ao agente que lhe mostre onde cada consumidor o lê. Se
+  algum tem sua própria cópia da lista, há dívida.
+- Há um número que se mostra em duas telas diferentes? Compare: dão o mesmo?
+- Cada entrada de GOTCHAS tem as quatro partes?
+- Repetiu-se um erro que já estava em GOTCHAS? Se sim, falta a verificação automática.
 
 ## 5. Sinais de alerta
 
-- O mesmo valor aparece escrito à mão em mais de um arquivo ("PENDENTE", "APROVADA" no servidor e
-  na tela). Duas cópias; uma vai divergir.
+- O mesmo valor aparece escrito à mão em mais de um arquivo ("PENDENTE", "APROVADA" no servidor
+  e na tela). Duas cópias; uma vai divergir.
 - Uma mudança no servidor foi fechada com o teste do servidor em verde e ninguém tocou na tela.
-- O GOTCHAS tem entradas sem a parte "como detectá-lo antes". São anedotas, não antipadrões.
+- GOTCHAS tem entradas sem a parte "como detectá-lo antes". São anedotas, não antipadrões.

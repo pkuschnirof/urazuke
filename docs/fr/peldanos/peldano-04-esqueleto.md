@@ -1,29 +1,38 @@
 # Étape 4 — Le squelette avec ses portes (contrat de l'échelon)
 
-**Phase :** démarrage (une fois).
-**Forme :** un seul envoi long, avec l'approbation visuelle du propriétaire à la fin.
-**Taille :** obligatoire dans tout projet qui aura des utilisateurs. Dans un prototype jetable on
+**Tronçon :** démarrage.
+**Quand :** une fois, à la clôture de la première semaine, après le dimensionnement et avant toute
+fonctionnalité. C'est ici que se fait toute l'infrastructure initiale et la chaîne d'intégration et
+de déploiement.
+**Forme :** un seul envoi long, avec votre approbation visuelle à la fin.
+**Taille :** obligatoire dans tout projet qui aura des utilisateurs. Dans un prototype jetable, on
 peut le sauter ; mais si le prototype survit (ils survivent toujours), cet échelon est la première
 chose à payer.
 
 ## À quoi il sert
 
-À ce que le système démarre, soit testé et soit déployé VIDE avant d'avoir une fonctionnalité.
-Découvrir le déploiement à la fin coûte très cher : dans Kikan il est arrivé un mois après le
-démarrage et a coûté cinq éléments en attente d'affilée. Si le squelette est déployé la première
-semaine, ces coups tombent avec zéro fonctionnalité en jeu.
+Faites en sorte que le système démarre, se teste et se déploie VIDE avant d'avoir des
+fonctionnalités. Découvrir le déploiement à la fin coûte très cher : dans un de mes systèmes, il est
+arrivé un mois après le démarrage et a coûté cinq éléments en attente d'affilée
+[Ref. 32](../REFERENCIAS.md#ref-32). Si le squelette se déploie la première semaine, ces coups durs
+se prennent avec zéro fonctionnalité en jeu.
 
 L'idée générale derrière : **le chemin vers la production fait partie du produit**, ce n'est pas une
-formalité de fin. Un système qui fonctionne sur la machine du programmeur et ne peut pas être
-déployé n'est pas un système ; c'est une démo. Et la seule façon de savoir que le chemin fonctionne,
-c'est de le parcourir quand il n'y a encore rien à perdre.
+formalité de la fin. Un système qui fonctionne sur la machine du programmeur et qui ne peut pas se
+déployer n'est pas un système ; c'est une démo. Et la seule façon de savoir que le chemin
+fonctionne, c'est de le parcourir quand il n'y a encore rien à perdre. C'est pourquoi, dans cet
+échelon, on monte tout ce que la boucle va utiliser ensuite : le dépôt avec sa structure,
+l'environnement de test, l'intégration continue qui lance la batterie à chaque push, et le
+déploiement automatique vers l'environnement de test.
 
 ## 1. Contexte requis
 
 - `docs/SIZING.md` (échelon 3) : l'option choisie définit le squelette.
-- Relevé des environnements : où cela va tourner (cloud, serveur propre), s'il y a un environnement
-  de test et un de production, qui a accès, comment on déploie aujourd'hui s'il y a quelque chose.
-- Le type de projet : nouveau (greenfield), correctif ou évolution de quelque chose d'existant.
+- Relevé des environnements : où ça va tourner (cloud, serveur propre), s'il y aura un
+  environnement de test et un de production, qui a accès, comment on déploie aujourd'hui s'il y a
+  quelque chose.
+- Les identifiants de l'endroit où l'on va déployer, même si c'est un service gratuit.
+- Le type de projet : nouveau, correction ou évolution de quelque chose d'existant.
 
 ## 2. Prompts
 
@@ -40,12 +49,24 @@ c'est de le parcourir quand il n'y a encore rien à perdre.
 > test environment and show it to me. Do not add any functionality "while you are at it".
 > Reply in my language.
 
-Ce que nous demandons : qu'il vérifie qu'il a les accès avant de commencer (sans cela le squelette
-reste sur la machine de l'agent) ; la liste exacte de ce qu'est un squelette (structure, démarrage,
-un test, intégration continue, déploiement en test) ; les portes écrites ; une capture réelle de
-l'environnement de test, qui est la seule preuve valable qu'il a été déployé ; et l'interdiction
-explicite d'ajouter de la fonctionnalité, parce que le modèle a tendance au « tant que j'y suis » et
-que cela casse le périmètre exact.
+> [fr]
+> Nous allons construire le squelette du système, sans aucune fonctionnalité. Lis `PROJECT.md`,
+> `docs/SIZING.md` et le relevé des environnements. Évalue si tu as ce qu'il faut pour que le
+> squelette tourne dans l'environnement de test (accès, URL, méthode de déploiement) ; s'il manque
+> quelque chose, demande-le-moi avant de commencer. Ensuite construis : la structure de dossiers ;
+> le serveur et l'interface qui démarrent ; la structure de tests avec un test de fumée qui passe ;
+> l'intégration continue qui lance cette batterie à chaque push ; et le déploiement vers
+> l'environnement de test. Déclare les portes du flux de travail (ce qui doit être au vert pour
+> passer d'une étape à la suivante) dans `docs/GATES.md`. Quand tu as fini, prends une capture de
+> l'interface vide qui tourne dans l'environnement de test et montre-la-moi. N'ajoute aucune
+> fonctionnalité « tant que tu y es ». Réponds dans ma langue.
+
+Ce que je lui demande : qu'il vérifie qu'il a les accès avant de commencer (sans cela, le
+squelette reste sur la machine de l'agent) ; la liste exacte de ce qu'est un squelette (structure,
+démarrage, un test, intégration continue, déploiement vers le test) ; les portes écrites ; une
+capture réelle de l'environnement de test, qui est la seule preuve valable qu'il a été déployé ;
+et l'interdiction explicite d'ajouter des fonctionnalités, parce que le modèle a tendance au
+« tant que j'y suis » et que cela casse le périmètre exact.
 
 **De clôture :**
 
@@ -53,18 +74,24 @@ que cela casse le périmètre exact.
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a
 > second time and show me that the second run changed nothing.
 
-Ce que nous demandons : laisser les trois commandes là où la prochaine session les trouvera, et
+> [fr]
+> Squelette approuvé. Enregistre dans `docs/STATUS.md` l'URL de l'environnement de test, la
+> commande pour lancer les tests et la commande pour déployer, et marque cette étape comme faite.
+> Ensuite lance le déploiement une seconde fois et montre-moi que la seconde exécution n'a rien
+> changé.
+
+Ce que je lui demande : laisser les trois commandes là où la prochaine session les trouvera, et
 prouver que le déploiement est répétable (le lancer deux fois sans rien casser). Cette seconde
-exécution est la preuve que la procédure est une procédure et non de la chance.
+exécution est la preuve que la procédure est une procédure et non un coup de chance.
 
 ## 3. Résultat attendu
 
 - Le dépôt avec la structure, le serveur et l'écran qui démarrent.
 - Un test de fumée au vert et la batterie qui tourne en intégration continue (avec le lien vers
   l'exécution au vert).
-- Le déploiement dans l'environnement de test qui fonctionne, avec l'URL, et lancé deux fois.
+- Le déploiement vers l'environnement de test qui fonctionne, avec l'URL, et lancé deux fois.
 - `docs/GATES.md` : la liste des portes, chacune avec la condition pour passer.
-- Une capture d'écran du système vide tournant dans l'environnement de test.
+- Une capture d'écran du système vide qui tourne dans l'environnement de test.
 - `docs/STATUS.md` mis à jour avec les trois commandes (lancer, tester, déployer).
 
 ## 4. Vérification de complétude
@@ -72,15 +99,16 @@ exécution est la preuve que la procédure est une procédure et non de la chanc
 - Pouvez-vous ouvrir l'URL de l'environnement de test et voir l'écran vide ? (C'est vous qui le
   faites, pas l'agent.)
 - Y a-t-il un lien vers une exécution d'intégration continue au vert ?
-- Le déploiement a-t-il été lancé deux fois, et la seconde n'a-t-elle rien cassé ?
+- Le déploiement a-t-il été lancé deux fois et la seconde n'a-t-elle rien cassé ?
 - Les portes sont-elles écrites avec une condition vérifiable chacune ?
-- Y a-t-il une fonctionnalité que vous n'avez pas demandée ? Si oui, l'agent a violé le périmètre
-  exact.
+- Y a-t-il une fonctionnalité que vous n'avez pas demandée ? S'il y en a une, l'agent a violé le
+  périmètre exact.
 
 ## 5. Signaux d'alarme
 
 - Le squelette « fonctionne en local » mais le déploiement « on verra plus tard ». Non : le
-  déploiement est le squelette.
-- La capture d'écran vient de la machine de l'agent, pas de l'environnement de test. Demandez l'URL.
+  déploiement, c'est le squelette.
+- La capture d'écran vient de la machine de l'agent, pas de l'environnement de test. Demandez
+  l'URL.
 - Les portes disent des choses comme « le code est de bonne qualité ». Une porte est une condition
-  vérifiable : « la batterie est au vert », « le déploiement en test a fonctionné ».
+  vérifiable : « la batterie est au vert », « le déploiement vers le test a fonctionné ».

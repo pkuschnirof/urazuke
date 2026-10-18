@@ -1,82 +1,138 @@
-# Schritt 7 — Tests als Sperren, rot bewiesen (Sprossenvertrag)
+# Schritt 7 — Tests als Sperren, rot bewiesen (Schrittvertrag)
 
-**Phase:** Schleife (jede Änderung).
-**Form:** ein einziger Durchgang; der Agent führt aus und berichtet, der Eigentümer liest den
-Bericht.
-**Größe:** verpflichtend in jedem Projekt. Es ist das Herz der Methode: wenn es eine Sprosse gibt,
-die nicht verhandelbar ist, dann diese.
+**Abschnitt:** Schleife.
+**Wann:** mit jedem offenen Posten, beim Schließen: der Test in Rot und in Grün, die Regression der
+Nachbarn und der Ende-zu-Ende-Test des berührten Flusses. Die vollständige Ende-zu-Ende-Batterie
+aller Flüsse beim Abschluss jedes Blocks und vor jedem Deployment in die Produktion.
+**Form:** ein einziger Durchgang; der Agent führt aus und berichtet, du liest den Bericht.
+**Größe:** verpflichtend in jedem Projekt. Es ist das Herz der Methode: wenn es einen Schritt gibt,
+der nicht verhandelbar ist, dann dieser.
 
-## Wozu sie dient
+## Wozu er dient
 
-Bei einem Test, den du nie hast fehlschlagen sehen, weißt du nicht, ob er etwas beweist. Die Regel
-lautet hier nicht „schreib Tests“: sie lautet „zeig, dass der Test gegen den alten Code rot wird,
-und dann grün mit dem neuen“. Sie verhindert Tests, die bestehen, weil sie nichts beweisen, und das
-Grün, das einen Bug verbirgt.
+Von einem Test, den du nie hast fehlschlagen sehen, weißt du nicht, ob er etwas beweist. Die Regel
+hier lautet nicht „schreib Tests“: sie lautet „beweise, dass der Test gegen den alten Code rot wird,
+und danach grün mit dem neuen“. Das verhindert die Tests, die bestehen, weil sie nichts prüfen, und
+das Grün, das einen Bug versteckt [Ref. 44](../REFERENCIAS.md#ref-44).
 
-Warum das bei einem Modell wichtiger ist als bei einem menschlichen Programmierer: das Modell
+Warum das mit einem Modell wichtiger ist als mit einem menschlichen Programmierer: das Modell
 schreibt den Code und den Test **in derselben Sitzung, mit demselben Verständnis**. Wenn es die
-Anfrage falsch verstanden hat, prüft der Test, was es verstanden hat, und er besteht. Das Rot gegen
-den alten Code ist die einzige billige Art zu prüfen, dass der Test auf das schaut, was zählt: wenn
-der alte Code ihn besteht, unterscheidet der Test nicht das Vorher vom Nachher, und dann taugt er
-nichts.
+Anfrage falsch verstanden hat, wird der Test prüfen, was es verstanden hat, und er wird bestehen.
+Das Rot gegen den alten Code ist die einzige billige Art zu prüfen, dass der Test auf das schaut,
+was zählt: wenn der alte Code ihn besteht, unterscheidet der Test das Vorher nicht vom Nachher,
+und dann taugt er nichts. Der Fall, der das am besten zeigt, ist der der Zähler, die nicht
+übereinstimmten [Ref. 26](../REFERENCIAS.md#ref-26).
+
+Und die zweite Hälfte: die Ende-zu-Ende-Tests. Ein Test, der vom Bildschirm aus prüft (klickt,
+tippt, liest) und die Wirkung im Backend kontrolliert (die Zeile ist da, der Zustand hat sich
+geändert), ist der, der deine Lektüre des Codes ersetzt. Die Abnahmekriterien des offenen Postens
+(„gegeben, wenn, dann“) sind sein Drehbuch. Und sie laufen dreimal, in drei Maßstäben: der
+berührte Fluss mit jedem offenen Posten, alle Flüsse beim Abschluss jedes Blocks, und alle Flüsse
+mit der exakten Version vor der Produktion.
 
 ## 1. Benötigter Kontext
 
-- Die bereits umgesetzte Änderung (standardmäßig kommen die Tests nach der Umsetzung; „Test
-  zuerst“ bleibt eine Option für kleine, gut abgegrenzte Umfänge).
-- Der offene Posten, der die Änderung auslöst, mit seinem „wie wird geprüft“.
-- Die bestehende Batterie und der Befehl, sie laufen zu lassen (Sprosse 4).
+- Die bereits umgesetzte Änderung (standardmäßig kommen die Tests nach der Umsetzung; „erst der
+  Test“ bleibt als Option für kleine, gut abgegrenzte Umfänge).
+- Der offene Posten, der die Änderung auslöst, mit seinen Abnahmekriterien und seinem „wie wird
+  geprüft“.
+- Die bestehende Batterie und der Befehl, sie auszuführen (Schritt 4).
 
 ## 2. Prompts
 
 **Routine (gehört in die Arbeitsvereinbarung; gilt bei jeder Änderung):**
 
 > To close this pending item I need evidence, not your word. (1) Write the test that proves what
-> the item asks for. (2) Demonstrate that this test fails against the previous code: you may
-> temporarily revert the change, or run the test against the old version, but show me the red
-> output. (3) Show me the green output with the change. (4) Run the regression suite for the
-> neighbouring items and show me it is still green. (5) Do not replace with mocks the very part
-> you are trying to test. If testing end to end requires something you lack (data, access, an
-> environment), ask me for it; do not simulate what you do not have. Finally, the commit message
-> says "proved red against [what]" and the test counts.
+> the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
+> against the previous code: you may temporarily revert the change, or run the test against the
+> old version, but show me the red output. (3) Show me the green output with the change. (4) Run
+> the regression suite for the neighbouring items and show me it is still green. (5) Run the
+> end-to-end test of the flow this item touches, from the screen to the backend, and show me the
+> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing
+> end to end requires something you lack (data, access, an environment), ask me for it; do not
+> simulate what you do not have. Finally, the commit message says "proved red against [what]"
+> and the test counts.
 
-Was wir verlangen, Klausel für Klausel: (1) den Test; (2) **das bewiesene Rot**, mit sichtbarer
-Ausgabe, das ist die Klausel, die diese Methode von „schreib Tests“ unterscheidet; (3) das Grün; (4)
-die Regression der Nachbarn in derselben Sitzung, weil eine Änderung Dinge nebenan bricht; (5)
-nicht genau das mocken, was geprüft wird; und die Vollständigkeitsklausel, an diese Sprosse
-angepasst: wenn etwas fehlt, um Ende-zu-Ende zu testen, **es erfragen, nicht simulieren**. Die
-Commit-Nachricht mit den Zahlen hinterlässt den Beleg dort, wo der Code lebt.
+> [de]
+> Um diesen offenen Posten zu schließen, brauche ich Belege, nicht dein Wort. (1) Schreib den
+> Test, der beweist, was der Posten verlangt, nach seinen Abnahmekriterien. (2) Zeige, dass
+> dieser Test gegen den vorherigen Code fehlschlägt: du kannst die Änderung vorübergehend
+> zurücknehmen oder den Test gegen die alte Version laufen lassen, aber zeig mir die rote Ausgabe.
+> (3) Zeig mir die grüne Ausgabe mit der Änderung. (4) Lass die Regression der benachbarten
+> Posten laufen und zeig mir, dass sie weiter grün ist. (5) Lass den Ende-zu-Ende-Test des
+> Flusses laufen, den dieser Posten berührt, vom Bildschirm bis zum Backend, und zeig mir die
+> Wirkung im Backend. (6) Ersetze nicht ausgerechnet den Teil durch Mocks, den du prüfen willst.
+> Wenn das Ende-zu-Ende-Testen etwas erfordert, das dir fehlt (Daten, Zugang, eine Umgebung),
+> bitte mich darum; simuliere nicht, was du nicht hast. Zum Schluss sagt die Commit-Nachricht
+> „rot bewiesen gegen [was]“ und die Testzahlen.
 
-**Wenn der Agent sagt, es lasse sich nicht testen:**
+Was ich hier verlange, Klausel für Klausel: (1) den Test, geführt von den Abnahmekriterien des
+offenen Postens; (2) **das bewiesene Rot**, mit der Ausgabe vor Augen, die Klausel, die diese
+Methode von „schreib Tests“ unterscheidet; (3) das Grün; (4) die Regression der Nachbarn in
+derselben Sitzung, denn eine Änderung bricht Dinge nebenan; (5) den Ende-zu-Ende-Test des
+berührten Flusses, mit der Wirkung im Backend vor Augen; (6) nicht ausgerechnet das simulieren, was
+geprüft wird; und die Vollständigkeitsklausel, angepasst an diesen Schritt: wenn etwas fehlt, um
+Ende zu Ende zu testen, **darum bitten, nicht simulieren**. Die Commit-Nachricht mit den Zahlen
+hinterlässt den Beleg dort, wo der Code lebt.
+
+**Beim Abschluss jedes Blocks und vor jedem Deployment in die Produktion:**
+
+> Run the complete end-to-end suite of every flow that exists so far, in the test environment,
+> with the exact version that will be promoted. Show me the counts, and for each flow the
+> backend check that proves it. If any flow has no end-to-end test, say so and open a pending
+> item for it; do not pass it as covered.
+
+> [de]
+> Lass die vollständige Ende-zu-Ende-Batterie aller bisher existierenden Flüsse laufen, in der
+> Testumgebung, mit der exakten Version, die befördert werden soll. Zeig mir die Zahlen und für
+> jeden Fluss die Backend-Prüfung, die ihn beweist. Wenn ein Fluss keinen Ende-zu-Ende-Test hat,
+> sag es und öffne einen offenen Posten dafür; lass ihn nicht als abgedeckt durchgehen.
+
+Was ich hier verlange: den zweiten und dritten Maßstab der Ende-zu-Ende-Tests, mit der exakten
+Version (nicht „der neuesten“), mit der Wirkung im Backend pro Fluss, und mit der
+Vollständigkeitsklausel: was nicht abgedeckt ist, wird erklärt und wird zum offenen Posten, es
+geht nicht als abgedeckt durch.
+
+**Wenn der Agent sagt, dass sich etwas nicht testen lässt:**
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
 
-Was wir verlangen: dass „es lässt sich nicht testen“ nicht das Ende des Gesprächs ist, sondern der
-Anfang eines offenen Postens. Nicht-Testbarkeit ist Schuld, und Schuld wird festgehalten.
+> [de]
+> Erkläre, warum es sich nicht testen lässt, was hinzugefügt werden müsste, damit es geht, und
+> öffne einen offenen Posten dafür. Die Änderung ist nicht geschlossen, bis sie sich testen lässt.
+
+Was ich hier verlange: dass „lässt sich nicht testen“ nicht das Ende des Gesprächs ist, sondern
+der Anfang eines offenen Postens. Nicht-Testbarkeit ist Schuld, und Schulden werden registriert.
 
 ## 3. Erwartetes Ergebnis
 
-- Der neue Test im Repository, benannt nach dem Posten, den er schließt.
+- Der neue Test im Repository, benannt nach dem offenen Posten, den er schließt.
 - Im Bericht des Agenten und in der Commit-Nachricht: die rote Ausgabe (wie viele fehlschlagen,
-  gegen welche Version), die grüne Ausgabe und die Regression in Grün mit ihren Zahlen.
-- Falls Ende-zu-Ende getestet wurde (Bildschirm → Backend), der Beleg, dass das Backend sich
-  geändert hat (die Zeile, der Datensatz, der Zustand).
+  gegen welche Version), die grüne Ausgabe und die grüne Regression mit ihren Zahlen.
+- Der Ende-zu-Ende-Test des berührten Flusses, mit dem Beleg, dass sich das Backend geändert hat
+  (die Zeile, der Eintrag, der Zustand).
+- Beim Abschluss jedes Blocks und vor der Produktion: die vollständige Ende-zu-Ende-Batterie in
+  Grün, pro Fluss, mit der exakten Version.
 
 ## 4. Vollständigkeitsprüfung
 
-- Zeigt der Bericht das Rot? Mit Zahlen: „4 von 8 schlagen gegen das alte Kriterium fehl“. Wenn er
-  nur Grün zeigt, ist die Sprosse nicht erklommen.
+- Zeigt der Bericht das Rot? Mit Zahlen: „4 von 8 schlagen gegen das alte Kriterium fehl“. Wenn
+  er nur Grün zeigt, ist der Schritt nicht erklommen.
 - Lief die Regression in derselben Sitzung? Wie viele Tests, wie viele grün?
-- Ist ein Teil genau dort „simuliert“ (gemockt), wo die Änderung liegt? Frag den Agenten, was er
-  simuliert hat und warum.
-- Zitiert der Commit den Posten und sagt er „rot bewiesen“?
-- Wenn der Test ein Bildschirmtest ist, prüft er auch die Wirkung im Backend?
+- Gibt es einen „simulierten“ Teil (Mock) genau dort, wo die Änderung ist? Frag den Agenten, was
+  er simuliert hat und warum.
+- Zitiert der Commit den offenen Posten und sagt „rot bewiesen“?
+- Prüft der Bildschirmtest auch die Wirkung im Backend?
+- Beim Abschluss des Blocks: sind alle Flüsse in der Ende-zu-Ende-Batterie, oder gibt es einen,
+  der „durch die Unit-Tests abgedeckt wird“?
 
 ## 5. Warnsignale
 
-- Alle neuen Tests der Woche sind auf Anhieb grün geworden, und nie wurde ein Rot gezeigt.
-  Entweder überspringt der Agent den Schritt, oder die Tests beweisen nichts.
+- Alle neuen Tests der Woche waren auf Anhieb grün, und nie wurde ein Rot gezeigt. Entweder lässt
+  der Agent den Schritt aus oder die Tests prüfen nichts.
 - Die Batterie dauert immer länger und niemand weiß, warum. Meist wurden die Ende-zu-Ende-Tests
-  durch Simulationen ersetzt, „damit es schnell läuft“.
+  nach und nach durch Simulationen ersetzt, „damit es schnell läuft“.
 - Der Agent berichtet „die Tests bestehen“, ohne zu sagen, wie viele. Immer mit Zahlen.
+- Du kommst zur Produktionsfreigabe und die vollständige Ende-zu-Ende-Batterie läuft zum ersten
+  Mal. Die Blockabschlüsse haben gefehlt.

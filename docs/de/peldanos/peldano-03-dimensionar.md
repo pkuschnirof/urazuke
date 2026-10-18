@@ -1,48 +1,52 @@
-# Schritt 3 — Dimensionieren, bevor die Architektur entworfen wird (Sprossenvertrag)
+# Schritt 3 — Dimensionieren, bevor die Architektur entworfen wird (Schrittvertrag)
 
-**Phase:** Start (einmal; wird wiederholt, wenn das Geschäft die Größenordnung wechselt).
-**Form:** Gespräch (der Agent rechnet und präsentiert Optionen; der Eigentümer wählt).
-**Größe:** immer verpflichtend, aber proportional: in einem kleinen Projekt kann die
-Dimensionierung eine halbe Seite und eine einzige Entscheidung sein („passt jahrelang in SQLite“).
-Was sie nicht kann, ist übersprungen werden, denn die Frage „wie sehr wird es wachsen?“ kostet fünf
-Minuten und die falsche Antwort kostet Wochen.
+**Abschnitt:** Start.
+**Wann:** einmal, in der ersten Woche, nach der Definition und bevor das Skelett gebaut wird; wird
+neu gemacht, wenn das Geschäft seine Größenordnung ändert.
+**Form:** Gespräch: der Agent rechnet und legt Optionen vor; du wählst.
+**Größe:** immer verpflichtend, aber proportional: in einem kleinen Projekt kann die Dimensionierung
+eine halbe Seite und eine einzige Entscheidung sein („passt jahrelang in SQLite“). Was sie nicht
+kann, ist nicht gemacht zu werden, denn die Frage „wie stark wird es wachsen?“ kostet fünf Minuten
+und die falsche Antwort kostet Wochen.
 
-## Wozu sie dient
+## Wozu er dient
 
-Damit die strukturellen Entscheidungen — welche Datenbank-Engine, ob die Schnittstelle synchron oder
-asynchron ist, wie viel Nebenläufigkeit — mit Zahlen getroffen werden und nicht nach Geschmack. Es
-ist die teuerste Sprosse zum Überspringen: in Kikan begann man mit JSON-Dateien, und als gemessen
-wurde, stellte sich heraus, dass das System 3,4 Millionen Zeilen pro Jahr erzeugte; die
-Schnittstelle danach zu ändern kostete eine ganze Etappe der Neuentwicklung.
+Triff die strukturellen Entscheidungen —welche Datenbank-Engine, ob die Schnittstelle synchron
+oder asynchron ist, wie viel Nebenläufigkeit— mit Zahlen und nicht nach Geschmack. Es ist der
+Schritt, dessen Überspringen am teuersten kommt, und ich sage das aus eigener Erfahrung: in einem
+meiner Systeme habe ich mit JSON-Dateien angefangen, und als ich maß, stellte sich heraus, dass es
+3,4 Millionen Zeilen pro Jahr erzeugen würde; die Schnittstelle danach zu ändern kostete eine ganze
+Etappe der Neuentwicklung [Ref. 15](../REFERENCIAS.md#ref-15).
 
-Ein Schlüsselpunkt, der beim Ausarbeiten dieses Vertrags auftauchte: **es gibt Daten, die nur das
-Geschäft hat** (wie viele Entitäten, wie viele Ereignisse pro Entität, wie viele Bediener zur
-Spitzenzeit, wie lange aufbewahren), und das Modell kann sie nicht herleiten. Was es herleiten kann,
-ist das Abgeleitete. Deshalb verlangt der Prompt, dass es bewertet, ob die Primärdaten vollständig
-sind, und die fehlenden erfragt, statt sie mit sicherer Miene zu schätzen. Wer weiß, was ihm zum
-Rechnen fehlt, ist das Modell, nicht ein Formular.
+Es gibt einen Schlüsselpunkt, den du im Kopf behalten solltest: **es gibt Daten, die nur das
+Geschäft hat** (wie viele Entitäten, wie viele Ereignisse pro Entität, wie viele Operatoren in der
+Spitze, wie lange aufbewahrt werden muss), und das Modell kann sie nicht erschließen. Was es
+erschließen kann, ist das Abgeleitete. Deshalb verlangt der Prompt von ihm, zu bewerten, ob die
+Primärdaten vollständig sind, und die fehlenden zu erfragen, statt sie mit sicherer Miene zu
+schätzen. Wer weiß, was ihm zum Rechnen fehlt, ist das Modell, nicht ein Formular.
 
-Und ein zweiter Gedanke, der es wert ist, benannt zu werden: die **asymmetrischen Entscheidungen**.
-Es gibt Entscheidungen, die sehr wenig kosten, wenn du sie triffst und sie sich als unnötig
-erweisen, und sehr viel, wenn du sie nicht triffst und sie sich als nötig erweisen. Die
-Persistenzschnittstelle asynchron ab Zeile eins ist das kanonische Beispiel: wenn die Engine am Ende
-synchron ist, war ein `await` zu viel; wenn sie asynchron wird und du es nicht vorgesehen hast, muss
-alles neu geschrieben werden. Diese Entscheidungen trifft man immer, wenn sie billig sind, auch wenn
-sie heute nicht nötig sind.
+Und eine zweite Idee, die du mitnehmen sollst: die **asymmetrischen Entscheidungen**. Es gibt
+Entscheidungen, die sehr wenig kosten, wenn du sie triffst und sie sich als unnötig erweisen, und
+sehr viel, wenn du sie nicht triffst und sie sich als nötig erweisen. Die Persistenzschnittstelle
+asynchron ab der ersten Zeile ist das kanonische Beispiel: wenn die Engine am Ende synchron ist,
+war ein `await` zu viel; wenn sie am Ende asynchron ist und du es nicht vorgesehen hast, muss alles
+neu geschrieben werden. Diese Entscheidungen triff immer, wenn sie billig sind, auch wenn sie heute
+nicht nötig sind.
 
 ## 1. Benötigter Kontext
 
-- **Erhebung der Mengendaten** des Geschäfts, generisch so benannt: Hauptentitäten und ihr
-  Wachstum, Ereignisse pro Entität, gleichzeitige Bediener und Spitzenzeit, Aufbewahrungsdauer der
-  Daten, Sonderlasten (Kampagnen, Abschlüsse), erwartetes Wachstum. Die Erhebung ist von Natur aus
-  unvollständig; der Agent bewertet und fragt.
-- Falls ein Vorgängersystem existiert: Lesezugriff auf seine Datenbank, um echte Zahlen statt
+- **Erhebung der Mengendaten** des Geschäfts, so generisch benannt: Hauptentitäten und ihr
+  Wachstum, Ereignisse pro Entität, gleichzeitige Operatoren und Zeitpunkt der Spitze,
+  Aufbewahrungsdauer der Daten, Ausnahmelasten (Kampagnen, Abschlüsse), erwartetes Wachstum. Die
+  Erhebung ist von Natur aus unvollständig; der Agent bewertet und fragt.
+- Wenn es ein Vorgängersystem gibt: Lesezugang zu seiner Datenbank, um echte Zahlen statt
   Schätzungen zu holen.
-- `PROJECT.md` (Sprosse 2).
+- `PROJECT.md` und der semantische Baum (Schritt 2): die Entitäten des Baums sind die, die
+  dimensioniert werden müssen.
 
 ## 2. Prompts
 
-**Eröffnung:**
+**Zu Beginn:**
 
 > Before proposing any architecture we are going to size the system. Read `PROJECT.md` and the
 > volume survey in `docs/VOLUME_SURVEY.md`. Distinguish primary data (facts only the business
@@ -56,16 +60,30 @@ sie heute nicht nötig sind.
 > each with the cost of migrating to the others later. Do not choose: I choose. Do not write code.
 > Reply in my language.
 
-Was wir verlangen, Klausel für Klausel: Primär- von abgeleiteten Daten unterscheiden (die
-Unterscheidung, die das Erfinden verhindert); **die fehlenden Primärdaten erfragen und nie
-schätzen**; echte Zahlen des Vorgängersystems verwenden, wenn es eines gibt, mit ihrer Quelle; das
-Abgeleitete mit sichtbarer Rechnung berechnen, damit der Eigentümer sie nachrechnen kann; das
-„mal zehn“-Szenario, das zeigt, was zuerst bricht; drei Optionen mit den Kosten der Migration
-zwischen ihnen, denn die Entscheidung ist nicht nur „welche“, sondern „was kostet ein Irrtum“; und
-dass er weder wählt noch Code schreibt, denn diese Sprosse ist eine Entscheidungs-, keine
-Bausprosse.
+> [de]
+> Bevor wir irgendeine Architektur vorschlagen, dimensionieren wir das System. Lies `PROJECT.md`
+> und die Mengenerhebung in `docs/VOLUME_SURVEY.md`. Unterscheide Primärdaten (Fakten, die nur
+> das Geschäft kennt) von abgeleiteten Daten (was sich aus den Primärdaten berechnen lässt).
+> Bewerte, ob die Primärdaten vollständig genug sind, um das Folgende zu berechnen; wenn eine
+> Primärzahl fehlt oder als Annahme markiert ist, bitte mich um alle fehlenden Zahlen, bevor du
+> weitermachst. Schätze nie eine Primärzahl. Wenn ein Vorgängersystem abgefragt werden kann,
+> verwende seine echten Zahlen und gib an, woher jede stammt. Mit vollständigen Primärdaten
+> berechne, mit sichtbarer Rechnung: Zeilen pro Jahr für die drei größten Tabellen,
+> Nebenläufigkeit in der Spitze, Datenvolumen nach fünf Jahren, und was zuerst bricht, wenn alles
+> mit zehn multipliziert wird. Lege dann drei Optionen für Persistenz und Nebenläufigkeit vor,
+> jede mit den Kosten, später zu den anderen zu migrieren. Wähle nicht: ich wähle. Schreibe
+> keinen Code. Antworte in meiner Sprache.
 
-**Abschluss:**
+Was ich hier verlange, Klausel für Klausel: Primärdaten von abgeleiteten unterscheiden (das ist
+die Unterscheidung, die die Erfindung verhindert); **die fehlenden Primärdaten erfragen und sie
+nie schätzen**; echte Zahlen des Vorgängersystems verwenden, wenn es eines gibt, mit ihrer Quelle;
+das Abgeleitete mit sichtbarer Rechnung berechnen, damit du sie nachrechnen kannst; das Szenario
+„mal zehn“, das zeigt, was zuerst bricht; drei Optionen mit den Kosten, zwischen ihnen zu
+migrieren, denn die Entscheidung ist nicht nur „welche“, sondern „wie viel kostet es, sich zu
+irren“; und dass er weder wählt noch Code schreibt, denn dieser Schritt ist einer der Entscheidung,
+nicht des Bauens.
+
+**Zum Abschluss:**
 
 > I choose option [B]. Record in `docs/SIZING.md`: the primary data with its source, the derived
 > data with its arithmetic, the three options, the chosen one and why, and the decisions we are
@@ -73,42 +91,48 @@ Bausprosse.
 > interface is asynchronous from line one, even if the first engine is synchronous). Include the
 > questions you asked and my answers.
 
-Was wir verlangen: die vollständige Aufzeichnung mit Quellen und Rechnungen; die gewählte Option
-und den Grund; und die asymmetrischen Entscheidungen schriftlich, denn wenn sie implizit bleiben,
-werden sie nicht eingehalten.
+> [de]
+> Ich wähle Option [B]. Halte in `docs/SIZING.md` fest: die Primärdaten mit ihrer Quelle, die
+> abgeleiteten Daten mit ihrer Rechnung, die drei Optionen, die gewählte und warum, und die
+> Entscheidungen, die wir „vorsichtshalber“ treffen, obwohl sie heute nicht nötig sind (zum
+> Beispiel: die Persistenzschnittstelle ist ab der ersten Zeile asynchron, auch wenn die erste
+> Engine synchron ist). Nimm die Fragen auf, die du gestellt hast, und meine Antworten.
+
+Was ich hier verlange: die vollständige Aufzeichnung, mit Quellen und Rechnungen; die gewählte
+Option und den Grund; und die asymmetrischen Entscheidungen ausgeschrieben, denn wenn sie implizit
+bleiben, werden sie nicht eingehalten.
 
 ## 3. Erwartetes Ergebnis
 
 Eine Datei `docs/SIZING.md` mit:
 
 - Datum und wer entschieden hat.
-- Tabelle der Primärdaten: Wert, Quelle (vom Geschäft genannt / im Vorgängersystem gemessen),
+- Tabelle der Primärdaten: Wert, Quelle (vom Geschäft mitgeteilt / im Vorgängersystem gemessen),
   Datum. Keiner mit Quelle „Annahme“.
 - Tabelle der abgeleiteten Daten: Wert, aus welchen Primärdaten er stammt, die Rechnung.
-- Das „mal zehn“-Szenario: was zuerst bricht.
-- Die drei nummerierten Optionen mit den Kosten der Migration zwischen ihnen.
+- Das Szenario „mal zehn“: was zuerst bricht.
+- Die drei nummerierten Optionen, mit den Kosten, zwischen ihnen zu migrieren.
 - Die gewählte und der Grund, in ein oder zwei Sätzen.
-- Die asymmetrischen Entscheidungen (billig, wenn du dich irrst, sehr teuer, wenn du sie nicht
-  triffst), aufgelistet.
+- Die asymmetrischen Entscheidungen, aufgelistet.
 - Die Fragen, die der Agent gestellt hat, und die Antworten.
 
 ## 4. Vollständigkeitsprüfung
 
-- Gibt es ein Primärdatum mit Quelle „Annahme“ oder ohne Quelle? Wenn ja, ist die Sprosse nicht
+- Gibt es ein Primärdatum mit Quelle „Annahme“ oder ohne Quelle? Wenn ja, ist der Schritt nicht
   erklommen: der Agent hätte es erfragen müssen.
-- Zeigt jedes abgeleitete Datum, aus welchen Primärdaten es stammt und mit welcher Rechnung?
-  Kannst du eine Rechnung von Hand nachvollziehen und kommst auf dasselbe?
+- Zeigt jedes abgeleitete Datum, aus welchen Primärdaten es stammt und mit welcher Rechnung? Kannst
+  du eine Rechnung von Hand nachrechnen, und sie stimmt?
 - Gibt es drei Optionen und eine gewählte mit schriftlichem Grund?
-- Sagt es, was passiert, wenn die Menge sich verzehnfacht?
+- Sagt es, was passiert, wenn die Menge mit zehn multipliziert wird?
 - Sind die asymmetrischen Entscheidungen aufgeschrieben, oder blieben sie implizit?
 - Hat der Agent gefragt? Wenn er Zahlen vorgelegt hat, ohne eine einzige Frage gestellt zu haben,
   sei misstrauisch.
 
 ## 5. Warnsignale
 
-- Alle drei Optionen führen zum selben Schluss. Der Agent hatte schon gewählt und die anderen
-  beiden zum Schein aufgesetzt.
-- Ein abgeleiteter Wert hat mehr Präzision als die Primärdaten, aus denen er stammt („1.234.567
+- Die drei Optionsszenarien führen zur selben Schlussfolgerung. Der Agent hatte schon gewählt und
+  die anderen zwei der Form halber gebaut.
+- Eine abgeleitete Zahl hat mehr Präzision als die Primärdaten, aus denen sie stammt („1.234.567
   Zeilen“ aus „etwa 5.000 Familien“). Die Präzision ist falsch.
-- Das „mal zehn“-Szenario sagt „nichts passiert“. Es passiert immer etwas; wenn er es nicht
+- Das Szenario „mal zehn“ sagt „passiert nichts“. Es passiert immer etwas; wenn er es nicht
   gefunden hat, hat er nicht gesucht.

@@ -1,26 +1,31 @@
 # Passo 1 — O contrato de convivência (contrato do degrau)
 
-**Fase:** arranque (uma vez por projeto; revisado quando um tropeço exige).
-**Forma:** um disparo só, com uma rodada de ajuste do dono.
+**Fase:** arranque.
+**Quando:** uma única vez, na primeira semana, imediatamente depois da elegibilidade; revisa-se
+quando um tropeço o exige. Meia hora.
+**Forma:** um disparo, com uma volta de ajuste sua.
 **Tamanho:** obrigatório em todo projeto. É o degrau mais barato de todos e o que mais frustração
 evita.
 
 ## Para que serve
 
-Para que humano e agente combinem como vão trabalhar antes da primeira linha de código. Parece
-uma formalidade e não é: é o que evita que o agente "ajude" expandindo o escopo, deixe dívida para
-depois, ou relate como feito o que acredita ter feito. No Forge este arquivo se chama `SQ.md`
-(padrões de qualidade); o nome não importa, o conteúdo sim.
+Coloque por escrito, antes da primeira linha de código, como vocês vão trabalhar, você e o
+agente. Parece uma formalidade e não é: é o que evita que o agente "ajude" expandindo o escopo,
+deixe dívida para depois, ou relate como feito o que acredita ter feito. Na minha ferramenta
+este arquivo se chama `SQ.md` (padrões de qualidade); o nome não importa, o conteúdo sim.
 
-Uma forma de entender: o agente é um colega novo que chega toda manhã sem memória de ontem. O
-contrato é o que você diz a ele no primeiro dia, e o que ele vai reler todo dia. Se você não
-escreve, vai ter que dizer toda vez, e vai dizer diferente a cada vez.
+Pense assim: o agente é um colaborador novo que chega cada manhã sem memória de ontem. O
+contrato é o que você diz a ele no primeiro dia, e o que ele vai reler todos os dias. Se você não
+o escreve, vai ter que dizer a cada vez, e vai dizer diferente a cada vez. Eu o escrevi pela
+primeira vez quando já levava duas semanas repetindo a mesma coisa em cada sessão
+[Ref. 1](../REFERENCIAS.md#ref-1), e nada do que coloquei era novo em engenharia de sistemas; o
+novo era ter que escrevê-lo para alguém sem memória.
 
 ## 1. Contexto necessário
 
 - Nenhum do projeto: é o primeiro arquivo.
-- Do dono: suas preferências de trabalho (idioma, como quer que lhe perguntem, o que considera
-  perda de tempo, que nível de autonomia dá ao agente).
+- Seu: suas preferências de trabalho (idioma, como quer que lhe perguntem, o que considera uma
+  perda do seu tempo, que nível de autonomia dá ao agente).
 
 ## 2. Prompts
 
@@ -37,10 +42,23 @@ escreve, vai ter que dizer toda vez, e vai dizer diferente a cada vez.
 > believe. (6) Speak my language. Add any rules you think this project needs, marked as
 > proposals. If you need to know something about how I work in order to write this, ask me.
 
-O que estamos pedindo: as seis regras mínimas, cada uma com a falha que evita (é isso que as torna
-regras e não conselhos); que proponha regras próprias do projeto mas as marque como propostas, para
-que o dono as aceite ou rejeite; e que pergunte o que precisar saber sobre o dono. Um contrato
-redigido sem uma única pergunta é suspeito: o agente não conhece a pessoa com quem vai trabalhar.
+> [pt]
+> Antes de escrever código, vamos fixar o contrato de convivência entre você e eu. Escreva
+> `docs/WORKING_AGREEMENT.md` com pelo menos estas regras, cada uma com uma linha que explique o
+> que evita: (1) Meu tempo é sagrado: não me pergunte o que você pode resolver sozinho, e quando
+> perguntar, pergunte em prosa, com a sua recomendação. (2) Zero dívida técnica: o que quebra se
+> conserta na raiz, com seu teste de regressão, na mesma sessão. (3) Escopo exato: nem mais nem
+> menos do que o pedido; se vir outra coisa, anote como pendência, não faça. (4) A documentação se
+> atualiza no mesmo commit que a mudança. (5) Nunca relate como feito algo que você não verificou;
+> separe sempre o que verificou do que acredita. (6) Fale o meu idioma. Acrescente as regras que
+> achar que este projeto precisa, marcadas como propostas. Se precisar saber algo sobre como eu
+> trabalho para escrever isto, pergunte-me.
+
+O que estou pedindo: as seis regras mínimas, cada uma com a falha que evita (isso é o que as
+torna regras e não conselhos); que proponha regras próprias do projeto mas as marque como
+propostas, para que você as aceite ou rejeite; e que pergunte o que precisar saber sobre você.
+Um contrato redigido sem uma única pergunta é suspeito: o agente não conhece a pessoa com quem
+vai trabalhar.
 
 **De fechamento:**
 
@@ -48,8 +66,13 @@ redigido sem uma única pergunta é suspeito: o agente não conhece a pessoa com
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 
-O que estamos pedindo: que feche o contrato com data e versão, e que o vincule ao arquivo de
-projeto para que seja lido em toda sessão. Sem esse vínculo o contrato existe mas não atua.
+> [pt]
+> Aceito as regras 1 a 6 e as suas propostas [X, Y]; rejeito [Z] porque [razão]. Feche o contrato
+> com a data de hoje e um número de versão. Depois acrescente ao arquivo de projeto a instrução
+> de ler este contrato ao começar cada sessão.
+
+O que estou pedindo: que feche o contrato com data e versão, e que o engate ao arquivo de projeto
+para que seja lido em cada sessão. Sem esse engate o contrato existe mas não age.
 
 ## 3. Resultado esperado
 
@@ -58,24 +81,24 @@ Um arquivo `docs/WORKING_AGREEMENT.md` (ou `SQ.md`, ou `CONTRATO.md`) com:
 - Data e versão.
 - Cada regra numerada, em uma ou duas frases, com a falha que evita.
 - As regras próprias do projeto, marcadas como tais.
-- Uma linha ao pé dizendo que o agente propõe mudanças mas não edita o contrato sozinho.
+- Uma linha ao pé que diga que o agente propõe mudanças mas não edita o contrato sozinho.
 
 E uma linha no arquivo de projeto (`PROJECT.md` ou `CLAUDE.md`) que ordene lê-lo ao começar cada
 sessão.
 
 ## 4. Verificação de completude
 
-- As seis regras mínimas estão lá, cada uma com a falha que evita?
-- Há alguma regra escrita como aspiração ("tentar…", "na medida do possível…")? Se houver, não
-  serve: as regras se cumprem ou não.
+- Estão as seis regras mínimas, cada uma com a falha que evita?
+- Há alguma regra escrita como aspiração ("tentar…", "na medida do possível…")? Se há, não serve:
+  as regras se cumprem ou não.
 - O arquivo de projeto ordena lê-lo em cada sessão?
-- O agente fez pelo menos uma pergunta sobre como você trabalha? Se redigiu tudo sem perguntar
-  nada, é suspeito: ele não te conhece.
+- O agente lhe fez pelo menos uma pergunta sobre como você trabalha? Se redigiu tudo sem
+  perguntar nada, é suspeito: ele não conhece você.
 
 ## 5. Sinais de alerta
 
 - O contrato tem mais de vinte regras. Ninguém, nem humano nem modelo, respeita vinte regras;
   respeitam-se seis ou oito.
 - Uma regra diz "o agente pode modificar este contrato quando considerar necessário". Não.
-- Duas semanas depois, o agente faz algo que o contrato proíbe e ninguém percebe. O contrato não
-  está sendo lido: revise o vínculo no arquivo de projeto.
+- Duas semanas depois, o agente faz algo que o contrato proíbe e ninguém nota. O contrato não
+  está sendo lido: revise o engate no arquivo de projeto.

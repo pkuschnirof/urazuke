@@ -1,34 +1,41 @@
 # Étape 9 — Mesurer avant de construire, avec un instrument lui-même vérifié (contrat de l'échelon)
 
-**Phase :** boucle (chaque fois qu'un chiffre alimente une décision).
-**Forme :** un seul envoi par mesure ; parfois une conversation quand l'hypothèse est celle du
-propriétaire.
-**Taille :** proportionnel. Dans un petit projet, « mesurer » peut être compter avec une commande
-et noter le chiffre avec sa date ; le cliquet et le budget de requêtes sont pour les systèmes avec
-du volume. Ce qui ne change pas avec la taille : aucun chiffre qui décide de quelque chose ne sort
+**Tronçon :** boucle.
+**Quand :** chaque fois qu'un élément en attente dépend d'un chiffre ou d'une hypothèse de cause,
+AVANT de construire. Au démarrage, le dimensionnement est le premier cas. Dans un petit projet,
+« mesurer », c'est compter avec une commande et noter le chiffre avec la date.
+**Forme :** un seul envoi par mesure ; parfois une conversation quand l'hypothèse est la vôtre.
+**Taille :** proportionnel. Le cliquet et le budget de requêtes sont pour les systèmes avec du
+volume. Ce qui ne change pas avec la taille : aucun chiffre qui décide de quelque chose ne sort
 d'une impression.
 
 ## À quoi il sert
 
-À ce que tout chiffre qui alimente une décision sorte d'un programme avec un test, et non d'une
-recherche de texte, d'une impression, ni de « je crois qu'il y en a une centaine ». Et à ce que
-l'instrument lui-même soit audité, parce que les compteurs mentent : dans Kikan l'un ne voyait pas
-84 appels avec le compteur à zéro, et un autre disait 27 quand il y en avait 44. Les cinq règles
-sont : un compteur gardé ; si l'instrument n'existe pas, on le construit ; on audite dans les deux
-sens ; l'approximatif se marque ; et celui qui exécute vérifie les chiffres de celui qui a planifié.
+Faites en sorte que tout chiffre qui alimente une décision sorte d'un programme avec un test, et
+non d'une recherche de texte, d'une impression, ni d'un « il me semble qu'il y en a une centaine ».
+Et faites en sorte que l'instrument lui-même soit audité, parce que les compteurs mentent : un des
+miens ne voyait pas 84 appels avec le compteur à zéro, et un autre disait 27 quand il y en avait 44
+[Ref. 35](../REFERENCIAS.md#ref-35), [Ref. 36](../REFERENCIAS.md#ref-36). Les cinq règles que j'ai
+écrites après cela sont : compteur gardé ; si l'instrument n'existe pas, on le construit ; on
+l'audite dans les deux directions ; l'approximatif se marque ; et celui qui exécute vérifie les
+chiffres de celui qui a planifié.
 
-Il y a une raison de fond à l'existence de cet échelon : le modèle est très bon pour produire des
-affirmations chiffrées (« il y a environ 120 boucles de ce type ») et ces affirmations sonnent
-exactement pareil qu'elles soient mesurées ou estimées. Le propriétaire n'a aucun moyen de les
-distinguer au ton. La seule façon est d'exiger l'instrument : « avec quoi l'as-tu mesuré ?
-montre-moi la commande ». S'il n'y a pas de commande, c'est une impression, quel que soit le nombre
-de décimales.
+Cet échelon est celui que j'ai mis le plus de temps à formaliser, et pour une raison qui vaut la
+peine d'être racontée : je tenais pour acquis qu'un modèle appliquerait tout seul quelque chose
+d'aussi élémentaire en ingénierie que « mesure avant de toucher ». Il ne l'applique pas. Le modèle
+est très bon pour produire des affirmations chiffrées (« il y a environ 120 boucles de ce type »)
+et ces affirmations sonnent exactement pareil quand elles sont mesurées et quand elles sont
+estimées. Vous n'avez aucun moyen de les distinguer au ton. La seule façon est d'exiger
+l'instrument : « avec quoi l'as-tu mesuré ? montre-moi la commande ». S'il n'y a pas de commande,
+c'est une impression, quel que soit le nombre de décimales. Ces règles, je les ai imposées moi-même
+en session, en corrigeant l'agent, avant qu'elles ne deviennent doctrine
+[Ref. 45](../REFERENCIAS.md#ref-45).
 
 ## 1. Contexte requis
 
-- L'hypothèse, du propriétaire ou de l'agent : « je crois que le problème est X », « il doit y en
+- L'hypothèse, la vôtre ou celle de l'agent : « je crois que le problème est X », « il doit y en
   avoir une centaine ».
-- L'accès à ce qu'on veut mesurer : le code, la base en lecture seule, le journal.
+- Un accès à ce qu'on veut mesurer : le code, la base en lecture seule, le journal.
 - Les compteurs qui existent déjà dans le dépôt, s'il y en a.
 
 ## 2. Prompts
@@ -45,12 +52,23 @@ de décimales.
 > measurement to the code (does everything counted actually exist?). Only then propose what to
 > build. Reply in my language.
 
-Ce que nous demandons, clause par clause : le compteur **dans le dépôt** (pas une commande volante
-qui se perd) ; le **test du compteur** contre un cas connu (la garde) ; la clause de complétude sous
-sa forme pour mesurer (demander l'accès, ne pas approximer en silence) ; marquer l'approximatif avec
-sa marge ; le chiffre **avec la commande** qui le produit, pour que le propriétaire puisse la
-lancer ; l'audit dans les deux sens, qui est ce qui a démasqué les deux compteurs menteurs ; et
-l'ordre : d'abord mesurer, ensuite proposer.
+> [fr]
+> Avant de construire quoi que ce soit, nous allons mesurer. L'hypothèse est : [X]. Écris un
+> compteur (un script qui vit dans le dépôt) qui mesure [la quantité], et un test pour le compteur
+> qui le vérifie contre un cas connu où la réponse est connue d'avance. Si mesurer requiert un
+> accès ou des données que tu n'as pas, demande-les-moi ; n'approxime pas en silence. Si une partie
+> ne peut être qu'approximée, marque-la comme approximative et dis-moi la marge. Lance le compteur,
+> montre-moi le chiffre avec la commande qui le produit, et audite-le dans les deux directions : du
+> code à la mesure (tout ce qui devrait être compté est-il compté ?) et de la mesure au code (tout
+> ce qui est compté existe-t-il vraiment ?). Seulement alors, propose ce qu'il faut construire.
+> Réponds dans ma langue.
+
+Ce que je lui demande, clause par clause : le compteur **dans le dépôt** (pas une commande volante
+qui se perd) ; le **test du compteur** contre un cas connu (la garde) ; la clause de complétude
+sous sa forme pour mesurer (demander l'accès, ne pas approximer en silence) ; marquer
+l'approximatif avec sa marge ; le chiffre **avec la commande** qui le produit, pour que vous
+puissiez la lancer ; l'audit dans les deux directions, qui est ce qui a démasqué mes deux compteurs
+qui mentaient ; et l'ordre : d'abord mesurer, ensuite proposer.
 
 **Quand il y a un budget :**
 
@@ -58,44 +76,52 @@ l'ordre : d'abord mesurer, ensuite proposer.
 > margin, and protect it with a test that fails if it is exceeded. Tell me the number and the
 > margin.
 
-Ce que nous demandons : que le budget soit la valeur mesurée plus un peu, pas un chiffre rond, et
-qu'il ait un test qui échoue s'il est dépassé. Ainsi une régression de performance apparaît dans la
-batterie et non en production.
+> [fr]
+> Fixe le budget de [requêtes / boucles / temps] sur ce chemin à la valeur mesurée plus une petite
+> marge, et protège-le avec un test qui échoue s'il est dépassé. Dis-moi le chiffre et la marge.
+
+Ce que je lui demande : que le budget soit la valeur mesurée plus un peu, pas un chiffre rond, et
+qu'il ait un test qui échoue s'il est dépassé. Ainsi une régression de performance apparaît dans
+la batterie et non en production [Ref. 37](../REFERENCIAS.md#ref-37).
 
 **Quand celui qui a planifié a donné des chiffres (règle cinq) :**
 
 > Before executing the plan, verify every number the plan asserts with the meter. If any does
 > not match, stop and tell me; do not execute on a wrong number.
 
-Ce que nous demandons : que celui qui exécute ne fasse pas confiance aux chiffres de celui qui a
-planifié, même si c'est le même modèle dans une autre session. Dans Kikan, trois affirmations du
-plan sur quatre étaient fausses ; là où il y avait un instrument, le chiffre était exact.
+> [fr]
+> Avant d'exécuter le plan, vérifie avec le compteur chaque chiffre que le plan affirme. Si l'un
+> d'eux ne correspond pas, arrête-toi et dis-le-moi ; n'exécute pas sur un chiffre faux.
+
+Ce que je lui demande : que celui qui exécute ne fasse pas confiance aux chiffres de celui qui a
+planifié, même si c'est le même modèle dans une autre session. Dans mon cas, trois des quatre
+affirmations du plan étaient fausses ; là où il y avait un instrument, le chiffre était exact.
 
 ## 3. Résultat attendu
 
 - Le compteur dans le dépôt (`tools/measure_*.py`, `scripts/meter-*.mjs` ou similaire), avec son
   test.
 - Le chiffre, avec la commande qui le produit et la date.
-- L'audit dans les deux sens, écrit en deux ou trois lignes.
+- L'audit dans les deux directions, écrit en deux ou trois lignes.
 - L'approximatif marqué comme tel, avec sa marge.
 - S'il y a un budget : la valeur, la marge, et le test qui le protège.
-- Dans le commit : « measured: [number] with [meter] ».
+- Dans le commit : "measured: [number] with [meter]".
 
 ## 4. Vérification de complétude
 
 - Pouvez-vous lancer vous-même la commande du compteur et obtenir le même chiffre ? (C'est vous
   qui la lancez ; pas besoin de la comprendre, seulement de l'exécuter.)
 - Le compteur a-t-il un test ? Contre quel cas connu ?
-- Y a-t-il un chiffre dans le rapport sans compteur derrière ? Demandez d'où il vient.
+- Y a-t-il un chiffre dans le rapport sans compteur derrière ? Demandez d'où il sort.
 - L'approximatif est-il marqué ?
 - Si le plan apportait des chiffres, l'agent les a-t-il vérifiés avant d'exécuter et vous a-t-il
-  dit lesquels ne collaient pas ?
+  dit lesquels ne correspondaient pas ?
 
 ## 5. Signaux d'alarme
 
 - Un chiffre a changé entre deux rapports sans que le code change. L'un des deux n'a pas été
   mesuré.
-- Le compteur donne zéro. Ce n'est presque jamais zéro ; c'est presque toujours que le compteur
-  ne voit pas quelque chose (dans Kikan, deux fois).
-- L'agent propose de construire « pendant qu'il mesure », pour gagner du temps. L'ordre est la
+- Le compteur donne zéro. Ce n'est presque jamais zéro ; presque toujours, le compteur ne voit pas
+  quelque chose.
+- L'agent propose de construire « pendant qu'il mesure », pour gagner du temps. L'ordre, c'est la
   méthode : d'abord le chiffre, ensuite le plan.

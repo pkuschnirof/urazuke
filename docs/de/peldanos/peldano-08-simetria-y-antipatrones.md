@@ -1,42 +1,55 @@
-# Schritt 8 — Symmetrie zwischen Produzent und Konsument, und das Anti-Muster-Register (Sprossenvertrag)
+# Schritt 8 — Symmetrie zwischen Produzent und Konsument, und das Register der Anti-Muster (Schrittvertrag)
 
-**Phase:** Schleife (jede Änderung, die einen Vertrag zwischen zwei Teilen berührt).
-**Form:** automatisch in der Schleife; plus eine Datei, die mit jedem Rückschlag wächst.
+**Abschnitt:** Schleife.
+**Wann:** mit jedem offenen Posten, der einen Vertrag zwischen zwei Teilen des Systems berührt. Die
+Vertragskarte wird beim Öffnen des zweiten Funktionsblocks gebaut, wenn es schon Bildschirm und
+Server gibt. Das Register der Anti-Muster wächst jedes Mal, wenn etwas zum zweiten Mal bricht.
+**Form:** automatisch innerhalb der Schleife; plus eine Datei, die mit jedem Rückschlag wächst.
 **Größe:** die Symmetrie ist immer verpflichtend; die Produzent/Konsument-Karte ist in einem
-Ein-Modul-Projekt optional und verpflichtend, sobald es einen Bildschirm und einen Server getrennt
-gibt.
+Projekt mit einem einzigen Modul optional und verpflichtend, sobald es einen Bildschirm und einen
+Server getrennt gibt.
 
-## Wozu sie dient
+## Wozu er dient
 
-Wenn du ein Ende änderst (den Server, den Roboter, das Datenbankschema), muss das andere Ende (der
-Bildschirm, der Zähler, der Konsument) im selben Commit mitgeändert werden. Sonst driften sie früher
-oder später auseinander, und der Nutzer sieht eine Zahl auf der einen und eine andere auf der
-anderen Seite (der Fall 1.355 gegen 1.234). Und die Fehler, die wir schon einmal bezahlt haben,
-werden notiert, um sie nicht zweimal zu bezahlen.
+Wenn du ein Ende änderst (den Server, den Roboter, das Datenbankschema), sorg dafür, dass das
+andere Ende (der Bildschirm, der Zähler, der Konsument) sich im selben Commit ändert. Sonst
+driften sie früher oder später auseinander, und der Nutzer sieht auf der einen Seite eine Zahl und
+auf der anderen eine andere [Ref. 26](../REFERENCIAS.md#ref-26). Und die Fehler, die du schon
+einmal bezahlt hast, schreib auf, um sie nicht zweimal zu bezahlen
+[Ref. 2](../REFERENCIAS.md#ref-2).
 
-Das allgemeine Prinzip dahinter: **jede Liste hat einen einzigen Eigentümer**. Die Spalten einer
-Tabelle, die möglichen Zustände eines Auftrags, die Gründe, warum etwas wartet: ein einziger Teil
-des Systems (der Produzent) definiert sie, und alle anderen lesen sie von dort. Sobald es zwei
-Kopien derselben Liste gibt, ist eine der beiden veraltet; es fehlt nur noch zu wissen, welche.
+Das allgemeine Prinzip dahinter, das ich bei der Krankenkasse durchgesetzt habe und das für jedes
+System gilt [Ref. 27](../REFERENCIAS.md#ref-27): **jede Liste hat einen einzigen Eigentümer**. Die
+Spalten einer Tabelle, die möglichen Zustände eines Auftrags, die Gründe, warum etwas wartet: ein
+einziger Teil des Systems (der Produzent) definiert sie, und alle anderen lesen sie von dort.
+Sobald es zwei Kopien derselben Liste gibt, ist eine veraltet; man weiß nur noch nicht, welche.
+Der semantische Baum von Schritt 2 ist der erste Ort, an dem diese Listen deklariert werden: die
+Zustände einer Entität stehen dort, und der Code muss sie aus einer einzigen Quelle lesen.
 
 ## 1. Benötigter Kontext
 
 - Eine Karte, welche Teile des Systems was konsumieren: welche Bildschirme welche Dienste lesen,
   welche Prozesse welche Tabellen schreiben. Wenn sie nicht existiert, baut der erste Prompt sie.
-- Das Anti-Muster-Register `docs/GOTCHAS.md`, auch wenn es leer ist.
+- Das Register der Anti-Muster `docs/GOTCHAS.md`, auch wenn es leer ist.
 
 ## 2. Prompts
 
-**Zum Bau der Karte (einmal):**
+**Zum Bauen der Karte (einmal):**
 
 > Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
 > a file format, a list of values), who produces it and who consumes it. If there are parts of
 > the system you cannot access or do not understand, tell me instead of leaving them out of the
 > map. Reply in my language.
 
-Was wir verlangen: das Inventar der Verträge mit ihren beiden Seiten, und die
-Vollständigkeitsklausel in ihrer Form für diese Sprosse: was man nicht sieht, wird erklärt, nicht
-weggelassen. Eine Karte mit verdeckten Lücken ist schlimmer als keine Karte.
+> [de]
+> Baue `docs/PRODUCER_CONSUMER_MAP.md`: für jeden Vertrag im System (einen Dienst, eine Tabelle,
+> ein Dateiformat, eine Werteliste), wer ihn produziert und wer ihn konsumiert. Wenn es Teile des
+> Systems gibt, auf die du nicht zugreifen kannst oder die du nicht verstehst, sag es mir, statt
+> sie aus der Karte wegzulassen. Antworte in meiner Sprache.
+
+Was ich hier verlange: das Inventar der Verträge mit ihren zwei Seiten, und die
+Vollständigkeitsklausel in ihrer Form für diesen Schritt: was nicht gesehen wird, wird erklärt,
+nicht weggelassen. Eine Karte mit versteckten Löchern ist schlimmer als keine Karte.
 
 **Routine (gehört in die Arbeitsvereinbarung):**
 
@@ -45,8 +58,15 @@ weggelassen. Eine Karte mit verdeckten Lücken ist schlimmer als keine Karte.
 > causes, states) and the consumer reads it, rather than each keeping its own copy. If the map
 > does not have that relationship, add it.
 
-Was wir verlangen: die Symmetrie als Reflex (die andere Seite suchen, bevor geschlossen wird), die
-Regel der Liste mit einem einzigen Eigentümer, und dass die Karte sich beim Gebrauch selbst pflegt.
+> [de]
+> Bevor du eine Änderung schließt, die einen Vertrag berührt, such in der Karte jeden Konsumenten
+> und aktualisiere sie im selben Commit. Bevorzuge immer, dass der Produzent die Liste definiert
+> (Spalten, Gründe, Zustände) und der Konsument sie liest, statt dass jeder seine eigene Kopie
+> hält. Wenn die Karte diese Beziehung nicht hat, füge sie hinzu.
+
+Was ich hier verlange: die Symmetrie als Reflex (die andere Seite suchen, bevor geschlossen
+wird), die Regel der Liste mit einem einzigen Eigentümer, und dass die Karte sich von selbst
+pflegt, während sie benutzt wird.
 
 **Wenn etwas zum zweiten Mal bricht:**
 
@@ -54,33 +74,38 @@ Regel der Liste mit einem einzigen Eigentümer, und dass die Karte sich beim Geb
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
 > possible, a test or an automatic check that detects it.
 
-Was wir verlangen: das feste Format eines Anti-Musters (Geruch, Grundursache, Behebung, frühe
-Erkennung) und, am wichtigsten, die automatische Prüfung: ein notiertes, aber nicht automatisiertes
-Anti-Muster wiederholt sich, wenn die Person oder die Sitzung wechselt.
+> [de]
+> Das ist uns schon einmal passiert. Halte es in `docs/GOTCHAS.md` fest mit: wie es riecht (das
+> frühe Zeichen), der Grundursache, der Behebung, und wie man es nächstes Mal erkennt, bevor es
+> wehtut. Und füge, wenn möglich, einen Test oder eine automatische Prüfung hinzu, die es erkennt.
+
+Was ich hier verlange: das feste Format eines Anti-Musters (Geruch, Grundursache, Behebung,
+Früherkennung) und vor allem die automatische Prüfung: ein notiertes, aber nicht automatisiertes
+Anti-Muster wird sich wiederholen, wenn die Person oder die Sitzung wechselt.
 
 ## 3. Erwartetes Ergebnis
 
 - `docs/PRODUCER_CONSUMER_MAP.md`: die Liste der Verträge mit Produzent und Konsumenten.
-- In jedem Commit, der einen Vertrag berührt: die aktualisierten Konsumenten, in der Nachricht
+- In jedem Commit, der einen Vertrag berührt: die Konsumenten aktualisiert, in der Nachricht
   benannt.
 - `docs/GOTCHAS.md`: ein Eintrag pro Anti-Muster, mit den vier Teilen (Geruch, Grundursache,
   Behebung, wie man es vorher erkennt), und dem Datum des ersten Mals.
 
 ## 4. Vollständigkeitsprüfung
 
-- Wähle einen Vertrag aus der Karte und bitte den Agenten, dir zu zeigen, wo jeder Konsument ihn
-  liest. Wenn einer seine eigene Kopie der Liste hat, gibt es Schuld.
-- Gibt es eine Zahl, die auf zwei verschiedenen Bildschirmen angezeigt wird? Vergleiche: sind sie
-  gleich?
-- Hat jeder GOTCHAS-Eintrag die vier Teile?
+- Wähl einen Vertrag aus der Karte und bitte den Agenten, dir zu zeigen, wo jeder Konsument ihn
+  liest. Wenn einer seine eigene Kopie der Liste hat, gibt es Schulden.
+- Gibt es eine Zahl, die auf zwei verschiedenen Bildschirmen gezeigt wird? Vergleich: stimmen sie
+  überein?
+- Hat jeder Eintrag in GOTCHAS die vier Teile?
 - Hat sich ein Fehler wiederholt, der schon in GOTCHAS stand? Wenn ja, fehlt die automatische
   Prüfung.
 
 ## 5. Warnsignale
 
-- Derselbe Wert steht von Hand getippt in mehr als einer Datei („AUSSTEHEND“, „GENEHMIGT“ im Server
-  und im Bildschirm). Zwei Kopien; eine wird abdriften.
-- Eine Serveränderung wurde mit grünem Servertest geschlossen und niemand hat den Bildschirm
+- Derselbe Wert steht von Hand geschrieben in mehr als einer Datei („AUSSTEHEND“, „GENEHMIGT“ im
+  Server und im Bildschirm). Zwei Kopien; eine wird abweichen.
+- Eine Änderung am Server wurde mit grünem Servertest geschlossen und niemand hat den Bildschirm
   angefasst.
 - GOTCHAS hat Einträge ohne den Teil „wie man es vorher erkennt“. Das sind Anekdoten, keine
   Anti-Muster.

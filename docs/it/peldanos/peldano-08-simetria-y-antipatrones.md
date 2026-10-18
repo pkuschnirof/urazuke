@@ -1,27 +1,35 @@
 # Passo 8 — Simmetria tra produttore e consumatore, e il registro degli anti-pattern (contratto del gradino)
 
-**Fase:** ciclo (ogni modifica che tocca un contratto tra due parti).
-**Forma:** automatica nel ciclo; più un file che cresce a ogni colpo duro.
-**Dimensione:** la simmetria è sempre obbligatoria; la mappa produttore/consumatore è facoltativa
-in un progetto a modulo singolo, e obbligatoria appena ci sono una schermata e un server separati.
+**Fase:** ciclo.
+**Quando:** con ogni voce in sospeso che tocca un contratto tra due parti del sistema. La mappa dei
+contratti si costruisce all'apertura del secondo blocco funzionale, quando ci sono già una
+schermata e un server. Il registro degli anti-pattern cresce ogni volta che qualcosa si rompe per
+la seconda volta.
+**Forma:** automatica dentro il ciclo; più un file che cresce a ogni colpo.
+**Dimensione:** la simmetria è obbligatoria sempre; la mappa produttore/consumatore è opzionale in
+un progetto di un solo modulo, e obbligatoria appena ci sono una schermata e un server separati.
 
 ## A cosa serve
 
-Quando cambi un'estremità (il server, il robot, lo schema del database), l'altra estremità (la
-schermata, il contatore, il consumatore) deve cambiare nello stesso commit. Altrimenti, presto o
-tardi divergono, e l'utente vede un numero da una parte e un altro numero dall'altra (il caso 1.355
-contro 1.234). E gli errori che abbiamo già pagato una volta si annotano per non pagarli due volte.
+Quando cambi un'estremità (il server, il robot, lo schema del database), fai in modo che l'altra
+estremità (la schermata, il contatore, il consumatore) cambi nello stesso commit. Altrimenti, prima
+o poi divergono, e l'utente vede un numero da una parte e un altro numero dall'altra
+[Ref. 26](../REFERENCIAS.md#ref-26). E gli errori che hai già pagato una volta, annotali per non
+pagarli due volte [Ref. 2](../REFERENCIAS.md#ref-2).
 
-Il principio generale dietro: **ogni lista ha un solo proprietario**. Le colonne di una tabella,
-gli stati possibili di un ordine, le cause per cui qualcosa attende: le definisce una sola parte
-del sistema (il produttore) e tutte le altre le leggono da lì. Appena ci sono due copie della
-stessa lista, una delle due è disallineata; manca solo sapere quale.
+Il principio generale che c'è dietro, che ho imposto alla Mutua e che vale per qualunque sistema
+[Ref. 27](../REFERENCIAS.md#ref-27): **ogni lista ha un solo proprietario**. Le colonne di una
+tabella, gli stati possibili di un ordine, le cause per cui qualcosa aspetta: le definisce una sola
+parte del sistema (il produttore) e tutte le altre le leggono da lì. Appena ci sono due copie della
+stessa lista, una è disallineata; resta solo da scoprire quale. L'albero semantico del gradino 2 è
+il primo posto in cui quelle liste si dichiarano: gli stati di un'entità stanno lì, e il codice
+deve leggerli da una sola fonte.
 
 ## 1. Contesto richiesto
 
-- Una mappa di quali parti del sistema consumano cosa: quali schermate leggono quali servizi,
-  quali processi scrivono quali tabelle. Se non esiste, il primo prompt la costruisce.
-- Il registro degli anti-pattern `docs/GOTCHAS.md`, anche se vuoto.
+- Una mappa di quali parti del sistema consumano cosa: quali schermate leggono quali servizi, quali
+  processi scrivono quali tabelle. Se non esiste, il primo prompt la costruisce.
+- Il registro degli anti-pattern `docs/GOTCHAS.md`, anche se è vuoto.
 
 ## 2. Prompt
 
@@ -32,7 +40,13 @@ stessa lista, una delle due è disallineata; manca solo sapere quale.
 > the system you cannot access or do not understand, tell me instead of leaving them out of the
 > map. Reply in my language.
 
-Cosa stiamo chiedendo: l'inventario dei contratti con le loro due parti, e la clausola di
+> [it]
+> Costruisci `docs/PRODUCER_CONSUMER_MAP.md`: per ogni contratto del sistema (un servizio, una
+> tabella, un formato di file, una lista di valori), chi lo produce e chi lo consuma. Se ci sono
+> parti del sistema a cui non puoi accedere o che non capisci, dimmelo invece di lasciarle fuori
+> dalla mappa. Rispondi nella mia lingua.
+
+Cosa gli sto chiedendo: l'inventario dei contratti con i loro due lati, e la clausola di
 completezza nella sua forma per questo gradino: ciò che non si vede si dichiara, non si omette. Una
 mappa con buchi nascosti è peggio di nessuna mappa.
 
@@ -43,8 +57,15 @@ mappa con buchi nascosti è peggio di nessuna mappa.
 > causes, states) and the consumer reads it, rather than each keeping its own copy. If the map
 > does not have that relationship, add it.
 
-Cosa stiamo chiedendo: la simmetria come riflesso (cercare l'altra parte prima di chiudere), la
-regola della lista con un solo proprietario, e che la mappa si mantenga da sola man mano che si usa.
+> [it]
+> Prima di chiudere qualunque modifica che tocchi un contratto, cerca nella mappa ogni consumatore
+> e aggiornali nello stesso commit. Preferisci sempre che il produttore definisca la lista
+> (colonne, cause, stati) e il consumatore la legga, invece che ciascuno tenga la propria copia. Se
+> la mappa non ha quella relazione, aggiungila.
+
+Cosa gli sto chiedendo: la simmetria come riflesso (cercare l'altro lato prima di chiudere), la
+regola della lista con un solo proprietario, e che la mappa si mantenga da sola man mano che la si
+usa.
 
 **Quando qualcosa si rompe per la seconda volta:**
 
@@ -52,7 +73,12 @@ regola della lista con un solo proprietario, e che la mappa si mantenga da sola 
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
 > possible, a test or an automatic check that detects it.
 
-Cosa stiamo chiedendo: il formato fisso di un anti-pattern (odore, causa radice, correzione,
+> [it]
+> Questo ci è già successo. Registralo in `docs/GOTCHAS.md` con: che odore ha (il segnale
+> precoce), la causa radice, la correzione, e come rilevarlo la prossima volta prima che faccia
+> male. E aggiungi, se si può, un test o una verifica automatica che lo rilevi.
+
+Cosa gli sto chiedendo: il formato fisso di un anti-pattern (odore, causa radice, correzione,
 rilevamento precoce) e, soprattutto, la verifica automatica: un anti-pattern annotato e non
 automatizzato si ripeterà quando cambia la persona o la sessione.
 
@@ -65,16 +91,16 @@ automatizzato si ripeterà quando cambia la persona o la sessione.
 
 ## 4. Verifica di completezza
 
-- Scegli un contratto dalla mappa e chiedi all'agente di mostrarti dove ogni consumatore lo legge.
+- Scegli un contratto della mappa e chiedi all'agente di mostrarti dove lo legge ogni consumatore.
   Se qualcuno ha la propria copia della lista, c'è debito.
-- C'è un numero mostrato su due schermate diverse? Confronta: sono uguali?
+- C'è un numero che si mostra in due schermate diverse? Confronta: danno lo stesso risultato?
 - Ogni voce di GOTCHAS ha le quattro parti?
-- Si è ripetuto un errore già in GOTCHAS? Se sì, manca la verifica automatica.
+- Si è ripetuto un errore che era già in GOTCHAS? Se sì, manca la verifica automatica.
 
 ## 5. Segnali d'allarme
 
 - Lo stesso valore compare scritto a mano in più di un file ("IN SOSPESO", "APPROVATA" nel server
   e nella schermata). Due copie; una divergerà.
-- Una modifica al server è stata chiusa con il test del server in verde e nessuno ha toccato la
+- Una modifica al server si è chiusa con il test del server in verde e nessuno ha toccato la
   schermata.
 - GOTCHAS ha voci senza la parte "come rilevarlo prima". Sono aneddoti, non anti-pattern.

@@ -10,6 +10,7 @@ de siempre y en lo que esos sistemas me mostraron sobre dónde los modelos la ap
 frágil.
 
 Autor: Pablo Kuschniroff, asistido por Claude Code. Publicado bajo Creative Commons BY-SA 4.0.
+Repositorio público: [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke).
 Presentación pública: [yujin.app/urazuke](https://yujin.app/urazuke/).
 
 ## La tesis en una frase

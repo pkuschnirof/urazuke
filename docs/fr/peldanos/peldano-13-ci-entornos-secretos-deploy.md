@@ -1,34 +1,38 @@
 # Étape 13 — Intégration continue, environnements, secrets et déploiement comme partie du produit (contrat de l'échelon)
 
-**Phase :** exploitation (se monte sur le squelette de l'échelon 4 ; se révise à chaque changement
-d'infrastructure).
+**Tronçon :** exploitation.
+**Quand :** la chaîne d'intégration et le déploiement vers l'environnement de test se montent à
+l'échelon 4. La clôture vers la production — environnement réel, secrets sur le serveur, promotion,
+retour arrière prouvé, verrou contre les secrets — se fait dans le tronçon de mise en production,
+après l'audit et les verrous. La routine de chaque déploiement s'applique pendant toute
+l'exploitation.
 **Forme :** un seul envoi pour le monter ; routine pour chaque déploiement.
-**Taille :** obligatoire dans tout projet avec des utilisateurs. Dans un petit, « intégration
-continue » peut être une seule action GitHub et « environnements » deux dossiers sur le même
-serveur ; ce qui ne se négocie pas, c'est que les tests tournent seuls, que la configuration ne soit
-pas dans le dépôt, et qu'il y ait un chemin de retour.
+**Taille :** obligatoire dans tout projet avec des utilisateurs. Dans un petit projet,
+« intégration continue » peut être une seule action GitHub et « environnements » peuvent être
+deux dossiers sur le même serveur ; ce qui ne se négocie pas, c'est que les tests tournent seuls,
+que la configuration ne soit pas dans le dépôt, et qu'il y ait un retour arrière.
 
 ## À quoi il sert
 
-À ce qu'arriver en production soit un paquet reproductible : les tests tournent UNE fois, la
-configuration vit hors du dépôt, et les secrets ne traînent pas. Il évite les tests qui tournent
-trois fois par commit (2 000 minutes de quota en 16 jours), la clé de la base imprimée dans une
-transcription, le CORS qui ne connaissait que le premier domaine, et la configuration écrasée par
-la batterie de tests.
+Faites en sorte qu'arriver en production soit un paquet reproductible : les tests tournent UNE
+fois, la configuration vit hors du dépôt, et les secrets ne traînent pas. Cela évite les tests
+lancés trois fois par commit et le quota brûlé [Ref. 39](../REFERENCIAS.md#ref-39), le déploiement
+durci à coups d'éléments en attente pour l'avoir découvert tard
+[Ref. 32](../REFERENCIAS.md#ref-32), et les secrets collés dans le chat
+[Ref. 42](../REFERENCIAS.md#ref-42).
 
-Sur les secrets il y a une règle à adopter comme un réflexe, sans exception : **un secret qui a été
-vu dans un chat, un journal ou un commit n'est plus un secret**. Peu importe que « personne ne l'ait
-vu » ou qu'il « ait été effacé après ». On le fait tourner. La rotation coûte dix minutes ; savoir si
-quelqu'un l'a utilisé est impossible.
+Sur les secrets, il y a une règle à adopter comme réflexe, sans exception : **un secret qui a été
+vu dans un chat, dans un journal ou dans un commit n'est plus un secret**. Peu importe si
+« personne ne l'a vu » ou s'il « a été effacé ensuite ». On le fait tourner. La rotation coûte
+dix minutes ; savoir si quelqu'un l'a utilisé est impossible.
 
 ## 1. Contexte requis
 
 - **Relevé des environnements et des accès**, de façon générique : quels environnements existent
   (test, production), où ils tournent, qui a accès, comment on promeut quelque chose de l'un à
   l'autre, quels secrets existent et où ils vivent aujourd'hui, combien de quota d'intégration
-  continue il y a. L'agent évalue si cela suffit et demande.
-- Le squelette avec son intégration continue et son déploiement dans l'environnement de test
-  (échelon 4).
+  continue il y a. L'agent évalue si cela suffit et pose des questions.
+- Le squelette avec son intégration continue et son déploiement vers le test (échelon 4).
 
 ## 2. Prompts
 
@@ -45,12 +49,25 @@ quelqu'un l'a utilisé est impossible.
 > that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
 > can do it by hand without you. Reply in my language.
 
-Ce que nous demandons, clause par clause : les accès avant de commencer ; les tests **une seule
+> [fr]
+> Nous allons fermer le chemin vers la production. Lis le relevé des environnements et des accès.
+> Évalue si tu as ce qu'il faut pour déployer en production en sécurité (accès, domaine, où
+> vivent les secrets, comment revenir en arrière) ; s'il manque quelque chose, demande-le-moi.
+> Ensuite monte : (1) l'intégration continue lance la batterie complète exactement une fois par
+> commit ; (2) le déploiement attend le résultat de cette exécution et ne fait qu'empaqueter et
+> téléverser, sans relancer les tests ; (3) la configuration de chaque environnement vit sur le
+> serveur (fichier d'environnement ou coffre), jamais dans le dépôt ; (4) une procédure écrite
+> pour promouvoir de l'environnement de test vers la production, qui puisse être lancée deux fois
+> sans rien casser ; (5) le retour arrière, prouvé ; (6) une vérification automatique qui empêche
+> de committer un secret. Documente tout cela dans `docs/DEPLOYMENT.md` de façon qu'une personne
+> puisse le faire à la main sans toi. Réponds dans ma langue.
+
+Ce que je lui demande, clause par clause : les accès avant de commencer ; les tests **une seule
 fois** par commit (les lancer trois fois est ce qui a brûlé le quota) ; le déploiement qui ne fait
-qu'empaqueter ; la configuration hors du dépôt ; la promotion comme procédure répétable ; le retour
-arrière **testé** (un retour arrière jamais testé n'existe pas) ; le verrou contre les secrets dans
-les commits ; et la documentation pour une personne, qui est l'échelon 14 appliqué à
-l'infrastructure.
+qu'empaqueter ; la configuration hors du dépôt ; la promotion comme procédure répétable ; le
+retour arrière **prouvé** (un retour arrière qui n'a jamais été prouvé n'existe pas) ; le verrou
+contre les secrets dans les commits ; et la documentation pour une personne, qui est l'échelon 14
+appliqué à l'infrastructure.
 
 **Routine de chaque déploiement :**
 
@@ -58,44 +75,54 @@ l'infrastructure.
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
 
-Ce que nous demandons : les trois conditions préalables (test au vert avec la même version, retour
-arrière prêt, changements de configuration annoncés) et les deux preuves postérieures (la version
-qui tourne et une vérification de bout en bout sans rien écrire).
+> [fr]
+> Avant de toucher à la production : l'environnement de test est au vert avec la même version ;
+> le retour arrière est prêt ; et dis-moi ce qui change dans la configuration. Après avoir
+> déployé : montre-moi la version qui tourne en production et une vérification de bout en bout
+> sur la production, en lecture seule.
+
+Ce que je lui demande : les trois conditions préalables (test au vert avec la même version,
+retour arrière prêt, changements de configuration annoncés) et les deux preuves postérieures (la
+version qui tourne et une vérification de bout en bout sans rien écrire).
 
 **Si un secret est apparu dans le chat ou dans un commit :**
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.
 
-Ce que nous demandons : rotation immédiate, inventaire des autres endroits où il était, et la
-vérification qui l'aurait détecté, pour que la prochaine fois il n'arrive pas jusqu'au chat.
+> [fr]
+> Ce secret est compromis : fais-le tourner maintenant, dis-moi partout ailleurs où il a été
+> utilisé, et ajoute la vérification qui l'aurait attrapé.
+
+Ce que je lui demande : rotation immédiate, inventaire des autres endroits où il se trouvait, et
+la vérification qui l'aurait détecté, pour que la prochaine fois il n'arrive pas jusqu'au chat.
 
 ## 3. Résultat attendu
 
-- L'intégration continue tournant une seule fois par commit, avec le lien vers une exécution.
+- L'intégration continue qui tourne une seule fois par commit, avec le lien vers une exécution.
 - Le déploiement qui attend l'intégration et ne fait qu'empaqueter ; mesuré : combien de temps il
   prend avant et après.
 - La configuration hors du dépôt ; dans le dépôt, seulement un exemple sans valeurs.
 - `docs/DEPLOYMENT.md` : comment déployer, promouvoir et revenir en arrière, pas à pas, pour une
   personne.
-- Le retour arrière testé au moins une fois, avec sa preuve.
-- La vérification anti-secrets active (une tentative d'en téléverser un, rejetée).
-- Un relevé du quota d'intégration continue consommé par mois.
+- Le retour arrière prouvé au moins une fois, avec sa preuve.
+- La vérification anti-secrets active (une tentative d'en pousser un, refusée).
+- Un registre du quota d'intégration continue consommé par mois.
 
 ## 4. Vérification de complétude
 
 - Combien de fois la batterie tourne-t-elle par commit ? Ce doit être une. Demandez le lien.
-- Y a-t-il une valeur de configuration réelle (une clé, un mot de passe, une URL interne) dans le
+- Y a-t-il une valeur réelle de configuration (une clé, un mot de passe, une URL interne) dans le
   dépôt ? Demandez à l'agent de chercher et de vous montrer la recherche vide.
-- Pourriez-vous suivre `docs/DEPLOYMENT.md` vous-même, sans l'agent ? Lisez-le avec cette question.
-- Le retour arrière a-t-il été testé ? Quand ? Quelle preuve y a-t-il ?
-- Un secret a-t-il été collé dans le chat pendant le projet ? Si oui, a-t-il été renouvelé ?
+- Pourriez-vous suivre `docs/DEPLOYMENT.md` tout seul, sans l'agent ? Lisez-le avec cette question.
+- Le retour arrière a-t-il été prouvé ? Quand ? Quelle preuve y a-t-il ?
+- Un secret a-t-il été collé dans le chat pendant le projet ? Si oui, a-t-il été tourné ?
 - Savez-vous combien de quota d'intégration continue il reste ce mois-ci ?
 
 ## 5. Signaux d'alarme
 
 - Le déploiement en production se fait « à la main, vite, parce que c'est un petit changement ».
   Les petits changements sont ceux qui cassent la production, parce que personne ne les teste.
-- Le fichier d'exemple de configuration a des valeurs qui semblent réelles. Elles le sont
+- Le fichier d'exemple de la configuration a des valeurs qui ont l'air réelles. Elles le sont
   probablement.
-- Personne ne peut dire quand le retour arrière a été testé pour la dernière fois.
+- Personne ne sait dire quand le retour arrière a été prouvé pour la dernière fois.

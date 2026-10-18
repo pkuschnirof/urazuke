@@ -1,32 +1,36 @@
 # Step 13 — Continuous integration, environments, secrets and deployment as part of the product (step contract)
 
-**Phase:** operation (built on the skeleton of step 4; revised with every infrastructure change).
+**Stretch:** operation.
+**When:** the integration chain and the deployment to the test environment are set up in step 4.
+The closing towards production — the real environment, secrets on the server, promotion, tested
+rollback, lock against secrets — is done in the go-live stretch, after the audit and the locks.
+The routine of every deployment applies throughout operation.
 **Form:** one shot to set it up; routine for every deployment.
 **Size:** mandatory in every project with users. In a small one, "continuous integration" can be a
 single GitHub action and "environments" can be two folders on the same server; what is not
-negotiable is that the tests run by themselves, that the configuration is not in the repository,
-and that there is a way back.
+negotiable is that the tests run on their own, that the configuration is not in the repository,
+and that there is a rollback.
 
 ## What it is for
 
-So that reaching production is a reproducible package: the tests run ONCE, the configuration lives
-outside the repository, and secrets do not wander around. It prevents the tests running three
-times per commit (2,000 minutes of quota in 16 days), the database key printed in a transcript,
-the CORS that only knew the first domain, and the configuration overwritten by the test suite.
+Make reaching production a reproducible package: the tests run ONCE, the configuration lives
+outside the repository, and the secrets are not floating around. It avoids the tests run three
+times per commit and the burned quota [Ref. 39](../REFERENCIAS.md#ref-39), the deployment hardened
+one pending item at a time because it was discovered late [Ref. 32](../REFERENCIAS.md#ref-32), and
+the secrets pasted into the chat [Ref. 42](../REFERENCIAS.md#ref-42).
 
-On secrets there is a rule worth adopting as a reflex, with no exceptions: **a secret that was
-seen in a chat, a log or a commit is no longer a secret**. It does not matter whether "nobody saw
-it" or "it was deleted afterwards". It is rotated. Rotation costs ten minutes; finding out whether
-someone used it is impossible.
+On secrets there is a rule to adopt as a reflex, with no exceptions: **a secret that was seen in a
+chat, in a log or in a commit is no longer a secret**. It does not matter whether "nobody saw it"
+or whether "it was deleted afterwards". It gets rotated. Rotation costs ten minutes; finding out
+whether somebody used it is impossible.
 
 ## 1. Required context
 
-- **Environments and access survey**, generically: which environments exist (test, production),
-  where they run, who has access, how something is promoted from one to the other, which secrets
-  exist and where they live today, how much continuous-integration quota there is. The agent
-  evaluates whether it is enough and asks.
-- The skeleton with its continuous integration and its deployment to the test environment
-  (step 4).
+- **Survey of environments and access**, generically: which environments there are (test,
+  production), where they run, who has access, how something is promoted from one to the other,
+  which secrets exist and where they live today, how much continuous integration quota there is.
+  The agent evaluates whether it is enough and asks.
+- The skeleton with its continuous integration and its deployment to test (step 4).
 
 ## 2. Prompts
 
@@ -43,54 +47,55 @@ someone used it is impossible.
 > that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
 > can do it by hand without you. Reply in my language.
 
-What we are asking for, clause by clause: the access before starting; the tests **exactly once**
-per commit (running them three times is what burned the quota); the deployment that only packages;
-the configuration outside the repository; promotion as a repeatable procedure; the rollback
-**tested** (a rollback that was never tested does not exist); the lock against secrets in commits;
-and the documentation for a person, which is step 14 applied to infrastructure.
+What I am asking for, clause by clause: the access before starting; the tests **a single time**
+per commit (running them three times is what burned the quota); the deployment that only
+packages; the configuration outside the repository; promotion as a repeatable procedure; the
+rollback **tested** (a rollback that was never tested does not exist); the lock against secrets in
+commits; and the documentation for a person, which is step 14 applied to infrastructure.
 
-**Routine for every deployment:**
+**Routine of every deployment:**
 
 > Before touching production: the test environment is green with the same version; the
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
 
-What we are asking for: the three preconditions (test green with the same version, rollback
-ready, configuration changes announced) and the two pieces of evidence afterwards (the version
-running and an end-to-end check that writes nothing).
+What I am asking for: the three preconditions (test green with the same version, rollback ready,
+configuration changes announced) and the two checks afterwards (the version running and an
+end-to-end check without writing anything).
 
 **If a secret showed up in the chat or in a commit:**
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.
 
-What we are asking for: immediate rotation, an inventory of where else it was, and the check that
-would have detected it, so that next time it does not reach the chat.
+What I am asking for: immediate rotation, an inventory of everywhere else it was, and the check
+that would have detected it, so that next time it does not reach the chat.
 
 ## 3. Expected result
 
-- Continuous integration running exactly once per commit, with a link to a run.
-- The deployment that waits for integration and only packages; measured: how long it takes before
-  and after.
+- Continuous integration running a single time per commit, with the link to a run.
+- The deployment that waits for the integration and only packages; measured: how long it takes
+  before and after.
 - The configuration outside the repository; in the repo, only an example without values.
 - `docs/DEPLOYMENT.md`: how to deploy, promote and roll back, step by step, for a person.
 - The rollback tested at least once, with its evidence.
-- The anti-secrets check active (an attempt to commit one, rejected).
-- A record of continuous-integration quota consumed per month.
+- The anti-secrets check active (an attempt to upload one, rejected).
+- A record of the continuous integration quota consumed per month.
 
 ## 4. Completeness check
 
-- How many times does the suite run per commit? It has to be one. Ask for the link.
+- How many times does the test suite run per commit? It has to be one. Ask for the link.
 - Is there any real configuration value (a key, a password, an internal URL) in the repository?
   Ask the agent to search and show you the empty search.
-- Could you follow `docs/DEPLOYMENT.md` yourself, without the agent? Read it with that question.
+- Could you follow `docs/DEPLOYMENT.md` on your own, without the agent? Read it with that question
+  in mind.
 - Was the rollback tested? When? What evidence is there?
-- Was any secret pasted in the chat during the project? If so, was it rotated?
-- Do you know how much continuous-integration quota is left this month?
+- Was any secret pasted into the chat during the project? If so, was it rotated?
+- Do you know how much continuous integration quota is left this month?
 
 ## 5. Warning signs
 
-- The production deployment is done "by hand, quickly, because it is a small change". Small
+- The deployment to production is done "by hand, quickly, because it is a small change". Small
   changes are the ones that break production, because nobody tests them.
-- The example configuration file has values that look real. They probably are.
+- The configuration example file has values that look real. They probably are.
 - Nobody can say when the rollback was last tested.

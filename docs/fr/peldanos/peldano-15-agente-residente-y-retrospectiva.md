@@ -1,39 +1,43 @@
 # Étape 15 — L'agent dans le système, et la rétrospective chiffrée (contrat de l'échelon)
 
-**Phase :** exploitation (quand le système est déjà en production) et clôture (revient à l'échelon
-0 pour le projet suivant).
+**Tronçon :** exploitation et clôture.
+**Quand :** l'agent résident, à l'entrée en exploitation, après le premier déploiement en
+production. La rétrospective, à la clôture de chaque étape et du projet ; elle revient à l'échelon 0
+pour le projet suivant.
 **Forme :** deux parties : une conversation pour définir le périmètre de l'agent résident, et un
 envoi long pour la rétrospective.
-**Taille :** l'agent résident est facultatif (beaucoup de systèmes n'en ont pas besoin ; ceux dont
-les utilisateurs demandent du support, si). La rétrospective est obligatoire dans tout projet, même
-d'une page : sans elle la méthode n'apprend pas.
+**Taille :** l'agent résident est facultatif (beaucoup de systèmes n'en ont pas besoin ; ceux qui
+ont des utilisateurs qui demandent du support, si). La rétrospective est obligatoire dans tout
+projet, même si elle tient en une page : sans elle, la méthode n'apprend pas.
 
 ## À quoi il sert
 
-Deux choses qui ferment le même cycle. D'abord : l'agent reste résident en production, avec un
-périmètre borné, pour diagnostiquer, exploiter et assurer le support sans que le constructeur ait à
-être là. Ensuite : la méthode elle-même se révise avec des chiffres, et ce qu'on apprend change
-l'échelle. Il évite l'agent exploitant sans carte du système, et la méthode qui se répète à
-l'identique projet après projet sans apprendre (l'équipe multi-agents a été tuée par une
-rétrospective : 60 dollars et 73 minutes contre 90 minutes).
+Deux choses qui bouclent le même cycle. D'abord : laissez l'agent résident en production, avec un
+périmètre borné, pour diagnostiquer, exploiter et donner du support sans que vous ayez à être là
+[Ref. 13](../REFERENCIAS.md#ref-13). Ensuite : révisez la méthode elle-même avec des chiffres, et
+laissez ce qui s'apprend changer l'échelle. Cela évite l'agent qui exploite sans carte du système,
+et la méthode qui se répète à l'identique projet après projet sans apprendre. La rétrospective
+chiffrée qui m'a conduit à éliminer une équipe entière d'agents est le modèle de la seconde chose
+[Ref. 6](../REFERENCIAS.md#ref-6).
 
 Sur l'agent résident, la règle qui ordonne tout : **il agit au nom de quelqu'un**. Son identifiant
-est rattaché à une personne responsable, et tout ce qu'il fait est journalisé au nom de cette
+est rattaché à une personne responsable, et tout ce qu'il fait reste consigné au nom de cette
 personne. Ce n'est pas un compte système anonyme : c'est un employé avec un chef. Cela définit son
-périmètre (ce que cette personne lui a autorisé) et sa traçabilité (qui répond de ce qu'il a fait).
+périmètre (ce que cette personne l'a autorisé à faire) et sa traçabilité (qui répond de ce qu'il a
+fait).
 
 ## 1. Contexte requis
 
 Pour l'agent résident :
 - Ce que l'agent peut faire en production et ce qu'il ne peut pas : lire, diagnostiquer, changer la
-  configuration, exécuter des actions. Le propriétaire décide.
+  configuration, exécuter des actions. C'est vous qui le décidez.
 - Comment l'agent s'identifie auprès du système (un identifiant propre, rattaché à une personne
   responsable).
-- Qui il prévient quand il trouve quelque chose qu'il ne peut pas résoudre (tickets, courriel).
+- Qui il prévient quand il trouve quelque chose qu'il ne peut pas résoudre (ticket, courriel).
 
 Pour la rétrospective :
-- Les incidents du projet, les coûts (jetons, quota, temps du propriétaire), les éléments en attente
-  qui ont fait le plus de tours, et les dates.
+- Les incidents du projet, les coûts (jetons, quota, votre temps), les éléments en attente qui ont
+  fait le plus d'allers-retours, et les dates.
 
 ## 2. Prompts
 
@@ -48,10 +52,20 @@ Pour la rétrospective :
 > person who created it: everything you do is logged under that person's name. Reply in my
 > language.
 
-Ce que nous demandons : la carte du système avant d'exploiter (exploiter sans carte est l'échec
+> [fr]
+> Nous allons te laisser résident en production. D'abord, construis la carte du système dont tu
+> auras besoin pour l'exploiter : modules, environnements, où vit chaque configuration, quelles
+> actions ont des conséquences (lis `docs/LOCKS.md`), qui prévenir. S'il y a des parties du
+> système que tu ne peux pas voir d'où tu es, dis-le-moi ; la carte ne doit pas avoir de trous
+> cachés. Ensuite propose ton périmètre en trois niveaux : lecture seule et diagnostic ;
+> changements de configuration avec mon approbation ; actions à conséquences derrière des verrous.
+> C'est moi qui choisis le niveau. Ton identifiant agit comme la personne qui l'a créé : tout ce
+> que tu fais est consigné au nom de cette personne. Réponds dans ma langue.
+
+Ce que je lui demande : la carte du système avant d'exploiter (exploiter sans carte est l'échec
 que cet échelon évite) ; la clause de complétude sous sa forme : **les trous de la carte se
-déclarent, ne se masquent pas** ; les trois niveaux de périmètre pour que le propriétaire en
-choisisse un et non un « ça dépend » ; et la règle de l'identifiant au nom d'une personne.
+déclarent, on ne les cache pas** ; les trois niveaux de périmètre pour que vous en choisissiez un
+et non un « ça dépend » ; et la règle de l'identifiant au nom d'une personne.
 
 **Pour l'agent résident (de clôture) :**
 
@@ -59,9 +73,14 @@ choisisse un et non un « ça dépend » ; et la règle de l'identifiant au nom 
 > value), and the procedure to request my approval. Then prove, with a real attempt recorded in
 > the log, that something outside your scope is rejected.
 
-Ce que nous demandons : le document de l'agent résident (sans la valeur de l'identifiant, jamais),
-et la preuve en rouge du périmètre : une tentative réelle, journalisée, de faire quelque chose hors
-du niveau, rejetée. C'est l'échelon 7 appliqué aux permissions.
+> [fr]
+> Niveau [X]. Écris dans `docs/RESIDENT_AGENT.md` la carte, le périmètre, l'identifiant (jamais
+> sa valeur), et la procédure pour demander mon approbation. Ensuite démontre, avec une tentative
+> réelle consignée dans le journal, que quelque chose hors de ton périmètre est refusé.
+
+Ce que je lui demande : le document de l'agent résident (sans la valeur de l'identifiant,
+jamais), et la preuve en rouge du périmètre : une tentative réelle, consignée, de faire quelque
+chose hors du niveau, refusée. C'est l'échelon 7 appliqué aux permissions.
 
 **Pour la rétrospective :**
 
@@ -73,37 +92,47 @@ du niveau, rejetée. C'est l'échelon 7 appliqué aux permissions.
 > which step is modified, how, and which incident justifies it. Write it to
 > `docs/RETROSPECTIVE_[date].md`. Reply in my language.
 
-Ce que nous demandons : des chiffres sourcés (coûts, éléments, tours, incidents) ; chaque incident
-rapporté à un échelon, parce qu'un incident qui ne tombe dans aucun est un échelon manquant ; la
-clause de complétude pour les chiffres qu'il n'a pas (demander, ou marquer comme estimation) ; et
-**au moins une proposition concrète de changement de l'échelle**, parce qu'une rétrospective qui ne
-change rien n'était pas une rétrospective.
+> [fr]
+> [L'étape / le projet] est terminé(e). Fais la rétrospective avec des chiffres, pas avec des
+> impressions : ce que ça a coûté (jetons, quota, mon temps), combien d'éléments en attente,
+> lesquels ont fait le plus d'allers-retours et pourquoi, quels incidents il y a eu et dans quel
+> échelon de l'échelle tombe chacun, et quel échelon a échoué ou a manqué. S'il te manque la donnée
+> pour un chiffre (mon temps, par exemple), demande-la-moi ou marque-le comme estimation ; ne
+> l'invente pas. Termine par une proposition concrète de changement de l'échelle : quel échelon est
+> modifié, comment, et quel incident le justifie. Écris-la dans `docs/RETROSPECTIVE_[date].md`.
+> Réponds dans ma langue.
+
+Ce que je lui demande : des chiffres avec leur source (coûts, éléments en attente,
+allers-retours, incidents) ; chaque incident rapporté à un échelon, parce qu'un incident qui ne
+tombe dans aucun est un échelon qui manque ; la clause de complétude pour les chiffres qu'il n'a
+pas (demander ou marquer comme estimation) ; et **au moins une proposition concrète de changement
+de l'échelle**, parce qu'une rétrospective qui ne change rien n'a pas été une rétrospective.
 
 ## 3. Résultat attendu
 
 - `docs/RESIDENT_AGENT.md` : carte du système, périmètre choisi, identifiant rattaché à une
-  personne, procédure d'approbation, et la preuve de refus journalisée.
+  personne, procédure d'approbation, et la preuve du refus consignée dans le journal.
 - `docs/RETROSPECTIVE_[date].md` : les chiffres avec leur source, les incidents rapportés aux
   échelons, et au moins une proposition de changement de l'échelle avec sa justification.
 
 ## 4. Vérification de complétude
 
-- La carte du système dit-elle ce que l'agent ne peut PAS voir ? Si elle ne le dit pas, elle a des
-  trous masqués.
-- Avez-vous testé (ou vu dans le journal) qu'une action hors périmètre est rejetée ?
+- La carte du système dit-elle ce que l'agent NE peut PAS voir ? Si elle ne le dit pas, elle a des
+  trous cachés.
+- Avez-vous prouvé (ou vu dans le journal) qu'une action hors du périmètre est refusée ?
 - L'identifiant de l'agent agit-il au nom d'une personne identifiable ?
-- La rétrospective a-t-elle des chiffres sourcés, ou des adjectifs ? (« Ça a coûté cher » n'est pas
-  un chiffre.)
-- Chaque incident tombe-t-il dans un échelon ? Si l'un ne tombe dans aucun, un échelon manque :
-  c'est la proposition de changement.
+- La rétrospective a-t-elle des chiffres avec leur source, ou des adjectifs ? (« Ça a coûté
+  cher » n'est pas un chiffre.)
+- Chaque incident tombe-t-il dans un échelon ? Si l'un ne tombe dans aucun, il manque un échelon :
+  c'est ça, la proposition de changement.
 - Y a-t-il au moins une proposition concrète de changement de l'échelle ? Si la rétrospective ne
   change rien, ce n'était pas une rétrospective.
 
 ## 5. Signaux d'alarme
 
-- L'agent résident « a besoin » d'un niveau de permissions plus élevé chaque semaine. Vérifiez si ce
-  qu'il demande sert à résoudre les problèmes du système ou ses propres limites.
-- La rétrospective dit que tout s'est bien passé. Rien ne se passe jamais entièrement bien ; elle
-  est écrite pour le propriétaire, pas pour la méthode.
-- Deux projets consécutifs ont eu le même incident et l'échelle n'a pas changé entre les deux.
-  L'échelon 15 n'est pas clos : on écrit la rétrospective et on ne l'applique pas.
+- L'agent résident « a besoin » d'un niveau de permissions plus élevé chaque semaine. Vérifiez si
+  ce qu'il demande sert à résoudre des problèmes du système ou ses propres limites.
+- La rétrospective dit que tout s'est bien passé. Tout ne se passe jamais bien ; elle est écrite
+  pour vous, pas pour la méthode.
+- Deux projets d'affilée ont eu le même incident et l'échelle n'a pas changé entre les deux.
+  L'échelon 15 ne se clôt pas : on écrit la rétrospective et on ne l'applique pas.

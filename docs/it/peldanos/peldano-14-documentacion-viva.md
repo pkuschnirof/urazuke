@@ -1,30 +1,41 @@
 # Passo 14 — Documentazione viva e manuali che una persona può seguire senza IA (contratto del gradino)
 
-**Fase:** esercizio (nasce con il sistema; si mantiene a ogni modifica).
+**Fase:** esercizio.
+**Quando:** il manuale utente cresce con ogni blocco funzionale, alla chiusura, con le schermate
+nuove; alimentato dalle voci in sospeso chiuse, che sono la documentazione di ciò che è stato
+fatto. I tre manuali completi si generano nella fase di uscita in produzione, dopo il 13, e la
+prova con una persona che non programma si fa prima del primo deployment. La routine dello stesso
+commit vale per tutto l'esercizio.
 **Forma:** routine; più un invio lungo quando si generano i manuali.
 **Dimensione:** proporzionale. Un sistema piccolo ha bisogno, come minimo, del manuale di
-infrastruttura e ripristino (come si rialza, come si ripristina); quello dell'utente può essere una
-pagina. Ciò che non cambia: se la persona che l'ha costruito sparisce, un'altra deve poter
-continuare.
+infrastruttura e ripristino; quello utente può essere una pagina. Ciò che non cambia: se la
+persona che l'ha costruito sparisce, un'altra deve poter andare avanti.
 
 ## A cosa serve
 
-Perché il sistema si possa usare, mantenere e ripristinare senza l'agente e senza la persona che
-l'ha costruito. Se il giorno in cui l'agente non c'è non si può distribuire, non è finito. Nel
-metodo classico la documentazione era cara e invecchiava; qui rigenerarla è gratis, quindi la regola
-diventa "nello stesso commit" e "riproducibile a mano". Evita il documento non aggiornato che
-provocò un commit nel repository sbagliato, e il file di progetto diventato storia.
+Fai in modo che il sistema si possa usare, mantenere e ripristinare senza l'agente e senza di te.
+Se il giorno in cui non c'è l'agente non si può distribuire, non è finito. Nel metodo classico la
+documentazione era cara e invecchiava; qui rigenerarla è gratis, quindi la regola diventa "nello
+stesso commit" e "riproducibile a mano". I manuali che ho scritto per la Mutua con quel criterio
+sono il modello [Ref. 24](../REFERENCIAS.md#ref-24); e il file di progetto che è diventato uno
+storico di migliaia di righe è il controesempio [Ref. 41](../REFERENCIAS.md#ref-41).
 
 Un criterio di qualità per il manuale di ripristino, che serve a giudicarlo senza essere tecnici:
 **deve poterlo seguire una persona di fiducia che non programma, alle tre del mattino, con il
 sistema giù e l'agente senza connessione**. Se in qualche passo dice "consultare lo sviluppatore"
-o "secondo il caso", quel passo è incompleto.
+o "a seconda del caso", quel passo è incompleto.
+
+E una fonte da non sprecare: le voci in sospeso chiuse. Ognuna porta la sua specifica, la sua
+decisione, la sua prova e la sua data. Il manuale utente non si scrive da zero alla fine: si
+compone, blocco per blocco, a partire dalle voci in sospeso che si sono chiuse, e il diario delle
+modifiche esce direttamente da loro.
 
 ## 1. Contesto richiesto
 
-- Chi sono i lettori di ogni manuale: l'utente finale, chi mantiene, chi gestisce l'infrastruttura.
+- Chi sono i lettori di ogni manuale: l'utente finale, chi mantiene, chi opera l'infrastruttura.
   Lo sa il business; l'agente chiede se non è chiaro.
-- Il sistema in esecuzione nell'ambiente di test, per fare screenshot reali.
+- Il sistema in esecuzione nell'ambiente di test, per fare schermate reali.
+- Le voci in sospeso chiuse del blocco, con la loro documentazione di chiusura (gradino 5).
 - `docs/DEPLOYMENT.md` (gradino 13) e `docs/LOCKS.md` (gradino 12), che sono input.
 
 ## 2. Prompt
@@ -32,11 +43,21 @@ o "secondo il caso", quel passo è incompleto.
 **Routine (va nel patto di convivenza):**
 
 > Every change that modifies what the user sees, what the operator does, or how the system is
-> deployed, updates the corresponding manual in the same commit. If you do not know which
-> manual, ask.
+> deployed, updates the corresponding manual in the same commit. At the close of every
+> functional block, add to the user manual the screens and flows of the pending items closed
+> in that block, with real screenshots from the test environment, and add their entries to the
+> changelog. If you do not know which manual, ask.
 
-Cosa stiamo chiedendo: la regola dello stesso commit, che è l'unica che tiene un manuale
-aggiornato, e la domanda quando non è chiaro a quale manuale va.
+> [it]
+> Ogni modifica che cambia ciò che l'utente vede, ciò che l'operatore fa, o come si distribuisce
+> il sistema, aggiorna il manuale corrispondente nello stesso commit. Alla chiusura di ogni blocco
+> funzionale, aggiungi al manuale utente le schermate e i flussi delle voci in sospeso chiuse in
+> quel blocco, con schermate reali dell'ambiente di test, e aggiungi le loro voci al diario delle
+> modifiche. Se non sai a quale manuale va, chiedi.
+
+Cosa gli sto chiedendo: la regola dello stesso commit, che è l'unica che mantiene un manuale
+aggiornato; la chiusura del blocco come momento in cui le voci in sospeso chiuse diventano manuale
+e diario delle modifiche; e la domanda quando non è chiaro a quale manuale va.
 
 **Per generare i manuali:**
 
@@ -50,35 +71,48 @@ aggiornato, e la domanda quando non è chiaro a quale manuale va.
 > a gap and do not invent. Each manual carries a date and the system version. Reply in my
 > language.
 
-Cosa stiamo chiedendo: i tre manuali con i loro lettori; screenshot **reali** dell'ambiente di test
-(non disegni né descrizioni); il criterio delle tre del mattino per quello di ripristino; la clausola
-di completezza nella sua forma per documentare: ciò che solo il business sa si chiede, e **non si
-lascia un buco né si inventa**; e data e versione, perché si sappia a quale sistema corrisponde ogni
-manuale.
+> [it]
+> Genera tre manuali a partire dal sistema così com'è oggi nell'ambiente di test: il manuale
+> utente (schermata per schermata, con schermate reali, nella lingua dell'utente, senza gergo); il
+> manuale di manutenzione (come è costruito, dove sta ogni cosa, come eseguire la batteria, come
+> aggiungere un modulo); e il manuale di infrastruttura e ripristino (come distribuire, come
+> tornare indietro, come ripristinare un backup, cosa fare se va giù; scritto per una persona che
+> deve farlo a mano, senza IA, alle tre del mattino). Se per qualche sezione ti serve qualcosa che
+> solo il business sa (chi è responsabile di cosa, a quale telefono chiamare), chiedimelo; non
+> lasciare un buco e non inventare. Ogni manuale porta una data e la versione del sistema.
+> Rispondi nella mia lingua.
+
+Cosa gli sto chiedendo: i tre manuali con i loro lettori; schermate **reali** dell'ambiente di
+test (non disegni né descrizioni); il criterio delle tre del mattino per quello di ripristino; la
+clausola di completezza nella sua forma per documentare: ciò che solo il business sa si chiede, e
+**non si lascia un buco né si inventa**; e data e versione, perché si sappia a quale sistema
+corrisponde ogni manuale.
 
 ## 3. Risultato atteso
 
-- `docs/USER_MANUAL.md` (o HTML), con screenshot reali e incorporati.
+- `docs/USER_MANUAL.md` (o HTML), con schermate reali e incorporate, cresciuto blocco per blocco.
 - `docs/MAINTENANCE_MANUAL.md`.
 - `docs/INFRASTRUCTURE_AND_RECOVERY_MANUAL.md`: passo per passo, per una persona.
-- Ciascuno con data e la versione del sistema che documenta.
+- `docs/CHANGELOG.md`, alimentato dalle voci in sospeso chiuse.
+- Ciascuno con la data e la versione del sistema che documenta.
 - Nei commit che cambiano schermate, esercizio o deployment: il manuale aggiornato.
 
 ## 4. Verifica di completezza
 
-- Apri il manuale utente a una schermata a caso: lo screenshot coincide con ciò che c'è oggi
+- Apri il manuale utente su una schermata a caso: la schermata coincide con ciò che c'è oggi
   nell'ambiente di test?
-- Il manuale di ripristino lo riusciresti a seguire tu, o qualcuno di fiducia che non programma?
-  Leggi la sezione "è caduto": dice cosa fare, in ordine, con i comandi?
+- Il manuale di ripristino lo potresti seguire tu, o qualcuno di fiducia che non programma? Leggi
+  la sezione "è andato giù": dice cosa fare, in ordine, con i comandi?
 - Scegli un commit recente che ha cambiato una schermata: ha toccato il manuale?
-- C'è un buco tipo "[da completare]" o "consultare il responsabile"? Lì l'agente doveva chiedere.
+- Il diario delle modifiche ha una voce per ogni voce in sospeso chiusa dell'ultimo blocco?
+- C'è un buco tipo "[completare]" o "consultare il responsabile"? Lì l'agente doveva chiedere.
 - Ogni manuale dice per quale versione del sistema vale?
 
 ## 5. Segnali d'allarme
 
-- Il manuale utente ha screenshot di una versione che non esiste più. È stato generato una volta e
-  non mantenuto: la regola dello stesso commit non è nel patto o non viene applicata.
+- Il manuale utente ha schermate di una versione che non esiste più. È stato generato una volta e
+  non mantenuto: la regola dello stesso commit non è nel patto o non si sta applicando.
 - Il manuale di ripristino comincia con "apri una sessione con l'agente". Se l'agente è un
   prerequisito, non è un manuale per una persona.
-- Nessuno al di fuori del costruttore ha mai letto il manuale di ripristino. Chiedi a qualcuno di
+- Nessuno fuori dal costruttore ha mai letto il manuale di ripristino. Chiedi a qualcuno di
   seguirlo nell'ambiente di test; ciò che lo blocca è ciò che va corretto.

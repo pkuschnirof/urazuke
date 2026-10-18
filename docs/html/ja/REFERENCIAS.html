@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Urazuke — 参照文書：方法の背後にある事例</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+h3.refh{font-size:1.02rem;margin-top:1.6em;color:#3a2f00;border-bottom:1px dashed var(--line);padding-bottom:.2em}
+h3.refh:target{background:var(--gold-soft);border-radius:6px;padding:.4em .6em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+a{color:#7a5600}
+a.ref{font:700 .78em/1.4 Segoe UI,Arial,sans-serif;background:#f1ece0;border:1px solid var(--line);border-radius:999px;padding:0 .5em;text-decoration:none;color:#5a3f00;white-space:nowrap;vertical-align:middle}
+a.ref:hover{background:var(--gold-soft)}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+.pbox{margin:.8em 0 1.2em}
+.prompt{margin:0;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.prompt.tr{background:#f3f7f0;border-color:#cfdcc6;border-left-color:#5c8a4a}
+.prompt.tr::before{content:'プロンプト（翻訳）';color:#3f6b2e}
+.trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
+.trbtn:hover{background:#efe0b8}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+.pie{margin-top:3em;padding-top:1em;border-top:1px dashed var(--line);font:.85em/1.5 Segoe UI,Arial,sans-serif;color:var(--mute)}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="urazuke">Urazuke — 参照文書：方法の背後にある事例</h1><nav class="toc"><div class="toc-t">目次</div><ul><li class="l2"><a href="#">引用の仕方</a></li><li class="l2"><a href="#a-yujin-forge-2026-5-10">A. yujin-forge：方法が形成された場所（2026年5月から10月）</a></li><li class="l2"><a href="#b-autorizaciones-2026-6-10">B. Autorizaciones：実負荷の下の方法（2026年6月から10月）</a></li><li class="l2"><a href="#c-kikan-2026-8-10">C. Kikan：成熟した方法（2026年8月から10月）</a></li><li class="l2"><a href="#d">D. セッション中に私が課したこと、そして断ったこと</a></li><li class="l2"><a href="#e">E. 完全な年表</a></li><li class="l3"><a href="#e-1-yujin-forge">E.1 yujin-forge</a></li><li class="l3"><a href="#e-2-autorizaciones">E.2 Autorizaciones</a></li><li class="l3"><a href="#e-3-kikan">E.3 Kikan</a></li><li class="l2"><a href="#f">F. 各失敗と、それを覆う段</a></li></ul></nav>
+<p>著者：Pablo Kuschniroff、Claude Codeの支援による。第4版、2026年10月18日。</p>
+<p>この文書は一つのことのために存在する。方法の手順とマニュアルをきれいに保つためだ。主文書 で、段の契約で、またはコースのレッスンで、私が「これは痛手を重ねて学んだ」「これはモデルが うまく適用しなかったから課した」のようなことを主張するとき、説明を日付、コミット識別子、 保留項目の番号で汚したくない。短い印 <code>[Ref. N]</code> を置き、事例を調べたい人はここに来て、 日付、証拠、そして何が起きたかについての私の読みとともにそれを見つける。調べたくない人は、 つまずかずに読み続ける。</p>
+<p>始める前に二つの注意。第一：これらの事例が出てくる三つのシステムは実在し、今日本番稼働して おり、本物の人々が使っている。顧客は匿名化されており、「共済組合」（その「認可者」とともに） と「協会」と呼び、そのシステムを「Autorizaciones」と「Kikan」と呼ぶ。三つ目のリポジトリは 方法が生まれたツール、yujin-forgeで、私のものであり、その名前を持つ。数字、日付、コミット 識別子は実在のものだ。いつか顧客の許可を得られたら、名前を載せる。</p>
+<p>第二の注意はより重要で、誤解されたくないので主文書でも繰り返している：<strong>方法は失敗の事例 だけから生まれたのではない</strong>。二つのものが組み合わさって生まれた。一方では、これらのモデルが 存在するずっと前から私が適用してきたシステム工学についての私自身の知識。段で私が求めること の大半は、よく運営されたプロジェクトで常に求めてきたことだ。他方では、この五か月のインシ デントが、次々と、<strong>モデルがそれらの原則を脆く適用する場所</strong>を私に見せたこと：テストしたと 言ってテストしていない場所、自信ありげな顔で推定する場所、事業ルールの穴を思いつきで埋める 場所、過剰に報告する場所。だから続く事例は、締めるべき場所の証明であって、方法全体の起源 ではない。そのレンズで読んでほしい。</p>
+<hr>
+</section><section>
+<h2 id="">引用の仕方</h2>
+<p>方法のどの文書でも、<code>[Ref. 26]</code> はこのファイルの「Ref. 26」の項目にリンクする。項目は起源 システムごとにまとめられ、各グループ内では時系列順。最後に三つの完全な年表があり、誰かが 全体の順序を見たいときのためのもの、そして各失敗をそれを覆う段に対応付ける表がある。</p>
+<hr>
+</section><section>
+<h2 id="a-yujin-forge-2026-5-10">A. yujin-forge：方法が形成された場所（2026年5月から10月）</h2>
+<h3 id="ref-1" class="refh">Ref. 1 — 品質基準の誕生（5月25日）</h3>
+<p>最初の品質基準の文書 <code>SQ.md</code> を5月25日に書いた（コミット <code>2219f7a</code>）。人間とエージェント の最初の「共働の約束」であり、書いたのは、二週間にわたって毎セッション同じことをモデルに 繰り返していたからだ：私の時間は神聖で、自分で解決できることには使わない。技術的負債は 残さず、壊れたものは根本から直す。文書は最新に保つ。範囲は正確に、頼まれた以上でも以下でも なく。システム工学ではどれも新しくない。新しかったのは、毎朝昨日の記憶なしにやってくる 協力者のためにそれを書かねばならなかったことだ。第1段の起源。</p>
+<h3 id="ref-2" class="refh">Ref. 2 — 最初のアンチパターンの記録（5月27日）</h3>
+<p>5月27日（コミット <code>73f4029</code>）に <code>GOTCHAS.md</code> を開いた：繰り返した各誤りが固定形式で書き 留められるファイル。どう匂うか、根本原因は何か、どう直したか、次回痛む前にどう検知するか。 開いたのは、モデルが以前に犯した記憶をまったく持たずに、別のセッションで同じ誤りを犯して いたからだ。第8段の「アンチパターン」の半分。</p>
+<h3 id="ref-3" class="refh">Ref. 3 — ワークフローのゲート、該当するときだけ注入（6月2日）</h3>
+<p>6月2日（コミット <code>5b47475</code>）にワークフローの明示的なゲートをG1からG9まで番号付きで定義し、 文書化のゲートG-DOCを定義した。G-DOCは文書が変更と同じコミットで更新されることを要求する。 そして重要と判明した決定を取った：各ゲートの教義はそれが適用される瞬間だけエージェントの プロンプトに入り、常にではない。文脈は有限であり、余計に注入されるものは注意力で支払われる からだ。ゲートを通過するときに注入される「段の契約」という考えの直接の前身。</p>
+<h3 id="ref-4" class="refh">Ref. 4 — テスト方針の再定式化（6月4日）</h3>
+<p>6月4日まで私はすべてに「テストが先、コードが後」を強いていた。その日（コミット <code>a9f59c7</code>、 文書 <code>testing-policy.md</code>）、普遍的には役立たないことを受け入れた：既定ではテストは実装の後、 テスト先行は小さく明確な範囲の選択肢として残り、骨組みはゲートとして緑でなければならず、 ループ対策を加えた。エージェントが進まず空回りするときすべてを止めるモーダルだ。これを語る のは、私のルールが硬直しすぎと判明したとき、方法が自分自身を修正することも示すからだ。</p>
+<h3 id="ref-5" class="refh">Ref. 5 — 決定は構築前に凍結される（6月4日）</h3>
+<p>大きなスプリントの前に、6月4日の決定文書に三つの構造的決定（D1、D2、D3）を書いて番号を 付けた。古典的プロジェクトで常にしてきたことを初めて形式化した：決定は構築前に、日付付きで 書く。後で誰も記憶で議論しないように。第6段の前身。</p>
+<h3 id="ref-6" class="refh">Ref. 6 — 数字を手にマルチエージェントチームを廃止（6月5日）</h3>
+<p>互いに仕事を渡し合う五つのエージェント（ディレクター、アナリスト、プログラマ、テスター、 骨組み構築者）のチームがあった。計測された実験をした：そのチームは60ドルと73分を費やして 半端なものを納めた。単一エージェントの単一セッションは90分かかり、公開可能なものを納めた。 6月5日（コミット <code>7584f8b</code>、内部論文で文書化）にチームまるごとを廃止した。「数字を手にした 振り返り、そして再設計」の最初の事例であり、第15段が印象ではなく数字を要求する理由だ。</p>
+<h3 id="ref-7" class="refh">Ref. 7 — 計画が保留項目のリストになる（6月6日）</h3>
+<p>6月6日（コミット <code>4fc82c6</code>、保留項目記録の計画）に作業計画が保留項目のキューその<strong>もの</strong>に なった：正規の、番号付きの、管理コマンド付きの、毎セッション更新されるリスト。「計画」が 一方に「タスク」が他方にあるのではなくなった。第5段の起源。</p>
+<h3 id="ref-8" class="refh">Ref. 8 — 検証の誠実さとワークフローの種類（6月10日）</h3>
+<p>6月10日（コミット <code>7ab9d8a</code> と <code>2c552c0</code>、文書 <code>verification-honesty.md</code> と <code>workflow-kinds.md</code>）に教義をすべてのプロンプトで必須にし、「検証の誠実さ」のルールを 書いた：ネットが必要なときに本当に赤になることを検証し、盲点を宣言し、検証したことに 釣り合った主張をする。さらに三種類のワークフローを分けた：新規プロジェクト、修正、進化。 第10段と第7段の「赤」の半分の起源。</p>
+<h3 id="ref-9" class="refh">Ref. 9 — 地図を読まなかったための捨てられた仕事（6月12日）</h3>
+<p>6月12日、あるセッションがプロジェクトの知識グラフを読まずに構築を始め、午後一つ分の仕事が 捨てるものになった。既に書かれていた決定に矛盾していたからだ。そこから第2段の必読のルール： 地図は存在するが、読むよう義務付けなければ、作用しない。</p>
+<h3 id="ref-10" class="refh">Ref. 10 — 24時間と48時間の自動操縦（6月14日から21日）</h3>
+<p>6月14日から21日の間、エージェントを一日、そして二日、単独で働かせた。書面の委任付きで： ピースごとにコミットとプッシュ、質問なし、私は要約を受け取る。これを語るのは、共働の約束と 保留項目の記録がよくできていれば方法が長い自律に耐えることを証明するからであり、そこで 要約を疑いながら読むことを学んだからだ。それが第10段だ。</p>
+<h3 id="ref-11" class="refh">Ref. 11 — 他者のシステムに対する診断モード（7月）</h3>
+<p>7月（文書 <code>diagnostic-mode.md</code>）、エージェントが顧客の本番システムに診断モードで入り 始めた：読み取り専用、限定、何も触らない。第15段の常駐エージェントの範囲の最初のレベル。</p>
+<h3 id="ref-12" class="refh">Ref. 12 — 共済組合の本番から取った性能のパターン（7月22日）</h3>
+<p>7月22日（コミット <code>873339c</code>）、共済組合のシステムから抽出したスケールのパターンをツールに 組み込んだ：二つのトランザクションのパターン、そして何より「触る前に計測」。初めて方法が 既に本番にあるシステムから養分を得た。第9段の前身。</p>
+<h3 id="ref-13" class="refh">Ref. 13 — エージェントが共済組合の本番に常駐する（8月14日）</h3>
+<p>8月14日、エージェントが顧客のシステムの中に常駐アシスタントとして設置された。三つのルール 付き：操作前に必須のシステム地図、何かが失敗したとき「まず運用上の解決」、そしてチケットを 開く能力。第15段の前半の起源。</p>
+<h3 id="ref-14" class="refh">Ref. 14 — ゲートとしてのサイジング（10月10日と11日）</h3>
+<p>10月10日と11日（コミット <code>c602725</code> と <code>0bd1b05</code>、文書 <code>sizing.md</code>）、構築前のサイジングを 固定の選択肢から選ぶ形で形式化し、もう一つのゲート（G9）として記録した。遅く形式化した。 参照15で語るKikanの痛手の後に。それがまさに第3段の教訓だ。</p>
+<h3 id="ref-15" class="refh">Ref. 15 — 一行目から非同期の永続化インターフェース（10月13日）</h3>
+<p>10月13日（コミット <code>7391cc5</code>、文書 <code>persistence-interface.md</code>）、データベースとのインター フェースは最初のエンジンが同期でも最初の行から非同期である、というルールを書いた。「非対称 な」決定だ：間違えても安く、取らなければ非常に高くつく。知っているのは、Kikanで間に合う ように取らず、後から変えるのに再設計の一段階まるごと、E6、三つのテスト群の非同期化を要した からだ。第3段の事例。</p>
+<h3 id="ref-16" class="refh">Ref. 16 — 1時間43分の孤児ターン（10月14日）</h3>
+<p>10月14日、エージェントが私に見えないまま1時間43分働き、その間に六つのコミットをした。 方法の失敗であり、ひどかった。バージョン1.18.0（コミット <code>b80a659</code>）で根本から直した： 生きている兆候を出さなくなったターンを殺す沈黙の番犬、子が親とともに死ぬためのプロセス間の リード、そして28のテスト。第10段（報告は見えなければならない）と第12段（疑わしきはシステム は進まない）に落ちる。</p>
+<hr>
+</section><section>
+<h2 id="b-autorizaciones-2026-6-10">B. Autorizaciones：実負荷の下の方法（2026年6月から10月）</h2>
+<h3 id="ref-17" class="refh">Ref. 17 — リポジトリが追い越した初期設計（6月11日）</h3>
+<p>Autorizacionesは設計文書（「選択肢C」）で始まった。リポジトリは非常に速くそれを追い越した： 構築されたものは紙に書かれたものよりはるかに多かった。私に残った教訓、第5段にあるものは、 仕様は出発点として有効で、生きた計画は保留項目だということだ。</p>
+<h3 id="ref-18" class="refh">Ref. 18 — インデックスなしクエリの最初の監査（6月23日）</h3>
+<p>6月23日、稼働中のシステムで最初の「フルスキャン」（インデックスがないためテーブル全体を読む クエリ）の監査を行った。発見は保管される報告ではなく、保留項目に変換された。第11段の起源。</p>
+<h3 id="ref-19" class="refh">Ref. 19 — Googleクラウドの教訓（6月24日）</h3>
+<p>Googleクラウドでの最初の数週間のインフラの誤りは、繰り返さないための教訓として書き残された。 後に第14段のインフラマニュアルとなるものの最初の版。</p>
+<h3 id="ref-20" class="refh">Ref. 20 — ユーザーマニュアルはシステムとともに生まれる（6月26日）</h3>
+<p>6月26日には既にユーザーマニュアルがあった。システムは構築途中で。意図的にそうした：古典的 プロジェクトではマニュアルは最後に、誰も何も覚えていないときに書かれた。無料で再生成する モデルがあれば、システムとともに生まれない言い訳はない。第14段。</p>
+<h3 id="ref-21" class="refh">Ref. 21 — 第二層のバックアップ（7月13日）</h3>
+<p>実データでシステムを信用する前に、二層のバックアップを設置した：ローカルとGoogleストレージ。 第13段と第14段の復旧マニュアル。</p>
+<h3 id="ref-22" class="refh">Ref. 22 — PND-300：根本原因まで四往復（7月14日）</h3>
+<p>あるバグが、7月14日に本当の原因が見つかるまで三度戻ってきた。それまでの各「修正」は症状に 対するものだった。ここで、既に共働の約束にあった「修正は根本からか、修正ではないか」が 言葉であることをやめて実践になった：触る前に仮説を計測しなければならない。第1段と第9段。</p>
+<h3 id="ref-23" class="refh">Ref. 23 — セキュリティ監査（7月16日）</h3>
+<p>7月16日、最初の正式なセキュリティ監査を行い、発見は保留項目に変換された。セキュリティを 最初に一度チェックするリストではなく定期的な監査として扱うことを私に確信させたものだ。 第11段。</p>
+<h3 id="ref-24" class="refh">Ref. 24 — 内部マニュアルと災害復旧マニュアル（7月26日と29日）</h3>
+<p>7月26日と29日（コミット <code>6444ce6</code>、保留項目442、と <code>a30cee3</code>、保留項目459）、運用のすべて、 デプロイ、復旧、保守を「AIなしで手で再現可能」な形で文書化した。私が使い、第14段にある 基準は、明日エージェントがいなくても、プログラミングをしない信頼できる人がマニュアルを 追えることだ。</p>
+<h3 id="ref-25" class="refh">Ref. 25 — 反射としてのフェイルクローズド（7月27日）</h3>
+<p>7月27日（コミット <code>e18406d</code>、保留項目452）：テーブルが存在しないか検索が失敗したら、行は ただそのボタンなしで残る。決してリスト全体は壊れない。疑わしきは行動せず、壊さず。そして その修正のテストは「try/exceptなし」で赤で証明された。つまり保護なしではリストが壊れること が示された。第7段と第12段。</p>
+<h3 id="ref-26" class="refh">Ref. 26 — 一致しなかったカウンタ：1,355対1,234（8月6日と7日）</h3>
+<p>私にとって「計器で検証する」の最も完全な例。画面のカウンタは1,355の承認を示し、データ ベースへのクエリは1,234を示した。8月6日と7日（コミット <code>ab3e529</code>、保留項目517、と <code>1f5feb9</code>、保留項目514）、本番で直接、読み取り専用で根本原因を検証し、差を数字ごとに分解し （145多く、24少なく。145引く24は121）、古い基準に対して<strong>赤で</strong>証明されたテストを書き、 診断スクリプトは次回のためにリポジトリに残った。第7段、第8段、第9段。</p>
+<h3 id="ref-27" class="refh">Ref. 27 — 生産者と消費者の対称性（8月6日）</h3>
+<p>8月6日（コミット <code>50fe968</code>、保留項目510、と <code>7251129</code>、保留項目509）、ユーザーが見る「待機 理由」がロボットが決定するのと<strong>同じ</strong>ゲートで計算されること、そしてグリッドの列のリストを サーバーが定義しフロントエンドが消費することを課した。こうして乖離しえない。第8段の 「すべてのリストには一人の所有者しかいない」のルール。</p>
+<h3 id="ref-28" class="refh">Ref. 28 — 錠付きの緊急ボタン、承認者のドライランモード、ガード付きの番人（8月7日）</h3>
+<p>8月7日（コミット <code>0954740</code>、保留項目524）、システムの錠が揃った：二重の安全装置付き緊急 ボタン、まずドライランモードで走る自動承認者（承認以外のすべてをし、承認したはずのものを 記録する）、そして二度押さないためのガード付きで詰まったものを押す番人。第12段。</p>
+<h3 id="ref-29" class="refh">Ref. 29 — コミットに書かれたドメインルール（8月10日）</h3>
+<p>8月10日（コミット <code>0ae3ae6</code>、保留項目550）、コミットメッセージは原文でこう言う：「Pabloの ルール：承認済み + 残高 = 戻る」「Pablo決定 2026-08-10」。事業の決定が日付とオーナー付きで、 それを実装するコードに貼り付いて残った。第6段。</p>
+<hr>
+</section><section>
+<h2 id="c-kikan-2026-8-10">C. Kikan：成熟した方法（2026年8月から10月）</h2>
+<h3 id="ref-30" class="refh">Ref. 30 — 既に書かれた方法で開始、そして監査シリーズAUD-*（8月21日から29日）</h3>
+<p>Kikanは、前述のすべてが初日から既に書かれた状態で始まった最初のプロジェクトだった：運用 可能なプロジェクトファイルと、最初のコミット（8月21日）からの計画としての保留項目。8月28日 と29日に早期の監査シリーズ（AUD-1、AUD-2…）を行い、それは直接19の保留項目文書に変換された。 第2段、第5段、第11段。</p>
+<h3 id="ref-31" class="refh">Ref. 31 — 最初の週からの継続的インテグレーション。パッケージとしてのデプロイ（8月28日、9月23日と24日）</h3>
+<p>テストは最初の週からGitHubで走った（<code>ci.yml</code>、8月28日）。デプロイは9月23日に来た （<code>deploy.yml</code>、コミット <code>bb801ed</code>）：パッケージ、設定はリポジトリではなくサーバーに住み、 ランタイムのバージョンは釘付け。デプロイが立ち上げの一か月後に来たことが、第4段を動機 づける誤りだ。</p>
+<h3 id="ref-32" class="refh">Ref. 32 — 保留項目を重ねて強化されたデプロイ（9月30日から10月4日）</h3>
+<p>9月30日から10月4日の間、デプロイがうまく動くためだけに五つの連続した保留項目があった： 両環境での公開URL（<code>f85c3c9</code>）、再起動の前と戻す前のサービスのリロード（<code>513c8d0</code>、保留項目 108）、複製する代わりに照合するフィクスチャ（<code>076df76</code>、保留項目134）、ミラーされるツリーの 外の顧客の素材（<code>9d76af8</code>、保留項目130）、そしてデプロイで運ばれる設定をもう汚さないテスト群 （<code>0bd20a8</code>、保留項目107、10月3日）。骨組みが最初の週に空でデプロイされていれば、その五つの 痛手は機能ゼロの状態で受けていた。第4段と第13段。</p>
+<h3 id="ref-33" class="refh">Ref. 33 — UATから本番への昇格（10月4日と8日）</h3>
+<p>10月4日と8日（コミット <code>4eb5ad7</code>、保留項目027、と <code>7658e2e</code>）、設定とキャンペーンをテスト 環境から本番環境へ渡す明示的な回路ができた。第13段。</p>
+<h3 id="ref-34" class="refh">Ref. 34 — コードから導出されたスキーマ、錠付き（10月11日）</h3>
+<p>永続化の再設計の段階1（コミット <code>6113319</code> と <code>68819ce</code>）で、テーブルとフィールドの目録が コード自体から導出され、守るテスト付きで、私がレビューできるよう共有の掲示板に開かれた。 一人の所有者、コード、を持つリストだ。第8段。</p>
+<h3 id="ref-35" class="refh">Ref. 35 — 静的ラチェット、そして見ていなかった計器（10月11日から13日）</h3>
+<p>再設計の段階6（コミット <code>06b2734</code>、<code>f6e5221</code>、<code>2fc6239</code>、<code>1d55a93</code>）で「ラチェット」を 設置した：<code>await</code> なし、つまり結果を待たないデータベース呼び出しのカウンタで、下がること しかできず決して上がらない。そして語る価値のあることが起きた：計器がコードの一部を見て いないことが<strong>二度</strong>発覚した。最初は70回、次に84回の呼び出し、カウンタはゼロのまま。計器が 検証されなければ、数字は安心させて嘘をつく。第9段。</p>
+<h3 id="ref-36" class="refh">Ref. 36 — 嘘をついた計器と11.b節の五つのルール（10月13日と14日）</h3>
+<p>10月13日のコミット（<code>880ac0f</code>、<code>f955620</code>）の原文：「E7.5の計器はALTER適用済みのベースで 嘘をついていた」「27ではなく44」。そして数日前、ある計画がある種のループが121あると主張し、 実行者が計測したら79だった。これらすべてから再設計文書の11.b節を書いた。今日第9段である 五つのルール付きで：ガード付きの計器。計器がなければ作る。双方向で監査する。近似は印す。 そして実行者は計画者の数字を検証する。それを要約する文とともに：「四つの主張のうち三つが 間違っていた。計器があったところでは正確だった」。</p>
+<h3 id="ref-37" class="refh">Ref. 37 — クエリ予算と計測値に締められた天井（10月14日）</h3>
+<p>段階8（コミット <code>5926b3f</code>、<code>10ada00</code>）で、アプリケーションの各経路に計測されテストで守られた データベースクエリの予算がつき、データベースエンジンの変更は環境ごとのスイッチになった。 段階9（<code>0730082</code>、<code>7f5f1af</code>）で天井は計測値プラス小さな余裕に締められた：60に対して63。 予算は作られた数字ではない。第9段。</p>
+<h3 id="ref-38" class="refh">Ref. 38 — テーブルごとの保持、そして別のセッションによる整合性報告（10月14日）</h3>
+<p>段階10と12（コミット <code>f72b15a</code>、<code>b266f11</code>）で、実際のパッケージが移行スクリプトを運ぶように なり、データの保持はテーブルごとに宣言されて本番で制限され、システムを構築していないClaude Codeの別のセッションによる整合性報告が保留項目として吸収された。第11段の構築者とは別の 監査者だ。</p>
+<h3 id="ref-39" class="refh">Ref. 39 — デプロイはパッケージするだけ、そして燃え尽きたクォータ（10月14日）</h3>
+<p>テストはコミットごとに三度走り、それぞれ16から27分かかった。16日間でGitHub Actionsの クォータ2,000分が消費され、23回プッシュした一日がそれを燃やし尽くした。10月14日（コミット <code>39497b0</code>）に回路を分割した：テストは継続的インテグレーションで<strong>一度だけ</strong>走る。デプロイは その結果を待ってパッケージするだけ。コミットあたり16から27分から、11分へ。第13段。</p>
+<h3 id="ref-40" class="refh">Ref. 40 — 二十四時間で二つの管理者の扉（10月15日）</h3>
+<p>10月15日、一日で二つの管理者の扉が作られた（保留項目223と257）。外部レビューがそれを検知 した。一つを撤回し（コミット <code>69bdab2</code>、<code>20fdbe7</code>、<code>1558ee4</code>）、単一の道が残った。これを 語るのは、方法がドラマなしに「素早く取り消す」に耐えることの証拠として、そして監査は構築 していない誰かがしなければならない理由として。第11段と第12段。</p>
+<h3 id="ref-41" class="refh">Ref. 41 — 品質監査：一つの脆弱性、巨大なコンポーネント、9,661行のプロジェクトファイル（10月15日）</h3>
+<p>10月15日の品質監査は、依存関係の既知の脆弱性、2,679行の画面コンポーネント、ウェブ版と モバイル版で重複した八つのモジュール、そして9,661行789キロバイトまで育った <code>CLAUDE.md</code>、 その時点では誰も、モデルすら読まないファイルを見つけた。そこから第2段のルール：プロジェクト ファイルは綱領であって履歴ではなく、事例集は別に置く。第2段、第8段、第11段。</p>
+<h3 id="ref-42" class="refh">Ref. 42 — チャットに貼られた秘密（10月14日と16日）</h3>
+<p>10月14日、データベースの鍵がトランスクリプトに印字され、16日にはAPIキーがチャットに貼ら れた。どちらも「誰にも見られ」なかったが、どちらも同じくローテーションしなければならない。 チャット、ログ、コミットにあった秘密はもう秘密ではないからだ。第13段。</p>
+<h3 id="ref-43" class="refh">Ref. 43 — 言っていることと違った三つの報告（10月14日から16日）</h3>
+<p>第10段の、小さく非常に示唆的な三つの事例。10月14日、認証エラーがツールによって「success」 という表示で報告された。16日、サーバーのCORSが最初のドメイン名からのみ導出され、テスト環境 の設定アシスタントは報告が言及しないエラー500を出していた。そしてモバイルアプリは、報告が 検証済みと宣言した条件でタブを失っていた。三つとも同じルールで直る：検証したことと信じて いることを分け、盲点を宣言する。</p>
+<h3 id="ref-44" class="refh">Ref. 44 — メモリで死んで失敗したテストに見えたテスト群</h3>
+<p>テスト群まるごとがメモリ不足で「死に」（コミット <code>1d7a20b</code>）、報告はそれを失敗するテストと 読んだ。完全な出力を見るまで、どのテストも失敗していなかったことがわからなかった：プロセス が落ちていたのだ。第7段が判定だけでなく赤と緑の数字を求める理由。</p>
+<hr>
+</section><section>
+<h2 id="d">D. セッション中に私が課したこと、そして断ったこと</h2>
+<h3 id="ref-45" class="refh">Ref. 45 — セッション中に私がした四つの訂正、後にルールになったもの（10月）</h3>
+<p>コミットからではなく、セッションの最中にエージェントにした訂正から生まれ、後に形式化した 方法のルールがある。引用するのは、方法の起源の第二の要因、モデルの脆い適用に対する私自身の 工学の判断を示すからだ。「ガード付きの計器、grepではなく」：決定に入力される数字はテキスト 検索ではなくテスト付きのプログラムで計測する。「症状だけでなく仮説を計測しろ」：私が印象の 形で原因を持ち込むとき、構築前に計測しなければならない。私はたいてい症状については正しく、 原因はたいていその隣にあるからだ。「限界は散文ではなくログで検証しろ」：モデルの拒否は限界 が適用されていることを証明しない。呼び出しを強制して記録を読まなければならない。そして 「まず公開されているバージョンを比べろ」：「まだ壊れている」に対して、診断し直す前に私が 問題を見ている場所でどのバージョンが動いているか見る。第9段と第10段。</p>
+<h3 id="ref-46" class="refh">Ref. 46 — 私が断ったプロジェクト、そして排除基準の出所（10月17日）</h3>
+<p>第0段の二つの排除基準は、私が受け入れたプロジェクトからではなく、断ったプロジェクトから 来ている。アクセス可能なリポジトリのない、または標準に従わないリポジトリを持つレガシー 技術を断った。リポジトリなしには証拠を残す場所がないからだ。そしてエンドツーエンドでテスト できない技術、画面を実行しインターフェースの各要素にその各種の操作でアクセスして変更が バックエンドに届いたことを検証できない技術を断った。そのとき明確にし、今も維持している ことは、NAC3は必須ではない、ということだ。必須なのは画面の実行からテストすることだ。</p>
+<hr>
+</section><section>
+<h2 id="e">E. 完全な年表</h2>
+<p>誰かが個別の事例ではなく全体の順序を見たい場合のために置く。各行はリポジトリにあるままの 証拠を持つ。</p>
+<h3 id="e-1-yujin-forge">E.1 yujin-forge</h3>
+<div class="tw"><table><thead><tr><th>日付</th><th>出来事</th><th>何が変わったか</th><th>証拠</th></tr></thead><tbody><tr><td>5月25日</td><td>品質基準の誕生</td><td>最初の共働の約束：人間の時間、負債ゼロ、文書は最新、正確な範囲</td><td><code>2219f7a</code></td></tr><tr><td>5月27日</td><td>最初のアンチパターンの記録</td><td>固定形式：匂い、根本原因、修正、早期検知</td><td><code>73f4029</code></td></tr><tr><td>6月2日</td><td>ゲートG1からG9とG-DOC</td><td>教義は該当するときだけプロンプトに入る</td><td><code>5b47475</code></td></tr><tr><td>6月4日</td><td>テスト方針の再定式化</td><td>既定ではテストは実装の後。骨組みは緑。ループ対策</td><td><code>a9f59c7</code>、<code>testing-policy.md</code></td></tr><tr><td>6月4日</td><td>スプリント前に凍結された決定</td><td>D1、D2、D3が書かれ番号付けされる</td><td>6月4日の決定文書</td></tr><tr><td>6月5日</td><td>マルチエージェントチームの廃止</td><td>60ドルと73分対90分</td><td><code>7584f8b</code></td></tr><tr><td>6月6日</td><td>計画とは保留項目のこと</td><td>正規の、番号付きの、セッションごとに更新されるキュー</td><td><code>4fc82c6</code></td></tr><tr><td>6月10日</td><td>必須の教義。検証の誠実さ。ワークフローの種類</td><td>本当の赤、盲点、釣り合った主張</td><td><code>7ab9d8a</code>、<code>2c552c0</code></td></tr><tr><td>6月14日から21日</td><td>24時間と48時間の自動操縦</td><td>書面の委任による長い自律</td><td>セッションのメモ</td></tr><tr><td>7月5日と10日</td><td>診断モード</td><td>他者のシステムに対する読み取り専用</td><td><code>diagnostic-mode.md</code></td></tr><tr><td>7月22日</td><td>性能の強化</td><td>本番から取ったスケールのパターン</td><td><code>873339c</code></td></tr><tr><td>8月14日</td><td>本番の常駐エージェント</td><td>システムの地図、まず運用上の解決、チケット</td><td>セッションのメモ</td></tr><tr><td>10月10日と11日</td><td>ゲートとしてのサイジング</td><td>固定の選択肢、記録される</td><td><code>c602725</code>、<code>0bd1b05</code></td></tr><tr><td>10月13日</td><td>非同期の永続化インターフェース</td><td>非対称な決定</td><td><code>7391cc5</code></td></tr><tr><td>10月14日</td><td>1時間43分の孤児ターン → 1.18.0</td><td>沈黙の番犬、プロセス間のリード、28のテスト</td><td><code>b80a659</code></td></tr></tbody></table></div>
+<h3 id="e-2-autorizaciones">E.2 Autorizaciones</h3>
+<div class="tw"><table><thead><tr><th>日付</th><th>出来事</th><th>何をもたらしたか</th><th>証拠</th></tr></thead><tbody><tr><td>6月11日</td><td>初期設計文書</td><td>数週間でリポジトリに追い越される</td><td>設計文書</td></tr><tr><td>6月23日</td><td>インデックスなしクエリの監査</td><td>発見は保留項目に変換</td><td>監査文書</td></tr><tr><td>6月24日</td><td>Googleクラウドの教訓</td><td>インフラの誤りが教訓として書かれる</td><td>教訓文書</td></tr><tr><td>6月26日</td><td>ユーザーマニュアル</td><td>システムとともに生まれる</td><td>マニュアル</td></tr><tr><td>7月13日</td><td>第二層のバックアップ</td><td>ローカルとクラウド</td><td>バックアップのコミット</td></tr><tr><td>7月14日</td><td>PND-300、四往復</td><td>修正は根本からか、修正ではないか</td><td>保留項目300</td></tr><tr><td>7月16日</td><td>セキュリティ監査</td><td>定期的、保留項目を生む</td><td>監査文書</td></tr><tr><td>7月26日と29日</td><td>内部マニュアルと復旧マニュアル</td><td>AIなしで手で再現可能</td><td><code>6444ce6</code>、<code>a30cee3</code></td></tr><tr><td>7月27日</td><td>反射としてのフェイルクローズド</td><td>行はボタンなしで残る。リストは壊れない</td><td><code>e18406d</code></td></tr><tr><td>8月6日と7日</td><td>カウンタ1,355対1,234</td><td>本番での根本原因、赤のテスト、リポジトリ内のスクリプト</td><td><code>ab3e529</code>、<code>1f5feb9</code></td></tr><tr><td>8月6日</td><td>生産者/消費者の対称性</td><td>理由と列に単一の源</td><td><code>50fe968</code>、<code>7251129</code></td></tr><tr><td>8月7日</td><td>緊急ボタン、ドライランモード、番人</td><td>錠</td><td><code>0954740</code></td></tr><tr><td>8月10日</td><td>コミット内のドメインルール</td><td>日付とオーナー付き</td><td><code>0ae3ae6</code></td></tr></tbody></table></div>
+<h3 id="e-3-kikan">E.3 Kikan</h3>
+<div class="tw"><table><thead><tr><th>日付</th><th>出来事</th><th>何をもたらしたか</th><th>証拠</th></tr></thead><tbody><tr><td>8月21日</td><td>書かれた方法で開始</td><td>初日からのプロジェクトファイルと保留項目</td><td>最初のコミット</td></tr><tr><td>8月28日と29日</td><td>AUD-*シリーズ</td><td>19の保留項目文書</td><td>保留項目文書</td></tr><tr><td>8月28日</td><td>継続的インテグレーション</td><td>最初の週からGitHubでテスト</td><td><code>ci.yml</code></td></tr><tr><td>9月23日と24日</td><td>パッケージとしてのデプロイ</td><td>サーバー上の設定。固定ランタイム</td><td><code>deploy.yml</code>、<code>bb801ed</code></td></tr><tr><td>9月30日から10月4日</td><td>強化されたデプロイ</td><td>五つの連続した保留項目</td><td><code>f85c3c9</code>、<code>513c8d0</code>、<code>076df76</code>、<code>9d76af8</code>、<code>0bd20a8</code></td></tr><tr><td>10月4日と8日</td><td>UATからPRODへの昇格</td><td>明示的な回路</td><td><code>4eb5ad7</code>、<code>7658e2e</code></td></tr><tr><td>10月11日</td><td>コードから導出されたスキーマ</td><td>錠付き、掲示板に開かれる</td><td><code>6113319</code>、<code>68819ce</code></td></tr><tr><td>10月11日から13日</td><td>静的ラチェット</td><td>計器が見ていなかった：70、次に84</td><td><code>06b2734</code>、<code>f6e5221</code>、<code>2fc6239</code>、<code>1d55a93</code></td></tr><tr><td>10月13日</td><td>嘘をついた計器</td><td>「27ではなく44」</td><td><code>880ac0f</code>、<code>f955620</code></td></tr><tr><td>10月14日</td><td>クエリ予算。60に対して天井63</td><td>計測値プラス余裕</td><td><code>5926b3f</code>、<code>10ada00</code>、<code>0730082</code>、<code>7f5f1af</code></td></tr><tr><td>10月14日</td><td>11.bの五つのルール</td><td>ガード付きの計器、双方向の監査</td><td>再設計文書、11.b</td></tr><tr><td>10月14日</td><td>テーブルごとの保持。外部の整合性</td><td>別のセッションの報告が保留項目として吸収</td><td><code>f72b15a</code>、<code>b266f11</code></td></tr><tr><td>10月14日</td><td>デプロイはパッケージするだけ</td><td>16〜27分から11分へ</td><td><code>39497b0</code></td></tr><tr><td>10月15日</td><td>二つの管理者の扉</td><td>一つを24時間で撤回</td><td><code>69bdab2</code>、<code>20fdbe7</code>、<code>1558ee4</code></td></tr><tr><td>10月15日</td><td>品質監査</td><td>脆弱性、2,679行のコンポーネント、9,661行のファイル</td><td>監査文書</td></tr></tbody></table></div>
+<hr>
+</section><section>
+<h2 id="f">F. 各失敗と、それを覆う段</h2>
+<p>この表はある意味ではしごの証明だ：各痛手はどこかの段に落ちなければならない。どの段にも 落ちないものが現れたら、段が欠けている。</p>
+<div class="tw"><table><thead><tr><th>失敗</th><th>参照</th><th>覆う段</th><th>状態</th></tr></thead><tbody><tr><td>二倍を費やして半分を納めたマルチエージェントチーム</td><td>Ref. 6</td><td>15、数字による振り返り</td><td>閉じた</td></tr><tr><td>地図を読まなかったための捨てられた仕事</td><td>Ref. 9</td><td>2、必読</td><td>閉じた</td></tr><tr><td>PND-300：根本からでなかった三つの修正</td><td>Ref. 22</td><td>1、負債ゼロ。9、計測</td><td>閉じた</td></tr><tr><td>カウンタ1,355対1,234</td><td>Ref. 26</td><td>9、計器。8、対称性</td><td>閉じた</td></tr><tr><td>JSONファイル上の年間340万行</td><td>Ref. 15</td><td>3、サイジング</td><td>閉じた</td></tr><tr><td>嘘をついた計器。ゼロのラチェット</td><td>Refs. 35と36</td><td>9、計器の検証</td><td>閉じた</td></tr><tr><td>1時間43分の孤児ターン</td><td>Ref. 16</td><td>10と12</td><td>閉じた</td></tr><tr><td>コミットごとに三度のテスト。燃え尽きたクォータ</td><td>Ref. 39</td><td>13</td><td>閉じた。クォータは増やす必要あり</td></tr><tr><td>24時間で二つの管理者の扉</td><td>Ref. 40</td><td>11と12</td><td>閉じた</td></tr><tr><td>チャットに貼られた秘密</td><td>Ref. 42</td><td>13</td><td>ローテーション保留</td></tr><tr><td>成功として報告された認証エラー</td><td>Ref. 43</td><td>10</td><td>保留、一行</td></tr><tr><td>9,661行のプロジェクトファイル</td><td>Ref. 41</td><td>2</td><td>保留</td></tr><tr><td>最初のドメインのCORS。エラー500の設定アシスタント</td><td>Ref. 43</td><td>13と8</td><td>適用保留</td></tr><tr><td>モバイルアプリがタブを失う</td><td>Ref. 43</td><td>10と12</td><td>診断済み。修正保留</td></tr></tbody></table></div></section>
+<footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">方法の公開リポジトリ: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
+</div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>

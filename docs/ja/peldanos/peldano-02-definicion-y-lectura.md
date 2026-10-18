@@ -1,28 +1,39 @@
-# ステップ 2 — プロジェクトの定義と必読（段の契約）
+# ステップ 2 — プロジェクトの定義、セマンティックツリー、必読（段の契約）
 
-**フェーズ：** 立ち上げ（一度。プロジェクト全体を通じて最新に保つ）。
-**形式：** 対話（エージェントが起草し、足りないものを質問し、オーナーが修正する）。
-**規模：** すべてのプロジェクトで必須。小さいプロジェクトならプロジェクトファイルは五十行
-でよい。存在しないことだけは許されない。
+**区間：** 立ち上げ。
+**いつ：** 一度書く、最初の週に、約束の後。セマンティックツリーと生きた状態はプロジェクト
+全体を通じて、各ブロックと各新しい決定とともに最新に保つ。
+**形式：** 対話。エージェントが起草し、足りないものを質問し、あなたが修正する。
+**規模：** すべてのプロジェクトで必須。小さいプロジェクトならプロジェクトファイルは五十行、
+セマンティックツリーは二十ノードでよい。存在しないことだけは許されない。
 
 ## 何のためか
 
-エージェントの各セッションはゼロから始まる。昨日を覚えていない。だから短い地図が必要だ。
-プロジェクトとは何で、どんな状態で、どの決定が既になされたかを伝える地図が。そして何かに
-触れる前にそれを読む義務が。防ぐ失敗は二重だ。地図を読まなかったことによる捨てる仕事と、
-読めなくなるまで育つ地図（起源システムの一つでプロジェクトファイルは9,661行に達し、その
-状態では誰も、モデルさえも読まない）。
+エージェントの各セッションはゼロから始まる。昨日を覚えていない。プロジェクトが何で、どんな
+状態で、どの決定が既になされたかを教える短い地図を与え、何かに触れる前にそれを読むよう
+義務付けること。防ぐ失敗は二つある。地図を読まなかったための捨てる仕事
+[Ref. 9](../REFERENCIAS.md#ref-9)、そして読めなくなるまで育つ地図
+[Ref. 41](../REFERENCIAS.md#ref-41)。実践的なルール：**プロジェクトファイルは綱領であって、
+履歴ではない**。起きたことは別の場所へ。
 
-その痛手から出た実践ルール：**プロジェクトファイルは綱領であって履歴ではない**。起きた
-ことは別の場所へ（保留項目の記録、生きた状態、日誌）。プロジェクトファイルはシステムが
-何で、誰のためで、何でないか、何が決まったかを言う。
+地図には二つの部品があり、二つ目が最も多くの仕事をする。一つ目はプロジェクトファイル：
+システムは何か、誰のためか、何で**ない**か、なされた決定。二つ目は**セマンティックツリー**：
+システムを木として分解したもので、ドメインがあり、各ドメインの下にそのアクター、プロセス
+（ユースケース）、状態を持つエンティティ、画面、インテグレーション。そして各ノードから、
+それに触れる保留項目と決定がぶら下がる。この木は、あなたが要件工学の古典的な方法（インタ
+ビュー、ユースケース、ドメインモデル）で行った調査から生まれ、エージェントが構築し、あなた
+が修正し、モデルにプロジェクト全体を読まなくても触れるノードの正確な文脈を与える。そして、
+コードを読まずに、エージェントが理解しているシステムが事業が求めたものであることをあなたが
+検証できるようにするものだ。
 
 ## 1. 必要な文脈
 
-- 事業の調査：顧客は何をし、誰がシステムを使い、どの問題を解決し、何をしてはならないか。
+- 事業の調査：顧客は何をするか、誰がシステムを使うか、どんな問題を解決するか、何をしては
+  ならないか。インタビュー、名前を挙げられるユースケースやユーザーストーリー、そして事業の
+  エンティティとその状態とともに、不完全でもよい。
 - 共働の約束（第1段）。
-- 以前のシステムがあれば：そのコードまたは文書への読み取りアクセス。
-- 既になされた決定、あれば。口頭でも。
+- 以前のシステムがあるなら：そのコードまたは文書への読み取りアクセス。
+- 既になされた決定、あれば、口頭のものでも。
 
 ## 2. プロンプト
 
@@ -30,49 +41,96 @@
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
-> whether the survey is sufficient to describe the system, its users and its boundaries; if it
-> is not, ask me for what is missing before writing anything. Then write `PROJECT.md`, three
-> hundred lines at most, with: what the system is and for whom; what it is NOT; the main
-> modules as a list; the decisions already made, each with its date; and the instruction to
-> read this file and the working agreement at the start of every session. Separately, create
-> `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
-> changes every day; `PROJECT.md` almost never does. Reply in my language.
+> whether the survey is sufficient to describe the system, its users, its domain and its
+> boundaries; if it is not, ask me for what is missing before writing anything. Then write two
+> things. First, `PROJECT.md`, three hundred lines at most, with: what the system is and for
+> whom; what it is NOT; the main modules as a list; the decisions already made, each with its
+> date; and the instruction to read this file and the semantic tree at the start of every
+> session. Second, `docs/SEMANTIC_TREE.md`: the system as a tree, with the domains at the top
+> level and, under each one, its actors, its processes (the use cases, each with actor, trigger,
+> steps, outcome and exceptions), its entities with their attributes, states and transitions,
+> its screens, and its external integrations. Mark every node you inferred rather than read in
+> the survey, so that I can confirm or correct it. Separately, create `docs/STATUS.md` for the
+> living state (what is being worked on, what is open): that file changes every day; the other
+> two change only when the system changes. Reply in my language.
 
-何を求めているか：調査を評価し、起草前に質問すること。プロジェクトファイルが**短い**こと
-（三百行の上限は恣意的だが必要。上限なしでは育つ）。システムが何**でない**かを明示する
-こと。言われていないことこそモデルが発明するものだから。決定に日付があること。そして生きた
-状態を別ファイルに分けること。プロジェクトファイルが履歴にならないように。
+> [ja]
+> プロジェクトを書面で定義します。`docs/INITIAL_SURVEY.md` の事業調査と
+> `docs/WORKING_AGREEMENT.md` の共働の約束を読んでください。調査がシステム、そのユーザー、
+> ドメイン、境界を記述するのに十分か評価してください。不十分なら、何かを書く前に足りない
+> ものを私に求めてください。次に二つのものを書いてください。第一に `PROJECT.md`、最大
+> 三百行で、内容：システムは何で誰のためか。何で**ない**か。主要モジュールのリスト。既に
+> なされた決定、それぞれ日付付き。そして毎セッションの最初にこのファイルとセマンティック
+> ツリーを読むという指示。第二に `docs/SEMANTIC_TREE.md`：システムを木として、最上位に
+> ドメイン、各ドメインの下にそのアクター、プロセス（ユースケース、それぞれアクター、
+> トリガー、手順、結果、例外付き）、属性・状態・遷移を持つエンティティ、画面、外部インテ
+> グレーション。調査で読んだのではなく推論したノードはすべて印してください。私が確認または
+> 修正できるように。別途、生きた状態（取り組んでいること、開いていること）のために
+> `docs/STATUS.md` を作成してください。そのファイルは毎日変わります。他の二つはシステムが
+> 変わるときだけ変わります。私の言語で答えてください。
+
+何を求めているか：調査を評価し、起草する前に質問すること。プロジェクトファイルが**短い**
+こと（三百行の上限は恣意的だが必要だ。上限なしには育つ）。システムが何で**ない**かを明示
+的に言うこと。言われていないことがモデルが発明するものだから。決定に日付があること。
+**セマンティックツリー**を完全な構造（ドメイン、アクター、各部を持つユースケース、状態と
+遷移を持つエンティティ、画面、インテグレーション）で構築すること。それは要件工学のドメイン
+モデルを木の形にしたものだ。**推論したものを印す**こと。発明が隠れるのはそこだから。そして
+生きた状態を別のファイルに分けること。地図が履歴にならないように。
 
 **締め：**
 
-> Apply these corrections: [list]. Finalize `PROJECT.md` with today's date. Add to the working
-> agreement that the change history never goes into `PROJECT.md`: it goes to `docs/STATUS.md`
-> or to the pending-items register.
+> Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with
+> today's date. Add to the working agreement two rules: the change history never goes into
+> `PROJECT.md` (it goes to `docs/STATUS.md` or to the pending-items register); and every pending
+> item must hang from a node of the semantic tree, and the tree is updated in the same commit
+> whenever a block adds or changes a node.
 
-何を求めているか：オーナーの修正、日付、そしてプロジェクトファイルが変更履歴になるのを
-防ぐ新しいルールを約束に加えること。そのルールこそ9,661行の事例に欠けていたものだ。
+> [ja]
+> これらの修正を適用してください：[リスト]。`PROJECT.md` と `docs/SEMANTIC_TREE.md` を今日
+> の日付で確定してください。共働の約束に二つのルールを追加してください：変更履歴は決して
+> `PROJECT.md` に入れない（`docs/STATUS.md` または保留項目の記録へ行く）。そしてすべての
+> 保留項目はセマンティックツリーのノードからぶら下がらなければならず、ブロックがノードを
+> 追加または変更するたびに木は同じコミットで更新される。
+
+何を求めているか：あなたの修正（とりわけ推論と印されたノードへの）、日付、そして約束への
+二つの新ルール：プロジェクトファイルが履歴になるのを防ぐもの、そして各保留項目を木の
+ノードに結び付けるもの。後者が木を生きたまま保ち、範囲外の保留項目を十秒で検知できるように
+する。
 
 ## 3. 期待される成果物
 
-- `PROJECT.md`（または `CLAUDE.md`）：短く、必読で、何か、誰のためか、何でないか、
-  モジュール、日付付きの決定、読む命令を含む。最大三百行。
-- `docs/STATUS.md`：生きた状態、前者とは分離。
-- 両方に最終更新日。
-- 約束に、履歴は `PROJECT.md` に入れないというルール。
+- `PROJECT.md`（または `CLAUDE.md`）：短く、必読で、何か、誰のためか、何でないか、モジュール、
+  日付付きの決定、そして木とともにこれを読むという命令。最大三百行。
+- `docs/SEMANTIC_TREE.md`：セマンティックツリー、あなたが確認するまで推論ノードは印され、
+  最初のブロックから、保留項目と決定がそのノードからぶら下がる。
+- `docs/STATUS.md`：生きた状態、前の二つとは分離。
+- 三つすべてに最終更新日。
+- 約束に、二つの新ルール。
 
 ## 4. 完全性の検証
 
-- `PROJECT.md` は五分で読み切れるか。読めないなら間違っている。綱領であって履歴ではない。
-- システムが何をしないかを明示しているか。（欠けているものがエージェントの発明するものだ。）
-- 各決定に日付と決定者があるか。
-- エージェントは起草前に事業について何か質問したか。何も聞かなかったなら、何を推測したか
-  確認せよ。
-- 生きた状態は別ファイルにあるか。
+- `PROJECT.md` は五分で読めるか？ 読めないなら間違っている。綱領であって履歴ではない。
+- システムが何を**しない**かを明示的に言っているか？（欠けているものがエージェントが発明
+  するものだ。）
+- 顧客になったつもりでセマンティックツリーを辿ること：あなたが知っているアクターは全員
+  いるか？ 各エンティティは事業が使う状態を、それ以上でも以下でもなく持っているか？ 見覚え
+  のないノードがあるか？ それは発明だ。今修正すること。
+- 推論ノードは印されているか？ すべて確認または修正したか？
+- 各決定に日付と誰が決めたかがあるか？
+- エージェントは起草する前に事業について何か質問したか？ 何も聞かなかったなら、何を推測
+  したか見直すこと。
+- 生きた状態は別のファイルにあるか？
+- 読み取りテスト：セッションを閉じ、新しいセッションを開き、システムが何をしないか、ある
+  画面が木のどのノードからぶら下がるかを聞くこと。地図で答えるなら、結び付けは機能している。
 
 ## 5. 警告サイン
 
-- プロジェクトファイルが一か月で20%以上育った。綱領でないものが入り込んでいる。
-- エージェントがセッションの冒頭で、既に決まって書かれていることを提案する。地図を読んで
-  いない。必読の結び付けが失敗している。
-- 「何でないか」の節が空か、「特になし」と言う。すべてのシステムに限界がある。書かれて
-  いなければ、モデルはそれを越える。
+- プロジェクトファイルが一か月で20%以上育った。綱領でない何かが入り込んでいる。
+- エージェントが、既に決定され書かれていることを提案してセッションを始める。地図を読んで
+  いない。必読の結び付けが失敗した。
+- 「何でないか」の節が空か、「特になし」と言っている。すべてのシステムに限界がある。書かれ
+  ていなければ、モデルはそれを越える。
+- 木のどのノードからもぶら下がらない保留項目がある。木が古くなったか、その保留項目が範囲外
+  かだ。両方を見なければならない。
+- 木のエンティティに、事業が一度も名付けなかった状態がある。モデルが論理的に思えたから発明
+  したもので、その上に構築してしまう。

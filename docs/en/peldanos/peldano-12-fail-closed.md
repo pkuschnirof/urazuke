@@ -1,33 +1,39 @@
 # Step 12 — Fail-closed, locks and zero silent harm (step contract)
 
-**Phase:** operation (designed before the system acts on the world; revised with every new
-consequential action).
-**Form:** conversation: the agent lists the consequential actions, the owner confirms which get a
+**Stretch:** operation.
+**When:** in the go-live stretch, BEFORE building any functionality that charges, sends, approves
+or deletes; revisited with every new consequential action. New automations start in dry-run mode
+and are enabled after watching their log for a few days.
+**Form:** conversation: the agent lists the consequential actions, you confirm which ones get a
 lock and of what kind.
-**Size:** mandatory as soon as the system does anything irreversible (charge, send, delete,
-approve). A read-only system can skip it; the moment it gains its first button that acts on the
+**Size:** mandatory as soon as the system does anything irreversible (charging, sending, deleting,
+approving). A read-only system can skip it; the moment it gains its first button that acts on the
 world, this step becomes the most important one.
 
 ## What it is for
 
-So that the system, on doubt or failure, does NOT act, and says so. It sounds obvious and it is
-the opposite of what software does by default, which on doubt carries on. It prevents the double
-charge, the automatic approval without a human in the loop, the `git add -A` that uploads a
-credential, and deleting the client's data.
+Make the system, when in doubt or on failure, NOT act, and say so. It sounds obvious and it is
+the opposite of what software does by default, which when in doubt carries on. It avoids the
+double charge, the automatic approval that never went past a human, the `git add -A` that uploads
+a credential, and the deletion of the client's data. The locks I put in at the Health Fund are
+the model: the panic button with a double safety, the auto-approver in dry-run mode, the watchman
+with guards [Ref. 28](../REFERENCIAS.md#ref-28); and the reflex that a failure leaves a row without
+its button instead of breaking the whole listing [Ref. 25](../REFERENCIAS.md#ref-25).
 
-The principle has a name, "fail-closed", and comes from physical security: a security door that
-stays shut when the power is cut. The opposite, "fail-open", is the door that opens. In software
-most things are fail-open by default: if validation fails, the code continues; if the service does
-not answer, everything is assumed fine. The method flips the default: **on doubt, no**. And it
-applies both to the system and to the agent that operates it.
+The principle has a name, "fail-closed", and it comes from physical security: a security door that
+stays shut when the power goes out. The opposite, "fail-open", is the door that opens. In software
+most things are fail-open by default: if the validation fails, the code carries on; if the service
+does not respond, everything is assumed to be fine. The method inverts the default: **when in
+doubt, no**. And it applies both to the system and to the agent that operates it.
 
 ## 1. Required context
 
 - **Survey of consequential actions**, named generically: what the system does that charges,
   sends, approves, deletes, or notifies someone outside; what happens if it is done twice; what
-  happens if it is done wrong; how it is undone. The business knows this; the agent evaluates
-  whether the list is complete and asks.
-- Which actions the agent itself may take on the system (if it is embedded).
+  happens if it is done wrong; how it is undone. The business knows it; the agent evaluates
+  whether the list is complete and asks. The semantic tree helps: every consequential process is
+  there.
+- Which actions the agent itself can take on the system (if it is embedded).
 
 ## 2. Prompts
 
@@ -42,11 +48,11 @@ applies both to the system and to the agent that operates it.
 > General rule: on any doubt or failure along the way, the action is NOT executed and the reason
 > is logged. Present me the table; I confirm lock by lock. Reply in my language.
 
-What we are asking for: the comparison between what the business said and what the code does
-(that is where the actions nobody remembered appear); the completeness clause in its form for this
-step: differences between the two lists are asked about, not resolved; for every action,
-reversibility, lock and way back; and the general fail-closed rule written in the prompt, so that
-it ends up in the table and in the code.
+What I am asking for: the cross-check between what the business said and what the code does (that
+is where the actions nobody remembered show up); the completeness clause in its form for this
+step: the differences between the two lists are asked about, not resolved; for every action,
+reversibility, lock and way back; and the general fail-closed rule written into the prompt, so
+that it ends up in the table and in the code.
 
 **Closing:**
 
@@ -55,7 +61,7 @@ it ends up in the table and in the code.
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
 
-What we are asking for: the test per lock **proved red** (without the lock, the action happened;
+What I am asking for: the test per lock **proved red** (without the lock, the action happened;
 with the lock, it does not), which is step 7 applied to safety; the final table; and the dry-run
 rule for every new automation, which is what lets you see what it would have done before letting
 it do it.
@@ -64,28 +70,28 @@ it do it.
 
 - `docs/LOCKS.md`: one row per consequential action: what it does, whether it is reversible, the
   lock, the way back, who approved it and when.
-- One test per lock, proved red, verifying that on doubt the action does not happen.
-- New automations starting in dry-run mode, with the "would have done" log.
+- One test per lock, proved red, which verifies that when in doubt the action does not happen.
+- New automations starting in dry-run mode, with the log of "would have done".
 - If the agent is embedded: its permissions written down (what it can read, what it can change,
-  what needs approval).
+  what requires approval).
 
 ## 4. Completeness check
 
 - Is every action that charges, sends, approves or deletes in the table? Think of one that is not
-  and ask.
+  there and ask.
 - Does every lock have its red test? ("Without the lock, the action happened; with the lock, it
   does not.")
-- Does every irreversible action have a written way back? If it does not, it needs double
+- Does every irreversible action have a written way back? If it does not, it needs a double
   safety.
 - Did the new automations start in dry-run mode? Did you see the "would have done" log before
   enabling them?
 - What happens if the embedded agent tries something outside its permissions? Ask it to try and
-  to show you the rejection in the log.
+  show you the rejection in the log.
 
 ## 5. Warning signs
 
 - An automation went from "does not exist" to "runs on its own" without a dry-run period.
-- The log has no "action not executed due to doubt" entry at all. Either the system never doubts
-  (impossible) or when it doubts it carries on.
-- A lock can be bypassed with a "for testing" parameter. That parameter will end up set in
+- The log has no entry at all of "action not executed due to doubt". Either the system never
+  doubts (impossible) or when it doubts it carries on.
+- A lock can be skipped with a parameter "for testing". That parameter will end up set in
   production.

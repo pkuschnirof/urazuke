@@ -1,29 +1,35 @@
 # Passo 4 — Lo scheletro con i suoi cancelli (contratto del gradino)
 
-**Fase:** avvio (una volta).
-**Forma:** un solo invio lungo, con approvazione visiva del proprietario alla fine.
-**Dimensione:** obbligatorio in ogni progetto che avrà utenti. In un prototipo usa-e-getta si può
+**Fase:** avvio.
+**Quando:** una volta, alla chiusura della prima settimana, dopo il dimensionamento e prima di
+qualunque funzionalità. È qui che si fa tutta l'infrastruttura iniziale e la catena di
+integrazione e deployment.
+**Forma:** un solo invio lungo, con approvazione visiva tua alla fine.
+**Dimensione:** obbligatorio in ogni progetto che avrà utenti. In un prototipo usa e getta si può
 saltare; ma se il prototipo sopravvive (sopravvivono sempre), questo gradino è la prima cosa da
 pagare.
 
 ## A cosa serve
 
-Perché il sistema parta, si provi e si distribuisca VUOTO prima di avere funzionalità. Scoprire il
-deployment alla fine è carissimo: in Kikan arrivò un mese dopo l'avvio e costò cinque voci in sospeso
-di fila. Se lo scheletro si distribuisce la prima settimana, quei colpi cadono con zero funzionalità
-in gioco.
+Fa' che il sistema parta, si provi e si distribuisca VUOTO prima di avere funzionalità. Scoprire il
+deployment alla fine è carissimo: in uno dei miei sistemi è arrivato un mese dopo l'avvio ed è
+costato cinque voci in sospeso di fila [Ref. 32](../REFERENCIAS.md#ref-32). Se lo scheletro si
+distribuisce la prima settimana, quei colpi si prendono con zero funzionalità in gioco.
 
-L'idea generale dietro: **il cammino verso la produzione fa parte del prodotto**, non è una pratica
-finale. Un sistema che funziona sulla macchina del programmatore e non si può distribuire non è un
-sistema; è una demo. E l'unico modo per sapere che il cammino funziona è percorrerlo quando non c'è
-ancora nulla da perdere.
+L'idea generale dietro: **la strada verso la produzione è parte del prodotto**, non una pratica
+della fine. Un sistema che funziona sulla macchina del programmatore e non si può distribuire non
+è un sistema; è una demo. E l'unico modo di sapere che la strada funziona è percorrerla quando
+ancora non c'è niente da perdere. Per questo in questo gradino si monta tutto ciò che poi userà il
+ciclo: il repository con la sua struttura, l'ambiente di test, l'integrazione continua che esegue
+la batteria a ogni push, e il deployment automatico all'ambiente di test.
 
 ## 1. Contesto richiesto
 
 - `docs/SIZING.md` (gradino 3): l'opzione scelta definisce lo scheletro.
 - Rilevazione degli ambienti: dove girerà (cloud, server proprio), se c'è un ambiente di test e
   uno di produzione, chi ha accesso, come si distribuisce oggi se c'è qualcosa.
-- Il tipo di progetto: nuovo (greenfield), correzione o evoluzione di qualcosa di esistente.
+- Le credenziali del posto in cui si distribuirà, anche se è un servizio gratuito.
+- Il tipo di progetto: nuovo, correzione o evoluzione di qualcosa di esistente.
 
 ## 2. Prompt
 
@@ -40,12 +46,24 @@ ancora nulla da perdere.
 > test environment and show it to me. Do not add any functionality "while you are at it".
 > Reply in my language.
 
-Cosa stiamo chiedendo: che verifichi di avere gli accessi prima di cominciare (senza quelli lo
-scheletro resta sulla macchina dell'agente); la lista esatta di cos'è uno scheletro (struttura,
-avvio, un test, integrazione continua, deployment in test); i cancelli scritti; uno screenshot reale
-dell'ambiente di test, che è l'unica prova valida che è stato distribuito; e il divieto esplicito di
-aggiungere funzionalità, perché il modello tende al "già che ci sono" e questo rompe il perimetro
-esatto.
+> [it]
+> Costruiremo lo scheletro del sistema, senza nessuna funzionalità. Leggi `PROJECT.md`,
+> `docs/SIZING.md` e la rilevazione degli ambienti. Valuta se hai ciò che serve perché lo
+> scheletro giri nell'ambiente di test (accesso, URL, modo di distribuire); se manca qualcosa,
+> chiedimelo prima di cominciare. Poi costruisci: la struttura delle cartelle; il server e
+> l'interfaccia che partono; la struttura dei test con un test di fumo che passa; l'integrazione
+> continua che esegue quella batteria a ogni push; e il deployment all'ambiente di test. Dichiara i
+> cancelli del flusso (cosa deve essere in verde per passare da una tappa alla successiva) in
+> `docs/GATES.md`. Quando hai finito, fai uno screenshot dell'interfaccia vuota che gira
+> nell'ambiente di test e mostramelo. Non aggiungere nessuna funzionalità "già che ci sei".
+> Rispondi nella mia lingua.
+
+Cosa gli sto chiedendo: che verifichi di avere gli accessi prima di cominciare (senza quello lo
+scheletro resta sulla macchina dell'agente); la lista esatta di ciò che è uno scheletro
+(struttura, avvio, un test, integrazione continua, deployment in test); i cancelli scritti; uno
+screenshot reale dell'ambiente di test, che è l'unica prova valida che è stato distribuito; e il
+divieto esplicito di aggiungere funzionalità, perché il modello tende al "già che ci sono" e
+quello rompe il perimetro esatto.
 
 **Di chiusura:**
 
@@ -53,26 +71,30 @@ esatto.
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a
 > second time and show me that the second run changed nothing.
 
-Cosa stiamo chiedendo: lasciare i tre comandi dove la prossima sessione li troverà, e provare che
-il deployment è ripetibile (eseguirlo due volte senza rompere nulla). Quella seconda esecuzione è la
-prova che la procedura è una procedura e non fortuna.
+> [it]
+> Scheletro approvato. Registra in `docs/STATUS.md` l'URL dell'ambiente di test, il comando per
+> eseguire i test e il comando per distribuire, e marca questo passo come fatto. Poi esegui il
+> deployment una seconda volta e mostrami che la seconda esecuzione non ha cambiato niente.
+
+Cosa gli sto chiedendo: lasciare i tre comandi dove la prossima sessione li troverà, e provare che
+il deployment è ripetibile (eseguirlo due volte senza rompere niente). Quella seconda esecuzione è
+la prova che la procedura è una procedura e non una fortuna.
 
 ## 3. Risultato atteso
 
 - Il repository con la struttura, il server e la schermata che partono.
 - Un test di fumo in verde e la batteria che gira in integrazione continua (con il link
   all'esecuzione in verde).
-- Il deployment nell'ambiente di test funzionante, con l'URL, ed eseguito due volte.
+- Il deployment all'ambiente di test funzionante, con l'URL, ed eseguito due volte.
 - `docs/GATES.md`: la lista dei cancelli, ciascuno con la condizione per passare.
 - Uno screenshot del sistema vuoto che gira nell'ambiente di test.
 - `docs/STATUS.md` aggiornato con i tre comandi (eseguire, testare, distribuire).
 
 ## 4. Verifica di completezza
 
-- Riesci ad aprire l'URL dell'ambiente di test e vedere la schermata vuota? (Lo fai tu, non
-  l'agente.)
+- Puoi aprire l'URL dell'ambiente di test e vedere la schermata vuota? (Lo fai tu, non l'agente.)
 - C'è un link a un'esecuzione di integrazione continua in verde?
-- Il deployment è stato eseguito due volte e la seconda non ha rotto nulla?
+- Il deployment è stato eseguito due volte e la seconda non ha rotto niente?
 - I cancelli sono scritti con una condizione verificabile ciascuno?
 - C'è qualche funzionalità che non hai chiesto? Se c'è, l'agente ha violato il perimetro esatto.
 
