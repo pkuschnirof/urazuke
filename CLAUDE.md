@@ -1,68 +1,69 @@
-# CLAUDE.md — instrucciones para el agente en este repositorio
+# CLAUDE.md
 
-Este es el repositorio de **Urazuke, el método de la evidencia** (裏付け: el respaldo que tiene una
-afirmación). Es el repositorio del método, no de un producto. No hay código
-de aplicación: hay documentos, contratos de peldaño y un conversor a HTML.
+Este repositorio es el proyecto del método Urazuke: el documento principal (la escalera
+metodológica), las referencias a los casos reales, los contratos de cada peldaño, el manual del
+curso, el registro de decisiones y el plan del curso y el mentoring. El autor es Pablo
+Kuschniroff, asistido por Claude Code. Se publica bajo CC BY-SA 4.0 y se presenta en
+yujin.app/urazuke.
 
-## Qué leer primero
+## Estilo (distinto del resto de los repositorios de Yujin)
 
-1. `README.md`.
-2. `docs/ESCALERA_METODOLOGICA.md` — el documento principal. Su "Parte D" es la lista de lo que
-   falta; es el plan de trabajo de este repositorio.
-3. `docs/peldanos/README.md` — el índice de los contratos.
-4. `docs/DECISIONES.md` — las decisiones del proyecto, con las palabras textuales de Pablo. Toda
-   decisión nueva se agrega ahí, el mismo día.
+- **Voz**: primera persona del autor (Pablo), imperativo hacia el lector ("exigile", "no
+  avances"), verbosa, con complejidad y matices; tiene que leerse como un escrito humano, no como
+  un informe de un asistente. Nunca "el usuario pidió", nunca "Sumi"; cuando hace falta nombrar a
+  la herramienta, es "Claude Code" o "el agente".
+- Prosa explicada, lenguaje de todos los días, interjecciones y calificativos cuando ayudan.
+- Caracteres latinos con tildes y eñes (NO ASCII-only, al revés que en los otros repos).
+- Cada sigla y cada expresión coloquial que aparece se explica en el glosario del documento
+  principal.
+- Los casos reales (fechas, commits, pendientes, incidentes) NO van en los procedimientos ni en
+  los manuales: van en `docs/REFERENCIAS.md`, numerados "Ref. N", y los demás documentos los
+  citan con `[Ref. N](REFERENCIAS.md#ref-N)` (desde `docs/peldanos/`, `../REFERENCIAS.md`). El
+  conversor convierte esos enlaces a `REFERENCIAS.html#ref-N`.
+- El origen del método se presenta siempre como la combinación de dos factores: la ingeniería de
+  sistemas clásica que el autor aplica desde antes, y los incidentes que mostraron dónde los
+  modelos la aplican de manera frágil. Nunca como "todo salió de los fallos".
+- Lo que es interpretación y no hecho verificado se marca `[hipótesis]`.
 
-## Reglas de estilo (distintas del resto de Yujin, a propósito)
+## Estructura de los contratos (`docs/peldanos/`)
 
-- **Caracteres latinos**: tildes, eñes, signos de apertura. NO la convención ASCII de los otros
-  repositorios. Pablo lo pidió el 2026-10-17 para este proyecto.
-- **Prosa explicada y coloquial**: el lector no vivió los proyectos. Explicar completo, con
-  calificativos e interjecciones si hacen falta; no "lenguaje como fórmula lógica". Definir cada
-  sigla la primera vez.
-- **Glosario obligatorio**: toda sigla, nombre propio o expresión coloquial que aparezca en
-  `docs/ESCALERA_METODOLOGICA.md` tiene que estar en su glosario, en orden alfabético.
-- **Evidencia citada**: cada afirmación sobre lo que pasó cita commit o documento del repositorio
-  de origen. Lo que es interpretación va marcado `[hipótesis]`.
-- **Las palabras de Pablo van textuales** cuando se cita una decisión suya.
+Encabezado con tramo, **cuándo**, forma y tamaño; "Para qué sirve"; y cinco secciones: (1)
+contexto requerido, genérico, sin formularios; (2) prompts en inglés, cada uno seguido de su
+traducción en un bloque `> [es]` (o `> [xx]` en cada traducción) y de "Qué le estoy pidiendo";
+(3) resultado esperado; (4) verificación de completitud sin leer código; (5) señales de alarma.
+Todos los prompts llevan la cláusula de completitud (evaluá si alcanza, pedí lo que falte, no
+estimes) y terminan con "Reply in my language". Son UNA pieza en inglés, idéntica en las ocho
+versiones; `build/prompts.mjs` la extrae y falla si una traducción la alteró. Los bloques `> [xx]`
+no cuentan como prompts; el HTML los muestra con un botón "Traducir".
 
-## Reglas de trabajo
+## La línea de tiempo
 
-- Los HTML de `docs/html/` se regeneran con `node build/build.mjs`; nunca se editan a mano. El
-  markdown es la única fuente.
-- Cada contrato de peldaño tiene exactamente cinco secciones numeradas: contexto requerido,
-  prompts, resultado esperado, verificación de completitud, señales de alarma. Más un encabezado
-  con tramo, forma y tamaño, y un "Para qué sirve". No agregar secciones sin acordarlo con Pablo.
-- Los prompts van EN INGLÉS, en bloque de cita (`> `), y cada uno seguido de un párrafo "Qué le
-  estamos pidiendo" en el idioma del documento. Terminan con "Reply in my language". Son una sola
-  pieza idéntica en las ocho versiones: `node build/build.mjs` los extrae a `prompts/` desde la
-  fuente en castellano y falla si una traducción los alteró.
-- Todo prompt de contrato lleva la cláusula de completitud: el modelo evalúa si el contexto
-  alcanza, pide lo que falte, y no estima ni inventa un dato que solo el negocio tiene.
-- El peldaño 0 (elegibilidad) se elabora CON Pablo: los criterios X1 y X2 están confirmados; los
-  D1 a D10 son hipótesis sin peso. No cerrarlos solo.
-- Repositorios de origen (solo lectura desde acá): `[repositorio yujin-forge]`, `[repositorio Kikan]`,
-  `[repositorio Autorizaciones]`.
+La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio
+(ingesta de requerimientos con sus métodos, infraestructura, CI/CD, desarrollo, pruebas de punta a
+punta en tres escalas, vista humana de las pantallas, pruebas humanas). Cada ficha de peldaño y
+cada contrato tienen su "Cuándo". El manual tiene el calendario del curso. Cualquier cambio en una
+de estas tres piezas se replica en las otras dos.
 
 ## Publicación
 
-- El nombre es Urazuke (decisión D-014, 2026-10-17). No se traduce; el subtítulo sí. La
-  publicación como código abierto colaborativo es cuando Pablo diga que la elaboración terminó;
-  hasta entonces, repositorio privado.
+- Nombre: Urazuke (D-014). No se traduce; el subtítulo sí.
 - Idiomas (D-013): castellano como fuente de verdad (`docs/`); las otras siete versiones de NAC3
-  están en `docs/<idioma>/` (en, pt, fr, de, it, ja, zh), cada una con README, documento principal,
-  dieciséis contratos y manual-curso; los prompts para el modelo son UNA pieza en inglés, idéntica
-  en todas las versiones, explicada en el idioma del lector (`node build/prompts.mjs --check` lo
-  verifica). Un cambio en el castellano se replica en las siete traducciones en el mismo commit.
-- Presentación pública: `yujin.app/urazuke` vive en el repositorio `pkuschnirof/rpaforce`
-  (`C:\RPAForce\web\yujin.app\urazuke\`): landing con i18n propio (diez idiomas de interfaz) y
-  copia de `docs/html/` en `urazuke/docs/`. Al regenerar los HTML acá, copiarlos allá.
-- Los clientes están anonimizados: "la Obra Social" (con "el Autorizador") y "la Asociación";
-  sus sistemas, "Autorizaciones" y "Kikan". **Los nombres reales no se escriben en este
-  repositorio**, ni en los documentos ni en los mensajes de commit. Las rutas locales de los
-  repositorios de origen tampoco (están en la memoria de Sumi).
+  en `docs/<idioma>/` (en, pt, fr, de, it, ja, zh), cada una con README, documento principal,
+  referencias, dieciséis contratos y manual-curso. Un cambio en el castellano se replica en las
+  siete traducciones en el mismo commit.
+- Los clientes están anonimizados: "la Obra Social" (con "el Autorizador") y "la Asociación"; sus
+  sistemas, "Autorizaciones" y "Kikan". **Los nombres reales no se escriben en este repositorio**,
+  ni en los documentos ni en los mensajes de commit. Las rutas locales de los repositorios de
+  origen tampoco.
 - Licencia: CC BY-SA 4.0 (`LICENSE`). Gobernanza: `CONTRIBUTING.md` + `.github/CODEOWNERS`;
-  en GitHub, `main` protegida (pull request + aprobación de un propietario, sin excepciones),
-  ramas de contribuidores solo en forks, borrado automático de la rama al fusionar.
-- La presentación pública va en yujin.app (repositorio `pkuschnirof/rpaforce`, carpeta
-  `C:\RPAForce\web\yujin.app\`), multilingüe, con NAC3.
+  `main` protegida (pull request + aprobación de un propietario).
+- Presentación pública: `yujin.app/urazuke` vive en el repositorio `pkuschnirof/rpaforce`
+  (`web/yujin.app/urazuke/`): landing con i18n propio (diez idiomas de interfaz) y copia de
+  `docs/html/` en `urazuke/docs/`. Al regenerar los HTML acá, copiarlos allá. Su push a `main`
+  despliega a producción.
+
+## Build
+
+`node build/build.mjs`: verifica los prompts y genera, por idioma, `ESCALERA_METODOLOGICA.html`,
+`REFERENCIAS.html`, `MANUAL_CURSO.html` y `CONTRATOS_DE_PELDANO.html`. `build/split.mjs` parte un
+archivo con marcas `<!-- file: … -->` en contratos individuales.

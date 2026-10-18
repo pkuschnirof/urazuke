@@ -1,26 +1,31 @@
 # Peldaño 1 — El contrato de convivencia (contrato del peldaño)
 
-**Tramo:** arranque (una vez por proyecto; se revisa cuando un golpe lo exige).
-**Forma:** un solo tiro, con una vuelta de ajuste del dueño.
+**Tramo:** arranque.
+**Cuándo:** una sola vez, en la primera semana, inmediatamente después de la elegibilidad; se
+revisa cuando un golpe lo exige. Media hora.
+**Forma:** un solo tiro, con una vuelta de ajuste tuya.
 **Tamaño:** obligatorio en todo proyecto. Es el peldaño más barato de todos y el que más
 frustración evita.
 
 ## Para qué sirve
 
-Para que humano y agente acuerden cómo van a trabajar antes de la primera línea de código.
-Parece una formalidad y no lo es: es lo que evita que el agente "ayude" expandiendo el alcance,
-deje deuda para después, o reporte como hecho lo que cree que hizo. En Forge este archivo se
+Poné por escrito, antes de la primera línea de código, cómo van a trabajar vos y el agente. Parece
+una formalidad y no lo es: es lo que evita que el agente "ayude" expandiendo el alcance, deje
+deuda para después, o reporte como hecho lo que cree que hizo. En mi herramienta este archivo se
 llama `SQ.md` (estándares de calidad); el nombre no importa, el contenido sí.
 
-Una forma de entenderlo: el agente es un colaborador nuevo que llega cada mañana sin memoria de
-ayer. El contrato es lo que le decís el primer día, y lo que va a releer cada día. Si no lo
-escribís, se lo vas a tener que decir cada vez, y lo vas a decir distinto cada vez.
+Pensalo así: el agente es un colaborador nuevo que llega cada mañana sin memoria de ayer. El
+contrato es lo que le decís el primer día, y lo que va a releer cada día. Si no lo escribís, se lo
+vas a tener que decir cada vez, y lo vas a decir distinto cada vez. Yo lo escribí por primera vez
+cuando llevaba dos semanas repitiendo lo mismo en cada sesión [Ref. 1](../REFERENCIAS.md#ref-1), y
+nada de lo que puse era nuevo en ingeniería de sistemas; lo nuevo era tener que escribirlo para
+alguien sin memoria.
 
 ## 1. Contexto requerido
 
 - Ninguno del proyecto: es el primer archivo.
-- Del dueño: sus preferencias de trabajo (idioma, cómo quiere que le pregunten, qué
-  considera una pérdida de su tiempo, qué nivel de autonomía le da al agente).
+- Tuyo: tus preferencias de trabajo (idioma, cómo querés que te pregunten, qué considerás una
+  pérdida de tu tiempo, qué nivel de autonomía le das al agente).
 
 ## 2. Prompts
 
@@ -37,11 +42,23 @@ escribís, se lo vas a tener que decir cada vez, y lo vas a decir distinto cada 
 > believe. (6) Speak my language. Add any rules you think this project needs, marked as
 > proposals. If you need to know something about how I work in order to write this, ask me.
 
-Qué le estamos pidiendo: las seis reglas mínimas, cada una con el fallo que evita (eso es lo que
-las vuelve reglas y no consejos); que proponga reglas propias del proyecto pero las marque como
-propuestas, para que el dueño las acepte o rechace; y que pregunte lo que necesite saber sobre
-el dueño. Un contrato redactado sin una sola pregunta es sospechoso: el agente no conoce a la
-persona con la que va a trabajar.
+> [es]
+> Antes de escribir código, vamos a fijar el contrato de convivencia entre vos y yo. Escribí
+> `docs/WORKING_AGREEMENT.md` con al menos estas reglas, cada una con una línea que explique qué
+> evita: (1) Mi tiempo es sagrado: no me preguntes lo que podés resolver solo, y cuando preguntes,
+> preguntá en prosa, con tu recomendación. (2) Cero deuda técnica: lo que se rompe se arregla de
+> raíz, con su test de regresión, en la misma sesión. (3) Alcance exacto: ni más ni menos de lo
+> pedido; si ves otra cosa, anotala como pendiente, no la hagas. (4) La documentación se actualiza
+> en el mismo commit que el cambio. (5) Nunca reportes como hecho algo que no verificaste; separá
+> siempre lo que verificaste de lo que creés. (6) Hablá mi idioma. Agregá las reglas que creas que
+> este proyecto necesita, marcadas como propuestas. Si necesitás saber algo sobre cómo trabajo para
+> escribir esto, preguntame.
+
+Qué le estoy pidiendo: las seis reglas mínimas, cada una con el fallo que evita (eso es lo que las
+vuelve reglas y no consejos); que proponga reglas propias del proyecto pero las marque como
+propuestas, para que vos las aceptes o rechaces; y que pregunte lo que necesite saber sobre vos.
+Un contrato redactado sin una sola pregunta es sospechoso: el agente no conoce a la persona con
+la que va a trabajar.
 
 **De cierre:**
 
@@ -49,8 +66,13 @@ persona con la que va a trabajar.
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 
-Qué le estamos pidiendo: que cierre el contrato con fecha y versión, y que lo enganche al archivo
-de proyecto para que se lea en cada sesión. Sin ese enganche el contrato existe pero no actúa.
+> [es]
+> Acepto las reglas 1 a 6 y tus propuestas [X, Y]; rechazo [Z] porque [razón]. Cerrá el contrato
+> con la fecha de hoy y un número de versión. Después agregá al archivo de proyecto la
+> instrucción de leer este contrato al empezar cada sesión.
+
+Qué le estoy pidiendo: que cierre el contrato con fecha y versión, y que lo enganche al archivo de
+proyecto para que se lea en cada sesión. Sin ese enganche el contrato existe pero no actúa.
 
 ## 3. Resultado esperado
 
@@ -61,8 +83,8 @@ Un archivo `docs/WORKING_AGREEMENT.md` (o `SQ.md`, o `CONTRATO.md`) con:
 - Las reglas propias del proyecto, marcadas como tales.
 - Una línea al pie que diga que el agente propone cambios pero no edita el contrato solo.
 
-Y una línea en el archivo de proyecto (`PROJECT.md` o `CLAUDE.md`) que ordene leerlo al
-empezar cada sesión.
+Y una línea en el archivo de proyecto (`PROJECT.md` o `CLAUDE.md`) que ordene leerlo al empezar
+cada sesión.
 
 ## 4. Verificación de completitud
 
@@ -78,5 +100,5 @@ empezar cada sesión.
 - El contrato tiene más de veinte reglas. Nadie, ni humano ni modelo, respeta veinte reglas; se
   respetan seis u ocho.
 - Una regla dice "el agente puede modificar este contrato cuando lo considere necesario". No.
-- Dos semanas después, el agente hace algo que el contrato prohíbe y nadie lo nota. El contrato
-  no se está leyendo: revisá el enganche en el archivo de proyecto.
+- Dos semanas después, el agente hace algo que el contrato prohíbe y nadie lo nota. El contrato no
+  se está leyendo: revisá el enganche en el archivo de proyecto.

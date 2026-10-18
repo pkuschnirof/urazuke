@@ -1,26 +1,37 @@
-# Peldaño 2 — La definición del proyecto y la lectura obligatoria (contrato del peldaño)
+# Peldaño 2 — La definición del proyecto, el árbol semántico y la lectura obligatoria (contrato del peldaño)
 
-**Tramo:** arranque (una vez; se mantiene al día durante todo el proyecto).
-**Forma:** conversación (el agente redacta, pregunta lo que falta, el dueño corrige).
+**Tramo:** arranque.
+**Cuándo:** se escribe una vez, en la primera semana, después del contrato; el árbol semántico y el
+estado vivo se mantienen al día durante todo el proyecto, con cada bloque y cada decisión nueva.
+**Forma:** conversación: el agente redacta, pregunta lo que falta, vos corregís.
 **Tamaño:** obligatorio en todo proyecto. En uno chico, el archivo de proyecto puede tener
-cincuenta líneas; lo que no puede es no existir.
+cincuenta líneas y el árbol semántico veinte nodos; lo que no pueden es no existir.
 
 ## Para qué sirve
 
-Cada sesión del agente arranca de cero: no se acuerda de ayer. Entonces necesita un mapa, corto,
-que le diga qué es el proyecto, en qué estado está y qué decisiones ya se tomaron. Y necesita la
-obligación de leerlo antes de tocar nada. El fallo que evita es doble: trabajo descartable por
-no leer el mapa, y el mapa que crece hasta volverse ilegible (en uno de los sistemas de origen el
-archivo de proyecto llegó a 9.661 líneas, y en ese estado no lo lee nadie, ni el modelo).
+Cada sesión del agente arranca de cero: no se acuerda de ayer. Dale un mapa, corto, que le diga
+qué es el proyecto, en qué estado está y qué decisiones ya se tomaron, y obligalo a leerlo antes
+de tocar nada. El fallo que evita es doble: trabajo descartable por no leer el mapa
+[Ref. 9](../REFERENCIAS.md#ref-9), y el mapa que crece hasta volverse ilegible
+[Ref. 41](../REFERENCIAS.md#ref-41). La regla práctica: **el archivo de proyecto es el programa, no
+el historial**. Lo que pasó va a otro lado.
 
-La regla práctica que sale de ese golpe: **el archivo de proyecto es el programa, no el
-historial**. Lo que pasó va a otro lado (el registro de pendientes, el estado vivo, el diario);
-el archivo de proyecto dice qué es el sistema, para quién, qué no es, y qué se decidió.
+El mapa tiene dos piezas, y la segunda es la que más trabajo hace. La primera es el archivo de
+proyecto: qué es el sistema, para quién, qué NO es, las decisiones tomadas. La segunda es el
+**árbol semántico**: el sistema descompuesto como un árbol, con los dominios, y debajo de cada uno
+sus actores, sus procesos (los casos de uso), sus entidades con sus estados, sus pantallas y sus
+integraciones; y de cada nodo cuelgan los pendientes y las decisiones que lo tocan. El árbol sale
+del relevamiento que hiciste con los métodos clásicos de la ingeniería de requerimientos
+(entrevistas, casos de uso, modelo de dominio), lo construye el agente, lo corregís vos, y es lo
+que le da al modelo el contexto exacto del nodo que va a tocar sin tener que leer todo el
+proyecto. Y es lo que te permite a vos verificar, sin leer código, que el sistema que el agente
+entiende es el que el negocio pidió.
 
 ## 1. Contexto requerido
 
-- Relevamiento del negocio: qué hace el cliente, quiénes usan el sistema, qué problema
-  resuelve, qué no tiene que hacer.
+- Relevamiento del negocio: qué hace el cliente, quiénes usan el sistema, qué problema resuelve,
+  qué no tiene que hacer. Con las entrevistas, los casos de uso o historias de usuario que puedas
+  nombrar, y las entidades del negocio con sus estados, aunque estén incompletos.
 - El contrato de convivencia (peldaño 1).
 - Si existe un sistema anterior: acceso de lectura a su código o a su documentación.
 - Las decisiones ya tomadas, si las hay, aunque sea de palabra.
@@ -31,52 +42,100 @@ el archivo de proyecto dice qué es el sistema, para quién, qué no es, y qué 
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
-> whether the survey is sufficient to describe the system, its users and its boundaries; if it
-> is not, ask me for what is missing before writing anything. Then write `PROJECT.md`, three
-> hundred lines at most, with: what the system is and for whom; what it is NOT; the main
-> modules as a list; the decisions already made, each with its date; and the instruction to
-> read this file and the working agreement at the start of every session. Separately, create
-> `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
-> changes every day; `PROJECT.md` almost never does. Reply in my language.
+> whether the survey is sufficient to describe the system, its users, its domain and its
+> boundaries; if it is not, ask me for what is missing before writing anything. Then write two
+> things. First, `PROJECT.md`, three hundred lines at most, with: what the system is and for
+> whom; what it is NOT; the main modules as a list; the decisions already made, each with its
+> date; and the instruction to read this file and the semantic tree at the start of every
+> session. Second, `docs/SEMANTIC_TREE.md`: the system as a tree, with the domains at the top
+> level and, under each one, its actors, its processes (the use cases, each with actor, trigger,
+> steps, outcome and exceptions), its entities with their attributes, states and transitions,
+> its screens, and its external integrations. Mark every node you inferred rather than read in
+> the survey, so that I can confirm or correct it. Separately, create `docs/STATUS.md` for the
+> living state (what is being worked on, what is open): that file changes every day; the other
+> two change only when the system changes. Reply in my language.
 
-Qué le estamos pidiendo: que evalúe el relevamiento y pregunte antes de redactar; que el archivo
-de proyecto sea **corto** (el tope de trescientas líneas es arbitrario pero necesario: sin tope,
-crece); que diga explícitamente qué **no** es el sistema, porque lo que no está dicho es lo que
-el modelo va a inventar; que las decisiones tengan fecha; y que separe el estado vivo en otro
-archivo, para que el archivo de proyecto no se convierta en historial.
+> [es]
+> Vamos a definir el proyecto por escrito. Leé el relevamiento del negocio en
+> `docs/INITIAL_SURVEY.md` y el contrato de convivencia en `docs/WORKING_AGREEMENT.md`. Evaluá si
+> el relevamiento alcanza para describir el sistema, sus usuarios, su dominio y sus límites; si no
+> alcanza, pedime lo que falta antes de escribir nada. Después escribí dos cosas. Primero,
+> `PROJECT.md`, de trescientas líneas como máximo, con: qué es el sistema y para quién; qué NO es;
+> los módulos principales como lista; las decisiones ya tomadas, cada una con su fecha; y la
+> instrucción de leer este archivo y el árbol semántico al empezar cada sesión. Segundo,
+> `docs/SEMANTIC_TREE.md`: el sistema como un árbol, con los dominios en el primer nivel y, debajo
+> de cada uno, sus actores, sus procesos (los casos de uso, cada uno con actor, disparador, pasos,
+> resultado y excepciones), sus entidades con sus atributos, estados y transiciones, sus pantallas
+> y sus integraciones externas. Marcá cada nodo que hayas inferido en vez de leído en el
+> relevamiento, para que yo lo confirme o lo corrija. Aparte, creá `docs/STATUS.md` para el estado
+> vivo (en qué se está trabajando, qué está abierto): ese archivo cambia todos los días; los otros
+> dos cambian solo cuando cambia el sistema. Respondé en mi idioma.
+
+Qué le estoy pidiendo: que evalúe el relevamiento y pregunte antes de redactar; que el archivo de
+proyecto sea **corto** (el tope de trescientas líneas es arbitrario pero necesario: sin tope,
+crece); que diga explícitamente qué **no** es el sistema, porque lo que no está dicho es lo que el
+modelo va a inventar; que las decisiones tengan fecha; que construya el **árbol semántico** con la
+estructura completa (dominios, actores, casos de uso con sus partes, entidades con estados y
+transiciones, pantallas, integraciones), que es el modelo de dominio de la ingeniería de
+requerimientos puesto en forma de árbol; que **marque lo que infirió**, porque es ahí donde se
+esconden las invenciones; y que separe el estado vivo en otro archivo, para que el mapa no se
+convierta en historial.
 
 **De cierre:**
 
-> Apply these corrections: [list]. Finalize `PROJECT.md` with today's date. Add to the working
-> agreement that the change history never goes into `PROJECT.md`: it goes to `docs/STATUS.md`
-> or to the pending-items register.
+> Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with
+> today's date. Add to the working agreement two rules: the change history never goes into
+> `PROJECT.md` (it goes to `docs/STATUS.md` or to the pending-items register); and every pending
+> item must hang from a node of the semantic tree, and the tree is updated in the same commit
+> whenever a block adds or changes a node.
 
-Qué le estamos pidiendo: las correcciones del dueño, la fecha, y una regla nueva en el contrato
-que proteja al archivo de proyecto de volverse changelog. Esa regla es la que faltó en el caso de
-las 9.661 líneas.
+> [es]
+> Aplicá estas correcciones: [lista]. Cerrá `PROJECT.md` y `docs/SEMANTIC_TREE.md` con la fecha
+> de hoy. Agregá al contrato de convivencia dos reglas: el historial de cambios nunca va en
+> `PROJECT.md` (va a `docs/STATUS.md` o al registro de pendientes); y todo pendiente tiene que
+> colgar de un nodo del árbol semántico, y el árbol se actualiza en el mismo commit cada vez que
+> un bloque agrega o cambia un nodo.
+
+Qué le estoy pidiendo: tus correcciones (sobre todo a los nodos que marcó como inferidos), la
+fecha, y dos reglas nuevas en el contrato: la que protege al archivo de proyecto de volverse
+historial, y la que ata cada pendiente a un nodo del árbol, que es lo que mantiene el árbol vivo y
+lo que te permite detectar en diez segundos un pendiente fuera de alcance.
 
 ## 3. Resultado esperado
 
-- `PROJECT.md` (o `CLAUDE.md`): corto, de lectura obligatoria, con qué es, para quién, qué no
-  es, módulos, decisiones con fecha, y la orden de leerlo. Máximo trescientas líneas.
-- `docs/STATUS.md`: estado vivo, separado del anterior.
-- En ambos, una fecha de última actualización.
-- En el contrato, la regla de que el historial no va en `PROJECT.md`.
+- `PROJECT.md` (o `CLAUDE.md`): corto, de lectura obligatoria, con qué es, para quién, qué no es,
+  módulos, decisiones con fecha, y la orden de leerlo junto con el árbol. Máximo trescientas
+  líneas.
+- `docs/SEMANTIC_TREE.md`: el árbol semántico, con los nodos inferidos marcados hasta que los
+  confirmes, y, desde el primer bloque, los pendientes y decisiones colgando de sus nodos.
+- `docs/STATUS.md`: estado vivo, separado de los anteriores.
+- En los tres, una fecha de última actualización.
+- En el contrato, las dos reglas nuevas.
 
 ## 4. Verificación de completitud
 
 - ¿`PROJECT.md` cabe en una lectura de cinco minutos? Si no, está mal: es el programa, no el
   historial.
 - ¿Dice explícitamente qué NO hace el sistema? (Lo que falta es lo que el agente va a inventar.)
+- Recorré el árbol semántico como si fueras el cliente: ¿están todos los actores que vos conocés?
+  ¿Cada entidad tiene los estados que el negocio usa, ni más ni menos? ¿Hay algún nodo que no
+  reconozcas? Ese es un invento: corregilo ahora.
+- ¿Los nodos inferidos están marcados? ¿Los confirmaste o corregiste todos?
 - ¿Cada decisión tiene fecha y quién la tomó?
-- ¿El agente preguntó algo sobre el negocio antes de redactar? Si no preguntó nada, revisá
-  qué supuso.
+- ¿El agente preguntó algo sobre el negocio antes de redactar? Si no preguntó nada, revisá qué
+  supuso.
 - ¿El estado vivo está en otro archivo?
+- La prueba de lectura: cerrá la sesión, abrí una nueva, y preguntale qué NO hace el sistema y de
+  qué nodo del árbol cuelga tal pantalla. Si contesta con el mapa, el enganche funciona.
 
 ## 5. Señales de alarma
 
 - El archivo de proyecto creció más de un 20 % en un mes. Algo que no es programa está entrando.
-- El agente empieza una sesión proponiendo algo que ya se decidió y está escrito. No leyó el
-  mapa: el enganche de lectura obligatoria falló.
-- La sección "qué no es" está vacía o dice "nada en particular". Todo sistema tiene límites;
-  si no están escritos, el modelo los va a cruzar.
+- El agente empieza una sesión proponiendo algo que ya se decidió y está escrito. No leyó el mapa:
+  el enganche de lectura obligatoria falló.
+- La sección "qué no es" está vacía o dice "nada en particular". Todo sistema tiene límites; si
+  no están escritos, el modelo los va a cruzar.
+- Hay pendientes que no cuelgan de ningún nodo del árbol. O el árbol quedó viejo o esos
+  pendientes están fuera de alcance; las dos cosas hay que mirarlas.
+- Una entidad del árbol tiene un estado que el negocio nunca nombró. El modelo lo inventó porque
+  le pareció lógico, y va a construir sobre él.

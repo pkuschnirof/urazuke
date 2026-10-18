@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Urazuke，验证方法 — 方法论之梯（第 3 版）</title><style>
 :root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
 *{box-sizing:border-box}
@@ -8,10 +8,15 @@ h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--
 h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
 h3{font-size:1.15rem;margin:1.8em 0 .5em}
 h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+h3.refh{font-size:1.02rem;margin-top:1.6em;color:#3a2f00;border-bottom:1px dashed var(--line);padding-bottom:.2em}
+h3.refh:target{background:var(--gold-soft);border-radius:6px;padding:.4em .6em}
 p{margin:.6em 0}
 hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
 code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
 strong{color:#2b2000}
+a{color:#7a5600}
+a.ref{font:700 .78em/1.4 Segoe UI,Arial,sans-serif;background:#f1ece0;border:1px solid var(--line);border-radius:999px;padding:0 .5em;text-decoration:none;color:#5a3f00;white-space:nowrap;vertical-align:middle}
+a.ref:hover{background:var(--gold-soft)}
 ul,ol{padding-left:1.5em}
 li{margin:.3em 0}
 ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
@@ -33,17 +38,22 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 .toc li.l3{padding-left:1.2em;font-size:.95em}
 .toc a{color:var(--ink);text-decoration:none}
 .toc a:hover{color:var(--gold);text-decoration:underline}
-section > p:first-of-type{}
-.prompt{margin:.8em 0 1.2em;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.pbox{margin:.8em 0 1.2em}
+.prompt{margin:0;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
 .prompt p{margin:.4em 0}
 .prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.prompt.tr{background:#f3f7f0;border-color:#cfdcc6;border-left-color:#5c8a4a}
+.prompt.tr::before{content:'提示词（翻译）';color:#3f6b2e}
+.trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
+.trbtn:hover{background:#efe0b8}
 .glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
 .glos p strong{color:#3a2f00}
 .meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+.pie{margin-top:3em;padding-top:1em;border-top:1px dashed var(--line);font:.85em/1.5 Segoe UI,Arial,sans-serif;color:var(--mute)}
 @media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
-@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}@page{size:A4;margin:16mm 14mm}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
 </style></head><body><div class="wrap">
-<section><h1 id="urazuke-3">Urazuke，验证方法 — 方法论之梯（第 3 版）</h1><nav class="toc"><div class="toc-t">Contenido</div><ul><li class="l2"><a href="#">名字</a></li><li class="l2"><a href="#">这是关于什么的？</a></li><li class="l2"><a href="#">这一切从哪来（来源）</a></li><li class="l2"><a href="#ai">AI 没有中断方法：它延续了方法</a></li><li class="l3"><a href="#">这里面什么是旧的，什么是新的</a></li><li class="l2"><a href="#a">A 部分 — 调研：重要的时刻和里程碑</a></li><li class="l3"><a href="#a-1-yujin-forge-2026-5-10">A.1 yujin-forge：方法诞生的地方（2026 年 5 月至 10 月）</a></li><li class="l3"><a href="#a-2-autorizaciones-2026-6-10">A.2 Autorizaciones：真实负载下的方法（2026 年 6 月至 10 月）</a></li><li class="l3"><a href="#a-3-kikan-2026-8-10">A.3 Kikan：成熟的方法（2026 年 8 月至 10 月）</a></li><li class="l3"><a href="#a-4">A.4 在三个仓库中反复出现的模式</a></li><li class="l2"><a href="#b-3">B 部分 — 梯子，第 3 版</a></li><li class="l3"><a href="#">如何阅读每级台阶</a></li><li class="l3"><a href="#">每级台阶如何执行：契约</a></li><li class="l3"><a href="#">按项目规模，什么是必需的，什么是按比例的</a></li><li class="l3"><a href="#">如何与任何工具一起使用</a></li><li class="l3"><a href="#0">步骤 0 — 这个项目能这样做吗？（适格性）</a></li><li class="l3"><a href="#1">步骤 1 — 协作契约（代码之前的规则）</a></li><li class="l3"><a href="#2">步骤 2 — 项目定义与必读</a></li><li class="l3"><a href="#3">步骤 3 — 在设计架构之前先做容量估算</a></li><li class="l3"><a href="#4">步骤 4 — 带闸门的骨架</a></li><li class="l3"><a href="#5">步骤 5 — 计划就是待办项</a></li><li class="l3"><a href="#6">步骤 6 — 决策写在代码旁边</a></li><li class="l3"><a href="#7">步骤 7 — 作为锁的测试，先证红</a></li><li class="l3"><a href="#8">步骤 8 — 生产者与消费者的对称性，以及反模式记录</a></li><li class="l3"><a href="#9">步骤 9 — 构建之前先测量，用一把自身也被验证的量具</a></li><li class="l3"><a href="#10">步骤 10 — 诚实的验证与相称的报告</a></li><li class="l3"><a href="#11">步骤 11 — 作为计划输入的定期审计</a></li><li class="l3"><a href="#12">步骤 12 — 失败即关闭、锁与零静默损害</a></li><li class="l3"><a href="#13">步骤 13 — 作为产品一部分的持续集成、环境、密钥与部署</a></li><li class="l3"><a href="#14-ai">步骤 14 — 活的文档与人无需 AI 即可遵循的手册</a></li><li class="l3"><a href="#15">步骤 15 — 系统里的代理，以及带数字的复盘</a></li><li class="l2"><a href="#c">C 部分 — 真实的故障，以及每个由哪级台阶覆盖</a></li><li class="l2"><a href="#d">D 部分 — 还有什么要制定（为下一轮）</a></li><li class="l2"><a href="#">术语表</a></li></ul></nav>
+<section><h1 id="urazuke-3">Urazuke，验证方法 — 方法论之梯（第 3 版）</h1><nav class="toc"><div class="toc-t">目录</div><ul><li class="l2"><a href="#">名字</a></li><li class="l2"><a href="#">这是关于什么的？</a></li><li class="l2"><a href="#">这一切从哪来（来源）</a></li><li class="l2"><a href="#ai">AI 没有中断方法：它延续了方法</a></li><li class="l3"><a href="#">这里面什么是旧的，什么是新的</a></li><li class="l2"><a href="#a">A 部分 — 调研：重要的时刻和里程碑</a></li><li class="l3"><a href="#a-1-yujin-forge-2026-5-10">A.1 yujin-forge：方法诞生的地方（2026 年 5 月至 10 月）</a></li><li class="l3"><a href="#a-2-autorizaciones-2026-6-10">A.2 Autorizaciones：真实负载下的方法（2026 年 6 月至 10 月）</a></li><li class="l3"><a href="#a-3-kikan-2026-8-10">A.3 Kikan：成熟的方法（2026 年 8 月至 10 月）</a></li><li class="l3"><a href="#a-4">A.4 在三个仓库中反复出现的模式</a></li><li class="l2"><a href="#b-3">B 部分 — 梯子，第 3 版</a></li><li class="l3"><a href="#">如何阅读每级台阶</a></li><li class="l3"><a href="#">每级台阶如何执行：契约</a></li><li class="l3"><a href="#">按项目规模，什么是必需的，什么是按比例的</a></li><li class="l3"><a href="#">如何与任何工具一起使用</a></li><li class="l3"><a href="#0">步骤 0 — 这个项目能这样做吗？（适格性）</a></li><li class="l3"><a href="#1">步骤 1 — 协作契约（代码之前的规则）</a></li><li class="l3"><a href="#2">步骤 2 — 项目定义与必读</a></li><li class="l3"><a href="#3">步骤 3 — 在设计架构之前先做容量估算</a></li><li class="l3"><a href="#4">步骤 4 — 带闸门的骨架</a></li><li class="l3"><a href="#5">步骤 5 — 计划就是待办项</a></li><li class="l3"><a href="#6">步骤 6 — 决策写在代码旁边</a></li><li class="l3"><a href="#7">步骤 7 — 作为锁的测试，先证红</a></li><li class="l3"><a href="#8">步骤 8 — 生产者与消费者的对称性，以及反模式记录</a></li><li class="l3"><a href="#9">步骤 9 — 构建之前先测量，用一把自身也被验证的量具</a></li><li class="l3"><a href="#10">步骤 10 — 诚实的验证与相称的报告</a></li><li class="l3"><a href="#11">步骤 11 — 作为计划输入的定期审计</a></li><li class="l3"><a href="#12">步骤 12 — 失败即关闭、锁与零静默损害</a></li><li class="l3"><a href="#13">步骤 13 — 作为产品一部分的持续集成、环境、密钥与部署</a></li><li class="l3"><a href="#14-ai">步骤 14 — 活的文档与人无需 AI 即可遵循的手册</a></li><li class="l3"><a href="#15">步骤 15 — 系统里的代理，以及带数字的复盘</a></li><li class="l2"><a href="#c">C 部分 — 真实的故障，以及每个由哪级台阶覆盖</a></li><li class="l2"><a href="#d">D 部分 — 还有什么要制定（为下一轮）</a></li><li class="l2"><a href="#">术语表</a></li></ul></nav>
 <p>Pablo 与 Sumi 的对话，2026 年 10 月 17 日（上午第 1 版；下午第 2 版，加入开篇论点、台阶契约 和专属仓库；第 3 版加入名字、丰富后的契约、英文提示词、按项目规模的指南和按工具的指南）。这 是一份工作文档：我们会分几轮继续打磨，所以它说的任何东西都还不是教条。它只是对我们在三个如 今正在生产中、有真实的人在用的仓库里真正做过的事的第一次诚实提炼。</p>
 <p>关于文风的一点说明，因为它重要：这份文档是写给没有经历过这些项目的人的。所以它慢慢地解释， 需要时重复，用日常的语言，并在末尾有一份<strong>术语表</strong>，收录出现的每个缩写和口语表达。如果你在 某处碰到一个陌生的词——"棘轮"、"锁"、"PND"、"失败即关闭"——去查术语表；都在那里。</p>
 <p>这是中文版。西班牙语是事实来源；若两者有出入，以西班牙语版为准并修正本版。给模型的提示词在 所有语言中完全相同。</p>
@@ -60,7 +70,7 @@ section > p:first-of-type{}
 <p>我用只读方式调研了三个仓库，没动任何东西：</p>
 <ul><li><strong><code>[仓库 yujin-forge]</code></strong>（Forge 工具，更重要的是方法诞生的地方）：2026 年 5 月 10 日至 10 月 14 日间 1,090 次提交。那里有质量标准文档（<code>docs/SQ.md</code>）、<code>docs/doctrine/</code> 中的 31 条教义、反模式记录（<code>docs/GOTCHAS.md</code>）、决定砍掉多代理团队的论文 （<code>docs/PAPER_SUMI_VS_AGENTIC.md</code>）、总监的冻结决定（<code>docs/DIRECTOR_DECISIONS_2026_06_04.md</code>）、 待办项记录计划（<code>docs/PENDING_REGISTRY_PLAN.md</code>），以及 Forge 每一轮注入大脑的 SQ 规则 1 到 9 的文本（<code>src/chat/server.ts</code>）。</li><li><strong><code>[仓库 Autorizaciones]</code></strong>（第一个生产系统，面向一家医疗机构）：6 月 11 日至 10 月 9 日 间 469 次提交，641 个待办项，全部关闭。包括初始设计文档、在 Google 云上的经验教训、多次审 计和手册。</li><li><strong><code>[仓库 Kikan]</code></strong>（第二个生产系统，协会的全渠道服务台和活动）：8 月 21 日至 10 月 16 日 间 442 次提交，37 个标签，AUD-* 审计系列，19 份待办项文档，持久化重构文档 （<code>docs/REINGENIERIA_PERSISTENCIA_SQL.md</code>，包含阶段 E1 到 E12 和著名的 11.b 节），持续 集成与部署，以及本周的两份报告（10 月 14 日的完整性报告，15 日的质量报告）。</li><li>我对这几个月 Pablo 给我的纠正的记忆（"带守卫的量具"、"测量假设"、"用日志验证"、"先看哪 个版本已发布"）。</li></ul>
 <p><strong>关于名字。</strong> 两个生产系统的客户已匿名化：我们称之为"互助会"（连同它的"授权方"）和"协 会"，它们的系统叫"Autorizaciones"和"Kikan"。数字、日期和提交是真实的；组织的名字在获得许 可之前保密。源仓库的本地路径以 <code>[仓库 …]</code> 显示。</p>
-<p>贯穿整份文档的一个约定：<strong>每条断言都引用证据所在的提交或文档</strong>。当某事是我的解读而非已验证 的事实时，我用 <code>[假设]</code> 标签标出，让已证明的和我在提议的一眼就能分开。</p>
+<p>贯穿整份文档的一个约定：<strong>每条断言都引用证据所在的提交或文档</strong>。当某事是我的解读而非已验证 的事实时，我用 <code><span class="tag hip">假设</span></code> 标签标出，让已证明的和我在提议的一眼就能分开。</p>
 </section><section>
 <h2 id="ai">AI 没有中断方法：它延续了方法</h2>
 <p>这是开篇的论点，我们把它放在最前面，因为它在最常见的反对意见出现之前就化解了它："你怎么能 信任机器写的代码？"。</p>
@@ -108,7 +118,7 @@ section > p:first-of-type{}
 <p><strong>提示词是英文的。</strong> 这是一个决定（D-013），有三个理由：同样的内容用西班牙语要多占 30% 到 50% 的 token；模型遵循指令的能力在英文上校准得更好，所以英文提示词更能承受简洁而不变得含 糊；而且行业词汇（test、commit、rollback、mock）是英文的。每条提示词之下，用读者的语言解 释我们在要求什么以及为什么每个条款都在那里：提示词是在八个语言版本中完全相同的单一原件； 解释才是被翻译的。所有提示词都以 "Reply in my language" 结尾，因为提示词是英文的，但对话不 必是。</p>
 <p>这十六份契约还是之后导出到 Forge 的东西：今天 Forge 在跨过一道闸门时注入一条教义；台阶的契 约*就是*那条教义，提示词*就是*被注入的东西。为课程写它们和为 Forge 的流程写它们是同一件 工作。</p>
 <h3 id="">按项目规模，什么是必需的，什么是按比例的</h3>
-<p>一个马上会冒出来的问题："一个小系统也要这一整套？"。答案是，十六级台阶不是十六周；好几级 一小时就能登上，按比例的那些随项目缩小。不缩小的是不可协商的那份清单。这张表是一个 <code>[假设]</code> 的提议，待第一个从头到尾使用方法的项目确认：</p>
+<p>一个马上会冒出来的问题："一个小系统也要这一整套？"。答案是，十六级台阶不是十六周；好几级 一小时就能登上，按比例的那些随项目缩小。不缩小的是不可协商的那份清单。这张表是一个 <code><span class="tag hip">假设</span></code> 的提议，待第一个从头到尾使用方法的项目确认：</p>
 <div class="tw"><table><thead><tr><th>台阶</th><th>小项目（一个所有者、少数用户、没有钱在里面）</th><th>有用户和后果的项目</th></tr></thead><tbody><tr><td>0 适格性</td><td>必需（一小时）</td><td>必需</td></tr><tr><td>1 契约</td><td>必需（半小时）</td><td>必需</td></tr><tr><td>2 定义</td><td>必需，五十行就够</td><td>必需</td></tr><tr><td>3 容量估算</td><td>必需，半页和一个决定</td><td>必需，完整</td></tr><tr><td>4 骨架</td><td>将有用户则必需</td><td>必需</td></tr><tr><td>5 待办项</td><td>必需</td><td>必需</td></tr><tr><td>6 决定</td><td>必需</td><td>必需</td></tr><tr><td>7 先证红的测试</td><td>必需</td><td>必需</td></tr><tr><td>8 对称性</td><td>规则必需；地图可选</td><td>必需，带地图</td></tr><tr><td>9 测量</td><td>按比例：数一数并记下</td><td>必需，带量具和预算</td></tr><tr><td>10 诚实验证</td><td>必需</td><td>必需</td></tr><tr><td>11 审计</td><td>上生产前一次</td><td>定期</td></tr><tr><td>12 失败即关闭</td><td>只读则可选</td><td>必需</td></tr><tr><td>13 集成与部署</td><td>最低限度：测试自动跑、配置在外、回滚</td><td>必需，完整</td></tr><tr><td>14 文档</td><td>最低限度：恢复</td><td>三本手册</td></tr><tr><td>15 驻留与复盘</td><td>一页的复盘</td><td>两者</td></tr></tbody></table></div>
 <p>概括：有九级台阶在任何项目中都不可协商（0、1、2、3、5、6、7、10 和第 15 级的复盘），七级随 项目调整规模。</p>
 <h3 id="">如何与任何工具一起使用</h3>
@@ -122,7 +132,7 @@ section > p:first-of-type{}
 <div class="tw"><table><thead><tr><th>#</th><th>排除性准则</th><th>Pablo 的原话（译）</th><th>为什么它会杀死方法</th></tr></thead><tbody><tr><td>X1</td><td>没有可访问仓库的遗留技术，或仓库不遵循标准</td><td>"没有可访问仓库的遗留技术，或非标准仓库"</td><td>没有标准仓库就没有留证据的地方：没有在提交中引用的待办项（第 5 级），没有随代码走的测试（7），没有作为包的集成与部署（13），没有同一次提交中的文档（14）。代理盲目工作，留不下可验证的痕迹。</td></tr><tr><td>X2</td><td>不能端到端测试的技术：不能运行界面并以其各种方法访问界面的每个元素，验证变更到达了后端</td><td>"我们不能从界面端到端测试并验证后端的变更"；之后："NAC3 不是必需的。必需的是从界面的运行和以各种方法访问界面每个元素来测试"</td><td>没有从界面到后端的那种验证，代理无法自证（第 7、9、10 级），于是所有者就得读代码——而那正是方法承诺避免的。</td></tr></tbody></table></div>
 <p>Pablo 做了一个对工具中立性价值千金的澄清：<strong>NAC3（Forge 用来让界面可以程序化操作的协议） 不是条件；它是我们今天实现这一点的手段</strong>。中立的准则是：界面可以程序化运行，界面的每个元素 可以用它的各种方法（点击、输入、读取状态）访问，以便一个测试走完界面然后验证后端的效果。一 个界面不向"驱动器"（比如 Playwright）暴露元素的技术被排除在外，哪怕它有仓库。</p>
 <p>以及我对这两条的一个解读：归根结底它们是<strong>同一个条件从两个侧面看</strong>。代理必须能端到端地自我 验证，并把证据留在仓库里。X1 是"证据留在哪？"的那一半；X2 是"证据怎么产生？"的那一半。这 把下面我的两条假设（D3 和 D8）变成了 X1 和 X2 的推论，而不是独立的准则。</p>
-<p><code>[假设]</code> <strong>我在三个案例中看到的候选准则。</strong> 这些需要与 Pablo 确认、加权和补充；他脑子里的那 些肯定还缺。</p>
+<p><code><span class="tag hip">假设</span></code> <strong>我在三个案例中看到的候选准则。</strong> 这些需要与 Pablo 确认、加权和补充；他脑子里的那 些肯定还缺。</p>
 <div class="tw"><table><thead><tr><th>#</th><th>候选准则</th><th>在案例中如何体现</th><th>排除性？</th></tr></thead><tbody><tr><td>D1</td><td>有一个有判断力、有时间做决定（而不是编程）的领域所有者</td><td>三个都是 Pablo；"Pablo 规则"、"Pablo 决定"带日期</td><td><code><span class="tag q">?</span></code></td></tr><tr><td>D2</td><td>有一个可验证的真相"神谕"：真实数据、外部系统、只读生产</td><td>互助会及其授权方作为神谕（1,355 对 1,234 的案例）；只读生产</td><td><code><span class="tag q">?</span></code></td></tr><tr><td>D3</td><td>代理能独自测试：访问测试环境、持续集成、测试数据</td><td>协会两个项目中的 UAT；匿名化数据的播种器（pnd511）</td><td>被 X2 吸收</td></tr><tr><td>D4</td><td>技术在代理不编造就能掌握的范围内（Node、Python、SQL、React）</td><td>三个都是</td><td><code><span class="tag q">?</span></code></td></tr><tr><td>D5</td><td>错误有真实后果（钱、健康、运营），这证明失败即关闭的合理性</td><td>互助会（健康、扣款），协会（家庭）</td><td><code><span class="tag q">?</span></code></td></tr><tr><td>D6</td><td>容量从第一天就能知道（容量估算 G9）</td><td>Kikan：每年 340 万行；互助会：7,819 行</td><td><code><span class="tag q">?</span></code></td></tr><tr><td>D7</td><td>客户能容忍一段成熟期和回路中的人（不是第一天就全自动）</td><td>带演练模式的自动批准器；互助会里回路中的人</td><td><code><span class="tag q">?</span></code></td></tr><tr><td>D8</td><td>新项目，或继承的但可通过审计验证（有遗留则先审计，并且零"回退"到遗留）</td><td>SQ 0.2；Forge 的迁移工具</td><td>被 X1 吸收</td></tr><tr><td>D9</td><td>范围装在一个仓库和一个所有者里（无需跨多团队协调）</td><td>三个都是</td><td><code><span class="tag q">?</span></code></td></tr><tr><td>D10</td><td>密钥和访问能被隔离（保险库、环境文件、受限权限）</td><td><code>forge-embed.env</code>、绑定到创建者的 API 密钥</td><td><code><span class="tag q">?</span></code></td></tr></tbody></table></div>
 <p><strong>要一起制定的问题</strong>：D1 到 D10 中，还有哪些是排除性的，哪些是加权的？各自权重多少？Pablo 还 拒绝过哪些项目，为什么？以及，非常重要的，有没有业务上的准则（利润、与客户的关系、Pablo 的 可用时间）不来自任何仓库却同样起决定作用？</p>
 <h3 id="1" class="peldano">步骤 1 — 协作契约（代码之前的规则）</h3>
@@ -179,9 +189,9 @@ section > p:first-of-type{}
 </section><section>
 <h2 id="d">D 部分 — 还有什么要制定（为下一轮）</h2>
 <p>第 2 版已完成（10 月 17 日下午）：开篇论点（"AI 没有中断方法：它延续了方法"）、<code>peldanos/</code> 中的十六份台阶契约，以及方法的专属仓库。第 3 版已完成：名字、丰富后的契约（规模、警报信 号、带解释的英文提示词）、按项目规模的指南和按工具的指南。剩下的：</p>
-<ol><li><strong>完整的第 0 级台阶</strong>：真实的准则列表（Pablo 的加我的假设）、哪些排除哪些加权、权重、阈 值，以及作为反例的被拒项目。我们已有 X1 和 X2；缺其余的。</li><li><strong>顺序与分组</strong>：梯子有三个阶段（启动，0 到 4；循环，5 到 10；运维，11 到 15）。要确认是这 样教，还是从循环开始更好，因为那是学员每天要用的。</li><li><strong>每级台阶一个好记的名字</strong>，一句话，用于手册和出版物。</li><li>~~按项目规模什么是最低限度、什么是可选的~~ — 已在"什么是必需的，什么是按比例的"表中 <strong>提议</strong>，标为假设直到有项目确认。</li><li><strong>到 Forge 的映射</strong>：哪些台阶已经是闸门或命令（G1 到 G9、待办项记录、容量估算、教义），还 缺什么才能把梯子作为执行流程导出。</li><li><strong>实践</strong>：手册-课程（<code>MANUAL_CURSO.md</code>），每级台阶一个学员可以在自己的仓库里重复、直到 应用上线生产的实践任务。进行中。</li><li><strong>不在梯子里却应该在的</strong> <code>[假设]</code>：把 token 和配额的成本作为显式预算来管理（今天是被动 的：烧光了才发现）；把密钥轮换作为例行而不是事故；以及一条人<strong>确实</strong>该看代码的时机准则 ——今天的答案是"从不"，但本周的两份报告暗示有一些特定时刻值得看。</li><li>~~名字~~ — <strong>已完成</strong>：Urazuke，验证方法（D-014，10 月 17 日）。</li><li>~~在 yujin.app 上的公开展示~~ — <strong>已完成</strong>（10 月 17 日晚）：子页面 <code>yujin.app/urazuke</code>（仓库 <code>pkuschnirof/rpaforce</code>，文件夹 <code>web/yujin.app/urazuke/</code>），包含站点十种界面语言的落地页、方法八种 语言的三份 HTML 文档，以及 yujin.app 首页的亮点卡片。剩下的是向该仓库的 <code>main</code> 推送以发布，以及 本仓库开放后从那里链接过来。</li><li><strong>在真实项目上测试契约。</strong> 十六条提示词是从我们做过的事写出来的，没有按原样执行过。第一 个从头到尾使用它们的项目会修正其中若干条；这是第 15 级台阶的一部分。</li></ol>
+<ol><li><strong>完整的第 0 级台阶</strong>：真实的准则列表（Pablo 的加我的假设）、哪些排除哪些加权、权重、阈 值，以及作为反例的被拒项目。我们已有 X1 和 X2；缺其余的。</li><li><strong>顺序与分组</strong>：梯子有三个阶段（启动，0 到 4；循环，5 到 10；运维，11 到 15）。要确认是这 样教，还是从循环开始更好，因为那是学员每天要用的。</li><li><strong>每级台阶一个好记的名字</strong>，一句话，用于手册和出版物。</li><li>~~按项目规模什么是最低限度、什么是可选的~~ — 已在"什么是必需的，什么是按比例的"表中 <strong>提议</strong>，标为假设直到有项目确认。</li><li><strong>到 Forge 的映射</strong>：哪些台阶已经是闸门或命令（G1 到 G9、待办项记录、容量估算、教义），还 缺什么才能把梯子作为执行流程导出。</li><li><strong>实践</strong>：手册-课程（<code>MANUAL_CURSO.md</code>），每级台阶一个学员可以在自己的仓库里重复、直到 应用上线生产的实践任务。进行中。</li><li><strong>不在梯子里却应该在的</strong> <code><span class="tag hip">假设</span></code>：把 token 和配额的成本作为显式预算来管理（今天是被动 的：烧光了才发现）；把密钥轮换作为例行而不是事故；以及一条人<strong>确实</strong>该看代码的时机准则 ——今天的答案是"从不"，但本周的两份报告暗示有一些特定时刻值得看。</li><li>~~名字~~ — <strong>已完成</strong>：Urazuke，验证方法（D-014，10 月 17 日）。</li><li>~~在 yujin.app 上的公开展示~~ — <strong>已完成</strong>（10 月 17 日晚）：子页面 <code>yujin.app/urazuke</code>（仓库 <code>pkuschnirof/rpaforce</code>，文件夹 <code>web/yujin.app/urazuke/</code>），包含站点十种界面语言的落地页、方法八种 语言的三份 HTML 文档，以及 yujin.app 首页的亮点卡片。剩下的是向该仓库的 <code>main</code> 推送以发布，以及 本仓库开放后从那里链接过来。</li><li><strong>在真实项目上测试契约。</strong> 十六条提示词是从我们做过的事写出来的，没有按原样执行过。第一 个从头到尾使用它们的项目会修正其中若干条；这是第 15 级台阶的一部分。</li></ol>
 <hr>
-</section><section>
+</section><section class="glos">
 <h2 id="">术语表</h2>
 <p>本文档中出现的每个缩写、每个专有名词和每个口语表达，一一解释。按原文顺序排列。有些条目是出 现在源仓库文件名或提交信息中的西班牙语术语；保留它们以便追溯证据。</p>
 <p><strong>吃一堑长一智</strong> — 因为出了问题而学到东西，而不是因为有人事先解释过。用于"这些规则是吃一 堑长一智学来的"。</p>
@@ -292,4 +302,5 @@ section > p:first-of-type{}
 <p><strong>yerp_</strong> — Kikan 的 API 密钥前缀。</p>
 <p><strong>yf</strong> — 终端里 Forge 的命令。</p>
 <p><strong>Yujin</strong> — Forge 作为其商业产品的生态系统。</p></section>
-</div></body></html>
+<footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">方法的公开仓库: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
+</div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>

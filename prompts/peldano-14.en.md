@@ -4,7 +4,7 @@ Generated from `docs/peldanos/peldano-14-documentacion-viva.md` by `build/prompt
 
 ## Prompt 1
 
-Every change that modifies what the user sees, what the operator does, or how the system is deployed, updates the corresponding manual in the same commit. If you do not know which manual, ask.
+Every change that modifies what the user sees, what the operator does, or how the system is deployed, updates the corresponding manual in the same commit. At the close of every functional block, add to the user manual the screens and flows of the pending items closed in that block, with real screenshots from the test environment, and add their entries to the changelog. If you do not know which manual, ask.
 
 ## Prompt 2
 

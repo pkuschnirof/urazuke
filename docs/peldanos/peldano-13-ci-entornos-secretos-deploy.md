@@ -1,33 +1,37 @@
 # Peldaño 13 — Integración continua, entornos, secretos y despliegue como parte del producto (contrato del peldaño)
 
-**Tramo:** operación (se arma sobre el esqueleto del peldaño 4; se revisa con cada cambio de
-infraestructura).
-**Forma:** un solo tiro para armarlo; rutina para cada despliegue.
+**Tramo:** operación.
+**Cuándo:** la cadena de integración y el despliegue al entorno de prueba se montan en el peldaño
+4. El cierre hacia producción —entorno real, secretos en el servidor, promoción, vuelta atrás
+probada, candado contra secretos— se hace en el tramo de salida, después de la auditoría y de los
+candados. La rutina de cada despliegue se aplica en toda la operación.
+**Forma:** un solo tiro para montarlo; rutina para cada despliegue.
 **Tamaño:** obligatorio en todo proyecto con usuarios. En uno chico, "integración continua" puede
-ser una sola acción de GitHub y "entornos" pueden ser dos carpetas en el mismo servidor; lo que
-no se negocia es que los tests corran solos, que la configuración no esté en el repositorio, y
-que haya vuelta atrás.
+ser una sola acción de GitHub y "entornos" pueden ser dos carpetas en el mismo servidor; lo que no
+se negocia es que los tests corran solos, que la configuración no esté en el repositorio, y que
+haya vuelta atrás.
 
 ## Para qué sirve
 
-Para que llegar a producción sea un paquete reproducible: los tests se corren UNA vez, la
+Hacé que llegar a producción sea un paquete reproducible: los tests corren UNA vez, la
 configuración vive fuera del repositorio, y los secretos no andan dando vueltas. Evita los tests
-corriendo tres veces por commit (2.000 minutos de cuota en 16 días), la clave de la base impresa
-en una transcripción, el CORS que solo conocía el primer dominio, y la configuración pisada por
-la batería de tests.
+corridos tres veces por commit y la cuota fundida [Ref. 39](../REFERENCIAS.md#ref-39), el
+despliegue endurecido a golpe de pendientes por haberlo descubierto tarde
+[Ref. 32](../REFERENCIAS.md#ref-32), y los secretos pegados en el chat
+[Ref. 42](../REFERENCIAS.md#ref-42).
 
-Sobre los secretos hay una regla que conviene adoptar como reflejo, sin excepciones: **un secreto
-que se vio en un chat, en un log o en un commit ya no es un secreto**. No importa si "nadie lo
-vio" o si "se borró después". Se rota. La rotación cuesta diez minutos; averiguar si alguien lo
-usó es imposible.
+Sobre los secretos hay una regla que adoptá como reflejo, sin excepciones: **un secreto que se vio
+en un chat, en un log o en un commit ya no es un secreto**. No importa si "nadie lo vio" o si "se
+borró después". Se rota. La rotación cuesta diez minutos; averiguar si alguien lo usó es
+imposible.
 
 ## 1. Contexto requerido
 
 - **Relevamiento de entornos y accesos**, en forma genérica: qué entornos hay (prueba,
-  producción), dónde corren, quién tiene acceso, cómo se promueve algo de uno a otro, qué
-  secretos existen y dónde viven hoy, cuánta cuota de integración continua hay. El agente evalúa
-  si alcanza y pregunta.
-- El esqueleto con su integración continua y su despliegue al entorno de prueba (peldaño 4).
+  producción), dónde corren, quién tiene acceso, cómo se promueve algo de uno a otro, qué secretos
+  existen y dónde viven hoy, cuánta cuota de integración continua hay. El agente evalúa si alcanza
+  y pregunta.
+- El esqueleto con su integración continua y su despliegue a prueba (peldaño 4).
 
 ## 2. Prompts
 
@@ -44,11 +48,23 @@ usó es imposible.
 > that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
 > can do it by hand without you. Reply in my language.
 
-Qué le estamos pidiendo, cláusula por cláusula: los accesos antes de empezar; los tests **una
-sola vez** por commit (correrlos tres veces fue lo que fundió la cuota); el despliegue que solo
+> [es]
+> Vamos a cerrar el camino a producción. Leé el relevamiento de entornos y accesos. Evaluá si
+> tenés lo necesario para desplegar a producción con seguridad (acceso, dominio, dónde viven los
+> secretos, cómo volver atrás); si falta algo, pedímelo. Después armá: (1) la integración continua
+> corre la batería completa exactamente una vez por commit; (2) el despliegue espera el resultado
+> de esa corrida y solo empaqueta y sube, sin volver a correr tests; (3) la configuración de cada
+> entorno vive en el servidor (archivo de entorno o bóveda), nunca en el repositorio; (4) un
+> procedimiento escrito para promover del entorno de prueba a producción, que se pueda correr dos
+> veces sin romper nada; (5) la vuelta atrás, probada; (6) una verificación automática que impida
+> subir un secreto en un commit. Documentá todo en `docs/DEPLOYMENT.md` de modo que una persona lo
+> pueda hacer a mano sin vos. Respondé en mi idioma.
+
+Qué le estoy pidiendo, cláusula por cláusula: los accesos antes de empezar; los tests **una sola
+vez** por commit (correrlos tres veces es lo que fundió la cuota); el despliegue que solo
 empaqueta; la configuración fuera del repositorio; la promoción como procedimiento repetible; la
 vuelta atrás **probada** (una vuelta atrás que nunca se probó no existe); el candado contra
-secretos en commits; y la documentación para una persona, que es el peldaño 14 aplicado a la
+secretos en los commits; y la documentación para una persona, que es el peldaño 14 aplicado a la
 infraestructura.
 
 **Rutina de cada despliegue:**
@@ -57,17 +73,27 @@ infraestructura.
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
 
-Qué le estamos pidiendo: las tres condiciones previas (prueba en verde con la misma versión,
-vuelta atrás lista, cambios de configuración anunciados) y las dos evidencias posteriores (la
-versión corriendo y una prueba de punta a punta sin escribir nada).
+> [es]
+> Antes de tocar producción: el entorno de prueba está en verde con la misma versión; la vuelta
+> atrás está lista; y decime qué cambia en la configuración. Después de desplegar: mostrame la
+> versión que corre en producción y una verificación de punta a punta sobre producción, en solo
+> lectura.
+
+Qué le estoy pidiendo: las tres condiciones previas (prueba en verde con la misma versión, vuelta
+atrás lista, cambios de configuración anunciados) y las dos pruebas posteriores (la versión
+corriendo y una verificación de punta a punta sin escribir nada).
 
 **Si un secreto apareció en el chat o en un commit:**
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.
 
-Qué le estamos pidiendo: rotación inmediata, inventario de dónde más estaba, y la verificación
-que lo habría detectado, para que la próxima vez no llegue al chat.
+> [es]
+> Ese secreto está comprometido: rotalo ahora, decime en qué otros lugares se usó, y agregá la
+> verificación que lo habría atrapado.
+
+Qué le estoy pidiendo: rotación inmediata, inventario de dónde más estaba, y la verificación que
+lo habría detectado, para que la próxima vez no llegue al chat.
 
 ## 3. Resultado esperado
 
@@ -83,9 +109,9 @@ que lo habría detectado, para que la próxima vez no llegue al chat.
 ## 4. Verificación de completitud
 
 - ¿Cuántas veces corre la batería por cada commit? Tiene que ser una. Pedí el enlace.
-- ¿Hay algún valor de configuración real (una clave, una contraseña, una URL interna) en el
+- ¿Hay algún valor real de configuración (una clave, una contraseña, una URL interna) en el
   repositorio? Pedile al agente que busque y te muestre la búsqueda vacía.
-- ¿Podrías seguir `docs/DEPLOYMENT.md` vos, sin el agente? Leelo con esa pregunta.
+- ¿Podrías seguir `docs/DEPLOYMENT.md` vos solo, sin el agente? Leelo con esa pregunta.
 - ¿La vuelta atrás se probó? ¿Cuándo? ¿Qué evidencia hay?
 - ¿Se pegó algún secreto en el chat durante el proyecto? Si sí, ¿se rotó?
 - ¿Sabés cuánta cuota de integración continua queda este mes?
@@ -94,5 +120,6 @@ que lo habría detectado, para que la próxima vez no llegue al chat.
 
 - El despliegue a producción se hace "a mano, rápido, porque es un cambio chico". Los cambios
   chicos son los que rompen producción, porque nadie los prueba.
-- El archivo de ejemplo de configuración tiene valores que parecen reales. Probablemente lo son.
-- Nadie puede decir cuándo fue la última vez que se probó la vuelta atrás.
+- El archivo de ejemplo de la configuración tiene valores que parecen reales. Probablemente lo
+  sean.
+- Nadie sabe decir cuándo fue la última vez que se probó la vuelta atrás.
