@@ -29,6 +29,9 @@ système que l'agent comprend est celui que le métier a demandé.
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - Relevé du métier : ce que fait le client, qui utilise le système, quel problème il résout, ce
   qu'il ne doit pas faire. Avec les entretiens, les cas d'utilisation ou récits utilisateur que
   vous pouvez nommer, et les entités du métier avec leurs états, même s'ils sont incomplets.
@@ -40,6 +43,27 @@ système que l'agent comprend est celui que le métier a demandé.
 
 **Initial :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- `docs/INITIAL_SURVEY.md` (échelon 0), complété avec le relevé du métier. C'est vous qui
+  l'écrivez à partir des entretiens de l'ingestion ; si vous avez utilisé une méthode (entretiens,
+  cas d'utilisation, récits utilisateur, maquettes d'écran), dites laquelle et collez le résultat.
+  Il doit contenir : ce que fait le client ; qui utilise le système (les acteurs, avec un nom de
+  rôle) ; quel problème il résout ; ce qu'il ne doit PAS faire, dans une section à part, même avec
+  deux items ; les cas d'utilisation ou récits utilisateur que nomme le propriétaire, avec ses
+  mots, même s'ils tiennent en dix lignes ; les entités du métier avec leurs états (« un
+  rendez-vous est en attente, confirmé, annulé »), même incomplètes ; les dessins ou les photos
+  des écrans, s'il y en a ; les intégrations externes (messagerie, paiements, un autre système) ;
+  et les décisions déjà prises, même si elles l'ont été de vive voix, avec leur date et qui les a
+  prises.
+- `docs/WORKING_AGREEMENT.md` (échelon 1), clos avec sa date et sa version.
+- S'il existe un système antérieur : un accès en lecture à son code ou à sa documentation, avec le
+  chemin ou le lien noté dans le relevé.
+- État minimum acceptable : le relevé a la section « ce que ce n'est pas » avec au moins deux
+  items, au moins un cas d'utilisation avec les mots du propriétaire, et au moins une entité avec
+  ses états. Sans cela, l'arbre qui en sortira sera inventé, et vous n'aurez rien pour le
+  comparer.
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
 > whether the survey is sufficient to describe the system, its users, its domain and its
@@ -84,6 +108,16 @@ fichier, pour que la carte ne se transforme pas en historique.
 
 **De clôture :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- `PROJECT.md`, lu en entier par vous (il doit rentrer en cinq minutes), avec vos corrections
+  notées : ce qui n'est pas vrai, ce qui n'est pas de vous, ce qui est en trop.
+- `docs/SEMANTIC_TREE.md`, parcouru nœud par nœud comme si vous étiez le client : chaque nœud
+  marqué comme inféré a votre verdict (confirmé ou corrigé), et vous avez noté les acteurs qui
+  manquent, les états que le métier n'utilise pas, les écrans que personne n'a demandés.
+- La liste des corrections, écrite, qui va dans le trou [list] du prompt. Si la liste est vide la
+  première fois, méfiez-vous de votre lecture, pas de l'agent.
+- État minimum acceptable : aucun nœud marqué « inféré » ne reste sans votre verdict.
 > Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with
 > today's date. Add to the working agreement two rules: the change history never goes into
 > `PROJECT.md` (it goes to `docs/STATUS.md` or to the pending-items register); and every pending

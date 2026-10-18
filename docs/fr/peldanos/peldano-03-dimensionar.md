@@ -35,6 +35,9 @@ aujourd'hui elles ne sont pas nécessaires.
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - **Relevé des données de volumétrie** du métier, nommé ainsi de façon générique : entités
   principales et leur croissance, événements par entité, opérateurs simultanés et horaire du pic,
   durée de conservation des données, charges exceptionnelles (campagnes, clôtures), croissance
@@ -48,6 +51,27 @@ aujourd'hui elles ne sont pas nécessaires.
 
 **Initial :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- `docs/VOLUME_SURVEY.md` : le relevé de volumétrie, écrit avec le propriétaire du domaine (ou
+  avec vous-même, si le projet est le vôtre). Pour chaque entité principale de l'arbre sémantique
+  : combien il y en a aujourd'hui, combien s'en ajoutent par mois, combien d'événements chacune
+  génère (un rendez-vous génère trois messages ; une autorisation génère tant de requêtes) ;
+  combien de personnes travaillent au pic et à quelle heure est le pic ; combien de temps les
+  données sont conservées ; quelles charges exceptionnelles il y a (campagnes, clôtures de mois,
+  le lundi après un jour férié) ; quelle croissance ils attendent et si le système pourrait être
+  vendu à d'autres. Et le plus important : pour chaque chiffre, d'où il sort (« la responsable l'a
+  dit », « compté dans le cahier de septembre », « supposé »). Les suppositions se marquent comme
+  des suppositions ; elles ne se déguisent pas en données.
+- `PROJECT.md` et `docs/SEMANTIC_TREE.md` (échelon 2), clos : les entités à dimensionner sont
+  celles de l'arbre.
+- S'il y a un système antérieur avec une base de données : un accès en lecture seule pour que
+  l'agent sorte des chiffres réels au lieu d'estimations, avec la chaîne de connexion gardée hors
+  du dépôt et le nom de la variable noté dans le relevé.
+- État minimum acceptable : toute entité de l'arbre a au moins un chiffre avec sa source, même si
+  plusieurs disent « supposé ». L'agent va vous demander les suppositions ; cette demande, c'est
+  l'échelon qui fonctionne.
 > Before proposing any architecture we are going to size the system. Read `PROJECT.md` and the
 > volume survey in `docs/VOLUME_SURVEY.md`. Distinguish primary data (facts only the business
 > knows) from derived data (what can be computed from the primary data). Evaluate whether the
@@ -85,6 +109,19 @@ décision, pas de construction.
 
 **De clôture :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- Les trois options que l'agent a présentées, lues, et au moins un calcul refait à la main par
+  vous (les lignes par an de la plus grande table, par exemple) : il doit vous donner la même
+  chose.
+- Les données primaires qu'il vous a demandées, obtenues pour de vrai (dans le cahier, en
+  demandant au propriétaire) et données dans le chat ; aucune estimée par vous pour vous en
+  sortir.
+- Votre choix, avec la lettre de l'option et une raison d'une ligne, décidé par vous et, s'il y a
+  un propriétaire, avec lui.
+- État minimum acceptable : le calcul refait coïncide, les suppositions sont devenues des données
+  avec leur source, et l'option est choisie. Si le calcul ne coïncide pas, ne clôturez pas :
+  demandez.
 > I choose option [B]. Record in `docs/SIZING.md`: the primary data with its source, the derived
 > data with its arithmetic, the three options, the chosen one and why, and the decisions we are
 > taking "just in case" even though they are not needed today (for example: the persistence

@@ -42,6 +42,10 @@ später.
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - Die Anfrage des Kunden für den Block, in Prosa, so wie er sie sagen würde, mit ihren
   Mehrdeutigkeiten. Wenn du in der Aufnahme Anwendungsfälle oder User Stories gemacht hast, umso
   besser: sie sind die natürliche Einheit eines Blocks.
@@ -52,6 +56,26 @@ später.
 ## 2. Prompts
 
 **Zum Öffnen eines Blocks:**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- Die Anfrage des Kunden für diesen Block, in Prosa geschrieben, so wie er sie sagen würde, mit
+  ihren Mehrdeutigkeiten. Sie kommt in `docs/INITIAL_SURVEY.md` unter eine Überschrift mit dem
+  Namen des Blocks oder in eine eigene Datei (zum Beispiel `docs/blocks/BLOCK_01_REQUEST.md`); der
+  Prompt sagt „the client's request for this block“ ohne Pfad, also sag ihm im Chat, wo sie liegt.
+  Wenn du in der Aufnahme Anwendungsfälle oder User Stories geschrieben hast, gehören sie dorthin:
+  sie sind die natürliche Einheit des Blocks. Wenn der Eigentümer dir eine Priorität genannt hat,
+  auch. „Verbessere“ sie nicht selbst: die Mehrdeutigkeiten sind genau das, wonach der Agent
+  fragen muss.
+- `docs/SEMANTIC_TREE.md` (Schritt 2), aktuell: jeder offene Posten wird an einem Knoten von dort
+  hängen.
+- `PROJECT.md` und `docs/STATUS.md` (Schritt 2), aktuell.
+- Wenn es Audits (Schritt 11) oder menschliche Tests gab (der menschliche Blick beim Abschluss des
+  vorigen Blocks): ihre Befunde, in `docs/AUDIT_[Datum].md` oder im lebendigen Stand notiert, denn
+  sie sind Kandidaten für offene Posten dieses Blocks.
+- Akzeptabler Mindestzustand: die Anfrage des Blocks ist mit den Worten des Kunden geschrieben,
+  und der Baum hat die Knoten dieses Blocks, oder die Anfrage lässt erkennen, welche fehlen.
 
 > We are going to turn everything that must be done in this block into numbered pending items,
 > each one carrying its full specification. Read `PROJECT.md`, `docs/SEMANTIC_TREE.md`, the
@@ -95,6 +119,15 @@ Schritt 7 sind; und eine vorgeschlagene Reihenfolge mit ihrem Grund, damit du si
 änderst.
 
 **Routine jeder Sitzung (gehört in die Arbeitsvereinbarung):**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- `docs/PENDING.md` mit dem spezifizierten Block, von dir gelesen, offener Posten für offener
+  Posten, als wärst du der Kunde, mit deinen Korrekturen schon gemacht (das ist die wichtigste
+  Aufgabe des Schritts und die, bei der die Versuchung, sie zu überspringen, am größten ist).
+- `docs/WORKING_AGREEMENT.md` (Schritt 1), wo diese Routine hinzugefügt wird.
+- Akzeptabler Mindestzustand: kein offener Posten hat eine Spezifikation von einer Zeile. Wenn er
+  eine hat, fang nicht an zu bauen: lass sie zuerst vervollständigen.
 
 > Before touching any code, open `docs/PENDING.md`, tell me which item you are taking and why,
 > and re-read its specification. Every commit cites its pending item. A pending item is closed

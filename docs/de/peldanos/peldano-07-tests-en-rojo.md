@@ -32,6 +32,10 @@ mit der exakten Version vor der Produktion.
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - Die bereits umgesetzte Änderung (standardmäßig kommen die Tests nach der Umsetzung; „erst der
   Test“ bleibt als Option für kleine, gut abgegrenzte Umfänge).
 - Der offene Posten, der die Änderung auslöst, mit seinen Abnahmekriterien und seinem „wie wird
@@ -41,6 +45,25 @@ mit der exakten Version vor der Produktion.
 ## 2. Prompts
 
 **Routine (gehört in die Arbeitsvereinbarung; gilt bei jeder Änderung):**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- Der offene Posten, der gerade geschlossen wird, mit seiner vollständigen Spezifikation in
+  `docs/PENDING.md`; insbesondere seine Abnahmekriterien in der Form „gegeben, wenn, dann“ und
+  sein „wie es geprüft wird“, die das Drehbuch des Tests sind. Wenn der offene Posten sie nicht
+  hat, geh zurück zu Schritt 5, bevor du den Test verlangst.
+- Die vom Agenten bereits umgesetzte Änderung (die Methode testet nach dem Umsetzen, außer du
+  wählst „zuerst der Test“ für einen kleinen und gut umrissenen Umfang).
+- Die bestehende Batterie und der Befehl, um sie laufen zu lassen, notiert in `docs/STATUS.md`
+  (Schritt 4).
+- Die Testumgebung, laufend und für den Agenten erreichbar, mit genügend Testdaten für den Ablauf,
+  der angefasst wird. Wenn der Ablauf Daten braucht, die es nicht gibt (ein Patient, ein Termin
+  von gestern), lade sie selbst hoch oder bitte ihn, sie als Teil des Tests anzulegen; was er
+  nicht darf, ist sie zu simulieren.
+- `docs/WORKING_AGREEMENT.md`, wo die Routine beim ersten Mal hinkommt.
+- Akzeptabler Mindestzustand: die Spezifikation hat Abnahmekriterien, und die Batterie läuft mit
+  einem bekannten Befehl.
 
 > To close this pending item I need evidence, not your word. (1) Write the test that proves what
 > the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
@@ -77,6 +100,18 @@ hinterlässt den Beleg dort, wo der Code lebt.
 
 **Beim Abschluss jedes Blocks und vor jedem Deployment in die Produktion:**
 
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Alle offenen Posten des Blocks mit der Routine geschlossen (rot, grün, Regression, Ende zu Ende
+  des Ablaufs).
+- Die exakte Version, die befördert wird, identifiziert (Versionsnummer oder Commit) und in der
+  Testumgebung deployt; sag sie ihm im Chat, wenn sie nicht in `docs/STATUS.md` steht.
+- Die Liste der Abläufe, die es bis jetzt gibt, von dir aus den Anwendungsfällen des semantischen
+  Baums geschrieben, um sie mit dem zu vergleichen, was der Agent abgedeckt zu haben sagt. Ohne
+  deine Liste ist „alle Abläufe“ das, woran sich der Agent erinnert.
+- Akzeptabler Mindestzustand: du weißt, wie viele Abläufe die Batterie durchlaufen muss, bevor du
+  ihn fragst, wie viele er durchlaufen hat.
+
 > Run the complete end-to-end suite of every flow that exists so far, in the test environment,
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
@@ -94,6 +129,16 @@ Vollständigkeitsklausel: was nicht abgedeckt ist, wird erklärt und wird zum of
 geht nicht als abgedeckt durch.
 
 **Wenn der Agent sagt, dass sich etwas nicht testen lässt:**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Die Nachricht des Agenten, dass sich etwas nicht testen lässt, aufmerksam gelesen: geht es
+  nicht, oder fehlt ihm etwas? Wenn das Fehlende eine Eingabe ist, die du hast (Daten, ein Zugang,
+  eine Umgebung), gib sie ihm und schick diesen Prompt nicht. Dieser Prompt ist für den Fall, dass
+  wirklich etwas im System fehlt (Bezeichner an den Elementen des Bildschirms, ein Testmodus des
+  externen Anbieters).
+- Akzeptabler Mindestzustand: du hast zwischen „mir fehlt eine Eingabe“ (die gibst du) und „das
+  System ist hier nicht testbar“ (dieser Prompt) unterschieden.
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.

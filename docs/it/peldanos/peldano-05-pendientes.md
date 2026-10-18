@@ -38,6 +38,10 @@ mesi dopo.
 
 ## 1. Contesto richiesto
 
+Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
+prompt, con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
+inviare il prompt" che precede ciascuno.
+
 - La richiesta del cliente per il blocco, in prosa, così come la direbbe lui, con le sue
   ambiguità. Se nell'acquisizione hai fatto casi d'uso o storie utente, meglio: sono l'unità
   naturale di un blocco.
@@ -48,6 +52,24 @@ mesi dopo.
 ## 2. Prompt
 
 **Per aprire un blocco:**
+
+**Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
+l'agente:
+
+- La richiesta del cliente per questo blocco, scritta in prosa, così come la direbbe lui, con le
+  sue ambiguità. Va in `docs/INITIAL_SURVEY.md` sotto un titolo con il nome del blocco, o in un
+  file proprio (per esempio `docs/blocks/BLOCK_01_REQUEST.md`); il prompt dice "the client's
+  request for this block" senza percorso, quindi digli nella chat dov'è. Se nell'acquisizione hai
+  scritto casi d'uso o storie utente, vanno lì: sono l'unità naturale del blocco. Se il
+  proprietario ti ha dato una priorità, anche quella. Non "migliorarla" tu: le ambiguità sono ciò
+  che l'agente deve chiedere.
+- `docs/SEMANTIC_TREE.md` (gradino 2), aggiornato: ogni voce in sospeso penderà da un nodo di lì.
+- `PROJECT.md` e `docs/STATUS.md` (gradino 2), aggiornati.
+- Se ci sono stati audit (gradino 11) o prove umane (la vista umana alla chiusura del blocco
+  precedente): i loro rilievi, in `docs/AUDIT_[data].md` o annotati nello stato vivo, perché sono
+  voci candidate per questo blocco.
+- Stato minimo accettabile: la richiesta del blocco è scritta con le parole del cliente, e
+  l'albero ha i nodi di quel blocco, o la richiesta lascia vedere quali mancano.
 
 > We are going to turn everything that must be done in this block into numbered pending items,
 > each one carrying its full specification. Read `PROJECT.md`, `docs/SEMANTIC_TREE.md`, the
@@ -88,6 +110,15 @@ sono il copione del test end to end del gradino 7; e un ordine proposto con la s
 tu lo confermi o lo cambi.
 
 **Routine di ogni sessione (va nel patto di convivenza):**
+
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- `docs/PENDING.md` con il blocco specificato e letto da te, voce per voce, come se fossi il
+  cliente, con le tue correzioni già fatte (è il compito più importante del gradino, e quello che
+  dà più tentazione di saltare).
+- `docs/WORKING_AGREEMENT.md` (gradino 1), dove questa routine si aggiunge.
+- Stato minimo accettabile: nessuna voce in sospeso ha una specifica di una riga. Se ce l'ha, non
+  cominciare a costruire: falla completare prima.
 
 > Before touching any code, open `docs/PENDING.md`, tell me which item you are taking and why,
 > and re-read its specification. Every commit cites its pending item. A pending item is closed

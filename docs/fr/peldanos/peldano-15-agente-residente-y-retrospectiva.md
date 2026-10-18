@@ -28,6 +28,9 @@ fait).
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 Pour l'agent résident :
 - Ce que l'agent peut faire en production et ce qu'il ne peut pas : lire, diagnostiquer, changer la
   configuration, exécuter des actions. C'est vous qui le décidez.
@@ -43,6 +46,20 @@ Pour la rétrospective :
 
 **Pour l'agent résident (initial) :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- La décision de laisser un agent résident, prise avec le propriétaire et écrite : pour quoi
+  (support, diagnostic) et avec quelles limites initiales.
+- Un identifiant propre à l'agent en production, créé par vous, rattaché à une personne
+  responsable avec un nom, avec le périmètre minimal (lecture seule, pour commencer) ; la valeur,
+  hors du chat et du dépôt.
+- `docs/LOCKS.md` (échelon 12) et `docs/DEPLOYMENT.md` (échelon 13), à jour : le prompt lui
+  demande de lire le premier.
+- Qui l'agent prévient quand il trouve quelque chose qu'il ne peut pas résoudre : un canal
+  (ticket, courriel) décidé par vous.
+- État minimum acceptable : l'identifiant existe, il a un propriétaire humain, et il est en
+  lecture seule.
 > We are going to leave you resident in production. First, build the map of the system you will
 > need in order to operate it: modules, environments, where each configuration lives, which
 > actions are consequential (read `docs/LOCKS.md`), whom to notify. If there are parts of the
@@ -69,6 +86,15 @@ et non un « ça dépend » ; et la règle de l'identifiant au nom d'une personn
 
 **Pour l'agent résident (de clôture) :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- La carte et les trois niveaux que l'agent a proposés, lus par vous, et votre choix du niveau
+  (pour commencer, toujours le premier).
+- Une action concrète hors du périmètre choisi, pensée par vous, pour que l'agent l'essaie et que
+  vous voyiez le refus dans le journal (avec le niveau 1, par exemple : changer une
+  configuration).
+- État minimum acceptable : vous avez choisi le niveau et vous savez quelle tentative doit
+  échouer.
 > Level [X]. Write in `docs/RESIDENT_AGENT.md` the map, the scope, the credential (never its
 > value), and the procedure to request my approval. Then prove, with a real attempt recorded in
 > the log, that something outside your scope is rejected.
@@ -84,6 +110,22 @@ chose hors du niveau, refusée. C'est l'échelon 7 appliqué aux permissions.
 
 **Pour la rétrospective :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- Les chiffres que vous seul avez, rassemblés avant : combien d'heures vous y avez consacrées (de
+  votre agenda, pas de mémoire), combien vous avez dépensé dans l'outil d'IA (la facture ou le
+  panneau de consommation), combien de quota d'intégration continue a été utilisé, et les dates de
+  début et de fin de l'étape. Écrivez-les dans `docs/RETROSPECTIVE_INPUTS.md`, ou donnez-les-lui
+  dans le chat quand il les demandera.
+- La liste des incidents de l'étape, tels que vous vous en souvenez, avec une date approximative,
+  pour la confronter à ce que l'agent sortira des éléments en attente et des commits. Ce dont vous
+  vous souvenez et que l'agent ne trouve pas est un trou de documentation, et cela vaut la peine
+  de le noter.
+- `docs/PENDING.md` avec les éléments clos documentés (échelon 5) et `docs/DECISIONS.md`
+  (échelon 6), qui sont la source des chiffres.
+- État minimum acceptable : les heures et l'argent sont notés avec leur source. Sans cela, la
+  rétrospective se fait avec des adjectifs.
 > [The stage / the project] is over. Do the retrospective with numbers, not impressions: what it
 > cost (tokens, quota, my time), how many pending items, which ones took the most rounds and why,
 > which incidents happened and which step of the ladder each falls into, and which step failed

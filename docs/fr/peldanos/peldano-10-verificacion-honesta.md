@@ -26,6 +26,9 @@ ne le considère pas comme faisant partie de la réponse.
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - Le travail fait et l'élément en attente qui le demandait.
 - Le contrat de collaboration (échelon 1), qui interdit déjà d'annoncer ce qui n'est pas fait.
 
@@ -33,6 +36,14 @@ ne le considère pas comme faisant partie de la réponse.
 
 **Routine (va dans le contrat de collaboration ; s'applique à chaque rapport) :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- `docs/WORKING_AGREEMENT.md` (échelon 1), où va la routine.
+- La liste de ce que vous avez demandé dans la session, écrite par vous (les items de la demande),
+  pour confronter le rapport : le prompt lui demande de couvrir chaque item un par un, et vous
+  devez savoir combien il y en avait.
+- État minimum acceptable : rien de plus. Cette routine se colle une fois et vaut pour toujours.
 > When you report, separate three blocks: VERIFIED (what you tested, with the command and its
 > output), BELIEVED (what you think works but did not test, and why not), and BLIND SPOTS (what
 > you cannot see from where you are: another environment, real data, the user's browser). Cover
@@ -58,6 +69,16 @@ jamais.
 
 **Face à un « c'est toujours cassé » de votre part :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- Votre vérification, faite là où vous regardez (l'environnement de test, votre navigateur), avec
+  ce que vous avez vu, noté : à quelle URL, quelle version affiche le système s'il l'affiche, ce
+  que vous avez fait, ce que vous attendiez, ce qui s'est passé.
+- Le numéro de version ou le commit dont l'agent a dit qu'il contenait la correction, copié de son
+  rapport précédent.
+- État minimum acceptable : vous pouvez lui dire « je regarde sur [URL], je vois la version [N],
+  je fais [ceci], il se passe [cela] ». Sans cela, le « c'est toujours cassé » est une impression,
+  et l'agent va diagnostiquer une impression.
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.
 

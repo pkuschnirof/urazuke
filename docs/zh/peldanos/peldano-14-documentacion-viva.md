@@ -24,6 +24,9 @@
 
 ## 1. 所需上下文
 
+下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第
+2 节里，在每条提示词前面的"发送提示词之前"方框里。
+
 - 每份手册的读者是谁：最终用户、维护的人、运维基础设施的人。业务知道；不清楚的话代理提问。
 - 在测试环境中运行的系统，用来取真实截图。
 - 这个功能块已关闭的待办项，附其关闭文档（第 5 级台阶）。
@@ -32,6 +35,13 @@
 ## 2. 提示词
 
 **例行（放进协作契约）：**
+
+**发送提示词之前**，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：
+
+- `docs/WORKING_AGREEMENT.md`，这条例行要加进去的地方。
+- 关于系统会有哪些手册、每本手册是给谁看的（最终用户、维护者、运维基础设施的人）的决定，写在
+  `PROJECT.md` 里或在聊天里说出来，好让"对应的手册"这句话有意义。
+- 最低可接受状态：有一份手册清单，每本都有它的读者。
 
 > Every change that modifies what the user sees, what the operator does, or how the system is
 > deployed, updates the corresponding manual in the same commit. At the close of every
@@ -48,6 +58,16 @@
 项变成手册和变更日志的时刻；以及不清楚该进哪份手册时提问。
 
 **生成手册：**
+
+**发送提示词之前**，你手边必须有这些：
+
+- 系统在测试环境里运行着，带着真实感的数据，不是空的：截图是从那里出来的。
+- 带着收尾文档的已关闭待办项（第 5 级台阶），它们是用户手册和变更日志的来源。
+- `docs/DEPLOYMENT.md`（第 13 级台阶）和 `docs/LOCKS.md`（第 12 级台阶），它们是基础设施与恢
+  复手册的输入。
+- 只有业务才知道的那些事，准备好等代理来问：谁对什么负责，系统倒了打哪个电话，谁做备份，用户
+  用哪种语言阅读。
+- 最低可接受状态：测试环境里有数据，而且你知道凌晨三点该给谁打电话。
 
 > Generate three manuals from the system as it is today in the test environment: the user
 > manual (screen by screen, with real screenshots, in the user's language, no jargon); the

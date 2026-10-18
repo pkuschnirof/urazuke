@@ -23,6 +23,10 @@ in systems engineering; what was new was having to write it for someone without 
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - None from the project: it is the first file.
 - From you: your working preferences (language, how you want to be asked, what you consider a
   waste of your time, what level of autonomy you give the agent).
@@ -30,6 +34,22 @@ in systems engineering; what was new was having to write it for someone without 
 ## 2. Prompts
 
 **Opening:**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- Nothing from the project: it is the first file that gets written. If you already did step 0,
+  `docs/ELIGIBILITY.md` exists and it is fine for the agent to see it, but it is not needed.
+- Your working preferences, thought through before starting and written down in a short list you
+  keep at hand (on a piece of paper, or in `docs/MY_PREFERENCES.md` if you want it to stay in the
+  repository): in what language you want the conversation; how much you want it to ask you
+  (little and with a recommendation, or a lot); what you consider a waste of your time; how much
+  autonomy you give it (can it commit on its own? can it deploy to test on its own? never to
+  production?); what you will not tolerate. The agent is going to ask you about this; the list is
+  so that you answer in one line and do not improvise.
+- The project folder created and the agent opened there.
+- Minimum acceptable state: you know how to answer each one of those five questions. The
+  agreement that comes out is going to be as good as your answers.
 
 > Before we write any code, we are going to set the working agreement between you and me.
 > Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
@@ -49,6 +69,16 @@ An agreement drafted without a single question is suspicious: the agent does not
 it is going to work with.
 
 **Closing:**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- The draft of `docs/WORKING_AGREEMENT.md` the agent wrote, read in full by you. For every rule
+  it proposed, your verdict: you accept it or you reject it, and if you reject it, a one-line
+  reason. That goes into the [X, Y] and [Z] gaps of the prompt, and you are the one who fills
+  them in.
+- The answers to what it asked you about how you work, already given in the chat.
+- Minimum acceptable state: no proposed rule is left without a verdict. A rule you neither
+  accepted nor rejected stays in the agreement as if you had accepted it.
 
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the

@@ -23,6 +23,10 @@ sistemi; la novità era doverlo scrivere per qualcuno senza memoria.
 
 ## 1. Contesto richiesto
 
+Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
+prompt, con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
+inviare il prompt" che precede ciascuno.
+
 - Nessuno del progetto: è il primo file.
 - Tuo: le tue preferenze di lavoro (lingua, come vuoi che ti si facciano le domande, cosa consideri
   una perdita del tuo tempo, che livello di autonomia dai all'agente).
@@ -30,6 +34,21 @@ sistemi; la novità era doverlo scrivere per qualcuno senza memoria.
 ## 2. Prompt
 
 **Iniziale:**
+
+**Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
+l'agente:
+
+- Niente del progetto: è il primo file che si scrive. Se hai già fatto il gradino 0,
+  `docs/ELIGIBILITY.md` esiste ed è giusto che l'agente lo veda, ma non serve.
+- Le tue preferenze di lavoro, pensate prima di cominciare e annotate in una lista corta che hai a
+  portata di mano (su un foglio, o in `docs/MY_PREFERENCES.md` se vuoi che resti nel repository):
+  in che lingua vuoi la conversazione; quanto vuoi che ti chieda (poco e con raccomandazione, o
+  molto); cosa consideri una perdita del tuo tempo; che livello di autonomia gli dai (può fare
+  commit da solo?, può distribuire in test da solo?, in produzione mai?); cosa non tolleri.
+  L'agente te lo chiederà; la lista serve perché tu risponda in una riga e non improvvisi.
+- La cartella del progetto creata e l'agente aperto lì.
+- Stato minimo accettabile: sai rispondere a ciascuna di quelle cinque domande. Il patto che ne
+  uscirà sarà buono quanto le tue risposte.
 
 > Before we write any code, we are going to set the working agreement between you and me.
 > Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
@@ -61,6 +80,15 @@ proposte, perché tu le accetti o le rifiuti; e che chieda ciò che ha bisogno d
 patto redatto senza una sola domanda è sospetto: l'agente non conosce la persona con cui lavorerà.
 
 **Di chiusura:**
+
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- La bozza di `docs/WORKING_AGREEMENT.md` che l'agente ha scritto, letta per intero da te. Per
+  ogni regola che lui ha proposto, il tuo verdetto: la accetti o la rifiuti, e se la rifiuti, una
+  ragione di una riga. Va negli spazi [X, Y] e [Z] del prompt, e li riempi tu.
+- Le risposte a ciò che ti ha chiesto su come lavori, già date nella chat.
+- Stato minimo accettabile: non resta nessuna regola proposta senza verdetto. Una regola che non
+  hai né accettato né rifiutato resta nel patto come se l'avessi accettata.
 
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the

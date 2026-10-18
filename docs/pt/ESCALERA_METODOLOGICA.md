@@ -778,7 +778,11 @@ completo**. Por isso cada degrau tem, além da ficha, um **contrato** num arquiv
    de fechamento. Todos levam a mesma cláusula, que é o coração do assunto: *o modelo avalia se o
    contexto basta; se não basta, pede tudo o que falta antes de seguir; e não estima nem inventa
    um dado que só o negócio tem*. Quem sabe o que lhe falta para calcular é o modelo, não um
-   formulário.
+   formulário. E cada prompt vem precedido de um bloco que diz **"Antes de enviar o prompt"**:
+   os arquivos e os insumos que você (ou o negócio com você) tem que ter construído antes de
+   colá-lo, com o seu nome, o seu conteúdo e o seu estado mínimo aceitável. O prompt os nomeia, o
+   bloco lhe diz como têm que estar feitos; sem esse bloco, o prompt menciona arquivos que
+   ninguém lhe disse como escrever.
 3. **Resultado esperado**: as características detalhadas do artefato.
 4. **Verificação de completude**: a lista de comprovações que o dono faz sobre o artefato, **sem
    ler código**. Se uma dá "não", o degrau não foi subido.

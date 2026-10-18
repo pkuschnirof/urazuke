@@ -27,12 +27,26 @@ weil er es nicht als Teil der Antwort betrachtet.
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - Die erledigte Arbeit und der offene Posten, der sie verlangt hat.
 - Die Arbeitsvereinbarung (Schritt 1), die schon verbietet, Nicht-Erledigtes anzukündigen.
 
 ## 2. Prompts
 
 **Routine (gehört in die Arbeitsvereinbarung; gilt bei jedem Bericht):**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- `docs/WORKING_AGREEMENT.md` (Schritt 1), wo die Routine hinkommt.
+- Die Liste dessen, was du in der Sitzung verlangt hast, von dir geschrieben (die Punkte der
+  Anfrage), um den Bericht damit zu vergleichen: der Prompt verlangt von ihm, jeden Punkt einzeln
+  abzudecken, und du musst wissen, wie viele es waren.
+- Akzeptabler Mindestzustand: nichts weiter. Diese Routine wird einmal eingefügt und gilt für
+  immer.
 
 > When you report, separate three blocks: VERIFIED (what you tested, with the command and its
 > output), BELIEVED (what you think works but did not test, and why not), and BLIND SPOTS (what
@@ -58,6 +72,17 @@ schlechten Nachrichten zuerst, denn das Modell neigt dazu, sie für den Schluss 
 aufzuheben.
 
 **Bei einem „ist immer noch kaputt“ von dir:**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Deine Prüfung, gemacht an dem Ort, an dem du hinschaust (die Testumgebung, dein Browser), mit
+  dem Notierten, was du gesehen hast: unter welcher URL, welche Version das System anzeigt, falls
+  es sie anzeigt, was du gemacht hast, was du erwartet hast, was passiert ist.
+- Die Versionsnummer oder der Commit, von dem der Agent gesagt hat, dass er die Behebung enthält,
+  aus seinem vorigen Bericht kopiert.
+- Akzeptabler Mindestzustand: du kannst ihm sagen „ich schaue unter [URL], ich sehe die Version
+  [N], ich mache [das], es passiert [das]“. Ohne das ist das „ist immer noch kaputt“ ein Eindruck,
+  und der Agent wird einen Eindruck diagnostizieren.
 
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.

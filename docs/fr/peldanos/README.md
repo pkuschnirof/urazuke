@@ -3,11 +3,12 @@
 Un fichier par échelon. Tous ont le même squelette, et ils l'ont à dessein, pour que vous puissiez
 les comparer et pour qu'avec le temps le réflexe de les lire devienne automatique : l'en-tête avec
 le tronçon, le quand, la forme et la taille (obligatoire ou proportionnel) ; à quoi il sert ; (1) le
-contexte requis, nommé de façon générique ; (2) les prompts, **en anglais**, chacun avec sa
-traduction et, en dessous, l'explication de ce que je demande au modèle et de pourquoi chaque
-clause est là ; (3) le résultat attendu, avec ses caractéristiques ; (4) la vérification de
-complétude, que vous faites sans lire de code ; (5) les signaux d'alarme, les symptômes d'un
-échelon mal gravi.
+contexte requis, nommé de façon générique ; (2) les prompts, **en anglais**, chacun précédé d'un
+bloc **« Avant d'envoyer le prompt »** (les fichiers et les intrants que vous devez avoir faits
+vous-même avant de le coller, avec leur contenu et leur état minimum), suivi de sa traduction et,
+en dessous, de l'explication de ce que je demande au modèle et de pourquoi chaque clause est là ;
+(3) le résultat attendu, avec ses caractéristiques ; (4) la vérification de complétude, que vous
+faites sans lire de code ; (5) les signaux d'alarme, les symptômes d'un échelon mal gravi.
 
 Les prompts en anglais sont une pièce unique, identique dans les huit versions du document ;
 `node build/build.mjs` les extrait vers `prompts/` et vérifie qu'aucune traduction ne les a

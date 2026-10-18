@@ -26,6 +26,10 @@ of an entity are there, and the code has to read them from a single source.
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - A map of which parts of the system consume what: which screens read which services, which
   processes write which tables. If it does not exist, the first prompt builds it.
 - The anti-pattern register `docs/GOTCHAS.md`, even if it is empty.
@@ -33,6 +37,20 @@ of an entity are there, and the code has to read them from a single source.
 ## 2. Prompts
 
 **To build the map (once):**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- The system with at least one functional block built: with no contracts between parts there is
+  no map to make.
+- `docs/SEMANTIC_TREE.md` up to date: the lists (states, types, causes) are declared there, and
+  the map has to match the tree.
+- A list, written by you, of the parts that live outside the repository and that produce or
+  consume something from the system (a robot, a spreadsheet that reads the database, a process
+  from another team), so that the agent puts them in the map even though it cannot see them. If
+  there are none, say so.
+- Minimum acceptable state: the agent can read the whole repository, and you told it what is
+  outside.
 
 > Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
 > a file format, a list of values), who produces it and who consumes it. If there are parts of
@@ -45,6 +63,13 @@ worse than no map at all.
 
 **Routine (goes in the working agreement):**
 
+**Before sending the prompt**, you have to have this at hand:
+
+- `docs/PRODUCER_CONSUMER_MAP.md`, built and reviewed by you: pick one contract and verify that
+  the two sides are the ones you know.
+- `docs/WORKING_AGREEMENT.md`, where the routine goes.
+- Minimum acceptable state: the map exists and has at least the contracts of the first block.
+
 > Before closing any change that touches a contract, look up every consumer in the map and
 > update them in the same commit. Always prefer that the producer defines the list (columns,
 > causes, states) and the consumer reads it, rather than each keeping its own copy. If the map
@@ -54,6 +79,17 @@ What I am asking for: symmetry as a reflex (look for the other side before closi
 the list with a single owner, and that the map maintains itself as it gets used.
 
 **When something breaks for the second time:**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- The evidence that it is the second time: the pending item or the commit of the first one,
+  located by you (search among the closed pending items in `docs/PENDING.md`), to paste it
+  together with the prompt. Without that reference, the agent is going to record a generic
+  anti-pattern that is no use for detecting anything.
+- `docs/GOTCHAS.md`, created even if it is empty, with the format in the header: the smell, the
+  root cause, the fix, how to detect it earlier.
+- Minimum acceptable state: you can name the first time with a date or with a pending item
+  number.
 
 > This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if

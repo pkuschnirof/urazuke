@@ -29,6 +29,10 @@ sigue; si el servicio no responde, se asume que está todo bien. El método invi
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - **Relevamiento de acciones con consecuencia**, nombrado así en forma genérica: qué hace el
   sistema que cobra, envía, aprueba, borra, o le avisa a alguien de afuera; qué pasa si se hace
   dos veces; qué pasa si se hace mal; cómo se deshace. Lo sabe el negocio; el agente evalúa si la
@@ -38,6 +42,21 @@ sigue; si el servicio no responde, se asume que está todo bien. El método invi
 ## 2. Prompts
 
 **Inicial:**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`: el relevamiento de acciones con consecuencia, escrito
+  con el dueño del dominio. Qué hace o va a hacer el sistema que cobra, envía, aprueba, borra, o
+  le avisa a alguien de afuera; y para cada acción: qué pasa si se hace dos veces, qué pasa si se
+  hace mal, cómo se deshace, y quién debería poder hacerla. Los procesos del árbol semántico te
+  dan la lista de partida: recorrelos uno por uno. El prompt lo nombra "the survey of
+  consequential actions", sin ruta: guardalo con este nombre o decile en el chat dónde está.
+- Si el agente va a estar embebido o residente: qué acciones puede hacer él mismo sobre el
+  sistema, en una sección aparte del mismo relevamiento.
+- `docs/SEMANTIC_TREE.md`, al día.
+- Estado mínimo aceptable: cada proceso del árbol que actúa sobre el mundo está en la lista con su
+  "qué pasa si se hace dos veces".
 
 > We are going to decide which actions of the system need a lock. Read the survey of
 > consequential actions, and go through the code looking for everything that charges, sends,
@@ -65,6 +84,13 @@ reversibilidad, candado y camino de vuelta; y la regla general del fail-closed e
 prompt, para que quede en la tabla y en el código.
 
 **De cierre:**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- La tabla que presentó el agente, leída candado por candado con el dueño; para cada fila, tu
+  confirmación o tu cambio, escritos para los huecos [list], [X] e [Y] del prompt.
+- Estado mínimo aceptable: no hay fila sin veredicto. Un candado no confirmado es un candado que
+  no se va a implementar.
 
 > I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves
 > that, under the doubt condition, the action does NOT happen (proved red against the version

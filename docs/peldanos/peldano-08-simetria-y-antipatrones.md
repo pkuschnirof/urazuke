@@ -26,6 +26,10 @@ tiene que leerlos de una sola fuente.
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - Un mapa de qué partes del sistema consumen qué: qué pantallas leen qué servicios, qué procesos
   escriben qué tablas. Si no existe, el primer prompt lo construye.
 - El registro de anti-patrones `docs/GOTCHAS.md`, aunque esté vacío.
@@ -33,6 +37,19 @@ tiene que leerlos de una sola fuente.
 ## 2. Prompts
 
 **Para construir el mapa (una vez):**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- El sistema con al menos un bloque funcional construido: sin contratos entre partes no hay mapa
+  que hacer.
+- `docs/SEMANTIC_TREE.md` al día: las listas (estados, tipos, causas) están declaradas ahí, y el
+  mapa tiene que coincidir con el árbol.
+- Una lista escrita por vos de las partes que viven fuera del repositorio y que producen o
+  consumen algo del sistema (un robot, una planilla que lee la base, un proceso de otro equipo),
+  para que el agente las ponga en el mapa aunque no las vea. Si no hay ninguna, decilo.
+- Estado mínimo aceptable: el agente puede leer todo el repositorio, y vos le dijiste qué hay
+  afuera.
 
 > Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
 > a file format, a list of values), who produces it and who consumes it. If there are parts of
@@ -51,6 +68,13 @@ escondidos es peor que ningún mapa.
 
 **Rutina (va en el contrato de convivencia):**
 
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- `docs/PRODUCER_CONSUMER_MAP.md`, construido y revisado por vos: elegí un contrato y verificá que
+  los dos lados sean los que vos conocés.
+- `docs/WORKING_AGREEMENT.md`, donde va la rutina.
+- Estado mínimo aceptable: el mapa existe y tiene al menos los contratos del primer bloque.
+
 > Before closing any change that touches a contract, look up every consumer in the map and
 > update them in the same commit. Always prefer that the producer defines the list (columns,
 > causes, states) and the consumer reads it, rather than each keeping its own copy. If the map
@@ -66,6 +90,16 @@ Qué le estoy pidiendo: la simetría como reflejo (buscar el otro lado antes de 
 la lista con un solo dueño, y que el mapa se mantenga solo a medida que se usa.
 
 **Cuando algo se rompe por segunda vez:**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- La evidencia de que es la segunda vez: el pendiente o el commit de la primera, ubicado por vos
+  (buscá en los pendientes cerrados de `docs/PENDING.md`), para pegárselo junto con el prompt. Sin
+  esa referencia, el agente va a registrar un anti-patrón genérico que no sirve para detectar
+  nada.
+- `docs/GOTCHAS.md`, creado aunque esté vacío, con el formato en el encabezado: olor, causa raíz,
+  arreglo, cómo detectarlo antes.
+- Estado mínimo aceptable: podés nombrar la primera vez con fecha o con número de pendiente.
 
 > This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if

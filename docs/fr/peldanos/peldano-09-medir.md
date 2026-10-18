@@ -33,6 +33,9 @@ en session, en corrigeant l'agent, avant qu'elles ne deviennent doctrine
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - L'hypothèse, la vôtre ou celle de l'agent : « je crois que le problème est X », « il doit y en
   avoir une centaine ».
 - Un accès à ce qu'on veut mesurer : le code, la base en lecture seule, le journal.
@@ -42,6 +45,23 @@ en session, en corrigeant l'agent, avant qu'elles ne deviennent doctrine
 
 **Initial :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- L'hypothèse, écrite en une phrase, la vôtre ou prise de l'agent : « je crois que l'agenda fait
+  une requête à la base pour chaque rendez-vous », « ça doit faire dans les cent boucles ». Elle
+  va dans le trou [X] du prompt, et la quantité à mesurer dans l'autre trou.
+- L'accès à ce qui va être mesuré : le code (il l'a déjà) ; la base en lecture seule, si la mesure
+  porte sur des données réelles, avec la chaîne de connexion hors du dépôt et le nom de la
+  variable dit dans le chat ; le journal, avec son chemin.
+- Les compteurs qui existent déjà dans le dépôt, s'il y en a, nommés, pour que l'agent les
+  réutilise au lieu d'en faire un autre.
+- Un cas connu pour le test du compteur : une situation où vous connaissez la réponse d'avance
+  (« avec zéro rendez-vous, il doit compter exactement les deux requêtes de base »). Si rien ne
+  vous vient, demandez à l'agent de le proposer, mais validez-le vous-même : un compteur vérifié
+  contre un cas que le compteur lui-même a inventé n'est pas vérifié.
+- État minimum acceptable : l'hypothèse tient en une phrase et il y a un cas connu avec lequel
+  vérifier l'instrument.
 > Before building anything, we are going to measure. The hypothesis is: [X]. Write a meter (a
 > script that lives in the repository) that measures [the quantity], and a test for the meter
 > that checks it against a known case where the answer is known in advance. If measuring
@@ -72,6 +92,14 @@ qui mentaient ; et l'ordre : d'abord mesurer, ensuite proposer.
 
 **Quand il y a un budget :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- Le chiffre mesuré, que vous avez vous-même obtenu en lançant la commande que l'agent vous a
+  donnée, et qui vous a donné la même chose. Si vous ne l'avez pas lancée, ne fixez pas de budget
+  dessus.
+- La marge que vous êtes prêt à donner, décidée par vous : un peu plus que ce qui a été mesuré,
+  pas le double « au cas où ».
+- État minimum acceptable : vous avez lancé le compteur vous-même.
 > Set the budget for [queries / loops / time] on this path at the measured value plus a small
 > margin, and protect it with a test that fails if it is exceeded. Tell me the number and the
 > margin.
@@ -86,6 +114,14 @@ la batterie et non en production [Ref. 37](../REFERENCIAS.md#ref-37).
 
 **Quand celui qui a planifié a donné des chiffres (règle cinq) :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- Un plan de l'agent avec des chiffres dedans (« il y a 121 boucles », « ce sont 27 requêtes »), à
+  la vue dans la conversation.
+- Le compteur qui mesure cette quantité, déjà existant (le prompt initial de cet échelon). S'il
+  n'y a pas de compteur pour ce chiffre, d'abord le prompt initial et ensuite celui-ci.
+- État minimum acceptable : pour chaque chiffre du plan, vous savez avec quel compteur il se
+  vérifie.
 > Before executing the plan, verify every number the plan asserts with the meter. If any does
 > not match, stop and tell me; do not execute on a wrong number.
 

@@ -30,6 +30,10 @@ default: **nel dubbio, no**. E si applica tanto al sistema quanto all'agente che
 
 ## 1. Contesto richiesto
 
+Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
+prompt, con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
+inviare il prompt" che precede ciascuno.
+
 - **Rilevazione delle azioni con conseguenze**, nominata così in forma generica: cosa fa il
   sistema che addebita, invia, approva, cancella, o avvisa qualcuno all'esterno; cosa succede se si
   fa due volte; cosa succede se si fa male; come si annulla. Lo sa il business; l'agente valuta se
@@ -39,6 +43,21 @@ default: **nel dubbio, no**. E si applica tanto al sistema quanto all'agente che
 ## 2. Prompt
 
 **Iniziale:**
+
+**Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
+l'agente:
+
+- `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`: la rilevazione delle azioni con conseguenze, scritta con
+  il proprietario del dominio. Cosa fa o farà il sistema che addebita, invia, approva, cancella, o
+  avvisa qualcuno all'esterno; e per ogni azione: cosa succede se si fa due volte, cosa succede se
+  si fa male, come si annulla, e chi dovrebbe poterla fare. I processi dell'albero semantico ti
+  danno la lista di partenza: percorrili uno per uno. Il prompt la nomina "the survey of
+  consequential actions", senza percorso: salvala con questo nome o digli nella chat dov'è.
+- Se l'agente sarà incorporato o residente: quali azioni può fare lui stesso sul sistema, in una
+  sezione a parte della stessa rilevazione.
+- `docs/SEMANTIC_TREE.md`, aggiornato.
+- Stato minimo accettabile: ogni processo dell'albero che agisce sul mondo è nella lista con il
+  suo "cosa succede se si fa due volte".
 
 > We are going to decide which actions of the system need a lock. Read the survey of
 > consequential actions, and go through the code looking for everything that charges, sends,
@@ -67,6 +86,14 @@ reversibilità, lucchetto e via del ritorno; e la regola generale del fail-close
 prompt, perché resti nella tabella e nel codice.
 
 **Di chiusura:**
+
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- La tabella che l'agente ha presentato, letta lucchetto per lucchetto con il proprietario; per
+  ogni riga, la tua conferma o il tuo cambiamento, scritti per gli spazi [list], [X] e [Y] del
+  prompt.
+- Stato minimo accettabile: non c'è riga senza verdetto. Un lucchetto non confermato è un
+  lucchetto che non si implementerà.
 
 > I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves
 > that, under the doubt condition, the action does NOT happen (proved red against the version

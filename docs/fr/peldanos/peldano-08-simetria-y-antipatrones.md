@@ -27,6 +27,9 @@ entité y sont, et le code doit les lire depuis une seule source.
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - Une carte de quelles parties du système consomment quoi : quels écrans lisent quels services,
   quels processus écrivent quelles tables. Si elle n'existe pas, le premier prompt la construit.
 - Le registre des anti-patrons `docs/GOTCHAS.md`, même vide.
@@ -35,6 +38,19 @@ entité y sont, et le code doit les lire depuis une seule source.
 
 **Pour construire la carte (une fois) :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- Le système avec au moins un bloc fonctionnel construit : sans contrats entre les parties, il n'y
+  a pas de carte à faire.
+- `docs/SEMANTIC_TREE.md` à jour : les listes (états, types, causes) y sont déclarées, et la carte
+  doit coïncider avec l'arbre.
+- Une liste écrite par vous des parties qui vivent hors du dépôt et qui produisent ou consomment
+  quelque chose du système (un robot, un tableur qui lit la base, un processus d'une autre
+  équipe), pour que l'agent les mette sur la carte même s'il ne les voit pas. S'il n'y en a
+  aucune, dites-le.
+- État minimum acceptable : l'agent peut lire tout le dépôt, et vous lui avez dit ce qu'il y a
+  dehors.
 > Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
 > a file format, a list of values), who produces it and who consumes it. If there are parts of
 > the system you cannot access or do not understand, tell me instead of leaving them out of the
@@ -52,6 +68,12 @@ carte avec des trous cachés est pire que pas de carte du tout.
 
 **Routine (va dans le contrat de collaboration) :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- `docs/PRODUCER_CONSUMER_MAP.md`, construit et revu par vous : choisissez un contrat et vérifiez
+  que les deux côtés sont bien ceux que vous connaissez.
+- `docs/WORKING_AGREEMENT.md`, où va la routine.
+- État minimum acceptable : la carte existe et elle a au moins les contrats du premier bloc.
 > Before closing any change that touches a contract, look up every consumer in the map and
 > update them in the same commit. Always prefer that the producer defines the list (columns,
 > causes, states) and the consumer reads it, rather than each keeping its own copy. If the map
@@ -69,6 +91,16 @@ l'utilise.
 
 **Quand quelque chose casse pour la deuxième fois :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- La preuve que c'est la deuxième fois : l'élément en attente ou le commit de la première,
+  retrouvé par vous (cherchez dans les éléments clos de `docs/PENDING.md`), pour le lui coller
+  avec le prompt. Sans cette référence, l'agent va enregistrer un anti-patron générique qui ne
+  permettra de détecter quoi que ce soit.
+- `docs/GOTCHAS.md`, créé même s'il est vide, avec le format dans l'en-tête : l'odeur, la cause
+  racine, la correction, comment le détecter avant.
+- État minimum acceptable : vous pouvez nommer la première fois avec une date ou un numéro
+  d'élément en attente.
 > This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
 > possible, a test or an automatic check that detects it.

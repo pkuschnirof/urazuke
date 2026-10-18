@@ -26,6 +26,9 @@ viennent de projets que j'ai refusés, pas de ceux que j'ai acceptés
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 Nommé de façon générique ; l'agent évalue si cela suffit et demande ce qui manque.
 
 - Relevé de la demande : ce que veut le client, pour qui, et ce qui se passe aujourd'hui sans le
@@ -49,6 +52,32 @@ Au modèle, on colle l'anglais.
 
 **Initial :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- `docs/INITIAL_SURVEY.md` : le relevé initial. C'est vous qui l'écrivez, à la main, après avoir
+  parlé avec le client (c'est le résultat de l'ingestion de la phase 0). Une demi-page à une page,
+  en prose, pas en formulaire, avec six choses : (1) la demande : ce que veut le client, avec ses
+  mots, pour qui, et ce qui se passe aujourd'hui sans le système (le cahier, le tableur, la
+  personne qui le fait à la main) ; (2) la technologie : ce qu'il y a ou ce qui est proposé, s'il
+  existe un système antérieur, si ce système a un dépôt et comment il est géré (branches, qui
+  pousse, s'il y a des tests) ; (3) la testabilité : si les écrans peuvent être pilotés par
+  programme, et si chaque élément de l'interface peut être trouvé, cliqué, saisi et lu ; si vous
+  ne le savez pas, dites-le ; (4) le propriétaire du domaine : qui c'est, avec son nom et son
+  rôle, et combien de temps il a par semaine pour décider ; (5) la conséquence d'une erreur :
+  argent, santé, exploitation, aucune ; (6) les environnements : s'il y aura un environnement de
+  test, si l'agent pourra y accéder, s'il existe une production consultable en lecture seule. Ce
+  que vous ne savez pas reste écrit « je ne sais pas » : ne le complétez pas vous-même pour que
+  l'agent ne pose pas la question, parce que tout l'intérêt de l'échelon est de voir ce qu'il
+  demande.
+- `docs/ELIGIBILITY_CRITERIA.md` : la fiche de critères. Vous la copiez du document principal (la
+  fiche de l'échelon 0 : les deux excluants X1 et X2 et les critères D1 à D10 qui pondèrent), avec
+  une colonne vide pour la réponse, une autre pour la source et une autre pour le vert ou le
+  rouge. Ne la remplissez pas vous-même : c'est l'agent qui la remplit.
+- Le dossier du projet, créé, avec l'agent ouvert dedans et encore rien d'autre que ces deux
+  fichiers dans `docs/`.
+- État minimum acceptable : les deux fichiers existent, le relevé touche les six points même si
+  plusieurs disent « je ne sais pas », et l'agent est posé dans le dossier.
 > We are going to assess whether this project can be run with the Urazuke method. Read the
 > initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
 > `docs/ELIGIBILITY_CRITERIA.md`. First, evaluate whether the survey is sufficient to answer
@@ -77,6 +106,18 @@ parce que le prompt est en anglais mais la conversation n'a aucune raison de l'�
 
 **De clôture :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- Votre décision, en une ligne, prise après avoir lu la fiche complète que l'agent a présentée :
+  ça passe, ça ne passe pas, ou ça passe sous conditions. S'il y a des conditions, écrivez-les
+  avant de coller le prompt, chacune vérifiable (« accès en lecture à la production avant
+  l'échelon 3 », oui ; « que le client collabore », non), et pas plus de trois.
+- Les réponses que vous avez données aux questions de l'agent, données dans cette même session de
+  chat : le prompt lui demande de les inclure dans la fiche finale, et si la session est une
+  autre, il ne les a pas.
+- État minimum acceptable : chaque critère de la fiche a une réponse et une source en vue, et vous
+  avez déjà décidé. Si vous hésitez encore, n'envoyez pas la clôture : continuez à poser des
+  questions.
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
 > source, and the conditions if any. Include the questions you asked and my answers.

@@ -31,6 +31,10 @@ production.
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - The change already implemented (by default tests come after implementing; "test first" stays
   as an option for small, well-defined scopes).
 - The pending item that originates the change, with its acceptance criteria and its "how it is
@@ -40,6 +44,24 @@ production.
 ## 2. Prompts
 
 **Routine (goes in the working agreement; applied on every change):**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- The pending item that is being closed, with its full specification in `docs/PENDING.md`; in
+  particular, its acceptance criteria in the "given, when, then" form and its "how it is
+  verified", which are the script of the test. If the pending item does not have them, go back to
+  step 5 before asking for the test.
+- The change already implemented by the agent (the method tests after implementing, unless you
+  choose "test first" for a small and well-defined scope).
+- The existing suite and the command to run it, written down in `docs/STATUS.md` (step 4).
+- The test environment running and reachable by the agent, with enough test data for the flow
+  that is being touched. If the flow needs data that does not exist (a patient, yesterday's
+  appointment), load it yourself or ask the agent to create it as part of the test; what it
+  cannot do is simulate it.
+- `docs/WORKING_AGREEMENT.md`, where the routine goes the first time.
+- Minimum acceptable state: the specification has acceptance criteria, and the suite runs with a
+  known command.
 
 > To close this pending item I need evidence, not your word. (1) Write the test that proves what
 > the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
@@ -63,6 +85,18 @@ evidence where the code lives.
 
 **At the close of each block and before every deployment to production:**
 
+**Before sending the prompt**, you have to have this at hand:
+
+- Every pending item of the block closed with the routine (red, green, regression, end to end of
+  the flow).
+- The exact version that is going to be promoted, identified (version number or commit) and
+  deployed in the test environment; tell it in the chat if it is not in `docs/STATUS.md`.
+- The list of the flows that exist so far, written by you from the use cases of the semantic
+  tree, to contrast it with what the agent says it covered. Without your list, "every flow" is
+  whatever the agent remembers.
+- Minimum acceptable state: you know how many flows the suite has to walk before you ask it how
+  many it walked.
+
 > Run the complete end-to-end suite of every flow that exists so far, in the test environment,
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
@@ -73,6 +107,16 @@ What I am asking for: the second and third scales of the end-to-end tests, with 
 not covered is declared and becomes a pending item, it is not passed off as covered.
 
 **When the agent says it cannot be tested:**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- The agent's message saying that it cannot be tested, read carefully: can it not, or is it
+  missing something? If what is missing is an input you have (data, an access, an environment),
+  give it to it and do not send this prompt. This prompt is for when something really is missing
+  in the system (identifiers on the elements of the screen, a test mode from the external
+  provider).
+- Minimum acceptable state: you distinguished between "I am missing an input" (you give it) and
+  "the system is not testable here" (this prompt).
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.

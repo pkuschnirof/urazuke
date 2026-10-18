@@ -28,6 +28,9 @@ dix minutes ; savoir si quelqu'un l'a utilisé est impossible.
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - **Relevé des environnements et des accès**, de façon générique : quels environnements existent
   (test, production), où ils tournent, qui a accès, comment on promeut quelque chose de l'un à
   l'autre, quels secrets existent et où ils vivent aujourd'hui, combien de quota d'intégration
@@ -38,6 +41,23 @@ dix minutes ; savoir si quelqu'un l'a utilisé est impossible.
 
 **Initial :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- `docs/ENVIRONMENTS_SURVEY.md` (échelon 4), complété avec ce qui manque pour la production : le
+  domaine et qui l'administre ; où vont vivre les secrets sur le serveur (fichier d'environnement,
+  coffre) et quels ils sont (le nom, jamais la valeur) ; comment on promeut aujourd'hui quelque
+  chose du test vers la production, s'il y a quelque chose ; qui peut toucher à la production ;
+  combien de quota d'intégration continue vous avez (la limite du forfait de votre fournisseur) et
+  combien vous en avez consommé ; comment se ferait un retour arrière aujourd'hui. Le prompt le
+  nomme « the environments and access survey » : dites-lui où il est.
+- L'accès à la production pour l'agent, décidé par vous : lequel, avec quel identifiant, et
+  l'identifiant hors du dépôt et du chat.
+- Le squelette avec son intégration continue et son déploiement vers le test qui fonctionnent
+  (échelon 4), et `docs/STATUS.md` avec les commandes.
+- État minimum acceptable : vous savez où vont vivre les secrets et combien de quota il vous
+  reste. Si vous ne connaissez pas le quota, renseignez-vous avant : cet échelon existe en partie
+  pour cela.
 > We are going to close the path to production. Read the environments and access survey.
 > Evaluate whether you have what is needed to deploy to production safely (access, domain,
 > where the secrets live, how to roll back); if anything is missing, ask me. Then set up: (1)
@@ -71,6 +91,16 @@ appliqué à l'infrastructure.
 
 **Routine de chaque déploiement :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- `docs/WORKING_AGREEMENT.md`, où va la routine.
+- `docs/DEPLOYMENT.md` (le prompt initial de cet échelon), écrit et lu par vous : pourriez-vous le
+  suivre tout seul ?
+- Avant chaque déploiement réel, en plus : la batterie complète de bout en bout au vert avec la
+  version exacte (échelon 7, clôture de bloc), et l'audit fait si c'est le premier déploiement
+  (échelon 11).
+- État minimum acceptable : le retour arrière a été prouvé au moins une fois avant qu'il y ait des
+  utilisateurs.
 > Before touching production: the test environment is green with the same version; the
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
@@ -87,6 +117,15 @@ version qui tourne et une vérification de bout en bout sans rien écrire).
 
 **Si un secret est apparu dans le chat ou dans un commit :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- Le secret identifié : lequel c'est (son nom, jamais sa valeur), où il est apparu (le chat, un
+  commit, un journal) et quand. S'il est apparu dans un commit, le commit.
+- Votre accès à l'endroit où il se génère (le panneau du fournisseur), au cas où l'agent ne
+  pourrait pas le remplacer tout seul. La rotation, vous la faites vous-même ou il la fait avec
+  votre identifiant, mais elle ne se reporte pas.
+- État minimum acceptable : vous pouvez nommer le secret et dire où il a été vu. Et la règle sans
+  exceptions : ce prompt ne s'envoie pas « plus tard ».
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.
 

@@ -28,6 +28,10 @@ verificar, sem ler código, que o sistema que o agente entende é o que o negóc
 
 ## 1. Contexto necessário
 
+O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
+prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
+prompt" que precede cada um.
+
 - Levantamento do negócio: o que o cliente faz, quem usa o sistema, que problema resolve, o que
   não tem que fazer. Com as entrevistas, os casos de uso ou histórias de usuário que você puder
   nomear, e as entidades do negócio com seus estados, mesmo que incompletos.
@@ -38,6 +42,26 @@ verificar, sem ler código, que o sistema que o agente entende é o que o negóc
 ## 2. Prompts
 
 **Inicial:**
+
+**Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
+o agente:
+
+- `docs/INITIAL_SURVEY.md` (degrau 0), completado com o levantamento do negócio. Você o escreve a
+  partir das entrevistas da ingestão; se usou um método (entrevistas, casos de uso, histórias de
+  usuário, protótipos de tela), diga qual e cole o resultado. Tem que ter: o que o cliente faz;
+  quem usa o sistema (os atores, com nome de papel); que problema resolve; o que NÃO tem que
+  fazer, numa seção própria, mesmo que tenha dois itens; os casos de uso ou histórias de usuário
+  que o dono nomeia, com as palavras dele, mesmo que sejam dez linhas; as entidades do negócio com
+  seus estados ("uma consulta está pendente, confirmada, cancelada"), mesmo que estejam
+  incompletas; os desenhos ou as fotos das telas, se houver; as integrações externas (mensagens,
+  pagamentos, outro sistema); e as decisões já tomadas, mesmo que tenham sido de palavra, com data
+  e quem as tomou.
+- `docs/WORKING_AGREEMENT.md` (degrau 1), fechado com data e versão.
+- Se existe um sistema anterior: acesso de leitura ao seu código ou à sua documentação, com o
+  caminho ou o link anotado no levantamento.
+- Estado mínimo aceitável: o levantamento tem a seção "o que NÃO é" com pelo menos dois itens,
+  pelo menos um caso de uso com as palavras do dono, e pelo menos uma entidade com seus estados.
+  Sem isso, a árvore que sair vai ser inventada, e você não vai ter com que compará-la.
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -80,6 +104,17 @@ forma de árvore; que **marque o que inferiu**, porque é ali que se escondem as
 separe o estado vivo em outro arquivo, para que o mapa não se converta em histórico.
 
 **De fechamento:**
+
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- `PROJECT.md`, lido inteiro por você (tem que caber em cinco minutos), com as suas correções
+  anotadas: o que não é verdade, o que não é seu, o que sobra.
+- `docs/SEMANTIC_TREE.md`, percorrido nó por nó como se você fosse o cliente: cada nó marcado como
+  inferido tem o seu veredicto (confirmado ou corrigido), e você anotou os atores que faltam, os
+  estados que o negócio não usa, as telas que ninguém pediu.
+- A lista de correções, escrita, que vai no buraco [list] do prompt. Se a lista estiver vazia na
+  primeira vez, desconfie da sua leitura, não do agente.
+- Estado mínimo aceitável: nenhum nó marcado como "inferido" fica sem o seu veredicto.
 
 > Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with
 > today's date. Add to the working agreement two rules: the change history never goes into

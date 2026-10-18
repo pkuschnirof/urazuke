@@ -3,9 +3,11 @@
 Un file per gradino. Hanno tutti lo stesso scheletro, e ce l'hanno di proposito, perché tu possa
 confrontarli e perché, col tempo, il riflesso di leggerli diventi automatico: l'intestazione con la
 fase, il quando, la forma e la dimensione (obbligatorio o proporzionale); a cosa serve; (1) il
-contesto richiesto, nominato in forma generica; (2) i prompt, **in inglese**, ciascuno con la sua
-traduzione e, sotto, la spiegazione di cosa sto chiedendo al modello e perché ogni clausola è lì;
-(3) il risultato atteso, con le sue caratteristiche; (4) la verifica di completezza, che fai senza
+contesto richiesto, nominato in forma generica; (2) i prompt, **in inglese**, ciascuno preceduto
+da un blocco **"Prima di inviare il prompt"** (i file e gli input che devi avere pronti tu prima
+di incollarlo, con il loro contenuto e il loro stato minimo), seguito dalla sua traduzione e,
+sotto, dalla spiegazione di cosa sto chiedendo al modello e perché ogni clausola è lì; (3) il
+risultato atteso, con le sue caratteristiche; (4) la verifica di completezza, che fai senza
 leggere codice; (5) i segnali d'allarme, i sintomi di un gradino salito male.
 
 I prompt in inglese sono un unico pezzo, identico nelle otto versioni del documento;

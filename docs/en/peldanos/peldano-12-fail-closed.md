@@ -28,6 +28,10 @@ doubt, no**. And it applies both to the system and to the agent that operates it
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - **Survey of consequential actions**, named generically: what the system does that charges,
   sends, approves, deletes, or notifies someone outside; what happens if it is done twice; what
   happens if it is done wrong; how it is undone. The business knows it; the agent evaluates
@@ -38,6 +42,22 @@ doubt, no**. And it applies both to the system and to the agent that operates it
 ## 2. Prompts
 
 **Opening:**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`: the survey of consequential actions, written with the
+  domain owner. What the system does or is going to do that charges, sends, approves, deletes, or
+  notifies somebody outside; and for each action: what happens if it is done twice, what happens
+  if it is done wrong, how it is undone, and who should be able to do it. The processes of the
+  semantic tree give you the starting list: walk them one by one. The prompt names it "the survey
+  of consequential actions", with no path: save it under this name or tell it in the chat where
+  it is.
+- If the agent is going to be embedded or resident: which actions it can perform itself on the
+  system, in a separate section of the same survey.
+- `docs/SEMANTIC_TREE.md`, up to date.
+- Minimum acceptable state: every process of the tree that acts on the world is in the list with
+  its "what happens if it is done twice".
 
 > We are going to decide which actions of the system need a lock. Read the survey of
 > consequential actions, and go through the code looking for everything that charges, sends,
@@ -55,6 +75,13 @@ reversibility, lock and way back; and the general fail-closed rule written into 
 that it ends up in the table and in the code.
 
 **Closing:**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- The table the agent presented, read lock by lock with the owner; for every row, your
+  confirmation or your change, written out for the [list], [X] and [Y] gaps of the prompt.
+- Minimum acceptable state: there is no row without a verdict. An unconfirmed lock is a lock that
+  is not going to be implemented.
 
 > I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves
 > that, under the doubt condition, the action does NOT happen (proved red against the version

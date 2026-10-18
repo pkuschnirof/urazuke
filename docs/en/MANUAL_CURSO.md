@@ -75,7 +75,11 @@ Every lesson has the same structure:
 - **What you need to understand**: the concept, explained the way you explain it to a person.
 - **The task**: step by step, with the exact prompt you are going to give the agent (in English,
   because models follow instructions more precisely in English; below each one it is explained
-  what you are asking for) and what to do with what it gives you back.
+  what you are asking for) and what to do with what it gives you back. Before each prompt there
+  is a block that says **"Before sending the prompt"**: the files and the inputs you have to have
+  made yourself, with your own hands, before pasting it. Do not skip it: the prompt names those
+  files, and if they do not exist or are empty, the agent is going to invent them or is going to
+  ask you for them.
 - **The completeness check**: the list of questions you ask yourself about what the agent
   delivered, without opening the code. If any of them comes out "no", the lesson is not finished.
 - **The deliverable**: the file or the evidence that has to exist at the end.
@@ -171,16 +175,22 @@ own, this lesson may end in "no-go", and that is a valid outcome of the course.
 
 **The task.**
 
-1. Write, by hand, in a file `docs/INITIAL_SURVEY.md`, what you know about the project from the
-   week 0 intake: what the client wants, for whom, what happens today without the system, what
-   technology there is or is proposed, whether there is a previous system and whether it has a
-   repository, who the owner is and how much time they have, what consequence an error has, what
-   environments there are going to be. Half a page. It does not matter that it is incomplete; in
-   fact, it is part of the exercise that it is incomplete.
-2. Copy the criteria sheet from the main document (the exclusionary criteria X1 and X2 and the
-   candidates) to `docs/ELIGIBILITY_CRITERIA.md`.
-3. Open the agent in the project folder (still empty except for those two files) and paste it
-   this prompt:
+**Before sending the prompt**, with your own hands (the agent cannot do this for you):
+
+- `docs/INITIAL_SURVEY.md`: you write it by hand, from the week 0 intake: what the client wants,
+  for whom, what happens today without the system, what technology there is or is proposed,
+  whether there is a previous system and whether it has a repository, whether the screens are
+  going to be operable by a program, who the owner is and how much time they have, what
+  consequence an error has, what environments there are going to be. Half a page. It does not
+  matter that it is incomplete; in fact, it is part of the exercise that it is incomplete, and
+  what you do not know you write down as "I do not know".
+- `docs/ELIGIBILITY_CRITERIA.md`: copy the criteria sheet from the main document (the
+  exclusionary criteria X1 and X2 and the candidates), with the answer, source and green-or-red
+  columns left empty. Do not fill it in yourself: the agent fills it in.
+- The project folder, still empty except for those two files, with the agent opened there.
+- The complete content of each file is in the step 0 contract, in the same block.
+
+1. Paste it this prompt:
 
 > We are going to assess whether this project can be run with the Urazuke method. Read the
 > initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
@@ -196,8 +206,14 @@ own, this lesson may end in "no-go", and that is a valid outcome of the course.
    course; it is the heart of the method), to fill in the sheet saying where each answer comes
    from, and not to decide: the decision is yours.
 
-4. Answer its questions. If it did not ask you any, be suspicious and ask it what it assumed.
-5. When it presents you the sheet, read it and decide. Then paste it the closing prompt:
+2. Answer its questions. If it did not ask you any, be suspicious and ask it what it assumed.
+3. When it presents you the sheet, read it and decide.
+
+**Before sending the prompt** for the close: your decision in one line (go, no-go, or go under
+conditions, each condition verifiable and no more than three), and the answers you gave to its
+questions in this same session, because the prompt asks it to include them.
+
+4. Paste it the closing prompt:
 
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
@@ -239,10 +255,16 @@ my language" prevents it from answering you in English because the prompt was in
 
 **The task.**
 
-1. Think for five minutes about how you work: do you prefer it to ask you a lot or a little? In
-   what language? What drives you up the wall when working with other people? Write it down in a
-   short list; you are going to tell it when it asks.
-2. Paste it this prompt:
+**Before sending the prompt**, with your own hands:
+
+- Your working preferences, thought about for five minutes and written down in a short list (on a
+  piece of paper, or in `docs/MY_PREFERENCES.md`): do you prefer it to ask you a lot or a little?
+  In what language? What level of autonomy do you give it (commits on its own, deployment to test
+  on its own, production never)? What drives you up the wall when working with other people? You
+  are going to tell it when it asks; the list is so that you do not improvise.
+- The project folder with the agent opened there. Nothing else: it is the project's first file.
+
+1. Paste it this prompt:
 
 > Before we write any code, we are going to set the working agreement between you and me.
 > Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
@@ -258,9 +280,14 @@ my language" prevents it from answering you in English because the prompt was in
    You are asking it for the six rules with the failure each one prevents, rules of its own
    marked as proposals so that you accept or reject them, and to ask you about yourself.
 
-3. Answer its questions. Read the proposals: accept the ones that are useful to you, reject the
+2. Answer its questions. Read the proposals: accept the ones that are useful to you, reject the
    ones that are not, always with a one-line reason.
-4. Close with:
+
+**Before sending the prompt** for the close: your verdict on each of the agent's proposals,
+written down: which ones you accept [X, Y], which ones you reject [Z] and why, in one line each.
+It goes into the gaps of the prompt, and you are the one who fills them in.
+
+3. Close with:
 
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
@@ -310,11 +337,20 @@ What is not written is what the model is going to invent when it runs into a gap
 
 **The task.**
 
-1. Complete `docs/INITIAL_SURVEY.md` with what you learned in lesson 0 (the answers to the
-   agent's questions). Add a section "what the system must NOT do", even if with two items, and
-   make sure the use cases the owner names, the entities with their states and the drawings of
-   the screens are there, even if they are photos of a piece of paper.
-2. Paste it:
+**Before sending the prompt**, with your own hands:
+
+- `docs/INITIAL_SURVEY.md`, completed with what you learned in lesson 0 (the answers to the
+  agent's questions) and with the business survey: who uses the system, what problem it solves, a
+  section "what the system must NOT do" even if with two items, the use cases the owner names in
+  their own words, the entities with their states, the drawings of the screens even if they are
+  photos of a piece of paper, the external integrations, and the decisions already taken, with
+  their date. If you used an intake method (interviews, use cases, user stories, prototypes), say
+  which one and paste the result.
+- `docs/WORKING_AGREEMENT.md`, closed (lesson 1).
+- If there is a previous system, read access to its code or to its documentation, written down in
+  the survey.
+
+1. Paste it:
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -335,12 +371,17 @@ What is not written is what the model is going to invent when it runs into a gap
    section, the semantic tree with its complete structure and with the inferred nodes marked,
    and the living state in another file.
 
-3. Read `PROJECT.md` in full. It has to fit in five minutes. Correct whatever is not true or not
+2. Read `PROJECT.md` in full. It has to fit in five minutes. Correct whatever is not true or not
    yours.
-4. Walk the semantic tree as if you were the client. Look at every node marked as inferred and
+3. Walk the semantic tree as if you were the client. Look at every node marked as inferred and
    confirm or correct it. Look for missing actors, entity states the business does not use,
    screens you did not ask for.
-5. Close with:
+
+**Before sending the prompt** for the close: `PROJECT.md` read in full by you, the tree walked
+node by node with a verdict for every inferred node, and the list of corrections written down for
+the [list] gap of the prompt. If the list is empty the first time, distrust your reading.
+
+4. Close with:
 
 > Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with
 > today's date. Add to the working agreement two rules: the change history never goes into
@@ -348,7 +389,7 @@ What is not written is what the model is going to invent when it runs into a gap
 > item must hang from a node of the semantic tree, and the tree is updated in the same commit
 > whenever a block adds or changes a node.
 
-6. **The reading test.** Close the agent's session and open a new one. Without telling it
+5. **The reading test.** Close the agent's session and open a new one. Without telling it
    anything else, ask it: "What must this system not do? And which node of the tree does the
    schedule screen hang from?". If it answers you with what `PROJECT.md` and the tree say, the
    hook works. If it answers you anything else, it is not reading the map: check how your tool
@@ -403,14 +444,20 @@ rewriting everything.
 
 **The task.**
 
-1. Sit down with the owner (or with yourself, if the project is yours) and write
-   `docs/VOLUME_SURVEY.md`: the main entities (the ones in the semantic tree) and how many there
-   are, how many are added per month, how many events per entity, how many people operate at the
-   peak and when the peak is, how long the data is kept, whether there are exceptional loads,
-   what growth they expect. For every number, write down where it comes from: "the practice
-   manager said so", "counted in September's notebook", "assumption". Leave some at "assumption"
-   on purpose: you are going to see what the agent does with them.
-2. Paste it:
+**Before sending the prompt**, with your own hands and with the owner:
+
+- `docs/VOLUME_SURVEY.md`: sit down with the owner (or with yourself, if the project is yours)
+  and write the main entities (the ones in the semantic tree) and how many there are, how many
+  are added per month, how many events per entity, how many people operate at the peak and when
+  the peak is, how long the data is kept, whether there are exceptional loads, what growth they
+  expect. For every number, write down where it comes from: "the practice manager said so",
+  "counted in September's notebook", "assumption". Leave some at "assumption" on purpose: you are
+  going to see what the agent does with them.
+- `PROJECT.md` and `docs/SEMANTIC_TREE.md`, closed (lesson 2).
+- If there is a previous system with a database, a read-only access so that the agent can pull
+  real numbers, with the connection string outside the repository.
+
+1. Paste it:
 
 > Before proposing any architecture we are going to size the system. Read `PROJECT.md` and the
 > volume survey in `docs/VOLUME_SURVEY.md`. Distinguish primary data (facts only the business
@@ -429,13 +476,18 @@ rewriting everything.
    arithmetic in view; the "times ten" scenario; three options with the cost of changing from one
    to another; and not to choose.
 
-3. If it asks you for the "assumptions", good: that was the exercise. Get the numbers (ask the
+2. If it asks you for the "assumptions", good: that was the exercise. Get the numbers (ask the
    owner, count in the notebook) and give them to it. If it did not ask for them and computed
    anyway, stop and ask it what it did with the assumptions: it is a failure of the step and it is
    better to see it now.
-4. Read the three options. Redo one calculation by hand (for example, rows per year of the
+3. Read the three options. Redo one calculation by hand (for example, rows per year of the
    largest table): it has to give you the same. Choose.
-5. Close with:
+
+**Before sending the prompt** for the close: the assumptions turned into data with a source, one
+calculation redone by hand by you that matches the agent's, and the chosen option with a one-line
+reason.
+
+4. Close with:
 
 > I choose option [B]. Record in `docs/SIZING.md`: the primary data with its source, the derived
 > data with its arithmetic, the three options, the chosen one and why, and the decisions we are
@@ -487,14 +539,21 @@ later lets you say "this does not go through" without arguing.
 
 **The task.**
 
-1. Write `docs/ENVIRONMENTS_SURVEY.md`: where the system is going to run (a server you already
-   have, a cloud service), whether there is going to be a test environment and a production one,
-   who has access to what, and how it is deployed today if there is anything. If you have
-   nothing, say so: the agent is going to propose the simplest option.
-2. Make sure you have the credentials of the place where it is going to be deployed, even if it
-   is a free service. Without that, the skeleton stays on your machine and the lesson cannot be
-   finished.
-3. Paste it:
+**Before sending the prompt**, with your own hands:
+
+- `docs/ENVIRONMENTS_SURVEY.md`: where the system is going to run (a server you already have, a
+  cloud service), whether there is going to be a test environment and a production one, who has
+  access to what, how it is deployed today if there is anything, and the kind of project (new,
+  corrective or an evolution). If you have nothing, say so: the agent is going to propose the
+  simplest option. The prompt names it "the environments survey", with no path: tell it what it
+  is called.
+- The credentials of the place where it is going to be deployed, even if it is a free service:
+  created, tested by you by logging into the panel, and kept outside the repository; you tell the
+  agent where they are, you do not paste them into the chat. Without that, the skeleton stays on
+  your machine and the lesson cannot be finished.
+- `PROJECT.md` and `docs/SIZING.md`, closed (lessons 2 and 3).
+
+1. Paste it:
 
 > We are going to build the skeleton of the system, with no functionality at all. Read
 > `PROJECT.md`, `docs/SIZING.md` and the environments survey. Evaluate whether you have what is
@@ -511,13 +570,18 @@ later lets you say "this does not go through" without arguing.
    the gates written down, a real screenshot of the test environment, and the prohibition on
    adding functionality.
 
-4. This task is long (one or two hours of the agent's work) and it is going to have back and
+2. This task is long (one or two hours of the agent's work) and it is going to have back and
    forth: missing credentials, a service that asks you to confirm your email, etc. That is
    normal. What is not normal is for it to tell you "done" without the screenshot of the test
    environment.
-5. When it shows you the screenshot, open the URL yourself in your browser. It has to look the
+3. When it shows you the screenshot, open the URL yourself in your browser. It has to look the
    same. It is the first human look at the system, and it is a milestone.
-6. Close with:
+
+**Before sending the prompt** for the close: your visit to the test environment URL done, the
+link to a green continuous integration run opened by you, and `docs/GATES.md` read, with one
+verifiable condition per gate.
+
+4. Close with:
 
 > Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a
@@ -584,11 +648,18 @@ specification, not done.
 
 **The task.**
 
-1. Write in `docs/INITIAL_SURVEY.md` (or in a separate file) the client's request for the first
-   block of functionality, just as the client would say it, with its ambiguities. For Turnera: "I
-   want to see the day's appointments, book a new one and cancel". If you wrote the use cases in
-   the intake, paste them too: they are the natural unit of the block.
-2. Paste it:
+**Before sending the prompt**, with your own hands:
+
+- The client's request for the first block of functionality, written in `docs/INITIAL_SURVEY.md`
+  under a heading with the name of the block, or in a separate file (for example
+  `docs/blocks/BLOCK_01_REQUEST.md`; the prompt says "the client's request for this block" with
+  no path, so tell it where it is), just as the client would say it, with its ambiguities. For
+  Turnera: "I want to see the day's appointments, book a new one and cancel". If you wrote the
+  use cases in the intake, paste them too: they are the natural unit of the block. If the owner
+  gave you a priority, that too.
+- `docs/SEMANTIC_TREE.md`, `PROJECT.md` and `docs/STATUS.md`, up to date (lesson 2).
+
+1. Paste it:
 
 > We are going to turn everything that must be done in this block into numbered pending items,
 > each one carrying its full specification. Read `PROJECT.md`, `docs/SEMANTIC_TREE.md`, the
@@ -610,15 +681,20 @@ specification, not done.
    missing, the acceptance criteria that will later be the script of the test, and an order with
    its reason.
 
-3. Answer the questions (for Turnera it is going to ask, for example, what "the day" is: today's,
+2. Answer the questions (for Turnera it is going to ask, for example, what "the day" is: today's,
    or any day that gets chosen?; does cancelling delete or mark?). Those questions are business
    decisions; in lesson 6 you are going to see where they get written.
-4. **Read the specification of every pending item** as if you were the client. This is the most
+3. **Read the specification of every pending item** as if you were the client. This is the most
    important task of the lesson, and the one that tempts you most to skip. Does it describe what
    you asked for, in your words? Are the acceptance criteria the ones you would use to say "that
    is right"? Is there an edge case you know of that is not there? Does it hang from the right
    node? Correct before anything gets built.
-5. Add the routine of every session to the working agreement. Paste it:
+
+**Before sending the prompt** for the routine: `docs/PENDING.md` with the block specified and
+read by you pending item by pending item, with your corrections made (no pending item with a
+one-line specification), and `docs/WORKING_AGREEMENT.md`, where the routine gets added.
+
+4. Add the routine of every session to the working agreement. Paste it:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Before touching any code, open
 > `docs/PENDING.md`, tell me which item you are taking and why, and re-read its specification.
@@ -629,7 +705,7 @@ specification, not done.
 > was built. If along the way you see something that is not on the list, add it as a new pending
 > item with its specification; do not do it."
 
-6. Now, yes, start building. Ask it to take the first pending item. From here on, every session
+5. Now, yes, start building. Ask it to take the first pending item. From here on, every session
    starts with "which pending item are you taking and why", and every close leaves the pending
    item documented.
 
@@ -680,6 +756,14 @@ delete?", the answer is written and it is yours.
 
 **The task.**
 
+**Before sending the prompt**, with your own hands:
+
+- `docs/WORKING_AGREEMENT.md` (lesson 1), where the routine goes.
+- `docs/DECISIONS.md`, created even if it is empty, with the format in the header: the date, who
+  decided, the literal words, the pending item that needed it.
+- An agreement with the domain owner, if it is not you, about the channel and the time in which
+  they answer: the routine only works if somebody decides in hours, not in weeks.
+
 1. Add the decisions routine to the agreement. Paste it:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Whenever implementing something requires a
@@ -695,11 +779,18 @@ delete?", the answer is written and it is yours.
    places, and, when you do not answer, to choose the most reversible option and mark it.
 
 2. Keep building the pending items of the block. Every time it asks you a business rule, decide
-   and answer with the closing format:
+   and answer with the closing format.
+
+**Before sending the prompt** for the close: the agent's question read with its recommendation
+and its alternative, and your decision drafted in one sentence with the exact words you want to
+stay forever, consulted with the owner if it is not you, with the date. It is not improvised in
+the chat.
+
+3. Paste it:
 
 > Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
 
-3. Do the opposite test, once, on purpose: leave a question unanswered for a session and watch
+4. Do the opposite test, once, on purpose: leave a question unanswered for a session and watch
    what it does. It has to choose the most reversible option and mark it "by omission". If it
    chose what it felt like and did not mark it, it is a failure of the step: correct it in the
    agreement.
@@ -747,6 +838,16 @@ for weeks.
 
 **The task.**
 
+**Before sending the prompt**, with your own hands:
+
+- `docs/WORKING_AGREEMENT.md`, where the routine goes.
+- The pending item that is going to be closed, with its acceptance criteria in the "given, when,
+  then" form and its "how it is verified" in `docs/PENDING.md`: they are the script of the test.
+  If it does not have them, go back to lesson 5 before asking for the test.
+- The suite and the command to run it in `docs/STATUS.md` (lesson 4), and the test environment
+  running, with enough data for the flow being touched; if data is missing, load it yourself or
+  ask the agent to create it as part of the test, but not to simulate it.
+
 1. Add the evidence routine to the agreement. Paste it:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
@@ -773,20 +874,32 @@ for weeks.
    saved.
 3. If it tells you it cannot test end to end because the screen cannot be driven by a program,
    stop: that is X2 failing, and it has to be fixed now (adding identifiers to the screen
-   elements) before going on. Paste it:
+   elements) before going on.
+
+**Before sending the prompt**: work out whether it is missing an input that you have (data, an
+access, an environment: give it to it and do not send this prompt) or whether the system really
+is not testable there (this prompt).
+
+4. Paste it:
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
 
-4. **At the close of the block**, when the six pending items are closed, paste it the full suite
-   prompt:
+5. **At the close of the block**, when the six pending items are closed, run the complete suite.
+
+**Before sending the prompt** for the suite: the six pending items closed with the routine, the
+exact version that is going to be promoted identified and deployed in the test environment, and
+your own list of the flows that exist (taken from the use cases of the semantic tree), to
+contrast it with what the agent says it covered.
+
+6. Paste it:
 
 > Run the complete end-to-end suite of every flow that exists so far, in the test environment,
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
 > item for it; do not pass it as covered.
 
-5. And after that, **use the system yourself**. Open the test environment and do what the
+7. And after that, **use the system yourself**. Open the test environment and do what the
    receptionist would do: book an appointment, try the double booking, cancel, search. Whatever
    bothers you, whatever you do not understand, whatever is where it should not be: write it down
    as a pending item. This half hour finds what no test finds.
@@ -837,6 +950,15 @@ not automated repeats itself the moment the session changes.
 
 **The task.**
 
+**Before sending the prompt**, with your own hands:
+
+- At least one functional block built: with no contracts between parts there is no map to make.
+- `docs/SEMANTIC_TREE.md` up to date: the lists (states, types, causes) are declared there, and
+  the map has to match the tree.
+- A list written by you of what lives outside the repository and produces or consumes something
+  from the system (a robot, a spreadsheet, a process from another team), or the confirmation that
+  there is nothing.
+
 1. Ask it for the contract map:
 
 > Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
@@ -846,6 +968,9 @@ not automated repeats itself the moment the session changes.
 
    You are asking it for the inventory of contracts with both of their sides, and for whatever it
    cannot see to be declared rather than left out.
+
+**Before sending the prompt** for the routine: the map reviewed by you (pick one contract and
+verify that the two sides are the ones you know) and `docs/WORKING_AGREEMENT.md`.
 
 2. Add the routine to the agreement:
 
@@ -858,8 +983,15 @@ not automated repeats itself the moment the session changes.
    appointment: pending, confirmed, cancelled, no-show) and ask the agent to show you where it is
    defined and where it is read. If there are two definitions, ask it to leave only one, and to
    make it match the semantic tree.
-4. The first time something breaks for the second time (it will happen in the coming weeks), paste
-   it this:
+4. The first time something breaks for the second time (it will happen in the coming weeks),
+   record it.
+
+**Before sending the prompt**: the pending item or the commit of the first time, located by you
+among the closed items of `docs/PENDING.md`, to paste it together with the prompt (without that
+reference the anti-pattern comes out generic); and `docs/GOTCHAS.md` created even if it is empty,
+with the format in the header: the smell, the root cause, the fix, how to detect it earlier.
+
+5. Paste it:
 
 > This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
@@ -909,10 +1041,18 @@ ratchet or a budget per path. What you do need is a command behind the number.
 
 **The task.**
 
-1. Pick a hypothesis. In Turnera, a good one: "the day view runs one database query per
-   appointment it shows" (the classic N+1 loop). If it turns out not to be true, even better: you
-   will see how a false hypothesis gets verified.
-2. Paste it this:
+**Before sending the prompt**, with your own hands:
+
+- The hypothesis, in one sentence. In Turnera, a good one: "the day view runs one database query
+  per appointment it shows" (the classic N+1 loop). If it turns out not to be true, even better:
+  you will see how a false hypothesis gets verified. It goes into the gap of the prompt, together
+  with the quantity to measure.
+- A known case for the meter's test, one where you know the answer in advance ("with zero
+  appointments it has to count exactly the baseline queries").
+- Access to what is being measured (the database read-only if it is real data, the log) and the
+  meters that already exist in the repository, named.
+
+1. Paste it this:
 
 > Before building anything, we are going to measure. The hypothesis is: [the day view runs one
 > database query per appointment shown]. Write a meter (a script that lives in the repository)
@@ -929,14 +1069,24 @@ ratchet or a budget per path. What you do need is a command behind the number.
    instead of approximating, to mark what is approximate, the number with its command, the audit
    in both directions, and the order: first measure, then propose.
 
-3. Run the command it gave you, yourself. It has to give you the same number. You do not need to
+2. Run the command it gave you, yourself. It has to give you the same number. You do not need to
    understand the script; you do need to execute it.
-4. If the hypothesis was true and the agent proposes fixing it, ask it for a budget:
+3. If the hypothesis was true and the agent proposes fixing it, ask it for a budget.
+
+**Before sending the prompt** for the budget: the measured number, run by you with the command it
+gave you (it has to give you the same), and the margin you are willing to give, decided by you: a
+little more than what was measured, not double just in case.
+
+4. Paste it:
 
 > Set the budget for [queries] on this path at the measured value plus a small margin, and
 > protect it with a test that fails if it is exceeded. Tell me the number and the margin.
 
    That way, if someone puts the loop back in three months from now, the test suite catches it.
+
+**Before sending the prompt** for rule five: `docs/WORKING_AGREEMENT.md`, and a meter that
+already exists for every quantity a plan might assert; if there is no meter, first the opening
+prompt of this lesson.
 
 5. Add rule five to the agreement, for when a plan comes with numbers:
 
@@ -978,6 +1128,12 @@ cannot see from where it is). And one rule: bad news first.
 
 **The task.**
 
+**Before sending the prompt**, with your own hands:
+
+- `docs/WORKING_AGREEMENT.md`, where the routine goes.
+- The habit of writing down, in every session, the list of what you asked for: the prompt
+  requires it to cover every item one by one, and you have to know how many there were.
+
 1. Add the reporting routine to the agreement:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "When you report, separate three blocks:
@@ -993,7 +1149,14 @@ cannot see from where it is). And one rule: bad news first.
    the real data). If it insists there is nothing, you insist too.
 3. Practise the "still broken". Ask it for something small, check in the test environment, and if
    for any reason you do not see the change (it is common: the deployment takes a while, or was
-   not done), tell it "still broken" and paste it this:
+   not done), tell it "still broken".
+
+**Before sending the prompt**: your verification written down (at what URL you looked, what
+version the system shows, what you did, what you expected, what happened) and the commit or the
+version the agent said contained the fix, copied from its report. Without that, "still broken" is
+an impression.
+
+4. Paste it:
 
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.
@@ -1044,10 +1207,16 @@ another instructions file, that did not take part** is enough.
 
 **The task.**
 
-1. Open a new session of the agent on a clean copy of the repository (clone it into another
-   folder). If your tool allows it, give it a different instructions file that only says "you are
-   an auditor; you did not build this system". Give it read-only access to the test environment.
-2. Paste it this:
+**Before sending the prompt**, with your own hands:
+
+- A new session of the agent on a clean copy of the repository (clone it into another folder). If
+  your tool allows it, give it a different instructions file that only says "you are an auditor;
+  you did not build this system".
+- Read-only access for that session to the test environment (database, logs), with read-only
+  credentials kept outside the repository.
+- The scope decided by you for the gap of the prompt, and the previous audit, if there was one.
+
+1. Paste it this:
 
 > Audit this system for [integrity, security, performance and code quality]. Read-only: change
 > nothing except writing your report to `docs/AUDIT_[date].md`. If auditing some part requires
@@ -1062,14 +1231,19 @@ another instructions file, that did not take part** is enough.
    omission, all of the code and not a sample, every finding with location, risk, evidence and
    priority, grades per dimension, and the P0s already as proposed pending items.
 
-3. Read the report. Pick two findings and ask the auditor to show you the evidence (the command,
+2. Read the report. Pick two findings and ask the auditor to show you the evidence (the command,
    the line). It has to be able to.
-4. Go back to the builder's session and paste it this:
+
+**Before sending the prompt** for the close: the report read by you, the two findings verified
+with the auditor, and the builder's session open (this prompt goes to the builder, not to the
+auditor), with the date of the file in the gap.
+
+3. Go back to the builder's session and paste it this:
 
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.
 
-5. Repeat this lesson before the first deployment to production (lesson 13) and, afterwards,
+4. Repeat this lesson before the first deployment to production (lesson 13) and, afterwards,
    every one or two months.
 
 **Completeness check.** Does the report say what it could NOT audit? Do two findings picked at
@@ -1105,11 +1279,16 @@ reminders and the deposit, which are the third block.
 
 **The task.**
 
-1. Write `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md` with the owner: what the system does or will do
-   that charges, sends, approves, deletes or notifies someone outside; what happens if it is done
-   twice; what happens if it is done wrong; how it is undone. The processes of the semantic tree
-   give you the starting list.
-2. Paste it this:
+**Before sending the prompt**, with your own hands and with the owner:
+
+- `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`: what the system does or will do that charges, sends,
+  approves, deletes or notifies someone outside; and for each action, what happens if it is done
+  twice, what happens if it is done wrong, how it is undone, who should be able to do it. The
+  processes of the semantic tree give you the starting list. The prompt names it "the survey of
+  consequential actions", with no path: tell it where it is.
+- `docs/SEMANTIC_TREE.md`, up to date.
+
+1. Paste it this:
 
 > We are going to decide which actions of the system need a lock. Read the survey of
 > consequential actions, and go through the code looking for everything that charges, sends,
@@ -1124,7 +1303,13 @@ reminders and the deposit, which are the third block.
    actions nobody remembered show up), to ask about the differences, and for every action its
    reversibility, its lock and its way back, with the fail-closed rule written down.
 
-3. Confirm lock by lock. Close with:
+2. Confirm lock by lock, with the owner.
+
+**Before sending the prompt** for the close: for every row of the table, your confirmation or
+your change, written out for the gaps of the prompt; no row without a verdict, because an
+unconfirmed lock is a lock that does not get implemented.
+
+3. Close with:
 
 > I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves
 > that, under the doubt condition, the action does NOT happen (proved red against the version
@@ -1173,10 +1358,18 @@ deployment to test. This lesson completes it towards production.
 
 **The task.**
 
-1. Complete `docs/ENVIRONMENTS_SURVEY.md` with what is missing for production: the domain, where
-   the secrets are going to live, how much continuous integration quota you have (if you use GitHub
-   Actions, check the limit of your plan).
-2. Paste it this:
+**Before sending the prompt**, with your own hands:
+
+- `docs/ENVIRONMENTS_SURVEY.md` (lesson 4), completed with what is missing for production: the
+  domain and who administers it, where the secrets are going to live and which ones they are (the
+  name, never the value), who can touch production, how a rollback would be done today, and how
+  much continuous integration quota you have (if you use GitHub Actions, check the limit of your
+  plan). The prompt names it "the environments and access survey": tell it where it is.
+- The agent's access to production, decided by you, with the credential outside the repository
+  and outside the chat.
+- The skeleton with its continuous integration and its deployment to test working (lesson 4).
+
+1. Paste it this:
 
 > We are going to close the path to production. Read the environments and access survey.
 > Evaluate whether you have what is needed to deploy to production safely (access, domain,
@@ -1193,21 +1386,31 @@ deployment to test. This lesson completes it towards production.
    that only packages, the configuration outside, the repeatable promotion, the tested rollback,
    the lock against secrets, and the documentation for a person.
 
-3. Before the first deployment to production, do the audit of lesson 11 if you have not done it,
+2. Before the first deployment to production, do the audit of lesson 11 if you have not done it,
    and run the complete end-to-end suite of every flow with the exact version you are going to
    promote (the block-closing prompt of lesson 7).
-4. Add the deployment routine to the agreement:
+
+**Before sending the prompt** for the routine: `docs/DEPLOYMENT.md` written and read by you
+(could you follow it on your own?), and `docs/WORKING_AGREEMENT.md`.
+
+3. Add the deployment routine to the agreement:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Before touching production: the test
 > environment is green with the same version; the rollback is ready; and tell me what changes in
 > the configuration. After deploying: show me the version running in production and an
 > end-to-end check on production, read-only."
 
-5. Do the first deployment to production, with the system still without real users. And then
+4. Do the first deployment to production, with the system still without real users. And then
    **test the rollback**: ask it to go back to the previous version and show you that it is
    running, and then to go back to the new one.
-6. If at any point in the course you pasted a secret into the chat (an API key, a password),
-   paste it this:
+5. If at any point in the course you pasted a secret into the chat (an API key, a password),
+   rotate it.
+
+**Before sending the prompt**: the secret identified (its name, never its value), where it showed
+up and when, and your access to the panel where it is generated, in case the agent cannot rotate
+it on its own. This prompt is not sent "later".
+
+6. Paste it this:
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.
@@ -1251,6 +1454,13 @@ that were closed, block by block, and the changelog comes straight out of them.
 
 **The task.**
 
+**Before sending the prompt**, with your own hands:
+
+- `docs/WORKING_AGREEMENT.md`, where the routine goes.
+- The list of manuals the system is going to have, each one with its reader (the end user, the
+  one who maintains it, the one who operates the infrastructure), written in `PROJECT.md` or said
+  in the chat.
+
 1. Add the routine to the agreement:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Every change that modifies what the user
@@ -1258,6 +1468,12 @@ that were closed, block by block, and the changelog comes straight out of them.
 > in the same commit. At the close of every functional block, add to the user manual the screens
 > and flows of the pending items closed in that block, with real screenshots from the test
 > environment, and add their entries to the changelog. If you do not know which manual, ask."
+
+**Before sending the prompt** for the manuals: the system running in the test environment with
+realistic data (the screenshots come from there), the closed pending items with their
+documentation (lesson 5), `docs/DEPLOYMENT.md` and `docs/LOCKS.md` up to date, and what only the
+business knows, prepared for when it asks: who is responsible for what, what phone number gets
+called at three in the morning, who makes the backup.
 
 2. Paste it this:
 
@@ -1320,10 +1536,18 @@ one that led me to eliminate an entire team of agents is the model [Ref. 6](REFE
 
 **The task (resident agent, if applicable).**
 
-1. Decide with the owner whether the system needs a resident agent. In Turnera it does: the
-   receptionists will have questions ("why did this patient not get the reminder?") that the agent
-   can answer by reading the log, without anyone calling the developer.
-2. Paste it this:
+**Before sending the prompt**, with your own hands and with the owner:
+
+- The decision about whether the system needs a resident agent, and what for. In Turnera it does:
+  the receptionists will have questions ("why did this patient not get the reminder?") that the
+  agent can answer by reading the log, without anyone calling the developer.
+- A credential of its own for the agent in production, created by you, mapped to a responsible
+  person with a name, read-only to begin with, with the value outside the chat and outside the
+  repository.
+- `docs/LOCKS.md` and `docs/DEPLOYMENT.md` up to date, and the channel (a ticket, an email)
+  through which it reports what it cannot resolve.
+
+1. Paste it this:
 
 > We are going to leave you resident in production. First, build the map of the system you will
 > need in order to operate it: modules, environments, where each configuration lives, which
@@ -1337,7 +1561,13 @@ one that led me to eliminate an entire team of agents is the model [Ref. 6](REFE
    You are asking it for the map before operating, for the gaps in the map to be declared, three
    levels of scope so that you pick one, and the credential in a person's name.
 
-3. Pick the level (to begin with, always the first: read-only and diagnosis). Close with:
+2. Pick the level (to begin with, always the first: read-only and diagnosis).
+
+**Before sending the prompt** for the close: the map and the three levels read, the level chosen,
+and one concrete action outside that scope thought up by you, so that the agent attempts it and
+you see the rejection in the log.
+
+3. Close with:
 
 > Level [1: read-only and diagnosis]. Write in `docs/RESIDENT_AGENT.md` the map, the scope, the
 > credential (never its value), and the procedure to request my approval. Then prove, with a real
@@ -1345,9 +1575,17 @@ one that led me to eliminate an entire team of agents is the model [Ref. 6](REFE
 
 **The task (retrospective, always).**
 
-4. Gather the numbers only you have: how many hours you put in, how much you spent on the AI tool,
-   how much continuous integration quota you used.
-5. Paste it this:
+**Before sending the prompt**, with your own hands:
+
+- The numbers only you have, in `docs/RETROSPECTIVE_INPUTS.md` or ready for the chat: how many
+  hours you put in (from your calendar, not from memory), how much you spent on the AI tool (the
+  invoice), how much continuous integration quota you used, and the start and end dates.
+- The list of incidents as you remember them, with an approximate date, to contrast with what the
+  agent pulls out of the pending items and the commits.
+- `docs/PENDING.md` with the closed items documented and `docs/DECISIONS.md`, which are the
+  source of the numbers.
+
+4. Paste it this:
 
 > [The project] is over. Do the retrospective with numbers, not impressions: what it cost
 > (tokens, quota, my time), how many pending items, which ones took the most rounds and why,
@@ -1361,7 +1599,7 @@ one that led me to eliminate an entire team of agents is the model [Ref. 6](REFE
    falls into none is a missing step), to ask you for the numbers it does not have, and a concrete
    proposal to change the ladder.
 
-6. Read the proposed change. If it seems valid to you, send it to the
+5. Read the proposed change. If it seems valid to you, send it to the
    [Urazuke repository](https://github.com/pkuschnirof/urazuke) as an improvement proposal (see
    `CONTRIBUTING.md`): that is how the method learns from every project.
 

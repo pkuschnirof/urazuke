@@ -3,9 +3,11 @@
 Un archivo por peldaño. Todos tienen el mismo esqueleto, y lo tienen a propósito, para que puedas
 compararlos y para que, con el tiempo, el reflejo de leerlos sea automático: el encabezado con el
 tramo, el cuándo, la forma y el tamaño (obligatorio o proporcional); para qué sirve; (1) el
-contexto requerido, nombrado en forma genérica; (2) los prompts, **en inglés**, cada uno con su
-traducción y, debajo, la explicación de qué le estoy pidiendo al modelo y por qué cada cláusula
-está ahí; (3) el resultado esperado, con sus características; (4) la verificación de completitud,
+contexto requerido, nombrado en forma genérica; (2) los prompts, **en inglés**, cada uno
+precedido por un bloque **"Antes de enviar el prompt"** (los archivos y los insumos que tenés que
+tener hechos vos antes de pegarlo, con su contenido y su estado mínimo), seguido de su traducción
+y, debajo, de la explicación de qué le estoy pidiendo al modelo y por qué cada cláusula está ahí;
+(3) el resultado esperado, con sus características; (4) la verificación de completitud,
 que hacés sin leer código; (5) las señales de alarma, los síntomas de un peldaño mal subido.
 
 Los prompts en inglés son una sola pieza, idéntica en las ocho versiones del documento;

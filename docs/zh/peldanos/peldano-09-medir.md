@@ -23,6 +23,9 @@
 
 ## 1. 所需上下文
 
+下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第
+2 节里，在每条提示词前面的"发送提示词之前"方框里。
+
 - 假设，你的或代理的："我觉得问题是 X"、"应该有一百来个"。
 - 对要测量之物的访问权：代码、只读的数据库、日志。
 - 仓库里已有的量具，如果有。
@@ -30,6 +33,18 @@
 ## 2. 提示词
 
 **初始：**
+
+**发送提示词之前**，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：
+
+- 假设，写成一句话，你的或者取自代理的："我觉得日程表对它显示的每个预约都查一次数据库"、"大
+  概有一百个循环吧"。它填进提示词的 [X] 空里，要测量的量填进另一个空。
+- 对要测量的东西的访问权：代码（它已经有了）；如果测的是真实数据，数据库的只读权限，连接串放
+  在仓库之外，变量名在聊天里说；日志，连同它的路径。
+- 仓库里已经存在的量具，如果有的话，把它们的名字说出来，好让代理复用而不是另造一个。
+- 一个用来测试量具的已知案例：一种你事先就知道答案的情形（"零个预约时，它必须恰好数出那两次
+  基础查询"）。如果你想不出来，让代理提一个，但由你来验证：一把用它自己发明的案例验证过的量
+  具，等于没验证。
+- 最低可接受状态：假设一句话装得下，而且有一个已知案例可以用来检验这件仪器。
 
 > Before building anything, we are going to measure. The hypothesis is: [X]. Write a meter (a
 > script that lives in the repository) that measures [the quantity], and a test for the meter
@@ -55,6 +70,13 @@
 
 **当有预算时：**
 
+**发送提示词之前**，你手边必须有这些：
+
+- 测出来的那个数字，是你自己用代理给的命令跑出来的，而且跑出来的结果一样。如果你没跑过，就别
+  在它上面定预算。
+- 你愿意给的余量，由你决定：比测出来的多一点，不是"以防万一"翻一倍。
+- 最低可接受状态：量具是你自己跑的。
+
 > Set the budget for [queries / loops / time] on this path at the measured value plus a small
 > margin, and protect it with a test that fails if it is exceeded. Tell me the number and the
 > margin.
@@ -67,6 +89,13 @@
 能退化会出现在测试套件里，而不是生产里 [Ref. 37](../REFERENCIAS.md#ref-37)。
 
 **当规划者给了数字时（规则五）：**
+
+**发送提示词之前**，你手边必须有这些：
+
+- 代理的一份计划，里面带着数字（"有 121 个循环"、"是 27 次查询"），就摆在对话里。
+- 测量那个量的量具，已经存在（这级台阶的初始提示词）。如果那个数字没有对应的量具，先发初始提
+  示词，再发这条。
+- 最低可接受状态：计划里的每个数字，你都知道用哪把量具去核。
 
 > Before executing the plan, verify every number the plan asserts with the meter. If any does
 > not match, stop and tell me; do not execute on a wrong number.

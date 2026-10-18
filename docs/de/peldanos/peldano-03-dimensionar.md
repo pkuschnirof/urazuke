@@ -35,6 +35,10 @@ nicht nötig sind.
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - **Erhebung der Mengendaten** des Geschäfts, so generisch benannt: Hauptentitäten und ihr
   Wachstum, Ereignisse pro Entität, gleichzeitige Operatoren und Zeitpunkt der Spitze,
   Aufbewahrungsdauer der Daten, Ausnahmelasten (Kampagnen, Abschlüsse), erwartetes Wachstum. Die
@@ -47,6 +51,28 @@ nicht nötig sind.
 ## 2. Prompts
 
 **Zu Beginn:**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- `docs/VOLUME_SURVEY.md`: die Erhebung der Mengendaten, geschrieben mit dem Eigentümer der Domäne
+  (oder mit dir selbst, wenn das Projekt deines ist). Für jede Hauptentität des semantischen
+  Baums: wie viele es heute gibt, wie viele pro Monat dazukommen, wie viele Ereignisse jede
+  erzeugt (ein Termin erzeugt drei Nachrichten; eine Genehmigung erzeugt so und so viele
+  Abfragen); wie viele Personen zur Spitzenzeit arbeiten und wann die Spitze ist; wie lange die
+  Daten aufbewahrt werden; welche außergewöhnlichen Lasten es gibt (Kampagnen, Monatsabschlüsse,
+  der Montag nach einem Feiertag); welches Wachstum sie erwarten und ob sich das System an andere
+  verkaufen ließe. Und das Wichtigste: für jede Zahl, woher sie kommt („das hat die Leiterin
+  gesagt“, „im Heft vom September gezählt“, „angenommen“). Annahmen werden als Annahmen markiert;
+  sie werden nicht als Daten verkleidet.
+- `PROJECT.md` und `docs/SEMANTIC_TREE.md` (Schritt 2), geschlossen: die Entitäten, die
+  dimensioniert werden müssen, sind die des Baums.
+- Wenn es ein Vorgängersystem mit Datenbank gibt: ein nur lesender Zugang, damit der Agent echte
+  Zahlen zieht statt Schätzungen, mit der Verbindungszeichenfolge außerhalb des Repositorys und
+  dem Namen der Variablen in der Erhebung notiert.
+- Akzeptabler Mindestzustand: jede Entität des Baums hat mindestens eine Zahl mit ihrer Quelle,
+  auch wenn mehrere „angenommen“ sagen. Der Agent wird dich nach den Annahmen fragen; diese
+  Nachfrage ist der Schritt, der funktioniert.
 
 > Before proposing any architecture we are going to size the system. Read `PROJECT.md` and the
 > volume survey in `docs/VOLUME_SURVEY.md`. Distinguish primary data (facts only the business
@@ -84,6 +110,20 @@ irren“; und dass er weder wählt noch Code schreibt, denn dieser Schritt ist e
 nicht des Bauens.
 
 **Zum Abschluss:**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Die drei Optionen, die der Agent vorgelegt hat, gelesen, und mindestens eine Rechnung von dir
+  von Hand nachgerechnet (zum Beispiel Zeilen pro Jahr der größten Tabelle): sie muss dasselbe
+  ergeben.
+- Die Primärdaten, die er von dir verlangt hat, wirklich beschafft (im Heft gezählt, beim
+  Eigentümer nachgefragt) und im Chat gegeben; keines von dir geschätzt, um aus der Sache
+  herauszukommen.
+- Deine Wahl, mit dem Buchstaben der Option und einer Begründung in einer Zeile, von dir
+  entschieden und, wenn es einen Eigentümer gibt, mit ihm.
+- Akzeptabler Mindestzustand: die nachgerechnete Rechnung stimmt überein, die Annahmen sind zu
+  Daten mit Quelle geworden, und die Option ist gewählt. Wenn die Rechnung nicht übereinstimmt,
+  schließ nicht ab: frag.
 
 > I choose option [B]. Record in `docs/SIZING.md`: the primary data with its source, the derived
 > data with its arithmetic, the three options, the chosen one and why, and the decisions we are

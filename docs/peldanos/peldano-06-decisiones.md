@@ -26,6 +26,10 @@ congelar las decisiones antes de construir viene de mi herramienta
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - La conversación con el dueño: es el único contexto. El agente no puede decidir reglas de
   negocio.
 - Un lugar acordado donde se escriben las decisiones: el mensaje del commit, la especificación del
@@ -34,6 +38,19 @@ congelar las decisiones antes de construir viene de mi herramienta
 ## 2. Prompts
 
 **Rutina (va en el contrato de convivencia):**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- `docs/WORKING_AGREEMENT.md` (peldaño 1), donde va la rutina.
+- `docs/DECISIONS.md`, creado aunque esté vacío, con el formato en el encabezado: fecha, quién
+  decidió, las palabras textuales, el pendiente que la necesitaba. Lo creás vos o se lo pedís al
+  agente en la misma sesión; lo que importa es que el lugar acordado exista antes de la primera
+  decisión.
+- Vos, disponible. Esta rutina solo funciona si, cuando el agente frena y pregunta, alguien
+  contesta en horas y no en semanas. Si el dueño del dominio es otra persona, acordá con él el
+  canal y el tiempo de respuesta antes de pegar el prompt.
+- Estado mínimo aceptable: el registro existe y hay alguien que decide.
 
 > Whenever implementing something requires a business rule that is not written down, or you
 > must choose between two approaches that change what the user sees, stop and ask me, in prose,
@@ -60,6 +77,15 @@ más reversible marcada como "por omisión", que es lo que permite seguir sin qu
 desaparezca.
 
 **De cierre (cada decisión):**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- La pregunta del agente, leída, con su recomendación y su alternativa.
+- Tu decisión, consultada con el dueño del dominio si no sos vos, redactada en una frase con tus
+  palabras exactas, las que querés que queden para siempre (van a estar en el commit, en el
+  pendiente y en el registro), y la fecha.
+- Estado mínimo aceptable: la frase está escrita antes de pegar el prompt, no se improvisa en el
+  chat. Una regla parafraseada después es una regla distinta.
 
 > Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
 

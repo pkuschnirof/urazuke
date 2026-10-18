@@ -30,7 +30,7 @@ per questo la prova deve dimostrare se stessa.
 |---|---|
 | `ESCALERA_METODOLOGICA.md` | Il documento principale: la tesi, da dove viene il metodo, la linea del tempo (quando si sale ogni gradino e cosa succede nel mezzo: infrastruttura, CI/CD, acquisizione dei requisiti, sviluppo, test end to end, sguardo umano, prove umane), i sedici gradini con la loro scheda, ciò che manca, e il glossario. |
 | `REFERENCIAS.md` | I casi reali dietro il metodo, numerati ("Ref. N"), con data e prova, perché le procedure restino pulite e il dettaglio sia a un clic. Include le cronologie dei tre sistemi e la tabella dei fallimenti per gradino. |
-| `peldanos/peldano-NN-*.md` | Il contratto di ogni gradino: quando, contesto richiesto, prompt in inglese con la loro traduzione, risultato atteso, verifica di completezza senza leggere codice, segnali d'allarme. |
+| `peldanos/peldano-NN-*.md` | Il contratto di ogni gradino: quando, contesto richiesto, prompt in inglese con la loro traduzione e, prima di ciascuno, il blocco "Prima di inviare il prompt" con i file che devi costruire tu e il loro contenuto; risultato atteso, verifica di completezza senza leggere codice, segnali d'allarme. |
 | `peldanos/README.md` | L'indice dei contratti. |
 | `MANUAL_CURSO.md` | Il corso: calendario, sedici lezioni con compiti pratici e prompt, progetto guida ("Turnera"), lista di uscita in produzione. |
 | `../DECISIONES.md` | Le decisioni del progetto, con data e parole testuali. Il metodo si applica a se stesso. Solo in spagnolo. |

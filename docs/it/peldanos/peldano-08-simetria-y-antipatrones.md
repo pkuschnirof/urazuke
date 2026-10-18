@@ -27,6 +27,10 @@ deve leggerli da una sola fonte.
 
 ## 1. Contesto richiesto
 
+Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
+prompt, con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
+inviare il prompt" che precede ciascuno.
+
 - Una mappa di quali parti del sistema consumano cosa: quali schermate leggono quali servizi, quali
   processi scrivono quali tabelle. Se non esiste, il primo prompt la costruisce.
 - Il registro degli anti-pattern `docs/GOTCHAS.md`, anche se è vuoto.
@@ -34,6 +38,20 @@ deve leggerli da una sola fonte.
 ## 2. Prompt
 
 **Per costruire la mappa (una volta):**
+
+**Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
+l'agente:
+
+- Il sistema con almeno un blocco funzionale costruito: senza contratti tra le parti non c'è mappa
+  da fare.
+- `docs/SEMANTIC_TREE.md` aggiornato: le liste (stati, tipi, cause) sono dichiarate lì, e la mappa
+  deve coincidere con l'albero.
+- Una lista scritta da te delle parti che vivono fuori dal repository e che producono o consumano
+  qualcosa del sistema (un robot, un foglio di calcolo che legge il database, un processo di
+  un'altra squadra), perché l'agente le metta nella mappa anche se non le vede. Se non ce n'è
+  nessuna, dillo.
+- Stato minimo accettabile: l'agente può leggere tutto il repository, e tu gli hai detto cosa c'è
+  fuori.
 
 > Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
 > a file format, a list of values), who produces it and who consumes it. If there are parts of
@@ -52,6 +70,13 @@ mappa con buchi nascosti è peggio di nessuna mappa.
 
 **Routine (va nel patto di convivenza):**
 
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- `docs/PRODUCER_CONSUMER_MAP.md`, costruito e rivisto da te: scegli un contratto e verifica che i
+  due lati siano quelli che conosci.
+- `docs/WORKING_AGREEMENT.md`, dove va la routine.
+- Stato minimo accettabile: la mappa esiste e ha almeno i contratti del primo blocco.
+
 > Before closing any change that touches a contract, look up every consumer in the map and
 > update them in the same commit. Always prefer that the producer defines the list (columns,
 > causes, states) and the consumer reads it, rather than each keeping its own copy. If the map
@@ -68,6 +93,16 @@ regola della lista con un solo proprietario, e che la mappa si mantenga da sola 
 usa.
 
 **Quando qualcosa si rompe per la seconda volta:**
+
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- La prova che è la seconda volta: la voce in sospeso o il commit della prima, individuato da te
+  (cerca tra le voci chiuse di `docs/PENDING.md`), per incollarglielo insieme al prompt. Senza
+  quel riferimento, l'agente registrerà un anti-pattern generico che non serve a rilevare niente.
+- `docs/GOTCHAS.md`, creato anche se vuoto, con il formato nell'intestazione: odore, causa radice,
+  correzione, come rilevarlo prima.
+- Stato minimo accettabile: sai nominare la prima volta con la data o con il numero della voce in
+  sospeso.
 
 > This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if

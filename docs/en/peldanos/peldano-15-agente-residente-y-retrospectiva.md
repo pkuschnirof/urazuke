@@ -28,6 +28,10 @@ did).
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 For the resident agent:
 - What the agent can and cannot do in production: read, diagnose, change configuration, execute
   actions. You decide.
@@ -42,6 +46,20 @@ For the retrospective:
 ## 2. Prompts
 
 **For the resident agent (opening):**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- The decision to leave a resident agent, taken with the owner and written down: what for
+  (support, diagnosis) and with what initial limits.
+- A credential of its own for the agent in production, created by you, mapped to a responsible
+  person with a name, with the minimum scope (read-only, to begin with); the value, outside the
+  chat and outside the repository.
+- `docs/LOCKS.md` (step 12) and `docs/DEPLOYMENT.md` (step 13), up to date: the prompt asks it to
+  read the first one.
+- Whom the agent notifies when it finds something it cannot resolve: a channel (a ticket, an
+  email) decided by you.
+- Minimum acceptable state: the credential exists, it has a human owner, and it is read-only.
 
 > We are going to leave you resident in production. First, build the map of the system you will
 > need in order to operate it: modules, environments, where each configuration lives, which
@@ -59,6 +77,14 @@ and the rule of the credential in a person's name.
 
 **For the resident agent (closing):**
 
+**Before sending the prompt**, you have to have this at hand:
+
+- The map and the three levels the agent proposed, read by you, and your choice of level (to
+  begin with, always the first one).
+- A concrete action outside the chosen scope, thought up by you, so that the agent attempts it
+  and you see the rejection in the log (with level 1, for example: changing a configuration).
+- Minimum acceptable state: you chose the level and you know which attempt has to fail.
+
 > Level [X]. Write in `docs/RESIDENT_AGENT.md` the map, the scope, the credential (never its
 > value), and the procedure to request my approval. Then prove, with a real attempt recorded in
 > the log, that something outside your scope is rejected.
@@ -68,6 +94,21 @@ and the red test of the scope: a real attempt, logged, to do something outside t
 rejected. It is step 7 applied to permissions.
 
 **For the retrospective:**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- The numbers only you have, gathered beforehand: how many hours you put in (from your calendar,
+  not from memory), how much you spent on the AI tool (the invoice or the usage panel), how much
+  continuous integration quota was used, and the start and end dates of the stage. Write them in
+  `docs/RETROSPECTIVE_INPUTS.md`, or give them in the chat when it asks for them.
+- The list of the incidents of the stage, as you remember them, with an approximate date, to
+  contrast with what the agent pulls out of the pending items and the commits. What you remember
+  and the agent does not find is a documentation gap, and it is worth noting down.
+- `docs/PENDING.md` with the closed items documented (step 5) and `docs/DECISIONS.md` (step 6),
+  which are the source of the numbers.
+- Minimum acceptable state: the hours and the money are written down with their source. Without
+  that, the retrospective is done with adjectives.
 
 > [The stage / the project] is over. Do the retrospective with numbers, not impressions: what it
 > cost (tokens, quota, my time), how many pending items, which ones took the most rounds and why,

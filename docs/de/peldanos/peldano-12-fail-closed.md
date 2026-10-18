@@ -31,6 +31,10 @@ für das System als auch für den Agenten, der es betreibt.
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - **Erhebung der Aktionen mit Konsequenz**, so generisch benannt: was das System tut, das
   abbucht, sendet, genehmigt, löscht oder jemanden außerhalb benachrichtigt; was passiert, wenn
   es zweimal getan wird; was passiert, wenn es falsch getan wird; wie es rückgängig gemacht wird.
@@ -41,6 +45,23 @@ für das System als auch für den Agenten, der es betreibt.
 ## 2. Prompts
 
 **Zu Beginn:**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`: die Erhebung der Aktionen mit Konsequenz, geschrieben
+  mit dem Eigentümer der Domäne. Was das System tut oder tun wird, das kassiert, verschickt,
+  genehmigt, löscht oder jemandem draußen Bescheid gibt; und für jede Aktion: was passiert, wenn
+  sie zweimal gemacht wird, was passiert, wenn sie falsch gemacht wird, wie man sie rückgängig
+  macht, und wer sie machen können sollte. Die Prozesse des semantischen Baums geben dir die
+  Ausgangsliste: geh sie einen nach dem anderen durch. Der Prompt nennt sie „the survey of
+  consequential actions“, ohne Pfad: speichere sie unter diesem Namen oder sag ihm im Chat, wo sie
+  liegt.
+- Wenn der Agent eingebettet oder resident sein wird: welche Aktionen er selbst am System
+  ausführen darf, in einem eigenen Abschnitt derselben Erhebung.
+- `docs/SEMANTIC_TREE.md`, aktuell.
+- Akzeptabler Mindestzustand: jeder Prozess des Baums, der auf die Welt wirkt, steht auf der Liste
+  mit seinem „was passiert, wenn er zweimal gemacht wird“.
 
 > We are going to decide which actions of the system need a lock. Read the survey of
 > consequential actions, and go through the code looking for everything that charges, sends,
@@ -69,6 +90,14 @@ aufgelöst; für jede Aktion Umkehrbarkeit, Sperre und Rückweg; und die allgeme
 Fail-closed im Prompt ausgeschrieben, damit sie in der Tabelle und im Code bleibt.
 
 **Zum Abschluss:**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Die Tabelle, die der Agent vorgelegt hat, Sperre für Sperre mit dem Eigentümer gelesen; für jede
+  Zeile deine Bestätigung oder deine Änderung, geschrieben für die Lücken [list], [X] und [Y] des
+  Prompts.
+- Akzeptabler Mindestzustand: es gibt keine Zeile ohne Urteil. Eine nicht bestätigte Sperre ist
+  eine Sperre, die nicht umgesetzt wird.
 
 > I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves
 > that, under the doubt condition, the action does NOT happen (proved red against the version

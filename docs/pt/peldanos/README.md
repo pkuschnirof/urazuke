@@ -3,9 +3,11 @@
 Um arquivo por degrau. Todos têm o mesmo esqueleto, e o têm de propósito, para que você possa
 compará-los e para que, com o tempo, o reflexo de lê-los seja automático: o cabeçalho com a fase,
 o quando, a forma e o tamanho (obrigatório ou proporcional); para que serve; (1) o contexto
-necessário, nomeado de forma genérica; (2) os prompts, **em inglês**, cada um com sua tradução e,
-abaixo, a explicação do que estou pedindo ao modelo e por que cada cláusula está ali; (3) o
-resultado esperado, com suas características; (4) a verificação de completude, que você faz sem
+necessário, nomeado de forma genérica; (2) os prompts, **em inglês**, cada um precedido por um
+bloco **"Antes de enviar o prompt"** (os arquivos e os insumos que você tem que ter prontos antes
+de colá-lo, com o seu conteúdo e o seu estado mínimo), seguido da sua tradução e, abaixo, da
+explicação do que estou pedindo ao modelo e por que cada cláusula está ali; (3) o resultado
+esperado, com suas características; (4) a verificação de completude, que você faz sem
 ler código; (5) os sinais de alerta, os sintomas de um degrau mal subido.
 
 Os prompts em inglês são uma peça única, idêntica nas oito versões do documento;

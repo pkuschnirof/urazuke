@@ -791,7 +791,11 @@ dentro de `peldanos/`, siempre con las mismas cinco secciones:
    conversación, el de cierre. Todos llevan la misma cláusula, que es el corazón del asunto: *el
    modelo evalúa si el contexto alcanza; si no alcanza, pide todo lo que falte antes de seguir; y
    no estima ni inventa un dato que solo el negocio tiene*. El que sabe qué le falta para calcular
-   es el modelo, no un formulario.
+   es el modelo, no un formulario. Y cada prompt viene precedido de un bloque que dice **"Antes de
+   enviar el prompt"**: los archivos y los insumos que vos (o el negocio con vos) tenés que haber
+   construido antes de pegarlo, con su nombre, su contenido y el estado mínimo aceptable. El prompt
+   los nombra, el bloque te dice cómo tienen que estar hechos; sin ese bloque, el prompt menciona
+   archivos que nadie te dijo cómo escribir.
 3. **Resultado esperado**: las características detalladas del artefacto.
 4. **Verificación de completitud**: la lista de comprobaciones que hace el dueño sobre el
    artefacto, **sin leer código**. Si una da "no", el peldaño no está subido.

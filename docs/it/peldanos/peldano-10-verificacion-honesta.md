@@ -25,12 +25,26 @@ perché lo nasconda ma perché non lo considera parte della risposta.
 
 ## 1. Contesto richiesto
 
+Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
+prompt, con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
+inviare il prompt" che precede ciascuno.
+
 - Il lavoro fatto e la voce in sospeso che lo chiedeva.
 - Il patto di convivenza (gradino 1), che già vieta di annunciare ciò che non è stato fatto.
 
 ## 2. Prompt
 
 **Routine (va nel patto di convivenza; si applica a ogni rapporto):**
+
+**Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
+l'agente:
+
+- `docs/WORKING_AGREEMENT.md` (gradino 1), dove va la routine.
+- La lista di ciò che hai chiesto nella sessione, scritta da te (i punti della richiesta), per
+  confrontare il rapporto: il prompt gli chiede di coprire ogni punto uno per uno, e tu devi
+  sapere quanti erano.
+- Stato minimo accettabile: niente di più. Questa routine si incolla una volta e vale per
+  sempre.
 
 > When you report, separate three blocks: VERIFIED (what you tested, with the command and its
 > output), BELIEVED (what you think works but did not test, and why not), and BLIND SPOTS (what
@@ -54,6 +68,17 @@ prova accanto a ogni affermazione; il divieto del "fatto" secco; e le cattive no
 perché il modello tende a lasciarle per la fine o per mai.
 
 **Davanti a un tuo "è ancora rotto":**
+
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- La tua verifica, fatta nel posto in cui guardi (l'ambiente di test, il tuo browser), con ciò che
+  hai visto annotato: a quale URL, quale versione mostra il sistema se la mostra, cosa hai fatto,
+  cosa ti aspettavi, cosa è successo.
+- Il numero di versione o il commit che l'agente ha detto contenesse la correzione, copiato dal
+  suo rapporto precedente.
+- Stato minimo accettabile: puoi dirgli "guardo in [URL], vedo la versione [N], faccio [questo],
+  succede [questo]". Senza di ciò, "è ancora rotto" è un'impressione, e l'agente diagnosticherà
+  un'impressione.
 
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.

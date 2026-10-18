@@ -29,6 +29,10 @@ entiende es el que el negocio pidió.
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - Relevamiento del negocio: qué hace el cliente, quiénes usan el sistema, qué problema resuelve,
   qué no tiene que hacer. Con las entrevistas, los casos de uso o historias de usuario que puedas
   nombrar, y las entidades del negocio con sus estados, aunque estén incompletos.
@@ -39,6 +43,26 @@ entiende es el que el negocio pidió.
 ## 2. Prompts
 
 **Inicial:**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- `docs/INITIAL_SURVEY.md` (peldaño 0), completado con el relevamiento del negocio. Lo escribís
+  vos a partir de las entrevistas de la ingesta; si usaste un método (entrevistas, casos de uso,
+  historias de usuario, prototipos de pantalla), decí cuál y pegá el resultado. Tiene que tener:
+  qué hace el cliente; quiénes usan el sistema (los actores, con nombre de rol); qué problema
+  resuelve; qué NO tiene que hacer, en una sección propia, aunque tenga dos ítems; los casos de
+  uso o historias de usuario que nombra el dueño, con sus palabras, aunque sean diez líneas; las
+  entidades del negocio con sus estados ("un turno está pendiente, confirmado, cancelado"), aunque
+  estén incompletas; los dibujos o las fotos de las pantallas, si hay; las integraciones externas
+  (mensajería, pagos, otro sistema); y las decisiones ya tomadas, aunque hayan sido de palabra,
+  con fecha y quién las tomó.
+- `docs/WORKING_AGREEMENT.md` (peldaño 1), cerrado con fecha y versión.
+- Si existe un sistema anterior: acceso de lectura a su código o a su documentación, con la ruta o
+  el enlace anotado en el relevamiento.
+- Estado mínimo aceptable: el relevamiento tiene la sección "qué NO es" con al menos dos ítems, al
+  menos un caso de uso con las palabras del dueño, y al menos una entidad con sus estados. Sin
+  eso, el árbol que salga va a ser inventado, y vos no vas a tener con qué compararlo.
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -82,6 +106,17 @@ esconden las invenciones; y que separe el estado vivo en otro archivo, para que 
 convierta en historial.
 
 **De cierre:**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- `PROJECT.md`, leído entero por vos (tiene que entrar en cinco minutos), con tus correcciones
+  anotadas: lo que no es cierto, lo que no es tuyo, lo que sobra.
+- `docs/SEMANTIC_TREE.md`, recorrido nodo por nodo como si fueras el cliente: cada nodo marcado
+  como inferido tiene tu veredicto (confirmado o corregido), y anotaste los actores que faltan,
+  los estados que el negocio no usa, las pantallas que nadie pidió.
+- La lista de correcciones, escrita, que va en el hueco [list] del prompt. Si la lista está vacía
+  la primera vez, desconfiá de tu lectura, no del agente.
+- Estado mínimo aceptable: ningún nodo marcado "inferido" queda sin veredicto tuyo.
 
 > Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with
 > today's date. Add to the working agreement two rules: the change history never goes into

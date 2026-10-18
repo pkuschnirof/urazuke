@@ -28,6 +28,10 @@ tanto ao sistema quanto ao agente que o opera.
 
 ## 1. Contexto necessário
 
+O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
+prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
+prompt" que precede cada um.
+
 - **Levantamento de ações com consequência**, nomeado assim de forma genérica: o que o sistema
   faz que cobra, envia, aprova, apaga, ou avisa alguém de fora; o que acontece se for feito duas
   vezes; o que acontece se for feito errado; como se desfaz. O negócio sabe; o agente avalia se a
@@ -38,6 +42,21 @@ tanto ao sistema quanto ao agente que o opera.
 ## 2. Prompts
 
 **Inicial:**
+
+**Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
+o agente:
+
+- `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`: o levantamento de ações com consequência, escrito com o
+  dono do domínio. O que o sistema faz ou vai fazer que cobra, envia, aprova, apaga, ou avisa
+  alguém de fora; e para cada ação: o que acontece se for feita duas vezes, o que acontece se for
+  feita mal, como se desfaz, e quem deveria poder fazê-la. Os processos da árvore semântica lhe
+  dão a lista de partida: percorra-os um por um. O prompt o nomeia "the survey of consequential
+  actions", sem caminho: guarde-o com este nome ou diga no chat onde está.
+- Se o agente vai estar embutido ou residente: que ações ele mesmo pode fazer sobre o sistema,
+  numa seção à parte do mesmo levantamento.
+- `docs/SEMANTIC_TREE.md`, em dia.
+- Estado mínimo aceitável: cada processo da árvore que atua sobre o mundo está na lista com o seu
+  "o que acontece se for feito duas vezes".
 
 > We are going to decide which actions of the system need a lock. Read the survey of
 > consequential actions, and go through the code looking for everything that charges, sends,
@@ -65,6 +84,13 @@ cadeado e caminho de volta; e a regra geral do fail-closed escrita no prompt, pa
 tabela e no código.
 
 **De fechamento:**
+
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- A tabela que o agente apresentou, lida cadeado por cadeado com o dono; para cada linha, a sua
+  confirmação ou a sua mudança, escritas para os buracos [list], [X] e [Y] do prompt.
+- Estado mínimo aceitável: não há linha sem veredicto. Um cadeado não confirmado é um cadeado que
+  não vai ser implementado.
 
 > I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves
 > that, under the doubt condition, the action does NOT happen (proved red against the version

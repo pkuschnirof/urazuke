@@ -31,7 +31,7 @@ fabrique aussi la preuve, et c'est pourquoi la preuve doit se prouver elle-même
 |---|---|
 | `docs/ESCALERA_METODOLOGICA.md` | Le document principal : la thèse, d'où vient la méthode, la ligne de temps (quand on gravit chaque échelon et ce qui se passe entre-temps : infrastructure, CI/CD, ingestion des exigences, développement, tests de bout en bout, regard humain, tests humains), les seize échelons avec leur fiche, ce qui manque encore, et le glossaire. |
 | `docs/REFERENCIAS.md` | Les cas réels derrière la méthode, numérotés (« Ref. N »), avec date et preuve, pour que les procédures restent propres et que le détail reste à un clic. Comprend les chronologies des trois systèmes et la table des échecs par échelon. |
-| `docs/peldanos/peldano-NN-*.md` | Le contrat de chaque échelon : quand, contexte requis, prompts en anglais avec leur traduction, résultat attendu, vérification de complétude sans lire de code, signaux d'alarme. |
+| `docs/peldanos/peldano-NN-*.md` | Le contrat de chaque échelon : quand, contexte requis, prompts en anglais avec leur traduction et, avant chacun d'eux, le bloc « Avant d'envoyer le prompt » avec les fichiers que vous devez construire vous-même et leur contenu ; résultat attendu, vérification de complétude sans lire de code, signaux d'alarme. |
 | `docs/peldanos/README.md` | L'index des contrats. |
 | `docs/MANUAL_CURSO.md` | Le cours : calendrier, seize leçons avec tâches pratiques et prompts, projet-guide (« Turnera »), liste de mise en production. |
 | `docs/DECISIONES.md` | Les décisions du projet, avec date et mots textuels. La méthode s'applique à elle-même. |

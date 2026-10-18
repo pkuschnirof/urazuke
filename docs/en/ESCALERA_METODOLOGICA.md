@@ -788,7 +788,12 @@ own inside `peldanos/`, always with the same five sections:
    conversation, the closing one. All carry the same clause, which is the heart of the matter: *the
    model evaluates whether the context is enough; if it is not enough, it asks for everything that
    is missing before going on; and it does not estimate or invent a figure that only the business
-   has*. The one who knows what it lacks in order to compute is the model, not a form.
+   has*. The one who knows what it lacks in order to compute is the model, not a form. And every
+   prompt comes preceded by a block that says **"Before sending the prompt"**: the files and the
+   inputs that you (or the business with you) have to have built before pasting it, with their
+   name, their content and the minimum acceptable state. The prompt names them; the block tells
+   you how they have to be made. Without that block, the prompt mentions files that nobody told
+   you how to write.
 3. **Expected result**: the detailed characteristics of the artefact.
 4. **Completeness check**: the list of checks the owner does on the artefact, **without reading
    code**. If one gives "no", the step is not climbed.

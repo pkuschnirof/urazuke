@@ -25,12 +25,24 @@ de la respuesta.
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - El trabajo hecho y el pendiente que lo pedía.
 - El contrato de convivencia (peldaño 1), que ya prohíbe anunciar lo no hecho.
 
 ## 2. Prompts
 
 **Rutina (va en el contrato de convivencia; se aplica en cada reporte):**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- `docs/WORKING_AGREEMENT.md` (peldaño 1), donde va la rutina.
+- La lista de lo que pediste en la sesión, escrita por vos (los ítems del pedido), para contrastar
+  el reporte: el prompt le pide cubrir cada ítem uno por uno, y vos tenés que saber cuántos eran.
+- Estado mínimo aceptable: nada más. Esta rutina se pega una vez y rige para siempre.
 
 > When you report, separate three blocks: VERIFIED (what you tested, with the command and its
 > output), BELIEVED (what you think works but did not test, and why not), and BLIND SPOTS (what
@@ -54,6 +66,16 @@ cada afirmación; la prohibición del "listo" a secas; y las malas noticias prim
 modelo tiende a dejarlas para el final o para nunca.
 
 **Ante un "sigue roto" tuyo:**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- Tu verificación, hecha en el lugar donde mirás (el entorno de prueba, tu navegador), con lo que
+  viste anotado: en qué URL, qué versión muestra el sistema si la muestra, qué hiciste, qué
+  esperabas, qué pasó.
+- El número de versión o el commit que el agente dijo que contenía el arreglo, copiado de su
+  reporte anterior.
+- Estado mínimo aceptable: podés decirle "miro en [URL], veo la versión [N], hago [esto], pasa
+  [esto]". Sin eso, el "sigue roto" es una impresión, y el agente va a diagnosticar una impresión.
 
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.

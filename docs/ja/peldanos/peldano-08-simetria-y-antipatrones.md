@@ -24,6 +24,10 @@
 
 ## 1. 必要な文脈
 
+ここに続くのは一般的なリストです。各プロンプトの前にあなたが作り終えていなければならない具体
+的なファイルは、その内容と最低限受け入れられる状態とともに、第2節の、それぞれのプロンプトに
+先立つ「プロンプトを送る前に」の枠に書いてあります。
+
 - システムのどの部分が何を消費するかの地図：どの画面がどのサービスを読むか、どのプロセスが
   どのテーブルに書くか。なければ最初のプロンプトが構築する。
 - アンチパターンの記録 `docs/GOTCHAS.md`、空でも。
@@ -31,6 +35,19 @@
 ## 2. プロンプト
 
 **地図を構築するために（一度）：**
+
+**プロンプトを送る前に**、次のものが存在していなければなりません。作るのはあなた（または業務
+側とあなた）で、エージェントではありません：
+
+- 機能ブロックが少なくとも一つ構築されたシステム。部分と部分のあいだに契約がなければ、作る地
+  図はありません。
+- `docs/SEMANTIC_TREE.md` が最新であること：リスト（状態、種類、理由）はそこで宣言されてい
+  て、地図は木と一致しなければなりません。
+- リポジトリの外に住み、システムの何かを生産するか消費する部分の、あなたが書いたリスト（ロ
+  ボット、データベースを読む表計算、別のチームのプロセス）。エージェントには見えなくても地図
+  に載せてもらうためです。一つもないなら、ないと言ってください。
+- 最低限受け入れられる状態：エージェントがリポジトリ全体を読めること、そして外に何があるかを
+  あなたが伝えたこと。
 
 > Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
 > a file format, a list of values), who produces it and who consumes it. If there are parts of
@@ -48,6 +65,13 @@
 
 **ルーチン（共働の約束に入れる）：**
 
+**プロンプトを送る前に**、次のものを手元に用意しておいてください：
+
+- `docs/PRODUCER_CONSUMER_MAP.md`、構築され、あなたが見直したもの：契約を一つ選んで、その両
+  側があなたの知っているものかを確かめてください。
+- `docs/WORKING_AGREEMENT.md`、ルーチンが入る先。
+- 最低限受け入れられる状態：地図が存在し、少なくとも最初のブロックの契約が載っていること。
+
 > Before closing any change that touches a contract, look up every consumer in the map and
 > update them in the same commit. Always prefer that the producer defines the list (columns,
 > causes, states) and the consumer reads it, rather than each keeping its own copy. If the map
@@ -62,6 +86,15 @@
 のルール、そして地図が使われるにつれて自然に保守されること。
 
 **何かが二度目に壊れたとき：**
+
+**プロンプトを送る前に**、次のものを手元に用意しておいてください：
+
+- 二度目だという証拠：一度目の保留項目かコミット。あなたが突き止めて（`docs/PENDING.md` の閉
+  じた保留項目から探して）、プロンプトと一緒に貼れるようにしておきます。その参照がなければ、
+  エージェントは何も検出できない一般的なアンチパターンを記録します。
+- `docs/GOTCHAS.md`、空でも作ってあること。見出しに形式を書いて：匂い、根本原因、直し方、次
+  はどう早く気づくか。
+- 最低限受け入れられる状態：一度目を日付か保留項目の番号で名指しできること。
 
 > This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if

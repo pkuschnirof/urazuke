@@ -28,7 +28,7 @@ Autor auch die Belege herstellt, und deshalb muss der Beleg sich selbst beweisen
 |---|---|
 | `ESCALERA_METODOLOGICA.md` | Das Hauptdokument: die These, woher die Methode kommt, die Zeitlinie (wann jeder Schritt erklommen wird und was dazwischen passiert: Infrastruktur, CI/CD, Anforderungsaufnahme, Entwicklung, Ende-zu-Ende-Tests, menschlicher Blick, menschliche Tests), die sechzehn Schritte mit ihrer Karte, was noch fehlt, und das Glossar. |
 | `REFERENCIAS.md` | Die realen Fälle hinter der Methode, nummeriert („Ref. N“), mit Datum und Beleg, damit die Verfahren sauber bleiben und das Detail einen Klick entfernt ist. Enthält die Chronologien der drei Systeme und die Tabelle der Fehlschläge pro Schritt. |
-| `peldanos/peldano-NN-*.md` | Der Vertrag jedes Schritts: wann, benötigter Kontext, Prompts auf Englisch mit ihrer Übersetzung, erwartetes Ergebnis, Vollständigkeitsprüfung ohne Code zu lesen, Warnsignale. |
+| `peldanos/peldano-NN-*.md` | Der Vertrag jedes Schritts: wann, benötigter Kontext, Prompts auf Englisch mit ihrer Übersetzung und, vor jedem einzelnen, der Block „Bevor du den Prompt schickst“ mit den Dateien, die du selbst bauen musst, und ihrem Inhalt; erwartetes Ergebnis, Vollständigkeitsprüfung ohne Code zu lesen, Warnsignale. |
 | `peldanos/README.md` | Der Index der Verträge. |
 | `MANUAL_CURSO.md` | Der Kurs: Kalender, sechzehn Lektionen mit praktischen Aufgaben und Prompts, Leitprojekt („Turnera“), Produktionsreife-Liste. |
 | `../DECISIONES.md` | Die Entscheidungen des Projekts, mit Datum und wörtlichen Worten. Die Methode wird auf sich selbst angewendet. Nur auf Spanisch. |

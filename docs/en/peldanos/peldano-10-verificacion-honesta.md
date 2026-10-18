@@ -25,12 +25,25 @@ not consider it part of the answer.
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - The work done and the pending item that asked for it.
 - The working agreement (step 1), which already forbids announcing what was not done.
 
 ## 2. Prompts
 
 **Routine (goes in the working agreement; applies to every report):**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- `docs/WORKING_AGREEMENT.md` (step 1), where the routine goes.
+- The list of what you asked for in the session, written by you (the items of the request), to
+  contrast the report against: the prompt asks it to cover every item one by one, and you have to
+  know how many there were.
+- Minimum acceptable state: nothing else. This routine is pasted once and rules forever.
 
 > When you report, separate three blocks: VERIFIED (what you tested, with the command and its
 > output), BELIEVED (what you think works but did not test, and why not), and BLIND SPOTS (what
@@ -46,6 +59,17 @@ next to every claim; the ban on a bare "done"; and the bad news first, because t
 leave it for the end or for never.
 
 **When you say "it is still broken":**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- Your verification, done in the place where you look (the test environment, your browser), with
+  what you saw written down: at what URL, what version the system shows if it shows one, what you
+  did, what you expected, what happened.
+- The version number or the commit the agent said contained the fix, copied from its previous
+  report.
+- Minimum acceptable state: you can tell it "I look at [URL], I see version [N], I do [this],
+  [this] happens". Without that, "it is still broken" is an impression, and the agent is going to
+  diagnose an impression.
 
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.

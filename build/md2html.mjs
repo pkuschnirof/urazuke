@@ -49,6 +49,9 @@ function inline(s) {
 const slug = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const RE_PELDANO = /^(Pelda[nñ]o|Step|Passo|Degrau|[ÉE]tape|Schritt|ステップ|步骤|第)\s*\d+/;
 const RE_REF = /^Ref\.\s*(\d+)/;
+// Bloque "Antes de enviar el prompt": un párrafo que empieza con esa etiqueta (en el idioma del
+// documento) más la lista que lo sigue se envuelven en una caja propia, distinta de la del prompt.
+const RE_ANTES = /^\*\*(Antes de enviar (el|o) prompt|Before sending the prompt|Avant d.envoyer le prompt|Bevor du den Prompt schickst|Prima di inviare il prompt|プロンプトを送る前に|发送提示词之前)/;
 
 let out = [];
 let toc = [];
@@ -56,15 +59,31 @@ let i = 0;
 let para = [];
 let enPeldano = false;
 let ultimoPrompt = -1;   // índice en `out` del último bloque de prompt (para colgarle la traducción)
-const flushPara = () => { if (para.length) { out.push(`<p>${inline(para.join(' '))}</p>`); para = []; } };
-const renderQuote = q => q.join('\n').split(/\n\s*\n/).map(x => `<p>${inline(x.replace(/\n/g, ' ').trim())}</p>`).join('');
+let enAntes = false;     // dentro de una caja "Antes de enviar el prompt" todavía abierta
+const cerrarAntes = () => { if (enAntes) { out.push('</div>'); enAntes = false; } };
+// Unir líneas envueltas: con espacio, salvo cuando el corte cae entre dos caracteres CJK (japonés,
+// chino), donde el espacio sobra y se nota.
+const CJK = /[\u3000-\u30ff\u3400-\u9fff\uf900-\ufaff\uff00-\uffef]/;
+const unir = ls => ls.reduce((a, l) => {
+  if (!a) return l;
+  const sep = (CJK.test(a.slice(-1)) && CJK.test(l.charAt(0))) ? '' : ' ';
+  return a + sep + l;
+}, '');
+const flushPara = () => {
+  if (!para.length) return;
+  const txt = unir(para);
+  if (RE_ANTES.test(txt)) { cerrarAntes(); out.push(`<div class="antes"><p>${inline(txt)}</p>`); enAntes = true; }
+  else out.push(`<p>${inline(txt)}</p>`);
+  para = [];
+};
+const renderQuote = q => q.join('\n').split(/\n\s*\n/).map(x => `<p>${inline(unir(x.split('\n').map(l => l.trim()).filter(Boolean)))}</p>`).join('');
 
 while (i < md.length) {
   const line = md[i];
-  if (/^---\s*$/.test(line)) { flushPara(); out.push('<hr>'); i++; continue; }
+  if (/^---\s*$/.test(line)) { flushPara(); cerrarAntes(); out.push('<hr>'); i++; continue; }
   const h = /^(#{1,3}) (.*)$/.exec(line);
   if (h) {
-    flushPara();
+    flushPara(); cerrarAntes();
     const lvl = h[1].length, txt = h[2];
     const r = RE_REF.exec(txt);
     const id = r ? `ref-${r[1]}` : slug(txt);
@@ -96,17 +115,22 @@ while (i < md.length) {
     while (i < md.length) {
       const m = /^(\s*)([-*]|\d+\.) (.*)$/.exec(md[i]);
       if (m) { items.push(m[3]); i++; continue; }
-      if (/^\s{2,}\S/.test(md[i]) && items.length) { items[items.length - 1] += ' ' + md[i].trim(); i++; continue; }
+      if (/^\s{2,}\S/.test(md[i]) && items.length) { items[items.length - 1] = unir([items[items.length - 1], md[i].trim()]); i++; continue; }
       break;
     }
     const tag = ordered ? 'ol' : 'ul';
     const ficha = (!ordered && enPeldano) ? ' class="ficha"' : '';
     if (ficha) enPeldano = false;
-    out.push(`<${tag}${ficha}>` + items.map(x => `<li>${inline(x)}</li>`).join('') + `</${tag}>`);
+    // Una lista numerada que no empieza en 1 (porque un bloque la partió) conserva su número.
+    const inicio = ordered ? parseInt(li[2], 10) : 1;
+    const st = (ordered && inicio > 1) ? ` start="${inicio}"` : '';
+    if (ordered) cerrarAntes();    // una caja "antes" sin lista propia termina en el paso siguiente
+    out.push(`<${tag}${ficha}${st}>` + items.map(x => `<li>${inline(x)}</li>`).join('') + `</${tag}>`);
+    if (!ordered) cerrarAntes();   // la caja "antes" termina con su lista
     continue;
   }
   if (/^> ?/.test(line)) {
-    flushPara();
+    flushPara(); cerrarAntes();
     const q = [];
     while (i < md.length && /^> ?/.test(md[i])) { q.push(md[i].replace(/^> ?/, '')); i++; }
     const tr = /^\[([a-z]{2})\]\s*$/.exec(q[0] || '');
@@ -129,7 +153,7 @@ while (i < md.length) {
   if (/^\s*$/.test(line)) { flushPara(); i++; continue; }
   para.push(line.trim()); i++;
 }
-flushPara();
+flushPara(); cerrarAntes();
 
 let body = '<section>' + out.join('\n') + '</section>';
 body = body.replace('<section></section><section>', '<section>');
@@ -185,6 +209,12 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 .prompt.tr::before{content:'${UI[3].replace(/'/g, "\\'")}';color:#3f6b2e}
 .trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
 .trbtn:hover{background:#efe0b8}
+.antes{margin:1em 0 .8em;padding:.7em 1.1em .45em;background:#eef2f7;border:1px solid #c9d3e3;border-left:5px solid #3f5a8a;border-radius:6px;font-size:.95em}
+.antes>p:first-child{margin:.15em 0 .45em}
+.antes>p:first-child strong{display:inline-block;color:#2c4470;text-transform:uppercase;letter-spacing:.5px;font:700 .82em/1.5 Segoe UI,Arial,sans-serif;margin-right:.2em}
+.antes ul{margin:.3em 0 .45em;padding-left:1.4em}
+.antes li{margin:.4em 0}
+.antes code{background:#fff}
 .glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
 .glos p strong{color:#3a2f00}
 .meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}

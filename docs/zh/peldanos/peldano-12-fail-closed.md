@@ -21,6 +21,9 @@
 
 ## 1. 所需上下文
 
+下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第
+2 节里，在每条提示词前面的"发送提示词之前"方框里。
+
 - **有后果动作的调研**，以通用方式这么称呼：系统做的哪些事会收费、发送、批准、删除或通知外
   部的人；做两次会怎样；做错会怎样；怎么撤销。业务知道；代理评估清单是否完整并提问。语义
   树有帮助：每个有后果的流程都在那里。
@@ -29,6 +32,17 @@
 ## 2. 提示词
 
 **初始：**
+
+**发送提示词之前**，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：
+
+- `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`：有真实后果的动作调研，和领域所有者一起写。系统做或
+  将要做的事情里，哪些会收钱、发送、批准、删除，或者通知外面的某个人；以及对每个动作：做两次
+  会怎么样，做错了会怎么样，怎么撤销，谁应该有权做。语义树里的流程给你一份起始清单：一个一个
+  走过去。提示词把它叫作 "the survey of consequential actions"，没有给路径：就用这个名字保存，
+  或者在聊天里告诉它在哪儿。
+- 如果代理会是嵌入的或驻留的：它自己能对系统做哪些动作，写在同一份调研的单独一节里。
+- `docs/SEMANTIC_TREE.md`，保持最新。
+- 最低可接受状态：树里每个对世界产生作用的流程都在清单上，并附有它的"做两次会怎么样"。
 
 > We are going to decide which actions of the system need a lock. Read the survey of
 > consequential actions, and go through the code looking for everything that charges, sends,
@@ -51,6 +65,12 @@
 示词的失败即关闭总规则，让它留在表里和代码里。
 
 **收尾：**
+
+**发送提示词之前**，你手边必须有这些：
+
+- 代理呈上的那张表，和所有者一起一把锁一把锁地读过；对每一行，你的确认或你的修改，写好准备填
+  进提示词的 [list]、[X] 和 [Y] 三个空。
+- 最低可接受状态：没有哪一行缺裁决。一把没有确认的锁，就是一把不会被实现的锁。
 
 > I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves
 > that, under the doubt condition, the action does NOT happen (proved red against the version

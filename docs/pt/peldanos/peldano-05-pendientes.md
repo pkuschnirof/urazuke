@@ -38,6 +38,10 @@ novas do manual, e a resposta a "por que o sistema faz isto?" seis meses depois.
 
 ## 1. Contexto necessário
 
+O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
+prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
+prompt" que precede cada um.
+
 - O pedido do cliente para o bloco, em prosa, tal como ele o diria, com suas ambiguidades. Se
   você fez casos de uso ou histórias de usuário na ingestão, melhor: são a unidade natural de um
   bloco.
@@ -48,6 +52,23 @@ novas do manual, e a resposta a "por que o sistema faz isto?" seis meses depois.
 ## 2. Prompts
 
 **Para abrir um bloco:**
+
+**Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
+o agente:
+
+- O pedido do cliente para este bloco, escrito em prosa, tal como ele o diria, com suas
+  ambiguidades. Vai em `docs/INITIAL_SURVEY.md` sob um título com o nome do bloco, ou num arquivo
+  próprio (por exemplo `docs/blocks/BLOCK_01_REQUEST.md`); o prompt diz "the client's request for
+  this block" sem caminho, então diga no chat onde está. Se na ingestão você escreveu casos de uso
+  ou histórias de usuário, vão ali: são a unidade natural do bloco. Se o dono lhe deu uma
+  prioridade, também. Não o "melhore" você: as ambiguidades são o que o agente tem que perguntar.
+- `docs/SEMANTIC_TREE.md` (degrau 2), em dia: cada pendência vai pender de um nó dali.
+- `PROJECT.md` e `docs/STATUS.md` (degrau 2), em dia.
+- Se houve auditorias (degrau 11) ou testes humanos (a vista humana no fechamento do bloco
+  anterior): seus achados, em `docs/AUDIT_[data].md` ou anotados no estado vivo, porque são
+  pendências candidatas para este bloco.
+- Estado mínimo aceitável: o pedido do bloco está escrito com as palavras do cliente, e a árvore
+  tem os nós desse bloco, ou o pedido deixa ver quais faltam.
 
 > We are going to turn everything that must be done in this block into numbered pending items,
 > each one carrying its full specification. Read `PROJECT.md`, `docs/SEMANTIC_TREE.md`, the
@@ -88,6 +109,15 @@ roteiro do teste de ponta a ponta do degrau 7; e uma ordem proposta com sua raz�
 confirme ou mude.
 
 **Rotina de cada sessão (vai no contrato de convivência):**
+
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- `docs/PENDING.md` com o bloco especificado e lido por você, pendência por pendência, como se
+  você fosse o cliente, com as suas correções já feitas (é a tarefa mais importante do degrau, e a
+  que mais tentação dá de pular).
+- `docs/WORKING_AGREEMENT.md` (degrau 1), onde esta rotina se acrescenta.
+- Estado mínimo aceitável: nenhuma pendência tem uma especificação de uma linha. Se tem, não
+  comece a construir: faça-a completar primeiro.
 
 > Before touching any code, open `docs/PENDING.md`, tell me which item you are taking and why,
 > and re-read its specification. Every commit cites its pending item. A pending item is closed

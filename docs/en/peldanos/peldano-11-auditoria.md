@@ -27,6 +27,10 @@ day were detected [Ref. 40](../REFERENCIAS.md#ref-40).
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - The complete repository, read-only.
 - Production or the test environment, read-only (database, logs).
 - The previous audit, if there was one, to measure what changed.
@@ -35,6 +39,22 @@ day were detected [Ref. 40](../REFERENCIAS.md#ref-40).
 ## 2. Prompts
 
 **Opening (to an agent different from the builder, if possible):**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- A new session of the agent, different from the builder's: a clean clone of the repository in
+  another folder and, if your tool allows it, a different instructions file that only says "you
+  are an auditor; you did not build this system". Without this, the auditor shares the builder's
+  assumptions and confirms them.
+- Read-only access for that session to the test environment or to production: database, logs.
+  Read-only credentials, outside the repository, with the name of the variable said in the chat.
+- The scope, decided by you, for the [scope] gap: integrity, security, performance, code quality,
+  or everything.
+- The previous audit, if there was one (`docs/AUDIT_[date]` from last time), so that it measures
+  what changed.
+- Minimum acceptable state: the auditor's session is not the builder's, and it has read-only
+  access.
 
 > Audit this system for [scope]. Read-only: change nothing except writing your report to
 > `docs/AUDIT_[date].md`. If auditing some part requires access you lack (the database, the
@@ -52,6 +72,15 @@ actionable without re-reading the report; grades per dimension, to compare with 
 audit; and the P0 findings already turned into proposed pending items.
 
 **Closing (to the builder):**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- `docs/AUDIT_[date].md`, read by you, and two findings at random verified with the auditor (ask
+  it for the command, for the line; it has to be able to show them).
+- The builder's session open: this prompt goes to the builder, not to the auditor, with the date
+  of the file put into the gap.
+- Minimum acceptable state: you read the report, you know how many P0s and P1s there are, and you
+  are going to count the pending items it opens.
 
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.

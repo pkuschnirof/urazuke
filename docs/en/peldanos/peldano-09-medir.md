@@ -29,6 +29,10 @@ in session, correcting the agent, before they became doctrine [Ref. 45](../REFER
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - The hypothesis, yours or the agent's: "I think the problem is X", "there must be about a
   hundred".
 - Access to what is to be measured: the code, the database read-only, the log.
@@ -37,6 +41,24 @@ in session, correcting the agent, before they became doctrine [Ref. 45](../REFER
 ## 2. Prompts
 
 **Opening:**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- The hypothesis, written in one sentence, yours or taken from the agent: "I think the day view
+  runs one database query per appointment", "there must be about a hundred loops". It goes into
+  the [X] gap of the prompt, and the quantity to measure into the other gap.
+- Access to what is going to be measured: the code (it already has it); the database read-only,
+  if the measurement is over real data, with the connection string outside the repository and the
+  name of the variable said in the chat; the log, with its path.
+- The meters that already exist in the repository, if there are any, named, so that the agent
+  reuses them instead of making another one.
+- A known case for the meter's test: a situation where you know the answer in advance ("with zero
+  appointments it has to count exactly the two base queries"). If none occurs to you, ask the
+  agent to propose one, but validate it yourself: a meter verified against a case that the meter
+  itself invented is not verified.
+- Minimum acceptable state: the hypothesis fits in one sentence and there is a known case to
+  verify the instrument against.
 
 > Before building anything, we are going to measure. The hypothesis is: [X]. Write a meter (a
 > script that lives in the repository) that measures [the quantity], and a test for the meter
@@ -57,6 +79,14 @@ measure, then propose.
 
 **When there is a budget:**
 
+**Before sending the prompt**, you have to have this at hand:
+
+- The measured number, which you ran yourself with the command the agent gave you, and which gave
+  you the same. If you did not run it, do not set a budget on it.
+- The margin you are willing to give, decided by you: a little more than what was measured, not
+  double "just in case".
+- Minimum acceptable state: you ran the meter yourself.
+
 > Set the budget for [queries / loops / time] on this path at the measured value plus a small
 > margin, and protect it with a test that fails if it is exceeded. Tell me the number and the
 > margin.
@@ -66,6 +96,14 @@ and that it has a test that fails if it is exceeded. That way a performance regr
 the test suite and not in production [Ref. 37](../REFERENCIAS.md#ref-37).
 
 **When the one who planned gave numbers (rule five):**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- A plan from the agent with numbers inside it ("there are 121 loops", "it is 27 queries"), in
+  sight in the conversation.
+- The meter that measures that quantity, already existing (the opening prompt of this step). If
+  there is no meter for that number, first the opening prompt and then this one.
+- Minimum acceptable state: for every number in the plan you know which meter verifies it.
 
 > Before executing the plan, verify every number the plan asserts with the meter. If any does
 > not match, stop and tell me; do not execute on a wrong number.

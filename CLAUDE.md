@@ -28,13 +28,19 @@ yujin.app/urazuke.
 ## Estructura de los contratos (`docs/peldanos/`)
 
 Encabezado con tramo, **cuándo**, forma y tamaño; "Para qué sirve"; y cinco secciones: (1)
-contexto requerido, genérico, sin formularios; (2) prompts en inglés, cada uno seguido de su
+contexto requerido, genérico, sin formularios, con un párrafo que remite a los bloques de la
+sección 2; (2) prompts en inglés, cada uno **precedido** por un bloque que empieza con `**Antes de
+enviar el prompt**` (párrafo + lista: los archivos e insumos que el lector construye antes de
+pegarlo, con nombre, contenido, quién lo hace y estado mínimo aceptable; D-022) y **seguido** de su
 traducción en un bloque `> [es]` (o `> [xx]` en cada traducción) y de "Qué le estoy pidiendo";
 (3) resultado esperado; (4) verificación de completitud sin leer código; (5) señales de alarma.
 Todos los prompts llevan la cláusula de completitud (evaluá si alcanza, pedí lo que falte, no
 estimes) y terminan con "Reply in my language". Son UNA pieza en inglés, idéntica en las ocho
 versiones; `build/prompts.mjs` la extrae y falla si una traducción la alteró. Los bloques `> [xx]`
-no cuentan como prompts; el HTML los muestra con un botón "Traducir".
+no cuentan como prompts; el HTML los muestra con un botón "Traducir". El conversor reconoce la
+etiqueta del bloque "antes" en cada idioma (`RE_ANTES` en `build/md2html.mjs`) y lo dibuja en una
+caja propia; en las traducciones, la etiqueta es la del idioma, con la misma forma. El manual
+tiene el mismo bloque antes de cada prompt de cada lección.
 
 ## La línea de tiempo
 

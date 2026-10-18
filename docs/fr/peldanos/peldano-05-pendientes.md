@@ -40,6 +40,9 @@ manuel, et la réponse à « pourquoi le système fait-il cela ? » six mois plu
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - La demande du client pour le bloc, en prose, telle qu'il la dirait, avec ses ambiguïtés. Si vous
   avez rédigé des cas d'utilisation ou des récits utilisateur pendant l'ingestion, tant mieux : ce
   sont l'unité naturelle d'un bloc.
@@ -51,6 +54,24 @@ manuel, et la réponse à « pourquoi le système fait-il cela ? » six mois plu
 
 **Pour ouvrir un bloc :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- La demande du client pour ce bloc, écrite en prose, telle qu'il la dirait, avec ses ambiguïtés.
+  Elle va dans `docs/INITIAL_SURVEY.md` sous un titre portant le nom du bloc, ou dans un fichier à
+  part (par exemple `docs/blocks/BLOCK_01_REQUEST.md`) ; le prompt dit « the client's request for
+  this block » sans chemin, alors dites-lui dans le chat où elle est. Si vous avez écrit des cas
+  d'utilisation ou des récits utilisateur pendant l'ingestion, ils vont là : ce sont l'unité
+  naturelle du bloc. Si le propriétaire vous a donné une priorité, elle aussi. Ne l'« améliorez »
+  pas vous-même : les ambiguïtés sont ce que l'agent doit demander.
+- `docs/SEMANTIC_TREE.md` (échelon 2), à jour : chaque élément en attente va s'accrocher à un
+  nœud de là.
+- `PROJECT.md` et `docs/STATUS.md` (échelon 2), à jour.
+- S'il y a eu des audits (échelon 11) ou des tests humains (la vue humaine à la clôture du bloc
+  précédent) : leurs constats, dans `docs/AUDIT_[date].md` ou notés dans l'état vivant, parce que
+  ce sont des éléments en attente candidats pour ce bloc.
+- État minimum acceptable : la demande du bloc est écrite avec les mots du client, et l'arbre a
+  les nœuds de ce bloc, ou la demande laisse voir lesquels manquent.
 > We are going to turn everything that must be done in this block into numbered pending items,
 > each one carrying its full specification. Read `PROJECT.md`, `docs/SEMANTIC_TREE.md`, the
 > client's request for this block, and whatever is in `docs/STATUS.md`. If the request is
@@ -92,6 +113,14 @@ l'échelon 7 ; et un ordre proposé avec sa raison, pour que vous le confirmiez 
 
 **Routine de chaque session (va dans le contrat de collaboration) :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- `docs/PENDING.md` avec le bloc spécifié et lu par vous, élément par élément, comme si vous étiez
+  le client, avec vos corrections déjà faites (c'est la tâche la plus importante de l'échelon, et
+  celle qui donne le plus envie d'être sautée).
+- `docs/WORKING_AGREEMENT.md` (échelon 1), où cette routine s'ajoute.
+- État minimum acceptable : aucun élément en attente n'a une spécification d'une ligne. S'il en a
+  une, ne commencez pas à construire : faites-la compléter d'abord.
 > Before touching any code, open `docs/PENDING.md`, tell me which item you are taking and why,
 > and re-read its specification. Every commit cites its pending item. A pending item is closed
 > with written evidence (the test counts red and green, the screenshot, the measured number),

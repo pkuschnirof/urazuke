@@ -25,6 +25,9 @@ quelqu'un sans mémoire.
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - Rien du projet : c'est le premier fichier.
 - De vous : vos préférences de travail (langue, comment vous voulez qu'on vous pose des questions,
   ce que vous considérez comme une perte de votre temps, quel niveau d'autonomie vous donnez à
@@ -34,6 +37,22 @@ quelqu'un sans mémoire.
 
 **Initial :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- Rien du projet : c'est le premier fichier qui s'écrit. Si vous avez déjà fait l'échelon 0,
+  `docs/ELIGIBILITY.md` existe et il est bon que l'agent le voie, mais ce n'est pas nécessaire.
+- Vos préférences de travail, pensées avant de commencer et notées dans une liste courte que vous
+  avez sous la main (sur un papier, ou dans `docs/MY_PREFERENCES.md` si vous voulez qu'elle reste
+  dans le dépôt) : dans quelle langue vous voulez la conversation ; à quel point vous voulez qu'il
+  vous interroge (peu et avec une recommandation, ou beaucoup) ; ce que vous considérez comme une
+  perte de votre temps ; quel niveau d'autonomie vous lui donnez (peut-il faire des commits tout
+  seul ? peut-il déployer vers le test tout seul ? jamais vers la production ?) ; ce que vous ne
+  tolérez pas. L'agent va vous interroger là-dessus ; la liste est là pour que vous répondiez en
+  une ligne et que vous n'improvisiez pas.
+- Le dossier du projet créé et l'agent ouvert dedans.
+- État minimum acceptable : vous savez répondre à chacune de ces cinq questions. Le contrat qui en
+  sortira sera aussi bon que vos réponses.
 > Before we write any code, we are going to set the working agreement between you and me.
 > Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
 > what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
@@ -66,6 +85,15 @@ connaît pas la personne avec qui il va travailler.
 
 **De clôture :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- Le brouillon de `docs/WORKING_AGREEMENT.md` que l'agent a écrit, lu en entier par vous. Pour
+  chaque règle qu'il a proposée, votre verdict : vous l'acceptez ou vous la rejetez, et si vous la
+  rejetez, une raison d'une ligne. Cela va dans les trous [X, Y] et [Z] du prompt, et c'est vous
+  qui les remplissez.
+- Les réponses à ce qu'il vous a demandé sur votre façon de travailler, déjà données dans le chat.
+- État minimum acceptable : aucune règle proposée ne reste sans verdict. Une règle que vous n'avez
+  ni acceptée ni rejetée reste dans le contrat comme si vous l'aviez acceptée.
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.

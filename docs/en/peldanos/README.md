@@ -3,8 +3,10 @@
 One file per step. They all have the same skeleton, and they have it on purpose, so that you can
 compare them and so that, over time, the reflex of reading them becomes automatic: the header
 with the stretch, the when, the form and the size (mandatory or proportional); what it is for;
-(1) the required context, named generically; (2) the prompts, **in English**, each followed by
-the explanation of what I am asking the model for and why each clause is there; (3) the expected
+(1) the required context, named generically; (2) the prompts, **in English**, each one preceded
+by a **"Before sending the prompt"** block (the files and the inputs you have to have made
+yourself before pasting it, with their content and their minimum state) and followed by the
+explanation of what I am asking the model for and why each clause is there; (3) the expected
 result, with its characteristics; (4) the completeness check, which you do without reading code;
 (5) the warning signs, the symptoms of a badly climbed step.
 

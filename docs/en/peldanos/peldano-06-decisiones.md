@@ -27,6 +27,10 @@ from my tool [Ref. 5](../REFERENCIAS.md#ref-5).
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - The conversation with the owner: it is the only context. The agent cannot decide business
   rules.
 - An agreed place where decisions are written: the commit message, the pending item's
@@ -35,6 +39,19 @@ from my tool [Ref. 5](../REFERENCIAS.md#ref-5).
 ## 2. Prompts
 
 **Routine (goes in the working agreement):**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- `docs/WORKING_AGREEMENT.md` (step 1), where the routine goes.
+- `docs/DECISIONS.md`, created even if it is empty, with the format in the header: the date, who
+  decided, the literal words, the pending item that needed it. You create it, or you ask the
+  agent for it in the same session; what matters is that the agreed place exists before the first
+  decision.
+- You, available. This routine only works if, when the agent stops and asks, somebody answers in
+  hours and not in weeks. If the domain owner is another person, agree with them on the channel
+  and the response time before pasting the prompt.
+- Minimum acceptable state: the register exists and there is somebody who decides.
 
 > Whenever implementing something requires a business rule that is not written down, or you
 > must choose between two approaches that change what the user sees, stop and ask me, in prose,
@@ -51,6 +68,15 @@ register), not in an "improved" paraphrase; and, for when you do not answer, the
 option marked "by omission", which is what allows moving on without the decision disappearing.
 
 **Closing (each decision):**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- The agent's question, read, with its recommendation and its alternative.
+- Your decision, consulted with the domain owner if it is not you, drafted in one sentence with
+  your exact words, the ones you want to stay forever (they are going to be in the commit, in the
+  pending item and in the register), and the date.
+- Minimum acceptable state: the sentence is written before pasting the prompt; it is not
+  improvised in the chat. A rule paraphrased afterwards is a different rule.
 
 > Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
 

@@ -27,6 +27,10 @@ imposible.
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - **Relevamiento de entornos y accesos**, en forma genérica: qué entornos hay (prueba,
   producción), dónde corren, quién tiene acceso, cómo se promueve algo de uno a otro, qué secretos
   existen y dónde viven hoy, cuánta cuota de integración continua hay. El agente evalúa si alcanza
@@ -36,6 +40,22 @@ imposible.
 ## 2. Prompts
 
 **Inicial:**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- `docs/ENVIRONMENTS_SURVEY.md` (peldaño 4), completado con lo que falta para producción: el
+  dominio y quién lo administra; dónde van a vivir los secretos en el servidor (archivo de
+  entorno, bóveda) y cuáles son (el nombre, nunca el valor); cómo se promueve hoy algo de prueba a
+  producción, si hay algo; quién puede tocar producción; cuánta cuota de integración continua
+  tenés (el límite del plan de tu proveedor) y cuánta consumiste; cómo se haría una vuelta atrás
+  hoy. El prompt lo nombra "the environments and access survey": decile dónde está.
+- El acceso a producción para el agente, decidido por vos: cuál, con qué credencial, y la
+  credencial fuera del repositorio y del chat.
+- El esqueleto con su integración continua y su despliegue a prueba funcionando (peldaño 4), y
+  `docs/STATUS.md` con los comandos.
+- Estado mínimo aceptable: sabés dónde van a vivir los secretos y cuánta cuota te queda. Si no
+  sabés la cuota, averiguala antes: este peldaño existe en parte por eso.
 
 > We are going to close the path to production. Read the environments and access survey.
 > Evaluate whether you have what is needed to deploy to production safely (access, domain,
@@ -69,6 +89,16 @@ infraestructura.
 
 **Rutina de cada despliegue:**
 
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- `docs/WORKING_AGREEMENT.md`, donde va la rutina.
+- `docs/DEPLOYMENT.md` (el prompt inicial de este peldaño), escrito y leído por vos: ¿lo podrías
+  seguir solo?
+- Antes de cada despliegue real, además: la batería completa de punta a punta en verde con la
+  versión exacta (peldaño 7, cierre de bloque), y la auditoría hecha si es el primer despliegue
+  (peldaño 11).
+- Estado mínimo aceptable: la vuelta atrás se probó al menos una vez antes de que haya usuarios.
+
 > Before touching production: the test environment is green with the same version; the
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
@@ -84,6 +114,15 @@ atrás lista, cambios de configuración anunciados) y las dos pruebas posteriore
 corriendo y una verificación de punta a punta sin escribir nada).
 
 **Si un secreto apareció en el chat o en un commit:**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- El secreto identificado: cuál es (su nombre, nunca su valor), dónde apareció (el chat, un
+  commit, un log) y cuándo. Si apareció en un commit, el commit.
+- Tu acceso al lugar donde se genera (el panel del proveedor), por si el agente no puede rotarlo
+  solo. La rotación la hacés vos o la hace él con tu credencial, pero no se pospone.
+- Estado mínimo aceptable: podés nombrar el secreto y dónde se vio. Y la regla sin excepciones:
+  este prompt no se manda "más tarde".
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.

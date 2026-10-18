@@ -30,6 +30,10 @@ no fechamento de cada bloco, e todos os fluxos com a versão exata antes da prod
 
 ## 1. Contexto necessário
 
+O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
+prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
+prompt" que precede cada um.
+
 - A mudança já implementada (por padrão os testes vêm depois de implementar; "primeiro o teste"
   fica como opção para escopos pequenos e bem definidos).
 - A pendência que origina a mudança, com seus critérios de aceitação e seu "como se verifica".
@@ -38,6 +42,24 @@ no fechamento de cada bloco, e todos os fluxos com a versão exata antes da prod
 ## 2. Prompts
 
 **Rotina (vai no contrato de convivência; aplica-se em cada mudança):**
+
+**Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
+o agente:
+
+- A pendência que está sendo fechada, com a sua especificação completa em `docs/PENDING.md`; em
+  particular, seus critérios de aceitação na forma "dado, quando, então" e o seu "como se
+  verifica", que são o roteiro do teste. Se a pendência não os tem, volte ao degrau 5 antes de
+  pedir o teste.
+- A mudança já implementada pelo agente (o método testa depois de implementar, salvo que você
+  escolha "primeiro o teste" para um escopo pequeno e bem definido).
+- A bateria existente e o comando para rodá-la, anotados em `docs/STATUS.md` (degrau 4).
+- O ambiente de teste rodando e acessível para o agente, com dados de teste suficientes para o
+  fluxo que se toca. Se o fluxo precisa de dados que não existem (um paciente, uma consulta de
+  ontem), carregue-os você ou peça que ele os crie como parte do teste; o que ele não pode fazer é
+  simulá-los.
+- `docs/WORKING_AGREEMENT.md`, onde vai a rotina na primeira vez.
+- Estado mínimo aceitável: a especificação tem critérios de aceitação, e a bateria roda com um
+  comando conhecido.
 
 > To close this pending item I need evidence, not your word. (1) Write the test that proves what
 > the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
@@ -72,6 +94,18 @@ mensagem de commit com os números deixa a evidência onde vive o código.
 
 **No fechamento de cada bloco e antes de cada implantação em produção:**
 
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- Todas as pendências do bloco fechadas com a rotina (vermelho, verde, regressão, ponta a ponta do
+  fluxo).
+- A versão exata que vai ser promovida, identificada (número de versão ou commit) e implantada no
+  ambiente de teste; diga-a no chat se não está em `docs/STATUS.md`.
+- A lista de fluxos que existem até agora, escrita por você a partir dos casos de uso da árvore
+  semântica, para contrastá-la com o que o agente disser que cobriu. Sem a sua lista, "todos os
+  fluxos" é o que o agente lembrar.
+- Estado mínimo aceitável: você sabe quantos fluxos a bateria tem que percorrer antes de perguntar
+  a ele quantos percorreu.
+
 > Run the complete end-to-end suite of every flow that exists so far, in the test environment,
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
@@ -88,6 +122,15 @@ exata (não "a última"), com o efeito no backend por fluxo, e com a cláusula d
 não está coberto se declara e vira pendência, não se dá por coberto.
 
 **Quando o agente diz que não dá para testar:**
+
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- A mensagem do agente dizendo que não dá para testar, lida com atenção: não dá, ou falta algo a
+  ele? Se o que falta é um insumo que você tem (dados, um acesso, um ambiente), dê-o e não mande
+  este prompt. Este prompt é para quando de verdade falta algo no sistema (identificadores nos
+  elementos da tela, um modo de teste do fornecedor externo).
+- Estado mínimo aceitável: você distinguiu entre "falta-me um insumo" (você o dá) e "o sistema não
+  é testável aqui" (este prompt).
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.

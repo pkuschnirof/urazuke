@@ -22,6 +22,9 @@
 
 ## 1. 所需上下文
 
+下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第
+2 节里，在每条提示词前面的"发送提示词之前"方框里。
+
 - 一张系统哪些部分消费什么的地图：哪些界面读哪些服务，哪些流程写哪些表。如果不存在，第一
   条提示词构建它。
 - 反模式记录 `docs/GOTCHAS.md`，哪怕是空的。
@@ -29,6 +32,16 @@
 ## 2. 提示词
 
 **构建地图（一次）：**
+
+**发送提示词之前**，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：
+
+- 系统至少已经构建了一个功能块：各部分之间没有契约，就没有地图可做。
+- `docs/SEMANTIC_TREE.md` 保持最新：那些清单（状态、类型、原因）是在那里声明的，而地图必须和
+  树一致。
+- 一份由你写的清单，列出住在仓库之外、但生产或消费系统某样东西的那些部分（一个机器人、一张读
+  数据库的表格、另一个团队的流程），好让代理把它们放进地图，哪怕它看不见。如果一个都没有，也
+  说出来。
+- 最低可接受状态：代理能读整个仓库，而且你告诉了它外面有什么。
 
 > Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
 > a file format, a list of values), who produces it and who consumes it. If there are parts of
@@ -45,6 +58,13 @@
 
 **例行（放进协作契约）：**
 
+**发送提示词之前**，你手边必须有这些：
+
+- `docs/PRODUCER_CONSUMER_MAP.md`，已构建并由你审阅过：挑一个契约，验证两边就是你知道的那两
+  边。
+- `docs/WORKING_AGREEMENT.md`，这条例行要加进去的地方。
+- 最低可接受状态：地图存在，而且至少有第一个功能块的那些契约。
+
 > Before closing any change that touches a contract, look up every consumer in the map and
 > update them in the same commit. Always prefer that the producer defines the list (columns,
 > causes, states) and the consumer reads it, rather than each keeping its own copy. If the map
@@ -59,6 +79,14 @@
 行维护。
 
 **当有东西第二次坏掉时：**
+
+**发送提示词之前**，你手边必须有这些：
+
+- 这是第二次的证据：第一次的那个待办项或那次提交，由你找出来（在 `docs/PENDING.md` 已关闭的
+  待办项里找），好和提示词一起贴给它。没有这个引用，代理会登记一条泛泛的反模式，什么也检测不
+  到。
+- `docs/GOTCHAS.md`，已创建，哪怕是空的，表头里写好格式：味道、根因、修法、下次怎么提前发现。
+- 最低可接受状态：你能说出第一次是什么时候，附日期或待办项编号。
 
 > This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if

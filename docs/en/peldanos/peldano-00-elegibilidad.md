@@ -23,6 +23,10 @@ I accepted [Ref. 46](../REFERENCIAS.md#ref-46).
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 Named generically; the agent evaluates whether it is enough and asks for what is missing.
 
 - Survey of the request: what the client wants, for whom, and what happens today without the
@@ -46,6 +50,32 @@ for and why each clause is there. What you paste to the model is the English.
 
 **Opening:**
 
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- `docs/INITIAL_SURVEY.md`: the initial survey. You write it, by hand, after talking to the
+  client (it is the result of the phase 0 intake). Half a page to one page, in prose, not as a
+  form, with six things: (1) the request: what the client wants, in their own words, for whom,
+  and what happens today without the system (the notebook, the spreadsheet, the person who does
+  it by hand); (2) the technology: what exists or what is proposed, whether there is a previous
+  system, whether that system has a repository and how it is managed (branches, who pushes,
+  whether there are tests); (3) testability: whether the screens can be driven by a program, and
+  whether every element of the interface can be found, clicked, typed into and read; if you do
+  not know, say so; (4) the domain owner: who it is, with name and role, and how much time they
+  have per week to decide; (5) the consequence of an error: money, health, operations, nothing;
+  (6) the environments: whether there will be a test one, whether the agent will be able to reach
+  it, whether there is a production that can be queried read-only. What you do not know is
+  written down as "I do not know": do not fill it in yourself so that the agent does not ask,
+  because the point of the step is to see what it asks.
+- `docs/ELIGIBILITY_CRITERIA.md`: the criteria sheet. You copy it from the main document (the
+  step 0 sheet: the two exclusionary criteria X1 and X2 and the criteria D1 to D10 that weigh),
+  with one empty column for the answer, another for the source and another for green or red. Do
+  not fill it in yourself: the agent fills it in.
+- The project folder, created, with the agent opened there and still nothing in it other than
+  those two files inside `docs/`.
+- Minimum acceptable state: both files exist, the survey touches the six things even if several
+  of them say "I do not know", and the agent is standing in the folder.
+
 > We are going to assess whether this project can be run with the Urazuke method. Read the
 > initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
 > `docs/ELIGIBILITY_CRITERIA.md`. First, evaluate whether the survey is sufficient to answer
@@ -64,6 +94,18 @@ line asks it to reply in my language, because the prompt is in English but the c
 not have to be.
 
 **Closing:**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- Your decision, in one line, taken after reading the complete sheet the agent presented: go, no
+  go, or go under conditions. If there are conditions, write them before pasting the prompt, each
+  one verifiable ("read access to production before step 3" yes; "that the client collaborates"
+  no), and no more than three.
+- The answers you gave to the agent's questions, given in this same chat session: the prompt asks
+  it to include them in the final sheet, and if the session is another one, it does not have
+  them.
+- Minimum acceptable state: every criterion in the sheet has an answer and a source in sight, and
+  you have already decided. If you are still in doubt, do not send the closing: keep asking.
 
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its

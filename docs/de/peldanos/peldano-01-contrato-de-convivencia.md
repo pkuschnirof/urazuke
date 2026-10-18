@@ -25,6 +25,10 @@ aufschreiben zu müssen.
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - Keiner aus dem Projekt: es ist die erste Datei.
 - Von dir: deine Arbeitsvorlieben (Sprache, wie du gefragt werden willst, was du als Verschwendung
   deiner Zeit betrachtest, welches Maß an Autonomie du dem Agenten gibst).
@@ -32,6 +36,23 @@ aufschreiben zu müssen.
 ## 2. Prompts
 
 **Zu Beginn:**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- Nichts vom Projekt: es ist die erste Datei, die geschrieben wird. Wenn du Schritt 0 schon
+  gemacht hast, existiert `docs/ELIGIBILITY.md`, und es ist gut, wenn der Agent sie sieht, aber
+  nötig ist es nicht.
+- Deine Arbeitsvorlieben, vor dem Anfangen durchdacht und in einer kurzen Liste notiert, die du
+  zur Hand hast (auf einem Zettel oder in `docs/MY_PREFERENCES.md`, wenn du willst, dass sie im
+  Repository bleibt): in welcher Sprache du das Gespräch willst; wie viel er dich fragen soll
+  (wenig und mit Empfehlung, oder viel); was du als Verschwendung deiner Zeit ansiehst; wie viel
+  Autonomie du ihm gibst (darf er allein committen? darf er allein in die Testumgebung deployen?
+  in die Produktion nie?); was du nicht duldest. Der Agent wird dich danach fragen; die Liste ist
+  dafür da, dass du in einer Zeile antwortest und nicht improvisierst.
+- Der Projektordner angelegt und der Agent darin geöffnet.
+- Akzeptabler Mindestzustand: du kannst jede einzelne dieser fünf Fragen beantworten. Die
+  Vereinbarung, die dabei herauskommt, wird so gut sein wie deine Antworten.
 
 > Before we write any code, we are going to set the working agreement between you and me.
 > Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
@@ -64,6 +85,17 @@ sie aber als Vorschläge markiert, damit du sie annimmst oder ablehnst; und dass
 verdächtig: der Agent kennt die Person nicht, mit der er arbeiten wird.
 
 **Zum Abschluss:**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Der Entwurf von `docs/WORKING_AGREEMENT.md`, den der Agent geschrieben hat, von dir ganz
+  gelesen. Für jede Regel, die er vorgeschlagen hat, dein Urteil: du nimmst sie an oder lehnst sie
+  ab, und wenn du sie ablehnst, mit einer Begründung in einer Zeile. Das kommt in die Lücken [X,
+  Y] und [Z] des Prompts, und die füllst du.
+- Die Antworten auf das, was er dich darüber gefragt hat, wie du arbeitest, bereits im Chat
+  gegeben.
+- Akzeptabler Mindestzustand: keine vorgeschlagene Regel bleibt ohne Urteil. Eine Regel, die du
+  weder angenommen noch abgelehnt hast, bleibt in der Vereinbarung, als hättest du sie angenommen.
 
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the

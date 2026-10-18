@@ -19,12 +19,22 @@
 
 ## 1. 所需上下文
 
+下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第
+2 节里，在每条提示词前面的"发送提示词之前"方框里。
+
 - 做完的工作和要求它的待办项。
 - 协作契约（第 1 级台阶），它已经禁止宣告没做的事。
 
 ## 2. 提示词
 
 **例行（放进协作契约；每份报告都适用）：**
+
+**发送提示词之前**，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：
+
+- `docs/WORKING_AGREEMENT.md`（第 1 级台阶），这条例行要加进去的地方。
+- 你在这次会话里要求过的事情的清单，由你写下来（请求里的各项），用来对照报告：提示词要求它逐
+  项覆盖，而你得知道一共有几项。
+- 最低可接受状态：没有别的了。这条例行贴一次，永远生效。
 
 > When you report, separate three blocks: VERIFIED (what you tested, with the command and its
 > output), BELIEVED (what you think works but did not test, and why not), and BLIND SPOTS (what
@@ -44,6 +54,14 @@
 消息先说，因为模型倾向于把它们留到最后或永远不说。
 
 **面对你的一句"还是坏的"：**
+
+**发送提示词之前**，你手边必须有这些：
+
+- 你的验证，在你看的那个地方做的（测试环境、你的浏览器），看到的东西记下来：在哪个 URL，系统
+  显示的是哪个版本（如果它显示的话），你做了什么，你期待什么，结果发生了什么。
+- 代理说包含那个修复的版本号或提交号，从它上一份报告里抄下来。
+- 最低可接受状态：你能对它说"我在 [URL] 看，看到版本 [N]，我做了 [这个]，发生了 [这个]"。没
+  有这些，"还是坏的"就只是一种印象，而代理会去诊断一种印象。
 
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.

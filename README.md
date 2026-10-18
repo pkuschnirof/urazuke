@@ -26,7 +26,7 @@ eso la evidencia tiene que probarse a sí misma.
 |---|---|
 | `docs/ESCALERA_METODOLOGICA.md` | El documento principal: la tesis, de dónde sale el método, la línea de tiempo (cuándo se sube cada peldaño y qué pasa entre medio: infraestructura, CI/CD, ingesta de requerimientos, desarrollo, pruebas de punta a punta, vista humana, pruebas humanas), los dieciséis peldaños con su ficha, lo que falta, y el glosario. |
 | `docs/REFERENCIAS.md` | Los casos reales detrás del método, numerados ("Ref. N"), con fecha y evidencia, para que los procedimientos queden limpios y el detalle siga a un clic. Incluye las cronologías de los tres sistemas y la tabla de fallos por peldaño. |
-| `docs/peldanos/peldano-NN-*.md` | El contrato de cada peldaño: cuándo, contexto requerido, prompts en inglés con su traducción, resultado esperado, verificación de completitud sin leer código, señales de alarma. |
+| `docs/peldanos/peldano-NN-*.md` | El contrato de cada peldaño: cuándo, contexto requerido, prompts en inglés con su traducción y, antes de cada uno, el bloque "Antes de enviar el prompt" con los archivos que tenés que construir vos y su contenido; resultado esperado, verificación de completitud sin leer código, señales de alarma. |
 | `docs/peldanos/README.md` | El índice de los contratos. |
 | `docs/MANUAL_CURSO.md` | El curso: calendario, dieciséis lecciones con tareas prácticas y prompts, proyecto guía ("Turnera"), lista de salida a producción. |
 | `docs/DECISIONES.md` | Las decisiones del proyecto, con fecha y palabras textuales. El método se aplica a sí mismo. |

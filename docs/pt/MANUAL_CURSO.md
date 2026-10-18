@@ -72,7 +72,10 @@ Cada lição tem a mesma estrutura:
 - **O que você tem que entender**: o conceito, explicado como se explica a uma pessoa.
 - **A tarefa**: passo a passo, com o prompt exato que você vai dar ao agente (em inglês, porque os
   modelos seguem instruções com mais precisão em inglês; cada um traz sua tradução, e abaixo está
-  explicado o que você está pedindo) e o que fazer com o que ele devolver.
+  explicado o que você está pedindo) e o que fazer com o que ele devolver. Antes de cada prompt
+  há um bloco que diz **"Antes de enviar o prompt"**: os arquivos e os insumos que você tem que
+  ter feito com as suas mãos antes de colá-lo. Não o pule: o prompt nomeia esses arquivos, e se
+  não existem ou estão vazios, o agente vai inventá-los ou vai pedi-los a você.
 - **A verificação de completude**: a lista de perguntas que você se faz sobre o que o agente
   entregou, sem abrir o código. Se alguma dá "não", a lição não está terminada.
 - **A entrega**: o arquivo ou a evidência que tem que existir no final.
@@ -167,14 +170,21 @@ terminar em "não vai", e isso é um resultado válido do curso.
 
 **A tarefa.**
 
-1. Escreva, à mão, num arquivo `docs/INITIAL_SURVEY.md`, o que você sabe do projeto a partir da
-   ingestão da semana 0: o que o cliente quer, para quem, o que acontece hoje sem o sistema, que
-   tecnologia há ou se propõe, se há um sistema anterior e se tem repositório, quem é o dono e
-   quanto tempo tem, que consequência tem um erro, que ambientes vai haver. Meia página. Não
-   importa que esteja incompleto; de fato, faz parte do exercício que esteja incompleto.
-2. Copie a ficha de critérios do documento principal (os excludentes X1 e X2 e os candidatos)
-   para `docs/ELIGIBILITY_CRITERIA.md`.
-3. Abra o agente na pasta do projeto (ainda vazia salvo esses dois arquivos) e cole este prompt:
+**Antes de enviar o prompt**, com as suas mãos (o agente não pode fazer isto por você):
+
+- `docs/INITIAL_SURVEY.md`: você o escreve à mão, a partir da ingestão da semana 0: o que o
+  cliente quer, para quem, o que acontece hoje sem o sistema, que tecnologia há ou se propõe, se
+  há um sistema anterior e se tem repositório, se as telas vão poder ser operadas por programa,
+  quem é o dono e quanto tempo tem, que consequência tem um erro, que ambientes vai haver. Meia
+  página. Não importa que esteja incompleto; de fato, faz parte do exercício que esteja
+  incompleto, e o que você não sabe escreve como "não sei".
+- `docs/ELIGIBILITY_CRITERIA.md`: copie a ficha de critérios do documento principal (os
+  excludentes X1 e X2 e os candidatos), com as colunas de resposta, fonte e verde ou vermelho
+  vazias. Não a preencha você: quem a preenche é o agente.
+- A pasta do projeto, ainda vazia salvo esses dois arquivos, com o agente aberto ali.
+- O conteúdo completo de cada arquivo está no contrato do degrau 0, no mesmo bloco.
+
+1. Cole este prompt:
 
 > We are going to assess whether this project can be run with the Urazuke method. Read the
 > initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
@@ -199,8 +209,14 @@ terminar em "não vai", e isso é um resultado válido do curso.
    coração do método), que preencha a ficha dizendo de onde sai cada resposta, e que não decida:
    a decisão é sua.
 
-4. Responda às perguntas dele. Se não fez nenhuma, desconfie e pergunte o que ele supôs.
-5. Quando ele apresentar a ficha, leia e decida. Depois cole o prompt de fechamento:
+2. Responda às perguntas dele. Se não fez nenhuma, desconfie e pergunte o que ele supôs.
+3. Quando ele apresentar a ficha, leia e decida.
+
+**Antes de enviar o prompt** de fechamento: a sua decisão em uma linha (vai, não vai, ou vai com
+condições, cada condição verificável e não mais de três), e as respostas que você deu às
+perguntas dele nesta mesma sessão, porque o prompt pede que as inclua.
+
+4. Cole o prompt de fechamento:
 
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
@@ -245,10 +261,16 @@ evita que ele responda em inglês porque o prompt estava em inglês.
 
 **A tarefa.**
 
-1. Pense cinco minutos em como você trabalha: prefere que ele pergunte muito ou pouco? Em que
-   idioma? O que lhe tira do sério em trabalhar com outras pessoas? Anote numa lista curta; você
-   vai contar a ele quando perguntar.
-2. Cole este prompt:
+**Antes de enviar o prompt**, com as suas mãos:
+
+- As suas preferências de trabalho, pensadas cinco minutos e anotadas numa lista curta (num
+  papel, ou em `docs/MY_PREFERENCES.md`): prefere que ele pergunte muito ou pouco? Em que idioma?
+  Que nível de autonomia dá a ele (commits sozinho, implantação em teste sozinho, produção
+  nunca)? O que lhe tira do sério em trabalhar com outras pessoas? Você vai contar a ele quando
+  perguntar; a lista é para não improvisar.
+- A pasta do projeto com o agente aberto ali. Nada mais: é o primeiro arquivo do projeto.
+
+1. Cole este prompt:
 
 > Before we write any code, we are going to set the working agreement between you and me.
 > Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
@@ -276,9 +298,14 @@ evita que ele responda em inglês porque o prompt estava em inglês.
    Você está pedindo as seis regras com a falha que cada uma evita, regras próprias marcadas como
    propostas para que você as aceite ou rejeite, e que ele pergunte sobre você.
 
-3. Responda às perguntas. Leia as propostas: aceite as que lhe servirem, rejeite as que não,
+2. Responda às perguntas. Leia as propostas: aceite as que lhe servirem, rejeite as que não,
    sempre com uma razão de uma linha.
-4. Feche com:
+
+**Antes de enviar o prompt** de fechamento: o seu veredicto sobre cada proposta do agente,
+escrito: quais você aceita [X, Y], quais rejeita [Z] e por quê, em uma linha cada uma. Vai nos
+buracos do prompt, e quem os preenche é você.
+
+3. Feche com:
 
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
@@ -332,11 +359,20 @@ está escrito é o que o modelo vai inventar quando encontrar um buraco.
 
 **A tarefa.**
 
-1. Complete `docs/INITIAL_SURVEY.md` com o que você aprendeu na lição 0 (as respostas às
-   perguntas do agente). Acrescente uma seção "o que o sistema NÃO tem que fazer", mesmo que com
-   dois itens, e assegure-se de que estejam os casos de uso que o dono nomeia, as entidades com
-   seus estados e os desenhos das telas, mesmo que sejam fotos de um papel.
-2. Cole:
+**Antes de enviar o prompt**, com as suas mãos:
+
+- `docs/INITIAL_SURVEY.md`, completado com o que você aprendeu na lição 0 (as respostas às
+  perguntas do agente) e com o levantamento do negócio: quem usa o sistema, que problema resolve,
+  uma seção "o que o sistema NÃO tem que fazer" mesmo que com dois itens, os casos de uso que o
+  dono nomeia com as palavras dele, as entidades com seus estados, os desenhos das telas mesmo
+  que sejam fotos de um papel, as integrações externas, e as decisões já tomadas, com data. Se
+  usou um método de ingestão (entrevistas, casos de uso, histórias de usuário, protótipos), diga
+  qual e cole o resultado.
+- `docs/WORKING_AGREEMENT.md`, fechado (lição 1).
+- Se há um sistema anterior, acesso de leitura ao seu código ou à sua documentação, anotado no
+  levantamento.
+
+1. Cole:
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -373,12 +409,17 @@ está escrito é o que o modelo vai inventar quando encontrar um buraco.
    "o que não é", a árvore semântica com sua estrutura completa e com os nós inferidos marcados,
    e o estado vivo em outro arquivo.
 
-3. Leia `PROJECT.md` inteiro. Tem que caber em cinco minutos. Corrija o que não for verdade ou
+2. Leia `PROJECT.md` inteiro. Tem que caber em cinco minutos. Corrija o que não for verdade ou
    não for seu.
-4. Percorra a árvore semântica como se fosse o cliente. Olhe cada nó marcado como inferido e
+3. Percorra a árvore semântica como se fosse o cliente. Olhe cada nó marcado como inferido e
    confirme-o ou corrija-o. Procure atores que faltem, estados de entidade que o negócio não usa,
    telas que você não pediu.
-5. Feche com:
+
+**Antes de enviar o prompt** de fechamento: `PROJECT.md` lido inteiro por você, a árvore
+percorrida nó por nó com um veredicto para cada nó inferido, e a lista de correções escrita para
+o buraco [lista] do prompt. Se a lista estiver vazia na primeira vez, desconfie da sua leitura.
+
+4. Feche com:
 
 > Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with
 > today's date. Add to the working agreement two rules: the change history never goes into
@@ -393,7 +434,7 @@ está escrito é o que o modelo vai inventar quando encontrar um buraco.
 > tem que pender de um nó da árvore semântica, e a árvore se atualiza no mesmo commit cada vez
 > que um bloco acrescenta ou muda um nó.
 
-6. **A prova de leitura.** Feche a sessão do agente e abra uma nova. Sem dizer mais nada, peça:
+5. **A prova de leitura.** Feche a sessão do agente e abra uma nova. Sem dizer mais nada, peça:
    "O que este sistema não tem que fazer? E de que nó da árvore pende a tela da agenda?". Se ele
    responde com o que dizem `PROJECT.md` e a árvore, o engate funciona. Se responde qualquer
    outra coisa, não está lendo o mapa: revise como a sua ferramenta carrega o arquivo de projeto.
@@ -444,13 +485,19 @@ sobrou um `await`; se muda, economizou reescrever tudo.
 
 **A tarefa.**
 
-1. Sente-se com o dono (ou com você mesmo, se o projeto é seu) e escreva `docs/VOLUME_SURVEY.md`:
-   as entidades principais (as da árvore semântica) e quantas há, quantas se acrescentam por mês,
-   quantos eventos por entidade, quantas pessoas operam no pico e quando é o pico, quanto tempo
-   se conservam os dados, se há cargas excepcionais, que crescimento esperam. Para cada número,
-   anote de onde sai: "a encarregada disse", "contado no caderno de setembro", "suposição". Deixe
-   alguns em "suposição" de propósito: você vai ver o que o agente faz com eles.
-2. Cole:
+**Antes de enviar o prompt**, com as suas mãos e com o dono:
+
+- `docs/VOLUME_SURVEY.md`: sente-se com o dono (ou com você mesmo, se o projeto é seu) e escreva
+  as entidades principais (as da árvore semântica) e quantas há, quantas se acrescentam por mês,
+  quantos eventos por entidade, quantas pessoas operam no pico e quando é o pico, quanto tempo se
+  conservam os dados, se há cargas excepcionais, que crescimento esperam. Para cada número, anote
+  de onde sai: "a encarregada disse", "contado no caderno de setembro", "suposição". Deixe alguns
+  em "suposição" de propósito: você vai ver o que o agente faz com eles.
+- `PROJECT.md` e `docs/SEMANTIC_TREE.md`, fechados (lição 2).
+- Se há um sistema anterior com banco de dados, um acesso de somente leitura para que o agente
+  tire números reais, com a string de conexão fora do repositório.
+
+1. Cole:
 
 > Before proposing any architecture we are going to size the system. Read `PROJECT.md` and the
 > volume survey in `docs/VOLUME_SURVEY.md`. Distinguish primary data (facts only the business
@@ -481,12 +528,17 @@ sobrou um `await`; se muda, economizou reescrever tudo.
    ou estão em "suposição", e nunca estimá-los**; calcular o derivado com a conta à vista; o
    cenário "por dez"; três opções com o custo de mudar de uma para outra; e que não escolha.
 
-3. Se ele pede as "suposições", bem: esse era o exercício. Consiga os números (pergunte ao dono,
+2. Se ele pede as "suposições", bem: esse era o exercício. Consiga os números (pergunte ao dono,
    conte no caderno) e dê a ele. Se não pediu e calculou do mesmo jeito, pare e pergunte o que
    ele fez com as suposições: é uma falha do degrau e convém vê-la agora.
-4. Leia as três opções. Refaça uma conta à mão (por exemplo, linhas por ano da maior tabela): tem
+3. Leia as três opções. Refaça uma conta à mão (por exemplo, linhas por ano da maior tabela): tem
    que dar o mesmo. Escolha.
-5. Feche com:
+
+**Antes de enviar o prompt** de fechamento: as suposições convertidas em dados com fonte, uma
+conta refeita à mão por você que coincide com a do agente, e a opção escolhida com uma razão de
+uma linha.
+
+4. Feche com:
 
 > I choose option [B]. Record in `docs/SIZING.md`: the primary data with its source, the derived
 > data with its arithmetic, the three options, the chosen one and why, and the decisions we are
@@ -541,13 +593,20 @@ permite dizer "isto não passa" sem discutir.
 
 **A tarefa.**
 
-1. Escreva `docs/ENVIRONMENTS_SURVEY.md`: onde o sistema vai rodar (um servidor que você já tem,
-   um serviço na nuvem), se vai haver um ambiente de teste e um de produção, quem tem acesso a
-   quê, e como se implanta hoje se há algo. Se não tem nada, diga: o agente vai lhe propor a
-   opção mais simples.
-2. Assegure-se de ter as credenciais do lugar onde vai ser implantado, mesmo que seja um serviço
-   gratuito. Sem isso, o esqueleto fica na sua máquina e a lição não pode ser terminada.
-3. Cole:
+**Antes de enviar o prompt**, com as suas mãos:
+
+- `docs/ENVIRONMENTS_SURVEY.md`: onde o sistema vai rodar (um servidor que você já tem, um
+  serviço na nuvem), se vai haver um ambiente de teste e um de produção, quem tem acesso a quê,
+  como se implanta hoje se há algo, e o tipo de projeto (novo, correção ou evolução). Se não tem
+  nada, diga: o agente vai lhe propor a opção mais simples. O prompt o nomeia "the environments
+  survey", sem caminho: diga como se chama.
+- As credenciais do lugar onde vai ser implantado, mesmo que seja um serviço gratuito: criadas,
+  testadas por você entrando no painel, e guardadas fora do repositório; ao agente você diz onde
+  estão, não as cola no chat. Sem isso, o esqueleto fica na sua máquina e a lição não pode ser
+  terminada.
+- `PROJECT.md` e `docs/SIZING.md`, fechados (lições 2 e 3).
+
+1. Cole:
 
 > We are going to build the skeleton of the system, with no functionality at all. Read
 > `PROJECT.md`, `docs/SIZING.md` and the environments survey. Evaluate whether you have what is
@@ -575,12 +634,17 @@ permite dizer "isto não passa" sem discutir.
    esqueleto, as comportas escritas, uma captura real do ambiente de teste, e a proibição de
    acrescentar funcionalidade.
 
-4. Esta tarefa é longa (uma ou duas horas de trabalho do agente) e vai ter idas e vindas:
+2. Esta tarefa é longa (uma ou duas horas de trabalho do agente) e vai ter idas e vindas:
    credenciais que faltam, um serviço que pede para confirmar o e-mail, etc. É normal. O que não
    é normal é que ele diga "pronto" sem a captura do ambiente de teste.
-5. Quando ele mostrar a captura, abra você a URL no seu navegador. Tem que se ver o mesmo. É a
+3. Quando ele mostrar a captura, abra você a URL no seu navegador. Tem que se ver o mesmo. É a
    primeira vista humana do sistema, e é um marco.
-6. Feche com:
+
+**Antes de enviar o prompt** de fechamento: a sua visita à URL do ambiente de teste feita, o link
+da execução de integração contínua em verde aberto por você, e `docs/GATES.md` lido, com uma
+condição verificável por comporta.
+
+4. Feche com:
 
 > Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a
@@ -651,11 +715,18 @@ como pendência nova, com sua especificação, não se faz.
 
 **A tarefa.**
 
-1. Escreva em `docs/INITIAL_SURVEY.md` (ou num arquivo à parte) o pedido do cliente para o
-   primeiro bloco de funcionalidade, tal como o cliente o diria, com suas ambiguidades. Para a
-   Turnera: "quero ver as consultas do dia, registrar uma nova e cancelar". Se na ingestão você
-   escreveu os casos de uso, cole-os também: são a unidade natural do bloco.
-2. Cole:
+**Antes de enviar o prompt**, com as suas mãos:
+
+- O pedido do cliente para o primeiro bloco de funcionalidade, escrito em
+  `docs/INITIAL_SURVEY.md` sob um título com o nome do bloco, ou num arquivo à parte (por exemplo
+  `docs/blocks/BLOCK_01_REQUEST.md`; o prompt diz "the client's request for this block" sem
+  caminho, então diga onde está), tal como o cliente o diria, com suas ambiguidades. Para a
+  Turnera: "quero ver as consultas do dia, registrar uma nova e cancelar". Se na ingestão você
+  escreveu os casos de uso, cole-os também: são a unidade natural do bloco. Se o dono lhe deu uma
+  prioridade, também.
+- `docs/SEMANTIC_TREE.md`, `PROJECT.md` e `docs/STATUS.md`, em dia (lição 2).
+
+1. Cole:
 
 > We are going to turn everything that must be done in this block into numbered pending items,
 > each one carrying its full specification. Read `PROJECT.md`, `docs/SEMANTIC_TREE.md`, the
@@ -692,15 +763,19 @@ como pendência nova, com sua especificação, não se faz.
    faltantes, os critérios de aceitação que depois serão o roteiro do teste, e uma ordem com sua
    razão.
 
-3. Responda às perguntas (para a Turnera ele vai perguntar, por exemplo, o que é "o dia": o de
+2. Responda às perguntas (para a Turnera ele vai perguntar, por exemplo, o que é "o dia": o de
    hoje, ou qualquer um que se escolha?; cancelar apaga ou marca?). Essas perguntas são decisões
    de negócio; na lição 6 você vai ver onde se escrevem.
-4. **Leia a especificação de cada pendência** como se fosse o cliente. Esta é a tarefa mais
+3. **Leia a especificação de cada pendência** como se fosse o cliente. Esta é a tarefa mais
    importante da lição, e a que mais tentação dá de pular. Descreve o que você pediu, com as
    suas palavras? Os critérios de aceitação são os que você usaria para dizer "está bom"? Há um
    caso de borda que você conhece e não está? Pende do nó correto? Corrija antes que se construa
    qualquer coisa.
-5. Acrescente ao contrato de convivência a rotina de cada sessão. Cole:
+**Antes de enviar o prompt** da rotina: `docs/PENDING.md` com o bloco especificado e lido por
+você pendência por pendência, com as suas correções feitas (nenhuma pendência com uma
+especificação de uma linha), e `docs/WORKING_AGREEMENT.md`, onde a rotina se acrescenta.
+
+4. Acrescente ao contrato de convivência a rotina de cada sessão. Cole:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Before touching any code, open
 > `docs/PENDING.md`, tell me which item you are taking and why, and re-read its specification.
@@ -721,7 +796,7 @@ como pendência nova, com sua especificação, não se faz.
 > construído. Se no caminho você vir algo que não está na lista, acrescente como pendência nova
 > com sua especificação; não faça."
 
-6. Agora sim, comece a construir. Peça que ele pegue a primeira pendência. A partir daqui, cada
+5. Agora sim, comece a construir. Peça que ele pegue a primeira pendência. A partir daqui, cada
    sessão começa com "que pendência você pega e por quê", e cada fechamento deixa a pendência
    documentada.
 
@@ -769,6 +844,14 @@ depois, quando alguém perguntar "por que cancelar não apaga?", a resposta est�
 
 **A tarefa.**
 
+**Antes de enviar o prompt**, com as suas mãos:
+
+- `docs/WORKING_AGREEMENT.md` (lição 1), onde vai a rotina.
+- `docs/DECISIONS.md`, criado mesmo que esteja vazio, com o formato no cabeçalho: data, quem
+  decidiu, as palavras textuais, a pendência que a necessitava.
+- Um acordo com o dono do domínio, se não for você, sobre o canal e o tempo em que ele responde:
+  a rotina só funciona se alguém decide em horas, não em semanas.
+
 1. Acrescente ao contrato a rotina de decisões. Cole:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Whenever implementing something requires a
@@ -795,14 +878,20 @@ depois, quando alguém perguntar "por que cancelar não apaga?", a resposta est�
    marque.
 
 2. Continue construindo as pendências do bloco. Cada vez que ele lhe perguntar uma regra de
-   negócio, decida e responda com o formato de fechamento:
+   negócio, decida e responda com o formato de fechamento.
+
+**Antes de enviar o prompt** de fechamento: a pergunta do agente lida com a sua recomendação e a
+sua alternativa, e a sua decisão redigida numa frase com as palavras exatas que você quer que
+fiquem para sempre, consultada com o dono se não for você, com a data. Não se improvisa no chat.
+
+3. Cole:
 
 > Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
 
 > [pt]
 > Regra: [texto exato]. Decidida por mim, [data]. Anote e continue.
 
-3. Faça a prova contrária, uma vez, de propósito: deixe uma pergunta sem responder durante uma
+4. Faça a prova contrária, uma vez, de propósito: deixe uma pergunta sem responder durante uma
    sessão e veja o que ele faz. Tem que escolher o mais reversível e marcá-lo "por omissão". Se
    escolheu o que lhe pareceu e não marcou, é uma falha do degrau: corrija-a no contrato.
 
@@ -847,6 +936,16 @@ chega ao final com um sistema que ninguém testou de ponta a ponta durante seman
 
 **A tarefa.**
 
+**Antes de enviar o prompt**, com as suas mãos:
+
+- `docs/WORKING_AGREEMENT.md`, onde vai a rotina.
+- A pendência que vai ser fechada, com os seus critérios de aceitação "dado, quando, então" e o
+  seu "como se verifica" em `docs/PENDING.md`: são o roteiro do teste. Se não os tem, volte à
+  lição 5 antes de pedir o teste.
+- A bateria e o comando para rodá-la em `docs/STATUS.md` (lição 4), e o ambiente de teste
+  rodando, com dados suficientes para o fluxo que se toca; se faltam dados, carregue-os você ou
+  peça que ele os crie como parte do teste, mas que não os simule.
+
 1. Acrescente ao contrato a rotina de evidência. Cole:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
@@ -885,7 +984,13 @@ chega ao final com um sistema que ninguém testou de ponta a ponta durante seman
    registrar a consulta duplicada, lê o aviso, e comprova no banco que não foi guardada.
 3. Se ele diz que não dá para testar de ponta a ponta porque a tela não pode ser operada por
    programa, pare: isso é X2 falhando, e há que corrigir agora (acrescentar identificadores aos
-   elementos da tela) antes de seguir. Cole:
+   elementos da tela) antes de seguir.
+
+**Antes de enviar o prompt**: distinga se falta a ele um insumo que você tem (dados, um acesso,
+um ambiente: dê-o e não mande este prompt) ou se de verdade o sistema não é testável ali (este
+prompt).
+
+4. Cole:
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
@@ -894,8 +999,15 @@ chega ao final com um sistema que ninguém testou de ponta a ponta durante seman
 > Explique por que não dá para testar, o que haveria que acrescentar para que dê, e abra uma
 > pendência para isso. A mudança não está fechada até que possa ser testada.
 
-4. **No fechamento do bloco**, quando as seis pendências estiverem fechadas, cole o prompt da
-   bateria completa:
+5. **No fechamento do bloco**, quando as seis pendências estiverem fechadas, rode a bateria
+   completa.
+
+**Antes de enviar o prompt** da bateria: as seis pendências fechadas com a rotina, a versão exata
+que vai ser promovida identificada e implantada no ambiente de teste, e a sua própria lista dos
+fluxos que existem (tirada dos casos de uso da árvore semântica), para contrastá-la com o que o
+agente disser que cobriu.
+
+6. Cole:
 
 > Run the complete end-to-end suite of every flow that exists so far, in the test environment,
 > with the exact version that will be promoted. Show me the counts, and for each flow the
@@ -908,7 +1020,7 @@ chega ao final com um sistema que ninguém testou de ponta a ponta durante seman
 > fluxo, a verificação no backend que o prova. Se algum fluxo não tem teste de ponta a ponta,
 > diga e abra uma pendência; não o dê por coberto.
 
-5. E depois disso, **use o sistema você**. Abra o ambiente de teste e faça o que a recepcionista
+7. E depois disso, **use o sistema você**. Abra o ambiente de teste e faça o que a recepcionista
    faria: registre uma consulta, tente a duplicada, cancele, procure. O que lhe incomodar, o que
    não entender, o que estiver onde não deve: anote como pendência. Esta meia hora encontra o que
    nenhum teste encontra.
@@ -955,6 +1067,14 @@ a sessão.
 
 **A tarefa.**
 
+**Antes de enviar o prompt**, com as suas mãos:
+
+- Pelo menos um bloco funcional construído: sem contratos entre partes não há mapa a fazer.
+- `docs/SEMANTIC_TREE.md` em dia: as listas (estados, tipos, causas) estão declaradas ali, e o
+  mapa tem que coincidir com a árvore.
+- Uma lista escrita por você do que vive fora do repositório e produz ou consome algo do sistema
+  (um robô, uma planilha, um processo de outra equipe), ou a constatação de que não há nada.
+
 1. Peça o mapa de contratos:
 
 > Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
@@ -970,6 +1090,9 @@ a sessão.
 
    Você está pedindo o inventário de contratos com seus dois lados, e que o que ele não vê
    declare em vez de omitir.
+
+**Antes de enviar o prompt** da rotina: o mapa revisado por você (escolha um contrato e
+verifique que os dois lados são os que você conhece) e `docs/WORKING_AGREEMENT.md`.
 
 2. Acrescente a rotina ao contrato:
 
@@ -988,7 +1111,15 @@ a sessão.
    consulta: pendente, confirmada, cancelada, ausente) e peça ao agente que lhe mostre onde está
    definida e onde é lida. Se há duas definições, peça que ele deixe uma só, e que coincida com a
    árvore semântica.
-4. Na primeira vez que algo quebrar pela segunda vez (vai acontecer nas próximas semanas), cole:
+4. Na primeira vez que algo quebrar pela segunda vez (vai acontecer nas próximas semanas),
+   registre-o.
+
+**Antes de enviar o prompt**: a pendência ou o commit da primeira vez, localizado por você entre
+os fechados de `docs/PENDING.md`, para colá-lo junto com o prompt (sem essa referência o
+antipadrão sai genérico); e `docs/GOTCHAS.md` criado mesmo que esteja vazio, com o formato no
+cabeçalho: cheiro, causa raiz, correção, como detectá-lo antes.
+
+5. Cole:
 
 > This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
@@ -1042,10 +1173,17 @@ catraca nem de um orçamento por caminho. O que precisa é que o número tenha u
 
 **A tarefa.**
 
-1. Escolha uma hipótese. Na Turnera, uma boa: "a agenda do dia faz uma consulta ao banco para cada
-   consulta que mostra" (o clássico laço N+1). Se não for verdade, melhor: você vai ver como se
-   verifica uma hipótese falsa.
-2. Cole:
+**Antes de enviar o prompt**, com as suas mãos:
+
+- A hipótese, numa frase. Na Turnera, uma boa: "a agenda do dia faz uma consulta ao banco para
+  cada consulta que mostra" (o clássico laço N+1). Se não for verdade, melhor: você vai ver como
+  se verifica uma hipótese falsa. Vai no buraco do prompt, junto com a quantidade a medir.
+- Um caso conhecido para o teste do medidor, no qual você sabe a resposta de antemão ("com zero
+  consultas tem que contar exatamente as consultas base").
+- Acesso ao que se mede (o banco em somente leitura se são dados reais, o log) e os medidores que
+  já existam no repositório, nomeados.
+
+1. Cole:
 
 > Before building anything, we are going to measure. The hypothesis is: [the day view runs one
 > database query per appointment shown]. Write a meter (a script that lives in the repository)
@@ -1074,9 +1212,15 @@ catraca nem de um orçamento por caminho. O que precisa é que o número tenha u
    de aproximar, marcar o aproximado, o número com o comando, a auditoria em duas direções, e a
    ordem: primeiro medir, depois propor.
 
-3. Rode você o comando que ele lhe deu. Tem que dar o mesmo número. Não precisa entender o
+2. Rode você o comando que ele lhe deu. Tem que dar o mesmo número. Não precisa entender o
    script; precisa executá-lo.
-4. Se a hipótese era verdadeira e o agente propõe corrigir, peça um orçamento:
+3. Se a hipótese era verdadeira e o agente propõe corrigir, peça um orçamento.
+
+**Antes de enviar o prompt** do orçamento: o número medido, rodado por você com o comando que ele
+lhe deu (tem que dar o mesmo), e a margem que você está disposto a dar, decidida por você: um
+pouco mais do que o medido, não o dobro por via das dúvidas.
+
+4. Cole:
 
 > Set the budget for [queries] on this path at the measured value plus a small margin, and
 > protect it with a test that fails if it is exceeded. Tell me the number and the margin.
@@ -1086,6 +1230,10 @@ catraca nem de um orçamento por caminho. O que precisa é que o número tenha u
 > proteja-o com um teste que falhe se for superado. Diga-me o número e a margem.
 
    Assim, se alguém voltar a meter o laço dentro de três meses, a bateria o detecta.
+
+**Antes de enviar o prompt** da regra cinco: `docs/WORKING_AGREEMENT.md`, e um medidor já
+existente para cada quantidade que um plano possa afirmar; se não há medidor, primeiro o prompt
+inicial desta lição.
 
 5. Acrescente ao contrato a regra cinco, para quando um plano trouxer números:
 
@@ -1131,6 +1279,12 @@ não consegue ver de onde está). E uma regra: as más notícias primeiro.
 
 **A tarefa.**
 
+**Antes de enviar o prompt**, com as suas mãos:
+
+- `docs/WORKING_AGREEMENT.md`, onde vai a rotina.
+- O costume de anotar, em cada sessão, a lista do que você pediu: o prompt exige que ele cubra
+  cada item um por um, e você tem que saber quantos eram.
+
 1. Acrescente ao contrato a rotina de relatório:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "When you report, separate three blocks:
@@ -1154,7 +1308,14 @@ não consegue ver de onde está). E uma regra: as más notícias primeiro.
    produção, os dados reais). Se ele insiste que nada, insista você.
 3. Pratique o "continua quebrado". Peça algo pequeno, verifique no ambiente de teste, e se por
    qualquer razão você não vê a mudança (é comum: a implantação demora, ou não foi feita), diga
-   "continua quebrado" e cole:
+   "continua quebrado".
+
+**Antes de enviar o prompt**: a sua verificação anotada (em que URL você olhou, que versão o
+sistema mostra, o que você fez, o que esperava, o que aconteceu) e o commit ou a versão que o
+agente disse que continha a correção, copiado do relatório dele. Sem isso, o "continua quebrado"
+é uma impressão.
+
+4. Cole:
 
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.
@@ -1210,10 +1371,16 @@ arquivo de instruções, que não tenha participado**.
 
 **A tarefa.**
 
-1. Abra uma sessão nova do agente numa cópia limpa do repositório (clone-o em outra pasta). Se a
-   sua ferramenta permitir, dê a ela um arquivo de instruções diferente, que só diga "você é um
-   auditor; você não construiu este sistema". Dê acesso de somente leitura ao ambiente de teste.
-2. Cole:
+**Antes de enviar o prompt**, com as suas mãos:
+
+- Uma sessão nova do agente numa cópia limpa do repositório (clone-o em outra pasta). Se a sua
+  ferramenta permitir, dê a ela um arquivo de instruções diferente, que só diga "você é um
+  auditor; você não construiu este sistema".
+- Acesso de somente leitura para essa sessão ao ambiente de teste (banco de dados, logs), com
+  credenciais de somente leitura fora do repositório.
+- O escopo decidido por você para o buraco do prompt, e a auditoria anterior, se houve.
+
+1. Cole:
 
 > Audit this system for [integrity, security, performance and code quality]. Read-only: change
 > nothing except writing your report to `docs/AUDIT_[date].md`. If auditing some part requires
@@ -1238,9 +1405,14 @@ arquivo de instruções, que não tenha participado**.
    por omissão, todo o código e não uma amostra, cada achado com localização, risco, evidência e
    prioridade, notas por dimensão, e os P0 já como pendências propostas.
 
-3. Leia o relatório. Escolha dois achados e peça ao auditor que lhe mostre a evidência (o
+2. Leia o relatório. Escolha dois achados e peça ao auditor que lhe mostre a evidência (o
    comando, a linha). Tem que conseguir.
-4. Volte à sessão do construtor e cole:
+
+**Antes de enviar o prompt** de fechamento: o relatório lido por você, os dois achados
+verificados com o auditor, e a sessão do construtor aberta (este prompt vai ao construtor, não ao
+auditor), com a data do arquivo no buraco.
+
+3. Volte à sessão do construtor e cole:
 
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.
@@ -1249,7 +1421,7 @@ arquivo de instruções, que não tenha participado**.
 > Leia `docs/AUDIT_[data].md`. Abra uma pendência para cada P0 e P1, citando o achado. Se
 > discordar de algum, diga-me com a evidência contrária; não o ignore.
 
-5. Repita esta lição antes da primeira implantação em produção (lição 13) e, depois, a cada um
+4. Repita esta lição antes da primeira implantação em produção (lição 13) e, depois, a cada um
    ou dois meses.
 
 **Verificação de completude.** O relatório diz o que NÃO pôde auditar? Dois achados ao acaso têm
@@ -1283,11 +1455,16 @@ antes dos lembretes e do sinal, que são o terceiro bloco.
 
 **A tarefa.**
 
-1. Escreva `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md` com o dono: o que o sistema faz ou vai fazer
-   que cobra, envia, aprova, apaga ou avisa alguém de fora; o que acontece se for feito duas
-   vezes; o que acontece se for feito errado; como se desfaz. Os processos da árvore semântica
-   lhe dão a lista de partida.
-2. Cole:
+**Antes de enviar o prompt**, com as suas mãos e com o dono:
+
+- `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`: o que o sistema faz ou vai fazer que cobra, envia,
+  aprova, apaga ou avisa alguém de fora; e para cada ação, o que acontece se for feita duas
+  vezes, o que acontece se for feita errado, como se desfaz, quem deveria poder fazê-la. Os
+  processos da árvore semântica lhe dão a lista de partida. O prompt o nomeia "the survey of
+  consequential actions", sem caminho: diga onde está.
+- `docs/SEMANTIC_TREE.md`, em dia.
+
+1. Cole:
 
 > We are going to decide which actions of the system need a lock. Read the survey of
 > consequential actions, and go through the code looking for everything that charges, sends,
@@ -1312,7 +1489,13 @@ antes dos lembretes e do sinal, que são o terceiro bloco.
    ações de que ninguém se lembrava), que as diferenças ele pergunte, e para cada ação a
    reversibilidade, o cadeado e o caminho de volta, com a regra do fail-closed escrita.
 
-3. Confirme cadeado por cadeado. Feche com:
+2. Confirme cadeado por cadeado, com o dono.
+
+**Antes de enviar o prompt** de fechamento: para cada linha da tabela, a sua confirmação ou a sua
+mudança, escritas para os buracos do prompt; nenhuma linha sem veredicto, porque um cadeado não
+confirmado é um cadeado que não se implementa.
+
+3. Feche com:
 
 > I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves
 > that, under the doubt condition, the action does NOT happen (proved red against the version
@@ -1366,10 +1549,18 @@ teste. Esta lição o completa rumo à produção.
 
 **A tarefa.**
 
-1. Complete `docs/ENVIRONMENTS_SURVEY.md` com o que falta para a produção: o domínio, onde vão
-   viver os segredos, quanta cota de integração contínua você tem (se usa o GitHub Actions, veja
-   o limite do plano).
-2. Cole:
+**Antes de enviar o prompt**, com as suas mãos:
+
+- `docs/ENVIRONMENTS_SURVEY.md` (lição 4), completado com o que falta para a produção: o domínio
+  e quem o administra, onde vão viver os segredos e quais são (o nome, nunca o valor), quem pode
+  tocar na produção, como se faria hoje um caminho de volta, e quanta cota de integração contínua
+  você tem (se usa o GitHub Actions, veja o limite do plano). O prompt o nomeia "the environments
+  and access survey": diga onde está.
+- O acesso à produção para o agente, decidido por você, com a credencial fora do repositório e do
+  chat.
+- O esqueleto com a sua integração contínua e a sua implantação em teste funcionando (lição 4).
+
+1. Cole:
 
 > We are going to close the path to production. Read the environments and access survey.
 > Evaluate whether you have what is needed to deploy to production safely (access, domain,
@@ -1398,10 +1589,14 @@ teste. Esta lição o completa rumo à produção.
    implantação que só empacota, a configuração fora, a promoção repetível, o caminho de volta
    provado, o cadeado contra segredos, e a documentação para uma pessoa.
 
-3. Antes da primeira implantação em produção, faça a auditoria da lição 11 se não a fez, e rode a
+2. Antes da primeira implantação em produção, faça a auditoria da lição 11 se não a fez, e rode a
    bateria completa de ponta a ponta de todos os fluxos com a versão exata que vai promover (o
    prompt de fechamento de bloco da lição 7).
-4. Acrescente ao contrato a rotina de implantação:
+
+**Antes de enviar o prompt** da rotina: `docs/DEPLOYMENT.md` escrito e lido por você (você
+conseguiria segui-lo sozinho?), e `docs/WORKING_AGREEMENT.md`.
+
+3. Acrescente ao contrato a rotina de implantação:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Before touching production: the test
 > environment is green with the same version; the rollback is ready; and tell me what changes in
@@ -1414,11 +1609,17 @@ teste. Esta lição o completa rumo à produção.
 > o que muda na configuração. Depois de implantar: mostre-me a versão que roda em produção e uma
 > verificação de ponta a ponta sobre a produção, em somente leitura."
 
-5. Faça a primeira implantação em produção, com o sistema ainda sem usuários reais. E depois
+4. Faça a primeira implantação em produção, com o sistema ainda sem usuários reais. E depois
    **prove o caminho de volta**: peça que ele volte à versão anterior e lhe mostre que está
    rodando, e depois que volte à nova.
-6. Se em algum momento do curso você colou um segredo no chat (uma chave de API, uma senha),
-   cole:
+5. Se em algum momento do curso você colou um segredo no chat (uma chave de API, uma senha),
+   rotacione-o.
+
+**Antes de enviar o prompt**: o segredo identificado (o seu nome, nunca o seu valor), onde
+apareceu e quando, e o seu acesso ao painel onde ele se gera, caso o agente não possa
+rotacioná-lo sozinho. Este prompt não se manda "mais tarde".
+
+6. Cole:
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.
@@ -1467,6 +1668,12 @@ fecharam, bloco a bloco, e o diário de mudanças sai diretamente delas.
 
 **A tarefa.**
 
+**Antes de enviar o prompt**, com as suas mãos:
+
+- `docs/WORKING_AGREEMENT.md`, onde vai a rotina.
+- A lista de manuais que o sistema vai ter, cada um com o seu leitor (o usuário final, quem
+  mantém, quem opera a infraestrutura), escrita em `PROJECT.md` ou dita no chat.
+
 1. Acrescente a rotina ao contrato:
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Every change that modifies what the user
@@ -1482,6 +1689,12 @@ fecharam, bloco a bloco, e o diário de mudanças sai diretamente delas.
 > usuário as telas e os fluxos das pendências fechadas nesse bloco, com capturas reais do
 > ambiente de teste, e acrescente suas entradas ao diário de mudanças. Se não souber a que manual
 > vai, pergunte."
+
+**Antes de enviar o prompt** dos manuais: o sistema rodando no ambiente de teste com dados
+realistas (as capturas saem dali), as pendências fechadas com a sua documentação (lição 5),
+`docs/DEPLOYMENT.md` e `docs/LOCKS.md` em dia, e o que só o negócio sabe, preparado para quando
+ele perguntar: quem é responsável pelo quê, para que telefone se liga às três da manhã, quem faz
+a cópia de segurança.
 
 2. Cole:
 
@@ -1551,10 +1764,18 @@ não muda nada não foi uma retrospectiva; a que me levou a eliminar uma equipe 
 
 **A tarefa (agente residente, se corresponder).**
 
-1. Decida com o dono se o sistema precisa de um agente residente. Na Turnera sim: as
-   recepcionistas vão ter perguntas ("por que o lembrete não chegou a este paciente?") que o
-   agente pode responder lendo o log, sem que ninguém ligue para o desenvolvedor.
-2. Cole:
+**Antes de enviar o prompt**, com as suas mãos e com o dono:
+
+- A decisão de se o sistema precisa de um agente residente, e para quê. Na Turnera sim: as
+  recepcionistas vão ter perguntas ("por que o lembrete não chegou a este paciente?") que o
+  agente pode responder lendo o log, sem que ninguém ligue para o desenvolvedor.
+- Uma credencial própria para o agente em produção, criada por você, mapeada a uma pessoa
+  responsável com nome, de somente leitura para começar, com o valor fora do chat e do
+  repositório.
+- `docs/LOCKS.md` e `docs/DEPLOYMENT.md` em dia, e o canal (chamado, e-mail) pelo qual ele avisa
+  o que não consegue resolver.
+
+1. Cole:
 
 > We are going to leave you resident in production. First, build the map of the system you will
 > need in order to operate it: modules, environments, where each configuration lives, which
@@ -1578,7 +1799,13 @@ não muda nada não foi uma retrospectiva; a que me levou a eliminar uma equipe 
    Você está pedindo o mapa antes de operar, que os buracos do mapa ele declare, três níveis de
    escopo para que você escolha um, e a credencial em nome de uma pessoa.
 
-3. Escolha o nível (para começar, sempre o primeiro: somente leitura e diagnóstico). Feche com:
+2. Escolha o nível (para começar, sempre o primeiro: somente leitura e diagnóstico).
+
+**Antes de enviar o prompt** de fechamento: o mapa e os três níveis lidos, o nível escolhido, e
+uma ação concreta fora desse escopo pensada por você, para que o agente a tente e você veja a
+recusa no log.
+
+3. Feche com:
 
 > Level [1: read-only and diagnosis]. Write in `docs/RESIDENT_AGENT.md` the map, the scope, the
 > credential (never its value), and the procedure to request my approval. Then prove, with a real
@@ -1591,9 +1818,17 @@ não muda nada não foi uma retrospectiva; a que me levou a eliminar uma equipe 
 
 **A tarefa (retrospectiva, sempre).**
 
-4. Junte os números que só você tem: quantas horas dedicou, quanto gastou na ferramenta de IA,
-   quanta cota de integração contínua usou.
-5. Cole:
+**Antes de enviar o prompt**, com as suas mãos:
+
+- Os números que só você tem, em `docs/RETROSPECTIVE_INPUTS.md` ou prontos para o chat: quantas
+  horas dedicou (do seu calendário, não de memória), quanto gastou na ferramenta de IA (a
+  fatura), quanta cota de integração contínua usou, e as datas de início e de fim.
+- A lista de incidentes como você os lembra, com data aproximada, para contrastar com o que o
+  agente tirar das pendências e dos commits.
+- `docs/PENDING.md` com os fechados documentados e `docs/DECISIONS.md`, que são a fonte dos
+  números.
+
+4. Cole:
 
 > [The project] is over. Do the retrospective with numbers, not impressions: what it cost
 > (tokens, quota, my time), how many pending items, which ones took the most rounds and why,
@@ -1616,7 +1851,7 @@ não muda nada não foi uma retrospectiva; a que me levou a eliminar uma equipe 
    cai em nenhum é um degrau que falta), que ele lhe peça os números que não tem, e uma proposta
    concreta de mudança à escada.
 
-6. Leia a proposta de mudança. Se lhe parecer válida, mande-a ao
+5. Leia a proposta de mudança. Se lhe parecer válida, mande-a ao
    [repositório do Urazuke](https://github.com/pkuschnirof/urazuke) como proposta de melhoria
    (ver `CONTRIBUTING.md`): essa é a forma como o método aprende de cada projeto.
 

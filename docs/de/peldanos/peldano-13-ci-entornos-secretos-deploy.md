@@ -28,6 +28,10 @@ rotiert. Die Rotation kostet zehn Minuten; herauszufinden, ob jemand es benutzt 
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - **Erhebung der Umgebungen und Zugänge**, generisch: welche Umgebungen es gibt (Test,
   Produktion), wo sie laufen, wer Zugang hat, wie etwas von einer in die andere befördert wird,
   welche Geheimnisse existieren und wo sie heute leben, wie viel Kontingent an Continuous
@@ -38,6 +42,24 @@ rotiert. Die Rotation kostet zehn Minuten; herauszufinden, ob jemand es benutzt 
 ## 2. Prompts
 
 **Zu Beginn:**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- `docs/ENVIRONMENTS_SURVEY.md` (Schritt 4), ergänzt um das, was für die Produktion fehlt: die
+  Domäne und wer sie verwaltet; wo die Geheimnisse auf dem Server leben werden (Umgebungsdatei,
+  Tresor) und welche es sind (der Name, nie der Wert); wie heute etwas von der Testumgebung in die
+  Produktion befördert wird, falls es etwas gibt; wer die Produktion anfassen darf; wie viel
+  Kontingent an kontinuierlicher Integration du hast (das Limit des Plans deines Anbieters) und
+  wie viel du verbraucht hast; wie heute ein Rollback gemacht würde. Der Prompt nennt sie „the
+  environments and access survey“: sag ihm, wo sie liegt.
+- Der Zugang zur Produktion für den Agenten, von dir entschieden: welcher, mit welchen
+  Zugangsdaten, und die Zugangsdaten außerhalb des Repositorys und des Chats.
+- Das Skelett mit seiner kontinuierlichen Integration und seinem Deployment in die Testumgebung,
+  funktionierend (Schritt 4), und `docs/STATUS.md` mit den Befehlen.
+- Akzeptabler Mindestzustand: du weißt, wo die Geheimnisse leben werden und wie viel Kontingent
+  dir bleibt. Wenn du das Kontingent nicht kennst, finde es vorher heraus: dieser Schritt
+  existiert zum Teil deswegen.
 
 > We are going to close the path to production. Read the environments and access survey.
 > Evaluate whether you have what is needed to deploy to production safely (access, domain,
@@ -72,6 +94,16 @@ Person, die Schritt 14 angewandt auf die Infrastruktur ist.
 
 **Routine jedes Deployments:**
 
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- `docs/WORKING_AGREEMENT.md`, wo die Routine hinkommt.
+- `docs/DEPLOYMENT.md` (der anfängliche Prompt dieses Schritts), geschrieben und von dir gelesen:
+  könntest du ihm allein folgen?
+- Vor jedem echten Deployment außerdem: die vollständige Ende-zu-Ende-Batterie grün mit der
+  exakten Version (Schritt 7, Abschluss des Blocks), und das Audit gemacht, wenn es das erste
+  Deployment ist (Schritt 11).
+- Akzeptabler Mindestzustand: das Rollback wurde mindestens einmal getestet, bevor es Nutzer gibt.
+
 > Before touching production: the test environment is green with the same version; the
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
@@ -87,6 +119,16 @@ bereit, Konfigurationsänderungen angekündigt) und die zwei nachträglichen Bew
 Version und eine Ende-zu-Ende-Prüfung, ohne etwas zu schreiben).
 
 **Wenn ein Geheimnis im Chat oder in einem Commit aufgetaucht ist:**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Das identifizierte Geheimnis: welches es ist (sein Name, nie sein Wert), wo es aufgetaucht ist
+  (der Chat, ein Commit, ein Log) und wann. Wenn es in einem Commit aufgetaucht ist, der Commit.
+- Dein Zugang zu dem Ort, an dem es erzeugt wird (das Panel des Anbieters), für den Fall, dass der
+  Agent es nicht allein rotieren kann. Die Rotation machst du oder macht er mit deinen
+  Zugangsdaten, aber sie wird nicht aufgeschoben.
+- Akzeptabler Mindestzustand: du kannst das Geheimnis benennen und sagen, wo es gesehen wurde. Und
+  die Regel ohne Ausnahmen: dieser Prompt wird nicht „später“ geschickt.
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.

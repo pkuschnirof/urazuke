@@ -32,6 +32,10 @@ whenever they are cheap, even if they are not needed today.
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - **Volume data survey** of the business, named generically: main entities and their growth,
   events per entity, simultaneous operators and peak hours, data retention time, exceptional
   loads (campaigns, closings), expected growth. The survey is incomplete by nature; the agent
@@ -43,6 +47,27 @@ whenever they are cheap, even if they are not needed today.
 ## 2. Prompts
 
 **Opening:**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- `docs/VOLUME_SURVEY.md`: the volume survey, written with the domain owner (or with yourself, if
+  the project is yours). For every main entity of the semantic tree: how many there are today,
+  how many get added per month, how many events each one generates (an appointment generates
+  three messages; an authorization generates so many queries); how many people operate at the
+  peak and what time the peak is; how long the data is kept; what exceptional loads there are
+  (campaigns, month-end closes, the Monday after a holiday); what growth they expect and whether
+  the system could be sold to others. And the most important part: for each number, where it
+  comes from ("the manager said so", "counted in the September notebook", "assumption"). The
+  assumptions are marked as assumptions; they are not disguised as data.
+- `PROJECT.md` and `docs/SEMANTIC_TREE.md` (step 2), closed: the entities that have to be sized
+  are the ones in the tree.
+- If there is a previous system with a database: read-only access so that the agent can pull real
+  numbers instead of estimates, with the connection string kept outside the repository and the
+  name of the variable written down in the survey.
+- Minimum acceptable state: every entity in the tree has at least one number with its source,
+  even if several of them say "assumption". The agent is going to ask you for the assumptions;
+  that request is the step working.
 
 > Before proposing any architecture we are going to size the system. Read `PROJECT.md` and the
 > volume survey in `docs/VOLUME_SURVEY.md`. Distinguish primary data (facts only the business
@@ -65,6 +90,17 @@ because the decision is not only "which one" but "how much does it cost to be wr
 neither choose nor write code, because this step is about deciding, not building.
 
 **Closing:**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- The three options the agent presented, read, and at least one calculation redone by hand by you
+  (rows per year of the largest table, for example): it has to give you the same.
+- The primary data it asked you for, actually obtained (in the notebook, by asking the owner) and
+  given in the chat; none of it estimated by you to get out of the way.
+- Your choice, with the letter of the option and a one-line reason, decided by you and, if there
+  is an owner, with them.
+- Minimum acceptable state: the redone calculation matches, the assumptions turned into data with
+  a source, and the option is chosen. If the calculation does not match, do not close: ask.
 
 > I choose option [B]. Record in `docs/SIZING.md`: the primary data with its source, the derived
 > data with its arithmetic, the three options, the chosen one and why, and the decisions we are

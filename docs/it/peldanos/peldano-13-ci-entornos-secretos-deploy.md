@@ -26,6 +26,10 @@ qualcuno l'ha usato è impossibile.
 
 ## 1. Contesto richiesto
 
+Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
+prompt, con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
+inviare il prompt" che precede ciascuno.
+
 - **Rilevazione di ambienti e accessi**, in forma generica: quali ambienti ci sono (test,
   produzione), dove girano, chi ha accesso, come si promuove qualcosa dall'uno all'altro, quali
   segreti esistono e dove vivono oggi, quanta quota di integrazione continua c'è. L'agente valuta
@@ -35,6 +39,22 @@ qualcuno l'ha usato è impossibile.
 ## 2. Prompt
 
 **Iniziale:**
+
+**Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
+l'agente:
+
+- `docs/ENVIRONMENTS_SURVEY.md` (gradino 4), completato con ciò che manca per la produzione: il
+  dominio e chi lo amministra; dove vivranno i segreti sul server (file di ambiente, vault) e
+  quali sono (il nome, mai il valore); come si promuove oggi qualcosa da test a produzione, se c'è
+  qualcosa; chi può toccare la produzione; quanta quota di integrazione continua hai (il limite
+  del piano del tuo fornitore) e quanta ne hai consumata; come si farebbe oggi un rollback. Il
+  prompt la nomina "the environments and access survey": digli dov'è.
+- L'accesso alla produzione per l'agente, deciso da te: quale, con quale credenziale, e la
+  credenziale fuori dal repository e dalla chat.
+- Lo scheletro con la sua integrazione continua e il suo deployment in test funzionanti (gradino
+  4), e `docs/STATUS.md` con i comandi.
+- Stato minimo accettabile: sai dove vivranno i segreti e quanta quota ti resta. Se non sai la
+  quota, informati prima: questo gradino esiste in parte per questo.
 
 > We are going to close the path to production. Read the environments and access survey.
 > Evaluate whether you have what is needed to deploy to production safely (access, domain,
@@ -69,6 +89,17 @@ applicato all'infrastruttura.
 
 **Routine di ogni deployment:**
 
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- `docs/WORKING_AGREEMENT.md`, dove va la routine.
+- `docs/DEPLOYMENT.md` (il prompt iniziale di questo gradino), scritto e letto da te: lo potresti
+  seguire da solo?
+- Prima di ogni deployment reale, inoltre: la batteria completa end to end in verde con la
+  versione esatta (gradino 7, chiusura di blocco), e l'audit fatto se è il primo deployment
+  (gradino 11).
+- Stato minimo accettabile: il rollback è stato provato almeno una volta prima che ci siano
+  utenti.
+
 > Before touching production: the test environment is green with the same version; the
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
@@ -83,6 +114,16 @@ rollback pronto, modifiche di configurazione annunciate) e le due prove successi
 esecuzione e una verifica end to end senza scrivere nulla).
 
 **Se un segreto è comparso nella chat o in un commit:**
+
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- Il segreto identificato: qual è (il suo nome, mai il suo valore), dove è comparso (la chat, un
+  commit, un log) e quando. Se è comparso in un commit, il commit.
+- Il tuo accesso al posto in cui si genera (il pannello del fornitore), nel caso l'agente non
+  possa ruotarlo da solo. La rotazione la fai tu o la fa lui con la tua credenziale, ma non si
+  rimanda.
+- Stato minimo accettabile: sai nominare il segreto e dove è stato visto. E la regola senza
+  eccezioni: questo prompt non si manda "più tardi".
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.

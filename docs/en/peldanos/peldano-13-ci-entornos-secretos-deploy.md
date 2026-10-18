@@ -26,6 +26,10 @@ whether somebody used it is impossible.
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - **Survey of environments and access**, generically: which environments there are (test,
   production), where they run, who has access, how something is promoted from one to the other,
   which secrets exist and where they live today, how much continuous integration quota there is.
@@ -35,6 +39,24 @@ whether somebody used it is impossible.
 ## 2. Prompts
 
 **Opening:**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- `docs/ENVIRONMENTS_SURVEY.md` (step 4), completed with what is missing for production: the
+  domain and who administers it; where the secrets are going to live on the server (an
+  environment file, a vault) and which ones they are (the name, never the value); how something
+  is promoted from test to production today, if there is anything; who can touch production; how
+  much continuous integration quota you have (the limit of your provider's plan) and how much you
+  have consumed; how a rollback would be done today. The prompt names it "the environments and
+  access survey": tell it where it is.
+- The agent's access to production, decided by you: which one, with what credential, and the
+  credential outside the repository and outside the chat.
+- The skeleton with its continuous integration and its deployment to test working (step 4), and
+  `docs/STATUS.md` with the commands.
+- Minimum acceptable state: you know where the secrets are going to live and how much quota you
+  have left. If you do not know the quota, find it out first: this step exists in part because of
+  that.
 
 > We are going to close the path to production. Read the environments and access survey.
 > Evaluate whether you have what is needed to deploy to production safely (access, domain,
@@ -55,6 +77,15 @@ commits; and the documentation for a person, which is step 14 applied to infrast
 
 **Routine of every deployment:**
 
+**Before sending the prompt**, you have to have this at hand:
+
+- `docs/WORKING_AGREEMENT.md`, where the routine goes.
+- `docs/DEPLOYMENT.md` (the opening prompt of this step), written and read by you: could you
+  follow it on your own?
+- Before every real deployment, additionally: the complete end-to-end suite green with the exact
+  version (step 7, close of block), and the audit done if it is the first deployment (step 11).
+- Minimum acceptable state: the rollback was tested at least once before there are any users.
+
 > Before touching production: the test environment is green with the same version; the
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
@@ -64,6 +95,16 @@ configuration changes announced) and the two checks afterwards (the version runn
 end-to-end check without writing anything).
 
 **If a secret showed up in the chat or in a commit:**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- The secret identified: which one it is (its name, never its value), where it showed up (the
+  chat, a commit, a log) and when. If it showed up in a commit, the commit.
+- Your access to the place where it is generated (the provider's panel), in case the agent cannot
+  rotate it on its own. Either you do the rotation or it does it with your credential, but it is
+  not postponed.
+- Minimum acceptable state: you can name the secret and where it was seen. And the rule with no
+  exceptions: this prompt is not sent "later".
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.

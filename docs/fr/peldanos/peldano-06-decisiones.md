@@ -27,6 +27,9 @@ vient de mon outil [Ref. 5](../REFERENCIAS.md#ref-5).
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - La conversation avec le propriétaire : c'est le seul contexte. L'agent ne peut pas décider de
   règles métier.
 - Un lieu convenu où s'écrivent les décisions : le message du commit, la spécification de
@@ -36,6 +39,18 @@ vient de mon outil [Ref. 5](../REFERENCIAS.md#ref-5).
 
 **Routine (va dans le contrat de collaboration) :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- `docs/WORKING_AGREEMENT.md` (échelon 1), où va la routine.
+- `docs/DECISIONS.md`, créé même s'il est vide, avec le format dans l'en-tête : la date, qui a
+  décidé, les mots textuels, l'élément en attente qui en avait besoin. Vous le créez vous-même ou
+  vous le demandez à l'agent dans la même session ; ce qui compte, c'est que l'endroit convenu
+  existe avant la première décision.
+- Vous, disponible. Cette routine ne fonctionne que si, quand l'agent s'arrête et demande,
+  quelqu'un répond en heures et non en semaines. Si le propriétaire du domaine est une autre
+  personne, convenez avec lui du canal et du délai de réponse avant de coller le prompt.
+- État minimum acceptable : le registre existe et il y a quelqu'un qui décide.
 > Whenever implementing something requires a business rule that is not written down, or you
 > must choose between two approaches that change what the user sees, stop and ask me, in prose,
 > with your recommendation and the alternative. Do not implement the one you prefer. When I
@@ -63,6 +78,14 @@ permet d'avancer sans que la décision disparaisse.
 
 **De clôture (chaque décision) :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- La question de l'agent, lue, avec sa recommandation et son alternative.
+- Votre décision, consultée avec le propriétaire du domaine si ce n'est pas vous, rédigée en une
+  phrase avec vos mots exacts, ceux que vous voulez voir rester pour toujours (ils seront dans le
+  commit, dans l'élément en attente et dans le registre), et la date.
+- État minimum acceptable : la phrase est écrite avant de coller le prompt, elle ne s'improvise
+  pas dans le chat. Une règle paraphrasée plus tard est une règle différente.
 > Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
 
 > [fr]

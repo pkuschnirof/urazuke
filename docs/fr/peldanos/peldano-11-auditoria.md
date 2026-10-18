@@ -28,6 +28,9 @@ portes d'administrateur que le constructeur avait laissées en une journée
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - Le dépôt complet, en lecture seule.
 - La production ou l'environnement de test, en lecture seule (base de données, journaux).
 - L'audit précédent, s'il y en a eu un, pour mesurer ce qui a changé.
@@ -37,6 +40,22 @@ portes d'administrateur que le constructeur avait laissées en une journée
 
 **Initial (à un agent différent du constructeur, si possible) :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- Une session nouvelle de l'agent, différente de celle du constructeur : un clone propre du dépôt
+  dans un autre dossier et, si votre outil le permet, un fichier d'instructions différent qui dise
+  seulement « tu es un auditeur ; tu n'as pas construit ce système ». Sans cela, l'auditeur
+  partage les présupposés du constructeur et il les confirme.
+- Un accès en lecture seule pour cette session à l'environnement de test ou à la production : base
+  de données, journaux. Des identifiants en lecture seule, hors du dépôt, avec le nom de la
+  variable dit dans le chat.
+- Le périmètre, décidé par vous, pour le trou [scope] : intégrité, sécurité, performance, qualité
+  du code, ou tout.
+- L'audit précédent, s'il y en a eu (`docs/AUDIT_[date]` de la fois d'avant), pour qu'il mesure ce
+  qui a changé.
+- État minimum acceptable : la session de l'auditeur n'est pas celle du constructeur, et elle n'a
+  que la lecture.
 > Audit this system for [scope]. Read-only: change nothing except writing your report to
 > `docs/AUDIT_[date].md`. If auditing some part requires access you lack (the database, the
 > log, an environment), tell me and mark that part as not audited; do not pass it as fine. Go
@@ -64,6 +83,14 @@ pour comparer avec l'audit précédent ; et les P0 déjà convertis en élément
 
 **De clôture (au constructeur) :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- `docs/AUDIT_[date].md`, lu par vous, et deux constats au hasard vérifiés avec l'auditeur
+  (demandez-lui la commande, la ligne ; il doit pouvoir les montrer).
+- La session du constructeur ouverte : ce prompt va au constructeur, pas à l'auditeur, avec la
+  date du fichier mise dans le trou.
+- État minimum acceptable : vous avez lu le rapport, vous savez combien il y a de P0 et de P1, et
+  vous allez compter les éléments en attente qu'il ouvre.
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.
 

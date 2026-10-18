@@ -837,7 +837,12 @@ sections :
    conversation, celui de clôture. Tous portent la même clause, qui est le cœur de l'affaire : *le
    modèle évalue si le contexte suffit ; s'il ne suffit pas, il demande tout ce qui manque avant de
    continuer ; et il n'estime ni n'invente une donnée que seul le métier possède*. Celui qui sait ce
-   qui lui manque pour calculer, c'est le modèle, pas un formulaire.
+   qui lui manque pour calculer, c'est le modèle, pas un formulaire. Et chaque prompt vient
+   précédé d'un bloc qui dit **« Avant d'envoyer le prompt »** : les fichiers et les intrants que
+   vous (ou le métier avec vous) devez avoir construits avant de le coller, avec leur nom, leur
+   contenu et l'état minimum acceptable. Le prompt les nomme, le bloc vous dit comment ils doivent
+   être faits ; sans ce bloc, le prompt mentionne des fichiers que personne ne vous a dit comment
+   écrire.
 3. **Résultat attendu** : les caractéristiques détaillées de l'artefact.
 4. **Vérification de complétude** : la liste des contrôles que fait le propriétaire sur
    l'artefact, **sans lire de code**. Si l'un d'eux donne « non », l'échelon n'est pas gravi.

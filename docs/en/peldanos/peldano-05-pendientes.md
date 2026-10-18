@@ -40,6 +40,10 @@ this?" six months later.
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - The client's request for the block, in prose, just as they would say it, with its ambiguities.
   If you wrote use cases or user stories during intake, better: they are the natural unit of a
   block.
@@ -50,6 +54,25 @@ this?" six months later.
 ## 2. Prompts
 
 **To open a block:**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- The client's request for this block, written in prose, just as they would say it, with their
+  ambiguities. It goes in `docs/INITIAL_SURVEY.md` under a heading with the name of the block, or
+  in a file of its own (for example `docs/blocks/BLOCK_01_REQUEST.md`); the prompt says "the
+  client's request for this block" with no path, so tell it in the chat where it is. If during
+  the intake you wrote use cases or user stories, they go there: they are the natural unit of a
+  block. If the owner gave you a priority, that too. Do not "improve" it yourself: the
+  ambiguities are what the agent has to ask about.
+- `docs/SEMANTIC_TREE.md` (step 2), up to date: every pending item is going to hang from a node
+  in there.
+- `PROJECT.md` and `docs/STATUS.md` (step 2), up to date.
+- If there were audits (step 11) or human tests (the human view at the close of the previous
+  block): their findings, in `docs/AUDIT_[date].md` or noted down in the living status, because
+  they are candidate pending items for this block.
+- Minimum acceptable state: the block's request is written in the client's words, and the tree
+  has the nodes of that block, or the request makes it visible which ones are missing.
 
 > We are going to turn everything that must be done in this block into numbered pending items,
 > each one carrying its full specification. Read `PROJECT.md`, `docs/SEMANTIC_TREE.md`, the
@@ -75,6 +98,15 @@ the script of the end-to-end test of step 7; and a proposed order with its reaso
 confirm it or change it.
 
 **Routine of every session (goes in the working agreement):**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- `docs/PENDING.md` with the block specified and read by you, pending item by pending item, as if
+  you were the client, with your corrections already made (it is the most important task of the
+  step, and the one that most tempts you to skip it).
+- `docs/WORKING_AGREEMENT.md` (step 1), where this routine gets added.
+- Minimum acceptable state: no pending item has a one-line specification. If one does, do not
+  start building: have it completed first.
 
 > Before touching any code, open `docs/PENDING.md`, tell me which item you are taking and why,
 > and re-read its specification. Every commit cites its pending item. A pending item is closed

@@ -3,10 +3,13 @@
 Eine Datei pro Schritt. Alle haben dasselbe Gerüst, und zwar mit Absicht, damit du sie vergleichen
 kannst und damit mit der Zeit der Reflex, sie zu lesen, automatisch wird: die Kopfzeile mit dem
 Abschnitt, dem Wann, der Form und der Größe (verpflichtend oder proportional); wozu er dient; (1)
-der benötigte Kontext, generisch benannt; (2) die Prompts, **auf Englisch**, jeder mit seiner
-Übersetzung und darunter der Erklärung, was ich vom Modell verlange und warum jede Klausel dort
-steht; (3) das erwartete Ergebnis mit seinen Merkmalen; (4) die Vollständigkeitsprüfung, die du
-machst, ohne Code zu lesen; (5) die Warnsignale, die Symptome eines schlecht erklommenen Schritts.
+der benötigte Kontext, generisch benannt; (2) die Prompts, **auf Englisch**, jeder mit einem
+Block **„Bevor du den Prompt schickst“** davor (die Dateien und die Eingaben, die du selbst
+fertig haben musst, bevor du ihn einfügst, mit ihrem Inhalt und ihrem Mindestzustand), gefolgt
+von seiner Übersetzung und, darunter, von der Erklärung, was ich vom Modell verlange und warum
+jede Klausel dort steht; (3) das erwartete Ergebnis mit seinen Merkmalen; (4) die
+Vollständigkeitsprüfung, die du machst, ohne Code zu lesen; (5) die Warnsignale, die Symptome
+eines schlecht erklommenen Schritts.
 
 Die englischen Prompts sind ein einziges Stück, identisch in den acht Fassungen des Dokuments;
 `node build/build.mjs` extrahiert sie nach `prompts/` und prüft, dass keine Übersetzung sie

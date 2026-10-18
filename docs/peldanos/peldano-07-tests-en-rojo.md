@@ -31,6 +31,10 @@ antes de producción.
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - El cambio ya implementado (por defecto los tests van después de implementar; "primero el test"
   queda como opción para alcances chicos y bien definidos).
 - El pendiente que origina el cambio, con sus criterios de aceptación y su "cómo se verifica".
@@ -39,6 +43,23 @@ antes de producción.
 ## 2. Prompts
 
 **Rutina (va en el contrato de convivencia; se aplica en cada cambio):**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- El pendiente que se está cerrando, con su especificación completa en `docs/PENDING.md`; en
+  particular, sus criterios de aceptación en la forma "dado, cuando, entonces" y su "cómo se
+  verifica", que son el guion del test. Si el pendiente no los tiene, volvé al peldaño 5 antes de
+  pedir el test.
+- El cambio ya implementado por el agente (el método prueba después de implementar, salvo que vos
+  elijas "primero el test" para un alcance chico y bien definido).
+- La batería existente y el comando para correrla, anotados en `docs/STATUS.md` (peldaño 4).
+- El entorno de prueba corriendo y accesible para el agente, con datos de prueba suficientes para
+  el flujo que se toca. Si el flujo necesita datos que no existen (un paciente, un turno de ayer),
+  cargalos vos o pedile que los cree como parte del test; lo que no puede hacer es simularlos.
+- `docs/WORKING_AGREEMENT.md`, donde va la rutina la primera vez.
+- Estado mínimo aceptable: la especificación tiene criterios de aceptación, y la batería corre con
+  un comando conocido.
 
 > To close this pending item I need evidence, not your word. (1) Write the test that proves what
 > the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
@@ -74,6 +95,18 @@ código.
 
 **Al cierre de cada bloque y antes de cada despliegue a producción:**
 
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- Todos los pendientes del bloque cerrados con la rutina (rojo, verde, regresión, punta a punta
+  del flujo).
+- La versión exacta que se va a promover, identificada (número de versión o commit) y desplegada
+  en el entorno de prueba; decísela en el chat si no está en `docs/STATUS.md`.
+- La lista de flujos que existen hasta ahora, escrita por vos a partir de los casos de uso del
+  árbol semántico, para contrastarla con lo que el agente diga que cubrió. Sin tu lista, "todos
+  los flujos" es lo que el agente recuerde.
+- Estado mínimo aceptable: sabés cuántos flujos tiene que recorrer la batería antes de preguntarle
+  cuántos recorrió.
+
 > Run the complete end-to-end suite of every flow that exists so far, in the test environment,
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
@@ -90,6 +123,15 @@ versión exacta (no "la última"), con el efecto en el backend por flujo, y con 
 completitud: lo que no está cubierto se declara y se vuelve pendiente, no se pasa por cubierto.
 
 **Cuando el agente dice que no se puede probar:**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- El mensaje del agente diciendo que no se puede probar, leído con atención: ¿no se puede, o le
+  falta algo? Si lo que falta es un insumo que vos tenés (datos, un acceso, un entorno), dáselo y
+  no mandes este prompt. Este prompt es para cuando de verdad falta algo en el sistema
+  (identificadores en los elementos de la pantalla, un modo de prueba del proveedor externo).
+- Estado mínimo aceptable: distinguiste entre "me falta un insumo" (lo das) y "el sistema no es
+  testeable acá" (este prompt).
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.

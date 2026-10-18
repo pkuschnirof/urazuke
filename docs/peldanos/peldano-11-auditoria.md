@@ -26,6 +26,10 @@ día [Ref. 40](../REFERENCIAS.md#ref-40).
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - El repositorio completo, en solo lectura.
 - La producción o el entorno de prueba, en solo lectura (base de datos, logs).
 - La auditoría anterior, si hubo, para medir qué cambió.
@@ -34,6 +38,22 @@ día [Ref. 40](../REFERENCIAS.md#ref-40).
 ## 2. Prompts
 
 **Inicial (a un agente distinto del constructor, si se puede):**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- Una sesión nueva del agente, distinta de la del constructor: un clon limpio del repositorio en
+  otra carpeta y, si tu herramienta lo permite, un archivo de instrucciones distinto que solo diga
+  "sos un auditor; no construiste este sistema". Sin esto, el auditor comparte los supuestos del
+  constructor y los confirma.
+- Acceso de solo lectura para esa sesión al entorno de prueba o a producción: base de datos, logs.
+  Credenciales de solo lectura, fuera del repositorio, con el nombre de la variable dicho en el
+  chat.
+- El alcance, decidido por vos, para el hueco [scope]: integridad, seguridad, rendimiento, calidad
+  de código, o todo.
+- La auditoría anterior, si hubo (`docs/AUDIT_[fecha]` de la vez pasada), para que mida qué
+  cambió.
+- Estado mínimo aceptable: la sesión del auditor no es la del constructor, y tiene solo lectura.
 
 > Audit this system for [scope]. Read-only: change nothing except writing your report to
 > `docs/AUDIT_[date].md`. If auditing some part requires access you lack (the database, the
@@ -61,6 +81,15 @@ accionable sin releer el informe; notas por dimensión, para comparar con la aud
 los P0 ya convertidos en pendientes propuestos.
 
 **De cierre (al constructor):**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- `docs/AUDIT_[fecha].md`, leído por vos, y dos hallazgos al azar verificados con el auditor
+  (pedile el comando, la línea; tiene que poder mostrarlos).
+- La sesión del constructor abierta: este prompt va al constructor, no al auditor, con la fecha
+  del archivo puesta en el hueco.
+- Estado mínimo aceptable: leíste el informe, sabés cuántos P0 y P1 hay, y vas a contar los
+  pendientes que abra.
 
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.

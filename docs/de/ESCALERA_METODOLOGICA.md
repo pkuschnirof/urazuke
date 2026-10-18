@@ -853,7 +853,12 @@ jeder Schritt, zusätzlich zur Karte, einen **Vertrag** in einer eigenen Datei i
    ein Gespräch ist, der abschließende. Alle tragen dieselbe Klausel, die das Herz der Sache ist:
    *das Modell bewertet, ob der Kontext ausreicht; wenn er nicht ausreicht, bittet es um alles, was
    fehlt, bevor es weitermacht; und es schätzt oder erfindet keine Zahl, die nur das Geschäft hat*.
-   Wer weiß, was ihm zum Rechnen fehlt, ist das Modell, nicht ein Formular.
+   Wer weiß, was ihm zum Rechnen fehlt, ist das Modell, nicht ein Formular. Und jedem Prompt
+   geht ein Block voran, der **„Bevor du den Prompt schickst“** heißt: die Dateien und die
+   Eingaben, die du (oder das Geschäft mit dir) gebaut haben musst, bevor du ihn einfügst, mit
+   ihrem Namen, ihrem Inhalt und dem akzeptablen Mindestzustand. Der Prompt nennt sie; der Block
+   sagt dir, wie sie gemacht sein müssen. Ohne diesen Block erwähnt der Prompt Dateien, von
+   denen dir niemand gesagt hat, wie man sie schreibt.
 3. **Erwartetes Ergebnis**: die detaillierten Merkmale des Artefakts.
 4. **Vollständigkeitsprüfung**: die Liste der Kontrollen, die der Eigentümer am Artefakt macht,
    **ohne Code zu lesen**. Wenn eine „nein“ ergibt, ist der Schritt nicht erklommen.

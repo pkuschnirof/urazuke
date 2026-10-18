@@ -24,6 +24,10 @@ rifiutato, non da quelli che ho accettato [Ref. 46](../REFERENCIAS.md#ref-46).
 
 ## 1. Contesto richiesto
 
+Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
+prompt, con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
+inviare il prompt" che precede ciascuno.
+
 Nominato in forma generica; l'agente valuta se basta e chiede ciò che manca.
 
 - Rilevazione della richiesta: cosa vuole il cliente, per chi, e cosa succede oggi senza il
@@ -45,6 +49,31 @@ precisione e meno token. Ciascuno porta la sua traduzione (nell'HTML, con un pul
 spiegazione di cosa gli sto chiedendo e perché ogni clausola è lì. Al modello si incolla l'inglese.
 
 **Iniziale:**
+
+**Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
+l'agente:
+
+- `docs/INITIAL_SURVEY.md`: la rilevazione iniziale. La scrivi tu, a mano, dopo aver parlato con
+  il cliente (è il risultato dell'acquisizione della fase 0). Da mezza pagina a una pagina, in
+  prosa, non in forma di modulo, con sei cose: (1) la richiesta: cosa vuole il cliente, con le sue
+  parole, per chi, e cosa succede oggi senza il sistema (il quaderno, il foglio di calcolo, la
+  persona che lo fa a mano); (2) la tecnologia: cosa c'è o cosa si propone, se esiste un sistema
+  precedente, se quel sistema ha un repository e come è gestito (rami, chi carica, se ci sono
+  test); (3) la testabilità: se le schermate si possono eseguire da programma, e se ogni elemento
+  dell'interfaccia si può trovare, cliccare, digitare e leggere; se non lo sai, dillo; (4) il
+  proprietario del dominio: chi è, con nome e ruolo, e quanto tempo ha a settimana per decidere;
+  (5) la conseguenza di un errore: soldi, salute, esercizio, niente; (6) gli ambienti: se ce ne
+  sarà uno di test, se l'agente potrà accedervi, se c'è una produzione consultabile in sola
+  lettura. Ciò che non sai resta scritto come "non lo so": non completarlo tu perché l'agente non
+  chieda, perché il bello del gradino è vedere cosa chiede.
+- `docs/ELIGIBILITY_CRITERIA.md`: la scheda dei criteri. La copi dal documento principale (la
+  scheda del gradino 0: i due escludenti X1 e X2 e i criteri da D1 a D10 che pesano), con una
+  colonna vuota per la risposta, un'altra per la fonte e un'altra per il verde o il rosso. Non
+  compilarla tu: la compila l'agente.
+- La cartella del progetto, creata, con l'agente aperto lì e ancora senza nient'altro che quei due
+  file dentro `docs/`.
+- Stato minimo accettabile: i due file esistono, la rilevazione tocca le sei cose anche se diverse
+  dicono "non lo so", e l'agente è posizionato nella cartella.
 
 > We are going to assess whether this project can be run with the Urazuke method. Read the
 > initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
@@ -72,6 +101,17 @@ che **non decida**, perché l'idoneità la decido io. L'ultima riga gli chiede d
 mia lingua, perché il prompt è in inglese ma la conversazione non ha motivo di esserlo.
 
 **Di chiusura:**
+
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- La tua decisione, in una riga, presa dopo aver letto la scheda completa che l'agente ha
+  presentato: va, non va, o va con condizioni. Se ci sono condizioni, scrivile prima di incollare
+  il prompt, ciascuna verificabile ("accesso in lettura alla produzione prima del gradino 3" sì;
+  "che il cliente collabori" no), e non più di tre.
+- Le risposte che hai dato alle domande dell'agente, date in questa stessa sessione di chat: il
+  prompt gli chiede di includerle nella scheda finale, e se la sessione è un'altra, non le ha.
+- Stato minimo accettabile: ogni criterio della scheda ha risposta e fonte a vista, e tu hai già
+  deciso. Se hai ancora dubbi, non mandare la chiusura: continua a chiedere.
 
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its

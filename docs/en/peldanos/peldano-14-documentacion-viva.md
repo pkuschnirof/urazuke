@@ -32,6 +32,10 @@ straight out of them.
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - Who the readers of each manual are: the end user, the one who maintains, the one who operates
   the infrastructure. The business knows; the agent asks if it is not clear.
 - The system running in the test environment, to take real screenshots.
@@ -41,6 +45,15 @@ straight out of them.
 ## 2. Prompts
 
 **Routine (goes in the working agreement):**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- `docs/WORKING_AGREEMENT.md`, where the routine goes.
+- The decision about which manuals the system is going to have and who each one is for (the end
+  user, the one who maintains it, the one who operates the infrastructure), written in
+  `PROJECT.md` or said in the chat, so that "the corresponding manual" means something.
+- Minimum acceptable state: there is a list of manuals, each one with its reader.
 
 > Every change that modifies what the user sees, what the operator does, or how the system is
 > deployed, updates the corresponding manual in the same commit. At the close of every
@@ -53,6 +66,20 @@ the close of the block as the moment when the closed pending items become manual
 and the question when it is not clear which manual it goes to.
 
 **To generate the manuals:**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- The system running in the test environment with realistic data, not empty: the screenshots come
+  from there.
+- The closed pending items with their closing documentation (step 5), which are the source of the
+  user manual and of the changelog.
+- `docs/DEPLOYMENT.md` (step 13) and `docs/LOCKS.md` (step 12), which are the input of the
+  infrastructure and recovery manual.
+- What only the business knows, prepared for when the agent asks: who is responsible for what,
+  what phone number gets called when it goes down, who makes the backup, in what language the
+  user reads.
+- Minimum acceptable state: there is data in the test environment, and you know whom to call at
+  three in the morning.
 
 > Generate three manuals from the system as it is today in the test environment: the user
 > manual (screen by screen, with real screenshots, in the user's language, no jargon); the

@@ -31,6 +31,9 @@ la version exacte avant la production.
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - Le changement déjà implémenté (par défaut les tests viennent après l'implémentation ; « le test
   d'abord » reste une option pour les périmètres petits et bien définis).
 - L'élément en attente qui origine le changement, avec ses critères d'acceptation et son
@@ -41,6 +44,23 @@ la version exacte avant la production.
 
 **Routine (va dans le contrat de collaboration ; s'applique à chaque changement) :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- L'élément en attente que l'on est en train de clore, avec sa spécification complète dans
+  `docs/PENDING.md` ; en particulier, ses critères d'acceptation sous la forme « étant donné,
+  quand, alors » et son « comment cela se vérifie », qui sont le scénario du test. Si l'élément ne
+  les a pas, revenez à l'échelon 5 avant de demander le test.
+- Le changement déjà implémenté par l'agent (la méthode teste après avoir implémenté, sauf si vous
+  choisissez « le test d'abord » pour une portée petite et bien définie).
+- La batterie existante et la commande pour la lancer, notées dans `docs/STATUS.md` (échelon 4).
+- L'environnement de test en marche et accessible à l'agent, avec assez de données de test pour le
+  flux qui est touché. Si le flux a besoin de données qui n'existent pas (un patient, un
+  rendez-vous d'hier), chargez-les vous-même ou demandez-lui de les créer dans le cadre du test ;
+  ce qu'il ne peut pas faire, c'est les simuler.
+- `docs/WORKING_AGREEMENT.md`, où va la routine la première fois.
+- État minimum acceptable : la spécification a des critères d'acceptation, et la batterie tourne
+  avec une commande connue.
 > To close this pending item I need evidence, not your word. (1) Write the test that proves what
 > the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
 > against the previous code: you may temporarily revert the change, or run the test against the
@@ -76,6 +96,17 @@ preuve là où vit le code.
 
 **À la clôture de chaque bloc et avant chaque déploiement en production :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- Tous les éléments en attente du bloc clos avec la routine (rouge, vert, régression, bout en bout
+  du flux).
+- La version exacte qui va être promue, identifiée (numéro de version ou commit) et déployée dans
+  l'environnement de test ; dites-la dans le chat si elle n'est pas dans `docs/STATUS.md`.
+- La liste des flux qui existent jusqu'ici, écrite par vous à partir des cas d'utilisation de
+  l'arbre sémantique, pour la confronter à ce que l'agent dira avoir couvert. Sans votre liste,
+  « tous les flux » est ce dont l'agent se souvient.
+- État minimum acceptable : vous savez combien de flux la batterie doit parcourir avant de lui
+  demander combien elle en a parcourus.
 > Run the complete end-to-end suite of every flow that exists so far, in the test environment,
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
@@ -95,6 +126,15 @@ pas passer pour couvert.
 
 **Quand l'agent dit qu'on ne peut pas tester :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- Le message de l'agent disant qu'on ne peut pas tester, lu avec attention : est-ce qu'on ne peut
+  pas, ou est-ce qu'il lui manque quelque chose ? Si ce qui manque est un intrant que vous avez
+  (des données, un accès, un environnement), donnez-le-lui et n'envoyez pas ce prompt. Ce prompt
+  est pour quand il manque vraiment quelque chose dans le système (des identifiants sur les
+  éléments de l'écran, un mode test du fournisseur externe).
+- État minimum acceptable : vous avez distingué entre « il me manque un intrant » (vous le donnez)
+  et « le système n'est pas testable ici » (ce prompt).
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
 

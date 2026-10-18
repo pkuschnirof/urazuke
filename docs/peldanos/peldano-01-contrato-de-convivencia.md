@@ -23,6 +23,10 @@ alguien sin memoria.
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - Ninguno del proyecto: es el primer archivo.
 - Tuyo: tus preferencias de trabajo (idioma, cómo querés que te pregunten, qué considerás una
   pérdida de tu tiempo, qué nivel de autonomía le das al agente).
@@ -30,6 +34,21 @@ alguien sin memoria.
 ## 2. Prompts
 
 **Inicial:**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- Nada del proyecto: es el primer archivo que se escribe. Si ya hiciste el peldaño 0,
+  `docs/ELIGIBILITY.md` existe y está bien que el agente lo vea, pero no hace falta.
+- Tus preferencias de trabajo, pensadas antes de empezar y anotadas en una lista corta que tenés a
+  mano (en un papel, o en `docs/MY_PREFERENCES.md` si querés que quede en el repositorio): en qué
+  idioma querés la conversación; cuánto querés que te pregunte (poco y con recomendación, o
+  mucho); qué considerás una pérdida de tu tiempo; qué nivel de autonomía le das (¿puede hacer
+  commits solo?, ¿puede desplegar a prueba solo?, ¿a producción nunca?); qué no tolerás. El agente
+  te va a preguntar sobre esto; la lista es para que contestes en una línea y no improvises.
+- La carpeta del proyecto creada y el agente abierto ahí.
+- Estado mínimo aceptable: sabés contestar cada una de esas cinco preguntas. El contrato que salga
+  va a ser tan bueno como tus respuestas.
 
 > Before we write any code, we are going to set the working agreement between you and me.
 > Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
@@ -61,6 +80,15 @@ Un contrato redactado sin una sola pregunta es sospechoso: el agente no conoce a
 la que va a trabajar.
 
 **De cierre:**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- El borrador de `docs/WORKING_AGREEMENT.md` que el agente escribió, leído entero por vos. Para
+  cada regla que él propuso, tu veredicto: la aceptás o la rechazás, y si la rechazás, una razón
+  de una línea. Eso va en los huecos [X, Y] y [Z] del prompt, y los llenás vos.
+- Las respuestas a lo que te preguntó sobre cómo trabajás, ya dadas en el chat.
+- Estado mínimo aceptable: no queda ninguna regla propuesta sin veredicto. Una regla que no
+  aceptaste ni rechazaste queda en el contrato como si la hubieras aceptado.
 
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the

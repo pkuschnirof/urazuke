@@ -79,7 +79,10 @@ Chaque leçon a la même structure :
 - **La tâche** : pas à pas, avec le prompt exact que vous allez donner à l'agent (en anglais, parce
   que les modèles suivent les instructions avec plus de précision en anglais ; chacun est accompagné
   de sa traduction, et en dessous est expliqué ce que vous lui demandez) et quoi faire de ce qu'il
-  vous renvoie.
+  vous renvoie. Avant chaque prompt il y a un bloc qui dit **« Avant d'envoyer le prompt »** : les
+  fichiers et les intrants que vous devez avoir faits vous-même, de vos mains, avant de le coller.
+  Ne le sautez pas : le prompt nomme ces fichiers, et s'ils n'existent pas ou s'ils sont vides,
+  l'agent va les inventer ou va vous les demander.
 - **La vérification de complétude** : la liste des questions que vous vous posez sur ce que l'agent
   a livré, sans ouvrir le code. Si l'une d'elles donne « non », la leçon n'est pas terminée.
 - **Le livrable** : le fichier ou la preuve qui doit exister à la fin.
@@ -181,16 +184,22 @@ cette leçon peut se terminer par « ça ne passe pas », et c'est un résultat 
 
 **La tâche.**
 
-1. Écrivez, à la main, dans un fichier `docs/INITIAL_SURVEY.md`, ce que vous savez du projet à
-   partir de l'ingestion de la semaine 0 : ce que veut le client, pour qui, ce qui se passe
-   aujourd'hui sans le système, quelle technologie existe ou est proposée, s'il y a un système
-   antérieur et s'il a un dépôt, qui est le propriétaire et combien de temps il a, quelle
-   conséquence a une erreur, quels environnements il y aura. Une demi-page. Peu importe qu'il soit
-   incomplet ; en fait, cela fait partie de l'exercice qu'il soit incomplet.
-2. Copiez la fiche de critères du document principal (les excluants X1 et X2 et les candidats)
-   dans `docs/ELIGIBILITY_CRITERIA.md`.
-3. Ouvrez l'agent dans le dossier du projet (encore vide à part ces deux fichiers) et collez-lui ce
-   prompt :
+**Avant d'envoyer le prompt**, de vos mains (l'agent ne peut pas le faire à votre place) :
+
+- `docs/INITIAL_SURVEY.md` : vous l'écrivez à la main, à partir de l'ingestion de la semaine 0 :
+  ce que veut le client, pour qui, ce qui se passe aujourd'hui sans le système, quelle technologie
+  existe ou est proposée, s'il y a un système antérieur et s'il a un dépôt, si les écrans pourront
+  être pilotés par programme, qui est le propriétaire et combien de temps il a, quelle conséquence
+  a une erreur, quels environnements il y aura. Une demi-page. Peu importe qu'il soit incomplet ;
+  en fait, cela fait partie de l'exercice qu'il soit incomplet, et ce que vous ne savez pas, vous
+  l'écrivez « je ne sais pas ».
+- `docs/ELIGIBILITY_CRITERIA.md` : copiez la fiche de critères du document principal (les
+  excluants X1 et X2 et les candidats), avec les colonnes de réponse, de source et de vert ou
+  rouge vides. Ne la remplissez pas vous-même : c'est l'agent qui la remplit.
+- Le dossier du projet, encore vide à part ces deux fichiers, avec l'agent ouvert dedans.
+- Le contenu complet de chaque fichier est dans le contrat de l'échelon 0, dans le même bloc.
+
+1. Collez-lui ce prompt :
 
 > We are going to assess whether this project can be run with the Urazuke method. Read the
 > initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
@@ -215,9 +224,16 @@ cette leçon peut se terminer par « ça ne passe pas », et c'est un résultat 
    cœur de la méthode), de remplir la fiche en disant d'où vient chaque réponse, et de ne pas
    décider : la décision est à vous.
 
-4. Répondez à ses questions. S'il ne vous en a posé aucune, méfiez-vous et demandez-lui ce qu'il a
+2. Répondez à ses questions. S'il ne vous en a posé aucune, méfiez-vous et demandez-lui ce qu'il a
    supposé.
-5. Quand il vous présente la fiche, lisez-la et décidez. Ensuite collez-lui le prompt de clôture :
+3. Quand il vous présente la fiche, lisez-la et décidez.
+
+**Avant d'envoyer le prompt** de clôture : votre décision en une ligne (ça passe, ça ne passe pas,
+ou ça passe sous conditions, chaque condition vérifiable et pas plus de trois), et les réponses
+que vous avez données à ses questions dans cette même session, parce que le prompt lui demande de
+les inclure.
+
+4. Collez-lui le prompt de clôture :
 
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
@@ -265,10 +281,18 @@ en anglais parce que le prompt était en anglais.
 
 **La tâche.**
 
-1. Réfléchissez cinq minutes à comment vous travaillez : préférez-vous qu'il vous pose beaucoup ou
-   peu de questions ? Dans quelle langue ? Qu'est-ce qui vous exaspère quand vous travaillez avec
-   d'autres personnes ? Notez-le dans une courte liste ; vous le lui raconterez quand il demandera.
-2. Collez-lui ce prompt :
+**Avant d'envoyer le prompt**, de vos mains :
+
+- Vos préférences de travail, pensées cinq minutes et notées dans une courte liste (sur un papier,
+  ou dans `docs/MY_PREFERENCES.md`) : préférez-vous qu'il vous pose beaucoup ou peu de questions ?
+  Dans quelle langue ? Quel niveau d'autonomie lui donnez-vous (des commits tout seul, un
+  déploiement vers le test tout seul, jamais la production) ? Qu'est-ce qui vous exaspère quand
+  vous travaillez avec d'autres personnes ? Vous le lui raconterez quand il demandera ; la liste
+  est là pour ne pas improviser.
+- Le dossier du projet avec l'agent ouvert dedans. Rien de plus : c'est le premier fichier du
+  projet.
+
+1. Collez-lui ce prompt :
 
 > Before we write any code, we are going to set the working agreement between you and me.
 > Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
@@ -298,9 +322,14 @@ en anglais parce que le prompt était en anglais.
    marquées comme propositions pour que vous les acceptiez ou les refusiez, et qu'il vous pose des
    questions sur vous.
 
-3. Répondez à ses questions. Lisez les propositions : acceptez celles qui vous servent, refusez
+2. Répondez à ses questions. Lisez les propositions : acceptez celles qui vous servent, refusez
    celles qui ne servent pas, toujours avec une raison d'une ligne.
-4. Clôturez avec :
+
+**Avant d'envoyer le prompt** de clôture : votre verdict sur chaque proposition de l'agent,
+écrit : lesquelles vous acceptez [X, Y], lesquelles vous refusez [Z] et pourquoi, en une ligne
+chacune. Cela va dans les trous du prompt, et c'est vous qui les remplissez.
+
+3. Clôturez avec :
 
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
@@ -357,11 +386,20 @@ Ce qui n'est pas écrit est ce que le modèle inventera quand il tombera sur un 
 
 **La tâche.**
 
-1. Complétez `docs/INITIAL_SURVEY.md` avec ce que vous avez appris à la leçon 0 (les réponses aux
-   questions de l'agent). Ajoutez une section « ce que le système NE doit PAS faire », même avec
-   deux items, et assurez-vous que les cas d'utilisation nommés par le propriétaire, les entités
-   avec leurs états et les dessins des écrans y sont, même si ce sont des photos d'un papier.
-2. Collez-lui :
+**Avant d'envoyer le prompt**, de vos mains :
+
+- `docs/INITIAL_SURVEY.md`, complété avec ce que vous avez appris à la leçon 0 (les réponses aux
+  questions de l'agent) et avec le relevé du métier : qui utilise le système, quel problème il
+  résout, une section « ce que le système NE doit PAS faire » même avec deux items, les cas
+  d'utilisation nommés par le propriétaire avec ses mots, les entités avec leurs états, les
+  dessins des écrans même si ce sont des photos d'un papier, les intégrations externes, et les
+  décisions déjà prises, avec leur date. Si vous avez utilisé une méthode d'ingestion (entretiens,
+  cas d'utilisation, récits utilisateur, maquettes), dites laquelle et collez le résultat.
+- `docs/WORKING_AGREEMENT.md`, clos (leçon 1).
+- S'il y a un système antérieur, un accès en lecture à son code ou à sa documentation, noté dans
+  le relevé.
+
+1. Collez-lui :
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -399,12 +437,17 @@ Ce qui n'est pas écrit est ce que le modèle inventera quand il tombera sur un 
    section « ce que ce n'est pas », l'arbre sémantique avec sa structure complète et les nœuds
    inférés marqués, et l'état vivant dans un autre fichier.
 
-3. Lisez `PROJECT.md` en entier. Il doit tenir en cinq minutes. Corrigez ce qui n'est pas vrai ou
+2. Lisez `PROJECT.md` en entier. Il doit tenir en cinq minutes. Corrigez ce qui n'est pas vrai ou
    pas à vous.
-4. Parcourez l'arbre sémantique comme si vous étiez le client. Regardez chaque nœud marqué comme
+3. Parcourez l'arbre sémantique comme si vous étiez le client. Regardez chaque nœud marqué comme
    inféré et confirmez-le ou corrigez-le. Cherchez les acteurs qui manquent, les états d'entité que
    le métier n'utilise pas, les écrans que vous n'avez pas demandés.
-5. Clôturez avec :
+
+**Avant d'envoyer le prompt** de clôture : `PROJECT.md` lu en entier par vous, l'arbre parcouru
+nœud par nœud avec un verdict pour chaque nœud inféré, et la liste des corrections écrite pour le
+trou [list] du prompt. Si la liste est vide la première fois, méfiez-vous de votre lecture.
+
+4. Clôturez avec :
 
 > Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with
 > today's date. Add to the working agreement two rules: the change history never goes into
@@ -419,7 +462,7 @@ Ce qui n'est pas écrit est ce que le modèle inventera quand il tombera sur un 
 > éléments en attente) ; et tout élément en attente doit pendre d'un nœud de l'arbre sémantique,
 > et l'arbre se met à jour dans le même commit chaque fois qu'un bloc ajoute ou change un nœud.
 
-6. **Le test de lecture.** Fermez la session de l'agent et ouvrez-en une nouvelle. Sans rien lui
+5. **Le test de lecture.** Fermez la session de l'agent et ouvrez-en une nouvelle. Sans rien lui
    dire de plus, demandez-lui : « Que ne doit pas faire ce système ? Et de quel nœud de l'arbre
    pend l'écran de l'agenda ? ». S'il vous répond avec ce que disent `PROJECT.md` et l'arbre, le
    rattachement fonctionne. S'il vous répond n'importe quoi d'autre, il ne lit pas la carte :
@@ -476,14 +519,20 @@ vous êtes épargné de tout réécrire.
 
 **La tâche.**
 
-1. Asseyez-vous avec le propriétaire (ou avec vous-même, si le projet est à vous) et écrivez
-   `docs/VOLUME_SURVEY.md` : les entités principales (celles de l'arbre sémantique) et combien il y
-   en a, combien s'ajoutent par mois, combien d'événements par entité, combien de personnes opèrent
-   au pic et quand est le pic, combien de temps on conserve les données, s'il y a des charges
-   exceptionnelles, quelle croissance ils attendent. Pour chaque chiffre, notez d'où il vient :
-   « la responsable l'a dit », « compté dans le cahier de septembre », « supposé ». Laissez-en
-   quelques-uns en « supposé » à dessein : vous verrez ce que l'agent en fait.
-2. Collez-lui :
+**Avant d'envoyer le prompt**, de vos mains et avec le propriétaire :
+
+- `docs/VOLUME_SURVEY.md` : asseyez-vous avec le propriétaire (ou avec vous-même, si le projet est
+  à vous) et écrivez les entités principales (celles de l'arbre sémantique) et combien il y en a,
+  combien s'ajoutent par mois, combien d'événements par entité, combien de personnes opèrent au
+  pic et quand est le pic, combien de temps on conserve les données, s'il y a des charges
+  exceptionnelles, quelle croissance ils attendent. Pour chaque chiffre, notez d'où il vient :
+  « la responsable l'a dit », « compté dans le cahier de septembre », « supposé ». Laissez-en
+  quelques-uns en « supposé » à dessein : vous verrez ce que l'agent en fait.
+- `PROJECT.md` et `docs/SEMANTIC_TREE.md`, clos (leçon 2).
+- S'il y a un système antérieur avec une base de données, un accès en lecture seule pour que
+  l'agent sorte des chiffres réels, avec la chaîne de connexion hors du dépôt.
+
+1. Collez-lui :
 
 > Before proposing any architecture we are going to size the system. Read `PROJECT.md` and the
 > volume survey in `docs/VOLUME_SURVEY.md`. Distinguish primary data (facts only the business
@@ -516,13 +565,18 @@ vous êtes épargné de tout réécrire.
    calcul en vue ; le scénario « par dix » ; trois options avec le coût de passer de l'une à
    l'autre ; et de ne pas choisir.
 
-3. S'il vous demande les « supposés », bien : c'était l'exercice. Procurez-vous les chiffres
+2. S'il vous demande les « supposés », bien : c'était l'exercice. Procurez-vous les chiffres
    (demandez au propriétaire, comptez dans le cahier) et donnez-les-lui. S'il ne vous les a pas
    demandés et a calculé quand même, arrêtez et demandez-lui ce qu'il a fait des supposés : c'est
    une défaillance de l'échelon et il vaut mieux la voir maintenant.
-4. Lisez les trois options. Refaites un calcul à la main (par exemple, les lignes par an de la
+3. Lisez les trois options. Refaites un calcul à la main (par exemple, les lignes par an de la
    plus grande table) : il doit vous donner la même chose. Choisissez.
-5. Clôturez avec :
+
+**Avant d'envoyer le prompt** de clôture : les supposés convertis en données avec leur source, un
+calcul refait à la main par vous qui coïncide avec celui de l'agent, et l'option choisie avec une
+raison d'une ligne.
+
+4. Clôturez avec :
 
 > I choose option [B]. Record in `docs/SIZING.md`: the primary data with its source, the derived
 > data with its arithmetic, the three options, the chosen one and why, and the decisions we are
@@ -581,13 +635,21 @@ vert », « le déploiement en test a fonctionné »). Les écrire maintenant, m
 
 **La tâche.**
 
-1. Écrivez `docs/ENVIRONMENTS_SURVEY.md` : où le système va tourner (un serveur que vous avez
-   déjà, un service dans le cloud), s'il y aura un environnement de test et un de production, qui a
-   accès à quoi, et comment on déploie aujourd'hui s'il y a quelque chose. Si vous n'avez rien,
-   dites-le : l'agent vous proposera l'option la plus simple.
-2. Assurez-vous d'avoir les identifiants de l'endroit où l'on va déployer, même si c'est un service
-   gratuit. Sans cela, le squelette reste sur votre machine et la leçon ne peut pas se terminer.
-3. Collez-lui :
+**Avant d'envoyer le prompt**, de vos mains :
+
+- `docs/ENVIRONMENTS_SURVEY.md` : où le système va tourner (un serveur que vous avez déjà, un
+  service dans le cloud), s'il y aura un environnement de test et un de production, qui a accès à
+  quoi, comment on déploie aujourd'hui s'il y a quelque chose, et le type de projet (nouveau,
+  correction ou évolution). Si vous n'avez rien, dites-le : l'agent vous proposera l'option la
+  plus simple. Le prompt le nomme « the environments survey », sans chemin : dites-lui comment il
+  s'appelle.
+- Les identifiants de l'endroit où l'on va déployer, même si c'est un service gratuit : créés,
+  essayés par vous en entrant dans le panneau, et gardés hors du dépôt ; à l'agent vous dites où
+  ils sont, vous ne les lui collez pas dans le chat. Sans cela, le squelette reste sur votre
+  machine et la leçon ne peut pas se terminer.
+- `PROJECT.md` et `docs/SIZING.md`, clos (leçons 2 et 3).
+
+1. Collez-lui :
 
 > We are going to build the skeleton of the system, with no functionality at all. Read
 > `PROJECT.md`, `docs/SIZING.md` and the environments survey. Evaluate whether you have what is
@@ -616,13 +678,18 @@ vert », « le déploiement en test a fonctionné »). Les écrire maintenant, m
    squelette, les portes écrites, une capture réelle de l'environnement de test, et l'interdiction
    d'ajouter de la fonctionnalité.
 
-4. Cette tâche est longue (une ou deux heures de travail de l'agent) et aura des allers-retours :
+2. Cette tâche est longue (une ou deux heures de travail de l'agent) et aura des allers-retours :
    des identifiants qui manquent, un service qui demande de confirmer le courriel, etc. C'est
    normal. Ce qui n'est pas normal, c'est qu'il vous dise « c'est fait » sans la capture de
    l'environnement de test.
-5. Quand il vous montre la capture, ouvrez vous-même l'URL dans votre navigateur. On doit voir la
+3. Quand il vous montre la capture, ouvrez vous-même l'URL dans votre navigateur. On doit voir la
    même chose. C'est le premier regard humain sur le système, et c'est un jalon.
-6. Clôturez avec :
+
+**Avant d'envoyer le prompt** de clôture : votre visite de l'URL de l'environnement de test faite,
+le lien vers l'exécution d'intégration continue au vert ouvert par vous, et `docs/GATES.md` lu,
+avec une condition vérifiable par porte.
+
+4. Clôturez avec :
 
 > Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a
@@ -696,12 +763,18 @@ manuel. Et la règle d'or pour l'agent : ce qui apparaît hors de la liste se no
 
 **La tâche.**
 
-1. Écrivez dans `docs/INITIAL_SURVEY.md` (ou dans un fichier à part) la demande du client pour le
-   premier bloc de fonctionnalité, telle que le client la dirait, avec ses ambiguïtés. Pour
-   Turnera : « je veux voir les rendez-vous du jour, en enregistrer un nouveau et annuler ». Si
-   lors de l'ingestion vous avez écrit les cas d'utilisation, collez-les aussi : ce sont l'unité
-   naturelle du bloc.
-2. Collez-lui :
+**Avant d'envoyer le prompt**, de vos mains :
+
+- La demande du client pour le premier bloc de fonctionnalité, écrite dans
+  `docs/INITIAL_SURVEY.md` sous un titre portant le nom du bloc, ou dans un fichier à part (par
+  exemple `docs/blocks/BLOCK_01_REQUEST.md` ; le prompt dit « the client's request for this
+  block » sans chemin, alors dites-lui où elle est), telle que le client la dirait, avec ses
+  ambiguïtés. Pour Turnera : « je veux voir les rendez-vous du jour, en enregistrer un nouveau et
+  annuler ». Si lors de l'ingestion vous avez écrit les cas d'utilisation, collez-les aussi : ce
+  sont l'unité naturelle du bloc. Si le propriétaire vous a donné une priorité, elle aussi.
+- `docs/SEMANTIC_TREE.md`, `PROJECT.md` et `docs/STATUS.md`, à jour (leçon 2).
+
+1. Collez-lui :
 
 > We are going to turn everything that must be done in this block into numbered pending items,
 > each one carrying its full specification. Read `PROJECT.md`, `docs/SEMANTIC_TREE.md`, the
@@ -739,15 +812,20 @@ manuel. Et la règle d'or pour l'agent : ce qui apparaît hors de la liste se no
    manquantes, les critères d'acceptation qui seront ensuite le scénario du test, et un ordre avec
    sa raison.
 
-3. Répondez aux questions (pour Turnera il demandera, par exemple, ce qu'est « le jour » : celui
+2. Répondez aux questions (pour Turnera il demandera, par exemple, ce qu'est « le jour » : celui
    d'aujourd'hui, ou n'importe lequel qu'on choisit ? ; annuler efface-t-il ou marque-t-il ?). Ces
    questions sont des décisions de métier ; à la leçon 6 vous verrez où elles s'écrivent.
-4. **Lisez la spécification de chaque élément en attente** comme si vous étiez le client. C'est
+3. **Lisez la spécification de chaque élément en attente** comme si vous étiez le client. C'est
    la tâche la plus importante de la leçon, et celle qui donne le plus envie d'être sautée.
    Décrit-elle ce que vous avez demandé, avec vos mots ? Les critères d'acceptation sont-ils ceux
    que vous utiliseriez pour dire « c'est bon » ? Y a-t-il un cas limite que vous connaissez et qui
    n'y est pas ? Pend-il du bon nœud ? Corrigez avant que quoi que ce soit se construise.
-5. Ajoutez au contrat de collaboration la routine de chaque session. Collez-lui :
+
+**Avant d'envoyer le prompt** de la routine : `docs/PENDING.md` avec le bloc spécifié et lu par
+vous élément par élément, avec vos corrections faites (aucun élément avec une spécification d'une
+ligne), et `docs/WORKING_AGREEMENT.md`, où la routine s'ajoute.
+
+4. Ajoutez au contrat de collaboration la routine de chaque session. Collez-lui :
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Before touching any code, open
 > `docs/PENDING.md`, tell me which item you are taking and why, and re-read its specification.
@@ -769,7 +847,7 @@ manuel. Et la règle d'or pour l'agent : ce qui apparaît hors de la liste se no
 > quelque chose qui n'est pas dans la liste, ajoute-le comme nouvel élément en attente avec sa
 > spécification ; ne le fais pas. »
 
-6. Maintenant oui, commencez à construire. Demandez-lui de prendre le premier élément en attente. À
+5. Maintenant oui, commencez à construire. Demandez-lui de prendre le premier élément en attente. À
    partir d'ici, chaque session commence par « quel élément tu prends et pourquoi », et chaque
    clôture laisse l'élément documenté.
 
@@ -821,6 +899,14 @@ annuler n'efface pas ? », la réponse est écrite et elle est à vous.
 
 **La tâche.**
 
+**Avant d'envoyer le prompt**, de vos mains :
+
+- `docs/WORKING_AGREEMENT.md` (leçon 1), où va la routine.
+- `docs/DECISIONS.md`, créé même s'il est vide, avec le format dans l'en-tête : la date, qui a
+  décidé, les mots textuels, l'élément en attente qui en avait besoin.
+- Un accord avec le propriétaire du domaine, si ce n'est pas vous, sur le canal et le délai dans
+  lequel il répond : la routine ne fonctionne que si quelqu'un décide en heures, pas en semaines.
+
 1. Ajoutez au contrat la routine des décisions. Collez-lui :
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Whenever implementing something requires a
@@ -847,14 +933,21 @@ annuler n'efface pas ? », la réponse est écrite et elle est à vous.
    marquer.
 
 2. Continuez à construire les éléments en attente du bloc. Chaque fois qu'il vous demande une
-   règle de métier, décidez et répondez avec le format de clôture :
+   règle de métier, décidez et répondez avec le format de clôture.
+
+**Avant d'envoyer le prompt** de clôture : la question de l'agent lue avec sa recommandation et
+son alternative, et votre décision rédigée en une phrase avec les mots exacts que vous voulez voir
+rester pour toujours, consultée avec le propriétaire si ce n'est pas vous, avec la date. Cela ne
+s'improvise pas dans le chat.
+
+3. Collez-lui :
 
 > Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
 
 > [fr]
 > Règle : [texte exact]. Décidée par moi, [date]. Note-la et continue.
 
-3. Faites le test contraire, une fois, à dessein : laissez une question sans réponse pendant une
+4. Faites le test contraire, une fois, à dessein : laissez une question sans réponse pendant une
    session et regardez ce qu'il fait. Il doit choisir le plus réversible et le marquer « par
    omission ». S'il a choisi ce qui lui semblait bon et ne l'a pas marqué, c'est une défaillance de
    l'échelon : corrigez-la dans le contrat.
@@ -904,6 +997,17 @@ système que personne n'a testé de bout en bout pendant des semaines.
 
 **La tâche.**
 
+**Avant d'envoyer le prompt**, de vos mains :
+
+- `docs/WORKING_AGREEMENT.md`, où va la routine.
+- L'élément en attente qui va être clos, avec ses critères d'acceptation « étant donné, quand,
+  alors » et son « comment cela se vérifie » dans `docs/PENDING.md` : ce sont le scénario du test.
+  S'il ne les a pas, revenez à la leçon 5 avant de demander le test.
+- La batterie et la commande pour la lancer dans `docs/STATUS.md` (leçon 4), et l'environnement de
+  test en marche, avec assez de données pour le flux qui est touché ; s'il manque des données,
+  chargez-les vous-même ou demandez-lui de les créer dans le cadre du test, mais qu'il ne les
+  simule pas.
+
 1. Ajoutez au contrat la routine de preuve. Collez-lui :
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
@@ -944,7 +1048,13 @@ système que personne n'a testé de bout en bout pendant des semaines.
    lit l'avertissement, et vérifie dans la base qu'elle n'a pas été enregistrée.
 3. S'il vous dit qu'il ne peut pas tester de bout en bout parce que l'écran ne peut pas être piloté
    par programme, arrêtez : c'est X2 qui échoue, et il faut le réparer maintenant (ajouter des
-   identifiants aux éléments de l'écran) avant de continuer. Collez-lui :
+   identifiants aux éléments de l'écran) avant de continuer.
+
+**Avant d'envoyer le prompt** : distinguez s'il lui manque un intrant que vous avez (des données,
+un accès, un environnement : donnez-le-lui et n'envoyez pas ce prompt) ou si vraiment le système
+n'est pas testable là (ce prompt).
+
+4. Collez-lui :
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
@@ -954,8 +1064,15 @@ système que personne n'a testé de bout en bout pendant des semaines.
 > ouvre un élément en attente pour cela. Le changement n'est pas clôturé tant qu'il ne peut pas
 > être testé.
 
-4. **À la clôture du bloc**, quand les six éléments en attente sont clôturés, collez-lui le prompt
-   de la batterie complète :
+5. **À la clôture du bloc**, quand les six éléments en attente sont clôturés, lancez la batterie
+   complète.
+
+**Avant d'envoyer le prompt** de la batterie : les six éléments en attente clos avec la routine,
+la version exacte qui va être promue identifiée et déployée dans l'environnement de test, et votre
+propre liste des flux qui existent (tirée des cas d'utilisation de l'arbre sémantique), pour la
+confronter à ce que l'agent dira avoir couvert.
+
+6. Collez-lui :
 
 > Run the complete end-to-end suite of every flow that exists so far, in the test environment,
 > with the exact version that will be promoted. Show me the counts, and for each flow the
@@ -968,7 +1085,7 @@ système que personne n'a testé de bout en bout pendant des semaines.
 > chaque flux, la vérification dans le backend qui le prouve. Si un flux n'a pas de test de bout
 > en bout, dis-le et ouvre un élément en attente ; ne le fais pas passer pour couvert.
 
-5. Et après cela, **utilisez le système vous-même**. Ouvrez l'environnement de test et faites ce
+7. Et après cela, **utilisez le système vous-même**. Ouvrez l'environnement de test et faites ce
    que ferait la réceptionniste : enregistrez un rendez-vous, tentez la double réservation,
    annulez, cherchez. Ce qui vous gêne, ce que vous ne comprenez pas, ce qui n'est pas à sa place :
    notez-le comme élément en attente. Cette demi-heure trouve ce qu'aucun test ne trouve.
@@ -1019,6 +1136,15 @@ automatisé se répète dès que la session change.
 
 **La tâche.**
 
+**Avant d'envoyer le prompt**, de vos mains :
+
+- Au moins un bloc fonctionnel construit : sans contrats entre les parties, il n'y a pas de carte
+  à faire.
+- `docs/SEMANTIC_TREE.md` à jour : les listes (états, types, causes) y sont déclarées, et la carte
+  doit coïncider avec l'arbre.
+- Une liste écrite par vous de ce qui vit hors du dépôt et produit ou consomme quelque chose du
+  système (un robot, un tableur, un processus d'une autre équipe), ou le constat qu'il n'y a rien.
+
 1. Demandez-lui la carte des contrats :
 
 > Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
@@ -1034,6 +1160,9 @@ automatisé se répète dès que la session change.
 
    Vous lui demandez l'inventaire des contrats avec leurs deux côtés, et que ce qu'il ne voit pas,
    il le déclare au lieu de l'omettre.
+
+**Avant d'envoyer le prompt** de la routine : la carte revue par vous (choisissez un contrat et
+vérifiez que les deux côtés sont bien ceux que vous connaissez) et `docs/WORKING_AGREEMENT.md`.
 
 2. Ajoutez la routine au contrat :
 
@@ -1054,7 +1183,14 @@ automatisé se répète dès que la session change.
    montrer où elle est définie et où elle est lue. S'il y a deux définitions, demandez-lui de n'en
    laisser qu'une, et qu'elle coïncide avec l'arbre sémantique.
 4. La première fois que quelque chose casse pour la deuxième fois (cela arrivera dans les
-   prochaines semaines), collez-lui :
+   prochaines semaines), enregistrez-le.
+
+**Avant d'envoyer le prompt** : l'élément en attente ou le commit de la première fois, retrouvé
+par vous parmi les clos de `docs/PENDING.md`, pour le lui coller avec le prompt (sans cette
+référence, l'anti-patron sort générique) ; et `docs/GOTCHAS.md` créé même s'il est vide, avec le
+format dans l'en-tête : l'odeur, la cause racine, le correctif, comment le détecter avant.
+
+5. Collez-lui :
 
 > This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
@@ -1113,10 +1249,18 @@ ait une commande derrière lui.
 
 **La tâche.**
 
-1. Choisissez une hypothèse. Dans Turnera, une bonne : « l'agenda du jour fait une requête à la
-   base pour chaque rendez-vous affiché » (le classique de la boucle N+1). Si elle n'est pas vraie,
-   tant mieux : vous verrez comment se vérifie une hypothèse fausse.
-2. Collez-lui :
+**Avant d'envoyer le prompt**, de vos mains :
+
+- L'hypothèse, en une phrase. Dans Turnera, une bonne : « l'agenda du jour fait une requête à la
+  base pour chaque rendez-vous affiché » (le classique de la boucle N+1). Si elle n'est pas vraie,
+  tant mieux : vous verrez comment se vérifie une hypothèse fausse. Elle va dans le trou du
+  prompt, avec la quantité à mesurer.
+- Un cas connu pour le test du compteur, où vous connaissez la réponse d'avance (« avec zéro
+  rendez-vous, il doit compter exactement les requêtes de base »).
+- L'accès à ce qui se mesure (la base en lecture seule si ce sont des données réelles, le journal)
+  et les compteurs qui existent déjà dans le dépôt, nommés.
+
+1. Collez-lui :
 
 > Before building anything, we are going to measure. The hypothesis is: [the day view runs one
 > database query per appointment shown]. Write a meter (a script that lives in the repository)
@@ -1145,9 +1289,15 @@ ait une commande derrière lui.
    au lieu d'approximer, de marquer l'approximé, le chiffre avec la commande, l'audit dans les deux
    directions, et l'ordre : d'abord mesurer, ensuite proposer.
 
-3. Lancez vous-même la commande qu'il vous a donnée. Elle doit vous donner le même chiffre. Pas
+2. Lancez vous-même la commande qu'il vous a donnée. Elle doit vous donner le même chiffre. Pas
    besoin de comprendre le script ; il faut l'exécuter.
-4. Si l'hypothèse était vraie et que l'agent propose de corriger, demandez-lui un budget :
+3. Si l'hypothèse était vraie et que l'agent propose de corriger, demandez-lui un budget.
+
+**Avant d'envoyer le prompt** du budget : le chiffre mesuré, lancé par vous avec la commande qu'il
+vous a donnée (elle doit vous donner la même chose), et la marge que vous êtes prêt à donner,
+décidée par vous : un peu plus que ce qui a été mesuré, pas le double au cas où.
+
+4. Collez-lui :
 
 > Set the budget for [queries] on this path at the measured value plus a small margin, and
 > protect it with a test that fails if it is exceeded. Tell me the number and the margin.
@@ -1157,6 +1307,10 @@ ait une commande derrière lui.
 > protège-le avec un test qui échoue s'il est dépassé. Dis-moi le chiffre et la marge.
 
    Ainsi, si quelqu'un remet la boucle dans trois mois, la batterie le détecte.
+
+**Avant d'envoyer le prompt** de la règle cinq : `docs/WORKING_AGREEMENT.md`, et un compteur déjà
+existant pour chaque quantité qu'un plan peut affirmer ; s'il n'y a pas de compteur, d'abord le
+prompt initial de cette leçon.
 
 5. Ajoutez au contrat la règle cinq, pour quand un plan apporte des chiffres :
 
@@ -1205,6 +1359,12 @@ peut pas voir de là où il est). Et une règle : les mauvaises nouvelles d'abor
 
 **La tâche.**
 
+**Avant d'envoyer le prompt**, de vos mains :
+
+- `docs/WORKING_AGREEMENT.md`, où va la routine.
+- L'habitude de noter, à chaque session, la liste de ce que vous avez demandé : le prompt lui
+  exige de couvrir chaque point un par un, et vous devez savoir combien il y en avait.
+
 1. Ajoutez au contrat la routine de rapport :
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "When you report, separate three blocks:
@@ -1230,8 +1390,14 @@ peut pas voir de là où il est). Et une règle : les mauvaises nouvelles d'abor
    insiste que rien, insistez vous aussi.
 3. Pratiquez le « c'est toujours cassé ». Demandez-lui quelque chose de petit, vérifiez dans
    l'environnement de test, et si pour une raison quelconque vous ne voyez pas le changement (c'est
-   courant : le déploiement tarde, ou n'a pas été fait), dites-lui « c'est toujours cassé » et
-   collez-lui :
+   courant : le déploiement tarde, ou n'a pas été fait), dites-lui « c'est toujours cassé ».
+
+**Avant d'envoyer le prompt** : votre vérification notée (sur quelle URL vous avez regardé, quelle
+version affiche le système, ce que vous avez fait, ce que vous attendiez, ce qui s'est passé) et
+le commit ou la version dont l'agent a dit qu'il contenait le correctif, copié de son rapport.
+Sans cela, le « c'est toujours cassé » est une impression.
+
+4. Collez-lui :
 
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.
@@ -1292,11 +1458,16 @@ session, avec un autre fichier d'instructions, qui n'a pas participé**.
 
 **La tâche.**
 
-1. Ouvrez une nouvelle session de l'agent dans une copie propre du dépôt (clonez-le dans un autre
-   dossier). Si votre outil le permet, donnez-lui un fichier d'instructions différent, qui dise
-   seulement « tu es un auditeur ; tu n'as pas construit ce système ». Donnez-lui un accès en
-   lecture seule à l'environnement de test.
-2. Collez-lui :
+**Avant d'envoyer le prompt**, de vos mains :
+
+- Une nouvelle session de l'agent dans une copie propre du dépôt (clonez-le dans un autre
+  dossier). Si votre outil le permet, donnez-lui un fichier d'instructions différent, qui dise
+  seulement « tu es un auditeur ; tu n'as pas construit ce système ».
+- Un accès en lecture seule, pour cette session, à l'environnement de test (base de données,
+  journaux), avec des identifiants en lecture seule hors du dépôt.
+- Le périmètre décidé par vous pour le trou du prompt, et l'audit précédent, s'il y en a eu.
+
+1. Collez-lui :
 
 > Audit this system for [integrity, security, performance and code quality]. Read-only: change
 > nothing except writing your report to `docs/AUDIT_[date].md`. If auditing some part requires
@@ -1323,9 +1494,14 @@ session, avec un autre fichier d'instructions, qui n'a pas participé**.
    risque, preuve et priorité, des notes par dimension, et les P0 déjà sous forme d'éléments en
    attente proposés.
 
-3. Lisez le rapport. Choisissez deux constats et demandez à l'auditeur de vous montrer la preuve
+2. Lisez le rapport. Choisissez deux constats et demandez à l'auditeur de vous montrer la preuve
    (la commande, la ligne). Il doit pouvoir.
-4. Revenez à la session du constructeur et collez-lui :
+
+**Avant d'envoyer le prompt** de clôture : le rapport lu par vous, les deux constats vérifiés avec
+l'auditeur, et la session du constructeur ouverte (ce prompt va au constructeur, pas à
+l'auditeur), avec la date du fichier dans le trou.
+
+3. Revenez à la session du constructeur et collez-lui :
 
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.
@@ -1335,7 +1511,7 @@ session, avec un autre fichier d'instructions, qui n'a pas participé**.
 > constat. Si tu n'es pas d'accord avec l'un d'eux, dis-le-moi avec la preuve contraire ; ne
 > l'ignore pas.
 
-5. Répétez cette leçon avant le premier déploiement en production (leçon 13) et, ensuite, tous
+4. Répétez cette leçon avant le premier déploiement en production (leçon 13) et, ensuite, tous
    les un ou deux mois.
 
 **Vérification de complétude.** Le rapport dit-il ce qu'il n'a PAS pu auditer ? Deux constats au
@@ -1371,11 +1547,16 @@ Turnera, avant les rappels et l'acompte, qui sont le troisième bloc.
 
 **La tâche.**
 
-1. Écrivez `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md` avec le propriétaire : ce que fait ou va faire
-   le système qui encaisse, envoie, approuve, supprime ou prévient quelqu'un à l'extérieur ; ce qui
-   se passe si c'est fait deux fois ; ce qui se passe si c'est mal fait ; comment on le défait. Les
-   processus de l'arbre sémantique vous donnent la liste de départ.
-2. Collez-lui :
+**Avant d'envoyer le prompt**, de vos mains et avec le propriétaire :
+
+- `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md` : ce que fait ou va faire le système qui encaisse,
+  envoie, approuve, supprime ou prévient quelqu'un à l'extérieur ; et pour chaque action, ce qui
+  se passe si c'est fait deux fois, ce qui se passe si c'est mal fait, comment on le défait, qui
+  devrait pouvoir le faire. Les processus de l'arbre sémantique vous donnent la liste de départ.
+  Le prompt le nomme « the survey of consequential actions », sans chemin : dites-lui où il est.
+- `docs/SEMANTIC_TREE.md`, à jour.
+
+1. Collez-lui :
 
 > We are going to decide which actions of the system need a lock. Read the survey of
 > consequential actions, and go through the code looking for everything that charges, sends,
@@ -1402,7 +1583,13 @@ Turnera, avant les rappels et l'acompte, qui sont le troisième bloc.
    demande, et pour chaque action la réversibilité, le verrou et le chemin de retour, avec la règle
    du fail-closed écrite.
 
-3. Confirmez verrou par verrou. Clôturez avec :
+2. Confirmez verrou par verrou, avec le propriétaire.
+
+**Avant d'envoyer le prompt** de clôture : pour chaque ligne du tableau, votre confirmation ou
+votre changement, écrits pour les trous du prompt ; aucune ligne sans verdict, parce qu'un verrou
+non confirmé est un verrou qui ne s'implémente pas.
+
+3. Clôturez avec :
 
 > I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves
 > that, under the doubt condition, the action does NOT happen (proved red against the version
@@ -1460,10 +1647,20 @@ continue et le déploiement vers test. Cette leçon le complète vers la product
 
 **La tâche.**
 
-1. Complétez `docs/ENVIRONMENTS_SURVEY.md` avec ce qui manque pour la production : le domaine, où
-   vont vivre les secrets, combien de quota d'intégration continue vous avez (si vous utilisez
-   GitHub Actions, regardez la limite du plan).
-2. Collez-lui :
+**Avant d'envoyer le prompt**, de vos mains :
+
+- `docs/ENVIRONMENTS_SURVEY.md` (leçon 4), complété avec ce qui manque pour la production : le
+  domaine et qui l'administre, où vont vivre les secrets et quels ils sont (le nom, jamais la
+  valeur), qui peut toucher à la production, comment se ferait aujourd'hui un retour arrière, et
+  combien de quota d'intégration continue vous avez (si vous utilisez GitHub Actions, regardez la
+  limite du plan). Le prompt le nomme « the environments and access survey » : dites-lui où il
+  est.
+- L'accès à la production pour l'agent, décidé par vous, avec l'identifiant hors du dépôt et du
+  chat.
+- Le squelette avec son intégration continue et son déploiement vers le test qui fonctionnent
+  (leçon 4).
+
+1. Collez-lui :
 
 > We are going to close the path to production. Read the environments and access survey.
 > Evaluate whether you have what is needed to deploy to production safely (access, domain,
@@ -1493,10 +1690,14 @@ continue et le déploiement vers test. Cette leçon le complète vers la product
    déploiement qui ne fait qu'empaqueter, la configuration dehors, la promotion répétable, le
    retour arrière testé, le verrou contre les secrets, et la documentation pour une personne.
 
-3. Avant le premier déploiement en production, faites l'audit de la leçon 11 si vous ne l'avez
+2. Avant le premier déploiement en production, faites l'audit de la leçon 11 si vous ne l'avez
    pas fait, et lancez la batterie complète de bout en bout de tous les flux avec la version exacte
    que vous allez promouvoir (le prompt de clôture de bloc de la leçon 7).
-4. Ajoutez au contrat la routine de déploiement :
+
+**Avant d'envoyer le prompt** de la routine : `docs/DEPLOYMENT.md` écrit et lu par vous
+(pourriez-vous le suivre tout seul ?), et `docs/WORKING_AGREEMENT.md`.
+
+3. Ajoutez au contrat la routine de déploiement :
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Before touching production: the test
 > environment is green with the same version; the rollback is ready; and tell me what changes in
@@ -1509,11 +1710,17 @@ continue et le déploiement vers test. Cette leçon le complète vers la product
 > dis-moi ce qui change dans la configuration. Après le déploiement : montre-moi la version qui
 > tourne en production et une vérification de bout en bout sur la production, en lecture seule. »
 
-5. Faites le premier déploiement en production, avec le système encore sans utilisateurs réels.
+4. Faites le premier déploiement en production, avec le système encore sans utilisateurs réels.
    Et ensuite **testez le retour arrière** : demandez-lui de revenir à la version précédente et de
    vous montrer qu'elle tourne, puis de revenir à la nouvelle.
-6. Si à un moment du cours vous avez collé un secret dans le chat (une clé d'API, un mot de
-   passe), collez-lui :
+5. Si à un moment du cours vous avez collé un secret dans le chat (une clé d'API, un mot de
+   passe), faites-le tourner.
+
+**Avant d'envoyer le prompt** : le secret identifié (son nom, jamais sa valeur), où il est apparu
+et quand, et votre accès au panneau où il se génère, au cas où l'agent ne pourrait pas le
+remplacer tout seul. Ce prompt ne s'envoie pas « plus tard ».
+
+6. Collez-lui :
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.
@@ -1564,6 +1771,12 @@ sort directement.
 
 **La tâche.**
 
+**Avant d'envoyer le prompt**, de vos mains :
+
+- `docs/WORKING_AGREEMENT.md`, où va la routine.
+- La liste des manuels qu'aura le système, chacun avec son lecteur (l'utilisateur final, celui qui
+  maintient, celui qui exploite l'infrastructure), écrite dans `PROJECT.md` ou dite dans le chat.
+
 1. Ajoutez la routine au contrat :
 
 > Add this routine to `docs/WORKING_AGREEMENT.md`: "Every change that modifies what the user
@@ -1579,6 +1792,12 @@ sort directement.
 > manuel utilisateur les écrans et les flux des éléments en attente clos dans ce bloc, avec des
 > captures réelles de l'environnement de test, et ajoute leurs entrées au journal des
 > modifications. Si tu ne sais pas dans quel manuel ça va, demande. »
+
+**Avant d'envoyer le prompt** des manuels : le système qui tourne dans l'environnement de test
+avec des données réalistes (les captures sortent de là), les éléments en attente clos avec leur
+documentation (leçon 5), `docs/DEPLOYMENT.md` et `docs/LOCKS.md` à jour, et ce que seul le métier
+sait, préparé pour quand il posera la question : qui est responsable de quoi, à quel téléphone on
+appelle à trois heures du matin, qui fait la copie de sauvegarde.
 
 2. Collez-lui :
 
@@ -1656,11 +1875,19 @@ d'agents est le modèle [Ref. 6](REFERENCIAS.md#ref-6).
 
 **La tâche (agent résident, le cas échéant).**
 
-1. Décidez avec le propriétaire si le système a besoin d'un agent résident. Dans Turnera, oui :
-   les réceptionnistes auront des questions (« pourquoi le rappel n'est-il pas arrivé à ce
-   patient ? ») auxquelles l'agent peut répondre en lisant le journal, sans que personne n'appelle
-   le développeur.
-2. Collez-lui :
+**Avant d'envoyer le prompt**, de vos mains et avec le propriétaire :
+
+- La décision de savoir si le système a besoin d'un agent résident, et pour quoi. Dans Turnera,
+  oui : les réceptionnistes auront des questions (« pourquoi le rappel n'est-il pas arrivé à ce
+  patient ? ») auxquelles l'agent peut répondre en lisant le journal, sans que personne n'appelle
+  le développeur.
+- Un identifiant propre à l'agent en production, créé par vous, rattaché à une personne
+  responsable avec un nom, en lecture seule pour commencer, avec la valeur hors du chat et du
+  dépôt.
+- `docs/LOCKS.md` et `docs/DEPLOYMENT.md` à jour, et le canal (ticket, courriel) par lequel il
+  prévient de ce qu'il ne peut pas résoudre.
+
+1. Collez-lui :
 
 > We are going to leave you resident in production. First, build the map of the system you will
 > need in order to operate it: modules, environments, where each configuration lives, which
@@ -1684,8 +1911,13 @@ d'agents est le modèle [Ref. 6](REFERENCIAS.md#ref-6).
    Vous lui demandez la carte avant d'exploiter, que les trous de la carte, il les déclare, trois
    niveaux de portée pour que vous en choisissiez un, et l'identifiant au nom d'une personne.
 
-3. Choisissez le niveau (pour commencer, toujours le premier : lecture seule et diagnostic).
-   Clôturez avec :
+2. Choisissez le niveau (pour commencer, toujours le premier : lecture seule et diagnostic).
+
+**Avant d'envoyer le prompt** de clôture : la carte et les trois niveaux lus, le niveau choisi, et
+une action concrète hors de ce périmètre pensée par vous, pour que l'agent l'essaie et que vous
+voyiez le refus dans le journal.
+
+3. Clôturez avec :
 
 > Level [1: read-only and diagnosis]. Write in `docs/RESIDENT_AGENT.md` the map, the scope, the
 > credential (never its value), and the procedure to request my approval. Then prove, with a real
@@ -1699,9 +1931,18 @@ d'agents est le modèle [Ref. 6](REFERENCIAS.md#ref-6).
 
 **La tâche (rétrospective, toujours).**
 
-4. Rassemblez les chiffres que vous seul avez : combien d'heures vous y avez consacré, combien vous
-   avez dépensé dans l'outil d'IA, combien de quota d'intégration continue vous avez utilisé.
-5. Collez-lui :
+**Avant d'envoyer le prompt**, de vos mains :
+
+- Les chiffres que vous seul avez, dans `docs/RETROSPECTIVE_INPUTS.md` ou prêts pour le chat :
+  combien d'heures vous y avez consacré (de votre agenda, pas de mémoire), combien vous avez
+  dépensé dans l'outil d'IA (la facture), combien de quota d'intégration continue vous avez
+  utilisé, et les dates de début et de fin.
+- La liste des incidents tels que vous vous en souvenez, avec une date approximative, pour la
+  confronter à ce que l'agent sortira des éléments en attente et des commits.
+- `docs/PENDING.md` avec les clos documentés et `docs/DECISIONS.md`, qui sont la source des
+  chiffres.
+
+4. Collez-lui :
 
 > [The project] is over. Do the retrospective with numbers, not impressions: what it cost
 > (tokens, quota, my time), how many pending items, which ones took the most rounds and why,
@@ -1724,7 +1965,7 @@ d'agents est le modèle [Ref. 6](REFERENCIAS.md#ref-6).
    incident qui ne tombe dans aucun est un échelon qui manque), qu'il vous demande les chiffres
    qu'il n'a pas, et une proposition concrète de changement à l'échelle.
 
-6. Lisez la proposition de changement. Si elle vous paraît valable, envoyez-la au
+5. Lisez la proposition de changement. Si elle vous paraît valable, envoyez-la au
    [dépôt d'Urazuke](https://github.com/pkuschnirof/urazuke) comme proposition d'amélioration
    (voir `CONTRIBUTING.md`) : c'est ainsi que la méthode apprend de chaque projet.
 

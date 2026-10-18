@@ -33,6 +33,10 @@ hagan falta.
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - **Relevamiento de datos de volumetría** del negocio, nombrado así en forma genérica: entidades
   principales y su crecimiento, eventos por entidad, operadores simultáneos y horario del pico,
   tiempo de conservación de los datos, cargas excepcionales (campañas, cierres), crecimiento
@@ -45,6 +49,27 @@ hagan falta.
 ## 2. Prompts
 
 **Inicial:**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- `docs/VOLUME_SURVEY.md`: el relevamiento de volumetría, escrito con el dueño del dominio (o con
+  vos mismo, si el proyecto es tuyo). Por cada entidad principal del árbol semántico: cuántas hay
+  hoy, cuántas se agregan por mes, cuántos eventos genera cada una (un turno genera tres mensajes;
+  una autorización genera tantas consultas); cuántas personas operan en el pico y a qué hora es el
+  pico; cuánto tiempo se conservan los datos; qué cargas excepcionales hay (campañas, cierres de
+  mes, el lunes después de un feriado); qué crecimiento esperan y si el sistema se podría vender a
+  otros. Y lo más importante: para cada número, de dónde sale ("lo dijo la encargada", "contado en
+  el cuaderno de septiembre", "supuesto"). Los supuestos se marcan como supuestos; no se disfrazan
+  de dato.
+- `PROJECT.md` y `docs/SEMANTIC_TREE.md` (peldaño 2), cerrados: las entidades que hay que
+  dimensionar son las del árbol.
+- Si hay un sistema anterior con base de datos: un acceso de solo lectura para que el agente saque
+  números reales en vez de estimados, con la cadena de conexión guardada fuera del repositorio y
+  el nombre de la variable anotado en el relevamiento.
+- Estado mínimo aceptable: toda entidad del árbol tiene al menos un número con su fuente, aunque
+  varios digan "supuesto". El agente va a pedirte los supuestos; ese pedido es el peldaño
+  funcionando.
 
 > Before proposing any architecture we are going to size the system. Read `PROJECT.md` and the
 > volume survey in `docs/VOLUME_SURVEY.md`. Distinguish primary data (facts only the business
@@ -80,6 +105,17 @@ sino "cuánto cuesta equivocarse"; y que no elija ni escriba código, porque est
 decisión, no de construcción.
 
 **De cierre:**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- Las tres opciones que presentó el agente, leídas, y al menos una cuenta rehecha a mano por vos
+  (filas por año de la tabla más grande, por ejemplo): te tiene que dar lo mismo.
+- Los datos primarios que te pidió, conseguidos de verdad (en el cuaderno, preguntándole al dueño)
+  y dados en el chat; ninguno estimado por vos para salir del paso.
+- Tu elección, con la letra de la opción y una razón de una línea, decidida por vos y, si hay
+  dueño, con él.
+- Estado mínimo aceptable: la cuenta rehecha coincide, los supuestos se convirtieron en datos con
+  fuente, y la opción está elegida. Si la cuenta no coincide, no cierres: preguntá.
 
 > I choose option [B]. Record in `docs/SIZING.md`: the primary data with its source, the derived
 > data with its arithmetic, the three options, the chosen one and why, and the decisions we are

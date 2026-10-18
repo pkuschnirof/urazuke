@@ -29,6 +29,9 @@
 
 ## 1. 所需上下文
 
+下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第
+2 节里，在每条提示词前面的"发送提示词之前"方框里。
+
 - 客户对这个功能块的请求，散文，按他会说的方式，带着它的含糊。如果你在摄入阶段做了用例或
   用户故事，更好：它们是一个功能块的天然单位。
 - 语义树（第 2 级台阶），用来把每个待办项挂到它的节点下。
@@ -38,6 +41,21 @@
 ## 2. 提示词
 
 **开启一个功能块：**
+
+**发送提示词之前**，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：
+
+- 客户对这个功能块的请求，用散文写下来，就像他本人会说的那样，带着他的含糊。写在
+  `docs/INITIAL_SURVEY.md` 里以功能块命名的一个标题下，或者写在自己的文件里（比如
+  `docs/blocks/BLOCK_01_REQUEST.md`）；提示词说的是 "the client's request for this block"，
+  没有给路径，所以要在聊天里告诉它在哪儿。如果你在需求摄入时写了用例或用户故事，就放在那里：
+  它们是功能块的天然单位。如果所有者给了你一个优先级，也写上。不要由你去"改善"它：那些含糊正
+  是代理应该来问的东西。
+- `docs/SEMANTIC_TREE.md`（第 2 级台阶），保持最新：每个待办项都会挂在那里的一个节点上。
+- `PROJECT.md` 和 `docs/STATUS.md`（第 2 级台阶），保持最新。
+- 如果做过审计（第 11 级台阶）或人工测试（上一个功能块收尾时的人工查看）：它们的发现，放在
+  `docs/AUDIT_[日期].md` 里或记在活状态里，因为它们是这个功能块的候选待办项。
+- 最低可接受状态：功能块的请求用客户的话写下来了，而且树里有这个功能块的节点，或者请求本身能
+  看出缺的是哪些。
 
 > We are going to turn everything that must be done in this block into numbered pending items,
 > each one carrying its full specification. Read `PROJECT.md`, `docs/SEMANTIC_TREE.md`, the
@@ -71,6 +89,13 @@
 或更改。
 
 **每次会话的例行（放进协作契约）：**
+
+**发送提示词之前**，你手边必须有这些：
+
+- `docs/PENDING.md`，这个功能块已经规格化，而且由你一个待办项一个待办项地读过，像客户一样读，
+  你的修改已经做完（这是这级台阶最重要的任务，也是最容易让人想跳过的那个）。
+- `docs/WORKING_AGREEMENT.md`（第 1 级台阶），这条例行要加进去的地方。
+- 最低可接受状态：没有哪个待办项的规格只有一行。如果有，别开始构建：先让它补完。
 
 > Before touching any code, open `docs/PENDING.md`, tell me which item you are taking and why,
 > and re-read its specification. Every commit cites its pending item. A pending item is closed

@@ -25,6 +25,10 @@ every push, and the automatic deployment to the test environment.
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - `docs/SIZING.md` (step 3): the chosen option defines the skeleton.
 - Environments survey: where it is going to run (cloud, own server), whether there is a test
   environment and a production one, who has access, how it is deployed today if there is
@@ -35,6 +39,27 @@ every push, and the automatic deployment to the test environment.
 ## 2. Prompts
 
 **Opening:**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- `docs/ENVIRONMENTS_SURVEY.md`: the environments survey, written by you. Where the system is
+  going to run (a server you already have, a cloud service, which one); whether there is going to
+  be a test environment and a production one, and whether they already exist; who has access to
+  what; how it is deployed today if there is anything (by hand, a script, nothing); the kind of
+  project (new, corrective, or an evolution of something existing); and the URL or the domain the
+  test environment is going to have, if it is already known. The prompt names it "the
+  environments survey", with no path: save it under this name, or tell it in the chat what it is
+  called.
+- The credentials of the place where it is going to be deployed, even if it is a free service:
+  created, tested by you once (log into the panel), and kept outside the repository (in an
+  environment file on your machine or in your tool's secret manager). The agent is told where
+  they are; they are not pasted into the chat.
+- `PROJECT.md` (step 2) and `docs/SIZING.md` (step 3), closed: the skeleton is built on the
+  option chosen there, and the agent has to read it.
+- Minimum acceptable state: you can log into the service where it is going to be deployed
+  yourself, and the survey says which one the test environment is. Without that, the skeleton
+  stays on your machine and the step is not climbed.
 
 > We are going to build the skeleton of the system, with no functionality at all. Read
 > `PROJECT.md`, `docs/SIZING.md` and the environments survey. Evaluate whether you have what is
@@ -55,6 +80,16 @@ prohibition on adding functionality, because the model tends to "while I am at i
 breaks the exact scope.
 
 **Closing:**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- The screenshot of the test environment the agent showed you, and your own visit to that URL
+  from your browser: it has to look the same. It is the first human view of the system, and it is
+  a milestone.
+- A link to a green continuous integration run, asked of the agent and opened by you.
+- `docs/GATES.md`, read: every gate has a verifiable condition.
+- Minimum acceptable state: you saw the empty screen at the real URL, with your own eyes. If you
+  only saw the screenshot, do not approve.
 
 > Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a

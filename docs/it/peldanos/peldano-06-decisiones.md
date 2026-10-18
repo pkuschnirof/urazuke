@@ -27,6 +27,10 @@ e quella di congelare le decisioni prima di costruire viene dal mio strumento
 
 ## 1. Contesto richiesto
 
+Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
+prompt, con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
+inviare il prompt" che precede ciascuno.
+
 - La conversazione con il proprietario: è l'unico contesto. L'agente non può decidere regole di
   business.
 - Un luogo concordato dove si scrivono le decisioni: il messaggio del commit, la specifica della
@@ -35,6 +39,19 @@ e quella di congelare le decisioni prima di costruire viene dal mio strumento
 ## 2. Prompt
 
 **Routine (va nel patto di convivenza):**
+
+**Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
+l'agente:
+
+- `docs/WORKING_AGREEMENT.md` (gradino 1), dove va la routine.
+- `docs/DECISIONS.md`, creato anche se vuoto, con il formato nell'intestazione: data, chi ha
+  deciso, le parole testuali, la voce in sospeso che la richiedeva. Lo crei tu o lo chiedi
+  all'agente nella stessa sessione; ciò che importa è che il luogo concordato esista prima della
+  prima decisione.
+- Tu, disponibile. Questa routine funziona solo se, quando l'agente si ferma e chiede, qualcuno
+  risponde in ore e non in settimane. Se il proprietario del dominio è un'altra persona, concorda
+  con lui il canale e il tempo di risposta prima di incollare il prompt.
+- Stato minimo accettabile: il registro esiste e c'è qualcuno che decide.
 
 > Whenever implementing something requires a business rule that is not written down, or you
 > must choose between two approaches that change what the user sees, stop and ask me, in prose,
@@ -61,6 +78,15 @@ l'opzione più reversibile marcata come "per omissione", che è ciò che permett
 che la decisione sparisca.
 
 **Di chiusura (ogni decisione):**
+
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- La domanda dell'agente, letta, con la sua raccomandazione e la sua alternativa.
+- La tua decisione, consultata con il proprietario del dominio se non sei tu, formulata in una
+  frase con le tue parole esatte, quelle che vuoi restino per sempre (saranno nel commit, nella
+  voce in sospeso e nel registro), e la data.
+- Stato minimo accettabile: la frase è scritta prima di incollare il prompt, non si improvvisa
+  nella chat. Una regola parafrasata dopo è una regola diversa.
 
 > Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
 

@@ -23,6 +23,10 @@ dos que aceitei [Ref. 46](../REFERENCIAS.md#ref-46).
 
 ## 1. Contexto necessário
 
+O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
+prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
+prompt" que precede cada um.
+
 Nomeado de forma genérica; o agente avalia se basta e pede o que faltar.
 
 - Levantamento do pedido: o que o cliente quer, para quem, e o que acontece hoje sem o sistema.
@@ -43,6 +47,31 @@ menos tokens. Cada um traz sua tradução (no HTML, com um botão), e abaixo a e
 estou pedindo e por que cada cláusula está ali. Ao modelo se cola o inglês.
 
 **Inicial:**
+
+**Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
+o agente:
+
+- `docs/INITIAL_SURVEY.md`: o levantamento inicial. Você o escreve à mão, depois de conversar com
+  o cliente (é o resultado da ingestão da fase 0). De meia página a uma página, em prosa, não em
+  formulário, com seis coisas: (1) o pedido: o que o cliente quer, com as palavras dele, para
+  quem, e o que acontece hoje sem o sistema (o caderno, a planilha, a pessoa que faz à mão); (2) a
+  tecnologia: o que há ou o que se propõe, se existe um sistema anterior, se esse sistema tem
+  repositório e como é manejado (ramos, quem sobe, se há testes); (3) a testabilidade: se as telas
+  podem ser executadas por programa, e se cada elemento da interface tem como ser encontrado,
+  clicado, digitado e lido; se você não sabe, diga; (4) o dono do domínio: quem é, com nome e
+  papel, e quanto tempo tem por semana para decidir; (5) a consequência de um erro: dinheiro,
+  saúde, operação, nada; (6) os ambientes: se vai haver um de teste, se o agente vai poder
+  acessá-lo, se há uma produção consultável em somente leitura. O que você não sabe fica escrito
+  como "não sei": não preencha você para que o agente não pergunte, porque a graça do degrau é ver
+  o que ele pergunta.
+- `docs/ELIGIBILITY_CRITERIA.md`: a ficha de critérios. Você a copia do documento principal (a
+  ficha do degrau 0: os dois excludentes X1 e X2 e os critérios D1 a D10 que ponderam), com uma
+  coluna vazia para a resposta, outra para a fonte e outra para verde ou vermelho. Não a preencha:
+  quem a preenche é o agente.
+- A pasta do projeto, criada, com o agente aberto ali e ainda sem nada mais que esses dois
+  arquivos dentro de `docs/`.
+- Estado mínimo aceitável: os dois arquivos existem, o levantamento toca as seis coisas mesmo que
+  várias digam "não sei", e o agente está parado na pasta.
 
 > We are going to assess whether this project can be run with the Urazuke method. Read the
 > initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
@@ -70,6 +99,17 @@ e que **não decida**, porque a elegibilidade decido eu. A última linha pede qu
 idioma, porque o prompt está em inglês mas a conversa não precisa estar.
 
 **De fechamento:**
+
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- A sua decisão, em uma linha, tomada depois de ler a ficha completa que o agente apresentou: vai,
+  não vai, ou vai com condições. Se há condições, escreva-as antes de colar o prompt, cada uma
+  verificável ("acesso de leitura a produção antes do degrau 3" sim; "que o cliente colabore"
+  não), e não mais de três.
+- As respostas que você deu às perguntas do agente, dadas nesta mesma sessão do chat: o prompt
+  pede que ele as inclua na ficha final, e se a sessão for outra, ele não as tem.
+- Estado mínimo aceitável: cada critério da ficha tem resposta e fonte à vista, e você já decidiu.
+  Se ainda tem dúvida, não mande o fechamento: continue perguntando.
 
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its

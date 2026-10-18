@@ -38,6 +38,10 @@ secciones nuevas del manual, y la respuesta a "¿por qué el sistema hace esto?"
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - El pedido del cliente para el bloque, en prosa, tal como lo diría él, con sus ambigüedades. Si
   hiciste casos de uso o historias de usuario en la ingesta, mejor: son la unidad natural de un
   bloque.
@@ -48,6 +52,24 @@ secciones nuevas del manual, y la respuesta a "¿por qué el sistema hace esto?"
 ## 2. Prompts
 
 **Para abrir un bloque:**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- El pedido del cliente para este bloque, escrito en prosa, tal como lo diría él, con sus
+  ambigüedades. Va en `docs/INITIAL_SURVEY.md` bajo un título con el nombre del bloque, o en un
+  archivo propio (por ejemplo `docs/blocks/BLOCK_01_REQUEST.md`); el prompt dice "the client's
+  request for this block" sin ruta, así que decile en el chat dónde está. Si en la ingesta
+  escribiste casos de uso o historias de usuario, van ahí: son la unidad natural del bloque. Si el
+  dueño te dio una prioridad, también. No lo "mejores" vos: las ambigüedades son lo que el agente
+  tiene que preguntar.
+- `docs/SEMANTIC_TREE.md` (peldaño 2), al día: cada pendiente va a colgar de un nodo de ahí.
+- `PROJECT.md` y `docs/STATUS.md` (peldaño 2), al día.
+- Si hubo auditorías (peldaño 11) o pruebas humanas (la vista humana al cierre del bloque
+  anterior): sus hallazgos, en `docs/AUDIT_[fecha].md` o anotados en el estado vivo, porque son
+  pendientes candidatos para este bloque.
+- Estado mínimo aceptable: el pedido del bloque está escrito con las palabras del cliente, y el
+  árbol tiene los nodos de ese bloque, o el pedido deja ver cuáles faltan.
 
 > We are going to turn everything that must be done in this block into numbered pending items,
 > each one carrying its full specification. Read `PROJECT.md`, `docs/SEMANTIC_TREE.md`, the
@@ -88,6 +110,15 @@ forma clásica, que son el guion del test de punta a punta del peldaño 7; y un 
 su razón, para que vos lo confirmes o lo cambies.
 
 **Rutina de cada sesión (va en el contrato de convivencia):**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- `docs/PENDING.md` con el bloque especificado y leído por vos, pendiente por pendiente, como si
+  fueras el cliente, con tus correcciones ya hechas (es la tarea más importante del peldaño, y la
+  que más tentación da de saltear).
+- `docs/WORKING_AGREEMENT.md` (peldaño 1), donde esta rutina se agrega.
+- Estado mínimo aceptable: ningún pendiente tiene una especificación de una línea. Si la tiene, no
+  empieces a construir: hacela completar primero.
 
 > Before touching any code, open `docs/PENDING.md`, tell me which item you are taking and why,
 > and re-read its specification. Every commit cites its pending item. A pending item is closed

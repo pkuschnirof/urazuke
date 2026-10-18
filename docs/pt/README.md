@@ -27,7 +27,7 @@ por isso a evidência precisa provar a si mesma.
 |---|---|
 | `ESCALERA_METODOLOGICA.md` | O documento principal: a tese, de onde sai o método, a linha do tempo (quando se sobe cada degrau e o que acontece no meio: infraestrutura, CI/CD, ingestão de requisitos, desenvolvimento, testes de ponta a ponta, vista humana, testes humanos), os dezesseis degraus com sua ficha, o que falta, e o glossário. |
 | `REFERENCIAS.md` | Os casos reais por trás do método, numerados ("Ref. N"), com data e evidência, para que os procedimentos fiquem limpos e o detalhe continue a um clique. Inclui as cronologias dos três sistemas e a tabela de falhas por degrau. |
-| `peldanos/peldano-NN-*.md` | O contrato de cada degrau: quando, contexto necessário, prompts em inglês com sua tradução, resultado esperado, verificação de completude sem ler código, sinais de alerta. |
+| `peldanos/peldano-NN-*.md` | O contrato de cada degrau: quando, contexto necessário, prompts em inglês com sua tradução e, antes de cada um, o bloco "Antes de enviar o prompt" com os arquivos que você tem que construir e o seu conteúdo; resultado esperado, verificação de completude sem ler código, sinais de alerta. |
 | `peldanos/README.md` | O índice dos contratos. |
 | `MANUAL_CURSO.md` | O curso: calendário, dezesseis lições com tarefas práticas e prompts, projeto-guia ("Turnera"), lista de saída para produção. |
 | `../DECISIONES.md` | As decisões do projeto, com data e palavras textuais. O método se aplica a si mesmo. Fica apenas em espanhol. |

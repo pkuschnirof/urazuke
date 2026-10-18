@@ -24,12 +24,24 @@ Se você não pede, ele não dá, não porque esconda mas porque não considera 
 
 ## 1. Contexto necessário
 
+O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
+prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
+prompt" que precede cada um.
+
 - O trabalho feito e a pendência que o pedia.
 - O contrato de convivência (degrau 1), que já proíbe anunciar o não feito.
 
 ## 2. Prompts
 
 **Rotina (vai no contrato de convivência; aplica-se em cada relatório):**
+
+**Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
+o agente:
+
+- `docs/WORKING_AGREEMENT.md` (degrau 1), onde vai a rotina.
+- A lista do que você pediu na sessão, escrita por você (os itens do pedido), para contrastar o
+  relatório: o prompt pede que ele cubra cada item um por um, e você tem que saber quantos eram.
+- Estado mínimo aceitável: nada mais. Esta rotina se cola uma vez e vale para sempre.
 
 > When you report, separate three blocks: VERIFIED (what you tested, with the command and its
 > output), BELIEVED (what you think works but did not test, and why not), and BLIND SPOTS (what
@@ -53,6 +65,17 @@ lado de cada afirmação; a proibição do "pronto" seco; e as más notícias pr
 tende a deixá-las para o final ou para nunca.
 
 **Diante de um "continua quebrado" seu:**
+
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- A sua verificação, feita no lugar onde você olha (o ambiente de teste, o seu navegador), com o
+  que viu anotado: em que URL, que versão o sistema mostra se é que mostra, o que você fez, o que
+  esperava, o que aconteceu.
+- O número de versão ou o commit que o agente disse que continha a correção, copiado do relatório
+  anterior dele.
+- Estado mínimo aceitável: você consegue dizer "olho em [URL], vejo a versão [N], faço [isto],
+  acontece [isto]". Sem isso, o "continua quebrado" é uma impressão, e o agente vai diagnosticar
+  uma impressão.
 
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.

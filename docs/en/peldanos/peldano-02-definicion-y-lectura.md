@@ -29,6 +29,10 @@ business asked for.
 
 ## 1. Required context
 
+What follows is the generic list. The concrete files you have to have made before each prompt,
+with their content and their minimum state, are in section 2, in the "Before sending the
+prompt" block that precedes each one.
+
 - Business survey: what the client does, who uses the system, what problem it solves, what it
   must not do. With the interviews, the use cases or user stories you can name, and the business
   entities with their states, even if they are incomplete.
@@ -39,6 +43,27 @@ business asked for.
 ## 2. Prompts
 
 **Opening:**
+
+**Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
+the agent:
+
+- `docs/INITIAL_SURVEY.md` (step 0), completed with the business survey. You write it from the
+  intake interviews; if you used a method (interviews, use cases, user stories, screen
+  prototypes), say which one and paste the result. It has to have: what the client does; who uses
+  the system (the actors, with the name of their role); what problem it solves; what it must NOT
+  do, in a section of its own, even if it has two items; the use cases or user stories the owner
+  names, in their own words, even if they are ten lines; the business entities with their states
+  ("an appointment is pending, confirmed, cancelled"), even if they are incomplete; the drawings
+  or the photos of the screens, if there are any; the external integrations (messaging, payments,
+  another system); and the decisions already taken, even if they were verbal, with the date and
+  who took them.
+- `docs/WORKING_AGREEMENT.md` (step 1), closed with a date and a version number.
+- If a previous system exists: read access to its code or to its documentation, with the path or
+  the link written down in the survey.
+- Minimum acceptable state: the survey has the "what it is not" section with at least two items,
+  at least one use case in the owner's words, and at least one entity with its states. Without
+  that, the tree that comes out is going to be invented, and you are going to have nothing to
+  compare it against.
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -66,6 +91,17 @@ and that it separate the living state into another file, so that the map does no
 history.
 
 **Closing:**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- `PROJECT.md`, read in full by you (it has to fit in five minutes), with your corrections noted
+  down: what is not true, what is not yours, what is superfluous.
+- `docs/SEMANTIC_TREE.md`, walked node by node as if you were the client: every node marked as
+  inferred has your verdict (confirmed or corrected), and you noted the actors that are missing,
+  the states the business does not use, the screens nobody asked for.
+- The list of corrections, written down, which goes into the [list] gap of the prompt. If the
+  list is empty the first time, distrust your reading, not the agent.
+- Minimum acceptable state: no node marked "inferred" is left without a verdict of yours.
 
 > Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with
 > today's date. Add to the working agreement two rules: the change history never goes into

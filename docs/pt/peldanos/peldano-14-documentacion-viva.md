@@ -32,6 +32,10 @@ sai diretamente delas.
 
 ## 1. Contexto necessário
 
+O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
+prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
+prompt" que precede cada um.
+
 - Quem são os leitores de cada manual: o usuário final, quem mantém, quem opera a
   infraestrutura. O negócio sabe; o agente pergunta se não está claro.
 - O sistema rodando no ambiente de teste, para tirar capturas reais.
@@ -41,6 +45,15 @@ sai diretamente delas.
 ## 2. Prompts
 
 **Rotina (vai no contrato de convivência):**
+
+**Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
+o agente:
+
+- `docs/WORKING_AGREEMENT.md`, onde vai a rotina.
+- A decisão de que manuais o sistema vai ter e para quem é cada um (o usuário final, quem mantém,
+  quem opera a infraestrutura), escrita em `PROJECT.md` ou dita no chat, para que "o manual
+  correspondente" faça sentido.
+- Estado mínimo aceitável: há uma lista de manuais, cada um com o seu leitor.
 
 > Every change that modifies what the user sees, what the operator does, or how the system is
 > deployed, updates the corresponding manual in the same commit. At the close of every
@@ -60,6 +73,18 @@ fechamento de bloco como momento em que as pendências fechadas viram manual e d
 e a pergunta quando não está claro a que manual vai.
 
 **Para gerar os manuais:**
+
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- O sistema rodando no ambiente de teste com dados realistas, não vazio: as capturas saem dali.
+- As pendências fechadas com a sua documentação de fechamento (degrau 5), que são a fonte do
+  manual de usuário e do diário de mudanças.
+- `docs/DEPLOYMENT.md` (degrau 13) e `docs/LOCKS.md` (degrau 12), que são o insumo do manual de
+  infraestrutura e recuperação.
+- O que só o negócio sabe, preparado para quando o agente perguntar: quem é responsável pelo quê,
+  para que telefone se liga quando cai, quem faz a cópia de segurança, em que idioma o usuário lê.
+- Estado mínimo aceitável: há dados no ambiente de teste, e você sabe para quem ligar às três da
+  manhã.
 
 > Generate three manuals from the system as it is today in the test environment: the user
 > manual (screen by screen, with real screenshots, in the user's language, no jargon); the

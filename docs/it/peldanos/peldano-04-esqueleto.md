@@ -25,6 +25,10 @@ la batteria a ogni push, e il deployment automatico all'ambiente di test.
 
 ## 1. Contesto richiesto
 
+Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
+prompt, con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
+inviare il prompt" che precede ciascuno.
+
 - `docs/SIZING.md` (gradino 3): l'opzione scelta definisce lo scheletro.
 - Rilevazione degli ambienti: dove girerà (cloud, server proprio), se c'è un ambiente di test e
   uno di produzione, chi ha accesso, come si distribuisce oggi se c'è qualcosa.
@@ -34,6 +38,26 @@ la batteria a ogni push, e il deployment automatico all'ambiente di test.
 ## 2. Prompt
 
 **Iniziale:**
+
+**Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
+l'agente:
+
+- `docs/ENVIRONMENTS_SURVEY.md`: la rilevazione degli ambienti, scritta da te. Dove girerà il
+  sistema (un server che hai già, un servizio in cloud, quale); se ci sarà un ambiente di test e
+  uno di produzione, e se esistono già; chi ha accesso a cosa; come si distribuisce oggi se c'è
+  qualcosa (a mano, uno script, niente); il tipo di progetto (nuovo, correzione o evoluzione di
+  qualcosa di esistente); e l'URL o il dominio che avrà l'ambiente di test, se già si sa. Il
+  prompt lo nomina come "the environments survey", senza percorso: salvalo con questo nome, o
+  digli nella chat come si chiama.
+- Le credenziali del posto in cui si distribuirà, anche se è un servizio gratuito: create, provate
+  da te una volta (entrando nel pannello), e conservate fuori dal repository (in un file di
+  ambiente della tua macchina o nel gestore di segreti del tuo strumento). All'agente si dice dove
+  sono; non gliele si incollano nella chat.
+- `PROJECT.md` (gradino 2) e `docs/SIZING.md` (gradino 3), chiusi: lo scheletro si costruisce
+  sull'opzione scelta lì, e l'agente la deve leggere.
+- Stato minimo accettabile: puoi entrare tu nel servizio in cui si distribuirà, e la rilevazione
+  dice qual è l'ambiente di test. Senza questo, lo scheletro resta sulla tua macchina e il gradino
+  non si sale.
 
 > We are going to build the skeleton of the system, with no functionality at all. Read
 > `PROJECT.md`, `docs/SIZING.md` and the environments survey. Evaluate whether you have what is
@@ -66,6 +90,16 @@ divieto esplicito di aggiungere funzionalità, perché il modello tende al "già
 quello rompe il perimetro esatto.
 
 **Di chiusura:**
+
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- Lo screenshot dell'ambiente di test che l'agente ti ha mostrato, e la tua visita a quell'URL dal
+  tuo browser: si deve vedere la stessa cosa. È la prima vista umana del sistema, ed è una pietra
+  miliare.
+- Un link a un'esecuzione dell'integrazione continua in verde, chiesto all'agente e aperto da te.
+- `docs/GATES.md`, letto: ogni cancello ha una condizione verificabile.
+- Stato minimo accettabile: hai visto la schermata vuota all'URL reale, con i tuoi occhi. Se hai
+  visto solo lo screenshot, non approvare.
 
 > Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a

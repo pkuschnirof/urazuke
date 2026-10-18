@@ -20,6 +20,9 @@
 
 ## 1. 所需上下文
 
+下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第
+2 节里，在每条提示词前面的"发送提示词之前"方框里。
+
 - **环境与访问调研**，以通用方式：有哪些环境（测试、生产），它们运行在哪里，谁有访问权，如何
   从一个提升到另一个，存在哪些密钥、今天住在哪里，有多少持续集成配额。代理评估是否足够并
   提问。
@@ -28,6 +31,19 @@
 ## 2. 提示词
 
 **初始：**
+
+**发送提示词之前**，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：
+
+- `docs/ENVIRONMENTS_SURVEY.md`（第 4 级台阶），用上生产环境还缺的部分补完：域名和谁来管理它；
+  密钥将住在服务器的哪里（环境文件、保险库）以及有哪些密钥（名字，永远不写值）；今天如果有东
+  西，是怎么从测试提升到生产的；谁可以动生产环境；你有多少持续集成的配额（你的供应商套餐的上
+  限）以及已经用掉多少；今天如果要回滚会怎么做。提示词把它叫作 "the environments and access
+  survey"：告诉它在哪儿。
+- 给代理的生产环境访问权，由你决定：哪一种，用哪个凭据，而且凭据要在仓库之外、聊天之外。
+- 带着持续集成和测试环境部署、已经跑通的骨架（第 4 级台阶），以及写着那些命令的
+  `docs/STATUS.md`。
+- 最低可接受状态：你知道密钥会住在哪里，也知道还剩多少配额。如果你不知道配额，先去查清楚：这
+  级台阶的存在，有一部分正是因为这个。
 
 > We are going to close the path to production. Read the environments and access survey.
 > Evaluate whether you have what is needed to deploy to production safely (access, domain,
@@ -55,6 +71,14 @@
 
 **每次部署的例行：**
 
+**发送提示词之前**，你手边必须有这些：
+
+- `docs/WORKING_AGREEMENT.md`，这条例行要加进去的地方。
+- `docs/DEPLOYMENT.md`（这级台阶的初始提示词），已写好并由你读过：你一个人能照着做下来吗？
+- 在每次真实部署之前，还要有：用那个确切版本跑出来的完整端到端测试套件是绿的（第 7 级台阶，
+  功能块收尾），以及，如果是第一次部署，审计已经做过（第 11 级台阶）。
+- 最低可接受状态：在有用户之前，回滚至少被实测过一次。
+
 > Before touching production: the test environment is green with the same version; the
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
@@ -67,6 +91,15 @@
 据（运行中的版本，以及一次不写任何东西的端到端检查）。
 
 **如果某个密钥出现在聊天或提交里：**
+
+**发送提示词之前**，你手边必须有这些：
+
+- 已经确认的那个密钥：是哪一个（它的名字，永远不写值），在哪里出现的（聊天、一次提交、一份日
+  志），什么时候。如果是在一次提交里出现的，还要有那次提交。
+- 你对生成它的那个地方（供应商的控制台）的访问权，以防代理没法自己轮换。轮换由你来做，或者由
+  它用你的凭据来做，但不能往后拖。
+- 最低可接受状态：你能说出密钥的名字和它出现在哪里。还有一条没有例外的规则：这条提示词不存在
+  "晚点再发"。
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.

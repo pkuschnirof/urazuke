@@ -32,6 +32,10 @@ durchgesetzt, indem ich den Agenten korrigierte, bevor sie Doktrin wurden
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - Die Hypothese, deine oder die des Agenten: „ich glaube, das Problem ist X“, „es müssten so an
   die hundert sein“.
 - Zugang zu dem, was gemessen werden soll: der Code, die Datenbank nur lesend, das Log.
@@ -40,6 +44,26 @@ durchgesetzt, indem ich den Agenten korrigierte, bevor sie Doktrin wurden
 ## 2. Prompts
 
 **Zu Beginn:**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- Die Hypothese, in einem Satz geschrieben, deine eigene oder vom Agenten übernommen: „ich glaube,
+  die Tagesagenda macht eine Datenbankabfrage pro angezeigtem Termin“, „das müssten so hundert
+  Schleifen sein“. Sie kommt in die Lücke [X] des Prompts, und die zu messende Größe in die andere
+  Lücke.
+- Zugang zu dem, was gemessen wird: der Code (den hat er schon); die Datenbank nur lesend, wenn
+  die Messung über echte Daten geht, mit der Verbindungszeichenfolge außerhalb des Repositorys und
+  dem Namen der Variablen im Chat gesagt; das Log, mit seinem Pfad.
+- Die Messgeräte, die es im Repository schon gibt, falls es welche gibt, benannt, damit der Agent
+  sie wiederverwendet, statt ein weiteres zu bauen.
+- Ein bekannter Fall für den Test des Messgeräts: eine Situation, in der du die Antwort vorher
+  kennst („bei null Terminen muss es genau die zwei Basisabfragen zählen“). Wenn dir keiner
+  einfällt, bitte den Agenten, einen vorzuschlagen, aber validiere ihn selbst: ein Messgerät, das
+  gegen einen Fall verifiziert wurde, den das Messgerät selbst erfunden hat, ist nicht
+  verifiziert.
+- Akzeptabler Mindestzustand: die Hypothese passt in einen Satz, und es gibt einen bekannten Fall,
+  mit dem sich das Instrument prüfen lässt.
 
 > Before building anything, we are going to measure. The hypothesis is: [X]. Write a meter (a
 > script that lives in the repository) that measures [the quantity], and a test for the meter
@@ -71,6 +95,15 @@ Messgeräte entlarvt hat; und die Reihenfolge: erst messen, dann vorschlagen.
 
 **Wenn es ein Budget gibt:**
 
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Die gemessene Zahl, die du selbst mit dem Befehl laufen lassen hast, den der Agent dir gegeben
+  hat, und die dasselbe ergeben hat. Wenn du ihn nicht laufen lassen hast, setz kein Budget
+  darauf.
+- Der Spielraum, den du zu geben bereit bist, von dir entschieden: ein wenig mehr als das
+  Gemessene, nicht das Doppelte „für alle Fälle“.
+- Akzeptabler Mindestzustand: du hast das Messgerät selbst laufen lassen.
+
 > Set the budget for [queries / loops / time] on this path at the measured value plus a small
 > margin, and protect it with a test that fails if it is exceeded. Tell me the number and the
 > margin.
@@ -85,6 +118,16 @@ einen Test hat, der fehlschlägt, wenn es überschritten wird. So taucht eine Le
 der Batterie auf und nicht in der Produktion [Ref. 37](../REFERENCIAS.md#ref-37).
 
 **Wenn derjenige, der geplant hat, Zahlen geliefert hat (Regel fünf):**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Ein Plan des Agenten mit Zahlen darin („es gibt 121 Schleifen“, „es sind 27 Abfragen“), sichtbar
+  im Gespräch.
+- Das Messgerät, das diese Größe misst, bereits vorhanden (der anfängliche Prompt dieses
+  Schritts). Wenn es für diese Zahl kein Messgerät gibt, zuerst der anfängliche Prompt und dann
+  dieser.
+- Akzeptabler Mindestzustand: für jede Zahl des Plans weißt du, mit welchem Messgerät sie geprüft
+  wird.
 
 > Before executing the plan, verify every number the plan asserts with the meter. If any does
 > not match, stop and tell me; do not execute on a wrong number.

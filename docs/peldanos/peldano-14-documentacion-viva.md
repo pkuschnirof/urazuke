@@ -32,6 +32,10 @@ sale directamente de ellos.
 
 ## 1. Contexto requerido
 
+Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
+prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
+el prompt" que precede a cada uno.
+
 - Quiénes son los lectores de cada manual: el usuario final, el que mantiene, el que opera la
   infraestructura. Lo sabe el negocio; el agente pregunta si no está claro.
 - El sistema corriendo en el entorno de prueba, para sacar capturas reales.
@@ -41,6 +45,15 @@ sale directamente de ellos.
 ## 2. Prompts
 
 **Rutina (va en el contrato de convivencia):**
+
+**Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
+el agente:
+
+- `docs/WORKING_AGREEMENT.md`, donde va la rutina.
+- La decisión de qué manuales va a tener el sistema y para quién es cada uno (el usuario final, el
+  que mantiene, el que opera la infraestructura), escrita en `PROJECT.md` o dicha en el chat, para
+  que "el manual correspondiente" tenga sentido.
+- Estado mínimo aceptable: hay una lista de manuales, cada uno con su lector.
 
 > Every change that modifies what the user sees, what the operator does, or how the system is
 > deployed, updates the corresponding manual in the same commit. At the close of every
@@ -60,6 +73,20 @@ el cierre de bloque como momento en que los pendientes cerrados se vuelven manua
 cambios; y la pregunta cuando no está claro a qué manual va.
 
 **Para generar los manuales:**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- El sistema corriendo en el entorno de prueba con datos realistas, no vacío: las capturas salen
+  de ahí.
+- Los pendientes cerrados con su documentación de cierre (peldaño 5), que son la fuente del manual
+  de usuario y del diario de cambios.
+- `docs/DEPLOYMENT.md` (peldaño 13) y `docs/LOCKS.md` (peldaño 12), que son el insumo del manual
+  de infraestructura y recuperación.
+- Lo que solo el negocio sabe, preparado para cuando el agente pregunte: quién es responsable de
+  qué, a qué teléfono se llama cuando se cae, quién hace la copia de respaldo, en qué idioma lee
+  el usuario.
+- Estado mínimo aceptable: hay datos en el entorno de prueba, y sabés a quién llamar a las tres de
+  la mañana.
 
 > Generate three manuals from the system as it is today in the test environment: the user
 > manual (screen by screen, with real screenshots, in the user's language, no jargon); the

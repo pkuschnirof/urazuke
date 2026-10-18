@@ -28,7 +28,7 @@ the evidence, and that is why the evidence has to prove itself.
 |---|---|
 | `ESCALERA_METODOLOGICA.md` | The main document: the thesis, where the method comes from, the timeline (when each step is climbed and what happens in between: infrastructure, CI/CD, requirements intake, development, end-to-end tests, the human look, human testing), the sixteen steps with their card, what is still missing, and the glossary. |
 | `REFERENCIAS.md` | The real cases behind the method, numbered ("Ref. N"), with date and evidence, so that the procedures stay clean and the detail is one click away. Includes the chronologies of the three systems and the table of failures by step. |
-| `peldanos/peldano-NN-*.md` | The contract of each step: when, required context, the prompts in English with their explanation, the expected result, the completeness check without reading code, the warning signs. |
+| `peldanos/peldano-NN-*.md` | The contract of each step: when, required context, the prompts in English with their explanation and, before each one, the "Before sending the prompt" block with the files you have to build yourself and their content; the expected result, the completeness check without reading code, the warning signs. |
 | `peldanos/README.md` | The index of the contracts. |
 | `MANUAL_CURSO.md` | The course: calendar, sixteen lessons with hands-on tasks and prompts, the guide project ("Turnera"), the go-live checklist. |
 | `../DECISIONES.md` | The project's decisions, with date and exact words. The method applies to itself. Spanish only. |

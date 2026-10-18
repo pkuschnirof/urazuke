@@ -29,6 +29,10 @@ regras, eu as impus em sessão, corrigindo o agente, antes de que fossem doutrin
 
 ## 1. Contexto necessário
 
+O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
+prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
+prompt" que precede cada um.
+
 - A hipótese, sua ou do agente: "acho que o problema é X", "devem ser uns cem".
 - Acesso ao que se quer medir: o código, o banco em somente leitura, o log.
 - Os medidores que já existem no repositório, se houver.
@@ -36,6 +40,24 @@ regras, eu as impus em sessão, corrigindo o agente, antes de que fossem doutrin
 ## 2. Prompts
 
 **Inicial:**
+
+**Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
+o agente:
+
+- A hipótese, escrita numa frase, sua ou tirada do agente: "acho que a agenda faz uma consulta ao
+  banco para cada consulta que mostra", "devem ser uns cem laços". Vai no buraco [X] do prompt, e
+  a quantidade a medir no outro buraco.
+- Acesso ao que se vai medir: o código (ele já o tem); o banco em somente leitura, se a medida é
+  sobre dados reais, com a string de conexão fora do repositório e o nome da variável dito no
+  chat; o log, com o seu caminho.
+- Os medidores que já existem no repositório, se os há, nomeados, para que o agente os reutilize
+  em vez de fazer outro.
+- Um caso conhecido para o teste do medidor: uma situação em que você sabe a resposta de antemão
+  ("com zero consultas tem que contar exatamente as duas consultas base ao banco"). Se não lhe
+  ocorre nenhum, peça ao agente que o proponha, mas valide-o você: um medidor verificado contra um
+  caso que o próprio medidor inventou não está verificado.
+- Estado mínimo aceitável: a hipótese cabe numa frase e há um caso conhecido com o qual verificar
+  o instrumento.
 
 > Before building anything, we are going to measure. The hypothesis is: [X]. Write a meter (a
 > script that lives in the repository) that measures [the quantity], and a test for the meter
@@ -66,6 +88,14 @@ ordem: primeiro medir, depois propor.
 
 **Quando há um orçamento:**
 
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- O número medido, que você mesmo rodou com o comando que o agente lhe deu, e que deu o mesmo. Se
+  você não o rodou, não fixe um orçamento sobre ele.
+- A margem que você está disposto a dar, decidida por você: um pouco mais do que o medido, não o
+  dobro "por via das dúvidas".
+- Estado mínimo aceitável: você rodou o medidor.
+
 > Set the budget for [queries / loops / time] on this path at the measured value plus a small
 > margin, and protect it with a test that fails if it is exceeded. Tell me the number and the
 > margin.
@@ -79,6 +109,13 @@ um teste que falhe se for superado. Assim uma regressão de desempenho aparece n
 em produção [Ref. 37](../REFERENCIAS.md#ref-37).
 
 **Quando quem planejou deu números (regra cinco):**
+
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- Um plano do agente com números dentro ("há 121 laços", "são 27 consultas"), à vista na conversa.
+- O medidor que mede essa quantidade, já existente (o prompt inicial deste degrau). Se não há
+  medidor para esse número, primeiro o prompt inicial e depois este.
+- Estado mínimo aceitável: para cada número do plano você sabe com que medidor se verifica.
 
 > Before executing the plan, verify every number the plan asserts with the meter. If any does
 > not match, stop and tell me; do not execute on a wrong number.

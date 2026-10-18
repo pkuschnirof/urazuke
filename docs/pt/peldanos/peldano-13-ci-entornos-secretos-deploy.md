@@ -27,6 +27,10 @@ impossível.
 
 ## 1. Contexto necessário
 
+O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
+prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
+prompt" que precede cada um.
+
 - **Levantamento de ambientes e acessos**, de forma genérica: que ambientes há (teste,
   produção), onde rodam, quem tem acesso, como se promove algo de um para outro, que segredos
   existem e onde vivem hoje, quanta cota de integração contínua há. O agente avalia se basta e
@@ -36,6 +40,22 @@ impossível.
 ## 2. Prompts
 
 **Inicial:**
+
+**Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
+o agente:
+
+- `docs/ENVIRONMENTS_SURVEY.md` (degrau 4), completado com o que falta para produção: o domínio e
+  quem o administra; onde os segredos vão viver no servidor (arquivo de ambiente, cofre) e quais
+  são (o nome, nunca o valor); como se promove hoje algo de teste para produção, se há algo; quem
+  pode tocar produção; quanta cota de integração contínua você tem (o limite do plano do seu
+  fornecedor) e quanta consumiu; como se faria um caminho de volta hoje. O prompt o nomeia "the
+  environments and access survey": diga onde está.
+- O acesso a produção para o agente, decidido por você: qual, com que credencial, e a credencial
+  fora do repositório e do chat.
+- O esqueleto com a sua integração contínua e a sua implantação no ambiente de teste funcionando
+  (degrau 4), e `docs/STATUS.md` com os comandos.
+- Estado mínimo aceitável: você sabe onde os segredos vão viver e quanta cota lhe resta. Se não
+  sabe a cota, descubra antes: este degrau existe em parte por isso.
 
 > We are going to close the path to production. Read the environments and access survey.
 > Evaluate whether you have what is needed to deploy to production safely (access, domain,
@@ -68,6 +88,17 @@ commits; e a documentação para uma pessoa, que é o degrau 14 aplicado à infr
 
 **Rotina de cada implantação:**
 
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- `docs/WORKING_AGREEMENT.md`, onde vai a rotina.
+- `docs/DEPLOYMENT.md` (o prompt inicial deste degrau), escrito e lido por você: você conseguiria
+  segui-lo sozinho?
+- Antes de cada implantação real, além disso: a bateria completa de ponta a ponta em verde com a
+  versão exata (degrau 7, fechamento de bloco), e a auditoria feita se é a primeira implantação
+  (degrau 11).
+- Estado mínimo aceitável: o caminho de volta foi provado pelo menos uma vez antes de haver
+  usuários.
+
 > Before touching production: the test environment is green with the same version; the
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
@@ -83,6 +114,15 @@ volta pronto, mudanças de configuração anunciadas) e as duas provas posterior
 rodando e uma verificação de ponta a ponta sem escrever nada).
 
 **Se um segredo apareceu no chat ou num commit:**
+
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- O segredo identificado: qual é (o seu nome, nunca o seu valor), onde apareceu (o chat, um
+  commit, um log) e quando. Se apareceu num commit, o commit.
+- O seu acesso ao lugar onde ele se gera (o painel do fornecedor), para o caso de o agente não
+  poder rotacioná-lo sozinho. A rotação faz você ou faz ele com a sua credencial, mas não se adia.
+- Estado mínimo aceitável: você consegue nomear o segredo e onde ele foi visto. E a regra sem
+  exceções: este prompt não se manda "mais tarde".
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.

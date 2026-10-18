@@ -26,6 +26,10 @@ lhe autorizou) e sua rastreabilidade (quem responde pelo que ele fez).
 
 ## 1. Contexto necessário
 
+O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
+prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
+prompt" que precede cada um.
+
 Para o agente residente:
 - O que o agente pode fazer em produção e o que não: ler, diagnosticar, mudar configuração,
   executar ações. Você decide.
@@ -40,6 +44,20 @@ Para a retrospectiva:
 ## 2. Prompts
 
 **Para o agente residente (inicial):**
+
+**Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
+o agente:
+
+- A decisão de deixar um agente residente, tomada com o dono e escrita: para quê (suporte,
+  diagnóstico) e com que limites iniciais.
+- Uma credencial própria para o agente em produção, criada por você, mapeada a uma pessoa
+  responsável com nome, com o escopo mínimo (somente leitura, para começar); o valor, fora do chat
+  e do repositório.
+- `docs/LOCKS.md` (degrau 12) e `docs/DEPLOYMENT.md` (degrau 13), em dia: o prompt pede que ele
+  leia o primeiro.
+- A quem o agente avisa quando encontra algo que não consegue resolver: um canal (chamado, e-mail)
+  decidido por você.
+- Estado mínimo aceitável: a credencial existe, tem dono humano, e é de somente leitura.
 
 > We are going to leave you resident in production. First, build the map of the system you will
 > need in order to operate it: modules, environments, where each configuration lives, which
@@ -67,6 +85,14 @@ credencial em nome de uma pessoa.
 
 **Para o agente residente (de fechamento):**
 
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- O mapa e os três níveis que o agente propôs, lidos por você, e a sua escolha do nível (para
+  começar, sempre o primeiro).
+- Uma ação concreta fora do escopo escolhido, pensada por você, para que o agente a tente e você
+  veja a recusa no log (com nível 1, por exemplo: mudar uma configuração).
+- Estado mínimo aceitável: você escolheu o nível e sabe que tentativa tem que falhar.
+
 > Level [X]. Write in `docs/RESIDENT_AGENT.md` the map, the scope, the credential (never its
 > value), and the procedure to request my approval. Then prove, with a real attempt recorded in
 > the log, that something outside your scope is rejected.
@@ -81,6 +107,21 @@ prova em vermelho do escopo: uma tentativa real, registrada, de fazer algo fora 
 recusada. É o degrau 7 aplicado às permissões.
 
 **Para a retrospectiva:**
+
+**Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
+o agente:
+
+- Os números que só você tem, juntados antes: quantas horas você dedicou (do seu calendário, não
+  de memória), quanto gastou na ferramenta de IA (a fatura ou o painel de consumo), quanta cota de
+  integração contínua foi usada, e as datas de início e de fim da etapa. Escreva-os em
+  `docs/RETROSPECTIVE_INPUTS.md`, ou dê-os no chat quando ele os pedir.
+- A lista de incidentes da etapa, como você os lembra, com data aproximada, para contrastar com o
+  que o agente tirar das pendências e dos commits. O que você lembra e o agente não encontra é um
+  buraco de documentação, e vale anotá-lo.
+- `docs/PENDING.md` com os fechados documentados (degrau 5) e `docs/DECISIONS.md` (degrau 6), que
+  são a fonte dos números.
+- Estado mínimo aceitável: as horas e o dinheiro estão anotados com a sua fonte. Sem isso, a
+  retrospectiva se faz com adjetivos.
 
 > [The stage / the project] is over. Do the retrospective with numbers, not impressions: what it
 > cost (tokens, quota, my time), how many pending items, which ones took the most rounds and why,

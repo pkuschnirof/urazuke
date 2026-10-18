@@ -33,6 +33,9 @@ modifications en sort directement.
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - Qui sont les lecteurs de chaque manuel : l'utilisateur final, celui qui maintient, celui qui
   exploite l'infrastructure. C'est le métier qui le sait ; l'agent demande si ce n'est pas clair.
 - Le système qui tourne dans l'environnement de test, pour prendre des captures réelles.
@@ -43,6 +46,14 @@ modifications en sort directement.
 
 **Routine (va dans le contrat de collaboration) :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- `docs/WORKING_AGREEMENT.md`, où va la routine.
+- La décision de quels manuels aura le système et pour qui est chacun (l'utilisateur final, celui
+  qui maintient, celui qui exploite l'infrastructure), écrite dans `PROJECT.md` ou dite dans le
+  chat, pour que « le manuel correspondant » ait un sens.
+- État minimum acceptable : il y a une liste de manuels, chacun avec son lecteur.
 > Every change that modifies what the user sees, what the operator does, or how the system is
 > deployed, updates the corresponding manual in the same commit. At the close of every
 > functional block, add to the user manual the screens and flows of the pending items closed
@@ -62,6 +73,19 @@ modifications ; et la question quand on ne sait pas clairement dans quel manuel 
 
 **Pour générer les manuels :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- Le système qui tourne dans l'environnement de test avec des données réalistes, pas vide : les
+  captures sortent de là.
+- Les éléments en attente clos avec leur documentation de clôture (échelon 5), qui sont la source
+  du manuel de l'utilisateur et du journal des modifications.
+- `docs/DEPLOYMENT.md` (échelon 13) et `docs/LOCKS.md` (échelon 12), qui sont l'intrant du manuel
+  d'infrastructure et de récupération.
+- Ce que seul le métier sait, préparé pour quand l'agent posera la question : qui est responsable
+  de quoi, à quel téléphone on appelle quand ça tombe, qui fait la copie de sauvegarde, dans
+  quelle langue lit l'utilisateur.
+- État minimum acceptable : il y a des données dans l'environnement de test, et vous savez qui
+  appeler à trois heures du matin.
 > Generate three manuals from the system as it is today in the test environment: the user
 > manual (screen by screen, with real screenshots, in the user's language, no jargon); the
 > maintenance manual (how it is built, where everything is, how to run the test suite, how to

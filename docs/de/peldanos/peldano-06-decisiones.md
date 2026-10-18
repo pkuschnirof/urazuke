@@ -29,6 +29,10 @@ die, Entscheidungen vor dem Bauen einzufrieren, stammt aus meinem Werkzeug
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - Das Gespräch mit dem Eigentümer: es ist der einzige Kontext. Der Agent kann keine
   Geschäftsregeln entscheiden.
 - Ein vereinbarter Ort, an dem die Entscheidungen geschrieben werden: die Commit-Nachricht, die
@@ -37,6 +41,19 @@ die, Entscheidungen vor dem Bauen einzufrieren, stammt aus meinem Werkzeug
 ## 2. Prompts
 
 **Routine (gehört in die Arbeitsvereinbarung):**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- `docs/WORKING_AGREEMENT.md` (Schritt 1), wo die Routine hinkommt.
+- `docs/DECISIONS.md`, angelegt, und sei sie leer, mit dem Format in der Kopfzeile: Datum, wer
+  entschieden hat, die wörtlichen Worte, der offene Posten, der sie brauchte. Du legst sie an oder
+  bittest den Agenten in derselben Sitzung darum; wichtig ist, dass der vereinbarte Ort vor der
+  ersten Entscheidung existiert.
+- Du, verfügbar. Diese Routine funktioniert nur, wenn jemand in Stunden und nicht in Wochen
+  antwortet, sobald der Agent anhält und fragt. Wenn der Eigentümer der Domäne eine andere Person
+  ist, vereinbare mit ihm den Kanal und die Antwortzeit, bevor du den Prompt einfügst.
+- Akzeptabler Mindestzustand: das Register existiert, und es gibt jemanden, der entscheidet.
 
 > Whenever implementing something requires a business rule that is not written down, or you
 > must choose between two approaches that change what the user sees, stop and ask me, in prose,
@@ -65,6 +82,15 @@ Option, markiert als „durch Unterlassung“, was erlaubt weiterzumachen, ohne 
 verschwindet.
 
 **Zum Abschluss (jede Entscheidung):**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Die Frage des Agenten, gelesen, mit seiner Empfehlung und seiner Alternative.
+- Deine Entscheidung, mit dem Eigentümer der Domäne abgestimmt, falls du es nicht selbst bist, in
+  einem Satz mit deinen exakten Worten formuliert, denen, die für immer bleiben sollen (sie werden
+  im Commit, im offenen Posten und im Register stehen), und das Datum.
+- Akzeptabler Mindestzustand: der Satz ist geschrieben, bevor du den Prompt einfügst; er wird
+  nicht im Chat improvisiert. Eine später umformulierte Regel ist eine andere Regel.
 
 > Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
 

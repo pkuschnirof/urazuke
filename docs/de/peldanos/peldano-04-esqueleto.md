@@ -27,6 +27,10 @@ automatische Deployment in die Testumgebung.
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - `docs/SIZING.md` (Schritt 3): die gewählte Option definiert das Skelett.
 - Erhebung der Umgebungen: wo es laufen wird (Cloud, eigener Server), ob es eine Testumgebung und
   eine Produktionsumgebung gibt, wer Zugang hat, wie heute deployt wird, falls es etwas gibt.
@@ -36,6 +40,27 @@ automatische Deployment in die Testumgebung.
 ## 2. Prompts
 
 **Zu Beginn:**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- `docs/ENVIRONMENTS_SURVEY.md`: die Erhebung der Umgebungen, von dir geschrieben. Wo das System
+  laufen wird (ein Server, den du schon hast, ein Dienst in der Cloud, welcher); ob es eine
+  Testumgebung und eine Produktion geben wird und ob sie schon existieren; wer worauf Zugang hat;
+  wie heute deployt wird, falls es etwas gibt (von Hand, ein Skript, gar nicht); die Art des
+  Projekts (neu, Korrektur oder Weiterentwicklung von etwas Bestehendem); und die URL oder die
+  Domäne, die die Testumgebung haben wird, falls sie schon bekannt ist. Der Prompt nennt sie „the
+  environments survey“, ohne Pfad: speichere sie unter diesem Namen oder sag ihm im Chat, wie sie
+  heißt.
+- Die Zugangsdaten für den Ort, an dem deployt wird, und sei es ein kostenloser Dienst: angelegt,
+  von dir einmal getestet (ins Panel einloggen) und außerhalb des Repositorys aufbewahrt (in einer
+  Umgebungsdatei auf deiner Maschine oder im Geheimnisverwalter deines Werkzeugs). Dem Agenten
+  sagt man, wo sie liegen; man fügt sie ihm nicht in den Chat ein.
+- `PROJECT.md` (Schritt 2) und `docs/SIZING.md` (Schritt 3), geschlossen: das Skelett wird auf der
+  dort gewählten Option gebaut, und der Agent muss sie lesen.
+- Akzeptabler Mindestzustand: du kommst selbst in den Dienst hinein, in dem deployt wird, und die
+  Erhebung sagt, welches die Testumgebung ist. Ohne das bleibt das Skelett auf deiner Maschine,
+  und der Schritt wird nicht erklommen.
 
 > We are going to build the skeleton of the system, with no functionality at all. Read
 > `PROJECT.md`, `docs/SIZING.md` and the environments survey. Evaluate whether you have what is
@@ -68,6 +93,17 @@ wurde; und das ausdrückliche Verbot, Funktionalität hinzuzufügen, denn das Mo
 schon dabei bin“, und das bricht den exakten Umfang.
 
 **Zum Abschluss:**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Der Screenshot der Testumgebung, den der Agent dir gezeigt hat, und dein eigener Besuch dieser
+  URL aus deinem Browser: es muss dasselbe zu sehen sein. Es ist der erste menschliche Blick auf
+  das System, und das ist ein Meilenstein.
+- Ein Link auf einen grünen Lauf der kontinuierlichen Integration, beim Agenten angefordert und
+  von dir geöffnet.
+- `docs/GATES.md`, gelesen: jedes Tor hat eine prüfbare Bedingung.
+- Akzeptabler Mindestzustand: du hast den leeren Bildschirm unter der echten URL gesehen, mit
+  deinen eigenen Augen. Wenn du nur den Screenshot gesehen hast, genehmige nicht.
 
 > Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a

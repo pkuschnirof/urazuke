@@ -28,6 +28,10 @@ Bauende an einem Tag hinterlassen hatte [Ref. 40](../REFERENCIAS.md#ref-40).
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - Das vollständige Repository, nur lesend.
 - Die Produktion oder die Testumgebung, nur lesend (Datenbank, Logs).
 - Das vorherige Audit, falls es eines gab, um zu messen, was sich geändert hat.
@@ -36,6 +40,22 @@ Bauende an einem Tag hinterlassen hatte [Ref. 40](../REFERENCIAS.md#ref-40).
 ## 2. Prompts
 
 **Zu Beginn (an einen anderen Agenten als den Bauenden, wenn möglich):**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- Eine neue Sitzung des Agenten, verschieden von der des Bauenden: ein sauberer Klon des
+  Repositorys in einem anderen Ordner und, wenn dein Werkzeug es erlaubt, eine andere
+  Anweisungsdatei, die nur sagt „du bist ein Auditor; du hast dieses System nicht gebaut“. Ohne
+  das teilt der Auditor die Annahmen des Bauenden und bestätigt sie.
+- Nur lesender Zugang für diese Sitzung zur Testumgebung oder zur Produktion: Datenbank, Logs. Nur
+  lesende Zugangsdaten, außerhalb des Repositorys, mit dem Namen der Variablen im Chat gesagt.
+- Der Umfang, von dir entschieden, für die Lücke [scope]: Integrität, Sicherheit, Leistung,
+  Codequalität, oder alles.
+- Das vorige Audit, falls es eines gab (`docs/AUDIT_[Datum]` vom letzten Mal), damit er misst, was
+  sich geändert hat.
+- Akzeptabler Mindestzustand: die Sitzung des Auditors ist nicht die des Bauenden, und sie hat nur
+  Lesezugang.
 
 > Audit this system for [scope]. Read-only: change nothing except writing your report to
 > `docs/AUDIT_[date].md`. If auditing some part requires access you lack (the database, the
@@ -65,6 +85,15 @@ pro Dimension, zum Vergleich mit dem vorherigen Audit; und die P0 schon in vorge
 Posten umgewandelt.
 
 **Zum Abschluss (an den Bauenden):**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- `docs/AUDIT_[Datum].md`, von dir gelesen, und zwei zufällige Befunde mit dem Auditor verifiziert
+  (verlang den Befehl, die Zeile; er muss sie zeigen können).
+- Die Sitzung des Bauenden geöffnet: dieser Prompt geht an den Bauenden, nicht an den Auditor, mit
+  dem Datum der Datei in der Lücke.
+- Akzeptabler Mindestzustand: du hast den Bericht gelesen, du weißt, wie viele P0 und P1 es gibt,
+  und du wirst die offenen Posten zählen, die er aufmacht.
 
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.

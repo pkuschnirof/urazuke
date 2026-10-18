@@ -20,6 +20,9 @@
 
 ## 1. 所需上下文
 
+下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第
+2 节里，在每条提示词前面的"发送提示词之前"方框里。
+
 对驻留代理：
 - 代理在生产里能做什么、不能做什么：读、诊断、改配置、执行动作。由你决定。
 - 代理如何向系统表明身份（一个自己的凭证，映射到一个负责的人）。
@@ -31,6 +34,17 @@
 ## 2. 提示词
 
 **对驻留代理（初始）：**
+
+**发送提示词之前**，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：
+
+- 留一个驻留代理的决定，和所有者一起做出并写下来：为了什么（支持、诊断），以及初始的界限是什
+  么。
+- 代理在生产环境里专属的凭据，由你创建，映射到一个有名字的负责人，范围最小（一开始只读）；它
+  的值，在聊天之外、仓库之外。
+- `docs/LOCKS.md`（第 12 级台阶）和 `docs/DEPLOYMENT.md`（第 13 级台阶），保持最新：提示词要
+  求它读第一份。
+- 代理发现自己解决不了的事情时通知谁：一个由你决定的渠道（工单、邮件）。
+- 最低可接受状态：凭据存在，有人类主人，而且是只读的。
 
 > We are going to leave you resident in production. First, build the map of the system you will
 > need in order to operate it: modules, environments, where each configuration lives, which
@@ -54,6 +68,13 @@
 
 **对驻留代理（收尾）：**
 
+**发送提示词之前**，你手边必须有这些：
+
+- 代理提出的地图和三个级别，由你读过，以及你选的级别（一开始，永远选第一个）。
+- 一个在所选范围之外的具体动作，由你想好，让代理去尝试，而你在日志里看到那次拒绝（比如在级别
+  1 下：改一个配置）。
+- 最低可接受状态：你选好了级别，而且知道哪一次尝试必须失败。
+
 > Level [X]. Write in `docs/RESIDENT_AGENT.md` the map, the scope, the credential (never its
 > value), and the procedure to request my approval. Then prove, with a real attempt recorded in
 > the log, that something outside your scope is rejected.
@@ -66,6 +87,17 @@
 的、做级别之外的事的尝试，被拒绝。那是第 7 级台阶应用于权限。
 
 **对复盘：**
+
+**发送提示词之前**，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：
+
+- 只有你才有的那些数字，事先收集好：你投入了多少小时（从你的日历里来，不是从记忆里来），在
+  AI 工具上花了多少钱（账单或消费面板），用掉了多少持续集成配额，以及这个阶段的开始和结束日
+  期。把它们写进 `docs/RETROSPECTIVE_INPUTS.md`，或者在它要的时候在聊天里给它。
+- 这个阶段的事故清单，按你记得的样子，附大致日期，用来和代理从待办项和提交里挖出来的东西对照。
+  你记得而代理找不到的，就是一个文档的窟窿，值得记下来。
+- `docs/PENDING.md`，里面有带文档的已关闭待办项（第 5 级台阶），以及 `docs/DECISIONS.md`（第
+  6 级台阶），它们是那些数字的来源。
+- 最低可接受状态：小时数和花费都记下来了，附来源。没有这些，复盘就只能用形容词来做。
 
 > [The stage / the project] is over. Do the retrospective with numbers, not impressions: what it
 > cost (tokens, quota, my time), how many pending items, which ones took the most rounds and why,

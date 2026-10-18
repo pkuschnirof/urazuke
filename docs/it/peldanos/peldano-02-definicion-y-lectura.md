@@ -28,6 +28,10 @@ senza leggere codice, che il sistema che l'agente capisce sia quello che il busi
 
 ## 1. Contesto richiesto
 
+Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
+prompt, con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
+inviare il prompt" che precede ciascuno.
+
 - Rilevazione del business: cosa fa il cliente, chi usa il sistema, che problema risolve, cosa non
   deve fare. Con le interviste, i casi d'uso o le storie utente che riesci a nominare, e le entità
   del business con i loro stati, anche se incompleti.
@@ -38,6 +42,26 @@ senza leggere codice, che il sistema che l'agente capisce sia quello che il busi
 ## 2. Prompt
 
 **Iniziale:**
+
+**Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
+l'agente:
+
+- `docs/INITIAL_SURVEY.md` (gradino 0), completato con la rilevazione del business. La scrivi tu a
+  partire dalle interviste dell'acquisizione; se hai usato un metodo (interviste, casi d'uso,
+  storie utente, prototipi di schermata), di' quale e incolla il risultato. Deve avere: cosa fa il
+  cliente; chi usa il sistema (gli attori, con il nome del ruolo); che problema risolve; cosa NON
+  deve fare, in una sezione propria, anche se ha due voci; i casi d'uso o le storie utente che
+  nomina il proprietario, con le sue parole, anche se sono dieci righe; le entità del business con
+  i loro stati ("un appuntamento è in attesa, confermato, cancellato"), anche se incomplete; i
+  disegni o le foto delle schermate, se ci sono; le integrazioni esterne (messaggistica,
+  pagamenti, un altro sistema); e le decisioni già prese, anche se sono state a voce, con la data
+  e chi le ha prese.
+- `docs/WORKING_AGREEMENT.md` (gradino 1), chiuso con data e versione.
+- Se esiste un sistema precedente: accesso in lettura al suo codice o alla sua documentazione, con
+  il percorso o il link annotato nella rilevazione.
+- Stato minimo accettabile: la rilevazione ha la sezione "cosa NON è" con almeno due voci, almeno
+  un caso d'uso con le parole del proprietario, e almeno un'entità con i suoi stati. Senza questo,
+  l'albero che ne uscirà sarà inventato, e tu non avrai con cosa confrontarlo.
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -80,6 +104,17 @@ di albero; che **marchi ciò che ha inferito**, perché è lì che si nascondono
 separi lo stato vivo in un altro file, perché la mappa non si trasformi in storico.
 
 **Di chiusura:**
+
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- `PROJECT.md`, letto per intero da te (deve stare in cinque minuti), con le tue correzioni
+  annotate: ciò che non è vero, ciò che non è tuo, ciò che è di troppo.
+- `docs/SEMANTIC_TREE.md`, percorso nodo per nodo come se fossi il cliente: ogni nodo marcato come
+  inferito ha il tuo verdetto (confermato o corretto), e hai annotato gli attori che mancano, gli
+  stati che il business non usa, le schermate che nessuno ha chiesto.
+- La lista delle correzioni, scritta, che va nello spazio [list] del prompt. Se la lista è vuota
+  la prima volta, diffida della tua lettura, non dell'agente.
+- Stato minimo accettabile: nessun nodo marcato "inferito" resta senza il tuo verdetto.
 
 > Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with
 > today's date. Add to the working agreement two rules: the change history never goes into

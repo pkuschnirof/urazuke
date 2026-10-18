@@ -28,6 +28,10 @@ Nachverfolgbarkeit (wer für das verantwortlich ist, was er getan hat).
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 Für den residenten Agenten:
 - Was der Agent in der Produktion tun darf und was nicht: lesen, diagnostizieren, Konfiguration
   ändern, Aktionen ausführen. Das entscheidest du.
@@ -42,6 +46,21 @@ Für die Retrospektive:
 ## 2. Prompts
 
 **Für den residenten Agenten (zu Beginn):**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- Die Entscheidung, einen residenten Agenten zu hinterlassen, mit dem Eigentümer getroffen und
+  geschrieben: wofür (Support, Diagnose) und mit welchen anfänglichen Grenzen.
+- Eine eigene Zugangsberechtigung für den Agenten in der Produktion, von dir angelegt, einer
+  verantwortlichen Person mit Namen zugeordnet, mit dem minimalen Umfang (nur lesend, für den
+  Anfang); der Wert außerhalb des Chats und des Repositorys.
+- `docs/LOCKS.md` (Schritt 12) und `docs/DEPLOYMENT.md` (Schritt 13), aktuell: der Prompt verlangt
+  von ihm, die erste zu lesen.
+- Wem der Agent Bescheid gibt, wenn er etwas findet, das er nicht lösen kann: ein Kanal (Ticket,
+  E-Mail), von dir entschieden.
+- Akzeptabler Mindestzustand: die Zugangsberechtigung existiert, hat einen menschlichen
+  Eigentümer, und ist nur lesend.
 
 > We are going to leave you resident in production. First, build the map of the system you will
 > need in order to operate it: modules, environments, where each configuration lives, which
@@ -69,6 +88,15 @@ werden erklärt, nicht versteckt**; die drei Umfangsstufen, damit du eine wähls
 
 **Für den residenten Agenten (zum Abschluss):**
 
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Die Karte und die drei Stufen, die der Agent vorgeschlagen hat, von dir gelesen, und deine Wahl
+  der Stufe (für den Anfang immer die erste).
+- Eine konkrete Aktion außerhalb des gewählten Umfangs, von dir ausgedacht, damit der Agent sie
+  versucht und du die Ablehnung im Log siehst (mit Stufe 1 zum Beispiel: eine Konfiguration
+  ändern).
+- Akzeptabler Mindestzustand: du hast die Stufe gewählt und weißt, welcher Versuch scheitern muss.
+
 > Level [X]. Write in `docs/RESIDENT_AGENT.md` the map, the scope, the credential (never its
 > value), and the procedure to request my approval. Then prove, with a real attempt recorded in
 > the log, that something outside your scope is rejected.
@@ -83,6 +111,23 @@ niemals), und den roten Beweis des Umfangs: ein echter, aufgezeichneter Versuch,
 der Stufe zu tun, abgelehnt. Das ist Schritt 7 angewandt auf die Berechtigungen.
 
 **Für die Retrospektive:**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- Die Zahlen, die nur du hast, vorher zusammengetragen: wie viele Stunden du investiert hast (aus
+  deinem Kalender, nicht aus dem Gedächtnis), wie viel du für das KI-Werkzeug ausgegeben hast (die
+  Rechnung oder das Verbrauchspanel), wie viel Kontingent an kontinuierlicher Integration
+  verbraucht wurde, und die Anfangs- und Enddaten der Etappe. Schreib sie in
+  `docs/RETROSPECTIVE_INPUTS.md` oder gib sie ihm im Chat, wenn er danach fragt.
+- Die Liste der Vorfälle der Etappe, so wie du sie erinnerst, mit ungefährem Datum, um sie mit dem
+  zu vergleichen, was der Agent aus den offenen Posten und den Commits zieht. Was du erinnerst und
+  der Agent nicht findet, ist eine Lücke in der Dokumentation, und die ist es wert, notiert zu
+  werden.
+- `docs/PENDING.md` mit den dokumentierten geschlossenen Posten (Schritt 5) und
+  `docs/DECISIONS.md` (Schritt 6), die die Quelle der Zahlen sind.
+- Akzeptabler Mindestzustand: die Stunden und das Geld sind mit ihrer Quelle notiert. Ohne das
+  wird die Retrospektive mit Adjektiven gemacht.
 
 > [The stage / the project] is over. Do the retrospective with numbers, not impressions: what it
 > cost (tokens, quota, my time), how many pending items, which ones took the most rounds and why,

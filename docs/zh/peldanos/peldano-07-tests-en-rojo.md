@@ -24,6 +24,9 @@
 
 ## 1. 所需上下文
 
+下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第
+2 节里，在每条提示词前面的"发送提示词之前"方框里。
+
 - 已实现的变更（默认测试在实现之后；"先写测试"作为小而明确的范围的选项保留）。
 - 引发变更的待办项，附其验收标准和"如何验证"。
 - 现有的测试套件和运行它的命令（第 4 级台阶）。
@@ -31,6 +34,18 @@
 ## 2. 提示词
 
 **例行（放进协作契约；每次变更都适用）：**
+
+**发送提示词之前**，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：
+
+- 正在收尾的那个待办项，在 `docs/PENDING.md` 里有完整规格；特别是"给定、当、那么"形式的验收
+  标准和它的"如何验证"，那是测试的脚本。如果待办项没有这些，在要测试之前回到第 5 级台阶。
+- 代理已经实现好的变更（方法是先实现后测试，除非你对一个小而明确的范围选择"先写测试"）。
+- 已有的测试套件和运行它的命令，记在 `docs/STATUS.md` 里（第 4 级台阶）。
+- 测试环境在运行，代理能访问，而且有足够的测试数据覆盖被触及的流程。如果流程需要不存在的数据
+  （一个患者、一个昨天的预约），由你来加载，或者让它作为测试的一部分去创建；它不能做的是把数
+  据模拟掉。
+- `docs/WORKING_AGREEMENT.md`，第一次时这条例行要加进去的地方。
+- 最低可接受状态：规格里有验收标准，而且测试套件能用一个已知的命令跑起来。
 
 > To close this pending item I need evidence, not your word. (1) Write the test that proves what
 > the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
@@ -59,6 +74,15 @@
 
 **每个功能块收尾时和每次部署到生产之前：**
 
+**发送提示词之前**，你手边必须有这些：
+
+- 功能块的所有待办项都用这条例行收尾了（红、绿、回归、所触及流程的端到端）。
+- 要提升的那个确切版本，已标识（版本号或提交号）并部署在测试环境上；如果 `docs/STATUS.md` 里
+  没有，就在聊天里告诉它。
+- 到目前为止存在的流程清单，由你根据语义树里的用例写出来，用来对照代理说它覆盖了什么。没有你
+  这份清单，"所有流程"就是代理记得的那些。
+- 最低可接受状态：在问它跑了多少个流程之前，你就知道测试套件应该跑多少个。
+
 > Run the complete end-to-end suite of every flow that exists so far, in the test environment,
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
@@ -73,6 +97,14 @@
 以及完整性条款：没覆盖的要声明并变成待办项，不当作已覆盖放过去。
 
 **当代理说无法测试时：**
+
+**发送提示词之前**，你手边必须有这些：
+
+- 代理说无法测试的那条消息，认真读过：是真的不能，还是它缺了什么？如果缺的是你手上有的东西
+  （数据、一个访问权、一个环境），给它，别发这条提示词。这条提示词是留给系统里真的缺了什么的
+  时候（界面元素上的标识符、外部供应商的测试模式）。
+- 最低可接受状态：你分清了"我缺一份输入"（那就给它）和"系统在这里不可测试"（那才用这条提
+  示词）。
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.

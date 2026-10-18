@@ -32,6 +32,10 @@ Geschäft verlangt hat.
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - Erhebung des Geschäfts: was der Kunde tut, wer das System benutzt, welches Problem es löst, was
   es nicht tun soll. Mit den Interviews, den Anwendungsfällen oder User Stories, die du benennen
   kannst, und den Entitäten des Geschäfts mit ihren Zuständen, auch wenn sie unvollständig sind.
@@ -42,6 +46,28 @@ Geschäft verlangt hat.
 ## 2. Prompts
 
 **Zu Beginn:**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- `docs/INITIAL_SURVEY.md` (Schritt 0), ergänzt um die Erhebung des Geschäfts. Du schreibst sie
+  aus den Interviews der Aufnahme; wenn du eine Methode benutzt hast (Interviews, Anwendungsfälle,
+  User Stories, Bildschirmprototypen), sag welche und füge das Ergebnis ein. Sie muss enthalten:
+  was der Kunde macht; wer das System benutzt (die Akteure, mit Rollennamen); welches Problem es
+  löst; was es NICHT tun soll, in einem eigenen Abschnitt, und sei es mit zwei Punkten; die
+  Anwendungsfälle oder User Stories, die der Eigentümer nennt, mit seinen Worten, und seien es
+  zehn Zeilen; die Entitäten des Geschäfts mit ihren Zuständen („ein Termin ist offen, bestätigt,
+  storniert“), auch wenn sie unvollständig sind; die Zeichnungen oder die Fotos der Bildschirme,
+  falls es welche gibt; die externen Integrationen (Messaging, Zahlungen, ein anderes System); und
+  die bereits getroffenen Entscheidungen, auch wenn sie mündlich waren, mit Datum und mit dem, der
+  sie getroffen hat.
+- `docs/WORKING_AGREEMENT.md` (Schritt 1), geschlossen mit Datum und Version.
+- Wenn es ein Vorgängersystem gibt: Lesezugang zu seinem Code oder zu seiner Dokumentation, mit
+  dem Pfad oder dem Link in der Erhebung notiert.
+- Akzeptabler Mindestzustand: die Erhebung hat den Abschnitt „was es NICHT ist“ mit mindestens
+  zwei Punkten, mindestens einen Anwendungsfall mit den Worten des Eigentümers, und mindestens
+  eine Entität mit ihren Zuständen. Ohne das wird der Baum, der herauskommt, erfunden sein, und du
+  wirst nichts haben, womit du ihn vergleichen kannst.
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -86,6 +112,18 @@ hat**, denn dort verstecken sich die Erfindungen; und dass er den lebenden Zusta
 Datei trennt, damit die Karte nicht zur Historie wird.
 
 **Zum Abschluss:**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- `PROJECT.md`, von dir ganz gelesen (es muss in fünf Minuten hineingehen), mit deinen notierten
+  Korrekturen: was nicht stimmt, was nicht deins ist, was zu viel ist.
+- `docs/SEMANTIC_TREE.md`, Knoten für Knoten durchgegangen, als wärst du der Kunde: jeder als
+  erschlossen markierte Knoten hat dein Urteil (bestätigt oder korrigiert), und du hast die
+  fehlenden Akteure notiert, die Zustände, die das Geschäft nicht benutzt, die Bildschirme, die
+  niemand verlangt hat.
+- Die Liste der Korrekturen, geschrieben, die in die Lücke [list] des Prompts kommt. Wenn die
+  Liste beim ersten Mal leer ist, misstraue deiner Lesart, nicht dem Agenten.
+- Akzeptabler Mindestzustand: kein als „erschlossen“ markierter Knoten bleibt ohne dein Urteil.
 
 > Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with
 > today's date. Add to the working agreement two rules: the change history never goes into

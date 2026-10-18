@@ -803,7 +803,11 @@ proprio dentro `peldanos/`, sempre con le stesse cinque sezioni:
    una conversazione, quello di chiusura. Tutti portano la stessa clausola, che è il cuore della
    faccenda: *il modello valuta se il contesto basta; se non basta, chiede tutto ciò che manca
    prima di proseguire; e non stima né inventa un dato che solo il business ha*. Chi sa cosa gli
-   manca per calcolare è il modello, non un modulo.
+   manca per calcolare è il modello, non un modulo. E ogni prompt è preceduto da un blocco che
+   dice **"Prima di inviare il prompt"**: i file e gli input che tu (o il business con te) devi
+   aver costruito prima di incollarlo, con il loro nome, il loro contenuto e lo stato minimo
+   accettabile. Il prompt li nomina, il blocco ti dice come devono essere fatti; senza quel
+   blocco, il prompt menziona file che nessuno ti ha detto come scrivere.
 3. **Risultato atteso**: le caratteristiche dettagliate dell'artefatto.
 4. **Verifica di completezza**: la lista dei controlli che il proprietario fa sull'artefatto,
    **senza leggere codice**. Se uno dà "no", il gradino non è salito.

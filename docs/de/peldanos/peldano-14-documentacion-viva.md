@@ -33,6 +33,10 @@ zusammengesetzt, und das Änderungsprotokoll entsteht direkt aus ihnen.
 
 ## 1. Benötigter Kontext
 
+Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
+musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
+den Prompt schickst“, der jedem einzelnen vorangeht.
+
 - Wer die Leser jedes Handbuchs sind: der Endnutzer, der Wartende, der Betreiber der
   Infrastruktur. Das weiß das Geschäft; der Agent fragt, wenn es nicht klar ist.
 - Das System, das in der Testumgebung läuft, um echte Screenshots zu machen.
@@ -42,6 +46,15 @@ zusammengesetzt, und das Änderungsprotokoll entsteht direkt aus ihnen.
 ## 2. Prompts
 
 **Routine (gehört in die Arbeitsvereinbarung):**
+
+**Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
+machst es, nicht der Agent:
+
+- `docs/WORKING_AGREEMENT.md`, wo die Routine hinkommt.
+- Die Entscheidung, welche Handbücher das System haben wird und für wen jedes ist (der Endnutzer,
+  der Wartende, der die Infrastruktur betreibt), geschrieben in `PROJECT.md` oder im Chat gesagt,
+  damit „das entsprechende Handbuch“ einen Sinn hat.
+- Akzeptabler Mindestzustand: es gibt eine Liste von Handbüchern, jedes mit seinem Leser.
 
 > Every change that modifies what the user sees, what the operator does, or how the system is
 > deployed, updates the corresponding manual in the same commit. At the close of every
@@ -61,6 +74,20 @@ den Blockabschluss als Moment, in dem die geschlossenen Posten zu Handbuch und �
 werden; und die Frage, wenn nicht klar ist, in welches Handbuch es gehört.
 
 **Zum Erzeugen der Handbücher:**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Das System, in der Testumgebung laufend, mit realistischen Daten, nicht leer: die Screenshots
+  kommen von dort.
+- Die geschlossenen offenen Posten mit ihrer Abschlussdokumentation (Schritt 5), die die Quelle
+  des Benutzerhandbuchs und des Änderungstagebuchs sind.
+- `docs/DEPLOYMENT.md` (Schritt 13) und `docs/LOCKS.md` (Schritt 12), die die Eingabe des
+  Infrastruktur- und Wiederherstellungshandbuchs sind.
+- Was nur das Geschäft weiß, vorbereitet für den Moment, in dem der Agent fragt: wer für was
+  verantwortlich ist, welche Telefonnummer man anruft, wenn es ausfällt, wer die Sicherungskopie
+  macht, in welcher Sprache der Nutzer liest.
+- Akzeptabler Mindestzustand: es gibt Daten in der Testumgebung, und du weißt, wen man um drei Uhr
+  morgens anruft.
 
 > Generate three manuals from the system as it is today in the test environment: the user
 > manual (screen by screen, with real screenshots, in the user's language, no jargon); the

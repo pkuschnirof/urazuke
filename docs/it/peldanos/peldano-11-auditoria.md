@@ -27,6 +27,10 @@ aveva lasciato in un giorno [Ref. 40](../REFERENCIAS.md#ref-40).
 
 ## 1. Contesto richiesto
 
+Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
+prompt, con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
+inviare il prompt" che precede ciascuno.
+
 - Il repository completo, in sola lettura.
 - La produzione o l'ambiente di test, in sola lettura (database, log).
 - L'audit precedente, se c'è stato, per misurare cosa è cambiato.
@@ -35,6 +39,23 @@ aveva lasciato in un giorno [Ref. 40](../REFERENCIAS.md#ref-40).
 ## 2. Prompt
 
 **Iniziale (a un agente diverso dal costruttore, se si può):**
+
+**Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
+l'agente:
+
+- Una sessione nuova dell'agente, diversa da quella del costruttore: un clone pulito del
+  repository in un'altra cartella e, se il tuo strumento lo permette, un file di istruzioni
+  diverso che dica solo "sei un auditor; non hai costruito tu questo sistema". Senza questo,
+  l'auditor condivide i presupposti del costruttore e li conferma.
+- Accesso in sola lettura per quella sessione all'ambiente di test o alla produzione: database,
+  log. Credenziali in sola lettura, fuori dal repository, con il nome della variabile detto nella
+  chat.
+- Il perimetro, deciso da te, per lo spazio [scope]: integrità, sicurezza, prestazioni, qualità
+  del codice, o tutto.
+- L'audit precedente, se c'è stato (`docs/AUDIT_[data]` della volta scorsa), perché misuri cosa è
+  cambiato.
+- Stato minimo accettabile: la sessione dell'auditor non è quella del costruttore, e ha la sola
+  lettura.
 
 > Audit this system for [scope]. Read-only: change nothing except writing your report to
 > `docs/AUDIT_[date].md`. If auditing some part requires access you lack (the database, the
@@ -62,6 +83,15 @@ sia azionabile senza rileggere il rapporto; voti per dimensione, per confrontare
 precedente; e i P0 già convertiti in voci in sospeso proposte.
 
 **Di chiusura (al costruttore):**
+
+**Prima di inviare il prompt**, devi avere questo a portata di mano:
+
+- `docs/AUDIT_[data].md`, letto da te, e due rilievi a caso verificati con l'auditor (chiedigli il
+  comando, la riga; deve poterli mostrare).
+- La sessione del costruttore aperta: questo prompt va al costruttore, non all'auditor, con la
+  data del file messa nello spazio.
+- Stato minimo accettabile: hai letto il rapporto, sai quanti P0 e P1 ci sono, e conterai le voci
+  in sospeso che apre.
 
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.

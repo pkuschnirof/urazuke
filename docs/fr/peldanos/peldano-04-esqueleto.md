@@ -27,6 +27,9 @@ déploiement automatique vers l'environnement de test.
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - `docs/SIZING.md` (échelon 3) : l'option choisie définit le squelette.
 - Relevé des environnements : où ça va tourner (cloud, serveur propre), s'il y aura un
   environnement de test et un de production, qui a accès, comment on déploie aujourd'hui s'il y a
@@ -38,6 +41,25 @@ déploiement automatique vers l'environnement de test.
 
 **Initial :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- `docs/ENVIRONMENTS_SURVEY.md` : le relevé des environnements, écrit par vous. Où va tourner le
+  système (un serveur que vous avez déjà, un service dans le nuage, lequel) ; s'il y aura un
+  environnement de test et un de production, et s'ils existent déjà ; qui a accès à quoi ; comment
+  on déploie aujourd'hui s'il y a quelque chose (à la main, un script, rien) ; le type de projet
+  (nouveau, correction ou évolution de quelque chose d'existant) ; et l'URL ou le domaine qu'aura
+  l'environnement de test, si on le sait déjà. Le prompt le nomme « the environments survey »,
+  sans chemin : gardez-le sous ce nom, ou dites-lui dans le chat comment il s'appelle.
+- Les identifiants de l'endroit où l'on va déployer, même si c'est un service gratuit : créés,
+  essayés par vous une fois (entrer dans le panneau), et gardés hors du dépôt (dans un fichier
+  d'environnement de votre machine ou dans le gestionnaire de secrets de votre outil). À l'agent,
+  on lui dit où ils sont ; on ne les lui colle pas dans le chat.
+- `PROJECT.md` (échelon 2) et `docs/SIZING.md` (échelon 3), clos : le squelette se construit sur
+  l'option qui y a été choisie, et l'agent doit la lire.
+- État minimum acceptable : vous pouvez entrer vous-même dans le service où l'on va déployer, et
+  le relevé dit quel est l'environnement de test. Sans cela, le squelette reste sur votre machine
+  et l'échelon n'est pas gravi.
 > We are going to build the skeleton of the system, with no functionality at all. Read
 > `PROJECT.md`, `docs/SIZING.md` and the environments survey. Evaluate whether you have what is
 > needed for the skeleton to run in the test environment (access, URL, deployment method); if
@@ -70,6 +92,15 @@ et l'interdiction explicite d'ajouter des fonctionnalités, parce que le modèle
 
 **De clôture :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- La capture de l'environnement de test que l'agent vous a montrée, et votre propre visite de
+  cette URL depuis votre navigateur : cela doit se voir pareil. C'est la première vue humaine du
+  système, et c'est un jalon.
+- Un lien vers une exécution d'intégration continue au vert, demandé à l'agent et ouvert par vous.
+- `docs/GATES.md`, lu : chaque porte a une condition vérifiable.
+- État minimum acceptable : vous avez vu l'écran vide à l'URL réelle, de vos yeux. Si vous n'avez
+  vu que la capture, n'approuvez pas.
 > Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a
 > second time and show me that the second run changed nothing.

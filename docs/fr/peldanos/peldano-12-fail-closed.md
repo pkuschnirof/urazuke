@@ -31,6 +31,9 @@ l'exploite.
 
 ## 1. Contexte requis
 
+Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
+prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
+d'envoyer le prompt » qui précède chacun d'eux.
 - **Relevé des actions à conséquences**, nommé ainsi de façon générique : ce que fait le système
   qui encaisse, envoie, approuve, efface, ou prévient quelqu'un à l'extérieur ; ce qui se passe si
   on le fait deux fois ; ce qui se passe si on le fait mal ; comment on le défait. C'est le métier
@@ -42,6 +45,21 @@ l'exploite.
 
 **Initial :**
 
+**Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
+faites, pas l'agent :
+
+- `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md` : le relevé des actions à conséquence, écrit avec le
+  propriétaire du domaine. Ce que fait ou va faire le système qui encaisse, envoie, approuve,
+  efface, ou prévient quelqu'un de l'extérieur ; et pour chaque action : ce qui se passe si elle
+  est faite deux fois, ce qui se passe si elle est mal faite, comment on la défait, et qui devrait
+  pouvoir la faire. Les processus de l'arbre sémantique vous donnent la liste de départ :
+  parcourez-les un par un. Le prompt le nomme « the survey of consequential actions », sans
+  chemin : gardez-le sous ce nom ou dites-lui dans le chat où il est.
+- Si l'agent va être embarqué ou résident : quelles actions il peut faire lui-même sur le système,
+  dans une section à part du même relevé.
+- `docs/SEMANTIC_TREE.md`, à jour.
+- État minimum acceptable : chaque processus de l'arbre qui agit sur le monde est dans la liste
+  avec son « ce qui se passe si elle est faite deux fois ».
 > We are going to decide which actions of the system need a lock. Read the survey of
 > consequential actions, and go through the code looking for everything that charges, sends,
 > approves, deletes or notifies outwards. Compare the two lists: if the code has actions the
@@ -70,6 +88,13 @@ fail-closed écrite dans le prompt, pour qu'elle reste dans le tableau et dans l
 
 **De clôture :**
 
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- Le tableau que l'agent a présenté, lu verrou par verrou avec le propriétaire ; pour chaque
+  ligne, votre confirmation ou votre changement, écrits pour les trous [list], [X] et [Y] du
+  prompt.
+- État minimum acceptable : il n'y a pas de ligne sans verdict. Un verrou non confirmé est un
+  verrou qui ne sera pas implémenté.
 > I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves
 > that, under the doubt condition, the action does NOT happen (proved red against the version
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
