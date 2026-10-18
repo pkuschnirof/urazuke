@@ -85,6 +85,32 @@ era preciso exigi-lo por escrito. O método é engenharia de sistemas de sempre,
 rigidez que é necessária para um construtor que não se cansa e em quem não se pode acreditar sem
 evidência. As cicatrizes são a prova de onde é preciso a rigidez, não a origem dos princípios.
 
+## Os três casos de uso do método
+
+Antes de seguir, uma bifurcação que nas primeiras versões não estava e que um leitor me pediu com
+razão. Este documento descreve a escada olhando para uma pasta vazia: o degrau 0 decide se o
+projeto é encarado, o 4 implanta o esqueleto sem funcionalidade, o 5 abre o primeiro bloco. É o
+caso mais claro para aprender, e não é o mais frequente. O método tem três casos de uso, e convém
+saber em qual você está antes de abrir o agente, porque muda por onde se entra:
+
+1. **Projeto novo.** Pasta vazia e um dono com um pedido. Entra-se pelo degrau 0 e sobem-se os
+   dezesseis em ordem. É o que este documento descreve, com os seus contratos e o manual do curso.
+2. **Evolutivo-corretivo sobre um sistema feito com o método.** O sistema já subiu a escada: tem
+   contrato, mapa, pendências fechadas com evidência, bateria, implantação e manuais. Entra-se
+   pelo degrau 5, abrindo um bloco, e segue-se o ciclo; o 11 periódico; o 15 no fechamento de cada
+   etapa. É a fase 4 da linha do tempo (Parte B).
+3. **Evolutivo-corretivo sobre um sistema feito sem o método.** Um sistema que roda, com usuários,
+   feito por outra pessoa ou por você mesmo sem evidência, que é preciso corrigir ou fazer
+   crescer. Não se entra pelo 0 nem pelo 5: entra-se por um **trecho de normalização** de oito
+   estações (N0 a N7) que recupera, por autodescobrimento e com marcas de fonte, todos os insumos
+   que os degraus do arranque produzem, monta um cinto de segurança em volta do sistema sem
+   reescrevê-lo, e só depois abre o ciclo em modo corretivo ou evolutivo. Esse caminho está numa
+   página própria, o [caminho evolutivo-corretivo](EVOLUTIVO_CORRECTIVO.md), e tem a sua parte do
+   curso com um segundo projeto-guia.
+
+O que fica de fora, nomeado: a migração tecnológica não é um caso de uso do método; é outro
+projeto, e em geral cai nos critérios excludentes do degrau 0.
+
 ## A IA não interrompe o método: ela o continua
 
 Esta é a tese que abre tudo, e a coloco primeiro porque desarma a objeção mais comum antes que
@@ -202,6 +228,11 @@ produção, que o método também cobre embora não sejam "degraus" em si.
 | 2. Ciclo | de três a seis semanas, em blocos funcionais de uma a duas semanas | 5, 6, 7, 8, 9, 10 com cada mudança | Desenvolvimento funcional bloco por bloco; testes em vermelho; testes de ponta a ponta do fluxo recém-construído; olhar humano sobre cada tela nova; no fechamento de cada bloco, testes humanos no ambiente de teste. |
 | 3. Saída para produção | uma semana | 11, 12, 13, 14 | Auditoria por outra sessão; cadeados sobre tudo o que age sobre o mundo; fechamento da cadeia de implantação em produção com caminho de volta provado; os três manuais; testes de aceitação com o dono sobre todos os fluxos. |
 | 4. Operação | enquanto o sistema viver | 15, e o ciclo (5 a 10) para cada evolução; 11 periódico | Agente residente; auditoria a cada um ou dois meses; cada mudança nova entra pelo ciclo completo e sai pela cadeia de implantação; retrospectiva no fechamento de cada etapa. |
+
+Esta tabela é a do projeto novo. Quando o sistema já existe e não nasceu com o método, as fases 0
+e 1 se substituem pelo trecho de normalização (três semanas para um sistema pequeno: leitura,
+cinto, medir e ordenar) que está no [caminho evolutivo-corretivo](EVOLUTIVO_CORRECTIVO.md); as
+fases 2, 3 e 4 são as mesmas.
 
 Os tempos são para um projeto pequeno, do tamanho do projeto-guia do curso. Num projeto com
 usuários e consequências, o ciclo se alonga e as fases 1 e 3 se mantêm quase iguais, porque o que
@@ -351,7 +382,9 @@ calibrando, e assim os marco.
   não, ANTES de abrir o repositório. Porque se você entra num projeto que não dá, o método se
   degrada em "programar com IA" e aí sim o dono acaba lendo código.
 - **Quando**: uma única vez, na primeira semana, antes de qualquer outra coisa. Uma hora de
-  trabalho; economiza meses.
+  trabalho; economiza meses. Se o sistema já existe, este degrau se sobe na sua versão para
+  legados (a estação N0 do [caminho evolutivo-corretivo](EVOLUTIVO_CORRECTIVO.md)), com quatro
+  critérios a mais e X2 medido tela por tela.
 - **Entradas**: o pedido do cliente, o domínio do negócio, os dados, a tecnologia, os ambientes
   disponíveis, e quem vai ser o dono.
 - **Artefato**: uma ficha de elegibilidade de uma página, com os critérios pontuados e a decisão:
@@ -863,7 +896,10 @@ completude antes de passar ao seguinte. Essa é, de fato, a prática do curso.
    vai corrigir vários; faz parte do degrau 15.
 5. **A primeira turma do curso**, que vai corrigir os tempos da linha do tempo e os erros típicos,
    que hoje estão escritos a partir dos meus projetos e não de alunos.
-6. **O que NÃO está na escada e deveria estar** `[hipótese]`: a gestão do custo de tokens e cotas
+6. **O caminho evolutivo-corretivo provado num legado real de ponta a ponta.** As oito estações
+   estão escritas a partir do que fiz em sistemas alheios em modo diagnóstico e a partir dos
+   degraus reordenados, não a partir de uma normalização completa executada com esses prompts.
+7. **O que NÃO está na escada e deveria estar** `[hipótese]`: a gestão do custo de tokens e cotas
    como orçamento explícito (hoje é reativa); a rotação de segredos como rotina e não como
    incidente; e um critério para quando o humano SIM tem que olhar o código, porque hoje a
    resposta é "nunca" e suspeito que há momentos pontuais em que convém.
@@ -915,6 +951,12 @@ omnicanal e campanhas.
 **AUD-*** — A série de auditorias numeradas que se fizeram no Kikan em agosto, e que geraram
 pendências.
 
+**Autodescobrimento** — No caminho evolutivo-corretivo, a forma de conseguir os insumos que
+ninguém escreveu: o agente os recupera lendo o próprio sistema (o código, o esquema do banco, a
+configuração, os logs, a documentação que houver) e marca cada afirmação com a sua fonte
+(`[código]`, `[base]`, `[configuração]`, `[documentação]`, `[inferido]`, e `[negócio]` para o que
+o dono confirmou). O que não se pode ler se marca como lacuna, não se preenche.
+
 **Autorizador (o)** — Assim chamo o sistema do Plano de Saúde que recebe as ordens e devolve um
 veredito (aprovada, rejeitada). Para nós funciona como "oráculo": a verdade contra a qual se
 verificam os contadores.
@@ -938,6 +980,16 @@ projeto pequeno.
 **Cadeado** — Uma proteção que impede que uma ação perigosa ocorra sem uma condição explícita.
 Por exemplo, o botão de pânico tem um cadeado dedicado: não pode ser apertado por acidente.
 
+**Caminho evolutivo-corretivo** — O terceiro caso de uso do método: pegar um sistema que já existe
+e não nasceu com o método, normalizá-lo sem reescrevê-lo (oito estações, N0 a N7) e só depois
+subir a escada em modo corretivo (consertar o que falha) ou evolutivo (acrescentar o que falta).
+Tem página própria.
+
+**Caracterização (teste de)** — Um teste que captura o que o sistema faz hoje, exatamente como o
+faz, defeitos incluídos; não o que deveria fazer. Nasce em verde, e a prova de que serve é que
+fica em vermelho quando se quebra o fluxo de propósito (uma mutação). É a bateria que protege um
+legado enquanto se o muda. O termo vem da literatura sobre código herdado; eu o uso tal e qual.
+
 **Catraca** — Um mecanismo que só gira para um lado. No Kikan, um contador de chamadas sem
 `await` que só pode descer: se sobe, o teste falha.
 
@@ -946,6 +998,12 @@ problema voltar; corrigir a causa raiz, não.
 
 **CI (integração contínua)** — Um serviço (aqui, o GitHub Actions) que roda os testes
 automaticamente cada vez que se sobe código. CI/CD acrescenta a implantação automática.
+
+**Cinto de segurança** — No caminho evolutivo-corretivo, o que tem que existir em volta de um
+legado antes de lhe mudar uma linha: um ambiente de teste com dados anonimizados, uma implantação
+que se repete, os segredos fora do código e rotacionados, a integração contínua rodando o que
+houver, e a bateria de caracterização. É uma comporta dura, com uma única exceção escrita (a
+urgência em produção).
 
 **CLAUDE.md / PROJECT.md** — O arquivo que o agente lê ao começar cada sessão para saber o que é
 o projeto e como trabalhar nele.
@@ -976,6 +1034,11 @@ são o "como se verifica" de cada pendência e o roteiro do teste de ponta a pon
 **CVE** — Um identificador público de uma vulnerabilidade de segurança conhecida num componente
 de software.
 
+**Discrepância** — Na leitura de um sistema herdado, um ponto em que não coincidem o código, o
+banco de dados, a documentação e o que o negócio acredita que o sistema faz. Lista-se com a
+evidência de cada lado e quem a decide é o dono, uma por uma: às vezes o sistema está errado, e às
+vezes o negócio tinha esquecido uma regra de que o código se lembrava.
+
 **Dívida técnica** — O que fica mal feito "para arrumar depois". O método a proíbe: o que quebra
 se conserta na raiz na mesma sessão.
 
@@ -1000,6 +1063,11 @@ completa, e a soma das pendências é a especificação do sistema. Ver B.5.
 
 **Esqueleto (scaffold)** — A estrutura inicial de um projeto, sem funcionalidade: arranca, tem
 testes vazios, se implanta.
+
+**Estação (N0 a N7)** — Cada um dos oito passos do trecho de normalização do caminho
+evolutivo-corretivo. Chamo-as estações e não degraus para que não se confundam com os dezesseis da
+escada: não são degraus novos, são os do arranque (e o 8, o 11 e o 12) em outra ordem e com outra
+entrada.
 
 **Fail-closed** — "Falha fechado": diante da dúvida ou do erro, o sistema não age. O contrário de
 "fail-open", que diante da dúvida segue em frente.
@@ -1087,6 +1155,11 @@ mostrar seus problemas: quando já tem dados de verdade e usuários de verdade.
 **Mock (simular)** — Substituir uma parte real do sistema por uma simulação durante um teste.
 "Não mockar a si mesmo" significa não simular justamente a parte que se quer testar.
 
+**Mutação (vermelho por)** — A forma de demonstrar que um teste de caracterização vigia alguma
+coisa: quebrar o fluxo de propósito com uma mudança temporária, ver o teste em vermelho, reverter,
+ver o verde. Um teste de caracterização sem o seu vermelho por mutação é um teste que passa porque
+não olha nada.
+
 **NAC3** — O protocolo do Forge que faz com que as telas de uma aplicação possam ser operadas por
 programa (cada elemento da interface tem um identificador e métodos). Permite o teste de ponta a
 ponta. Não é obrigatório para o método: é o meio, não a condição.
@@ -1097,6 +1170,12 @@ princípios eu trazia de antes; os tropeços mostraram onde o modelo não os apl
 
 **Node (Node 22)** — O ambiente onde roda o JavaScript do servidor. "Node 22 fixo" quer dizer
 que se cravou a versão para que todos os ambientes usem a mesma.
+
+**Normalização** — Levar um sistema que não nasceu com o método ao estado que o método dá por
+suposto ao abrir o ciclo, sem tocar na sua funcionalidade. Faz-se em duas velocidades: o cinto de
+segurança antes de qualquer mudança, e o resto da dívida **à medida que se toca** cada módulo (as
+pendências de normalização marcadas "paga-se ao tocar" entram com o bloco que entra no seu
+módulo). Nunca "uma semana de faxina geral".
 
 **Oráculo** — Uma fonte de verdade externa contra a qual se pode verificar um resultado.
 

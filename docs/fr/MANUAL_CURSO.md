@@ -61,8 +61,11 @@ croire le modèle sans preuve, et de savoir exactement quelle preuve lui demande
    quel tutoriel d'introduction suffit. Il n'en faut pas plus.
 3. **Un projet.** L'idéal est qu'il soit à vous : un système dont vous avez besoin ou qu'un client
    vous a demandé, avec des utilisateurs qui vont s'en servir. Si vous n'en avez pas, utilisez le
-   **projet-guide** que je décris plus bas ; il est pensé pour passer par les seize échelons sans en
-   sauter aucun.
+   **projet-guide** que je décris plus bas ; il est pensé pour passer par les seize échelons sans
+   en sauter aucun. Si ce que vous avez est un système qui existe déjà et qu'il faut corriger ou
+   faire grandir, cette première partie vous enseigne la méthode sur un projet neuf, et la [partie
+   2 du cours](MANUAL_CURSO_EVOLUTIVO.md) vous enseigne à le normaliser d'abord, avec un second
+   projet-guide hérité.
 4. **Du temps.** Le cours a seize leçons, une par échelon, et un calendrier qui vous dit dans
    quelle semaine tombe chaque chose (voir « Le calendrier du cours »). Un petit projet, de bout en
    bout, c'est entre six et huit semaines de travail à temps partiel.
@@ -2036,6 +2039,19 @@ Si les seize donnent « oui », le système est prêt à être mis en œuvre. Si
 vous savez déjà quel échelon regravir.
 
 ---
+
+## Et ensuite : la partie 2, le projet hérité
+
+Cette première partie enseigne la méthode sur un dossier vide parce que c'est la façon la plus
+claire de l'apprendre. Mais dans la vraie vie on ne vous donne presque jamais un dossier vide : on
+vous donne un système qui tourne déjà et on vous demande « répare ça » ou « ajoute-lui ceci ». La
+[partie 2 du cours](MANUAL_CURSO_EVOLUTIVO.md) prend le même cabinet dans une autre ligne de
+temps, avec une application que le neveu de la responsable leur a faite en un été et que personne
+ne comprend en entier, et enseigne le tronçon de normalisation du [chemin
+évolutif-correctif](EVOLUTIVO_CORRECTIVO.md) : huit leçons pour récupérer les intrants que la
+méthode tient pour acquis, monter la ceinture de sécurité et ordonner la dette, et deux de plus
+pour corriger le premier bug et construire la première fonctionnalité nouvelle avec la méthode
+complète.
 
 ## Annexe A — Comment évaluer (pour qui donne le cours ou s'auto-évalue)
 

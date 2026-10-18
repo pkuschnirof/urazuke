@@ -57,7 +57,10 @@ evidencia, y de saber exactamente qué evidencia pedirle en cada paso.
    introductorio alcanza. No hace falta más.
 3. **Un proyecto.** Lo ideal es que sea tuyo: un sistema que necesitás o que un cliente te pidió,
    con usuarios que lo van a usar. Si no tenés uno, usá el **proyecto guía** que describo abajo;
-   está pensado para que pase por los dieciséis peldaños sin saltearse ninguno.
+   está pensado para que pase por los dieciséis peldaños sin saltearse ninguno. Si lo que tenés
+   es un sistema que ya existe y hay que corregir o hacer crecer, esta primera parte te enseña el
+   método sobre un proyecto nuevo, y la [parte 2 del curso](MANUAL_CURSO_EVOLUTIVO.md) te enseña a
+   normalizarlo primero, con un segundo proyecto guía heredado.
 4. **Tiempo.** El curso tiene dieciséis lecciones, una por peldaño, y un calendario que te dice en
    qué semana cae cada cosa (ver "El calendario del curso"). Un proyecto chico, de punta a punta,
    son entre seis y ocho semanas de trabajo parcial.
@@ -1919,6 +1922,17 @@ Si las dieciséis dan "sí", el sistema está listo para implementar. Si alguna 
 peldaño volver a subir.
 
 ---
+
+## Y después: la parte 2, el proyecto heredado
+
+Esta primera parte enseña el método sobre una carpeta vacía porque es la forma más clara de
+aprenderlo. Pero en la vida real casi nunca te dan una carpeta vacía: te dan un sistema que ya
+corre y te piden "arreglá esto" o "agregale aquello". La [parte 2 del curso](MANUAL_CURSO_EVOLUTIVO.md)
+toma el mismo consultorio en otra línea de tiempo, con una aplicación que les hizo un sobrino en
+un verano y que nadie entiende entera, y enseña el tramo de normalización del
+[camino evolutivo-correctivo](EVOLUTIVO_CORRECTIVO.md): ocho lecciones para recuperar los insumos
+que el método da por supuestos, armar el cinturón de seguridad y ordenar la deuda, y dos más para
+corregir el primer bug y construir la primera funcionalidad nueva con el método completo.
 
 ## Anexo A — Cómo evaluar (para quien dicta el curso o se autoevalúa)
 

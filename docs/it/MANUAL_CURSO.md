@@ -57,7 +57,10 @@ modello senza prove, e di sapere esattamente quale prova chiedergli a ogni passo
    introduttivo basta. Non serve altro.
 3. **Un progetto.** L'ideale è che sia tuo: un sistema di cui hai bisogno o che un cliente ti ha
    chiesto, con utenti che lo useranno. Se non ne hai uno, usa il **progetto guida** che descrivo
-   sotto; è pensato per passare per i sedici gradini senza saltarne nessuno.
+   sotto; è pensato per passare per i sedici gradini senza saltarne nessuno. Se ciò che hai è un
+   sistema che esiste già e bisogna correggere o far crescere, questa prima parte ti insegna il
+   metodo su un progetto nuovo, e la [parte 2 del corso](MANUAL_CURSO_EVOLUTIVO.md) ti insegna a
+   normalizzarlo prima, con un secondo progetto guida ereditato.
 4. **Tempo.** Il corso ha sedici lezioni, una per gradino, e un calendario che ti dice in quale
    settimana cade ogni cosa (vedi "Il calendario del corso"). Un progetto piccolo, da un capo
    all'altro, sono tra sei e otto settimane di lavoro parziale.
@@ -1956,6 +1959,18 @@ Se tutte e sedici danno "sì", il sistema è pronto per entrare in esercizio. Se
 sai già quale gradino risalire.
 
 ---
+
+## E poi: la parte 2, il progetto ereditato
+
+Questa prima parte insegna il metodo su una cartella vuota perché è il modo più chiaro di
+impararlo. Ma nella vita reale quasi mai ti danno una cartella vuota: ti danno un sistema che gira
+già e ti chiedono "sistema questo" oppure "aggiungici quello". La
+[parte 2 del corso](MANUAL_CURSO_EVOLUTIVO.md) prende lo stesso ambulatorio su un'altra linea del
+tempo, con un'applicazione che gli ha fatto un nipote in un'estate e che nessuno capisce per
+intero, e insegna il tratto di normalizzazione del
+[percorso evolutivo-correttivo](EVOLUTIVO_CORRECTIVO.md): otto lezioni per recuperare gli input
+che il metodo dà per scontati, costruire la cintura di sicurezza e ordinare il debito, e due in
+più per correggere il primo bug e costruire la prima funzionalità nuova con il metodo completo.
 
 ## Allegato A — Come valutare (per chi tiene il corso o si autovaluta)
 

@@ -63,7 +63,10 @@ musst.
 3. **Ein Projekt.** Ideal ist, dass es deines ist: ein System, das du brauchst oder das ein Kunde
    von dir verlangt hat, mit Nutzern, die es benutzen werden. Wenn du keines hast, nimm das
    **Leitprojekt**, das ich unten beschreibe; es ist so gedacht, dass es durch die sechzehn
-   Schritte geht, ohne einen zu überspringen.
+   Schritte geht, ohne einen zu überspringen. Wenn das, was du hast, ein System ist, das schon
+   existiert und korrigiert oder weiterentwickelt werden muss, lehrt dich dieser erste Teil die
+   Methode an einem neuen Projekt, und [Teil 2 des Kurses](MANUAL_CURSO_EVOLUTIVO.md) lehrt dich,
+   es zuerst zu normalisieren, mit einem zweiten geerbten Leitprojekt.
 4. **Zeit.** Der Kurs hat sechzehn Lektionen, eine pro Schritt, und einen Kalender, der dir sagt,
    in welche Woche jede Sache fällt (siehe „Der Kalender des Kurses“). Ein kleines Projekt, von
    Anfang bis Ende, sind sechs bis acht Wochen Teilzeitarbeit.
@@ -2055,6 +2058,18 @@ Wenn alle sechzehn „ja“ ergeben, ist das System bereit für die Einführung.
 ergibt, weißt du schon, welchen Schritt du noch einmal erklimmen musst.
 
 ---
+
+## Und danach: Teil 2, das geerbte Projekt
+
+Dieser erste Teil lehrt die Methode an einem leeren Ordner, weil das die klarste Art ist, sie zu
+lernen. Aber im wirklichen Leben gibt man dir fast nie einen leeren Ordner: man gibt dir ein
+System, das schon läuft, und verlangt „reparier das“ oder „bau mir das dazu“. [Teil 2 des
+Kurses](MANUAL_CURSO_EVOLUTIVO.md) nimmt dieselbe Praxis in einer anderen Zeitlinie, mit einer
+Anwendung, die ihnen ein Neffe in einem Sommer gebaut hat und die niemand ganz versteht, und lehrt
+den Normalisierungsabschnitt des [evolutiv-korrektiven Weges](EVOLUTIVO_CORRECTIVO.md): acht
+Lektionen, um die Eingaben wiederzugewinnen, die die Methode voraussetzt, den Sicherheitsgurt zu
+bauen und die Schuld zu ordnen, und zwei weitere, um den ersten Bug zu korrigieren und die erste
+neue Funktionalität mit der vollständigen Methode zu bauen.
 
 ## Anhang A — Wie bewertet wird (für den, der den Kurs hält oder sich selbst bewertet)
 

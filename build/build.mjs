@@ -3,6 +3,8 @@
 // - ESCALERA_METODOLOGICA.html  <- ESCALERA_METODOLOGICA.md
 // - REFERENCIAS.html            <- REFERENCIAS.md
 // - MANUAL_CURSO.html           <- MANUAL_CURSO.md
+// - EVOLUTIVO_CORRECTIVO.html   <- EVOLUTIVO_CORRECTIVO.md (el camino para sistemas heredados)
+// - MANUAL_CURSO_EVOLUTIVO.html <- MANUAL_CURSO_EVOLUTIVO.md (parte 2 del curso)
 // - CONTRATOS_DE_PELDANO.html   <- peldanos/README.md + los 16 contratos, en orden
 // Antes verifica que los prompts en inglés sean idénticos en todas las versiones.
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, unlinkSync } from 'node:fs';
@@ -16,7 +18,7 @@ const conv = join(raiz, 'build', 'md2html.mjs');
 
 function armar(dirMd, dirHtml, idioma) {
   mkdirSync(dirHtml, { recursive: true });
-  for (const nombre of ['ESCALERA_METODOLOGICA', 'REFERENCIAS', 'MANUAL_CURSO']) {
+  for (const nombre of ['ESCALERA_METODOLOGICA', 'REFERENCIAS', 'EVOLUTIVO_CORRECTIVO', 'MANUAL_CURSO', 'MANUAL_CURSO_EVOLUTIVO']) {
     const src = join(dirMd, nombre + '.md');
     if (existsSync(src)) execFileSync(process.execPath, [conv, src, join(dirHtml, nombre + '.html'), idioma], { stdio: 'inherit' });
   }

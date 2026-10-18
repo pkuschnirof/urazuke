@@ -47,7 +47,7 @@ function inline(s) {
   return s;
 }
 const slug = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-const RE_PELDANO = /^(Pelda[nñ]o|Step|Passo|Degrau|[ÉE]tape|Schritt|ステップ|步骤|第)\s*\d+/;
+const RE_PELDANO = /^(Pelda[nñ]o|Step|Passo|Degrau|[ÉE]tape|Schritt|ステップ|步骤|第)\s*\d+|^N\d\b/;
 const RE_REF = /^Ref\.\s*(\d+)/;
 // Bloque "Antes de enviar el prompt": un párrafo que empieza con esa etiqueta (en el idioma del
 // documento) más la lista que lo sigue se envuelven en una caja propia, distinta de la del prompt.

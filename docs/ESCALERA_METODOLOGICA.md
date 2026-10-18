@@ -84,6 +84,33 @@ la rigidez que hace falta para un constructor que no se cansa y al que no se le 
 evidencia. Las cicatrices son la prueba de dónde hace falta la rigidez, no el origen de los
 principios.
 
+## Los tres casos de uso del método
+
+Antes de seguir, una bifurcación que en las primeras versiones no estaba y que un lector me pidió
+con razón. Este documento describe la escalera mirando una carpeta vacía: el peldaño 0 decide si
+el proyecto se encara, el 4 despliega el esqueleto sin funcionalidad, el 5 abre el primer bloque.
+Es el caso más claro para aprender, y no es el más frecuente. El método tiene tres casos de uso, y
+conviene saber en cuál estás antes de abrir el agente, porque cambia por dónde se entra:
+
+1. **Proyecto nuevo.** Carpeta vacía y un dueño con un pedido. Se entra por el peldaño 0 y se
+   suben los dieciséis en orden. Es lo que describe este documento, con sus contratos y el manual
+   del curso.
+2. **Evolutivo-correctivo sobre un sistema hecho con el método.** El sistema ya subió la escalera:
+   tiene contrato, mapa, pendientes cerrados con evidencia, batería, despliegue y manuales. Se
+   entra por el peldaño 5, abriendo un bloque, y se sigue el bucle; el 11 periódico; el 15 al
+   cierre de cada etapa. Es la fase 4 de la línea de tiempo (Parte B).
+3. **Evolutivo-correctivo sobre un sistema hecho sin el método.** Un sistema que corre, con
+   usuarios, hecho por otro o por uno mismo sin evidencia, al que hay que corregir o hacer crecer.
+   No se entra por el 0 ni por el 5: se entra por un **tramo de normalización** de ocho estaciones
+   (N0 a N7) que recupera, por autodescubrimiento y con marcas de fuente, todos los insumos que
+   los peldaños del arranque producen, arma un cinturón de seguridad alrededor del sistema sin
+   reescribirlo, y recién después abre el bucle en modo correctivo o evolutivo. Ese camino está
+   en una página propia, el [camino evolutivo-correctivo](EVOLUTIVO_CORRECTIVO.md), y tiene su
+   parte del curso con un segundo proyecto guía.
+
+Lo que queda afuera, nombrado: la migración tecnológica no es un caso de uso del método; es otro
+proyecto, y en general cae en los criterios excluyentes del peldaño 0.
+
 ## La IA no interrumpe el método: lo continúa
 
 Esta es la tesis que abre todo, y la pongo primero porque desarma la objeción más común antes de
@@ -203,6 +230,11 @@ vida en producción, que el método también cubre aunque no sean "peldaños" en
 | 2. Bucle | de tres a seis semanas, en bloques funcionales de una a dos semanas | 5, 6, 7, 8, 9, 10 con cada cambio | Desarrollo funcional bloque por bloque; tests en rojo; pruebas de punta a punta del flujo recién construido; mirada humana sobre cada pantalla nueva; al cierre de cada bloque, pruebas humanas en el entorno de prueba. |
 | 3. Salida a producción | una semana | 11, 12, 13, 14 | Auditoría por otra sesión; candados sobre todo lo que actúa sobre el mundo; cierre de la cadena de despliegue a producción con vuelta atrás probada; los tres manuales; pruebas de aceptación con el dueño sobre todos los flujos. |
 | 4. Operación | mientras el sistema viva | 15, y el bucle (5 a 10) para cada evolución; 11 periódico | Agente residente; auditoría cada uno o dos meses; cada cambio nuevo entra por el bucle completo y sale por la cadena de despliegue; retrospectiva al cierre de cada etapa. |
+
+Esta tabla es la del proyecto nuevo. Cuando el sistema ya existe y no nació con el método, las
+fases 0 y 1 se reemplazan por el tramo de normalización (tres semanas para un sistema chico:
+lectura, cinturón, medir y ordenar) que está en el [camino evolutivo-correctivo](EVOLUTIVO_CORRECTIVO.md);
+las fases 2, 3 y 4 son las mismas.
 
 Los tiempos son para un proyecto chico, del tamaño del proyecto guía del curso. En un proyecto
 con usuarios y consecuencias, el bucle se alarga y las fases 1 y 3 se mantienen casi iguales,
@@ -357,7 +389,9 @@ calibrando, y así lo marco.
   no, ANTES de abrir el repositorio. Porque si entrás a un proyecto que no da, el método se
   degrada a "programar con IA" y ahí sí el dueño termina leyendo código.
 - **Cuándo**: una sola vez, en la primera semana, antes de cualquier otra cosa. Una hora de
-  trabajo; ahorra meses.
+  trabajo; ahorra meses. Si el sistema ya existe, este peldaño se sube en su versión para legados
+  (la estación N0 del [camino evolutivo-correctivo](EVOLUTIVO_CORRECTIVO.md)), con cuatro
+  criterios más y X2 medido pantalla por pantalla.
 - **Entradas**: el pedido del cliente, el dominio del negocio, los datos, la tecnología, los
   entornos disponibles, y quién va a ser el dueño.
 - **Artefacto**: una ficha de elegibilidad de una página, con los criterios puntuados y la
@@ -878,7 +912,10 @@ verificación de completitud antes de pasar al siguiente. Esa es, de hecho, la p
    va a corregir varios; es parte del peldaño 15.
 5. **La primera cohorte del curso**, que va a corregir los tiempos de la línea de tiempo y los
    errores típicos, que hoy están escritos desde mis proyectos y no desde alumnos.
-6. **Lo que NO está en la escalera y debería estar** `[hipótesis]`: la gestión del costo de tokens y
+6. **El camino evolutivo-correctivo probado en un legado real de punta a punta.** Las ocho
+   estaciones están escritas desde lo que hice en sistemas ajenos en modo diagnóstico y desde
+   los peldaños reordenados, no desde una normalización completa ejecutada con esos prompts.
+7. **Lo que NO está en la escalera y debería estar** `[hipótesis]`: la gestión del costo de tokens y
    cuotas como presupuesto explícito (hoy es reactiva); la rotación de secretos como rutina y no
    como incidente; y un criterio para cuándo el humano SÍ tiene que mirar el código, porque hoy la
    respuesta es "nunca" y sospecho que hay momentos puntuales en que conviene.
@@ -924,6 +961,12 @@ escalera, cada peldaño deja un artefacto.
 seguir; una asincrónica deja la tarea andando y sigue, y después recoge el resultado. Las bases de
 datos reales en Node son asincrónicas; por eso la interfaz tiene que serlo desde el principio.
 
+**Autodescubrimiento** — En el camino evolutivo-correctivo, la forma de conseguir los insumos
+que nadie escribió: el agente los recupera leyendo el sistema mismo (el código, el esquema de la
+base, la configuración, los logs, la documentación que haya) y marca cada afirmación con su fuente
+(`[código]`, `[base]`, `[configuración]`, `[documentación]`, `[inferido]`, y `[negocio]` para lo que
+el dueño confirmó). Lo que no se puede leer se marca como hueco, no se rellena.
+
 **Asociación (la)** — Así llamo en este documento al cliente del sistema Kikan (su nombre real
 queda reservado): una asociación civil que atiende familias y necesitaba una mesa de entrada
 omnicanal y campañas.
@@ -959,11 +1002,28 @@ dejarlos en archivos de texto.
 explícita. Por ejemplo, el botón de pánico tiene un candado dedicado: no se puede apretar por
 accidente.
 
+**Camino evolutivo-correctivo** — El tercer caso de uso del método: tomar un sistema que ya
+existe y no nació con el método, normalizarlo sin reescribirlo (ocho estaciones, N0 a N7) y recién
+después subir la escalera en modo correctivo (arreglar lo que falla) o evolutivo (agregar lo que
+falta). Tiene página propia.
+
+**Caracterización (test de)** — Un test que captura lo que el sistema hace hoy, exactamente como
+lo hace, defectos incluidos; no lo que debería hacer. Nace en verde, y la prueba de que sirve es
+que se pone en rojo cuando se rompe el flujo a propósito (una mutación). Es la batería que
+protege un legado mientras se lo cambia. El término viene de la literatura sobre código heredado;
+yo lo uso tal cual.
+
 **Causa raíz** — El motivo real de un problema, en oposición al síntoma. Arreglar el síntoma hace
 que el problema vuelva; arreglar la causa raíz, no.
 
 **CI (integración continua)** — Un servicio (acá, GitHub Actions) que corre los tests
 automáticamente cada vez que se sube código. CI/CD agrega el despliegue automático.
+
+**Cinturón de seguridad** — En el camino evolutivo-correctivo, lo que tiene que existir
+alrededor de un legado antes de cambiarle una línea: un entorno de prueba con datos anonimizados,
+un despliegue que se repite, los secretos fuera del código y rotados, la integración continua
+corriendo lo que haya, y la batería de caracterización. Es una compuerta dura, con una sola
+excepción escrita (la urgencia en producción).
 
 **CLAUDE.md / PROJECT.md** — El archivo que el agente lee al empezar cada sesión para saber qué es
 el proyecto y cómo trabajar en él.
@@ -994,6 +1054,11 @@ software.
 **Deuda técnica** — Lo que queda mal hecho "para arreglar después". El método la prohíbe: lo que se
 rompe se arregla de raíz en la misma sesión.
 
+**Discrepancia** — En la lectura de un sistema heredado, un punto en el que no coinciden el
+código, la base de datos, la documentación y lo que el negocio cree que el sistema hace. Se lista
+con la evidencia de cada lado y la decide el dueño, una por una: a veces el sistema está mal, y a
+veces el negocio se había olvidado de una regla que el código recordaba.
+
 **Doctrina** — En Forge, un documento corto que fija cómo se hace algo (cómo se testea, cómo se
 verifica, cómo se dimensiona). Es la forma que toma el método adentro de la herramienta.
 
@@ -1016,6 +1081,11 @@ programador), UAT (prueba del cliente) y PROD (producción, el de verdad).
 todo lo que el sistema debía hacer. En este método se descompone: cada pendiente lleva su
 especificación detallada completa, y la suma de los pendientes es la especificación del sistema.
 Ver B.5.
+
+**Estación (N0 a N7)** — Cada uno de los ocho pasos del tramo de normalización del camino
+evolutivo-correctivo. Las llamo estaciones y no peldaños para que no se confundan con los dieciséis
+de la escalera: no son peldaños nuevos, son los del arranque (y el 8, el 11 y el 12) en otro orden
+y con otra entrada.
 
 **Esqueleto (scaffold)** — La estructura inicial de un proyecto, sin funcionalidad: arranca, tiene
 tests vacíos, se despliega.
@@ -1105,12 +1175,22 @@ mostrar sus problemas: cuando ya tiene datos de verdad y usuarios de verdad.
 **Mock (simular)** — Reemplazar una parte real del sistema por una simulación durante un test. "No
 mockear a sí mismo" significa no simular justamente la parte que se quiere probar.
 
+**Mutación (rojo por)** — La forma de demostrar que un test de caracterización vigila algo:
+romper el flujo a propósito con un cambio temporal, ver el test en rojo, revertir, ver el verde. Un
+test de caracterización sin su rojo por mutación es un test que pasa porque no mira nada.
+
 **NAC3** — El protocolo de Forge que hace que las pantallas de una aplicación se puedan operar por
 programa (cada elemento de la interfaz tiene un identificador y métodos). Permite el test de punta
 a punta. No es obligatorio para el método: es el medio, no la condición.
 
 **Node (Node 22)** — El entorno donde corre el JavaScript del servidor. "Node 22 fijo" quiere decir
 que se clavó la versión para que todos los entornos usen la misma.
+
+**Normalización** — Llevar un sistema que no nació con el método al estado que el método da por
+supuesto al abrir el bucle, sin tocar su funcionalidad. Se hace en dos velocidades: el cinturón de
+seguridad antes de cualquier cambio, y el resto de la deuda **a medida que se toca** cada módulo
+(los pendientes de normalización marcados "se paga al tocar" entran con el bloque que entra a su
+módulo). Nunca "una semana de limpieza general".
 
 **Obra Social (la)** — Así llamo al ente de salud cliente del primer sistema en producción (su
 nombre real queda reservado).

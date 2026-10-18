@@ -30,10 +30,12 @@ fabrique aussi la preuve, et c'est pourquoi la preuve doit se prouver elle-même
 | Fichier | Ce que c'est |
 |---|---|
 | `docs/ESCALERA_METODOLOGICA.md` | Le document principal : la thèse, d'où vient la méthode, la ligne de temps (quand on gravit chaque échelon et ce qui se passe entre-temps : infrastructure, CI/CD, ingestion des exigences, développement, tests de bout en bout, regard humain, tests humains), les seize échelons avec leur fiche, ce qui manque encore, et le glossaire. |
+| `docs/EVOLUTIVO_CORRECTIVO.md` | Le chemin pour un système qui existe déjà et qui n'est pas né avec la méthode : les trois cas d'utilisation de la méthode, le principe de normaliser sans réécrire, les huit stations de normalisation (N0 à N7) avec leurs contrats et leurs prompts, la boucle en mode correctif et évolutif, et la liste de sortie du tronçon. |
 | `docs/REFERENCIAS.md` | Les cas réels derrière la méthode, numérotés (« Ref. N »), avec date et preuve, pour que les procédures restent propres et que le détail reste à un clic. Comprend les chronologies des trois systèmes et la table des échecs par échelon. |
 | `docs/peldanos/peldano-NN-*.md` | Le contrat de chaque échelon : quand, contexte requis, prompts en anglais avec leur traduction et, avant chacun d'eux, le bloc « Avant d'envoyer le prompt » avec les fichiers que vous devez construire vous-même et leur contenu ; résultat attendu, vérification de complétude sans lire de code, signaux d'alarme. |
 | `docs/peldanos/README.md` | L'index des contrats. |
 | `docs/MANUAL_CURSO.md` | Le cours : calendrier, seize leçons avec tâches pratiques et prompts, projet-guide (« Turnera »), liste de mise en production. |
+| `docs/MANUAL_CURSO_EVOLUTIVO.md` | La partie 2 du cours : le projet-guide hérité (« Turnera héritée »), dix leçons (N0 à N7, R1 et R2) pour normaliser un legacy puis le corriger et le faire évoluer. |
 | `docs/DECISIONES.md` | Les décisions du projet, avec date et mots textuels. La méthode s'applique à elle-même. |
 | `docs/PLAN_CURSO_MENTORING.md` | Le brouillon du plan commercial du cours et du mentoring. |
 | `docs/html/` | Les versions HTML pour une lecture confortable, avec le bouton qui traduit chaque prompt. Elles ne s'éditent pas à la main. |
@@ -43,8 +45,10 @@ fabrique aussi la preuve, et c'est pourquoi la preuve doit se prouver elle-même
 ## Comment le lire
 
 Commencez par `docs/ESCALERA_METODOLOGICA.md`, ou par son HTML dans `docs/html/`. Si vous tombez
-sur un mot étrange, le glossaire est à la fin. Ensuite, le contrat de l'échelon qui vous intéresse,
-et le manuel du cours si vous voulez l'appliquer.
+sur un mot étrange, le glossaire est à la fin. Ensuite, le contrat de l'échelon qui vous
+intéresse, et le manuel du cours si vous voulez l'appliquer. Si ce que vous avez n'est pas un
+dossier vide mais un système qui tourne déjà et qu'il faut corriger ou faire grandir, le chemin
+est `docs/EVOLUTIVO_CORRECTIVO.md` et la partie 2 du manuel.
 
 ## Comment régénérer les HTML
 
@@ -52,16 +56,19 @@ et le manuel du cours si vous voulez l'appliquer.
 node build/build.mjs
 ```
 
-Il vérifie que les prompts en anglais sont identiques dans les huit versions et produit, pour chaque
-langue, `ESCALERA_METODOLOGICA.html`, `REFERENCIAS.html`, `MANUAL_CURSO.html` et
-`CONTRATOS_DE_PELDANO.html` (l'espagnol dans `docs/html/`, les autres dans `docs/html/<langue>/`).
+Il vérifie que les prompts en anglais sont identiques dans les huit versions (ceux des contrats et
+ceux du chemin évolutif-correctif) et produit, pour chaque langue, `ESCALERA_METODOLOGICA.html`,
+`REFERENCIAS.html`, `EVOLUTIVO_CORRECTIVO.html`, `MANUAL_CURSO.html`,
+`MANUAL_CURSO_EVOLUTIVO.html` et `CONTRATOS_DE_PELDANO.html` (l'espagnol dans `docs/html/`, les
+autres dans `docs/html/<langue>/`).
 
 ## Langues
 
 L'espagnol est la source de vérité. La documentation existe dans les huit langues de NAC3 :
 espagnol (`docs/`), anglais (`docs/en/`), portugais (`docs/pt/`), français (`docs/fr/`), allemand
 (`docs/de/`), italien (`docs/it/`), japonais (`docs/ja/`) et chinois (`docs/zh/`). Chaque dossier a
-son README, le document principal, les références, les seize contrats et le manuel-cours. Les
+son README, le document principal, les références, les seize contrats, le chemin
+évolutif-correctif et les deux parties du manuel-cours. Les
 prompts destinés au modèle sont une pièce unique en anglais, identique dans toutes les versions,
 avec leur traduction dans la langue du document juste à côté ; `node build/prompts.mjs --check`
 échoue si une traduction les a altérés. Le nom ne se traduit pas ; le sous-titre, si : *the

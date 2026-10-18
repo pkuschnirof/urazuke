@@ -42,6 +42,22 @@ etiqueta del bloque "antes" en cada idioma (`RE_ANTES` en `build/md2html.mjs`) y
 caja propia; en las traducciones, la etiqueta es la del idioma, con la misma forma. El manual
 tiene el mismo bloque antes de cada prompt de cada lección.
 
+## Los casos de uso y el camino evolutivo-correctivo
+
+El método tiene tres casos de uso (D-023): proyecto nuevo (la escalera tal cual), evolutivo-
+correctivo sobre un sistema hecho con el método (se entra por el peldaño 5), y
+evolutivo-correctivo sobre un sistema hecho sin el método, que lleva un tramo de normalización
+previo: `docs/EVOLUTIVO_CORRECTIVO.md`, con ocho estaciones N0 a N7 (no se llaman peldaños), sus
+contratos y prompts con la misma estructura que los contratos de peldaño (bloque "Antes de enviar
+el prompt", prompt EN, `> [xx]`, "Qué le estoy pidiendo"), el bucle en modo correctivo y
+evolutivo, y la lista de salida del tramo. Reglas de ese camino que no se negocian: no se
+reescribe; el cinturón de seguridad es compuerta dura (con la excepción escrita de la urgencia);
+y todos los insumos de las etapas previas tienen que existir, recuperados por autodescubrimiento
+con marcas de fuente (`[código]`, `[base]`, `[configuración]`, `[documentación]`, `[negocio]`,
+`[inferido]`) cuando nadie los escribió. La parte 2 del curso (`docs/MANUAL_CURSO_EVOLUTIVO.md`)
+tiene el proyecto guía heredado "Turnera heredada" y las lecciones N0 a N7, R1 y R2.
+`build/prompts.mjs` también verifica los prompts de `EVOLUTIVO_CORRECTIVO.md` en los ocho idiomas.
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio
@@ -55,7 +71,7 @@ de estas tres piezas se replica en las otras dos.
 - Nombre: Urazuke (D-014). No se traduce; el subtítulo sí.
 - Idiomas (D-013): castellano como fuente de verdad (`docs/`); las otras siete versiones de NAC3
   en `docs/<idioma>/` (en, pt, fr, de, it, ja, zh), cada una con README, documento principal,
-  referencias, dieciséis contratos y manual-curso. Un cambio en el castellano se replica en las
+  referencias, dieciséis contratos, camino evolutivo-correctivo y las dos partes del manual-curso. Un cambio en el castellano se replica en las
   siete traducciones en el mismo commit.
 - Los clientes están anonimizados: "la Obra Social" (con "el Autorizador") y "la Asociación"; sus
   sistemas, "Autorizaciones" y "Kikan". **Los nombres reales no se escriben en este repositorio**,
@@ -71,5 +87,6 @@ de estas tres piezas se replica en las otras dos.
 ## Build
 
 `node build/build.mjs`: verifica los prompts y genera, por idioma, `ESCALERA_METODOLOGICA.html`,
-`REFERENCIAS.html`, `MANUAL_CURSO.html` y `CONTRATOS_DE_PELDANO.html`. `build/split.mjs` parte un
+`REFERENCIAS.html`, `EVOLUTIVO_CORRECTIVO.html`, `MANUAL_CURSO.html`, `MANUAL_CURSO_EVOLUTIVO.html`
+y `CONTRATOS_DE_PELDANO.html`. `build/split.mjs` parte un
 archivo con marcas `<!-- file: … -->` en contratos individuales.

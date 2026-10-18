@@ -1,0 +1,813 @@
+# Urazuke — 课程第 2 部分：继承来的项目。把一个不是用方法诞生的系统规范化，然后让它演进
+
+作者：Pablo Kuschniroff，由 Claude Code 辅助。第 1 版，2026 年 10 月 18 日。这是[课程手册
+](MANUAL_CURSO.md)的第二部分：它假定你做过第一部分，或者至少读过第 0 到 7 课，因为这里我不会
+再解释什么是待办项、什么是红色测试、什么是语义树。这一部分的方法在[演进-纠正之路
+](EVOLUTIVO_CORRECTIVO.md)那一页；这里是实践，带一个第二号引导项目。陌生的词在主文档的术语表
+里；真实案例在[参考资料](REFERENCIAS.md)里。公开仓库：
+[github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke)。
+
+## 开始之前
+
+### 这一部分是给谁的
+
+给那些做完第一部分、然后发现在现实生活里几乎没人会给你一个空文件夹的人。给你的是一个已经在跑
+的系统，有依赖它的用户，然后让你"把这个修一下"或者"给它加上那个"。也给那些几个月前"凭感觉写"
+了点什么、它居然能用、而现在必须在它上面继续构建又不能让它塌掉的人。这两种人站在同一个地方：
+面对一个遗留系统，哪怕其中一个是自己写的。
+
+### 结束时你会拥有什么
+
+还是你继承来的那个系统，做着它一直在做的事，但是方法所预设的一切都在它周围了：一份带遗留规则
+的协作契约、一张从系统里恢复出来的地图（每条断言都标着它从哪里来）、一份"代码做的事"和"业务
+以为的事"之间的不一致清单、一份变成了带速度标记的待办队列的审计、一个带匿名化数据的测试环境、
+一条重复得了的部署链、代码之外并且轮换过的密钥、一套看守关键流程的表征测试套件、给那些已经作
+用于现实世界的东西上的锁、用测出来的数字做的容量估算，以及一条债务和客户请求按模块配对住在一
+起的待办队列。再然后，第一个带着红色测试被纠正掉的 bug，和第一个用完整方法构建出来的新功能。
+
+### 这一部分的日历
+
+| 周 | 课 | 你还要做什么 |
+|---|---|---|
+| 1 | N0、N1、N2、N3 | **阅读。** 什么都不改。你和所有者一起走一遍恢复出来的树，一条一条地决定那些不一致，读审计。周末：地图和债务清单。 |
+| 2 | N4、N5 | **安全带。** 带匿名化数据的测试环境、部署跑两遍、密钥轮换、带变异红的表征测试套件。对已经作用于现实世界的东西确认锁。周末：系统在测试环境里跑起来，测试套件是绿的。 |
+| 3 | N6、N7、R1 | **测量、排序、纠正。** 测出来的容量估算。带两个标记的待办队列。第一个功能块：那个已知的 bug，以纠正模式连同它的配对项一起关闭。 |
+| 4 | R2 | **演进。** 第二个功能块：新功能，用完整的方法构建（第一部分的第 5 到 10 课），用表征测试作回归。 |
+| 5 和 6 | 第一部分的 11、12、13、14、15 | **上线与运维。** 定期审计、剩下的锁、通往生产之路的收尾、三份手册（遗留系统本来没有）、驻留代理、带着遗留系统专属问题的复盘：规范化花了多少成本。 |
+
+### 引导项目："继承来的 Turnera"
+
+还是第一部分里那家诊所，两年之后，而且在另一条时间线上：他们从来没有用方法做过 Turnera。取而
+代之的是，负责人的侄子在一个夏天给他们做了一个网页应用 "Turnos"，从那以后一直在用。今天有两
+名前台和三名专业人员每天在用它，登记了大约两万个预约，而没有一个人完整理解它：侄子搬到国外去
+了，两周回一次消息。
+
+**现有的东西。** 一个 GitHub 仓库，里面是代码（只有一个分支，提交信息都是"修了点东西"之类），
+一个和应用跑在同一台服务器上的数据库，靠 FTP 复制文件的手工部署，数据库密码写在代码里，没有
+任何测试，服务器上有一个每天晚上发送提醒的定时任务，还有一张负责人每个月用一个桌面工具连数据
+库下载下来的表格。有一个"自动"备份，从来没人恢复过。
+
+**哪里疼。** 两件事。第一件是一个 bug：有时候一个患者会收到两次提醒，有时候一次都收不到；负
+责人不知道什么时候会发生，但她有患者抱怨的截图。第二件是缺的东西：他们想对某些预约通过支付链
+接收一笔定金，还想不用下载表格就能看到这个月有多少预约、多少爽约、多少取消。
+
+**所有者。** 还是那位负责人：对业务有判断力，每天十五分钟，不读代码。还有一个很重要的新情况：
+她以为系统会做一些它其实不做的事，而系统真正做的一些事她并不知道。这在遗留系统里很正常，也正
+是第 N2 课要揭开的东西。
+
+**关键流程**，用她的原话："我登记一个预约"、"我取消一个预约"、"提醒送到了"、"我找一个患者"、
+"我下载这个月的表格"。五个；它们将成为表征测试套件。
+
+这些就够了。其余的一切都在系统里，而要去读它的是代理。
+
+---
+
+## 规范化阶段：第 N0 到 N7 课
+
+这八节课就是第一部分没有的那个阶段。头四节是阅读课：什么都不改，而想改点什么的冲动会非常大。
+接下来两节造安全带。最后两节测量和排序。再之后才碰功能。
+
+### 第 N0 课 — 既有系统的适格性
+
+**你需要理解什么。** 两条排他性准则和第 0 课的一样，但这里 X2（界面可由程序操作）要一个界面
+一个界面地回答，而且如果有哪个是红的，那不是不开工的理由：那是第一条待办项，而且它阻塞。另外
+加四条遗留系统专属的准则：有没有人知道它是怎么运作的、生产环境能不能以只读方式查询、有没有任
+何测试，以及备份有没有恢复过。最后一条是几乎所有人都会发现是红色的那一条。
+
+**发送提示词之前**，用你自己的手：
+
+- `docs/INITIAL_SURVEY.md`，简短的：按负责人的说法，Turnos 做什么、给谁用；哪里疼（提醒发两
+  次、缺的东西）；谁做的、他多久回一次话；它在哪里运行；谁有访问权；还有有一个"自动"备份从来
+  没人恢复过。半页。
+- `docs/ELIGIBILITY_CRITERIA.md`：第 0 课的卡片，再加四行：有人知道、生产可查询、已有测试、
+  备份恢复过。那几列留空。
+- 给代理的仓库读访问权，以及如果你弄得到的话，一个数据库的只读凭证，放在聊天之外。
+
+1. 粘贴这条提示词：
+
+> We are going to assess whether this existing system can be taken over with the Urazuke method.
+> Read the initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
+> `docs/ELIGIBILITY_CRITERIA.md`, which for an existing system adds four criteria: whether anyone
+> who knows how the system works is available; whether production can be queried read-only;
+> whether any automated test exists; and whether a backup exists and has ever been restored. Then
+> explore the repository and, if I gave you access, the environment where it runs: change nothing.
+> Fill in the sheet criterion by criterion with the answer, its source (survey, code, database,
+> configuration, or inferred) and, for the exclusionary criteria X1 and X2, green or red. For X2,
+> list every screen and say for each whether it can be driven by a program today and whether the
+> effect can be checked in the backend. If a criterion cannot be answered from what you have, ask
+> me; do not assume. Do not decide: present me the completed sheet with your reading and your
+> doubts, and I will decide. Reply in my language.
+
+> [zh]
+> 我们要评估这个既有系统能不能用 Urazuke 方法接下来。读 `docs/INITIAL_SURVEY.md` 里的初始调研
+> 和 `docs/ELIGIBILITY_CRITERIA.md` 里的准则卡片，对一个既有系统它多了四条准则：有没有人知道这
+> 个系统怎么运作而且找得到；生产环境能不能以只读方式查询；有没有任何自动化测试；以及有没有备份、
+> 它有没有被恢复过。然后探索仓库，如果我给了你访问权，还有它运行的环境：什么都不要改。逐条填写
+> 卡片，写上答案、它的来源（调研、代码、数据库、配置，或推断），并且对排他性准则 X1 和 X2 写上
+> 绿或红。对 X2，列出每一个界面，并对每一个说明它今天能不能由程序操作、效果能不能在后端验证。
+> 如果某条准则用你手上的东西回答不了，就问我；不要假设。不要做决定：把填好的卡片连同你的解读和
+> 你的疑问呈给我，由我来决定。用我的语言回复。
+
+   你在要求的东西和第 0 课一样，再加三点：要它探索但什么都不改，要每个答案说明它从哪里来，以
+   及 X2 要一个界面一个界面地测。
+
+2. 回答它的问题，并读那张卡片。尤其要看 X2 里每个界面那一行。
+3. 做决定。
+
+**发送提示词之前**（收尾提示词）：你的决定，一行话，以及在这个项目里必须有的一个条件：在第
+N4 课之前，在你自己的机器上恢复一次备份。
+
+4. 粘贴收尾提示词：
+
+> Decision: [go under this condition: the backup is restored at least once before N4]. Write the
+> final sheet to `docs/ELIGIBILITY.md` with the date, who decided, every answer with its source,
+> and the conditions if any. If X2 is red for any screen, create `docs/PENDING.md` and open the
+> first pending item: make every screen drivable by a program with its backend effect checkable;
+> mark it as blocking. Include the questions you asked and my answers.
+
+> [zh]
+> 决定：[在这个条件下可行：备份在 N4 之前至少恢复一次]。把最终卡片写到 `docs/ELIGIBILITY.md`，
+> 附上日期、谁做的决定、每个答案及其来源，以及条件（如果有）。如果 X2 对任何一个界面是红的，创
+> 建 `docs/PENDING.md` 并开出第一条待办项：让每一个界面都能由程序操作、其后端效果都能验证；把
+> 它标为阻塞。把你问过的问题和我的回答包含进去。
+
+**完整性检验。** X2 是每个界面一个答案吗？遗留系统的四条准则都有带来源的答案吗？备份有没有成
+为一个带日期的条件？
+
+**交付物。** `docs/ELIGIBILITY.md`，以及如果需要的话，第一条阻塞待办项。
+
+**常见错误。** 因为"它是网页的"就把 X2 答成绿色。还有因为"有一个自动备份"就跳过备份那条条件：
+在第 N4 课里代理会去复制生产数据库，而如果出了什么事，那份从来没人验证过的备份就是你唯一的依
+靠。
+
+**在引导项目中。** 代理发现 Turnos 的六个界面里，四个能由程序操作，两个不能（预约表单用了一
+个没有标识符的日历，而患者搜索是一个不响应键盘事件的输入框）；它开出那条阻塞待办项。它找到了
+提醒的那个定时任务，而负责人没有提过。有备份，从来没恢复过：成为条件。关于那个侄子："找得到，
+两周一次"，代理提议把它读作"找不到"，而它是对的。可行，带一个条件。
+
+### 第 N1 课 — 遗留系统的协作契约
+
+**你需要理解什么。** 在第 1 课的六条规则之上再加五条，它们之所以存在，是因为一个模型面对别人
+的代码会条件反射地做三件事：重排它，在它觉得不对的地方"修"它，以及认定代码里和它预期不一样的
+东西就是错误。遗留系统的规则挡住这些反射：不重构没被要求的东西，动之前先读，怪事只记不修，当
+前行为就是规格直到所有者另有说法，以及表征测试不绿就什么都不许进。
+
+**发送提示词之前**，用你自己的手：
+
+- 你的工作偏好，和第 1 课一样，再加一个决定：规范化期间你接受多大风险。课程里这样定：代理可
+  以自己部署到测试环境；到生产环境永远不行，直到第 13 课。
+- `docs/ELIGIBILITY.md` 已关闭。
+
+1. 粘贴这条提示词：
+
+> Before we touch anything, we are going to set the working agreement between you and me for a
+> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the six rules
+> of the method (my time is sacred; zero technical debt; exact scope; documentation in the same
+> commit; never report as done what you have not verified; speak my language), each with one line
+> explaining what it prevents, and these five rules for an inherited system: (7) Nothing is
+> refactored that was not asked for, and no module is rewritten. (8) Code you do not understand
+> is read before it is touched, and what you learn goes into the system map. (9) Anything strange
+> you find (a secret in the code, a dead path, a duplicated rule, a query without an index) is
+> logged as a pending item with its evidence, never fixed in passing. (10) Current behaviour is
+> the specification until the owner says otherwise: a difference between what the code does and
+> what the business says is a discrepancy for me to decide, not a bug for you to fix silently.
+> (11) No change reaches the test environment without the characterization suite green. Add any
+> rules you think this system needs, marked as proposals. If you need to know something about how
+> I work in order to write this, ask me.
+
+> [zh]
+> 在我们动任何东西之前，要为一个已经存在、而且有用户的系统，定下你和我之间的协作契约。写
+> `docs/WORKING_AGREEMENT.md`，包含方法的六条规则（我的时间是神圣的；零技术债务；精确的范围；
+> 文档在同一次提交里；绝不把没验证过的东西报告为已完成；说我的语言），每条附一行说明它避免了什
+> 么，再加上这五条针对继承来的系统的规则：（7）不重构任何没被要求的东西，不重写任何模块。（8）
+> 你不理解的代码，先读再动，而你学到的东西要进系统地图。（9）你发现的任何怪事（代码里的一个密
+> 钥、一条死路径、一条重复的规则、一个没有索引的查询）都作为带证据的待办项记下来，绝不顺手修掉。
+> （10）当前行为就是规格，直到所有者另有说法为止：代码做的事和业务说的事之间的差异，是一条由我
+> 来决定的不一致，不是一个由你悄悄修掉的 bug。（11）表征测试套件不绿，任何改动都不许进测试环境。
+> 你认为这个系统还需要什么规则，就加上，标为提案。如果你需要知道我是怎么工作的才能写出这份契约，
+> 就问我。
+
+2. 读那些提案。如果有一条写着"随着触及逐步把代码现代化"，带着理由拒绝它：那是伪装起来的重写。
+
+**发送提示词之前**（收尾提示词）：你对每条提案的裁决，各附一行理由，用来填提示词的空。
+
+3. 用第 1 课的收尾提示词收尾，不变。
+
+**完整性检验。** 十一条规则都在吗，每条都附有它避免的故障？有没有哪条提案在放行重构或重写？
+
+**交付物。** 带日期和版本的 `docs/WORKING_AGREEMENT.md`。
+
+**常见错误。** 因为"逐步清理"听起来合理就接受它。它听起来合理，而它正是代理给自己授权去改没
+被要求的东西的方式。
+
+**在引导项目中。** 代理提出两条自己的规则，值得接受："在这个系统里，任何真实发送都不会从测试
+环境出去：测试环境里的提醒发到一个假收件箱"，以及"负责人每个月下载的那张表格是系统的一个消费
+者，算作一份契约"。第二条是生产者-消费者地图提前冒头了，这没问题。
+
+### 第 N2 课 — 阅读系统：恢复出来的地图和那些不一致
+
+**你需要理解什么。** 这是整门课里每小时价值最高的一课。在第 2 课里，项目文件和树是从调研里出
+来的；在这里它们从系统本身出来，而且每条断言都带一个"它从哪里来"的标记：`[代码]`、`[数据库]`、
+`[配置]`、`[文档]`、`[业务]` 或 `[推断]`。这些标记正是让你不读代码也能验证的东西：你去看那些
+推断出来的，确认它或纠正它。还会出现一份新文档，不一致清单：代码做的事、数据库强制的事和业务
+以为的事之间一切对不上的地方。它们不会自己解决：每一条都是你带日期做的一个决定。遗留系统永远
+有不一致；如果清单出来是空的，那是代理没有比对。
+
+**发送提示词之前**，用你自己的手，和所有者一起：
+
+- 给代理读一切的访问权：整个仓库、数据库结构（只读，凭证放在聊天之外）、把密钥值遮住的服务器
+  配置、最近的日志，以及现有的任何文档（在 Turnos 里，是侄子写的一封讲"怎么上传改动"的邮件）。
+- 在 `docs/INITIAL_SURVEY.md` 里，加一个和负责人一起写的新小节：**她以为系统做了什么**，一个
+  用例一个用例地写，以及她记得的规则（"一个预约在不到两小时前不能取消"、"提醒是晚上八点发出
+  去的"）。不要去对着系统核实：那个比对是代理的工作。
+- 住在仓库之外的东西的清单：提醒的那个定时任务，和那张连数据库的月度表格。
+- `docs/WORKING_AGREEMENT.md` 已关闭。
+
+1. 粘贴这条提示词：
+
+> We are going to recover the map of this system from what exists. Read the whole repository
+> (every branch), the database schema (read-only), the configuration of each environment, the
+> recent logs and whatever documentation there is; if some part cannot be read from where you are,
+> tell me and mark it as a gap; do not fill it by guessing. Then write three things. First,
+> complete `docs/INITIAL_SURVEY.md` in the form the method expects (what the system does and for
+> whom; what it does NOT do; who uses it; the technology; the environments; what an error costs),
+> with every statement tagged by its source: [code], [database], [configuration], [documentation],
+> [business] for what the survey already says, or [inferred]. Second, `PROJECT.md`, three hundred
+> lines at most, and `docs/SEMANTIC_TREE.md`: the domains and, under each one, the actors, the
+> processes (each with trigger, steps, outcome and exceptions as the code actually implements
+> them), the entities with the attributes, states and transitions the database and the code
+> enforce, the screens, the external integrations and the scheduled jobs; every node tagged the
+> same way. Third, `docs/DISCREPANCIES.md`: everything where the code, the database, the
+> documentation and what the business says in the survey do not agree, with the evidence on each
+> side. Do not resolve any discrepancy and do not fix anything: list them. Create `docs/STATUS.md`
+> for the living state. Reply in my language.
+
+> [zh]
+> 我们要从现有的东西里把这个系统的地图恢复出来。读整个仓库（所有分支）、数据库结构（只读）、每
+> 个环境的配置、最近的日志，以及现有的任何文档；如果某部分从你所在的位置读不到，告诉我并把它标
+> 为缺口；不要靠猜来填它。然后写三样东西。第一，按方法预期的形式补全 `docs/INITIAL_SURVEY.md`
+> （系统做什么、给谁用；它**不**做什么；谁在用；技术；环境；一个错误的代价），每条断言都带上来
+> 源标记：`[代码]`、`[数据库]`、`[配置]`、`[文档]`、对调研里已经写了的东西用 `[业务]`，或者 `[
+> 推断]`。第二，`PROJECT.md`，最多三百行，以及 `docs/SEMANTIC_TREE.md`：各个领域，以及每个领域
+> 下面的参与者、流程（每个带触发条件、步骤、结果和异常，按代码实际实现的样子写）、实体连同数据
+> 库和代码真正强制的属性、状态和状态转移、界面、外部集成和定时任务；每个节点都用同样的方式打标
+> 记。第三，`docs/DISCREPANCIES.md`：代码、数据库、文档，以及业务在调研里说的话，这四者对不上
+> 的一切，附上各方的证据。不要解决任何一条不一致，也不要修任何东西：把它们列出来。创建
+> `docs/STATUS.md` 来记录活状态。用我的语言回复。
+
+   你在要求它读完一切并声明读不到什么，要带标记的调研和树，要流程按代码实际实现的样子写（不
+   是本该是的样子），要包含定时任务，以及要那些不一致列出来而不解决。
+
+2. 和负责人一起走一遍树，一个节点一个节点地走。每个 `[推断]` 都确认或纠正。每个 `[代码]` 都
+   和她以为的对照：对不上的地方就有一条不一致，也许代理已经列出来了，如果没列，你来加上。
+3. 和她一起决定每一条不一致，一行话，带日期。有三种可能的答案："系统是对的，业务忘了"（确认
+   为一条规则）、"系统是错的，要改它"（开一条待办项），或者"不知道，以后再看"（挂着不决定但
+   有日期；别太多）。
+
+**发送提示词之前**（收尾提示词）：确认了的节点清单和纠正了的节点清单，以及不一致清单，每条附
+上你的决定和日期，一行一条。
+
+4. 用这条收尾：
+
+> I confirm these nodes: [list]. Correct these: [list]. The discrepancies are decided as follows:
+> [one line each: discrepancy, my decision, today's date]. Finalize `docs/INITIAL_SURVEY.md`,
+> `PROJECT.md` and `docs/SEMANTIC_TREE.md` with today's date, keeping the source tags. Write each
+> discrepancy decision in `docs/DECISIONS.md` with my exact words, and open a pending item in
+> `docs/PENDING.md` for every discrepancy where I decided the system must change; for the ones
+> where I decided the current behaviour stays, write it next to the node as a confirmed rule. Add
+> to `PROJECT.md` the instruction to read this file, the tree and the working agreement at the
+> start of every session.
+
+> [zh]
+> 我确认这些节点：[清单]。纠正这些：[清单]。那些不一致这样决定：[每条一行：不一致、我的决定、
+> 今天的日期]。用今天的日期关闭 `docs/INITIAL_SURVEY.md`、`PROJECT.md` 和
+> `docs/SEMANTIC_TREE.md`，保留来源标记。把每一条关于不一致的决定用我的原话写进
+> `docs/DECISIONS.md`，并且对每一条我决定要改系统的不一致，在 `docs/PENDING.md` 里开一条待办项；
+> 对那些我决定保留当前行为的，把它作为一条已确认的规则写在对应节点旁边。在 `PROJECT.md` 里加上
+> 一条指令：每次会话开始时读这个文件、语义树和协作契约。
+
+5. **阅读测试**，和第 2 课一样：新会话，没有上下文，"这个系统不做什么？哪个流程会在夜里自己
+   跑？"。它必须用那张地图回答出来。
+
+**完整性检验。** 有标着 `[推断]` 的节点吗？（如果一个都没有，代理就没在区分它读到的和它猜到
+的。）树里至少有一个定时任务吗？不一致清单的条数大于零吗？每一条都有带日期的决定，或者是故意
+挂着的吗？那些标记在收尾之后还在吗？阅读测试过了吗？
+
+**交付物。** 带标记补全的 `docs/INITIAL_SURVEY.md`、`PROJECT.md`、`docs/SEMANTIC_TREE.md`、
+决定过的 `docs/DISCREPANCIES.md`、带决定的 `docs/DECISIONS.md`、`docs/STATUS.md`。
+
+**常见错误。** 用"把代码改成负责人说的那样"来解决那些不一致，而不是一条一条地决定它们：那些
+不一致里有好几条是业务忘了、而代码还记得的规则。还有让代理在收尾时"为了干净一点"把标记抹掉：
+一棵没有标记的树，就再也无法验证了。
+
+**在引导项目中。** Turnos 的树里有负责人预期中的"日程"领域，还有两样她没预期的：一个在数据库
+里存在、却没有任何界面显示的预约状态"已改期" `[数据库]`，以及一个定时任务，它除了发提醒之外
+还会删掉超过一年的已取消预约 `[代码]`；负责人不知道有东西被删掉了。典型的不一致有八条：取消
+要提前两小时这条规则在代码里不存在（随时都能取消）；提醒按她的说法是八点发，按配置是七点；患
+者的电话在数据库里不是必填，虽然她以为是；诸如此类。删除那条最让她吃惊，而她一分钟就做了决定：
+"这个以后不许删了"。开待办项。
+
+### 第 N3 课 — 作为债务清单的审计
+
+**你需要理解什么。** 第 11 课，但放在最前面而不是最后面，而且每条发现多一个字段：它是阻塞
+（任何改动之前必须修掉）、是触及那个模块时偿还，还是可以等待。没有那个字段，一个审计过的遗留
+系统有四十条发现，没人知道从哪条开始。什么算阻塞由你决定，不是审计者：一般来说，暴露的密钥、
+不能操作的界面、不能重复的部署、没有备份，以及任何可能损坏数据或多收钱的东西。
+
+**发送提示词之前**，用你自己的手：
+
+- 一个代理的新会话，用一个干净的克隆和一份写着"你是审计者；你没读过、也不会去动这个系统"的指
+  令文件。数据库和服务器的只读访问权。
+- N2 的 `PROJECT.md`、`docs/SEMANTIC_TREE.md` 和 `docs/DISCREPANCIES.md`，免得它再发现一遍已
+  经写下来的东西。
+- 你对"什么算阻塞"的标准，两行，用来填提示词的空。对 Turnos 来说：暴露的密钥、不能操作的界面、
+  不能重复的部署、没有验证过的备份、任何不受控制地删除或发送的东西。
+
+1. 粘贴这条提示词：
+
+> Audit this system for integrity, security, performance, code quality and deployability, as the
+> inventory of what must be normalized before and during its evolution. Read-only: change nothing
+> except writing your report to `docs/AUDIT_[date].md`. If auditing some part requires access you
+> lack (the database, the logs, the server), tell me and mark that part as not audited; do not
+> pass it as fine. Go through all of the code, not a sample, and read `docs/SEMANTIC_TREE.md` and
+> `docs/DISCREPANCIES.md` first so that you do not report what is already known. For every
+> finding: where it is (file and line), the risk, the evidence that proves it (the command, the
+> query, the number), its priority (P0 must be fixed now, P1 soon, P2 when possible), and one more
+> field: whether it BLOCKS (must be fixed before any change, by my criteria: [an exposed secret, a
+> screen that cannot be driven by a program, a deployment that cannot be repeated, no tested
+> backup, anything that deletes or sends without control]), whether it is PAID WHEN TOUCHED (fixed
+> together with the first change that enters its module), or whether it CAN WAIT. Grade every
+> dimension you audited. End with every finding turned into a proposed pending item, blocking
+> ones first. Reply in my language.
+
+> [zh]
+> 从完整性、安全、性能、代码质量和可部署性五个方面审计这个系统，作为"在演进之前和演进期间必须
+> 规范化什么"的清单。只读：除了把报告写到 `docs/AUDIT_[日期].md`，什么都不要改。如果审计某部分
+> 需要你没有的访问权（数据库、日志、服务器），告诉我并把那部分标为未审计；不要把它当成没问题。
+> 走遍全部代码，不是抽样，并且先读 `docs/SEMANTIC_TREE.md` 和 `docs/DISCREPANCIES.md`，免得报
+> 告已经知道的东西。对每条发现：它在哪里（文件和行）、风险、证明它的证据（命令、查询、数字）、
+> 它的优先级（P0 必须马上修，P1 尽快，P2 有条件时），再加一个字段：它是**阻塞**（任何改动之前
+> 必须修掉，按我的标准：[一个暴露的密钥、一个不能由程序操作的界面、一条不能重复的部署、没有验
+> 证过的备份、任何不受控制地删除或发送的东西]）、是**触及时偿还**（和进入它所在模块的第一个改
+> 动一起修掉），还是**可以等待**。给你审计过的每个维度打一个评级。最后把每条发现都变成一条提议
+> 的待办项，阻塞的排在前面。用我的语言回复。
+
+2. 读报告。挑两条发现，向它要证据。复核那些速度标记：你可以把任何一条调高或调低，带上理由。
+
+**发送提示词之前**（收尾提示词）：报告已读、两条发现已验证，而且构建者的会话已经打开（收尾是
+发给构建者的，不是审计者）。
+
+3. 回到构建者的会话，粘贴第 11 课的收尾提示词，并在末尾加上一句："Each pending item keeps
+   the speed mark of its finding."
+
+**完整性检验。** 它说了它没能审计什么吗？至少有一条"阻塞"吗？每条发现都有文件、行和证据吗？
+那些阻塞的已经是待办项了吗？
+
+**交付物。** 带速度标记的 `docs/AUDIT_[日期].md`，以及开出来的那些阻塞待办项。
+
+**常见错误。** 全都在"可以等待"，因为审计者不想打扰人。或者全都在"阻塞"，因为所有者被吓到了：
+那就什么都永远开不了工。在一个小系统里，三到八条阻塞是正常的。
+
+**在引导项目中。** Turnos 的审计发现，属于阻塞的有：数据库密码在代码里（而且在 git 历史里，
+所以必须轮换，不只是挪走）；FTP 部署没有记录在跑的是哪个版本；那个删预约的定时任务没有锁；那
+两个不能操作的界面。属于"触及时偿还"的有：患者搜索没有索引（患者模块）、当天日程查询对每个预
+约都发一次查询（日程模块）、提醒发送没有幂等性（消息模块；这是那个 bug 的线索）。属于"可以等
+待"的有：一个没有已知漏洞的旧依赖，以及日期格式在三个地方重复的代码。
+
+### 第 N4 课 — 安全带
+
+**你需要理解什么。** 这是这条路上的硬闸门：安全带不绿，一行功能代码都不许改。安全带有五件：
+一个带匿名化数据的测试环境、一条重复得了的部署链、代码之外并且轮换过的密钥、跑着现有东西的持
+续集成，以及表征测试套件。最后这一件是反过来的第 7 课：测试诞生时是绿的，因为它捕捉系统今天
+做的事、缺陷也照收不误，而它有用的证据是当你故意弄坏流程时它会变红。没有那个变异红，它就是一
+个因为什么都没看着所以才通过的测试。
+
+**发送提示词之前**，用你自己的手，和所有者一起：
+
+- `docs/ENVIRONMENTS_SURVEY.md`，代理在 N2 带标记起草、由你补全的那份：测试环境将在哪里运行
+  （课程里用一个免费服务或者你机器上的一个容器就够了）、今天怎么部署、密钥将来住在服务器的什
+  么地方。
+- 和负责人一起做的匿名化决定：患者的姓名、电话、邮箱和证件号都替换成假值；日期和数量保留。这
+  是法律义务，不是技术细节。
+- 给表征测试用的关键流程清单：负责人说的那五个。
+- 在你自己的机器上恢复过的那份备份（N0 的条件）。如果你还没做，现在就做：代理要去复制生产数
+  据库，而你需要知道有回头路。
+- 代理对服务器的只读访问权，以及对测试环境所在位置的写访问权，凭证放在聊天之外。
+
+1. 粘贴这条提示词：
+
+> We are going to build the safety belt around this system before changing anything in it. Read
+> the environments survey, `docs/AUDIT_[date].md` and `docs/SEMANTIC_TREE.md`. Evaluate whether you
+> have what is needed (read access to the server where it runs and to its database, write access
+> to where the test environment will run, the way it is deployed today); if anything is missing,
+> ask me before starting. Then set up, without touching any functionality: (1) a test environment
+> that runs the system exactly as production does, with a copy of the data where the personal
+> fields I listed are anonymized; (2) a reproducible deployment to that environment, run twice,
+> showing me that the second run changed nothing; (3) every secret found in the repository or in
+> the code moved to the server configuration (environment file or vault), with the list of what
+> you moved so that I rotate each one; (4) continuous integration running whatever test suite
+> exists today, even if it is a single smoke test, on every push; (5) `docs/GATES.md` with the
+> gates of this project, including: nothing reaches the test environment without the
+> characterization suite green, and nothing reaches production without the full suite green with
+> the exact version. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by hand
+> without you. Take a screenshot of the system running in the test environment and show it to me.
+> Reply in my language.
+
+> [zh]
+> 在改动这个系统里的任何东西之前，我们要在它周围造一条安全带。读环境调研、`docs/AUDIT_[日期
+> ].md` 和 `docs/SEMANTIC_TREE.md`。评估你是不是具备所需的东西（对它运行所在的服务器和它的数据
+> 库的读访问权、对测试环境将要运行的位置的写访问权、它今天的部署方式）；如果缺什么，在开始之前
+> 向我索要。然后搭建以下东西，而且不碰任何功能：（1）一个测试环境，它运行这个系统的方式和生产
+> 完全一样，带一份数据副本，其中我列出来的那些个人字段已经匿名化；（2）一条到那个环境的可复现
+> 部署链，跑两遍，并演示给我看第二遍什么都没有改变；（3）仓库里或代码里找到的每一个密钥都挪到
+> 服务器配置里（环境文件或保险库），并给我一份你挪动过的清单，好让我把每一个都轮换掉；（4）持
+> 续集成，在每次 push 时运行今天现有的任何测试套件，哪怕只有一个冒烟测试；（5）`docs/GATES.md`，
+> 写上这个项目的闸门，包括：表征测试套件不绿，任何东西都不许到测试环境；完整测试套件不以确切版
+> 本变绿，任何东西都不许到生产。把这一切记录到 `docs/DEPLOYMENT.md`，让一个人不靠你也能手工完
+> 成。给我截一张系统在测试环境里运行的图并拿给我看。用我的语言回复。
+
+2. 这是一个长任务，会来回好几次。等它把截图给你的时候，你自己去打开那个网址：必须能看到带数
+   据的 Turnos。按姓名搜一个真实患者：必须搜不到。
+3. 把它给你的清单上的每一个密钥都轮换掉。由你，在对应的面板里，今天就做。
+
+**发送提示词之前**（测试套件的提示词）：测试环境由你亲手打开过，密钥已经轮换，还有那五个关键
+流程的清单，用来填提示词的空。
+
+4. 粘贴这条提示词：
+
+> We are going to write the characterization tests of these critical flows: [load an
+> appointment; cancel an appointment; the reminder reaches the patient; search a patient; download
+> the monthly sheet]. A characterization test captures what the system does today, exactly as it
+> does it, defects included; it is not a test of what the system should do. For each flow: drive
+> it from the screen as a user would and check the effect in the backend (the row, the state, the
+> message queued). Every test must pass against the current code. Then prove that each test
+> actually watches its flow: break the flow deliberately with a temporary change, show me the red
+> output, revert the change, show me the green. If a flow cannot be driven from the screen, do not
+> simulate it: say so and open a pending item marked as blocking. If while writing these tests you
+> find behaviour that looks wrong, do not fix it: add it to `docs/DISCREPANCIES.md` with the
+> evidence. Record the command to run the suite in `docs/STATUS.md`, and make the suite the gate
+> for the test environment as `docs/GATES.md` says. Reply in my language.
+
+> [zh]
+> 我们要为这些关键流程写表征测试：[登记一个预约；取消一个预约；提醒送到患者那里；查找一个患者；
+> 下载月度表格]。一个表征测试捕捉的是系统今天做了什么、而且完全按它今天的做法，缺陷也照收不误；
+> 它不是一个检验系统"本该做什么"的测试。对每个流程：像用户那样从界面操作它，并在后端验证效果
+> （那一行、那个状态、那条进了队列的消息）。所有测试都必须对着当前代码通过。然后证明每个测试真
+> 的在看守它那个流程：用一处临时改动故意把流程弄坏，给我看红色输出，再把改动撤回，给我看绿色。
+> 如果某个流程没法从界面操作，不要模拟它：说出来，并开一条标为阻塞的待办项。如果在写这些测试的
+> 过程中你发现某个行为看起来不对，不要修它：把它连同证据加到 `docs/DISCREPANCIES.md` 里。把运
+> 行测试套件的命令记录到 `docs/STATUS.md`，并按 `docs/GATES.md` 所说，让这套测试成为测试环境的
+> 闸门。用我的语言回复。
+
+   你在要求的是那种诞生时是绿的、靠变异变红来证明自己有用的测试；操作不了的东西不许模拟；看
+   起来不对的东西记为不一致，不去修。
+
+5. 那两个不能操作的界面（N0 的阻塞待办项）在这里解决，在测试套件之前或者作为它的一部分：让它
+   用第 7 课的例行关闭那条待办项，然后再写这些流程的表征测试。
+6. 你自己用 `docs/STATUS.md` 里的命令跑一遍测试套件。它必须是绿的。
+
+**完整性检验。** 你打开测试环境、而且没找到一个真名吗？部署跑了两遍，第二遍什么都没变吗？在
+仓库里搜密钥搜出来是空的，而且你把它找到的都轮换了吗？那五个流程每一个都有自己的测试和摆在眼
+前的变异红吗？测试套件是你自己跑的吗？
+
+**交付物。** 带匿名化数据跑起来的测试环境、`docs/DEPLOYMENT.md`、`docs/GATES.md`、轮换过的密
+钥、绿色的持续集成，以及绿色的表征测试套件，连同它那五次演示过的红。
+
+**常见错误。** 把测试套件留到"下周"然后开始修 bug：做了一半的安全带是弄坏本来能跑的东西的头
+号原因。用"示例"测试数据而不是匿名化副本：遗留系统的 bug 住在真实数据里（Turnos 的提醒发两次
+只在某些患者身上出现）。还有把密钥挪走却不轮换：它在 git 历史里；它已经不是密钥了。
+
+**在引导项目中。** 提醒的那个表征测试最有意思：它捕捉到夜间任务会为第二天的每个预约往假收件
+箱发一条消息，并且通过。在写它的过程中，代理注意到如果这个任务跑两遍就会发两遍，并把它连同证
+据记为一条不一致。这是那个 bug 的线索，而现在还不去修它：当前行为就是规格，直到第 R1 课。变
+异红：代理把那行把消息入队的代码注释掉，测试失败，再取消注释，通过。
+
+### 第 N5 课 — 从代码里找出锁和生产者-消费者地图
+
+**你需要理解什么。** 第 12 和第 8 课，在已经存在的东西上靠盘点来做，在改动任何东西之前。代理
+会在代码里找到比业务记得的更多的对外动作：发送、删除、夜间任务。两份清单的比对就是结果。而每
+把锁都带一个"现在"还是"触及时"的提案：一把管着发消息的锁现在就上；一把管着月度导出的锁，可以
+等到触及那个模块的功能块。
+
+**发送提示词之前**，用你自己的手，和所有者一起：
+
+- 在 `docs/INITIAL_SURVEY.md` 里，写上负责人**知道**系统对外做了什么的清单：按她的说法，发提
+  醒，别的没了。
+- 代理对服务器定时任务的访问权。
+- 住在仓库之外的东西的清单（那张月度表格），给地图用。
+- N4 的测试环境跑着。
+
+1. 粘贴这条提示词：
+
+> Go through the code, the database triggers and the scheduled jobs of the server looking for
+> everything that charges, sends, approves, deletes, notifies outwards or runs on a schedule, and
+> write `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md` with every statement tagged by its source. Compare
+> it with the list the business wrote in `docs/INITIAL_SURVEY.md`: whatever the code does that the
+> business did not list, or the other way round, ask me about before going on. For every action:
+> what triggers it, whether it can run twice, whether it is reversible, what lock exists today if
+> any, and what the way back is. In the same pass, build `docs/PRODUCER_CONSUMER_MAP.md`: for every
+> contract in the system (a service, a table, a file format, a list of values), who produces it
+> and who consumes it, including the things outside the repository I told you about. If there are
+> parts you cannot see, say so instead of leaving them out. Present me the actions table with a
+> proposed lock for each (explicit confirmation, double safety, dry-run mode, daily limit, a human
+> in the loop) and a proposal of which locks go NOW, before any change, and which can go when the
+> module is touched. Do not implement anything yet: I confirm lock by lock. Reply in my language.
+
+> [zh]
+> 走遍代码、数据库触发器和服务器上的定时任务，找出一切会收钱、发送、批准、删除、对外通知或者按
+> 时间表自己运行的东西，并写 `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`，每条断言都带上来源标记。
+> 把它和业务写在 `docs/INITIAL_SURVEY.md` 里的那份清单做比对：代码做了而业务没列出来的，或者反
+> 过来，在继续之前都来问我。对每个动作：什么触发它、它会不会跑两次、它可不可逆、它今天有没有锁
+> （如果有是什么锁），以及回头路是什么。在同一遍里，构建 `docs/PRODUCER_CONSUMER_MAP.md`：对系
+> 统里的每一份契约（一个服务、一张表、一种文件格式、一份取值清单），谁生产它、谁消费它，包括我
+> 告诉过你的那些仓库之外的东西。如果有些部分你看不到，说出来，不要把它们略掉。把动作表呈给我，
+> 每个动作附一把提议的锁（显式确认、双重保险、演练模式、每日上限、回路中的人），以及一份提案：
+> 哪些锁**现在**就上，在任何改动之前，哪些可以等到触及那个模块时再上。先不要实现任何东西：我一
+> 把锁一把锁地确认。用我的语言回复。
+
+2. 和负责人一起一把锁一把锁地确认，以及每把锁的"现在"还是"触及时"标记。
+
+**发送提示词之前**（收尾提示词）：带着你逐行裁决的那张表，以及"现在"那些锁的清单，用来填提示
+词的空。
+
+3. 用第 12 课的收尾提示词收尾，只列"现在"的那些锁；其余的留在待办队列里，带着它们的标记。
+
+**完整性检验。** 代理的清单比负责人的清单多吗？（如果一样多，它就没看定时任务。）每一把"现在"
+的锁都有它对着没有锁的版本的红色测试吗？那张月度表格作为消费者在地图里吗？
+
+**交付物。** `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`、`docs/PRODUCER_CONSUMER_MAP.md`、
+`docs/LOCKS.md`，其中"现在"的锁已实现并已验证。
+
+**常见错误。** "反正都做到这儿了"就把所有锁现在都实现掉：那是违反两种速度的规则，而且是一周
+没有花在客户要的那个 bug 上。
+
+**在引导项目中。** 代理找到三个负责人没有列出来的动作：夜间删除旧的已取消预约、预约被取消时
+系统发给专业人员的一封邮件（她不知道），以及喂那张表格的那个导出。"现在"的锁：夜间删除改成演
+练模式（记录它本会删掉什么），直到她做决定；提醒发送加一个每日上限。"触及时"：发送的幂等性
+（消息模块，和那个 bug 一起进）、取消时的确认（日程模块）。地图里有六份契约，而那张月度表格
+是预约表的消费者：如果有人改了一列，表格会悄无声息地坏掉。
+
+### 第 N6 课 — 用真实数字做容量估算
+
+**你需要理解什么。** 第 3 课，但有一个优势：原始数据就在数据库和日志里。它们不是问出来的，是
+用一把带测试的量具测出来的（第 9 课）。负责人只提供哪里都没有的东西：他们预期增长多少，以及
+这个系统会不会卖给别的诊所。
+
+**发送提示词之前**，用你自己的手：
+
+- 对生产数据库的只读访问权，或者 N4 那份完整副本（匿名化没有动过日期和数量），以及访问日志。
+- 业务那两个答案：预期增长（"和现在差不多，也许多一个专业人员"）和"乘以十"（"如果好用，我姐
+  姐还有一家诊所"）。
+- 给量具的测试用的一个已知案例：专业人员的数量，是三个。
+
+1. 粘贴这条提示词：
+
+> Before changing anything we are going to size this system with its real numbers. With read-only
+> access to the production database (or the complete test copy) and to the logs, measure instead
+> of asking: rows per table and growth per month from the timestamps, events per entity, peak
+> concurrency from the access logs, data size today and projected at five years, and the slowest
+> queries. Write a meter for each number (a script that lives in the repository, with a test
+> against a known case I will give you) and show me every number together with the command that
+> produces it; audit each meter in both directions (is everything that should be counted, counted?
+> does everything counted exist?). Write `docs/VOLUME_SURVEY.md` with every figure tagged
+> [database] or [log], and ask me only for what cannot be measured: the growth the business
+> expects and whether the system will serve more than one site. Then write `docs/SIZING.md`: what
+> breaks first if everything is multiplied by ten, which of the current architecture choices hold
+> and which do not, and which asymmetric decisions we take now, before evolving, because they are
+> cheap today and expensive later. Do not change any code. Reply in my language.
+
+> [zh]
+> 在改动任何东西之前，我们要用这个系统的真实数字给它做容量估算。用对生产数据库（或者完整的测试
+> 副本）和日志的只读访问权，去测量而不是去问：每张表的行数和按时间戳算出的每月增长、每个实体的
+> 事件数、从访问日志算出的峰值并发、今天的数据体量和五年后的预测，以及最慢的那些查询。给每个数
+> 字写一把量具（一个住在仓库里的脚本，带一个对着我会给你的已知案例的测试），并把每个数字连同产
+> 出它的命令展示给我；对每把量具做双向审计（该被数到的都数到了吗？数到的都真实存在吗？）。写
+> `docs/VOLUME_SURVEY.md`，每个数字标上 `[数据库]` 或 `[日志]`，并且只向我索要测不出来的东西：
+> 业务预期的增长，以及这个系统会不会服务于不止一个站点。然后写 `docs/SIZING.md`：如果一切都乘
+> 以十，最先坏掉的是什么；当前架构的哪些选择撑得住、哪些撑不住；以及我们现在、在演进之前要做哪
+> 些不对称决策，因为它们今天便宜、以后昂贵。不要改任何代码。用我的语言回复。
+
+2. 你自己跑一把量具（比如每张表行数的那把）。它给你的结果必须一样。再手工重算一笔账。
+
+**发送提示词之前**（收尾提示词）：那笔重算过、而且对得上的账，以及你对撑不住"乘以十"的那部分
+的决定（如果有的话）。
+
+3. 用第 3 课的收尾提示词收尾，在它提出的方案里做选择，或者确认现状撑得住。
+
+**完整性检验。** 有没有哪个原始数字没有量具？你自己跑过一把吗？"乘以十"写下来了吗？
+
+**交付物。** 带标记的 `docs/VOLUME_SURVEY.md`、带测试的那些量具、`docs/SIZING.md`。
+
+**常见错误。** 接受"数据库太大了数不过来，我估计大概十万"。一个大数据库用一条查询就能数出来；
+那就是一把量具。
+
+**在引导项目中。** 两年两万个预约，每月一千并且在慢慢增长；六万条消息；峰值两个用户；数据库
+占不了多少空间；最慢的查询是按姓名搜患者（没有索引，审计早就说过了）。"乘以十"除了那个搜索和
+那个夜间发送（它的耗时和预约数成正比）之外都撑得住。不对称决策：消息发送接口改成带一个队列，
+虽然今天还用不上，因为定金（第 R2 课）要走同一个通道。
+
+### 第 N7 课 — 和客户请求配对的规范化待办队列
+
+**你需要理解什么。** 多了两列的第 5 课。一条队列，债务（审计、不一致、界面、未上的锁、容量估
+算的决策）和客户的请求（出错的、缺的）住在一起，每条待办项带着它的速度标记和它的类型，而每条
+客户待办项带着那些触及同一个模块、应该和它一起偿还的规范化待办项清单。那就是把"触及时偿还"做
+成可操作的。
+
+**发送提示词之前**，用你自己的手，和所有者一起：
+
+- 客户对这一阶段的请求，放在 `docs/blocks/STAGE_01_REQUEST.md` 里，用负责人的话分成两份清单。
+  出错的："有时候提醒来两次，有时候不来；我有上周三个患者的截图"。缺的："我想在初诊预约上通
+  过支付链接收定金"、"我想不下载表格就看到这个月的数字"。
+- N2 到 N6 的全部产出物都已关闭。如果缺了任何一个，先别发这条提示词。
+- N0、N3 和 N4 的阻塞待办项都已关闭。
+
+1. 粘贴这条提示词：
+
+> We are going to turn the normalization and the client's request for this stage into one queue
+> of numbered pending items in `docs/PENDING.md`, each with its full specification as the method
+> asks (number, title, node of the semantic tree, origin, description, business rules with
+> decision and date or marked as missing, data in and out, screens, edge cases, acceptance
+> criteria as given, when, then, how it will be verified, status). Sources for the normalization
+> items: `docs/AUDIT_[date].md`, the discrepancies I decided to change, the screens that cannot be
+> driven by a program, the secrets to rotate, the locks that are not implemented yet, and the
+> decisions in `docs/SIZING.md`; each one keeps its speed mark: BLOCKS, PAID WHEN TOUCHED, or CAN
+> WAIT. Sources for the client's items: the client's request for this stage; each one marked
+> CORRECTIVE (something that fails today, with the way to reproduce it in the client's words) or
+> EVOLUTIVE (something new). For every client item, list the normalization items that touch the
+> same modules and should be paid together with it. If the request is ambiguous on any point such
+> that you cannot write a verifiable item, ask me; do not resolve it by assuming. Order: blocking
+> items first, then the client's items in the priority I gave you, each with its paired
+> normalization. Reply in my language.
+
+> [zh]
+> 我们要把规范化和客户对这一阶段的请求，变成 `docs/PENDING.md` 里一条编号待办项的单一队列，每
+> 一条都带着方法要求的完整规格（编号、标题、语义树节点、来源、描述、带决定和日期的业务规则或标
+> 为缺失、进出的数据、界面、边界情况、以"给定、当、那么"形式写的验收标准、将如何验证、状态）。
+> 规范化待办项的来源：`docs/AUDIT_[日期].md`、我决定要改的那些不一致、不能由程序操作的那些界面、
+> 要轮换的密钥、还没实现的那些锁，以及 `docs/SIZING.md` 里的决策；每一条都保留它的速度标记：**
+> 阻塞**、**触及时偿还**，或者**可以等待**。客户待办项的来源：客户对这一阶段的请求；每一条标为
+> **纠正型**（今天出错的东西，附上用客户的话写的复现方式）或**演进型**（新东西）。对每个客户待
+> 办项，列出那些触及同样模块、应该和它一起偿还的规范化待办项。如果请求在某一点上含糊到你写不出
+> 一条可验证的待办项，就问我；不要靠假设去解决它。顺序：先是阻塞的那些，然后是客户的那些，按我
+> 给你的优先级，每一条带着它配对的规范化待办项。用我的语言回复。
+
+2. 像负责人那样读每条客户待办项的规格，和第 5 课一样。再复核那些配对：用那个请求来偿还那笔债
+   务，说得通吗？
+3. 把第 5 课里每次会话的例行加进契约，不变。
+
+**完整性检验。** 还有"阻塞"开着吗？每个纠正型都说明了怎么复现、而且用的是客户的话吗？每条客
+户待办项都有它的配对项吗？
+
+**交付物。** 装着一切的 `docs/PENDING.md`，以及契约里的那条例行。
+
+**常见错误。** 一条有五十项"可以等待"的待办队列：那是伪装成清单的重写。把不会偿还的归档掉，
+并且说出来。还有因为"它很小"就在有阻塞项开着的时候打开第一个功能块。
+
+**在引导项目中。** Turnos 的待办队列最后有三条客户待办项：提醒发两次（纠正型，消息模块，和发
+送的幂等性以及容量估算里的消息队列配对）、定金（演进型，新的支付模块，和取消时的确认配对，因
+为它们碰同一个界面），以及月度报表（演进型，报表模块，和患者索引以及那张要被替换掉的表格的契
+约配对）。还有大约十二条规范化待办项，其中三条"可以等待"，而且这件事说了出来。
+
+---
+
+## 对遗留系统跑循环：第 R1 和 R2 课
+
+### 第 R1 课 — 第一个功能块：那个 bug，纠正模式
+
+**你需要理解什么。** 一条纠正型待办项是一个已知的 bug。在第 7 课里红是制造出来的；在这里红就
+是那个 bug 本身：那个复现故障的测试，像报告它的那个用户一样操作流程，必须对着当前代码失败。
+如果它不失败，你复现的是另一个 bug。那个红是你在修对东西的证据，而且比代理关于"应该是在发生
+什么"的任何解释都更有价值 [Ref. 22](REFERENCIAS.md#ref-22)。还有根因要在动手之前用散文说出来，
+因为有时候根因是一条没人写下来的业务规则，而那是你来决定的。
+
+**发送提示词之前**，用你自己的手：
+
+- `docs/PENDING.md` 里那条纠正型待办项，带着用负责人的话写的复现方式，以及一个具体案例：上周
+  那三张截图，带患者的名字（测试环境里用假名）和日期。没有案例就没有测试。
+- 表征测试套件是绿的，命令在 `docs/STATUS.md` 里。
+- 这条待办项的配对项，列在它里面。
+- 已经通知负责人，今天你会问她一个业务问题。
+
+1. 用每次会话的例行打开这个功能块：代理宣布它接哪条待办项，并重读规格。
+2. 粘贴这条提示词：
+
+> This pending item is a correction: [some patients receive the reminder twice and some receive
+> none; three cases from last week are attached in the item]. Before changing anything: (1)
+> Reproduce the failure with a test that drives the flow from the screen and checks the effect in
+> the backend, and show me that it fails against the current code; that red is the proof that you
+> reproduced the right defect. If you cannot reproduce it, tell me what you tried and what you
+> need; do not fix what you cannot see. (2) Find the root cause and tell me in prose, with the
+> evidence, before fixing. If the root cause is a business rule nobody wrote down, stop and ask me.
+> (3) Fix at the root, not where it hurts, and nothing else: anything else you find goes to a
+> pending item. (4) Show me the test green, the characterization suite still green, and the
+> regression of the neighbouring items. (5) If the fix changes a current behaviour that someone
+> may depend on, say so explicitly: that is a decision for me, not a side effect. Close the paired
+> normalization items of this module in the same block, each with its own evidence. The commit
+> message says "proved red against [version]" and the test counts. Reply in my language.
+
+> [zh]
+> 这条待办项是一次纠正：[有些患者收到两次提醒，有些一次都没收到；待办项里附了上周的三个案例]。
+> 在改动任何东西之前：（1）用一个从界面操作流程、并在后端验证效果的测试复现这次故障，并给我看
+> 它对着当前代码失败；那个红是你复现对了缺陷的证据。如果你复现不出来，告诉我你试过什么、你需要
+> 什么；不要去修你看不见的东西。（2）找出根因，并在修之前用散文连同证据告诉我。如果根因是一条
+> 没人写下来的业务规则，停下来问我。（3）在根上修，不要在疼的地方修，而且只修它：你发现的任何
+> 别的东西都进一条待办项。（4）给我看测试变绿、表征测试套件仍然是绿的，以及相邻待办项的回归。
+> （5）如果这次修复改变了某个当前行为、而可能有人依赖它，明确说出来：那是我的一个决定，不是一
+> 个副作用。把这个模块里和它配对的规范化待办项在同一个功能块里关闭，每一条都带自己的证据。提交
+> 信息里写"对着[版本]先证红"以及测试的数字。用我的语言回复。
+
+   你在要求的是：复现在诊断之前、根因在动手之前用散文说出来、在根上修而且只修它、表征测试作
+   为整个系统的回归，以及行为的改变必须是你的一个决定。
+
+3. 在授权修复之前先读根因。如果它问你一条业务规则，和负责人一起决定它，然后用第 6 课的收尾格
+   式回答。
+4. 收尾时：你自己跑一遍表征测试套件。再像前台那样，在测试环境里用半小时这个系统：人工查看不
+   能外包。
+
+**完整性检验。** 你看到那个复现 bug 的测试变红了吗，带数字？根因是在修复之前用散文写出来的吗？
+表征测试还是绿的吗？那些配对项都带着各自的证据关闭了吗？提交信息里写了"先证红"吗？
+
+**交付物。** 用完整例行关闭的那个 bug、关闭了的配对项，以及加进了这个 bug 的测试、因而扩大了
+的表征测试套件。
+
+**常见错误。** 不读根因就授权修复：在 Turnos 里，代理的第一个假设通常是"这个任务跑了两遍"，
+而那只是一半的真相。还有让"反正都来了"去整理消息模块：规则 7。
+
+**在引导项目中。** 测试用一个被改期过的预约复现了重复发送：夜间任务对第二天的每一行预约发一
+条提醒，而一个被改期的预约有两行（旧的那行，状态是"已改期"，没有任何界面显示它；还有新的那行）。
+那些一次都收不到的，是在发送之后才改期的。根因：第 N2 课里冒出来的那个"已改期"状态。那个业务
+问题："一个改期的预约是一个新预约，还是同一个预约？"。负责人决定：同一个预约，带历史。在根上
+的修复动的是状态，不是发送；配对的幂等性在同一个功能块里偿还；红说"1 个预约 2 条消息"，绿说
+"1 个预约 1 条消息"。而那个行为的改变被声明出来：改期的预约不会再在月度表格里出现两次，而表
+格是那张表的消费者；负责人批准了。
+
+### 第 R2 课 — 第二个功能块：定金，演进模式
+
+**你需要理解什么。** 在旧东西上做的新东西，要用完整的方法构建，完全照第一部分的第 5 到 10 课：
+待办项里的规格、带日期的决策、红色测试、端到端测试、诚实的报告。两点不同。相邻的回归是整个系
+统，而说这件事的是表征测试套件。还有当功能块进入某个模块时，那个模块里标着"触及时偿还"的规范
+化待办项跟着它一起进，带着各自的证据。不要对新模块做遗留系统当年对旧模块做的事。
+
+**发送提示词之前**，用你自己的手：
+
+- `docs/PENDING.md` 里定金那条演进型待办项，带着由你读过的完整规格、它的配对项，以及负责人现
+  在就能做的那些业务决策：哪些预约要收定金、收多少、不付会怎样。
+- 有后果动作的调研（N5），加上"收定金"那一行，因为那是一个作用于现实世界的新动作：构建之前先
+  上锁，和第 12 课一样。
+- 表征测试套件是绿的。
+
+1. 用第 5 课的开启提示词打开这个功能块，针对定金这个请求，然后像负责人那样读规格。
+2. 在构建之前，先上锁：对"收定金"这个动作粘贴第 12 课的收尾提示词，先用演练模式。
+3. 用第 7 课的例行构建，一条待办项一条待办项地来，配对项放在同一个功能块里。
+4. 功能块收尾时：完整的端到端测试套件（表征的那些加上新的那些），用第 7 课的功能块收尾提示词，
+   再加上你自己用系统的半小时。
+
+**完整性检验。** 定金在收款存在之前就有带红色测试的锁吗？功能块之后表征测试还是绿的吗？那个
+模块的配对项都偿还了吗？有没有旧模块里的东西在没有待办项的情况下被"改进"了？
+
+**交付物。** 定金在测试环境里以演练模式跑起来，带着它的规格、它的锁、它的测试和它的端到端测
+试；配对项已关闭。
+
+**常见错误。** 为了让它合得上就"快点、照其余部分的做法"构建定金：新模块永远带着完整的方法出
+生。还有因为"那是一个支付链接，又不是我们收钱"就忘了上锁：那个链接会发给一个患者；那就是一个
+对外的动作。
+
+**在引导项目中。** 定金走的是和提醒同一个通道，而这个通道现在有了队列（N6 的那个不对称决策自
+己还了本）。锁：前台的显式确认，加上由专业人员设定的金额；演练模式跑一周，记录"本会向谁要定
+金"。取消界面那条配对项（那个确认）在这个功能块里偿还，因为定金改变了取消时会发生什么。收尾
+时，测试套件跑七个流程：五个表征流程、R1 那个 bug 的流程，和定金的流程。
+
+---
+
+## 之后：上线生产与运维
+
+从这里开始，这个遗留系统就是一个有方法的系统了，第一部分的第 11 到 15 课原样适用，加三条注记。
+第 11 课的审计要和 N3 那次对照：偿还了多少债务，还剩多少。第 14 课的手册在遗留系统里往往不存
+在，要根据系统的现状和那些已关闭的待办项生成，而那些待办项现在确实记录了做过的事。还有第 15
+课的复盘多了一个这条路专属的问题：规范化花了多少成本（多少小时、多少 token、第一个改动之前多
+少周），以及标着"可以等待"的债务里有哪些最后还是照样付了代价。那个答案会在下一版里修正这一部
+分的日历。
+
+## 规范化阶段的出口清单
+
+所有者不读代码就能验证的八个条件，在打开第一个功能块之前。它们和演进-纠正之路那一页上的一样；
+我在这里重复一遍，因为它们是这一部分的交付物。
+
+1. 前面各个阶段的全部输入物都存在（调研、适格性、契约、项目文件、树、环境、容量、容量估算、
+   闸门），带来源标记，而且所有者确认了每一个推断出来的节点（N2）。
+2. 每条不一致都有带日期的决定，要改系统的那些都有待办项（N2）。
+3. 审计存在，而且每条发现都有速度标记（N3）。
+4. 安全带是绿的：带匿名化数据的测试环境、部署跑了两遍、密钥在外面并且轮换过、持续集成、带演
+   示过的变异红的表征测试套件（N4）。
+5. 每个有后果的动作都有裁决，而且"现在"的锁都有它们的红色测试（N5）。
+6. 原始数字都用带测试的量具测过，而且"乘以十"写下来了（N6）。
+7. 没有任何"阻塞"还开着，而且每条客户待办项都有它的配对项（N7）。
+8. 契约里有遗留系统的那五条规则，而且一个新会话能通过阅读测试（N1、N2）。
+
+## 附录 — 这一部分还没有的东西
+
+- 一期在真实遗留系统上上过这门课的学员。"继承来的 Turnos"是根据我以诊断模式在别人系统里看到
+  的东西搭出来的，不是从一个学员那里来的。
+- 一个"Turnos"的示例仓库，就按那个侄子留下的样子，好让没有自己的遗留系统的学员也有一个可以规
+  范化的。这是这一部分最重要的待办项。
+- 大系统的表征测试套件规模标准，以及当系统有几十个模块时，规范化怎么按模块分摊。

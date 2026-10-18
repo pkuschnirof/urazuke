@@ -69,6 +69,29 @@ for (const f of archivos) {
     otros.forEach((p, i) => { if (p !== prompts[i]) { console.error(`[${idioma}] peldaño ${n}: el prompt ${i + 1} difiere de la fuente`); errores++; } });
   }
 }
+// La página del camino evolutivo-correctivo también lleva prompts: misma regla, misma verificación.
+{
+  const nombre = 'EVOLUTIVO_CORRECTIVO.md';
+  const src = join(raiz, 'docs', nombre);
+  if (existsSync(src)) {
+    const texto = readFileSync(src, 'utf8');
+    const prompts = extraerPrompts(texto);
+    if (!soloVerificar) {
+      const cuerpo = `# Urazuke — evolutive-corrective path prompts (English, single source)\n\n` +
+        `Generated from \`docs/${nombre}\` by \`build/prompts.mjs\`. Do not edit by hand.\n\n` +
+        prompts.map((p, i) => `## Prompt ${i + 1}\n\n${p}\n`).join('\n');
+      writeFileSync(join(destino, 'evolutivo-correctivo.en.md'), cuerpo, 'utf8');
+    }
+    for (const idioma of idiomas) {
+      const otro = join(raiz, 'docs', idioma, nombre);
+      if (!existsSync(otro)) { if (existsSync(join(raiz, 'docs', idioma, 'peldanos'))) { console.error(`[${idioma}] falta la traducción de ${nombre}`); errores++; } continue; }
+      const otros = extraerPrompts(readFileSync(otro, 'utf8'));
+      if (otros.length !== prompts.length) { console.error(`[${idioma}] ${nombre}: ${otros.length} prompts, se esperaban ${prompts.length}`); errores++; continue; }
+      otros.forEach((p, i) => { if (p !== prompts[i]) { console.error(`[${idioma}] ${nombre}: el prompt ${i + 1} difiere de la fuente`); errores++; } });
+    }
+    console.log(`prompts del camino evolutivo-correctivo: ${prompts.length}`);
+  }
+}
 const verificadas = idiomas.filter(i => existsSync(join(raiz, 'docs', i, 'peldanos')) && readdirSync(join(raiz, 'docs', i, 'peldanos')).some(x => /^peldano-\d\d-/.test(x)));
 console.log(`prompts: ${total} en ${archivos.length} contratos (${traducidos} con traducción en la fuente); traducciones verificadas: ${verificadas.join(', ') || 'ninguna todavía'}; errores: ${errores}`);
 if (errores) process.exit(1);

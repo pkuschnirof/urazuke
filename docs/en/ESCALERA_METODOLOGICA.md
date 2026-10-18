@@ -83,6 +83,34 @@ always had, applied with the rigidity needed for a builder that does not get tir
 be believed without evidence. The scars are the proof of where the rigidity is needed, not the
 origin of the principles.
 
+## The three use cases of the method
+
+Before going on, a fork that was not in the first versions and that a reader rightly asked me
+for. This document describes the ladder looking at an empty folder: step 0 decides whether the
+project is taken on, step 4 deploys the skeleton without functionality, step 5 opens the first
+block. It is the clearest case for learning, and it is not the most frequent one. The method has
+three use cases, and it is worth knowing which one you are in before opening the agent, because
+it changes where you enter:
+
+1. **New project.** An empty folder and an owner with a request. You enter at step 0 and you
+   climb the sixteen in order. It is what this document describes, with its contracts and the
+   course manual.
+2. **Evolutive-corrective on a system made with the method.** The system already climbed the
+   ladder: it has a definition, a map, pending items closed with evidence, a suite, a deployment
+   and manuals. You enter at step 5, opening a block, and you follow the loop; step 11
+   periodically; step 15 at the close of each stage. It is phase 4 of the timeline (Part B).
+3. **Evolutive-corrective on a system made without the method.** A system that runs, with users,
+   made by somebody else or by oneself without evidence, which has to be corrected or made to
+   grow. You enter neither at step 0 nor at step 5: you enter through a **normalization stretch**
+   of eight stations (N0 to N7) that recovers, by autodiscovery and with source tags, all the
+   inputs the start-up steps produce, builds a safety belt around the system without rewriting
+   it, and only then opens the loop in corrective or evolutive mode. That path has a page of its
+   own, the [evolutive-corrective path](EVOLUTIVO_CORRECTIVO.md), and it has its part of the
+   course with a second guide project.
+
+What is left out, named: a technology migration is not a use case of the method; it is a
+different project, and it generally falls under the exclusionary criteria of step 0.
+
 ## AI does not interrupt the method: it continues it
 
 This is the thesis that opens everything, and I put it first because it dismantles the most common
@@ -199,6 +227,11 @@ life in production, which the method also covers even though they are not "steps
 | 2. Loop | from three to six weeks, in functional blocks of one to two weeks | 5, 6, 7, 8, 9, 10 with every change | Functional development block by block; tests proved red; end-to-end tests of the flow just built; a human look at every new screen; at the close of each block, human testing in the test environment. |
 | 3. Go-live | one week | 11, 12, 13, 14 | Audit by another session; locks on everything that acts on the world; closing the deployment chain to production with a tested rollback; the three manuals; acceptance testing with the owner over all the flows. |
 | 4. Operation | as long as the system lives | 15, and the loop (5 to 10) for every evolution; 11 periodically | Resident agent; audit every one or two months; every new change enters through the full loop and leaves through the deployment chain; retrospective at the close of each stage. |
+
+This table is the one for a new project. When the system already exists and was not born with
+the method, phases 0 and 1 are replaced by the normalization stretch (three weeks for a small
+system: reading, belt, measure and order) that is in the
+[evolutive-corrective path](EVOLUTIVO_CORRECTIVO.md); phases 2, 3 and 4 are the same.
 
 The times are for a small project, the size of the course's guide project. In a project with users
 and consequences, the loop stretches and phases 1 and 3 stay almost the same, because what grows is
@@ -353,7 +386,10 @@ The weighted criteria I am still calibrating, and I mark them as such.
 - **Intention**: decide whether a project is run with this method, and with an agent at the front,
   or not, BEFORE opening the repository. Because if you enter a project that does not qualify, the
   method degrades to "programming with AI" and there the owner does end up reading code.
-- **When**: once only, in the first week, before anything else. One hour of work; it saves months.
+- **When**: once only, in the first week, before anything else. One hour of work; it saves
+  months. If the system already exists, this step is climbed in its version for legacy systems
+  (station N0 of the [evolutive-corrective path](EVOLUTIVO_CORRECTIVO.md)), with four more
+  criteria and X2 measured screen by screen.
 - **Inputs**: the client's request, the business domain, the data, the technology, the available
   environments, and who is going to be the owner.
 - **Artefact**: a one-page eligibility sheet, with the criteria scored and the decision: go, no-go,
@@ -877,7 +913,10 @@ course.
    it is part of step 15.
 5. **The first cohort of the course**, which is going to correct the times of the timeline and the
    typical mistakes, which today are written from my projects and not from students.
-6. **What is NOT on the ladder and should be** `[hypothesis]`: the management of token cost and
+6. **The evolutive-corrective path proved on a real legacy system end to end.** The eight
+   stations are written from what I did on other people's systems in diagnostic mode and from the
+   steps reordered, not from a complete normalization executed with those prompts.
+7. **What is NOT on the ladder and should be** `[hypothesis]`: the management of token cost and
    quotas as an explicit budget (today it is reactive); secret rotation as a routine and not as an
    incident; and a criterion for when the human DOES have to look at the code, because today the
    answer is "never" and I suspect there are specific moments when it is worthwhile.
@@ -929,6 +968,12 @@ are verified.
 **Auto-approver** — In Autorizaciones, the robot that approves orders automatically according to
 rules. It first ran in "dry-run mode" (see dry-run) before letting it act.
 
+**Autodiscovery** — On the evolutive-corrective path, the way to obtain the inputs nobody
+wrote: the agent recovers them by reading the system itself (the code, the database schema, the
+configuration, the logs, whatever documentation there is) and tags every statement with its source
+(`[code]`, `[database]`, `[configuration]`, `[documentation]`, `[inferred]`, and `[business]` for
+what the owner confirmed). What cannot be read is marked as a gap, not filled in.
+
 **Autopilot** — A written mandate for the agent to work on its own for hours (24 or 48), making
 commits and pushes without asking, and deliver a summary at the end.
 
@@ -943,6 +988,12 @@ call to the database without `await` is a silent bug: the code goes on before it
 opposite of "frontend" (the screen).
 
 **Board (the)** — Forge's shared board where the agent leaves reports for me to read.
+
+**Characterization (test)** — A test that captures what the system does today, exactly as it
+does it, defects included; not what it ought to do. It is born green, and the proof that it is
+useful is that it goes red when the flow is broken on purpose (a mutation). It is the suite that
+protects a legacy system while it is being changed. The term comes from the literature on legacy
+code; I use it as it is.
 
 **CI (continuous integration)** — A service (here, GitHub Actions) that runs the tests
 automatically every time code is pushed. CI/CD adds automatic deployment.
@@ -969,6 +1020,11 @@ called. Misconfigured, it blocks legitimate calls with confusing errors.
 
 **CVE** — A public identifier of a known security vulnerability in a software component.
 
+**Discrepancy** — In the reading of an inherited system, a point where the code, the database,
+the documentation and what the business believes the system does do not agree. It is listed with
+the evidence on each side and the owner decides it, one by one: sometimes the system is wrong, and
+sometimes the business had forgotten a rule the code remembered.
+
 **Doctrine** — In Forge, a short document that fixes how something is done (how to test, how to
 verify, how to size). It is the form the method takes inside the tool.
 
@@ -987,6 +1043,11 @@ would use it.
 
 **Environment** — A separate installation of the system. The usual ones: development (the
 programmer's machine), UAT (client testing) and PROD (production, the real one).
+
+**Evolutive-corrective path** — The third use case of the method: taking a system that already
+exists and was not born with the method, normalizing it without rewriting it (eight stations, N0
+to N7) and only then climbing the ladder in corrective mode (fixing what fails) or evolutive mode
+(adding what is missing). It has a page of its own.
 
 **Fail-closed** — "Fails closed": on doubt or error, the system does not act. The opposite of
 "fail-open", which on doubt carries on.
@@ -1084,12 +1145,23 @@ yourself" means not simulating precisely the part you want to test.
 **Month three** — My expression for the moment when a system built in a hurry starts showing its
 problems: when it already has real data and real users.
 
+**Mutation (red by)** — The way to prove that a characterization test watches something: break
+the flow on purpose with a temporary change, see the test red, revert, see the green. A
+characterization test without its red by mutation is a test that passes because it watches
+nothing.
+
 **NAC3** — Forge's protocol that makes the screens of an application operable by program (each
 element of the interface has an identifier and methods). It allows the end-to-end test. It is not
 mandatory for the method: it is the means, not the condition.
 
 **Node (Node 22)** — The environment where the server's JavaScript runs. "Node 22 pinned" means the
 version was nailed down so that all environments use the same one.
+
+**Normalization** — Bringing a system that was not born with the method to the state the method
+takes for granted when it opens the loop, without touching its functionality. It is done at two
+speeds: the safety belt before any change, and the rest of the debt **as each module is touched**
+(the normalization pending items marked "paid when touched" enter with the block that enters their
+module). Never "a week of general cleanup".
 
 **Oracle** — An external source of truth against which a result can be verified.
 
@@ -1152,6 +1224,12 @@ the problem come back; fixing the root cause does not.
 **Runbook** — An operating procedure written step by step. "Idempotent" means it can be run twice
 without breaking anything.
 
+**Safety belt** — On the evolutive-corrective path, what has to exist around a legacy system
+before a single line of it is changed: a test environment with anonymised data, a deployment that
+repeats, the secrets outside the code and rotated, continuous integration running whatever there
+is, and the characterization suite. It is a hard gate, with a single written exception (an
+emergency in production).
+
 **Seeder** — A script that loads test data into an environment.
 
 **Semantic tree** — The map of the system in the form of a tree: the system at the root; below,
@@ -1169,6 +1247,11 @@ has empty tests, it is deployed.
 **SQ (quality standards)** — The working agreement between human and agent in Forge.
 
 **SQL** — The language of relational databases.
+
+**Station (N0 to N7)** — Each of the eight moves of the normalization stretch of the
+evolutive-corrective path. I call them stations and not steps so that they do not get confused
+with the sixteen of the ladder: they are not new steps, they are the start-up ones (and 8, 11 and
+12) in another order and with another input.
 
 **Stretch** — Each of the three groups of steps: start-up (0 to 4), loop (5 to 10), operation (11
 to 15).

@@ -89,6 +89,36 @@ toujours, appliquée avec la rigidité nécessaire pour un constructeur qui ne s
 ne peut pas croire sans preuve. Les cicatrices sont la preuve de là où la rigidité est nécessaire,
 pas l'origine des principes.
 
+## Les trois cas d'utilisation de la méthode
+
+Avant d'aller plus loin, une bifurcation qui n'était pas dans les premières versions et qu'un
+lecteur m'a demandée à juste titre. Ce document décrit l'échelle en regardant un dossier vide :
+l'échelon 0 décide si le projet s'aborde, le 4 déploie le squelette sans fonctionnalité, le 5
+ouvre le premier bloc. C'est le cas le plus clair pour apprendre, et ce n'est pas le plus
+fréquent. La méthode a trois cas d'utilisation, et il vaut mieux savoir dans lequel vous êtes
+avant d'ouvrir l'agent, parce que cela change par où l'on entre :
+
+1. **Projet neuf.** Dossier vide et un propriétaire avec une demande. On entre par l'échelon 0 et
+   on gravit les seize dans l'ordre. C'est ce que décrit ce document, avec ses contrats et le
+   manuel du cours.
+2. **Évolutif-correctif sur un système fait avec la méthode.** Le système a déjà gravi l'échelle :
+   il a un contrat, une carte, des éléments en attente clos avec leur preuve, une batterie, un
+   déploiement et des manuels. On entre par l'échelon 5, en ouvrant un bloc, et on suit la
+   boucle ; le 11 périodique ; le 15 à la clôture de chaque étape. C'est la phase 4 de la ligne de
+   temps (Partie B).
+3. **Évolutif-correctif sur un système fait sans la méthode.** Un système qui tourne, avec des
+   utilisateurs, fait par un autre ou par soi-même sans preuve, qu'il faut corriger ou faire
+   grandir. On n'entre ni par le 0 ni par le 5 : on entre par un **tronçon de normalisation** de
+   huit stations (N0 à N7) qui récupère, par autodécouverte et avec des marques de source, tous
+   les intrants que les échelons du démarrage produisent, monte une ceinture de sécurité autour du
+   système sans le réécrire, et seulement ensuite ouvre la boucle en mode correctif ou évolutif.
+   Ce chemin est dans une page à lui, le [chemin évolutif-correctif](EVOLUTIVO_CORRECTIVO.md), et
+   il a sa part du cours avec un second projet-guide.
+
+Ce qui reste dehors, nommé : la migration technologique n'est pas un cas d'utilisation de la
+méthode ; c'est un autre projet, et en général cela tombe dans les critères excluants de l'échelon
+0.
+
 ## L'IA n'interrompt pas la méthode : elle la continue
 
 C'est la thèse qui ouvre tout, et je la mets en premier parce qu'elle désamorce l'objection la plus
@@ -213,6 +243,11 @@ la vie en production, que la méthode couvre aussi même si ce ne sont pas des �
 | 2. Boucle | de trois à six semaines, en blocs fonctionnels d'une à deux semaines | 5, 6, 7, 8, 9, 10 à chaque changement | Développement fonctionnel bloc par bloc ; tests en rouge ; tests de bout en bout du flux qui vient d'être construit ; regard humain sur chaque écran nouveau ; à la clôture de chaque bloc, tests humains dans l'environnement de test. |
 | 3. Mise en production | une semaine | 11, 12, 13, 14 | Audit par une autre session ; verrous sur tout ce qui agit sur le monde ; clôture de la chaîne de déploiement vers la production avec retour arrière testé ; les trois manuels ; tests d'acceptation avec le propriétaire sur tous les flux. |
 | 4. Exploitation | tant que le système vit | 15, et la boucle (5 à 10) pour chaque évolution ; 11 périodique | Agent résident ; audit tous les un ou deux mois ; chaque nouveau changement entre par la boucle complète et sort par la chaîne de déploiement ; rétrospective à la clôture de chaque étape. |
+
+Ce tableau est celui du projet neuf. Quand le système existe déjà et qu'il n'est pas né avec la
+méthode, les phases 0 et 1 se remplacent par le tronçon de normalisation (trois semaines pour un
+petit système : lecture, ceinture, mesurer et ordonner) qui est dans le [chemin
+évolutif-correctif](EVOLUTIVO_CORRECTIVO.md) ; les phases 2, 3 et 4 sont les mêmes.
 
 Les durées sont pour un petit projet, de la taille du projet-guide du cours. Dans un projet avec
 des utilisateurs et des conséquences, la boucle s'allonge et les phases 1 et 3 restent presque les
@@ -379,7 +414,9 @@ le signale comme tel.
   méthode se dégrade en « programmer avec l'IA », et là, oui, le propriétaire finit par lire du
   code.
 - **Quand** : une seule fois, la première semaine, avant toute autre chose. Une heure de travail ;
-  elle économise des mois.
+  elle économise des mois. Si le système existe déjà, cet échelon se gravit dans sa version pour
+  les legacy (la station N0 du [chemin évolutif-correctif](EVOLUTIVO_CORRECTIVO.md)), avec quatre
+  critères de plus et X2 mesuré écran par écran.
 - **Entrées** : la demande du client, le domaine métier, les données, la technologie, les
   environnements disponibles, et qui va être le propriétaire.
 - **Artefact** : une fiche d'éligibilité d'une page, avec les critères notés et la décision : on y
@@ -927,7 +964,11 @@ pratique du cours.
    entier en corrigera plusieurs ; cela fait partie de l'échelon 15.
 5. **La première cohorte du cours**, qui va corriger les durées de la ligne de temps et les erreurs
    typiques, qui sont aujourd'hui écrites depuis mes projets et non depuis des élèves.
-6. **Ce qui N'EST PAS dans l'échelle et devrait y être** `[hypothèse]` : la gestion du coût des
+6. **Le chemin évolutif-correctif éprouvé de bout en bout sur un legacy réel.** Les huit stations
+   sont écrites à partir de ce que j'ai fait dans des systèmes d'autrui en mode diagnostic et à
+   partir des échelons réordonnés, pas à partir d'une normalisation complète exécutée avec ces
+   prompts.
+7. **Ce qui N'EST PAS dans l'échelle et devrait y être** `[hypothèse]` : la gestion du coût des
    tokens et des quotas comme budget explicite (aujourd'hui elle est réactive) ; la rotation des
    secrets comme routine et non comme incident ; et un critère pour savoir quand l'humain DOIT
    regarder le code, parce qu'aujourd'hui la réponse est « jamais » et je soupçonne qu'il y a des
@@ -986,6 +1027,13 @@ guichet d'entrée omnicanal et de campagnes.
 **AUD-*** — La série d'audits numérotés qui ont été faits dans Kikan en août, et qui ont généré des
 éléments en attente.
 
+**Autodécouverte** — Dans le chemin évolutif-correctif, la façon d'obtenir les intrants que
+personne n'a écrits : l'agent les récupère en lisant le système lui-même (le code, le schéma de la
+base, la configuration, les journaux, la documentation qu'il y a) et marque chaque affirmation
+avec sa source (`[code]`, `[base]`, `[configuration]`, `[documentation]`, `[inféré]`, et
+`[métier]` pour ce que le propriétaire a confirmé). Ce qui ne peut pas se lire se marque comme
+trou, cela ne se remplit pas.
+
 **Autorisateur (l')** — C'est ainsi que j'appelle le système de la Mutuelle qui reçoit les
 ordonnances et renvoie un verdict (approuvée, rejetée). Pour nous il fonctionne comme un
 « oracle » : la vérité contre laquelle on vérifie les compteurs.
@@ -1013,8 +1061,25 @@ les laisser dans des fichiers texte.
 explicite. Par exemple, le bouton de panique a un verrou dédié : on ne peut pas l'appuyer par
 accident.
 
+**Caractérisation (test de)** — Un test qui capture ce que le système fait aujourd'hui, exactement
+comme il le fait, défauts compris ; non pas ce qu'il devrait faire. Il naît au vert, et la preuve
+qu'il sert à quelque chose est qu'il passe au rouge quand on casse le flux délibérément (une
+mutation). C'est la batterie qui protège un legacy pendant qu'on le change. Le terme vient de la
+littérature sur le code hérité ; je l'emploie tel quel.
+
 **Cause racine** — Le motif réel d'un problème, par opposition au symptôme. Corriger le symptôme
 fait revenir le problème ; corriger la cause racine, non.
+
+**Ceinture de sécurité** — Dans le chemin évolutif-correctif, ce qui doit exister autour d'un
+legacy avant de lui changer une ligne : un environnement de test avec des données anonymisées, un
+déploiement qui se répète, les secrets hors du code et rotés, l'intégration continue qui fait
+tourner ce qu'il y a, et la batterie de caractérisation. C'est une porte dure, avec une seule
+exception écrite (l'urgence en production).
+
+**Chemin évolutif-correctif** — Le troisième cas d'utilisation de la méthode : prendre un système
+qui existe déjà et qui n'est pas né avec la méthode, le normaliser sans le réécrire (huit
+stations, N0 à N7) et seulement ensuite gravir l'échelle en mode correctif (réparer ce qui échoue)
+ou évolutif (ajouter ce qui manque). Il a une page à lui.
 
 **CI (intégration continue)** — Un service (ici, GitHub Actions) qui lance les tests
 automatiquement chaque fois qu'on pousse du code. CI/CD ajoute le déploiement automatique.
@@ -1047,6 +1112,11 @@ scénario du test de bout en bout.
 
 **Dette technique** — Ce qui reste mal fait « pour corriger plus tard ». La méthode l'interdit : ce
 qui casse se répare à la racine dans la même session.
+
+**Divergence** — Dans la lecture d'un système hérité, un point où le code, la base de données, la
+documentation et ce que le métier croit que le système fait ne coïncident pas. Elle se liste avec
+la preuve de chaque côté et c'est le propriétaire qui la décide, une par une : parfois le système
+a tort, et parfois le métier avait oublié une règle que le code se rappelait.
 
 **Doctrine** — Dans Forge, un document court qui fixe comment on fait quelque chose (comment on
 teste, comment on vérifie, comment on dimensionne). C'est la forme que prend la méthode à
@@ -1166,12 +1236,24 @@ montrer ses problèmes : quand il a déjà de vraies données et de vrais utilis
 **Mock (simuler)** — Remplacer une partie réelle du système par une simulation pendant un test.
 « Ne pas se mocker soi-même » signifie ne pas simuler précisément la partie qu'on veut tester.
 
+**Mutation (rouge par)** — La façon de démontrer qu'un test de caractérisation surveille quelque
+chose : casser le flux délibérément avec un changement temporaire, voir le test au rouge, annuler,
+voir le vert. Un test de caractérisation sans son rouge par mutation est un test qui passe parce
+qu'il ne regarde rien.
+
 **NAC3** — Le protocole de Forge qui fait que les écrans d'une application peuvent être pilotés par
 programme (chaque élément de l'interface a un identifiant et des méthodes). Il permet le test de
 bout en bout. Il n'est pas obligatoire pour la méthode : c'est le moyen, pas la condition.
 
 **Node (Node 22)** — L'environnement où tourne le JavaScript du serveur. « Node 22 fixé » veut dire
 qu'on a épinglé la version pour que tous les environnements utilisent la même.
+
+**Normalisation** — Amener un système qui n'est pas né avec la méthode à l'état que la méthode
+tient pour acquis au moment d'ouvrir la boucle, sans toucher à sa fonctionnalité. Cela se fait à
+deux vitesses : la ceinture de sécurité avant tout changement, et le reste de la dette **au fur et
+à mesure qu'on y touche**, module par module (les éléments en attente de normalisation marqués
+« se paie quand on y touche » entrent avec le bloc qui entre dans leur module). Jamais « une
+semaine de grand nettoyage ».
 
 **Mutuelle (la)** — C'est ainsi que j'appelle l'organisme de santé client du premier système en
 production (son nom réel reste réservé).
@@ -1245,6 +1327,11 @@ lancer deux fois sans rien casser.
 **SQ (standards de qualité)** — Le contrat de collaboration entre l'humain et l'agent dans Forge.
 
 **SQL** — Le langage des bases de données relationnelles.
+
+**Station (N0 à N7)** — Chacune des huit étapes du tronçon de normalisation du chemin
+évolutif-correctif. Je les appelle des stations et non des échelons pour qu'elles ne se confondent
+pas avec les seize de l'échelle : ce ne sont pas de nouveaux échelons, ce sont ceux du démarrage
+(et le 8, le 11 et le 12) dans un autre ordre et avec une autre entrée.
 
 **Tag** — Une étiquette sur un commit qui marque une version.
 

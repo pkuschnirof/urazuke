@@ -59,7 +59,10 @@ step.
    tutorial is enough. Nothing more is needed.
 3. **A project.** Ideally it is your own: a system you need or that a client asked you for, with
    users who are going to use it. If you do not have one, use the **guide project** I describe
-   below; it is designed to go through the sixteen steps without skipping any.
+   below; it is designed to go through the sixteen steps without skipping any. If what you have
+   is a system that already exists and has to be corrected or made to grow, this first part
+   teaches you the method on a new project, and [part 2 of the course](MANUAL_CURSO_EVOLUTIVO.md)
+   teaches you to normalize it first, with a second, inherited guide project.
 4. **Time.** The course has sixteen lessons, one per step, and a calendar that tells you in which
    week each thing falls (see "The course calendar"). A small project, end to end, is between six
    and eight weeks of part-time work.
@@ -1665,6 +1668,18 @@ If all sixteen say "yes", the system is ready to go live. If any says "no", you 
 step to climb again.
 
 ---
+
+## And then: part 2, the inherited project
+
+This first part teaches the method on an empty folder because that is the clearest way to learn
+it. But in real life you are almost never handed an empty folder: you are handed a system that
+already runs and you are asked to "fix this" or "add that".
+[Part 2 of the course](MANUAL_CURSO_EVOLUTIVO.md) takes the same practice on another timeline,
+with an application a nephew built them one summer and that nobody understands in full, and
+teaches the normalization stretch of the
+[evolutive-corrective path](EVOLUTIVO_CORRECTIVO.md): eight lessons to recover the inputs the
+method takes for granted, build the safety belt and order the debt, and two more to correct the
+first bug and build the first new functionality with the full method.
 
 ## Annex A — How to assess (for whoever teaches the course or self-assesses)
 

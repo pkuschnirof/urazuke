@@ -88,6 +88,36 @@ Die Methode ist Systemtechnik von jeher, angewandt mit der Strenge, die ein Baue
 nicht müde wird und dem man ohne Beleg nicht glauben kann. Die Narben sind der Beweis dafür, wo die
 Strenge nötig ist, nicht der Ursprung der Prinzipien.
 
+## Die drei Anwendungsfälle der Methode
+
+Bevor es weitergeht, eine Abzweigung, die in den ersten Versionen nicht da war und die ein Leser
+zu Recht von mir verlangt hat. Dieses Dokument beschreibt die Leiter mit Blick auf einen leeren
+Ordner: Schritt 0 entscheidet, ob das Projekt angegangen wird, Schritt 4 deployt das Skelett ohne
+Funktionalität, Schritt 5 öffnet den ersten Block. Es ist der klarste Fall zum Lernen, und es ist
+nicht der häufigste. Die Methode hat drei Anwendungsfälle, und es lohnt sich zu wissen, in welchem
+du steckst, bevor du den Agenten öffnest, denn es ändert sich, wo man einsteigt:
+
+1. **Neues Projekt.** Leerer Ordner und ein Eigentümer mit einer Anfrage. Man steigt bei Schritt 0
+   ein und erklimmt die sechzehn der Reihe nach. Das ist es, was dieses Dokument beschreibt, mit
+   seinen Verträgen und dem Kurshandbuch.
+2. **Evolutiv-korrektiv über einem System, das mit der Methode gemacht wurde.** Das System hat die
+   Leiter schon erklommen: es hat Vereinbarung, Karte, mit Beleg geschlossene offene Posten,
+   Batterie, Deployment und Handbücher. Man steigt bei Schritt 5 ein, indem man einen Block
+   öffnet, und folgt der Schleife; die 11 periodisch; die 15 beim Abschluss jeder Etappe. Es ist
+   die Phase 4 der Zeitlinie (Teil B).
+3. **Evolutiv-korrektiv über einem System, das ohne die Methode gemacht wurde.** Ein System, das
+   läuft, mit Nutzern, von einem anderen gemacht oder von einem selbst ohne Beleg, das korrigiert
+   oder weiterentwickelt werden muss. Man steigt weder bei der 0 noch bei der 5 ein: man steigt
+   über einen **Normalisierungsabschnitt** aus acht Stationen ein (N0 bis N7), der durch
+   Selbsterschließung und mit Quellenmarken alle Eingaben wiedergewinnt, die die Schritte des
+   Starts erzeugen, einen Sicherheitsgurt um das System legt, ohne es neu zu schreiben, und erst
+   danach die Schleife im korrektiven oder im evolutiven Modus öffnet. Dieser Weg steht auf einer
+   eigenen Seite, dem [evolutiv-korrektiven Weg](EVOLUTIVO_CORRECTIVO.md), und hat seinen eigenen
+   Teil des Kurses mit einem zweiten Leitprojekt.
+
+Was draußen bleibt, benannt: die technologische Migration ist kein Anwendungsfall der Methode; sie
+ist ein anderes Projekt, und sie fällt im Allgemeinen unter die Ausschlusskriterien von Schritt 0.
+
 ## Die KI unterbricht die Methode nicht: sie setzt sie fort
 
 Das ist die These, die alles eröffnet, und ich setze sie an den Anfang, weil sie den häufigsten
@@ -214,6 +244,11 @@ sich sind.
 | 2. Schleife | drei bis sechs Wochen, in Funktionsblöcken von ein bis zwei Wochen | 5, 6, 7, 8, 9, 10 mit jeder Änderung | Funktionale Entwicklung Block für Block; rote Tests; Ende-zu-Ende-Tests des gerade gebauten Flusses; menschlicher Blick auf jeden neuen Bildschirm; beim Abschluss jedes Blocks menschliche Tests in der Testumgebung. |
 | 3. Produktionsfreigabe | eine Woche | 11, 12, 13, 14 | Audit durch eine andere Sitzung; Sperren auf allem, was auf die Welt wirkt; Abschluss der Deployment-Kette in die Produktion mit getestetem Rollback; die drei Handbücher; Abnahmetests mit dem Eigentümer über alle Flüsse. |
 | 4. Betrieb | solange das System lebt | 15, und die Schleife (5 bis 10) für jede Weiterentwicklung; 11 periodisch | Residenter Agent; Audit alle ein bis zwei Monate; jede neue Änderung geht durch die vollständige Schleife hinein und durch die Deployment-Kette hinaus; Retrospektive beim Abschluss jeder Etappe. |
+
+Diese Tabelle ist die des neuen Projekts. Wenn das System schon existiert und nicht mit der
+Methode geboren wurde, werden die Phasen 0 und 1 durch den Normalisierungsabschnitt ersetzt (drei
+Wochen für ein kleines System: Lesen, Gurt, messen und ordnen), der im
+[evolutiv-korrektiven Weg](EVOLUTIVO_CORRECTIVO.md) steht; die Phasen 2, 3 und 4 sind dieselben.
 
 Die Zeiten gelten für ein kleines Projekt, von der Größe des Leitprojekts des Kurses. In einem
 Projekt mit Nutzern und Konsequenzen verlängert sich die Schleife, und die Phasen 1 und 3 bleiben
@@ -383,7 +418,9 @@ markiere ich sie.
   das nicht taugt, verkommt die Methode zu „mit KI programmieren“, und dann liest der Eigentümer
   tatsächlich Code.
 - **Wann**: ein einziges Mal, in der ersten Woche, vor allem anderen. Eine Stunde Arbeit; spart
-  Monate.
+  Monate. Wenn das System schon existiert, wird dieser Schritt in seiner Fassung für Altsysteme
+  erklommen (die Station N0 des [evolutiv-korrektiven Weges](EVOLUTIVO_CORRECTIVO.md)), mit vier
+  weiteren Kriterien und X2 Bildschirm für Bildschirm gemessen.
 - **Eingaben**: die Anfrage des Kunden, die Domäne des Geschäfts, die Daten, die Technologie, die
   verfügbaren Umgebungen, und wer der Eigentümer sein wird.
 - **Artefakt**: ein Eignungsblatt von einer Seite, mit den bewerteten Kriterien und der
@@ -944,7 +981,11 @@ die Praxis des Kurses.
    sie vollständig benutzt, wird mehrere korrigieren; das ist Teil von Schritt 15.
 5. **Die erste Kohorte des Kurses**, die die Zeiten der Zeitlinie und die typischen Fehler
    korrigieren wird, die heute aus meinen Projekten und nicht aus Teilnehmern geschrieben sind.
-6. **Was NICHT in der Leiter ist und sein sollte** `[Hypothese]`: das Management der Token- und
+6. **Der evolutiv-korrektive Weg, an einem echten Altsystem von Anfang bis Ende erprobt.** Die
+   acht Stationen sind aus dem geschrieben, was ich in fremden Systemen im Diagnosemodus getan
+   habe, und aus den umgeordneten Schritten, nicht aus einer vollständigen Normalisierung, die mit
+   diesen Prompts ausgeführt wurde.
+7. **Was NICHT in der Leiter ist und sein sollte** `[Hypothese]`: das Management der Token- und
    Kontingentkosten als explizites Budget (heute ist es reaktiv); die Rotation von Geheimnissen als
    Routine und nicht als Vorfall; und ein Kriterium dafür, wann der Mensch den Code DOCH ansehen
    muss, denn heute lautet die Antwort „nie“, und ich vermute, dass es punktuelle Momente gibt, in
@@ -1037,6 +1078,13 @@ ausgeführt.
 
 **Beförderung (UAT → PROD)** — Etwas kontrolliert von der Testumgebung in die Produktion bringen.
 
+**Charakterisierungstest** — Ein Test, der erfasst, was das System heute tut, genau so, wie es
+es tut, Defekte eingeschlossen; nicht das, was es tun sollte. Er wird grün geboren, und der
+Beweis, dass er taugt, ist, dass er rot wird, wenn man den Fluss absichtlich kaputt macht (eine
+Mutation).
+Er ist die Batterie, die ein Altsystem schützt, während es verändert wird. Der Begriff stammt aus
+der Literatur über geerbten Code; ich benutze ihn genau so.
+
 **CI (Continuous Integration)** — Ein Dienst (hier GitHub Actions), der die Tests automatisch
 ausführt, jedes Mal, wenn Code hochgeladen wird. CI/CD fügt das automatische Deployment hinzu.
 
@@ -1057,6 +1105,12 @@ Fehlern.
 **CVE** — Eine öffentliche Kennung einer bekannten Sicherheitsschwachstelle in einer
 Softwarekomponente.
 
+**Diskrepanz** — Beim Lesen eines geerbten Systems ein Punkt, an dem der Code, die Datenbank,
+die Dokumentation und das, was das Geschäft glaubt, dass das System tut, nicht übereinstimmen. Sie
+wird mit dem Beleg jeder Seite aufgelistet, und der Eigentümer entscheidet sie, eine nach der
+anderen: manchmal ist das System falsch, und manchmal hatte das Geschäft eine Regel vergessen, die
+der Code erinnert hat.
+
 **Doktrin** — In Forge ein kurzes Dokument, das festlegt, wie etwas getan wird (wie getestet, wie
 verifiziert, wie dimensioniert wird). Es ist die Form, die die Methode innerhalb des Werkzeugs
 annimmt.
@@ -1073,6 +1127,12 @@ begrenzten Berechtigungen.
 
 **End to end (E2E, Ende-zu-Ende)** — Das vollständige System testen, vom Bildschirm bis zur
 Datenbank, so wie ein Mensch es benutzen würde.
+
+**Evolutiv-korrektiver Weg** — Der dritte Anwendungsfall der Methode: ein System nehmen, das
+schon existiert und nicht mit der Methode geboren wurde, es normalisieren, ohne es neu zu
+schreiben (acht Stationen, N0 bis N7), und erst danach die Leiter im korrektiven Modus
+(reparieren, was fehlschlägt) oder im evolutiven Modus (hinzufügen, was fehlt) erklimmen. Er hat
+eine eigene Seite.
 
 **Fail-closed** — „Fällt geschlossen aus“: bei Zweifel oder Fehler handelt das System nicht. Das
 Gegenteil von „fail-open“, das bei Zweifel weitermacht.
@@ -1175,6 +1235,11 @@ will.
 **Monat drei** — Mein Ausdruck für den Moment, in dem ein schnell gebautes System seine Probleme
 zu zeigen beginnt: wenn es echte Daten und echte Nutzer hat.
 
+**Mutation (Rot durch)** — Die Art zu zeigen, dass ein Charakterisierungstest etwas bewacht:
+den Fluss absichtlich mit einer vorübergehenden Änderung kaputt machen, den Test rot sehen,
+zurücknehmen, das Grün sehen. Ein Charakterisierungstest ohne sein Rot durch Mutation ist ein
+Test, der besteht, weil er nichts ansieht.
+
 **NAC3** — Das Protokoll von Forge, das die Bildschirme einer Anwendung programmatisch bedienbar
 macht (jedes Element der Oberfläche hat eine Kennung und Methoden). Es ermöglicht das
 Ende-zu-Ende-Testen. Es ist für die Methode nicht verpflichtend: es ist das Mittel, nicht die
@@ -1190,6 +1255,13 @@ parallele Prozesse).
 
 **Node (Node 22)** — Die Umgebung, in der serverseitiges JavaScript läuft. „Node 22 fixiert“
 bedeutet, dass die Version festgenagelt wurde, damit alle Umgebungen dieselbe verwenden.
+
+**Normalisierung** — Ein System, das nicht mit der Methode geboren wurde, in den Zustand
+bringen, den die Methode beim Öffnen der Schleife voraussetzt, ohne seine Funktionalität
+anzufassen. Es geschieht in zwei Geschwindigkeiten: der Sicherheitsgurt vor jeder Änderung, und
+der Rest der Schuld **beim Anfassen** jedes Moduls (die mit „wird beim Anfassen bezahlt“
+markierten Normalisierungsposten treten mit dem Block ein, der in ihr Modul eintritt). Niemals
+„eine Woche allgemeines Aufräumen“.
 
 **Obergrenze zurren** — Ein Limit (ein Budget, ein erlaubtes Maximum) senken, bis es knapp über
 dem Gemessenen liegt, damit jede Verschlechterung einen Test fehlschlagen lässt.
@@ -1237,12 +1309,25 @@ kann zweimal laufen, ohne etwas zu brechen.
 
 **Sämaschine (Seeder)** — Ein Skript, das Testdaten in eine Umgebung lädt.
 
+**Selbsterschließung** — Auf dem evolutiv-korrektiven Weg die Art, die Eingaben zu beschaffen,
+die niemand geschrieben hat: der Agent gewinnt sie zurück, indem er das System selbst liest (den
+Code, das Schema der Datenbank, die Konfiguration, die Logs, die Dokumentation, die es gibt), und
+markiert jede Behauptung mit ihrer Quelle (`[Code]`, `[Datenbank]`, `[Konfiguration]`,
+`[Dokumentation]`, `[erschlossen]`, und `[Geschäft]` für das, was der Eigentümer bestätigt hat).
+Was sich nicht lesen lässt, wird als Lücke markiert und nicht gefüllt.
+
 **Semantischer Baum** — Die Karte des Systems in Baumform: das System an der Wurzel; darunter die
 Domänen; darunter Akteure, Prozesse, Entitäten mit ihren Zuständen, Bildschirme und Integrationen;
 und an jedem Knoten hängen die offenen Posten und die Entscheidungen, die ihn berühren. Der Agent
 baut ihn, du korrigierst ihn, und er ist das, was der Agent liest, bevor er Code anfasst. Siehe B.5.
 
 **Shift left** — Das Testen im Entwicklungsprozess nach vorn verlagern.
+
+**Sicherheitsgurt** — Auf dem evolutiv-korrektiven Weg das, was um ein Altsystem herum
+existieren muss, bevor ihm eine Zeile geändert wird: eine Testumgebung mit anonymisierten Daten,
+ein Deployment, das sich wiederholt, die Geheimnisse außerhalb des Codes und rotiert, die
+Continuous Integration, die laufen lässt, was es gibt, und die Charakterisierungsbatterie. Es ist
+ein hartes Tor, mit einer einzigen schriftlichen Ausnahme (dem Notfall in der Produktion).
 
 **Skelett (Scaffold)** — Die anfängliche Struktur eines Projekts, ohne Funktionalität: es startet,
 hat leere Tests, wird deployt.
@@ -1256,6 +1341,11 @@ gedrückt werden.
 **SQ (Qualitätsstandards)** — Die Arbeitsvereinbarung zwischen Mensch und Agent in Forge.
 
 **SQL** — Die Sprache der relationalen Datenbanken.
+
+**Station (N0 bis N7)** — Jeder der acht Schritte des Normalisierungsabschnitts des
+evolutiv-korrektiven Weges. Ich nenne sie Stationen und nicht Schritte, damit sie nicht mit den
+sechzehn der Leiter verwechselt werden: es sind keine neuen Schritte, es sind die des Starts (und
+die 8, die 11 und die 12) in anderer Reihenfolge und mit anderem Eingang.
 
 **Tafel (das Board)** — Das geteilte Board in Forge, auf dem der Agent Berichte hinterlässt,
 damit ich sie lese.

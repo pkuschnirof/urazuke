@@ -27,10 +27,12 @@ the evidence, and that is why the evidence has to prove itself.
 | File | What it is |
 |---|---|
 | `ESCALERA_METODOLOGICA.md` | The main document: the thesis, where the method comes from, the timeline (when each step is climbed and what happens in between: infrastructure, CI/CD, requirements intake, development, end-to-end tests, the human look, human testing), the sixteen steps with their card, what is still missing, and the glossary. |
+| `EVOLUTIVO_CORRECTIVO.md` | The path for a system that already exists and was not born with the method: the three use cases of the method, the principle of normalizing without rewriting, the eight normalization stations (N0 to N7) with their contracts and prompts, the loop in corrective and evolutive mode, and the exit list of the stretch. |
 | `REFERENCIAS.md` | The real cases behind the method, numbered ("Ref. N"), with date and evidence, so that the procedures stay clean and the detail is one click away. Includes the chronologies of the three systems and the table of failures by step. |
 | `peldanos/peldano-NN-*.md` | The contract of each step: when, required context, the prompts in English with their explanation and, before each one, the "Before sending the prompt" block with the files you have to build yourself and their content; the expected result, the completeness check without reading code, the warning signs. |
 | `peldanos/README.md` | The index of the contracts. |
 | `MANUAL_CURSO.md` | The course: calendar, sixteen lessons with hands-on tasks and prompts, the guide project ("Turnera"), the go-live checklist. |
+| `MANUAL_CURSO_EVOLUTIVO.md` | Part 2 of the course: the inherited guide project ("Turnera inherited"), ten lessons (N0 to N7, R1 and R2) to normalize a legacy system and then correct it and evolve it. |
 | `../DECISIONES.md` | The project's decisions, with date and exact words. The method applies to itself. Spanish only. |
 | `../PLAN_CURSO_MENTORING.md` | The draft of the commercial plan for the course and the mentoring. Spanish only. |
 | `../html/en/` | The HTML versions for comfortable reading, with the button that translates each prompt. Not edited by hand. |
@@ -41,7 +43,9 @@ the evidence, and that is why the evidence has to prove itself.
 
 Start with `ESCALERA_METODOLOGICA.md`, or with its HTML in `../html/en/`. If you run into an odd
 word, the glossary is at the end. Then the contract of whichever step interests you, and the course
-manual if you want to apply it.
+manual if you want to apply it. If what you have is not an empty folder but a system that already
+runs and has to be corrected or made to grow, the path is `EVOLUTIVO_CORRECTIVO.md` and part 2 of
+the manual.
 
 ## How to regenerate the HTML
 
@@ -49,20 +53,23 @@ manual if you want to apply it.
 node build/build.mjs
 ```
 
-It verifies that the English prompts are identical in the eight versions and produces, for each
-language, `ESCALERA_METODOLOGICA.html`, `REFERENCIAS.html`, `MANUAL_CURSO.html` and
-`CONTRATOS_DE_PELDANO.html` (Spanish in `docs/html/`, the others in `docs/html/<language>/`).
+It verifies that the English prompts are identical in the eight versions (the ones in the
+contracts and the ones on the evolutive-corrective path) and produces, for each language,
+`ESCALERA_METODOLOGICA.html`, `REFERENCIAS.html`, `EVOLUTIVO_CORRECTIVO.html`,
+`MANUAL_CURSO.html`, `MANUAL_CURSO_EVOLUTIVO.html` and `CONTRATOS_DE_PELDANO.html` (Spanish in
+`docs/html/`, the others in `docs/html/<language>/`).
 
 ## Languages
 
 Spanish is the source of truth. The documentation exists in the eight NAC3 languages: Spanish
 (`docs/`), English (`docs/en/`), Portuguese (`docs/pt/`), French (`docs/fr/`), German (`docs/de/`),
 Italian (`docs/it/`), Japanese (`docs/ja/`) and Chinese (`docs/zh/`). Each folder has its README,
-the main document, the references, the sixteen contracts and the course manual. The prompts for the
-model are a single piece in English, identical in every version, with their translation into the
-document's language alongside; `node build/prompts.mjs --check` fails if a translation altered
-them. The name is never translated; the subtitle is: *the evidence method*, *o método da
-evidência*, *la méthode de la preuve*, *die Nachweis-Methode*, *il metodo del riscontro*,
+the main document, the references, the sixteen contracts, the evolutive-corrective path and the
+two parts of the course manual. The prompts for the model are a single piece in English,
+identical in every version, with their translation into the document's language alongside;
+`node build/prompts.mjs --check` fails if a translation altered them. The name is never
+translated; the subtitle is: *the evidence method*, *o método da evidência*, *la méthode de
+la preuve*, *die Nachweis-Methode*, *il metodo del riscontro*,
 裏付けの方法, 验证方法.
 
 The decisions (`docs/DECISIONES.md`) and the course plan stay in Spanish only because they quote

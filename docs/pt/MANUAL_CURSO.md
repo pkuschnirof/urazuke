@@ -57,7 +57,10 @@ evidência, e de saber exatamente que evidência pedir a ele em cada passo.
    basta. Não precisa de mais.
 3. **Um projeto.** O ideal é que seja seu: um sistema de que você precisa ou que um cliente lhe
    pediu, com usuários que vão usá-lo. Se não tem um, use o **projeto-guia** que descrevo abaixo;
-   está pensado para passar pelos dezesseis degraus sem pular nenhum.
+   está pensado para passar pelos dezesseis degraus sem pular nenhum. Se o que você tem é um
+   sistema que já existe e é preciso corrigir ou fazer crescer, esta primeira parte lhe ensina o
+   método sobre um projeto novo, e a [parte 2 do curso](MANUAL_CURSO_EVOLUTIVO.md) lhe ensina a
+   normalizá-lo primeiro, com um segundo projeto-guia herdado.
 4. **Tempo.** O curso tem dezesseis lições, uma por degrau, e um calendário que diz em que semana
    cai cada coisa (ver "O calendário do curso"). Um projeto pequeno, de ponta a ponta, são entre
    seis e oito semanas de trabalho parcial.
@@ -1916,6 +1919,17 @@ Se as dezesseis dão "sim", o sistema está pronto para implantar. Se alguma dá
 que degrau voltar a subir.
 
 ---
+
+## E depois: a parte 2, o projeto herdado
+
+Esta primeira parte ensina o método sobre uma pasta vazia porque é a forma mais clara de
+aprendê-lo. Mas na vida real quase nunca lhe dão uma pasta vazia: dão-lhe um sistema que já roda e
+lhe pedem "conserte isto" ou "acrescente aquilo". A [parte 2 do curso](MANUAL_CURSO_EVOLUTIVO.md)
+pega o mesmo consultório em outra linha do tempo, com uma aplicação que um sobrinho lhes fez num
+verão e que ninguém entende inteira, e ensina o trecho de normalização do
+[caminho evolutivo-corretivo](EVOLUTIVO_CORRECTIVO.md): oito lições para recuperar os insumos que
+o método dá por supostos, montar o cinto de segurança e ordenar a dívida, e mais duas para
+corrigir o primeiro bug e construir a primeira funcionalidade nova com o método completo.
 
 ## Anexo A — Como avaliar (para quem dá o curso ou se autoavalia)
 
