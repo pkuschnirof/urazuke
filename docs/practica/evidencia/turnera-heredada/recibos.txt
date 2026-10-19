@@ -1,0 +1,75 @@
+声  Recibos de evidencia -- turnera-heredada
+  12 recibos: 3 rojo probado, 3 verde, 3 regresion, 2 e2e, 1 calidad, 0 mutacion
+
+RCP-001 red_proof for PND-029 -- OK
+  command : npx vitest run tests/recordatorio-reprogramado.test.js -t PND-029
+  ref     : 90d53bb (base 90d53bb) [dirty tree]
+  exit    : 1  counts: 2 failed, 1 files failed
+  when    : 2026-10-19T17:45:49.768Z (1933 ms)
+
+RCP-002 red_proof for PND-030 -- OK
+  command : npx vitest run tests/recordatorio-reprogramado.test.js -t PND-030
+  ref     : 90d53bb (base 90d53bb) [dirty tree]
+  exit    : 1  counts: 1 failed, 1 files failed
+  when    : 2026-10-19T17:45:54.504Z (1835 ms)
+
+RCP-003 red_proof for PND-028 -- OK
+  command : npx vitest run tests/backup.test.js
+  ref     : 90d53bb (base 90d53bb) [dirty tree]
+  exit    : 1  counts: 1 files failed
+  when    : 2026-10-19T17:45:59.125Z (1642 ms)
+
+RCP-004 green for PND-029 -- OK
+  command : npx vitest run tests/recordatorio-reprogramado.test.js -t PND-029
+  ref     : a6f06d9
+  exit    : 0  counts: 0 failed, 2 passed
+  when    : 2026-10-19T17:48:21.105Z (1926 ms)
+
+RCP-005 green for PND-030 -- OK
+  command : npx vitest run tests/recordatorio-reprogramado.test.js -t PND-030
+  ref     : a6f06d9
+  exit    : 0  counts: 0 failed, 1 passed
+  when    : 2026-10-19T17:48:25.599Z (1718 ms)
+
+RCP-006 green for PND-028 -- OK
+  command : npx vitest run tests/backup.test.js
+  ref     : a6f06d9
+  exit    : 0  counts: 0 failed, 2 passed
+  when    : 2026-10-19T17:48:30.098Z (1953 ms)
+
+RCP-007 regression for PND-028 -- OK
+  command : npm test
+  ref     : a6f06d9
+  exit    : 0  counts: 0 failed, 41 passed
+  when    : 2026-10-19T17:48:35.951Z (2305 ms)
+
+RCP-008 regression for PND-029 -- OK
+  command : npm test
+  ref     : a6f06d9
+  exit    : 0  counts: 0 failed, 41 passed
+  when    : 2026-10-19T17:48:42.255Z (2214 ms)
+
+RCP-009 regression for PND-030 -- OK
+  command : npm test
+  ref     : a6f06d9
+  exit    : 0  counts: 0 failed, 41 passed
+  when    : 2026-10-19T17:48:47.836Z (2156 ms)
+
+RCP-010 e2e for PND-029 -- OK
+  command : npx vitest run tests/recordatorio-reprogramado.test.js
+  ref     : a6f06d9
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T17:48:53.339Z (2066 ms)
+
+RCP-011 e2e for PND-030 -- OK
+  command : npx vitest run tests/recordatorio-reprogramado.test.js
+  ref     : a6f06d9
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T17:48:58.442Z (2014 ms)
+
+RCP-012 quality -- OK
+  command : yf urazuke quality check
+  ref     : working-tree
+  exit    : 0  counts: 0 failed
+  when    : 2026-10-19T17:49:55.051Z (28 ms)
+

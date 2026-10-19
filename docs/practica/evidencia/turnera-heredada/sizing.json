@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "project_slug": "turnera-heredada",
+  "updated_at": "2026-10-19T17:38:56.088Z",
+  "input": {
+    "entities": [
+      {
+        "name": "turnos",
+        "count": 10000,
+        "events_per_year": 1,
+        "rows_per_event": 1
+      }
+    ],
+    "bytes_per_row": 400,
+    "trace_share": 0.2,
+    "retention": {
+      "business_days": 1825,
+      "trace_days": 90
+    },
+    "peak_concurrency": 5,
+    "hardware": {
+      "ram_mb": 8192,
+      "heap_cap_mb": 2048,
+      "disk_gb": 256,
+      "vcpus": 4
+    },
+    "horizon_years": 3
+  },
+  "choices": {
+    "state_residency": "sql-async",
+    "pagination": "sql-keyset",
+    "retention": "retention-by-age",
+    "write_concurrency": "explicit-transactions"
+  },
+  "revisions": [
+    {
+      "at": "2026-10-19T17:38:56.088Z",
+      "by": "agente (N6), con los numeros de la duena",
+      "note": "Turnera heredada: 40 turnos/dia x 250 dias [duena]; una fila por turno en SQLite (node:sqlite) [codigo]; sin base de produccion todavia: medido sobre base de prueba sembrada. Lo que no sostiene: el contador global TOTAL_ENVIADOS y el marcado de recordatorios sin idempotencia.",
+      "input": {
+        "entities": [
+          {
+            "name": "turnos",
+            "count": 10000,
+            "events_per_year": 1,
+            "rows_per_event": 1
+          }
+        ],
+        "bytes_per_row": 400,
+        "trace_share": 0.2,
+        "retention": {
+          "business_days": 1825,
+          "trace_days": 90
+        },
+        "peak_concurrency": 5,
+        "hardware": {
+          "ram_mb": 8192,
+          "heap_cap_mb": 2048,
+          "disk_gb": 256,
+          "vcpus": 4
+        },
+        "horizon_years": 3
+      },
+      "choices": {
+        "state_residency": "sql-async",
+        "pagination": "sql-keyset",
+        "retention": "retention-by-age",
+        "write_concurrency": "explicit-transactions"
+      }
+    }
+  ]
+}

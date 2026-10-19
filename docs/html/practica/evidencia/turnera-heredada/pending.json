@@ -1,0 +1,1053 @@
+{
+  "version": 1,
+  "project_slug": "turnera-heredada",
+  "next_id": 33,
+  "items": [
+    {
+      "id": "PND-001",
+      "title": "[WFL-001] N0 Elegibilidad de un sistema existente: los prerrequisitos que un modelo puede verificar haciendo",
+      "category": "autopilot",
+      "priority": 20,
+      "created_at": 1792429963117,
+      "updated_at": 1792431746665,
+      "body": "Siete prerrequisitos verificados haciendo; cada rojo es un proyecto previo. Prompt y verificacion: yujin.urazuke.step {station: 0}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-normalizacion",
+        "order": 0,
+        "urazuke": {
+          "station": 0
+        }
+      },
+      "closed_at": 1792431746665,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792431746665,
+          "note": "docs/ELIGIBILITY.md con los siete prerrequisitos verificados haciendo (servidor levantado, API respondida) y docs/FUNCTIONALITY_RECOVERED.md desde el codigo",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792431746666,
+        "summary": "docs/ELIGIBILITY.md con los siete prerrequisitos verificados haciendo (servidor levantado, API respondida) y docs/FUNCTIONALITY_RECOVERED.md desde el codigo"
+      }
+    },
+    {
+      "id": "PND-002",
+      "title": "[WFL-001] N1 El contrato de convivencia para un legado",
+      "category": "autopilot",
+      "priority": 21,
+      "created_at": 1792429963120,
+      "updated_at": 1792431749082,
+      "body": "Las reglas del metodo mas la regla de no reescribir. Prompt y verificacion: yujin.urazuke.step {station: 1}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-normalizacion",
+        "order": 1,
+        "urazuke": {
+          "station": 1
+        }
+      },
+      "closed_at": 1792431749082,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792431749082,
+          "note": "docs/WORKING_AGREEMENT.md: seis reglas + las cinco del legado (no se reescribe), rutina del rojo y reporte honesto",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792431749082,
+        "summary": "docs/WORKING_AGREEMENT.md: seis reglas + las cinco del legado (no se reescribe), rutina del rojo y reporte honesto"
+      }
+    },
+    {
+      "id": "PND-003",
+      "title": "[WFL-001] N2 La lectura del sistema: el mapa recuperado y las discrepancias",
+      "category": "autopilot",
+      "priority": 22,
+      "created_at": 1792429963123,
+      "updated_at": 1792431751393,
+      "body": "Relevamiento, proyecto y arbol desde el codigo con marcas de fuente; la lista de discrepancias. Prompt y verificacion: yujin.urazuke.step {station: 2}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-normalizacion",
+        "order": 2,
+        "urazuke": {
+          "station": 2
+        }
+      },
+      "closed_at": 1792431751393,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792431751393,
+          "note": "PROJECT.md, SEMANTIC_TREE.md, STATUS.md y DISCREPANCIES.md con 19 discrepancias (D-01 reprogramado re-avisado, D-02 marcado no idempotente, ...), todas pendientes de la duena",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792431751394,
+        "summary": "PROJECT.md, SEMANTIC_TREE.md, STATUS.md y DISCREPANCIES.md con 19 discrepancias (D-01 reprogramado re-avisado, D-02 marcado no idempotente, ...), todas pendientes de la duena"
+      }
+    },
+    {
+      "id": "PND-004",
+      "title": "[WFL-001] N3 La auditoria como inventario de la deuda",
+      "category": "autopilot",
+      "priority": 23,
+      "created_at": 1792429963125,
+      "updated_at": 1792431753988,
+      "body": "Toda la deuda, con su marca: bloquea, se paga al tocar, puede esperar. Prompt y verificacion: yujin.urazuke.step {station: 3}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-normalizacion",
+        "order": 3,
+        "urazuke": {
+          "station": 3
+        }
+      },
+      "closed_at": 1792431753988,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792431753988,
+          "note": "docs/AUDIT_2026-10-19.md: 20 hallazgos con marca BLOQUEA / SE PAGA AL TOCAR / PUEDE ESPERAR; A-01 sin respaldo bloquea",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792431753988,
+        "summary": "docs/AUDIT_2026-10-19.md: 20 hallazgos con marca BLOQUEA / SE PAGA AL TOCAR / PUEDE ESPERAR; A-01 sin respaldo bloquea"
+      }
+    },
+    {
+      "id": "PND-005",
+      "title": "[WFL-001] N4 El cinturon de seguridad",
+      "category": "autopilot",
+      "priority": 24,
+      "created_at": 1792429963129,
+      "updated_at": 1792431756583,
+      "body": "Tests de caracterizacion con su rojo por mutacion, la cadena y los entornos. Compuerta dura. Prompt y verificacion: yujin.urazuke.step {station: 4}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-normalizacion",
+        "order": 4,
+        "urazuke": {
+          "station": 4
+        }
+      },
+      "closed_at": 1792431756583,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792431756583,
+          "note": "Cinturon: 30 tests de caracterizacion con su rojo por mutacion (2 y 1 fallando), CI en .github/workflows/ci.yml, GATES.md, DEPLOYMENT.md, ENVIRONMENTS_SURVEY.md",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792431756583,
+        "summary": "Cinturon: 30 tests de caracterizacion con su rojo por mutacion (2 y 1 fallando), CI en .github/workflows/ci.yml, GATES.md, DEPLOYMENT.md, ENVIRONMENTS_SURVEY.md"
+      }
+    },
+    {
+      "id": "PND-006",
+      "title": "[WFL-001] N5 Candados y mapa productor-consumidor desde el codigo",
+      "category": "autopilot",
+      "priority": 25,
+      "created_at": 1792429963131,
+      "updated_at": 1792431759254,
+      "body": "Las acciones con consecuencia y las estructuras compartidas, leidas del sistema. Prompt y verificacion: yujin.urazuke.step {station: 5}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-normalizacion",
+        "order": 5,
+        "urazuke": {
+          "station": 5
+        }
+      },
+      "closed_at": 1792431759254,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792431759254,
+          "note": "docs/LOCKS.md (candados ahora y al tocar) y docs/PRODUCER_CONSUMER_MAP.md leidos del codigo; CONSEQUENTIAL_ACTIONS_SURVEY.md",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792431759254,
+        "summary": "docs/LOCKS.md (candados ahora y al tocar) y docs/PRODUCER_CONSUMER_MAP.md leidos del codigo; CONSEQUENTIAL_ACTIONS_SURVEY.md"
+      }
+    },
+    {
+      "id": "PND-007",
+      "title": "[WFL-001] N6 Dimensionar con numeros reales",
+      "category": "autopilot",
+      "priority": 26,
+      "created_at": 1792429963134,
+      "updated_at": 1792431761780,
+      "body": "La volumetria medida en la base real, y la persistencia contrastada con su envoltura. Prompt y verificacion: yujin.urazuke.step {station: 6}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-normalizacion",
+        "order": 6,
+        "urazuke": {
+          "station": 6
+        }
+      },
+      "closed_at": 1792431761780,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792431761780,
+          "note": "docs/VOLUME_SURVEY.md medido sobre base de prueba con scripts/meter-volumen.mjs (test contra caso conocido), docs/SIZING.md; G9 registrado y admisible",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792431761780,
+        "summary": "docs/VOLUME_SURVEY.md medido sobre base de prueba con scripts/meter-volumen.mjs (test contra caso conocido), docs/SIZING.md; G9 registrado y admisible"
+      }
+    },
+    {
+      "id": "PND-008",
+      "title": "[WFL-001] N7 El backlog de normalizacion, emparejado con el pedido del cliente",
+      "category": "autopilot",
+      "priority": 27,
+      "created_at": 1792429963138,
+      "updated_at": 1792431810685,
+      "body": "La deuda que bloquea y el pedido del cliente, en un solo plan ordenado. Prompt y verificacion: yujin.urazuke.step {station: 7}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-normalizacion",
+        "order": 7,
+        "urazuke": {
+          "station": 7
+        }
+      },
+      "closed_at": 1792431810685,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792431810685,
+          "note": "docs/blocks/BLOCK_01_REQUEST.md (el pedido correctivo de la duena) + backlog: PND-028 respaldo (BLOQUEA), PND-029 R1 correctivo, PND-030 idempotencia (se paga al tocar), PND-031 clarify D-14; cada uno con especificacion",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792431810685,
+        "summary": "docs/blocks/BLOCK_01_REQUEST.md (el pedido correctivo de la duena) + backlog: PND-028 respaldo (BLOQUEA), PND-029 R1 correctivo, PND-030 idempotencia (se paga al tocar), PND-031 clarify D-14; cada uno con especificacion"
+      }
+    },
+    {
+      "id": "PND-009",
+      "title": "[WFL-001] 05 El plan son los pendientes",
+      "category": "autopilot",
+      "priority": 28,
+      "created_at": 1792429963140,
+      "updated_at": 1792431813063,
+      "body": "Cada pendiente lleva su especificacion completa: criterios de aceptacion y como se verifica. Prompt y verificacion: yujin.urazuke.step {num: 5}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-bucle",
+        "order": 8,
+        "urazuke": {
+          "step": 5
+        }
+      },
+      "closed_at": 1792431813063,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792431813063,
+          "note": "El plan son los cuatro pendientes con criterios de aceptacion, como se verifica y flujo; orden: lo que bloquea primero",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792431813063,
+        "summary": "El plan son los cuatro pendientes con criterios de aceptacion, como se verifica y flujo; orden: lo que bloquea primero"
+      }
+    },
+    {
+      "id": "PND-010",
+      "title": "[WFL-001] 06 Las decisiones se escriben junto al codigo",
+      "category": "autopilot",
+      "priority": 29,
+      "created_at": 1792429963143,
+      "updated_at": 1792431856884,
+      "body": "Cada decision con dueno, fecha, la frase textual de origen y donde se aplica. Prompt y verificacion: yujin.urazuke.step {num: 6}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-bucle",
+        "order": 9,
+        "urazuke": {
+          "step": 6
+        }
+      },
+      "closed_at": 1792431856884,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792431856884,
+          "note": "docs/DECISIONS.md D-001..D-007: no se reescribe, el comportamiento actual es la especificacion, D-003 un solo recordatorio al reprogramado (decision de la duena), idempotencia en BD, respaldo con VACUUM INTO",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792431856885,
+        "summary": "docs/DECISIONS.md D-001..D-007: no se reescribe, el comportamiento actual es la especificacion, D-003 un solo recordatorio al reprogramado (decision de la duena), idempotencia en BD, respaldo con VACUUM INTO"
+      }
+    },
+    {
+      "id": "PND-011",
+      "title": "[WFL-001] 07 Medir antes de construir, con un instrumento que tambien se verifica",
+      "category": "autopilot",
+      "priority": 30,
+      "created_at": 1792429963145,
+      "updated_at": 1792432185731,
+      "body": "Un numero que alimenta una decision se mide con un programa que tiene su propio test. Prompt y verificacion: yujin.urazuke.step {num: 7}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-bucle",
+        "order": 10,
+        "urazuke": {
+          "step": 7
+        }
+      },
+      "closed_at": 1792432185731,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432185731,
+          "note": "scripts/meter-volumen.mjs con test contra caso conocido (N6); numeros en docs/VOLUME_SURVEY.md con el comando",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432185731,
+        "summary": "scripts/meter-volumen.mjs con test contra caso conocido (N6); numeros en docs/VOLUME_SURVEY.md con el comando"
+      }
+    },
+    {
+      "id": "PND-012",
+      "title": "[WFL-001] 08 Tests como candados, probados en rojo",
+      "category": "autopilot",
+      "priority": 31,
+      "created_at": 1792429963147,
+      "updated_at": 1792432188795,
+      "body": "El rojo contra el codigo anterior como recibo, el verde, la regresion y la prueba de punta a punta. Prompt y verificacion: yujin.urazuke.step {num: 8}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-bucle",
+        "order": 11,
+        "urazuke": {
+          "step": 8
+        }
+      },
+      "closed_at": 1792432188795,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432188795,
+          "note": "Rutina del rojo en el contrato; 3 rojos de comportamiento contra 90d53bb, 3 verdes, 3 regresiones, 2 e2e por API (RCP-001..011)",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432188795,
+        "summary": "Rutina del rojo en el contrato; 3 rojos de comportamiento contra 90d53bb, 3 verdes, 3 regresiones, 2 e2e por API (RCP-001..011)"
+      }
+    },
+    {
+      "id": "PND-013",
+      "title": "[WFL-001] 09 Calidad del codigo verificada por maquina, con compuerta",
+      "category": "autopilot",
+      "priority": 32,
+      "created_at": 1792429963149,
+      "updated_at": 1792432318279,
+      "body": "Linter, formateador, limites de tamano y complejidad, duplicacion, codigo muerto, cobertura con trinquete. Prompt y verificacion: yujin.urazuke.step {num: 9}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-bucle",
+        "order": 12,
+        "urazuke": {
+          "step": 9
+        }
+      },
+      "closed_at": 1792432318279,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432318279,
+          "note": "yf urazuke quality init/check: 8 archivos, 0 violaciones, trinquete en .forge/quality-ratchet.json, docs/CODE_QUALITY.md; la compuerta escrita en GATES.md",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432318279,
+        "summary": "yf urazuke quality init/check: 8 archivos, 0 violaciones, trinquete en .forge/quality-ratchet.json, docs/CODE_QUALITY.md; la compuerta escrita en GATES.md"
+      }
+    },
+    {
+      "id": "PND-014",
+      "title": "[WFL-001] 10 Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas",
+      "category": "autopilot",
+      "priority": 33,
+      "created_at": 1792429963152,
+      "updated_at": 1792432320675,
+      "body": "Cada pendiente deja su caso de prueba manual; cada fallo humano vuelve como pendiente. Prompt y verificacion: yujin.urazuke.step {num: 10}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-bucle",
+        "order": 13,
+        "urazuke": {
+          "step": 10
+        }
+      },
+      "closed_at": 1792432320675,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432320675,
+          "note": "docs/MANUAL_TESTS.md: M-01..M-10 para la recepcionista y la duena (R1, respaldo y regresion a ojo)",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432320675,
+        "summary": "docs/MANUAL_TESTS.md: M-01..M-10 para la recepcionista y la duena (R1, respaldo y regresion a ojo)"
+      }
+    },
+    {
+      "id": "PND-015",
+      "title": "[WFL-001] 11 Simetria entre productor y consumidor, y el registro de anti-patrones",
+      "category": "autopilot",
+      "priority": 34,
+      "created_at": 1792429963155,
+      "updated_at": 1792432323098,
+      "body": "Nadie cambia una estructura compartida sin tocar a todos sus consumidores; cada golpe queda escrito. Prompt y verificacion: yujin.urazuke.step {num: 11}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-bucle",
+        "order": 14,
+        "urazuke": {
+          "step": 11
+        }
+      },
+      "closed_at": 1792432323098,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432323098,
+          "note": "docs/PRODUCER_CONSUMER_MAP.md desde el codigo (N5) y docs/GOTCHAS.md con cinco golpes, uno de ellos de Forge",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432323098,
+        "summary": "docs/PRODUCER_CONSUMER_MAP.md desde el codigo (N5) y docs/GOTCHAS.md con cinco golpes, uno de ellos de Forge"
+      }
+    },
+    {
+      "id": "PND-016",
+      "title": "[WFL-001] 12 Verificacion honesta y reporte proporcional",
+      "category": "autopilot",
+      "priority": 35,
+      "created_at": 1792429963157,
+      "updated_at": 1792432325523,
+      "body": "Cada reporte separa lo verificado, lo creido y el punto ciego, y ocupa lo que la evidencia da. Prompt y verificacion: yujin.urazuke.step {num: 12}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-bucle",
+        "order": 15,
+        "urazuke": {
+          "step": 12
+        }
+      },
+      "closed_at": 1792432325523,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432325523,
+          "note": "Tres cierres con reporte honesto armado por Forge desde los recibos (PND-028/029/030)",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432325523,
+        "summary": "Tres cierres con reporte honesto armado por Forge desde los recibos (PND-028/029/030)"
+      }
+    },
+    {
+      "id": "PND-017",
+      "title": "[WFL-001] 13 La auditoria periodica como insumo del plan",
+      "category": "autopilot",
+      "priority": 36,
+      "created_at": 1792429963159,
+      "updated_at": 1792432858094,
+      "body": "Otra sesion, idealmente otro modelo, revisa todo y sus hallazgos entran al plan como pendientes. Prompt y verificacion: yujin.urazuke.step {num: 13}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-salida",
+        "order": 16,
+        "urazuke": {
+          "step": 13
+        }
+      },
+      "closed_at": 1792432858094,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432858094,
+          "note": "La auditoria de N3 (docs/AUDIT_2026-10-19.md) vale como insumo del plan: 20 hallazgos, los que bloquean y se pagan al tocar ya en el bloque 1",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432858094,
+        "summary": "La auditoria de N3 (docs/AUDIT_2026-10-19.md) vale como insumo del plan: 20 hallazgos, los que bloquean y se pagan al tocar ya en el bloque 1"
+      }
+    },
+    {
+      "id": "PND-018",
+      "title": "[WFL-001] 14 Fail-closed, candados y cero dano silencioso",
+      "category": "autopilot",
+      "priority": 37,
+      "created_at": 1792429963161,
+      "updated_at": 1792432860490,
+      "body": "Cada accion con consecuencia real tiene su candado; ante la duda, el sistema se detiene. Prompt y verificacion: yujin.urazuke.step {num: 14}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-salida",
+        "order": 17,
+        "urazuke": {
+          "step": 14
+        }
+      },
+      "closed_at": 1792432860490,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432860490,
+          "note": "docs/LOCKS.md y CONSEQUENTIAL_ACTIONS_SURVEY.md (N5); idempotencia en la base y respaldo implementados con test",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432860491,
+        "summary": "docs/LOCKS.md y CONSEQUENTIAL_ACTIONS_SURVEY.md (N5); idempotencia en la base y respaldo implementados con test"
+      }
+    },
+    {
+      "id": "PND-019",
+      "title": "[WFL-001] 15 Integracion continua, entornos, secretos y despliegue como parte del producto",
+      "category": "autopilot",
+      "priority": 38,
+      "created_at": 1792429963163,
+      "updated_at": 1792432937313,
+      "body": "Despliegue repetible, configuracion afuera del codigo, secretos en su lugar y vuelta atras probada. Prompt y verificacion: yujin.urazuke.step {num: 15}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-salida",
+        "order": 18,
+        "urazuke": {
+          "step": 15
+        }
+      },
+      "closed_at": 1792432937313,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432937313,
+          "note": "CI (npm ci + npm test), docs/DEPLOYMENT.md con despliegue y vuelta atras, ENVIRONMENTS_SURVEY.md, SECURITY.md; sin secretos (la app no tiene credenciales)",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432937313,
+        "summary": "CI (npm ci + npm test), docs/DEPLOYMENT.md con despliegue y vuelta atras, ENVIRONMENTS_SURVEY.md, SECURITY.md; sin secretos (la app no tiene credenciales)"
+      }
+    },
+    {
+      "id": "PND-020",
+      "title": "[WFL-001] 16 Observabilidad y trazabilidad totales, con nivel configurable",
+      "category": "autopilot",
+      "priority": 39,
+      "created_at": 1792429963165,
+      "updated_at": 1792432939893,
+      "body": "Cada accion deja un registro estructurado con su identificador; el nivel se configura sin tocar codigo. Prompt y verificacion: yujin.urazuke.step {num: 16}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-salida",
+        "order": 19,
+        "urazuke": {
+          "step": 16
+        }
+      },
+      "closed_at": 1792432939893,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432939893,
+          "note": "docs/OBSERVABILITY.md: log JSON con req_id y X-Request-Id verificado en vivo; la linea suelta de console.log queda como deuda (D-03, se paga al tocar)",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432939893,
+        "summary": "docs/OBSERVABILITY.md: log JSON con req_id y X-Request-Id verificado en vivo; la linea suelta de console.log queda como deuda (D-03, se paga al tocar)"
+      }
+    },
+    {
+      "id": "PND-021",
+      "title": "[WFL-001] 17 Optimizacion de la capa de persistencia, medida antes y despues",
+      "category": "autopilot",
+      "priority": 40,
+      "created_at": 1792429963167,
+      "updated_at": 1792432943010,
+      "body": "Indices, fin de los bucles N+1, presupuestos de consultas por camino; todo con numero antes y despues. Prompt y verificacion: yujin.urazuke.step {num: 17}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-salida",
+        "order": 20,
+        "urazuke": {
+          "step": 17
+        }
+      },
+      "closed_at": 1792432943010,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432943010,
+          "note": "docs/PERSISTENCE.md: 30k y 300k filas, tres consultas con plan USING INDEX y tiempos; el GET sin filtro (A-10) medido y anotado",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432943010,
+        "summary": "docs/PERSISTENCE.md: 30k y 300k filas, tres consultas con plan USING INDEX y tiempos; el GET sin filtro (A-10) medido y anotado"
+      }
+    },
+    {
+      "id": "PND-022",
+      "title": "[WFL-001] 18 Escaneo y solucion de vulnerabilidades, en la cadena y con calendario",
+      "category": "autopilot",
+      "priority": 41,
+      "created_at": 1792429963169,
+      "updated_at": 1792432946077,
+      "body": "Dependencias, secretos, codigo e infraestructura escaneados en cada push y con fecha de repaso. Prompt y verificacion: yujin.urazuke.step {num: 18}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-salida",
+        "order": 21,
+        "urazuke": {
+          "step": 18
+        }
+      },
+      "closed_at": 1792432946077,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432946077,
+          "note": "docs/SECURITY_2026-10-19.md: npm audit 0, grep de secretos vacio, Node 22.16; calendario mensual",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432946077,
+        "summary": "docs/SECURITY_2026-10-19.md: npm audit 0, grep de secretos vacio, Node 22.16; calendario mensual"
+      }
+    },
+    {
+      "id": "PND-023",
+      "title": "[WFL-001] 19 Pruebas de rendimiento en volumen y punto de ruptura",
+      "category": "autopilot",
+      "priority": 42,
+      "created_at": 1792429963171,
+      "updated_at": 1792432949193,
+      "body": "Cargar al volumen esperado y al por diez, y encontrar que se rompe primero. Prompt y verificacion: yujin.urazuke.step {num: 19}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-salida",
+        "order": 22,
+        "urazuke": {
+          "step": 19
+        }
+      },
+      "closed_at": 1792432949193,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432949193,
+          "note": "docs/PERFORMANCE.md + PERFORMANCE_2026-10-19.md: p95 7,4 ms al volumen esperado, 229 ms a 300k con 50 en concurrencia (fuera del escenario), 0 errores",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432949193,
+        "summary": "docs/PERFORMANCE.md + PERFORMANCE_2026-10-19.md: p95 7,4 ms al volumen esperado, 229 ms a 300k con 50 en concurrencia (fuera del escenario), 0 errores"
+      }
+    },
+    {
+      "id": "PND-024",
+      "title": "[WFL-001] 20 Documentacion viva y manuales que una persona puede seguir sin IA",
+      "category": "autopilot",
+      "priority": 43,
+      "created_at": 1792429963172,
+      "updated_at": 1792432952122,
+      "body": "Manual de usuario, de mantenimiento y de infraestructura y recuperacion; el registro de cambios al dia. Prompt y verificacion: yujin.urazuke.step {num: 20}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-salida",
+        "order": 23,
+        "urazuke": {
+          "step": 20
+        }
+      },
+      "closed_at": 1792432952122,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432952122,
+          "note": "USER_MANUAL, MAINTENANCE_MANUAL, INFRASTRUCTURE_AND_RECOVERY_MANUAL (con el respaldo del bloque 1) y CHANGELOG 1.3.2 -> 1.4.0",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432952123,
+        "summary": "USER_MANUAL, MAINTENANCE_MANUAL, INFRASTRUCTURE_AND_RECOVERY_MANUAL (con el respaldo del bloque 1) y CHANGELOG 1.3.2 -> 1.4.0"
+      }
+    },
+    {
+      "id": "PND-025",
+      "title": "[WFL-001] 21 Monitoreo de recursos, funciones y consultas fuera de rango, con reporte ciclico",
+      "category": "autopilot",
+      "priority": 44,
+      "created_at": 1792429963174,
+      "updated_at": 1792432955551,
+      "body": "Umbrales por recurso y por funcion, alertas, y un reporte que llega solo cada ciclo. Prompt y verificacion: yujin.urazuke.step {num: 21}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-operacion",
+        "order": 24,
+        "urazuke": {
+          "step": 21
+        }
+      },
+      "closed_at": 1792432955551,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432955551,
+          "note": "docs/MONITORING.md + .forge/cycle.json + reporte ciclico docs/MONITORING_REPORT_2026-10-19.md (yf urazuke cycle): dimensionamiento admisible 1x",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432955551,
+        "summary": "docs/MONITORING.md + .forge/cycle.json + reporte ciclico docs/MONITORING_REPORT_2026-10-19.md (yf urazuke cycle): dimensionamiento admisible 1x"
+      }
+    },
+    {
+      "id": "PND-026",
+      "title": "[WFL-001] 22 Monitoreo de errores y reporte ciclico: ningun error sin pendiente",
+      "category": "autopilot",
+      "priority": 45,
+      "created_at": 1792429963175,
+      "updated_at": 1792432959294,
+      "body": "Captura centralizada de errores, alerta cuando importa, y cada error nuevo con su pendiente. Prompt y verificacion: yujin.urazuke.step {num: 22}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-operacion",
+        "order": 25,
+        "urazuke": {
+          "step": 22
+        }
+      },
+      "closed_at": 1792432959294,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432959294,
+          "note": "El reporte ciclico junta los errores y abre un pendiente por cada uno; la primera corrida abrio una falsa alarma de dimensionamiento (ventana mal pasada) rechazada con motivo",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432959295,
+        "summary": "El reporte ciclico junta los errores y abre un pendiente por cada uno; la primera corrida abrio una falsa alarma de dimensionamiento (ventana mal pasada) rechazada con motivo"
+      }
+    },
+    {
+      "id": "PND-027",
+      "title": "[WFL-001] 23 El agente adentro del sistema, y la retrospectiva con numero",
+      "category": "autopilot",
+      "priority": 46,
+      "created_at": 1792429963177,
+      "updated_at": 1792432965865,
+      "body": "Un agente residente con alcance escrito, y una retrospectiva que termina en una propuesta al metodo. Prompt y verificacion: yujin.urazuke.step {num: 23}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke-legacy",
+        "stage_id": "u-operacion",
+        "order": 26,
+        "urazuke": {
+          "step": 23
+        }
+      },
+      "closed_at": 1792432965865,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432965865,
+          "note": "docs/RESIDENT_AGENT.md + docs/RETROSPECTIVE_2026-10-19.md con los numeros de Forge",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432965865,
+        "summary": "docs/RESIDENT_AGENT.md + docs/RETROSPECTIVE_2026-10-19.md con los numeros de Forge"
+      }
+    },
+    {
+      "id": "PND-028",
+      "title": "[BLOQUEA] A-01: respaldo diario de la base con VACUUM INTO y una restauracion probada",
+      "category": "infra",
+      "priority": 5,
+      "created_at": 1792431764246,
+      "updated_at": 1792432175124,
+      "spec": {
+        "acceptance": [
+          "existe scripts/backup.mjs que copia la base consistente (VACUUM INTO) a una carpeta con fecha"
+        ],
+        "how_verified": "una copia restaurada en una base temporal tiene la misma cantidad de turnos que el original",
+        "flows": [
+          "test de scripts/backup.mjs contra una base sembrada; regresion"
+        ]
+      },
+      "closed_at": 1792432175124,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432175124,
+          "note": "scripts/backup.mjs (VACUUM INTO + poda a 90 dias) con tests/backup.test.js que restaura y cuenta; RCP-003 rojo (no existia), RCP-006 verde, RCP-007 regresion 41",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432175125,
+        "report": {
+          "verified": [
+            "RCP-003 red_proof: `npx vitest run tests/backup.test.js` exit 1 @90d53bb vs base 90d53bb",
+            "RCP-006 green: `npx vitest run tests/backup.test.js` exit 0 (0 failed, 2 passed) @a6f06d9",
+            "RCP-007 regression: `npm test` exit 0 (0 failed, 41 passed) @a6f06d9"
+          ],
+          "believed": [],
+          "blind_spots": [
+            "flow \"test de scripts/backup.mjs contra una base sembrada; regresion\" has no end-to-end receipt (screen to backend)"
+          ],
+          "receipts": [
+            "RCP-003",
+            "RCP-006",
+            "RCP-007"
+          ],
+          "built_at": 1792432175123
+        },
+        "summary": "scripts/backup.mjs (VACUUM INTO + poda a 90 dias) con tests/backup.test.js que restaura y cuenta; RCP-003 rojo (no existia), RCP-006 verde, RCP-007 regresion 41"
+      }
+    },
+    {
+      "id": "PND-029",
+      "title": "[CORRECTIVO] R1: a un turno reprogramado le llega UN solo recordatorio, el dia anterior al turno nuevo",
+      "category": "bug",
+      "priority": 6,
+      "created_at": 1792431766947,
+      "updated_at": 1792432177558,
+      "spec": {
+        "acceptance": [
+          "reprogramar un turno y correr el envio tres dias seguidos produce un solo aviso para ese turno, el dia anterior"
+        ],
+        "how_verified": "los demas recordatorios no cambian (los tests de caracterizacion siguen verdes salvo el que describia el defecto, que se cambia a la vista)",
+        "flows": [
+          "test en rojo contra HEAD (el defecto vigente), verde con el cambio, regresion de los 30 de caracterizacion, e2e del envio por API"
+        ]
+      },
+      "closed_at": 1792432177558,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432177558,
+          "note": "R1: seleccionarRecordatorios ya no re-selecciona a los reprogramados avisados; reprogramar borra el aviso y el turno nuevo se avisa una vez; RCP-001 rojo (2 fallando contra 90d53bb), RCP-004 verde, RCP-008 regresion, RCP-010 e2e por API; 2 tests de caracterizacion cambiados a la vista",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432177558,
+        "report": {
+          "verified": [
+            "RCP-001 red_proof: `npx vitest run tests/recordatorio-reprogramado.test.js -t PND-029` exit 1 (2 failed, 0 passed) @90d53bb vs base 90d53bb",
+            "RCP-004 green: `npx vitest run tests/recordatorio-reprogramado.test.js -t PND-029` exit 0 (0 failed, 2 passed) @a6f06d9",
+            "RCP-008 regression: `npm test` exit 0 (0 failed, 41 passed) @a6f06d9",
+            "RCP-010 e2e: `npx vitest run tests/recordatorio-reprogramado.test.js` exit 0 (0 failed, 3 passed) @a6f06d9"
+          ],
+          "believed": [],
+          "blind_spots": [],
+          "receipts": [
+            "RCP-001",
+            "RCP-004",
+            "RCP-008",
+            "RCP-010"
+          ],
+          "built_at": 1792432177556
+        },
+        "summary": "R1: seleccionarRecordatorios ya no re-selecciona a los reprogramados avisados; reprogramar borra el aviso y el turno nuevo se avisa una vez; RCP-001 rojo (2 fallando contra 90d53bb), RCP-004 verde, RCP-008 regresion, RCP-010 e2e por API; 2 tests de caracterizacion cambiados a la vista"
+      }
+    },
+    {
+      "id": "PND-030",
+      "title": "[SE PAGA AL TOCAR] A-02 y A-04: el marcado del recordatorio es idempotente en la base (WHERE reminder_sent_at IS NULL) y ocurre junto con la escritura del outbox",
+      "category": "bug",
+      "priority": 7,
+      "created_at": 1792431769730,
+      "updated_at": 1792432180099,
+      "spec": {
+        "acceptance": [
+          "correr el envio dos veces en el mismo dia escribe una sola linea por turno en outbox.log"
+        ],
+        "how_verified": "el UPDATE solo toca filas sin aviso previo",
+        "flows": [
+          "test de store en rojo contra HEAD, verde, regresion"
+        ]
+      },
+      "closed_at": 1792432180099,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792432180099,
+          "note": "UPDATE con reminder_sent_at IS NULL: idempotente en la base (D-004); RCP-002 rojo (1 fallando), RCP-005 verde, RCP-009 regresion, RCP-011 e2e",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432180100,
+        "report": {
+          "verified": [
+            "RCP-002 red_proof: `npx vitest run tests/recordatorio-reprogramado.test.js -t PND-030` exit 1 (1 failed, 0 passed) @90d53bb vs base 90d53bb",
+            "RCP-005 green: `npx vitest run tests/recordatorio-reprogramado.test.js -t PND-030` exit 0 (0 failed, 1 passed) @a6f06d9",
+            "RCP-009 regression: `npm test` exit 0 (0 failed, 41 passed) @a6f06d9",
+            "RCP-011 e2e: `npx vitest run tests/recordatorio-reprogramado.test.js` exit 0 (0 failed, 3 passed) @a6f06d9"
+          ],
+          "believed": [],
+          "blind_spots": [],
+          "receipts": [
+            "RCP-002",
+            "RCP-005",
+            "RCP-009",
+            "RCP-011"
+          ],
+          "built_at": 1792432180099
+        },
+        "summary": "UPDATE con reminder_sent_at IS NULL: idempotente en la base (D-004); RCP-002 rojo (1 fallando), RCP-005 verde, RCP-009 regresion, RCP-011 e2e"
+      }
+    },
+    {
+      "id": "PND-031",
+      "title": "[CLARIFY] D-14: quien lee data/outbox.log hoy (si alguien manda WhatsApp a mano desde ahi, pausar hasta cerrar R1)",
+      "category": "clarify",
+      "priority": 8,
+      "created_at": 1792431772687,
+      "updated_at": 1792432182621,
+      "spec": {
+        "acceptance": [
+          "la duena respondio y la respuesta esta escrita en docs/DISCREPANCIES.md D-14 con fecha"
+        ],
+        "how_verified": "lectura del documento",
+        "flows": [
+          "recordatorios"
+        ]
+      },
+      "history": [
+        {
+          "at": 1792432182608,
+          "note": "OVERRIDE de la evidencia: Pendiente de aclaracion, solo documentacion: no hay test que ponga en rojo; verificado por lectura [faltaban 3 recibos]",
+          "kind": "progress"
+        },
+        {
+          "at": 1792432182621,
+          "note": "La duena respondio: nadie lee outbox.log; escrito en docs/DISCREPANCIES.md D-14 con fecha",
+          "kind": "resolution"
+        }
+      ],
+      "closed_at": 1792432182621,
+      "closed_reason": "shipped",
+      "implementation": {
+        "collected_at": 1792432182621,
+        "report": {
+          "verified": [],
+          "believed": [],
+          "blind_spots": [
+            "no red proof: the new test was never shown failing against the base",
+            "no regression receipt: the neighbouring suite was not re-run",
+            "flow \"recordatorios\" has no end-to-end receipt (screen to backend)"
+          ],
+          "receipts": [],
+          "built_at": 1792432182620
+        },
+        "summary": "La duena respondio: nadie lee outbox.log; escrito en docs/DISCREPANCIES.md D-14 con fecha"
+      }
+    },
+    {
+      "id": "PND-032",
+      "title": "Dimensionamiento fuera de envoltura (reporte ciclico)",
+      "category": "infra",
+      "priority": 10,
+      "created_at": 1792432877327,
+      "updated_at": 1792432910536,
+      "body": "DRIFT: observed 30,000 rows/year vs 10,000 declared (ratio 3x, threshold 2x). The architecture still passes, but the record is wrong: re-record it.\n\nMedido: 30000 filas en 365 dias (base de prueba sembrada al volumen esperado de un ano (sin base real todavia)). Revisar con yujin.sizing.show / yujin.sizing.record.",
+      "closed_at": 1792432910536,
+      "closed_reason": "rejected",
+      "history": [
+        {
+          "at": 1792432910536,
+          "note": "Falsa alarma: las 30.000 filas de la base de prueba cubren tres anos (40 por dia x 250 dias x 3), no uno. Se vuelve a correr el ciclo con over-days 1095.",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792432910537,
+        "summary": "Falsa alarma: las 30.000 filas de la base de prueba cubren tres anos (40 por dia x 250 dias x 3), no uno. Se vuelve a correr el ciclo con over-days 1095."
+      }
+    }
+  ]
+}

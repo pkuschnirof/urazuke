@@ -217,7 +217,19 @@ igual; la diferencia es que acá describen un sistema que ya corre. La auditorí
 la del peldaño 13 (Forge busca `docs/AUDIT_*.md`), y los hallazgos ya están en el plan. Lo que
 se midió, con su comando, está en `docs/PERSISTENCE.md`, `docs/SECURITY_2026-10-19.md` y
 `docs/PERFORMANCE_2026-10-19.md` del proyecto; el reporte cíclico y la retrospectiva se corren
-con `yf urazuke cycle` y `yf urazuke retro`. Los números finales están en la evidencia.
+con `yf urazuke cycle` y `yf urazuke retro`.
+
+Dos cosas de esta parte que vale la pena contar:
+
+- El primer reporte cíclico abrió una **falsa alarma** de dimensionamiento: la base de prueba de
+  30.000 filas cubre tres años y se pasó al comando como si fuera un año; Forge comparó 30.000
+  por año contra los 10.000 declarados y abrió un pendiente. Se rechazó con motivo y se volvió a
+  correr con la ventana correcta (admisible, 1x). La retrospectiva propone que la ventana salga
+  de la base y no de la mano del operador.
+- La retrospectiva (`yf urazuke retro`) dio: 3 rojos probados, 3 verdes, 3 regresiones, 2 de
+  punta a punta, 0 recibos NOT OK, 1 override con razón, 27 de 27 cerrados.
+
+![La escalera heredada completa: N0 a N7 y los 19 peldaños, 27 de 27](img/existente-10-escalera-completa.png)
 
 ## 4. Lo que Forge verificó, lo que creímos y lo que no vimos
 

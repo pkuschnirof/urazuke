@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "project_slug": "turnera-heredada",
+  "next_id": 13,
+  "items": [
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/recordatorio-reprogramado.test.js -t PND-029",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "90d53bb",
+      "dirty": true,
+      "base_ref": "90d53bb",
+      "exit_code": 1,
+      "started_at": 1792431949768,
+      "duration_ms": 1933,
+      "counts": {
+        "failed": 2,
+        "failed_files": 1,
+        "skipped": 1,
+        "total": 3
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-WwNs7r\n\n(node:17192) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\nstdout | tests/recordatorio-reprogramado.test.js > PND-029 R1: al reprogramado le llega UN solo recordatorio, el dia anterior al turno nuevo > tres corridas seguidas producen un solo aviso para el turno reprogramado\nenviados 1 total 1\n\nstdout | tests/recordatorio-reprogramado.test.js > PND-029 R1: al reprogramado le llega UN solo recordatorio, el dia anterior al turno nuevo > tres corridas seguidas producen un solo aviso para el turno reprogramado\nenviados 1 total 2\n\nstdout | tests/recordatorio-reprogramado.test.js > PND-029 R1: al reprogramado le llega UN solo recordatorio, el dia anterior al turno nuevo > reprogramar DESPUES de avisado vuelve a avisar una vez, para la fecha nueva (el aviso viejo ya no vale)\nenviados 2 total 4\n\nstdout | tests/recordatorio-reprogramado.test.js > PND-029 R1: al reprogramado le llega UN solo recordatorio, el dia anterior al turno nuevo > reprogramar DESPUES de avisado vuelve a avisar una vez, para la fecha nueva (el aviso viejo ya no vale)\nenviados 1 total 5\n\nstdout | tests/recordatorio-reprogramado.test.js > PND-029 R1: al reprogramado le llega UN solo recordatorio, el dia anterior al turno nuevo > reprogramar DESPUES de avisado vuelve a avisar una vez, para la fecha nueva (el aviso viejo ya no vale)\nenviados 1 total 6\n\n ❯ tests/recordatorio-reprogramado.test.js (3 tests | 2 failed | 1 skipped) 175ms\n   ❯ PND-029 R1: al reprogramado le llega UN solo recordatorio, el dia anterior al turno nuevo (2)\n     × tres corridas seguidas producen un solo aviso para el turno reprogramado 61ms\n     × reprogramar DESPUES de avisado vuelve a avisar una vez, para la fecha nueva (el aviso viejo ya no vale) 43ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/recordatorio-reprogramado.test.js > PND-029 R1: al reprogramado le llega UN solo recordatorio, el dia anterior al turno nuevo > tres corridas seguidas producen un solo aviso para el turno reprogramado\nAssertionError: expected [ 1 ] to deeply equal []\n\n- Expected\n+ Received\n\n- []\n+ [\n+   1,\n+ ]\n\n ❯ tests/recordatorio-reprogramado.test.js:39:36\n     37|     expect(primera.datos.enviados).toEqual([t.datos.id]);\n     38|     const segunda = await api('POST', '/api/recordatorios/enviar', { h…\n     39|     expect(segunda.datos.enviados).toEqual([]);\n       |                                    ^\n     40|     const tercera = await api('POST', '/api/recordatorios/enviar', { h…\n     41|     expect(tercera.datos.cantidad).toBe(0);\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯\n\n FAIL  tests/recordatorio-reprogramado.test.js > PND-029 R1: al reprogramado le llega UN solo recordatorio, el dia anterior al turno nuevo > reprogramar DESPUES de avisado vuelve a avisar una vez, para la fecha nueva (el aviso viejo ya no vale)\nAssertionError: expected [ 2 ] to deeply equal []\n\n- Expected\n+ Received\n\n- []\n+ [\n+   2,\n+ ]\n\n ❯ tests/recordatorio-reprogramado.test.js:53:94\n     51|     const r = await api('POST', '/api/recordatorios/enviar', { hoy: MA…\n     52|     expect(r.datos.enviados).toEqual([t.datos.id]);\n     53|     expect((await api('POST', '/api/recordatorios/enviar', { hoy: MANA…\n       |                                                                                              ^\n     54|   });\n     55| });\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 1 skipped (3)\n   Start at  14:45:51\n   Duration  532ms (tests 52%, transform 33%, import 13%, worker 1%)\n\n",
+      "pending_id": "PND-029",
+      "step": 8,
+      "note": "rojo de comportamiento: el defecto que reporto la duena test files carried into the base worktree: tests/recordatorio-reprogramado.test.js",
+      "id": "RCP-001",
+      "verdict": "ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/recordatorio-reprogramado.test.js -t PND-030",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "90d53bb",
+      "dirty": true,
+      "base_ref": "90d53bb",
+      "exit_code": 1,
+      "started_at": 1792431954504,
+      "duration_ms": 1835,
+      "counts": {
+        "failed": 1,
+        "failed_files": 1,
+        "skipped": 2,
+        "total": 3
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-Iqdvwx\n\n(node:11056) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n ❯ tests/recordatorio-reprogramado.test.js (3 tests | 1 failed | 2 skipped) 132ms\n   ❯ PND-030: el marcado es idempotente en la base (1)\n     × marcarRecordatorios no pisa un reminder_sent_at existente 64ms\n\n⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/recordatorio-reprogramado.test.js [ tests/recordatorio-reprogramado.test.js ]\nError: EBUSY: resource busy or locked, unlink 'C:\\Users\\ASUS\\AppData\\Local\\Temp\\turnera-r1-6tWI8v\\idem.db'\n ❯ tests/recordatorio-reprogramado.test.js:29:47\n     27|   base = `http://127.0.0.1:${app.server.address().port}`;\n     28| });\n     29| afterAll(async () => { await app.cerrar(); fs.rmSync(dir, { recursive:…\n       |                                               ^\n     30|\n     31| describe('PND-029 R1: al reprogramado le llega UN solo recordatorio, e…\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯\n\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/recordatorio-reprogramado.test.js > PND-030: el marcado es idempotente en la base > marcarRecordatorios no pisa un reminder_sent_at existente\nAssertionError: expected 1 to be +0 // Object.is equality\n\n- Expected\n+ Received\n\n- 0\n+ 1\n\n ❯ tests/recordatorio-reprogramado.test.js:62:81\n     60|     const t = await store.crear({ paciente: 'Ivo', telefono: '11-7', p…\n     61|     expect(await store.marcarRecordatorios([t.id], '2030-03-10T08:00:0…\n     62|     expect(await store.marcarRecordatorios([t.id], '2030-03-10T09:00:0…\n       |                                                                                 ^\n     63|     expect((await store.obtener(t.id)).reminder_sent_at).toBe('2030-03…\n     64|     await store.cerrar();\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 2 skipped (3)\n   Start at  14:45:55\n   Duration  443ms (tests 45%, transform 38%, import 15%, worker 2%)\n\n",
+      "pending_id": "PND-030",
+      "step": 8,
+      "note": "rojo: el UPDATE pisa el aviso previo test files carried into the base worktree: tests/recordatorio-reprogramado.test.js",
+      "id": "RCP-002",
+      "verdict": "ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/backup.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "90d53bb",
+      "dirty": true,
+      "base_ref": "90d53bb",
+      "exit_code": 1,
+      "started_at": 1792431959125,
+      "duration_ms": 1642,
+      "counts": {
+        "failed_files": 1
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-pWBSOP\n\n(node:25296) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n ❯ tests/backup.test.js (0 test)\n\n⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/backup.test.js [ tests/backup.test.js ]\nError: Cannot find module '../scripts/backup.mjs' imported from C:/Users/ASUS/AppData/Local/Temp/yf-redproof-pWBSOP/tests/backup.test.js\n ❯ tests/backup.test.js:8:1\n      6| import { DatabaseSync } from 'node:sqlite';\n      7| import { Store } from '../src/store.js';\n      8| import { respaldar, podar } from '../scripts/backup.mjs';\n       | ^\n      9|\n     10| let dir;\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  no tests\n   Start at  14:46:00\n   Duration  245ms (worker 96%, environment 4%)\n\n",
+      "pending_id": "PND-028",
+      "step": 8,
+      "note": "rojo: no existe scripts/backup.mjs en el legado test files carried into the base worktree: tests/backup.test.js",
+      "id": "RCP-003",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/recordatorio-reprogramado.test.js -t PND-029",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "a6f06d9",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792432101105,
+      "duration_ms": 1926,
+      "counts": {
+        "passed": 2,
+        "skipped": 1,
+        "total": 3,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera-heredada\n\n(node:22908) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  2 passed | 1 skipped (3)\n   Start at  14:48:22\n   Duration  410ms (tests 70%, import 18%, transform 9%, worker 2%)\n\n",
+      "pending_id": "PND-029",
+      "step": 8,
+      "id": "RCP-004",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/recordatorio-reprogramado.test.js -t PND-030",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "a6f06d9",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792432105599,
+      "duration_ms": 1718,
+      "counts": {
+        "passed": 1,
+        "skipped": 2,
+        "total": 3,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera-heredada\n\n(node:20908) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  1 passed | 2 skipped (3)\n   Start at  14:48:26\n   Duration  346ms (tests 68%, import 20%, transform 9%, worker 3%)\n\n",
+      "pending_id": "PND-030",
+      "step": 8,
+      "id": "RCP-005",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/backup.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "a6f06d9",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792432110098,
+      "duration_ms": 1953,
+      "counts": {
+        "passed": 2,
+        "total": 2,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera-heredada\n\n(node:19820) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  2 passed (2)\n   Start at  14:48:31\n   Duration  356ms (tests 75%, import 12%, transform 8%, worker 5%)\n\n",
+      "pending_id": "PND-028",
+      "step": 8,
+      "id": "RCP-006",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "a6f06d9",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792432115951,
+      "duration_ms": 2305,
+      "counts": {
+        "passed": 41,
+        "total": 41,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@1.3.2 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera-heredada\n\n(node:7868) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:25364) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:17232) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:32776) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n{\"ts\":\"2026-10-19T17:48:37.643Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"6008d5c6\",\"status\":400,\"error\":\"Turno invalido\"}\n{\"ts\":\"2026-10-19T17:48:37.680Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"65a4a474\",\"status\":400,\"error\":\"JSON invalido\"}\n{\"ts\":\"2026-10-19T17:48:37.695Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"69d12c10\",\"status\":409,\"error\":\"Sobreturno: Dra. Alvarez ya tiene un turno el 2026-10-20 a las 11:00 (Ana Prueba)\"}\n{\"ts\":\"2026-10-19T17:48:37.749Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"bc42e10f\",\"status\":409,\"error\":\"Sobreturno: Dra. Alvarez ya tiene un turno el 2026-10-20 a las 11:20 (Beto Ocupa)\"}\n{\"ts\":\"2026-10-19T17:48:37.839Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"a5a1b416\",\"status\":404,\"error\":\"No existe el turno 99999\"}\n{\"ts\":\"2026-10-19T17:48:37.840Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"230b7aa0\",\"status\":404,\"error\":\"No existe el turno abc\"}\n{\"ts\":\"2026-10-19T17:48:37.862Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"7e5a8793\",\"status\":400,\"error\":\"Turno invalido\"}\n{\"ts\":\"2026-10-19T17:48:37.870Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"c8bce8b3\",\"status\":409,\"error\":\"Sobreturno: Dra. Alvarez ya tiene un turno el 2026-10-20 a las 14:20 (Ocupante)\"}\n{\"ts\":\"2026-10-19T17:48:37.896Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"d404475f\",\"status\":400,\"error\":\"fecha invalida\"}\n{\"ts\":\"2026-10-19T17:48:37.900Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"e6d4bde7\",\"status\":400,\"error\":\"mes debe tener formato YYYY-MM\"}\n{\"ts\":\"2026-10-19T17:48:38.072Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"a82e8e2f\",\"status\":400,\"error\":\"hoy debe tener formato YYYY-MM-DD\"}\n{\"ts\":\"2026-10-19T17:48:38.176Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"5c5fdf9e\",\"status\":413,\"error\":\"Cuerpo demasiado grande\"}\n\n Test Files  4 passed (4)\n      Tests  41 passed (41)\n   Start at  14:48:37\n   Duration  1.18s (tests 83%, import 11%, transform 4%, worker 2%)\n\n",
+      "pending_id": "PND-028",
+      "step": 8,
+      "note": "30 de caracterizacion (2 cambiados a la vista) + medidor + bloque 1",
+      "id": "RCP-007",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "a6f06d9",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792432122255,
+      "duration_ms": 2214,
+      "counts": {
+        "passed": 41,
+        "total": 41,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@1.3.2 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera-heredada\n\n(node:28552) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:25772) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:29788) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:15384) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n{\"ts\":\"2026-10-19T17:48:43.864Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"aee4e9f0\",\"status\":400,\"error\":\"Turno invalido\"}\n{\"ts\":\"2026-10-19T17:48:43.897Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"2e0615e5\",\"status\":400,\"error\":\"JSON invalido\"}\n{\"ts\":\"2026-10-19T17:48:43.911Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"2196f8f4\",\"status\":409,\"error\":\"Sobreturno: Dra. Alvarez ya tiene un turno el 2026-10-20 a las 11:00 (Ana Prueba)\"}\n{\"ts\":\"2026-10-19T17:48:43.954Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"80df17c4\",\"status\":409,\"error\":\"Sobreturno: Dra. Alvarez ya tiene un turno el 2026-10-20 a las 11:20 (Beto Ocupa)\"}\n{\"ts\":\"2026-10-19T17:48:44.045Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"f4802c7f\",\"status\":404,\"error\":\"No existe el turno 99999\"}\n{\"ts\":\"2026-10-19T17:48:44.047Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"07239970\",\"status\":404,\"error\":\"No existe el turno abc\"}\n{\"ts\":\"2026-10-19T17:48:44.079Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"4d01a100\",\"status\":400,\"error\":\"Turno invalido\"}\n{\"ts\":\"2026-10-19T17:48:44.089Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"68bd971a\",\"status\":409,\"error\":\"Sobreturno: Dra. Alvarez ya tiene un turno el 2026-10-20 a las 14:20 (Ocupante)\"}\n{\"ts\":\"2026-10-19T17:48:44.121Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"3cbb7823\",\"status\":400,\"error\":\"fecha invalida\"}\n{\"ts\":\"2026-10-19T17:48:44.125Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"dcaa90a8\",\"status\":400,\"error\":\"mes debe tener formato YYYY-MM\"}\n{\"ts\":\"2026-10-19T17:48:44.286Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"55dac9ac\",\"status\":400,\"error\":\"hoy debe tener formato YYYY-MM-DD\"}\n{\"ts\":\"2026-10-19T17:48:44.389Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"9eed50e9\",\"status\":413,\"error\":\"Cuerpo demasiado grande\"}\n\n Test Files  4 passed (4)\n      Tests  41 passed (41)\n   Start at  14:48:43\n   Duration  1.14s (tests 82%, import 12%, transform 4%, worker 2%)\n\n",
+      "pending_id": "PND-029",
+      "step": 8,
+      "note": "30 de caracterizacion (2 cambiados a la vista) + medidor + bloque 1",
+      "id": "RCP-008",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "a6f06d9",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792432127836,
+      "duration_ms": 2156,
+      "counts": {
+        "passed": 41,
+        "total": 41,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@1.3.2 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera-heredada\n\n(node:11080) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:32788) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:20444) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:29676) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n{\"ts\":\"2026-10-19T17:48:49.351Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"0a289c57\",\"status\":400,\"error\":\"Turno invalido\"}\n{\"ts\":\"2026-10-19T17:48:49.383Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"bf9e61cb\",\"status\":400,\"error\":\"JSON invalido\"}\n{\"ts\":\"2026-10-19T17:48:49.411Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"2460fda7\",\"status\":409,\"error\":\"Sobreturno: Dra. Alvarez ya tiene un turno el 2026-10-20 a las 11:00 (Ana Prueba)\"}\n{\"ts\":\"2026-10-19T17:48:49.462Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"cc5a34cc\",\"status\":409,\"error\":\"Sobreturno: Dra. Alvarez ya tiene un turno el 2026-10-20 a las 11:20 (Beto Ocupa)\"}\n{\"ts\":\"2026-10-19T17:48:49.556Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"f44485a8\",\"status\":404,\"error\":\"No existe el turno 99999\"}\n{\"ts\":\"2026-10-19T17:48:49.557Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"13735d14\",\"status\":404,\"error\":\"No existe el turno abc\"}\n{\"ts\":\"2026-10-19T17:48:49.583Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"e69f07ea\",\"status\":400,\"error\":\"Turno invalido\"}\n{\"ts\":\"2026-10-19T17:48:49.592Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"848d063a\",\"status\":409,\"error\":\"Sobreturno: Dra. Alvarez ya tiene un turno el 2026-10-20 a las 14:20 (Ocupante)\"}\n{\"ts\":\"2026-10-19T17:48:49.622Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"b3fcea35\",\"status\":400,\"error\":\"fecha invalida\"}\n{\"ts\":\"2026-10-19T17:48:49.626Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"0a139969\",\"status\":400,\"error\":\"mes debe tener formato YYYY-MM\"}\n{\"ts\":\"2026-10-19T17:48:49.798Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"f25fb87a\",\"status\":400,\"error\":\"hoy debe tener formato YYYY-MM-DD\"}\n{\"ts\":\"2026-10-19T17:48:49.917Z\",\"level\":\"warn\",\"msg\":\"request rechazada\",\"req_id\":\"6418eae6\",\"status\":413,\"error\":\"Cuerpo demasiado grande\"}\n\n Test Files  4 passed (4)\n      Tests  41 passed (41)\n   Start at  14:48:48\n   Duration  1.15s (tests 86%, import 10%, transform 3%, worker 2%)\n\n",
+      "pending_id": "PND-030",
+      "step": 8,
+      "note": "30 de caracterizacion (2 cambiados a la vista) + medidor + bloque 1",
+      "id": "RCP-009",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npx vitest run tests/recordatorio-reprogramado.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "a6f06d9",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792432133339,
+      "duration_ms": 2066,
+      "counts": {
+        "passed": 3,
+        "total": 3,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera-heredada\n\n(node:19480) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  3 passed (3)\n   Start at  14:48:54\n   Duration  449ms (tests 75%, import 16%, transform 7%, worker 2%)\n\n",
+      "pending_id": "PND-029",
+      "step": 8,
+      "note": "de punta a punta por la API real (servidor levantado) hasta el archivo outbox.log; el pedido no toca la pantalla (D-007)",
+      "id": "RCP-010",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npx vitest run tests/recordatorio-reprogramado.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "a6f06d9",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792432138442,
+      "duration_ms": 2014,
+      "counts": {
+        "passed": 3,
+        "total": 3,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera-heredada\n\n(node:5816) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  3 passed (3)\n   Start at  14:48:59\n   Duration  460ms (tests 75%, import 15%, transform 7%, worker 2%)\n\n",
+      "pending_id": "PND-030",
+      "step": 8,
+      "note": "idem: el efecto se verifica en la base",
+      "id": "RCP-011",
+      "verdict": "ok"
+    },
+    {
+      "kind": "quality",
+      "command": "yf urazuke quality check",
+      "cwd": "C:\\urazuke-practica\\turnera-heredada",
+      "ref": "working-tree",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792432195051,
+      "duration_ms": 28,
+      "counts": {
+        "failed": 0
+      },
+      "output_tail": "0 violations, 0 dup blocks",
+      "step": 9,
+      "id": "RCP-012",
+      "verdict": "ok"
+    }
+  ]
+}

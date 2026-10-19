@@ -1,0 +1,7 @@
+ccabea6 2026-10-19 Peldanos 13 a 23: observabilidad, persistencia medida, seguridad, carga, manuales y monitoreo
+259eb2a 2026-10-19 GATES: la compuerta de calidad (peldano 9)
+912cdc5 2026-10-19 Bucle cerrado: calidad por maquina, casos manuales, golpes y D-14
+a6f06d9 2026-10-19 Bloque 1 correctivo: un solo recordatorio al reprogramado, idempotencia y respaldo
+90d53bb 2026-10-19 Lectura del sistema heredado: N0 a N6 (Urazuke, camino evolutivo-correctivo)
+005db84 2026-10-19 arreglos varios y recordatorio a los reprogramados
+8074897 2026-10-19 version 1 del sistema de turnos

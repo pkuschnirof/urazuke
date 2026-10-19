@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "project_slug": "turnera-heredada",
+  "next_code": 2,
+  "instances": [
+    {
+      "code": "WFL-001",
+      "name": "turnera-heredada -- normalizacion",
+      "kind": "urazuke-legacy",
+      "status": "closed",
+      "opened_at": 1792429963111,
+      "stages": [
+        {
+          "id": "u-normalizacion",
+          "title": "0. Normalizacion del legado (N0..N7)"
+        },
+        {
+          "id": "u-bucle",
+          "title": "II. Bucle de construccion"
+        },
+        {
+          "id": "u-salida",
+          "title": "III. Salida a produccion"
+        },
+        {
+          "id": "u-operacion",
+          "title": "IV. Operacion"
+        }
+      ],
+      "closed_at": 1792432965874
+    }
+  ]
+}
