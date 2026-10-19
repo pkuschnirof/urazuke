@@ -84,8 +84,11 @@ o agente:
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
 > backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
 > to end requires something you lack (data, access, an environment), ask me for it; do not simulate
-> what you do not have. Finally, the commit message says "proved red against [what]" and the test
-> counts.
+> what you do not have. If the previous version does not have the module at all (the first block of
+> a new project), a failure to load is not a red: prove the red by planting one deliberate defect in
+> the function you just wrote (an inverted condition, a deleted line), show me the test failing
+> against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
+> Finally, the commit message says "proved red against [what]" and the test counts.
 
 > [pt]
 > Para fechar esta pendência preciso de evidência, não da sua palavra. (1) Escreva o teste que
@@ -100,6 +103,9 @@ o agente:
 > Não substitua por simulações justamente a parte que está testando. Se testar de ponta a ponta
 > exige algo que você não tem (dados, acesso, um ambiente), peça-me; não simule o que não tem. Por
 > último, a mensagem do commit diz "provado em vermelho contra [o quê]" e os números dos testes.
+> Se a versão anterior não tem o módulo (o primeiro bloco de um projeto novo), um arquivo que não carrega não é um vermelho: prove o vermelho plantando um defeito de propósito na função que acabou de escrever (uma condição invertida, uma linha apagada), mostre-me o teste falhando contra esse defeito como o mesmo tipo de recibo, com o diff do defeito, e depois reverta-o.
+
+**O vermelho do primeiro bloco.** No primeiro bloco de um projeto novo não há código anterior: o teste novo falha porque o módulo não existe, e essa falha não prova que o teste distingue comportamento. Por isso, quando a versão anterior não tem o módulo, o vermelho se prova **por mutação**: o agente planta um defeito de propósito na função que acabou de escrever, mostra o teste em vermelho contra esse defeito (o recibo leva o diff do defeito, para você ver que não foi trivial), reverte-o e mostra o verde. É um só mutante por pendente, executado e registrado como qualquer outro recibo; os testes de mutação sobre toda a base continuam sendo o reforço opcional do degrau 9. (Decisão D-037, a partir da prática Turnera: seis recibos de vermelho que só diziam "o arquivo não carrega".)
 
 O que estou pedindo, cláusula por cláusula: (1) o teste, guiado pelos critérios de aceitação da
 pendência; (2) **o vermelho demonstrado como recibo** (comando, versão, números, código de

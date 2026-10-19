@@ -73,22 +73,24 @@ faites, pas l'agent :
 - État minimum acceptable : il y a des seuils écrits, un canal avec une personne qui le lit, et un
   cycle.
 
-> We are going to keep this system watched in production. Using the metrics and logs of step 16,
-> the budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
+> We are going to keep this system watched in production. Using the metrics and logs of step 16, the
+> budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
 > collection of resource usage (CPU, memory, disk, database connections, queue sizes, external
-> quotas) and of the response time of every function, endpoint, job and query, with the
-> correlation id, kept with a history; (2) alerts when any of them is out of range: above the
-> thresholds, or more than [X] percent over the baseline of the last [N] days, sent to [channel],
-> with the rule that an alert that fires without a human reading it is a defect of the alert and
-> gets fixed or removed; (3) a cyclic report, [weekly], generated automatically, with: resource
-> usage against capacity and its trend, the slowest functions and queries and how they moved
-> against the previous period, every out-of-range event with its cause if known, and what you
-> propose for each; (4) the rule that every out-of-range event becomes a corrective pending item
-> with the measured number as its acceptance criterion, closed with the full routine. Nothing
-> here may read or store personal data. Show me the first report generated on real data from the
-> test environment, and one alert fired on purpose by exceeding a threshold. Document the
-> thresholds, the channel, the cycle and how to silence an alert with a written reason in
-> `docs/MONITORING.md`. Reply in my language.
+> quotas) and of the response time of every function, endpoint, job and query, with the correlation
+> id, kept with a history; (2) alerts when any of them is out of range: above the thresholds, or
+> more than [X] percent over the baseline of the last [N] days, sent to [channel], with the rule
+> that an alert that fires without a human reading it is a defect of the alert and gets fixed or
+> removed; (3) a cyclic report, [weekly], generated automatically, with: resource usage against
+> capacity and its trend, the slowest functions and queries and how they moved against the previous
+> period, every out-of-range event with its cause if known, and what you propose for each; (4) the
+> rule that every out-of-range event becomes a corrective pending item with the measured number as
+> its acceptance criterion, closed with the full routine. Nothing here may read or store personal
+> data. Show me the first report generated on real data from the test environment, and one alert
+> fired on purpose by exceeding a threshold. The row counts that revalidate the sizing carry their
+> own verifiable window: the first and the last timestamp read from the database or the log, never a
+> number typed by hand; a window typed by hand is marked as such in the report and only warns, it
+> never opens a pending item on its own. Document the thresholds, the channel, the cycle and how to
+> silence an alert with a written reason in `docs/MONITORING.md`. Reply in my language.
 
 > [fr]
 > Nous allons garder ce système sous surveillance en production. En utilisant les métriques et les
@@ -109,6 +111,9 @@ faites, pas l'agent :
 > des données réelles de l'environnement de test, et une alerte déclenchée exprès en dépassant un
 > seuil. Documente les seuils, le canal, le cycle et comment faire taire une alerte avec une raison
 > écrite dans `docs/MONITORING.md`. Réponds dans ma langue.
+> Les comptages de lignes qui revalident le dimensionnement portent leur propre fenêtre vérifiable : la première et la dernière date lues dans la base ou dans le journal, jamais un nombre saisi à la main ; une fenêtre saisie à la main est marquée comme telle dans le rapport et ne fait qu'avertir, elle n'ouvre jamais d'élément en attente à elle seule.
+
+**La fenêtre de la mesure.** Le rapport cyclique compare les lignes observées par an à ce que l'échelon 3 a déclaré. Un nombre correct avec une mauvaise fenêtre ouvre un faux élément en attente : dans la pratique Turnera héritée, 30 000 lignes de trois ans ont été passées comme si elles étaient d'une seule année. C'est pourquoi la mesure porte sa fenêtre **vérifiable** : le premier et le dernier enregistrement lus dans la base ou dans le journal, pas un nombre saisi à la main. Si l'outil ne peut pas lire la base, il le déclare comme angle mort ; une fenêtre saisie à la main est marquée comme telle dans le rapport et ne fait qu'avertir, elle n'ouvre jamais d'élément en attente à elle seule. (Décision D-039.)
 
 Ce que je lui demande : une collecte avec historique (sans historique il n'y a pas de ligne de base,
 et sans ligne de base il n'y a pas de « hors plage ») ; des alertes contre deux références, le seuil

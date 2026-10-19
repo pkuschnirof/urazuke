@@ -70,20 +70,22 @@ l'agente:
   persona che lo legge.
 
 > We are going to make sure that no error in production goes unseen. Using the records of step 16,
-> set up: (1) centralized capture of every error and unhandled exception in the backend, in the
-> jobs and in the user's browser, with the correlation id, the version, the environment, the
-> actor (never personal data) and the stack; (2) grouping of errors by cause, so that one defect
-> is one entry, with its count, first and last occurrence, versions affected and the flows it
-> touches; (3) alerts to [channel] for every new error type, for a known error that crosses [N]
-> occurrences per hour, and for any error inside a consequential action of `docs/LOCKS.md`; (4) a
-> cyclic report, [weekly], generated automatically, with: new errors, recurring errors and their
-> trend, the errors fixed in the period with their pending item, the error rate per flow against
-> the previous period, and what you propose for each open one; (5) the rule that every new error
-> type opens a corrective pending item, closed with the test that reproduces it in red, and that
-> there is no "known error" without a pending item that says why it is tolerated and until when.
-> Show me one error provoked on purpose in the test environment, in the browser, followed by its
-> id to the backend record, the alert and the report. Document it in `docs/MONITORING.md`. Reply
-> in my language.
+> set up: (1) centralized capture of every error and unhandled exception in the backend, in the jobs
+> and in the user's browser, with the correlation id, the version, the environment, the actor (never
+> personal data) and the stack; (2) grouping of errors by cause, so that one defect is one entry,
+> with its count, first and last occurrence, versions affected and the flows it touches; (3) alerts
+> to [channel] for every new error type, for a known error that crosses [N] occurrences per hour,
+> and for any error inside a consequential action of `docs/LOCKS.md`; (4) a cyclic report, [weekly],
+> generated automatically, with: new errors, recurring errors and their trend, the errors fixed in
+> the period with their pending item, the error rate per flow against the previous period, and what
+> you propose for each open one; (5) the rule that every new error type opens a corrective pending
+> item, closed with the test that reproduces it in red, and that there is no "known error" without a
+> pending item that says why it is tolerated and until when. Show me one error provoked on purpose
+> in the test environment, in the browser, followed by its id to the backend record, the alert and
+> the report. Tag every captured error with its source, and keep the errors of the tools that watch
+> the system (the panel, the resident agent, the monitoring itself) apart from the errors of the
+> system: the report lists them in a separate section, and only the system's errors open pending
+> items. Document it in `docs/MONITORING.md`. Reply in my language.
 
 > [it]
 > Ci assicureremo che nessun errore in produzione passi inosservato. Usando i record del gradino
@@ -102,6 +104,9 @@ l'agente:
 > perché si tollera e fino a quando. Mostrami un errore provocato apposta nell'ambiente di test,
 > nel browser, seguito dal suo identificatore fino al record del backend, all'allerta e al
 > rapporto. Documentalo in `docs/MONITORING.md`. Rispondi nella mia lingua.
+> Etichetta ogni errore catturato con la sua fonte, e tieni separati gli errori degli strumenti che osservano il sistema (il pannello, l'agente residente, il monitoraggio stesso) dagli errori del sistema: il report li elenca in una sezione a parte, e solo gli errori del sistema aprono elementi in sospeso.
+
+**Gli errori dello strumento non sono errori del sistema.** La cattura centralizzata separa per fonte: gli errori del sistema e quelli degli strumenti che lo osservano (il pannello, l'agente residente, il monitoraggio stesso) si conservano con fonte distinta, il report li elenca in sezioni separate, e solo quelli del sistema aprono elementi in sospeso. Nella pratica Turnera, il primo report ciclico aprì sei "bug" che erano il pannello di Forge che parlava con un server spento. (Decisione D-038.)
 
 Cosa gli sto chiedendo: la cattura nei tre posti dove gli errori si nascondono (backend,
 processi, browser), con l'identificatore del 16 per poterli seguire; il raggruppamento, senza il

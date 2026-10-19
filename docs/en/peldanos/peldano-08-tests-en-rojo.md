@@ -86,8 +86,13 @@ the agent:
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
 > backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
 > to end requires something you lack (data, access, an environment), ask me for it; do not simulate
-> what you do not have. Finally, the commit message says "proved red against [what]" and the test
-> counts.
+> what you do not have. If the previous version does not have the module at all (the first block of
+> a new project), a failure to load is not a red: prove the red by planting one deliberate defect in
+> the function you just wrote (an inverted condition, a deleted line), show me the test failing
+> against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
+> Finally, the commit message says "proved red against [what]" and the test counts.
+
+**The red of the first block.** In the first block of a new project there is no previous code: the new test fails because the module does not exist, and that failure does not prove the test tells behaviour apart. So, when the previous version does not have the module, the red is proven **by mutation**: the agent plants a deliberate defect in the function it just wrote, shows the test red against that defect (the receipt carries the diff of the defect, so you can see it was not trivial), reverts it and shows the green. One mutant per pending item, run and recorded like any other receipt; mutation testing over the whole codebase stays the optional reinforcement of step 9. (Decision D-037, from the Turnera practice: six red receipts that only said "the file does not load".)
 
 What I am asking for, clause by clause: (1) the test, guided by the acceptance criteria of the
 pending item; (2) **the red demonstrated as a receipt** (command, version, counts, exit code),

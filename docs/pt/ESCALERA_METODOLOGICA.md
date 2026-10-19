@@ -716,6 +716,7 @@ até o backend, são os que substituem a sua leitura do código.
 - **Falha que evita**: os testes que passam porque não provam nada, e o verde que esconde um bug
   [Ref. 44](REFERENCIAS.md#ref-44). O caso dos contadores é o exemplo completo de um teste provado
   em vermelho contra o critério antigo [Ref. 26](REFERENCIAS.md#ref-26).
+- **Vermelho do primeiro bloco**: quando a versão anterior não tem o módulo, o vermelho se prova por mutação (um defeito plantado, o teste em vermelho, o diff no recibo), não com um arquivo que não carrega.
 - **Contrato**: `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Passo 9 — Qualidade do código verificada por máquina, com comporta
@@ -1036,6 +1037,7 @@ faixa, e produz um relatório cíclico que se lê com o dono. Cada desvio é uma
 - **Falha que evita**: o teto que foi preciso apertar ao medido
   [Ref. 37](REFERENCIAS.md#ref-37); a cota que se esgotou sem que ninguém olhasse
   [Ref. 39](REFERENCIAS.md#ref-39).
+- **Janela verificável**: a medição cíclica leva o primeiro e o último registro lidos da base; uma janela digitada à mão é marcada como tal e só avisa.
 - **Contrato**: `peldanos/peldano-21-monitoreo-de-recursos-y-rendimiento.md`.
 
 ### Passo 22 — Monitoramento de erros e relatório cíclico: nenhum erro sem pendência
@@ -1062,6 +1064,7 @@ existe o "erro conhecido" sem uma pendência que diga por que se tolera e até q
 - **Falha que evita**: o erro de autenticação relatado como sucesso
   [Ref. 43](REFERENCIAS.md#ref-43); as quatro rodadas até a causa raiz por não ter o erro
   reproduzido [Ref. 22](REFERENCIAS.md#ref-22).
+- **Fonte do erro**: os erros das ferramentas que observam o sistema vão à parte, na sua própria seção do relatório, e não abrem pendentes.
 - **Contrato**: `peldanos/peldano-22-monitoreo-de-errores.md`.
 
 ### Passo 23 — O agente dentro do sistema, e a retrospectiva com número
@@ -1517,6 +1520,8 @@ há sistema antigo, audita-se e migra-se; não se deixa como rede de segurança 
 **Flip (interruptor)** — Uma mudança de configuração que escolhe entre dois caminhos (por
 exemplo, o motor antigo ou o novo) sem tocar em código.
 
+**Fonte do erro** — De onde saiu um erro capturado: do sistema, ou de uma ferramenta que o observa (o painel, o agente residente, o monitoramento). Os erros das ferramentas são listados à parte e não abrem pendentes (degrau 22).
+
 **Forge (Yujin Forge)** — A ferramenta que construí: uma camada sobre o Claude Code que lhe
 acrescenta o método (doutrinas, comportas, pendências, um painel de chat, um app móvel, e o modo
 embarcado).
@@ -1572,6 +1577,8 @@ do degrau 18 a busca; o teste em vermelho da correção demonstra que já não p
 
 **IPC (correia entre processos)** — Um canal entre dois processos. No Forge foi usado como
 "correia": se o processo pai morre, o filho fica sabendo e se desliga.
+
+**Janela de medição** — O primeiro e o último registro que uma contagem de linhas abrange, lidos da base ou do registro. Sem janela verificável, um número correto pode dar um alarme falso (degrau 21).
 
 **JSON (armazenamento em)** — Guardar os dados em arquivos de texto com formato JSON em vez de
 num banco de dados. Serve para começar; não serve para milhões de linhas.
@@ -1807,6 +1814,8 @@ sustenta por trás; *urazukeru*, respaldar com provas. Pronuncia-se u-ra-ZU-ke. 
 
 **Vazão (throughput)** — Quantas ações por segundo o sistema aguenta. Mede-se com o teste de
 carga (19) e vigia-se no monitoramento (21).
+
+**Vermelho por mutação** — A forma de provar que um teste distingue comportamento quando não há versão anterior contra a qual rodá-lo: planta-se um defeito de propósito na função nova, o teste falha contra esse defeito, e o recibo leva o diff do defeito. Um só mutante por pendente (degrau 8); diferente dos testes de mutação sobre toda a base (degrau 9).
 
 **Vibecoding / vibecoder** — Construir software conversando com uma IA, descrevendo o que se
 quer, em vez de escrever o código à mão. Um vibecoder é quem faz isso.

@@ -766,6 +766,7 @@ bout, de l'écran jusqu'au backend, sont ceux qui remplacent votre lecture du co
 - **Échec évité** : les tests qui passent parce qu'ils ne prouvent rien, et le vert qui cache un
   bug [Ref. 44](REFERENCIAS.md#ref-44). Le cas des compteurs est l'exemple complet d'un test prouvé
   en rouge contre l'ancien critère [Ref. 26](REFERENCIAS.md#ref-26).
+- **Rouge du premier bloc** : quand la version précédente n'a pas le module, le rouge se prouve par mutation (un défaut planté, le test en rouge, le diff dans le reçu), pas avec un fichier qui ne se charge pas.
 - **Contrat** : `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Étape 9 — Qualité du code vérifiée par machine, avec une porte
@@ -1114,6 +1115,7 @@ lit avec le propriétaire. Chaque écart est un élément en attente.
 - **Échec évité** : le plafond qu'il a fallu resserrer à ce qui avait été mesuré
   [Ref. 37](REFERENCIAS.md#ref-37) ; le quota qui a fondu sans que personne ne regarde
   [Ref. 39](REFERENCIAS.md#ref-39).
+- **Fenêtre vérifiable** : la mesure cyclique porte le premier et le dernier enregistrement lus dans la base ; une fenêtre saisie à la main est marquée comme telle et ne fait qu'avertir.
 - **Contrat** : `peldanos/peldano-21-monitoreo-de-recursos-y-rendimiento.md`.
 
 ### Étape 22 — Supervision des erreurs et rapport cyclique : aucune erreur sans élément en attente
@@ -1142,6 +1144,7 @@ n'existe pas sans un élément en attente qui dise pourquoi on la tolère et jus
 - **Échec évité** : l'erreur d'authentification rapportée comme un succès
   [Ref. 43](REFERENCIAS.md#ref-43) ; les quatre tours jusqu'à la cause racine faute d'avoir
   l'erreur reproduite [Ref. 22](REFERENCIAS.md#ref-22).
+- **Source de l'erreur** : les erreurs des outils qui observent le système vont à part, dans leur propre section du rapport, et n'ouvrent pas d'éléments en attente.
 - **Contrat** : `peldanos/peldano-22-monitoreo-de-errores.md`.
 
 ### Étape 23 — L'agent dans le système, et la rétrospective chiffrée
@@ -1443,6 +1446,8 @@ intégrations ; et à chaque nœud sont accrochés les éléments en attente et 
 touchent. L'agent le construit, vous le corrigez, et c'est ce que l'agent lit avant de toucher au
 code. Voir B.5.
 
+**Fenêtre de mesure** — Le premier et le dernier enregistrement que couvre un comptage de lignes, lus dans la base ou dans le journal. Sans fenêtre vérifiable, un nombre correct peut déclencher une fausse alerte (échelon 21).
+
 **Resserrer le plafond** — Abaisser une limite (un budget, un maximum autorisé) jusqu'à ce qu'elle
 soit à peine au-dessus de ce qui a été mesuré, pour que toute dégradation fasse échouer un test.
 
@@ -1498,6 +1503,10 @@ détecte en comptant les requêtes (échelon 7) et se corrige à l'échelon 17.
 
 **Coffre (vault)** — Un endroit chiffré où l'on garde les secrets (clés, mots de passe) au lieu de
 les laisser dans des fichiers texte.
+
+**Rouge par mutation** — La façon de prouver qu'un test distingue un comportement quand il n'y a pas de version précédente contre laquelle le lancer : on plante volontairement un défaut dans la nouvelle fonction, le test échoue contre ce défaut, et le reçu porte le diff du défaut. Un seul mutant par élément en attente (échelon 8) ; différent des tests de mutation sur toute la base (échelon 9).
+
+**Source de l'erreur** — D'où vient une erreur capturée : du système, ou d'un outil qui l'observe (le panneau, l'agent résident, la surveillance). Les erreurs des outils sont listées à part et n'ouvrent pas d'éléments en attente (échelon 22).
 
 **Verrou** — Une protection qui empêche qu'une action dangereuse se produise sans une condition
 explicite. Par exemple, le bouton de panique a un verrou dédié : on ne peut pas l'appuyer par

@@ -79,8 +79,11 @@
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
 > backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
 > to end requires something you lack (data, access, an environment), ask me for it; do not simulate
-> what you do not have. Finally, the commit message says "proved red against [what]" and the test
-> counts.
+> what you do not have. If the previous version does not have the module at all (the first block of
+> a new project), a failure to load is not a red: prove the red by planting one deliberate defect in
+> the function you just wrote (an inverted condition, a deleted line), show me the test failing
+> against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
+> Finally, the commit message says "proved red against [what]" and the test counts.
 
 > [ja]
 > この保留項目を閉じるには、あなたの言葉ではなく証拠が必要です。(1) 項目が求めることを
@@ -96,6 +99,9 @@
 > いないもの（データ、アクセス、環境）が必要なら、私に求めてください。持っていないものを
 > シミュレートしないでください。最後に、コミットメッセージは「[何]に対して赤で証明」と
 > テストの数を述べます。
+> 以前のバージョンにそのモジュールがまったく存在しない場合（新規プロジェクトの最初のブロック）、読み込めないファイルは赤ではありません。書いたばかりの関数に意図的な欠陥（条件の反転、行の削除）をひとつ植え、その欠陥に対してテストが失敗するところを、欠陥の diff を含む同じ種類のレシートとして見せてから、元に戻してください。
+
+**最初のブロックの赤。** 新規プロジェクトの最初のブロックには以前のコードがありません。新しいテストはモジュールが存在しないから失敗するのであって、その失敗はテストが振る舞いを見分けることを証明しません。そのため、以前のバージョンにモジュールがないときは、赤を**ミューテーションで**証明します。エージェントは書いたばかりの関数に意図的な欠陥を植え、その欠陥に対してテストが赤になるところを見せ（レシートには欠陥の diff が付くので、些細なものでなかったことが分かります）、元に戻して緑を見せます。保留項目ごとにミュータントひとつ、他のレシートと同じように実行して記録します。コードベース全体のミューテーションテストは、引き続き段 9 の任意の補強です。（決定 D-037。練習 Turnera から：「ファイルが読み込めない」としか言わない赤のレシートが六つ。）
 
 何を求めているか、条項ごとに：(1) 保留項目の受け入れ基準に導かれたテスト。(2) **レシート
 として示された赤**（コマンド、バージョン、数字、終了コード）。この方法を「テストを書け」と

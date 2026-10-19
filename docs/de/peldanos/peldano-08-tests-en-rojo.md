@@ -90,8 +90,11 @@ machst es, nicht der Agent:
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
 > backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
 > to end requires something you lack (data, access, an environment), ask me for it; do not simulate
-> what you do not have. Finally, the commit message says "proved red against [what]" and the test
-> counts.
+> what you do not have. If the previous version does not have the module at all (the first block of
+> a new project), a failure to load is not a red: prove the red by planting one deliberate defect in
+> the function you just wrote (an inverted condition, a deleted line), show me the test failing
+> against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
+> Finally, the commit message says "proved red against [what]" and the test counts.
 
 > [de]
 > Um diesen offenen Posten zu schließen, brauche ich Belege, nicht dein Wort. (1) Schreib den
@@ -108,6 +111,9 @@ machst es, nicht der Agent:
 > etwas erfordert, das dir fehlt (Daten, Zugang, eine Umgebung), bitte mich darum; simuliere
 > nicht, was du nicht hast. Zum Schluss sagt die Commit-Nachricht „rot bewiesen gegen [was]“ und
 > die Testzahlen.
+> Wenn die vorherige Version das Modul gar nicht hat (der erste Block eines neuen Projekts), ist eine Datei, die nicht lädt, kein Rot: beweise das Rot, indem du absichtlich einen Fehler in die gerade geschriebene Funktion pflanzt (eine umgekehrte Bedingung, eine gelöschte Zeile), zeige mir den Test, der gegen diesen Fehler fehlschlägt, als dieselbe Art von Beleg, mit dem Diff des Fehlers, und mache ihn dann rückgängig.
+
+**Das Rot des ersten Blocks.** Im ersten Block eines neuen Projekts gibt es keinen vorherigen Code: der neue Test schlägt fehl, weil das Modul nicht existiert, und dieser Fehlschlag beweist nicht, dass der Test Verhalten unterscheidet. Deshalb wird, wenn die vorherige Version das Modul nicht hat, das Rot **durch Mutation** bewiesen: der Agent pflanzt absichtlich einen Fehler in die gerade geschriebene Funktion, zeigt den Test rot gegen diesen Fehler (der Beleg trägt den Diff des Fehlers, damit du siehst, dass er nicht trivial war), macht ihn rückgängig und zeigt das Grün. Ein Mutant pro offenem Punkt, ausgeführt und aufgezeichnet wie jeder andere Beleg; Mutationstests über die ganze Codebasis bleiben die optionale Verstärkung der Stufe 9. (Entscheidung D-037, aus der Übung Turnera: sechs rote Belege, die nur "die Datei lädt nicht" sagten.)
 
 Was ich hier verlange, Klausel für Klausel: (1) den Test, geführt von den Abnahmekriterien des
 offenen Postens; (2) **das bewiesene Rot als Beleg** (Befehl, Version, Zahlen, Exit-Code), die

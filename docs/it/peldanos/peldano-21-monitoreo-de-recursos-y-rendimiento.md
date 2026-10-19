@@ -70,22 +70,24 @@ l'agente:
 - Stato minimo accettabile: ci sono soglie scritte, un canale con una persona che lo legge, e un
   ciclo.
 
-> We are going to keep this system watched in production. Using the metrics and logs of step 16,
-> the budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
+> We are going to keep this system watched in production. Using the metrics and logs of step 16, the
+> budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
 > collection of resource usage (CPU, memory, disk, database connections, queue sizes, external
-> quotas) and of the response time of every function, endpoint, job and query, with the
-> correlation id, kept with a history; (2) alerts when any of them is out of range: above the
-> thresholds, or more than [X] percent over the baseline of the last [N] days, sent to [channel],
-> with the rule that an alert that fires without a human reading it is a defect of the alert and
-> gets fixed or removed; (3) a cyclic report, [weekly], generated automatically, with: resource
-> usage against capacity and its trend, the slowest functions and queries and how they moved
-> against the previous period, every out-of-range event with its cause if known, and what you
-> propose for each; (4) the rule that every out-of-range event becomes a corrective pending item
-> with the measured number as its acceptance criterion, closed with the full routine. Nothing
-> here may read or store personal data. Show me the first report generated on real data from the
-> test environment, and one alert fired on purpose by exceeding a threshold. Document the
-> thresholds, the channel, the cycle and how to silence an alert with a written reason in
-> `docs/MONITORING.md`. Reply in my language.
+> quotas) and of the response time of every function, endpoint, job and query, with the correlation
+> id, kept with a history; (2) alerts when any of them is out of range: above the thresholds, or
+> more than [X] percent over the baseline of the last [N] days, sent to [channel], with the rule
+> that an alert that fires without a human reading it is a defect of the alert and gets fixed or
+> removed; (3) a cyclic report, [weekly], generated automatically, with: resource usage against
+> capacity and its trend, the slowest functions and queries and how they moved against the previous
+> period, every out-of-range event with its cause if known, and what you propose for each; (4) the
+> rule that every out-of-range event becomes a corrective pending item with the measured number as
+> its acceptance criterion, closed with the full routine. Nothing here may read or store personal
+> data. Show me the first report generated on real data from the test environment, and one alert
+> fired on purpose by exceeding a threshold. The row counts that revalidate the sizing carry their
+> own verifiable window: the first and the last timestamp read from the database or the log, never a
+> number typed by hand; a window typed by hand is marked as such in the report and only warns, it
+> never opens a pending item on its own. Document the thresholds, the channel, the cycle and how to
+> silence an alert with a written reason in `docs/MONITORING.md`. Reply in my language.
 
 > [it]
 > Terremo questo sistema sorvegliato in produzione. Usando le metriche e i log del gradino 16, i
@@ -105,6 +107,9 @@ l'agente:
 > test, e un'allerta fatta scattare apposta superando una soglia. Documenta le soglie, il canale,
 > il ciclo e come silenziare un'allerta con una ragione scritta in `docs/MONITORING.md`. Rispondi
 > nella mia lingua.
+> I conteggi di righe che riconvalidano il dimensionamento portano la propria finestra verificabile: la prima e l'ultima data lette dal database o dal log, mai un numero scritto a mano; una finestra scritta a mano è segnata come tale nel report e si limita ad avvisare, non apre mai da sola un elemento in sospeso.
+
+**La finestra della misurazione.** Il report ciclico confronta le righe osservate per anno con quanto dichiarato al gradino 3. Un numero corretto con una finestra sbagliata apre un elemento in sospeso falso: nella pratica Turnera ereditata, 30.000 righe di tre anni passate come se fossero di uno. Per questo la misurazione porta la sua finestra **verificabile**: il primo e l'ultimo record letti dal database o dal log, non un numero scritto a mano. Se lo strumento non può leggere il database, lo dichiara come punto cieco; una finestra scritta a mano è segnata come tale nel report e si limita ad avvisare, non apre mai da sola un elemento in sospeso. (Decisione D-039.)
 
 Cosa gli sto chiedendo: raccolta con storia (senza storia non c'è linea base, e senza linea base
 non c'è "fuori range"); allerte contro due riferimenti, la soglia assoluta del 19 e lo

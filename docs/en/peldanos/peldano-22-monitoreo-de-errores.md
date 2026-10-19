@@ -68,20 +68,24 @@ the agent:
   channel with a person who reads it.
 
 > We are going to make sure that no error in production goes unseen. Using the records of step 16,
-> set up: (1) centralized capture of every error and unhandled exception in the backend, in the
-> jobs and in the user's browser, with the correlation id, the version, the environment, the
-> actor (never personal data) and the stack; (2) grouping of errors by cause, so that one defect
-> is one entry, with its count, first and last occurrence, versions affected and the flows it
-> touches; (3) alerts to [channel] for every new error type, for a known error that crosses [N]
-> occurrences per hour, and for any error inside a consequential action of `docs/LOCKS.md`; (4) a
-> cyclic report, [weekly], generated automatically, with: new errors, recurring errors and their
-> trend, the errors fixed in the period with their pending item, the error rate per flow against
-> the previous period, and what you propose for each open one; (5) the rule that every new error
-> type opens a corrective pending item, closed with the test that reproduces it in red, and that
-> there is no "known error" without a pending item that says why it is tolerated and until when.
-> Show me one error provoked on purpose in the test environment, in the browser, followed by its
-> id to the backend record, the alert and the report. Document it in `docs/MONITORING.md`. Reply
-> in my language.
+> set up: (1) centralized capture of every error and unhandled exception in the backend, in the jobs
+> and in the user's browser, with the correlation id, the version, the environment, the actor (never
+> personal data) and the stack; (2) grouping of errors by cause, so that one defect is one entry,
+> with its count, first and last occurrence, versions affected and the flows it touches; (3) alerts
+> to [channel] for every new error type, for a known error that crosses [N] occurrences per hour,
+> and for any error inside a consequential action of `docs/LOCKS.md`; (4) a cyclic report, [weekly],
+> generated automatically, with: new errors, recurring errors and their trend, the errors fixed in
+> the period with their pending item, the error rate per flow against the previous period, and what
+> you propose for each open one; (5) the rule that every new error type opens a corrective pending
+> item, closed with the test that reproduces it in red, and that there is no "known error" without a
+> pending item that says why it is tolerated and until when. Show me one error provoked on purpose
+> in the test environment, in the browser, followed by its id to the backend record, the alert and
+> the report. Tag every captured error with its source, and keep the errors of the tools that watch
+> the system (the panel, the resident agent, the monitoring itself) apart from the errors of the
+> system: the report lists them in a separate section, and only the system's errors open pending
+> items. Document it in `docs/MONITORING.md`. Reply in my language.
+
+**The tool's errors are not the system's errors.** Centralized capture separates by source: the errors of the system and those of the tools that watch it (the panel, the resident agent, the monitoring itself) are stored under different sources, the report lists them in separate sections, and only the system's errors open pending items. In the Turnera practice, the first cyclic report opened six "bugs" that were the Forge panel talking to a server that was off. (Decision D-038.)
 
 What I am asking for: the capture in the three places where errors hide (backend, jobs, browser),
 with the identifier of step 16 so that they can be followed; the grouping, without which the

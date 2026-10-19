@@ -85,8 +85,11 @@ faites, pas l'agent :
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
 > backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
 > to end requires something you lack (data, access, an environment), ask me for it; do not simulate
-> what you do not have. Finally, the commit message says "proved red against [what]" and the test
-> counts.
+> what you do not have. If the previous version does not have the module at all (the first block of
+> a new project), a failure to load is not a red: prove the red by planting one deliberate defect in
+> the function you just wrote (an inverted condition, a deleted line), show me the test failing
+> against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
+> Finally, the commit message says "proved red against [what]" and the test counts.
 
 > [fr]
 > Pour clore cet élément en attente, j'ai besoin d'une preuve, pas de ta parole. (1) Écris le test
@@ -103,6 +106,9 @@ faites, pas l'agent :
 > chose que tu n'as pas (des données, un accès, un environnement), demande-le-moi ; ne simule pas
 > ce que tu n'as pas. Enfin, le message du commit dit « prouvé en rouge contre [quoi] » et les
 > chiffres des tests.
+> Si la version précédente n'a pas du tout le module (le premier bloc d'un nouveau projet), un fichier qui ne se charge pas n'est pas un rouge : prouvez le rouge en plantant volontairement un défaut dans la fonction que vous venez d'écrire (une condition inversée, une ligne supprimée), montrez-moi le test qui échoue contre ce défaut sous la même forme de reçu, avec le diff du défaut, puis annulez-le.
+
+**Le rouge du premier bloc.** Dans le premier bloc d'un nouveau projet il n'y a pas de code précédent : le nouveau test échoue parce que le module n'existe pas, et cet échec ne prouve pas que le test distingue un comportement. C'est pourquoi, quand la version précédente n'a pas le module, le rouge se prouve **par mutation** : l'agent plante volontairement un défaut dans la fonction qu'il vient d'écrire, montre le test en rouge contre ce défaut (le reçu porte le diff du défaut, pour que vous voyiez qu'il n'était pas trivial), l'annule et montre le vert. Un seul mutant par élément en attente, exécuté et enregistré comme n'importe quel autre reçu ; les tests de mutation sur toute la base restent le renfort optionnel de l'échelon 9. (Décision D-037, issue de la pratique Turnera : six reçus de rouge qui disaient seulement « le fichier ne se charge pas ».)
 
 Ce que je lui demande, clause par clause : (1) le test, guidé par les critères d'acceptation de
 l'élément en attente ; (2) **le rouge démontré comme reçu** (commande, version, chiffres, code de

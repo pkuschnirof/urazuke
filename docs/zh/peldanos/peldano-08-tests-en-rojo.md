@@ -66,8 +66,11 @@
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
 > backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
 > to end requires something you lack (data, access, an environment), ask me for it; do not simulate
-> what you do not have. Finally, the commit message says "proved red against [what]" and the test
-> counts.
+> what you do not have. If the previous version does not have the module at all (the first block of
+> a new project), a failure to load is not a red: prove the red by planting one deliberate defect in
+> the function you just wrote (an inverted condition, a deleted line), show me the test failing
+> against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
+> Finally, the commit message says "proved red against [what]" and the test counts.
 
 > [zh]
 > 要关闭这个待办项，我需要证据，不是你的口头保证。(1) 写出证明该项所要求之事的测试，遵循
@@ -78,6 +81,9 @@
 > 端到端测试，从界面到后端，给我看后端的效果。(6) 不要恰好用模拟（mock）替换你要测的那部
 > 分。如果端到端测试需要你没有的东西（数据、访问权、环境），向我索要；不要模拟你没有的。
 > 最后，提交信息写"对 [什么] 先证红"以及测试的数字。
+> 如果上一版本根本没有这个模块（新项目的第一个块），文件无法加载并不是红色：请在你刚写的函数里故意植入一个缺陷（反转一个条件、删除一行）来证明红色，把测试针对该缺陷失败的输出作为同类凭据给我看，附上缺陷的 diff，然后把它还原。
+
+**第一个块的红色。** 新项目的第一个块没有先前代码：新测试失败只是因为模块不存在，这种失败并不能证明测试能分辨行为。因此，当上一版本没有这个模块时，红色要**通过变异**来证明：代理在刚写好的函数里故意植入一个缺陷，展示测试针对该缺陷变红（凭据附带缺陷的 diff，让你看到它不是微不足道的），再还原并展示绿色。每个待办项一个变异体，像其他凭据一样执行并记录；对整个代码库的变异测试仍然是台阶 9 的可选加固。（决定 D-037，来自练习 Turnera：六张红色凭据只说"文件无法加载"。）
 
 我在要求什么，逐条：(1) 测试，由待办项的验收标准引导；(2) **作为凭据展示出来的红色**（命
 令、版本、数字、退出码），这是把本方法和"写测试"区分开的条款，也是不让红色沦为一段叙述的

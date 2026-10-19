@@ -65,20 +65,22 @@ o agente:
   que o lê.
 
 > We are going to make sure that no error in production goes unseen. Using the records of step 16,
-> set up: (1) centralized capture of every error and unhandled exception in the backend, in the
-> jobs and in the user's browser, with the correlation id, the version, the environment, the
-> actor (never personal data) and the stack; (2) grouping of errors by cause, so that one defect
-> is one entry, with its count, first and last occurrence, versions affected and the flows it
-> touches; (3) alerts to [channel] for every new error type, for a known error that crosses [N]
-> occurrences per hour, and for any error inside a consequential action of `docs/LOCKS.md`; (4) a
-> cyclic report, [weekly], generated automatically, with: new errors, recurring errors and their
-> trend, the errors fixed in the period with their pending item, the error rate per flow against
-> the previous period, and what you propose for each open one; (5) the rule that every new error
-> type opens a corrective pending item, closed with the test that reproduces it in red, and that
-> there is no "known error" without a pending item that says why it is tolerated and until when.
-> Show me one error provoked on purpose in the test environment, in the browser, followed by its
-> id to the backend record, the alert and the report. Document it in `docs/MONITORING.md`. Reply
-> in my language.
+> set up: (1) centralized capture of every error and unhandled exception in the backend, in the jobs
+> and in the user's browser, with the correlation id, the version, the environment, the actor (never
+> personal data) and the stack; (2) grouping of errors by cause, so that one defect is one entry,
+> with its count, first and last occurrence, versions affected and the flows it touches; (3) alerts
+> to [channel] for every new error type, for a known error that crosses [N] occurrences per hour,
+> and for any error inside a consequential action of `docs/LOCKS.md`; (4) a cyclic report, [weekly],
+> generated automatically, with: new errors, recurring errors and their trend, the errors fixed in
+> the period with their pending item, the error rate per flow against the previous period, and what
+> you propose for each open one; (5) the rule that every new error type opens a corrective pending
+> item, closed with the test that reproduces it in red, and that there is no "known error" without a
+> pending item that says why it is tolerated and until when. Show me one error provoked on purpose
+> in the test environment, in the browser, followed by its id to the backend record, the alert and
+> the report. Tag every captured error with its source, and keep the errors of the tools that watch
+> the system (the panel, the resident agent, the monitoring itself) apart from the errors of the
+> system: the report lists them in a separate section, and only the system's errors open pending
+> items. Document it in `docs/MONITORING.md`. Reply in my language.
 
 > [pt]
 > Vamos nos assegurar de que nenhum erro em produção passe sem ser visto. Com os registros do
@@ -97,6 +99,9 @@ o agente:
 > provocado de propósito no ambiente de teste, no navegador, seguido pelo seu identificador até o
 > registro do backend, o alerta e o relatório. Documente-o em `docs/MONITORING.md`. Responda no
 > meu idioma.
+> Marque cada erro capturado com a sua fonte, e mantenha separados os erros das ferramentas que observam o sistema (o painel, o agente residente, o próprio monitoramento) dos erros do sistema: o relatório os lista numa seção à parte, e só os erros do sistema abrem pendentes.
+
+**Os erros da ferramenta não são erros do sistema.** A captura centralizada separa por fonte: os erros do sistema e os das ferramentas que o observam (o painel, o agente residente, o próprio monitoramento) são guardados com fonte distinta, o relatório os lista em seções separadas, e só os do sistema abrem pendentes. Na prática Turnera, o primeiro relatório cíclico abriu seis "bugs" que eram o painel do Forge falando com um servidor desligado. (Decisão D-038.)
 
 O que estou pedindo: a captura nos três lugares onde os erros se escondem (backend, tarefas,
 navegador), com o identificador do 16 para poder segui-los; o agrupamento, sem o qual o relatório

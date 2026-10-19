@@ -53,20 +53,22 @@
 - 最低可接受状态：错误已经带着标识符出来（16），而且有一个有人在读的渠道。
 
 > We are going to make sure that no error in production goes unseen. Using the records of step 16,
-> set up: (1) centralized capture of every error and unhandled exception in the backend, in the
-> jobs and in the user's browser, with the correlation id, the version, the environment, the
-> actor (never personal data) and the stack; (2) grouping of errors by cause, so that one defect
-> is one entry, with its count, first and last occurrence, versions affected and the flows it
-> touches; (3) alerts to [channel] for every new error type, for a known error that crosses [N]
-> occurrences per hour, and for any error inside a consequential action of `docs/LOCKS.md`; (4) a
-> cyclic report, [weekly], generated automatically, with: new errors, recurring errors and their
-> trend, the errors fixed in the period with their pending item, the error rate per flow against
-> the previous period, and what you propose for each open one; (5) the rule that every new error
-> type opens a corrective pending item, closed with the test that reproduces it in red, and that
-> there is no "known error" without a pending item that says why it is tolerated and until when.
-> Show me one error provoked on purpose in the test environment, in the browser, followed by its
-> id to the backend record, the alert and the report. Document it in `docs/MONITORING.md`. Reply
-> in my language.
+> set up: (1) centralized capture of every error and unhandled exception in the backend, in the jobs
+> and in the user's browser, with the correlation id, the version, the environment, the actor (never
+> personal data) and the stack; (2) grouping of errors by cause, so that one defect is one entry,
+> with its count, first and last occurrence, versions affected and the flows it touches; (3) alerts
+> to [channel] for every new error type, for a known error that crosses [N] occurrences per hour,
+> and for any error inside a consequential action of `docs/LOCKS.md`; (4) a cyclic report, [weekly],
+> generated automatically, with: new errors, recurring errors and their trend, the errors fixed in
+> the period with their pending item, the error rate per flow against the previous period, and what
+> you propose for each open one; (5) the rule that every new error type opens a corrective pending
+> item, closed with the test that reproduces it in red, and that there is no "known error" without a
+> pending item that says why it is tolerated and until when. Show me one error provoked on purpose
+> in the test environment, in the browser, followed by its id to the backend record, the alert and
+> the report. Tag every captured error with its source, and keep the errors of the tools that watch
+> the system (the panel, the resident agent, the monitoring itself) apart from the errors of the
+> system: the report lists them in a separate section, and only the system's errors open pending
+> items. Document it in `docs/MONITORING.md`. Reply in my language.
 
 > [zh]
 > 我们要确保生产里没有任何错误不被看见。用第 16 级台阶的记录，搭建：(1) 对后端、任务和用
@@ -80,6 +82,9 @@
 > 个待办项说明为什么容忍它、容忍到什么时候。给我看一个在测试环境里、在浏览器里故意引发的
 > 错误，被它的标识符一路跟到后端记录、告警和报告。把它记进 `docs/MONITORING.md`。用我的
 > 语言回复。
+> 给每个捕获的错误标注来源，并把观测系统的工具（面板、常驻代理、监控本身）的错误与系统本身的错误分开：报告把它们列在单独一节，只有系统的错误才会打开待办项。
+
+**工具的错误不是系统的错误。** 集中捕获按来源区分：系统的错误和观测它的工具（面板、常驻代理、监控本身）的错误以不同来源保存，报告把它们列在不同的节里，只有系统的错误才会打开待办项。在 Turnera 练习中，第一份周期报告打开了六个"bug"，其实是 Forge 面板在跟一个已关闭的服务器通信。（决定 D-038。）
 
 我在要求什么：在错误藏身的三个地方（后端、任务、浏览器）都做捕获，带上第 16 级的标识符以便跟踪
 它们；分组，没有它报告就是一万行的清单；三类要紧的告警（新的、在长大的复发的、有后果的）；带按

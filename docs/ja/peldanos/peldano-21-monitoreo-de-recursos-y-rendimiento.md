@@ -65,22 +65,24 @@
 - 最低限受け入れられる状態：書かれた閾値があり、それを読む人のいる経路があり、サイクルがある
   こと。
 
-> We are going to keep this system watched in production. Using the metrics and logs of step 16,
-> the budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
+> We are going to keep this system watched in production. Using the metrics and logs of step 16, the
+> budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
 > collection of resource usage (CPU, memory, disk, database connections, queue sizes, external
-> quotas) and of the response time of every function, endpoint, job and query, with the
-> correlation id, kept with a history; (2) alerts when any of them is out of range: above the
-> thresholds, or more than [X] percent over the baseline of the last [N] days, sent to [channel],
-> with the rule that an alert that fires without a human reading it is a defect of the alert and
-> gets fixed or removed; (3) a cyclic report, [weekly], generated automatically, with: resource
-> usage against capacity and its trend, the slowest functions and queries and how they moved
-> against the previous period, every out-of-range event with its cause if known, and what you
-> propose for each; (4) the rule that every out-of-range event becomes a corrective pending item
-> with the measured number as its acceptance criterion, closed with the full routine. Nothing
-> here may read or store personal data. Show me the first report generated on real data from the
-> test environment, and one alert fired on purpose by exceeding a threshold. Document the
-> thresholds, the channel, the cycle and how to silence an alert with a written reason in
-> `docs/MONITORING.md`. Reply in my language.
+> quotas) and of the response time of every function, endpoint, job and query, with the correlation
+> id, kept with a history; (2) alerts when any of them is out of range: above the thresholds, or
+> more than [X] percent over the baseline of the last [N] days, sent to [channel], with the rule
+> that an alert that fires without a human reading it is a defect of the alert and gets fixed or
+> removed; (3) a cyclic report, [weekly], generated automatically, with: resource usage against
+> capacity and its trend, the slowest functions and queries and how they moved against the previous
+> period, every out-of-range event with its cause if known, and what you propose for each; (4) the
+> rule that every out-of-range event becomes a corrective pending item with the measured number as
+> its acceptance criterion, closed with the full routine. Nothing here may read or store personal
+> data. Show me the first report generated on real data from the test environment, and one alert
+> fired on purpose by exceeding a threshold. The row counts that revalidate the sizing carry their
+> own verifiable window: the first and the last timestamp read from the database or the log, never a
+> number typed by hand; a window typed by hand is marked as such in the report and only warns, it
+> never opens a pending item on its own. Document the thresholds, the channel, the cycle and how to
+> silence an alert with a written reason in `docs/MONITORING.md`. Reply in my language.
 
 > [ja]
 > このシステムを本番で見張り続けます。第16段の指標と記録、`docs/PERSISTENCE.md` の予算、
@@ -97,6 +99,9 @@
 > データで生成した最初の報告と、閾値をわざと超えて発報させた警報を一つ見せてください。閾値、
 > 経路、サイクル、そして書かれた理由とともに警報を黙らせる方法を `docs/MONITORING.md` に文書
 > 化してください。私の言語で答えてください。
+> サイジングを再検証する行数には、検証可能な期間を必ず添えます。データベースかログから読んだ最初と最後のタイムスタンプであって、手で入力した数字ではありません。手入力の期間はレポートにそう明記し、警告するだけで、それ自体では保留項目を開きません。
+
+**測定の期間。** 周期レポートは、年あたりの観測行数を段 3 で宣言した値と比べます。正しい数でも期間が間違っていれば、偽の保留項目を開きます。引き継いだ Turnera の練習では、3 年分の 30,000 行が 1 年分として渡されました。だから測定には**検証可能な**期間を添えます。データベースかログから読んだ最初と最後のレコードであって、手で入力した数字ではありません。道具がデータベースを読めなければ、それを盲点として宣言します。手入力の期間はレポートにそう明記し、警告するだけで、それ自体では保留項目を開きません。（決定 D-039。）
 
 何を求めているか：歴史を持つ収集（歴史がなければ基準線はなく、基準線がなければ「範囲外」はな
 い）。二つの基準に対する警報、第19段の絶対的な閾値と、自身の歴史に対する相対的な逸脱。第12段

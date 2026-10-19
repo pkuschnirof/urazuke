@@ -76,22 +76,24 @@ machst es, nicht der Agent:
 - Akzeptabler Mindestzustand: es gibt geschriebene Schwellenwerte, einen Kanal mit einer Person,
   die ihn liest, und einen Zyklus.
 
-> We are going to keep this system watched in production. Using the metrics and logs of step 16,
-> the budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
+> We are going to keep this system watched in production. Using the metrics and logs of step 16, the
+> budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
 > collection of resource usage (CPU, memory, disk, database connections, queue sizes, external
-> quotas) and of the response time of every function, endpoint, job and query, with the
-> correlation id, kept with a history; (2) alerts when any of them is out of range: above the
-> thresholds, or more than [X] percent over the baseline of the last [N] days, sent to [channel],
-> with the rule that an alert that fires without a human reading it is a defect of the alert and
-> gets fixed or removed; (3) a cyclic report, [weekly], generated automatically, with: resource
-> usage against capacity and its trend, the slowest functions and queries and how they moved
-> against the previous period, every out-of-range event with its cause if known, and what you
-> propose for each; (4) the rule that every out-of-range event becomes a corrective pending item
-> with the measured number as its acceptance criterion, closed with the full routine. Nothing
-> here may read or store personal data. Show me the first report generated on real data from the
-> test environment, and one alert fired on purpose by exceeding a threshold. Document the
-> thresholds, the channel, the cycle and how to silence an alert with a written reason in
-> `docs/MONITORING.md`. Reply in my language.
+> quotas) and of the response time of every function, endpoint, job and query, with the correlation
+> id, kept with a history; (2) alerts when any of them is out of range: above the thresholds, or
+> more than [X] percent over the baseline of the last [N] days, sent to [channel], with the rule
+> that an alert that fires without a human reading it is a defect of the alert and gets fixed or
+> removed; (3) a cyclic report, [weekly], generated automatically, with: resource usage against
+> capacity and its trend, the slowest functions and queries and how they moved against the previous
+> period, every out-of-range event with its cause if known, and what you propose for each; (4) the
+> rule that every out-of-range event becomes a corrective pending item with the measured number as
+> its acceptance criterion, closed with the full routine. Nothing here may read or store personal
+> data. Show me the first report generated on real data from the test environment, and one alert
+> fired on purpose by exceeding a threshold. The row counts that revalidate the sizing carry their
+> own verifiable window: the first and the last timestamp read from the database or the log, never a
+> number typed by hand; a window typed by hand is marked as such in the report and only warns, it
+> never opens a pending item on its own. Document the thresholds, the channel, the cycle and how to
+> silence an alert with a written reason in `docs/MONITORING.md`. Reply in my language.
 
 > [de]
 > Wir werden dieses System in der Produktion unter Beobachtung halten. Bau mit den Metriken und
@@ -113,6 +115,9 @@ machst es, nicht der Agent:
 > absichtlich durch das Überschreiten eines Schwellenwerts ausgelöst wurde. Dokumentiere die
 > Schwellenwerte, den Kanal, den Zyklus und wie man einen Alarm mit einer geschriebenen Begründung
 > stummschaltet, in `docs/MONITORING.md`. Antworte in meiner Sprache.
+> Die Zeilenzahlen, die die Dimensionierung neu bestätigen, tragen ihr eigenes überprüfbares Fenster: den ersten und den letzten Zeitstempel, aus der Datenbank oder dem Protokoll gelesen, nie eine von Hand getippte Zahl; ein von Hand getipptes Fenster wird im Bericht als solches markiert und warnt nur, es öffnet nie von allein einen offenen Punkt.
+
+**Das Fenster der Messung.** Der zyklische Bericht vergleicht die beobachteten Zeilen pro Jahr mit dem, was Stufe 3 erklärt hat. Eine richtige Zahl mit einem falschen Fenster öffnet einen falschen offenen Punkt: in der Übung mit dem geerbten Turnera wurden 30.000 Zeilen aus drei Jahren übergeben, als wären sie aus einem. Deshalb trägt die Messung ihr **überprüfbares** Fenster: den ersten und den letzten Datensatz, aus der Datenbank oder dem Protokoll gelesen, keine von Hand getippte Zahl. Kann das Werkzeug die Datenbank nicht lesen, erklärt es das als blinden Fleck; ein von Hand getipptes Fenster wird im Bericht als solches markiert und warnt nur, es öffnet nie von allein einen offenen Punkt. (Entscheidung D-039.)
 
 Was ich hier verlange: Erfassung mit Geschichte (ohne Geschichte gibt es keine Basislinie, und
 ohne Basislinie gibt es kein „außerhalb des Bereichs“); Alarme gegen zwei Referenzen, den

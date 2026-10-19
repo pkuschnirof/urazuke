@@ -732,6 +732,7 @@ sono quelle che sostituiscono la tua lettura del codice.
 - **Fallimento che evita**: i test che passano perché non provano nulla, e il verde che nasconde
   un bug [Ref. 44](REFERENCIAS.md#ref-44). Il caso dei contatori è l'esempio completo di un test
   provato in rosso contro il criterio vecchio [Ref. 26](REFERENCIAS.md#ref-26).
+- **Rosso del primo blocco**: quando la versione precedente non ha il modulo, il rosso si prova per mutazione (un difetto piantato, il test in rosso, il diff nella ricevuta), non con un file che non si carica.
 - **Contratto**: `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Passo 9 — Qualità del codice verificata dalla macchina, con cancello
@@ -1070,6 +1071,7 @@ scostamento è una voce in sospeso.
 - **Fallimento che evita**: il tetto che si è dovuto stringere a ciò che era stato misurato
   [Ref. 37](REFERENCIAS.md#ref-37); la quota che si è bruciata senza che nessuno guardasse
   [Ref. 39](REFERENCIAS.md#ref-39).
+- **Finestra verificabile**: la misurazione ciclica porta il primo e l'ultimo record letti dal database; una finestra scritta a mano è segnata come tale e si limita ad avvisare.
 - **Contratto**: `peldanos/peldano-21-monitoreo-de-recursos-y-rendimiento.md`.
 
 ### Passo 22 — Monitoraggio degli errori e rapporto ciclico: nessun errore senza voce in sospeso
@@ -1097,6 +1099,7 @@ tollera e fino a quando.
 - **Fallimento che evita**: l'errore di autenticazione riportato come successo
   [Ref. 43](REFERENCIAS.md#ref-43); i quattro giri fino alla causa radice per non avere l'errore
   riprodotto [Ref. 22](REFERENCIAS.md#ref-22).
+- **Fonte dell'errore**: gli errori degli strumenti che osservano il sistema vanno a parte, in una sezione propria del report, e non aprono elementi in sospeso.
 - **Contratto**: `peldanos/peldano-22-monitoreo-de-errores.md`.
 
 ### Passo 23 — L'agente dentro il sistema, e la retrospettiva con i numeri
@@ -1389,6 +1392,12 @@ Il contrario di un "pattern" (una buona pratica comprovata).
 domini; sotto, attori, processi, entità con i loro stati, schermate e integrazioni; e da ogni nodo
 pendono le voci in sospeso e le decisioni che lo toccano. Lo costruisce l'agente, lo correggi tu,
 ed è ciò che l'agente legge prima di toccare codice. Vedi B.5.
+
+**Finestra di misurazione** — Il primo e l'ultimo record che un conteggio di righe copre, letti dal database o dal log. Senza finestra verificabile, un numero corretto può dare un falso allarme (gradino 21).
+
+**Fonte dell'errore** — Da dove è uscito un errore catturato: dal sistema, o da uno strumento che lo osserva (il pannello, l'agente residente, il monitoraggio). Gli errori degli strumenti si elencano a parte e non aprono elementi in sospeso (gradino 22).
+
+**Rosso per mutazione** — Il modo di provare che un test distingue un comportamento quando non c'è una versione precedente contro cui eseguirlo: si pianta di proposito un difetto nella funzione nuova, il test fallisce contro quel difetto, e la ricevuta porta il diff del difetto. Un solo mutante per elemento in sospeso (gradino 8); diverso dai test di mutazione su tutta la base (gradino 9).
 
 **Stringere il tetto** — Abbassare un limite (un budget, un massimo consentito) finché resti
 appena sopra il misurato, perché qualunque peggioramento faccia fallire un test.

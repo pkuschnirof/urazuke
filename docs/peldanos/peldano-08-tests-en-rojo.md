@@ -85,8 +85,11 @@ el agente:
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
 > backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
 > to end requires something you lack (data, access, an environment), ask me for it; do not simulate
-> what you do not have. Finally, the commit message says "proved red against [what]" and the test
-> counts.
+> what you do not have. If the previous version does not have the module at all (the first block of
+> a new project), a failure to load is not a red: prove the red by planting one deliberate defect in
+> the function you just wrote (an inverted condition, a deleted line), show me the test failing
+> against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
+> Finally, the commit message says "proved red against [what]" and the test counts.
 
 > [es]
 > Para cerrar este pendiente necesito evidencia, no tu palabra. (1) Escribí el test que prueba lo
@@ -101,6 +104,9 @@ el agente:
 > reemplaces con simulaciones justamente la parte que estás probando. Si probar de punta a punta
 > requiere algo que no tenés (datos, acceso, un entorno), pedímelo; no simules lo que no tenés. Por
 > último, el mensaje del commit dice "probado en rojo contra [qué]" y los números de los tests.
+> Si la versión anterior no tiene el módulo (el primer bloque de un proyecto nuevo), un archivo que no carga no es un rojo: probá el rojo plantando un defecto a propósito en la función que acabás de escribir (una condición invertida, una línea borrada), mostrame el test fallando contra ese defecto como el mismo tipo de recibo, con el diff del defecto, y después revertilo.
+
+**El rojo del primer bloque.** En el primer bloque de un proyecto nuevo no hay código anterior: el test nuevo falla porque el módulo no existe, y ese fallo no demuestra que el test distinga comportamiento. Por eso, cuando la versión anterior no tiene el módulo, el rojo se prueba **por mutación**: el agente planta un defecto a propósito en la función que acaba de escribir, muestra el test en rojo contra ese defecto (el recibo lleva el diff del defecto, para que vos veas que no fue trivial), lo revierte y muestra el verde. Es un solo mutante por pendiente, ejecutado y registrado como cualquier otro recibo; las pruebas de mutación sobre toda la base siguen siendo el refuerzo opcional del peldaño 9. (Decisión D-037, a partir de la práctica Turnera: seis recibos de rojo que solo decían "el archivo no carga".)
 
 Qué le estoy pidiendo, cláusula por cláusula: (1) el test, guiado por los criterios de aceptación
 del pendiente; (2) **el rojo demostrado como recibo** (comando, versión, números, código de

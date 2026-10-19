@@ -61,20 +61,22 @@
   のいる経路があること。
 
 > We are going to make sure that no error in production goes unseen. Using the records of step 16,
-> set up: (1) centralized capture of every error and unhandled exception in the backend, in the
-> jobs and in the user's browser, with the correlation id, the version, the environment, the
-> actor (never personal data) and the stack; (2) grouping of errors by cause, so that one defect
-> is one entry, with its count, first and last occurrence, versions affected and the flows it
-> touches; (3) alerts to [channel] for every new error type, for a known error that crosses [N]
-> occurrences per hour, and for any error inside a consequential action of `docs/LOCKS.md`; (4) a
-> cyclic report, [weekly], generated automatically, with: new errors, recurring errors and their
-> trend, the errors fixed in the period with their pending item, the error rate per flow against
-> the previous period, and what you propose for each open one; (5) the rule that every new error
-> type opens a corrective pending item, closed with the test that reproduces it in red, and that
-> there is no "known error" without a pending item that says why it is tolerated and until when.
-> Show me one error provoked on purpose in the test environment, in the browser, followed by its
-> id to the backend record, the alert and the report. Document it in `docs/MONITORING.md`. Reply
-> in my language.
+> set up: (1) centralized capture of every error and unhandled exception in the backend, in the jobs
+> and in the user's browser, with the correlation id, the version, the environment, the actor (never
+> personal data) and the stack; (2) grouping of errors by cause, so that one defect is one entry,
+> with its count, first and last occurrence, versions affected and the flows it touches; (3) alerts
+> to [channel] for every new error type, for a known error that crosses [N] occurrences per hour,
+> and for any error inside a consequential action of `docs/LOCKS.md`; (4) a cyclic report, [weekly],
+> generated automatically, with: new errors, recurring errors and their trend, the errors fixed in
+> the period with their pending item, the error rate per flow against the previous period, and what
+> you propose for each open one; (5) the rule that every new error type opens a corrective pending
+> item, closed with the test that reproduces it in red, and that there is no "known error" without a
+> pending item that says why it is tolerated and until when. Show me one error provoked on purpose
+> in the test environment, in the browser, followed by its id to the backend record, the alert and
+> the report. Tag every captured error with its source, and keep the errors of the tools that watch
+> the system (the panel, the resident agent, the monitoring itself) apart from the errors of the
+> system: the report lists them in a separate section, and only the system's errors open pending
+> items. Document it in `docs/MONITORING.md`. Reply in my language.
 
 > [ja]
 > 本番のどんなエラーも見られないまま過ぎないようにします。第16段の記録を使って、次を組み立て
@@ -91,6 +93,9 @@
 > ない「既知のエラー」は存在しないというルール。テスト環境でブラウザにわざと引き起こしたエ
 > ラーを一つ、その識別子によってバックエンドの記録、警報、報告まで追って見せてください。
 > `docs/MONITORING.md` に文書化してください。私の言語で答えてください。
+> 捕捉したすべてのエラーに発生源を付け、システムを観測する道具（パネル、常駐エージェント、監視そのもの）のエラーをシステムのエラーと分けて保管してください。レポートはそれらを別の節に列挙し、保留項目を開くのはシステムのエラーだけです。
+
+**道具のエラーはシステムのエラーではない。** 集中捕捉は発生源で分けます。システムのエラーと、それを観測する道具（パネル、常駐エージェント、監視そのもの）のエラーは別の発生源で保管し、レポートは別々の節に列挙し、保留項目を開くのはシステムのエラーだけです。練習 Turnera では、最初の周期レポートが六つの「バグ」を開きましたが、それは Forge のパネルが停止中のサーバーと話していただけでした。（決定 D-038。）
 
 何を求めているか：エラーが隠れる三つの場所での捕捉（バックエンド、ジョブ、ブラウザ）、追える
 ように第16段の識別子とともに。まとめ、それがなければ報告は一万行のリストだ。重要な三つの警報

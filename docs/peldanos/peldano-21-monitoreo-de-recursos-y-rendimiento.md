@@ -67,22 +67,24 @@ el agente:
   promedio de los últimos catorce días), para el hueco del prompt.
 - Estado mínimo aceptable: hay umbrales escritos, un canal con una persona que lo lee, y un ciclo.
 
-> We are going to keep this system watched in production. Using the metrics and logs of step 16,
-> the budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
+> We are going to keep this system watched in production. Using the metrics and logs of step 16, the
+> budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
 > collection of resource usage (CPU, memory, disk, database connections, queue sizes, external
-> quotas) and of the response time of every function, endpoint, job and query, with the
-> correlation id, kept with a history; (2) alerts when any of them is out of range: above the
-> thresholds, or more than [X] percent over the baseline of the last [N] days, sent to [channel],
-> with the rule that an alert that fires without a human reading it is a defect of the alert and
-> gets fixed or removed; (3) a cyclic report, [weekly], generated automatically, with: resource
-> usage against capacity and its trend, the slowest functions and queries and how they moved
-> against the previous period, every out-of-range event with its cause if known, and what you
-> propose for each; (4) the rule that every out-of-range event becomes a corrective pending item
-> with the measured number as its acceptance criterion, closed with the full routine. Nothing
-> here may read or store personal data. Show me the first report generated on real data from the
-> test environment, and one alert fired on purpose by exceeding a threshold. Document the
-> thresholds, the channel, the cycle and how to silence an alert with a written reason in
-> `docs/MONITORING.md`. Reply in my language.
+> quotas) and of the response time of every function, endpoint, job and query, with the correlation
+> id, kept with a history; (2) alerts when any of them is out of range: above the thresholds, or
+> more than [X] percent over the baseline of the last [N] days, sent to [channel], with the rule
+> that an alert that fires without a human reading it is a defect of the alert and gets fixed or
+> removed; (3) a cyclic report, [weekly], generated automatically, with: resource usage against
+> capacity and its trend, the slowest functions and queries and how they moved against the previous
+> period, every out-of-range event with its cause if known, and what you propose for each; (4) the
+> rule that every out-of-range event becomes a corrective pending item with the measured number as
+> its acceptance criterion, closed with the full routine. Nothing here may read or store personal
+> data. Show me the first report generated on real data from the test environment, and one alert
+> fired on purpose by exceeding a threshold. The row counts that revalidate the sizing carry their
+> own verifiable window: the first and the last timestamp read from the database or the log, never a
+> number typed by hand; a window typed by hand is marked as such in the report and only warns, it
+> never opens a pending item on its own. Document the thresholds, the channel, the cycle and how to
+> silence an alert with a written reason in `docs/MONITORING.md`. Reply in my language.
 
 > [es]
 > Vamos a mantener este sistema vigilado en producción. Con las métricas y los registros del
@@ -102,6 +104,9 @@ el agente:
 > entorno de prueba, y una alerta disparada a propósito superando un umbral. Documentá los
 > umbrales, el canal, el ciclo y cómo silenciar una alerta con una razón escrita en
 > `docs/MONITORING.md`. Respondé en mi idioma.
+> Los conteos de filas que revalidan el dimensionamiento llevan su propia ventana verificable: la primera y la última fecha leídas de la base o del registro, nunca un número escrito a mano; una ventana escrita a mano se marca como tal en el reporte y solo avisa, nunca abre un pendiente por sí sola.
+
+**La ventana de la medición.** El reporte cíclico compara las filas observadas por año contra lo declarado en el peldaño 3. Un número correcto con una ventana equivocada abre un pendiente falso: en la práctica Turnera heredada, 30.000 filas de tres años pasadas como si fueran de uno. Por eso la medición lleva su ventana **verificable**: el primer y el último registro leídos de la base o del registro, no un número escrito a mano. Si la herramienta no puede leer la base, lo declara como punto ciego; una ventana ingresada a mano se marca como tal en el reporte y solo avisa, nunca abre un pendiente por sí sola. (Decisión D-039.)
 
 Qué le estoy pidiendo: recolección con historia (sin historia no hay línea base, y sin línea base
 no hay "fuera de rango"); alertas contra dos referencias, el umbral absoluto del 19 y el desvío

@@ -725,6 +725,7 @@ el backend, son las que reemplazan tu lectura del código.
 - **Fallo que evita**: los tests que pasan porque no prueban nada, y el verde que esconde un bug
   [Ref. 44](REFERENCIAS.md#ref-44). El caso de los contadores es el ejemplo completo de un test
   probado en rojo contra el criterio viejo [Ref. 26](REFERENCIAS.md#ref-26).
+- **Rojo del primer bloque**: cuando la versión anterior no tiene el módulo, el rojo se prueba por mutación (un defecto plantado, el test en rojo, el diff en el recibo), no con un archivo que no carga.
 - **Contrato**: `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Peldaño 9 — Calidad del código verificada por máquina, con compuerta
@@ -1050,6 +1051,7 @@ sale de rango, y produce un reporte cíclico que se lee con el dueño. Cada desv
 - **Fallo que evita**: el techo que hubo que apretar a lo medido
   [Ref. 37](REFERENCIAS.md#ref-37); la cuota que se fundió sin que nadie mirara
   [Ref. 39](REFERENCIAS.md#ref-39).
+- **Ventana verificable**: la medición cíclica lleva el primer y el último registro leídos de la base; una ventana escrita a mano se marca como tal y solo avisa.
 - **Contrato**: `peldanos/peldano-21-monitoreo-de-recursos-y-rendimiento.md`.
 
 ### Peldaño 22 — Monitoreo de errores y reporte cíclico: ningún error sin pendiente
@@ -1077,6 +1079,7 @@ cuándo.
 - **Fallo que evita**: el error de autenticación reportado como éxito
   [Ref. 43](REFERENCIAS.md#ref-43); las cuatro rondas hasta la causa raíz por no tener el error
   reproducido [Ref. 22](REFERENCIAS.md#ref-22).
+- **Fuente del error**: los errores de las herramientas que observan el sistema van aparte, en su propia sección del reporte, y no abren pendientes.
 - **Contrato**: `peldanos/peldano-22-monitoreo-de-errores.md`.
 
 ### Peldaño 23 — El agente adentro del sistema, y la retrospectiva con número
@@ -1557,6 +1560,8 @@ método (doctrinas, compuertas, pendientes, un panel de chat, una app móvil, y 
 
 **Frontend** — La parte visible del sistema: las pantallas.
 
+**Fuente del error** — De dónde salió un error capturado: del sistema, o de una herramienta que lo observa (el panel, el agente residente, el monitoreo). Los errores de las herramientas se listan aparte y no abren pendientes (peldaño 22).
+
 **Full scan** — Una consulta a la base de datos que lee la tabla entera porque no tiene un índice
 que la ayude. Con tablas chicas no se nota; con millones de filas, tumba el sistema.
 
@@ -1776,6 +1781,8 @@ decir uno manejado con Git y con una estructura reconocible.
 
 **Retención (retention)** — Cuánto tiempo se guardan los datos de cada tabla antes de borrarlos.
 
+**Rojo por mutación** — La forma de probar que un test distingue comportamiento cuando no hay versión anterior contra la cual correrlo: se planta un defecto a propósito en la función nueva, el test falla contra ese defecto, y el recibo lleva el diff del defecto. Un solo mutante por pendiente (peldaño 8); distinto de las pruebas de mutación sobre toda la base (peldaño 9).
+
 **Rollback (vuelta atrás)** — Volver a la versión anterior cuando un despliegue sale mal.
 
 **RPAForce** — Mi marca, bajo la que se entregan estos sistemas.
@@ -1830,6 +1837,8 @@ razón medida escrita (21).
 **Urazuke** (裏付け) — El nombre del método. En japonés, el respaldo que tiene una afirmación, lo
 que la sostiene por detrás; *urazukeru*, respaldar con pruebas. Se pronuncia u-ra-ZU-ke. No se
 traduce.
+
+**Ventana de medición** — El primer y el último registro que abarca un conteo de filas, leídos de la base o del registro. Sin ventana verificable, un número correcto puede dar una alarma falsa (peldaño 21).
 
 **Vibecoding / vibecoder** — Construir software conversando con una IA, describiendo lo que se
 quiere, en vez de escribir el código a mano. Un vibecoder es quien lo hace.

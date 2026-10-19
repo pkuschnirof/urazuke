@@ -727,6 +727,7 @@ are what replace your reading of the code.
 - **Failure it prevents**: tests that pass because they prove nothing, and the green that hides a
   bug [Ref. 44](REFERENCIAS.md#ref-44). The case of the counters is the complete example of a test
   proved red against the old criterion [Ref. 26](REFERENCIAS.md#ref-26).
+- **Red of the first block**: when the previous version does not have the module, the red is proven by mutation (a planted defect, the test red, the diff in the receipt), not with a file that does not load.
 - **Contract**: `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Step 9 — Code quality verified by machine, with a gate
@@ -1054,6 +1055,7 @@ range, and produces a cyclic report that is read with the owner. Every deviation
 - **Failure it prevents**: the ceiling that had to be tightened to the measured value
   [Ref. 37](REFERENCIAS.md#ref-37); the quota that was burned without anybody looking
   [Ref. 39](REFERENCIAS.md#ref-39).
+- **Verifiable window**: the cyclic measurement carries the first and the last record read from the database; a window typed by hand is marked as such and only warns.
 - **Contract**: `peldanos/peldano-21-monitoreo-de-recursos-y-rendimiento.md`.
 
 ### Step 22 — Error monitoring and cyclic report: no error without a pending item
@@ -1081,6 +1083,7 @@ and until when.
 - **Failure it prevents**: the authentication error reported as a success
   [Ref. 43](REFERENCIAS.md#ref-43); the four rounds to the root cause for not having the error
   reproduced [Ref. 22](REFERENCIAS.md#ref-22).
+- **Error source**: the errors of the tools that watch the system go apart, in their own section of the report, and do not open pending items.
 - **Contract**: `peldanos/peldano-22-monitoreo-de-errores.md`.
 
 ### Step 23 — The agent inside the system, and the retrospective with numbers
@@ -1499,6 +1502,8 @@ programmer's machine), UAT (client testing) and PROD (production, the real one).
 appointment), how many failed. It is the number of the error report (22) that the owner
 understands without an explanation.
 
+**Error source** — Where a captured error came from: the system, or a tool that watches it (the panel, the resident agent, the monitoring). The tools' errors are listed apart and do not open pending items (step 22).
+
 **Evolutive-corrective path** — The third use case of the method: taking a system that already
 exists and was not born with the method, normalizing it without rewriting it (eight stations, N0
 to N7) and only then climbing the ladder in corrective mode (fixing what fails) or evolutive mode
@@ -1624,6 +1629,8 @@ pending item.
 
 **MariaDB** — The SQL database engine Kikan uses in production.
 
+**Measurement window** — The first and the last record a row count spans, read from the database or the log. Without a verifiable window a correct number can raise a false alarm (step 21).
+
 **Mock** — Replacing a real part of the system with a simulation during a test. "Do not mock
 yourself" means not simulating precisely the part you want to test.
 
@@ -1710,6 +1717,8 @@ that can only go down: if it goes up, the test fails.
 it ran against, the counts and the exit code, so that the owner can run it again without
 understanding what it does. In step 8, the red has to be a receipt, not a story ("the test failed
 as expected").
+
+**Red by mutation** — The way to prove that a test tells behaviour apart when there is no previous version to run it against: a deliberate defect is planted in the new function, the test fails against that defect, and the receipt carries the diff of the defect. One mutant per pending item (step 8); different from mutation testing over the whole codebase (step 9).
 
 **Ref. N** — A short reference to a real case, explained in the references document with its date
 and its evidence. It is there so that the procedures stay clean and the detail stays available.

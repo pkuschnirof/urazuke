@@ -780,6 +780,7 @@ Ende-zu-Ende-Tests, vom Bildschirm bis zum Backend, sind die, die deine Lektüre
   einen Bug versteckt [Ref. 44](REFERENCIAS.md#ref-44). Der Fall der Zähler ist das vollständige
   Beispiel eines Tests, der rot gegen das alte Kriterium bewiesen wurde
   [Ref. 26](REFERENCIAS.md#ref-26).
+- **Rot des ersten Blocks**: wenn die vorherige Version das Modul nicht hat, wird das Rot durch Mutation bewiesen (ein gepflanzter Fehler, der Test rot, der Diff im Beleg), nicht mit einer Datei, die nicht lädt.
 - **Vertrag**: `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Schritt 9 — Maschinell verifizierte Code-Qualität, mit Tor
@@ -1133,6 +1134,7 @@ Eigentümer gelesen wird. Jede Abweichung ist ein offener Posten.
 - **Fehler, den er verhindert**: die Obergrenze, die auf das Gemessene gezurrt werden musste
   [Ref. 37](REFERENCIAS.md#ref-37); das Kontingent, das verbrannte, ohne dass jemand hinsah
   [Ref. 39](REFERENCIAS.md#ref-39).
+- **Überprüfbares Fenster**: die zyklische Messung trägt den ersten und den letzten aus der Datenbank gelesenen Datensatz; ein von Hand getipptes Fenster wird als solches markiert und warnt nur.
 - **Vertrag**: `peldanos/peldano-21-monitoreo-de-recursos-y-rendimiento.md`.
 
 ### Schritt 22 — Fehler-Monitoring und zyklischer Bericht: kein Fehler ohne offenen Posten
@@ -1161,6 +1163,7 @@ Posten, der sagt, warum er toleriert wird und bis wann.
 - **Fehler, den er verhindert**: den Authentifizierungsfehler, der als Erfolg gemeldet wurde
   [Ref. 43](REFERENCIAS.md#ref-43); die vier Runden bis zur Grundursache, weil der Fehler nicht
   reproduziert war [Ref. 22](REFERENCIAS.md#ref-22).
+- **Fehlerquelle**: die Fehler der Werkzeuge, die das System beobachten, stehen getrennt in einem eigenen Abschnitt des Berichts und öffnen keine offenen Punkte.
 - **Vertrag**: `peldanos/peldano-22-monitoreo-de-errores.md`.
 
 ### Schritt 23 — Der Agent im System, und die Retrospektive mit Zahlen
@@ -1623,6 +1626,8 @@ Gegenteil von „fail-open“, das bei Zweifel weitermacht.
 Methode verbietet es: wenn es ein altes System gibt, wird es auditiert und migriert; es wird nicht
 als stilles Sicherheitsnetz belassen.
 
+**Fehlerquelle** — Woher ein erfasster Fehler kam: aus dem System oder aus einem Werkzeug, das es beobachtet (das Panel, der residente Agent, das Monitoring). Die Fehler der Werkzeuge werden getrennt aufgeführt und öffnen keine offenen Punkte (Stufe 22).
+
 **Fehlerrate pro Fluss** — Von hundert Malen, die jemand einen Fluss benutzt hat (einen Termin
 eintragen), wie viele fehlgeschlagen sind. Es ist die Zahl des Fehlerberichts (22), die der
 Eigentümer ohne Erklärung versteht.
@@ -1751,6 +1756,8 @@ Spitzen.
 Screenshot jedes neuen oder geänderten Bildschirms ansieht, in der Testumgebung, mit jedem offenen
 Posten, der ihn berührt. Zehn Sekunden, die finden, was kein Test findet.
 
+**Messfenster** — Der erste und der letzte Datensatz, die eine Zeilenzählung umfasst, aus der Datenbank oder dem Protokoll gelesen. Ohne überprüfbares Fenster kann eine richtige Zahl einen Fehlalarm auslösen (Stufe 21).
+
 **Messgerät mit Schutz** — Ein Skript, das etwas misst (wie viele Abfragen, wie viele Schleifen)
 und einen eigenen Test hat, der prüft, dass das Messgerät richtig misst. „Mit Schutz“ heißt „durch
 einen Test geschützt“.
@@ -1850,6 +1857,8 @@ gelöscht werden.
 
 **Rot bewiesen** — Ein Test, von dem gezeigt wurde, dass er gegen den alten Code FEHLSCHLÄGT, bevor
 die Behebung ihn grün macht.
+
+**Rot durch Mutation** — Der Weg zu beweisen, dass ein Test Verhalten unterscheidet, wenn es keine vorherige Version gibt, gegen die man ihn laufen lassen kann: ein Fehler wird absichtlich in die neue Funktion gepflanzt, der Test schlägt gegen diesen Fehler fehl, und der Beleg trägt den Diff des Fehlers. Ein Mutant pro offenem Punkt (Stufe 8); etwas anderes als Mutationstests über die ganze Codebasis (Stufe 9).
 
 **RPAForce** — Meine Marke, unter der diese Systeme geliefert werden.
 

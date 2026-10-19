@@ -54,22 +54,24 @@
 - 你认为算告警的、相对基线的偏离百分比（比如，比最近十四天的平均值高 30%），填进提示词的空位。
 - 最低可接受状态：有写下来的阈值、有一个有人在读的渠道，还有一个周期。
 
-> We are going to keep this system watched in production. Using the metrics and logs of step 16,
-> the budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
+> We are going to keep this system watched in production. Using the metrics and logs of step 16, the
+> budgets of `docs/PERSISTENCE.md` and the thresholds of `docs/PERFORMANCE.md`, set up: (1)
 > collection of resource usage (CPU, memory, disk, database connections, queue sizes, external
-> quotas) and of the response time of every function, endpoint, job and query, with the
-> correlation id, kept with a history; (2) alerts when any of them is out of range: above the
-> thresholds, or more than [X] percent over the baseline of the last [N] days, sent to [channel],
-> with the rule that an alert that fires without a human reading it is a defect of the alert and
-> gets fixed or removed; (3) a cyclic report, [weekly], generated automatically, with: resource
-> usage against capacity and its trend, the slowest functions and queries and how they moved
-> against the previous period, every out-of-range event with its cause if known, and what you
-> propose for each; (4) the rule that every out-of-range event becomes a corrective pending item
-> with the measured number as its acceptance criterion, closed with the full routine. Nothing
-> here may read or store personal data. Show me the first report generated on real data from the
-> test environment, and one alert fired on purpose by exceeding a threshold. Document the
-> thresholds, the channel, the cycle and how to silence an alert with a written reason in
-> `docs/MONITORING.md`. Reply in my language.
+> quotas) and of the response time of every function, endpoint, job and query, with the correlation
+> id, kept with a history; (2) alerts when any of them is out of range: above the thresholds, or
+> more than [X] percent over the baseline of the last [N] days, sent to [channel], with the rule
+> that an alert that fires without a human reading it is a defect of the alert and gets fixed or
+> removed; (3) a cyclic report, [weekly], generated automatically, with: resource usage against
+> capacity and its trend, the slowest functions and queries and how they moved against the previous
+> period, every out-of-range event with its cause if known, and what you propose for each; (4) the
+> rule that every out-of-range event becomes a corrective pending item with the measured number as
+> its acceptance criterion, closed with the full routine. Nothing here may read or store personal
+> data. Show me the first report generated on real data from the test environment, and one alert
+> fired on purpose by exceeding a threshold. The row counts that revalidate the sizing carry their
+> own verifiable window: the first and the last timestamp read from the database or the log, never a
+> number typed by hand; a window typed by hand is marked as such in the report and only warns, it
+> never opens a pending item on its own. Document the thresholds, the channel, the cycle and how to
+> silence an alert with a written reason in `docs/MONITORING.md`. Reply in my language.
 
 > [zh]
 > 我们要让这个系统在生产里被看着。用第 16 级台阶的指标和日志、`docs/PERSISTENCE.md` 的预
@@ -83,6 +85,9 @@
 > 型待办项，用完整的例行关闭。这里面的任何东西都不得读取或保存个人数据。给我看用测试环境
 > 的真实数据生成的第一份报告，以及一条故意超过阈值触发出来的告警。把阈值、渠道、周期，以
 > 及如何带着书面理由让一条告警静默，记进 `docs/MONITORING.md`。用我的语言回复。
+> 用于复核容量规划的行数必须自带可验证的时间窗口：从数据库或日志读取的最早和最晚时间戳，而不是手工输入的数字；手工输入的窗口要在报告中标明，只发出提醒，绝不自行打开待办项。
+
+**测量的时间窗口。** 周期报告把每年观测到的行数与台阶 3 声明的值作比较。数字正确而窗口错误会打开一个假的待办项：在继承的 Turnera 练习中，三年的 30,000 行被当作一年传入。因此测量必须自带**可验证的**窗口：从数据库或日志读取的最早和最晚记录，而不是手工输入的数字。如果工具读不了数据库，就把它声明为盲点；手工输入的窗口要在报告中标明，只发出提醒，绝不自行打开待办项。（决定 D-039。）
 
 我在要求什么：带历史的采集（没有历史就没有基线，没有基线就没有"超出范围"）；对着两个参照的告
 警，第 19 级的绝对阈值和相对自身历史的偏离；有第 12 级台阶那种形状的周期报告（每个偏离带原因或
