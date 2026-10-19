@@ -1,0 +1,11 @@
+# Urazuke — step 17 prompts (English, single source)
+
+Generated from `docs/peldanos/peldano-17-persistencia.md` by `build/prompts.mjs`. Do not edit by hand.
+
+## Prompt 1
+
+We are going to optimize the persistence layer with measurements, not opinions. Read `docs/SIZING.md`, `docs/VOLUME_SURVEY.md` and `docs/PRODUCER_CONSUMER_MAP.md`. With the test environment loaded at the volumes of the sizing (and, if I gave you access, production read-only), measure first, with meters that live in the repository and have a test against a known case: every query the system runs per screen and per job, with its count and its time; the queries that read whole tables; the ones that run once per item; the size and monthly growth of every table; the connection pool usage at the peak. Audit each meter in both directions. Show me the numbers with the commands that produce them. Then propose, query by query, what to change: indexes derived from the real queries, pagination, batching, the elimination of N+1 loops, retention and archiving per table, pool size; for each change, the expected gain, the risk, and which consumers in the map it touches. Do not change anything yet: I approve the list. Reply in my language.
+
+## Prompt 2
+
+Apply the approved changes [list], one commit each. For each one show me the meter before and after on the same data, the regression suite green, and the end-to-end suite green. Set a budget per critical path (queries and time) at the measured value plus a small margin, protected by a test that fails if it is exceeded. Update every consumer in the map that a change touches, in the same commit. Record the before and after table, the budgets and the retention per table in `docs/PERSISTENCE.md`.

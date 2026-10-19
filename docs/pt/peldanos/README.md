@@ -39,6 +39,12 @@ o detalhe continua a um clique.
 | 13 — Integração contínua, ambientes, segredos e implantação | `peldano-13-ci-entornos-secretos-deploy.md` | operação | fechamento rumo à produção; rotina em cada implantação |
 | 14 — Documentação viva e manuais sem IA | `peldano-14-documentacion-viva.md` | operação | ao fechar cada bloco; completos antes da produção |
 | 15 — O agente residente e a retrospectiva com número | `peldano-15-agente-residente-y-retrospectiva.md` | operação e encerramento | ao entrar em operação; ao fechar cada etapa |
+| 16 — Observabilidade e rastreabilidade totais, com nível configurável | `peldano-16-observabilidad-y-trazabilidad.md` | qualidade operacional | saída para produção, depois do 13 e antes do 19 |
+| 17 — Otimização da camada de persistência | `peldano-17-persistencia.md` | qualidade operacional | saída para produção, depois do 16 e antes do 19; repete-se quando uma consulta sai de faixa |
+| 18 — Varredura e solução de vulnerabilidades | `peldano-18-vulnerabilidades.md` | qualidade operacional | antes da primeira implantação; depois, em cada push e semanal |
+| 19 — Testes de desempenho e ponto de ruptura | `peldano-19-rendimiento-y-punto-de-ruptura.md` | qualidade operacional | antes da primeira implantação; antes de cada implantação que mude arquitetura, persistência ou um fluxo crítico |
+| 20 — Monitoramento de recursos e desempenho, relatório cíclico | `peldano-20-monitoreo-de-recursos-y-rendimiento.md` | qualidade operacional | semana da primeira implantação; depois, roda sozinho e se lê por ciclo |
+| 21 — Monitoramento de erros, relatório cíclico | `peldano-21-monitoreo-de-errores.md` | qualidade operacional | semana da primeira implantação, junto com o 20 |
 
 Fases: **arranque** se sobe uma vez por projeto; **ciclo** se repete a cada mudança; **operação**
 quando o sistema já está vivo. O 15 volta ao 0 para o projeto seguinte. A linha do tempo

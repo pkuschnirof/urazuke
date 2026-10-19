@@ -41,6 +41,12 @@ einen Klick entfernt.
 | 13 — Continuous Integration, Umgebungen, Geheimnisse und Deployment | `peldano-13-ci-entornos-secretos-deploy.md` | Betrieb | Abschluss Richtung Produktion; Routine bei jedem Deployment |
 | 14 — Lebendige Dokumentation und Handbücher ohne KI | `peldano-14-documentacion-viva.md` | Betrieb | beim Abschluss jedes Blocks; vollständig vor der Produktion |
 | 15 — Der residente Agent und die Retrospektive mit Zahlen | `peldano-15-agente-residente-y-retrospectiva.md` | Betrieb und Abschluss | beim Eintritt in den Betrieb; beim Abschluss jeder Etappe |
+| 16 — Vollständige Beobachtbarkeit und Nachverfolgbarkeit, mit konfigurierbarem Level | `peldano-16-observabilidad-y-trazabilidad.md` | Betriebsqualität | Produktionsfreigabe, nach der 13 und vor der 19 |
+| 17 — Optimierung der Persistenzschicht | `peldano-17-persistencia.md` | Betriebsqualität | Produktionsfreigabe, nach der 16 und vor der 19; wiederholt sich, wenn eine Abfrage aus dem Bereich läuft |
+| 18 — Scannen und Beheben von Schwachstellen | `peldano-18-vulnerabilidades.md` | Betriebsqualität | vor dem ersten Deployment; danach bei jedem Push und wöchentlich |
+| 19 — Lasttests und Bruchpunkt | `peldano-19-rendimiento-y-punto-de-ruptura.md` | Betriebsqualität | vor dem ersten Deployment; vor jedem Deployment, das Architektur, Persistenz oder einen kritischen Fluss ändert |
+| 20 — Monitoring von Ressourcen und Leistung, zyklischer Bericht | `peldano-20-monitoreo-de-recursos-y-rendimiento.md` | Betriebsqualität | Woche des ersten Deployments; danach läuft es allein und wird pro Zyklus gelesen |
+| 21 — Fehler-Monitoring, zyklischer Bericht | `peldano-21-monitoreo-de-errores.md` | Betriebsqualität | Woche des ersten Deployments, zusammen mit der 20 |
 
 Abschnitte: **Start** wird einmal pro Projekt erklommen; **Schleife** wiederholt sich bei jeder
 Änderung; **Betrieb**, wenn das System schon lebt. Die 15 kehrt zur 0 für das nächste Projekt

@@ -40,6 +40,12 @@ click away.
 | 13 — Continuous integration, environments, secrets and deployment | `peldano-13-ci-entornos-secretos-deploy.md` | operation | closing towards production; routine on every deployment |
 | 14 — Living documentation and manuals without AI | `peldano-14-documentacion-viva.md` | operation | at the close of each block; complete before production |
 | 15 — The resident agent and the retrospective with numbers | `peldano-15-agente-residente-y-retrospectiva.md` | operation and closure | on entering operation; at the close of each stage |
+| 16 — Total observability and traceability, with a configurable level | `peldano-16-observabilidad-y-trazabilidad.md` | operational quality | go-live, after step 13 and before step 19 |
+| 17 — Optimization of the persistence layer | `peldano-17-persistencia.md` | operational quality | go-live, after step 16 and before step 19; repeated whenever a query goes out of range |
+| 18 — Scanning and fixing vulnerabilities | `peldano-18-vulnerabilidades.md` | operational quality | before the first deployment; afterwards, on every push and weekly |
+| 19 — Performance tests and the breaking point | `peldano-19-rendimiento-y-punto-de-ruptura.md` | operational quality | before the first deployment; before every deployment that changes architecture, persistence or a critical flow |
+| 20 — Monitoring of resources and performance, cyclic report | `peldano-20-monitoreo-de-recursos-y-rendimiento.md` | operational quality | week of the first deployment; afterwards it runs on its own and is read per cycle |
+| 21 — Error monitoring, cyclic report | `peldano-21-monitoreo-de-errores.md` | operational quality | week of the first deployment, together with step 20 |
 
 Stretches: **start-up** is climbed once per project; **loop** repeats with every change;
 **operation** once the system is alive. Step 15 returns to step 0 for the next project. The

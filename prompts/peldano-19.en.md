@@ -1,0 +1,11 @@
+# Urazuke — step 19 prompts (English, single source)
+
+Generated from `docs/peldanos/peldano-19-rendimiento-y-punto-de-ruptura.md` by `build/prompts.mjs`. Do not edit by hand.
+
+## Prompt 1
+
+We are going to find out how this system behaves at the volumes of `docs/SIZING.md`, and where it breaks. In the test environment, with the observability of step 16 on and the data loaded at the expected volume: (1) write a load script that lives in the repository and drives the critical flows [list] from the screen or the API as users would, with a configurable number of concurrent users and duration, and with a test that proves the script really exercises each flow (the backend effect appears); (2) run it at the expected volume and show me, per flow: throughput, median and 95th percentile latency, error rate, and the resource usage of the server and the database during the run; (3) run it at ten times the expected volume and show me the same; (4) raise the load step by step until something breaks, and tell me exactly what broke first (database connections, memory, a queue, a lock, the disk) and at which load: that is the breaking point; (5) compare every number with the budgets of `docs/PERSISTENCE.md`, with the tolerance I gave you ([tolerance] for the most used screen) and with the sizing assumptions, and tell me which assumption was wrong, if any. Do not optimize anything yet. Write `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your diagnosis of the first bottleneck. Reply in my language.
+
+## Prompt 2
+
+Record in `docs/PERFORMANCE.md`: the expected volume, the ten-times volume, the breaking point with what breaks, and the alert thresholds that monitoring (step 20) will use, set below the breaking point with a margin and above the expected volume. Open a pending item for each bottleneck that sits below [ten times the expected volume / the volume I decided], with the measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it reruns before every deployment that changes the architecture, the persistence or a critical flow, and its results are archived with date and version. Show me the first run archived.

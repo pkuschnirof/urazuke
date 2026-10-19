@@ -18,7 +18,7 @@ const conv = join(raiz, 'build', 'md2html.mjs');
 
 function armar(dirMd, dirHtml, idioma) {
   mkdirSync(dirHtml, { recursive: true });
-  for (const nombre of ['ESCALERA_METODOLOGICA', 'REFERENCIAS', 'EVOLUTIVO_CORRECTIVO', 'MANUAL_CURSO', 'MANUAL_CURSO_EVOLUTIVO']) {
+  for (const nombre of ['ESCALERA_METODOLOGICA', 'REFERENCIAS', 'EVOLUTIVO_CORRECTIVO', 'MANUAL_CURSO', 'MANUAL_CURSO_EVOLUTIVO', 'CAPACITACION_JUNIOR']) {
     const src = join(dirMd, nombre + '.md');
     if (existsSync(src)) execFileSync(process.execPath, [conv, src, join(dirHtml, nombre + '.html'), idioma], { stdio: 'inherit' });
   }

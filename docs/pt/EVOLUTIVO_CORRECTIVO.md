@@ -36,7 +36,7 @@ muda por onde se entra.
 
 | Caso | Ponto de partida | Por onde se entra | Quanto dura a entrada | Onde está escrito |
 |---|---|---|---|---|
-| **Projeto novo** | Pasta vazia e um dono com um pedido. | Degrau 0, e daí os dezesseis em ordem. | Uma semana de arranque antes da primeira funcionalidade. | O documento principal, os dezesseis contratos e o manual do curso. |
+| **Projeto novo** | Pasta vazia e um dono com um pedido. | Degrau 0, e daí os vinte e dois em ordem. | Uma semana de arranque antes da primeira funcionalidade. | O documento principal, os vinte e dois contratos e o manual do curso. |
 | **Evolutivo-corretivo sobre um sistema feito com o método** | O sistema já subiu a escada: tem contrato, mapa, pendências fechadas com evidência, bateria, implantação e manuais. | Degrau 5: abre-se um bloco e segue-se o ciclo; o 11 periódico; o 15 no fechamento da etapa. | Nenhuma: é o degrau 15 voltando ao 0 para a etapa seguinte, que já está na Parte B do documento principal. | O documento principal (fase 4, operação). |
 | **Evolutivo-corretivo sobre um sistema feito sem o método** | Um sistema que roda, com usuários, sem nenhum desses artefatos ou com alguns pela metade. | O trecho de normalização desta página (N0 a N7), e só depois o ciclo, em modo corretivo ou evolutivo. | De duas a três semanas para um sistema pequeno, antes de tocar a primeira linha de funcionalidade. | Esta página e o manual do curso, parte 2. |
 
@@ -111,8 +111,7 @@ sistema "funcione": o ciclo vai precisar dele na primeira sessão.
 
 ## O trecho de normalização: as oito estações
 
-Chamo-as estações e não degraus, e as numero N0 a N7, para que não se confundam com os dezesseis
-da escada. Não são degraus novos: são os degraus do arranque e três da operação (o 8, o 11 e o
+Chamo-as estações e não degraus, e as numero N0 a N7, para que não se confundam com os vinte e dois da escada. Não são degraus novos: são os degraus do arranque e três da operação (o 8, o 11 e o
 12), em outra ordem e com outra entrada. No projeto novo a entrada é o levantamento; aqui a
 entrada é o sistema, e a leitura é feita pelo agente.
 
@@ -1012,6 +1011,36 @@ forma de voltar atrás (a cópia de segurança de N0 ou a versão anterior) à m
 O que estou pedindo: o mínimo, com o caminho de volta antes e não depois, e com o relatório
 honesto do que não foi verificado (degrau 10); e a obrigação de voltar a entrar pelo ciclo no
 mesmo dia, que é o que separa uma exceção de um hábito.
+
+## Os seis degraus de qualidade operacional num legado
+
+Os degraus 16 a 21 do documento principal (observabilidade e rastreabilidade, persistência,
+vulnerabilidades, desempenho, e os dois monitoramentos) valem para os dois casos de uso, e num
+legado têm uma localização precisa, porque vários deles já têm metade do trabalho feito pelo
+trecho de normalização:
+
+- **16, observabilidade e rastreabilidade**: o nível mínimo (registros estruturados com nível
+  configurável e um identificador de correlação nos fluxos críticos) entra no cinto de segurança
+  (N4), porque sem ele a bateria de caracterização não diz o que quebrou. O nível completo, com a
+  auditoria imutável das ações com consequência que N5 inventariou, sobe-se antes da primeira
+  implantação posterior à normalização.
+- **17, persistência**: as medições já estão feitas em N6. O que sai delas entra no backlog (N7)
+  com a sua marca: o que já está fora da tolerância do negócio, "bloqueia" ou "agora"; o resto,
+  "paga-se ao tocar", e entra com o bloco que tocar esse módulo.
+- **18, vulnerabilidades**: a primeira rodada é a dimensão de segurança da auditoria de N3, e a
+  varredura na cadeia é parte do cinto (N4), porque um legado quase sempre tem dependências
+  velhas e segredos no histórico. Os P0 bloqueiam; o resto, para o backlog.
+- **19, desempenho**: roda-se com os volumes medidos em N6, sobre a persistência já corrigida no
+  que bloqueava, antes da primeira implantação posterior à normalização. Num legado costuma
+  descobrir que o ponto de ruptura está mais perto do que o negócio acredita.
+- **20 e 21, monitoramento**: montam-se na semana da primeira implantação, igual que no projeto
+  novo, com uma diferença: a primeira leitura do relatório é a linha base do legado, e os desvios
+  e os erros que já existiam no primeiro dia viram pendências com a sua marca de velocidade.
+  Nenhum fica como "conhecido" sem pendência.
+
+Na prática, para um sistema pequeno, os quatro prévios à implantação acrescentam uma semana ao
+calendário da normalização (uma quarta semana, antes do primeiro bloco evolutivo ou junto com
+ele, conforme a urgência do pedido), e os dois monitoramentos montam-se na semana da implantação.
 
 ## Quando o sistema está normalizado
 

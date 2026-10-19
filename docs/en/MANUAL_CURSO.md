@@ -59,11 +59,11 @@ step.
    tutorial is enough. Nothing more is needed.
 3. **A project.** Ideally it is your own: a system you need or that a client asked you for, with
    users who are going to use it. If you do not have one, use the **guide project** I describe
-   below; it is designed to go through the sixteen steps without skipping any. If what you have
+   below; it is designed to go through the twenty-two steps without skipping any. If what you have
    is a system that already exists and has to be corrected or made to grow, this first part
    teaches you the method on a new project, and [part 2 of the course](MANUAL_CURSO_EVOLUTIVO.md)
    teaches you to normalize it first, with a second, inherited guide project.
-4. **Time.** The course has sixteen lessons, one per step, and a calendar that tells you in which
+4. **Time.** The course has twenty-two lessons, one per step, and a calendar that tells you in which
    week each thing falls (see "The course calendar"). A small project, end to end, is between six
    and eight weeks of part-time work.
 5. **A domain owner with time to decide.** If the project is yours, that is you. If it is a
@@ -106,8 +106,8 @@ what is not indicative is the order and, above all, what happens between one les
 | 2 | 5, 6, 7 | **First functional block** (the basic schedule). You open the block by turning the request into specified pending items. With each pending item: decisions, test proved red, end-to-end test of the flow, screenshot of the screen that you look at. At the close of the block: full end-to-end suite, and you use the system in the test environment following the flows of the block. |
 | 3 | 8, 9, 10 | **Second block** (patients and search). The three remaining lessons of the loop are learned on this block. Same close: end to end of every flow, human testing, user manual with the new screens. |
 | 4 | 11, 12 | **Go-live, first half.** Audit by another session. Locks. And only then, the **third block** (reminders and deposit), built with the full loop and left in dry-run mode. |
-| 5 | 13, 14 | **Go-live, second half.** Closing of the chain to production with a tested rollback. The three manuals; someone who does not program follows the recovery one. **Acceptance testing** by you or by the owner over every flow. First deployment to production without users. |
-| 6 | 15 | **Operation.** You enable the reminders after looking at the dry-run log. Resident agent. Retrospective with numbers and a proposed change to the ladder. |
+| 5 | 13, 14, 16, 17, 18, 19 | **Go-live, second half.** Closing of the chain to production with a tested rollback. Observability with a configurable level, persistence measured before and after, the vulnerability scan as a gate, the load test with the breaking point. The three manuals; someone who does not program follows the recovery one. **Acceptance testing** by you or by the owner over every flow. First deployment to production without users. |
+| 6 | 15, 20, 21 | **Operation.** You enable the reminders after looking at the dry-run log. The two monitorings set up in the week of the deployment: resources and performance, errors; the first cyclic report read with the owner. Resident agent. Retrospective with numbers and a proposed change to the ladder. |
 
 If your project is bigger, what stretches is weeks 2 and 3 (more blocks), not week 1 or weeks 4
 and 5. And if at some point you find yourself doing infrastructure in week 3, or running the
@@ -116,7 +116,7 @@ end-to-end suite for the first time in week 5, go back to the calendar: somethin
 ### The guide project: "Turnera"
 
 If you do not have a project of your own, use this one. It is small, but it has everything needed
-so that none of the sixteen steps is a fake: real users, personal data, messages that go out into
+so that none of the twenty-two steps is a fake: real users, personal data, messages that go out into
 the world, and money.
 
 **The business.** A practice (it can be a studio, a hairdresser, a workshop: any place that gives
@@ -1628,10 +1628,334 @@ configuration difference between test and production before promoting, not just 
 
 ---
 
+## Operational quality stretch: lessons 16 to 21
+
+These six lessons are the ones I used to do without naming them, and that a reader asked me, with
+good reason, to write down. Four are done in week 5, together with lessons 13 and 14 and before
+the first deployment to production: observability, persistence, vulnerabilities and performance.
+Two are set up in week 6, the week of the first deployment, and run on their own from then on: the
+two monitorings. If you are a beginner, each of these six step contracts has an "If you are a
+beginner" paragraph that explains its words in everyday language; read it before the lesson.
+
+### Lesson 16 — Observability and traceability, with a configurable level
+
+**What you need to understand.** When something fails in production, you are going to want to know
+what happened without opening the code and without the agent "having a look": searching for a
+number and having the complete story of that action appear, from the screen to the database. That
+is a *structured log record* with a *correlation id*. And you are going to want to raise the
+detail of what the system writes, for a minute, while you investigate, without redeploying: that
+is the *configurable level*. *Traceability* is the other half: every consequential action
+(charged, sent, deleted) ends up in a list the application cannot edit, with who, when and what.
+Without this, the resident agent of lesson 15 operates blind and the monitorings of lessons 20 and
+21 have nothing to look at [Ref. 16](REFERENCIAS.md#ref-16).
+
+**Before sending the prompt**, with your own hands and with the owner:
+
+- `docs/DEPLOYMENT.md` (lesson 13), with how the configuration per environment is read: the level
+  is going to be one more variable.
+- `docs/LOCKS.md` (lesson 12): the list of actions that have to end up in the audit trail.
+- In `docs/INITIAL_SURVEY.md`, the list of which data are personal (in Turnera: the patient's
+  name, phone number, email and identity document), written with the receptionist in charge. The
+  log records have to mask them; it is a legal obligation.
+- Your decision about where the log records live and how long they are kept. For the course: a
+  rotated file on the server, ninety days.
+
+1. Paste it the opening prompt of the contract of step 16 (in `docs/peldanos/`), exactly as it is.
+2. When it shows you the identifier of a real request, search for it yourself in the log records
+   of the test environment: it has to appear on the screen, in the backend, in the database and in
+   the call to the message provider.
+3. Raise the level to debug yourself, do an action, look, lower it. If you had to deploy, the step
+   is not climbed.
+4. Search for "Juan" (or any test name) in the log records: it must not be there.
+
+**Before sending the prompt** for the routine: `docs/OBSERVABILITY.md` read by you, and the level
+raised and lowered by you once.
+
+5. Add to the agreement the routine of step 16 (in the contract, "Routine"), wrapped in "Add
+   this routine to `docs/WORKING_AGREEMENT.md`:" like the others.
+
+**Completeness check.** Did you follow an identifier through every layer yourself? Did you change
+the level without deploying? Is there any personal data in the log records? Did the cancellation
+of an appointment in the test environment end up in the audit trail with who and when? Is
+`docs/OBSERVABILITY.md` enough for you to find a record on your own?
+
+**Deliverable.** Structured log records with a configurable level, the identifier propagated, the
+audit trail of the consequential actions, `docs/OBSERVABILITY.md`, and the routine in the
+agreement.
+
+**Typical mistakes.** Accepting "logs" that each module writes differently. Leaving production at
+debug "for now". And the identifier not reaching the nightly reminders job, which is exactly where
+incidents get lost.
+
+**In the guide project.** The identifier of "cancel appointment 17" appears in the click, in the
+server, in the row marked in the database and in the email to the professional. The audit trail
+says "reception1 cancelled appointment 17 at 10:42 from the day's schedule; outcome: ok". The
+receptionist in charge raises the level to trace to see why a reminder was late, finds it, and
+lowers it.
+
+### Lesson 17 — Optimization of the persistence layer, measured before and after
+
+**What you need to understand.** The database is where systems die slowly: fine with a hundred
+appointments, badly with a hundred thousand. An *index* is like a book's: without it, the database
+reads the whole table to find an appointment. An *N+1 loop* is making a hundred queries to show a
+hundred appointments instead of one. This lesson applies lesson 9 to the database: measuring every
+query with a meter that has a test, changing what the numbers say, measuring again on the same
+data, and leaving a budget with a test so that it does not come back
+[Ref. 18](REFERENCIAS.md#ref-18), [Ref. 37](REFERENCIAS.md#ref-37). It is not rewriting the
+database or changing the engine: that was lesson 3.
+
+**Before sending the prompt**, with your own hands:
+
+- `docs/SIZING.md` and `docs/VOLUME_SURVEY.md` (lesson 3): the volumes to load.
+- The test environment with data **at the expected volume**: for Turnera, ten thousand
+  appointments and thirty thousand messages over a year, generated by a script the agent leaves in
+  the repository (ask for it as a prior pending item, with the shape of the semantic tree).
+- `docs/PRODUCER_CONSUMER_MAP.md` (lesson 8), up to date.
+- A known case for the meter's test: the professionals table has three rows.
+
+1. Paste it the opening prompt of the contract of step 17.
+2. Read the list of proposed changes the way the receptionist in charge would read a list of
+   repairs for the practice: do you understand what each one gains and what risk it has? Approve
+   or reject them one by one. Redo one calculation by hand (rows per month of the appointments
+   table).
+
+**Before sending the prompt** for the close: the list with your verdict per change and the redone
+calculation that matches.
+
+3. Paste it the closing prompt of the contract of step 17, with the approved list.
+4. Run a meter yourself before and after, with the two commands it gave you.
+
+**Completeness check.** Do your runs match the table in `docs/PERSISTENCE.md`? Is there any query
+left that reads a whole table in a critical flow? Does every table have a written retention? Do
+the budgets have tests (ask it to exceed one and show you the red)?
+
+**Deliverable.** The meters with their test, `docs/PERSISTENCE.md` with before and after, the
+budgets with their test, and the suite green.
+
+**Typical mistakes.** Measuring with the skeleton's ten records. Accepting "we had better migrate
+to another database". And improving a number while breaking the monthly spreadsheet that read that
+table: the map was missing.
+
+**In the guide project.** The day's schedule was making one query per appointment (the loop of
+lesson 9): 52 queries for 50 appointments become 3. The search for patients by name read the whole
+table: an index brings it down from 800 milliseconds to 4 with ten thousand patients. Retention:
+the messages are archived after a year; the appointments, never. Budget: 4 queries for the
+schedule, with a test.
+
+### Lesson 18 — Scanning and fixing vulnerabilities
+
+**What you need to understand.** A *vulnerability* is a defect somebody can use to get in, steal
+data or make the system do what it should not. The audit (lesson 11) looks for them with
+judgement, every so often; this lesson looks for them by machine, all the time, in four layers:
+the *dependencies* (other people's pieces that your system uses, with their known defects
+published), the code (*static analysis*), the secrets in the repository's history, and the
+server's configuration. And one rule: upgrading a dependency is a change, and it goes through the
+loop; "I bumped the version to close the finding" without a regression suite is the most common
+way of breaking production on a Friday [Ref. 41](REFERENCIAS.md#ref-41),
+[Ref. 23](REFERENCIAS.md#ref-23).
+
+**Before sending the prompt**, with your own hands:
+
+- Continuous integration running (lessons 4 and 13), and how much quota you have left: the scan
+  adds minutes.
+- `docs/ENVIRONMENTS_SURVEY.md` with the server, the ports and who administers the domain.
+- `docs/AUDIT_[date].md` (lesson 11), so that it does not repeat what is known.
+- Your P0 criteria, in two lines: for Turnera, whatever lets somebody in without a credential,
+  whatever exposes patient data, whatever allows sending messages or charging without control.
+
+1. Paste it the opening prompt of the contract of step 18, with your criteria in the slot.
+2. Read `docs/SECURITY_[date].md`. Pick two findings and ask it for the evidence. Does it say what
+   it did NOT scan?
+
+**Before sending the prompt** for the close: the list of approved fixes; for every dependency
+upgrade, the awareness that it is going to run the regression suite and the end-to-end suite.
+
+3. Paste it the closing prompt of the contract of step 18.
+4. Ask it to slip in on purpose, on a branch, a dependency with a known vulnerability: the chain
+   has to go red.
+
+**Completeness check.** Is the last run of the scan green and from what date? Does every P0 have a
+pending item closed with evidence? Is the scan a gate in `docs/GATES.md`? Do you know when the
+next scheduled scan runs?
+
+**Deliverable.** The four-layer scan in the chain and on a schedule, `docs/SECURITY_[date].md`,
+`docs/SECURITY.md`, the P0s and P1s fixed, the gate.
+
+**Typical mistakes.** A scan that is "clean on the first try" on a system more than a month old: a
+layer was missing. Ten dependencies upgraded in one commit. An "accepted" P0 with no pending item
+and no date.
+
+**In the guide project.** The Turnera scan finds: a dependency of the PDF generator with a known
+vulnerability (P1, it is upgraded with a regression suite and end-to-end suite); the header that
+prevents the schedule from being embedded in another site, absent (P1, one line of configuration,
+with a test); a test key of the payment provider in the repository's history (P0: it is rotated,
+even though it is a test one); and a database port open to the world on the test server (P0: it is
+closed). The scan is left as a gate and runs on Mondays.
+
+### Lesson 19 — Performance tests at volume and the breaking point
+
+**What you need to understand.** Lesson 3 sized the system with calculations; this one checks them
+with the system running. A *load test* simulates many users at once. You look at *throughput*
+(actions per second), *latency* (how long each action takes; the median and the *95th percentile*,
+which is what the ones who complain see) and the error rate, at the expected volume and at "times
+ten". And then you raise the load until something breaks: the *breaking point* is not "it gets
+slow" but "the database connections ran out at 180 users". That number is the most useful of the
+stretch, because the alert *thresholds* of lesson 20 come out of it
+[Ref. 12](REFERENCIAS.md#ref-12), [Ref. 44](REFERENCIAS.md#ref-44).
+
+**Before sending the prompt**, with your own hands and with the owner:
+
+- `docs/SIZING.md` with the expected volume and the "times ten": for Turnera, two users at the
+  peak and forty appointments a day; times ten, twenty users and four hundred appointments.
+- The critical flows for the prompt's slot: booking an appointment, seeing the day's schedule,
+  searching for a patient, the nightly sending of reminders.
+- The tolerance of the receptionist in charge for the most used screen (the day's schedule): "if
+  it takes more than two seconds, the girls complain".
+- The test environment with the data at volume (lesson 17) and, if it differs from production in
+  resources, how it differs noted in `docs/ENVIRONMENTS_SURVEY.md`.
+- The observability of lesson 16 switched on.
+
+1. Paste it the opening prompt of the contract of step 19, with the flows and the tolerance in the
+   slots.
+2. Read `docs/PERFORMANCE_[date].md` with the tolerance alongside: does the day's schedule fit in
+   two seconds at the expected volume? And at times ten? What broke first and at which load?
+3. Decide with the receptionist in charge up to which volume the bottlenecks get fixed now: if
+   they are thinking of selling it to other practices, the "times ten" is now; if not, with a
+   date.
+
+**Before sending the prompt** for the close: the report read, the decision about the "times ten".
+
+4. Paste it the closing prompt of the contract of step 19.
+5. Run the script yourself at the expected volume with the command it gave you: the numbers have
+   to look similar.
+
+**Completeness check.** Does the most used screen fit within the tolerance, or is there a pending
+item with the number? Does the breaking point say what broke and at which load? Are the thresholds
+of `docs/PERFORMANCE.md` below the breaking point and above the expected one? Is the test a gate
+and is the first run archived?
+
+**Deliverable.** The load script with its test, `docs/PERFORMANCE_[date].md`,
+`docs/PERFORMANCE.md` with thresholds and gate, and one pending item per bottleneck.
+
+**Typical mistakes.** "It holds the times ten with no problem" without a breaking point: it did
+not raise the load enough. A script that hits the API and not the screen. Fixing bottlenecks
+during the test, "while we were at it".
+
+**In the guide project.** At the expected volume, the schedule responds in 300 milliseconds; at
+times ten, in 1.4 seconds; the nightly sending of 400 reminders takes 50 seconds. The breaking
+point: at 180 concurrent users the connection pool (10) runs out and the actions start failing.
+Thresholds: an alert if the schedule goes over 1.5 seconds or if the connections in use go over 7.
+Pending item: the nightly sending in batches of 50, because the receptionist in charge does want
+to sell it.
+
+### Lesson 20 — Monitoring of resources and performance, with a cyclic report
+
+**What you need to understand.** Lesson 19 says how the system behaves on one day; production is
+every day, with the data growing. To *monitor* is to look by machine, all the time, at the usage
+of *resources* (processor, memory, disk, connections, the message provider's quota) and at the
+response time of every function and every query, and to warn when something goes out of range:
+above a *threshold* (the ones from lesson 19) or very different from the *baseline* (what it had
+been giving). An *alert* warns at the moment; the *cyclic report* is read calmly every week or
+every month. Two rules: an alert nobody reads is a defect of the alert; and a threshold is not
+raised to silence an alert without a measured reason written down
+[Ref. 37](REFERENCIAS.md#ref-37), [Ref. 39](REFERENCIAS.md#ref-39).
+
+**Before sending the prompt**, with your own hands and with the owner:
+
+- `docs/OBSERVABILITY.md` (16), `docs/PERSISTENCE.md` (17) and `docs/PERFORMANCE.md` (19) closed.
+- The alert channel decided with the receptionist in charge: who it reaches and through what. For
+  the course: your email and your messaging.
+- The cycle: monthly for Turnera; weekly if there were money at stake every day.
+- The deviation you consider an alarm: 30 % over the average of the last fourteen days.
+- Read-only access for the monitoring to production, with the credential outside the chat.
+
+1. Paste it the opening prompt of the contract of step 20, with the channel, the cycle and the
+   deviation in the slots.
+2. Ask it to exceed a threshold on purpose in the test environment: the alert has to reach you
+   through the channel.
+3. Read the first report: every out-of-range event has to have a cause or a proposal.
+
+**Before sending the prompt** for the routine: the first report read by you.
+
+4. Add to the agreement the routine of step 20, wrapped in "Add this routine to
+   `docs/WORKING_AGREEMENT.md`:".
+
+**Completeness check.** Did the provoked alert reach you? Does the report have every deviation
+with a cause or a proposal? Is there a pending item for every deviation you decided to attend to,
+with the number as the criterion? Did any threshold go up since lesson 19, and with what reason?
+Does the report look at the message provider's quota?
+
+**Deliverable.** Collection with history, alerts, the cyclic report, `docs/MONITORING.md`, the
+routine in the agreement.
+
+**Typical mistakes.** Alerts every day that nobody reads. Three reports in a row saying
+"everything normal". A threshold raised "so that it stops warning". Personal data stored "to
+diagnose".
+
+**In the guide project.** Turnera's first monthly report says: disk at 40 %, memory stable, the
+day's schedule at 320 milliseconds median (baseline), the patient search up from 4 to 9
+milliseconds (the table is growing; within range), and the message quota at 60 % (proposal: warn
+at 80 %). One deviation: the receptionist's monthly report took 11 seconds on the 1st (proposal:
+precompute it at night; pending item).
+
+### Lesson 21 — Error monitoring and cyclic report
+
+**What you need to understand.** A system in production produces errors nobody reports: the
+receptionist who saw a blank screen and tried again, the nightly job that was cut short. This
+lesson *captures* them in the three places where they hide (the backend, the jobs and the
+browser), *groups* them (a thousand times the same error is one entry with a counter), warns about
+the new ones and the ones that grow, and produces a report with the *error rate per flow* (out of
+every hundred appointments booked, how many failed). Two rules: no error without a pending item,
+and there is no such thing as a "known error" without a pending item that says why it is tolerated
+and until when [Ref. 43](REFERENCIAS.md#ref-43), [Ref. 22](REFERENCIAS.md#ref-22).
+
+**Before sending the prompt**, with your own hands:
+
+- `docs/OBSERVABILITY.md` (16): the errors already come out with an identifier, a version and an
+  actor.
+- `docs/LOCKS.md` (12): the errors in consequential actions are an immediate alert.
+- The channel and the cycle of lesson 20, and the number of occurrences per hour of a known error
+  above which you want an alert: for Turnera, ten.
+- Where the errors are stored and for how long, without personal data.
+
+1. Paste it the opening prompt of the contract of step 21, with the channel, the cycle and the
+   number in the slots.
+2. Provoke an error yourself in the browser, in the test environment (an impossible date in the
+   appointment form, for example): it has to appear in the capture with your identifier, and the
+   alert has to reach you if it is new.
+
+**Before sending the prompt** for the routine: the first error report read by you, and
+`docs/PENDING.md` at hand.
+
+3. Add to the agreement the routine of step 21, wrapped like the others.
+4. With the first report: open the corrective pending items for the new errors, each with its
+   reproduction, and close them with the routine of lesson 7 (the test that reproduces it in red).
+
+**Completeness check.** Did your provoked error reach the capture, the alert and the report? Is
+there any recurring error with no pending item and no reason with a date? Does a "fixed" error
+from the report have its test in red in its pending item? Is the error rate per flow there, and
+compared with the previous period? Is there any personal data in the capture?
+
+**Deliverable.** The centralized and grouped capture, the alerts, the cyclic report with the rate
+per flow, `docs/MONITORING.md` complete, the routine in the agreement, and one pending item per
+error.
+
+**Typical mistakes.** "Zero errors in a month" with real users: the capture does not see the
+browser or the jobs. An error with a thousand occurrences and the comment "known, no impact".
+Errors that get "fixed" by restarting. And reading the error report without cross-reading it with
+the resources one: the slow query of the one is the timeout of the other.
+
+**In the guide project.** Turnera's first report has three errors: one in the browser (the
+schedule fails if the professional's name has an apostrophe; 14 times; pending item, test in red),
+one in the nightly job (the message provider returned an error one night; 1 time; pending item to
+retry with a log record), and a "known" one from the nephew in the monthly spreadsheet (pending
+item with a date: it is replaced by the report of lesson R2 in part 2). Error rate: 0.3 % in "book
+appointment", 0 % in the rest.
+
 ## The go-live checklist
 
-When the sixteen lessons are done, the system meets this list. It is the operational definition of
-"production grade" in Urazuke, and it can be used as the final checklist, with the owner, without
+When the twenty-two lessons are done, the system meets this list. It is the operational
+definition of "production grade" in Urazuke, and it can be used as the final checklist, with the owner, without
 opening the code:
 
 1. There is an eligibility sheet with a decision, date and name (S0).
@@ -1663,9 +1987,22 @@ opening the code:
     person who does not program followed the recovery one; the owner did the acceptance testing on
     every flow (S14).
 16. There is a retrospective with numbers and a proposed change to the ladder (S15).
+17. The log records are structured, with a level configurable without deploying, with an
+    identifier that follows each action from the screen to the database; the consequential
+    actions are kept in an immutable audit trail; no personal data in the log records (S16).
+18. The real queries were measured at the expected volume, corrected with a before and an after,
+    and there are budgets with a test per critical path (S17).
+19. The vulnerability scan runs on every push and on a schedule, it is a gate, and there is no
+    open P0 (S18).
+20. There is a load test with its test, run at the expected volume and at "times ten", with the
+    breaking point written down and the thresholds derived from it (S19).
+21. Resource usage and response times are watched with alerts and a cyclic report, and every
+    deviation has a cause or a pending item (S20).
+22. The errors are captured in the backend, the jobs and the browser, they are grouped, they are
+    reported per cycle with the rate per flow, and none is left without a pending item (S21).
 
-If all sixteen say "yes", the system is ready to go live. If any says "no", you already know which
-step to climb again.
+If all twenty-two say "yes", the system is ready to go live. If any says "no", you already know
+which step to climb again.
 
 ---
 

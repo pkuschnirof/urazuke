@@ -502,3 +502,7 @@ gradino. Se ne comparisse uno che non ricade in nessuno, mancherebbe un gradino.
 | File di progetto di 9.661 righe | Ref. 41 | 2 | in sospeso |
 | CORS del primo dominio; assistente di configurazione con errore 500 | Ref. 43 | 13 e 8 | applicazione in sospeso |
 | L'applicazione mobile perde le schede | Ref. 43 | 10 e 12 | diagnosi fatta; correzione in sospeso |
+| Query senza indice su un sistema vivo | Ref. 18 | 11 e 17 | chiuso |
+| Audit di sicurezza fatto una volta, non come routine | Ref. 23 | 11 e 18 | chiuso; il calendario è nuovo |
+| Tetto stretto a ciò che era stato misurato; quota bruciata senza che nessuno guardasse | Refs. 37 e 39 | 9, 13 e 20 | chiuso |
+| Il turno orfano si è trovato dal log, non dal codice | Ref. 16 | 16 e 21 | chiuso |

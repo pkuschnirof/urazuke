@@ -511,3 +511,7 @@ Cette table est, d'une certaine façon, la preuve de l'échelle : chaque coup du
 | Fichier de projet de 9 661 lignes | Ref. 41 | 2 | en attente |
 | CORS du premier domaine ; assistant de configuration avec erreur 500 | Ref. 43 | 13 et 8 | application en attente |
 | L'application mobile perd les onglets | Ref. 43 | 10 et 12 | diagnostic fait ; correction en attente |
+| Requêtes sans index sur un système vivant | Ref. 18 | 11 et 17 | clos |
+| Audit de sécurité fait une fois, non comme routine | Ref. 23 | 11 et 18 | clos ; le calendrier est nouveau |
+| Plafond resserré à ce qui a été mesuré ; quota fondu sans que personne ne regarde | Refs. 37 et 39 | 9, 13 et 20 | clos |
+| Le tour orphelin s'est trouvé par le journal, pas par le code | Ref. 16 | 16 et 21 | clos |

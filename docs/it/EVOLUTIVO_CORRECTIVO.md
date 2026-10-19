@@ -37,7 +37,7 @@ cambia da dove si entra.
 
 | Caso | Punto di partenza | Da dove si entra | Quanto dura l'ingresso | Dov'è scritto |
 |---|---|---|---|---|
-| **Progetto nuovo** | Cartella vuota e un proprietario con una richiesta. | Gradino 0, e di lì i sedici in ordine. | Una settimana di avvio prima della prima funzionalità. | Il documento principale, i sedici contratti e il manuale del corso. |
+| **Progetto nuovo** | Cartella vuota e un proprietario con una richiesta. | Gradino 0, e di lì i ventidue in ordine. | Una settimana di avvio prima della prima funzionalità. | Il documento principale, i ventidue contratti e il manuale del corso. |
 | **Evolutivo-correttivo su un sistema fatto con il metodo** | Il sistema ha già salito la scala: ha contratto, mappa, voci in sospeso chiuse con prove, batteria, deployment e manuali. | Gradino 5: si apre un blocco e si segue il ciclo; l'11 periodico; il 15 alla chiusura della tappa. | Nessuno: è il gradino 15 che torna allo 0 per la tappa successiva, ed è già nella Parte B del documento principale. | Il documento principale (fase 4, esercizio). |
 | **Evolutivo-correttivo su un sistema fatto senza il metodo** | Un sistema che gira, con utenti, senza nessuno di quegli artefatti o con alcuni a metà. | Il tratto di normalizzazione di questa pagina (da N0 a N7), e solo dopo il ciclo, in modalità correttiva o evolutiva. | Da due a tre settimane per un sistema piccolo, prima di toccare la prima riga di funzionalità. | Questa pagina e il manuale del corso, parte 2. |
 
@@ -114,7 +114,7 @@ Se alla fine di N7 manca uno di questi file, il tratto non è salito. Non import
 
 ## Il tratto di normalizzazione: le otto stazioni
 
-Le chiamo stazioni e non gradini, e le numero da N0 a N7, perché non si confondano con i sedici
+Le chiamo stazioni e non gradini, e le numero da N0 a N7, perché non si confondano con i ventidue
 della scala. Non sono gradini nuovi: sono i gradini dell'avvio e tre dell'esercizio (l'8, l'11 e
 il 12), in un altro ordine e con un altro ingresso. Nel progetto nuovo l'ingresso è la
 rilevazione; qui l'ingresso è il sistema, e la lettura la fa l'agente.
@@ -1033,6 +1033,37 @@ modo di tornare indietro (il backup di N0 o la versione precedente) pronto.
 Cosa gli sto chiedendo: il minimo, con il ritorno indietro prima e non dopo, e con il rapporto
 onesto di ciò che non è stato verificato (gradino 10); e l'obbligo di rientrare dal ciclo lo
 stesso giorno, che è ciò che separa un'eccezione da un'abitudine.
+
+## I sei gradini di qualità operativa in un legacy
+
+I gradini da 16 a 21 del documento principale (osservabilità e tracciabilità, persistenza,
+vulnerabilità, rendimento, e i due monitoraggi) valgono per i due casi d'uso, e in un legacy hanno
+una collocazione precisa, perché diversi di essi hanno già metà del lavoro fatto dal tratto di
+normalizzazione:
+
+- **16, osservabilità e tracciabilità**: il livello minimo (registri strutturati con livello
+  configurabile e un identificatore di correlazione nei flussi critici) entra nella cintura di
+  sicurezza (N4), perché senza di esso la batteria di caratterizzazione non dice cosa si è rotto.
+  Il livello completo, con l'audit immutabile delle azioni con conseguenza che N5 ha
+  inventariato, si sale prima del primo deployment successivo alla normalizzazione.
+- **17, persistenza**: le misurazioni sono già fatte in N6. Ciò che ne esce entra nel backlog (N7)
+  con la sua marca: ciò che è già fuori dalla tolleranza del business, "blocca" o "adesso"; il
+  resto, "si paga al tocco", ed entra con il blocco che tocca quel modulo.
+- **18, vulnerabilità**: la prima esecuzione è la dimensione di sicurezza dell'audit di N3, e la
+  scansione nella catena fa parte della cintura (N4), perché un legacy ha quasi sempre dipendenze
+  vecchie e segreti nella storia. I P0 bloccano; il resto, al backlog.
+- **19, rendimento**: si esegue con i volumi misurati in N6, sulla persistenza già corretta in ciò
+  che bloccava, prima del primo deployment successivo alla normalizzazione. In un legacy di solito
+  scopre che il punto di rottura è più vicino di quanto il business creda.
+- **20 e 21, monitoraggio**: si montano nella settimana del primo deployment, come nel progetto
+  nuovo, con una differenza: la prima lettura del rapporto è la linea base del legacy, e gli
+  scostamenti e gli errori che esistevano già il primo giorno diventano voci in sospeso con la
+  loro marca di velocità. Nessuno resta come "noto" senza voce in sospeso.
+
+In pratica, per un sistema piccolo, i quattro precedenti al deployment aggiungono una settimana al
+calendario della normalizzazione (una quarta settimana, prima del primo blocco evolutivo o insieme
+a esso, a seconda dell'urgenza della richiesta), e i due monitoraggi si montano nella settimana
+del deployment.
 
 ## Quando il sistema è normalizzato
 

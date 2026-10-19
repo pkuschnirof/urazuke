@@ -37,7 +37,7 @@ agent, because it changes where you enter.
 
 | Case | Starting point | Where you enter | How long the entry lasts | Where it is written |
 |---|---|---|---|---|
-| **New project** | An empty folder and an owner with a request. | Step 0, and from there the sixteen in order. | A week of start-up before the first functionality. | The main document, the sixteen contracts and the course manual. |
+| **New project** | An empty folder and an owner with a request. | Step 0, and from there the twenty-two in order. | A week of start-up before the first functionality. | The main document, the twenty-two contracts and the course manual. |
 | **Evolutive-corrective on a system made with the method** | The system already climbed the ladder: it has a definition, a map, pending items closed with evidence, a suite, a deployment and manuals. | Step 5: a block is opened and the loop followed; step 11 periodically; step 15 at the close of the stage. | None: it is step 15 going back to step 0 for the next stage, which is already in Part B of the main document. | The main document (phase 4, operation). |
 | **Evolutive-corrective on a system made without the method** | A system that runs, with users, without any of those artefacts or with some of them half done. | The normalization stretch of this page (N0 to N7), and only then the loop, in corrective or evolutive mode. | Two to three weeks for a small system, before touching the first line of functionality. | This page and the course manual, part 2. |
 
@@ -114,7 +114,7 @@ matter that the system "works": the loop is going to need it in the first sessio
 ## The normalization stretch: the eight stations
 
 I call them stations and not steps, and I number them N0 to N7, so that they do not get confused
-with the sixteen of the ladder. They are not new steps: they are the steps of the start-up and
+with the twenty-two of the ladder. They are not new steps: they are the steps of the start-up and
 three of the operation (8, 11 and 12), in another order and with another input. In a new project
 the input is the survey; here the input is the system, and the reading is done by the agent.
 
@@ -842,6 +842,39 @@ the way back (the N0 backup or the previous version) at hand.
 What I am asking for: the minimum, with the rollback before and not after, and with the honest
 report of what was not verified (step 10); and the obligation to come back in through the loop the
 same day, which is what separates an exception from a habit.
+
+## The six operational quality steps in a legacy system
+
+Steps 16 to 21 of the main document (observability and traceability, persistence,
+vulnerabilities, performance, and the two monitorings) hold for both use cases, and in a legacy
+system they have a precise location, because several of them already have half the work done by
+the normalization stretch:
+
+- **16, observability and traceability**: the minimum level (structured log records with a
+  configurable level and a correlation id in the critical flows) goes into the safety belt (N4),
+  because without it the characterization suite does not say what broke. The complete level, with
+  the immutable audit trail of the consequential actions that N5 inventoried, is climbed before
+  the first deployment after the normalization.
+- **17, persistence**: the measurements are already done in N6. What comes out of them goes into
+  the backlog (N7) with its mark: whatever is already outside the business's tolerance, "blocks"
+  or "now"; the rest, "paid when touched", and it comes in with the block that touches that
+  module.
+- **18, vulnerabilities**: the first run is the security dimension of the N3 audit, and the scan
+  in the chain is part of the belt (N4), because a legacy system almost always has old
+  dependencies and secrets in its history. The P0s block; the rest, to the backlog.
+- **19, performance**: it is run with the volumes measured in N6, on the persistence layer
+  already corrected in what was blocking, before the first deployment after the normalization. In
+  a legacy system it usually discovers that the breaking point is closer than the business
+  believes.
+- **20 and 21, monitoring**: they are set up in the week of the first deployment, just as in a
+  new project, with one difference: the first reading of the report is the legacy system's
+  baseline, and the deviations and the errors that already existed on the first day turn into
+  pending items with their speed mark. None is left as "known" without a pending item.
+
+In practice, for a small system, the four that precede the deployment add a week to the
+normalization calendar (a fourth week, before the first evolutive block or together with it,
+depending on the urgency of the request), and the two monitorings are set up in the week of the
+deployment.
 
 ## When the system is normalized
 

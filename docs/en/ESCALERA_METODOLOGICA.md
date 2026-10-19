@@ -31,7 +31,7 @@ claim of the model come with its backing, and that the backing can be verified w
 code. The name is not translated; the subtitle, "the evidence method", is: *el método de la
 evidencia*, *o método da evidência*, *la méthode de la preuve*, *die Nachweis-Methode*, *il metodo
 del riscontro*, 裏付けの方法, 验证方法. In this document, "the ladder" is the structure of the
-method — its sixteen steps — and "Urazuke" is the whole method.
+method — its twenty-two steps — and "Urazuke" is the whole method.
 
 ## What this is about
 
@@ -62,7 +62,7 @@ The method comes from two factors that combined, and neither of the two is enoug
 first is **my own knowledge of systems engineering**. I have spent many years applying what anyone
 who comes from systems recognises immediately: survey before design, written requirements, sizing
 with numbers, design, construction, tests as evidence, reproducible deployment, operation, periodic
-audit, documentation as part of the product. Most of what I demand in the sixteen steps is what I
+audit, documentation as part of the product. Most of what I demand in the twenty-two steps is what I
 always demanded in a well-run project. I did not invent it for the models; I brought it from
 before.
 
@@ -93,7 +93,7 @@ three use cases, and it is worth knowing which one you are in before opening the
 it changes where you enter:
 
 1. **New project.** An empty folder and an owner with a request. You enter at step 0 and you
-   climb the sixteen in order. It is what this document describes, with its contracts and the
+   climb the twenty-two in order. It is what this document describes, with its contracts and the
    course manual.
 2. **Evolutive-corrective on a system made with the method.** The system already climbed the
    ladder: it has a definition, a map, pending items closed with evidence, a suite, a deployment
@@ -196,9 +196,12 @@ Each step has eight parts, always the same, so that they can be compared:
 Two important clarifications. First: **the ladder is neutral with respect to the tool**. Each
 artefact is a file, a test or a script; none requires my tool or any other. Forge automates them
 (the gates, the commands, the pending-items register), but the step exists without Forge. Second:
-**the steps are not strictly sequential**. There are three stretches: steps 0 to 4 are start-up and
-are climbed once per project; steps 5 to 10 are the loop that repeats with every change; and steps
-11 to 15 are operation, when the system is already alive. Step 15 closes the cycle and returns to
+**the steps are not strictly sequential**. There are four stretches: steps 0 to 4 are start-up and
+are climbed once per project; steps 5 to 10 are the loop that repeats with every change; steps 11
+to 15 are operation, when the system is already alive; and steps 16 to 21 are operational quality:
+four that are climbed before the first deployment to production (observability, persistence,
+vulnerabilities, performance) and two that watch the system once it is deployed (monitoring of
+resources and monitoring of errors). Step 15 closes the cycle and returns to
 step 0 for the next project. But "not strictly sequential" does not mean "in any order": Part B
 says exactly when each one is climbed and what happens in between.
 
@@ -208,7 +211,7 @@ says exactly when each one is climbed and what happens in between.
 
 This part did not exist in the previous versions, and its absence was a serious defect: the method
 said what to do and how to verify it, but it did not say **when**. And "when" is half of a method.
-A reader who took it literally could climb the sixteen steps one after another and wonder at what
+A reader who took it literally could climb the twenty-two steps one after another and wonder at what
 moment, then, the infrastructure gets done, the continuous integration and deployment chain, the
 intake of the requirements, the development of the functionality, the end-to-end tests of all the
 flows, the human look at the screens, and the human acceptance testing. All of that happens, and
@@ -217,7 +220,8 @@ it happens at precise moments, between the steps and inside them. Here I write i
 ### B.1 The five phases of a project
 
 A project run with this method goes through five phases. The three in the middle are the ones that
-correspond to the three stretches of the ladder; the two at the ends are the initial intake and
+correspond to the stretches of the ladder (the fourth stretch, operational quality, is split
+between phase 3 and phase 4); the two at the ends are the initial intake and
 life in production, which the method also covers even though they are not "steps" in themselves.
 
 | Phase | Typical duration in a small project | Steps climbed | What else happens in that phase |
@@ -225,8 +229,8 @@ life in production, which the method also covers even though they are not "steps
 | 0. Intake | from two days to a week, in parallel with phase 1 | none yet; it is the raw material of steps 0, 2, 3 and 5 | Survey of the business with the owner, with the classical methods of requirements engineering (see B.5): interviews, use cases or user stories, domain model, screen prototypes. It is written in prose, incomplete on purpose; the agent completes it by asking. |
 | 1. Start-up | one week, straight through | 0, 1, 2, 3, 4 | Eligibility, agreement, definition, sizing. And **all the initial infrastructure**: the repository, the test environment, continuous integration, the first deployment with the empty system. |
 | 2. Loop | from three to six weeks, in functional blocks of one to two weeks | 5, 6, 7, 8, 9, 10 with every change | Functional development block by block; tests proved red; end-to-end tests of the flow just built; a human look at every new screen; at the close of each block, human testing in the test environment. |
-| 3. Go-live | one week | 11, 12, 13, 14 | Audit by another session; locks on everything that acts on the world; closing the deployment chain to production with a tested rollback; the three manuals; acceptance testing with the owner over all the flows. |
-| 4. Operation | as long as the system lives | 15, and the loop (5 to 10) for every evolution; 11 periodically | Resident agent; audit every one or two months; every new change enters through the full loop and leaves through the deployment chain; retrospective at the close of each stage. |
+| 3. Go-live | from one to two weeks | 11, 12, 13, 14, and the four operational quality steps that precede the deployment: 16, 17, 18, 19 | Audit by another session; locks on everything that acts on the world; closing the deployment chain to production with a tested rollback; the three manuals; acceptance testing with the owner over all the flows. |
+| 4. Operation | as long as the system lives | 15; 20 and 21 set up in the week of the first deployment; the loop (5 to 10) for every evolution; 11 and 18 periodically | Resident agent; audit every one or two months; every new change enters through the full loop and leaves through the deployment chain; retrospective at the close of each stage. |
 
 This table is the one for a new project. When the system already exists and was not born with
 the method, phases 0 and 1 are replaced by the normalization stretch (three weeks for a small
@@ -243,7 +247,7 @@ Here is what was missing. For each phase, which tasks of each kind are done and 
 moment with respect to the steps. Read the table by rows: each row is a kind of work, and each cell
 says when it is done within that phase.
 
-| Kind of work | Start-up (steps 0 to 4) | Loop (steps 5 to 10, per block) | Go-live (11 to 14) | Operation (15 and the loop) |
+| Kind of work | Start-up (steps 0 to 4) | Loop (steps 5 to 10, per block) | Go-live (11 to 14 and 16 to 19) | Operation (15, 20, 21 and the loop) |
 |---|---|---|---|---|
 | **Requirements intake** | Before step 0: survey in prose with the owner, with interviews, use cases and domain model. It is completed in step 2 (definition and semantic tree) and in step 3 (volume). | When opening each block: the client's request for that block, just as they would say it, is turned into pending items with a **detailed specification** (step 5): description, acceptance criteria, applicable rules, data, screens, edge cases. The questions the agent asks are the fine intake. | Before step 12: survey of the consequential actions. Before step 13: survey of environments and access. | Every new request enters as a specified pending item, hanging from its node of the semantic tree; the resident agent collects what the users ask for. |
 | **Infrastructure** | All the initial infrastructure, in step 4: repository, structure, test environment, credentials, test domain. No functionality is built until the empty skeleton is deployed. | None, unless a block demands it (a queue, an external service). If it does, it is a pending item with its test. | In step 13: production environment, secrets on the server, real domain, backups, minimal monitoring. | Infrastructure changes enter through the loop and through step 13; never "by hand, quickly". |
@@ -306,6 +310,10 @@ use the system. They are few, they are at precise moments, and none can be deleg
   environment.
 - **After every deployment to production**: verify that the version running is the intended one,
   and do a read-only pass through the critical flows.
+- **Before the first deployment, in step 19**: read the numbers of the load test with the
+  business's tolerance alongside, and the breaking point.
+- **In every monitoring cycle (20 and 21)**: read the cyclic report with the agent and decide
+  which deviation and which error become pending items. Half an hour per cycle.
 
 Everything else — the tests, the measurements, the audits, the documentation — the model does, and
 the human verifies it by the artefact, not by the code.
@@ -372,7 +380,7 @@ step 5.
 
 ---
 
-## Part C — The sixteen steps
+## Part C — The twenty-two steps
 
 ### Step 0 — Can this project be run this way? (eligibility)
 
@@ -807,6 +815,180 @@ reviewed with numbers, and what is learned returns to step 0 for the next projec
 
 ---
 
+### The six operational quality steps (16 to 21)
+
+The sixteen steps above make the system well built and able to be sustained. These six do
+something different, and something I had left implicit, because in my projects I did it without
+naming it: making the system possible to **see** while it runs, making it hold the volume it was
+sized for, making sure it has no known holes, and making sure that, once in production, nobody
+finds out about a problem from an angry user. Four are climbed before the first deployment to
+production, in this order: observability (16), persistence (17), vulnerabilities (18) and
+performance (19). Two are set up in the week of the first deployment and run on their own from
+then on: the monitoring of resources and performance (20) and the monitoring of errors (21). The
+two monitorings end up in the same place as everything else: the loop, as corrective pending
+items. And the six hold for both use cases: in a new project, in the place its "when" says; in a
+legacy system, with the differences each card marks and that are detailed on the
+evolutive-corrective path.
+
+If you are a beginner, each of these six contracts begins with a paragraph that explains its words
+(log record, index, vulnerability, latency, threshold) in everyday language, and the glossary has
+them all.
+
+### Step 16 — Total observability and traceability, with a configurable level
+
+When something fails in production I want to follow an action from the screen to the database with
+a single identifier, without opening the code; I want to be able to raise the detail of the log
+records in production in a minute, without redeploying; and I want every consequential action to
+leave a trace the application cannot delete.
+
+- **Intention**: that the system can be seen while it runs (observability) and that every
+  important action has its trace (traceability), with a level of detail that is changed by
+  configuration.
+- **When**: in the go-live phase, after step 13 and before step 19. In a legacy system, the
+  minimum level goes into the safety belt (N4) and the complete one here. The rule "every new
+  module logs and propagates" applies throughout operation.
+- **Inputs**: the configuration per environment (13), the table of locks (12), the list of
+  personal data from the survey, and the decision about where the log records live.
+- **Artefact**: structured log records with a level configurable without deploying; a correlation
+  id in every record, from the screen to the database; an immutable audit trail of the
+  consequential actions; health and metrics endpoints; `docs/OBSERVABILITY.md`.
+- **Gate**: one real identifier followed through every layer; the level changed without deploying;
+  no personal data in the log records.
+- **Who decides**: the owner decides where the log records live, how long they are kept and what
+  is personal data; the agent builds.
+- **Failure it prevents**: the process that stayed alive for an hour and forty-three minutes and
+  was found through the log [Ref. 16](REFERENCIAS.md#ref-16); the resident agent that operates
+  blind if there are no records to read [Ref. 13](REFERENCIAS.md#ref-13).
+- **Contract**: `peldanos/peldano-16-observabilidad-y-trazabilidad.md`.
+
+### Step 17 — Optimization of the persistence layer, measured before and after
+
+The database is where systems die slowly: fine with a hundred records, badly with a hundred
+thousand, and nobody knows when it started. Here it is decided with numbers, before production,
+and with the method of step 9: measure, change, measure again on the same data.
+
+- **Intention**: that the real queries of the system, at the volumes of the sizing, fit within
+  what the business tolerates, with budgets that stop them from going out of range again.
+- **When**: in the go-live phase, after step 16 and before step 19; it is repeated when a block
+  adds a large table or the monitoring (20) shows a query out of range. In a legacy system, the
+  measurements come out of N6 and almost everything is paid "when touched".
+- **Inputs**: the sizing (3 or N6), the producer/consumer map (8), the observability (16), and the
+  test environment loaded at the expected volume.
+- **Artefact**: query meters with a test; `docs/PERSISTENCE.md` with the before and after table per
+  change, the budgets per path and the retention per table; one test per budget.
+- **Gate**: no query that reads a whole table in a critical flow; every budget with its test; the
+  slowest screen within what the sizing expected.
+- **Who decides**: the owner approves the list of changes, one by one; the agent measures and
+  applies.
+- **Failure it prevents**: the queries that read whole tables on a live system
+  [Ref. 18](REFERENCIAS.md#ref-18); the budget that had to be tightened to the measured value
+  [Ref. 37](REFERENCIAS.md#ref-37); millions of rows on top of files
+  [Ref. 15](REFERENCIAS.md#ref-15).
+- **Contract**: `peldanos/peldano-17-persistencia.md`.
+
+### Step 18 — Scanning and fixing vulnerabilities, in the chain and on a schedule
+
+The audit (11) looks at the whole system with judgement, every so often; this step looks at a
+single thing, security, all the time and by machine: dependencies, code, secrets in the history
+and the server's configuration. And one rule: a dependency upgrade is a change, and it comes in
+through the loop.
+
+- **Intention**: that no known vulnerability reaches production, and that new ones are detected on
+  their own even if nobody touches the system.
+- **When**: in the go-live phase, after step 13 and before the first deployment; afterwards, on
+  every push and with a weekly schedule. In a legacy system, the first run is part of N3.
+- **Inputs**: continuous integration (4 and 13), the survey of environments, the previous audit,
+  and the owner's criteria about what is urgent.
+- **Artefact**: the four-layer scan running in the chain and on a schedule;
+  `docs/SECURITY_[date].md` with the findings and what was not scanned; `docs/SECURITY.md` with the
+  policy; the gate in `docs/GATES.md`; the P0s and P1s fixed with their pending item.
+- **Gate**: no open P0 is promoted to production; a new P1 opens a pending item on its own.
+- **Who decides**: the owner defines what a P0 is and approves the fixes; the agent sets it up and
+  runs it.
+- **Failure it prevents**: the known vulnerability that showed up in the quality audit
+  [Ref. 41](REFERENCIAS.md#ref-41); the administrator doors that only another session saw
+  [Ref. 40](REFERENCIAS.md#ref-40); security treated as a list you tick once
+  [Ref. 23](REFERENCIAS.md#ref-23).
+- **Contract**: `peldanos/peldano-18-vulnerabilidades.md`.
+
+### Step 19 — Performance tests at volume and the breaking point
+
+Step 3 sized the system with calculations; this one checks the calculations with the system
+running: at the expected volume, at "times ten", and until something breaks. The breaking point is
+the most useful number of the stretch, because the alert thresholds of step 20 come out of it.
+
+- **Intention**: to know how the system behaves at the expected volume, at "times ten", and where
+  and why it breaks, before the first user comes in.
+- **When**: in the go-live phase, after steps 16 and 17, before the first deployment; it is
+  repeated before every deployment that changes the architecture, the persistence or a critical
+  flow. In a legacy system, with the volumes measured in N6.
+- **Inputs**: the sizing, the observability switched on, the optimized persistence layer, the
+  critical flows and the business's tolerance for the most used screen.
+- **Artefact**: the load script in the repository, with a test; `docs/PERFORMANCE_[date].md` with
+  the three runs, the breaking point and the diagnosis; `docs/PERFORMANCE.md` with the thresholds
+  and the gate; one pending item per bottleneck.
+- **Gate**: the most used screen within the tolerance at the expected volume, or a pending item
+  with the number; the breaking point written down with what breaks.
+- **Who decides**: the owner gives the tolerance and decides up to which volume the bottlenecks
+  get fixed now.
+- **Failure it prevents**: the real load that was only known by looking at production
+  [Ref. 12](REFERENCIAS.md#ref-12); the breaking point that disguised itself as a failed test
+  [Ref. 44](REFERENCIAS.md#ref-44); the sizing as a gate
+  [Ref. 14](REFERENCIAS.md#ref-14).
+- **Contract**: `peldanos/peldano-19-rendimiento-y-punto-de-ruptura.md`.
+
+### Step 20 — Monitoring of resources, functions and queries out of range, with a cyclic report
+
+The tests of step 19 say how the system behaves on one day; production is every day, with the data
+growing. This step watches resource usage and the response time of every function and every query
+against the thresholds of step 19 and against its own history, warns when something goes out of
+range, and produces a cyclic report that is read with the owner. Every deviation is a pending item.
+
+- **Intention**: to see a resource or performance problem before the user sees it, and to have
+  every deviation carry a cause or a pending item.
+- **When**: it is set up in the week of the first deployment to production; from then on it runs on
+  its own, and the report is read every cycle (weekly with consequences, monthly in a small
+  project). In a legacy system, the first reading is the baseline.
+- **Inputs**: the metrics of step 16, the budgets of step 17, the thresholds of step 19,
+  production read-only, and the channel and the cycle decided with the owner.
+- **Artefact**: collection with history; alerts by threshold and by deviation; the cyclic report
+  generated on its own; `docs/MONITORING.md`; the reading routine in the agreement.
+- **Gate**: a provoked alert reached the channel; the first report has every deviation with a cause
+  or a proposal; no threshold went up without a written reason.
+- **Who decides**: the owner decides the channel, the cycle and which deviation is attended to now;
+  the agent sets it up and proposes.
+- **Failure it prevents**: the ceiling that had to be tightened to the measured value
+  [Ref. 37](REFERENCIAS.md#ref-37); the quota that was burned without anybody looking
+  [Ref. 39](REFERENCIAS.md#ref-39).
+- **Contract**: `peldanos/peldano-20-monitoreo-de-recursos-y-rendimiento.md`.
+
+### Step 21 — Error monitoring and cyclic report: no error without a pending item
+
+A system in production produces errors nobody reports. This step captures them in the three places
+where they hide (the backend, the jobs, the user's browser), groups them, warns about the new ones
+and the ones that grow, and produces a cyclic report. Two rules: no error without a pending item,
+and there is no such thing as a "known error" without a pending item that says why it is tolerated
+and until when.
+
+- **Intention**: that no error in production goes unseen, and that each one is closed with the test
+  that reproduces it in red.
+- **When**: it is set up in the week of the first deployment, together with step 20; from then on
+  it runs on its own, with alerts at the moment and a cyclic report. In a legacy system, the errors
+  that already existed on the first day turn into pending items with their speed mark.
+- **Inputs**: the log records of step 16, the table of locks (12), production with the browser
+  included, the channel and the cycle of step 20.
+- **Artefact**: centralized and grouped capture, without personal data; alerts for a new error, for
+  a recurring one that grows and for one with consequences; the cyclic report with the error rate
+  per flow; `docs/MONITORING.md`; the routine in the agreement.
+- **Gate**: an error provoked in the browser followed through to the report; no recurring error
+  without a pending item or a reason with a date.
+- **Who decides**: the owner reads the report and decides what is attended to; the agent captures,
+  groups and proposes.
+- **Failure it prevents**: the authentication error reported as a success
+  [Ref. 43](REFERENCIAS.md#ref-43); the four rounds to the root cause for not having the error
+  reproduced [Ref. 22](REFERENCIAS.md#ref-22).
+- **Contract**: `peldanos/peldano-21-monitoreo-de-errores.md`.
+
 ## Part D — How it is executed, how much is demanded, and with which tool
 
 ### How each step is executed: the contract
@@ -852,9 +1034,9 @@ does not have to be.
 
 ### What is mandatory and what is proportional, by project size
 
-A question that comes up right away: "all this for a small system?". The answer is that sixteen
-steps are not sixteen weeks; several are climbed in an hour, and the ones that are proportional
-shrink with the project. What does not shrink is the list of the ones that are not negotiable. This
+A question that comes up right away: "all this for a small system?". The answer is that
+twenty-two steps are not twenty-two weeks; several are climbed in an hour, and the ones that
+are proportional shrink with the project. What does not shrink is the list of the ones that are not negotiable. This
 table is a `[hypothesis]` proposal to confirm with the first project that uses the method end to
 end:
 
@@ -876,9 +1058,16 @@ end:
 | 13 Integration and deployment | minimum: tests on their own, configuration outside, rollback | mandatory, complete |
 | 14 Documentation | minimum: recovery | the three manuals |
 | 15 Resident and retrospective | one-page retrospective | both |
+| 16 Observability and traceability | minimum: structured log records with a configurable level and one identifier per action | mandatory, complete, with an immutable audit trail |
+| 17 Persistence | proportional: the indexes of the real queries and the end of the N+1 loops | mandatory, with budgets per path |
+| 18 Vulnerabilities | mandatory: dependencies and secrets in the chain | mandatory, the four layers and on a schedule |
+| 19 Performance | proportional: one run at the expected volume and one at "times ten" | mandatory, with a breaking point and thresholds |
+| 20 Monitoring of resources | minimum: one monthly report and two alerts (disk, database) | mandatory, with thresholds per function and a weekly report |
+| 21 Error monitoring | mandatory: centralized capture and report | mandatory, with alerts at the moment |
 
-In summary: there are nine steps that are not negotiable in any project (0, 1, 2, 3, 5, 6, 7, 10
-and the retrospective of 15), and seven that are sized with the project.
+In summary: there are eleven steps that are not negotiable in any project (0, 1, 2, 3, 5, 6, 7,
+10, the retrospective of 15, the dependency scan of 18 and the error capture of 21), and eleven
+that are sized with the project.
 
 ### How it is used with any tool
 
@@ -908,9 +1097,9 @@ course.
 2. **A memorable name for each step**, in one sentence, for the manuals and the publications.
 3. **The export to Forge**: which steps are already gates or commands and which are missing to be
    able to run the ladder as an execution workflow.
-4. **Test the contracts in a real project end to end.** The sixteen prompts are written from what
-   I did, not executed as-is. The first project that uses them in full is going to correct several;
-   it is part of step 15.
+4. **Test the contracts in a real project end to end.** The prompts of the twenty-two
+   contracts are written from what I did, not executed as-is. The first project that uses them
+   in full is going to correct several; it is part of step 15.
 5. **The first cohort of the course**, which is going to correct the times of the timeline and the
    typical mistakes, which today are written from my projects and not from students.
 6. **The evolutive-corrective path proved on a real legacy system end to end.** The eight
@@ -939,6 +1128,10 @@ would for real, before accepting it for production. They are human; the agent do
 **Agent** — An artificial intelligence program that does not just answer questions but executes
 actions: reads files, writes code, runs commands, makes commits. In this document, "the agent" is
 Claude Code or whichever tool you use.
+
+**Alert** — An automatic warning, at the moment, that a number has gone out of range (a
+threshold exceeded, a new error). Rule of the method: an alert that fires and nobody reads is a
+defect of the alert, and it gets fixed or removed.
 
 **Anonymisation** — In this document the real clients are called "the Health Fund", "the
 Authorizer" and "the Association", and their systems "Autorizaciones" and "Kikan". It is on
@@ -987,7 +1180,15 @@ call to the database without `await` is a silent bug: the code goes on before it
 **Backend** — The part of the system that is not seen: the server, the logic, the database. The
 opposite of "frontend" (the screen).
 
+**Baseline** — What a number had normally been giving (for example, the average of the last
+fourteen days). "Out of range" in step 20 is above a fixed threshold or very different from the
+baseline.
+
 **Board (the)** — Forge's shared board where the agent leaves reports for me to read.
+
+**Breaking point** — The exact load at which something in the system stops working, and what
+that something is (the database connections, the memory, a queue). It is found by raising the load
+step by step (step 19), and the alert thresholds of step 20 come out of it.
 
 **Characterization (test)** — A test that captures what the system does today, exactly as it
 does it, defects included; not what it ought to do. It is born green, and the proof that it is
@@ -1015,10 +1216,23 @@ and why. Each commit has a short identifier (for example `2219f7a`).
 **Concurrency** — How many things happen at the same time in the system (simultaneous users,
 parallel processes).
 
+**Connection pool** — The number of "open lines" the system keeps with the database at the same
+time. If it runs out, the actions wait or fail; it is usually the first thing to break in a load
+test.
+
+**Correlation id** — A unique number given to each action when it starts (a click, a nightly job,
+a message that arrives) and that travels attached to everything that action provokes, down to the
+database and the external calls. Searching for that number in the log records brings up the
+complete story of the action. It is the centre of step 16.
+
 **CORS** — A security mechanism of browsers that decides from which domains a server can be
 called. Misconfigured, it blocks legitimate calls with confusing errors.
 
 **CVE** — A public identifier of a known security vulnerability in a software component.
+
+**Cyclic report** — The summary the monitoring (20 and 21) generates on its own every week or
+every month, with the deviations and the errors of the period, and that the owner reads with the
+agent in order to decide what becomes a pending item. The opposite of an alert: it is read calmly.
 
 **Discrepancy** — In the reading of an inherited system, a point where the code, the database,
 the documentation and what the business believes the system does do not agree. It is listed with
@@ -1043,6 +1257,10 @@ would use it.
 
 **Environment** — A separate installation of the system. The usual ones: development (the
 programmer's machine), UAT (client testing) and PROD (production, the real one).
+
+**Error rate per flow** — Out of every hundred times somebody used a flow (booking an
+appointment), how many failed. It is the number of the error report (21) that the owner
+understands without an explanation.
 
 **Evolutive-corrective path** — The third use case of the method: taking a system that already
 exists and was not born with the method, normalizing it without rewriting it (eight stations, N0
@@ -1117,6 +1335,14 @@ that find what no test finds.
 **Index** — An auxiliary structure of the database that makes a search fast. Without an index, the
 query is a full scan.
 
+**Index (database)** — Like the index of a book: a structure the database maintains in order to
+find rows without reading the whole table. Without an index, the query does a *full scan*. Indexes
+are derived from the real queries, they are not guessed (step 17).
+
+**Injection** — A vulnerability in which what a user writes into a form ends up interpreted by the
+system as an order (for example, a query to the database). The static analysis of step 18 looks
+for it; the test proved red of the fix demonstrates that it no longer passes.
+
 **IPC (inter-process leash)** — A channel between two processes. In Forge it was used as a
 "leash": if the parent process dies, the child finds out and shuts down.
 
@@ -1126,16 +1352,28 @@ works to get started; it does not work for millions of rows.
 **Kikan** — The Association's omnichannel service desk and campaigns system, the second system in
 production.
 
+**Latency** — How long an action takes to respond. You look at the median (half of the actions
+took less) and the 95th percentile (95 % took less; the remaining 5 % are the users who complain).
+Steps 19 and 20.
+
 **Legacy** — An old system that is still in use.
 
 **Lie (a meter)** — When an instrument returns a wrong number because it does not see part of what
 it has to measure. It happened to us twice.
+
+**Load test** — A program, kept in the repository and with its test, that simulates many users
+using the system at the same time in order to measure throughput, latency and errors, and to find
+the breaking point. Step 19.
 
 **Lock** — A protection that prevents a dangerous action from happening without an explicit
 condition. For example, the panic button has a dedicated lock: it cannot be pressed by accident.
 
 **Log** — The record of what a program is doing. "Validate with the log" means: do not trust what
 the agent says it did, look at the record.
+
+**Log level** — How much detail the system writes in its log records: error (only what failed),
+warning, info (the normal one in production), debug and trace. In the method the level is changed
+by configuration, per environment, without redeploying (step 16).
 
 **MariaDB** — The SQL database engine Kikan uses in production.
 
@@ -1150,6 +1388,10 @@ the flow on purpose with a temporary change, see the test red, revert, see the g
 characterization test without its red by mutation is a test that passes because it watches
 nothing.
 
+**N+1 loop** — A very common persistence mistake: to show a hundred items, the system makes one
+query for the list and then a hundred more, one per item, instead of one or two. It is detected by
+counting queries (step 9) and corrected in step 17.
+
 **NAC3** — Forge's protocol that makes the screens of an application operable by program (each
 element of the interface has an identifier and methods). It allows the end-to-end test. It is not
 mandatory for the method: it is the means, not the condition.
@@ -1163,6 +1405,15 @@ speeds: the safety belt before any change, and the rest of the debt **as each mo
 (the normalization pending items marked "paid when touched" enter with the block that enters their
 module). Never "a week of general cleanup".
 
+**Observability** — That the system can be seen while it runs: structured log records with a
+configurable level, a correlation id per action, health metrics. Without observability, every
+incident is diagnosed with hypotheses instead of with evidence. Step 16.
+
+**Operational quality (stretch)** — The fourth stretch of the ladder, steps 16 to 21: four that are
+climbed before the first deployment to production (observability, persistence, vulnerabilities,
+performance) and two that watch the system once it is deployed (monitoring of resources and
+monitoring of errors).
+
 **Oracle** — An external source of truth against which a result can be verified.
 
 **Orphan (orphan turn)** — A process that keeps running when the one that launched it has already
@@ -1171,6 +1422,13 @@ lost track of it.
 **Overwrite (a configuration)** — Writing on top of something by accident.
 
 **P0, P1, P2** — Priority levels of a finding: P0 is what has to be resolved right now.
+
+**Pagination** — Showing or processing the data in portions (twenty at a time, a thousand at a
+time) instead of all at once. One of the typical corrections of step 17.
+
+**Percentile 95** — The value below which 95 % of the measurements fall. In latency: "95 % of the
+actions took less than this". It is the number that matters, because the average hides the ones
+who waited a long time.
 
 **Playwright** — A tool that controls a browser by program to test screens as a person would.
 
@@ -1230,6 +1488,10 @@ repeats, the secrets outside the code and rotated, continuous integration runnin
 is, and the characterization suite. It is a hard gate, with a single written exception (an
 emergency in production).
 
+**Security headers** — Instructions the server sends to the browser in every response in order
+to protect it (do not embed the page in another site, use encryption only, and so on). If they are
+missing, the scan of step 18 reports them.
+
 **Seeder** — A script that loads test data into an environment.
 
 **Semantic tree** — The map of the system in the form of a tree: the system at the root; below,
@@ -1248,13 +1510,21 @@ has empty tests, it is deployed.
 
 **SQL** — The language of relational databases.
 
+**Static analysis** — Reading the code by machine, without running it, looking for known
+dangerous patterns (an injection, a key written into the code). It is one of the four layers of
+the vulnerability scan of step 18.
+
 **Station (N0 to N7)** — Each of the eight moves of the normalization stretch of the
 evolutive-corrective path. I call them stations and not steps so that they do not get confused
-with the sixteen of the ladder: they are not new steps, they are the start-up ones (and 8, 11 and
+with the twenty-two of the ladder: they are not new steps, they are the start-up ones (and 8, 11 and
 12) in another order and with another input.
 
-**Stretch** — Each of the three groups of steps: start-up (0 to 4), loop (5 to 10), operation (11
-to 15).
+**Stretch** — Each of the four groups of steps: start-up (0 to 4), loop (5 to 10), operation (11
+to 15) and operational quality (16 to 21).
+
+**Structured log (record)** — A line the system writes every time it does something, always with
+the same parts in the same order (timestamp, level, module, correlation id, actor, message), so
+that it can be searched by machine. Step 16.
 
 **Tag** — A label on a commit that marks a version.
 
@@ -1266,6 +1536,13 @@ fixed at the root in the same session.
 
 **Test suite** — The complete set of tests of a project, run all together.
 
+**Threshold** — A limit number above which the monitoring warns. In the method it is not set "by
+eye": it comes out of the breaking point (19) with a margin, and it is not raised to silence an
+alert without a measured reason written down (20).
+
+**Throughput** — How many actions per second the system holds. It is measured with the load test
+(19) and watched in the monitoring (20).
+
 **Tighten the ceiling** — Lowering a limit (a budget, a maximum allowed) until it sits just above
 the measured value, so that any worsening makes a test fail.
 
@@ -1275,14 +1552,20 @@ infrastructure, intake, development, testing and human look happen in between.
 **Token** — Two senses. In AI: the unit with which the text the model processes is measured (and
 charged). In security: an access credential.
 
-**Traceability** — Being able to follow a requirement to the pending item that implements it, the
-test that proves it and the commit that closed it. In the method it is not a separate matrix: it is
-the pending item itself, which cites its origin and its evidence.
+**Traceability** — Two senses, both of them in the method. In the requirements: being able to
+follow a requirement to the pending item that implements it, the test that proves it and the
+commit that closed it; it is not a separate matrix, it is the pending item itself. In operation
+(step 16): that every consequential action leaves a trace of who, when, what, from where and with
+which outcome, in an audit trail the application cannot edit, and that a correlation id makes it
+possible to follow any action from the screen to the database.
 
 **Turn** — One round of the conversation with the agent: the user asks, the agent works and
 answers.
 
 **UAT** — The environment where the client tests before production.
+
+**Unhandled exception** — An error the code did not foresee and that cuts short what it was
+doing. Step 21 captures them all, in the backend, in the jobs and in the browser.
 
 **Urazuke** (裏付け) — The name of the method. In Japanese, the backing a claim has, what holds it
 up from behind; *urazukeru*, to back with proof. Pronounced u-ra-ZU-ke. It is not translated.
@@ -1295,6 +1578,10 @@ instead of writing the code by hand. A vibecoder is whoever does it.
 
 **Volume (volumetrics)** — How much data the system is going to handle: rows per year, users,
 peaks.
+
+**Vulnerability** — A defect somebody can use to get in, steal data or make the system do
+something it should not. The known ones in other people's software pieces are published with a CVE
+number. Step 18 looks for them by machine in four layers and treats them as pending items.
 
 **Watchdog (silence watchdog)** — A process that checks whether another is still giving signs of
 life, and kills it if it stays silent too long.

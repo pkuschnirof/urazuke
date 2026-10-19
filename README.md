@@ -24,14 +24,15 @@ eso la evidencia tiene que probarse a sí misma.
 
 | Archivo | Qué es |
 |---|---|
-| `docs/ESCALERA_METODOLOGICA.md` | El documento principal: la tesis, de dónde sale el método, la línea de tiempo (cuándo se sube cada peldaño y qué pasa entre medio: infraestructura, CI/CD, ingesta de requerimientos, desarrollo, pruebas de punta a punta, vista humana, pruebas humanas), los dieciséis peldaños con su ficha, lo que falta, y el glosario. |
+| `docs/ESCALERA_METODOLOGICA.md` | El documento principal: la tesis, de dónde sale el método, la línea de tiempo (cuándo se sube cada peldaño y qué pasa entre medio: infraestructura, CI/CD, ingesta de requerimientos, desarrollo, pruebas de punta a punta, vista humana, pruebas humanas), los veintidós peldaños con su ficha (los seis últimos, de calidad operativa: observabilidad, persistencia, vulnerabilidades, rendimiento, y los dos monitoreos), lo que falta, y el glosario. |
 | `docs/EVOLUTIVO_CORRECTIVO.md` | El camino para un sistema que ya existe y no nació con el método: los tres casos de uso del método, el principio de normalizar sin reescribir, las ocho estaciones de normalización (N0 a N7) con sus contratos y prompts, el bucle en modo correctivo y evolutivo, y la lista de salida del tramo. |
 | `docs/REFERENCIAS.md` | Los casos reales detrás del método, numerados ("Ref. N"), con fecha y evidencia, para que los procedimientos queden limpios y el detalle siga a un clic. Incluye las cronologías de los tres sistemas y la tabla de fallos por peldaño. |
 | `docs/peldanos/peldano-NN-*.md` | El contrato de cada peldaño: cuándo, contexto requerido, prompts en inglés con su traducción y, antes de cada uno, el bloque "Antes de enviar el prompt" con los archivos que tenés que construir vos y su contenido; resultado esperado, verificación de completitud sin leer código, señales de alarma. |
 | `docs/peldanos/README.md` | El índice de los contratos. |
-| `docs/MANUAL_CURSO.md` | El curso: calendario, dieciséis lecciones con tareas prácticas y prompts, proyecto guía ("Turnera"), lista de salida a producción. |
+| `docs/MANUAL_CURSO.md` | El curso: calendario, veintidós lecciones con tareas prácticas y prompts, proyecto guía ("Turnera"), lista de salida a producción. |
 | `docs/MANUAL_CURSO_EVOLUTIVO.md` | La parte 2 del curso: el proyecto guía heredado ("Turnera heredada"), diez lecciones (N0 a N7, R1 y R2) para normalizar un legado y después corregirlo y evolucionarlo. |
 | `docs/DECISIONES.md` | Las decisiones del proyecto, con fecha y palabras textuales. El método se aplica a sí mismo. |
+| `docs/CAPACITACION_JUNIOR.md` | El impacto del método en la formación de los desarrolladores junior: qué focos pierden peso, cuáles ganan, con qué objetivo y cómo capacitar a un junior en la era posterior a la programación a mano. |
 | `docs/PLAN_CURSO_MENTORING.md` | El borrador del plan comercial del curso y el mentoring. |
 | `docs/html/` | Las versiones HTML para lectura cómoda, con el botón que traduce cada prompt. No se editan a mano. |
 | `build/` | El conversor de markdown a HTML, el extractor y verificador de prompts, y el script que arma todo. |
@@ -61,7 +62,7 @@ y `CONTRATOS_DE_PELDANO.html` (el castellano en `docs/html/`, los demás en `doc
 El castellano es la fuente de verdad. La documentación existe en los ocho idiomas de NAC3:
 castellano (`docs/`), inglés (`docs/en/`), portugués (`docs/pt/`), francés (`docs/fr/`), alemán
 (`docs/de/`), italiano (`docs/it/`), japonés (`docs/ja/`) y chino (`docs/zh/`). Cada carpeta tiene
-su README, el documento principal, las referencias, los dieciséis contratos, el camino
+su README, el documento principal, las referencias, los veintidós contratos, el camino
 evolutivo-correctivo y las dos partes del manual-curso. Los
 prompts para el modelo son una sola pieza en inglés, idéntica en todas las versiones, con su
 traducción al idioma del documento al lado; `node build/prompts.mjs --check` falla si una

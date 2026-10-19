@@ -24,6 +24,10 @@ yujin.app/urazuke.
   sistemas clásica que el autor aplica desde antes, y los incidentes que mostraron dónde los
   modelos la aplican de manera frágil. Nunca como "todo salió de los fallos".
 - Lo que es interpretación y no hecho verificado se marca `[hipótesis]`.
+- **Nivel principiante** (D-025): todo se explica para alguien que no programa. Cada término
+  técnico se explica en lenguaje de todos los días la primera vez que aparece en un documento y
+  entra al glosario; los contratos de los peldaños de calidad operativa (16 a 21) llevan un
+  párrafo "Si sos principiante" después de "Para qué sirve", y los nuevos tienen que llevarlo.
 
 ## Estructura de los contratos (`docs/peldanos/`)
 
@@ -41,6 +45,16 @@ no cuentan como prompts; el HTML los muestra con un botón "Traducir". El conver
 etiqueta del bloque "antes" en cada idioma (`RE_ANTES` en `build/md2html.mjs`) y lo dibuja en una
 caja propia; en las traducciones, la etiqueta es la del idioma, con la misma forma. El manual
 tiene el mismo bloque antes de cada prompt de cada lección.
+
+## Los peldaños de calidad operativa (16 a 21)
+
+Cuarto tramo (D-025): 16 observabilidad y trazabilidad con nivel configurable; 17 optimización de
+la persistencia medida antes y después; 18 escaneo y solución de vulnerabilidades en la cadena y
+con calendario; 19 pruebas de rendimiento en volumen y punto de ruptura; 20 monitoreo de recursos,
+funciones y consultas fuera de rango con reporte cíclico; 21 monitoreo de errores con reporte
+cíclico. 16 a 19 van en la fase 3 (antes del primer despliegue); 20 y 21 en la fase 4. Valen para
+los dos casos de uso; el camino evolutivo-correctivo dice cómo se ubican en un legado. La escalera
+tiene veintidós peldaños y cuatro tramos; "dieciséis" ya no aparece como cuenta de peldaños.
 
 ## Los casos de uso y el camino evolutivo-correctivo
 
@@ -71,7 +85,7 @@ de estas tres piezas se replica en las otras dos.
 - Nombre: Urazuke (D-014). No se traduce; el subtítulo sí.
 - Idiomas (D-013): castellano como fuente de verdad (`docs/`); las otras siete versiones de NAC3
   en `docs/<idioma>/` (en, pt, fr, de, it, ja, zh), cada una con README, documento principal,
-  referencias, dieciséis contratos, camino evolutivo-correctivo y las dos partes del manual-curso. Un cambio en el castellano se replica en las
+  referencias, veintidós contratos, camino evolutivo-correctivo, las dos partes del manual-curso y el documento sobre la capacitación del junior. Un cambio en el castellano se replica en las
   siete traducciones en el mismo commit.
 - Los clientes están anonimizados: "la Obra Social" (con "el Autorizador") y "la Asociación"; sus
   sistemas, "Autorizaciones" y "Kikan". **Los nombres reales no se escriben en este repositorio**,

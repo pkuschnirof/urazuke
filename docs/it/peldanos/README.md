@@ -39,6 +39,12 @@ pulita e il dettaglio è a un clic.
 | 13 — Integrazione continua, ambienti, segreti e deployment | `peldano-13-ci-entornos-secretos-deploy.md` | esercizio | chiusura verso la produzione; routine a ogni deployment |
 | 14 — Documentazione viva e manuali senza IA | `peldano-14-documentacion-viva.md` | esercizio | alla chiusura di ogni blocco; completi prima della produzione |
 | 15 — L'agente residente e la retrospettiva con i numeri | `peldano-15-agente-residente-y-retrospectiva.md` | esercizio e chiusura | all'entrata in esercizio; alla chiusura di ogni tappa |
+| 16 — Osservabilità e tracciabilità totali, con livello configurabile | `peldano-16-observabilidad-y-trazabilidad.md` | qualità operativa | uscita in produzione, dopo il 13 e prima del 19 |
+| 17 — Ottimizzazione dello strato di persistenza | `peldano-17-persistencia.md` | qualità operativa | uscita in produzione, dopo il 16 e prima del 19; si ripete quando una query esce dal range |
+| 18 — Scansione e soluzione delle vulnerabilità | `peldano-18-vulnerabilidades.md` | qualità operativa | prima del primo deployment; poi, a ogni push e settimanale |
+| 19 — Prove di rendimento e punto di rottura | `peldano-19-rendimiento-y-punto-de-ruptura.md` | qualità operativa | prima del primo deployment; prima di ogni deployment che cambi architettura, persistenza o un flusso critico |
+| 20 — Monitoraggio di risorse e rendimento, rapporto ciclico | `peldano-20-monitoreo-de-recursos-y-rendimiento.md` | qualità operativa | settimana del primo deployment; poi, gira da solo e si legge a ogni ciclo |
+| 21 — Monitoraggio degli errori, rapporto ciclico | `peldano-21-monitoreo-de-errores.md` | qualità operativa | settimana del primo deployment, insieme al 20 |
 
 Fasi: **avvio** si sale una volta per progetto; **ciclo** si ripete a ogni modifica; **esercizio**
 quando il sistema è già vivo. Il 15 torna allo 0 per il progetto successivo. La linea del tempo

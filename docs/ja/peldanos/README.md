@@ -36,6 +36,12 @@
 | 13 — 継続的インテグレーション、環境、秘密、デプロイ | `peldano-13-ci-entornos-secretos-deploy.md` | 運用 | 本番への締め。デプロイごとのルーチン |
 | 14 — 生きた文書とAIなしのマニュアル | `peldano-14-documentacion-viva.md` | 運用 | 各ブロックの締めに。本番の前に完全版 |
 | 15 — 常駐エージェントと数字による振り返り | `peldano-15-agente-residente-y-retrospectiva.md` | 運用と締め | 運用に入るとき。各段階の締めに |
+| 16 — 設定可能なレベルを持つ完全な可観測性とトレーサビリティ | `peldano-16-observabilidad-y-trazabilidad.md` | 運用品質 | 本番リリース、第13段の後、第19段の前 |
+| 17 — 永続化層の最適化 | `peldano-17-persistencia.md` | 運用品質 | 本番リリース、第16段の後、第19段の前。クエリが範囲外に出たら繰り返す |
+| 18 — 脆弱性の走査と解決 | `peldano-18-vulnerabilidades.md` | 運用品質 | 最初のデプロイの前。その後は各プッシュと週次で |
+| 19 — 性能テストと破断点 | `peldano-19-rendimiento-y-punto-de-ruptura.md` | 運用品質 | 最初のデプロイの前。アーキテクチャ、永続化、重要なフローを変えるデプロイのたびに |
+| 20 — 資源と性能の監視、周期報告 | `peldano-20-monitoreo-de-recursos-y-rendimiento.md` | 運用品質 | 最初のデプロイの週。その後は独りで走り、サイクルごとに読む |
+| 21 — エラーの監視、周期報告 | `peldano-21-monitoreo-de-errores.md` | 運用品質 | 最初のデプロイの週、第20段とともに |
 
 区間：**立ち上げ**はプロジェクトごとに一度登る。**ループ**は変更のたびに繰り返す。**運用**
 はシステムが既に稼働しているとき。第15段は次のプロジェクトのために第0段へ戻る。段と段の

@@ -515,3 +515,7 @@ fallen. Tauchte einer auf, der in keinen fällt, würde ein Schritt fehlen.
 | Projektdatei mit 9.661 Zeilen | Ref. 41 | 2 | ausstehend |
 | CORS der ersten Domain; Konfigurationsassistent mit Fehler 500 | Ref. 43 | 13 und 8 | Anwendung ausstehend |
 | Die mobile Anwendung verliert Tabs | Ref. 43 | 10 und 12 | Diagnose gemacht; Korrektur ausstehend |
+| Abfragen ohne Index auf einem lebenden System | Ref. 18 | 11 und 17 | geschlossen |
+| Sicherheitsaudit einmal gemacht, nicht als Routine | Ref. 23 | 11 und 18 | geschlossen; der Zeitplan ist neu |
+| Obergrenze auf das Gemessene gezurrt; Kontingent verbrannt, ohne dass jemand hinsah | Refs. 37 und 39 | 9, 13 und 20 | geschlossen |
+| Der verwaiste Zug wurde über das Log gefunden, nicht über den Code | Ref. 16 | 16 und 21 | geschlossen |

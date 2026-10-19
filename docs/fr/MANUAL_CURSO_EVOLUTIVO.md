@@ -41,7 +41,8 @@ fonctionnalité nouvelle construite avec la méthode complète.
 | 2 | N4, N5 | **La ceinture.** Environnement de test avec des données anonymisées, déploiement deux fois, secrets rotés, batterie de caractérisation avec son rouge par mutation. Verrous confirmés sur ce qui agit déjà. À la clôture : le système tourne en test et la batterie est au vert. |
 | 3 | N6, N7, R1 | **Mesurer, ordonner, corriger.** Dimensionnement mesuré. La file avec les deux marques. Le premier bloc : le bug connu, clos en mode correctif avec ses appariés. |
 | 4 | R2 | **Évoluer.** Le second bloc : la fonctionnalité nouvelle, construite avec la méthode complète (leçons 5 à 10 de la première partie), avec la caractérisation comme régression. |
-| 5 et 6 | 11, 12, 13, 14, 15 de la première partie | **Mise en production et exploitation.** Audit périodique, verrous restants, clôture du chemin vers la production, les trois manuels (que le legacy n'avait pas), agent résident, rétrospective avec la question propre au legacy : combien a coûté la normalisation. |
+| 5 et 6 | 11, 12, 13, 14, 16, 17, 18, 19 de la première partie | **Mise en production.** Audit périodique, verrous restants, clôture du chemin vers la production, les trois manuels (que le legacy n'avait pas), et les quatre échelons de qualité opérationnelle préalables au déploiement : observabilité complète, persistance avec ce que N6 a mesuré, scan de vulnérabilités comme porte, test de charge avec le point de rupture. |
+| 7 | 15, 20, 21 de la première partie | **Exploitation.** Les deux supervisions montées dans la semaine du déploiement, avec la première lecture comme ligne de base du legacy ; agent résident ; rétrospective avec la question propre au legacy : combien a coûté la normalisation. |
 
 ### Le projet-guide : « Turnera héritée »
 
@@ -991,10 +992,15 @@ l'acompte.
 
 ## Ensuite : mise en production et exploitation
 
-À partir d'ici, le legacy est un système avec méthode, et les leçons 11 à 15 de la première partie
-s'appliquent telles quelles, avec trois remarques. L'audit de la leçon 11 se compare à celui de
-N3 : combien de dette a été payée, combien il en reste. Les manuels de la leçon 14 n'existent
-souvent pas dans un legacy, et ils se génèrent à partir du système tel qu'il est et des éléments
+À partir d'ici, le legacy est un système avec méthode, et les leçons 11 à 21 de la première partie
+s'appliquent telles quelles, avec quatre remarques. La première porte sur les six échelons de
+qualité opérationnelle : l'observabilité minimale et le scan de vulnérabilités sont déjà entrés
+avec la ceinture, les mesures de persistance sont déjà en N6, et le test de charge se lance avec
+ces volumes avant le premier déploiement ; les deux supervisions démarrent avec la première
+lecture comme ligne de base, et ce qui allait déjà mal le premier jour devient un élément en
+attente avec sa marque. Les trois autres remarques sont celles-ci. L'audit de la leçon 11 se
+compare à celui de N3 : combien de dette a été payée, combien il en reste. Les manuels de la
+leçon 14 n'existent souvent pas dans un legacy, et ils se génèrent à partir du système tel qu'il est et des éléments
 en attente clos, qui maintenant documentent bel et bien ce qui a été fait. Et la rétrospective de
 la leçon 15 a une question propre à ce chemin : combien a coûté la normalisation (en heures, en
 jetons, en semaines avant le premier changement), et quelle part de la dette marquée « peut

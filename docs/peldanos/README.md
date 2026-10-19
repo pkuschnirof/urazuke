@@ -39,6 +39,12 @@ sigue a un clic.
 | 13 — Integración continua, entornos, secretos y despliegue | `peldano-13-ci-entornos-secretos-deploy.md` | operación | cierre hacia producción; rutina en cada despliegue |
 | 14 — Documentación viva y manuales sin IA | `peldano-14-documentacion-viva.md` | operación | al cierre de cada bloque; completos antes de producción |
 | 15 — El agente residente y la retrospectiva con número | `peldano-15-agente-residente-y-retrospectiva.md` | operación y cierre | al entrar en operación; al cierre de cada etapa |
+| 16 — Observabilidad y trazabilidad totales, con nivel configurable | `peldano-16-observabilidad-y-trazabilidad.md` | calidad operativa | salida a producción, después del 13 y antes del 19 |
+| 17 — Optimización de la capa de persistencia | `peldano-17-persistencia.md` | calidad operativa | salida a producción, después del 16 y antes del 19; se repite cuando una consulta sale de rango |
+| 18 — Escaneo y solución de vulnerabilidades | `peldano-18-vulnerabilidades.md` | calidad operativa | antes del primer despliegue; después, en cada push y semanal |
+| 19 — Pruebas de rendimiento y punto de ruptura | `peldano-19-rendimiento-y-punto-de-ruptura.md` | calidad operativa | antes del primer despliegue; antes de cada despliegue que cambie arquitectura, persistencia o un flujo crítico |
+| 20 — Monitoreo de recursos y rendimiento, reporte cíclico | `peldano-20-monitoreo-de-recursos-y-rendimiento.md` | calidad operativa | semana del primer despliegue; después, corre solo y se lee por ciclo |
+| 21 — Monitoreo de errores, reporte cíclico | `peldano-21-monitoreo-de-errores.md` | calidad operativa | semana del primer despliegue, junto con el 20 |
 
 Tramos: **arranque** se sube una vez por proyecto; **bucle** se repite con cada cambio;
 **operación** cuando el sistema ya está vivo. El 15 vuelve al 0 para el proyecto siguiente. La

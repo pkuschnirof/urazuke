@@ -40,7 +40,8 @@ completo.
 | 2 | N4, N5 | **La cintura.** Ambiente di test con dati anonimizzati, deployment due volte, segreti ruotati, batteria di caratterizzazione con il suo rosso per mutazione. Lucchetti confermati su ciò che già agisce. Alla chiusura: il sistema gira in test e la batteria è in verde. |
 | 3 | N6, N7, R1 | **Misurare, ordinare, correggere.** Dimensionamento misurato. Il backlog con le due marche. Il primo blocco: il bug noto, chiuso in modalità correttiva con i suoi abbinati. |
 | 4 | R2 | **Evolvere.** Il secondo blocco: la funzionalità nuova, costruita con il metodo completo (lezioni da 5 a 10 della prima parte), con la caratterizzazione come regressione. |
-| 5 e 6 | 11, 12, 13, 14, 15 della prima parte | **Uscita ed esercizio.** Audit periodico, lucchetti restanti, chiusura della catena verso la produzione, i tre manuali (che il legacy non aveva), agente residente, retrospettiva con la domanda propria del legacy: quanto è costato normalizzare. |
+| 5 e 6 | 11, 12, 13, 14, 16, 17, 18, 19 della prima parte | **Uscita in produzione.** Audit periodico, lucchetti restanti, chiusura della catena verso la produzione, i tre manuali (che il legacy non aveva), e i quattro gradini di qualità operativa precedenti al deployment: osservabilità completa, persistenza con ciò che N6 ha misurato, scansione delle vulnerabilità come cancello, prova di carico con il punto di rottura. |
+| 7 | 15, 20, 21 della prima parte | **Esercizio.** I due monitoraggi montati nella settimana del deployment, con la prima lettura come linea base del legacy; agente residente; retrospettiva con la domanda propria del legacy: quanto è costato normalizzare. |
 
 ### Il progetto guida: "Turnera ereditata"
 
@@ -952,8 +953,13 @@ esegue sette flussi: i cinque di caratterizzazione, quello del bug di R1 e quell
 
 ## Dopo: uscita in produzione ed esercizio
 
-Da qui in avanti, il legacy è un sistema con metodo, e le lezioni da 11 a 15 della prima parte si
-applicano tali e quali, con tre note. L'audit della lezione 11 si confronta con quello di N3:
+Da qui in avanti, il legacy è un sistema con metodo, e le lezioni da 11 a 21 della prima parte si
+applicano tali e quali, con quattro note. La prima riguarda i sei gradini di qualità operativa:
+l'osservabilità minima e la scansione delle vulnerabilità sono già entrate con la cintura, le
+misurazioni di persistenza sono già in N6, e la prova di carico si esegue con quei volumi prima
+del primo deployment; i due monitoraggi partono con la prima lettura come linea base del legacy, e
+ciò che era già sbagliato il primo giorno diventa una voce in sospeso con la sua marca. Le altre
+tre note sono queste. L'audit della lezione 11 si confronta con quello di N3:
 quanto debito è stato pagato, quanto resta. I manuali della lezione 14 in un legacy di solito non
 esistono, e si generano a partire dal sistema com'è e dalle voci in sospeso chiuse, che adesso sì
 documentano ciò che è stato fatto. E la retrospettiva della lezione 15 ha una domanda propria di

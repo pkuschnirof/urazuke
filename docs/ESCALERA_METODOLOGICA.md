@@ -31,7 +31,7 @@ método pide: que cada afirmación del modelo venga con su respaldo, y que el re
 verificar sin leer el código. El nombre no se traduce; el subtítulo, "el método de la evidencia",
 sí: *the evidence method*, *o método da evidência*, *la méthode de la preuve*, *die
 Nachweis-Methode*, *il metodo del riscontro*, 裏付けの方法, 验证方法. En este documento, "la
-escalera" es la estructura del método —sus dieciséis peldaños— y "Urazuke" es el método entero.
+escalera" es la estructura del método —sus veintidós peldaños— y "Urazuke" es el método entero.
 
 ## De qué se trata
 
@@ -63,7 +63,7 @@ El método sale de dos factores que se combinaron, y ninguno de los dos alcanza 
 cualquiera que venga de sistemas reconoce enseguida: relevamiento antes de diseñar, requisitos
 escritos, dimensionamiento con números, diseño, construcción, pruebas como evidencia, despliegue
 reproducible, operación, auditoría periódica, documentación como parte del producto. La mayor
-parte de lo que exijo en los dieciséis peldaños es lo que siempre exigí en un proyecto bien
+parte de lo que exijo en los veintidós peldaños es lo que siempre exigí en un proyecto bien
 llevado. No lo inventé para los modelos; lo traje de antes.
 
 El segundo factor es lo que los incidentes de estos cinco meses me mostraron, uno tras otro:
@@ -93,7 +93,7 @@ Es el caso más claro para aprender, y no es el más frecuente. El método tiene
 conviene saber en cuál estás antes de abrir el agente, porque cambia por dónde se entra:
 
 1. **Proyecto nuevo.** Carpeta vacía y un dueño con un pedido. Se entra por el peldaño 0 y se
-   suben los dieciséis en orden. Es lo que describe este documento, con sus contratos y el manual
+   suben los veintidós en orden. Es lo que describe este documento, con sus contratos y el manual
    del curso.
 2. **Evolutivo-correctivo sobre un sistema hecho con el método.** El sistema ya subió la escalera:
    tiene contrato, mapa, pendientes cerrados con evidencia, batería, despliegue y manuales. Se
@@ -197,10 +197,13 @@ Cada peldaño tiene ocho partes, siempre las mismas, para que se puedan comparar
 Dos aclaraciones importantes. Primero: **la escalera es neutral respecto de la herramienta**. Cada
 artefacto es un archivo, un test o un script; ninguno exige mi herramienta ni ninguna otra. Forge
 los automatiza (las compuertas, los comandos, el registro de pendientes), pero el peldaño existe
-sin Forge. Segundo: **los peldaños no son estrictamente secuenciales**. Hay tres tramos: los del 0
-al 4 son de arranque y se suben una vez por proyecto; los del 5 al 10 son el bucle que se repite
-con cada cambio; y los del 11 al 15 son de operación, cuando el sistema ya está vivo. El 15 cierra
-el ciclo y vuelve al 0 para el próximo proyecto. Pero "no estrictamente secuenciales" no quiere
+sin Forge. Segundo: **los peldaños no son estrictamente secuenciales**. Hay cuatro tramos: los del
+0 al 4 son de arranque y se suben una vez por proyecto; los del 5 al 10 son el bucle que se repite
+con cada cambio; los del 11 al 15 son de operación, cuando el sistema ya está vivo; y los del 16 al
+21 son de calidad operativa: cuatro que se suben antes del primer despliegue a producción
+(observabilidad, persistencia, vulnerabilidades, rendimiento) y dos que vigilan el sistema una vez
+desplegado (monitoreo de recursos y de errores). El 15 cierra el ciclo y vuelve al 0 para el
+próximo proyecto. Pero "no estrictamente secuenciales" no quiere
 decir "en cualquier orden": la Parte B dice exactamente cuándo se sube cada uno y qué pasa en el
 medio.
 
@@ -210,7 +213,7 @@ medio.
 
 Esta parte no existía en las versiones anteriores, y su ausencia era un defecto serio: el método
 decía qué hacer y cómo verificarlo, pero no decía **cuándo**. Y "cuándo" es la mitad de un método.
-Un lector que se lo tomara al pie de la letra podía subir los dieciséis peldaños uno tras otro y
+Un lector que se lo tomara al pie de la letra podía subir los veintidós peldaños uno tras otro y
 preguntarse en qué momento se hace, entonces, la infraestructura, la cadena de integración y
 despliegue continuos, la ingesta de los requerimientos, el desarrollo de la funcionalidad, las
 pruebas de punta a punta de todos los flujos, la mirada humana sobre las pantallas, y las pruebas
@@ -220,7 +223,8 @@ ellos. Acá lo escribo.
 ### B.1 Las cinco fases de un proyecto
 
 Un proyecto llevado con este método pasa por cinco fases. Las tres del medio son las que
-corresponden a los tres tramos de la escalera; las dos de los extremos son la ingesta inicial y la
+corresponden a los tramos de la escalera (el cuarto tramo, calidad operativa, se reparte entre la
+fase 3 y la 4); las dos de los extremos son la ingesta inicial y la
 vida en producción, que el método también cubre aunque no sean "peldaños" en sí.
 
 | Fase | Duración típica en un proyecto chico | Peldaños que se suben | Qué más pasa en esa fase |
@@ -228,8 +232,8 @@ vida en producción, que el método también cubre aunque no sean "peldaños" en
 | 0. Ingesta | de dos días a una semana, en paralelo con la fase 1 | ninguno todavía; es la materia prima del 0, el 2, el 3 y el 5 | Relevamiento del negocio con el dueño, con los métodos clásicos de la ingeniería de requerimientos (ver B.5): entrevistas, casos de uso o historias de usuario, modelo de dominio, prototipos de pantalla. Se escribe en prosa, incompleto a propósito; el agente lo completa preguntando. |
 | 1. Arranque | una semana, de corrido | 0, 1, 2, 3, 4 | Elegibilidad, contrato, definición, dimensionamiento. Y **toda la infraestructura inicial**: el repositorio, el entorno de prueba, la integración continua, el primer despliegue con el sistema vacío. |
 | 2. Bucle | de tres a seis semanas, en bloques funcionales de una a dos semanas | 5, 6, 7, 8, 9, 10 con cada cambio | Desarrollo funcional bloque por bloque; tests en rojo; pruebas de punta a punta del flujo recién construido; mirada humana sobre cada pantalla nueva; al cierre de cada bloque, pruebas humanas en el entorno de prueba. |
-| 3. Salida a producción | una semana | 11, 12, 13, 14 | Auditoría por otra sesión; candados sobre todo lo que actúa sobre el mundo; cierre de la cadena de despliegue a producción con vuelta atrás probada; los tres manuales; pruebas de aceptación con el dueño sobre todos los flujos. |
-| 4. Operación | mientras el sistema viva | 15, y el bucle (5 a 10) para cada evolución; 11 periódico | Agente residente; auditoría cada uno o dos meses; cada cambio nuevo entra por el bucle completo y sale por la cadena de despliegue; retrospectiva al cierre de cada etapa. |
+| 3. Salida a producción | de una a dos semanas | 11, 12, 13, 14, y los cuatro de calidad operativa previos al despliegue: 16, 17, 18, 19 | Auditoría por otra sesión; candados sobre todo lo que actúa sobre el mundo; cierre de la cadena de despliegue a producción con vuelta atrás probada; los tres manuales; pruebas de aceptación con el dueño sobre todos los flujos. |
+| 4. Operación | mientras el sistema viva | 15; 20 y 21 montados en la semana del primer despliegue; el bucle (5 a 10) para cada evolución; 11 y 18 periódicos | Agente residente; auditoría cada uno o dos meses; cada cambio nuevo entra por el bucle completo y sale por la cadena de despliegue; retrospectiva al cierre de cada etapa. |
 
 Esta tabla es la del proyecto nuevo. Cuando el sistema ya existe y no nació con el método, las
 fases 0 y 1 se reemplazan por el tramo de normalización (tres semanas para un sistema chico:
@@ -246,7 +250,7 @@ Acá está lo que faltaba. Para cada fase, qué tareas de cada tipo se hacen y e
 respecto de los peldaños. Leé la tabla por filas: cada fila es un tipo de trabajo, y cada celda
 dice cuándo se hace dentro de esa fase.
 
-| Tipo de trabajo | Arranque (peldaños 0 a 4) | Bucle (peldaños 5 a 10, por bloque) | Salida a producción (11 a 14) | Operación (15 y bucle) |
+| Tipo de trabajo | Arranque (peldaños 0 a 4) | Bucle (peldaños 5 a 10, por bloque) | Salida a producción (11 a 14 y 16 a 19) | Operación (15, 20, 21 y bucle) |
 |---|---|---|---|---|
 | **Ingesta de requerimientos** | Antes del peldaño 0: relevamiento en prosa con el dueño, con entrevistas, casos de uso y modelo de dominio. Se completa en el 2 (definición y árbol semántico) y en el 3 (volumetría). | Al abrir cada bloque: el pedido del cliente para ese bloque, tal como lo diría él, se convierte en pendientes con **especificación detallada** (peldaño 5): descripción, criterios de aceptación, reglas aplicables, datos, pantallas, casos borde. Las preguntas que el agente hace son la ingesta fina. | Antes del 12: relevamiento de las acciones con consecuencia. Antes del 13: relevamiento de entornos y accesos. | Cada pedido nuevo entra como pendiente especificado, colgado de su nodo del árbol semántico; el agente residente recoge lo que los usuarios piden. |
 | **Infraestructura** | Toda la inicial, en el peldaño 4: repositorio, estructura, entorno de prueba, credenciales, dominio de prueba. No se construye funcionalidad hasta que el esqueleto vacío está desplegado. | Ninguna, salvo que un bloque la exija (una cola, un servicio externo). Si la exige, es un pendiente con su test. | En el 13: entorno de producción, secretos en el servidor, dominio real, backups, monitoreo mínimo. | Cambios de infraestructura entran por el bucle y por el 13; nunca "a mano, rápido". |
@@ -308,6 +312,10 @@ agente:
   de prueba.
 - **Después de cada despliegue a producción**: verificar que la versión que corre es la que se
   quería, y hacer una pasada de solo lectura por los flujos críticos.
+- **Antes del primer despliegue, en el 19**: leer los números de la prueba de carga con la
+  tolerancia del negocio al lado, y el punto de ruptura.
+- **En cada ciclo del monitoreo (20 y 21)**: leer el reporte cíclico con el agente y decidir qué
+  desvío y qué error se vuelven pendientes. Media hora por ciclo.
 
 Todo lo demás —los tests, las mediciones, las auditorías, la documentación— lo hace el modelo y el
 humano lo verifica por el artefacto, no por el código.
@@ -374,7 +382,7 @@ del peldaño 5.
 
 ---
 
-## Parte C — Los dieciséis peldaños
+## Parte C — Los veintidós peldaños
 
 ### Peldaño 0 — ¿Este proyecto se puede encarar así? (la elegibilidad)
 
@@ -808,6 +816,178 @@ revisa con números, y lo que se aprende vuelve al peldaño 0 para el próximo p
 
 ---
 
+### Los seis peldaños de calidad operativa (16 a 21)
+
+Los dieciséis peldaños anteriores hacen que el sistema esté bien construido y se pueda sostener.
+Estos seis hacen algo distinto y que yo había dejado implícito, porque en mis proyectos lo hacía
+sin nombrarlo: que el sistema se pueda **ver** mientras corre, que aguante el volumen para el que
+se dimensionó, que no tenga agujeros conocidos, y que, una vez en producción, nadie se entere de
+un problema por un usuario enojado. Cuatro se suben antes del primer despliegue a producción, en
+este orden: observabilidad (16), persistencia (17), vulnerabilidades (18) y rendimiento (19). Dos
+se montan en la semana del primer despliegue y corren solos desde entonces: el monitoreo de
+recursos y rendimiento (20) y el de errores (21). Los dos monitoreos terminan en el mismo lugar
+que todo lo demás: el bucle, como pendientes correctivos. Y los seis valen para los dos casos de
+uso: en un proyecto nuevo, en el lugar que dice su "cuándo"; en un legado, con las diferencias que
+marca cada ficha y que están detalladas en el camino evolutivo-correctivo.
+
+Si sos principiante, cada contrato de estos seis empieza con un párrafo que explica sus palabras
+(registro, índice, vulnerabilidad, latencia, umbral) en lenguaje de todos los días, y el glosario
+las tiene todas.
+
+### Peldaño 16 — Observabilidad y trazabilidad totales, con nivel configurable
+
+Cuando algo falle en producción quiero seguir una acción desde la pantalla hasta la base de datos
+con un solo identificador, sin abrir el código; quiero poder subir el detalle de los registros en
+producción en un minuto, sin volver a desplegar; y quiero que toda acción con consecuencia deje un
+rastro que la aplicación no pueda borrar.
+
+- **Intención**: que el sistema se pueda ver mientras corre (observabilidad) y que cada acción
+  importante tenga su rastro (trazabilidad), con un nivel de detalle que se cambia por
+  configuración.
+- **Cuándo**: en la salida a producción, después del 13 y antes del 19. En un legado, el nivel
+  mínimo entra en el cinturón de seguridad (N4) y el completo acá. La regla "todo módulo nuevo
+  registra y propaga" rige durante toda la operación.
+- **Entradas**: la configuración por entorno (13), la tabla de candados (12), la lista de datos
+  personales del relevamiento, y la decisión de dónde viven los registros.
+- **Artefacto**: registros estructurados con nivel configurable sin desplegar; un identificador de
+  correlación en cada registro, de la pantalla a la base; una auditoría inmutable de las acciones
+  con consecuencia; puntos de salud y métricas; `docs/OBSERVABILITY.md`.
+- **Compuerta**: un identificador real seguido por todas las capas; el nivel cambiado sin
+  desplegar; ningún dato personal en los registros.
+- **Quién decide**: el dueño decide dónde viven los registros, cuánto se conservan y qué es dato
+  personal; el agente arma.
+- **Fallo que evita**: el proceso que siguió vivo una hora cuarenta y tres y se encontró por el
+  log [Ref. 16](REFERENCIAS.md#ref-16); el agente residente que opera a ciegas si no hay registros
+  que leer [Ref. 13](REFERENCIAS.md#ref-13).
+- **Contrato**: `peldanos/peldano-16-observabilidad-y-trazabilidad.md`.
+
+### Peldaño 17 — Optimización de la capa de persistencia, medida antes y después
+
+La base de datos es donde los sistemas se mueren despacio: bien con cien registros, mal con cien
+mil, y nadie sabe cuándo empezó. Acá se decide con números, antes de producción, y con el método
+del peldaño 9: medir, cambiar, volver a medir sobre los mismos datos.
+
+- **Intención**: que las consultas reales del sistema, a los volúmenes del dimensionamiento,
+  entren en lo que el negocio tolera, con presupuestos que impidan que vuelvan a salirse.
+- **Cuándo**: en la salida a producción, después del 16 y antes del 19; se repite cuando un bloque
+  agrega una tabla grande o el monitoreo (20) muestra una consulta fuera de rango. En un legado,
+  las mediciones salen de N6 y casi todo se paga "al tocar".
+- **Entradas**: el dimensionamiento (3 o N6), el mapa productor-consumidor (8), la observabilidad
+  (16), y el entorno de prueba cargado al volumen esperado.
+- **Artefacto**: medidores de consultas con test; `docs/PERSISTENCE.md` con la tabla de antes y
+  después por cambio, los presupuestos por camino y la retención por tabla; un test por
+  presupuesto.
+- **Compuerta**: ninguna consulta que lea una tabla entera en un flujo crítico; cada presupuesto
+  con su test; la pantalla más lenta dentro de lo que el dimensionamiento esperaba.
+- **Quién decide**: el dueño aprueba la lista de cambios, uno por uno; el agente mide y aplica.
+- **Fallo que evita**: las consultas que leían tablas enteras en un sistema vivo
+  [Ref. 18](REFERENCIAS.md#ref-18); el presupuesto que hubo que apretar a lo medido
+  [Ref. 37](REFERENCIAS.md#ref-37); los millones de filas sobre archivos
+  [Ref. 15](REFERENCIAS.md#ref-15).
+- **Contrato**: `peldanos/peldano-17-persistencia.md`.
+
+### Peldaño 18 — Escaneo y solución de vulnerabilidades, en la cadena y con calendario
+
+La auditoría (11) mira el sistema entero con criterio, cada tanto; este peldaño mira una sola
+cosa, la seguridad, todo el tiempo y por máquina: dependencias, código, secretos en el historial y
+configuración del servidor. Y una regla: una actualización de dependencia es un cambio, y entra
+por el bucle.
+
+- **Intención**: que ninguna vulnerabilidad conocida llegue a producción, y que las nuevas se
+  detecten solas aunque nadie toque el sistema.
+- **Cuándo**: en la salida a producción, después del 13 y antes del primer despliegue; después,
+  en cada push y con calendario semanal. En un legado, la primera corrida es parte de N3.
+- **Entradas**: la integración continua (4 y 13), el relevamiento de entornos, la auditoría
+  anterior, y el criterio del dueño sobre qué es urgente.
+- **Artefacto**: el escaneo en cuatro capas corriendo en la cadena y con calendario;
+  `docs/SECURITY_[fecha].md` con los hallazgos y lo no escaneado; `docs/SECURITY.md` con la
+  política; la compuerta en `docs/GATES.md`; los P0 y P1 arreglados con su pendiente.
+- **Compuerta**: ningún P0 abierto se promueve a producción; un P1 nuevo abre un pendiente solo.
+- **Quién decide**: el dueño define qué es P0 y aprueba los arreglos; el agente monta y corre.
+- **Fallo que evita**: la vulnerabilidad conocida que apareció en la auditoría de calidad
+  [Ref. 41](REFERENCIAS.md#ref-41); las puertas de administrador que solo vio otra sesión
+  [Ref. 40](REFERENCIAS.md#ref-40); la seguridad tratada como una lista que se tilda una vez
+  [Ref. 23](REFERENCIAS.md#ref-23).
+- **Contrato**: `peldanos/peldano-18-vulnerabilidades.md`.
+
+### Peldaño 19 — Pruebas de rendimiento en volumen y punto de ruptura
+
+El peldaño 3 dimensionó con cuentas; este comprueba las cuentas con el sistema corriendo: al
+volumen esperado, al "por diez", y hasta que algo se rompa. El punto de ruptura es el número más
+útil del tramo, porque de él salen los umbrales de alerta del 20.
+
+- **Intención**: saber cómo se comporta el sistema al volumen esperado, al "por diez", y dónde y
+  por qué se rompe, antes de que entre el primer usuario.
+- **Cuándo**: en la salida a producción, después del 16 y del 17, antes del primer despliegue; se
+  repite antes de cada despliegue que cambie la arquitectura, la persistencia o un flujo crítico.
+  En un legado, con los volúmenes medidos en N6.
+- **Entradas**: el dimensionamiento, la observabilidad encendida, la persistencia optimizada, los
+  flujos críticos y la tolerancia del negocio para la pantalla más usada.
+- **Artefacto**: el script de carga en el repositorio, con test; `docs/PERFORMANCE_[fecha].md` con
+  las tres corridas, el punto de ruptura y el diagnóstico; `docs/PERFORMANCE.md` con los umbrales
+  y la compuerta; un pendiente por cuello de botella.
+- **Compuerta**: la pantalla más usada dentro de la tolerancia al volumen esperado, o un
+  pendiente con el número; el punto de ruptura escrito con qué se rompe.
+- **Quién decide**: el dueño da la tolerancia y decide hasta qué volumen se arreglan los cuellos
+  de botella ahora.
+- **Fallo que evita**: la carga real que solo se conoció mirando producción
+  [Ref. 12](REFERENCIAS.md#ref-12); el punto de ruptura que se disfrazó de test fallido
+  [Ref. 44](REFERENCIAS.md#ref-44); el dimensionamiento como compuerta
+  [Ref. 14](REFERENCIAS.md#ref-14).
+- **Contrato**: `peldanos/peldano-19-rendimiento-y-punto-de-ruptura.md`.
+
+### Peldaño 20 — Monitoreo de recursos, funciones y consultas fuera de rango, con reporte cíclico
+
+Las pruebas del 19 dicen cómo se comporta el sistema un día; la producción es todos los días,
+con los datos creciendo. Este peldaño vigila el uso de recursos y el tiempo de respuesta de cada
+función y cada consulta contra los umbrales del 19 y contra su propia historia, avisa cuando algo
+sale de rango, y produce un reporte cíclico que se lee con el dueño. Cada desvío es un pendiente.
+
+- **Intención**: ver un problema de recursos o de rendimiento antes de que lo vea el usuario, y
+  que cada desvío tenga causa o pendiente.
+- **Cuándo**: se monta en la semana del primer despliegue a producción; desde entonces corre
+  solo, y el reporte se lee en cada ciclo (semanal con consecuencias, mensual en un proyecto
+  chico). En un legado, la primera lectura es la línea base.
+- **Entradas**: las métricas del 16, los presupuestos del 17, los umbrales del 19, producción en
+  solo lectura, y el canal y el ciclo decididos con el dueño.
+- **Artefacto**: recolección con historia; alertas por umbral y por desvío; el reporte cíclico
+  generado solo; `docs/MONITORING.md`; la rutina de lectura en el contrato.
+- **Compuerta**: una alerta provocada llegó al canal; el primer reporte tiene cada desvío con
+  causa o propuesta; ningún umbral subió sin razón escrita.
+- **Quién decide**: el dueño decide el canal, el ciclo y qué desvío se atiende ahora; el agente
+  monta y propone.
+- **Fallo que evita**: el techo que hubo que apretar a lo medido
+  [Ref. 37](REFERENCIAS.md#ref-37); la cuota que se fundió sin que nadie mirara
+  [Ref. 39](REFERENCIAS.md#ref-39).
+- **Contrato**: `peldanos/peldano-20-monitoreo-de-recursos-y-rendimiento.md`.
+
+### Peldaño 21 — Monitoreo de errores y reporte cíclico: ningún error sin pendiente
+
+Un sistema en producción produce errores que nadie reporta. Este peldaño los captura en los tres
+lugares donde se esconden (el backend, las tareas, el navegador del usuario), los agrupa, avisa
+de los nuevos y de los que crecen, y produce un reporte cíclico. Dos reglas: ningún error sin
+pendiente, y no existe el "error conocido" sin un pendiente que diga por qué se tolera y hasta
+cuándo.
+
+- **Intención**: que ningún error en producción pase sin ser visto, y que cada uno se cierre con
+  el test que lo reproduce en rojo.
+- **Cuándo**: se monta en la semana del primer despliegue, junto con el 20; desde entonces corre
+  solo, con alertas en el momento y reporte cíclico. En un legado, los errores que ya existían el
+  primer día se vuelven pendientes con su marca de velocidad.
+- **Entradas**: los registros del 16, la tabla de candados (12), producción con el navegador
+  incluido, el canal y el ciclo del 20.
+- **Artefacto**: captura centralizada y agrupada, sin datos personales; alertas por error nuevo,
+  recurrente que crece y con consecuencia; el reporte cíclico con la tasa de error por flujo;
+  `docs/MONITORING.md`; la rutina en el contrato.
+- **Compuerta**: un error provocado en el navegador seguido hasta el reporte; ningún error
+  recurrente sin pendiente ni razón con fecha.
+- **Quién decide**: el dueño lee el reporte y decide qué se atiende; el agente captura, agrupa y
+  propone.
+- **Fallo que evita**: el error de autenticación reportado como éxito
+  [Ref. 43](REFERENCIAS.md#ref-43); las cuatro rondas hasta la causa raíz por no tener el error
+  reproducido [Ref. 22](REFERENCIAS.md#ref-22).
+- **Contrato**: `peldanos/peldano-21-monitoreo-de-errores.md`.
+
 ## Parte D — Cómo se ejecuta, cuánto se exige, y con qué herramienta
 
 ### Cómo se ejecuta cada peldaño: el contrato
@@ -852,7 +1032,7 @@ estarlo.
 ### Qué es obligatorio y qué es proporcional, según el tamaño del proyecto
 
 Una pregunta que aparece enseguida: "¿todo esto para un sistema chico?". La respuesta es que
-dieciséis peldaños no son dieciséis semanas; varios se suben en una hora, y los que son
+veintidós peldaños no son veintidós semanas; varios se suben en una hora, y los que son
 proporcionales se achican con el proyecto. Lo que no se achica es la lista de los que no se
 negocian. Esta tabla es una propuesta `[hipótesis]` para confirmar con el primer proyecto que use
 el método de punta a punta:
@@ -875,9 +1055,16 @@ el método de punta a punta:
 | 13 Integración y despliegue | mínimo: tests solos, configuración afuera, vuelta atrás | obligatorio, completo |
 | 14 Documentación | mínimo: recuperación | los tres manuales |
 | 15 Residente y retrospectiva | retrospectiva de una página | ambos |
+| 16 Observabilidad y trazabilidad | mínimo: registros estructurados con nivel configurable y un identificador por acción | obligatorio, completo, con auditoría inmutable |
+| 17 Persistencia | proporcional: los índices de las consultas reales y el fin de los bucles N+1 | obligatorio, con presupuestos por camino |
+| 18 Vulnerabilidades | obligatorio: dependencias y secretos en la cadena | obligatorio, las cuatro capas y con calendario |
+| 19 Rendimiento | proporcional: una corrida al volumen esperado y una al "por diez" | obligatorio, con punto de ruptura y umbrales |
+| 20 Monitoreo de recursos | mínimo: un reporte mensual y dos alertas (disco, base) | obligatorio, con umbrales por función y reporte semanal |
+| 21 Monitoreo de errores | obligatorio: captura centralizada y reporte | obligatorio, con alertas en el momento |
 
-En resumen: hay nueve peldaños que no se negocian en ningún proyecto (0, 1, 2, 3, 5, 6, 7, 10 y
-la retrospectiva del 15), y siete que se dimensionan con el proyecto.
+En resumen: hay once peldaños que no se negocian en ningún proyecto (0, 1, 2, 3, 5, 6, 7, 10, la
+retrospectiva del 15, el escaneo de dependencias del 18 y la captura de errores del 21), y once que
+se dimensionan con el proyecto.
 
 ### Cómo se usa con cualquier herramienta
 
@@ -907,7 +1094,7 @@ verificación de completitud antes de pasar al siguiente. Esa es, de hecho, la p
 2. **Un nombre memorable para cada peldaño**, en una frase, para los manuales y las publicaciones.
 3. **La exportación a Forge**: qué peldaños ya son compuertas o comandos y cuáles faltan para poder
    correr la escalera como flujo de ejecución.
-4. **Probar los contratos en un proyecto real de punta a punta.** Los dieciséis prompts están
+4. **Probar los contratos en un proyecto real de punta a punta.** Los prompts de los veintidós contratos están
    escritos a partir de lo que hice, no ejecutados tal cual. El primer proyecto que los use completo
    va a corregir varios; es parte del peldaño 15.
 5. **La primera cohorte del curso**, que va a corregir los tiempos de la línea de tiempo y los
@@ -935,6 +1122,14 @@ la verdad: los principios los traía de antes; los golpes mostraron dónde el mo
 **Agente** — Un programa de inteligencia artificial que no solo responde preguntas sino que
 ejecuta acciones: lee archivos, escribe código, corre comandos, hace commits. En este documento,
 "el agente" es Claude Code o la herramienta que uses.
+
+**Alerta** — Un aviso automático, en el momento, de que un número salió de rango (un umbral
+superado, un error nuevo). Regla del método: una alerta que se dispara y nadie lee es un defecto de
+la alerta, y se arregla o se elimina.
+
+**Análisis estático** — Leer el código por máquina, sin ejecutarlo, buscando patrones peligrosos
+conocidos (una inyección, una clave escrita en el código). Es una de las cuatro capas del
+escaneo de vulnerabilidades del peldaño 18.
 
 **Anonimización** — En este documento los clientes reales se llaman "la Obra Social", "el
 Autorizador" y "la Asociación", y sus sistemas "Autorizaciones" y "Kikan". Es a propósito: los
@@ -1001,6 +1196,19 @@ dejarlos en archivos de texto.
 **Candado** — Una protección que impide que una acción peligrosa ocurra sin una condición
 explícita. Por ejemplo, el botón de pánico tiene un candado dedicado: no se puede apretar por
 accidente.
+
+**Bucle N+1** — Un error de persistencia muy común: para mostrar cien ítems, el sistema hace una
+consulta para la lista y después cien más, una por ítem, en vez de una o dos. Se detecta
+contando consultas (peldaño 9) y se corrige en el peldaño 17.
+
+**Cabeceras de seguridad** — Instrucciones que el servidor le manda al navegador en cada
+respuesta para protegerlo (no incrustar la página en otro sitio, usar solo cifrado, etc.). Si
+faltan, el escaneo del peldaño 18 las reporta.
+
+**Calidad operativa (tramo)** — El cuarto tramo de la escalera, peldaños 16 a 21: cuatro que se
+suben antes del primer despliegue a producción (observabilidad, persistencia, vulnerabilidades,
+rendimiento) y dos que vigilan el sistema una vez desplegado (monitoreo de recursos y de
+errores).
 
 **Camino evolutivo-correctivo** — El tercer caso de uso del método: tomar un sistema que ya
 existe y no nació con el método, normalizarlo sin reescribirlo (ocho estaciones, N0 a N7) y recién
@@ -1083,12 +1291,15 @@ especificación detallada completa, y la suma de los pendientes es la especifica
 Ver B.5.
 
 **Estación (N0 a N7)** — Cada uno de los ocho pasos del tramo de normalización del camino
-evolutivo-correctivo. Las llamo estaciones y no peldaños para que no se confundan con los dieciséis
+evolutivo-correctivo. Las llamo estaciones y no peldaños para que no se confundan con los veintidós
 de la escalera: no son peldaños nuevos, son los del arranque (y el 8, el 11 y el 12) en otro orden
 y con otra entrada.
 
 **Esqueleto (scaffold)** — La estructura inicial de un proyecto, sin funcionalidad: arranca, tiene
 tests vacíos, se despliega.
+
+**Excepción no manejada** — Un error que el código no previó y que corta lo que estaba haciendo.
+El peldaño 21 las captura todas, en el backend, en las tareas y en el navegador.
 
 **Fail-closed** — "Falla cerrado": ante la duda o el error, el sistema no actúa. Lo contrario de
 "fail-open", que ante la duda sigue adelante.
@@ -1139,9 +1350,22 @@ el rastro.
 **Índice** — Una estructura auxiliar de la base de datos que hace rápida una búsqueda. Sin índice,
 la consulta es un full scan.
 
+**Identificador de correlación** — Un número único que se le da a cada acción cuando empieza
+(un clic, una tarea nocturna, un mensaje que llega) y que viaja pegado a todo lo que esa acción
+provoca, hasta la base y las llamadas externas. Buscando ese número en los registros aparece la
+historia completa de la acción. Es el centro del peldaño 16.
+
+**Índice (de base de datos)** — Como el índice de un libro: una estructura que la base mantiene
+para encontrar filas sin leer la tabla entera. Sin índice, la consulta hace un *full scan*. Los
+índices se derivan de las consultas reales, no se adivinan (peldaño 17).
+
 **Ingesta de requerimientos** — El momento en que el pedido del negocio entra al método: primero
 en prosa, con el dueño, y después convertido en pendientes verificables por el agente, que
 pregunta lo que falta.
+
+**Inyección** — Una vulnerabilidad en la que lo que un usuario escribe en un formulario termina
+interpretado por el sistema como una orden (por ejemplo, una consulta a la base). El análisis
+estático del peldaño 18 la busca; el test en rojo del arreglo demuestra que ya no pasa.
 
 **IPC (correa entre procesos)** — Un canal entre dos procesos. En Forge se usó como "correa": si
 el proceso padre muere, el hijo se entera y se apaga.
@@ -1152,7 +1376,15 @@ una base de datos. Sirve para arrancar; no sirve para millones de filas.
 **Kikan** — El sistema de mesa de entrada omnicanal y campañas de la Asociación, el segundo sistema
 en producción.
 
+**Latencia** — Cuánto tarda una acción en responder. Se mira la mediana (la mitad de las
+acciones tardó menos) y el percentil 95 (el 95 % tardó menos; el 5 % restante son los usuarios
+que se quejan). Peldaños 19 y 20.
+
 **Legado (legacy)** — Un sistema viejo que sigue en uso.
+
+**Línea base** — Lo que un número venía dando normalmente (por ejemplo, el promedio de los
+últimos catorce días). "Fuera de rango" en el peldaño 20 es por encima de un umbral fijo o muy
+distinto de la línea base.
 
 **Línea de tiempo** — La Parte B de este documento: cuándo se sube cada peldaño y qué tareas de
 infraestructura, ingesta, desarrollo, pruebas y mirada humana pasan entre medio.
@@ -1183,6 +1415,10 @@ test de caracterización sin su rojo por mutación es un test que pasa porque no
 programa (cada elemento de la interfaz tiene un identificador y métodos). Permite el test de punta
 a punta. No es obligatorio para el método: es el medio, no la condición.
 
+**Nivel de registro** — Cuánto detalle escribe el sistema en sus registros: error (solo lo que
+falló), aviso, información (lo normal en producción), depuración y traza (cada paso). En el
+método el nivel se cambia por configuración, por entorno, sin volver a desplegar (peldaño 16).
+
 **Node (Node 22)** — El entorno donde corre el JavaScript del servidor. "Node 22 fijo" quiere decir
 que se clavó la versión para que todos los entornos usen la misma.
 
@@ -1191,6 +1427,10 @@ supuesto al abrir el bucle, sin tocar su funcionalidad. Se hace en dos velocidad
 seguridad antes de cualquier cambio, y el resto de la deuda **a medida que se toca** cada módulo
 (los pendientes de normalización marcados "se paga al tocar" entran con el bloque que entra a su
 módulo). Nunca "una semana de limpieza general".
+
+**Observabilidad** — Que el sistema se pueda ver mientras corre: registros estructurados con nivel
+configurable, un identificador de correlación por acción, métricas de salud. Sin observabilidad,
+cada incidente se diagnostica con hipótesis en vez de con evidencia. Peldaño 16.
 
 **Obra Social (la)** — Así llamo al ente de salud cliente del primer sistema en producción (su
 nombre real queda reservado).
@@ -1214,6 +1454,17 @@ lo haría una persona.
 los pendientes SON el plan, cada uno lleva su especificación detallada, y los pendientes cerrados
 son la documentación de lo hecho.
 
+**Paginación** — Mostrar o procesar los datos de a porciones (de a veinte, de a mil) en vez de
+todos juntos. Una de las correcciones típicas del peldaño 17.
+
+**Percentil 95** — El valor por debajo del cual queda el 95 % de las mediciones. En latencia: "el
+95 % de las acciones tardó menos que esto". Es el número que importa, porque el promedio esconde
+a los que esperaron mucho.
+
+**Pool de conexiones** — La cantidad de "líneas abiertas" que el sistema mantiene con la base de
+datos al mismo tiempo. Si se agota, las acciones esperan o fallan; suele ser lo primero que se
+rompe en una prueba de carga.
+
 **Pendiente cerrado (documentación del hecho)** — Un pendiente que al cerrarse conserva su
 especificación, la decisión que lo originó, la evidencia con la que se cerró, el commit y la
 fecha. La cola de pendientes cerrados es el historial funcional del sistema.
@@ -1228,14 +1479,33 @@ arreglo lo ponga en verde.
 
 **Promoción (UAT → PROD)** — Pasar algo del entorno de prueba al de producción de forma controlada.
 
+**Prueba de carga** — Un programa, guardado en el repositorio y con su test, que simula a muchos
+usuarios usando el sistema a la vez para medir rendimiento, latencia y errores, y para encontrar
+el punto de ruptura. Peldaño 19.
+
 **Pruebas de aceptación** — Las pruebas que hace el dueño, o un usuario de confianza, usando el
 sistema como lo usaría de verdad, antes de aceptarlo para producción. Son humanas; no las hace el
 agente.
+
+**Punto de ruptura** — La carga exacta a la que algo del sistema deja de funcionar, y qué es ese
+algo (las conexiones a la base, la memoria, una cola). Se encuentra subiendo la carga escalón por
+escalón (peldaño 19), y de él salen los umbrales de alerta del 20.
 
 **Pull / push** — Bajar y subir código al repositorio remoto (GitHub).
 
 **Ref. N** — Una referencia corta a un caso real, explicado en el documento de referencias con su
 fecha y su evidencia. Está para que los procedimientos queden limpios y el detalle siga disponible.
+
+**Registro (log) estructurado** — Una línea que el sistema escribe cada vez que hace algo, con
+siempre las mismas partes en el mismo orden (fecha y hora, nivel, módulo, identificador de
+correlación, actor, mensaje), para que se pueda buscar por máquina. Peldaño 16.
+
+**Rendimiento (throughput)** — Cuántas acciones por segundo aguanta el sistema. Se mide con la
+prueba de carga (19) y se vigila en el monitoreo (20).
+
+**Reporte cíclico** — El resumen que el monitoreo (20 y 21) genera solo cada semana o cada mes,
+con los desvíos y los errores del período, y que el dueño lee con el agente para decidir qué se
+vuelve pendiente. Lo contrario de una alerta: se lee con calma.
 
 **Regresión** — Un test que verifica que algo que ya funcionaba sigue funcionando después de un
 cambio.
@@ -1262,6 +1532,10 @@ puede correr dos veces sin romper nada.
 
 **SQL** — El lenguaje de las bases de datos relacionales.
 
+**Tasa de error por flujo** — De cada cien veces que alguien usó un flujo (cargar un turno),
+cuántas fallaron. Es el número del reporte de errores (21) que el dueño entiende sin
+explicación.
+
 **Tag** — Una etiqueta sobre un commit que marca una versión.
 
 **TDD** — "Primero el test, después el código". El método lo deja como opción para alcances
@@ -1270,12 +1544,15 @@ chicos, no como regla universal.
 **Token** — Dos sentidos. En IA: la unidad con la que se mide (y se cobra) el texto que procesa el
 modelo. En seguridad: una credencial de acceso.
 
-**Tramo** — Cada uno de los tres grupos de peldaños: arranque (0 a 4), bucle (5 a 10), operación
-(11 a 15).
+**Tramo** — Cada uno de los cuatro grupos de peldaños: arranque (0 a 4), bucle (5 a 10), operación
+(11 a 15) y calidad operativa (16 a 21).
 
-**Trazabilidad** — Poder seguir un requerimiento hasta el pendiente que lo implementa, el test
-que lo prueba y el commit que lo cerró. En el método no es una matriz aparte: es el pendiente
-mismo, que cita su origen y su evidencia.
+**Trazabilidad** — Dos sentidos, los dos en el método. En los requerimientos: poder seguir un
+requerimiento hasta el pendiente que lo implementa, el test que lo prueba y el commit que lo
+cerró; no es una matriz aparte, es el pendiente mismo. En la operación (peldaño 16): que toda
+acción con consecuencia deje un rastro de quién, cuándo, qué, desde dónde y con qué resultado, en
+una auditoría que la aplicación no puede editar, y que un identificador de correlación permita
+seguir cualquier acción de la pantalla a la base.
 
 **Trinquete** — Un mecanismo que solo gira para un lado. En Kikan, un contador de llamadas sin
 `await` que solo puede bajar: si sube, el test falla.
@@ -1284,6 +1561,10 @@ mismo, que cita su origen y su evidencia.
 contesta.
 
 **UAT** — El entorno donde el cliente prueba antes de producción.
+
+**Umbral** — Un número límite a partir del cual el monitoreo avisa. En el método no se pone "a
+ojo": sale del punto de ruptura (19) con un margen, y no se sube para callar una alerta sin una
+razón medida escrita (20).
 
 **Urazuke** (裏付け) — El nombre del método. En japonés, el respaldo que tiene una afirmación, lo
 que la sostiene por detrás; *urazukeru*, respaldar con pruebas. Se pronuncia u-ra-ZU-ke. No se
@@ -1298,6 +1579,10 @@ con guardas para no empujar dos veces.
 **Vista humana de las pantallas** — El hábito de que el dueño mire una captura real de cada
 pantalla nueva o cambiada, en el entorno de prueba, con cada pendiente que la toca. Diez segundos
 que encuentran lo que ningún test encuentra.
+
+**Vulnerabilidad** — Un defecto que alguien puede usar para entrar, robar datos o hacer que el
+sistema haga algo que no debería. Las conocidas en piezas de software de otros se publican con
+un número CVE. El peldaño 18 las busca por máquina en cuatro capas y las trata como pendientes.
 
 **Volumetría** — Cuántos datos va a manejar el sistema: filas por año, usuarios, picos.
 

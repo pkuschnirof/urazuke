@@ -39,7 +39,7 @@ den Agenten öffnest, denn es ändert sich, wo man einsteigt.
 
 | Fall | Ausgangspunkt | Wo man einsteigt | Wie lange der Einstieg dauert | Wo es geschrieben steht |
 |---|---|---|---|---|
-| **Neues Projekt** | Leerer Ordner und ein Eigentümer mit einer Anfrage. | Schritt 0, und von dort die sechzehn der Reihe nach. | Eine Woche Start vor der ersten Funktionalität. | Das Hauptdokument, die sechzehn Verträge und das Kurshandbuch. |
+| **Neues Projekt** | Leerer Ordner und ein Eigentümer mit einer Anfrage. | Schritt 0, und von dort die zweiundzwanzig der Reihe nach. | Eine Woche Start vor der ersten Funktionalität. | Das Hauptdokument, die zweiundzwanzig Verträge und das Kurshandbuch. |
 | **Evolutiv-korrektiv über einem System, das mit der Methode gemacht wurde** | Das System hat die Leiter schon erklommen: es hat Vereinbarung, Karte, mit Beleg geschlossene offene Posten, Batterie, Deployment und Handbücher. | Schritt 5: ein Block wird geöffnet und die Schleife durchlaufen; die 11 periodisch; die 15 beim Abschluss der Etappe. | Keiner: es ist Schritt 15, der für die nächste Etappe zur 0 zurückkehrt, und das steht schon in Teil B des Hauptdokuments. | Das Hauptdokument (Phase 4, Betrieb). |
 | **Evolutiv-korrektiv über einem System, das ohne die Methode gemacht wurde** | Ein System, das läuft, mit Nutzern, ohne eines dieser Artefakte oder mit einigen halb fertig. | Der Normalisierungsabschnitt dieser Seite (N0 bis N7), und erst danach die Schleife, im korrektiven oder im evolutiven Modus. | Zwei bis drei Wochen für ein kleines System, bevor die erste Zeile Funktionalität angefasst wird. | Diese Seite und das Kurshandbuch, Teil 2. |
 
@@ -120,7 +120,7 @@ Rolle, dass das System „funktioniert“: die Schleife wird sie in der ersten S
 ## Der Normalisierungsabschnitt: die acht Stationen
 
 Ich nenne sie Stationen und nicht Schritte, und ich nummeriere sie N0 bis N7, damit sie nicht mit
-den sechzehn der Leiter verwechselt werden. Es sind keine neuen Schritte: es sind die Schritte des
+den zweiundzwanzig der Leiter verwechselt werden. Es sind keine neuen Schritte: es sind die Schritte des
 Starts und drei aus dem Betrieb (die 8, die 11 und die 12), in anderer Reihenfolge und mit anderem
 Eingang. Im neuen Projekt ist der Eingang die Erhebung; hier ist der Eingang das System, und das
 Lesen übernimmt der Agent.
@@ -1085,6 +1085,39 @@ informierten Eigentümer, und den Rückweg (das Backup aus N0 oder die vorherige
 Was ich hier verlange: das Minimum, mit dem Rückweg vorher und nicht nachher, und mit dem
 ehrlichen Bericht über das Nichtverifizierte (Schritt 10); und die Pflicht, am selben Tag wieder
 durch die Schleife einzutreten, was eine Ausnahme von einer Gewohnheit unterscheidet.
+
+## Die sechs Schritte der Betriebsqualität in einem Altsystem
+
+Die Schritte 16 bis 21 des Hauptdokuments (Beobachtbarkeit und Nachverfolgbarkeit, Persistenz,
+Schwachstellen, Leistung und die beiden Monitorings) gelten für beide Anwendungsfälle, und in
+einem Altsystem haben sie einen präzisen Platz, denn bei mehreren von ihnen ist die halbe Arbeit
+schon vom Normalisierungsabschnitt erledigt:
+
+- **16, Beobachtbarkeit und Nachverfolgbarkeit**: das Mindestniveau (strukturierte Logs mit
+  konfigurierbarem Level und eine Korrelations-ID in den kritischen Flüssen) gehört in den
+  Sicherheitsgurt (N4), denn ohne es sagt die Charakterisierungsbatterie nicht, was
+  kaputtgegangen ist. Das vollständige Niveau, mit dem unveränderlichen Audit-Log der Aktionen
+  mit Konsequenz, die N5 inventarisiert hat, wird vor dem ersten Deployment nach der
+  Normalisierung erklommen.
+- **17, Persistenz**: die Messungen sind in N6 schon gemacht. Was aus ihnen folgt, kommt mit
+  seiner Marke in das Backlog (N7): was schon außerhalb der Toleranz des Geschäfts liegt,
+  „blockiert“ oder „jetzt“; der Rest „wird beim Anfassen bezahlt“ und kommt mit dem Block herein,
+  der dieses Modul berührt.
+- **18, Schwachstellen**: der erste Durchlauf ist die Sicherheitsdimension des Audits von N3, und
+  der Scan in der Kette ist Teil des Gurts (N4), denn ein Altsystem hat fast immer alte
+  Abhängigkeiten und Geheimnisse in der Historie. Die P0 blockieren; der Rest kommt ins Backlog.
+- **19, Leistung**: er läuft mit den in N6 gemessenen Volumina, auf der Persistenz, die in dem
+  schon korrigiert wurde, was blockierte, vor dem ersten Deployment nach der Normalisierung. In
+  einem Altsystem entdeckt er meist, dass der Bruchpunkt näher liegt, als das Geschäft glaubt.
+- **20 und 21, Monitoring**: sie werden in der Woche des ersten Deployments aufgebaut, genau wie
+  im neuen Projekt, mit einem Unterschied: die erste Lesung des Berichts ist die Basislinie des
+  Altsystems, und die Abweichungen und die Fehler, die am ersten Tag schon existierten, werden zu
+  offenen Posten mit ihrer Geschwindigkeitsmarke. Keiner bleibt als „bekannt“ ohne offenen Posten.
+
+In der Praxis fügen die vier vor dem Deployment für ein kleines System dem Kalender der
+Normalisierung eine Woche hinzu (eine vierte Woche, vor dem ersten evolutiven Block oder
+zusammen mit ihm, je nach Dringlichkeit der Anfrage), und die beiden Monitorings werden in der
+Woche des Deployments aufgebaut.
 
 ## Wann das System normalisiert ist
 

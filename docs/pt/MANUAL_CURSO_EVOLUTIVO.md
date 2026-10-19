@@ -39,7 +39,8 @@ vermelho e a primeira funcionalidade nova construída com o método completo.
 | 2 | N4, N5 | **O cinto.** Ambiente de teste com dados anonimizados, implantação duas vezes, segredos rotacionados, bateria de caracterização com o seu vermelho por mutação. Cadeados confirmados sobre o que já age. No fechamento: o sistema roda em teste e a bateria está em verde. |
 | 3 | N6, N7, R1 | **Medir, ordenar, corrigir.** Dimensionamento medido. O backlog com as duas marcas. O primeiro bloco: o bug conhecido, fechado em modo corretivo com os seus emparelhados. |
 | 4 | R2 | **Evoluir.** O segundo bloco: a funcionalidade nova, construída com o método completo (lições 5 a 10 da primeira parte), com a caracterização como regressão. |
-| 5 e 6 | 11, 12, 13, 14, 15 da primeira parte | **Saída e operação.** Auditoria periódica, cadeados restantes, fechamento do caminho para produção, os três manuais (que o legado não tinha), agente residente, retrospectiva com a pergunta própria do legado: quanto custou normalizar. |
+| 5 e 6 | 11, 12, 13, 14, 16, 17, 18, 19 da primeira parte | **Saída para produção.** Auditoria periódica, cadeados restantes, fechamento do caminho para produção, os três manuais (que o legado não tinha), e os quatro degraus de qualidade operacional prévios à implantação: observabilidade completa, persistência com o que N6 mediu, varredura de vulnerabilidades como comporta, teste de carga com o ponto de ruptura. |
+| 7 | 15, 20, 21 da primeira parte | **Operação.** Os dois monitoramentos montados na semana da implantação, com a primeira leitura como linha base do legado; agente residente; retrospectiva com a pergunta própria do legado: quanto custou normalizar. |
 
 ### O projeto-guia: "Turnera herdada"
 
@@ -929,8 +930,13 @@ bug de R1 e o do sinal.
 
 ## Depois: saída para produção e operação
 
-Daqui em diante, o legado é um sistema com método, e as lições 11 a 15 da primeira parte se
-aplicam tal e qual, com três notas. A auditoria da lição 11 compara contra a de N3: quanta dívida
+Daqui em diante, o legado é um sistema com método, e as lições 11 a 21 da primeira parte se
+aplicam tal e qual, com quatro notas. A primeira é sobre os seis degraus de qualidade
+operacional: a observabilidade mínima e a varredura de vulnerabilidades já entraram com o cinto,
+as medições de persistência já estão em N6, e o teste de carga se roda com esses volumes antes da
+primeira implantação; os dois monitoramentos arrancam com a primeira leitura como linha base, e o
+que já estava mal no primeiro dia vira pendência com a sua marca. As outras três notas são estas.
+A auditoria da lição 11 compara contra a de N3: quanta dívida
 foi paga, quanta continua. Os manuais da lição 14 num legado costumam não existir, e se geram a
 partir do sistema como está e das pendências fechadas, que agora sim documentam o feito. E a
 retrospectiva da lição 15 tem uma pergunta própria deste caminho: quanto custou normalizar (em

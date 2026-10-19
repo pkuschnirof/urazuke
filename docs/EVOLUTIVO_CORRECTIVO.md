@@ -36,7 +36,7 @@ cambia por dónde se entra.
 
 | Caso | Punto de partida | Por dónde se entra | Cuánto dura la entrada | Dónde está escrito |
 |---|---|---|---|---|
-| **Proyecto nuevo** | Carpeta vacía y un dueño con un pedido. | Peldaño 0, y de ahí los dieciséis en orden. | Una semana de arranque antes de la primera funcionalidad. | El documento principal, los dieciséis contratos y el manual del curso. |
+| **Proyecto nuevo** | Carpeta vacía y un dueño con un pedido. | Peldaño 0, y de ahí los veintidós en orden. | Una semana de arranque antes de la primera funcionalidad. | El documento principal, los veintidós contratos y el manual del curso. |
 | **Evolutivo-correctivo sobre un sistema hecho con el método** | El sistema ya subió la escalera: tiene contrato, mapa, pendientes cerrados con evidencia, batería, despliegue y manuales. | Peldaño 5: se abre un bloque y se sigue el bucle; el 11 periódico; el 15 al cierre de la etapa. | Ninguna: es el peldaño 15 volviendo al 0 para la etapa siguiente, que ya está en la Parte B del documento principal. | El documento principal (fase 4, operación). |
 | **Evolutivo-correctivo sobre un sistema hecho sin el método** | Un sistema que corre, con usuarios, sin ninguno de esos artefactos o con algunos a medias. | El tramo de normalización de esta página (N0 a N7), y recién después el bucle, en modo correctivo o evolutivo. | De dos a tres semanas para un sistema chico, antes de tocar la primera línea de funcionalidad. | Esta página y el manual del curso, parte 2. |
 
@@ -113,7 +113,7 @@ sistema "funcione": el bucle lo va a necesitar en la primera sesión.
 ## El tramo de normalización: las ocho estaciones
 
 Las llamo estaciones y no peldaños, y las numero N0 a N7, para que no se confundan con los
-dieciséis de la escalera. No son peldaños nuevos: son los peldaños del arranque y tres de la
+veintidós de la escalera. No son peldaños nuevos: son los peldaños del arranque y tres de la
 operación (el 8, el 11 y el 12), en otro orden y con otra entrada. En el proyecto nuevo la
 entrada es el relevamiento; acá la entrada es el sistema, y la lectura la hace el agente.
 
@@ -1014,6 +1014,36 @@ avisado, y la forma de volver atrás (el respaldo de N0 o la versión anterior) 
 Qué le estoy pidiendo: el mínimo, con la vuelta atrás antes y no después, y con el reporte honesto
 de lo no verificado (peldaño 10); y la obligación de volver a entrar por el bucle el mismo día,
 que es lo que separa una excepción de un hábito.
+
+## Los seis peldaños de calidad operativa en un legado
+
+Los peldaños 16 a 21 del documento principal (observabilidad y trazabilidad, persistencia,
+vulnerabilidades, rendimiento, y los dos monitoreos) valen para los dos casos de uso, y en un
+legado tienen una ubicación precisa, porque varios de ellos ya tienen la mitad del trabajo hecho
+por el tramo de normalización:
+
+- **16, observabilidad y trazabilidad**: el nivel mínimo (registros estructurados con nivel
+  configurable y un identificador de correlación en los flujos críticos) entra en el cinturón de
+  seguridad (N4), porque sin él la batería de caracterización no dice qué se rompió. El nivel
+  completo, con la auditoría inmutable de las acciones con consecuencia que N5 inventarió, se sube
+  antes del primer despliegue posterior a la normalización.
+- **17, persistencia**: las mediciones ya están hechas en N6. Lo que sale de ellas entra al backlog
+  (N7) con su marca: lo que ya está fuera de la tolerancia del negocio, "bloquea" o "ahora"; el
+  resto, "se paga al tocar", y entra con el bloque que toque ese módulo.
+- **18, vulnerabilidades**: la primera corrida es la dimensión de seguridad de la auditoría de N3,
+  y el escaneo en la cadena es parte del cinturón (N4), porque un legado casi siempre tiene
+  dependencias viejas y secretos en el historial. Los P0 bloquean; el resto, al backlog.
+- **19, rendimiento**: se corre con los volúmenes medidos en N6, sobre la persistencia ya
+  corregida en lo que bloqueaba, antes del primer despliegue posterior a la normalización. En un
+  legado suele descubrir que el punto de ruptura está más cerca de lo que el negocio cree.
+- **20 y 21, monitoreo**: se montan en la semana del primer despliegue, igual que en el proyecto
+  nuevo, con una diferencia: la primera lectura del reporte es la línea base del legado, y los
+  desvíos y los errores que ya existían el primer día se vuelven pendientes con su marca de
+  velocidad. Ninguno queda como "conocido" sin pendiente.
+
+En la práctica, para un sistema chico, los cuatro previos al despliegue agregan una semana al
+calendario de la normalización (una cuarta semana, antes del primer bloque evolutivo o junto con
+él, según la urgencia del pedido), y los dos monitoreos se montan en la semana del despliegue.
 
 ## Cuándo el sistema está normalizado
 

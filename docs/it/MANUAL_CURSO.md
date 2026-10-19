@@ -57,11 +57,11 @@ modello senza prove, e di sapere esattamente quale prova chiedergli a ogni passo
    introduttivo basta. Non serve altro.
 3. **Un progetto.** L'ideale è che sia tuo: un sistema di cui hai bisogno o che un cliente ti ha
    chiesto, con utenti che lo useranno. Se non ne hai uno, usa il **progetto guida** che descrivo
-   sotto; è pensato per passare per i sedici gradini senza saltarne nessuno. Se ciò che hai è un
+   sotto; è pensato per passare per i ventidue gradini senza saltarne nessuno. Se ciò che hai è un
    sistema che esiste già e bisogna correggere o far crescere, questa prima parte ti insegna il
    metodo su un progetto nuovo, e la [parte 2 del corso](MANUAL_CURSO_EVOLUTIVO.md) ti insegna a
    normalizzarlo prima, con un secondo progetto guida ereditato.
-4. **Tempo.** Il corso ha sedici lezioni, una per gradino, e un calendario che ti dice in quale
+4. **Tempo.** Il corso ha ventidue lezioni, una per gradino, e un calendario che ti dice in quale
    settimana cade ogni cosa (vedi "Il calendario del corso"). Un progetto piccolo, da un capo
    all'altro, sono tra sei e otto settimane di lavoro parziale.
 5. **Un proprietario del dominio con tempo per decidere.** Se il progetto è tuo, sei tu. Se è di
@@ -104,8 +104,8 @@ l'altra.
 | 2 | 5, 6, 7 | **Primo blocco funzionale** (l'agenda di base). Apri il blocco convertendo la richiesta in voci in sospeso specificate. Con ogni voce: decisioni, test in rosso, prova end to end del flusso, screenshot della schermata che guardi tu. Alla chiusura del blocco: batteria completa end to end, e tu usi il sistema nell'ambiente di test seguendo i flussi del blocco. |
 | 3 | 8, 9, 10 | **Secondo blocco** (pazienti e ricerca). Le tre lezioni restanti del ciclo si imparano su questo blocco. Stessa chiusura: end to end di tutti i flussi, prove umane, manuale utente con le schermate nuove. |
 | 4 | 11, 12 | **Uscita in produzione, prima metà.** Audit da parte di un'altra sessione. Lucchetti. E solo dopo, il **terzo blocco** (promemoria e caparra), costruito con il ciclo completo e lasciato in modalità di prova. |
-| 5 | 13, 14 | **Uscita in produzione, seconda metà.** Chiusura della catena verso la produzione con rollback provato. I tre manuali; qualcuno che non programma segue quello di ripristino. **Test di accettazione** tuoi o del proprietario su tutti i flussi. Primo deployment in produzione senza utenti. |
-| 6 | 15 | **Esercizio.** Abiliti i promemoria dopo aver guardato il registro della modalità di prova. Agente residente. Retrospettiva con i numeri e proposta di modifica alla scala. |
+| 5 | 13, 14, 16, 17, 18, 19 | **Uscita in produzione, seconda metà.** Chiusura della catena verso la produzione con rollback provato. Osservabilità con livello configurabile, persistenza misurata prima e dopo, scansione delle vulnerabilità come cancello, prova di carico con il punto di rottura. I tre manuali; qualcuno che non programma segue quello di ripristino. **Test di accettazione** tuoi o del proprietario su tutti i flussi. Primo deployment in produzione senza utenti. |
+| 6 | 15, 20, 21 | **Esercizio.** Abiliti i promemoria dopo aver guardato il registro della modalità di prova. I due monitoraggi montati nella settimana del deployment: risorse e rendimento, errori; il primo rapporto ciclico letto con il proprietario. Agente residente. Retrospettiva con i numeri e proposta di modifica alla scala. |
 
 Se il tuo progetto è più grande, ciò che si allunga sono le settimane 2 e 3 (più blocchi), non la 1
 né la 4 e la 5. E se a un certo punto ti ritrovi a fare infrastruttura nella settimana 3, o a
@@ -115,7 +115,8 @@ eseguire la batteria end to end per la prima volta nella settimana 5, torna al c
 ### Il progetto guida: "Turnera"
 
 Se non hai un progetto tuo, usa questo. È piccolo, ma ha tutto ciò che serve perché nessuno dei
-sedici gradini sia per finta: utenti reali, dati personali, messaggi che escono nel mondo, e soldi.
+ventidue gradini sia per finta: utenti reali, dati personali, messaggi che escono nel mondo, e
+soldi.
 
 **L'attività.** Un ambulatorio (può essere uno studio, un parrucchiere, un'officina: qualunque
 posto che dà appuntamenti). Oggi gli appuntamenti si annotano su un quaderno e si confermano via
@@ -1918,9 +1919,329 @@ promuovere, non solo "cosa cambia".
 
 ---
 
+## Fase di qualità operativa: lezioni da 16 a 21
+
+Queste sei lezioni sono quelle che io facevo senza nominarle, e che un lettore mi ha chiesto, a
+ragione, di scrivere. Quattro si fanno nella settimana 5, insieme alle lezioni 13 e 14 e prima del
+primo deployment in produzione: osservabilità, persistenza, vulnerabilità e rendimento. Due si
+montano nella settimana 6, quella del primo deployment, e girano da sole da allora: i due
+monitoraggi. Se sei alle prime armi, ogni contratto di questi sei gradini ha un paragrafo "Se sei
+alle prime armi" che spiega le sue parole nel linguaggio di tutti i giorni; leggilo prima della
+lezione.
+
+### Lezione 16 — Osservabilità e tracciabilità, con livello configurabile
+
+**Cosa devi capire.** Quando qualcosa fallirà in produzione, vorrai sapere cosa è successo senza
+aprire il codice e senza che l'agente "controlli": cercare un numero e far comparire la storia
+completa di quell'azione, dalla schermata al database. Questo è un *registro strutturato* con un
+*identificatore di correlazione*. E vorrai alzare il dettaglio di ciò che il sistema scrive, per
+un minuto, mentre indaghi, senza rifare il deployment: questo è il *livello configurabile*. La
+*tracciabilità* è l'altra metà: ogni azione con conseguenza (ha incassato, ha inviato, ha
+cancellato) resta in una lista che l'applicazione non può modificare, con chi, quando e cosa.
+Senza questo, l'agente residente della lezione 15 opera alla cieca e i monitoraggi delle lezioni
+20 e 21 non hanno niente da guardare [Ref. 16](REFERENCIAS.md#ref-16).
+
+**Prima di inviare il prompt**, con le tue mani e con il proprietario:
+
+- `docs/DEPLOYMENT.md` (lezione 13), con come si legge la configurazione per ambiente: il livello
+  sarà una variabile in più.
+- `docs/LOCKS.md` (lezione 12): la lista delle azioni che devono restare nell'audit.
+- In `docs/INITIAL_SURVEY.md`, la lista di quali dati sono personali (in Turnera: nome, telefono,
+  email e documento del paziente), scritta con la responsabile. I registri li devono mascherare;
+  è un obbligo di legge.
+- La tua decisione su dove vivono i registri e per quanto tempo si conservano. Per il corso: un
+  file ruotato sul server, novanta giorni.
+
+1. Incollagli il prompt iniziale del contratto del gradino 16 (in `docs/peldanos/`), tale e quale.
+2. Quando ti mostra l'identificatore di una richiesta reale, cercalo tu nei registri
+   dell'ambiente di test: deve comparire nella schermata, nel backend, nel database e nella
+   chiamata al provider di messaggi.
+3. Alza tu il livello a debug, fai un'azione, guarda, riabbassalo. Se hai dovuto fare il
+   deployment, non è salito.
+4. Cerca "Giovanni" (o qualunque nome di prova) nei registri: non ci deve essere.
+
+**Prima di inviare il prompt** della routine: `docs/OBSERVABILITY.md` letto da te, e il livello
+alzato e riabbassato da te una volta.
+
+5. Aggiungi al patto la routine del gradino 16 (nel contratto, "Routine"), avvolta in "Add this
+   routine to `docs/WORKING_AGREEMENT.md`:" come le altre.
+
+**Verifica di completezza.** Hai seguito tu un identificatore attraverso tutti gli strati? Hai
+cambiato il livello senza fare il deployment? C'è qualche dato personale nei registri? La
+cancellazione di un appuntamento in test è rimasta nell'audit con chi e quando?
+`docs/OBSERVABILITY.md` ti basta per trovare un registro da solo?
+
+**Consegna.** Registri strutturati con livello configurabile, l'identificatore propagato, l'audit
+delle azioni con conseguenza, `docs/OBSERVABILITY.md`, e la routine nel patto.
+
+**Errori tipici.** Accettare dei "log" che ogni modulo scrive in modo diverso. Lasciare la
+produzione su debug "per ora". E che l'identificatore non arrivi al processo notturno dei
+promemoria, che è proprio dove gli incidenti si perdono.
+
+**Nel progetto guida.** L'identificatore di "cancellare l'appuntamento 17" compare nel clic, nel
+server, nella riga marcata nel database e nell'email al professionista. L'audit dice "reception1
+ha cancellato l'appuntamento 17 alle 10:42 dall'agenda del giorno; esito: ok". La responsabile
+alza il livello a traccia per vedere perché un promemoria ha tardato, lo trova, e lo riabbassa.
+
+### Lezione 17 — Ottimizzazione dello strato di persistenza, misurata prima e dopo
+
+**Cosa devi capire.** Il database è dove i sistemi muoiono lentamente: bene con cento
+appuntamenti, male con centomila. Un *indice* è come quello di un libro: senza di esso, il
+database legge l'intera tabella per trovare un appuntamento. Un *ciclo N+1* è fare cento query per
+mostrare cento appuntamenti invece di una. Questa lezione applica la lezione 9 al database:
+misurare ogni query con un misuratore con test, cambiare ciò che i numeri dicono, misurare di
+nuovo sugli stessi dati, e lasciare un budget con test perché non torni
+[Ref. 18](REFERENCIAS.md#ref-18), [Ref. 37](REFERENCIAS.md#ref-37). Non è riscrivere il database
+né cambiare motore: quella era la lezione 3.
+
+**Prima di inviare il prompt**, con le tue mani:
+
+- `docs/SIZING.md` e `docs/VOLUME_SURVEY.md` (lezione 3): i volumi da caricare.
+- L'ambiente di test con dati **al volume atteso**: per Turnera, diecimila appuntamenti e
+  trentamila messaggi di un anno, generati da uno script che l'agente lascia nel repository
+  (chiediglielo come voce in sospeso precedente, con la forma dell'albero semantico).
+- `docs/PRODUCER_CONSUMER_MAP.md` (lezione 8), aggiornato.
+- Un caso noto per il test del misuratore: la tabella dei professionisti ha tre righe.
+
+1. Incollagli il prompt iniziale del contratto del gradino 17.
+2. Leggi la lista delle modifiche proposte come la responsabile leggerebbe una lista di lavori
+   dell'ambulatorio: capisci cosa guadagna ciascuna e che rischio ha? Approva o rifiuta una per
+   una. Rifai un conto a mano (righe al mese della tabella degli appuntamenti).
+
+**Prima di inviare il prompt** di chiusura: la lista con il tuo verdetto per ogni modifica e il
+conto rifatto che coincide.
+
+3. Incollagli il prompt di chiusura del contratto del gradino 17, con la lista approvata.
+4. Esegui tu un misuratore prima e dopo, con i due comandi che ti ha dato.
+
+**Verifica di completezza.** Le tue esecuzioni coincidono con la tabella di
+`docs/PERSISTENCE.md`? Resta qualche query che legge una tabella intera in un flusso critico?
+Ogni tabella ha la sua retention scritta? I budget hanno un test (chiedigli di superarne uno e di
+mostrarti il rosso)?
+
+**Consegna.** I misuratori con test, `docs/PERSISTENCE.md` con prima e dopo, i budget con test, e
+la batteria in verde.
+
+**Errori tipici.** Misurare con i dieci record dello scheletro. Accettare "meglio migrare a un
+altro database". E migliorare un numero rompendo il foglio mensile che leggeva quella tabella: è
+mancata la mappa.
+
+**Nel progetto guida.** L'agenda del giorno faceva una query per appuntamento (il ciclo della
+lezione 9): 52 query per 50 appuntamenti diventano 3. La ricerca dei pazienti per nome leggeva la
+tabella intera: un indice la fa scendere da 800 millisecondi a 4 con diecimila pazienti.
+Retention: i messaggi si archiviano dopo un anno; gli appuntamenti, mai. Budget: 4 query per
+l'agenda, con test.
+
+### Lezione 18 — Scansione e soluzione delle vulnerabilità
+
+**Cosa devi capire.** Una *vulnerabilità* è un difetto che qualcuno può usare per entrare, rubare
+dati o far fare al sistema ciò che non deve. L'audit (lezione 11) le cerca con criterio, ogni
+tanto; questa lezione le cerca a macchina, tutto il tempo, in quattro strati: le *dipendenze*
+(pezzi di altri che il tuo sistema usa, con i loro difetti noti pubblicati), il codice (*analisi
+statica*), i segreti nella storia del repository, e la configurazione del server. E una regola:
+aggiornare una dipendenza è una modifica, e passa dal ciclo; "ho alzato la versione per chiudere
+il rilievo" senza regressione è il modo più comune di rompere la produzione di venerdì
+[Ref. 41](REFERENCIAS.md#ref-41), [Ref. 23](REFERENCIAS.md#ref-23).
+
+**Prima di inviare il prompt**, con le tue mani:
+
+- L'integrazione continua che gira (lezioni 4 e 13), e quanta quota ti resta: la scansione
+  aggiunge minuti.
+- `docs/ENVIRONMENTS_SURVEY.md` con il server, le porte e chi amministra il dominio.
+- `docs/AUDIT_[data].md` (lezione 11), perché non ripeta ciò che è noto.
+- Il tuo criterio di P0, in due righe: per Turnera, ciò che lascia entrare senza credenziale, ciò
+  che espone dati dei pazienti, ciò che permette di mandare messaggi o incassare senza controllo.
+
+1. Incollagli il prompt iniziale del contratto del gradino 18, con il tuo criterio nel buco.
+2. Leggi `docs/SECURITY_[data].md`. Scegli due rilievi e chiedigli la prova. Dice cosa NON ha
+   scansionato?
+
+**Prima di inviare il prompt** di chiusura: la lista delle soluzioni approvate; per ogni
+aggiornamento di dipendenza, la consapevolezza che eseguirà la regressione e l'end to end.
+
+3. Incollagli il prompt di chiusura del contratto del gradino 18.
+4. Chiedigli di mettere apposta, in un ramo, una dipendenza con vulnerabilità nota: la catena
+   deve andare in rosso.
+
+**Verifica di completezza.** L'ultima esecuzione della scansione è in verde e di che data è? Ogni
+P0 ha la sua voce in sospeso chiusa con prova? La scansione è un cancello in `docs/GATES.md`? Sai
+quando gira la prossima scansione programmata?
+
+**Consegna.** La scansione in quattro strati nella catena e con un calendario,
+`docs/SECURITY_[data].md`, `docs/SECURITY.md`, i P0 e i P1 sistemati, il cancello.
+
+**Errori tipici.** Una scansione "pulita al primo colpo" in un sistema di più di un mese: è
+mancato uno strato. Dieci dipendenze aggiornate in un commit. Un P0 "accettato" senza voce in
+sospeso né data.
+
+**Nel progetto guida.** La scansione di Turnera trova: una dipendenza del generatore di PDF con
+una vulnerabilità nota (P1, si aggiorna con regressione ed end to end); l'header che impedisce di
+incorporare l'agenda in un altro sito, assente (P1, una riga di configurazione, con test); una
+chiave di prova del provider di pagamenti nella storia del repository (P0: si ruota, anche se è
+di prova); e una porta del database aperta al mondo sul server di test (P0: si chiude). La
+scansione resta come cancello e gira il lunedì.
+
+### Lezione 19 — Prove di rendimento in volume e punto di rottura
+
+**Cosa devi capire.** La lezione 3 ha dimensionato con i conti; questa li verifica con il sistema
+in esecuzione. Una *prova di carico* simula molti utenti alla volta. Si guardano il *rendimento*
+(azioni al secondo), la *latenza* (quanto ci mette ogni azione; la mediana e il *percentile 95*,
+che è ciò che vedono quelli che si lamentano) e il tasso di errore, al volume atteso e al "per
+dieci". E poi si alza il carico finché qualcosa non si rompe: il *punto di rottura* non è
+"diventa lento" ma "le connessioni al database si sono esaurite a 180 utenti". Quel numero è il
+più utile della fase, perché da lì escono le *soglie* di allerta della lezione 20
+[Ref. 12](REFERENCIAS.md#ref-12), [Ref. 44](REFERENCIAS.md#ref-44).
+
+**Prima di inviare il prompt**, con le tue mani e con il proprietario:
+
+- `docs/SIZING.md` con il volume atteso e il "per dieci": per Turnera, due utenti al picco e
+  quaranta appuntamenti al giorno; per dieci, venti utenti e quattrocento appuntamenti.
+- I flussi critici per il buco del prompt: caricare un appuntamento, vedere l'agenda del giorno,
+  cercare un paziente, l'invio notturno dei promemoria.
+- La tolleranza della responsabile per la schermata più usata (l'agenda del giorno): "se ci mette
+  più di due secondi, le ragazze si lamentano".
+- L'ambiente di test con i dati al volume (lezione 17) e, se differisce dalla produzione nelle
+  risorse, annotato come in `docs/ENVIRONMENTS_SURVEY.md`.
+- L'osservabilità della lezione 16 accesa.
+
+1. Incollagli il prompt iniziale del contratto del gradino 19, con i flussi e la tolleranza nei
+   buchi.
+2. Leggi `docs/PERFORMANCE_[data].md` con la tolleranza accanto: l'agenda del giorno rientra in
+   due secondi al volume atteso? E al per dieci? Cosa si è rotto per primo e a quale carico?
+3. Decidi con la responsabile fino a quale volume si sistemano i colli di bottiglia adesso: se
+   pensano di venderlo ad altri ambulatori, il "per dieci" è adesso; se no, con una data.
+
+**Prima di inviare il prompt** di chiusura: il rapporto letto, la decisione sul "per dieci".
+
+4. Incollagli il prompt di chiusura del contratto del gradino 19.
+5. Esegui tu lo script al volume atteso con il comando che ti ha dato: i numeri si devono
+   somigliare.
+
+**Verifica di completezza.** La schermata più usata rientra nella tolleranza, o c'è una voce in
+sospeso con il numero? Il punto di rottura dice cosa si è rotto e a quale carico? Le soglie di
+`docs/PERFORMANCE.md` stanno sotto il punto di rottura e sopra l'atteso? La prova è un cancello e
+la prima esecuzione è archiviata?
+
+**Consegna.** Lo script di carico con test, `docs/PERFORMANCE_[data].md`, `docs/PERFORMANCE.md`
+con soglie e cancello, e una voce in sospeso per ogni collo di bottiglia.
+
+**Errori tipici.** "Regge il per dieci senza problemi" senza punto di rottura: non ha alzato
+abbastanza il carico. Uno script che colpisce l'API e non la schermata. Sistemare colli di
+bottiglia durante la prova, "già che c'ero".
+
+**Nel progetto guida.** Al volume atteso, l'agenda risponde in 300 millisecondi; al per dieci, in
+1,4 secondi; l'invio notturno di 400 promemoria ci mette 50 secondi. Il punto di rottura: a 180
+utenti concorrenti si esaurisce il pool di connessioni (10) e le azioni cominciano a fallire.
+Soglie: allerta se l'agenda supera 1,5 secondi o se le connessioni in uso superano 7. Voce in
+sospeso: l'invio notturno a lotti di 50, perché la responsabile vuole davvero venderlo.
+
+### Lezione 20 — Monitoraggio di risorse e rendimento, con rapporto ciclico
+
+**Cosa devi capire.** La lezione 19 dice come si comporta il sistema un giorno; la produzione è
+tutti i giorni, con i dati che crescono. *Monitorare* è guardare a macchina, tutto il tempo,
+l'uso delle *risorse* (processore, memoria, disco, connessioni, quota del provider di messaggi) e
+il tempo di risposta di ogni funzione e di ogni query, e avvisare quando qualcosa esce dal range:
+sopra una *soglia* (quelle della lezione 19) o molto diverso dalla *linea base* (ciò che dava
+prima). Un'*allerta* avvisa sul momento; il *rapporto ciclico* si legge con calma ogni settimana
+o ogni mese. Due regole: un'allerta che nessuno legge è un difetto dell'allerta; e una soglia non
+si alza per far tacere un'allerta senza una ragione misurata e scritta
+[Ref. 37](REFERENCIAS.md#ref-37), [Ref. 39](REFERENCIAS.md#ref-39).
+
+**Prima di inviare il prompt**, con le tue mani e con il proprietario:
+
+- `docs/OBSERVABILITY.md` (16), `docs/PERSISTENCE.md` (17) e `docs/PERFORMANCE.md` (19) chiusi.
+- Il canale delle allerte deciso con la responsabile: a chi arriva e da dove. Per il corso: alla
+  tua email e alla tua messaggistica.
+- Il ciclo: mensile per Turnera; settimanale se ci fossero soldi in gioco tutti i giorni.
+- Lo scostamento che consideri un allarme: 30 % sulla media degli ultimi quattordici giorni.
+- Accesso in sola lettura del monitoraggio alla produzione, con la credenziale fuori dalla chat.
+
+1. Incollagli il prompt iniziale del contratto del gradino 20, con il canale, il ciclo e lo
+   scostamento nei buchi.
+2. Chiedigli di superare una soglia apposta in test: ti deve arrivare l'allerta dal canale.
+3. Leggi il primo rapporto: ogni evento fuori range deve avere una causa o una proposta.
+
+**Prima di inviare il prompt** della routine: il primo rapporto letto da te.
+
+4. Aggiungi al patto la routine del gradino 20, avvolta in "Add this routine to
+   `docs/WORKING_AGREEMENT.md`:".
+
+**Verifica di completezza.** Ti è arrivata l'allerta provocata? Il rapporto ha ogni scostamento
+con causa o proposta? C'è una voce in sospeso per ogni scostamento che hai deciso di affrontare,
+con il numero come criterio? Qualche soglia è salita dalla lezione 19, e con quale ragione? Il
+rapporto guarda la quota del provider di messaggi?
+
+**Consegna.** Raccolta con storia, allerte, il rapporto ciclico, `docs/MONITORING.md`, la routine
+nel patto.
+
+**Errori tipici.** Allerte tutti i giorni che nessuno legge. Tre rapporti di fila che dicono
+"tutto normale". Una soglia alzata "perché smetta di avvisare". Dati personali conservati "per
+diagnosticare".
+
+**Nel progetto guida.** Il primo rapporto mensile di Turnera dice: disco al 40 %, memoria
+stabile, l'agenda del giorno a 320 millisecondi di mediana (linea base), la ricerca dei pazienti
+salita da 4 a 9 millisecondi (la tabella cresce; dentro il range), e la quota di messaggi al 60 %
+(proposta: avvisare all'80 %). Uno scostamento: il rapporto mensile della responsabile ci ha
+messo 11 secondi il giorno 1 (proposta: precalcolarlo di notte; voce in sospeso).
+
+### Lezione 21 — Monitoraggio degli errori e rapporto ciclico
+
+**Cosa devi capire.** Un sistema in produzione produce errori che nessuno segnala: la
+receptionist che ha visto la schermata bianca ed è tornata a provare, il processo notturno che si
+è interrotto. Questa lezione li *cattura* nei tre posti dove si nascondono (il backend, i
+processi e il browser), li *raggruppa* (mille volte lo stesso errore è una voce con un
+contatore), avvisa di quelli nuovi e di quelli che crescono, e produce un rapporto con il *tasso
+di errore per flusso* (su cento appuntamenti caricati, quanti sono falliti). Due regole: nessun
+errore senza voce in sospeso, e non esiste l'"errore noto" senza una voce in sospeso che dica
+perché si tollera e fino a quando [Ref. 43](REFERENCIAS.md#ref-43),
+[Ref. 22](REFERENCIAS.md#ref-22).
+
+**Prima di inviare il prompt**, con le tue mani:
+
+- `docs/OBSERVABILITY.md` (16): gli errori escono già con identificatore, versione e attore.
+- `docs/LOCKS.md` (12): gli errori nelle azioni con conseguenza sono allerta immediata.
+- Il canale e il ciclo della lezione 20, e il numero di occorrenze all'ora di un errore noto a
+  partire dal quale vuoi un'allerta: per Turnera, dieci.
+- Dove si conservano gli errori e per quanto tempo, senza dati personali.
+
+1. Incollagli il prompt iniziale del contratto del gradino 21, con il canale, il ciclo e il
+   numero nei buchi.
+2. Provoca tu un errore nel browser, in test (una data impossibile nel modulo dell'appuntamento,
+   per esempio): deve comparire nella cattura con il tuo identificatore, e ti deve arrivare
+   l'allerta se è nuovo.
+
+**Prima di inviare il prompt** della routine: il primo rapporto degli errori letto da te, e
+`docs/PENDING.md` sottomano.
+
+3. Aggiungi al patto la routine del gradino 21, avvolta come le altre.
+4. Con il primo rapporto: apri le voci in sospeso correttive degli errori nuovi, ciascuna con la
+   sua riproduzione, e chiudile con la routine della lezione 7 (il test che lo riproduce in
+   rosso).
+
+**Verifica di completezza.** Il tuo errore provocato è arrivato alla cattura, all'allerta e al
+rapporto? C'è qualche errore ricorrente senza voce in sospeso né ragione con data? Un errore
+"sistemato" del rapporto ha il test in rosso nella sua voce in sospeso? Il tasso di errore per
+flusso c'è, ed è confrontato con il periodo precedente? Ci sono dati personali nella cattura?
+
+**Consegna.** La cattura centralizzata e raggruppata, le allerte, il rapporto ciclico con il
+tasso per flusso, `docs/MONITORING.md` completo, la routine nel patto, e una voce in sospeso per
+ogni errore.
+
+**Errori tipici.** "Zero errori in un mese" con utenti reali: la cattura non vede il browser o i
+processi. Un errore con mille occorrenze e il commento "noto, non influisce". Errori che si
+"sistemano" riavviando. E leggere il rapporto degli errori senza incrociarlo con quello delle
+risorse: la query lenta dell'uno è il timeout dell'altro.
+
+**Nel progetto guida.** Il primo rapporto di Turnera ha tre errori: uno nel browser (l'agenda
+fallisce se il nome del professionista ha un apostrofo; 14 volte; voce in sospeso, test in
+rosso), uno nel processo notturno (il provider di messaggi ha restituito un errore una notte; 1
+volta; voce in sospeso per riprovare con registro), e uno "noto" del nipote nel foglio mensile
+(voce in sospeso con data: si sostituisce con il rapporto della lezione R2 nella parte 2). Tasso
+di errore: 0,3 % in "caricare appuntamento", 0 % negli altri.
+
 ## La lista di uscita in produzione
 
-Quando le sedici lezioni sono fatte, il sistema soddisfa questa lista. È la definizione operativa
+Quando le ventidue lezioni sono fatte, il sistema soddisfa questa lista. È la definizione operativa
 di "production grade" in Urazuke, e si può usare come lista di verifica finale, con il
 proprietario, senza aprire il codice:
 
@@ -1954,8 +2275,21 @@ proprietario, senza aprire il codice:
     non programma ha seguito quello di ripristino; il proprietario ha fatto i test di accettazione
     su tutti i flussi (P14).
 16. C'è una retrospettiva con i numeri e una proposta di modifica alla scala (P15).
+17. I registri sono strutturati, con livello configurabile senza deployment, con un identificatore
+    che segue ogni azione dalla schermata al database; le azioni con conseguenza restano in un
+    audit immutabile; nessun dato personale nei registri (P16).
+18. Le query reali sono state misurate al volume atteso, corrette con prima e dopo, e ci sono
+    budget con test per percorso critico (P17).
+19. La scansione delle vulnerabilità gira a ogni push e con un calendario, è un cancello, e non
+    c'è nessun P0 aperto (P18).
+20. C'è una prova di carico con test, eseguita al volume atteso e al "per dieci", con il punto di
+    rottura scritto e le soglie derivate da esso (P19).
+21. L'uso delle risorse e i tempi di risposta sono sorvegliati con allerte e rapporto ciclico, e
+    ogni scostamento ha una causa o una voce in sospeso (P20).
+22. Gli errori si catturano nel backend, nei processi e nel browser, si raggruppano, si riportano
+    per ciclo con il tasso per flusso, e nessuno resta senza voce in sospeso (P21).
 
-Se tutte e sedici danno "sì", il sistema è pronto per entrare in esercizio. Se qualcuna dà "no",
+Se tutte e ventidue danno "sì", il sistema è pronto per entrare in esercizio. Se qualcuna dà "no",
 sai già quale gradino risalire.
 
 ---

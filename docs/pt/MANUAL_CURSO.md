@@ -57,11 +57,12 @@ evidência, e de saber exatamente que evidência pedir a ele em cada passo.
    basta. Não precisa de mais.
 3. **Um projeto.** O ideal é que seja seu: um sistema de que você precisa ou que um cliente lhe
    pediu, com usuários que vão usá-lo. Se não tem um, use o **projeto-guia** que descrevo abaixo;
-   está pensado para passar pelos dezesseis degraus sem pular nenhum. Se o que você tem é um
+   está pensado para passar pelos vinte e dois degraus sem pular nenhum. Se o que você tem é um
    sistema que já existe e é preciso corrigir ou fazer crescer, esta primeira parte lhe ensina o
    método sobre um projeto novo, e a [parte 2 do curso](MANUAL_CURSO_EVOLUTIVO.md) lhe ensina a
    normalizá-lo primeiro, com um segundo projeto-guia herdado.
-4. **Tempo.** O curso tem dezesseis lições, uma por degrau, e um calendário que diz em que semana
+4. **Tempo.** O curso tem vinte e duas lições, uma por degrau, e um calendário que diz em que
+   semana
    cai cada coisa (ver "O calendário do curso"). Um projeto pequeno, de ponta a ponta, são entre
    seis e oito semanas de trabalho parcial.
 5. **Um dono do domínio com tempo para decidir.** Se o projeto é seu, é você. Se é de um cliente,
@@ -102,8 +103,8 @@ orientativas; o que não é orientativo é a ordem e, sobretudo, o que acontece 
 | 2 | 5, 6, 7 | **Primeiro bloco funcional** (a agenda básica). Você abre o bloco convertendo o pedido em pendências especificadas. Com cada pendência: decisões, teste em vermelho, teste de ponta a ponta do fluxo, captura da tela que você olha. No fechamento do bloco: bateria completa de ponta a ponta, e você usa o sistema no ambiente de teste seguindo os fluxos do bloco. |
 | 3 | 8, 9, 10 | **Segundo bloco** (pacientes e busca). As três lições restantes do ciclo se aprendem sobre este bloco. Mesmo fechamento: ponta a ponta de todos os fluxos, testes humanos, manual de usuário com as telas novas. |
 | 4 | 11, 12 | **Saída para produção, primeira metade.** Auditoria por outra sessão. Cadeados. E só depois, o **terceiro bloco** (lembretes e sinal), construído com o ciclo completo e deixado em modo de ensaio. |
-| 5 | 13, 14 | **Saída para produção, segunda metade.** Fechamento da cadeia para produção com caminho de volta provado. Os três manuais; alguém que não programa segue o de recuperação. **Testes de aceitação** seus ou do dono sobre todos os fluxos. Primeira implantação em produção sem usuários. |
-| 6 | 15 | **Operação.** Você habilita os lembretes depois de olhar o registro de ensaio. Agente residente. Retrospectiva com números e proposta de mudança à escada. |
+| 5 | 13, 14, 16, 17, 18, 19 | **Saída para produção, segunda metade.** Fechamento da cadeia para produção com caminho de volta provado. Observabilidade com nível configurável, persistência medida antes e depois, varredura de vulnerabilidades como comporta, teste de carga com o ponto de ruptura. Os três manuais; alguém que não programa segue o de recuperação. **Testes de aceitação** seus ou do dono sobre todos os fluxos. Primeira implantação em produção sem usuários. |
+| 6 | 15, 20, 21 | **Operação.** Você habilita os lembretes depois de olhar o registro de ensaio. Os dois monitoramentos montados na semana da implantação: recursos e desempenho, erros; o primeiro relatório cíclico lido com o dono. Agente residente. Retrospectiva com números e proposta de mudança à escada. |
 
 Se o seu projeto é maior, o que se estica são as semanas 2 e 3 (mais blocos), não a 1 nem a 4 e
 5. E se em algum momento você se encontrar fazendo infraestrutura na semana 3, ou rodando a
@@ -111,9 +112,9 @@ bateria de ponta a ponta pela primeira vez na semana 5, volte ao calendário: al
 
 ### O projeto-guia: "Turnera"
 
-Se você não tem projeto próprio, use este. É pequeno, mas tem tudo o que é preciso para que nenhum
-dos dezesseis degraus seja de mentira: usuários reais, dados pessoais, mensagens que saem para o
-mundo, e dinheiro.
+Se você não tem projeto próprio, use este. É pequeno, mas tem tudo o que é preciso para que
+nenhum dos vinte e dois degraus seja de mentira: usuários reais, dados pessoais, mensagens que
+saem para o mundo, e dinheiro.
 
 **O negócio.** Um consultório (pode ser um escritório, um salão de beleza, uma oficina: qualquer
 lugar que marca horários). Hoje as consultas se anotam num caderno e se confirmam pelo WhatsApp à
@@ -1880,9 +1881,318 @@ diferença de configuração entre teste e produção antes de promover, não s�
 
 ---
 
+## Fase de qualidade operacional: lições 16 a 21
+
+Estas seis lições são as que eu fazia sem nomear, e que um leitor me pediu, com razão, que eu
+escrevesse. Quatro se fazem na semana 5, junto com as lições 13 e 14 e antes da primeira
+implantação em produção: observabilidade, persistência, vulnerabilidades e desempenho. Duas se
+montam na semana 6, a da primeira implantação, e rodam sozinhas a partir daí: os dois
+monitoramentos. Se você está começando, cada contrato destes seis degraus tem um parágrafo "Se
+você está começando" que explica as suas palavras na linguagem de todos os dias; leia-o antes da
+lição.
+
+### Lição 16 — Observabilidade e rastreabilidade, com nível configurável
+
+**O que você tem que entender.** Quando algo falhar em produção, você vai querer saber o que
+aconteceu sem abrir o código e sem que o agente "revise": buscar um número e ver aparecer a
+história completa dessa ação, da tela ao banco. Isso é um *registro estruturado* com um
+*identificador de correlação*. E você vai querer subir o detalhe do que o sistema escreve, um
+minuto, enquanto investiga, sem voltar a implantar: isso é o *nível configurável*. A
+*rastreabilidade* é a outra metade: toda ação com consequência (cobrou, enviou, apagou) fica numa
+lista que a aplicação não pode editar, com quem, quando e o quê. Sem isto, o agente residente da
+lição 15 opera às cegas e os monitoramentos das lições 20 e 21 não têm o que olhar
+[Ref. 16](REFERENCIAS.md#ref-16).
+
+**Antes de enviar o prompt**, com as suas mãos e com o dono:
+
+- `docs/DEPLOYMENT.md` (lição 13), com como se lê a configuração por ambiente: o nível vai ser
+  mais uma variável.
+- `docs/LOCKS.md` (lição 12): a lista de ações que têm que ficar na auditoria.
+- Em `docs/INITIAL_SURVEY.md`, a lista de que dados são pessoais (na Turnera: nome, telefone,
+  e-mail e documento do paciente), escrita com a encarregada. Os registros têm que mascará-los;
+  é uma obrigação legal.
+- A sua decisão de onde vivem os registros e quanto se conservam. Para o curso: um arquivo
+  rotacionado no servidor, noventa dias.
+
+1. Cole o prompt inicial do contrato do degrau 16 (em `docs/peldanos/`), tal como está.
+2. Quando ele lhe mostrar o identificador de um pedido real, procure-o você nos registros do
+   ambiente de teste: tem que aparecer na tela, no backend, no banco e na chamada ao provedor de
+   mensagens.
+3. Suba o nível para depuração você mesmo, faça uma ação, olhe, baixe-o. Se você teve que
+   implantar, não está subido.
+4. Procure "João" (ou qualquer nome de teste) nos registros: não pode estar.
+
+**Antes de enviar o prompt** da rotina: `docs/OBSERVABILITY.md` lido por você, e o nível subido e
+baixado por você uma vez.
+
+5. Acrescente ao contrato a rotina do degrau 16 (no contrato, "Rotina"), envolvida em "Add this
+   routine to `docs/WORKING_AGREEMENT.md`:" como as demais.
+
+**Verificação de completude.** Você seguiu um identificador por todas as camadas? Mudou o nível
+sem implantar? Há algum dado pessoal nos registros? O cancelamento de um turno em teste ficou na
+auditoria com quem e quando? `docs/OBSERVABILITY.md` basta para você encontrar um registro
+sozinho?
+
+**Entrega.** Registros estruturados com nível configurável, o identificador propagado, a
+auditoria de ações com consequência, `docs/OBSERVABILITY.md`, e a rotina no contrato.
+
+**Erros típicos.** Aceitar "logs" que cada módulo escreve de um jeito. Deixar produção em
+depuração "por enquanto". E que o identificador não chegue à tarefa noturna de lembretes, que é
+justamente onde os incidentes se perdem.
+
+**No projeto-guia.** O identificador de "cancelar o turno 17" aparece no clique, no servidor, na
+linha marcada no banco e no e-mail ao profissional. A auditoria diz "recepcao1 cancelou o turno
+17 às 10:42 a partir da agenda do dia; resultado: ok". A encarregada sobe o nível para
+rastreamento para ver por que um lembrete demorou, encontra-o, e baixa-o.
+
+### Lição 17 — Otimização da camada de persistência, medida antes e depois
+
+**O que você tem que entender.** O banco de dados é onde os sistemas morrem devagar: bem com cem
+turnos, mal com cem mil. Um *índice* é como o de um livro: sem ele, o banco lê a tabela inteira
+para encontrar um turno. Um *laço N+1* é fazer cem consultas para mostrar cem turnos em vez de
+uma. Esta lição aplica a lição 9 ao banco: medir cada consulta com um medidor com teste, mudar o
+que os números dizem, medir de novo sobre os mesmos dados, e deixar um orçamento com teste para
+que não volte [Ref. 18](REFERENCIAS.md#ref-18), [Ref. 37](REFERENCIAS.md#ref-37). Não é
+reescrever o banco nem mudar de motor: isso foi a lição 3.
+
+**Antes de enviar o prompt**, com as suas mãos:
+
+- `docs/SIZING.md` e `docs/VOLUME_SURVEY.md` (lição 3): os volumes a carregar.
+- O ambiente de teste com dados **ao volume esperado**: para a Turnera, dez mil turnos e trinta
+  mil mensagens de um ano, gerados por um script que o agente deixa no repositório (peça-o como
+  pendência prévia, com a forma da árvore semântica).
+- `docs/PRODUCER_CONSUMER_MAP.md` (lição 8), em dia.
+- Um caso conhecido para o teste do medidor: a tabela de profissionais tem três linhas.
+
+1. Cole o prompt inicial do contrato do degrau 17.
+2. Leia a lista de mudanças propostas como a encarregada leria uma lista de consertos do
+   consultório: você entende o que cada uma ganha e que risco tem? Aprove ou recuse uma por uma.
+   Refaça uma conta à mão (linhas por mês da tabela de turnos).
+
+**Antes de enviar o prompt** de fechamento: a lista com o seu veredicto por mudança e a conta
+refeita que coincide.
+
+3. Cole o prompt de fechamento do contrato do degrau 17, com a lista aprovada.
+4. Rode você um medidor antes e depois, com os dois comandos que ele lhe deu.
+
+**Verificação de completude.** As suas rodadas coincidem com a tabela de `docs/PERSISTENCE.md`?
+Resta alguma consulta que leia uma tabela inteira num fluxo crítico? Cada tabela tem retenção
+escrita? Os orçamentos têm teste (peça-lhe que ultrapasse um e lhe mostre o vermelho)?
+
+**Entrega.** Os medidores com teste, `docs/PERSISTENCE.md` com antes e depois, os orçamentos com
+teste, e a bateria em verde.
+
+**Erros típicos.** Medir com os dez registros do esqueleto. Aceitar "é melhor migrarmos para
+outro banco". E melhorar um número quebrando a planilha mensal que lia essa tabela: faltou o
+mapa.
+
+**No projeto-guia.** A agenda do dia fazia uma consulta por turno (o laço da lição 9): 52
+consultas para 50 turnos passam a 3. A busca de pacientes por nome lia a tabela inteira: um
+índice a baixa de 800 milissegundos para 4 com dez mil pacientes. Retenção: as mensagens se
+arquivam ao fim de um ano; os turnos, nunca. Orçamento: 4 consultas para a agenda, com teste.
+
+### Lição 18 — Varredura e solução de vulnerabilidades
+
+**O que você tem que entender.** Uma *vulnerabilidade* é um defeito que alguém pode usar para
+entrar, roubar dados ou fazer com que o sistema faça o que não deve. A auditoria (lição 11) as
+busca com critério, de vez em quando; esta lição as busca por máquina, o tempo todo, em quatro
+camadas: as *dependências* (peças de terceiros que o seu sistema usa, com os seus defeitos
+conhecidos publicados), o código (*análise estática*), os segredos no histórico do repositório, e
+a configuração do servidor. E uma regra: atualizar uma dependência é uma mudança, e passa pelo
+ciclo; "subi a versão para fechar o achado" sem regressão é a forma mais comum de quebrar a
+produção numa sexta-feira [Ref. 41](REFERENCIAS.md#ref-41), [Ref. 23](REFERENCIAS.md#ref-23).
+
+**Antes de enviar o prompt**, com as suas mãos:
+
+- A integração contínua rodando (lição 4 e 13), e quanta cota lhe resta: a varredura acrescenta
+  minutos.
+- `docs/ENVIRONMENTS_SURVEY.md` com o servidor, as portas e quem administra o domínio.
+- `docs/AUDIT_[data].md` (lição 11), para que não repita o conhecido.
+- O seu critério de P0, em duas linhas: para a Turnera, o que deixe entrar sem credencial, o que
+  exponha dados de pacientes, o que permita mandar mensagens ou cobrar sem controle.
+
+1. Cole o prompt inicial do contrato do degrau 18, com o seu critério no vazio.
+2. Leia `docs/SECURITY_[data].md`. Escolha dois achados e peça-lhe a evidência. Ele diz o que NÃO
+   varreu?
+
+**Antes de enviar o prompt** de fechamento: a lista de correções aprovadas; para cada atualização
+de dependência, a consciência de que vai rodar a regressão e a ponta a ponta.
+
+3. Cole o prompt de fechamento do contrato do degrau 18.
+4. Peça-lhe que meta de propósito, num ramo, uma dependência com vulnerabilidade conhecida: a
+   cadeia tem que ficar em vermelho.
+
+**Verificação de completude.** A última rodada da varredura está em verde e de que data? Cada P0
+tem pendência fechada com evidência? A varredura é comporta em `docs/GATES.md`? Você sabe quando
+roda a próxima varredura programada?
+
+**Entrega.** A varredura em quatro camadas na cadeia e com calendário, `docs/SECURITY_[data].md`,
+`docs/SECURITY.md`, os P0 e P1 corrigidos, a comporta.
+
+**Erros típicos.** Uma varredura "limpa de primeira" num sistema de mais de um mês: faltou uma
+camada. Dez dependências atualizadas num commit. Um P0 "aceito" sem pendência nem data.
+
+**No projeto-guia.** A varredura da Turnera encontra: uma dependência do gerador de PDF com uma
+vulnerabilidade conhecida (P1, atualiza-se com regressão e ponta a ponta); o cabeçalho que impede
+embutir a agenda em outro site, ausente (P1, uma linha de configuração, com teste); uma chave de
+teste do provedor de pagamentos no histórico do repositório (P0: rotaciona-se, ainda que seja de
+teste); e uma porta do banco aberta para o mundo no servidor de teste (P0: fecha-se). A varredura
+fica como comporta e roda às segundas-feiras.
+
+### Lição 19 — Testes de desempenho em volume e ponto de ruptura
+
+**O que você tem que entender.** A lição 3 dimensionou com contas; esta as comprova com o sistema
+rodando. Um *teste de carga* simula muitos usuários ao mesmo tempo. Olha-se a *vazão* (ações por
+segundo), a *latência* (quanto demora cada ação; a mediana e o *percentil 95*, que é o que veem
+os que reclamam) e a taxa de erro, ao volume esperado e ao "vezes dez". E depois sobe-se a carga
+até que algo quebre: o *ponto de ruptura* não é "fica lento" e sim "as conexões ao banco se
+esgotaram em 180 usuários". Esse número é o mais útil da fase, porque dele saem os *limiares* de
+alerta da lição 20 [Ref. 12](REFERENCIAS.md#ref-12), [Ref. 44](REFERENCIAS.md#ref-44).
+
+**Antes de enviar o prompt**, com as suas mãos e com o dono:
+
+- `docs/SIZING.md` com o volume esperado e o "vezes dez": para a Turnera, duas usuárias no pico e
+  quarenta turnos por dia; vezes dez, vinte usuárias e quatrocentos turnos.
+- Os fluxos críticos para o vazio do prompt: cadastrar um turno, ver a agenda do dia, buscar um
+  paciente, o envio noturno de lembretes.
+- A tolerância da encarregada para a tela mais usada (a agenda do dia): "se demorar mais de dois
+  segundos, as meninas reclamam".
+- O ambiente de teste com os dados ao volume (lição 17) e, se difere de produção em recursos,
+  anotado como em `docs/ENVIRONMENTS_SURVEY.md`.
+- A observabilidade da lição 16 acesa.
+
+1. Cole o prompt inicial do contrato do degrau 19, com os fluxos e a tolerância nos vazios.
+2. Leia `docs/PERFORMANCE_[data].md` com a tolerância ao lado: a agenda do dia entra em dois
+   segundos ao volume esperado? E no vezes dez? O que quebrou primeiro e a que carga?
+3. Decida com a encarregada até que volume se corrigem os gargalos agora: se pensam vendê-lo a
+   outros consultórios, o "vezes dez" é agora; se não, com data.
+
+**Antes de enviar o prompt** de fechamento: o relatório lido, a decisão sobre o "vezes dez".
+
+4. Cole o prompt de fechamento do contrato do degrau 19.
+5. Rode você o script ao volume esperado com o comando que ele lhe deu: os números têm que se
+   parecer.
+
+**Verificação de completude.** A tela mais usada entra na tolerância, ou há uma pendência com o
+número? O ponto de ruptura diz o que quebrou e a que carga? Os limiares de
+`docs/PERFORMANCE.md` estão abaixo do ponto de ruptura e acima do esperado? O teste é comporta e
+a primeira rodada está arquivada?
+
+**Entrega.** O script de carga com teste, `docs/PERFORMANCE_[data].md`, `docs/PERFORMANCE.md` com
+limiares e comporta, e uma pendência por gargalo.
+
+**Erros típicos.** "Aguenta o vezes dez sem problemas" sem ponto de ruptura: não subiu a carga o
+suficiente. Um script que bate na API e não na tela. Corrigir gargalos durante o teste, "já que
+estava".
+
+**No projeto-guia.** Ao volume esperado, a agenda responde em 300 milissegundos; no vezes dez, em
+1,4 segundo; o envio noturno de 400 lembretes demora 50 segundos. O ponto de ruptura: com 180
+usuárias concorrentes esgota-se o pool de conexões (10) e as ações começam a falhar. Limiares:
+alerta se a agenda passar de 1,5 segundo ou se as conexões em uso passarem de 7. Pendência: o
+envio noturno em lotes de 50, porque a encarregada sim quer vendê-lo.
+
+### Lição 20 — Monitoramento de recursos e desempenho, com relatório cíclico
+
+**O que você tem que entender.** A lição 19 diz como se comporta o sistema um dia; a produção é
+todos os dias, com os dados crescendo. *Monitorar* é olhar por máquina, o tempo todo, o uso de
+*recursos* (processador, memória, disco, conexões, cota do provedor de mensagens) e o tempo de
+resposta de cada função e cada consulta, e avisar quando algo sai de faixa: acima de um *limiar*
+(os da lição 19) ou muito diferente da *linha base* (o que vinha dando). Um *alerta* avisa na
+hora; o *relatório cíclico* se lê com calma a cada semana ou a cada mês. Duas regras: um alerta
+que ninguém lê é um defeito do alerta; e um limiar não se sobe para calar um alerta sem uma razão
+medida escrita [Ref. 37](REFERENCIAS.md#ref-37), [Ref. 39](REFERENCIAS.md#ref-39).
+
+**Antes de enviar o prompt**, com as suas mãos e com o dono:
+
+- `docs/OBSERVABILITY.md` (16), `docs/PERSISTENCE.md` (17) e `docs/PERFORMANCE.md` (19) fechados.
+- O canal de alertas decidido com a encarregada: a quem chega e por onde. Para o curso: ao seu
+  e-mail e à sua mensageria.
+- O ciclo: mensal para a Turnera; semanal se houvesse dinheiro em jogo todos os dias.
+- O desvio que você considera alarme: 30 % sobre a média dos últimos catorze dias.
+- Acesso de somente leitura do monitoramento à produção, com a credencial fora do chat.
+
+1. Cole o prompt inicial do contrato do degrau 20, com o canal, o ciclo e o desvio nos vazios.
+2. Peça-lhe que ultrapasse um limiar de propósito em teste: o alerta tem que lhe chegar pelo
+   canal.
+3. Leia o primeiro relatório: cada evento fora de faixa tem que ter causa ou proposta.
+
+**Antes de enviar o prompt** da rotina: o primeiro relatório lido por você.
+
+4. Acrescente ao contrato a rotina do degrau 20, envolvida em "Add this routine to
+   `docs/WORKING_AGREEMENT.md`:".
+
+**Verificação de completude.** O alerta provocado chegou até você? O relatório tem cada desvio
+com causa ou proposta? Há uma pendência para cada desvio que você decidiu atender, com o número
+como critério? Algum limiar subiu desde a lição 19, e com que razão? O relatório olha a cota do
+provedor de mensagens?
+
+**Entrega.** Coleta com história, alertas, o relatório cíclico, `docs/MONITORING.md`, a rotina no
+contrato.
+
+**Erros típicos.** Alertas todos os dias que ninguém lê. Três relatórios seguidos que dizem "tudo
+normal". Um limiar subido "para que pare de avisar". Dados pessoais guardados "para
+diagnosticar".
+
+**No projeto-guia.** O primeiro relatório mensal da Turnera diz: disco a 40 %, memória estável, a
+agenda do dia em 320 milissegundos de mediana (linha base), a busca de pacientes subiu de 4 para
+9 milissegundos (a tabela cresce; dentro da faixa), e a cota de mensagens a 60 % (proposta:
+avisar aos 80 %). Um desvio: o relatório mensal da encarregada demorou 11 segundos no dia 1
+(proposta: pré-calculá-lo de noite; pendência).
+
+### Lição 21 — Monitoramento de erros e relatório cíclico
+
+**O que você tem que entender.** Um sistema em produção produz erros que ninguém reporta: a
+recepcionista que viu a tela em branco e tentou de novo, a tarefa noturna que se interrompeu.
+Esta lição os *captura* nos três lugares onde se escondem (o backend, as tarefas e o navegador),
+*agrupa*-os (mil vezes o mesmo erro é uma entrada com um contador), avisa dos novos e dos que
+crescem, e produz um relatório com a *taxa de erro por fluxo* (de cada cem turnos cadastrados,
+quantos falharam). Duas regras: nenhum erro sem pendência, e não existe o "erro conhecido" sem
+uma pendência que diga por que se tolera e até quando [Ref. 43](REFERENCIAS.md#ref-43),
+[Ref. 22](REFERENCIAS.md#ref-22).
+
+**Antes de enviar o prompt**, com as suas mãos:
+
+- `docs/OBSERVABILITY.md` (16): os erros já saem com identificador, versão e ator.
+- `docs/LOCKS.md` (12): os erros em ações com consequência são alerta imediato.
+- O canal e o ciclo da lição 20, e o número de ocorrências por hora de um erro conhecido a partir
+  do qual você quer alerta: para a Turnera, dez.
+- Onde se guardam os erros e por quanto tempo, sem dados pessoais.
+
+1. Cole o prompt inicial do contrato do degrau 21, com o canal, o ciclo e o número nos vazios.
+2. Provoque você um erro no navegador, em teste (uma data impossível no formulário de turno, por
+   exemplo): tem que aparecer na captura com o seu identificador, e lhe chegar o alerta se for
+   novo.
+
+**Antes de enviar o prompt** da rotina: o primeiro relatório de erros lido por você, e
+`docs/PENDING.md` à mão.
+
+3. Acrescente ao contrato a rotina do degrau 21, envolvida como as demais.
+4. Com o primeiro relatório: abra as pendências corretivas dos erros novos, cada uma com a sua
+   reprodução, e feche-as com a rotina da lição 7 (o teste que o reproduz em vermelho).
+
+**Verificação de completude.** O seu erro provocado chegou à captura, ao alerta e ao relatório?
+Há algum erro recorrente sem pendência nem razão com data? Um erro "corrigido" do relatório tem o
+teste em vermelho na sua pendência? A taxa de erro por fluxo está lá, e comparada com o período
+anterior? Há dados pessoais na captura?
+
+**Entrega.** A captura centralizada e agrupada, os alertas, o relatório cíclico com a taxa por
+fluxo, `docs/MONITORING.md` completo, a rotina no contrato, e uma pendência por erro.
+
+**Erros típicos.** "Zero erros num mês" com usuários reais: a captura não vê o navegador ou as
+tarefas. Um erro com mil ocorrências e o comentário "conhecido, não afeta". Erros que se
+"corrigem" reiniciando. E ler o relatório de erros sem cruzá-lo com o de recursos: a consulta
+lenta de um é o tempo de espera esgotado do outro.
+
+**No projeto-guia.** O primeiro relatório da Turnera tem três erros: um no navegador (a agenda
+falha se o nome do profissional tiver um apóstrofo; 14 vezes; pendência, teste em vermelho), um
+na tarefa noturna (o provedor de mensagens devolveu um erro numa noite; 1 vez; pendência para
+retentar com registro), e um "conhecido" do sobrinho na planilha mensal (pendência com data:
+substitui-se pelo relatório da lição R2 na parte 2). Taxa de erro: 0,3 % em "cadastrar turno",
+0 % nos demais.
+
 ## A lista de saída para produção
 
-Quando as dezesseis lições estão feitas, o sistema cumpre esta lista. É a definição operacional
+Quando as vinte e duas lições estão feitas, o sistema cumpre esta lista. É a definição operacional
 de "production grade" no Urazuke, e pode ser usada como lista de verificação final, com o dono,
 sem abrir o código:
 
@@ -1914,9 +2224,22 @@ sem abrir o código:
     não programa seguiu o de recuperação; o dono fez os testes de aceitação sobre todos os fluxos
     (P14).
 16. Há uma retrospectiva com números e uma proposta de mudança à escada (P15).
+17. Os registros são estruturados, com nível configurável sem implantar, com um identificador que
+    segue cada ação da tela ao banco; as ações com consequência ficam numa auditoria imutável;
+    nenhum dado pessoal nos registros (P16).
+18. As consultas reais foram medidas ao volume esperado, corrigidas com antes e depois, e há
+    orçamentos com teste por caminho crítico (P17).
+19. A varredura de vulnerabilidades roda em cada push e com calendário, é comporta, e não há P0
+    aberto (P18).
+20. Há um teste de carga com teste, rodado ao volume esperado e ao "vezes dez", com o ponto de
+    ruptura escrito e os limiares derivados dele (P19).
+21. O uso de recursos e os tempos de resposta são vigiados com alertas e relatório cíclico, e
+    cada desvio tem causa ou pendência (P20).
+22. Os erros são capturados no backend, nas tarefas e no navegador, são agrupados, são relatados
+    por ciclo com a taxa por fluxo, e nenhum fica sem pendência (P21).
 
-Se as dezesseis dão "sim", o sistema está pronto para implantar. Se alguma dá "não", você já sabe
-que degrau voltar a subir.
+Se as vinte e duas dão "sim", o sistema está pronto para implantar. Se alguma dá "não", você já
+sabe que degrau voltar a subir.
 
 ---
 

@@ -33,6 +33,12 @@
 | 13 — 持续集成、环境、密钥与部署 | `peldano-13-ci-entornos-secretos-deploy.md` | 运维 | 面向生产的收尾；每次部署的例行 |
 | 14 — 活的文档与无需 AI 的手册 | `peldano-14-documentacion-viva.md` | 运维 | 每个功能块收尾时；生产之前完整 |
 | 15 — 驻留代理与带数字的复盘 | `peldano-15-agente-residente-y-retrospectiva.md` | 运维与收尾 | 进入运维时；每个阶段收尾时 |
+| 16 — 完整的可观测性与可追溯性，级别可配置 | `peldano-16-observabilidad-y-trazabilidad.md` | 运维质量 | 上线生产，第 13 级之后、第 19 级之前 |
+| 17 — 持久化层的优化 | `peldano-17-persistencia.md` | 运维质量 | 上线生产，第 16 级之后、第 19 级之前；每当一条查询超出范围时重复 |
+| 18 — 漏洞的扫描与解决 | `peldano-18-vulnerabilidades.md` | 运维质量 | 第一次部署之前；之后，每次 push 和每周 |
+| 19 — 性能测试与断裂点 | `peldano-19-rendimiento-y-punto-de-ruptura.md` | 运维质量 | 第一次部署之前；每次会改变架构、持久化或某条关键流程的部署之前 |
+| 20 — 资源与性能的监控，周期报告 | `peldano-20-monitoreo-de-recursos-y-rendimiento.md` | 运维质量 | 第一次部署的那一周；之后自己跑，按周期阅读 |
+| 21 — 错误监控，周期报告 | `peldano-21-monitoreo-de-errores.md` | 运维质量 | 第一次部署的那一周，和第 20 级一起 |
 
 阶段：**启动**每个项目登一次；**循环**每次变更都重复；**运维**在系统已上线之后。第 15 级
 回到第 0 级，为下一个项目做准备。完整的时间线，包括台阶与台阶之间发生的事，在主文档的

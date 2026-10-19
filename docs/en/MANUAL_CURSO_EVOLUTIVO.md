@@ -39,7 +39,8 @@ test red and the first new functionality built with the full method.
 | 2 | N4, N5 | **The belt.** Test environment with anonymised data, deployment run twice, secrets rotated, characterization suite with its red by mutation. Locks confirmed on whatever already acts. At the close: the system runs in test and the suite is green. |
 | 3 | N6, N7, R1 | **Measure, order, correct.** Sizing measured. The backlog with the two marks. The first block: the known bug, closed in corrective mode with its paired items. |
 | 4 | R2 | **Evolve.** The second block: the new functionality, built with the full method (lessons 5 to 10 of the first part), with the characterization as the regression. |
-| 5 and 6 | 11, 12, 13, 14, 15 of the first part | **Go-live and operation.** Periodic audit, remaining locks, closing of the path to production, the three manuals (which the legacy system did not have), resident agent, retrospective with the question a legacy system brings of its own: how much it cost to normalize. |
+| 5 and 6 | 11, 12, 13, 14, 16, 17, 18, 19 of the first part | **Go-live.** Periodic audit, remaining locks, closing of the path to production, the three manuals (which the legacy system did not have), and the four operational quality steps that precede the deployment: complete observability, persistence with what N6 measured, the vulnerability scan as a gate, the load test with the breaking point. |
+| 7 | 15, 20, 21 of the first part | **Operation.** The two monitorings set up in the week of the deployment, with the first reading as the legacy system's baseline; resident agent; retrospective with the question a legacy system brings of its own: how much it cost to normalize. |
 
 ### The guide project: "Turnera inherited"
 
@@ -763,8 +764,13 @@ seven flows: the five characterization ones, the one for the R1 bug and the one 
 
 ## Afterwards: go-live and operation
 
-From here on, the legacy system is a system with method, and lessons 11 to 15 of the first part
-apply exactly as they are, with three notes. The audit of lesson 11 compares against the N3 one:
+From here on, the legacy system is a system with method, and lessons 11 to 21 of the first part
+apply exactly as they are, with four notes. The first is about the six operational quality steps:
+the minimum observability and the vulnerability scan already came in with the belt, the
+persistence measurements are already in N6, and the load test is run with those volumes before
+the first deployment; the two monitorings start with the first reading as the baseline, and
+whatever was already wrong on the first day turns into a pending item with its mark. The other
+three notes are these. The audit of lesson 11 compares against the N3 one:
 how much debt was paid, how much remains. The manuals of lesson 14 in a legacy system usually do
 not exist, and they are generated from the system as it is and from the closed pending items,
 which now do document what was done. And the retrospective of lesson 15 has a question of its own

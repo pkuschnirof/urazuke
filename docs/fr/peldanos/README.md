@@ -40,6 +40,12 @@ clic.
 | 13 — Intégration continue, environnements, secrets et déploiement | `peldano-13-ci-entornos-secretos-deploy.md` | exploitation | clôture vers la production ; routine à chaque déploiement |
 | 14 — Documentation vivante et manuels sans IA | `peldano-14-documentacion-viva.md` | exploitation | à la clôture de chaque bloc ; complets avant la production |
 | 15 — L'agent résident et la rétrospective chiffrée | `peldano-15-agente-residente-y-retrospectiva.md` | exploitation et clôture | à l'entrée en exploitation ; à la clôture de chaque étape |
+| 16 — Observabilité et traçabilité totales, avec un niveau configurable | `peldano-16-observabilidad-y-trazabilidad.md` | qualité opérationnelle | mise en production, après le 13 et avant le 19 |
+| 17 — Optimisation de la couche de persistance | `peldano-17-persistencia.md` | qualité opérationnelle | mise en production, après le 16 et avant le 19 ; se répète quand une requête sort de la plage |
+| 18 — Scan et résolution des vulnérabilités | `peldano-18-vulnerabilidades.md` | qualité opérationnelle | avant le premier déploiement ; ensuite, à chaque push et chaque semaine |
+| 19 — Tests de performance et point de rupture | `peldano-19-rendimiento-y-punto-de-ruptura.md` | qualité opérationnelle | avant le premier déploiement ; avant chaque déploiement qui change l'architecture, la persistance ou un flux critique |
+| 20 — Supervision des ressources et de la performance, rapport cyclique | `peldano-20-monitoreo-de-recursos-y-rendimiento.md` | qualité opérationnelle | semaine du premier déploiement ; ensuite, elle tourne seule et se lit par cycle |
+| 21 — Supervision des erreurs, rapport cyclique | `peldano-21-monitoreo-de-errores.md` | qualité opérationnelle | semaine du premier déploiement, avec le 20 |
 
 Tronçons : **démarrage** se gravit une fois par projet ; **boucle** se répète à chaque changement ;
 **exploitation** quand le système est déjà vivant. Le 15 revient au 0 pour le projet suivant. La

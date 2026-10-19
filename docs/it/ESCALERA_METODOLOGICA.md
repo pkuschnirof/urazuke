@@ -31,7 +31,7 @@ metodo chiede: che ogni affermazione del modello arrivi con il suo riscontro, e 
 si possa verificare senza leggere il codice. Il nome non si traduce; il sottotitolo, "il metodo
 del riscontro", sì: *el método de la evidencia*, *the evidence method*, *o método da evidência*,
 *la méthode de la preuve*, *die Nachweis-Methode*, 裏付けの方法, 验证方法. In questo documento, "la
-scala" è la struttura del metodo — i suoi sedici gradini — e "Urazuke" è il metodo intero.
+scala" è la struttura del metodo — i suoi ventidue gradini — e "Urazuke" è il metodo intero.
 
 ## Di cosa si tratta
 
@@ -64,7 +64,7 @@ Il metodo nasce da due fattori che si sono combinati, e nessuno dei due basta da
 venga dai sistemi riconosce subito: rilevazione prima di progettare, requisiti scritti,
 dimensionamento con numeri, progettazione, costruzione, test come prova, deployment riproducibile,
 esercizio, audit periodico, documentazione come parte del prodotto. La maggior parte di ciò che
-esigo nei sedici gradini è ciò che ho sempre esatto in un progetto condotto bene. Non l'ho
+esigo nei ventidue gradini è ciò che ho sempre esatto in un progetto condotto bene. Non l'ho
 inventato per i modelli; l'ho portato da prima.
 
 Il secondo fattore è ciò che gli incidenti di questi cinque mesi mi hanno mostrato, uno dopo
@@ -95,7 +95,7 @@ d'uso, e conviene sapere in quale ti trovi prima di aprire l'agente, perché cam
 entra:
 
 1. **Progetto nuovo.** Cartella vuota e un proprietario con una richiesta. Si entra dal gradino 0
-   e si salgono i sedici in ordine. È ciò che descrive questo documento, con i suoi contratti e il
+   e si salgono i ventidue in ordine. È ciò che descrive questo documento, con i suoi contratti e il
    manuale del corso.
 2. **Evolutivo-correttivo su un sistema fatto con il metodo.** Il sistema ha già salito la scala:
    ha contratto, mappa, voci in sospeso chiuse con prove, batteria, deployment e manuali. Si entra
@@ -201,10 +201,13 @@ Ogni gradino ha otto parti, sempre le stesse, perché si possano confrontare:
 Due chiarimenti importanti. Primo: **la scala è neutrale rispetto allo strumento**. Ogni artefatto
 è un file, un test o uno script; nessuno esige il mio strumento né nessun altro. Forge li
 automatizza (i cancelli, i comandi, il registro delle voci in sospeso), ma il gradino esiste
-senza Forge. Secondo: **i gradini non sono strettamente sequenziali**. Ci sono tre fasi: quelli
-dallo 0 al 4 sono di avvio e si salgono una volta per progetto; quelli dal 5 al 10 sono il ciclo
-che si ripete con ogni modifica; e quelli dall'11 al 15 sono di esercizio, quando il sistema è già
-vivo. Il 15 chiude il ciclo e torna allo 0 per il progetto successivo. Ma "non strettamente
+senza Forge. Secondo: **i gradini non sono strettamente sequenziali**. Ci sono quattro fasi:
+quelli dallo 0 al 4 sono di avvio e si salgono una volta per progetto; quelli dal 5 al 10 sono il
+ciclo che si ripete con ogni modifica; quelli dall'11 al 15 sono di esercizio, quando il sistema
+è già vivo; e quelli dal 16 al 21 sono di qualità operativa: quattro che si salgono prima del
+primo deployment in produzione (osservabilità, persistenza, vulnerabilità, rendimento) e due che
+sorvegliano il sistema una volta distribuito (monitoraggio di risorse e di errori). Il 15 chiude
+il ciclo e torna allo 0 per il progetto successivo. Ma "non strettamente
 sequenziali" non vuol dire "in qualunque ordine": la Parte B dice esattamente quando si sale
 ciascuno e cosa succede nel mezzo.
 
@@ -214,7 +217,7 @@ ciascuno e cosa succede nel mezzo.
 
 Questa parte non esisteva nelle versioni precedenti, e la sua assenza era un difetto serio: il
 metodo diceva cosa fare e come verificarlo, ma non diceva **quando**. E "quando" è la metà di un
-metodo. Un lettore che lo prendesse alla lettera poteva salire i sedici gradini uno dopo l'altro e
+metodo. Un lettore che lo prendesse alla lettera poteva salire i ventidue gradini uno dopo l'altro e
 chiedersi in quale momento si fanno, allora, l'infrastruttura, la catena di integrazione e
 deployment continui, l'acquisizione dei requisiti, lo sviluppo della funzionalità, le prove end to
 end di tutti i flussi, lo sguardo umano sulle schermate, e le prove umane di accettazione. Tutto
@@ -223,7 +226,8 @@ questo succede, e succede in momenti precisi, tra i gradini e dentro di essi. Qu
 ### B.1 Le cinque fasi di un progetto
 
 Un progetto condotto con questo metodo passa per cinque fasi. Le tre del mezzo sono quelle che
-corrispondono alle tre fasi della scala; le due agli estremi sono l'acquisizione iniziale e la
+corrispondono alle fasi della scala (la quarta fase, qualità operativa, si ripartisce tra la fase
+3 e la 4); le due agli estremi sono l'acquisizione iniziale e la
 vita in produzione, che il metodo copre comunque anche se non sono "gradini" in sé.
 
 | Fase | Durata tipica in un progetto piccolo | Gradini che si salgono | Cos'altro succede in quella fase |
@@ -231,8 +235,8 @@ vita in produzione, che il metodo copre comunque anche se non sono "gradini" in 
 | 0. Acquisizione | da due giorni a una settimana, in parallelo con la fase 1 | nessuno ancora; è la materia prima dello 0, del 2, del 3 e del 5 | Rilevazione del business con il proprietario, con i metodi classici dell'ingegneria dei requisiti (vedi B.5): interviste, casi d'uso o storie utente, modello di dominio, prototipi di schermata. Si scrive in prosa, incompleta apposta; l'agente la completa chiedendo. |
 | 1. Avvio | una settimana, di fila | 0, 1, 2, 3, 4 | Idoneità, patto, definizione, dimensionamento. E **tutta l'infrastruttura iniziale**: il repository, l'ambiente di test, l'integrazione continua, il primo deployment con il sistema vuoto. |
 | 2. Ciclo | da tre a sei settimane, in blocchi funzionali da una a due settimane | 5, 6, 7, 8, 9, 10 con ogni modifica | Sviluppo funzionale blocco per blocco; test in rosso; prove end to end del flusso appena costruito; sguardo umano su ogni schermata nuova; alla chiusura di ogni blocco, prove umane nell'ambiente di test. |
-| 3. Uscita in produzione | una settimana | 11, 12, 13, 14 | Audit da parte di un'altra sessione; lucchetti su tutto ciò che agisce sul mondo; chiusura della catena di deployment in produzione con rollback provato; i tre manuali; test di accettazione con il proprietario su tutti i flussi. |
-| 4. Esercizio | finché il sistema vive | 15, e il ciclo (da 5 a 10) per ogni evoluzione; 11 periodico | Agente residente; audit ogni uno o due mesi; ogni modifica nuova entra dal ciclo completo ed esce dalla catena di deployment; retrospettiva alla chiusura di ogni tappa. |
+| 3. Uscita in produzione | da una a due settimane | 11, 12, 13, 14, e i quattro di qualità operativa precedenti al deployment: 16, 17, 18, 19 | Audit da parte di un'altra sessione; lucchetti su tutto ciò che agisce sul mondo; chiusura della catena di deployment in produzione con rollback provato; i tre manuali; test di accettazione con il proprietario su tutti i flussi. |
+| 4. Esercizio | finché il sistema vive | 15; 20 e 21 montati nella settimana del primo deployment; il ciclo (da 5 a 10) per ogni evoluzione; 11 e 18 periodici | Agente residente; audit ogni uno o due mesi; ogni modifica nuova entra dal ciclo completo ed esce dalla catena di deployment; retrospettiva alla chiusura di ogni tappa. |
 
 Questa tabella è quella del progetto nuovo. Quando il sistema esiste già e non è nato con il
 metodo, le fasi 0 e 1 si sostituiscono con il tratto di normalizzazione (tre settimane per un
@@ -249,7 +253,7 @@ Qui c'è ciò che mancava. Per ogni fase, quali compiti di ogni tipo si fanno e 
 esatto rispetto ai gradini. Leggi la tabella per righe: ogni riga è un tipo di lavoro, e ogni
 cella dice quando si fa dentro quella fase.
 
-| Tipo di lavoro | Avvio (gradini da 0 a 4) | Ciclo (gradini da 5 a 10, per blocco) | Uscita in produzione (da 11 a 14) | Esercizio (15 e ciclo) |
+| Tipo di lavoro | Avvio (gradini da 0 a 4) | Ciclo (gradini da 5 a 10, per blocco) | Uscita in produzione (da 11 a 14 e da 16 a 19) | Esercizio (15, 20, 21 e ciclo) |
 |---|---|---|---|---|
 | **Acquisizione dei requisiti** | Prima del gradino 0: rilevazione in prosa con il proprietario, con interviste, casi d'uso e modello di dominio. Si completa nel 2 (definizione e albero semantico) e nel 3 (volumetria). | All'apertura di ogni blocco: la richiesta del cliente per quel blocco, così come la direbbe lui, si trasforma in voci in sospeso con **specifica dettagliata** (gradino 5): descrizione, criteri di accettazione, regole applicabili, dati, schermate, casi limite. Le domande che l'agente fa sono l'acquisizione fine. | Prima del 12: rilevazione delle azioni con conseguenza. Prima del 13: rilevazione di ambienti e accessi. | Ogni richiesta nuova entra come voce in sospeso specificata, appesa al suo nodo dell'albero semantico; l'agente residente raccoglie ciò che gli utenti chiedono. |
 | **Infrastruttura** | Tutta quella iniziale, nel gradino 4: repository, struttura, ambiente di test, credenziali, dominio di test. Non si costruisce funzionalità finché lo scheletro vuoto non è distribuito. | Nessuna, salvo che un blocco la esiga (una coda, un servizio esterno). Se la esige, è una voce in sospeso con il suo test. | Nel 13: ambiente di produzione, segreti sul server, dominio reale, backup, monitoraggio minimo. | Le modifiche di infrastruttura entrano dal ciclo e dal 13; mai "a mano, in fretta". |
@@ -313,6 +317,10 @@ all'agente:
   test.
 - **Dopo ogni deployment in produzione**: verificare che la versione che gira è quella voluta, e
   fare una passata in sola lettura sui flussi critici.
+- **Prima del primo deployment, nel 19**: leggere i numeri della prova di carico con la tolleranza
+  del business accanto, e il punto di rottura.
+- **In ogni ciclo del monitoraggio (20 e 21)**: leggere il rapporto ciclico con l'agente e
+  decidere quale scostamento e quale errore diventano voci in sospeso. Mezz'ora per ciclo.
 
 Tutto il resto — i test, le misurazioni, gli audit, la documentazione — lo fa il modello e l'umano
 lo verifica dall'artefatto, non dal codice.
@@ -379,7 +387,7 @@ sessione, come parte della routine del gradino 5.
 
 ---
 
-## Parte C — I sedici gradini
+## Parte C — I ventidue gradini
 
 ### Passo 0 — Questo progetto si può affrontare così? (l'idoneità)
 
@@ -821,6 +829,182 @@ rivede con numeri, e ciò che si impara torna al gradino 0 per il progetto succe
 
 ---
 
+### I sei gradini di qualità operativa (da 16 a 21)
+
+I sedici gradini precedenti fanno sì che il sistema sia ben costruito e si possa sostenere. Questi
+sei fanno qualcosa di diverso e che io avevo lasciato implicito, perché nei miei progetti lo
+facevo senza nominarlo: che il sistema si possa **vedere** mentre gira, che regga il volume per
+cui è stato dimensionato, che non abbia buchi noti, e che, una volta in produzione, nessuno venga
+a sapere di un problema da un utente arrabbiato. Quattro si salgono prima del primo deployment in
+produzione, in quest'ordine: osservabilità (16), persistenza (17), vulnerabilità (18) e rendimento
+(19). Due si montano nella settimana del primo deployment e girano da soli da allora: il
+monitoraggio di risorse e rendimento (20) e quello degli errori (21). I due monitoraggi finiscono
+nello stesso posto di tutto il resto: il ciclo, come voci in sospeso correttive. E i sei valgono
+per i due casi d'uso: in un progetto nuovo, nel posto che dice il loro "quando"; in un legacy, con
+le differenze che segna ogni scheda e che sono dettagliate nel percorso evolutivo-correttivo.
+
+Se sei alle prime armi, ogni contratto di questi sei comincia con un paragrafo che spiega le sue
+parole (registro, indice, vulnerabilità, latenza, soglia) nel linguaggio di tutti i giorni, e il
+glossario le ha tutte.
+
+### Passo 16 — Osservabilità e tracciabilità totali, con livello configurabile
+
+Quando qualcosa fallirà in produzione voglio seguire un'azione dalla schermata fino al database
+con un solo identificatore, senza aprire il codice; voglio poter alzare il dettaglio dei registri
+in produzione in un minuto, senza rifare il deployment; e voglio che ogni azione con conseguenza
+lasci una traccia che l'applicazione non possa cancellare.
+
+- **Intenzione**: che il sistema si possa vedere mentre gira (osservabilità) e che ogni azione
+  importante abbia la sua traccia (tracciabilità), con un livello di dettaglio che si cambia per
+  configurazione.
+- **Quando**: nell'uscita in produzione, dopo il 13 e prima del 19. In un legacy, il livello
+  minimo entra nella cintura di sicurezza (N4) e quello completo qui. La regola "ogni modulo nuovo
+  registra e propaga" vige durante tutto l'esercizio.
+- **Input**: la configurazione per ambiente (13), la tabella dei lucchetti (12), la lista dei dati
+  personali della rilevazione, e la decisione su dove vivono i registri.
+- **Artefatto**: registri strutturati con livello configurabile senza deployment; un
+  identificatore di correlazione in ogni record, dalla schermata al database; un audit immutabile
+  delle azioni con conseguenza; endpoint di salute e metriche; `docs/OBSERVABILITY.md`.
+- **Cancello**: un identificatore reale seguito attraverso tutti gli strati; il livello cambiato
+  senza deployment; nessun dato personale nei registri.
+- **Chi decide**: il proprietario decide dove vivono i registri, per quanto si conservano e cosa è
+  dato personale; l'agente costruisce.
+- **Fallimento che evita**: il processo che è rimasto vivo un'ora e quarantatré e si è trovato dal
+  log [Ref. 16](REFERENCIAS.md#ref-16); l'agente residente che opera alla cieca se non ci sono
+  registri da leggere [Ref. 13](REFERENCIAS.md#ref-13).
+- **Contratto**: `peldanos/peldano-16-observabilidad-y-trazabilidad.md`.
+
+### Passo 17 — Ottimizzazione dello strato di persistenza, misurata prima e dopo
+
+Il database è dove i sistemi muoiono lentamente: bene con cento record, male con centomila, e
+nessuno sa quando è cominciato. Qui si decide con i numeri, prima della produzione, e con il
+metodo del gradino 9: misurare, cambiare, misurare di nuovo sugli stessi dati.
+
+- **Intenzione**: che le query reali del sistema, ai volumi del dimensionamento, rientrino in ciò
+  che il business tollera, con budget che impediscano loro di uscirne di nuovo.
+- **Quando**: nell'uscita in produzione, dopo il 16 e prima del 19; si ripete quando un blocco
+  aggiunge una tabella grande o il monitoraggio (20) mostra una query fuori range. In un legacy,
+  le misurazioni escono da N6 e quasi tutto si paga "al tocco".
+- **Input**: il dimensionamento (3 o N6), la mappa produttore-consumatore (8), l'osservabilità
+  (16), e l'ambiente di test caricato al volume atteso.
+- **Artefatto**: misuratori di query con test; `docs/PERSISTENCE.md` con la tabella del prima e
+  dopo per ogni modifica, i budget per percorso e la retention per tabella; un test per budget.
+- **Cancello**: nessuna query che legga una tabella intera in un flusso critico; ogni budget con
+  il suo test; la schermata più lenta dentro ciò che il dimensionamento si aspettava.
+- **Chi decide**: il proprietario approva la lista delle modifiche, una per una; l'agente misura e
+  applica.
+- **Fallimento che evita**: le query che leggevano tabelle intere in un sistema vivo
+  [Ref. 18](REFERENCIAS.md#ref-18); il budget che si è dovuto stringere a ciò che era stato
+  misurato [Ref. 37](REFERENCIAS.md#ref-37); i milioni di righe su file
+  [Ref. 15](REFERENCIAS.md#ref-15).
+- **Contratto**: `peldanos/peldano-17-persistencia.md`.
+
+### Passo 18 — Scansione e soluzione delle vulnerabilità, nella catena e con un calendario
+
+L'audit (11) guarda il sistema intero con criterio, ogni tanto; questo gradino guarda una cosa
+sola, la sicurezza, tutto il tempo e a macchina: dipendenze, codice, segreti nella storia e
+configurazione del server. E una regola: un aggiornamento di dipendenza è una modifica, ed entra
+dal ciclo.
+
+- **Intenzione**: che nessuna vulnerabilità nota arrivi in produzione, e che quelle nuove si
+  rilevino da sole anche se nessuno tocca il sistema.
+- **Quando**: nell'uscita in produzione, dopo il 13 e prima del primo deployment; poi, a ogni push
+  e con un calendario settimanale. In un legacy, la prima esecuzione fa parte di N3.
+- **Input**: l'integrazione continua (4 e 13), la rilevazione degli ambienti, l'audit precedente,
+  e il criterio del proprietario su cosa è urgente.
+- **Artefatto**: la scansione in quattro strati che gira nella catena e con un calendario;
+  `docs/SECURITY_[data].md` con i rilievi e ciò che non è stato scansionato; `docs/SECURITY.md`
+  con la politica; il cancello in `docs/GATES.md`; i P0 e i P1 sistemati con la loro voce in
+  sospeso.
+- **Cancello**: nessun P0 aperto viene promosso in produzione; un P1 nuovo apre una voce in
+  sospeso da solo.
+- **Chi decide**: il proprietario definisce cosa è P0 e approva le soluzioni; l'agente monta ed
+  esegue.
+- **Fallimento che evita**: la vulnerabilità nota comparsa nell'audit di qualità
+  [Ref. 41](REFERENCIAS.md#ref-41); le porte di amministratore che ha visto solo un'altra sessione
+  [Ref. 40](REFERENCIAS.md#ref-40); la sicurezza trattata come una lista che si spunta una volta
+  [Ref. 23](REFERENCIAS.md#ref-23).
+- **Contratto**: `peldanos/peldano-18-vulnerabilidades.md`.
+
+### Passo 19 — Prove di rendimento in volume e punto di rottura
+
+Il gradino 3 ha dimensionato con i conti; questo verifica i conti con il sistema in esecuzione: al
+volume atteso, al "per dieci", e finché qualcosa non si rompe. Il punto di rottura è il numero più
+utile della fase, perché da lì escono le soglie di allerta del 20.
+
+- **Intenzione**: sapere come si comporta il sistema al volume atteso, al "per dieci", e dove e
+  perché si rompe, prima che entri il primo utente.
+- **Quando**: nell'uscita in produzione, dopo il 16 e il 17, prima del primo deployment; si ripete
+  prima di ogni deployment che cambi l'architettura, la persistenza o un flusso critico. In un
+  legacy, con i volumi misurati in N6.
+- **Input**: il dimensionamento, l'osservabilità accesa, la persistenza ottimizzata, i flussi
+  critici e la tolleranza del business per la schermata più usata.
+- **Artefatto**: lo script di carico nel repository, con test; `docs/PERFORMANCE_[data].md` con le
+  tre esecuzioni, il punto di rottura e la diagnosi; `docs/PERFORMANCE.md` con le soglie e il
+  cancello; una voce in sospeso per ogni collo di bottiglia.
+- **Cancello**: la schermata più usata dentro la tolleranza al volume atteso, o una voce in
+  sospeso con il numero; il punto di rottura scritto con cosa si rompe.
+- **Chi decide**: il proprietario dà la tolleranza e decide fino a quale volume si sistemano i
+  colli di bottiglia adesso.
+- **Fallimento che evita**: il carico reale che si è conosciuto solo guardando la produzione
+  [Ref. 12](REFERENCIAS.md#ref-12); il punto di rottura che si è travestito da test fallito
+  [Ref. 44](REFERENCIAS.md#ref-44); il dimensionamento come cancello
+  [Ref. 14](REFERENCIAS.md#ref-14).
+- **Contratto**: `peldanos/peldano-19-rendimiento-y-punto-de-ruptura.md`.
+
+### Passo 20 — Monitoraggio di risorse, funzioni e query fuori range, con rapporto ciclico
+
+Le prove del 19 dicono come si comporta il sistema un giorno; la produzione è tutti i giorni, con
+i dati che crescono. Questo gradino sorveglia l'uso delle risorse e il tempo di risposta di ogni
+funzione e di ogni query contro le soglie del 19 e contro la propria storia, avvisa quando
+qualcosa esce dal range, e produce un rapporto ciclico che si legge con il proprietario. Ogni
+scostamento è una voce in sospeso.
+
+- **Intenzione**: vedere un problema di risorse o di rendimento prima che lo veda l'utente, e che
+  ogni scostamento abbia una causa o una voce in sospeso.
+- **Quando**: si monta nella settimana del primo deployment in produzione; da allora gira da solo,
+  e il rapporto si legge a ogni ciclo (settimanale con conseguenze, mensile in un progetto
+  piccolo). In un legacy, la prima lettura è la linea base.
+- **Input**: le metriche del 16, i budget del 17, le soglie del 19, la produzione in sola lettura,
+  e il canale e il ciclo decisi con il proprietario.
+- **Artefatto**: raccolta con storia; allerte per soglia e per scostamento; il rapporto ciclico
+  generato da solo; `docs/MONITORING.md`; la routine di lettura nel patto.
+- **Cancello**: un'allerta provocata è arrivata al canale; il primo rapporto ha ogni scostamento
+  con causa o proposta; nessuna soglia è salita senza una ragione scritta.
+- **Chi decide**: il proprietario decide il canale, il ciclo e quale scostamento si affronta
+  adesso; l'agente monta e propone.
+- **Fallimento che evita**: il tetto che si è dovuto stringere a ciò che era stato misurato
+  [Ref. 37](REFERENCIAS.md#ref-37); la quota che si è bruciata senza che nessuno guardasse
+  [Ref. 39](REFERENCIAS.md#ref-39).
+- **Contratto**: `peldanos/peldano-20-monitoreo-de-recursos-y-rendimiento.md`.
+
+### Passo 21 — Monitoraggio degli errori e rapporto ciclico: nessun errore senza voce in sospeso
+
+Un sistema in produzione produce errori che nessuno segnala. Questo gradino li cattura nei tre
+posti dove si nascondono (il backend, i processi, il browser dell'utente), li raggruppa, avvisa di
+quelli nuovi e di quelli che crescono, e produce un rapporto ciclico. Due regole: nessun errore
+senza voce in sospeso, e non esiste l'"errore noto" senza una voce in sospeso che dica perché si
+tollera e fino a quando.
+
+- **Intenzione**: che nessun errore in produzione passi inosservato, e che ciascuno si chiuda con
+  il test che lo riproduce in rosso.
+- **Quando**: si monta nella settimana del primo deployment, insieme al 20; da allora gira da
+  solo, con allerte sul momento e rapporto ciclico. In un legacy, gli errori che esistevano già il
+  primo giorno diventano voci in sospeso con la loro marca di velocità.
+- **Input**: i registri del 16, la tabella dei lucchetti (12), la produzione con il browser
+  incluso, il canale e il ciclo del 20.
+- **Artefatto**: cattura centralizzata e raggruppata, senza dati personali; allerte per errore
+  nuovo, ricorrente che cresce e con conseguenza; il rapporto ciclico con il tasso di errore per
+  flusso; `docs/MONITORING.md`; la routine nel patto.
+- **Cancello**: un errore provocato nel browser seguito fino al rapporto; nessun errore ricorrente
+  senza voce in sospeso né ragione con data.
+- **Chi decide**: il proprietario legge il rapporto e decide cosa si affronta; l'agente cattura,
+  raggruppa e propone.
+- **Fallimento che evita**: l'errore di autenticazione riportato come successo
+  [Ref. 43](REFERENCIAS.md#ref-43); i quattro giri fino alla causa radice per non avere l'errore
+  riprodotto [Ref. 22](REFERENCIAS.md#ref-22).
+- **Contratto**: `peldanos/peldano-21-monitoreo-de-errores.md`.
+
 ## Parte D — Come si esegue, quanto si esige, e con quale strumento
 
 ### Come si esegue ogni gradino: il contratto
@@ -865,8 +1049,8 @@ motivo di esserlo.
 
 ### Cosa è obbligatorio e cosa è proporzionale, secondo la dimensione del progetto
 
-Una domanda che compare subito: "tutto questo per un sistema piccolo?". La risposta è che sedici
-gradini non sono sedici settimane; diversi si salgono in un'ora, e quelli che sono proporzionali
+Una domanda che compare subito: "tutto questo per un sistema piccolo?". La risposta è che ventidue
+gradini non sono ventidue settimane; diversi si salgono in un'ora, e quelli che sono proporzionali
 si rimpiccioliscono con il progetto. Ciò che non si rimpicciolisce è la lista di quelli che non si
 negoziano. Questa tabella è una proposta `[ipotesi]` da confermare con il primo progetto che userà
 il metodo end to end:
@@ -889,9 +1073,16 @@ il metodo end to end:
 | 13 Integrazione e deployment | minimo: test da soli, configurazione fuori, rollback | obbligatorio, completo |
 | 14 Documentazione | minimo: ripristino | i tre manuali |
 | 15 Residente e retrospettiva | retrospettiva di una pagina | entrambi |
+| 16 Osservabilità e tracciabilità | minimo: registri strutturati con livello configurabile e un identificatore per azione | obbligatorio, completo, con audit immutabile |
+| 17 Persistenza | proporzionale: gli indici delle query reali e la fine dei cicli N+1 | obbligatorio, con budget per percorso |
+| 18 Vulnerabilità | obbligatorio: dipendenze e segreti nella catena | obbligatorio, i quattro strati e con un calendario |
+| 19 Rendimento | proporzionale: un'esecuzione al volume atteso e una al "per dieci" | obbligatorio, con punto di rottura e soglie |
+| 20 Monitoraggio delle risorse | minimo: un rapporto mensile e due allerte (disco, database) | obbligatorio, con soglie per funzione e rapporto settimanale |
+| 21 Monitoraggio degli errori | obbligatorio: cattura centralizzata e rapporto | obbligatorio, con allerte sul momento |
 
-In sintesi: ci sono nove gradini che non si negoziano in nessun progetto (0, 1, 2, 3, 5, 6, 7, 10 e
-la retrospettiva del 15), e sette che si dimensionano con il progetto.
+In sintesi: ci sono undici gradini che non si negoziano in nessun progetto (0, 1, 2, 3, 5, 6, 7,
+10, la retrospettiva del 15, la scansione delle dipendenze del 18 e la cattura degli errori del
+21), e undici che si dimensionano con il progetto.
 
 ### Come si usa con qualunque strumento
 
@@ -922,9 +1113,9 @@ la pratica del corso.
 2. **Un nome memorabile per ogni gradino**, in una frase, per i manuali e le pubblicazioni.
 3. **L'esportazione in Forge**: quali gradini sono già cancelli o comandi e quali mancano per
    poter eseguire la scala come flusso di esecuzione.
-4. **Provare i contratti in un progetto reale end to end.** I sedici prompt sono scritti a partire
-   da ciò che ho fatto, non eseguiti tali e quali. Il primo progetto che li userà per intero ne
-   correggerà diversi; fa parte del gradino 15.
+4. **Provare i contratti in un progetto reale end to end.** I prompt dei ventidue contratti sono
+   scritti a partire da ciò che ho fatto, non eseguiti tali e quali. Il primo progetto che li
+   userà per intero ne correggerà diversi; fa parte del gradino 15.
 5. **La prima coorte del corso**, che correggerà i tempi della linea del tempo e gli errori
    tipici, che oggi sono scritti a partire dai miei progetti e non dagli allievi.
 6. **Il percorso evolutivo-correttivo provato su un legacy reale da un capo all'altro.** Le otto
@@ -951,6 +1142,14 @@ il modello non li applica.
 **Agente** — Un programma di intelligenza artificiale che non si limita a rispondere a domande ma
 esegue azioni: legge file, scrive codice, esegue comandi, fa commit. In questo documento,
 "l'agente" è Claude Code o lo strumento che usi.
+
+**Allerta** — Un avviso automatico, sul momento, del fatto che un numero è uscito dal range (una
+soglia superata, un errore nuovo). Regola del metodo: un'allerta che scatta e nessuno legge è un
+difetto dell'allerta, e si aggiusta o si elimina.
+
+**Analisi statica** — Leggere il codice a macchina, senza eseguirlo, cercando schemi pericolosi
+noti (un'injection, una chiave scritta nel codice). È uno dei quattro strati della scansione
+delle vulnerabilità del gradino 18.
 
 **Anonimizzazione** — In questo documento i clienti reali si chiamano "la Mutua",
 "l'Autorizzatore" e "l'Associazione", e i loro sistemi "Autorizzazioni" e "Kikan". È apposta: i
@@ -1018,6 +1217,19 @@ di lasciarli in file di testo.
 **Lucchetto** — Una protezione che impedisce che un'azione pericolosa avvenga senza una condizione
 esplicita. Per esempio, il pulsante di emergenza ha un lucchetto dedicato: non si può premere per
 sbaglio.
+
+**Ciclo N+1** — Un errore di persistenza molto comune: per mostrare cento elementi, il sistema fa
+una query per la lista e poi altre cento, una per elemento, invece di una o due. Si rileva
+contando le query (gradino 9) e si corregge nel gradino 17.
+
+**Header di sicurezza** — Istruzioni che il server manda al browser in ogni risposta per
+proteggerlo (non incorporare la pagina in un altro sito, usare solo cifratura, ecc.). Se mancano,
+la scansione del gradino 18 li riporta.
+
+**Qualità operativa (fase)** — La quarta fase della scala, gradini da 16 a 21: quattro che si
+salgono prima del primo deployment in produzione (osservabilità, persistenza, vulnerabilità,
+rendimento) e due che sorvegliano il sistema una volta distribuito (monitoraggio delle risorse e
+degli errori).
 
 **Percorso evolutivo-correttivo** — Il terzo caso d'uso del metodo: prendere un sistema che esiste
 già e non è nato con il metodo, normalizzarlo senza riscriverlo (otto stazioni, da N0 a N7) e solo
@@ -1101,12 +1313,15 @@ il sistema doveva fare. In questo metodo si scompone: ogni voce in sospeso porta
 dettagliata completa, e la somma delle voci in sospeso è la specifica del sistema. Vedi B.5.
 
 **Stazione (da N0 a N7)** — Ciascuno degli otto passi del tratto di normalizzazione del percorso
-evolutivo-correttivo. Le chiamo stazioni e non gradini perché non si confondano con i sedici della
-scala: non sono gradini nuovi, sono quelli dell'avvio (e l'8, l'11 e il 12) in un altro ordine e
-con un altro ingresso.
+evolutivo-correttivo. Le chiamo stazioni e non gradini perché non si confondano con i ventidue
+della scala: non sono gradini nuovi, sono quelli dell'avvio (e l'8, l'11 e il 12) in un altro
+ordine e con un altro ingresso.
 
 **Scheletro (scaffold)** — La struttura iniziale di un progetto, senza funzionalità: parte, ha
 test vuoti, si distribuisce.
+
+**Eccezione non gestita** — Un errore che il codice non aveva previsto e che interrompe ciò che
+stava facendo. Il gradino 21 le cattura tutte, nel backend, nei processi e nel browser.
 
 **Fail-closed** — "Fallisce chiuso": davanti al dubbio o all'errore, il sistema non agisce. Il
 contrario di "fail-open", che davanti al dubbio va avanti.
@@ -1159,9 +1374,22 @@ perso di vista.
 **Indice** — Una struttura ausiliaria del database che rende veloce una ricerca. Senza indice, la
 query è un full scan.
 
+**Identificatore di correlazione** — Un numero unico che si dà a ogni azione quando comincia (un
+clic, un processo notturno, un messaggio che arriva) e che viaggia attaccato a tutto ciò che
+quell'azione provoca, fino al database e alle chiamate esterne. Cercando quel numero nei registri
+compare la storia completa dell'azione. È il centro del gradino 16.
+
+**Indice (di database)** — Come l'indice di un libro: una struttura che il database mantiene per
+trovare righe senza leggere l'intera tabella. Senza indice, la query fa un *full scan*. Gli indici
+si derivano dalle query reali, non si indovinano (gradino 17).
+
 **Acquisizione dei requisiti** — Il momento in cui la richiesta del business entra nel metodo:
 prima in prosa, con il proprietario, e poi trasformata in voci in sospeso verificabili
 dall'agente, che chiede ciò che manca.
+
+**Injection** — Una vulnerabilità in cui ciò che un utente scrive in un modulo finisce
+interpretato dal sistema come un ordine (per esempio, una query al database). L'analisi statica
+del gradino 18 la cerca; il test in rosso della correzione dimostra che non succede più.
 
 **IPC (guinzaglio tra processi)** — Un canale tra due processi. In Forge si è usato come
 "guinzaglio": se il processo padre muore, il figlio lo viene a sapere e si spegne.
@@ -1172,7 +1400,15 @@ database. Serve per cominciare; non serve per milioni di righe.
 **Kikan** — Il sistema di sportello omnicanale e campagne dell'Associazione, il secondo sistema in
 produzione.
 
+**Latenza** — Quanto ci mette un'azione a rispondere. Si guardano la mediana (metà delle azioni
+ci ha messo meno) e il percentile 95 (il 95 % ci ha messo meno; il restante 5 % sono gli utenti
+che si lamentano). Gradini 19 e 20.
+
 **Legacy (ereditato)** — Un sistema vecchio ancora in uso.
+
+**Linea base** — Ciò che un numero dava normalmente (per esempio, la media degli ultimi
+quattordici giorni). "Fuori range" nel gradino 20 è sopra una soglia fissa o molto diverso dalla
+linea base.
 
 **Linea del tempo** — La Parte B di questo documento: quando si sale ogni gradino e quali compiti
 di infrastruttura, acquisizione, sviluppo, test e sguardo umano succedono nel mezzo.
@@ -1204,6 +1440,10 @@ test che passa perché non guarda nulla.
 da programma (ogni elemento dell'interfaccia ha un identificatore e dei metodi). Permette il test
 end to end. Non è obbligatorio per il metodo: è il mezzo, non la condizione.
 
+**Livello di registro** — Quanto dettaglio il sistema scrive nei suoi registri: errore (solo ciò
+che è fallito), avviso, informazione (il normale in produzione), debug e traccia. Nel metodo il
+livello si cambia per configurazione, per ambiente, senza rifare il deployment (gradino 16).
+
 **Node (Node 22)** — L'ambiente in cui gira il JavaScript del server. "Node 22 fisso" vuol dire
 che la versione è stata inchiodata perché tutti gli ambienti usino la stessa.
 
@@ -1212,6 +1452,10 @@ per scontato quando si apre il ciclo, senza toccarne la funzionalità. Si fa a d
 cintura di sicurezza prima di qualunque modifica, e il resto del debito **man mano che si tocca**
 ogni modulo (le voci in sospeso di normalizzazione marcate "si paga quando si tocca" entrano con
 il blocco che entra nel loro modulo). Mai "una settimana di pulizia generale".
+
+**Osservabilità** — Che il sistema si possa vedere mentre gira: registri strutturati con livello
+configurabile, un identificatore di correlazione per azione, metriche di salute. Senza
+osservabilità, ogni incidente si diagnostica con ipotesi invece che con prove. Gradino 16.
 
 **Mutua (la)** — Così chiamo l'ente sanitario cliente del primo sistema in produzione (il suo
 nome reale resta riservato).
@@ -1235,6 +1479,17 @@ farebbe una persona.
 metodo, le voci in sospeso SONO il piano, ciascuna porta la sua specifica dettagliata, e le voci
 in sospeso chiuse sono la documentazione di ciò che è stato fatto.
 
+**Paginazione** — Mostrare o elaborare i dati a porzioni (venti alla volta, mille alla volta)
+invece che tutti insieme. Una delle correzioni tipiche del gradino 17.
+
+**Percentile 95** — Il valore sotto il quale resta il 95 % delle misurazioni. In latenza: "il
+95 % delle azioni ci ha messo meno di questo". È il numero che conta, perché la media nasconde
+quelli che hanno aspettato molto.
+
+**Pool di connessioni** — La quantità di "linee aperte" che il sistema mantiene con il database
+nello stesso momento. Se si esaurisce, le azioni aspettano o falliscono; di solito è la prima
+cosa che si rompe in una prova di carico.
+
 **Voce in sospeso chiusa (documentazione del fatto)** — Una voce in sospeso che alla chiusura
 conserva la sua specifica, la decisione che l'ha originata, la prova con cui è stata chiusa, il
 commit e la data. La coda delle voci in sospeso chiuse è lo storico funzionale del sistema.
@@ -1250,15 +1505,34 @@ che la correzione lo metta in verde.
 **Promozione (UAT → PROD)** — Passare qualcosa dall'ambiente di test a quello di produzione in
 modo controllato.
 
+**Prova di carico** — Un programma, conservato nel repository e con il suo test, che simula molti
+utenti che usano il sistema contemporaneamente per misurare rendimento, latenza ed errori, e per
+trovare il punto di rottura. Gradino 19.
+
 **Test di accettazione** — Le prove che fa il proprietario, o un utente di fiducia, usando il
 sistema come lo userebbe davvero, prima di accettarlo per la produzione. Sono umane; non le fa
 l'agente.
+
+**Punto di rottura** — Il carico esatto al quale qualcosa del sistema smette di funzionare, e
+cos'è quel qualcosa (le connessioni al database, la memoria, una coda). Si trova alzando il
+carico scalino per scalino (gradino 19), e da lì escono le soglie di allerta del 20.
 
 **Pull / push** — Scaricare e caricare codice sul repository remoto (GitHub).
 
 **Ref. N** — Una referenza breve a un caso reale, spiegato nel documento delle referenze con la
 sua data e la sua prova. Serve perché le procedure restino pulite e il dettaglio resti
 disponibile.
+
+**Registro (log) strutturato** — Una riga che il sistema scrive ogni volta che fa qualcosa, con
+sempre le stesse parti nello stesso ordine (data e ora, livello, modulo, identificatore di
+correlazione, attore, messaggio), perché si possa cercare a macchina. Gradino 16.
+
+**Rendimento (throughput)** — Quante azioni al secondo regge il sistema. Si misura con la prova
+di carico (19) e si sorveglia nel monitoraggio (20).
+
+**Rapporto ciclico** — Il riassunto che il monitoraggio (20 e 21) genera da solo ogni settimana o
+ogni mese, con gli scostamenti e gli errori del periodo, e che il proprietario legge con l'agente
+per decidere cosa diventa voce in sospeso. Il contrario di un'allerta: si legge con calma.
 
 **Regressione** — Un test che verifica che qualcosa che già funzionava continui a funzionare dopo
 una modifica.
@@ -1286,6 +1560,10 @@ eseguire due volte senza rompere nulla.
 
 **SQL** — Il linguaggio dei database relazionali.
 
+**Tasso di errore per flusso** — Su cento volte che qualcuno ha usato un flusso (caricare un
+appuntamento), quante sono fallite. È il numero del rapporto degli errori (21) che il
+proprietario capisce senza spiegazioni.
+
 **Tag** — Un'etichetta su un commit che segna una versione.
 
 **TDD** — "Prima il test, poi il codice". Il metodo lo lascia come opzione per perimetri piccoli,
@@ -1294,12 +1572,15 @@ non come regola universale.
 **Token** — Due sensi. Nell'IA: l'unità con cui si misura (e si fattura) il testo che il modello
 elabora. Nella sicurezza: una credenziale di accesso.
 
-**Fase** — Ciascuno dei tre gruppi di gradini: avvio (da 0 a 4), ciclo (da 5 a 10), esercizio (da
-11 a 15).
+**Fase** — Ciascuno dei quattro gruppi di gradini: avvio (da 0 a 4), ciclo (da 5 a 10),
+esercizio (da 11 a 15) e qualità operativa (da 16 a 21).
 
-**Tracciabilità** — Poter seguire un requisito fino alla voce in sospeso che lo implementa, al
-test che lo prova e al commit che l'ha chiuso. Nel metodo non è una matrice a parte: è la voce in
-sospeso stessa, che cita la sua origine e la sua prova.
+**Tracciabilità** — Due sensi, entrambi nel metodo. Nei requisiti: poter seguire un requisito
+fino alla voce in sospeso che lo implementa, al test che lo prova e al commit che l'ha chiuso; non
+è una matrice a parte, è la voce in sospeso stessa. Nell'esercizio (gradino 16): che ogni azione
+con conseguenza lasci una traccia di chi, quando, cosa, da dove e con quale risultato, in un audit
+che l'applicazione non può modificare, e che un identificatore di correlazione permetta di seguire
+qualunque azione dalla schermata al database.
 
 **Cricchetto** — Un meccanismo che gira solo in un senso. In Kikan, un contatore di chiamate senza
 `await` che può solo scendere: se sale, il test fallisce.
@@ -1307,6 +1588,10 @@ sospeso stessa, che cita la sua origine e la sua prova.
 **Turno** — Un giro della conversazione con l'agente: l'utente chiede, l'agente lavora e risponde.
 
 **UAT** — L'ambiente in cui il cliente prova prima della produzione.
+
+**Soglia** — Un numero limite a partire dal quale il monitoraggio avvisa. Nel metodo non si mette
+"a occhio": esce dal punto di rottura (19) con un margine, e non si alza per far tacere
+un'allerta senza una ragione misurata e scritta (20).
 
 **Urazuke** (裏付け) — Il nome del metodo. In giapponese, il sostegno di cui dispone
 un'affermazione, ciò che la regge da dietro; *urazukeru*, sostenere con prove. Si pronuncia
@@ -1321,6 +1606,10 @@ bloccato e lo spinge, con guardie per non spingere due volte.
 **Sguardo umano sulle schermate** — L'abitudine che il proprietario guardi una cattura reale di
 ogni schermata nuova o modificata, nell'ambiente di test, con ogni voce in sospeso che la tocca.
 Dieci secondi che trovano ciò che nessun test trova.
+
+**Vulnerabilità** — Un difetto che qualcuno può usare per entrare, rubare dati o far fare al
+sistema qualcosa che non dovrebbe. Quelle note in pezzi di software di altri si pubblicano con un
+numero CVE. Il gradino 18 le cerca a macchina in quattro strati e le tratta come voci in sospeso.
 
 **Volumetria** — Quanti dati il sistema gestirà: righe all'anno, utenti, picchi.
 

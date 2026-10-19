@@ -41,7 +41,8 @@ seinem roten Test, und die erste neue Funktionalität, gebaut mit der vollständ
 | 2 | N4, N5 | **Der Gurt.** Testumgebung mit anonymisierten Daten, Deployment zweimal, rotierte Geheimnisse, Charakterisierungsbatterie mit ihrem Rot durch Mutation. Bestätigte Sperren auf dem, was schon wirkt. Zum Abschluss: das System läuft im Test und die Batterie ist grün. |
 | 3 | N6, N7, R1 | **Messen, ordnen, korrigieren.** Gemessene Dimensionierung. Das Backlog mit den zwei Marken. Der erste Block: der bekannte Bug, im korrektiven Modus geschlossen, mit seinen gepaarten Posten. |
 | 4 | R2 | **Weiterentwickeln.** Der zweite Block: die neue Funktionalität, gebaut mit der vollständigen Methode (Lektionen 5 bis 10 des ersten Teils), mit der Charakterisierung als Regression. |
-| 5 und 6 | 11, 12, 13, 14, 15 des ersten Teils | **Freigabe und Betrieb.** Periodisches Audit, restliche Sperren, Abschluss des Weges in die Produktion, die drei Handbücher (die das Altsystem nicht hatte), residenter Agent, Retrospektive mit der dem Altsystem eigenen Frage: wie viel das Normalisieren gekostet hat. |
+| 5 und 6 | 11, 12, 13, 14, 16, 17, 18, 19 des ersten Teils | **Produktionsfreigabe.** Periodisches Audit, restliche Sperren, Abschluss des Weges in die Produktion, die drei Handbücher (die das Altsystem nicht hatte), und die vier Schritte der Betriebsqualität vor dem Deployment: vollständige Beobachtbarkeit, Persistenz mit dem, was N6 gemessen hat, Schwachstellen-Scan als Tor, Lasttest mit dem Bruchpunkt. |
+| 7 | 15, 20, 21 des ersten Teils | **Betrieb.** Die beiden Monitorings, aufgebaut in der Woche des Deployments, mit der ersten Lesung als Basislinie des Altsystems; residenter Agent; Retrospektive mit der dem Altsystem eigenen Frage: wie viel das Normalisieren gekostet hat. |
 
 ### Das Leitprojekt: „Geerbte Turnera“
 
@@ -1001,8 +1002,14 @@ der Charakterisierung, den des Bugs aus R1 und den der Anzahlung.
 
 ## Danach: Produktionsfreigabe und Betrieb
 
-Ab hier ist das Altsystem ein System mit Methode, und die Lektionen 11 bis 15 des ersten Teils
-gelten unverändert, mit drei Anmerkungen. Das Audit aus Lektion 11 vergleicht gegen das aus N3:
+Ab hier ist das Altsystem ein System mit Methode, und die Lektionen 11 bis 21 des ersten Teils
+gelten unverändert, mit vier Anmerkungen. Die erste betrifft die sechs Schritte der
+Betriebsqualität: die minimale Beobachtbarkeit und der Schwachstellen-Scan sind schon mit dem
+Gurt hereingekommen, die Persistenzmessungen stehen schon in N6, und der Lasttest läuft mit
+diesen Volumina vor dem ersten Deployment; die beiden Monitorings starten mit der ersten Lesung
+als Basislinie, und was am ersten Tag schon schlecht war, wird zu einem offenen Posten mit seiner
+Marke. Die anderen drei Anmerkungen sind diese. Das Audit aus Lektion 11 vergleicht gegen das
+aus N3:
 wie viel Schuld bezahlt wurde, wie viel bleibt. Die Handbücher aus Lektion 14 gibt es in einem
 Altsystem meist nicht, und sie werden aus dem System, wie es ist, und aus den geschlossenen
 offenen Posten erzeugt, die jetzt tatsächlich das Erledigte dokumentieren. Und die Retrospektive

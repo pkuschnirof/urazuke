@@ -62,14 +62,14 @@ musst.
    anfängst; jedes Einführungstutorial reicht. Mehr braucht es nicht.
 3. **Ein Projekt.** Ideal ist, dass es deines ist: ein System, das du brauchst oder das ein Kunde
    von dir verlangt hat, mit Nutzern, die es benutzen werden. Wenn du keines hast, nimm das
-   **Leitprojekt**, das ich unten beschreibe; es ist so gedacht, dass es durch die sechzehn
+   **Leitprojekt**, das ich unten beschreibe; es ist so gedacht, dass es durch die zweiundzwanzig
    Schritte geht, ohne einen zu überspringen. Wenn das, was du hast, ein System ist, das schon
    existiert und korrigiert oder weiterentwickelt werden muss, lehrt dich dieser erste Teil die
    Methode an einem neuen Projekt, und [Teil 2 des Kurses](MANUAL_CURSO_EVOLUTIVO.md) lehrt dich,
    es zuerst zu normalisieren, mit einem zweiten geerbten Leitprojekt.
-4. **Zeit.** Der Kurs hat sechzehn Lektionen, eine pro Schritt, und einen Kalender, der dir sagt,
-   in welche Woche jede Sache fällt (siehe „Der Kalender des Kurses“). Ein kleines Projekt, von
-   Anfang bis Ende, sind sechs bis acht Wochen Teilzeitarbeit.
+4. **Zeit.** Der Kurs hat zweiundzwanzig Lektionen, eine pro Schritt, und einen Kalender, der
+   dir sagt, in welche Woche jede Sache fällt (siehe „Der Kalender des Kurses“). Ein kleines
+   Projekt, von Anfang bis Ende, sind sechs bis acht Wochen Teilzeitarbeit.
 5. **Einen Eigentümer der Domäne mit Zeit zum Entscheiden.** Wenn das Projekt deines ist, bist du
    das. Wenn es das eines Kunden ist, ist es der Kunde, und er muss wissen, dass er während des
    ganzen Projekts Fragen beantworten müssen wird. Dieser Punkt ist nicht verhandelbar: ohne
@@ -111,8 +111,8 @@ Lektion passiert.
 | 2 | 5, 6, 7 | **Erster Funktionsblock** (die Grundagenda). Du öffnest den Block, indem du die Anfrage in spezifizierte offene Posten verwandelst. Mit jedem offenen Posten: Entscheidungen, roter Test, Ende-zu-Ende-Test des Flusses, Screenshot des Bildschirms, den du dir ansiehst. Beim Abschluss des Blocks: vollständige Ende-zu-Ende-Batterie, und du benutzt das System in der Testumgebung entlang der Flüsse des Blocks. |
 | 3 | 8, 9, 10 | **Zweiter Block** (Patienten und Suche). Die drei restlichen Lektionen der Schleife werden an diesem Block gelernt. Derselbe Abschluss: Ende zu Ende aller Flüsse, menschliche Tests, Benutzerhandbuch mit den neuen Bildschirmen. |
 | 4 | 11, 12 | **Produktionsfreigabe, erste Hälfte.** Audit durch eine andere Sitzung. Sperren. Und erst danach der **dritte Block** (Erinnerungen und Anzahlung), gebaut mit der vollständigen Schleife und im Trockenlauf belassen. |
-| 5 | 13, 14 | **Produktionsfreigabe, zweite Hälfte.** Abschluss der Kette in die Produktion mit getestetem Rollback. Die drei Handbücher; jemand, der nicht programmiert, folgt dem Wiederherstellungshandbuch. **Abnahmetests** von dir oder vom Eigentümer über alle Flüsse. Erstes Deployment in die Produktion ohne Nutzer. |
-| 6 | 15 | **Betrieb.** Du schaltest die Erinnerungen frei, nachdem du das Trockenlauf-Protokoll angesehen hast. Residenter Agent. Retrospektive mit Zahlen und Änderungsvorschlag für die Leiter. |
+| 5 | 13, 14, 16, 17, 18, 19 | **Produktionsfreigabe, zweite Hälfte.** Abschluss der Kette in die Produktion mit getestetem Rollback. Beobachtbarkeit mit konfigurierbarem Level, Persistenz vorher und nachher gemessen, Schwachstellen-Scan als Tor, Lasttest mit dem Bruchpunkt. Die drei Handbücher; jemand, der nicht programmiert, folgt dem Wiederherstellungshandbuch. **Abnahmetests** von dir oder vom Eigentümer über alle Flüsse. Erstes Deployment in die Produktion ohne Nutzer. |
+| 6 | 15, 20, 21 | **Betrieb.** Du schaltest die Erinnerungen frei, nachdem du das Trockenlauf-Protokoll angesehen hast. Die beiden Monitorings, aufgebaut in der Woche des Deployments: Ressourcen und Leistung, Fehler; der erste zyklische Bericht mit der Eigentümerin gelesen. Residenter Agent. Retrospektive mit Zahlen und Änderungsvorschlag für die Leiter. |
 
 Wenn dein Projekt größer ist, dehnen sich die Wochen 2 und 3 (mehr Blöcke), nicht die 1 und nicht
 die 4 und 5. Und wenn du dich irgendwann dabei ertappst, in Woche 3 Infrastruktur zu machen oder in
@@ -122,8 +122,8 @@ wurde übersprungen.
 ### Das Leitprojekt: „Turnera“
 
 Wenn du kein eigenes Projekt hast, nimm dieses. Es ist klein, hat aber alles, was nötig ist, damit
-keiner der sechzehn Schritte nur zum Schein ist: echte Nutzer, personenbezogene Daten, Nachrichten,
-die in die Welt hinausgehen, und Geld.
+keiner der zweiundzwanzig Schritte nur zum Schein ist: echte Nutzer, personenbezogene Daten,
+Nachrichten, die in die Welt hinausgehen, und Geld.
 
 **Das Geschäft.** Eine Praxis (es kann eine Kanzlei, ein Friseursalon, eine Werkstatt sein: jeder
 Ort, der Termine vergibt). Heute werden die Termine in ein Heft eingetragen und per WhatsApp von
@@ -2016,9 +2016,351 @@ zeigen, nicht nur „was sich ändert“.
 
 ---
 
+## Abschnitt Betriebsqualität: Lektionen 16 bis 21
+
+Diese sechs Lektionen sind die, die ich machte, ohne sie zu benennen, und die mich ein Leser,
+zu Recht, zu schreiben gebeten hat. Vier werden in Woche 5 gemacht, zusammen mit den Lektionen 13
+und 14 und vor dem ersten Deployment in die Produktion: Beobachtbarkeit, Persistenz,
+Schwachstellen und Leistung. Zwei werden in Woche 6 aufgebaut, der des ersten Deployments, und
+laufen von da an allein: die beiden Monitorings. Wenn du Anfänger bist: jeder Vertrag dieser
+sechs Schritte hat einen Absatz „Wenn du Anfänger bist“, der seine Wörter in der Sprache des
+Alltags erklärt; lies ihn vor der Lektion.
+
+### Lektion 16 — Beobachtbarkeit und Nachverfolgbarkeit, mit konfigurierbarem Level
+
+**Was du verstehen musst.** Wenn in der Produktion etwas schiefgeht, wirst du wissen wollen, was
+passiert ist, ohne den Code zu öffnen und ohne dass der Agent „nachsieht“: eine Nummer suchen und
+die ganze Geschichte dieser Aktion erscheinen lassen, vom Bildschirm bis zur Datenbank. Das ist
+ein *strukturiertes Log* mit einer *Korrelations-ID*. Und du wirst das Detail dessen, was das
+System schreibt, eine Minute lang hochdrehen wollen, während du untersuchst, ohne neu zu
+deployen: das ist das *konfigurierbare Level*. Die *Nachverfolgbarkeit* ist die andere Hälfte:
+jede Aktion mit Konsequenz (abgebucht, gesendet, gelöscht) landet in einer Liste, die die
+Anwendung nicht bearbeiten kann, mit wer, wann und was. Ohne das agiert der residente Agent aus
+Lektion 15 blind, und die Monitorings der Lektionen 20 und 21 haben nichts anzusehen
+[Ref. 16](REFERENCIAS.md#ref-16).
+
+**Bevor du den Prompt schickst**, mit deinen Händen und mit der Eigentümerin:
+
+- `docs/DEPLOYMENT.md` (Lektion 13), mit der Art, wie die Konfiguration pro Umgebung gelesen
+  wird: das Level wird eine weitere Variable sein.
+- `docs/LOCKS.md` (Lektion 12): die Liste der Aktionen, die im Audit-Log stehen müssen.
+- In `docs/INITIAL_SURVEY.md` die Liste, welche Daten personenbezogen sind (in Turnera: Name,
+  Telefonnummer, E-Mail-Adresse und Ausweisnummer der Patientin), mit der Leiterin geschrieben.
+  Die Logs müssen sie maskieren; es ist eine gesetzliche Pflicht.
+- Deine Entscheidung, wo die Logs leben und wie lange sie aufbewahrt werden. Für den Kurs: eine
+  rotierte Datei auf dem Server, neunzig Tage.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 16 ein (in `docs/peldanos/`), genau so.
+2. Wenn er dir die Kennung einer echten Anfrage zeigt, such sie selbst in den Logs der
+   Testumgebung: sie muss im Bildschirm, im Backend, in der Datenbank und im Aufruf an den
+   Nachrichtenanbieter erscheinen.
+3. Dreh das Level selbst auf Debug, mach eine Aktion, schau nach, dreh es wieder herunter. Wenn
+   du deployen musstest, ist der Schritt nicht erklommen.
+4. Such „Juan“ (oder irgendeinen Testnamen) in den Logs: er darf nicht da sein.
+
+**Bevor du den Prompt schickst** der Routine: `docs/OBSERVABILITY.md` von dir gelesen, und das
+Level einmal von dir hoch- und wieder heruntergedreht.
+
+5. Füg der Vereinbarung die Routine von Schritt 16 hinzu (im Vertrag, „Routine“), eingepackt in
+   „Add this routine to `docs/WORKING_AGREEMENT.md`:“ wie die übrigen.
+
+**Vollständigkeitsprüfung.** Bist du selbst einer Kennung durch alle Schichten gefolgt? Hast du
+das Level ohne Deployment geändert? Steht irgendein personenbezogenes Datum in den Logs? Ist die
+Absage eines Termins in der Testumgebung mit wer und wann im Audit-Log gelandet? Reicht dir
+`docs/OBSERVABILITY.md`, um allein einen Log-Eintrag zu finden?
+
+**Ergebnis.** Strukturierte Logs mit konfigurierbarem Level, die weitergegebene Kennung, das
+Audit-Log der Aktionen mit Konsequenz, `docs/OBSERVABILITY.md`, und die Routine in der
+Vereinbarung.
+
+**Typische Fehler.** „Logs“ akzeptieren, die jedes Modul anders schreibt. Die Produktion „erst
+mal“ auf Debug lassen. Und dass die Kennung nicht bis zur nächtlichen Aufgabe der Erinnerungen
+kommt, was genau der Ort ist, an dem die Vorfälle verloren gehen.
+
+**Im Leitprojekt.** Die Kennung von „Termin 17 absagen“ erscheint im Klick, im Server, in der
+markierten Zeile der Datenbank und in der E-Mail an die Fachkraft. Das Audit-Log sagt:
+„recepcion1 hat den Termin 17 um 10:42 aus der Tagesagenda abgesagt; Ergebnis: ok“. Die Leiterin
+dreht das Level auf Trace, um zu sehen, warum eine Erinnerung sich verspätet hat, findet es, und
+dreht es wieder herunter.
+
+### Lektion 17 — Optimierung der Persistenzschicht, vorher und nachher gemessen
+
+**Was du verstehen musst.** Die Datenbank ist der Ort, an dem Systeme langsam sterben: gut mit
+hundert Terminen, schlecht mit hunderttausend. Ein *Index* ist wie der eines Buches: ohne ihn
+liest die Datenbank die ganze Tabelle, um einen Termin zu finden. Eine *N+1-Schleife* ist, hundert
+Abfragen zu machen, um hundert Termine anzuzeigen, statt einer. Diese Lektion wendet Lektion 9 auf
+die Datenbank an: jede Abfrage mit einem Messgerät mit Test messen, ändern, was die Zahlen sagen,
+auf denselben Daten noch einmal messen, und ein Budget mit Test hinterlassen, damit es nicht
+zurückkommt [Ref. 18](REFERENCIAS.md#ref-18), [Ref. 37](REFERENCIAS.md#ref-37). Es ist nicht, die
+Datenbank neu zu schreiben oder sie zu wechseln: das war Lektion 3.
+
+**Bevor du den Prompt schickst**, mit deinen Händen:
+
+- `docs/SIZING.md` und `docs/VOLUME_SURVEY.md` (Lektion 3): die zu ladenden Volumina.
+- Die Testumgebung mit Daten **im erwarteten Volumen**: für Turnera zehntausend Termine und
+  dreißigtausend Nachrichten eines Jahres, erzeugt von einem Skript, das der Agent im Repository
+  hinterlässt (verlang es als vorherigen offenen Posten, mit der Form des semantischen Baums).
+- `docs/PRODUCER_CONSUMER_MAP.md` (Lektion 8), auf dem neuesten Stand.
+- Ein bekannter Fall für den Test des Messgeräts: die Tabelle der Fachkräfte hat drei Zeilen.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 17 ein.
+2. Lies die Liste der vorgeschlagenen Änderungen so, wie die Leiterin eine Liste von Reparaturen
+   der Praxis lesen würde: verstehst du, was jede gewinnt und welches Risiko sie hat? Gib eine
+   nach der anderen frei oder lehn sie ab. Rechne eine Zahl von Hand nach (Zeilen pro Monat der
+   Terminetabelle).
+
+**Bevor du den Prompt schickst** zum Abschluss: die Liste mit deinem Urteil pro Änderung und die
+nachgerechnete Zahl, die übereinstimmt.
+
+3. Füg ihm den Abschluss-Prompt des Vertrags von Schritt 17 ein, mit der freigegebenen Liste.
+4. Lass selbst ein Messgerät vorher und nachher laufen, mit den beiden Befehlen, die er dir
+   gegeben hat.
+
+**Vollständigkeitsprüfung.** Stimmen deine Durchläufe mit der Tabelle von `docs/PERSISTENCE.md`
+überein? Bleibt irgendeine Abfrage, die in einem kritischen Fluss eine ganze Tabelle liest? Hat
+jede Tabelle eine geschriebene Retention? Haben die Budgets einen Test (verlang von ihm, eines zu
+überschreiten und dir das Rot zu zeigen)?
+
+**Ergebnis.** Die Messgeräte mit Test, `docs/PERSISTENCE.md` mit Vorher und Nachher, die Budgets
+mit Test, und die Batterie in Grün.
+
+**Typische Fehler.** Mit den zehn Datensätzen des Skeletts messen. „Besser migrieren wir auf eine
+andere Datenbank“ akzeptieren. Und eine Zahl verbessern und dabei die monatliche Tabelle kaputt
+machen, die diese Tabelle las: da fehlte die Karte.
+
+**Im Leitprojekt.** Die Tagesagenda machte eine Abfrage pro Termin (die Schleife aus Lektion 9):
+52 Abfragen für 50 Termine werden zu 3. Die Patientensuche nach Namen las die ganze Tabelle: ein
+Index senkt sie von 800 Millisekunden auf 4 bei zehntausend Patientinnen. Retention: die
+Nachrichten werden nach einem Jahr archiviert; die Termine nie. Budget: 4 Abfragen für die
+Agenda, mit Test.
+
+### Lektion 18 — Scannen und Beheben von Schwachstellen
+
+**Was du verstehen musst.** Eine *Schwachstelle* ist ein Defekt, den jemand nutzen kann, um
+einzudringen, Daten zu stehlen oder das System tun zu lassen, was es nicht soll. Das Audit
+(Lektion 11) sucht sie mit Urteilsvermögen, hin und wieder; diese Lektion sucht sie maschinell,
+die ganze Zeit, in vier Schichten: die *Abhängigkeiten* (Bausteine anderer, die dein System
+benutzt, mit ihren veröffentlichten bekannten Defekten), den Code (*statische Analyse*), die
+Geheimnisse in der Historie des Repositorys, und die Konfiguration des Servers. Und eine Regel:
+eine Abhängigkeit zu aktualisieren ist eine Änderung und geht durch die Schleife; „ich habe die
+Version hochgezogen, um den Befund zu schließen“, ohne Regression, ist die häufigste Art, die
+Produktion an einem Freitag kaputtzumachen [Ref. 41](REFERENCIAS.md#ref-41),
+[Ref. 23](REFERENCIAS.md#ref-23).
+
+**Bevor du den Prompt schickst**, mit deinen Händen:
+
+- Die laufende Continuous Integration (Lektion 4 und 13), und wie viel Kontingent dir bleibt: der
+  Scan fügt Minuten hinzu.
+- `docs/ENVIRONMENTS_SURVEY.md` mit dem Server, den Ports und der Angabe, wer die Domain
+  verwaltet.
+- `docs/AUDIT_[Datum].md` (Lektion 11), damit er Bekanntes nicht wiederholt.
+- Dein P0-Kriterium, in zwei Zeilen: für Turnera das, was ohne Zugangsdaten hineinlässt, was
+  Patientendaten offenlegt, was erlaubt, ohne Kontrolle Nachrichten zu senden oder abzubuchen.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 18 ein, mit deinem Kriterium in der Lücke.
+2. Lies `docs/SECURITY_[Datum].md`. Wähl zwei Befunde und verlang den Beleg. Sagt es, was es
+   NICHT gescannt hat?
+
+**Bevor du den Prompt schickst** zum Abschluss: die Liste der freigegebenen Reparaturen; für jede
+Aktualisierung einer Abhängigkeit das Bewusstsein, dass die Regression und die Ende-zu-Ende-
+Batterie laufen werden.
+
+3. Füg ihm den Abschluss-Prompt des Vertrags von Schritt 18 ein.
+4. Verlang von ihm, absichtlich, in einem Zweig, eine Abhängigkeit mit bekannter Schwachstelle
+   einzufügen: die Kette muss rot werden.
+
+**Vollständigkeitsprüfung.** Ist der letzte Durchlauf des Scans grün, und von welchem Datum? Hat
+jedes P0 seinen mit Beleg geschlossenen offenen Posten? Ist der Scan ein Tor in `docs/GATES.md`?
+Weißt du, wann der nächste geplante Scan läuft?
+
+**Ergebnis.** Der Scan in vier Schichten in der Kette und mit Zeitplan,
+`docs/SECURITY_[Datum].md`, `docs/SECURITY.md`, die reparierten P0 und P1, das Tor.
+
+**Typische Fehler.** Ein Scan, der „beim ersten Mal sauber“ ist, in einem System, das älter als
+ein Monat ist: da fehlte eine Schicht. Zehn Abhängigkeiten in einem Commit aktualisiert. Ein
+„akzeptiertes“ P0 ohne offenen Posten und ohne Datum.
+
+**Im Leitprojekt.** Der Scan von Turnera findet: eine Abhängigkeit des PDF-Generators mit einer
+bekannten Schwachstelle (P1, wird mit Regression und Ende-zu-Ende-Prüfung aktualisiert); den
+Header, der das Einbetten der Agenda in eine andere Website verhindert, fehlend (P1, eine Zeile
+Konfiguration, mit Test); einen Testschlüssel des Zahlungsanbieters in der Historie des
+Repositorys (P0: er wird rotiert, auch wenn er nur zum Testen war); und einen Port der Datenbank,
+der auf dem Testserver zur Welt offen steht (P0: er wird geschlossen). Der Scan bleibt als Tor
+und läuft montags.
+
+### Lektion 19 — Lasttests im Volumen und Bruchpunkt
+
+**Was du verstehen musst.** Lektion 3 hat mit Rechnungen dimensioniert; diese überprüft sie mit
+dem laufenden System. Ein *Lasttest* simuliert viele Nutzer gleichzeitig. Man sieht sich den
+*Durchsatz* an (Aktionen pro Sekunde), die *Latenz* (wie lange jede Aktion braucht; den Median
+und das *95. Perzentil*, das ist das, was die sehen, die sich beschweren) und die Fehlerrate, im
+erwarteten Volumen und beim „mal zehn“. Und danach wird die Last hochgefahren, bis etwas bricht:
+der *Bruchpunkt* ist nicht „es wird langsam“, sondern „die Verbindungen zur Datenbank waren bei
+180 Nutzerinnen erschöpft“. Diese Zahl ist die nützlichste des Abschnitts, denn aus ihr kommen die
+*Schwellenwerte* für die Alarme von Lektion 20 [Ref. 12](REFERENCIAS.md#ref-12),
+[Ref. 44](REFERENCIAS.md#ref-44).
+
+**Bevor du den Prompt schickst**, mit deinen Händen und mit der Eigentümerin:
+
+- `docs/SIZING.md` mit dem erwarteten Volumen und dem „mal zehn“: für Turnera zwei Nutzerinnen in
+  der Spitze und vierzig Termine pro Tag; mal zehn, zwanzig Nutzerinnen und vierhundert Termine.
+- Die kritischen Flüsse für die Lücke im Prompt: einen Termin eintragen, die Tagesagenda ansehen,
+  eine Patientin suchen, der nächtliche Versand der Erinnerungen.
+- Die Toleranz der Leiterin für den meistbenutzten Bildschirm (die Tagesagenda): „wenn er länger
+  als zwei Sekunden braucht, beschweren sich die Mädchen“.
+- Die Testumgebung mit den Daten im Volumen (Lektion 17) und, wenn sie sich in den Ressourcen von
+  der Produktion unterscheidet, in `docs/ENVIRONMENTS_SURVEY.md` notiert, wie.
+- Die Beobachtbarkeit aus Lektion 16 eingeschaltet.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 19 ein, mit den Flüssen und der Toleranz
+   in den Lücken.
+2. Lies `docs/PERFORMANCE_[Datum].md` mit der Toleranz daneben: bleibt die Tagesagenda im
+   erwarteten Volumen unter zwei Sekunden? Und beim mal zehn? Was ist zuerst gebrochen und bei
+   welcher Last?
+3. Entscheide mit der Leiterin, bis zu welchem Volumen die Flaschenhälse jetzt repariert werden:
+   wenn sie es an andere Praxen verkaufen wollen, ist das „mal zehn“ jetzt; wenn nicht, mit Datum.
+
+**Bevor du den Prompt schickst** zum Abschluss: der gelesene Bericht, die Entscheidung über das
+„mal zehn“.
+
+4. Füg ihm den Abschluss-Prompt des Vertrags von Schritt 19 ein.
+5. Lass selbst das Skript im erwarteten Volumen laufen, mit dem Befehl, den er dir gegeben hat:
+   die Zahlen müssen sich ähneln.
+
+**Vollständigkeitsprüfung.** Bleibt der meistbenutzte Bildschirm in der Toleranz, oder gibt es
+einen offenen Posten mit der Zahl? Sagt der Bruchpunkt, was gebrochen ist und bei welcher Last?
+Liegen die Schwellenwerte aus `docs/PERFORMANCE.md` unter dem Bruchpunkt und über dem erwarteten
+Volumen? Ist der Test ein Tor, und ist der erste Durchlauf archiviert?
+
+**Ergebnis.** Das Lastskript mit Test, `docs/PERFORMANCE_[Datum].md`, `docs/PERFORMANCE.md` mit
+Schwellenwerten und Tor, und ein offener Posten pro Flaschenhals.
+
+**Typische Fehler.** „Es hält das mal zehn ohne Probleme aus“ ohne Bruchpunkt: er hat die Last
+nicht weit genug hochgefahren. Ein Skript, das auf die API geht und nicht auf den Bildschirm.
+Während des Tests Flaschenhälse reparieren, „wo man schon mal dabei war“.
+
+**Im Leitprojekt.** Im erwarteten Volumen antwortet die Agenda in 300 Millisekunden; beim mal
+zehn in 1,4 Sekunden; der nächtliche Versand von 400 Erinnerungen braucht 50 Sekunden. Der
+Bruchpunkt: bei 180 gleichzeitigen Nutzerinnen ist der Verbindungspool (10) erschöpft und die
+Aktionen fangen an fehlzuschlagen. Schwellenwerte: Alarm, wenn die Agenda über 1,5 Sekunden geht
+oder wenn die benutzten Verbindungen über 7 gehen. Offener Posten: der nächtliche Versand in
+Stapeln zu 50, denn die Leiterin will es tatsächlich verkaufen.
+
+### Lektion 20 — Monitoring von Ressourcen und Leistung, mit zyklischem Bericht
+
+**Was du verstehen musst.** Lektion 19 sagt, wie sich das System an einem Tag verhält; die
+Produktion ist jeden Tag, mit wachsenden Daten. *Monitoren* heißt, maschinell und die ganze Zeit
+die Nutzung der *Ressourcen* anzusehen (Prozessor, Speicher, Platte, Verbindungen, Kontingent des
+Nachrichtenanbieters) und die Antwortzeit jeder Funktion und jeder Abfrage, und zu melden, wenn
+etwas aus dem Bereich läuft: über einem *Schwellenwert* (denen aus Lektion 19) oder sehr
+verschieden von der *Basislinie* (dem, was es bisher ergeben hat). Ein *Alarm* meldet im Moment;
+der *zyklische Bericht* wird jede Woche oder jeden Monat in Ruhe gelesen. Zwei Regeln: ein Alarm,
+den niemand liest, ist ein Defekt des Alarms; und ein Schwellenwert wird nicht angehoben, um
+einen Alarm zum Schweigen zu bringen, ohne eine gemessene, geschriebene Begründung
+[Ref. 37](REFERENCIAS.md#ref-37), [Ref. 39](REFERENCIAS.md#ref-39).
+
+**Bevor du den Prompt schickst**, mit deinen Händen und mit der Eigentümerin:
+
+- `docs/OBSERVABILITY.md` (16), `docs/PERSISTENCE.md` (17) und `docs/PERFORMANCE.md` (19),
+  abgeschlossen.
+- Der Alarmkanal, mit der Leiterin entschieden: bei wem er ankommt und worüber. Für den Kurs: an
+  deine E-Mail und an deinen Messenger.
+- Der Zyklus: monatlich für Turnera; wöchentlich, wenn jeden Tag Geld im Spiel wäre.
+- Die Abweichung, die du als Alarm ansiehst: 30 % über dem Durchschnitt der letzten vierzehn Tage.
+- Nur lesender Zugang des Monitorings zur Produktion, mit dem Zugangsschlüssel außerhalb des
+  Chats.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 20 ein, mit dem Kanal, dem Zyklus und der
+   Abweichung in den Lücken.
+2. Verlang von ihm, absichtlich einen Schwellenwert in der Testumgebung zu überschreiten: der
+   Alarm muss über den Kanal bei dir ankommen.
+3. Lies den ersten Bericht: jedes Ereignis außerhalb des Bereichs muss eine Ursache oder einen
+   Vorschlag haben.
+
+**Bevor du den Prompt schickst** der Routine: der erste Bericht, von dir gelesen.
+
+4. Füg der Vereinbarung die Routine von Schritt 20 hinzu, eingepackt in „Add this routine to
+   `docs/WORKING_AGREEMENT.md`:“.
+
+**Vollständigkeitsprüfung.** Ist der provozierte Alarm bei dir angekommen? Hat der Bericht jede
+Abweichung mit Ursache oder Vorschlag? Gibt es einen offenen Posten für jede Abweichung, die du
+angehen wolltest, mit der Zahl als Kriterium? Ist seit Lektion 19 ein Schwellenwert angehoben
+worden, und mit welcher Begründung? Sieht sich der Bericht das Kontingent des
+Nachrichtenanbieters an?
+
+**Ergebnis.** Erfassung mit Geschichte, Alarme, der zyklische Bericht, `docs/MONITORING.md`, die
+Routine in der Vereinbarung.
+
+**Typische Fehler.** Jeden Tag Alarme, die niemand liest. Drei Berichte hintereinander, die „alles
+normal“ sagen. Ein Schwellenwert, der angehoben wurde, „damit er aufhört zu melden“.
+Personenbezogene Daten, gespeichert „um zu diagnostizieren“.
+
+**Im Leitprojekt.** Der erste Monatsbericht von Turnera sagt: Platte zu 40 %, Speicher stabil,
+die Tagesagenda bei 320 Millisekunden im Median (Basislinie), die Patientensuche ist von 4 auf 9
+Millisekunden gestiegen (die Tabelle wächst; im Bereich), und das Nachrichtenkontingent bei 60 %
+(Vorschlag: bei 80 % melden). Eine Abweichung: die monatliche Auswertung der Leiterin brauchte am
+Ersten 11 Sekunden (Vorschlag: sie nachts vorberechnen; offener Posten).
+
+### Lektion 21 — Fehler-Monitoring und zyklischer Bericht
+
+**Was du verstehen musst.** Ein System in Produktion erzeugt Fehler, die niemand meldet: die
+Empfangskraft, die den weißen Bildschirm gesehen und es noch einmal versucht hat, die nächtliche
+Aufgabe, die abgebrochen ist. Diese Lektion *erfasst* sie an den drei Orten, an denen sie sich
+verstecken (das Backend, die Aufgaben und der Browser), *gruppiert* sie (tausendmal derselbe
+Fehler ist ein Eintrag mit einem Zähler), meldet die neuen und die, die wachsen, und erzeugt
+einen Bericht mit der *Fehlerrate pro Fluss* (von hundert eingetragenen Terminen, wie viele
+fehlgeschlagen sind). Zwei Regeln: kein Fehler ohne offenen Posten, und es gibt keinen „bekannten
+Fehler“ ohne einen offenen Posten, der sagt, warum er toleriert wird und bis wann
+[Ref. 43](REFERENCIAS.md#ref-43), [Ref. 22](REFERENCIAS.md#ref-22).
+
+**Bevor du den Prompt schickst**, mit deinen Händen:
+
+- `docs/OBSERVABILITY.md` (16): die Fehler kommen schon mit Kennung, Version und Akteur heraus.
+- `docs/LOCKS.md` (12): die Fehler in Aktionen mit Konsequenz sind sofortiger Alarm.
+- Der Kanal und der Zyklus aus Lektion 20, und die Zahl der Vorkommen pro Stunde eines bekannten
+  Fehlers, ab der du einen Alarm willst: für Turnera zehn.
+- Wo die Fehler gespeichert werden und wie lange, ohne personenbezogene Daten.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 21 ein, mit dem Kanal, dem Zyklus und der
+   Zahl in den Lücken.
+2. Provozier selbst einen Fehler im Browser, in der Testumgebung (ein unmögliches Datum im
+   Terminformular zum Beispiel): er muss mit deiner Kennung in der Erfassung erscheinen, und der
+   Alarm muss bei dir ankommen, wenn er neu ist.
+
+**Bevor du den Prompt schickst** der Routine: der erste Fehlerbericht von dir gelesen, und
+`docs/PENDING.md` zur Hand.
+
+3. Füg der Vereinbarung die Routine von Schritt 21 hinzu, eingepackt wie die übrigen.
+4. Mit dem ersten Bericht: eröffne die korrektiven offenen Posten der neuen Fehler, jeden mit
+   seiner Reproduktion, und schließ sie mit der Routine von Lektion 7 (dem Test, der ihn rot
+   reproduziert).
+
+**Vollständigkeitsprüfung.** Ist dein provozierter Fehler in der Erfassung, im Alarm und im
+Bericht angekommen? Gibt es einen wiederkehrenden Fehler ohne offenen Posten und ohne Begründung
+mit Datum? Hat ein „reparierter“ Fehler aus dem Bericht den roten Test in seinem offenen Posten?
+Ist die Fehlerrate pro Fluss da, und mit dem vorigen Zeitraum verglichen? Gibt es
+personenbezogene Daten in der Erfassung?
+
+**Ergebnis.** Die zentrale und gruppierte Erfassung, die Alarme, der zyklische Bericht mit der
+Rate pro Fluss, `docs/MONITORING.md` vollständig, die Routine in der Vereinbarung, und ein
+offener Posten pro Fehler.
+
+**Typische Fehler.** „Null Fehler in einem Monat“ mit echten Nutzern: die Erfassung sieht den
+Browser oder die Aufgaben nicht. Ein Fehler mit tausend Vorkommen und dem Kommentar „bekannt,
+stört nicht“. Fehler, die sich durch einen Neustart „reparieren“. Und den Fehlerbericht lesen,
+ohne ihn mit dem der Ressourcen zu kreuzen: die langsame Abfrage des einen ist der abgelaufene
+Timeout des anderen.
+
+**Im Leitprojekt.** Der erste Bericht von Turnera hat drei Fehler: einen im Browser (die Agenda
+schlägt fehl, wenn der Name der Fachkraft einen Apostroph hat; 14 Mal; offener Posten, Test in
+Rot), einen in der nächtlichen Aufgabe (der Nachrichtenanbieter gab eine Nacht lang einen Fehler
+zurück; 1 Mal; offener Posten, um mit Protokollierung erneut zu versuchen), und einen „bekannten“
+des Neffen in der monatlichen Tabelle (offener Posten mit Datum: er wird durch den Bericht aus
+Lektion R2 in Teil 2 ersetzt). Fehlerrate: 0,3 % bei „Termin eintragen“, 0 % bei den übrigen.
+
 ## Die Produktionsreife-Liste
 
-Wenn die sechzehn Lektionen gemacht sind, erfüllt das System diese Liste. Sie ist die
+Wenn die zweiundzwanzig Lektionen gemacht sind, erfüllt das System diese Liste. Sie ist die
 betriebliche Definition von „production grade“ in Urazuke, und sie lässt sich als abschließende
 Prüfliste verwenden, mit dem Eigentümer, ohne den Code zu öffnen:
 
@@ -2053,8 +2395,21 @@ Prüfliste verwenden, mit dem Eigentümer, ohne den Code zu öffnen:
     eine Person, die nicht programmiert, ist dem Wiederherstellungshandbuch gefolgt; der Eigentümer
     hat die Abnahmetests über alle Flüsse gemacht (S14).
 16. Es gibt eine Retrospektive mit Zahlen und einen Änderungsvorschlag für die Leiter (S15).
+17. Die Logs sind strukturiert, mit konfigurierbarem Level ohne Deployment, mit einer Kennung,
+    die jeder Aktion vom Bildschirm bis zur Datenbank folgt; die Aktionen mit Konsequenz landen
+    in einem unveränderlichen Audit-Log; keine personenbezogenen Daten in den Logs (S16).
+18. Die echten Abfragen wurden im erwarteten Volumen gemessen, mit Vorher und Nachher korrigiert,
+    und es gibt Budgets mit Test pro kritischem Pfad (S17).
+19. Der Schwachstellen-Scan läuft bei jedem Push und mit Zeitplan, er ist ein Tor, und es gibt
+    kein offenes P0 (S18).
+20. Es gibt einen Lasttest mit Test, gelaufen im erwarteten Volumen und beim „mal zehn“, mit dem
+    geschriebenen Bruchpunkt und den daraus abgeleiteten Schwellenwerten (S19).
+21. Die Ressourcennutzung und die Antwortzeiten werden mit Alarmen und zyklischem Bericht
+    überwacht, und jede Abweichung hat eine Ursache oder einen offenen Posten (S20).
+22. Die Fehler werden im Backend, in den Aufgaben und im Browser erfasst, gruppiert, pro Zyklus
+    mit der Rate pro Fluss berichtet, und keiner bleibt ohne offenen Posten (S21).
 
-Wenn alle sechzehn „ja“ ergeben, ist das System bereit für die Einführung. Wenn eine „nein“
+Wenn alle zweiundzwanzig „ja“ ergeben, ist das System bereit für die Einführung. Wenn eine „nein“
 ergibt, weißt du schon, welchen Schritt du noch einmal erklimmen musst.
 
 ---

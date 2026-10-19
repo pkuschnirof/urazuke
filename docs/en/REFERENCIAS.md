@@ -498,3 +498,7 @@ appeared that falls into none, a step would be missing.
 | Project file of 9,661 lines | Ref. 41 | 2 | pending |
 | CORS from the first domain; configuration assistant with a 500 error | Ref. 43 | 13 and 8 | application pending |
 | The mobile application loses its tabs | Ref. 43 | 10 and 12 | diagnosis done; correction pending |
+| Queries without an index on a live system | Ref. 18 | 11 and 17 | closed |
+| Security audit done once, not as a routine | Ref. 23 | 11 and 18 | closed; the schedule is new |
+| Ceiling tightened to the measured value; quota burned without anybody looking | Refs. 37 and 39 | 9, 13 and 20 | closed |
+| The orphan turn was found through the log, not through the code | Ref. 16 | 16 and 21 | closed |

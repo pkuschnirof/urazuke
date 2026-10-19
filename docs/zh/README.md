@@ -23,14 +23,15 @@ AI 没有中断方法：它延续了方法。业界在二十年前就不再信�
 
 | 文件 | 是什么 |
 |---|---|
-| `ESCALERA_METODOLOGICA.md` | 主文档：论点、方法从哪里来、时间线（每级台阶何时登、台阶之间发生什么：基础设施、CI/CD、需求摄入、开发、端到端测试、人工查看、人工测试）、附卡片的十六级台阶、尚待完成的事项，以及术语表。 |
+| `ESCALERA_METODOLOGICA.md` | 主文档：论点、方法从哪里来、时间线（每级台阶何时登、台阶之间发生什么：基础设施、CI/CD、需求摄入、开发、端到端测试、人工查看、人工测试）、附卡片的二十二级台阶（最后六级是运维质量：可观测性、持久化、漏洞、性能，以及两个监控）、尚待完成的事项，以及术语表。 |
 | `EVOLUTIVO_CORRECTIVO.md` | 针对一个已经存在、而且不是用方法诞生的系统的路：方法的三个使用场景、不重写地规范化的原则、八个规范化站点（N0 到 N7）及其契约和提示词、纠正模式与演进模式的循环，以及这个阶段的出口清单。 |
 | `REFERENCIAS.md` | 方法背后的真实案例，编号（"Ref. N"），附日期和证据，让流程保持干净、细节一点即达。包含三个系统的年表和按台阶划分的故障表。 |
 | `peldanos/peldano-NN-*.md` | 每级台阶的契约：时机、所需上下文、英文提示词及其翻译，以及每条提示词前面的"发送提示词之前"方框，列出你必须亲手构建的文件及其内容；预期结果、不读代码即可完成的完整性检验、警报信号。 |
 | `peldanos/README.md` | 契约索引。 |
-| `MANUAL_CURSO.md` | 课程：日程、十六节课，附实践任务和提示词、引导项目（"Turnera"）、上线生产清单。 |
+| `MANUAL_CURSO.md` | 课程：日程、二十二节课，附实践任务和提示词、引导项目（"Turnera"）、上线生产清单。 |
 | `MANUAL_CURSO_EVOLUTIVO.md` | 课程的第 2 部分：继承来的引导项目（"继承来的 Turnera"），十节课（N0 到 N7、R1 和 R2），先把一个遗留系统规范化，然后再纠正它、让它演进。 |
 | `../DECISIONES.md` | 项目的决策，附日期和原话。方法应用于它自己。 |
+| `CAPACITACION_JUNIOR.md` | 方法对初级开发者培养的影响：哪些重点失去分量、哪些获得分量，以什么目标、怎样在手工编程时代之后培训一个初级。 |
 | `../PLAN_CURSO_MENTORING.md` | 课程与辅导的商业计划草案。 |
 | `../html/` | 便于阅读的 HTML 版本，带翻译每条提示词的按钮。不手工编辑。 |
 | `../../build/` | markdown 到 HTML 的转换器、提示词的提取与检验器，以及组装一切的脚本。 |
@@ -56,13 +57,13 @@ node build/build.mjs
 
 ## 语言
 
-西班牙语是事实来源。文档存在于 NAC3 的八种语言中：西班牙语（`docs/`）、英语（`docs/en/`）、
-葡萄牙语（`docs/pt/`）、法语（`docs/fr/`）、德语（`docs/de/`）、意大利语（`docs/it/`）、日语
-（`docs/ja/`）和中文（`docs/zh/`）。每个文件夹都有自己的 README、主文档、参考资料、十六份契
-约、演进-纠正之路，以及课程手册的两个部分。给模型的提示词是英文的单一原件，在所有版本中完全
-相同，旁边附有文档语言的翻译；如果某个翻译改动了它们，`node build/prompts.mjs --check` 会失
-败。名字不翻译；副标题翻译：*the evidence method*、*o método da evidência*、*la méthode de
-la preuve*、*die Nachweis-Methode*、*il metodo del riscontro*、裏付けの方法、验证方法。
+西班牙语是事实来源。文档存在于 NAC3 的八种语言中：西班牙语（`docs/`）、英语（`docs/en/`）、葡
+萄牙语（`docs/pt/`）、法语（`docs/fr/`）、德语（`docs/de/`）、意大利语（`docs/it/`）、日语
+（`docs/ja/`）和中文（`docs/zh/`）。每个文件夹都有自己的 README、主文档、参考资料、二十二份契
+约、演进-纠正之路，以及课程手册的两个部分。给模型的提示词是英文的单一原件，在所有版本中完全相
+同，旁边附有文档语言的翻译；如果某个翻译改动了它们，`node build/prompts.mjs --check` 会失败。
+名字不翻译；副标题翻译：*the evidence method*、*o método da evidência*、*la méthode de la
+preuve*、*die Nachweis-Methode*、*il metodo del riscontro*、裏付けの方法、验证方法。
 
 决策记录（`../DECISIONES.md`）和课程计划只保留西班牙语，因为它们逐字引用了原话。
 

@@ -490,3 +490,7 @@ aparecesse um que não cai em nenhum, faltaria um degrau.
 | Arquivo de projeto de 9.661 linhas | Ref. 41 | 2 | pendente |
 | CORS do primeiro domínio; assistente de configuração com erro 500 | Ref. 43 | 13 e 8 | aplicação pendente |
 | O aplicativo móvel perde abas | Ref. 43 | 10 e 12 | diagnóstico feito; correção pendente |
+| Consultas sem índice sobre um sistema vivo | Ref. 18 | 11 e 17 | fechado |
+| Auditoria de segurança feita uma vez, não como rotina | Ref. 23 | 11 e 18 | fechado; o calendário é novo |
+| Teto apertado ao medido; cota esgotada sem que ninguém olhasse | Refs. 37 e 39 | 9, 13 e 20 | fechado |
+| O turno órfão se encontrou pelo log, não pelo código | Ref. 16 | 16 e 21 | fechado |

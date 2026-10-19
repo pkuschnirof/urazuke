@@ -493,3 +493,7 @@ peldaño. Si apareciera uno que no cae en ninguno, faltaría un peldaño.
 | Archivo de proyecto de 9.661 líneas | Ref. 41 | 2 | pendiente |
 | CORS del primer dominio; asistente de configuración con error 500 | Ref. 43 | 13 y 8 | aplicación pendiente |
 | La aplicación móvil pierde pestañas | Ref. 43 | 10 y 12 | diagnóstico hecho; corrección pendiente |
+| Consultas sin índice sobre un sistema vivo | Ref. 18 | 11 y 17 | cerrado |
+| Auditoría de seguridad hecha una vez, no como rutina | Ref. 23 | 11 y 18 | cerrado; el calendario es nuevo |
+| Techo apretado a lo medido; cuota fundida sin que nadie mirara | Refs. 37 y 39 | 9, 13 y 20 | cerrado |
+| El turno huérfano se encontró por el log, no por el código | Ref. 16 | 16 y 21 | cerrado |

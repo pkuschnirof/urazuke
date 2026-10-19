@@ -38,7 +38,7 @@ l'agent, parce que cela change par où l'on entre.
 
 | Cas | Point de départ | Par où l'on entre | Combien dure l'entrée | Où c'est écrit |
 |---|---|---|---|---|
-| **Projet neuf** | Dossier vide et un propriétaire avec une demande. | Échelon 0, et de là les seize dans l'ordre. | Une semaine de démarrage avant la première fonctionnalité. | Le document principal, les seize contrats et le manuel du cours. |
+| **Projet neuf** | Dossier vide et un propriétaire avec une demande. | Échelon 0, et de là les vingt-deux dans l'ordre. | Une semaine de démarrage avant la première fonctionnalité. | Le document principal, les vingt-deux contrats et le manuel du cours. |
 | **Évolutif-correctif sur un système fait avec la méthode** | Le système a déjà gravi l'échelle : il a un contrat, une carte, des éléments en attente clos avec leur preuve, une batterie, un déploiement et des manuels. | Échelon 5 : on ouvre un bloc et on suit la boucle ; le 11 périodique ; le 15 à la clôture de l'étape. | Aucune : c'est l'échelon 15 qui revient au 0 pour l'étape suivante, et c'est déjà dans la Partie B du document principal. | Le document principal (phase 4, exploitation). |
 | **Évolutif-correctif sur un système fait sans la méthode** | Un système qui tourne, avec des utilisateurs, sans aucun de ces artefacts ou avec quelques-uns à moitié faits. | Le tronçon de normalisation de cette page (N0 à N7), et seulement ensuite la boucle, en mode correctif ou évolutif. | De deux à trois semaines pour un petit système, avant de toucher la première ligne de fonctionnalité. | Cette page et le manuel du cours, partie 2. |
 
@@ -119,7 +119,7 @@ système « fonctionne » : la boucle en aura besoin dès la première session.
 ## Le tronçon de normalisation : les huit stations
 
 Je les appelle des stations et non des échelons, et je les numérote de N0 à N7, pour qu'elles ne
-se confondent pas avec les seize de l'échelle. Ce ne sont pas de nouveaux échelons : ce sont les
+se confondent pas avec les vingt-deux de l'échelle. Ce ne sont pas de nouveaux échelons : ce sont les
 échelons du démarrage et trois de l'exploitation (le 8, le 11 et le 12), dans un autre ordre et
 avec une autre entrée. Dans le projet neuf, l'entrée est le relevé ; ici l'entrée est le système,
 et c'est l'agent qui fait la lecture.
@@ -1073,6 +1073,36 @@ version précédente) sous la main.
 Ce que je lui demande : le minimum, avec le retour arrière avant et non après, et avec le rapport
 honnête de ce qui n'a pas été vérifié (échelon 10) ; et l'obligation de repasser par la boucle le
 jour même, qui est ce qui sépare une exception d'une habitude.
+
+## Les six échelons de qualité opérationnelle dans un système hérité
+
+Les échelons 16 à 21 du document principal (observabilité et traçabilité, persistance,
+vulnérabilités, performance, et les deux supervisions) valent pour les deux cas d'utilisation, et
+dans un système hérité ils ont un emplacement précis, parce que plusieurs d'entre eux ont déjà la
+moitié du travail faite par le tronçon de normalisation :
+
+- **16, observabilité et traçabilité** : le niveau minimum (journaux structurés avec niveau
+  configurable et un identifiant de corrélation dans les flux critiques) entre dans la ceinture de
+  sécurité (N4), parce que sans lui la batterie de caractérisation ne dit pas ce qui a cassé. Le
+  niveau complet, avec l'audit immuable des actions à conséquence que N5 a inventoriées, se gravit
+  avant le premier déploiement postérieur à la normalisation.
+- **17, persistance** : les mesures sont déjà faites en N6. Ce qui en sort entre dans la file (N7)
+  avec sa marque : ce qui est déjà hors de la tolérance du métier, « bloque » ou « maintenant » ;
+  le reste, « se paie quand on y touche », et entre avec le bloc qui touche ce module.
+- **18, vulnérabilités** : la première passe est la dimension sécurité de l'audit de N3, et le scan
+  dans la chaîne fait partie de la ceinture (N4), parce qu'un legacy a presque toujours des
+  dépendances vieilles et des secrets dans l'historique. Les P0 bloquent ; le reste, dans la file.
+- **19, performance** : on le lance avec les volumes mesurés en N6, sur la persistance déjà
+  corrigée là où elle bloquait, avant le premier déploiement postérieur à la normalisation. Dans un
+  legacy, il découvre souvent que le point de rupture est plus proche que ce que le métier croit.
+- **20 et 21, supervision** : elles se montent dans la semaine du premier déploiement, comme dans
+  le projet neuf, avec une différence : la première lecture du rapport est la ligne de base du
+  legacy, et les écarts et les erreurs qui existaient déjà le premier jour deviennent des éléments
+  en attente avec leur marque de vitesse. Aucun ne reste comme « connu » sans élément en attente.
+
+En pratique, pour un petit système, les quatre préalables au déploiement ajoutent une semaine au
+calendrier de la normalisation (une quatrième semaine, avant le premier bloc évolutif ou avec lui,
+selon l'urgence de la demande), et les deux supervisions se montent dans la semaine du déploiement.
 
 ## Quand le système est normalisé
 
