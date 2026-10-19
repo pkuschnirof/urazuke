@@ -14,6 +14,8 @@ import { execFileSync } from 'node:child_process';
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
 execFileSync(process.execPath, [join(raiz, 'build', 'prompts.mjs')], { stdio: 'inherit' });
+// La API estatica de prompts (docs/html/api/prompts.json), para Forge y cualquier herramienta.
+execFileSync(process.execPath, [join(raiz, 'build', 'prompts_api.mjs')], { stdio: 'inherit' });
 const conv = join(raiz, 'build', 'md2html.mjs');
 
 function armar(dirMd, dirHtml, idioma) {
