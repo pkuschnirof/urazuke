@@ -9,3 +9,7 @@ We are going to make the code quality verified by machine, because nobody is goi
 ## Prompt 2
 
 Every pending item is closed with the quality gate green: linter, formatter, size and complexity limits, no new duplication, no dead code, coverage at or above the ratchet. A quality failure is fixed in the same commit, never silenced with an exception, and a limit is never raised to pass; if a limit must change, say so with the reason and I decide. At the close of every block, show me `docs/CODE_QUALITY.md` with the numbers of the block against the previous one.
+
+## Prompt 3
+
+Add mutation testing to the quality gate, [on the whole codebase | only on the lines changed by each pending item]: a tool that plants small deliberate bugs in the code (a flipped condition, a deleted line, a changed operator) and runs the tests. Run it now and write in `docs/CODE_QUALITY.md`: the tool, the scope, the number of mutants planted, how many the tests killed, how many survived and where. Do not fix anything yet: every surviving mutant in code that matters becomes a pending item for a test that catches it, and I decide which ones matter. From now on, report the mutation score at the close of every block next to the coverage, and treat a drop as a quality failure. Reply in my language.

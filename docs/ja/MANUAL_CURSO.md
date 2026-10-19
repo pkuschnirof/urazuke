@@ -1008,32 +1008,37 @@ PND-006 最低限のデータでの患者登録。例えばPND-003の仕様は�
 
 1. 約束に証拠のルーチンを追加すること。貼ること：
 
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
-> not your word. (1) Write the test that proves what the item asks for, following its acceptance
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence, not
+> your word. (1) Write the test that proves what the item asks for, following its acceptance
 > criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
-> revert the change, or run the test against the old version, but show me the red output. (3)
-> Show me the green output with the change. (4) Run the regression suite for the neighbouring
-> items and show me it is still green. (5) Run the end-to-end test of the flow this item
-> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
-> with mocks the very part you are trying to test. If testing end to end requires something you
-> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
-> Finally, the commit message says 'proved red against [what]' and the test counts."
+> revert the change, or run the test against the old version, but show me the red output as a
+> receipt, not a summary: the exact command, the identifier of the version it ran against, the count
+> of failing tests and the exit code, pasted as they came out, so that I can rerun it myself with
+> one command. (3) Show me the green output with the change. (4) Run the regression suite for the
+> neighbouring items and show me it is still green. (5) Run the end-to-end test of the flow this
+> item touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
+> with mocks the very part you are trying to test. If testing end to end requires something you lack
+> (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the
+> commit message says 'proved red against [what]' and the test counts."
 
 > [ja]
 > このルーチンを `docs/WORKING_AGREEMENT.md` に追加してください：「保留項目を閉じるには、
 > あなたの言葉ではなく証拠が必要です。(1) 項目が求めることを証明するテストを、その受け入れ
 > 基準に従って書いてください。(2) このテストが以前のコードに対して失敗することを示してくだ
 > さい。変更を一時的に戻すか、古いバージョンに対してテストを実行してもよいですが、赤の出力
-> を私に見せてください。(3) 変更ありでの緑の出力を見せてください。(4) 隣接項目の回帰テスト
-> 群を実行し、まだ緑であることを見せてください。(5) この項目が触れるフローのエンドツーエンド
-> テストを、画面からバックエンドまで実行し、バックエンドでの効果を見せてください。(6) まさに
-> テストしようとしている部分をモックで置き換えないでください。エンドツーエンドのテストに
-> あなたが持っていないもの（データ、アクセス、環境）が必要なら、私に求めてください。持って
-> いないものをシミュレートしないでください。最後に、コミットメッセージは『[何]に対して赤で
-> 証明』とテストの数を述べます。」
+> を要約ではなくレシートとして私に見せてください：正確なコマンド、それが走った対象のバー
+> ジョンの識別子、失敗するテストの数、そして終了コードを、出たままの形で貼ってください。
+> 私自身が一つのコマンドでもう一度走らせられるようにです。(3) 変更ありでの緑の出力を見せて
+> ください。(4) 隣接項目の回帰テスト群を実行し、まだ緑であることを見せてください。(5) この
+> 項目が触れるフローのエンドツーエンドテストを、画面からバックエンドまで実行し、バックエン
+> ドでの効果を見せてください。(6) まさにテストしようとしている部分をモックで置き換えないで
+> ください。エンドツーエンドのテストにあなたが持っていないもの（データ、アクセス、環境）が
+> 必要なら、私に求めてください。持っていないものをシミュレートしないでください。最後に、
+> コミットメッセージは『[何]に対して赤で証明』とテストの数を述べます。」
 
-   求めているのは、受け入れ基準に導かれたテスト、**出力を見せての示された赤**、緑、隣接
-   項目の回帰、バックエンドでの効果付きのフローのエンドツーエンドテスト、まさに試すものを
+   求めているのは、受け入れ基準に導かれたテスト、**レシートとして示された赤**（コマンド、
+   バージョン、数字、終了コード。あなた自身がもう一度走らせられるように）、緑、隣接項目の
+   回帰、バックエンドでの効果付きのフローのエンドツーエンドテスト、まさに試すものを
    シミュレートしないこと、そして欠けているものはシミュレートせずに求めること。
 
 2. 二重予約の保留項目（TurneraではPND-003、あなたのプロジェクトでは同等のもの：何かを防ぐ
@@ -1148,6 +1153,12 @@ PND-006 最低限のデータでの患者登録。例えばPND-003の仕様は�
 **典型的な誤り。** エージェントが「このルールは厳しすぎるので無効にしよう」とするのを、
 あなたを通さずに許すこと。通すために上限を引き上げること。そしてカバレッジと品質を混同する
 こと：カバレッジはテストを数え、レッスン8の赤はそれが何かを証明しているかを言う。
+
+**任意の補強。** ブロックが閉じたら、第9段の契約には三つ目のプロンプト、*ミューテーション
+テスト*のものがある：道具が、一度に小さな変更を一つずつ、コードをわざと壊し、それらの誤り
+をテストがいくつ捕まえるかを数える。カバレッジが与えない尺度であり、エージェントが赤を装え
+るという反論に答えるものだ。Turneraでは二つ目のブロックの締めに、変更された行だけについて
+これを行う。
 
 **ガイドプロジェクトでは。** Turneraの最初の実行は三つで赤になる：予約のフォームに70行の
 関数がある（二つに割る：保留項目）、日付の書式の写しが二つある（一つに、サーバーの中に：

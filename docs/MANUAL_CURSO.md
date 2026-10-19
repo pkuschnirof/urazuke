@@ -1065,32 +1065,37 @@ semanas.
 
 1. Agregá al contrato la rutina de evidencia. Pegale:
 
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
-> not your word. (1) Write the test that proves what the item asks for, following its acceptance
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence, not
+> your word. (1) Write the test that proves what the item asks for, following its acceptance
 > criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
-> revert the change, or run the test against the old version, but show me the red output. (3)
-> Show me the green output with the change. (4) Run the regression suite for the neighbouring
-> items and show me it is still green. (5) Run the end-to-end test of the flow this item
-> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
-> with mocks the very part you are trying to test. If testing end to end requires something you
-> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
-> Finally, the commit message says 'proved red against [what]' and the test counts."
+> revert the change, or run the test against the old version, but show me the red output as a
+> receipt, not a summary: the exact command, the identifier of the version it ran against, the count
+> of failing tests and the exit code, pasted as they came out, so that I can rerun it myself with
+> one command. (3) Show me the green output with the change. (4) Run the regression suite for the
+> neighbouring items and show me it is still green. (5) Run the end-to-end test of the flow this
+> item touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
+> with mocks the very part you are trying to test. If testing end to end requires something you lack
+> (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the
+> commit message says 'proved red against [what]' and the test counts."
 
 > [es]
-> Agregá esta rutina a `docs/WORKING_AGREEMENT.md`: "Para cerrar un pendiente necesito
-> evidencia, no tu palabra. (1) Escribí el test que prueba lo que el pendiente pide, siguiendo sus
-> criterios de aceptación. (2) Demostrá que ese test falla contra el código anterior: podés
-> revertir temporalmente el cambio, o correr el test contra la versión vieja, pero mostrame la
-> salida en rojo. (3) Mostrame la salida en verde con el cambio. (4) Corré la regresión de los
-> pendientes vecinos y mostrame que sigue en verde. (5) Corré la prueba de punta a punta del flujo
-> que este pendiente toca, desde la pantalla hasta el backend, y mostrame el efecto en el backend.
-> (6) No reemplaces con simulaciones justamente la parte que estás probando. Si probar de punta a
-> punta requiere algo que no tenés (datos, acceso, un entorno), pedímelo; no simules lo que no
-> tenés. Por último, el mensaje del commit dice 'probado en rojo contra [qué]' y los números de
-> los tests."
+> Agregá esta rutina a `docs/WORKING_AGREEMENT.md`: "Para cerrar un pendiente necesito evidencia, no
+> tu palabra. (1) Escribí el test que prueba lo que el pendiente pide, siguiendo sus criterios de
+> aceptación. (2) Demostrá que ese test falla contra el código anterior: podés revertir
+> temporalmente el cambio, o correr el test contra la versión vieja, pero mostrame la salida en rojo
+> como un recibo, no como un resumen: el comando exacto, el identificador de la versión contra la
+> que corrió, la cantidad de tests que fallan y el código de salida, pegados tal como salieron, para
+> que yo pueda volver a correrlo con un solo comando. (3) Mostrame la salida en verde con el cambio.
+> (4) Corré la regresión de los pendientes vecinos y mostrame que sigue en verde. (5) Corré la
+> prueba de punta a punta del flujo que este pendiente toca, desde la pantalla hasta el backend, y
+> mostrame el efecto en el backend. (6) No reemplaces con simulaciones justamente la parte que estás
+> probando. Si probar de punta a punta requiere algo que no tenés (datos, acceso, un entorno),
+> pedímelo; no simules lo que no tenés. Por último, el mensaje del commit dice 'probado en rojo
+> contra [qué]' y los números de los tests."
 
-   Le estás pidiendo el test guiado por los criterios de aceptación, **el rojo demostrado con la
-   salida a la vista**, el verde, la regresión de los vecinos, la prueba de punta a punta del
+   Le estás pidiendo el test guiado por los criterios de aceptación, **el rojo demostrado como
+   recibo** (el comando, la versión, los números y el código de salida, para que lo puedas volver
+   a correr vos), el verde, la regresión de los vecinos, la prueba de punta a punta del
    flujo con el efecto en el backend, nada de simular justo lo que se prueba, y pedir lo que
    falte en vez de simularlo.
 
@@ -1207,6 +1212,12 @@ y la rutina en el contrato.
 **Errores típicos.** Dejar que el agente "desactive esta regla porque es muy estricta" sin que pase
 por vos. Subir un límite para que pase. Y confundir cobertura con calidad: la cobertura cuenta
 tests, el rojo de la lección 8 dice si prueban algo.
+
+**Refuerzo opcional.** Cuando el bloque esté cerrado, el contrato del peldaño 9 tiene un tercer
+prompt, el de las *pruebas de mutación*: una herramienta rompe el código a propósito, de a un
+cambio chico por vez, y cuenta cuántos de esos errores atrapan los tests. Es la medida que la
+cobertura no da, y la que responde a la objeción de que el agente puede fingir el rojo. En
+Turnera lo hacemos al cierre del segundo bloque, solo sobre las líneas cambiadas.
 
 **En el proyecto guía.** La primera corrida de Turnera da rojo en tres cosas: el formulario de
 turno tiene una función de 70 líneas (se parte en dos: pendiente), hay dos copias del formato de

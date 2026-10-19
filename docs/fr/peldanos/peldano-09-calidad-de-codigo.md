@@ -10,7 +10,8 @@ la ligne de base et les constats entrent dans le backlog avec leur marque de vit
 **Forme :** un seul envoi pour le monter ; ensuite, routine de chaque changement et lecture par
 bloc.
 **Taille :** obligatoire à son niveau minimum dans tout projet (un linter et une limite de taille
-dans la chaîne) ; complet dans tout projet qui aura des utilisateurs.
+dans la chaîne) ; complet dans tout projet qui aura des utilisateurs. Les tests de mutation sont un
+renfort optionnel, recommandé dans tout projet qui aura des utilisateurs.
 
 ## À quoi il sert
 
@@ -33,6 +34,15 @@ baisse jamais (le cliquet) ; et, si le langage le permet, que les types soient c
 tout cela ne remplace le test en rouge : un code impeccable peut être faux. Ce que cela évite,
 c'est le code correct que plus personne ne peut toucher.
 
+Et un renfort optionnel qui vaut la peine dans tout projet qui aura des utilisateurs : les **tests
+de mutation**. Un outil plante des erreurs exprès dans le code (il change un « supérieur » en
+« supérieur ou égal », efface une ligne, inverse une condition) et lance les tests ; chaque erreur
+que les tests n'attrapent pas est un *mutant qui survit*, et la proportion d'attrapés est le score.
+C'est la mesure qui complète le rouge démontré de l'échelon 8 : le rouge prouve qu'un test
+surveille le changement d'aujourd'hui ; la mutation mesure à quel point la batterie entière
+surveille. Et c'est, pour autant que je sache, la seule qui, dans les études de 2026, a distingué
+les tests qui prouvent de ceux qui décorent (Partie F du document principal).
+
 **Si vous débutez.** Un *linter* est un programme qui lit le code et signale ce qui est mal écrit
 ou dangereux (une variable qui ne sert à rien, une comparaison qui donne toujours la même chose),
 comme le correcteur orthographique d'un traitement de texte. Un *formateur* le met en forme avec
@@ -42,7 +52,9 @@ un style unique (indentations, espaces) pour que tout le code semble écrit par 
 dupliqué*, c'est le même bloc copié à deux endroits : le jour où l'on en corrige un, l'autre reste
 faux. La *couverture* est le pourcentage du code qui est exécuté par au moins un test. Et un
 *cliquet* est un mécanisme qui ne laisse qu'améliorer : le chiffre d'aujourd'hui est le plancher
-de demain.
+de demain. Les *tests de mutation* sont un programme qui casse le code exprès, un petit changement
+à la fois, et regarde si un test s'en aperçoit ; si aucun ne s'en aperçoit, ce morceau de code
+n'est pas surveillé.
 
 ## 1. Contexte requis
 
@@ -146,6 +158,43 @@ ne soit pas une tâche à part ; l'interdiction de faire taire (un modèle face 
 a tendance à ajouter l'exception au lieu de corriger, parce que c'est plus rapide) et de relever
 la limite ; et la lecture par bloc, qui est le seul moment où vous, vous regardez les chiffres.
 
+**Renfort (optionnel ; recommandé dans tout projet qui aura des utilisateurs) : tests de mutation.**
+
+**Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
+
+- La porte de qualité montée et au vert, avec la couverture mesurée dans `docs/CODE_QUALITY.md`.
+- Au moins un bloc fonctionnel clos avec l'échelon 8, pour qu'il y ait des tests à muter.
+- Votre décision sur le périmètre, écrite en une ligne : tout le code (cher, et cela n'a de sens
+  qu'une fois, comme ligne de base) ou seulement les lignes changées par chaque élément en attente
+  (le cas normal).
+- État minimum acceptable : il y a une couverture mesurée et il y a un bloc clos.
+
+> Add mutation testing to the quality gate, [on the whole codebase | only on the lines changed by
+> each pending item]: a tool that plants small deliberate bugs in the code (a flipped condition, a
+> deleted line, a changed operator) and runs the tests. Run it now and write in
+> `docs/CODE_QUALITY.md`: the tool, the scope, the number of mutants planted, how many the tests
+> killed, how many survived and where. Do not fix anything yet: every surviving mutant in code
+> that matters becomes a pending item for a test that catches it, and I decide which ones matter.
+> From now on, report the mutation score at the close of every block next to the coverage, and
+> treat a drop as a quality failure. Reply in my language.
+
+> [fr]
+> Ajoute des tests de mutation à la porte de qualité, [sur tout le code | seulement sur les lignes
+> changées par chaque élément en attente] : un outil qui plante exprès de petites erreurs dans le
+> code (une condition inversée, une ligne effacée, un opérateur changé) et lance les tests.
+> Lance-le maintenant et écris dans `docs/CODE_QUALITY.md` : l'outil, le périmètre, le nombre de
+> mutants plantés, combien les tests en ont tués, combien ont survécu et où. Ne corrige rien
+> encore : chaque mutant qui survit dans du code qui compte devient un élément en attente pour un
+> test qui l'attrape, et c'est moi qui décide lesquels comptent. Dès maintenant, rapporte le score
+> de mutation à la clôture de chaque bloc à côté de la couverture, et traite une baisse comme un
+> échec de qualité. Réponds dans ma langue.
+
+Ce que je lui demande : la mesure que la couverture ne donne pas (la couverture dit quel code a été
+exécuté ; la mutation dit quel code est surveillé) ; le périmètre limité aux lignes changées, qui
+est ce qui rend le coût payable à chaque élément en attente ; **ne rien corriger encore**, parce
+que décider quel mutant compte m'appartient ; et le score à la clôture de chaque bloc, à côté de la
+couverture, avec une baisse traitée comme du rouge.
+
 ## 3. Résultat attendu
 
 - Le linter, le formateur, les limites, la détection de duplication et de code mort, la
@@ -154,6 +203,8 @@ la limite ; et la lecture par bloc, qui est le seul moment où vous, vous regard
 - `docs/CODE_QUALITY.md` avec les outils, la configuration, les limites avec leur valeur mesurée,
   et la liste de ce qui échoue avec son élément en attente ou sa date.
 - La porte dans `docs/GATES.md` et la routine dans le contrat.
+- Si le renfort a été monté : le score de mutation dans `docs/CODE_QUALITY.md`, par bloc, à côté
+  de la couverture, et un élément en attente pour chaque mutant qui survit dans du code qui compte.
 
 ## 4. Vérification de complétude (vous la faites vous-même, sans lire de code)
 
@@ -166,6 +217,8 @@ la limite ; et la lecture par bloc, qui est le seul moment où vous, vous regard
   raison écrite.
 - Une limite a-t-elle été relevée depuis la première exécution ? Avec quelle raison et qui l'a
   décidé ?
+- S'il y a des tests de mutation : combien de mutants ont survécu dans le dernier bloc, et chacun
+  a-t-il son élément en attente ou sa raison écrite ?
 
 ## 5. Signaux d'alarme
 
@@ -178,3 +231,5 @@ la limite ; et la lecture par bloc, qui est le seul moment où vous, vous regard
   ensemble.
 - Un fichier a grossi jusqu'à la limite et a été coupé en deux fichiers au même contenu. C'est la
   duplication déguisée en conformité.
+- La couverture est haute et le score de mutation est bas. Ce sont des tests qui exécutent le code
+  sans rien vérifier : le cas exact que le rouge démontré de l'échelon 8 cherche à éviter.

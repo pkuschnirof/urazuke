@@ -22,6 +22,19 @@ forma barata de comprovar que o teste está olhando o que importa: se o código 
 teste não distingue o antes do depois, e então não serve. O caso que melhor mostra isso é o dos
 contadores que não coincidiam [Ref. 26](../REFERENCIAS.md#ref-26).
 
+Há uma objeção séria a este degrau, e quero deixá-la escrita porque vão usá-la contra: o mesmo
+agente que escreve o teste e o código pode **fingir o vermelho**. Um estudo publicado em agosto
+de 2026 mediu que, quando se pede a um agente o ciclo de teste primeiro, às vezes ele pula o
+vermelho, relata-o sem tê-lo rodado, ou implementa antes do teste para que passe de primeira
+(está na Parte F do documento principal, a dos trabalhos relacionados). A minha resposta tem três
+peças, e as três estão na escada. A primeira, aqui: o vermelho não é um relato, é um **recibo**: o
+comando exato, o identificador da versão contra a qual rodou, a quantidade de testes que falham e
+o código de saída, tudo colado tal como saiu, de maneira que você possa voltar a rodá-lo com um
+único comando sem entender o que ele faz. A segunda, no degrau 13: a auditoria por outra sessão
+volta a rodar uma amostra desses recibos. A terceira, no degrau 9: os testes de mutação, que
+plantam erros de propósito e contam quantos os testes capturam; é a única medida que, nesse mesmo
+estudo, distinguiu os testes que vigiam dos que decoram.
+
 E a segunda metade: os testes de ponta a ponta. Um teste que verifica desde a tela (clica,
 digita, lê) e comprova o efeito no backend (a linha ficou, o estado mudou) é o que substitui a
 sua leitura do código. Os critérios de aceitação da pendência ("dado, quando, então") são o seu
@@ -61,36 +74,41 @@ o agente:
 - Estado mínimo aceitável: a especificação tem critérios de aceitação, e a bateria roda com um
   comando conhecido.
 
-> To close this pending item I need evidence, not your word. (1) Write the test that proves what
-> the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
-> against the previous code: you may temporarily revert the change, or run the test against the
-> old version, but show me the red output. (3) Show me the green output with the change. (4) Run
+> To close this pending item I need evidence, not your word. (1) Write the test that proves what the
+> item asks for, following its acceptance criteria. (2) Demonstrate that this test fails against the
+> previous code: you may temporarily revert the change, or run the test against the old version, but
+> show me the red output as a receipt, not a summary: the exact command, the identifier of the
+> version it ran against, the count of failing tests and the exit code, pasted as they came out, so
+> that I can rerun it myself with one command. (3) Show me the green output with the change. (4) Run
 > the regression suite for the neighbouring items and show me it is still green. (5) Run the
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
-> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing
-> end to end requires something you lack (data, access, an environment), ask me for it; do not
-> simulate what you do not have. Finally, the commit message says "proved red against [what]"
-> and the test counts.
+> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
+> to end requires something you lack (data, access, an environment), ask me for it; do not simulate
+> what you do not have. Finally, the commit message says "proved red against [what]" and the test
+> counts.
 
 > [pt]
 > Para fechar esta pendência preciso de evidência, não da sua palavra. (1) Escreva o teste que
 > prova o que a pendência pede, seguindo seus critérios de aceitação. (2) Demonstre que esse
 > teste falha contra o código anterior: você pode reverter temporariamente a mudança, ou rodar o
-> teste contra a versão antiga, mas mostre-me a saída em vermelho. (3) Mostre-me a saída em
-> verde com a mudança. (4) Rode a regressão das pendências vizinhas e mostre-me que continua em
-> verde. (5) Rode o teste de ponta a ponta do fluxo que esta pendência toca, desde a tela até o
-> backend, e mostre-me o efeito no backend. (6) Não substitua por simulações justamente a parte
-> que está testando. Se testar de ponta a ponta exige algo que você não tem (dados, acesso, um
-> ambiente), peça-me; não simule o que não tem. Por último, a mensagem do commit diz "provado em
-> vermelho contra [o quê]" e os números dos testes.
+> teste contra a versão antiga, mas mostre-me a saída em vermelho como um recibo, não como um
+> resumo: o comando exato, o identificador da versão contra a qual rodou, a quantidade de testes
+> que falham e o código de saída, colados tal como saíram, para que eu possa voltar a rodá-lo com
+> um único comando. (3) Mostre-me a saída em verde com a mudança. (4) Rode a regressão das
+> pendências vizinhas e mostre-me que continua em verde. (5) Rode o teste de ponta a ponta do
+> fluxo que esta pendência toca, desde a tela até o backend, e mostre-me o efeito no backend. (6)
+> Não substitua por simulações justamente a parte que está testando. Se testar de ponta a ponta
+> exige algo que você não tem (dados, acesso, um ambiente), peça-me; não simule o que não tem. Por
+> último, a mensagem do commit diz "provado em vermelho contra [o quê]" e os números dos testes.
 
 O que estou pedindo, cláusula por cláusula: (1) o teste, guiado pelos critérios de aceitação da
-pendência; (2) **o vermelho demonstrado**, com a saída à vista, que é a cláusula que distingue
-este método de "escreva testes"; (3) o verde; (4) a regressão das vizinhas na mesma sessão,
-porque uma mudança quebra coisas ao lado; (5) o teste de ponta a ponta do fluxo tocado, com o
-efeito no backend à vista; (6) não simular justamente o que se testa; e a cláusula de completude
-adaptada a este degrau: se falta algo para testar de ponta a ponta, **pedir, não simular**. A
-mensagem de commit com os números deixa a evidência onde vive o código.
+pendência; (2) **o vermelho demonstrado como recibo** (comando, versão, números, código de
+saída), que é a cláusula que distingue este método de "escreva testes" e a que impede que o
+vermelho seja um relato; (3) o verde; (4) a regressão das vizinhas na mesma sessão, porque uma
+mudança quebra coisas ao lado; (5) o teste de ponta a ponta do fluxo tocado, com o efeito no
+backend à vista; (6) não simular justamente o que se testa; e a cláusula de completude adaptada a
+este degrau: se falta algo para testar de ponta a ponta, **pedir, não simular**. A mensagem de
+commit com os números deixa a evidência onde vive o código.
 
 **No fechamento de cada bloco e antes de cada implantação em produção:**
 
@@ -145,8 +163,9 @@ pendência. A não-testabilidade é dívida, e a dívida se registra.
 ## 3. Resultado esperado
 
 - O teste novo no repositório, nomeado com a pendência que fecha.
-- No relatório do agente e na mensagem do commit: a saída em vermelho (quantos falham, contra
-  que versão), a saída em verde, e a regressão em verde com seus números.
+- No relatório do agente e na mensagem do commit: a saída em vermelho como recibo (o comando, a
+  versão contra a qual rodou, quantos falham, o código de saída), a saída em verde, e a regressão
+  em verde com seus números.
 - O teste de ponta a ponta do fluxo tocado, com a evidência de que o backend mudou (a linha, o
   registro, o estado).
 - No fechamento de cada bloco e antes da produção: a bateria completa de ponta a ponta em verde,
@@ -156,6 +175,9 @@ pendência. A não-testabilidade é dívida, e a dívida se registra.
 
 - O relatório mostra o vermelho? Com números: "4 de 8 falham contra o critério antigo". Se só
   mostra verde, o degrau não foi subido.
+- O vermelho é um recibo ou um relato? Tem que ter o comando exato, a versão contra a qual rodou,
+  os números e o código de saída. Uma vez por bloco, escolha uma pendência ao acaso e rode você
+  mesmo esse comando: o vermelho tem que voltar a aparecer.
 - A regressão rodou na mesma sessão? Quantos testes, quantos em verde?
 - Há alguma parte "simulada" (mock) justo onde está a mudança? Pergunte ao agente o que simulou
   e por quê.
@@ -171,5 +193,7 @@ pendência. A não-testabilidade é dívida, e a dívida se registra.
 - A bateria demora cada vez mais e ninguém sabe por quê. Costuma ser que os testes de ponta a
   ponta foram sendo substituídos por simulações "para rodar rápido".
 - O agente relata "os testes passam" sem dizer quantos. Sempre com números.
+- O vermelho vem contado em prosa ("o teste falhou como se esperava") sem comando, sem versão e
+  sem números. Um vermelho sem recibo vale o mesmo que nenhum.
 - Você chega à saída para produção e a bateria completa de ponta a ponta roda pela primeira vez.
   Faltaram os fechamentos de bloco.

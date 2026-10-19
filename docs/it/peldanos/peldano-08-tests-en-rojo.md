@@ -22,6 +22,20 @@ l'unico modo economico di verificare che il test stia guardando ciò che conta: 
 lo passa, il test non distingue il prima dal dopo, e allora non serve. Il caso che lo mostra meglio
 è quello dei contatori che non coincidevano [Ref. 26](../REFERENCIAS.md#ref-26).
 
+C'è un'obiezione seria a questo gradino, e la voglio lasciare scritta perché la useranno contro:
+lo stesso agente che scrive il test e il codice può **fingere il rosso**. Uno studio pubblicato
+nell'agosto del 2026 ha misurato che, quando a un agente si chiede il ciclo "prima il test", a
+volte salta il rosso, lo racconta senza averlo eseguito, o implementa prima del test perché passi
+al primo colpo (sta nella Parte F del documento principale, quella dei lavori correlati). La mia
+risposta ha tre pezzi, e tutti e tre stanno nella scala. Il primo, qui: il rosso non è un
+racconto, è una **ricevuta**: il comando esatto, l'identificatore della versione contro cui è
+stato eseguito, il numero di test che falliscono e il codice di uscita, tutto incollato così com'è
+uscito, in modo che tu possa eseguirlo di nuovo con un solo comando senza capire cosa fa. Il
+secondo, nel gradino 13: l'audit da parte di un'altra sessione esegue di nuovo un campione di
+quelle ricevute. Il terzo, nel gradino 9: i test di mutazione, che piantano errori di proposito e
+contano quanti ne catturano i test; è l'unica misura che, in quello stesso studio, ha distinto i
+test che sorvegliano da quelli che decorano.
+
 E la seconda metà: i test end to end. Un test che verifica dalla schermata (clicca, digita, legge)
 e controlla l'effetto nel backend (la riga è rimasta, lo stato è cambiato) è quello che sostituisce
 la tua lettura del codice. I criteri di accettazione della voce in sospeso ("dato, quando, allora")
@@ -63,32 +77,38 @@ l'agente:
 - Stato minimo accettabile: la specifica ha criteri di accettazione, e la batteria si esegue con
   un comando conosciuto.
 
-> To close this pending item I need evidence, not your word. (1) Write the test that proves what
-> the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
-> against the previous code: you may temporarily revert the change, or run the test against the
-> old version, but show me the red output. (3) Show me the green output with the change. (4) Run
+> To close this pending item I need evidence, not your word. (1) Write the test that proves what the
+> item asks for, following its acceptance criteria. (2) Demonstrate that this test fails against the
+> previous code: you may temporarily revert the change, or run the test against the old version, but
+> show me the red output as a receipt, not a summary: the exact command, the identifier of the
+> version it ran against, the count of failing tests and the exit code, pasted as they came out, so
+> that I can rerun it myself with one command. (3) Show me the green output with the change. (4) Run
 > the regression suite for the neighbouring items and show me it is still green. (5) Run the
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
-> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing
-> end to end requires something you lack (data, access, an environment), ask me for it; do not
-> simulate what you do not have. Finally, the commit message says "proved red against [what]"
-> and the test counts.
+> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
+> to end requires something you lack (data, access, an environment), ask me for it; do not simulate
+> what you do not have. Finally, the commit message says "proved red against [what]" and the test
+> counts.
 
 > [it]
 > Per chiudere questa voce in sospeso ho bisogno di prove, non della tua parola. (1) Scrivi il
 > test che prova ciò che la voce chiede, seguendo i suoi criteri di accettazione. (2) Dimostra che
 > quel test fallisce contro il codice precedente: puoi annullare temporaneamente la modifica, o
-> eseguire il test contro la versione vecchia, ma mostrami l'output in rosso. (3) Mostrami
-> l'output in verde con la modifica. (4) Esegui la regressione delle voci vicine e mostrami che è
-> ancora in verde. (5) Esegui il test end to end del flusso che questa voce tocca, dalla schermata
-> fino al backend, e mostrami l'effetto nel backend. (6) Non sostituire con simulazioni proprio la
-> parte che stai provando. Se provare end to end richiede qualcosa che non hai (dati, accesso, un
-> ambiente), chiedimelo; non simulare ciò che non hai. Infine, il messaggio del commit dice
-> "provato in rosso contro [cosa]" e i numeri dei test.
+> eseguire il test contro la versione vecchia, ma mostrami l'output in rosso come una ricevuta, non
+> come un riassunto: il comando esatto, l'identificatore della versione contro cui è stato
+> eseguito, il numero di test che falliscono e il codice di uscita, incollati così come sono
+> usciti, perché io possa eseguirlo di nuovo con un solo comando. (3) Mostrami l'output in verde
+> con la modifica. (4) Esegui la regressione delle voci vicine e mostrami che è ancora in verde.
+> (5) Esegui il test end to end del flusso che questa voce tocca, dalla schermata fino al backend,
+> e mostrami l'effetto nel backend. (6) Non sostituire con simulazioni proprio la parte che stai
+> provando. Se provare end to end richiede qualcosa che non hai (dati, accesso, un ambiente),
+> chiedimelo; non simulare ciò che non hai. Infine, il messaggio del commit dice "provato in rosso
+> contro [cosa]" e i numeri dei test.
 
 Cosa gli sto chiedendo, clausola per clausola: (1) il test, guidato dai criteri di accettazione
-della voce; (2) **il rosso dimostrato**, con l'output in vista, che è la clausola che distingue
-questo metodo da "scrivi test"; (3) il verde; (4) la regressione dei vicini nella stessa sessione,
+della voce; (2) **il rosso dimostrato come ricevuta** (comando, versione, numeri, codice di
+uscita), che è la clausola che distingue questo metodo da "scrivi test" e quella che impedisce al
+rosso di essere un racconto; (3) il verde; (4) la regressione dei vicini nella stessa sessione,
 perché una modifica rompe cose accanto; (5) il test end to end del flusso toccato, con l'effetto
 nel backend in vista; (6) non simulare proprio ciò che si prova; e la clausola di completezza
 adattata a questo gradino: se manca qualcosa per provare end to end, **chiederlo, non simularlo**.
@@ -148,8 +168,9 @@ di una voce in sospeso. La non testabilità è debito, e il debito si registra.
 ## 3. Risultato atteso
 
 - Il test nuovo nel repository, nominato con la voce in sospeso che chiude.
-- Nel rapporto dell'agente e nel messaggio del commit: l'output in rosso (quanti falliscono,
-  contro quale versione), l'output in verde, e la regressione in verde con i suoi numeri.
+- Nel rapporto dell'agente e nel messaggio del commit: l'output in rosso come ricevuta (il
+  comando, la versione contro cui è stato eseguito, quanti falliscono, il codice di uscita),
+  l'output in verde, e la regressione in verde con i suoi numeri.
 - Il test end to end del flusso toccato, con la prova che il backend è cambiato (la riga, il
   record, lo stato).
 - Alla chiusura di ogni blocco e prima della produzione: la batteria completa end to end in verde,
@@ -159,6 +180,9 @@ di una voce in sospeso. La non testabilità è debito, e il debito si registra.
 
 - Il rapporto mostra il rosso? Con numeri: "4 su 8 falliscono contro il criterio vecchio". Se
   mostra solo verde, il gradino non è salito.
+- Il rosso è una ricevuta o un racconto? Deve avere il comando esatto, la versione contro cui è
+  stato eseguito, i numeri e il codice di uscita. Una volta per blocco, scegli una voce in sospeso
+  a caso ed esegui tu quel comando: il rosso deve ricomparire.
 - La regressione è stata eseguita nella stessa sessione? Quanti test, quanti in verde?
 - C'è qualche parte "simulata" (mock) proprio dove sta la modifica? Chiedi all'agente cosa ha
   simulato e perché.
@@ -174,5 +198,7 @@ di una voce in sospeso. La non testabilità è debito, e il debito si registra.
 - La batteria ci mette sempre di più e nessuno sa perché. Di solito è che i test end to end sono
   stati sostituiti via via da simulazioni "perché giri veloce".
 - L'agente riporta "i test passano" senza dire quanti. Sempre con i numeri.
+- Il rosso arriva raccontato in prosa ("il test è fallito come previsto") senza comando, senza
+  versione e senza numeri. Un rosso senza ricevuta vale quanto nessuno.
 - Arrivi all'uscita in produzione e la batteria completa end to end si esegue per la prima volta.
   Sono mancate le chiusure di blocco.

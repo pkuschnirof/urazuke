@@ -949,21 +949,24 @@ for weeks.
 
 1. Add the evidence routine to the agreement. Paste it:
 
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
-> not your word. (1) Write the test that proves what the item asks for, following its acceptance
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence, not
+> your word. (1) Write the test that proves what the item asks for, following its acceptance
 > criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
-> revert the change, or run the test against the old version, but show me the red output. (3)
-> Show me the green output with the change. (4) Run the regression suite for the neighbouring
-> items and show me it is still green. (5) Run the end-to-end test of the flow this item
-> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
-> with mocks the very part you are trying to test. If testing end to end requires something you
-> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
-> Finally, the commit message says 'proved red against [what]' and the test counts."
+> revert the change, or run the test against the old version, but show me the red output as a
+> receipt, not a summary: the exact command, the identifier of the version it ran against, the count
+> of failing tests and the exit code, pasted as they came out, so that I can rerun it myself with
+> one command. (3) Show me the green output with the change. (4) Run the regression suite for the
+> neighbouring items and show me it is still green. (5) Run the end-to-end test of the flow this
+> item touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
+> with mocks the very part you are trying to test. If testing end to end requires something you lack
+> (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the
+> commit message says 'proved red against [what]' and the test counts."
 
-   You are asking it for the test guided by the acceptance criteria, **the red demonstrated with
-   the output in view**, the green, the regression of the neighbours, the end-to-end test of the
-   flow with the effect in the backend, no mocking of exactly what is being tested, and asking
-   for what is missing instead of simulating it.
+   You are asking it for the test guided by the acceptance criteria, **the red demonstrated as a
+   receipt** (the command, the version, the counts and the exit code, so that you can run it again
+   yourself), the green, the regression of the neighbours, the end-to-end test of the flow with
+   the effect in the backend, no mocking of exactly what is being tested, and asking for what is
+   missing instead of simulating it.
 
 2. Take the double-booking pending item (PND-003 in Turnera, or the equivalent in your project: a
    rule that prevents something). Ask it to close it with the routine. Read the report: there has
@@ -1071,6 +1074,12 @@ and the routine in the agreement.
 **Typical mistakes.** Letting the agent "disable this rule because it is too strict" without it
 going through you. Raising a limit so that it passes. And confusing coverage with quality:
 coverage counts tests, the red of lesson 8 says whether they prove anything.
+
+**Optional reinforcement.** Once the block is closed, the step 9 contract has a third prompt, the
+one for *mutation testing*: a tool breaks the code on purpose, one small change at a time, and
+counts how many of those bugs the tests catch. It is the measure that coverage does not give, and
+the one that answers the objection that the agent can fake the red. In Turnera we do it at the
+close of the second block, only on the lines changed.
 
 **In the guide project.** Turnera's first run goes red on three things: the appointment form has
 a function of 70 lines (it gets split in two: pending item), there are two copies of the date

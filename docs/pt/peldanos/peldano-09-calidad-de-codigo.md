@@ -9,7 +9,8 @@ lê com o dono. Num legado, a primeira corrida é a linha base e os achados entr
 pendências com a sua marca de velocidade.
 **Forma:** um único disparo para montar; depois, rotina de cada mudança e leitura por bloco.
 **Tamanho:** obrigatório no seu nível mínimo em todo projeto (um linter e um limite de tamanho na
-cadeia); completo em qualquer projeto com usuários.
+cadeia); completo em qualquer projeto com usuários. Os testes de mutação são um reforço
+opcional, recomendado em todo projeto com usuários.
 
 ## Para que serve
 
@@ -31,6 +32,14 @@ morto; que as dependências estejam declaradas e usadas; que a *cobertura* dos t
 vermelho: um código impecável pode estar errado. O que evita é o código correto que ninguém pode
 voltar a tocar.
 
+E um reforço opcional que vale a pena em qualquer projeto com usuários: os **testes de
+mutação**. Uma ferramenta planta erros de propósito no código (troca um "maior" por "maior ou
+igual", apaga uma linha, inverte uma condição) e roda os testes; cada erro que os testes não
+capturam é um *mutante que sobrevive*, e a proporção de capturados é a pontuação. É a medida que
+complementa o vermelho demonstrado do degrau 8: o vermelho prova que um teste vigia a mudança de
+hoje; a mutação mede quanto a bateria inteira vigia. E é, até onde sei, a única que nos estudos
+de 2026 distinguiu os testes que provam dos que decoram (Parte F do documento principal).
+
 **Se você está começando.** Um *linter* é um programa que lê o código e marca o que está mal
 escrito ou é perigoso (uma variável que não se usa, uma comparação que sempre dá o mesmo), como o
 corretor ortográfico de um processador de texto. Um *formatador* o arruma com um estilo único
@@ -39,7 +48,9 @@ função é quantos caminhos diferentes ela pode tomar (cada "se" a aumenta); um
 quarenta caminhos ninguém entende. *Código duplicado* é o mesmo bloco copiado em dois lugares: no
 dia em que se conserta um, o outro fica errado. A *cobertura* é que porcentagem do código é
 executada por algum teste. E uma *catraca* é um mecanismo que só deixa melhorar: o número de hoje
-é o piso de amanhã.
+é o piso de amanhã. Os *testes de mutação* são um programa que quebra o código de propósito, uma
+mudança pequena por vez, e olha se algum teste percebe; se nenhum percebe, esse pedaço de código
+não está vigiado.
 
 ## 1. Contexto necessário
 
@@ -139,6 +150,42 @@ O que estou pedindo: que a qualidade seja parte do fechamento de cada pendência
 a exceção em vez de consertar, porque é mais rápido) e de subir o limite; e a leitura por bloco,
 que é o único momento em que você olha os números.
 
+**Reforço (opcional; recomendado em todo projeto com usuários): testes de mutação.**
+
+**Antes de enviar o prompt**, você tem que ter isto à mão:
+
+- A comporta de qualidade montada e em verde, com a cobertura medida em `docs/CODE_QUALITY.md`.
+- Ao menos um bloco funcional fechado com o degrau 8, para que haja testes para mutar.
+- A sua decisão sobre o escopo, escrita numa linha: todo o código (caro, e só faz sentido uma
+  vez, como linha base) ou só as linhas mudadas por cada pendência (o normal).
+- Estado mínimo aceitável: há cobertura medida e há um bloco fechado.
+
+> Add mutation testing to the quality gate, [on the whole codebase | only on the lines changed by
+> each pending item]: a tool that plants small deliberate bugs in the code (a flipped condition, a
+> deleted line, a changed operator) and runs the tests. Run it now and write in
+> `docs/CODE_QUALITY.md`: the tool, the scope, the number of mutants planted, how many the tests
+> killed, how many survived and where. Do not fix anything yet: every surviving mutant in code
+> that matters becomes a pending item for a test that catches it, and I decide which ones matter.
+> From now on, report the mutation score at the close of every block next to the coverage, and
+> treat a drop as a quality failure. Reply in my language.
+
+> [pt]
+> Acrescente testes de mutação à comporta de qualidade, [em todo o código | só nas linhas mudadas
+> por cada pendência]: uma ferramenta que planta erros pequenos de propósito no código (uma
+> condição invertida, uma linha apagada, um operador trocado) e roda os testes. Rode-a agora e
+> escreva em `docs/CODE_QUALITY.md`: a ferramenta, o escopo, a quantidade de mutantes plantados,
+> quantos os testes mataram, quantos sobreviveram e onde. Não conserte nada ainda: cada mutante
+> que sobrevive em código que importa se converte numa pendência para um teste que o capture, e
+> eu decido quais importam. De agora em diante, relate a pontuação de mutação no fechamento de
+> cada bloco junto à cobertura, e trate uma queda como uma falha de qualidade. Responda no meu
+> idioma.
+
+O que estou pedindo: a medida que a cobertura não dá (a cobertura diz que código foi executado; a
+mutação diz que código está vigiado); o escopo restrito às linhas mudadas, que é o que faz com que
+o custo se possa pagar em cada pendência; **não consertar nada ainda**, porque decidir que mutante
+importa é meu; e a pontuação no fechamento de cada bloco, junto à cobertura, com uma queda tratada
+como vermelho.
+
 ## 3. Resultado esperado
 
 - O linter, o formatador, os limites, a detecção de duplicação e código morto, a cobertura com
@@ -146,6 +193,8 @@ que é o único momento em que você olha os números.
 - `docs/CODE_QUALITY.md` com ferramentas, configuração, limites com valor medido, e a lista do
   que falha com a sua pendência ou a sua data.
 - A comporta em `docs/GATES.md` e a rotina no contrato.
+- Se o reforço foi montado: a pontuação de mutação em `docs/CODE_QUALITY.md`, por bloco, junto à
+  cobertura, e uma pendência por cada mutante que sobrevive em código que importa.
 
 ## 4. Verificação de completude (você a faz, sem ler código)
 
@@ -155,6 +204,8 @@ que é o único momento em que você olha os números.
 - A cobertura de hoje é maior ou igual à do fechamento do bloco anterior? Peça os dois números.
 - Há alguma exceção ao linter no código? Peça a lista; cada uma tem que ter razão escrita.
 - Subiu algum limite desde a primeira corrida? Com que razão e quem o decidiu?
+- Se há testes de mutação: quantos mutantes sobreviveram no último bloco, e cada um tem pendência
+  ou razão escrita?
 
 ## 5. Sinais de alerta
 
@@ -167,3 +218,5 @@ que é o único momento em que você olha os números.
   juntos.
 - Um arquivo cresceu até o limite e se partiu em dois arquivos com o mesmo conteúdo. É a
   duplicação disfarçada de cumprimento.
+- A cobertura é alta e a pontuação de mutação é baixa. São testes que executam o código sem
+  verificar nada: o caso exato que o vermelho demonstrado do degrau 8 tenta evitar.

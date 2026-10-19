@@ -9,7 +9,8 @@ lee con el dueño. En un legado, la primera corrida es la línea base y los hall
 backlog con su marca de velocidad.
 **Forma:** un solo tiro para montar; después, rutina de cada cambio y lectura por bloque.
 **Tamaño:** obligatorio en su nivel mínimo en todo proyecto (un linter y un límite de tamaño en
-la cadena); completo en cualquier proyecto con usuarios.
+la cadena); completo en cualquier proyecto con usuarios. Las pruebas de mutación son un refuerzo
+opcional, recomendado en todo proyecto con usuarios.
 
 ## Para qué sirve
 
@@ -31,6 +32,15 @@ nunca (el trinquete); y, si el lenguaje lo permite, que los tipos cierren. Nada 
 el test en rojo: un código impecable puede estar equivocado. Lo que evita es el código correcto
 que nadie puede volver a tocar.
 
+Y un refuerzo opcional que vale la pena en cualquier proyecto con usuarios: las **pruebas de
+mutación**. Una herramienta planta errores a propósito en el código (cambia un "mayor" por "mayor
+o igual", borra una línea, invierte una condición) y corre los tests; cada error que los tests no
+atrapan es un *mutante que sobrevive*, y la proporción de atrapados es el puntaje. Es la medida
+que complementa al rojo demostrado del peldaño 8: el rojo prueba que un test vigila el cambio de
+hoy; la mutación mide cuánto vigila la batería entera. Y es, hasta donde sé, la única que en los
+estudios de 2026 distinguió los tests que prueban de los que decoran (Parte F del documento
+principal).
+
 **Si sos principiante.** Un *linter* es un programa que lee el código y marca lo que está mal
 escrito o es peligroso (una variable que no se usa, una comparación que siempre da lo mismo), como
 el corrector ortográfico de un procesador de texto. Un *formateador* lo acomoda con un estilo
@@ -39,7 +49,9 @@ el corrector ortográfico de un procesador de texto. Un *formateador* lo acomoda
 una función con cuarenta caminos no la entiende nadie. *Código duplicado* es el mismo bloque
 copiado en dos lugares: el día que se arregla uno, el otro queda mal. La *cobertura* es qué
 porcentaje del código es ejecutado por algún test. Y un *trinquete* es un mecanismo que solo
-deja mejorar: el número de hoy es el piso de mañana.
+deja mejorar: el número de hoy es el piso de mañana. Las *pruebas de mutación* son un programa
+que rompe el código a propósito, de a un cambio chico por vez, y mira si algún test se da cuenta;
+si ninguno se da cuenta, ese pedazo de código no está vigilado.
 
 ## 1. Contexto requerido
 
@@ -139,6 +151,42 @@ aparte; la prohibición de silenciar (un modelo frente a un linter en rojo tiend
 excepción en vez de arreglar, porque es más rápido) y de subir el límite; y la lectura por bloque,
 que es el único momento en que vos mirás los números.
 
+**Refuerzo (opcional; recomendado en todo proyecto con usuarios): pruebas de mutación.**
+
+**Antes de enviar el prompt**, tenés que tener esto a mano:
+
+- La compuerta de calidad montada y en verde, con la cobertura medida en `docs/CODE_QUALITY.md`.
+- Al menos un bloque funcional cerrado con el peldaño 8, para que haya tests que mutar.
+- Tu decisión sobre el alcance, escrita en una línea: todo el código (caro, y solo tiene sentido
+  una vez, como línea base) o solo las líneas cambiadas por cada pendiente (lo normal).
+- Estado mínimo aceptable: hay cobertura medida y hay un bloque cerrado.
+
+> Add mutation testing to the quality gate, [on the whole codebase | only on the lines changed by
+> each pending item]: a tool that plants small deliberate bugs in the code (a flipped condition, a
+> deleted line, a changed operator) and runs the tests. Run it now and write in
+> `docs/CODE_QUALITY.md`: the tool, the scope, the number of mutants planted, how many the tests
+> killed, how many survived and where. Do not fix anything yet: every surviving mutant in code
+> that matters becomes a pending item for a test that catches it, and I decide which ones matter.
+> From now on, report the mutation score at the close of every block next to the coverage, and
+> treat a drop as a quality failure. Reply in my language.
+
+> [es]
+> Agregá pruebas de mutación a la compuerta de calidad, [en todo el código | solo en las líneas
+> cambiadas por cada pendiente]: una herramienta que planta errores chicos a propósito en el
+> código (una condición invertida, una línea borrada, un operador cambiado) y corre los tests.
+> Corrélo ahora y escribí en `docs/CODE_QUALITY.md`: la herramienta, el alcance, la cantidad de
+> mutantes plantados, cuántos mataron los tests, cuántos sobrevivieron y dónde. No arregles nada
+> todavía: cada mutante que sobrevive en código que importa se convierte en un pendiente para un
+> test que lo atrape, y yo decido cuáles importan. De acá en adelante, reportá el puntaje de
+> mutación al cierre de cada bloque junto a la cobertura, y tratá una baja como un fallo de
+> calidad. Respondé en mi idioma.
+
+Qué le estoy pidiendo: la medida que la cobertura no da (la cobertura dice qué código se ejecutó;
+la mutación dice qué código está vigilado); el alcance acotado a las líneas cambiadas, que es lo
+que hace que el costo se pueda pagar en cada pendiente; **no arreglar nada todavía**, porque
+decidir qué mutante importa es mío; y el puntaje al cierre de cada bloque, junto a la cobertura,
+con una baja tratada como rojo.
+
 ## 3. Resultado esperado
 
 - El linter, el formateador, los límites, la detección de duplicación y código muerto, la
@@ -146,6 +194,8 @@ que es el único momento en que vos mirás los números.
 - `docs/CODE_QUALITY.md` con herramientas, configuración, límites con valor medido, y la lista de
   lo que falla con su pendiente o su fecha.
 - La compuerta en `docs/GATES.md` y la rutina en el contrato.
+- Si se montó el refuerzo: el puntaje de mutación en `docs/CODE_QUALITY.md`, por bloque, junto a
+  la cobertura, y un pendiente por cada mutante que sobrevive en código que importa.
 
 ## 4. Verificación de completitud (la hacés vos, sin leer código)
 
@@ -157,6 +207,8 @@ que es el único momento en que vos mirás los números.
 - ¿Hay alguna excepción al linter en el código? Pedile la lista; cada una tiene que tener razón
   escrita.
 - ¿Subió algún límite desde la primera corrida? ¿Con qué razón y quién lo decidió?
+- Si hay pruebas de mutación: ¿cuántos mutantes sobrevivieron en el último bloque, y cada uno
+  tiene pendiente o razón escrita?
 
 ## 5. Señales de alarma
 
@@ -168,3 +220,5 @@ que es el único momento en que vos mirás los números.
   peldaño 8). El trinquete mide cantidad; el rojo demostrado mide calidad. Van juntos.
 - Un archivo creció hasta el límite y se partió en dos archivos con el mismo contenido. Es la
   duplicación disfrazada de cumplimiento.
+- La cobertura es alta y el puntaje de mutación es bajo. Son tests que ejecutan el código sin
+  verificar nada: el caso exacto que el rojo demostrado del peldaño 8 intenta evitar.

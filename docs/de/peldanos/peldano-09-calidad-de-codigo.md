@@ -10,7 +10,8 @@ und die Funde kommen mit ihrer Geschwindigkeitsmarke ins Backlog.
 **Form:** ein einziger Durchgang zum Aufbauen; danach Routine bei jeder Änderung und Lektüre pro
 Block.
 **Größe:** verpflichtend in seinem Mindestniveau in jedem Projekt (ein Linter und eine
-Größenbeschränkung in der Kette); vollständig in jedem Projekt mit Nutzern.
+Größenbeschränkung in der Kette); vollständig in jedem Projekt mit Nutzern. Die Mutationstests
+sind eine optionale Verstärkung, empfohlen in jedem Projekt mit Nutzern.
 
 ## Wozu er dient
 
@@ -33,6 +34,15 @@ der Tests nie sinkt (die Ratsche); und, wenn die Sprache es erlaubt, dass die Ty
 Nichts davon ersetzt den roten Test: ein makelloser Code kann falsch sein. Was es verhindert, ist
 der korrekte Code, den niemand mehr anfassen kann.
 
+Und eine optionale Verstärkung, die sich in jedem Projekt mit Nutzern lohnt: die
+**Mutationstests**. Ein Werkzeug pflanzt absichtlich Fehler in den Code (ändert ein „größer“ in
+„größer oder gleich“, löscht eine Zeile, kehrt eine Bedingung um) und lässt die Tests laufen; jeder
+Fehler, den die Tests nicht fangen, ist ein *überlebender Mutant*, und der Anteil der gefangenen
+ist die Punktzahl. Es ist das Maß, das das bewiesene Rot aus Schritt 8 ergänzt: das Rot beweist,
+dass ein Test die Änderung von heute bewacht; die Mutation misst, wie viel die ganze Batterie
+bewacht. Und es ist, soweit ich weiß, das einzige, das in den Studien von 2026 die Tests, die
+prüfen, von denen unterschieden hat, die dekorieren (Teil F des Hauptdokuments).
+
 **Wenn du Anfänger bist.** Ein *Linter* ist ein Programm, das den Code liest und markiert, was
 schlecht geschrieben oder gefährlich ist (eine Variable, die nicht benutzt wird, ein Vergleich, der
 immer dasselbe ergibt), wie die Rechtschreibprüfung einer Textverarbeitung. Ein *Formatierer* rückt
@@ -42,7 +52,9 @@ Wege sie nehmen kann (jedes „wenn“ erhöht sie); eine Funktion mit vierzig W
 *Duplizierter Code* ist derselbe Block, an zwei Stellen kopiert: an dem Tag, an dem man den einen
 repariert, bleibt der andere kaputt. Die *Abdeckung* ist, welcher Prozentsatz des Codes von
 irgendeinem Test ausgeführt wird. Und eine *Ratsche* ist ein Mechanismus, der nur Verbesserung
-zulässt: die Zahl von heute ist der Boden von morgen.
+zulässt: die Zahl von heute ist der Boden von morgen. Die *Mutationstests* sind ein Programm, das
+den Code absichtlich kaputt macht, mit je einer kleinen Änderung auf einmal, und schaut, ob
+irgendein Test es merkt; wenn keiner es merkt, ist dieses Stück Code nicht bewacht.
 
 ## 1. Benötigter Kontext
 
@@ -147,6 +159,46 @@ neigt dazu, die Ausnahme hinzuzufügen, statt zu reparieren, weil das schneller 
 Grenze anzuheben; und die Lektüre pro Block, die der einzige Moment ist, in dem du die Zahlen
 ansiehst.
 
+**Verstärkung (optional; empfohlen in jedem Projekt mit Nutzern): Mutationstests.**
+
+**Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
+
+- Das Qualitätstor aufgebaut und grün, mit der in `docs/CODE_QUALITY.md` gemessenen Abdeckung.
+- Mindestens ein Funktionsblock mit Schritt 8 geschlossen, damit es Tests gibt, die mutiert
+  werden können.
+- Deine Entscheidung über den Umfang, in einer Zeile geschrieben: der ganze Code (teuer, und nur
+  einmal sinnvoll, als Basislinie) oder nur die von jedem offenen Posten geänderten Zeilen (das
+  Normale).
+- Akzeptabler Mindestzustand: es gibt eine gemessene Abdeckung und einen geschlossenen Block.
+
+> Add mutation testing to the quality gate, [on the whole codebase | only on the lines changed by
+> each pending item]: a tool that plants small deliberate bugs in the code (a flipped condition, a
+> deleted line, a changed operator) and runs the tests. Run it now and write in
+> `docs/CODE_QUALITY.md`: the tool, the scope, the number of mutants planted, how many the tests
+> killed, how many survived and where. Do not fix anything yet: every surviving mutant in code
+> that matters becomes a pending item for a test that catches it, and I decide which ones matter.
+> From now on, report the mutation score at the close of every block next to the coverage, and
+> treat a drop as a quality failure. Reply in my language.
+
+
+> [de]
+> Füge dem Qualitätstor Mutationstests hinzu, [auf dem ganzen Code | nur auf den von jedem offenen
+> Posten geänderten Zeilen]: ein Werkzeug, das absichtlich kleine Fehler in den Code pflanzt (eine
+> umgekehrte Bedingung, eine gelöschte Zeile, einen geänderten Operator) und die Tests laufen
+> lässt. Lass es jetzt laufen und schreib in `docs/CODE_QUALITY.md`: das Werkzeug, den Umfang, die
+> Zahl der gepflanzten Mutanten, wie viele die Tests getötet haben, wie viele überlebt haben und
+> wo. Repariere noch nichts: jeder überlebende Mutant in Code, der zählt, wird zu einem offenen
+> Posten für einen Test, der ihn fängt, und ich entscheide, welche zählen. Von jetzt an berichte
+> die Mutationspunktzahl beim Abschluss jedes Blocks neben der Abdeckung, und behandle einen
+> Rückgang als Qualitätsfehler. Antworte in meiner Sprache.
+
+Was ich hier verlange: das Maß, das die Abdeckung nicht gibt (die Abdeckung sagt, welcher Code
+ausgeführt wurde; die Mutation sagt, welcher Code bewacht ist); den Umfang, beschränkt auf die
+geänderten Zeilen, was dafür sorgt, dass sich die Kosten bei jedem offenen Posten bezahlen lassen;
+**noch nichts zu reparieren**, denn zu entscheiden, welcher Mutant zählt, ist meine Sache; und die
+Punktzahl beim Abschluss jedes Blocks, neben der Abdeckung, mit einem Rückgang, der als Rot
+behandelt wird.
+
 ## 3. Erwartetes Ergebnis
 
 - Der Linter, der Formatierer, die Grenzen, die Erkennung von Duplizierung und totem Code, die
@@ -154,6 +206,9 @@ ansiehst.
 - `docs/CODE_QUALITY.md` mit Werkzeugen, Konfiguration, Grenzen mit gemessenem Wert, und der Liste
   dessen, was fehlschlägt, mit seinem offenen Posten oder seinem Datum.
 - Das Tor in `docs/GATES.md` und die Routine in der Vereinbarung.
+- Wenn die Verstärkung aufgebaut wurde: die Mutationspunktzahl in `docs/CODE_QUALITY.md`, pro
+  Block, neben der Abdeckung, und ein offener Posten für jeden überlebenden Mutanten in Code, der
+  zählt.
 
 ## 4. Vollständigkeitsprüfung (die machst du, ohne Code zu lesen)
 
@@ -166,6 +221,8 @@ ansiehst.
   Begründung haben.
 - Ist seit dem ersten Lauf irgendeine Grenze angehoben worden? Mit welcher Begründung und wer hat
   das entschieden?
+- Wenn es Mutationstests gibt: wie viele Mutanten haben im letzten Block überlebt, und hat jeder
+  einen offenen Posten oder eine geschriebene Begründung?
 
 ## 5. Warnsignale
 
@@ -178,3 +235,6 @@ ansiehst.
   zusammen.
 - Eine Datei ist bis an die Grenze gewachsen und wurde in zwei Dateien mit demselben Inhalt
   geteilt. Das ist Duplizierung, als Einhaltung verkleidet.
+- Die Abdeckung ist hoch und die Mutationspunktzahl niedrig. Das sind Tests, die den Code
+  ausführen, ohne etwas zu prüfen: genau der Fall, den das bewiesene Rot aus Schritt 8 verhindern
+  will.

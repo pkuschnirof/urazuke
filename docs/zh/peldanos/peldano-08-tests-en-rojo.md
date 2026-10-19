@@ -17,6 +17,15 @@
 一廉价方法：如果旧代码也能通过，测试就区分不了前后，那它就没用。把这一点展示得最清楚的案例
 是对不上的计数器 [Ref. 26](../REFERENCIAS.md#ref-26)。
 
+对这级台阶有一个严肃的反对意见，我想把它写下来，因为会有人拿它来反驳：写测试和写代码的是
+同一个代理，它可以**伪造红色**。2026 年 8 月发表的一项研究测得，当要求代理走"先测试"的循环
+时，它有时会跳过红色，没跑就说跑了，或者先实现再写测试，好让测试一上来就通过（在主文档的 F
+部分，相关工作那一部分）。我的回答有三块，三块都在梯子里。第一块就在这里：红色不是一段叙述，
+而是一张**凭据**：确切的命令、它所针对的版本的标识符、失败的测试数量和退出码，全部按原样粘
+贴，好让你不用理解它在做什么也能用一条命令重新跑一遍。第二块在第 13 级台阶：由另一个会话做
+的审计会重新跑这些凭据中的一个样本。第三块在第 9 级台阶：变异测试，它故意植入错误，然后数一
+数测试抓住了多少个；在那同一项研究里，这是唯一能把看守的测试和装饰的测试区分开的度量。
+
 还有第二半：端到端测试。一个从界面出发验证（点击、输入、读取）并在后端检查效果（行留下了，
 状态变了）的测试，才是替代你读代码的东西。待办项的验收标准（"给定、当、那么"）是它的脚本。
 而且它们在三个尺度上跑三次：每个待办项跑所触及的流程，每个功能块收尾时跑全部流程，生产之前
@@ -47,30 +56,34 @@
 - `docs/WORKING_AGREEMENT.md`，第一次时这条例行要加进去的地方。
 - 最低可接受状态：规格里有验收标准，而且测试套件能用一个已知的命令跑起来。
 
-> To close this pending item I need evidence, not your word. (1) Write the test that proves what
-> the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
-> against the previous code: you may temporarily revert the change, or run the test against the
-> old version, but show me the red output. (3) Show me the green output with the change. (4) Run
+> To close this pending item I need evidence, not your word. (1) Write the test that proves what the
+> item asks for, following its acceptance criteria. (2) Demonstrate that this test fails against the
+> previous code: you may temporarily revert the change, or run the test against the old version, but
+> show me the red output as a receipt, not a summary: the exact command, the identifier of the
+> version it ran against, the count of failing tests and the exit code, pasted as they came out, so
+> that I can rerun it myself with one command. (3) Show me the green output with the change. (4) Run
 > the regression suite for the neighbouring items and show me it is still green. (5) Run the
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
-> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing
-> end to end requires something you lack (data, access, an environment), ask me for it; do not
-> simulate what you do not have. Finally, the commit message says "proved red against [what]"
-> and the test counts.
+> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
+> to end requires something you lack (data, access, an environment), ask me for it; do not simulate
+> what you do not have. Finally, the commit message says "proved red against [what]" and the test
+> counts.
 
 > [zh]
 > 要关闭这个待办项，我需要证据，不是你的口头保证。(1) 写出证明该项所要求之事的测试，遵循
 > 它的验收标准。(2) 证明这个测试对之前的代码会失败：你可以临时撤销变更，或对旧版本运行测
-> 试，但要给我看红色的输出。(3) 给我看带变更的绿色输出。(4) 运行邻近项的回归套件，给我看
-> 它仍是绿色。(5) 运行该项触及的流程的端到端测试，从界面到后端，给我看后端的效果。(6) 不
-> 要恰好用模拟（mock）替换你要测的那部分。如果端到端测试需要你没有的东西（数据、访问权、
-> 环境），向我索要；不要模拟你没有的。最后，提交信息写"对 [什么] 先证红"以及测试的数字。
+> 试，但要把红色的输出当作一张凭据给我看，而不是一段摘要：确切的命令、它所针对的版本的标
+> 识符、失败的测试数量和退出码，按原样粘贴，好让我自己能用一条命令重新跑一遍。(3) 给我看
+> 带变更的绿色输出。(4) 运行邻近项的回归套件，给我看它仍是绿色。(5) 运行该项触及的流程的
+> 端到端测试，从界面到后端，给我看后端的效果。(6) 不要恰好用模拟（mock）替换你要测的那部
+> 分。如果端到端测试需要你没有的东西（数据、访问权、环境），向我索要；不要模拟你没有的。
+> 最后，提交信息写"对 [什么] 先证红"以及测试的数字。
 
-我在要求什么，逐条：(1) 测试，由待办项的验收标准引导；(2) **展示出来的红色**，输出可见，这
-是把本方法和"写测试"区分开的条款；(3) 绿色；(4) 同一会话中邻近项的回归，因为一个变更会弄坏
-旁边的东西；(5) 所触及流程的端到端测试，后端效果可见；(6) 不要恰好模拟要测的东西；以及适配
-这级台阶的完整性条款：端到端测试缺什么，**索要，不模拟**。带数字的提交信息把证据留在代码所
-在的地方。
+我在要求什么，逐条：(1) 测试，由待办项的验收标准引导；(2) **作为凭据展示出来的红色**（命
+令、版本、数字、退出码），这是把本方法和"写测试"区分开的条款，也是不让红色沦为一段叙述的
+条款；(3) 绿色；(4) 同一会话中邻近项的回归，因为一个变更会弄坏旁边的东西；(5) 所触及流程
+的端到端测试，后端效果可见；(6) 不要恰好模拟要测的东西；以及适配这级台阶的完整性条款：端
+到端测试缺什么，**索要，不模拟**。带数字的提交信息把证据留在代码所在的地方。
 
 **每个功能块收尾时和每次部署到生产之前：**
 
@@ -118,14 +131,16 @@
 ## 3. 预期结果
 
 - 仓库中的新测试，以它关闭的待办项命名。
-- 代理的报告和提交信息中：红色输出（多少个失败、对哪个版本）、绿色输出，以及带数字的绿色
-  回归。
+- 代理的报告和提交信息中：作为凭据的红色输出（命令、它所针对的版本、多少个失败、退出码）、
+  绿色输出，以及带数字的绿色回归。
 - 所触及流程的端到端测试，附后端变化的证据（行、记录、状态）。
 - 每个功能块收尾时和生产之前：完整端到端套件绿色，按流程，用精确版本。
 
 ## 4. 完整性检验
 
 - 报告是否展示了红色？带数字："8 个中 4 个对旧标准失败"。只展示绿色，台阶就没登上。
+- 红色是一张凭据还是一段叙述？它必须有确切的命令、它所针对的版本、数字和退出码。每个功能
+  块一次，随机挑一个待办项，由你自己跑那条命令：红色必须重新出现。
 - 回归是否在同一会话中运行？多少个测试，多少个绿？
 - 变更所在的地方是否恰好有"模拟"（mock）的部分？问代理它模拟了什么、为什么。
 - 提交是否引用了待办项并写了"先证红"？
@@ -137,4 +152,6 @@
 - 这周所有新测试第一次就全绿，从没展示过红色。要么代理省略了步骤，要么测试什么都不证明。
 - 测试套件越来越慢，没人知道为什么。通常是端到端测试被换成了模拟，"为了跑得快"。
 - 代理报告"测试通过"而不说多少个。永远要带数字。
+- 红色是用散文讲出来的（"测试如预期失败了"），没有命令、没有版本、没有数字。没有凭据的红
+  色和没有红色是一回事。
 - 你到了上线生产，完整的端到端套件第一次运行。功能块的收尾被漏掉了。

@@ -756,10 +756,12 @@ bout, de l'écran jusqu'au backend, sont ceux qui remplacent votre lecture du co
   bloc et avant chaque déploiement en production.
 - **Entrées** : le changement déjà implémenté et l'élément en attente avec son « comment on
   vérifie ».
-- **Artefact** : le nouveau test, la sortie en rouge et en vert avec des chiffres, la régression
-  des voisins dans la même session, et le commit qui dit contre quoi on a prouvé le rouge.
-- **Porte** : rouge démontré, vert, régression au vert. Et l'agent ne simule pas précisément la
-  partie qu'il veut tester.
+- **Artefact** : le nouveau test, la sortie en rouge comme reçu (la commande, la version contre
+  laquelle il a tourné, les chiffres, le code de sortie : ce qu'il faut pour le relancer avec une
+  commande), la sortie en vert avec des chiffres, la régression des voisins dans la même session,
+  et le commit qui dit contre quoi on a prouvé le rouge.
+- **Porte** : rouge démontré avec reçu, vert, régression au vert. Et l'agent ne simule pas
+  précisément la partie qu'il veut tester.
 - **Qui décide** : l'agent exécute et rapporte ; le propriétaire lit le rapport, pas le test.
 - **Échec évité** : les tests qui passent parce qu'ils ne prouvent rien, et le vert qui cache un
   bug [Ref. 44](REFERENCIAS.md#ref-44). Le cas des compteurs est l'exemple complet d'un test prouvé
@@ -785,7 +787,9 @@ tous mes projets sans le nommer comme un échelon.
 - **Artefact** : linter et formateur avec une seule configuration ; limites de taille et de
   complexité ; détection de duplication et de code mort ; couverture avec cliquet ; types si le
   langage le permet ; `docs/CODE_QUALITY.md` avec chaque limite et sa valeur mesurée ; la porte
-  dans `docs/GATES.md`.
+  dans `docs/GATES.md`. Comme renfort optionnel, les tests de mutation (des erreurs plantées
+  exprès, comptées d'après combien les tests en attrapent), avec leur score par bloc à côté de la
+  couverture.
 - **Porte** : rien n'est fusionné avec la qualité au rouge ; aucune exception au linter sans
   raison écrite ; aucune limite relevée pour passer.
 - **Qui décide** : le propriétaire fixe les limites et décide ce qui se corrige maintenant et ce
@@ -1297,6 +1301,111 @@ pratique du cours.
 
 ---
 
+## Partie F — Travaux connexes : ce qui existe de semblable, et en quoi cette méthode s'en distingue
+
+Quand j'ai fini d'écrire l'échelle, je me suis posé la question évidente : est-ce que cela existe
+déjà sous un autre nom ? J'ai demandé une recherche de fond, en anglais, en espagnol et en
+japonais, sur les méthodologies, les essais et les travaux académiques publiés jusqu'en octobre
+2026 pour construire du logiciel avec l'intelligence artificielle. Ce qui suit en est le résultat,
+résumé avec honnêteté : ce qui existe déjà ailleurs, je le cite au lieu de le revendiquer, et ce
+que je n'ai pas trouvé, je le dis comme « je ne l'ai pas trouvé », pas comme « cela n'existe pas ».
+Cette partie va s'élargir à mesure qu'apparaîtront des choses nouvelles, et il en apparaît toutes
+les semaines.
+
+La réponse courte : **je n'ai trouvé aucune méthode publiée qui réunisse ce que celle-ci réunit**.
+J'ai bien trouvé un champ entier qui, depuis le milieu de 2025, converge vers plusieurs de ses
+pièces séparément, et un praticien célèbre qui est arrivé à la même prémisse radicale trois mois
+avant que je publie ceci.
+
+### F.1 Les parents les plus proches
+
+| Qui et quoi | Ce qu'il partage avec Urazuke | Ce qui lui manque |
+|---|---|---|
+| **Robert C. Martin (« Uncle Bob »), juillet 2026.** Dans un fil sur X et dans ses dépôts ([Acceptance Pipeline Specification](https://github.com/unclebob/Acceptance-Pipeline-Specification), [SwarmForge](https://github.com/unclebob/swarm-forge)), il a annoncé qu'il ne lit pas le code qu'écrivent ses agents : il les entoure d'un « gauntlet » de tests d'acceptation en Gherkin, de tests unitaires, de limites de complexité, de tests de mutation et d'une procédure de QA qu'il exécute à la main de temps en temps. « On ne peut pas dire à un agent d'être propre ; il faut mesurer la propreté qu'il produit. » | L'humain ne lit pas le code. Il relit la spécification avant et la preuve après. Les barrières sont mécaniques, pas des promesses. Test manuel final. | C'est un programmeur avec quarante ans de métier, pas un propriétaire qui ne programme pas : la barrière, il la construit avec ce discernement. Pas d'échelle ordonnée, ni de chemin pour un système hérité, ni d'exploitation, ni de prompts publiés. Grady Booch lui a répondu que les métriques ne voient ni une vulnérabilité ni une mauvaise factorisation. |
+| **old-coder, « evidence-first development »** ([dépôt](https://github.com/AmazingAng/old-coder)). Une compétence pour agents inspirée d'Uncle Bob : SPEC, RED, GREEN, REFACTOR, GAUNTLET, EVIDENCE. | L'humain approuve le plan de test et lit ensuite un rapport de preuve qui se relance avec une commande ; jamais le code. | Une tâche à la fois. Sans projet, sans système hérité, sans exploitation, sans ingénierie des exigences. |
+| **Disciplined Agentic Engineering** ([dépôt](https://github.com/swingerman/disciplined-agentic-engineering)). Un kit avec neuf points de contrôle, des critères de sortie explicites et vingt et un scripts déterministes comme portes. | « Un agent peut se convaincre de sauter une instruction ; il ne peut pas se convaincre de sauter un code de sortie différent de zéro. » Vérification indépendante de celui qui a implémenté. | Pensé pour des ingénieurs. Sans exploitation ni supervision ; le système hérité se réduit à une compétence pour les bugs. |
+| **Tsumiki / AITDD, de Classmethod (Japon), juillet 2025** ([dépôt](https://github.com/classmethod/tsumiki)). Exigences, conception, tâches, puis `tdd-red`, `tdd-green`, `tdd-refactor`, `tdd-verify-complete`, avec des commandes d'ingénierie inverse pour le code existant. | Le rouge et le vert comme commandes séparées et obligatoires ; la vérification comme étape à part entière ; un chemin pour l'hérité ; des prompts littéraux ; neutre quant à l'outil. | N'exige pas que l'instrument de mesure ait son test, n'a pas le rapport du vérifié, du cru et de l'angle mort, et ne va ni jusqu'à la production ni jusqu'à la supervision. |
+| **Addy Osmani, « Brownfield Agentic Engineering » et « Agentic Verification », septembre et octobre 2026** ([brownfield](https://addyo.substack.com/p/brownfield-agentic-engineering), [vérification](https://addyo.substack.com/p/agentic-verification)). | « Fixe le comportement d'abord, lâche l'agent ensuite » : la caractérisation comme étape préalable, presque identique à la station N4 du chemin évolutif-correctif. « Écris la vérification avant le code. » Des cliquets qui empêchent d'effacer des tests. | L'humain lit les diffs. C'est une séquence conceptuelle, pas une liste numérotée. Sans prompts. |
+| **Consort, de Databricks, septembre 2026** ([arXiv 2609.09671](https://arxiv.org/abs/2609.09671)). Orchestrateur déterministe hors du modèle ; tests immuables à l'intérieur d'une unité de travail ; vert exigé contre une vraie base de données. | Du vrai fail-closed. « Un contrôle que le travailleur peut ignorer n'est pas un contrôle quand le travailleur est non déterministe. » | Limité aux backends d'une plateforme. Sans échelle, sans système hérité, sans exploitation. |
+| **IACDM, mars 2026** ([arXiv 2604.16399](https://arxiv.org/abs/2604.16399)). Huit phases ; des vérificateurs externes au générateur ; la porte est imposée par une machine à états : l'agent peut demander à avancer, pas s'accorder l'avancement. | La forme d'échelle avec des portes et un audit par une autre instance ; neutre quant à l'outil. | Huit phases contre vingt-quatre échelons ; sans système hérité, sans sécurité, sans charge, sans exploitation. |
+| **« Trustworthy Change » et la cellule humain-agent, septembre 2026** ([arXiv 2609.04630](https://arxiv.org/abs/2609.04630)) ; **SDAD**, mai 2026 ([arXiv 2608.20341](https://arxiv.org/abs/2608.20341)) ; **Agentic Agile-V**, mai 2026 ([arXiv 2605.20456](https://arxiv.org/abs/2605.20456)). | La même division de l'autorité : l'agent produit la preuve, l'humain conserve l'acceptation. Agentic Agile-V nomme l'« acceptation fondée sur la preuve » et dit que l'agent exige plus d'ingénierie des exigences, pas moins. | Ce sont des cadres conceptuels ou des cycles de vie à gros grain, pas des procédures avec prompts ; l'humain est technique. |
+| **AI-DLC, d'AWS, 2025** ([article](https://aws.amazon.com/blogs/devops/ai-driven-development-life-cycle)). Inception, Construction, Operations, avec des portes humaines. | C'est la seule grande méthode qui va jusqu'à l'exploitation. | Trois phases à gros grain ; sans preuve typée ; l'humain est une équipe technique. |
+| **Spec Kit, de GitHub, 2025** ([dépôt](https://github.com/github/spec-kit)) et la famille du développement guidé par les spécifications : Kiro, BMAD, OpenSpec, GSD, Agent OS, Tessl. | Artefacts persistants, ordre des phases, prompts textuels, exigences d'abord, traçabilité. OpenSpec ressemble pas mal à « le plan, ce sont les éléments en attente ». | Personne n'exige le rouge avant le vert ; le système hérité est un guide léger ; presque tous s'arrêtent au merge. BMAD organise le travail comme une équipe d'agents avec des rôles ; dans Forge j'ai utilisé ce modèle, je l'ai abandonné à un moment où les équipes perdaient le contexte, et je vois aujourd'hui qu'il s'est amélioré : c'est une évolution permanente, pas un rejet. |
+| **Reversa, mai 2026** ([arXiv 2605.18684](https://arxiv.org/abs/2605.18684), [dépôt](https://github.com/sandeco/reversa)). Des agents qui récupèrent les spécifications d'un système hérité avec des marques de confiance : confirmé, inféré, lacune. | C'est presque la station N0 du chemin évolutif-correctif : la fonctionnalité décrite à partir du code, avec des marques de source. Documentation en espagnol et en portugais. | Récupère des spécifications, pas du comportement. N'utilise pas la caractérisation comme barrière dure avant de toucher. |
+| **Harness Engineering, d'OpenAI, février 2026** ([article](https://openai.com/index/harness-engineering/)) et la **Software Factory de StrongDM** ([étude de Stanford](https://law.stanford.edu/2026/02/08/built-by-agents-tested-by-agents-trusted-by-whom/)). Des cas d'entreprise : zéro ligne écrite à la main ; chez StrongDM, pas relues non plus. | La prémisse radicale de retirer l'humain du clavier. | Les humains restent des ingénieurs. StrongDM a remplacé le « passe ou ne passe pas » par un score que donne un autre modèle : exactement ce que cette méthode interdit (un chiffre qui alimente une décision se mesure avec un programme qui a son test). |
+| **Kent Beck, « Augmented Coding », juin 2025** ([lettre](https://newsletter.kentbeck.com/p/augmented-coding-beyond-the-vibes)). Un prompt système complet qui impose rouge, vert et refactorisation. | Le rouge avant le vert, littéral, et le prompt publié en entier. « L'IA triche. » | Beck lit le code et intervient. C'est une discipline de session, pas de projet. |
+| **Harper Reed, « My LLM codegen workflow », février 2025** ([article](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/)). Spécification par questions posées une à une, plan de prompts, exécution ; une branche pour l'hérité. | Prompts textuels, une question à la fois, une branche pour le système hérité. | Trois étapes, sans portes ; l'auteur lit. |
+| **Anthropic, bonnes pratiques et conception de harnais** ([pratiques](https://code.claude.com/docs/en/best-practices), [harnais](https://www.anthropic.com/engineering/harness-design-long-running-apps)) ; **OpenAI, PLANS.md** ([cookbook](https://developers.openai.com/cookbook/articles/codex_exec_plans)). | « Si tu ne peux pas le vérifier, ne le livre pas. » Un agent de QA distinct de celui qui construit manipule l'application depuis l'écran. « Des résultats observés, pas des prédictions planifiées » : ce qu'il y a de plus proche du vérifié contre le cru. | Des pratiques éparses, liées à un produit. Sans propriétaire non programmeur, sans système hérité, sans exploitation. |
+| **Essais sur la vérification, 2026** : Peter Lavigne, João Queirós, Mihai Avram, John Young ([Queirós](https://www.ai.joaoqueiros.com/blog/read-less-code-verify-ai-generated-software-test-harnesses), [Avram](https://mihaisplace.com/blog/ai-can-write-the-code-who-verifies-it), [Young](https://jyoung.dev/blog/evaluating-ai-coding-agent-output/)). | Le même diagnostic : générer est devenu bon marché, vérifier non. « Les tests sont des affirmations, pas des preuves. » Des couches de vérification par niveau de risque. | Tous finissent par « lis moins, mais lis ». |
+| **En espagnol** : Daniel García (document fonctionnel, document technique, implémentation avec analyse adverse entre les phases), Víctor Robles (un cours en dix étapes), Daniel Primo (Web Reactiva), Emilio Carrión (une réplique à Uncle Bob depuis Mercadona Tech, [article](https://www.emiliocarrion.com/en/blog/letting-go-of-the-wheel)). | García a ce qu'il y a de plus proche de l'audit entre les phases. | Aucun n'a de portes de preuve ni de propriétaire qui ne lit pas. Je n'ai trouvé aucune méthode argentine, mexicaine ni espagnole dans cet espace. |
+
+### F.2 Ce qui existe déjà, et qu'il vaut mieux citer que revendiquer
+
+Le rouge avant le vert imposé à l'agent est chez Beck, chez Tsumiki, dans les pratiques
+d'Anthropic et dans les patrons de Simon Willison de 2026. Les étapes ordonnées avec des prompts
+textuels sont chez Spec Kit, chez Tsumiki et chez Reed. La caractérisation comme étape préalable
+sur un système hérité est chez Osmani, publiée un mois avant ce document. Le test de bout en bout
+depuis l'écran, avec un évaluateur distinct du générateur, est chez Anthropic. L'ingénierie des
+exigences comme prérequis est dans tout le mouvement du développement guidé par les
+spécifications. Et l'humain qui ne lit pas le code est chez Uncle Bob, chez Karpathy pour le
+jetable, et dans le livre de Yegge et Kim.
+
+### F.3 Ce que je n'ai trouvé nulle part
+
+- **Le destinataire.** Toute la littérature suppose un ingénieur qui relit. Uncle Bob ne lit pas
+  le code parce qu'il a quarante ans de discernement pour construire la barrière. Cette méthode
+  part du propriétaire qui ne lit jamais, et dérive tout le reste de cette contrainte. Cette
+  inversion n'est posée dans aucun travail. Ce qu'il y a pour le non-programmeur, c'est la
+  documentation des dégâts : une étude de juin 2026 sur 9 041 applications faites avec des outils
+  de « vibe coding » a trouvé des vulnérabilités dans 91 % de celles qui ont été auditées
+  ([arXiv 2606.23130](https://arxiv.org/abs/2606.23130)).
+- **Le rapport du vérifié, du cru et de l'angle mort comme livrable obligatoire** (échelon 12).
+  Le problème est diagnostiqué avec des chiffres : la déclaration de complétude d'un agent dépasse
+  l'approbation réelle de 28 à 38 points ([SpecHarness, arXiv 2609.29921](https://arxiv.org/abs/2609.29921)),
+  et perdre l'étiquette « non vérifié » dans un passage de relais entre agents fait bondir
+  l'approbation d'actions risquées de 5 % à 60 % ([arXiv 2609.20211](https://arxiv.org/abs/2609.20211)).
+  Personne n'en a fait un format de reddition de comptes envers une personne.
+- **L'instrument de mesure avec son propre test** (échelon 7). La règle « un chiffre qui alimente
+  une décision se mesure avec un programme qui a son test » n'est écrite dans aucune source que
+  j'aie trouvée.
+- **L'échelle complète**, de l'éligibilité à la supervision et à la rétrospective. La plus longue
+  que j'aie trouvée a dix étapes ; presque toutes s'arrêtent au merge ; seuls AI-DLC et Osmani
+  effleurent l'exploitation.
+- **Sans délais comme règle** (D-030). Elle n'est pas contestée ; elle est absente.
+- **La combinaison.** Ceux qui ne lisent pas le code ne testent pas avec rigueur (Ronacher,
+  Yegge). Ceux qui testent avec rigueur lisent (Beck, Osmani, Hashimoto, GitHub). Uncle Bob et
+  old-coder cassent ce croisement, et ils le font par tâche, pas par projet.
+
+### F.4 L'objection à laquelle il faut répondre, et comment j'y réponds
+
+Birgitta Böckeler a mesuré, en août 2026, que demander à un agent le cycle du test d'abord
+n'améliore pas la qualité de façon fiable, parce que l'agent feint parfois le rouge ou implémente
+avant le test pour qu'il passe d'entrée ([martinfowler.com](https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html)).
+La seule chose qui, dans son étude, a distingué les tests qui surveillent de ceux qui décorent, ce
+sont les tests de mutation. Une autre étude de la même année montre qu'un modèle avalise un tiers
+de ses propres erreurs ([arXiv 2605.21537](https://arxiv.org/abs/2605.21537)), et une autre, qu'une
+session propre plus un modèle différent trouvent plus d'erreurs que deux sessions du même modèle
+([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)).
+
+C'est une objection sérieuse, et je la prends. La réponse de la méthode a trois pièces (D-033). À
+l'échelon 8, le rouge est un **reçu**, pas un récit : la commande exacte, la version contre
+laquelle il a tourné, le nombre d'échecs et le code de sortie, collés tels quels, pour que le
+propriétaire le relance avec une commande et le fasse, une fois par bloc, avec un élément en
+attente choisi au hasard. À l'échelon 13, l'audit par une autre session relance un échantillon de
+ces reçus. Et à l'échelon 9, les tests de mutation entrent comme renfort optionnel, recommandé
+dans tout projet qui aura des utilisateurs, avec leur score à la clôture de chaque bloc à côté de
+la couverture. Aucune des trois pièces n'exige que le propriétaire lise du code. Les trois font
+que feindre le rouge coûte plus cher que le lancer.
+
+Un cadre utile pour situer cette méthode sur la carte est la taxonomie de Macedo, de juin 2026
+([arXiv 2606.04967](https://arxiv.org/abs/2606.04967)) : six dimensions (spécification, contexte,
+rôles, exécution, validation, portabilité), et le constat qu'aucun des frameworks qu'elle compare
+ne couvre les six à la fois, avec un compromis structurel entre profondeur du processus et
+portabilité. Urazuke vise les six, et son pari sur les prompts exacts en anglais plus la
+neutralité quant à l'outil est, précisément, la tentative de casser ce compromis.
+
+---
+
 ## Glossaire
 
 Chaque sigle, chaque nom propre et chaque expression familière qui apparaît dans ce document,
@@ -1715,6 +1824,13 @@ production de façon contrôlée.
 utilisant le système comme il l'utiliserait pour de vrai, avant de l'accepter pour la production.
 Ils sont humains ; ce n'est pas l'agent qui les fait.
 
+**Tests de mutation** — Un programme qui casse le code exprès, un petit changement à la fois (il
+inverse une condition, efface une ligne, change un opérateur), lance les tests et compte combien de
+ces erreurs ils attrapent. Chaque erreur qu'aucun test n'attrape est un « mutant qui survit » ; la
+proportion d'attrapés est le score. C'est le renfort optionnel de l'échelon 9 et la réponse à
+l'objection selon laquelle l'agent peut feindre le rouge. À ne pas confondre avec le « rouge par
+mutation » de la caractérisation, qui est la même idée appliquée à la main à un seul flux.
+
 **Pull / push** — Descendre et monter du code depuis et vers le dépôt distant (GitHub).
 
 **Qualité opérationnelle** — Les six échelons qui font que le système peut se voir et qu'il tient
@@ -1727,6 +1843,11 @@ l'exploitation.
 ou chaque mois, avec les écarts et les erreurs de la période, et que le propriétaire lit avec
 l'agent pour décider ce qui devient un élément en attente. Le contraire d'une alerte : il se lit au
 calme.
+
+**Reçu** — La sortie d'une commande collée telle qu'elle est sortie, avec la commande exacte, la
+version contre laquelle elle a tourné, les chiffres et le code de sortie, de manière que le
+propriétaire puisse la relancer sans comprendre ce qu'elle fait. À l'échelon 8, le rouge doit être
+un reçu, pas un récit (« le test a échoué comme prévu »).
 
 **Ref. N** — Une référence courte à un cas réel, expliqué dans le document de références avec sa
 date et sa preuve. Elle est là pour que les procédures restent propres et que le détail reste

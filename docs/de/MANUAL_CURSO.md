@@ -1150,23 +1150,28 @@ wochenlang niemand Ende zu Ende getestet hat.
 
 1. Füg der Vereinbarung die Belegroutine hinzu. Füg ihm ein:
 
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
-> not your word. (1) Write the test that proves what the item asks for, following its acceptance
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence, not
+> your word. (1) Write the test that proves what the item asks for, following its acceptance
 > criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
-> revert the change, or run the test against the old version, but show me the red output. (3)
-> Show me the green output with the change. (4) Run the regression suite for the neighbouring
-> items and show me it is still green. (5) Run the end-to-end test of the flow this item
-> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
-> with mocks the very part you are trying to test. If testing end to end requires something you
-> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
-> Finally, the commit message says 'proved red against [what]' and the test counts."
+> revert the change, or run the test against the old version, but show me the red output as a
+> receipt, not a summary: the exact command, the identifier of the version it ran against, the count
+> of failing tests and the exit code, pasted as they came out, so that I can rerun it myself with
+> one command. (3) Show me the green output with the change. (4) Run the regression suite for the
+> neighbouring items and show me it is still green. (5) Run the end-to-end test of the flow this
+> item touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
+> with mocks the very part you are trying to test. If testing end to end requires something you lack
+> (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the
+> commit message says 'proved red against [what]' and the test counts."
 
 > [de]
 > Füge diese Routine zu `docs/WORKING_AGREEMENT.md` hinzu: „Um einen offenen Posten zu
 > schließen, brauche ich Belege, nicht dein Wort. (1) Schreib den Test, der beweist, was der
 > Posten verlangt, nach seinen Abnahmekriterien. (2) Zeige, dass dieser Test gegen den vorherigen
 > Code fehlschlägt: du kannst die Änderung vorübergehend zurücknehmen oder den Test gegen die
-> alte Version laufen lassen, aber zeig mir die rote Ausgabe. (3) Zeig mir die grüne Ausgabe mit
+> alte Version laufen lassen, aber zeig mir die rote Ausgabe als Beleg, nicht als
+> Zusammenfassung: den exakten Befehl, die Kennung der Version, gegen die er lief, die Zahl der
+> fehlschlagenden Tests und den Exit-Code, so eingefügt, wie sie herauskamen, damit ich es selbst
+> mit einem einzigen Befehl noch einmal laufen lassen kann. (3) Zeig mir die grüne Ausgabe mit
 > der Änderung. (4) Lass die Regression der benachbarten Posten laufen und zeig mir, dass sie
 > weiter grün ist. (5) Lass den Ende-zu-Ende-Test des Flusses laufen, den dieser Posten berührt,
 > vom Bildschirm bis zum Backend, und zeig mir die Wirkung im Backend. (6) Ersetze nicht
@@ -1175,8 +1180,9 @@ wochenlang niemand Ende zu Ende getestet hat.
 > du nicht hast. Zum Schluss sagt die Commit-Nachricht ‚rot bewiesen gegen [was]‘ und die
 > Testzahlen.“
 
-   Du verlangst von ihm den von den Abnahmekriterien geführten Test, **das bewiesene Rot mit der
-   Ausgabe vor Augen**, das Grün, die Regression der Nachbarn, den Ende-zu-Ende-Test des Flusses
+   Du verlangst von ihm den von den Abnahmekriterien geführten Test, **das bewiesene Rot als
+   Beleg** (den Befehl, die Version, die Zahlen und den Exit-Code, damit du es selbst noch einmal
+   laufen lassen kannst), das Grün, die Regression der Nachbarn, den Ende-zu-Ende-Test des Flusses
    mit der Wirkung im Backend, nichts ausgerechnet dort zu simulieren, wo geprüft wird, und um das
    Fehlende zu bitten, statt es zu simulieren.
 
@@ -1299,6 +1305,13 @@ die Routine in der Vereinbarung.
 **Typische Fehler.** Den Agenten „diese Regel abschalten lassen, weil sie zu streng ist“, ohne
 dass es über dich geht. Eine Grenze anheben, damit es durchgeht. Und Abdeckung mit Qualität
 verwechseln: die Abdeckung zählt Tests, das Rot aus Lektion 8 sagt, ob sie etwas beweisen.
+
+**Optionale Verstärkung.** Wenn der Block geschlossen ist, hat der Vertrag von Schritt 9 einen
+dritten Prompt, den der *Mutationstests*: ein Werkzeug macht den Code absichtlich kaputt, mit je
+einer kleinen Änderung auf einmal, und zählt, wie viele dieser Fehler die Tests fangen. Das ist
+das Maß, das die Abdeckung nicht gibt, und das, was auf den Einwand antwortet, dass der Agent das
+Rot vortäuschen kann. In Turnera machen wir es beim Abschluss des zweiten Blocks, nur auf den
+geänderten Zeilen.
 
 **Im Leitprojekt.** Der erste Lauf von Turnera wird in drei Dingen rot: das Terminformular hat
 eine Funktion mit 70 Zeilen (wird in zwei geteilt: offener Posten), es gibt zwei Kopien des

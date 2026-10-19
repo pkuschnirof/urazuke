@@ -1067,32 +1067,37 @@ chega ao final com um sistema que ninguém testou de ponta a ponta durante seman
 
 1. Acrescente ao contrato a rotina de evidência. Cole:
 
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
-> not your word. (1) Write the test that proves what the item asks for, following its acceptance
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence, not
+> your word. (1) Write the test that proves what the item asks for, following its acceptance
 > criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
-> revert the change, or run the test against the old version, but show me the red output. (3)
-> Show me the green output with the change. (4) Run the regression suite for the neighbouring
-> items and show me it is still green. (5) Run the end-to-end test of the flow this item
-> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
-> with mocks the very part you are trying to test. If testing end to end requires something you
-> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
-> Finally, the commit message says 'proved red against [what]' and the test counts."
+> revert the change, or run the test against the old version, but show me the red output as a
+> receipt, not a summary: the exact command, the identifier of the version it ran against, the count
+> of failing tests and the exit code, pasted as they came out, so that I can rerun it myself with
+> one command. (3) Show me the green output with the change. (4) Run the regression suite for the
+> neighbouring items and show me it is still green. (5) Run the end-to-end test of the flow this
+> item touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
+> with mocks the very part you are trying to test. If testing end to end requires something you lack
+> (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the
+> commit message says 'proved red against [what]' and the test counts."
 
 > [pt]
 > Acrescente esta rotina a `docs/WORKING_AGREEMENT.md`: "Para fechar uma pendência preciso de
 > evidência, não da sua palavra. (1) Escreva o teste que prova o que a pendência pede, seguindo
 > seus critérios de aceitação. (2) Demonstre que esse teste falha contra o código anterior: você
 > pode reverter temporariamente a mudança, ou rodar o teste contra a versão antiga, mas mostre-me
-> a saída em vermelho. (3) Mostre-me a saída em verde com a mudança. (4) Rode a regressão das
-> pendências vizinhas e mostre-me que continua em verde. (5) Rode o teste de ponta a ponta do
-> fluxo que esta pendência toca, desde a tela até o backend, e mostre-me o efeito no backend. (6)
-> Não substitua por simulações justamente a parte que está testando. Se testar de ponta a ponta
-> exige algo que você não tem (dados, acesso, um ambiente), peça-me; não simule o que não tem.
-> Por último, a mensagem do commit diz 'provado em vermelho contra [o quê]' e os números dos
-> testes."
+> a saída em vermelho como um recibo, não como um resumo: o comando exato, o identificador da
+> versão contra a qual rodou, a quantidade de testes que falham e o código de saída, colados tal
+> como saíram, para que eu possa voltar a rodá-lo com um único comando. (3) Mostre-me a saída em
+> verde com a mudança. (4) Rode a regressão das pendências vizinhas e mostre-me que continua em
+> verde. (5) Rode o teste de ponta a ponta do fluxo que esta pendência toca, desde a tela até o
+> backend, e mostre-me o efeito no backend. (6) Não substitua por simulações justamente a parte
+> que está testando. Se testar de ponta a ponta exige algo que você não tem (dados, acesso, um
+> ambiente), peça-me; não simule o que não tem. Por último, a mensagem do commit diz 'provado em
+> vermelho contra [o quê]' e os números dos testes."
 
-   Você está pedindo o teste guiado pelos critérios de aceitação, **o vermelho demonstrado com a
-   saída à vista**, o verde, a regressão das vizinhas, o teste de ponta a ponta do fluxo com o
+   Você está pedindo o teste guiado pelos critérios de aceitação, **o vermelho demonstrado como
+   recibo** (o comando, a versão, os números e o código de saída, para que você mesmo possa
+   voltar a rodá-lo), o verde, a regressão das vizinhas, o teste de ponta a ponta do fluxo com o
    efeito no backend, nada de simular justo o que se testa, e pedir o que falta em vez de
    simulá-lo.
 
@@ -1208,6 +1213,12 @@ rotina no contrato.
 **Erros típicos.** Deixar que o agente "desative esta regra porque é muito estrita" sem que passe
 por você. Subir um limite para que passe. E confundir cobertura com qualidade: a cobertura conta
 testes, o vermelho da lição 8 diz se eles provam alguma coisa.
+
+**Reforço opcional.** Quando o bloco estiver fechado, o contrato do degrau 9 tem um terceiro
+prompt, o dos *testes de mutação*: uma ferramenta quebra o código de propósito, uma mudança
+pequena por vez, e conta quantos desses erros os testes capturam. É a medida que a cobertura não
+dá, e a que responde à objeção de que o agente pode fingir o vermelho. Na Turnera fazemos isso no
+fechamento do segundo bloco, só sobre as linhas mudadas.
 
 **No projeto-guia.** A primeira corrida da Turnera dá vermelho em três coisas: o formulário de
 consulta tem uma função de 70 linhas (parte-se em duas: pendência), há duas cópias do formato de

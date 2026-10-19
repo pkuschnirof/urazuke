@@ -72,6 +72,16 @@ con marcas de fuente (`[código]`, `[base]`, `[configuración]`, `[documentació
 tiene el proyecto guía heredado "Turnera heredada" y las lecciones N0 a N7, R1 y R2.
 `build/prompts.mjs` también verifica los prompts de `EVOLUTIVO_CORRECTIVO.md` en los ocho idiomas.
 
+## El rojo como recibo, las pruebas de mutación y los trabajos relacionados
+
+D-033: en el peldaño 8 el rojo es un recibo (comando exacto, versión contra la que corrió,
+cantidad de fallos, código de salida, pegados tal cual) y no un relato; el peldaño 9 tiene un
+tercer prompt, opcional, de pruebas de mutación. Es la respuesta escrita a la objeción de que el
+agente puede fingir el rojo. D-034: la Parte F del documento principal, "Trabajos relacionados",
+compara el método con lo publicado hasta octubre de 2026, con enlaces; se mantiene en los ocho
+idiomas y se amplía cuando aparece algo nuevo. Los trabajos ajenos se citan ahí con su enlace,
+no como "Ref. N" (las referencias son solo los casos propios).
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio

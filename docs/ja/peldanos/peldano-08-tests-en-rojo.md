@@ -20,6 +20,18 @@
 通るなら、テストは前後を区別しておらず、役に立たない。これを最もよく示す事例は一致しなかっ
 たカウンタのものだ [Ref. 26](../REFERENCIAS.md#ref-26)。
 
+この段には深刻な反論があり、これに対して使われることになるので、書き残しておきたい：テスト
+とコードを書く同じエージェントが、**赤を装う**ことができる。2026年8月に公開されたある研究
+は、エージェントにテストが先のサイクルを頼むと、ときに赤を飛ばし、走らせていないのに走らせ
+たと語り、あるいは最初から通るようにテストより先に実装することを計測した（主文書のパートF、
+関連する取り組みの部にある）。私の答えは三つの部品からなり、三つともはしごの中にある。一つ
+目はここに：赤は語りではなく、**レシート**だ。正確なコマンド、それが走った対象のバージョン
+の識別子、失敗するテストの数、そして終了コードを、すべて出たままの形で貼る。あなたがそれが
+何をするか理解しなくても、一つのコマンドでもう一度走らせられるようにだ。二つ目は第13段に：
+別のセッションによる監査が、それらのレシートの標本をもう一度走らせる。三つ目は第9段に：ミュ
+ーテーションテスト。わざと誤りを植え、テストがいくつ捕まえるかを数えるもので、同じ研究の中
+で、見張るテストと飾るテストを区別した唯一の尺度だ。
+
 そして後半：エンドツーエンドテスト。画面から（クリックし、入力し、読み）検証し、バック
 エンドでの効果（行が残った、状態が変わった）を確かめるテストが、あなたのコード読みを置き
 換えるものだ。保留項目の受け入れ基準（「前提、もし、ならば」）がその台本だ。そして三回、
@@ -57,31 +69,37 @@
 - `docs/WORKING_AGREEMENT.md`、最初の一度、ルーチンが入る先。
 - 最低限受け入れられる状態：仕様に受け入れ基準があり、テスト群が既知のコマンドで走ること。
 
-> To close this pending item I need evidence, not your word. (1) Write the test that proves what
-> the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
-> against the previous code: you may temporarily revert the change, or run the test against the
-> old version, but show me the red output. (3) Show me the green output with the change. (4) Run
+> To close this pending item I need evidence, not your word. (1) Write the test that proves what the
+> item asks for, following its acceptance criteria. (2) Demonstrate that this test fails against the
+> previous code: you may temporarily revert the change, or run the test against the old version, but
+> show me the red output as a receipt, not a summary: the exact command, the identifier of the
+> version it ran against, the count of failing tests and the exit code, pasted as they came out, so
+> that I can rerun it myself with one command. (3) Show me the green output with the change. (4) Run
 > the regression suite for the neighbouring items and show me it is still green. (5) Run the
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
-> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing
-> end to end requires something you lack (data, access, an environment), ask me for it; do not
-> simulate what you do not have. Finally, the commit message says "proved red against [what]"
-> and the test counts.
+> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
+> to end requires something you lack (data, access, an environment), ask me for it; do not simulate
+> what you do not have. Finally, the commit message says "proved red against [what]" and the test
+> counts.
 
 > [ja]
 > この保留項目を閉じるには、あなたの言葉ではなく証拠が必要です。(1) 項目が求めることを
 > 証明するテストを、その受け入れ基準に従って書いてください。(2) このテストが以前のコードに
 > 対して失敗することを示してください。変更を一時的に戻すか、古いバージョンに対してテストを
-> 実行してもよいですが、赤の出力を私に見せてください。(3) 変更ありでの緑の出力を見せて
-> ください。(4) 隣接項目の回帰テスト群を実行し、まだ緑であることを見せてください。(5) この
-> 項目が触れるフローのエンドツーエンドテストを、画面からバックエンドまで実行し、バック
-> エンドでの効果を見せてください。(6) まさにテストしようとしている部分をモックで置き換え
-> ないでください。エンドツーエンドのテストにあなたが持っていないもの（データ、アクセス、
-> 環境）が必要なら、私に求めてください。持っていないものをシミュレートしないでください。
-> 最後に、コミットメッセージは「[何]に対して赤で証明」とテストの数を述べます。
+> 実行してもよいですが、赤の出力を要約ではなくレシートとして私に見せてください：正確な
+> コマンド、それが走った対象のバージョンの識別子、失敗するテストの数、そして終了コードを、
+> 出たままの形で貼ってください。私自身が一つのコマンドでもう一度走らせられるようにです。
+> (3) 変更ありでの緑の出力を見せてください。(4) 隣接項目の回帰テスト群を実行し、まだ緑で
+> あることを見せてください。(5) この項目が触れるフローのエンドツーエンドテストを、画面から
+> バックエンドまで実行し、バックエンドでの効果を見せてください。(6) まさにテストしようと
+> している部分をモックで置き換えないでください。エンドツーエンドのテストにあなたが持って
+> いないもの（データ、アクセス、環境）が必要なら、私に求めてください。持っていないものを
+> シミュレートしないでください。最後に、コミットメッセージは「[何]に対して赤で証明」と
+> テストの数を述べます。
 
-何を求めているか、条項ごとに：(1) 保留項目の受け入れ基準に導かれたテスト。(2) **示された
-赤**、出力を見せて。この方法を「テストを書け」と区別する条項だ。(3) 緑。(4) 同じセッション
+何を求めているか、条項ごとに：(1) 保留項目の受け入れ基準に導かれたテスト。(2) **レシート
+として示された赤**（コマンド、バージョン、数字、終了コード）。この方法を「テストを書け」と
+区別する条項であり、赤が語りになるのを妨げる条項だ。(3) 緑。(4) 同じセッション
 での隣接項目の回帰。変更は隣のものを壊すから。(5) 触れたフローのエンドツーエンドテスト、
 バックエンドでの効果を見せて。(6) まさに試すものをシミュレートしないこと。そしてこの段に
 合わせた完全性の条項：エンドツーエンドでテストするのに何か欠けていれば、**シミュレート
@@ -140,8 +158,8 @@
 ## 3. 期待される成果物
 
 - リポジトリ内の新しいテスト、閉じる保留項目の名前付き。
-- エージェントの報告とコミットメッセージに：赤の出力（いくつ失敗したか、どのバージョンに
-  対して）、緑の出力、数字付きの緑の回帰。
+- エージェントの報告とコミットメッセージに：レシートとしての赤の出力（コマンド、それが走った
+  対象のバージョン、いくつ失敗したか、終了コード）、緑の出力、数字付きの緑の回帰。
 - 触れたフローのエンドツーエンドテスト、バックエンドが変わった証拠（行、記録、状態）付き。
 - 各ブロックの締めと本番の前に：フローごとの、正確なバージョンでの、緑の完全なエンドツー
   エンドのテスト群。
@@ -150,6 +168,9 @@
 
 - 報告は赤を見せているか？ 数字付きで：「古い基準に対して8のうち4が失敗」。緑しか見せて
   いないなら、段は登れていない。
+- 赤はレシートか、それとも語りか？ 正確なコマンド、それが走った対象のバージョン、数字、
+  終了コードがなければならない。ブロックごとに一度、保留項目を一つ無作為に選び、そのコマンド
+  をあなた自身が走らせること：赤がもう一度現れなければならない。
 - 回帰は同じセッションで走ったか？ テストはいくつ、緑はいくつ？
 - 変更のまさにその場所に「シミュレート」（モック）された部分があるか？ エージェントに何を
   なぜシミュレートしたか聞くこと。
@@ -165,5 +186,7 @@
 - テスト群がだんだん遅くなり、誰もなぜか知らない。たいていはエンドツーエンドテストが
   「速く走るように」シミュレーションに置き換えられていったのだ。
 - エージェントがいくつかを言わずに「テストは通る」と報告する。常に数字付きで。
+- 赤が散文で語られてくる（「テストは期待どおり失敗した」）。コマンドも、バージョンも、数字も
+  ない。レシートのない赤は、ないのと同じ値打ちだ。
 - 本番リリースに至って、完全なエンドツーエンドのテスト群が初めて走る。ブロックの締めが
   欠けていた。

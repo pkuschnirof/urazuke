@@ -717,10 +717,12 @@ are what replace your reading of the code.
   touched, in the same close. The complete end-to-end suite, at the close of each block and before
   every deployment to production.
 - **Inputs**: the change already implemented and the pending item with its "how it is verified".
-- **Artefact**: the new test, the red and green output with counts, the regression of the
-  neighbours in the same session, and the commit that says what it was proved red against.
-- **Gate**: red demonstrated, green, regression green. And the agent does not mock precisely the
-  part it wants to test.
+- **Artefact**: the new test, the red output as a receipt (the command, the version it ran
+  against, the counts, the exit code: what it takes to run it again with one command), the green
+  output with counts, the regression of the neighbours in the same session, and the commit that
+  says what it was proved red against.
+- **Gate**: red demonstrated with a receipt, green, regression green. And the agent does not mock
+  precisely the part it wants to test.
 - **Who decides**: the agent executes and reports; the owner reads the report, not the test.
 - **Failure it prevents**: tests that pass because they prove nothing, and the green that hides a
   bug [Ref. 44](REFERENCIAS.md#ref-44). The case of the counters is the complete example of a test
@@ -745,7 +747,8 @@ as a step.
 - **Artefact**: a linter and a formatter with a single configuration; size and complexity limits;
   detection of duplication and dead code; coverage with a ratchet; types if the language allows
   it; `docs/CODE_QUALITY.md` with every limit and its measured value; the gate in
-  `docs/GATES.md`.
+  `docs/GATES.md`. As an optional reinforcement, mutation testing (bugs planted on purpose,
+  counted by how many the tests catch), with its score per block next to the coverage.
 - **Gate**: nothing is merged with quality red; no linter exception without a written reason; no
   limit raised in order to pass.
 - **Who decides**: the owner sets the limits and decides what gets fixed now and what gets
@@ -1233,6 +1236,106 @@ course.
 
 ---
 
+## Part F — Related work: what exists that is similar, and how this method differs
+
+When I finished writing the ladder I asked myself the obvious question: does this already exist
+under another name? I asked for a thorough investigation, in English, in Spanish and in Japanese,
+of methodologies, essays and academic papers published up to October 2026 on building software
+with artificial intelligence. What follows is the result, summarized honestly: what is already
+elsewhere I cite instead of claiming it, and what I did not find I say as "I did not find it", not
+as "it does not exist". This part is going to keep growing as new things appear, and they appear
+every week.
+
+The short answer: **I did not find any published method that brings together what this one brings
+together**. I did find an entire field that, since mid-2025, converges on several of its pieces
+separately, and a celebrated practitioner who arrived at the same radical premise three months
+before I published this.
+
+### F.1 The closest relatives
+
+| Who and what | What it shares with Urazuke | What it lacks |
+|---|---|---|
+| **Robert C. Martin ("Uncle Bob"), July 2026.** In a thread on X and in his repositories ([Acceptance Pipeline Specification](https://github.com/unclebob/Acceptance-Pipeline-Specification), [SwarmForge](https://github.com/unclebob/swarm-forge)) he announced that he does not read the code his agents write: he surrounds them with a "gauntlet" of acceptance tests in Gherkin, unit tests, complexity limits, mutation testing and a QA procedure he runs by hand every so often. "You cannot tell an agent to be clean; you have to measure the cleanliness it produces." | The human does not read code. He reviews the specification before and the evidence after. The barriers are mechanical, not promises. A final manual test. | He is a programmer with forty years of craft, not an owner who does not program: he builds the barrier with that judgement. There is no ordered ladder, no path for a legacy system, no operation, no published prompts. Grady Booch replied to him that metrics do not see a vulnerability or a bad factoring. |
+| **old-coder, "evidence-first development"** ([repository](https://github.com/AmazingAng/old-coder)). A skill for agents inspired by Uncle Bob: SPEC, RED, GREEN, REFACTOR, GAUNTLET, EVIDENCE. | The human approves the test plan and then reads an evidence report that is rerun with one command; never the code. | One task at a time. No project, no legacy, no operation, no requirements engineering. |
+| **Disciplined Agentic Engineering** ([repository](https://github.com/swingerman/disciplined-agentic-engineering)). A kit with nine checkpoints, explicit exit criteria and twenty-one deterministic scripts as gates. | "An agent can talk itself into skipping an instruction; it cannot talk itself into skipping a non-zero exit code." Verification independent of whoever implemented. | Meant for engineers. No operation and no monitoring; the legacy case is reduced to a skill for bugs. |
+| **Tsumiki / AITDD, by Classmethod (Japan), July 2025** ([repository](https://github.com/classmethod/tsumiki)). Requirements, design, tasks, and then `tdd-red`, `tdd-green`, `tdd-refactor`, `tdd-verify-complete`, with reverse-engineering commands for existing code. | The red and the green as separate and mandatory commands; verification as a step of its own; a path for the inherited; literal prompts; tool-neutral. | It does not require the meter to have a test, it has no verified, believed and blind-spot report, and it does not reach production or monitoring. |
+| **Addy Osmani, "Brownfield Agentic Engineering" and "Agentic Verification", September and October 2026** ([brownfield](https://addyo.substack.com/p/brownfield-agentic-engineering), [verification](https://addyo.substack.com/p/agentic-verification)). | "Pin the behaviour first, then let the agent loose": characterization as the preliminary step, almost identical to station N4 of the evolutive-corrective path. "Write the check before the code." Ratchets that prevent deleting tests. | The human reads the diffs. It is a conceptual sequence, not a numbered list. No prompts. |
+| **Consort, by Databricks, September 2026** ([arXiv 2609.09671](https://arxiv.org/abs/2609.09671)). A deterministic orchestrator outside the model; immutable tests inside a unit of work; green demanded against a real database. | Real fail-closed. "A control the worker can ignore is not a control when the worker is non-deterministic." | Limited to the backends of one platform. No ladder, no legacy, no operation. |
+| **IACDM, March 2026** ([arXiv 2604.16399](https://arxiv.org/abs/2604.16399)). Eight phases; verifiers external to the generator; the gate is enforced by a state machine: the agent can request to advance, not grant itself the advance. | The ladder shape with gates and audit by another instance; tool-neutral. | Eight phases against twenty-four steps; no legacy, no security, no load, no operation. |
+| **"Trustworthy Change" and the human-agent cell, September 2026** ([arXiv 2609.04630](https://arxiv.org/abs/2609.04630)); **SDAD**, May 2026 ([arXiv 2608.20341](https://arxiv.org/abs/2608.20341)); **Agentic Agile-V**, May 2026 ([arXiv 2605.20456](https://arxiv.org/abs/2605.20456)). | The same division of authority: the agent produces evidence, the human keeps acceptance. Agentic Agile-V names "evidence-based acceptance" and says the agent demands more requirements engineering, not less. | They are conceptual frameworks or coarse life cycles, not procedures with prompts; the human is technical. |
+| **AI-DLC, by AWS, 2025** ([article](https://aws.amazon.com/blogs/devops/ai-driven-development-life-cycle)). Inception, Construction, Operations, with human gates. | It is the only large method that reaches operation. | Three coarse phases; no typed evidence; the human is a technical team. |
+| **Spec Kit, by GitHub, 2025** ([repository](https://github.com/github/spec-kit)) and the spec-driven development family: Kiro, BMAD, OpenSpec, GSD, Agent OS, Tessl. | Persistent artefacts, phase order, textual prompts, requirements first, traceability. OpenSpec looks quite a lot like "the pending items are the plan". | Nobody requires the red before the green; the legacy case is a light guide; almost all of them end at the merge. BMAD organizes the work as a team of agents with roles; in Forge I used that model, I left it at a time when the teams were losing context, and today I see it has improved: it is permanent evolution, not a discard. |
+| **Reversa, May 2026** ([arXiv 2605.18684](https://arxiv.org/abs/2605.18684), [repository](https://github.com/sandeco/reversa)). Agents that recover specifications from a legacy system with confidence marks: confirmed, inferred, gap. | It is almost station N0 of the evolutive-corrective path: the functionality described from the code, with source marks. Documentation in Spanish and Portuguese. | It recovers specifications, not behaviour. It does not use characterization as a hard barrier before touching anything. |
+| **Harness Engineering, by OpenAI, February 2026** ([article](https://openai.com/index/harness-engineering/)) and **StrongDM's Software Factory** ([Stanford study](https://law.stanford.edu/2026/02/08/built-by-agents-tested-by-agents-trusted-by-whom/)). Company cases: zero lines written by hand; at StrongDM, not reviewed either. | The radical premise of taking the human away from the keyboard. | The humans are still engineers. StrongDM replaced the pass-or-fail with a score given by another model: exactly what this method forbids (a number that feeds a decision is measured with a program that has its test). |
+| **Kent Beck, "Augmented Coding", June 2025** ([newsletter](https://newsletter.kentbeck.com/p/augmented-coding-beyond-the-vibes)). A complete system prompt that imposes red, green and refactoring. | The red before the green, literally, and the prompt published in full. "The AI cheats." | Beck reads the code and intervenes. It is session discipline, not project discipline. |
+| **Harper Reed, "My LLM codegen workflow", February 2025** ([article](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/)). Specification by questions one at a time, a plan of prompts, execution; a branch for the inherited. | Textual prompts, one question at a time, a branch for the legacy. | Three steps, no gates; the author reads. |
+| **Anthropic, best practices and harness design** ([practices](https://code.claude.com/docs/en/best-practices), [harness](https://www.anthropic.com/engineering/harness-design-long-running-apps)); **OpenAI, PLANS.md** ([cookbook](https://developers.openai.com/cookbook/articles/codex_exec_plans)). | "If you cannot verify it, do not ship it." A QA agent distinct from the one that builds drives the application from the screen. "Observed results, not planned predictions": the closest thing to verified versus believed. | Loose practices, tied to a product. No non-programming owner, no legacy, no operation. |
+| **Essays on verification, 2026**: Peter Lavigne, João Queirós, Mihai Avram, John Young ([Queirós](https://www.ai.joaoqueiros.com/blog/read-less-code-verify-ai-generated-software-test-harnesses), [Avram](https://mihaisplace.com/blog/ai-can-write-the-code-who-verifies-it), [Young](https://jyoung.dev/blog/evaluating-ai-coding-agent-output/)). | The same diagnosis: generating got cheap, verifying did not. "Tests are assertions, not proofs." Verification layers by level of risk. | They all end in "read less, but read". |
+| **In Spanish**: Daniel García (functional document, technical document, implementation with adversarial analysis between phases), Víctor Robles (a ten-step course), Daniel Primo (Web Reactiva), Emilio Carrión (a reply to Uncle Bob from Mercadona Tech, [article](https://www.emiliocarrion.com/en/blog/letting-go-of-the-wheel)). | García has the closest thing to the audit between phases. | None of them has evidence gates or an owner who does not read. I did not find any Argentine, Mexican or Spanish method in this space. |
+
+### F.2 What already exists, and is better cited than claimed
+
+The red before the green imposed on the agent is in Beck, in Tsumiki, in Anthropic's practices and
+in Simon Willison's 2026 patterns. The ordered steps with textual prompts are in Spec Kit, in
+Tsumiki and in Reed. Characterization as the step before touching a legacy system is in Osmani,
+published one month before this document. The end-to-end test from the screen, with an evaluator
+distinct from the generator, is in Anthropic. Requirements engineering as a prerequisite is in the
+whole spec-driven development movement. And the human who does not read the code is in Uncle Bob,
+in Karpathy for throwaway work, and in the book by Yegge and Kim.
+
+### F.3 What I did not find anywhere
+
+- **The addressee.** All the literature assumes an engineer who reviews. Uncle Bob does not read
+  code because he has forty years of judgement with which to build the barrier. This method starts
+  from the owner who never reads, and derives everything else from that constraint. That inversion
+  is not posed in any work. What there is for the non-programmer is documentation of the damage: a
+  June 2026 study of 9,041 applications made with "vibe coding" tools found vulnerabilities in
+  91 % of the ones audited ([arXiv 2606.23130](https://arxiv.org/abs/2606.23130)).
+- **The verified, believed and blind-spot report as a mandatory deliverable** (step 12). The
+  problem is diagnosed with numbers: an agent's declaration of completeness exceeds real approval
+  by 28 to 38 points ([SpecHarness, arXiv 2609.29921](https://arxiv.org/abs/2609.29921)), and
+  losing the "unverified" label in a handoff between agents shoots the approval of risky actions
+  up from 5 % to 60 % ([arXiv 2609.20211](https://arxiv.org/abs/2609.20211)). Nobody turned it
+  into an accountability format addressed to a person.
+- **The meter with its own test** (step 7). The rule "a number that feeds a decision is measured
+  with a program that has its test" is not written in any source I found.
+- **The complete ladder**, from eligibility to monitoring and the retrospective. The longest one I
+  found has ten steps; almost all of them end at the merge; only AI-DLC and Osmani touch on
+  operation.
+- **No deadlines as a rule** (D-030). It is not answered; it is absent.
+- **The combination.** Those who do not read code do not test with rigour (Ronacher, Yegge). Those
+  who test with rigour read (Beck, Osmani, Hashimoto, GitHub). Uncle Bob and old-coder break that
+  crossing, and they do it per task, not per project.
+
+### F.4 The objection that has to be answered, and how I answer it
+
+Birgitta Böckeler measured, in August 2026, that asking an agent for the test-first cycle does not
+reliably improve quality, because the agent sometimes fakes the red or implements before the test
+so that it passes from the start ([martinfowler.com](https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html)).
+The only thing that, in her study, told the tests that watch from the tests that decorate was
+mutation testing. Another study from the same year shows that a model endorses a third of its own
+errors ([arXiv 2605.21537](https://arxiv.org/abs/2605.21537)), and another, that a clean session
+plus a different model find more errors than two sessions of the same model
+([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)).
+
+It is a serious objection, and I take it. The method's answer has three pieces (D-033). In step 8,
+the red is a **receipt**, not a story: the exact command, the version it ran against, the count of
+failures and the exit code, pasted as they came out, so that the owner can run it again with one
+command and does so, once per block, with a pending item chosen at random. In step 13, the audit
+by another session reruns a sample of those receipts. And in step 9, mutation testing comes in as
+an optional reinforcement, recommended in every project with users, with its score at the close of
+every block next to the coverage. None of the three pieces requires the owner to read code. All
+three make faking the red cost more than running it.
+
+A useful frame for placing this method on the map is Macedo's taxonomy, from June 2026
+([arXiv 2606.04967](https://arxiv.org/abs/2606.04967)): six dimensions (specification, context,
+roles, execution, validation, portability), and the finding that none of the frameworks it
+compared covers all six at once, with a structural trade-off between depth of process and
+portability. Urazuke aims at all six, and its bet on exact prompts in English plus tool
+neutrality is, precisely, the attempt to break that trade-off.
+
+---
+
 ## Glossary
 
 Every acronym, every proper name and every colloquial expression that appears in this document,
@@ -1532,6 +1635,13 @@ the flow on purpose with a temporary change, see the test red, revert, see the g
 characterization test without its red by mutation is a test that passes because it watches
 nothing.
 
+**Mutation testing** — A program that breaks the code on purpose, one small change at a time
+(flips a condition, deletes a line, changes an operator), runs the tests and counts how many of
+those bugs they catch. Every bug no test catches is a "surviving mutant"; the proportion caught is
+the score. It is the optional reinforcement of step 9 and the answer to the objection that the
+agent can fake the red. Not to be confused with the "red by mutation" of characterization, which
+is the same idea applied by hand to a single flow.
+
 **N+1 loop** — A very common persistence mistake: to show a hundred items, the system makes one
 query for the list and then a hundred more, one per item, instead of one or two. It is detected by
 counting queries (step 7) and corrected in step 17.
@@ -1595,6 +1705,11 @@ measured and protected by a test.
 
 **Ratchet** — A mechanism that only turns one way. In Kikan, a counter of calls without `await`
 that can only go down: if it goes up, the test fails.
+
+**Receipt** — The output of a command pasted as it came out, with the exact command, the version
+it ran against, the counts and the exit code, so that the owner can run it again without
+understanding what it does. In step 8, the red has to be a receipt, not a story ("the test failed
+as expected").
 
 **Ref. N** — A short reference to a real case, explained in the references document with its date
 and its evidence. It is there so that the procedures stay clean and the detail stays available.

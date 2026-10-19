@@ -22,6 +22,20 @@ façon bon marché de vérifier que le test regarde ce qui compte : si l'ancien 
 test ne distingue pas l'avant de l'après, et alors il ne sert à rien. Le cas qui le montre le mieux
 est celui des compteurs qui ne coïncidaient pas [Ref. 26](../REFERENCIAS.md#ref-26).
 
+Il y a une objection sérieuse à cet échelon, et je veux la laisser écrite parce qu'on va s'en
+servir contre lui : le même agent qui écrit le test et le code peut **feindre le rouge**. Une étude
+publiée en août 2026 a mesuré que, lorsqu'on demande à un agent le cycle du test d'abord, il saute
+parfois le rouge, le raconte sans l'avoir lancé, ou implémente avant le test pour que celui-ci
+passe d'entrée (c'est dans la Partie F du document principal, celle des travaux connexes). Ma
+réponse a trois pièces, et les trois sont dans l'échelle. La première, ici : le rouge n'est pas un
+récit, c'est un **reçu** : la commande exacte, l'identifiant de la version contre laquelle il a
+tourné, le nombre de tests qui échouent et le code de sortie, le tout collé tel qu'il est sorti, de
+manière que vous puissiez le relancer avec une seule commande sans comprendre ce qu'il fait. La
+deuxième, à l'échelon 13 : l'audit par une autre session relance un échantillon de ces reçus. La
+troisième, à l'échelon 9 : les tests de mutation, qui plantent des erreurs exprès et comptent
+combien les tests en attrapent ; c'est la seule mesure qui, dans cette même étude, a distingué les
+tests qui surveillent de ceux qui décorent.
+
 Et la seconde moitié : les tests de bout en bout. Un test qui vérifie depuis l'écran (clique,
 saisit, lit) et contrôle l'effet dans le backend (la ligne est là, l'état a changé) est celui qui
 remplace votre lecture du code. Les critères d'acceptation de l'élément en attente (« étant donné,
@@ -61,38 +75,44 @@ faites, pas l'agent :
 - `docs/WORKING_AGREEMENT.md`, où va la routine la première fois.
 - État minimum acceptable : la spécification a des critères d'acceptation, et la batterie tourne
   avec une commande connue.
-> To close this pending item I need evidence, not your word. (1) Write the test that proves what
-> the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
-> against the previous code: you may temporarily revert the change, or run the test against the
-> old version, but show me the red output. (3) Show me the green output with the change. (4) Run
+> To close this pending item I need evidence, not your word. (1) Write the test that proves what the
+> item asks for, following its acceptance criteria. (2) Demonstrate that this test fails against the
+> previous code: you may temporarily revert the change, or run the test against the old version, but
+> show me the red output as a receipt, not a summary: the exact command, the identifier of the
+> version it ran against, the count of failing tests and the exit code, pasted as they came out, so
+> that I can rerun it myself with one command. (3) Show me the green output with the change. (4) Run
 > the regression suite for the neighbouring items and show me it is still green. (5) Run the
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
-> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing
-> end to end requires something you lack (data, access, an environment), ask me for it; do not
-> simulate what you do not have. Finally, the commit message says "proved red against [what]"
-> and the test counts.
+> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
+> to end requires something you lack (data, access, an environment), ask me for it; do not simulate
+> what you do not have. Finally, the commit message says "proved red against [what]" and the test
+> counts.
 
 > [fr]
 > Pour clore cet élément en attente, j'ai besoin d'une preuve, pas de ta parole. (1) Écris le test
 > qui prouve ce que l'élément demande, en suivant ses critères d'acceptation. (2) Démontre que ce
 > test échoue contre le code précédent : tu peux annuler temporairement le changement, ou lancer
-> le test contre l'ancienne version, mais montre-moi la sortie en rouge. (3) Montre-moi la sortie
-> en vert avec le changement. (4) Lance la régression des éléments voisins et montre-moi qu'elle
-> est toujours au vert. (5) Lance le test de bout en bout du flux que cet élément touche, depuis
-> l'écran jusqu'au backend, et montre-moi l'effet dans le backend. (6) Ne remplace pas par des
-> simulations précisément la partie que tu es en train de tester. Si tester de bout en bout
-> requiert quelque chose que tu n'as pas (des données, un accès, un environnement), demande-le-moi ;
-> ne simule pas ce que tu n'as pas. Enfin, le message du commit dit « prouvé en rouge contre
-> [quoi] » et les chiffres des tests.
+> le test contre l'ancienne version, mais montre-moi la sortie en rouge comme un reçu, pas comme
+> un résumé : la commande exacte, l'identifiant de la version contre laquelle il a tourné, le
+> nombre de tests qui échouent et le code de sortie, collés tels qu'ils sont sortis, pour que je
+> puisse le relancer moi-même avec une seule commande. (3) Montre-moi la sortie en vert avec le
+> changement. (4) Lance la régression des éléments voisins et montre-moi qu'elle est toujours au
+> vert. (5) Lance le test de bout en bout du flux que cet élément touche, depuis l'écran jusqu'au
+> backend, et montre-moi l'effet dans le backend. (6) Ne remplace pas par des simulations
+> précisément la partie que tu es en train de tester. Si tester de bout en bout requiert quelque
+> chose que tu n'as pas (des données, un accès, un environnement), demande-le-moi ; ne simule pas
+> ce que tu n'as pas. Enfin, le message du commit dit « prouvé en rouge contre [quoi] » et les
+> chiffres des tests.
 
 Ce que je lui demande, clause par clause : (1) le test, guidé par les critères d'acceptation de
-l'élément en attente ; (2) **le rouge démontré**, avec la sortie à la vue, qui est la clause qui
-distingue cette méthode de « écris des tests » ; (3) le vert ; (4) la régression des voisins dans
-la même session, parce qu'un changement casse des choses à côté ; (5) le test de bout en bout du
-flux touché, avec l'effet dans le backend à la vue ; (6) ne pas simuler précisément ce qu'on
-teste ; et la clause de complétude adaptée à cet échelon : s'il manque quelque chose pour tester de
-bout en bout, **le demander, pas le simuler**. Le message de commit avec les chiffres laisse la
-preuve là où vit le code.
+l'élément en attente ; (2) **le rouge démontré comme reçu** (commande, version, chiffres, code de
+sortie), qui est la clause qui distingue cette méthode de « écris des tests » et celle qui empêche
+que le rouge soit un récit ; (3) le vert ; (4) la régression des voisins dans la même session,
+parce qu'un changement casse des choses à côté ; (5) le test de bout en bout du flux touché, avec
+l'effet dans le backend à la vue ; (6) ne pas simuler précisément ce qu'on teste ; et la clause de
+complétude adaptée à cet échelon : s'il manque quelque chose pour tester de bout en bout, **le
+demander, pas le simuler**. Le message de commit avec les chiffres laisse la preuve là où vit le
+code.
 
 **À la clôture de chaque bloc et avant chaque déploiement en production :**
 
@@ -149,8 +169,9 @@ le début d'un élément en attente. La non-testabilité est de la dette, et la 
 ## 3. Résultat attendu
 
 - Le nouveau test dans le dépôt, nommé d'après l'élément en attente qu'il clôt.
-- Dans le rapport de l'agent et dans le message du commit : la sortie en rouge (combien échouent,
-  contre quelle version), la sortie en vert, et la régression au vert avec ses chiffres.
+- Dans le rapport de l'agent et dans le message du commit : la sortie en rouge comme reçu (la
+  commande, la version contre laquelle il a tourné, combien échouent, le code de sortie), la sortie
+  en vert, et la régression au vert avec ses chiffres.
 - Le test de bout en bout du flux touché, avec la preuve que le backend a changé (la ligne,
   l'enregistrement, l'état).
 - À la clôture de chaque bloc et avant la production : la batterie complète de bout en bout au
@@ -160,6 +181,9 @@ le début d'un élément en attente. La non-testabilité est de la dette, et la 
 
 - Le rapport montre-t-il le rouge ? Avec des chiffres : « 4 sur 8 échouent contre l'ancien
   critère ». S'il ne montre que du vert, l'échelon n'est pas gravi.
+- Le rouge est-il un reçu ou un récit ? Il doit contenir la commande exacte, la version contre
+  laquelle il a tourné, les chiffres et le code de sortie. Une fois par bloc, choisissez un élément
+  en attente au hasard et lancez vous-même cette commande : le rouge doit réapparaître.
 - La régression a-t-elle tourné dans la même session ? Combien de tests, combien au vert ?
 - Y a-t-il une partie « simulée » (mock) juste là où est le changement ? Demandez à l'agent ce
   qu'il a simulé et pourquoi.
@@ -176,5 +200,7 @@ le début d'un élément en attente. La non-testabilité est de la dette, et la 
   tests de bout en bout ont été remplacés peu à peu par des simulations « pour que ça tourne
   vite ».
 - L'agent rapporte « les tests passent » sans dire combien. Toujours avec des chiffres.
+- Le rouge arrive raconté en prose (« le test a échoué comme prévu ») sans commande, sans version
+  et sans chiffres. Un rouge sans reçu vaut autant qu'aucun rouge.
 - Vous arrivez à la mise en production et la batterie complète de bout en bout tourne pour la
   première fois. Les clôtures de bloc ont manqué.

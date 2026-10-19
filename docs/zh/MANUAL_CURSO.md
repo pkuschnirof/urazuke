@@ -875,28 +875,33 @@ WhatsApp 或邮件自动发提醒；对某些预约可以通过支付链接收�
 
 1. 把证据例行加进契约。粘贴：
 
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
-> not your word. (1) Write the test that proves what the item asks for, following its acceptance
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence, not
+> your word. (1) Write the test that proves what the item asks for, following its acceptance
 > criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
-> revert the change, or run the test against the old version, but show me the red output. (3)
-> Show me the green output with the change. (4) Run the regression suite for the neighbouring
-> items and show me it is still green. (5) Run the end-to-end test of the flow this item
-> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
-> with mocks the very part you are trying to test. If testing end to end requires something you
-> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
-> Finally, the commit message says 'proved red against [what]' and the test counts."
+> revert the change, or run the test against the old version, but show me the red output as a
+> receipt, not a summary: the exact command, the identifier of the version it ran against, the count
+> of failing tests and the exit code, pasted as they came out, so that I can rerun it myself with
+> one command. (3) Show me the green output with the change. (4) Run the regression suite for the
+> neighbouring items and show me it is still green. (5) Run the end-to-end test of the flow this
+> item touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
+> with mocks the very part you are trying to test. If testing end to end requires something you lack
+> (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the
+> commit message says 'proved red against [what]' and the test counts."
 
 > [zh]
 > 把这条例行加到 `docs/WORKING_AGREEMENT.md`："要关闭一个待办项我需要证据，不是你的话。
 > (1) 按照待办项的验收标准，写出证明它所要求之事的测试。(2) 证明这个测试对之前的代码失败：
-> 你可以临时回退变更，或者对旧版本运行测试，但要给我看红色的输出。(3) 给我看带变更的绿色
-> 输出。(4) 运行相邻待办项的回归测试套件，给我看它仍然是绿的。(5) 运行这个待办项触及的流
-> 程的端到端测试，从界面到后端，并给我看后端的效果。(6) 不要用模拟（mock）替换恰好你要测
-> 的那部分。如果端到端测试需要你没有的东西（数据、访问权限、一个环境），向我索要；不要模拟
-> 你没有的东西。最后，提交信息写上'先证红，针对 [什么]'以及测试的数字。"
+> 你可以临时回退变更，或者对旧版本运行测试，但要把红色的输出当作一张凭据给我看，而不是一
+> 段摘要：确切的命令、它所针对的版本的标识符、失败的测试数量和退出码，按原样粘贴，好让我
+> 自己能用一条命令重新跑一遍。(3) 给我看带变更的绿色输出。(4) 运行相邻待办项的回归测试套
+> 件，给我看它仍然是绿的。(5) 运行这个待办项触及的流程的端到端测试，从界面到后端，并给我
+> 看后端的效果。(6) 不要用模拟（mock）替换恰好你要测的那部分。如果端到端测试需要你没有的
+> 东西（数据、访问权限、一个环境），向我索要；不要模拟你没有的东西。最后，提交信息写上'先
+> 证红，针对 [什么]'以及测试的数字。"
 
-   你在要求它写由验收标准引导的测试，**输出可见地展示红色**，绿色，相邻项的回归，带后端效果
-   的流程端到端测试，不模拟恰好要测的那部分，以及缺什么就索要而不是模拟。
+   你在要求它写由验收标准引导的测试，**作为凭据展示出来的红色**（命令、版本、数字和退出码，
+   好让你能自己重新跑一遍），绿色，相邻项的回归，带后端效果的流程端到端测试，不模拟恰好要测
+   的那部分，以及缺什么就索要而不是模拟。
 
 2. 取重复预约的待办项（Turnera 里的 PND-003，或你项目里的等价物：一条阻止某事的规则）。让它
    用这个例行关闭它。读报告：必须有带数字的红色输出（"1 个中 1 个对没有这条规则的版本失
@@ -990,6 +995,11 @@ WhatsApp 或邮件自动发提醒；对某些预约可以通过支付链接收�
 
 **常见错误。** 让代理"把这条规则关掉，因为它太严格了"而不经过你。为了让它通过而调高一条限制。
 还有把覆盖率和质量搞混：覆盖率数的是测试，而第 8 课的红说的是它们是否证明了什么。
+
+**可选的加固。** 功能块收尾之后，第 9 级台阶的契约里有第三条提示词，*变异测试*那条：一个工
+具故意把代码弄坏，一次一个小改动，然后数一数这些错误里有多少被测试抓住了。这是覆盖率给不出
+的度量，也是回答"代理可以伪造红色"这条反对意见的度量。在 Turnera 里我们在第二个功能块收尾时
+做，只对改动过的行。
 
 **在引导项目中。** Turnera 的第一次运行在三件事上变红：预约表单有一个 70 行的函数（拆成两个：
 待办项）、日期格式有两份副本（只留一份，在服务器上：待办项），而覆盖率在 61%。棘轮定在 61，随

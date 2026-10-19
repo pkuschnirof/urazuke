@@ -9,7 +9,8 @@ report is read with the owner. In a legacy system, the first run is the baseline
 enter the backlog with their speed mark.
 **Form:** one shot to set it up; afterwards, a routine of every change and a reading per block.
 **Size:** mandatory at its minimum level in every project (a linter and a size limit in the
-chain); complete in any project with users.
+chain); complete in any project with users. Mutation testing is an optional reinforcement,
+recommended in every project with users.
 
 ## What it is for
 
@@ -31,6 +32,15 @@ code; that the dependencies are declared and used; that the *coverage* of the te
 test: impeccable code can be wrong. What it prevents is correct code that nobody can ever touch
 again.
 
+And an optional reinforcement that is worth it in any project with users: **mutation testing**.
+A tool plants bugs on purpose in the code (changes a "greater than" into a "greater than or
+equal", deletes a line, flips a condition) and runs the tests; every bug the tests do not catch is
+a *surviving mutant*, and the proportion caught is the score. It is the measure that complements
+the demonstrated red of step 8: the red proves that one test watches today's change; mutation
+measures how much the whole suite watches. And it is, as far as I know, the only one that in the
+2026 studies told the tests that prove from the tests that decorate (Part F of the main
+document).
+
 **If you are a beginner.** A *linter* is a program that reads the code and marks what is badly
 written or dangerous (a variable that is not used, a comparison that always gives the same
 result), like the spell checker of a word processor. A *formatter* arranges it with a single style
@@ -39,7 +49,9 @@ result), like the spell checker of a word processor. A *formatter* arranges it w
 function with forty paths is understood by nobody. *Duplicated code* is the same block copied in
 two places: the day one of them is fixed, the other one stays wrong. *Coverage* is what percentage
 of the code is executed by some test. And a *ratchet* is a mechanism that only lets things
-improve: today's number is tomorrow's floor.
+improve: today's number is tomorrow's floor. *Mutation testing* is a program that breaks the code
+on purpose, one small change at a time, and looks at whether any test notices; if none does, that
+piece of code is not being watched.
 
 ## 1. Required context
 
@@ -117,6 +129,31 @@ task; the ban on silencing (a model facing a red linter tends to add the excepti
 fixing, because it is faster) and on raising the limit; and the reading per block, which is the
 only moment when you look at the numbers.
 
+**Reinforcement (optional; recommended in every project with users): mutation testing.**
+
+**Before sending the prompt**, you have to have this at hand:
+
+- The quality gate set up and green, with the coverage measured in `docs/CODE_QUALITY.md`.
+- At least one functional block closed with step 8, so that there are tests to mutate.
+- Your decision about the scope, written in one line: the whole codebase (expensive, and it only
+  makes sense once, as a baseline) or only the lines changed by each pending item (the usual).
+- Minimum acceptable state: there is measured coverage and there is a closed block.
+
+> Add mutation testing to the quality gate, [on the whole codebase | only on the lines changed by
+> each pending item]: a tool that plants small deliberate bugs in the code (a flipped condition, a
+> deleted line, a changed operator) and runs the tests. Run it now and write in
+> `docs/CODE_QUALITY.md`: the tool, the scope, the number of mutants planted, how many the tests
+> killed, how many survived and where. Do not fix anything yet: every surviving mutant in code
+> that matters becomes a pending item for a test that catches it, and I decide which ones matter.
+> From now on, report the mutation score at the close of every block next to the coverage, and
+> treat a drop as a quality failure. Reply in my language.
+
+What I am asking for: the measure that coverage does not give (coverage says which code was
+executed; mutation says which code is being watched); the scope narrowed to the lines changed,
+which is what makes the cost payable on every pending item; **not fixing anything yet**, because
+deciding which mutant matters is mine; and the score at the close of every block, next to the
+coverage, with a drop treated as red.
+
 ## 3. Expected result
 
 - The linter, the formatter, the limits, the detection of duplication and dead code, the coverage
@@ -124,6 +161,8 @@ only moment when you look at the numbers.
 - `docs/CODE_QUALITY.md` with tools, configuration, limits with their measured value, and the list
   of what fails with its pending item or its date.
 - The gate in `docs/GATES.md` and the routine in the agreement.
+- If the reinforcement was set up: the mutation score in `docs/CODE_QUALITY.md`, per block, next
+  to the coverage, and a pending item for every surviving mutant in code that matters.
 
 ## 4. Completeness check (you do it, without reading code)
 
@@ -135,6 +174,8 @@ only moment when you look at the numbers.
 - Are there any linter exceptions in the code? Ask for the list; each one has to have a written
   reason.
 - Did any limit go up since the first run? With what reason and who decided it?
+- If there is mutation testing: how many mutants survived in the last block, and does each one
+  have a pending item or a written reason?
 
 ## 5. Warning signs
 
@@ -146,3 +187,5 @@ only moment when you look at the numbers.
   8). The ratchet measures quantity; the demonstrated red measures quality. They go together.
 - A file grew up to the limit and was split into two files with the same content. That is
   duplication disguised as compliance.
+- Coverage is high and the mutation score is low. Those are tests that execute the code without
+  verifying anything: the exact case the demonstrated red of step 8 tries to prevent.

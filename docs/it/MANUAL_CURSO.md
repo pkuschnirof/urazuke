@@ -1083,34 +1083,40 @@ solo la terza, arrivi alla fine con un sistema che nessuno ha provato end to end
 
 1. Aggiungi al patto la routine delle prove. Incollagli:
 
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
-> not your word. (1) Write the test that proves what the item asks for, following its acceptance
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence, not
+> your word. (1) Write the test that proves what the item asks for, following its acceptance
 > criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
-> revert the change, or run the test against the old version, but show me the red output. (3)
-> Show me the green output with the change. (4) Run the regression suite for the neighbouring
-> items and show me it is still green. (5) Run the end-to-end test of the flow this item
-> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
-> with mocks the very part you are trying to test. If testing end to end requires something you
-> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
-> Finally, the commit message says 'proved red against [what]' and the test counts."
+> revert the change, or run the test against the old version, but show me the red output as a
+> receipt, not a summary: the exact command, the identifier of the version it ran against, the count
+> of failing tests and the exit code, pasted as they came out, so that I can rerun it myself with
+> one command. (3) Show me the green output with the change. (4) Run the regression suite for the
+> neighbouring items and show me it is still green. (5) Run the end-to-end test of the flow this
+> item touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
+> with mocks the very part you are trying to test. If testing end to end requires something you lack
+> (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the
+> commit message says 'proved red against [what]' and the test counts."
 
 > [it]
 > Aggiungi questa routine a `docs/WORKING_AGREEMENT.md`: "Per chiudere una voce in sospeso ho
 > bisogno di prove, non della tua parola. (1) Scrivi il test che prova ciò che la voce chiede,
 > seguendo i suoi criteri di accettazione. (2) Dimostra che quel test fallisce contro il codice
 > precedente: puoi annullare temporaneamente la modifica, o eseguire il test contro la versione
-> vecchia, ma mostrami l'output in rosso. (3) Mostrami l'output in verde con la modifica. (4)
-> Esegui la regressione delle voci vicine e mostrami che è ancora in verde. (5) Esegui la prova
-> end to end del flusso che questa voce tocca, dalla schermata fino al backend, e mostrami
-> l'effetto nel backend. (6) Non sostituire con simulazioni proprio la parte che stai provando.
-> Se provare end to end richiede qualcosa che non hai (dati, accesso, un ambiente), chiedimelo;
-> non simulare ciò che non hai. Infine, il messaggio del commit dice 'provato in rosso contro
-> [cosa]' e i numeri dei test."
+> vecchia, ma mostrami l'output in rosso come una ricevuta, non come un riassunto: il comando
+> esatto, l'identificatore della versione contro cui è stato eseguito, il numero di test che
+> falliscono e il codice di uscita, incollati così come sono usciti, perché io possa eseguirlo di
+> nuovo con un solo comando. (3) Mostrami l'output in verde con la modifica. (4) Esegui la
+> regressione delle voci vicine e mostrami che è ancora in verde. (5) Esegui la prova end to end
+> del flusso che questa voce tocca, dalla schermata fino al backend, e mostrami l'effetto nel
+> backend. (6) Non sostituire con simulazioni proprio la parte che stai provando. Se provare end
+> to end richiede qualcosa che non hai (dati, accesso, un ambiente), chiedimelo; non simulare ciò
+> che non hai. Infine, il messaggio del commit dice 'provato in rosso contro [cosa]' e i numeri
+> dei test."
 
-   Gli stai chiedendo il test guidato dai criteri di accettazione, **il rosso dimostrato con
-   l'output in vista**, il verde, la regressione delle voci vicine, la prova end to end del flusso
-   con l'effetto nel backend, niente simulazioni proprio di ciò che si prova, e di chiedere ciò
-   che manca invece di simularlo.
+   Gli stai chiedendo il test guidato dai criteri di accettazione, **il rosso dimostrato come
+   ricevuta** (il comando, la versione, i numeri e il codice di uscita, perché tu possa eseguirlo
+   di nuovo), il verde, la regressione delle voci vicine, la prova end to end del flusso con
+   l'effetto nel backend, niente simulazioni proprio di ciò che si prova, e di chiedere ciò che
+   manca invece di simularlo.
 
 2. Prendi la voce del doppio appuntamento (PND-003 in Turnera, o l'equivalente nel tuo progetto:
    una regola che impedisce qualcosa). Chiedigli di chiuderla con la routine. Leggi il rapporto:
@@ -1229,6 +1235,12 @@ la routine nel patto.
 **Errori tipici.** Lasciare che l'agente "disattivi questa regola perché è troppo severa" senza
 che passi da te. Alzare un limite perché passi. E confondere la copertura con la qualità: la
 copertura conta i test, il rosso della lezione 8 dice se provano qualcosa.
+
+**Rinforzo opzionale.** Quando il blocco è chiuso, il contratto del gradino 9 ha un terzo prompt,
+quello dei *test di mutazione*: uno strumento rompe il codice di proposito, una piccola modifica
+alla volta, e conta quanti di quegli errori vengono catturati dai test. È la misura che la
+copertura non dà, e quella che risponde all'obiezione che l'agente può fingere il rosso. In
+Turnera lo facciamo alla chiusura del secondo blocco, solo sulle righe cambiate.
 
 **Nel progetto guida.** La prima esecuzione di Turnera dà rosso su tre cose: il modulo
 dell'appuntamento ha una funzione di 70 righe (si spezza in due: voce in sospeso), ci sono due

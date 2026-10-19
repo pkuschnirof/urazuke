@@ -22,6 +22,20 @@ barata de comprobar que el test está mirando lo que importa: si el código viej
 no distingue el antes del después, y entonces no sirve. El caso que mejor lo muestra es el de los
 contadores que no coincidían [Ref. 26](../REFERENCIAS.md#ref-26).
 
+Hay una objeción seria a este peldaño, y la quiero dejar escrita porque la van a usar en contra:
+el mismo agente que escribe el test y el código puede **fingir el rojo**. Un estudio publicado en
+agosto de 2026 midió que, cuando a un agente se le pide el ciclo de test primero, a veces se
+saltea el rojo, lo cuenta sin haberlo corrido, o implementa antes del test para que pase de
+entrada (está en la Parte F del documento principal, la de los trabajos relacionados). Mi
+respuesta tiene tres piezas, y las tres están en la escalera. La primera, acá: el rojo no es un
+relato, es un **recibo**: el comando exacto, el identificador de la versión contra la que corrió,
+la cantidad de tests que fallan y el código de salida, todo pegado tal como salió, de manera que
+vos puedas volver a correrlo con un solo comando sin entender lo que hace. La segunda, en el
+peldaño 13: la auditoría por otra sesión vuelve a correr una muestra de esos recibos. La tercera,
+en el peldaño 9: las pruebas de mutación, que plantan errores a propósito y cuentan cuántos
+atrapan los tests; es la única medida que, en ese mismo estudio, distinguió a los tests que
+vigilan de los que decoran.
+
 Y la segunda mitad: las pruebas de punta a punta. Un test que verifica desde la pantalla (hace
 clic, tipea, lee) y comprueba el efecto en el backend (la fila quedó, el estado cambió) es el que
 reemplaza tu lectura del código. Los criterios de aceptación del pendiente ("dado, cuando,
@@ -61,32 +75,37 @@ el agente:
 - Estado mínimo aceptable: la especificación tiene criterios de aceptación, y la batería corre con
   un comando conocido.
 
-> To close this pending item I need evidence, not your word. (1) Write the test that proves what
-> the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
-> against the previous code: you may temporarily revert the change, or run the test against the
-> old version, but show me the red output. (3) Show me the green output with the change. (4) Run
+> To close this pending item I need evidence, not your word. (1) Write the test that proves what the
+> item asks for, following its acceptance criteria. (2) Demonstrate that this test fails against the
+> previous code: you may temporarily revert the change, or run the test against the old version, but
+> show me the red output as a receipt, not a summary: the exact command, the identifier of the
+> version it ran against, the count of failing tests and the exit code, pasted as they came out, so
+> that I can rerun it myself with one command. (3) Show me the green output with the change. (4) Run
 > the regression suite for the neighbouring items and show me it is still green. (5) Run the
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
-> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing
-> end to end requires something you lack (data, access, an environment), ask me for it; do not
-> simulate what you do not have. Finally, the commit message says "proved red against [what]"
-> and the test counts.
+> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
+> to end requires something you lack (data, access, an environment), ask me for it; do not simulate
+> what you do not have. Finally, the commit message says "proved red against [what]" and the test
+> counts.
 
 > [es]
 > Para cerrar este pendiente necesito evidencia, no tu palabra. (1) Escribí el test que prueba lo
 > que el pendiente pide, siguiendo sus criterios de aceptación. (2) Demostrá que ese test falla
 > contra el código anterior: podés revertir temporalmente el cambio, o correr el test contra la
-> versión vieja, pero mostrame la salida en rojo. (3) Mostrame la salida en verde con el cambio.
-> (4) Corré la regresión de los pendientes vecinos y mostrame que sigue en verde. (5) Corré la
-> prueba de punta a punta del flujo que este pendiente toca, desde la pantalla hasta el backend, y
-> mostrame el efecto en el backend. (6) No reemplaces con simulaciones justamente la parte que
-> estás probando. Si probar de punta a punta requiere algo que no tenés (datos, acceso, un
-> entorno), pedímelo; no simules lo que no tenés. Por último, el mensaje del commit dice "probado
-> en rojo contra [qué]" y los números de los tests.
+> versión vieja, pero mostrame la salida en rojo como un recibo, no como un resumen: el comando
+> exacto, el identificador de la versión contra la que corrió, la cantidad de tests que fallan y el
+> código de salida, pegados tal como salieron, para que yo pueda volver a correrlo con un solo
+> comando. (3) Mostrame la salida en verde con el cambio. (4) Corré la regresión de los pendientes
+> vecinos y mostrame que sigue en verde. (5) Corré la prueba de punta a punta del flujo que este
+> pendiente toca, desde la pantalla hasta el backend, y mostrame el efecto en el backend. (6) No
+> reemplaces con simulaciones justamente la parte que estás probando. Si probar de punta a punta
+> requiere algo que no tenés (datos, acceso, un entorno), pedímelo; no simules lo que no tenés. Por
+> último, el mensaje del commit dice "probado en rojo contra [qué]" y los números de los tests.
 
 Qué le estoy pidiendo, cláusula por cláusula: (1) el test, guiado por los criterios de aceptación
-del pendiente; (2) **el rojo demostrado**, con la salida a la vista, que es la cláusula que
-distingue este método de "escribí tests"; (3) el verde; (4) la regresión de los vecinos en la
+del pendiente; (2) **el rojo demostrado como recibo** (comando, versión, números, código de
+salida), que es la cláusula que distingue este método de "escribí tests" y la que impide que el
+rojo sea un relato; (3) el verde; (4) la regresión de los vecinos en la
 misma sesión, porque un cambio rompe cosas al lado; (5) la prueba de punta a punta del flujo
 tocado, con el efecto en el backend a la vista; (6) no simular justamente lo que se prueba; y la
 cláusula de completitud adaptada a este peldaño: si falta algo para probar de punta a punta,
@@ -146,8 +165,9 @@ principio de un pendiente. La no-testeabilidad es deuda, y la deuda se registra.
 ## 3. Resultado esperado
 
 - El test nuevo en el repositorio, nombrado con el pendiente que cierra.
-- En el reporte del agente y en el mensaje del commit: la salida en rojo (cuántos fallan, contra
-  qué versión), la salida en verde, y la regresión en verde con sus números.
+- En el reporte del agente y en el mensaje del commit: la salida en rojo como recibo (el comando,
+  la versión contra la que corrió, cuántos fallan, el código de salida), la salida en verde, y la
+  regresión en verde con sus números.
 - La prueba de punta a punta del flujo tocado, con la evidencia de que el backend cambió (la
   fila, el registro, el estado).
 - Al cierre de cada bloque y antes de producción: la batería completa de punta a punta en verde,
@@ -157,6 +177,9 @@ principio de un pendiente. La no-testeabilidad es deuda, y la deuda se registra.
 
 - ¿El reporte muestra el rojo? Con números: "4 de 8 fallan contra el criterio viejo". Si solo
   muestra verde, el peldaño no está subido.
+- ¿El rojo es un recibo o un relato? Tiene que tener el comando exacto, la versión contra la que
+  corrió, los números y el código de salida. Una vez por bloque, elegí un pendiente al azar y
+  corré vos ese comando: el rojo tiene que volver a aparecer.
 - ¿La regresión corrió en la misma sesión? ¿Cuántos tests, cuántos en verde?
 - ¿Hay alguna parte "simulada" (mock) justo donde está el cambio? Preguntale al agente qué simuló
   y por qué.
@@ -172,5 +195,7 @@ principio de un pendiente. La no-testeabilidad es deuda, y la deuda se registra.
 - La batería tarda cada vez más y nadie sabe por qué. Suele ser que los tests de punta a punta se
   fueron reemplazando por simulaciones "para que corra rápido".
 - El agente reporta "los tests pasan" sin decir cuántos. Siempre con números.
+- El rojo viene contado en prosa ("el test falló como se esperaba") sin comando, sin versión y sin
+  números. Un rojo sin recibo vale lo mismo que ninguno.
 - Llegás a la salida a producción y la batería completa de punta a punta se corre por primera vez.
   Faltaron los cierres de bloque.

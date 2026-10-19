@@ -23,6 +23,21 @@ was zählt: wenn der alte Code ihn besteht, unterscheidet der Test das Vorher ni
 und dann taugt er nichts. Der Fall, der das am besten zeigt, ist der der Zähler, die nicht
 übereinstimmten [Ref. 26](../REFERENCIAS.md#ref-26).
 
+Es gibt einen ernsten Einwand gegen diesen Schritt, und ich will ihn aufgeschrieben lassen, denn
+man wird ihn gegen die Methode verwenden: derselbe Agent, der den Test und den Code schreibt, kann
+**das Rot vortäuschen**. Eine im August 2026 veröffentlichte Studie hat gemessen, dass ein Agent,
+wenn man ihm den Zyklus „erst der Test“ abverlangt, das Rot manchmal auslässt, es erzählt, ohne es
+laufen gelassen zu haben, oder vor dem Test implementiert, damit er von Anfang an besteht (das
+steht in Teil F des Hauptdokuments, dem über die verwandten Arbeiten). Meine Antwort hat drei
+Teile, und alle drei stehen in der Leiter. Der erste, hier: das Rot ist keine Erzählung, es ist
+ein **Beleg**: der exakte Befehl, die Kennung der Version, gegen die er lief, die Zahl der
+fehlschlagenden Tests und der Exit-Code, alles so eingefügt, wie es herauskam, sodass du es mit
+einem einzigen Befehl noch einmal laufen lassen kannst, ohne zu verstehen, was es tut. Der zweite,
+in Schritt 13: das Audit durch eine andere Sitzung lässt eine Stichprobe dieser Belege noch einmal
+laufen. Der dritte, in Schritt 9: die Mutationstests, die absichtlich Fehler einpflanzen und
+zählen, wie viele davon die Tests fangen; es ist das einzige Maß, das in derselben Studie die
+Tests, die wachen, von denen unterschieden hat, die dekorieren.
+
 Und die zweite Hälfte: die Ende-zu-Ende-Tests. Ein Test, der vom Bildschirm aus prüft (klickt,
 tippt, liest) und die Wirkung im Backend kontrolliert (die Zeile ist da, der Zustand hat sich
 geändert), ist der, der deine Lektüre des Codes ersetzt. Die Abnahmekriterien des offenen Postens
@@ -65,33 +80,39 @@ machst es, nicht der Agent:
 - Akzeptabler Mindestzustand: die Spezifikation hat Abnahmekriterien, und die Batterie läuft mit
   einem bekannten Befehl.
 
-> To close this pending item I need evidence, not your word. (1) Write the test that proves what
-> the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails
-> against the previous code: you may temporarily revert the change, or run the test against the
-> old version, but show me the red output. (3) Show me the green output with the change. (4) Run
+> To close this pending item I need evidence, not your word. (1) Write the test that proves what the
+> item asks for, following its acceptance criteria. (2) Demonstrate that this test fails against the
+> previous code: you may temporarily revert the change, or run the test against the old version, but
+> show me the red output as a receipt, not a summary: the exact command, the identifier of the
+> version it ran against, the count of failing tests and the exit code, pasted as they came out, so
+> that I can rerun it myself with one command. (3) Show me the green output with the change. (4) Run
 > the regression suite for the neighbouring items and show me it is still green. (5) Run the
 > end-to-end test of the flow this item touches, from the screen to the backend, and show me the
-> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing
-> end to end requires something you lack (data, access, an environment), ask me for it; do not
-> simulate what you do not have. Finally, the commit message says "proved red against [what]"
-> and the test counts.
+> backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end
+> to end requires something you lack (data, access, an environment), ask me for it; do not simulate
+> what you do not have. Finally, the commit message says "proved red against [what]" and the test
+> counts.
 
 > [de]
 > Um diesen offenen Posten zu schließen, brauche ich Belege, nicht dein Wort. (1) Schreib den
 > Test, der beweist, was der Posten verlangt, nach seinen Abnahmekriterien. (2) Zeige, dass
 > dieser Test gegen den vorherigen Code fehlschlägt: du kannst die Änderung vorübergehend
-> zurücknehmen oder den Test gegen die alte Version laufen lassen, aber zeig mir die rote Ausgabe.
-> (3) Zeig mir die grüne Ausgabe mit der Änderung. (4) Lass die Regression der benachbarten
-> Posten laufen und zeig mir, dass sie weiter grün ist. (5) Lass den Ende-zu-Ende-Test des
-> Flusses laufen, den dieser Posten berührt, vom Bildschirm bis zum Backend, und zeig mir die
-> Wirkung im Backend. (6) Ersetze nicht ausgerechnet den Teil durch Mocks, den du prüfen willst.
-> Wenn das Ende-zu-Ende-Testen etwas erfordert, das dir fehlt (Daten, Zugang, eine Umgebung),
-> bitte mich darum; simuliere nicht, was du nicht hast. Zum Schluss sagt die Commit-Nachricht
-> „rot bewiesen gegen [was]“ und die Testzahlen.
+> zurücknehmen oder den Test gegen die alte Version laufen lassen, aber zeig mir die rote Ausgabe
+> als Beleg, nicht als Zusammenfassung: den exakten Befehl, die Kennung der Version, gegen die er
+> lief, die Zahl der fehlschlagenden Tests und den Exit-Code, so eingefügt, wie sie herauskamen,
+> damit ich es selbst mit einem einzigen Befehl noch einmal laufen lassen kann. (3) Zeig mir die
+> grüne Ausgabe mit der Änderung. (4) Lass die Regression der benachbarten Posten laufen und zeig
+> mir, dass sie weiter grün ist. (5) Lass den Ende-zu-Ende-Test des Flusses laufen, den dieser
+> Posten berührt, vom Bildschirm bis zum Backend, und zeig mir die Wirkung im Backend. (6) Ersetze
+> nicht ausgerechnet den Teil durch Mocks, den du prüfen willst. Wenn das Ende-zu-Ende-Testen
+> etwas erfordert, das dir fehlt (Daten, Zugang, eine Umgebung), bitte mich darum; simuliere
+> nicht, was du nicht hast. Zum Schluss sagt die Commit-Nachricht „rot bewiesen gegen [was]“ und
+> die Testzahlen.
 
 Was ich hier verlange, Klausel für Klausel: (1) den Test, geführt von den Abnahmekriterien des
-offenen Postens; (2) **das bewiesene Rot**, mit der Ausgabe vor Augen, die Klausel, die diese
-Methode von „schreib Tests“ unterscheidet; (3) das Grün; (4) die Regression der Nachbarn in
+offenen Postens; (2) **das bewiesene Rot als Beleg** (Befehl, Version, Zahlen, Exit-Code), die
+Klausel, die diese Methode von „schreib Tests“ unterscheidet und die verhindert, dass das Rot
+eine Erzählung bleibt; (3) das Grün; (4) die Regression der Nachbarn in
 derselben Sitzung, denn eine Änderung bricht Dinge nebenan; (5) den Ende-zu-Ende-Test des
 berührten Flusses, mit der Wirkung im Backend vor Augen; (6) nicht ausgerechnet das simulieren, was
 geprüft wird; und die Vollständigkeitsklausel, angepasst an diesen Schritt: wenn etwas fehlt, um
@@ -153,8 +174,9 @@ der Anfang eines offenen Postens. Nicht-Testbarkeit ist Schuld, und Schulden wer
 ## 3. Erwartetes Ergebnis
 
 - Der neue Test im Repository, benannt nach dem offenen Posten, den er schließt.
-- Im Bericht des Agenten und in der Commit-Nachricht: die rote Ausgabe (wie viele fehlschlagen,
-  gegen welche Version), die grüne Ausgabe und die grüne Regression mit ihren Zahlen.
+- Im Bericht des Agenten und in der Commit-Nachricht: die rote Ausgabe als Beleg (der Befehl, die
+  Version, gegen die er lief, wie viele fehlschlagen, der Exit-Code), die grüne Ausgabe und die
+  grüne Regression mit ihren Zahlen.
 - Der Ende-zu-Ende-Test des berührten Flusses, mit dem Beleg, dass sich das Backend geändert hat
   (die Zeile, der Eintrag, der Zustand).
 - Beim Abschluss jedes Blocks und vor der Produktion: die vollständige Ende-zu-Ende-Batterie in
@@ -164,6 +186,9 @@ der Anfang eines offenen Postens. Nicht-Testbarkeit ist Schuld, und Schulden wer
 
 - Zeigt der Bericht das Rot? Mit Zahlen: „4 von 8 schlagen gegen das alte Kriterium fehl“. Wenn
   er nur Grün zeigt, ist der Schritt nicht erklommen.
+- Ist das Rot ein Beleg oder eine Erzählung? Es muss den exakten Befehl, die Version, gegen die er
+  lief, die Zahlen und den Exit-Code enthalten. Einmal pro Block wähl einen offenen Posten
+  zufällig aus und lass diesen Befehl selbst laufen: das Rot muss wieder erscheinen.
 - Lief die Regression in derselben Sitzung? Wie viele Tests, wie viele grün?
 - Gibt es einen „simulierten“ Teil (Mock) genau dort, wo die Änderung ist? Frag den Agenten, was
   er simuliert hat und warum.
@@ -179,5 +204,7 @@ der Anfang eines offenen Postens. Nicht-Testbarkeit ist Schuld, und Schulden wer
 - Die Batterie dauert immer länger und niemand weiß, warum. Meist wurden die Ende-zu-Ende-Tests
   nach und nach durch Simulationen ersetzt, „damit es schnell läuft“.
 - Der Agent berichtet „die Tests bestehen“, ohne zu sagen, wie viele. Immer mit Zahlen.
+- Das Rot kommt in Prosa erzählt („der Test ist wie erwartet fehlgeschlagen“), ohne Befehl, ohne
+  Version und ohne Zahlen. Ein Rot ohne Beleg ist so viel wert wie keines.
 - Du kommst zur Produktionsfreigabe und die vollständige Ende-zu-Ende-Batterie läuft zum ersten
   Mal. Die Blockabschlüsse haben gefehlt.

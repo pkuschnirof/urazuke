@@ -1133,33 +1133,38 @@ système que personne n'a testé de bout en bout pendant des semaines.
 
 1. Ajoutez au contrat la routine de preuve. Collez-lui :
 
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
-> not your word. (1) Write the test that proves what the item asks for, following its acceptance
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence, not
+> your word. (1) Write the test that proves what the item asks for, following its acceptance
 > criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
-> revert the change, or run the test against the old version, but show me the red output. (3)
-> Show me the green output with the change. (4) Run the regression suite for the neighbouring
-> items and show me it is still green. (5) Run the end-to-end test of the flow this item
-> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
-> with mocks the very part you are trying to test. If testing end to end requires something you
-> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
-> Finally, the commit message says 'proved red against [what]' and the test counts."
+> revert the change, or run the test against the old version, but show me the red output as a
+> receipt, not a summary: the exact command, the identifier of the version it ran against, the count
+> of failing tests and the exit code, pasted as they came out, so that I can rerun it myself with
+> one command. (3) Show me the green output with the change. (4) Run the regression suite for the
+> neighbouring items and show me it is still green. (5) Run the end-to-end test of the flow this
+> item touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
+> with mocks the very part you are trying to test. If testing end to end requires something you lack
+> (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the
+> commit message says 'proved red against [what]' and the test counts."
 
 > [fr]
 > Ajoute cette routine à `docs/WORKING_AGREEMENT.md` : « Pour clôturer un élément en attente, j'ai
 > besoin d'une preuve, pas de ta parole. (1) Écris le test qui prouve ce que l'élément demande, en
 > suivant ses critères d'acceptation. (2) Démontre que ce test échoue contre le code antérieur : tu
 > peux annuler temporairement le changement, ou lancer le test contre l'ancienne version, mais
-> montre-moi la sortie en rouge. (3) Montre-moi la sortie en vert avec le changement. (4) Lance
-> la régression des éléments en attente voisins et montre-moi qu'elle est toujours au vert.
-> (5) Lance le test de bout en bout du flux que cet élément touche, de l'écran jusqu'au backend,
-> et montre-moi l'effet dans le backend. (6) Ne remplace pas par des simulations justement la
-> partie que tu es en train de tester. Si tester de bout en bout exige quelque chose que tu n'as
-> pas (des données, un accès, un environnement), demande-le-moi ; ne simule pas ce que tu n'as
-> pas. Enfin, le message du commit dit « prouvé en rouge contre [quoi] » et les nombres des
-> tests. »
+> montre-moi la sortie en rouge comme un reçu, pas comme un résumé : la commande exacte,
+> l'identifiant de la version contre laquelle il a tourné, le nombre de tests qui échouent et le
+> code de sortie, collés tels qu'ils sont sortis, pour que je puisse le relancer moi-même avec une
+> seule commande. (3) Montre-moi la sortie en vert avec le changement. (4) Lance la régression des
+> éléments en attente voisins et montre-moi qu'elle est toujours au vert. (5) Lance le test de
+> bout en bout du flux que cet élément touche, de l'écran jusqu'au backend, et montre-moi l'effet
+> dans le backend. (6) Ne remplace pas par des simulations justement la partie que tu es en train
+> de tester. Si tester de bout en bout exige quelque chose que tu n'as pas (des données, un accès,
+> un environnement), demande-le-moi ; ne simule pas ce que tu n'as pas. Enfin, le message du
+> commit dit « prouvé en rouge contre [quoi] » et les nombres des tests. »
 
-   Vous lui demandez le test guidé par les critères d'acceptation, **le rouge démontré avec la
-   sortie en vue**, le vert, la régression des voisins, le test de bout en bout du flux avec
+   Vous lui demandez le test guidé par les critères d'acceptation, **le rouge démontré comme
+   reçu** (la commande, la version, les chiffres et le code de sortie, pour que vous puissiez le
+   relancer vous-même), le vert, la régression des voisins, le test de bout en bout du flux avec
    l'effet dans le backend, pas de simulation de justement ce qu'on teste, et de demander ce qui
    manque au lieu de le simuler.
 
@@ -1282,6 +1287,12 @@ valeurs, et la routine dans le contrat.
 **Erreurs typiques.** Laisser l'agent « désactiver cette règle parce qu'elle est trop stricte »
 sans que cela passe par vous. Relever une limite pour qu'elle passe. Et confondre couverture et
 qualité : la couverture compte les tests, le rouge de la leçon 8 dit s'ils prouvent quelque chose.
+
+**Renfort optionnel.** Quand le bloc est clos, le contrat de l'échelon 9 a un troisième prompt,
+celui des *tests de mutation* : un outil casse le code exprès, un petit changement à la fois, et
+compte combien de ces erreurs les tests attrapent. C'est la mesure que la couverture ne donne pas,
+et celle qui répond à l'objection selon laquelle l'agent peut feindre le rouge. Dans Turnera, nous
+le faisons à la clôture du deuxième bloc, seulement sur les lignes changées.
 
 **Dans le projet-guide.** La première exécution de Turnera donne du rouge sur trois choses : le
 formulaire de rendez-vous a une fonction de 70 lignes (on la coupe en deux : élément en attente),
