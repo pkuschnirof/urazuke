@@ -46,7 +46,8 @@ function inline(s) {
   s = s.replace(/&lt;-&gt;/g, '&harr;').replace(/-&gt;/g, '&rarr;');
   return s;
 }
-const slug = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+// Los ids conservan kana y han, para que los enlaces internos funcionen en japones y chino.
+const slug = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9぀-ヿ㐀-鿿ｦ-ﾟ]+/g, '-').replace(/^-|-$/g, '');
 const RE_PELDANO = /^(Pelda[nñ]o|Step|Passo|Degrau|[ÉE]tape|Schritt|ステップ|步骤|第)\s*\d+|^N\d\b/;
 const RE_REF = /^Ref\.\s*(\d+)/;
 // Bloque "Antes de enviar el prompt": un párrafo que empieza con esa etiqueta (en el idioma del
