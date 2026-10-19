@@ -1,0 +1,8 @@
+10e1473 2026-10-19 Cierre de la escalera: retrospectiva, estado y calidad en verde
+2cc4435 2026-10-19 Bloque 2: maquina de estados y dos candados de la auditoria
+ab412fc 2026-10-19 Peldanos 17 a 20: persistencia medida, seguridad, carga y manuales
+94e7546 2026-10-19 Calidad: segunda corrida en verde (0 violaciones)
+aa4ec76 2026-10-19 Calidad por maquina: lint en CI y dos funciones bajo el limite
+27a75a1 2026-10-19 Bloque 1: agenda, alta, sobreturno, confirmar, cancelar, ausente
+b429ad6 2026-10-19 Esqueleto con compuertas (Urazuke, peldano 4)
+51748c4 2026-10-19 Arranque del proyecto con Yujin Forge (Urazuke, peldano 0)

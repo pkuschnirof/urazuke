@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Manual de ejecución: un proyecto nuevo con Urazuke en Yujin Forge</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+h3.refh{font-size:1.02rem;margin-top:1.6em;color:#3a2f00;border-bottom:1px dashed var(--line);padding-bottom:.2em}
+h3.refh:target{background:var(--gold-soft);border-radius:6px;padding:.4em .6em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+a{color:#7a5600}
+a.ref{font:700 .78em/1.4 Segoe UI,Arial,sans-serif;background:#f1ece0;border:1px solid var(--line);border-radius:999px;padding:0 .5em;text-decoration:none;color:#5a3f00;white-space:nowrap;vertical-align:middle}
+a.ref:hover{background:var(--gold-soft)}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+.pbox{margin:.8em 0 1.2em}
+.prompt{margin:0;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.prompt.tr{background:#f3f7f0;border-color:#cfdcc6;border-left-color:#5c8a4a}
+.prompt.tr::before{content:'Prompt (traducción)';color:#3f6b2e}
+.trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
+.trbtn:hover{background:#efe0b8}
+.antes{margin:1em 0 .8em;padding:.7em 1.1em .45em;background:#eef2f7;border:1px solid #c9d3e3;border-left:5px solid #3f5a8a;border-radius:6px;font-size:.95em}
+.antes>p:first-child{margin:.15em 0 .45em}
+.antes>p:first-child strong{display:inline-block;color:#2c4470;text-transform:uppercase;letter-spacing:.5px;font:700 .82em/1.5 Segoe UI,Arial,sans-serif;margin-right:.2em}
+.antes ul{margin:.3em 0 .45em;padding-left:1.4em}
+.antes li{margin:.4em 0}
+.antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;margin:.6em 0;display:block}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+.pie{margin-top:3em;padding-top:1em;border-top:1px dashed var(--line);font:.85em/1.5 Segoe UI,Arial,sans-serif;color:var(--mute)}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="manual-de-ejecucion-un-proyecto-nuevo-con-urazuke-en-yujin-forge">Manual de ejecución: un proyecto nuevo con Urazuke en Yujin Forge</h1><nav class="toc"><div class="toc-t">Contenido</div><ul><li class="l2"><a href="#que-necesitas">Qué necesitás</a></li><li class="l2"><a href="#0-arrancar-en-un-clic">0. Arrancar en un clic</a></li><li class="l2"><a href="#1-el-panel-donde-esta-cada-cosa">1. El panel: dónde está cada cosa</a></li><li class="l3"><a href="#los-prompts-son-tuyos">Los prompts son tuyos</a></li><li class="l3"><a href="#la-linea-de-comandos-para-quien-la-prefiera">La línea de comandos, para quien la prefiera</a></li><li class="l2"><a href="#2-el-tramo-de-arranque-peldanos-0-a-4">2. El tramo de arranque: peldaños 0 a 4</a></li><li class="l3"><a href="#peldano-0-este-proyecto-se-puede-encarar-asi">Peldaño 0: ¿este proyecto se puede encarar así?</a></li><li class="l3"><a href="#peldano-1-el-contrato-de-convivencia">Peldaño 1: el contrato de convivencia</a></li><li class="l3"><a href="#peldano-2-el-proyecto-el-arbol-semantico-y-la-lectura-obligatoria">Peldaño 2: el proyecto, el árbol semántico y la lectura obligatoria</a></li><li class="l3"><a href="#peldano-3-dimensionar-antes-de-disenar-la-arquitectura">Peldaño 3: dimensionar antes de diseñar la arquitectura</a></li><li class="l3"><a href="#peldano-4-el-esqueleto-con-sus-compuertas">Peldaño 4: el esqueleto con sus compuertas</a></li><li class="l2"><a href="#3-el-bucle-de-construccion-peldanos-5-a-12">3. El bucle de construcción: peldaños 5 a 12</a></li><li class="l3"><a href="#peldano-5-el-plan-son-los-pendientes">Peldaño 5: el plan son los pendientes</a></li><li class="l3"><a href="#peldano-6-las-decisiones-se-escriben-junto-al-codigo">Peldaño 6: las decisiones se escriben junto al código</a></li><li class="l3"><a href="#peldano-7-medir-antes-de-construir-con-un-instrumento-que-tambien-se-verifica">Peldaño 7: medir antes de construir, con un instrumento que también se verifica</a></li><li class="l3"><a href="#peldano-8-tests-como-candados-probados-en-rojo">Peldaño 8: tests como candados, probados en rojo</a></li><li class="l3"><a href="#peldano-9-calidad-del-codigo-verificada-por-maquina-con-compuerta">Peldaño 9: calidad del código verificada por máquina, con compuerta</a></li><li class="l3"><a href="#peldanos-10-y-11-casos-manuales-simetria-y-golpes">Peldaños 10 y 11: casos manuales, simetría y golpes</a></li><li class="l3"><a href="#peldano-12-verificacion-honesta-y-reporte-proporcional">Peldaño 12: verificación honesta y reporte proporcional</a></li><li class="l2"><a href="#4-la-salida-a-produccion-peldanos-13-a-20">4. La salida a producción: peldaños 13 a 20</a></li><li class="l3"><a href="#peldano-13-la-auditoria-periodica-como-insumo-del-plan">Peldaño 13: la auditoría periódica como insumo del plan</a></li><li class="l3"><a href="#peldanos-14-15-y-16-candados-cadena-y-observabilidad">Peldaños 14, 15 y 16: candados, cadena y observabilidad</a></li><li class="l3"><a href="#peldano-17-la-persistencia-medida-antes-y-despues">Peldaño 17: la persistencia, medida antes y después</a></li><li class="l3"><a href="#peldano-18-vulnerabilidades-en-la-cadena-y-con-calendario">Peldaño 18: vulnerabilidades, en la cadena y con calendario</a></li><li class="l3"><a href="#peldano-19-rendimiento-en-volumen-y-punto-de-ruptura">Peldaño 19: rendimiento en volumen y punto de ruptura</a></li><li class="l3"><a href="#peldano-20-manuales-que-una-persona-puede-seguir-sin-ia">Peldaño 20: manuales que una persona puede seguir sin IA</a></li><li class="l2"><a href="#5-operacion-peldanos-21-a-23">5. Operación: peldaños 21 a 23</a></li><li class="l3"><a href="#peldanos-21-y-22-el-reporte-ciclico">Peldaños 21 y 22: el reporte cíclico</a></li><li class="l3"><a href="#peldano-23-el-agente-adentro-y-la-retrospectiva-con-numero">Peldaño 23: el agente adentro y la retrospectiva con número</a></li><li class="l2"><a href="#6-lo-que-forge-verifico-lo-que-creimos-y-lo-que-no-vimos">6. Lo que Forge verificó, lo que creímos y lo que no vimos</a></li><li class="l2"><a href="#7-lo-que-esta-practica-le-encontro-a-forge">7. Lo que esta práctica le encontró a Forge</a></li><li class="l2"><a href="#apendice-todos-los-comandos-en-orden">Apéndice: todos los comandos, en orden</a></li></ul></nav>
+<p>Paso a paso para principiantes, con capturas. Lo que acá se cuenta no es un ejemplo inventado: es lo que pasó el 19 de octubre de 2026 al construir <strong>Turnera</strong>, una agenda de turnos para un consultorio, desde el peldaño 0 hasta el 23, con Forge haciendo cumplir cada compuerta. Los números, los recibos y los tropiezos son los reales; la evidencia está publicada en <code>docs/practica/evidencia/turnera/</code> en el repositorio del método.</p>
+<p>Si nunca leíste el método, empezá por la <a href="../ESCALERA_METODOLOGICA.html">escalera</a> o al menos por su <a href="../ESCALERA_METODOLOGICA.html#glosario">glosario</a>. Acá se dan por sabidas tres palabras: <strong>peldaño</strong> (cada uno de los 24 pasos), <strong>compuerta</strong> (lo que Forge verifica antes de dejar cerrar un peldaño) y <strong>recibo</strong> (la salida textual de un comando, con su versión y su código de salida, que Forge guarda como prueba).</p>
+</section><section>
+<h2 id="que-necesitas">Qué necesitás</h2>
+<ul><li>Windows, macOS o Linux con <strong>Node 22 o superior</strong> y <strong>git</strong>.</li><li><strong>Yujin Forge</strong> con el motor Urazuke. Al momento de escribir esto el motor está en la rama <code>feat/urazuke-engine</code> del repositorio <code>yujinapp/yujin-forge</code>; cuando se publique en npm el comando de instalación será <code>npm install -g @nac3/forge-cli</code>. Verificá con <code>yf --version</code>.</li><li>Un cerebro configurado en Forge (plan de Claude, tu propia clave o cualquier proveedor): Forge te lo pide la primera vez que abrís el panel.</li><li>Una tarde. Turnera entera, 24 peldaños y dos bloques de construcción, llevó una sesión de trabajo.</li></ul>
+<p>Una aclaración honesta antes de empezar: en esta práctica el rol de "dueña del consultorio" lo hizo la misma persona que opera Forge. En un proyecto real la dueña no lee código y decide; el agente propone y construye. Vas a ver las dos voces.</p>
+</section><section>
+<h2 id="0-arrancar-en-un-clic">0. Arrancar en un clic</h2>
+<p>Forge no te pide abrir una terminal ni hacer <code>cd</code>. El comando <code>yf start</code> (o el ícono del escritorio que crea <code>yf start --shortcut</code>) abre una ventana nativa con dos botones: <strong>proyecto existente</strong> o <strong>proyecto nuevo</strong>. Si elegís nuevo, te pide el nombre y la carpeta donde crearlo con el explorador de archivos de tu sistema; si elegís existente, te deja elegir la carpeta. Después registra el proyecto, decide qué camino del método le toca y abre el panel en el navegador.</p>
+<p>Para Turnera, el arranque fue:</p>
+<pre class="code"><code>yf start --new turnera --parent C:\urazuke-practica</code></pre>
+<p>Eso creó <code>C:\urazuke-practica\turnera</code> con un <code>git init</code>, un primer commit ("Arranque del proyecto con Yujin Forge (Urazuke, peldaño 0)") y el flujo <strong>WFL-001 (urazuke):</strong> los 24 peldaños como tareas del proyecto, en orden, una por peldaño.</p>
+<p>Qué camino elige Forge, y por qué importa:</p>
+<div class="tw"><table><thead><tr><th>La carpeta</th><th>Camino</th></tr></thead><tbody><tr><td>no tiene código</td><td><strong>urazuke</strong> (proyecto nuevo, 24 peldaños)</td></tr><tr><td>tiene código pero no tiene <code>docs/WORKING_AGREEMENT.md</code>, <code>docs/SEMANTIC_TREE.md</code> y <code>docs/GATES.md</code></td><td><strong>urazuke-legacy</strong> (N0 a N7 y después entra en el peldaño 5)</td></tr><tr><td>tiene código y los tres documentos</td><td>evolutivo (ya se construyó con el método)</td></tr></tbody></table></div>
+<p>El manual del segundo caso es <a href="MANUAL_FORGE_PROYECTO_EXISTENTE.html">este otro</a>.</p>
+</section><section>
+<h2 id="1-el-panel-donde-esta-cada-cosa">1. El panel: dónde está cada cosa</h2>
+<p><img src="img/nuevo-01-panel.png" alt="El panel de Forge con Turnera abierto" loading="lazy"></p>
+<p>A la izquierda, el chat con el cerebro ("Preguntale a Yujin"). A la derecha, el <strong>Pizarrón</strong>, con pestañas. Las que vas a usar todo el tiempo:</p>
+<ul><li><strong>Urazuke:</strong> la escalera dibujada, el peldaño en curso y su prompt. Es la ventana canónica del método.</li><li><strong>Pendientes</strong> y <strong>Hecho:</strong> el plan y lo cerrado, con el expediente de cada pendiente.</li><li><strong>Workflow:</strong> las 24 tareas como tarjetas, en columnas por tramo (es la misma información que la escalera, vista como tablero).</li></ul>
+<p><img src="img/nuevo-07-workflow.png" alt="La pestaña Workflow: las tareas de la escalera como tarjetas" loading="lazy"></p>
+<ul><li>La ruedita (⚙) arriba a la derecha abre los ajustes, donde están los prompts del método para que los modifiques si querés.</li></ul>
+<p>Si no ves las pestañas, abrí los ajustes y activá "pestañas de arranque"; en esta práctica estaban apagadas y el Pizarrón decía "0 pestañas" hasta que las activamos.</p>
+<p><img src="img/nuevo-02-escalera.png" alt="La pestaña Urazuke: la escalera con sus cuatro tramos" loading="lazy"></p>
+<p>La escalera muestra los cuatro tramos (arranque, bucle de construcción, salida a producción, operación), cuántos peldaños están cerrados y cuántos en rojo. Abajo, el <strong>peldaño en curso:</strong></p>
+<p><img src="img/nuevo-03-peldano-en-curso.png" alt="El peldaño en curso, con lo que verifica Forge y el prompt para pegar" loading="lazy"></p>
+<p>Cada peldaño en curso tiene cuatro partes, y son las mismas en los 24:</p>
+<ol><li><strong>Antes de enviar el prompt (lo hacés vos):</strong> los documentos que tenés que haber escrito o leído. Forge marca con ✓ los que existen.</li><li><strong>Lo que deja el agente (lo verifica Forge):</strong> los artefactos que el peldaño produce. Forge los busca en el disco y, cuando hace falta, corre una sonda (¿hay recibos? ¿hay registro de dimensionamiento?). Esta es la compuerta: no se cierra el peldaño con algo en rojo.</li><li><strong>El prompt del peldaño</strong>, en inglés, para pegar tal cual en el chat. Viene del repositorio del método (<code>yujin.app/urazuke/api/prompts.json</code>), se guarda en caché un día y, si lo editaste en los ajustes, se usa tu versión. Además, <strong>Forge lo inyecta solo</strong> en el contexto del cerebro: cuando le escribís al chat, el cerebro ya sabe en qué peldaño está y qué le pide el método. Pegarlo a mano es opcional; sirve para dirigir la conversación.</li><li><strong>Verificación del dueño, sin leer código:</strong> dos o tres preguntas para que vos compruebes el resultado sin abrir un archivo de código.</li></ol>
+<h3 id="los-prompts-son-tuyos">Los prompts son tuyos</h3>
+<p>Los prompts de cada peldaño llegan a Forge desde el repositorio del método, por la API pública <code>yujin.app/urazuke/api/prompts.json</code> (se guardan en caché un día; si no hay red, se usa la copia que viene con Forge). Pero vos tenés el control: en los ajustes (⚙) hay una sección <strong>Prompts de Urazuke</strong> donde cada peldaño muestra sus prompts y un botón <strong>Guardar</strong> por cada uno.</p>
+<p><img src="img/nuevo-08-ajustes-prompts.png" alt="Los prompts del método en los ajustes del panel" loading="lazy"></p>
+<p><img src="img/nuevo-09-ajustes-prompt-abierto.png" alt="Un peldaño abierto, con sus prompts editables" loading="lazy"></p>
+<p>Un prompt editado se guarda en <code>.forge/urazuke-prompts.json</code> dentro del proyecto y gana sobre el publicado; <strong>Restablecer</strong> vuelve al original. Desde la línea de comandos: <code>yf urazuke prompts list | show 8 | set 8 1 --file mi_prompt.txt | reset 8</code>.</p>
+<h3 id="la-linea-de-comandos-para-quien-la-prefiera">La línea de comandos, para quien la prefiera</h3>
+<p>Todo lo del panel existe también como comando. Los que se usan en este manual:</p>
+<pre class="code"><code>yf urazuke status                 # la escalera en texto
+yf urazuke step 8                 # el detalle de un peldaño
+yf pending add "título" ...       # un pendiente del plan, con su especificación
+yf pending close PND-025 ...      # cerrar un pendiente (pasa por la compuerta)
+yf urazuke evidence run &lt;tipo&gt;    # correr un comando y guardar el recibo
+yf urazuke quality init | check   # la calidad por máquina
+yf urazuke cycle                  # el reporte cíclico
+yf urazuke retro                  # la retrospectiva con números</code></pre>
+<p>Agregá <code>--project turnera</code> si no estás parado en la carpeta del proyecto.</p>
+</section><section>
+<h2 id="2-el-tramo-de-arranque-peldanos-0-a-4">2. El tramo de arranque: peldaños 0 a 4</h2>
+<h3 id="peldano-0-este-proyecto-se-puede-encarar-asi" class="peldano">Peldaño 0: ¿este proyecto se puede encarar así?</h3>
+<p>La dueña escribe lo que quiere, con sus palabras, en <code>docs/INITIAL_SURVEY.md</code> y <code>docs/MY_PREFERENCES.md</code>. En Turnera: un consultorio con tres profesionales, cuarenta turnos por día, cinco personas usando el sistema, sin internet pública, sin WhatsApp todavía. Después pega el prompt del peldaño 0 (o le dice al chat "evaluá la elegibilidad") y el agente escribe <code>docs/ELIGIBILITY.md</code> con un veredicto: <strong>go</strong>, con las razones.</p>
+<p>Forge verifica: que exista <code>docs/ELIGIBILITY.md</code> con contenido. Cierre:</p>
+<pre class="code"><code>yf pending close PND-001 --reason shipped --resolution "Elegible: ..."</code></pre>
+<p>En el panel, el cierre lo hace el cerebro cuando le decís "cerrá el peldaño 0"; la compuerta es la misma.</p>
+<h3 id="peldano-1-el-contrato-de-convivencia" class="peldano">Peldaño 1: el contrato de convivencia</h3>
+<p>El agente escribe <code>docs/WORKING_AGREEMENT.md</code> con las seis reglas del método, la rutina del rojo y la rutina del reporte honesto. Forge, además de la existencia del archivo, busca que esas dos rutinas estén escritas: son las que le va a exigir en los peldaños 8 y 12.</p>
+<h3 id="peldano-2-el-proyecto-el-arbol-semantico-y-la-lectura-obligatoria" class="peldano">Peldaño 2: el proyecto, el árbol semántico y la lectura obligatoria</h3>
+<p><code>PROJECT.md</code>, <code>docs/SEMANTIC_TREE.md</code> (los nodos de funcionalidad con sus identificadores: <code>turnera.agenda</code>, <code>turnera.turno.alta</code>, <code>turnera.turno.sobreturno</code>...) y <code>docs/STATUS.md</code>. El <code>CLAUDE.md</code> del proyecto le dice a cualquier sesión qué leer primero.</p>
+<h3 id="peldano-3-dimensionar-antes-de-disenar-la-arquitectura" class="peldano">Peldaño 3: dimensionar antes de diseñar la arquitectura</h3>
+<p>Acá pasó lo más instructivo de la práctica. La dueña contó los números (<code>docs/VOLUME_SURVEY.md</code>: 40 turnos por día, 250 días, 6 filas por turno contando cambios de estado y mensajes, 5 años de retención, una PC con 8 GB) y el agente propuso una persistencia: <strong>todo en memoria con escritura a un archivo JSON, un solo hilo</strong>. Es la elección más rápida de escribir y la que el método cuenta, en su referencia del post mortem, como el origen de un sistema real que se rompió.</p>
+<p>Forge no la dejó pasar. El registro de dimensionamiento (la compuerta <strong>G9</strong>) respondió, textual:</p>
+<div class="pbox"><blockquote class="prompt"><p>pagination: 180000 rows at the horizon exceeds the 100000-row limit for materialising before slicing | write_concurrency: inadmissible with 5 concurrent users: the guarantee is implicit, undocumented, and nobody can see it in the code</p></blockquote></div>
+<p>El agente volvió con las cuatro opciones admisibles (base SQL con acceso asíncrono, paginación por clave, retención por antigüedad, transacciones explícitas), eligió SQLite embebido en Node (<code>node:sqlite</code>, sin dependencias) y lo dejó escrito en <code>docs/SIZING.md</code> y en la decisión D-003 de <code>docs/DECISIONS.md</code>. Todo esto <strong>antes de escribir la primera línea de código</strong>.</p>
+<p>Para la dueña: no hace falta entender qué es "materializar antes de cortar". Alcanza con ver que la compuerta dijo que no, y que el agente explicó con palabras simples por qué la segunda opción aguanta diez veces el volumen.</p>
+<h3 id="peldano-4-el-esqueleto-con-sus-compuertas" class="peldano">Peldaño 4: el esqueleto con sus compuertas</h3>
+<p>El agente arma el proyecto vacío pero completo: configuración, la cadena de integración continua (<code>.github/workflows/ci.yml</code>), las compuertas escritas en <code>docs/GATES.md</code>, el registro estructurado, la pantalla vacía. Forge verifica que exista la cadena, las compuertas, el dimensionamiento, y que <code>docs/STATUS.md</code> diga cuál es el comando de la batería de tests.</p>
+<p>El esqueleto se commitea solo, sin funcionalidad: es el "antes" contra el que se van a probar en rojo los tests del primer bloque.</p>
+</section><section>
+<h2 id="3-el-bucle-de-construccion-peldanos-5-a-12">3. El bucle de construcción: peldaños 5 a 12</h2>
+<h3 id="peldano-5-el-plan-son-los-pendientes" class="peldano">Peldaño 5: el plan son los pendientes</h3>
+<p>La dueña escribe el pedido del bloque en <code>docs/blocks/BLOCK_01_REQUEST.md</code> con sus palabras. El agente lo convierte en pendientes <strong>con especificación:</strong> criterios de aceptación, cómo se va a verificar, qué flujo de pantalla toca. Desde la línea de comandos:</p>
+<pre class="code"><code>yf pending add "Rechazo del sobreturno" --category autopilot --priority 12 \
+  --acceptance "un segundo turno en el mismo lugar responde 409 con el nombre de quien lo tiene" \
+  --acceptance "la agenda sigue mostrando un solo turno en ese lugar" \
+  --how-verified "test de store en rojo contra el esqueleto, verde, regresion y e2e" \
+  --flow "alta de turno"</code></pre>
+<p>Forge verifica: que el pedido exista y que <strong>todos</strong> los pendientes abiertos del plan tengan criterios de aceptación y modo de verificación (más de diez caracteres cada uno; un "e2e" a secas no cuenta, y en Turnera uno quedó así y el peldaño se puso en rojo hasta corregirlo).</p>
+<p><img src="img/nuevo-06-pendientes.png" alt="La pestaña Pendientes" loading="lazy"></p>
+<p>Turnera, bloque 1: seis pendientes, PND-025 a PND-030 (agenda del día, alta en bloques de 20 minutos, rechazo del sobreturno, confirmar, cancelar sin borrar, marcar ausente).</p>
+<h3 id="peldano-6-las-decisiones-se-escriben-junto-al-codigo" class="peldano">Peldaño 6: las decisiones se escriben junto al código</h3>
+<p><code>docs/DECISIONS.md</code>, una decisión por renglón con fecha. D-003 es la de SQLite; D-005, que los recordatorios se simulan en un archivo hasta que haya proveedor.</p>
+<h3 id="peldano-7-medir-antes-de-construir-con-un-instrumento-que-tambien-se-verifica" class="peldano">Peldaño 7: medir antes de construir, con un instrumento que también se verifica</h3>
+<p>La hipótesis era: "la agenda del día usa el índice y su tiempo no depende del total de filas". El agente escribió un <strong>medidor</strong> que vive en el repositorio (<code>scripts/meter-agenda.mjs</code>), con su <strong>test</strong> (<code>tests/meter.test.js</code>: contra un caso conocido, contra su determinismo y contra el caso negativo sin índice), y lo corrió:</p>
+<pre class="code"><code>node scripts/meter-agenda.mjs --rows 180000 --fecha 2027-03-10
+  filas totales:  180000
+  filas del dia:  53 (2027-03-10)
+  indice usado:   si  [SEARCH turnos USING INDEX idx_turnos_fecha (fecha=?) ...]
+  tiempo p50:     0.653 ms   max: 1.27 ms  (20 muestras)</code></pre>
+<p>Y dejó un presupuesto protegido por test: 20 ms para la agenda a 20.000 filas (medido 0,137; margen por cien, porque la máquina de CI es más lenta). Todo en <code>docs/MEASUREMENTS.md</code>, con el comando y la fecha. Forge verifica que exista un medidor (<code>scripts/meter-*</code> o <code>tools/measure_*</code>).</p>
+<p>Un detalle que vale la pena contar: la primera versión del medidor <strong>se colgaba</strong> a 180.000 filas porque su generador de números al azar tenía un ciclo corto y nunca llenaba los lugares. El test del medidor contra un caso conocido fue el que obligó a mirarlo. Un medidor sin test habría dado un número cualquiera.</p>
+<h3 id="peldano-8-tests-como-candados-probados-en-rojo" class="peldano">Peldaño 8: tests como candados, probados en rojo</h3>
+<p>Este es el corazón del método y donde Forge más trabaja. Para cerrar un pendiente del plan con <code>shipped</code>, Forge exige <strong>tres recibos:</strong> el rojo probado, el verde y la regresión (el e2e se registra también y entra en el reporte). Los recibos los produce Forge, no el agente:</p>
+<pre class="code"><code>yf urazuke evidence run red_proof --pending PND-027 --step 8 \
+  --base-ref b429ad6 --test-file tests/store.test.js \
+  --command "npx vitest run tests/store.test.js -t sobreturno"</code></pre>
+<p>Qué hace ese comando: crea un <strong>worktree temporal</strong> de git en la versión <code>b429ad6</code> (el esqueleto, el código de antes), copia ahí el archivo de test nuevo, corre el comando y espera que falle. Guarda la salida (cola), el código de salida, la cuenta de tests fallados y la versión. Después:</p>
+<pre class="code"><code>yf urazuke evidence run green      --pending PND-027 --step 8 --command "npx vitest run tests/store.test.js -t sobreturno"
+yf urazuke evidence run regression --pending PND-027 --step 8 --command "npm test"
+yf urazuke evidence run e2e        --pending PND-027 --step 8 --command "npm run test:e2e"</code></pre>
+<p>Cada uno devuelve <strong>recibo OK</strong> o <strong>recibo NOT OK</strong>, con su número (RCP-003, RCP-009...). Un "verde" que falla es NOT OK y no cuenta. Un "rojo" que no falla (porque el test ya pasaba en la versión anterior) es NOT OK y no cuenta: así se cierra la puerta al rojo inventado.</p>
+<p>Lo que pasó en Turnera, con honestidad:</p>
+<ul class="ficha"><li>Los seis rojos del bloque 1 fueron <strong>rojos triviales:</strong> contra el esqueleto, el módulo no existía y el archivo de test no cargaba ("1 files failed"). Forge primero los rechazó (su regla era "al menos un test fallado") y después se decidió aceptar el fallo a nivel archivo como rojo, porque el runner lo reporta como fallo. Es un recibo válido pero flojo. La retrospectiva propone que el primer bloque de un proyecto nuevo pruebe el rojo por mutación.</li><li>El bloque 2 (los hallazgos de la auditoría) tuvo <strong>rojos de verdad:</strong> los tests fallaban contra el código vigente con 3, 1 y 2 tests en rojo, y pasaron con el cambio.</li><li>La primera corrida de un rojo <strong>borró <code>node_modules</code> del proyecto:</strong> el runner enlazaba la carpeta con una junction y al limpiar el worktree la atravesó. Se corrigió en Forge el mismo día, con un test que lo impide. Si alguna vez te pasa con una versión vieja: <code>npm ci</code>.</li></ul>
+<p>Forge verifica, para cerrar el peldaño: que la rutina del rojo esté en el contrato y que haya recibos de rojo y de verde registrados.</p>
+<h3 id="peldano-9-calidad-del-codigo-verificada-por-maquina-con-compuerta" class="peldano">Peldaño 9: calidad del código verificada por máquina, con compuerta</h3>
+<pre class="code"><code>yf urazuke quality init     # detecta el stack, escribe eslint/stryker y el primer docs/CODE_QUALITY.md
+yf urazuke quality check    # mide y compara con el trinquete</code></pre>
+<p>Forge trae <strong>medidores nativos</strong> (tamaño de archivo y de función, complejidad, duplicación) para cualquier stack, y usa el linter del proyecto si está. La primera corrida en Turnera:</p>
+<pre class="code"><code>9 archivos, 723 lineas, 90 funciones
+max lineas/archivo 163 (limite 300) | max lineas/funcion 28 (40) | max complejidad 12 (10)
+violaciones: 2 | bloques duplicados: 0</code></pre>
+<p>Las dos violaciones (dos funciones con complejidad 11 y 12) <strong>no se arreglaron en el acto:</strong> se abrieron como pendientes (PND-031 y PND-032), como pide el método, y se cerraron con sus recibos. Un refactor no tiene rojo posible, así que se cerraron con <code>--force-gate</code> y la razón escrita; esa razón queda en el historial del pendiente para siempre.</p>
+<p>El <strong>trinquete</strong> (<code>.forge/quality-ratchet.json</code>) solo deja mejorar: cuando el script de carga subió la complejidad de 0 a 1 violaciones, el check lo dijo ("violations rose 0 &rarr; 1") y se corrigió antes del commit.</p>
+<h3 id="peldanos-10-y-11-casos-manuales-simetria-y-golpes">Peldaños 10 y 11: casos manuales, simetría y golpes</h3>
+<p><code>docs/MANUAL_TESTS.md</code> (para que los ejecute una persona), <code>docs/PRODUCER_CONSUMER_MAP.md</code> (quién escribe y quién lee cada estructura) y <code>docs/GOTCHAS.md</code>: cada vez que algo sale mal, la regla que lo evita. Turnera cerró con seis golpes anotados, tres del proyecto y tres de la herramienta.</p>
+<h3 id="peldano-12-verificacion-honesta-y-reporte-proporcional" class="peldano">Peldaño 12: verificación honesta y reporte proporcional</h3>
+<p>Cuando cerrás un pendiente del plan con <code>shipped</code>, Forge arma el <strong>reporte honesto</strong> desde los recibos. No lo escribe el agente:</p>
+<p><img src="img/nuevo-05-expediente.png" alt="El expediente de un pendiente cerrado, con su reporte honesto" loading="lazy"></p>
+<p>Tres bloques: <strong>verificado</strong> (hay recibo: el comando, el código de salida, la cuenta, la versión), <strong>creído</strong> (declarado sin recibo) y <strong>puntos ciegos</strong> (nadie lo corrió). Si un recibo se tomó con el árbol sucio (cambios sin commitear), el reporte lo dice: "the committed version was not what ran". En Turnera pasó con los recibos de los refactors, y quedó escrito.</p>
+<p>Forge verifica, para cerrar el peldaño 12: que al menos un pendiente del plan se haya cerrado con reporte.</p>
+</section><section>
+<h2 id="4-la-salida-a-produccion-peldanos-13-a-20">4. La salida a producción: peldaños 13 a 20</h2>
+<h3 id="peldano-13-la-auditoria-periodica-como-insumo-del-plan" class="peldano">Peldaño 13: la auditoría periódica como insumo del plan</h3>
+<p>Otra sesión, idealmente otro modelo, revisa todo. En Turnera la auditoría la hizo una sesión independiente con <strong>Claude Sonnet</strong> (la constructora era Claude Fable), con el prompt del peldaño, solo lectura, y escribió <code>docs/AUDIT_2026-10-19.md</code>: 15 hallazgos con archivo y línea, cada uno verificado en vivo (levantó el servidor, probó rutas, corrió dos stores concurrentes peleando por el mismo lugar). Los tres altos:</p>
+<ol><li>Un turno cancelado se podía <strong>revivir</strong> confirmándolo o reprogramándolo, y eso le borraba la cancelación al resumen del mes.</li><li>El candado "ausente solo el día del turno o después", escrito en <code>docs/LOCKS.md</code>, <strong>no existía</strong> en el código.</li><li>El candado "no se recuerda un teléfono inválido", también escrito, tampoco.</li></ol>
+<p>Los 11 hallazgos altos y medios se convirtieron en pendientes (PND-039 a PND-049) con su especificación. Los tres altos se cerraron en el <strong>bloque 2</strong> con rojo de comportamiento:</p>
+<pre class="code"><code>yf urazuke evidence run red_proof --pending PND-039 --step 8 --base-ref HEAD \
+  --test-file tests/estado-maquina.test.js --command "npx vitest run tests/estado-maquina.test.js"
+recibo OK   exit: 1   counts: 3 failed, 1 files failed</code></pre>
+<p>Al implementar los candados, <strong>cuatro tests viejos fallaron</strong> porque sus datos asumían el comportamiento anterior (un teléfono "111", marcar ausente un turno futuro). Se cambiaron a la vista, en el mismo commit, y el reporte honesto lo dice. Eso también es el método: cuando una regla cambia, los tests que la contradicen se cambian a la vista, no se silencia la regla.</p>
+<h3 id="peldanos-14-15-y-16-candados-cadena-y-observabilidad">Peldaños 14, 15 y 16: candados, cadena y observabilidad</h3>
+<p><code>docs/LOCKS.md</code> y <code>docs/CONSEQUENTIAL_ACTIONS_SURVEY.md</code> (qué cobra, envía, borra o corre solo, y con qué candado); la cadena con lint + tests + e2e en cada push; el registro JSON por petición con <code>req_id</code> que viaja también en la cabecera <code>X-Request-Id</code>, y <code>LOG_LEVEL</code> configurable.</p>
+<h3 id="peldano-17-la-persistencia-medida-antes-y-despues" class="peldano">Peldaño 17: la persistencia, medida antes y después</h3>
+<p>Con el mismo medidor del peldaño 7, a 180.000 filas, sin índices y con índices:</p>
+<div class="tw"><table><thead><tr><th>Camino</th><th>Antes</th><th>Después</th></tr></thead><tbody><tr><td>Agenda del día</td><td>p50 36,0 ms</td><td>p50 0,71 ms</td></tr><tr><td>Resumen del mes</td><td>p50 47,9 ms</td><td>p50 10,1 ms</td></tr></tbody></table></div>
+<p>En <code>docs/PERSISTENCE.md</code>, con el plan de consulta textual de cada caso. Forge verifica que el documento exista.</p>
+<h3 id="peldano-18-vulnerabilidades-en-la-cadena-y-con-calendario" class="peldano">Peldaño 18: vulnerabilidades, en la cadena y con calendario</h3>
+<p><code>docs/SECURITY_2026-10-19.md</code>: <code>npm audit</code> con cero vulnerabilidades (cero dependencias en producción), sin secretos en el repositorio, calendario mensual. El escaneo de secretos en la cadena quedó como pendiente (lo encontró la auditoría: el documento decía que corría y no corría).</p>
+<h3 id="peldano-19-rendimiento-en-volumen-y-punto-de-ruptura" class="peldano">Peldaño 19: rendimiento en volumen y punto de ruptura</h3>
+<p>El agente escribió <code>scripts/load-agenda.mjs</code>, que levanta el servidor real contra una base sembrada y dispara peticiones concurrentes. Al volumen esperado, al por diez, y subiendo la concurrencia hasta que se rompe:</p>
+<pre class="code"><code>node scripts/load-agenda.mjs --rows 300000 --requests 400 --breakpoint --p95-ms 200
+  conc | req | errores | altas | ms total |   rps |  p50 |  p95
+     5 | 400 |       0 |    49 |     1101 | 363.3 |   11 | 22.71
+    40 | 400 |       0 |     0 |      717 | 557.9 | 70.83 | 101.33
+   160 | 400 |       0 |     0 |      678 |   590 | 227.99 | 400.29
+  punto de ruptura: concurrencia 160 (p95 400.29 ms, errores 0)</code></pre>
+<p>Lo primero que se rompe es la latencia por saturación del único hilo de Node, no la base. Los dos recibos de tipo <code>load</code> quedaron registrados (<code>yf urazuke evidence run load ...</code>).</p>
+<h3 id="peldano-20-manuales-que-una-persona-puede-seguir-sin-ia" class="peldano">Peldaño 20: manuales que una persona puede seguir sin IA</h3>
+<p><code>docs/USER_MANUAL.md</code> (para la recepcionista), <code>docs/MAINTENANCE_MANUAL.md</code> (arrancar, parar, copia de seguridad, leer el registro), <code>docs/INFRASTRUCTURE_AND_RECOVERY_MANUAL.md</code> (qué hay y cómo se recupera desde cero en una tarde) y <code>docs/CHANGELOG.md</code>. Forge verifica los cuatro.</p>
+</section><section>
+<h2 id="5-operacion-peldanos-21-a-23">5. Operación: peldaños 21 a 23</h2>
+<h3 id="peldanos-21-y-22-el-reporte-ciclico">Peldaños 21 y 22: el reporte cíclico</h3>
+<pre class="code"><code>yf urazuke cycle --rows 30000 --over-days 365 --source "medidor sembrado al volumen de un año"</code></pre>
+<p>Escribe <code>docs/MONITORING_REPORT_&lt;fecha&gt;.md</code>: revalida el dimensionamiento contra lo declarado en el peldaño 3 (en Turnera: admisible, 30.000 filas por año contra 60.000 declaradas), junta los errores de la ventana y <strong>abre un pendiente por cada error nuevo</strong>. En producción corre solo con un timer (el <code>embed</code> de Forge lo instala).</p>
+<p>Y acá, otro tropiezo útil: el primer ciclo abrió <strong>seis bugs que no eran del producto:</strong> eran errores de red del propio panel de Forge mientras su servidor estaba apagado. Se rechazaron con motivo (<code>--reason rejected</code>) y Forge se corrigió para separar sus propios errores de los del sistema. La retrospectiva propone que el peldaño 22 lo diga explícitamente.</p>
+<h3 id="peldano-23-el-agente-adentro-y-la-retrospectiva-con-numero" class="peldano">Peldaño 23: el agente adentro y la retrospectiva con número</h3>
+<pre class="code"><code>yf urazuke retro</code></pre>
+<p>Forge escribe <code>docs/RETROSPECTIVE_&lt;fecha&gt;.md</code> con los números que calcula de sus registros (sección 1) y deja las secciones 2 y 3 para la dueña y el agente. Los números de Turnera:</p>
+<div class="tw"><table><thead><tr><th>Medida</th><th>Valor</th></tr></thead><tbody><tr><td>Pendientes cerrados con <code>shipped</code></td><td>12, los 12 con reporte honesto</td></tr><tr><td>Recibos: rojo probado / verde / regresión / punta a punta</td><td>9 / 9 / 11 / 10</td></tr><tr><td>Recibos NOT OK</td><td>2</td></tr><tr><td>Overrides de compuerta con razón escrita</td><td>3</td></tr><tr><td>Escalera</td><td>24 de 24 cerrados</td></tr></tbody></table></div>
+<p><img src="img/nuevo-10-escalera-completa.png" alt="La escalera completa: 24 de 24, cero en rojo" loading="lazy"></p>
+<p>Un detalle que también salió de esta práctica: cuando se cerró el peldaño 23, la pestaña Urazuke <strong>desapareció</strong> del panel, porque el flujo ya no estaba abierto. Se corrigió en Forge: la escalera terminada queda a la vista, y la compuerta de recibos sigue rigiendo para lo que se agregue al plan después.</p>
+<p>La sección 3 terminó en dos propuestas concretas al método (el rojo del primer bloque por mutación; separar los errores de la herramienta de los del sistema), cada una con el incidente que la justifica.</p>
+</section><section>
+<h2 id="6-lo-que-forge-verifico-lo-que-creimos-y-lo-que-no-vimos">6. Lo que Forge verificó, lo que creímos y lo que no vimos</h2>
+<p><strong>Verificado (con recibo o con archivo en disco):</strong> las 24 compuertas en verde; 47 recibos; 12 reportes honestos; el rechazo de G9; la auditoría por otro modelo; 37 tests unitarios y 3 flujos de punta a punta en verde; lint y límites en cero violaciones; carga y ruptura medidas.</p>
+<p><strong>Creído (sin recibo):</strong> que los manuales se pueden seguir sin IA: nadie ajeno al proyecto los siguió todavía. Que el tiempo humano fue de unas dos horas: es una estimación.</p>
+<p><strong>Puntos ciegos:</strong> no hubo máquina del consultorio ni datos reales; los números de rendimiento son de una máquina de desarrollo; la "dueña" fue un rol de práctica.</p>
+</section><section>
+<h2 id="7-lo-que-esta-practica-le-encontro-a-forge">7. Lo que esta práctica le encontró a Forge</h2>
+<p>Esto era también una prueba de punta a punta del motor, y sirvió. Seis defectos reales, corregidos el mismo día, cada uno con su test o su comando:</p>
+<ol><li>El cierre desde la línea de comandos evaluaba la carpeta actual y no la del proyecto.</li><li>La prueba en rojo borraba <code>node_modules</code> del proyecto al limpiar el worktree.</li><li>La cuenta de los recibos leía archivos en vez de tests, y no leía nada si el runner coloreaba la salida.</li><li>El reporte cíclico contaba los errores del propio panel como errores del producto.</li><li><code>yf pending edit</code> no permitía corregir la especificación de un pendiente.</li><li>La pestaña Urazuke desaparecía al cerrar el último peldaño.</li></ol>
+<p>Ninguno lo habría encontrado una batería de tests escrita desde adentro. Los encontró usar la herramienta como la usaría la dueña.</p>
+</section><section>
+<h2 id="apendice-todos-los-comandos-en-orden">Apéndice: todos los comandos, en orden</h2>
+<pre class="code"><code>yf start --new turnera --parent C:\urazuke-practica
+yf pending close PND-001 --reason shipped --resolution "..."      # peldaño 0
+...                                                                # 1, 2, 3 (el 3 con el registro G9)
+yf pending add "..." --acceptance "..." --how-verified "..." --flow "..."   # x6, peldaño 5
+yf pending close PND-005 ... PND-008                               # peldaños 4 a 7
+yf urazuke evidence run red_proof  --pending PND-025 --base-ref b429ad6 --test-file tests/server.test.js --command "npx vitest run tests/server.test.js"
+yf urazuke evidence run green      --pending PND-025 --command "npx vitest run tests/server.test.js"
+yf urazuke evidence run regression --pending PND-025 --command "npm test"
+yf urazuke evidence run e2e        --pending PND-025 --command "npm run test:e2e"
+                                                                   # x6 pendientes
+yf pending close PND-009 ...                                       # peldaño 8
+yf urazuke quality init &amp;&amp; yf urazuke quality check                # peldaño 9
+yf pending add "Bajar la complejidad de ..." ...  (x2)  y cierre con --force-gate "..."
+yf pending close PND-010 ... PND-012                               # 9, 10, 11
+yf pending close PND-025 ... PND-030 --reason shipped --resolution "..."   # el bloque 1, con reporte honesto
+yf pending close PND-013                                           # peldaño 12
+(auditoría por otra sesión -&gt; docs/AUDIT_2026-10-19.md)            # peldaño 13
+yf pending add "Auditoria 13 #..." ... (x11)
+(bloque 2: red_proof --base-ref HEAD, green, regression, e2e; cierre)
+yf pending close PND-014 ... PND-021                               # 13 a 20
+yf urazuke cycle --rows 30000 --over-days 365 --source "..."       # 21 y 22
+yf pending close PND-022 PND-023
+yf urazuke retro                                                   # 23
+yf pending close PND-024
+yf urazuke status                                                  # 24 de 24</code></pre>
+<p>La evidencia completa (recibos, pendientes con sus reportes, el estado de la escalera, la auditoría, la retrospectiva y el texto del rechazo de G9) está en <code>docs/practica/evidencia/turnera/</code> del repositorio del método.</p></section>
+<footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">Repositorio público del método: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
+</div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>

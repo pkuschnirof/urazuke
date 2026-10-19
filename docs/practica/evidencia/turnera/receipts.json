@@ -1,0 +1,931 @@
+{
+  "version": 1,
+  "project_slug": "turnera",
+  "next_id": 48,
+  "items": [
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/server.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "base_ref": "b429ad6",
+      "exit_code": 1,
+      "started_at": 1792428766077,
+      "duration_ms": 1677,
+      "counts": {
+        "failed_files": 1
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-PwZGMg\n\n ❯ tests/server.test.js (0 test)\n\n⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/server.test.js [ tests/server.test.js ]\nError: Cannot find module '../src/server.js' imported from C:/Users/ASUS/AppData/Local/Temp/yf-redproof-PwZGMg/tests/server.test.js\n ❯ tests/server.test.js:5:1\n      3| import os from 'node:os';\n      4| import path from 'node:path';\n      5| import { crearServidor } from '../src/server.js';\n       | ^\n      6| import { PROFESIONALES } from '../src/rules.js';\n      7|\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  no tests\n   Start at  13:52:47\n   Duration  226ms (worker 96%, environment 4%)\n\n",
+      "pending_id": "PND-025",
+      "step": 8,
+      "note": "PND-025 agenda del dia test files carried into the base worktree: tests/server.test.js",
+      "id": "RCP-001",
+      "verdict": "ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/rules.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "base_ref": "b429ad6",
+      "exit_code": 1,
+      "started_at": 1792428771747,
+      "duration_ms": 2309,
+      "counts": {
+        "failed_files": 1
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-E4CGPT\n\n ❯ tests/rules.test.js (0 test)\n\n⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/rules.test.js [ tests/rules.test.js ]\nError: Cannot find module '../src/rules.js' imported from C:/Users/ASUS/AppData/Local/Temp/yf-redproof-E4CGPT/tests/rules.test.js\n ❯ tests/rules.test.js:2:1\n      1| import { describe, it, expect } from 'vitest';\n      2| import { PROFESIONALES, slotsDelDia, esSlotValido, esFechaValida, esMe…\n       | ^\n      3|   buscarSobreturno, seleccionarRecordatorios, resumenMensual, fechaMas…\n      4|\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  no tests\n   Start at  13:52:53\n   Duration  293ms (worker 96%, environment 4%)\n\n",
+      "pending_id": "PND-026",
+      "step": 8,
+      "note": "PND-026 alta en bloques de 20 minutos test files carried into the base worktree: tests/rules.test.js",
+      "id": "RCP-002",
+      "verdict": "ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/store.test.js -t sobreturno",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "base_ref": "b429ad6",
+      "exit_code": 1,
+      "started_at": 1792428778753,
+      "duration_ms": 2351,
+      "counts": {
+        "failed_files": 1
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-GpWQr9\n\n ❯ tests/store.test.js (0 test)\n\n⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/store.test.js [ tests/store.test.js ]\nError: Cannot find module '../src/store.js' imported from C:/Users/ASUS/AppData/Local/Temp/yf-redproof-GpWQr9/tests/store.test.js\n ❯ tests/store.test.js:5:1\n      3| import os from 'node:os';\n      4| import path from 'node:path';\n      5| import { Store, StoreError } from '../src/store.js';\n       | ^\n      6| import { PROFESIONALES } from '../src/rules.js';\n      7|\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  no tests\n   Start at  13:53:00\n   Duration  295ms (worker 96%, environment 4%)\n\n",
+      "pending_id": "PND-027",
+      "step": 8,
+      "note": "PND-027 rechazo del sobreturno test files carried into the base worktree: tests/store.test.js",
+      "id": "RCP-003",
+      "verdict": "ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/store.test.js -t confirm",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "base_ref": "b429ad6",
+      "exit_code": 1,
+      "started_at": 1792428785383,
+      "duration_ms": 2442,
+      "counts": {
+        "failed_files": 1
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-hH0LFX\n\n ❯ tests/store.test.js (0 test)\n\n⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/store.test.js [ tests/store.test.js ]\nError: Cannot find module '../src/store.js' imported from C:/Users/ASUS/AppData/Local/Temp/yf-redproof-hH0LFX/tests/store.test.js\n ❯ tests/store.test.js:5:1\n      3| import os from 'node:os';\n      4| import path from 'node:path';\n      5| import { Store, StoreError } from '../src/store.js';\n       | ^\n      6| import { PROFESIONALES } from '../src/rules.js';\n      7|\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  no tests\n   Start at  13:53:07\n   Duration  289ms (worker 95%, environment 5%)\n\n",
+      "pending_id": "PND-028",
+      "step": 8,
+      "note": "PND-028 confirmar test files carried into the base worktree: tests/store.test.js",
+      "id": "RCP-004",
+      "verdict": "ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/store.test.js -t cancel",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "base_ref": "b429ad6",
+      "exit_code": 1,
+      "started_at": 1792428791729,
+      "duration_ms": 2383,
+      "counts": {
+        "failed_files": 1
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-79Evh7\n\n ❯ tests/store.test.js (0 test)\n\n⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/store.test.js [ tests/store.test.js ]\nError: Cannot find module '../src/store.js' imported from C:/Users/ASUS/AppData/Local/Temp/yf-redproof-79Evh7/tests/store.test.js\n ❯ tests/store.test.js:5:1\n      3| import os from 'node:os';\n      4| import path from 'node:path';\n      5| import { Store, StoreError } from '../src/store.js';\n       | ^\n      6| import { PROFESIONALES } from '../src/rules.js';\n      7|\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  no tests\n   Start at  13:53:13\n   Duration  310ms (worker 94%, environment 6%)\n\n",
+      "pending_id": "PND-029",
+      "step": 8,
+      "note": "PND-029 cancelar sin borrar test files carried into the base worktree: tests/store.test.js",
+      "id": "RCP-005",
+      "verdict": "ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/store.test.js -t ausente",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "base_ref": "b429ad6",
+      "exit_code": 1,
+      "started_at": 1792428798634,
+      "duration_ms": 4657,
+      "counts": {
+        "failed_files": 1
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-VaiySC\n\n ❯ tests/store.test.js (0 test)\n\n⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/store.test.js [ tests/store.test.js ]\nError: Cannot find module '../src/store.js' imported from C:/Users/ASUS/AppData/Local/Temp/yf-redproof-VaiySC/tests/store.test.js\n ❯ tests/store.test.js:5:1\n      3| import os from 'node:os';\n      4| import path from 'node:path';\n      5| import { Store, StoreError } from '../src/store.js';\n       | ^\n      6| import { PROFESIONALES } from '../src/rules.js';\n      7|\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  no tests\n   Start at  13:53:23\n   Duration  299ms (worker 96%, environment 4%)\n\n",
+      "pending_id": "PND-030",
+      "step": 8,
+      "note": "PND-030 marcar ausente test files carried into the base worktree: tests/store.test.js",
+      "id": "RCP-006",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/server.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428807983,
+      "duration_ms": 2907,
+      "counts": {
+        "passed": 4,
+        "total": 4,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:2428) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  4 passed (4)\n   Start at  13:53:30\n   Duration  569ms (tests 68%, import 16%, transform 15%, worker 2%)\n\n",
+      "pending_id": "PND-025",
+      "step": 8,
+      "id": "RCP-007",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/rules.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428815081,
+      "duration_ms": 2113,
+      "counts": {
+        "passed": 12,
+        "total": 12,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n\n Test Files  1 passed (1)\n      Tests  12 passed (12)\n   Start at  13:53:36\n   Duration  267ms (import 42%, tests 24%, transform 22%, worker 12%, environment 1%)\n\n",
+      "pending_id": "PND-026",
+      "step": 8,
+      "id": "RCP-008",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/store.test.js -t sobreturno",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428821450,
+      "duration_ms": 2302,
+      "counts": {
+        "passed": 3,
+        "skipped": 7,
+        "total": 10,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:11832) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  3 passed | 7 skipped (10)\n   Start at  13:53:43\n   Duration  392ms (tests 72%, import 14%, transform 8%, worker 5%)\n\n",
+      "pending_id": "PND-027",
+      "step": 8,
+      "id": "RCP-009",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/store.test.js -t confirm",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428827601,
+      "duration_ms": 2224,
+      "counts": {
+        "passed": 1,
+        "skipped": 9,
+        "total": 10,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:27664) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  1 passed | 9 skipped (10)\n   Start at  13:53:49\n   Duration  343ms (tests 45%, import 30%, transform 17%, worker 9%)\n\n",
+      "pending_id": "PND-028",
+      "step": 8,
+      "id": "RCP-010",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/store.test.js -t cancel",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428833363,
+      "duration_ms": 2183,
+      "counts": {
+        "passed": 3,
+        "skipped": 7,
+        "total": 10,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:11400) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  3 passed | 7 skipped (10)\n   Start at  13:53:55\n   Duration  369ms (tests 75%, import 14%, transform 8%, worker 4%)\n\n",
+      "pending_id": "PND-029",
+      "step": 8,
+      "id": "RCP-011",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/store.test.js -t ausente",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428839608,
+      "duration_ms": 2333,
+      "counts": {
+        "passed": 2,
+        "skipped": 8,
+        "total": 10,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:31884) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  2 passed | 8 skipped (10)\n   Start at  13:54:01\n   Duration  288ms (tests 67%, import 18%, transform 10%, worker 5%)\n\n",
+      "pending_id": "PND-030",
+      "step": 8,
+      "id": "RCP-012",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428845105,
+      "duration_ms": 2006,
+      "counts": {
+        "passed": 30,
+        "total": 30,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:31364) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:22756) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:22728) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  4 passed (4)\n      Tests  30 passed (30)\n   Start at  13:54:06\n   Duration  977ms (tests 81%, import 12%, transform 5%, worker 3%)\n\n",
+      "pending_id": "PND-025",
+      "step": 8,
+      "id": "RCP-013",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428851452,
+      "duration_ms": 1950,
+      "counts": {
+        "passed": 30,
+        "total": 30,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:20368) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:10420) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:11408) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  4 passed (4)\n      Tests  30 passed (30)\n   Start at  13:54:12\n   Duration  926ms (tests 79%, import 14%, transform 4%, worker 3%)\n\n",
+      "pending_id": "PND-026",
+      "step": 8,
+      "id": "RCP-014",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428856888,
+      "duration_ms": 2067,
+      "counts": {
+        "passed": 30,
+        "total": 30,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:296) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:24132) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:29156) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  4 passed (4)\n      Tests  30 passed (30)\n   Start at  13:54:17\n   Duration  931ms (tests 79%, import 14%, transform 5%, worker 3%)\n\n",
+      "pending_id": "PND-027",
+      "step": 8,
+      "id": "RCP-015",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428862351,
+      "duration_ms": 2003,
+      "counts": {
+        "passed": 30,
+        "total": 30,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:16672) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:28188) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:18656) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  4 passed (4)\n      Tests  30 passed (30)\n   Start at  13:54:23\n   Duration  883ms (tests 79%, import 13%, transform 5%, worker 3%)\n\n",
+      "pending_id": "PND-028",
+      "step": 8,
+      "id": "RCP-016",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428867646,
+      "duration_ms": 2006,
+      "counts": {
+        "passed": 30,
+        "total": 30,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:22424) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:11564) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:27636) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  4 passed (4)\n      Tests  30 passed (30)\n   Start at  13:54:28\n   Duration  958ms (tests 80%, import 12%, transform 5%, worker 3%)\n\n",
+      "pending_id": "PND-029",
+      "step": 8,
+      "id": "RCP-017",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428872685,
+      "duration_ms": 2093,
+      "counts": {
+        "passed": 30,
+        "total": 30,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:23200) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:10580) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:17108) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  4 passed (4)\n      Tests  30 passed (30)\n   Start at  13:54:33\n   Duration  907ms (tests 81%, import 11%, transform 5%, worker 3%)\n\n",
+      "pending_id": "PND-030",
+      "step": 8,
+      "id": "RCP-018",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npm run test:e2e",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428879385,
+      "duration_ms": 7033,
+      "counts": {
+        "passed": 3,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test:e2e\n> playwright test\n\n[WebServer] (node:17376) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 3 tests using 1 worker\n(node:28208) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n···\n  3 passed (5.3s)\n::notice title=🎭 Playwright Run Summary::  3 passed (5.3s)\n",
+      "pending_id": "PND-025",
+      "step": 8,
+      "note": "pantalla a backend: crear/ver/sobreturno/cancelar y confirmar/ausente verificados por API",
+      "id": "RCP-019",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npm run test:e2e",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428890216,
+      "duration_ms": 5369,
+      "counts": {
+        "passed": 3,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test:e2e\n> playwright test\n\n[WebServer] (node:10176) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 3 tests using 1 worker\n(node:15540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n···\n  3 passed (3.8s)\n::notice title=🎭 Playwright Run Summary::  3 passed (3.8s)\n",
+      "pending_id": "PND-026",
+      "step": 8,
+      "note": "pantalla a backend: crear/ver/sobreturno/cancelar y confirmar/ausente verificados por API",
+      "id": "RCP-020",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npm run test:e2e",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428899031,
+      "duration_ms": 4598,
+      "counts": {
+        "passed": 3,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test:e2e\n> playwright test\n\n[WebServer] (node:14800) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 3 tests using 1 worker\n(node:28188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n···\n  3 passed (3.2s)\n::notice title=🎭 Playwright Run Summary::  3 passed (3.2s)\n",
+      "pending_id": "PND-027",
+      "step": 8,
+      "note": "pantalla a backend: crear/ver/sobreturno/cancelar y confirmar/ausente verificados por API",
+      "id": "RCP-021",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npm run test:e2e",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428906855,
+      "duration_ms": 4667,
+      "counts": {
+        "passed": 3,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test:e2e\n> playwright test\n\n[WebServer] (node:7468) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 3 tests using 1 worker\n(node:7992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n···\n  3 passed (3.4s)\n::notice title=🎭 Playwright Run Summary::  3 passed (3.4s)\n",
+      "pending_id": "PND-028",
+      "step": 8,
+      "note": "pantalla a backend: crear/ver/sobreturno/cancelar y confirmar/ausente verificados por API",
+      "id": "RCP-022",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npm run test:e2e",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428914433,
+      "duration_ms": 4297,
+      "counts": {
+        "passed": 3,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test:e2e\n> playwright test\n\n[WebServer] (node:1980) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 3 tests using 1 worker\n(node:19332) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n···\n  3 passed (3.0s)\n::notice title=🎭 Playwright Run Summary::  3 passed (3.0s)\n",
+      "pending_id": "PND-029",
+      "step": 8,
+      "note": "pantalla a backend: crear/ver/sobreturno/cancelar y confirmar/ausente verificados por API",
+      "id": "RCP-023",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npm run test:e2e",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "27a75a1",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428921674,
+      "duration_ms": 4475,
+      "counts": {
+        "passed": 3,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test:e2e\n> playwright test\n\n[WebServer] (node:27844) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 3 tests using 1 worker\n(node:20540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n···\n  3 passed (3.2s)\n::notice title=🎭 Playwright Run Summary::  3 passed (3.2s)\n",
+      "pending_id": "PND-030",
+      "step": 8,
+      "note": "pantalla a backend: crear/ver/sobreturno/cancelar y confirmar/ausente verificados por API",
+      "id": "RCP-024",
+      "verdict": "ok"
+    },
+    {
+      "kind": "quality",
+      "command": "yf urazuke quality check",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "working-tree",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792428954304,
+      "duration_ms": 23,
+      "counts": {
+        "failed": 2
+      },
+      "output_tail": "2 violations, 0 dup blocks",
+      "step": 9,
+      "id": "RCP-025",
+      "verdict": "not_ok"
+    },
+    {
+      "kind": "quality",
+      "command": "yf urazuke quality check",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "working-tree",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792429089257,
+      "duration_ms": 1020,
+      "counts": {
+        "failed": 0
+      },
+      "output_tail": "0 violations, 0 dup blocks",
+      "step": 9,
+      "id": "RCP-026",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "aa4ec76",
+      "dirty": true,
+      "exit_code": 0,
+      "started_at": 1792429093170,
+      "duration_ms": 2808,
+      "counts": {
+        "passed": 30,
+        "total": 30,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:7216) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:28616) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:28544) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  4 passed (4)\n      Tests  30 passed (30)\n   Start at  13:58:14\n   Duration  1.72s (tests 83%, import 12%, transform 3%, worker 2%)\n\n",
+      "pending_id": "PND-031",
+      "step": 9,
+      "id": "RCP-027",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "aa4ec76",
+      "dirty": true,
+      "exit_code": 0,
+      "started_at": 1792429099777,
+      "duration_ms": 2228,
+      "counts": {
+        "passed": 30,
+        "total": 30,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:15392) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:20324) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:14572) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  4 passed (4)\n      Tests  30 passed (30)\n   Start at  13:58:20\n   Duration  1.25s (tests 87%, import 8%, transform 3%, worker 2%)\n\n",
+      "pending_id": "PND-032",
+      "step": 9,
+      "id": "RCP-028",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npm run test:e2e",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "aa4ec76",
+      "dirty": true,
+      "exit_code": 0,
+      "started_at": 1792429105737,
+      "duration_ms": 6122,
+      "counts": {
+        "passed": 3,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test:e2e\n> playwright test\n\n[WebServer] (node:33592) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 3 tests using 1 worker\n(node:20504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n···\n  3 passed (4.2s)\n::notice title=🎭 Playwright Run Summary::  3 passed (4.2s)\n",
+      "pending_id": "PND-032",
+      "step": 9,
+      "id": "RCP-029",
+      "verdict": "ok"
+    },
+    {
+      "kind": "other",
+      "command": "npx eslint .",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "aa4ec76",
+      "dirty": true,
+      "exit_code": 0,
+      "started_at": 1792429115597,
+      "duration_ms": 2429,
+      "counts": {},
+      "output_tail": "",
+      "pending_id": "PND-031",
+      "step": 9,
+      "note": "lint y complejidad en verde",
+      "id": "RCP-030",
+      "verdict": "ok"
+    },
+    {
+      "kind": "other",
+      "command": "npx eslint .",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "aa4ec76",
+      "dirty": true,
+      "exit_code": 0,
+      "started_at": 1792429121547,
+      "duration_ms": 1818,
+      "counts": {},
+      "output_tail": "",
+      "pending_id": "PND-032",
+      "step": 9,
+      "note": "lint y complejidad en verde",
+      "id": "RCP-031",
+      "verdict": "ok"
+    },
+    {
+      "kind": "load",
+      "command": "node scripts/load-agenda.mjs --rows 300000 --concurrency 5 --requests 500",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "94e7546",
+      "dirty": true,
+      "exit_code": 0,
+      "started_at": 1792429523724,
+      "duration_ms": 13986,
+      "counts": {},
+      "output_tail": "(node:12020) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\nCarga sobre la API -- 2026-10-19T17:05:37.654Z -- 300000 filas en la base\n  comando: node scripts/load-agenda.mjs --rows 300000 --concurrency 5 --requests 500\n  conc | req | errores | altas | ms total |   rps |  p50 |  p95 |  p99 |  max (ms)\n     5 | 500 |       0 |    59 |     1431 | 349.4 | 12.67 | 23.07 | 77.33 | 110.79\n",
+      "step": 19,
+      "note": "por diez del volumen esperado, 5 en concurrencia; umbral p95 200 ms",
+      "id": "RCP-032",
+      "verdict": "ok"
+    },
+    {
+      "kind": "load",
+      "command": "node scripts/load-agenda.mjs --rows 300000 --requests 400 --breakpoint --p95-ms 200",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "94e7546",
+      "dirty": true,
+      "exit_code": 0,
+      "started_at": 1792429540404,
+      "duration_ms": 16666,
+      "counts": {},
+      "output_tail": "(node:24680) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\nCarga sobre la API -- 2026-10-19T17:05:56.974Z -- 300000 filas en la base\n  comando: node scripts/load-agenda.mjs --rows 300000 --concurrency 5 --requests 400 --breakpoint --p95-ms 200\n  conc | req | errores | altas | ms total |   rps |  p50 |  p95 |  p99 |  max (ms)\n     5 | 400 |       0 |    49 |     1275 | 313.7 | 14.51 | 25.22 | 55.5 | 78.65\n    10 | 400 |       0 |     0 |      655 | 610.7 | 15.71 | 23.83 | 29.44 | 31.53\n    20 | 400 |       0 |     0 |      647 | 618.2 | 30.83 | 47.23 | 57.16 | 57.35\n    40 | 400 |       0 |     0 |      690 | 579.7 | 58.83 | 102.59 | 113.46 | 113.6\n    80 | 400 |       0 |     0 |      648 | 617.3 | 120.06 | 190.78 | 196.98 | 235.77\n   160 | 400 |       0 |     0 |      646 | 619.2 | 210.03 | 378.3 | 387.82 | 389.71\n  punto de ruptura: concurrencia 160 (p95 378.3 ms, errores 0)\n",
+      "step": 19,
+      "note": "punto de ruptura",
+      "id": "RCP-033",
+      "verdict": "ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/estado-maquina.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "ab412fc",
+      "dirty": true,
+      "base_ref": "ab412fc",
+      "exit_code": 1,
+      "started_at": 1792430279607,
+      "duration_ms": 3671,
+      "counts": {
+        "failed": 3,
+        "failed_files": 1,
+        "total": 3
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-tKwzlT\n\n(node:28216) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n ❯ tests/estado-maquina.test.js (3 tests | 3 failed) 201ms\n   ❯ PND-039 maquina de estados: un turno cancelado no se revive (3)\n     × confirmar un turno cancelado responde 409 y el registro no cambia 71ms\n     × reprogramar un turno cancelado responde 409 65ms\n     × marcar ausente un turno cancelado responde 409 y el resumen conserva la cancelacion 63ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/estado-maquina.test.js > PND-039 maquina de estados: un turno cancelado no se revive > confirmar un turno cancelado responde 409 y el registro no cambia\nError: se esperaba un error\n ❯ falla tests/estado-maquina.test.js:16:86\n     14| afterEach(async () => { await store.cerrar(); fs.rmSync(dir, { recursi…\n     15|\n     16| async function falla(promesa) { try { await promesa; } catch (e) { ret…\n       |                                                                                      ^\n     17|\n     18| describe('PND-039 maquina de estados: un turno cancelado no se revive'…\n ❯ tests/estado-maquina.test.js:22:17\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯\n\n FAIL  tests/estado-maquina.test.js > PND-039 maquina de estados: un turno cancelado no se revive > reprogramar un turno cancelado responde 409\nError: se esperaba un error\n ❯ falla tests/estado-maquina.test.js:16:86\n     14| afterEach(async () => { await store.cerrar(); fs.rmSync(dir, { recursi…\n     15|\n     16| async function falla(promesa) { try { await promesa; } catch (e) { ret…\n       |                                                                                      ^\n     17|\n     18| describe('PND-039 maquina de estados: un turno cancelado no se revive'…\n ❯ tests/estado-maquina.test.js:31:17\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯\n\n FAIL  tests/estado-maquina.test.js > PND-039 maquina de estados: un turno cancelado no se revive > marcar ausente un turno cancelado responde 409 y el resumen conserva la cancelacion\nError: se esperaba un error\n ❯ falla tests/estado-maquina.test.js:16:86\n     14| afterEach(async () => { await store.cerrar(); fs.rmSync(dir, { recursi…\n     15|\n     16| async function falla(promesa) { try { await promesa; } catch (e) { ret…\n       |                                                                                      ^\n     17|\n     18| describe('PND-039 maquina de estados: un turno cancelado no se revive'…\n ❯ tests/estado-maquina.test.js:39:17\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯\n\n\n Test Files  1 failed (1)\n      Tests  3 failed (3)\n   Start at  14:18:02\n   Duration  878ms (tests 50%, transform 36%, import 9%, worker 6%)\n\n",
+      "pending_id": "PND-039",
+      "step": 8,
+      "note": "rojo de comportamiento: hoy un cancelado se revive test files carried into the base worktree: tests/estado-maquina.test.js",
+      "id": "RCP-034",
+      "verdict": "ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/estado-ausente.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "ab412fc",
+      "dirty": true,
+      "base_ref": "ab412fc",
+      "exit_code": 1,
+      "started_at": 1792430287447,
+      "duration_ms": 2348,
+      "counts": {
+        "failed": 1,
+        "failed_files": 1,
+        "passed": 1,
+        "total": 2
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-gRCp9b\n\n(node:23872) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n ❯ tests/estado-ausente.test.js (2 tests | 1 failed) 129ms\n   ❯ PND-040 candado: ausente solo el dia del turno o despues (2)\n     × un turno futuro no se puede marcar ausente (409) 67ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/estado-ausente.test.js > PND-040 candado: ausente solo el dia del turno o despues > un turno futuro no se puede marcar ausente (409)\nError: se esperaba un error\n ❯ falla tests/estado-ausente.test.js:16:86\n     14| afterEach(async () => { await store.cerrar(); fs.rmSync(dir, { recursi…\n     15|\n     16| async function falla(promesa) { try { await promesa; } catch (e) { ret…\n       |                                                                                      ^\n     17|\n     18| describe('PND-040 candado: ausente solo el dia del turno o despues', (…\n ❯ tests/estado-ausente.test.js:21:17\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 1 passed (2)\n   Start at  14:18:09\n   Duration  439ms (tests 59%, transform 25%, import 14%, worker 3%)\n\n",
+      "pending_id": "PND-040",
+      "step": 8,
+      "note": "rojo de comportamiento: hoy un turno futuro se marca ausente test files carried into the base worktree: tests/estado-ausente.test.js",
+      "id": "RCP-035",
+      "verdict": "ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/recordatorio-telefono.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "ab412fc",
+      "dirty": true,
+      "base_ref": "ab412fc",
+      "exit_code": 1,
+      "started_at": 1792430294348,
+      "duration_ms": 2206,
+      "counts": {
+        "failed": 2,
+        "failed_files": 1,
+        "total": 2
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-YQB95T\n\n(node:33428) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n ❯ tests/recordatorio-telefono.test.js (2 tests | 2 failed) 130ms\n   ❯ PND-041 candado: no se recuerda un turno con telefono invalido (2)\n     × esTelefonoValido acepta digitos con guiones o espacios y rechaza el resto 61ms\n     × seleccionarRecordatorios deja afuera el telefono invalido y lo lista como omitido 67ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/recordatorio-telefono.test.js > PND-041 candado: no se recuerda un turno con telefono invalido > esTelefonoValido acepta digitos con guiones o espacios y rechaza el resto\nTypeError: esTelefonoValido is not a function\n ❯ tests/recordatorio-telefono.test.js:20:18\n     18| describe('PND-041 candado: no se recuerda un turno con telefono invali…\n     19|   it('esTelefonoValido acepta digitos con guiones o espacios y rechaza…\n     20|     expect(rules.esTelefonoValido('11-5555-0001')).toBe(true);\n       |                  ^\n     21|     expect(rules.esTelefonoValido('+54 9 11 5555 0001')).toBe(true);\n     22|     expect(rules.esTelefonoValido('llamar a la tarde')).toBe(false);\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯\n\n FAIL  tests/recordatorio-telefono.test.js > PND-041 candado: no se recuerda un turno con telefono invalido > seleccionarRecordatorios deja afuera el telefono invalido y lo lista como omitido\nAssertionError: expected [ 1, 2 ] to deeply equal [ 1 ]\n\n- Expected\n+ Received\n\n  [\n    1,\n+   2,\n  ]\n\n ❯ tests/recordatorio-telefono.test.js:32:32\n     30|     ];\n     31|     const r = rules.seleccionarRecordatorios(turnos, '2030-05-10');\n     32|     expect(r.map((t) => t.id)).toEqual([1]);\n       |                                ^\n     33|     expect(r.omitidos.map((t) => t.id)).toEqual([2]);\n     34|   });\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯\n\n\n Test Files  1 failed (1)\n      Tests  2 failed (2)\n   Start at  14:18:16\n   Duration  483ms (tests 47%, transform 39%, import 11%, worker 2%)\n\n",
+      "pending_id": "PND-041",
+      "step": 8,
+      "note": "rojo de comportamiento: hoy se recuerda cualquier telefono test files carried into the base worktree: tests/recordatorio-telefono.test.js",
+      "id": "RCP-036",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/estado-maquina.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "2cc4435",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792430449409,
+      "duration_ms": 1774,
+      "counts": {
+        "passed": 3,
+        "total": 3,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:29364) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  3 passed (3)\n   Start at  14:20:50\n   Duration  375ms (tests 83%, import 9%, transform 5%, worker 2%)\n\n",
+      "pending_id": "PND-039",
+      "step": 8,
+      "id": "RCP-037",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/estado-ausente.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "2cc4435",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792430454809,
+      "duration_ms": 2105,
+      "counts": {
+        "passed": 2,
+        "total": 2,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:11444) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  2 passed (2)\n   Start at  14:20:56\n   Duration  361ms (tests 72%, import 15%, transform 9%, worker 5%)\n\n",
+      "pending_id": "PND-040",
+      "step": 8,
+      "id": "RCP-038",
+      "verdict": "ok"
+    },
+    {
+      "kind": "green",
+      "command": "npx vitest run tests/recordatorio-telefono.test.js",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "2cc4435",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792430461050,
+      "duration_ms": 2969,
+      "counts": {
+        "passed": 2,
+        "total": 2,
+        "failed": 0
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:27144) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  1 passed (1)\n      Tests  2 passed (2)\n   Start at  14:21:03\n   Duration  474ms (tests 75%, import 12%, transform 8%, worker 4%)\n\n",
+      "pending_id": "PND-041",
+      "step": 8,
+      "id": "RCP-039",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "2cc4435",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792430469582,
+      "duration_ms": 3618,
+      "counts": {
+        "passed": 37,
+        "total": 37,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:24336) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:28592) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:5124) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:3468) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:29368) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:15308) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  7 passed (7)\n      Tests  37 passed (37)\n   Start at  14:21:11\n   Duration  1.82s (tests 85%, import 8%, transform 4%, worker 3%)\n\n",
+      "pending_id": "PND-039",
+      "step": 8,
+      "note": "4 tests viejos ajustados a la regla nueva (fixture de telefono, hoy explicito para ausente)",
+      "id": "RCP-040",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "2cc4435",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792430477507,
+      "duration_ms": 3213,
+      "counts": {
+        "passed": 37,
+        "total": 37,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:20428) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:29992) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:8412) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:18472) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:10420) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:10288) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  7 passed (7)\n      Tests  37 passed (37)\n   Start at  14:21:18\n   Duration  1.67s (tests 86%, import 8%, transform 3%, worker 2%)\n\n",
+      "pending_id": "PND-040",
+      "step": 8,
+      "note": "4 tests viejos ajustados a la regla nueva (fixture de telefono, hoy explicito para ausente)",
+      "id": "RCP-041",
+      "verdict": "ok"
+    },
+    {
+      "kind": "regression",
+      "command": "npm test",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "2cc4435",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792430484691,
+      "duration_ms": 2582,
+      "counts": {
+        "passed": 37,
+        "total": 37,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.5 C:/urazuke-practica/turnera\n\n(node:23996) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:23616) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:24636) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:30236) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:7836) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:29012) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  7 passed (7)\n      Tests  37 passed (37)\n   Start at  14:21:25\n   Duration  1.62s (tests 87%, import 8%, transform 3%, worker 2%)\n\n",
+      "pending_id": "PND-041",
+      "step": 8,
+      "note": "4 tests viejos ajustados a la regla nueva (fixture de telefono, hoy explicito para ausente)",
+      "id": "RCP-042",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npm run test:e2e",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "2cc4435",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792430490630,
+      "duration_ms": 6849,
+      "counts": {
+        "passed": 3,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test:e2e\n> playwright test\n\n[WebServer] (node:31644) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 3 tests using 1 worker\n(node:4300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n···\n  3 passed (5.2s)\n::notice title=🎭 Playwright Run Summary::  3 passed (5.2s)\n",
+      "pending_id": "PND-039",
+      "step": 8,
+      "id": "RCP-043",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npm run test:e2e",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "2cc4435",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792430501831,
+      "duration_ms": 5930,
+      "counts": {
+        "passed": 3,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test:e2e\n> playwright test\n\n[WebServer] (node:14204) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 3 tests using 1 worker\n(node:20532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n···\n  3 passed (4.2s)\n::notice title=🎭 Playwright Run Summary::  3 passed (4.2s)\n",
+      "pending_id": "PND-040",
+      "step": 8,
+      "id": "RCP-044",
+      "verdict": "ok"
+    },
+    {
+      "kind": "e2e",
+      "command": "npm run test:e2e",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "2cc4435",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792430511174,
+      "duration_ms": 5601,
+      "counts": {
+        "passed": 3,
+        "failed": 0
+      },
+      "output_tail": "\n> turnera@0.1.0 test:e2e\n> playwright test\n\n[WebServer] (node:29464) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 3 tests using 1 worker\n(node:23648) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n···\n  3 passed (4.1s)\n::notice title=🎭 Playwright Run Summary::  3 passed (4.1s)\n",
+      "pending_id": "PND-041",
+      "step": 8,
+      "id": "RCP-045",
+      "verdict": "ok"
+    },
+    {
+      "kind": "quality",
+      "command": "yf urazuke quality check",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "working-tree",
+      "dirty": false,
+      "exit_code": 1,
+      "started_at": 1792430519997,
+      "duration_ms": 1647,
+      "counts": {
+        "failed": 1
+      },
+      "output_tail": "1 violations, 0 dup blocks; RATCHET: violations rose 0 -> 1",
+      "step": 9,
+      "id": "RCP-046",
+      "verdict": "not_ok"
+    },
+    {
+      "kind": "quality",
+      "command": "yf urazuke quality check",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "working-tree",
+      "dirty": false,
+      "exit_code": 0,
+      "started_at": 1792430679134,
+      "duration_ms": 1093,
+      "counts": {
+        "failed": 0
+      },
+      "output_tail": "0 violations, 0 dup blocks",
+      "step": 9,
+      "id": "RCP-047",
+      "verdict": "ok"
+    }
+  ]
+}

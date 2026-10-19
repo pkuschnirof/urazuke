@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "project_slug": "turnera",
+  "updated_at": "2026-10-19T16:11:51.030Z",
+  "input": {
+    "entities": [
+      {
+        "name": "turnos",
+        "count": 10000,
+        "events_per_year": 1,
+        "rows_per_event": 6
+      }
+    ],
+    "bytes_per_row": 400,
+    "trace_share": 0.5,
+    "retention": {
+      "business_days": 1825,
+      "trace_days": 90
+    },
+    "peak_concurrency": 5,
+    "hardware": {
+      "ram_mb": 8192,
+      "heap_cap_mb": 2048,
+      "disk_gb": 256,
+      "vcpus": 4
+    },
+    "horizon_years": 3
+  },
+  "choices": {
+    "state_residency": "sql-async",
+    "pagination": "sql-keyset",
+    "retention": "retention-by-age",
+    "write_concurrency": "explicit-transactions"
+  },
+  "revisions": [
+    {
+      "at": "2026-10-19T16:11:51.030Z",
+      "by": "agente (peldano 3), confirmado por la duena",
+      "note": "Turnera: 40 turnos/dia x 250 dias, 6 filas por turno (turno + 2 cambios de estado + 3 mensajes). SQLite embebido (node:sqlite) con transacciones explicitas y paginacion por dia; la primera eleccion (JSON en memoria) fue rechazada por G9: 180k filas al horizonte superan las 100k de una porcion en memoria, y la atomicidad implicita no vale con 5 usuarios.",
+      "input": {
+        "entities": [
+          {
+            "name": "turnos",
+            "count": 10000,
+            "events_per_year": 1,
+            "rows_per_event": 6
+          }
+        ],
+        "bytes_per_row": 400,
+        "trace_share": 0.5,
+        "retention": {
+          "business_days": 1825,
+          "trace_days": 90
+        },
+        "peak_concurrency": 5,
+        "hardware": {
+          "ram_mb": 8192,
+          "heap_cap_mb": 2048,
+          "disk_gb": 256,
+          "vcpus": 4
+        },
+        "horizon_years": 3
+      },
+      "choices": {
+        "state_residency": "sql-async",
+        "pagination": "sql-keyset",
+        "retention": "retention-by-age",
+        "write_concurrency": "explicit-transactions"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+声  Urazuke -- sin workflow urazuke abierto -- turnera
+  [v] 00 Este proyecto se puede encarar asi? (elegibilidad)
+  [v] 01 El contrato de convivencia
+  [v] 02 La definicion del proyecto, el arbol semantico y la lectura obligatoria
+  [v] 03 Dimensionar antes de disenar la arquitectura
+  [v] 04 El esqueleto con sus compuertas
+  [ ] 05 El plan son los pendientes
+  [v] 06 Las decisiones se escriben junto al codigo
+  [v] 07 Medir antes de construir, con un instrumento que tambien se verifica
+  [v] 08 Tests como candados, probados en rojo
+  [v] 09 Calidad del codigo verificada por maquina, con compuerta
+  [v] 10 Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas
+  [v] 11 Simetria entre productor y consumidor, y el registro de anti-patrones
+  [v] 12 Verificacion honesta y reporte proporcional
+  [v] 13 La auditoria periodica como insumo del plan
+  [v] 14 Fail-closed, candados y cero dano silencioso
+  [v] 15 Integracion continua, entornos, secretos y despliegue como parte del producto
+  [v] 16 Observabilidad y trazabilidad totales, con nivel configurable
+  [v] 17 Optimizacion de la capa de persistencia, medida antes y despues
+  [v] 18 Escaneo y solucion de vulnerabilidades, en la cadena y con calendario
+  [v] 19 Pruebas de rendimiento en volumen y punto de ruptura
+  [v] 20 Documentacion viva y manuales que una persona puede seguir sin IA
+  [v] 21 Monitoreo de recursos, funciones y consultas fuera de rango, con reporte ciclico
+  [v] 22 Monitoreo de errores y reporte ciclico: ningun error sin pendiente
+  [v] 23 El agente adentro del sistema, y la retrospectiva con numero
+
+  [x] cerrado  [v] verde (se puede cerrar)  [ ] rojo  [~] a cargo del dueno
+  1 en rojo de 24. Detalle: yf urazuke step <n>

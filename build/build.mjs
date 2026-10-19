@@ -7,7 +7,7 @@
 // - MANUAL_CURSO_EVOLUTIVO.html <- MANUAL_CURSO_EVOLUTIVO.md (parte 2 del curso)
 // - CONTRATOS_DE_PELDANO.html   <- peldanos/README.md + los 16 contratos, en orden
 // Antes verifica que los prompts en inglés sean idénticos en todas las versiones.
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, unlinkSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, unlinkSync, cpSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { execFileSync } from 'node:child_process';
@@ -49,3 +49,20 @@ for (const idioma of ['en', 'pt', 'fr', 'de', 'it', 'ja', 'zh']) {
   const k = armar(dirIdioma, join(raiz, 'docs', 'html', idioma), idioma);
   console.log(`contratos incluidos (${idioma}):`, k);
 }
+
+// Los manuales de practica (docs/practica/*.md) con sus capturas y la evidencia: solo castellano por ahora.
+const dirPr = join(raiz, 'docs', 'practica');
+if (existsSync(dirPr)) {
+  const outPr = join(raiz, 'docs', 'html', 'practica');
+  mkdirSync(outPr, { recursive: true });
+  let m = 0;
+  for (const f of readdirSync(dirPr).filter(f => f.endsWith('.md')).sort()) {
+    execFileSync(process.execPath, [conv, join(dirPr, f), join(outPr, f.replace(/\.md$/, '.html')), 'es'], { stdio: 'inherit' });
+    m++;
+  }
+  for (const sub of ['img', 'evidencia']) {
+    if (existsSync(join(dirPr, sub))) cpSync(join(dirPr, sub), join(outPr, sub), { recursive: true });
+  }
+  console.log('manuales de practica:', m);
+}
+

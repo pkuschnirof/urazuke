@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "project_slug": "turnera",
+  "next_code": 2,
+  "instances": [
+    {
+      "code": "WFL-001",
+      "name": "turnera -- urazuke",
+      "kind": "urazuke",
+      "status": "closed",
+      "opened_at": 1792425948148,
+      "stages": [
+        {
+          "id": "u-arranque",
+          "title": "I. Arranque"
+        },
+        {
+          "id": "u-bucle",
+          "title": "II. Bucle de construccion"
+        },
+        {
+          "id": "u-salida",
+          "title": "III. Salida a produccion"
+        },
+        {
+          "id": "u-operacion",
+          "title": "IV. Operacion"
+        }
+      ],
+      "closed_at": 1792430576820
+    }
+  ]
+}

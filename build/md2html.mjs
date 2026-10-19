@@ -34,6 +34,8 @@ function href(u) {
 function inline(s) {
   s = esc(s);
   s = s.replace(/`([^`]+)`/g, (_, c) => `<code>${c}</code>`);
+  // Imágenes: ![texto](ruta) -> <img>, antes que los enlaces para que el patrón de link no se las coma.
+  s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (_, t, u) => `<img src="${u}" alt="${t}" loading="lazy">`);
   s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => {
     const cls = /^Ref\. ?\d+/.test(t) ? ' class="ref"' : '';
     const ext = /^https?:/.test(u) ? ' target="_blank" rel="noopener"' : '';
@@ -230,6 +232,7 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 .antes code{background:#fff}
 pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
 pre.code code{background:none;border:0;padding:0;white-space:pre}
+img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;margin:.6em 0;display:block}
 pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
 .glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
 .glos p strong{color:#3a2f00}

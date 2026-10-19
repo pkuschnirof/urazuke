@@ -1,0 +1,150 @@
+{
+  "rows": [
+    {
+      "num": "00",
+      "title": "Este proyecto se puede encarar asi? (elegibilidad)",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "01",
+      "title": "El contrato de convivencia",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "02",
+      "title": "La definicion del proyecto, el arbol semantico y la lectura obligatoria",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "03",
+      "title": "Dimensionar antes de disenar la arquitectura",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "04",
+      "title": "El esqueleto con sus compuertas",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "05",
+      "title": "El plan son los pendientes",
+      "status": "red",
+      "failing": [
+        "6 with spec, 1 without (acceptance + how_verified)"
+      ]
+    },
+    {
+      "num": "06",
+      "title": "Las decisiones se escriben junto al codigo",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "07",
+      "title": "Medir antes de construir, con un instrumento que tambien se verifica",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "08",
+      "title": "Tests como candados, probados en rojo",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "09",
+      "title": "Calidad del codigo verificada por maquina, con compuerta",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "10",
+      "title": "Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "11",
+      "title": "Simetria entre productor y consumidor, y el registro de anti-patrones",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "12",
+      "title": "Verificacion honesta y reporte proporcional",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "13",
+      "title": "La auditoria periodica como insumo del plan",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "14",
+      "title": "Fail-closed, candados y cero dano silencioso",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "15",
+      "title": "Integracion continua, entornos, secretos y despliegue como parte del producto",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "16",
+      "title": "Observabilidad y trazabilidad totales, con nivel configurable",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "17",
+      "title": "Optimizacion de la capa de persistencia, medida antes y despues",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "18",
+      "title": "Escaneo y solucion de vulnerabilidades, en la cadena y con calendario",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "19",
+      "title": "Pruebas de rendimiento en volumen y punto de ruptura",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "20",
+      "title": "Documentacion viva y manuales que una persona puede seguir sin IA",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "21",
+      "title": "Monitoreo de recursos, funciones y consultas fuera de rango, con reporte ciclico",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "22",
+      "title": "Monitoreo de errores y reporte ciclico: ningun error sin pendiente",
+      "status": "green",
+      "failing": []
+    },
+    {
+      "num": "23",
+      "title": "El agente adentro del sistema, y la retrospectiva con numero",
+      "status": "green",
+      "failing": []
+    }
+  ]
+}

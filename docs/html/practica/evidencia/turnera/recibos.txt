@@ -1,0 +1,285 @@
+声  Recibos de evidencia -- turnera
+  47 recibos: 9 rojo probado, 9 verde, 11 regresion, 10 e2e, 2 calidad, 0 mutacion
+
+RCP-001 red_proof for PND-025 -- OK
+  command : npx vitest run tests/server.test.js
+  ref     : 27a75a1 (base b429ad6)
+  exit    : 1  counts: 1 files failed
+  when    : 2026-10-19T16:52:46.077Z (1677 ms)
+
+RCP-002 red_proof for PND-026 -- OK
+  command : npx vitest run tests/rules.test.js
+  ref     : 27a75a1 (base b429ad6)
+  exit    : 1  counts: 1 files failed
+  when    : 2026-10-19T16:52:51.747Z (2309 ms)
+
+RCP-003 red_proof for PND-027 -- OK
+  command : npx vitest run tests/store.test.js -t sobreturno
+  ref     : 27a75a1 (base b429ad6)
+  exit    : 1  counts: 1 files failed
+  when    : 2026-10-19T16:52:58.753Z (2351 ms)
+
+RCP-004 red_proof for PND-028 -- OK
+  command : npx vitest run tests/store.test.js -t confirm
+  ref     : 27a75a1 (base b429ad6)
+  exit    : 1  counts: 1 files failed
+  when    : 2026-10-19T16:53:05.383Z (2442 ms)
+
+RCP-005 red_proof for PND-029 -- OK
+  command : npx vitest run tests/store.test.js -t cancel
+  ref     : 27a75a1 (base b429ad6)
+  exit    : 1  counts: 1 files failed
+  when    : 2026-10-19T16:53:11.729Z (2383 ms)
+
+RCP-006 red_proof for PND-030 -- OK
+  command : npx vitest run tests/store.test.js -t ausente
+  ref     : 27a75a1 (base b429ad6)
+  exit    : 1  counts: 1 files failed
+  when    : 2026-10-19T16:53:18.634Z (4657 ms)
+
+RCP-007 green for PND-025 -- OK
+  command : npx vitest run tests/server.test.js
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 4 passed
+  when    : 2026-10-19T16:53:27.983Z (2907 ms)
+
+RCP-008 green for PND-026 -- OK
+  command : npx vitest run tests/rules.test.js
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 12 passed
+  when    : 2026-10-19T16:53:35.081Z (2113 ms)
+
+RCP-009 green for PND-027 -- OK
+  command : npx vitest run tests/store.test.js -t sobreturno
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T16:53:41.450Z (2302 ms)
+
+RCP-010 green for PND-028 -- OK
+  command : npx vitest run tests/store.test.js -t confirm
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 1 passed
+  when    : 2026-10-19T16:53:47.601Z (2224 ms)
+
+RCP-011 green for PND-029 -- OK
+  command : npx vitest run tests/store.test.js -t cancel
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T16:53:53.363Z (2183 ms)
+
+RCP-012 green for PND-030 -- OK
+  command : npx vitest run tests/store.test.js -t ausente
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 2 passed
+  when    : 2026-10-19T16:53:59.608Z (2333 ms)
+
+RCP-013 regression for PND-025 -- OK
+  command : npm test
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 30 passed
+  when    : 2026-10-19T16:54:05.105Z (2006 ms)
+
+RCP-014 regression for PND-026 -- OK
+  command : npm test
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 30 passed
+  when    : 2026-10-19T16:54:11.452Z (1950 ms)
+
+RCP-015 regression for PND-027 -- OK
+  command : npm test
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 30 passed
+  when    : 2026-10-19T16:54:16.888Z (2067 ms)
+
+RCP-016 regression for PND-028 -- OK
+  command : npm test
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 30 passed
+  when    : 2026-10-19T16:54:22.351Z (2003 ms)
+
+RCP-017 regression for PND-029 -- OK
+  command : npm test
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 30 passed
+  when    : 2026-10-19T16:54:27.646Z (2006 ms)
+
+RCP-018 regression for PND-030 -- OK
+  command : npm test
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 30 passed
+  when    : 2026-10-19T16:54:32.685Z (2093 ms)
+
+RCP-019 e2e for PND-025 -- OK
+  command : npm run test:e2e
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T16:54:39.385Z (7033 ms)
+
+RCP-020 e2e for PND-026 -- OK
+  command : npm run test:e2e
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T16:54:50.216Z (5369 ms)
+
+RCP-021 e2e for PND-027 -- OK
+  command : npm run test:e2e
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T16:54:59.031Z (4598 ms)
+
+RCP-022 e2e for PND-028 -- OK
+  command : npm run test:e2e
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T16:55:06.855Z (4667 ms)
+
+RCP-023 e2e for PND-029 -- OK
+  command : npm run test:e2e
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T16:55:14.433Z (4297 ms)
+
+RCP-024 e2e for PND-030 -- OK
+  command : npm run test:e2e
+  ref     : 27a75a1
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T16:55:21.674Z (4475 ms)
+
+RCP-025 quality -- NOT_OK
+  command : yf urazuke quality check
+  ref     : working-tree
+  exit    : 0  counts: 2 failed
+  when    : 2026-10-19T16:55:54.304Z (23 ms)
+
+RCP-026 quality -- OK
+  command : yf urazuke quality check
+  ref     : working-tree
+  exit    : 0  counts: 0 failed
+  when    : 2026-10-19T16:58:09.257Z (1020 ms)
+
+RCP-027 regression for PND-031 -- OK
+  command : npm test
+  ref     : aa4ec76 [dirty tree]
+  exit    : 0  counts: 0 failed, 30 passed
+  when    : 2026-10-19T16:58:13.170Z (2808 ms)
+
+RCP-028 regression for PND-032 -- OK
+  command : npm test
+  ref     : aa4ec76 [dirty tree]
+  exit    : 0  counts: 0 failed, 30 passed
+  when    : 2026-10-19T16:58:19.777Z (2228 ms)
+
+RCP-029 e2e for PND-032 -- OK
+  command : npm run test:e2e
+  ref     : aa4ec76 [dirty tree]
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T16:58:25.737Z (6122 ms)
+
+RCP-030 other for PND-031 -- OK
+  command : npx eslint .
+  ref     : aa4ec76 [dirty tree]
+  exit    : 0
+  when    : 2026-10-19T16:58:35.597Z (2429 ms)
+
+RCP-031 other for PND-032 -- OK
+  command : npx eslint .
+  ref     : aa4ec76 [dirty tree]
+  exit    : 0
+  when    : 2026-10-19T16:58:41.547Z (1818 ms)
+
+RCP-032 load -- OK
+  command : node scripts/load-agenda.mjs --rows 300000 --concurrency 5 --requests 500
+  ref     : 94e7546 [dirty tree]
+  exit    : 0
+  when    : 2026-10-19T17:05:23.724Z (13986 ms)
+
+RCP-033 load -- OK
+  command : node scripts/load-agenda.mjs --rows 300000 --requests 400 --breakpoint --p95-ms 200
+  ref     : 94e7546 [dirty tree]
+  exit    : 0
+  when    : 2026-10-19T17:05:40.404Z (16666 ms)
+
+RCP-034 red_proof for PND-039 -- OK
+  command : npx vitest run tests/estado-maquina.test.js
+  ref     : ab412fc (base ab412fc) [dirty tree]
+  exit    : 1  counts: 3 failed, 1 files failed
+  when    : 2026-10-19T17:17:59.607Z (3671 ms)
+
+RCP-035 red_proof for PND-040 -- OK
+  command : npx vitest run tests/estado-ausente.test.js
+  ref     : ab412fc (base ab412fc) [dirty tree]
+  exit    : 1  counts: 1 failed, 1 files failed, 1 passed
+  when    : 2026-10-19T17:18:07.447Z (2348 ms)
+
+RCP-036 red_proof for PND-041 -- OK
+  command : npx vitest run tests/recordatorio-telefono.test.js
+  ref     : ab412fc (base ab412fc) [dirty tree]
+  exit    : 1  counts: 2 failed, 1 files failed
+  when    : 2026-10-19T17:18:14.348Z (2206 ms)
+
+RCP-037 green for PND-039 -- OK
+  command : npx vitest run tests/estado-maquina.test.js
+  ref     : 2cc4435
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T17:20:49.409Z (1774 ms)
+
+RCP-038 green for PND-040 -- OK
+  command : npx vitest run tests/estado-ausente.test.js
+  ref     : 2cc4435
+  exit    : 0  counts: 0 failed, 2 passed
+  when    : 2026-10-19T17:20:54.809Z (2105 ms)
+
+RCP-039 green for PND-041 -- OK
+  command : npx vitest run tests/recordatorio-telefono.test.js
+  ref     : 2cc4435
+  exit    : 0  counts: 0 failed, 2 passed
+  when    : 2026-10-19T17:21:01.050Z (2969 ms)
+
+RCP-040 regression for PND-039 -- OK
+  command : npm test
+  ref     : 2cc4435
+  exit    : 0  counts: 0 failed, 37 passed
+  when    : 2026-10-19T17:21:09.582Z (3618 ms)
+
+RCP-041 regression for PND-040 -- OK
+  command : npm test
+  ref     : 2cc4435
+  exit    : 0  counts: 0 failed, 37 passed
+  when    : 2026-10-19T17:21:17.507Z (3213 ms)
+
+RCP-042 regression for PND-041 -- OK
+  command : npm test
+  ref     : 2cc4435
+  exit    : 0  counts: 0 failed, 37 passed
+  when    : 2026-10-19T17:21:24.691Z (2582 ms)
+
+RCP-043 e2e for PND-039 -- OK
+  command : npm run test:e2e
+  ref     : 2cc4435
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T17:21:30.630Z (6849 ms)
+
+RCP-044 e2e for PND-040 -- OK
+  command : npm run test:e2e
+  ref     : 2cc4435
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T17:21:41.831Z (5930 ms)
+
+RCP-045 e2e for PND-041 -- OK
+  command : npm run test:e2e
+  ref     : 2cc4435
+  exit    : 0  counts: 0 failed, 3 passed
+  when    : 2026-10-19T17:21:51.174Z (5601 ms)
+
+RCP-046 quality -- NOT_OK
+  command : yf urazuke quality check
+  ref     : working-tree
+  exit    : 1  counts: 1 failed
+  when    : 2026-10-19T17:21:59.997Z (1647 ms)
+
+RCP-047 quality -- OK
+  command : yf urazuke quality check
+  ref     : working-tree
+  exit    : 0  counts: 0 failed
+  when    : 2026-10-19T17:24:39.134Z (1093 ms)
+

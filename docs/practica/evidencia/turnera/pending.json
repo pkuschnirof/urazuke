@@ -1,0 +1,1636 @@
+{
+  "version": 1,
+  "project_slug": "turnera",
+  "next_id": 50,
+  "items": [
+    {
+      "id": "PND-001",
+      "title": "[WFL-001] 00 Este proyecto se puede encarar asi? (elegibilidad)",
+      "category": "autopilot",
+      "priority": 20,
+      "created_at": 1792425948151,
+      "updated_at": 1792426314806,
+      "body": "Decidir, con criterios excluyentes y ponderados, si el proyecto se puede construir con el metodo. Prompt y verificacion: yujin.urazuke.step {num: 0}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-arranque",
+        "order": 0,
+        "urazuke": {
+          "step": 0
+        }
+      },
+      "closed_at": 1792426314806,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792426314806,
+          "note": "Peldano 0 cerrado con sus artefactos en docs/",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792426314806,
+        "report": {
+          "verified": [],
+          "believed": [],
+          "blind_spots": [
+            "no red proof: the new test was never shown failing against the base",
+            "no regression receipt: the neighbouring suite was not re-run",
+            "no end-to-end receipt and no flows declared in the spec: unknown whether a screen is affected",
+            "the item has no spec (acceptance + how_verified): nothing to verify against"
+          ],
+          "receipts": [],
+          "built_at": 1792426314804
+        },
+        "summary": "Peldano 0 cerrado con sus artefactos en docs/"
+      }
+    },
+    {
+      "id": "PND-002",
+      "title": "[WFL-001] 01 El contrato de convivencia",
+      "category": "autopilot",
+      "priority": 21,
+      "created_at": 1792425948153,
+      "updated_at": 1792426320803,
+      "body": "Las reglas que el agente cumple en cada sesion, escritas antes del codigo. Prompt y verificacion: yujin.urazuke.step {num: 1}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-arranque",
+        "order": 1,
+        "urazuke": {
+          "step": 1
+        }
+      },
+      "closed_at": 1792426320803,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792426320803,
+          "note": "Peldano 1 cerrado con sus artefactos en docs/",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792426320804,
+        "report": {
+          "verified": [],
+          "believed": [],
+          "blind_spots": [
+            "no red proof: the new test was never shown failing against the base",
+            "no regression receipt: the neighbouring suite was not re-run",
+            "no end-to-end receipt and no flows declared in the spec: unknown whether a screen is affected",
+            "the item has no spec (acceptance + how_verified): nothing to verify against"
+          ],
+          "receipts": [],
+          "built_at": 1792426320800
+        },
+        "summary": "Peldano 1 cerrado con sus artefactos en docs/"
+      }
+    },
+    {
+      "id": "PND-003",
+      "title": "[WFL-001] 02 La definicion del proyecto, el arbol semantico y la lectura obligatoria",
+      "category": "autopilot",
+      "priority": 22,
+      "created_at": 1792425948155,
+      "updated_at": 1792426326784,
+      "body": "Que es el sistema, para quien, con que casos de uso, y que se lee en cada sesion. Prompt y verificacion: yujin.urazuke.step {num: 2}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-arranque",
+        "order": 2,
+        "urazuke": {
+          "step": 2
+        }
+      },
+      "closed_at": 1792426326784,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792426326784,
+          "note": "Peldano 2 cerrado con sus artefactos en docs/",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792426326785,
+        "report": {
+          "verified": [],
+          "believed": [],
+          "blind_spots": [
+            "no red proof: the new test was never shown failing against the base",
+            "no regression receipt: the neighbouring suite was not re-run",
+            "no end-to-end receipt and no flows declared in the spec: unknown whether a screen is affected",
+            "the item has no spec (acceptance + how_verified): nothing to verify against"
+          ],
+          "receipts": [],
+          "built_at": 1792426326783
+        },
+        "summary": "Peldano 2 cerrado con sus artefactos en docs/"
+      }
+    },
+    {
+      "id": "PND-004",
+      "title": "[WFL-001] 03 Dimensionar antes de disenar la arquitectura",
+      "category": "autopilot",
+      "priority": 23,
+      "created_at": 1792425948157,
+      "updated_at": 1792426354362,
+      "body": "Volumetria, retencion, concurrencia y envoltura de hardware antes de elegir la persistencia. Prompt y verificacion: yujin.urazuke.step {num: 3}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-arranque",
+        "order": 3,
+        "urazuke": {
+          "step": 3
+        }
+      },
+      "closed_at": 1792426354362,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792426354362,
+          "note": "Peldano 3: SIZING.md y registro G9 admisible (sql-async, sql-keyset, retention-by-age, explicit-transactions) tras el rechazo de la primera propuesta",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792426354363,
+        "report": {
+          "verified": [],
+          "believed": [],
+          "blind_spots": [
+            "no red proof: the new test was never shown failing against the base",
+            "no regression receipt: the neighbouring suite was not re-run",
+            "no end-to-end receipt and no flows declared in the spec: unknown whether a screen is affected",
+            "the item has no spec (acceptance + how_verified): nothing to verify against"
+          ],
+          "receipts": [],
+          "built_at": 1792426354361
+        },
+        "summary": "Peldano 3: SIZING.md y registro G9 admisible (sql-async, sql-keyset, retention-by-age, explicit-transactions) tras el rechazo de la primera propuesta"
+      }
+    },
+    {
+      "id": "PND-005",
+      "title": "[WFL-001] 04 El esqueleto con sus compuertas",
+      "category": "autopilot",
+      "priority": 24,
+      "created_at": 1792425948159,
+      "updated_at": 1792427990347,
+      "body": "Repositorio, integracion continua, entornos y las compuertas que nadie puede saltar. Prompt y verificacion: yujin.urazuke.step {num: 4}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-arranque",
+        "order": 4,
+        "urazuke": {
+          "step": 4
+        }
+      },
+      "closed_at": 1792427990347,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792427990347,
+          "note": "Esqueleto con compuertas: CI en .github/workflows/ci.yml, GATES.md, log estructurado, store async sobre node:sqlite, tests y e2e verdes (26 + 2)",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792427990347,
+        "summary": "Esqueleto con compuertas: CI en .github/workflows/ci.yml, GATES.md, log estructurado, store async sobre node:sqlite, tests y e2e verdes (26 + 2)"
+      }
+    },
+    {
+      "id": "PND-006",
+      "title": "[WFL-001] 05 El plan son los pendientes",
+      "category": "autopilot",
+      "priority": 25,
+      "created_at": 1792425948161,
+      "updated_at": 1792427993384,
+      "body": "Cada pendiente lleva su especificacion completa: criterios de aceptacion y como se verifica. Prompt y verificacion: yujin.urazuke.step {num: 5}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-bucle",
+        "order": 5,
+        "urazuke": {
+          "step": 5
+        }
+      },
+      "closed_at": 1792427993384,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792427993384,
+          "note": "Plan = pendientes PND-025..030 con criterios de aceptacion, como se verifica y flujo; bloque 1 en docs/blocks/BLOCK_01_REQUEST.md",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792427993384,
+        "summary": "Plan = pendientes PND-025..030 con criterios de aceptacion, como se verifica y flujo; bloque 1 en docs/blocks/BLOCK_01_REQUEST.md"
+      }
+    },
+    {
+      "id": "PND-007",
+      "title": "[WFL-001] 06 Las decisiones se escriben junto al codigo",
+      "category": "autopilot",
+      "priority": 26,
+      "created_at": 1792425948163,
+      "updated_at": 1792427997049,
+      "body": "Cada decision con dueno, fecha, la frase textual de origen y donde se aplica. Prompt y verificacion: yujin.urazuke.step {num: 6}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-bucle",
+        "order": 6,
+        "urazuke": {
+          "step": 6
+        }
+      },
+      "closed_at": 1792427997049,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792427997049,
+          "note": "docs/DECISIONS.md D-001..D-006 junto al codigo; D-003 node:sqlite tras el rechazo G9 del JSON en memoria",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792427997049,
+        "summary": "docs/DECISIONS.md D-001..D-006 junto al codigo; D-003 node:sqlite tras el rechazo G9 del JSON en memoria"
+      }
+    },
+    {
+      "id": "PND-008",
+      "title": "[WFL-001] 07 Medir antes de construir, con un instrumento que tambien se verifica",
+      "category": "autopilot",
+      "priority": 27,
+      "created_at": 1792425948166,
+      "updated_at": 1792428000624,
+      "body": "Un numero que alimenta una decision se mide con un programa que tiene su propio test. Prompt y verificacion: yujin.urazuke.step {num: 7}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-bucle",
+        "order": 7,
+        "urazuke": {
+          "step": 7
+        }
+      },
+      "closed_at": 1792428000624,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792428000624,
+          "note": "Medidor scripts/meter-agenda.mjs con test tests/meter.test.js; docs/MEASUREMENTS.md con comando, fecha, numeros y presupuesto protegido por test",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792428000625,
+        "summary": "Medidor scripts/meter-agenda.mjs con test tests/meter.test.js; docs/MEASUREMENTS.md con comando, fecha, numeros y presupuesto protegido por test"
+      }
+    },
+    {
+      "id": "PND-009",
+      "title": "[WFL-001] 08 Tests como candados, probados en rojo",
+      "category": "autopilot",
+      "priority": 28,
+      "created_at": 1792425948169,
+      "updated_at": 1792428939483,
+      "body": "El rojo contra el codigo anterior como recibo, el verde, la regresion y la prueba de punta a punta. Prompt y verificacion: yujin.urazuke.step {num: 8}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-bucle",
+        "order": 8,
+        "urazuke": {
+          "step": 8
+        }
+      },
+      "closed_at": 1792428939483,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792428939483,
+          "note": "24 recibos: 6 rojos contra b429ad6 (RCP-001..006), 6 verdes, 6 regresiones (30 tests), 6 e2e (3 flujos pantalla-a-backend)",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792428939483,
+        "summary": "24 recibos: 6 rojos contra b429ad6 (RCP-001..006), 6 verdes, 6 regresiones (30 tests), 6 e2e (3 flujos pantalla-a-backend)"
+      }
+    },
+    {
+      "id": "PND-010",
+      "title": "[WFL-001] 09 Calidad del codigo verificada por maquina, con compuerta",
+      "category": "autopilot",
+      "priority": 29,
+      "created_at": 1792425948172,
+      "updated_at": 1792429149435,
+      "body": "Linter, formateador, limites de tamano y complejidad, duplicacion, codigo muerto, cobertura con trinquete. Prompt y verificacion: yujin.urazuke.step {num: 9}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-bucle",
+        "order": 9,
+        "urazuke": {
+          "step": 9
+        }
+      },
+      "closed_at": 1792429149435,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792429149435,
+          "note": "eslint + limites nativos de Forge + trinquete .forge/quality-ratchet.json; docs/CODE_QUALITY.md con numeros; lint en CI; 2 violaciones de hoy abiertas como PND-031/032 y cerradas con recibo",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429149436,
+        "summary": "eslint + limites nativos de Forge + trinquete .forge/quality-ratchet.json; docs/CODE_QUALITY.md con numeros; lint en CI; 2 violaciones de hoy abiertas como PND-031/032 y cerradas con recibo"
+      }
+    },
+    {
+      "id": "PND-011",
+      "title": "[WFL-001] 10 Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas",
+      "category": "autopilot",
+      "priority": 30,
+      "created_at": 1792425948175,
+      "updated_at": 1792429152222,
+      "body": "Cada pendiente deja su caso de prueba manual; cada fallo humano vuelve como pendiente. Prompt y verificacion: yujin.urazuke.step {num: 10}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-bucle",
+        "order": 10,
+        "urazuke": {
+          "step": 10
+        }
+      },
+      "closed_at": 1792429152222,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792429152222,
+          "note": "docs/MANUAL_TESTS.md: casos escritos con la funcionalidad del bloque 1, para que los ejecute la duena",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429152223,
+        "summary": "docs/MANUAL_TESTS.md: casos escritos con la funcionalidad del bloque 1, para que los ejecute la duena"
+      }
+    },
+    {
+      "id": "PND-012",
+      "title": "[WFL-001] 11 Simetria entre productor y consumidor, y el registro de anti-patrones",
+      "category": "autopilot",
+      "priority": 31,
+      "created_at": 1792425948177,
+      "updated_at": 1792429155203,
+      "body": "Nadie cambia una estructura compartida sin tocar a todos sus consumidores; cada golpe queda escrito. Prompt y verificacion: yujin.urazuke.step {num: 11}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-bucle",
+        "order": 11,
+        "urazuke": {
+          "step": 11
+        }
+      },
+      "closed_at": 1792429155203,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792429155203,
+          "note": "docs/PRODUCER_CONSUMER_MAP.md y docs/GOTCHAS.md con los tres golpes del arranque",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429155203,
+        "summary": "docs/PRODUCER_CONSUMER_MAP.md y docs/GOTCHAS.md con los tres golpes del arranque"
+      }
+    },
+    {
+      "id": "PND-013",
+      "title": "[WFL-001] 12 Verificacion honesta y reporte proporcional",
+      "category": "autopilot",
+      "priority": 32,
+      "created_at": 1792425948179,
+      "updated_at": 1792429181508,
+      "body": "Cada reporte separa lo verificado, lo creido y el punto ciego, y ocupa lo que la evidencia da. Prompt y verificacion: yujin.urazuke.step {num: 12}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-bucle",
+        "order": 12,
+        "urazuke": {
+          "step": 12
+        }
+      },
+      "closed_at": 1792429181508,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792429181508,
+          "note": "Seis cierres de plan con reporte honesto armado por Forge (verificado / creido / punto ciego) a partir de los recibos",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429181509,
+        "summary": "Seis cierres de plan con reporte honesto armado por Forge (verificado / creido / punto ciego) a partir de los recibos"
+      }
+    },
+    {
+      "id": "PND-014",
+      "title": "[WFL-001] 13 La auditoria periodica como insumo del plan",
+      "category": "autopilot",
+      "priority": 33,
+      "created_at": 1792425948182,
+      "updated_at": 1792430536971,
+      "body": "Otra sesion, idealmente otro modelo, revisa todo y sus hallazgos entran al plan como pendientes. Prompt y verificacion: yujin.urazuke.step {num: 13}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-salida",
+        "order": 13,
+        "urazuke": {
+          "step": 13
+        }
+      },
+      "closed_at": 1792430536971,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430536971,
+          "note": "docs/AUDIT_2026-10-19.md por una sesion independiente (Claude Sonnet): 15 hallazgos, 11 convertidos en pendientes PND-039..049; los tres altos cerrados en el bloque 2 con rojo de comportamiento",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430536971,
+        "summary": "docs/AUDIT_2026-10-19.md por una sesion independiente (Claude Sonnet): 15 hallazgos, 11 convertidos en pendientes PND-039..049; los tres altos cerrados en el bloque 2 con rojo de comportamiento"
+      }
+    },
+    {
+      "id": "PND-015",
+      "title": "[WFL-001] 14 Fail-closed, candados y cero dano silencioso",
+      "category": "autopilot",
+      "priority": 34,
+      "created_at": 1792425948184,
+      "updated_at": 1792430540020,
+      "body": "Cada accion con consecuencia real tiene su candado; ante la duda, el sistema se detiene. Prompt y verificacion: yujin.urazuke.step {num: 14}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-salida",
+        "order": 14,
+        "urazuke": {
+          "step": 14
+        }
+      },
+      "closed_at": 1792430540020,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430540020,
+          "note": "docs/LOCKS.md + CONSEQUENTIAL_ACTIONS_SURVEY.md; los dos candados que faltaban en el codigo (ausente, telefono) ahora tienen test",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430540020,
+        "summary": "docs/LOCKS.md + CONSEQUENTIAL_ACTIONS_SURVEY.md; los dos candados que faltaban en el codigo (ausente, telefono) ahora tienen test"
+      }
+    },
+    {
+      "id": "PND-016",
+      "title": "[WFL-001] 15 Integracion continua, entornos, secretos y despliegue como parte del producto",
+      "category": "autopilot",
+      "priority": 35,
+      "created_at": 1792425948186,
+      "updated_at": 1792430543093,
+      "body": "Despliegue repetible, configuracion afuera del codigo, secretos en su lugar y vuelta atras probada. Prompt y verificacion: yujin.urazuke.step {num: 15}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-salida",
+        "order": 15,
+        "urazuke": {
+          "step": 15
+        }
+      },
+      "closed_at": 1792430543093,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430543093,
+          "note": "CI con lint + tests + e2e; docs/ENVIRONMENTS_SURVEY.md y DEPLOYMENT.md; sin secretos (la app no tiene credenciales)",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430543094,
+        "summary": "CI con lint + tests + e2e; docs/ENVIRONMENTS_SURVEY.md y DEPLOYMENT.md; sin secretos (la app no tiene credenciales)"
+      }
+    },
+    {
+      "id": "PND-017",
+      "title": "[WFL-001] 16 Observabilidad y trazabilidad totales, con nivel configurable",
+      "category": "autopilot",
+      "priority": 36,
+      "created_at": 1792425948188,
+      "updated_at": 1792430546122,
+      "body": "Cada accion deja un registro estructurado con su identificador; el nivel se configura sin tocar codigo. Prompt y verificacion: yujin.urazuke.step {num: 16}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-salida",
+        "order": 16,
+        "urazuke": {
+          "step": 16
+        }
+      },
+      "closed_at": 1792430546122,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430546122,
+          "note": "log JSON por peticion con req_id y X-Request-Id, LOG_LEVEL configurable; docs/OBSERVABILITY.md",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430546122,
+        "summary": "log JSON por peticion con req_id y X-Request-Id, LOG_LEVEL configurable; docs/OBSERVABILITY.md"
+      }
+    },
+    {
+      "id": "PND-018",
+      "title": "[WFL-001] 17 Optimizacion de la capa de persistencia, medida antes y despues",
+      "category": "autopilot",
+      "priority": 37,
+      "created_at": 1792425948190,
+      "updated_at": 1792430549272,
+      "body": "Indices, fin de los bucles N+1, presupuestos de consultas por camino; todo con numero antes y despues. Prompt y verificacion: yujin.urazuke.step {num: 17}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-salida",
+        "order": 17,
+        "urazuke": {
+          "step": 17
+        }
+      },
+      "closed_at": 1792430549272,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430549272,
+          "note": "docs/PERSISTENCE.md: agenda del dia 36 -> 0,7 ms y resumen 48 -> 10 ms a 180.000 filas, con el plan de consulta antes y despues",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430549272,
+        "summary": "docs/PERSISTENCE.md: agenda del dia 36 -> 0,7 ms y resumen 48 -> 10 ms a 180.000 filas, con el plan de consulta antes y despues"
+      }
+    },
+    {
+      "id": "PND-019",
+      "title": "[WFL-001] 18 Escaneo y solucion de vulnerabilidades, en la cadena y con calendario",
+      "category": "autopilot",
+      "priority": 38,
+      "created_at": 1792425948193,
+      "updated_at": 1792430552321,
+      "body": "Dependencias, secretos, codigo e infraestructura escaneados en cada push y con fecha de repaso. Prompt y verificacion: yujin.urazuke.step {num: 18}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-salida",
+        "order": 18,
+        "urazuke": {
+          "step": 18
+        }
+      },
+      "closed_at": 1792430552321,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430552321,
+          "note": "docs/SECURITY_2026-10-19.md: npm audit 0, sin secretos, calendario mensual; el escaneo de secretos en CI queda como PND-042",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430552321,
+        "summary": "docs/SECURITY_2026-10-19.md: npm audit 0, sin secretos, calendario mensual; el escaneo de secretos en CI queda como PND-042"
+      }
+    },
+    {
+      "id": "PND-020",
+      "title": "[WFL-001] 19 Pruebas de rendimiento en volumen y punto de ruptura",
+      "category": "autopilot",
+      "priority": 39,
+      "created_at": 1792425948195,
+      "updated_at": 1792430555897,
+      "body": "Cargar al volumen esperado y al por diez, y encontrar que se rompe primero. Prompt y verificacion: yujin.urazuke.step {num: 19}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-salida",
+        "order": 19,
+        "urazuke": {
+          "step": 19
+        }
+      },
+      "closed_at": 1792430555897,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430555897,
+          "note": "docs/PERFORMANCE.md + PERFORMANCE_2026-10-19.md con scripts/load-agenda.mjs; recibos RCP-032/033 (load); ruptura a 160 en concurrencia por saturacion del hilo",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430555898,
+        "summary": "docs/PERFORMANCE.md + PERFORMANCE_2026-10-19.md con scripts/load-agenda.mjs; recibos RCP-032/033 (load); ruptura a 160 en concurrencia por saturacion del hilo"
+      }
+    },
+    {
+      "id": "PND-021",
+      "title": "[WFL-001] 20 Documentacion viva y manuales que una persona puede seguir sin IA",
+      "category": "autopilot",
+      "priority": 40,
+      "created_at": 1792425948197,
+      "updated_at": 1792430559497,
+      "body": "Manual de usuario, de mantenimiento y de infraestructura y recuperacion; el registro de cambios al dia. Prompt y verificacion: yujin.urazuke.step {num: 20}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-salida",
+        "order": 20,
+        "urazuke": {
+          "step": 20
+        }
+      },
+      "closed_at": 1792430559497,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430559497,
+          "note": "USER_MANUAL, MAINTENANCE_MANUAL, INFRASTRUCTURE_AND_RECOVERY_MANUAL y CHANGELOG",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430559497,
+        "summary": "USER_MANUAL, MAINTENANCE_MANUAL, INFRASTRUCTURE_AND_RECOVERY_MANUAL y CHANGELOG"
+      }
+    },
+    {
+      "id": "PND-022",
+      "title": "[WFL-001] 21 Monitoreo de recursos, funciones y consultas fuera de rango, con reporte ciclico",
+      "category": "autopilot",
+      "priority": 41,
+      "created_at": 1792425948199,
+      "updated_at": 1792430566948,
+      "body": "Umbrales por recurso y por funcion, alertas, y un reporte que llega solo cada ciclo. Prompt y verificacion: yujin.urazuke.step {num: 21}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-operacion",
+        "order": 21,
+        "urazuke": {
+          "step": 21
+        }
+      },
+      "closed_at": 1792430566948,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430566948,
+          "note": "docs/MONITORING.md + reporte ciclico docs/MONITORING_REPORT_2026-10-19.md (yf urazuke cycle): dimensionamiento admisible, umbrales y ciclo",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430566948,
+        "summary": "docs/MONITORING.md + reporte ciclico docs/MONITORING_REPORT_2026-10-19.md (yf urazuke cycle): dimensionamiento admisible, umbrales y ciclo"
+      }
+    },
+    {
+      "id": "PND-023",
+      "title": "[WFL-001] 22 Monitoreo de errores y reporte ciclico: ningun error sin pendiente",
+      "category": "autopilot",
+      "priority": 42,
+      "created_at": 1792425948202,
+      "updated_at": 1792430570465,
+      "body": "Captura centralizada de errores, alerta cuando importa, y cada error nuevo con su pendiente. Prompt y verificacion: yujin.urazuke.step {num: 22}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-operacion",
+        "order": 22,
+        "urazuke": {
+          "step": 22
+        }
+      },
+      "closed_at": 1792430570465,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430570465,
+          "note": "El reporte ciclico junta los errores y abre un pendiente por cada uno; los seis del primer ciclo eran del panel de Forge y se rechazaron con motivo",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430570465,
+        "summary": "El reporte ciclico junta los errores y abre un pendiente por cada uno; los seis del primer ciclo eran del panel de Forge y se rechazaron con motivo"
+      }
+    },
+    {
+      "id": "PND-024",
+      "title": "[WFL-001] 23 El agente adentro del sistema, y la retrospectiva con numero",
+      "category": "autopilot",
+      "priority": 43,
+      "created_at": 1792425948204,
+      "updated_at": 1792430576813,
+      "body": "Un agente residente con alcance escrito, y una retrospectiva que termina en una propuesta al metodo. Prompt y verificacion: yujin.urazuke.step {num: 23}.",
+      "workflow": {
+        "code": "WFL-001",
+        "kind": "urazuke",
+        "stage_id": "u-operacion",
+        "order": 23,
+        "urazuke": {
+          "step": 23
+        }
+      },
+      "closed_at": 1792430576813,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430576813,
+          "note": "docs/RESIDENT_AGENT.md + docs/RETROSPECTIVE_2026-10-19.md con los numeros de Forge (yf urazuke retro)",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430576813,
+        "summary": "docs/RESIDENT_AGENT.md + docs/RETROSPECTIVE_2026-10-19.md con los numeros de Forge (yf urazuke retro)"
+      }
+    },
+    {
+      "id": "PND-025",
+      "title": "Agenda del dia por profesional, con cambio de dia",
+      "category": "autopilot",
+      "priority": 10,
+      "created_at": 1792426379335,
+      "updated_at": 1792429158556,
+      "related_doc": "docs/blocks/BLOCK_01_REQUEST.md",
+      "spec": {
+        "acceptance": [
+          "Dado un dia con turnos, cuando abro la agenda, entonces veo los turnos de ese dia agrupados por profesional con su hora, paciente y estado",
+          "Dado otro dia, cuando lo elijo en el selector, entonces la agenda cambia a ese dia"
+        ],
+        "how_verified": "Desde la pantalla: elegir un dia con turnos cargados y ver la lista; verificar en el backend con GET /api/turnos?fecha=YYYY-MM-DD que son los mismos",
+        "flows": [
+          "ver la agenda del dia"
+        ]
+      },
+      "closed_at": 1792429158556,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792429158556,
+          "note": "Agenda del dia por profesional con cambio de dia; RCP-001 rojo contra b429ad6, RCP-007 verde, RCP-013 regresion, RCP-019 e2e",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429158556,
+        "report": {
+          "verified": [
+            "RCP-001 red_proof: `npx vitest run tests/server.test.js` exit 1 @27a75a1 vs base b429ad6",
+            "RCP-007 green: `npx vitest run tests/server.test.js` exit 0 (0 failed, 4 passed) @27a75a1",
+            "RCP-013 regression: `npm test` exit 0 (0 failed, 30 passed) @27a75a1",
+            "RCP-019 e2e: `npm run test:e2e` exit 0 (0 failed, 3 passed) @27a75a1"
+          ],
+          "believed": [],
+          "blind_spots": [],
+          "receipts": [
+            "RCP-001",
+            "RCP-007",
+            "RCP-013",
+            "RCP-019"
+          ],
+          "built_at": 1792429158553
+        },
+        "summary": "Agenda del dia por profesional con cambio de dia; RCP-001 rojo contra b429ad6, RCP-007 verde, RCP-013 regresion, RCP-019 e2e"
+      }
+    },
+    {
+      "id": "PND-026",
+      "title": "Alta de turno en bloques de 20 minutos",
+      "category": "autopilot",
+      "priority": 11,
+      "created_at": 1792426383146,
+      "updated_at": 1792429163706,
+      "related_doc": "docs/blocks/BLOCK_01_REQUEST.md",
+      "spec": {
+        "acceptance": [
+          "Dado el formulario con paciente, telefono, profesional, fecha y hora valida (08:00 a 18:00, multiplo de 20 min), cuando confirmo, entonces el turno aparece en la agenda con estado pendiente",
+          "Dada una hora fuera de la grilla, cuando confirmo, entonces el sistema la rechaza con un mensaje claro"
+        ],
+        "how_verified": "Desde la pantalla: cargar un turno y verlo en la agenda; en el backend, GET /api/turnos devuelve el turno con estado pendiente",
+        "flows": [
+          "cargar un turno"
+        ]
+      },
+      "closed_at": 1792429163706,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792429163706,
+          "note": "Alta en bloques de 20 minutos con validacion; RCP-002 rojo, RCP-008 verde (12 tests), RCP-014 regresion, RCP-020 e2e",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429163707,
+        "report": {
+          "verified": [
+            "RCP-002 red_proof: `npx vitest run tests/rules.test.js` exit 1 @27a75a1 vs base b429ad6",
+            "RCP-008 green: `npx vitest run tests/rules.test.js` exit 0 (0 failed, 12 passed) @27a75a1",
+            "RCP-014 regression: `npm test` exit 0 (0 failed, 30 passed) @27a75a1",
+            "RCP-020 e2e: `npm run test:e2e` exit 0 (0 failed, 3 passed) @27a75a1"
+          ],
+          "believed": [],
+          "blind_spots": [],
+          "receipts": [
+            "RCP-002",
+            "RCP-008",
+            "RCP-014",
+            "RCP-020"
+          ],
+          "built_at": 1792429163704
+        },
+        "summary": "Alta en bloques de 20 minutos con validacion; RCP-002 rojo, RCP-008 verde (12 tests), RCP-014 regresion, RCP-020 e2e"
+      }
+    },
+    {
+      "id": "PND-027",
+      "title": "Rechazo del sobreturno",
+      "category": "autopilot",
+      "priority": 12,
+      "created_at": 1792426386770,
+      "updated_at": 1792429167095,
+      "related_doc": "docs/blocks/BLOCK_01_REQUEST.md",
+      "spec": {
+        "acceptance": [
+          "Dado un turno vivo de un profesional a una hora, cuando intento cargar otro al mismo profesional, mismo dia y misma hora, entonces el sistema lo rechaza (409) y me dice que ya hay un turno",
+          "Dado un turno cancelado en ese horario, cuando cargo otro, entonces lo acepta"
+        ],
+        "how_verified": "Desde la pantalla: cargar dos turnos iguales y leer el mensaje de rechazo; en el backend, GET /api/turnos muestra un solo turno vivo en ese horario",
+        "flows": [
+          "cargar un turno"
+        ]
+      },
+      "closed_at": 1792429167095,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792429167095,
+          "note": "Rechazo del sobreturno con 409 dentro de la misma transaccion; RCP-003 rojo, RCP-009 verde, RCP-015 regresion, RCP-021 e2e",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429167095,
+        "report": {
+          "verified": [
+            "RCP-003 red_proof: `npx vitest run tests/store.test.js -t sobreturno` exit 1 @27a75a1 vs base b429ad6",
+            "RCP-009 green: `npx vitest run tests/store.test.js -t sobreturno` exit 0 (0 failed, 3 passed) @27a75a1",
+            "RCP-015 regression: `npm test` exit 0 (0 failed, 30 passed) @27a75a1",
+            "RCP-021 e2e: `npm run test:e2e` exit 0 (0 failed, 3 passed) @27a75a1"
+          ],
+          "believed": [],
+          "blind_spots": [],
+          "receipts": [
+            "RCP-003",
+            "RCP-009",
+            "RCP-015",
+            "RCP-021"
+          ],
+          "built_at": 1792429167093
+        },
+        "summary": "Rechazo del sobreturno con 409 dentro de la misma transaccion; RCP-003 rojo, RCP-009 verde, RCP-015 regresion, RCP-021 e2e"
+      }
+    },
+    {
+      "id": "PND-028",
+      "title": "Confirmar un turno",
+      "category": "autopilot",
+      "priority": 13,
+      "created_at": 1792426390328,
+      "updated_at": 1792429171302,
+      "related_doc": "docs/blocks/BLOCK_01_REQUEST.md",
+      "spec": {
+        "acceptance": [
+          "Dado un turno pendiente, cuando lo confirmo, entonces su estado pasa a confirmado y se ve en la agenda"
+        ],
+        "how_verified": "Desde la pantalla, boton confirmar; en el backend, el turno tiene estado confirmado",
+        "flows": [
+          "confirmar un turno"
+        ]
+      },
+      "closed_at": 1792429171302,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792429171302,
+          "note": "Confirmar un turno; RCP-004 rojo, RCP-010 verde, RCP-016 regresion, RCP-022 e2e (confirmar verificado por API)",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429171302,
+        "report": {
+          "verified": [
+            "RCP-004 red_proof: `npx vitest run tests/store.test.js -t confirm` exit 1 @27a75a1 vs base b429ad6",
+            "RCP-010 green: `npx vitest run tests/store.test.js -t confirm` exit 0 (0 failed, 1 passed) @27a75a1",
+            "RCP-016 regression: `npm test` exit 0 (0 failed, 30 passed) @27a75a1",
+            "RCP-022 e2e: `npm run test:e2e` exit 0 (0 failed, 3 passed) @27a75a1"
+          ],
+          "believed": [],
+          "blind_spots": [],
+          "receipts": [
+            "RCP-004",
+            "RCP-010",
+            "RCP-016",
+            "RCP-022"
+          ],
+          "built_at": 1792429171301
+        },
+        "summary": "Confirmar un turno; RCP-004 rojo, RCP-010 verde, RCP-016 regresion, RCP-022 e2e (confirmar verificado por API)"
+      }
+    },
+    {
+      "id": "PND-029",
+      "title": "Cancelar un turno sin borrarlo",
+      "category": "autopilot",
+      "priority": 14,
+      "created_at": 1792426394152,
+      "updated_at": 1792429174878,
+      "related_doc": "docs/blocks/BLOCK_01_REQUEST.md",
+      "spec": {
+        "acceptance": [
+          "Dado un turno vivo, cuando lo cancelo, entonces queda en la agenda con estado cancelado y no desaparece",
+          "Dado un turno cancelado, cuando pido los turnos del dia, entonces sigue en la lista"
+        ],
+        "how_verified": "Desde la pantalla, boton cancelar y ver el estado; en el backend, GET /api/turnos lo devuelve con estado cancelado",
+        "flows": [
+          "cancelar un turno"
+        ]
+      },
+      "closed_at": 1792429174878,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792429174878,
+          "note": "Cancelar sin borrar: el registro queda y el lugar se libera; RCP-005 rojo, RCP-011 verde, RCP-017 regresion, RCP-023 e2e",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429174878,
+        "report": {
+          "verified": [
+            "RCP-005 red_proof: `npx vitest run tests/store.test.js -t cancel` exit 1 @27a75a1 vs base b429ad6",
+            "RCP-011 green: `npx vitest run tests/store.test.js -t cancel` exit 0 (0 failed, 3 passed) @27a75a1",
+            "RCP-017 regression: `npm test` exit 0 (0 failed, 30 passed) @27a75a1",
+            "RCP-023 e2e: `npm run test:e2e` exit 0 (0 failed, 3 passed) @27a75a1"
+          ],
+          "believed": [],
+          "blind_spots": [],
+          "receipts": [
+            "RCP-005",
+            "RCP-011",
+            "RCP-017",
+            "RCP-023"
+          ],
+          "built_at": 1792429174877
+        },
+        "summary": "Cancelar sin borrar: el registro queda y el lugar se libera; RCP-005 rojo, RCP-011 verde, RCP-017 regresion, RCP-023 e2e"
+      }
+    },
+    {
+      "id": "PND-030",
+      "title": "Marcar ausente",
+      "category": "autopilot",
+      "priority": 15,
+      "created_at": 1792426397785,
+      "updated_at": 1792429178209,
+      "related_doc": "docs/blocks/BLOCK_01_REQUEST.md",
+      "spec": {
+        "acceptance": [
+          "Dado un turno confirmado o pendiente de un dia ya pasado o presente, cuando lo marco ausente, entonces su estado pasa a ausente"
+        ],
+        "how_verified": "Desde la pantalla, boton ausente; en el backend, el estado es ausente",
+        "flows": [
+          "marcar ausente"
+        ]
+      },
+      "closed_at": 1792429178209,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792429178209,
+          "note": "Marcar ausente; RCP-006 rojo, RCP-012 verde, RCP-018 regresion, RCP-024 e2e (ausente verificado por API)",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429178210,
+        "report": {
+          "verified": [
+            "RCP-006 red_proof: `npx vitest run tests/store.test.js -t ausente` exit 1 @27a75a1 vs base b429ad6",
+            "RCP-012 green: `npx vitest run tests/store.test.js -t ausente` exit 0 (0 failed, 2 passed) @27a75a1",
+            "RCP-018 regression: `npm test` exit 0 (0 failed, 30 passed) @27a75a1",
+            "RCP-024 e2e: `npm run test:e2e` exit 0 (0 failed, 3 passed) @27a75a1"
+          ],
+          "believed": [],
+          "blind_spots": [],
+          "receipts": [
+            "RCP-006",
+            "RCP-012",
+            "RCP-018",
+            "RCP-024"
+          ],
+          "built_at": 1792429178208
+        },
+        "summary": "Marcar ausente; RCP-006 rojo, RCP-012 verde, RCP-018 regresion, RCP-024 e2e (ausente verificado por API)"
+      }
+    },
+    {
+      "id": "PND-031",
+      "title": "Bajar la complejidad de validarTurno (11 > 10) sin cambiar su comportamiento",
+      "category": "autopilot",
+      "priority": 16,
+      "created_at": 1792429062662,
+      "updated_at": 1792429144185,
+      "spec": {
+        "acceptance": [
+          "eslint complexity en verde para src/rules.js",
+          "los 12 tests de rules siguen verdes"
+        ],
+        "how_verified": "npx eslint . y npm test",
+        "flows": [
+          "alta de turno"
+        ]
+      },
+      "history": [
+        {
+          "at": 1792429144174,
+          "note": "OVERRIDE de la evidencia: Refactor sin cambio de comportamiento: no hay rojo posible; recibos de calidad RCP-026, regresion RCP-027 y lint RCP-030 [faltaban 2 recibos]",
+          "kind": "progress"
+        },
+        {
+          "at": 1792429144185,
+          "note": "validarTurno pasa a tabla de reglas; complejidad 9 max en el repo; RCP-026 calidad, RCP-027 regresion 30 tests, RCP-030 lint",
+          "kind": "resolution"
+        }
+      ],
+      "closed_at": 1792429144185,
+      "closed_reason": "shipped",
+      "implementation": {
+        "collected_at": 1792429144186,
+        "report": {
+          "verified": [
+            "RCP-027 regression: `npm test` exit 0 (0 failed, 30 passed) @aa4ec76",
+            "RCP-030 other: `npx eslint .` exit 0 @aa4ec76"
+          ],
+          "believed": [],
+          "blind_spots": [
+            "no red proof: the new test was never shown failing against the base",
+            "flow \"alta de turno\" has no end-to-end receipt (screen to backend)",
+            "2 receipt(s) taken on a dirty tree: RCP-027, RCP-030 -- the committed version was not what ran"
+          ],
+          "receipts": [
+            "RCP-027",
+            "RCP-030"
+          ],
+          "built_at": 1792429144184
+        },
+        "summary": "validarTurno pasa a tabla de reglas; complejidad 9 max en el repo; RCP-026 calidad, RCP-027 regresion 30 tests, RCP-030 lint"
+      }
+    },
+    {
+      "id": "PND-032",
+      "title": "Bajar la complejidad de despacharApi (12 > 10) sin cambiar su comportamiento",
+      "category": "autopilot",
+      "priority": 17,
+      "created_at": 1792429066320,
+      "updated_at": 1792429146883,
+      "spec": {
+        "acceptance": [
+          "eslint complexity en verde para src/server.js",
+          "los tests de server y los e2e siguen verdes"
+        ],
+        "how_verified": "npx eslint ., npm test y npm run test:e2e",
+        "flows": [
+          "todas las rutas de la API"
+        ]
+      },
+      "history": [
+        {
+          "at": 1792429146870,
+          "note": "OVERRIDE de la evidencia: Refactor sin cambio de comportamiento: no hay rojo posible; recibos de calidad RCP-026, regresion RCP-028, e2e RCP-029 y lint RCP-031 [faltaban 2 recibos]",
+          "kind": "progress"
+        },
+        {
+          "at": 1792429146883,
+          "note": "despacharApi pasa a tabla de rutas; RCP-026 calidad, RCP-028 regresion, RCP-029 e2e 3 flujos, RCP-031 lint",
+          "kind": "resolution"
+        }
+      ],
+      "closed_at": 1792429146883,
+      "closed_reason": "shipped",
+      "implementation": {
+        "collected_at": 1792429146884,
+        "report": {
+          "verified": [
+            "RCP-028 regression: `npm test` exit 0 (0 failed, 30 passed) @aa4ec76",
+            "RCP-029 e2e: `npm run test:e2e` exit 0 (0 failed, 3 passed) @aa4ec76",
+            "RCP-031 other: `npx eslint .` exit 0 @aa4ec76"
+          ],
+          "believed": [],
+          "blind_spots": [
+            "no red proof: the new test was never shown failing against the base",
+            "3 receipt(s) taken on a dirty tree: RCP-028, RCP-029, RCP-031 -- the committed version was not what ran"
+          ],
+          "receipts": [
+            "RCP-028",
+            "RCP-029",
+            "RCP-031"
+          ],
+          "built_at": 1792429146882
+        },
+        "summary": "despacharApi pasa a tabla de rutas; RCP-026 calidad, RCP-028 regresion, RCP-029 e2e 3 flujos, RCP-031 lint"
+      }
+    },
+    {
+      "id": "PND-033",
+      "title": "[error] fetch GET /api/forge/panel-queue?after=# threw: Failed to fetch",
+      "category": "bug",
+      "priority": 20,
+      "created_at": 1792429581168,
+      "updated_at": 1792429655918,
+      "body": "54 ocurrencia(s) en la ventana del reporte ciclico. Ningun error sin pendiente (peldano 22).",
+      "closed_at": 1792429655918,
+      "closed_reason": "rejected",
+      "history": [
+        {
+          "at": 1792429655918,
+          "note": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge.",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429655918,
+        "summary": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge."
+      }
+    },
+    {
+      "id": "PND-034",
+      "title": "[error] fetch GET /api/forge/bridge/state threw: Failed to fetch",
+      "category": "bug",
+      "priority": 20,
+      "created_at": 1792429581171,
+      "updated_at": 1792429658712,
+      "body": "37 ocurrencia(s) en la ventana del reporte ciclico. Ningun error sin pendiente (peldano 22).",
+      "closed_at": 1792429658712,
+      "closed_reason": "rejected",
+      "history": [
+        {
+          "at": 1792429658712,
+          "note": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge.",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429658713,
+        "summary": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge."
+      }
+    },
+    {
+      "id": "PND-035",
+      "title": "[error] fetch GET /api/forge/startup-tabs?lang=en threw: Failed to fetch",
+      "category": "bug",
+      "priority": 20,
+      "created_at": 1792429581175,
+      "updated_at": 1792429661342,
+      "body": "17 ocurrencia(s) en la ventana del reporte ciclico. Ningun error sin pendiente (peldano 22).",
+      "closed_at": 1792429661342,
+      "closed_reason": "rejected",
+      "history": [
+        {
+          "at": 1792429661342,
+          "note": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge.",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429661342,
+        "summary": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge."
+      }
+    },
+    {
+      "id": "PND-036",
+      "title": "[error] fetch POST /api/chat threw: Failed to fetch",
+      "category": "bug",
+      "priority": 20,
+      "created_at": 1792429581178,
+      "updated_at": 1792429663897,
+      "body": "2 ocurrencia(s) en la ventana del reporte ciclico. Ningun error sin pendiente (peldano 22).",
+      "closed_at": 1792429663897,
+      "closed_reason": "rejected",
+      "history": [
+        {
+          "at": 1792429663897,
+          "note": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge.",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429663897,
+        "summary": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge."
+      }
+    },
+    {
+      "id": "PND-037",
+      "title": "[error] fetch POST /api/forge/brain-config HTTP #",
+      "category": "bug",
+      "priority": 20,
+      "created_at": 1792429581181,
+      "updated_at": 1792429666486,
+      "body": "1 ocurrencia(s) en la ventana del reporte ciclico. Ningun error sin pendiente (peldano 22).",
+      "closed_at": 1792429666486,
+      "closed_reason": "rejected",
+      "history": [
+        {
+          "at": 1792429666486,
+          "note": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge.",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429666487,
+        "summary": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge."
+      }
+    },
+    {
+      "id": "PND-038",
+      "title": "[error] fetch POST /api/forge/support/report threw: Failed to fetch",
+      "category": "bug",
+      "priority": 20,
+      "created_at": 1792429581184,
+      "updated_at": 1792429669050,
+      "body": "1 ocurrencia(s) en la ventana del reporte ciclico. Ningun error sin pendiente (peldano 22).",
+      "closed_at": 1792429669050,
+      "closed_reason": "rejected",
+      "history": [
+        {
+          "at": 1792429669050,
+          "note": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge.",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792429669051,
+        "summary": "No es un error del producto: son fallos de red del propio panel de Forge (fetch a /api/forge/*) mientras el servidor del panel estaba apagado. El reporte ciclico no debe contarlos; se corrige en Forge."
+      }
+    },
+    {
+      "id": "PND-039",
+      "title": "Auditoria 13 #3: maquina de estados, un turno cancelado no se revive por confirmar ni reprogramar",
+      "category": "bug",
+      "priority": 12,
+      "created_at": 1792430165293,
+      "updated_at": 1792430524937,
+      "spec": {
+        "acceptance": [
+          "confirmar, reprogramar y marcar ausente sobre un turno cancelado responden 409 y el registro no cambia"
+        ],
+        "how_verified": "test de store en rojo contra HEAD actual, verde con el cambio, regresion y e2e",
+        "flows": [
+          "cambio de estado"
+        ]
+      },
+      "closed_at": 1792430524937,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430524937,
+          "note": "motivoTransicionInvalida en rules.js, aplicado en cambiarEstado y reprogramar; un cancelado responde 409; RCP-034 rojo (3 fallando contra ab412fc), verde, regresion 37, e2e 3",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430524937,
+        "report": {
+          "verified": [
+            "RCP-034 red_proof: `npx vitest run tests/estado-maquina.test.js` exit 1 (3 failed, 0 passed) @ab412fc vs base ab412fc",
+            "RCP-037 green: `npx vitest run tests/estado-maquina.test.js` exit 0 (0 failed, 3 passed) @2cc4435",
+            "RCP-040 regression: `npm test` exit 0 (0 failed, 37 passed) @2cc4435",
+            "RCP-043 e2e: `npm run test:e2e` exit 0 (0 failed, 3 passed) @2cc4435"
+          ],
+          "believed": [],
+          "blind_spots": [],
+          "receipts": [
+            "RCP-034",
+            "RCP-037",
+            "RCP-040",
+            "RCP-043"
+          ],
+          "built_at": 1792430524936
+        },
+        "summary": "motivoTransicionInvalida en rules.js, aplicado en cambiarEstado y reprogramar; un cancelado responde 409; RCP-034 rojo (3 fallando contra ab412fc), verde, regresion 37, e2e 3"
+      }
+    },
+    {
+      "id": "PND-040",
+      "title": "Auditoria 13 #1: marcar ausente solo el dia del turno o despues (candado de LOCKS.md)",
+      "category": "bug",
+      "priority": 13,
+      "created_at": 1792430168575,
+      "updated_at": 1792430527895,
+      "spec": {
+        "acceptance": [
+          "marcar ausente un turno futuro responde 409 con mensaje claro; el dia del turno o despues, se marca"
+        ],
+        "how_verified": "test de store en rojo contra HEAD actual, verde con el cambio, regresion",
+        "flows": [
+          "cambio de estado"
+        ]
+      },
+      "closed_at": 1792430527895,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430527895,
+          "note": "marcarAusente recibe hoy; un turno futuro responde 409 con mensaje; e2e de ausente pasa a usar la fecha de hoy; RCP-035 rojo (1 fallando), verde, regresion, e2e",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430527895,
+        "report": {
+          "verified": [
+            "RCP-035 red_proof: `npx vitest run tests/estado-ausente.test.js` exit 1 (1 failed, 1 passed) @ab412fc vs base ab412fc",
+            "RCP-038 green: `npx vitest run tests/estado-ausente.test.js` exit 0 (0 failed, 2 passed) @2cc4435",
+            "RCP-041 regression: `npm test` exit 0 (0 failed, 37 passed) @2cc4435",
+            "RCP-044 e2e: `npm run test:e2e` exit 0 (0 failed, 3 passed) @2cc4435"
+          ],
+          "believed": [],
+          "blind_spots": [],
+          "receipts": [
+            "RCP-035",
+            "RCP-038",
+            "RCP-041",
+            "RCP-044"
+          ],
+          "built_at": 1792430527893
+        },
+        "summary": "marcarAusente recibe hoy; un turno futuro responde 409 con mensaje; e2e de ausente pasa a usar la fecha de hoy; RCP-035 rojo (1 fallando), verde, regresion, e2e"
+      }
+    },
+    {
+      "id": "PND-041",
+      "title": "Auditoria 13 #2: no se recuerda un turno con telefono invalido (candado de LOCKS.md)",
+      "category": "bug",
+      "priority": 14,
+      "created_at": 1792430172293,
+      "updated_at": 1792430530874,
+      "spec": {
+        "acceptance": [
+          "un turno con telefono que no cumple el formato no entra en los recordatorios y queda listado en la respuesta como omitido"
+        ],
+        "how_verified": "test de rules/store en rojo contra HEAD actual, verde con el cambio, regresion",
+        "flows": [
+          "recordatorios"
+        ]
+      },
+      "closed_at": 1792430530874,
+      "closed_reason": "shipped",
+      "history": [
+        {
+          "at": 1792430530874,
+          "note": "esTelefonoValido; seleccionarRecordatorios devuelve omitidos y la API los lista; RCP-036 rojo (2 fallando), verde, regresion, e2e; el fixture '111' de rules.test.js cambio a un telefono valido",
+          "kind": "resolution"
+        }
+      ],
+      "implementation": {
+        "collected_at": 1792430530874,
+        "report": {
+          "verified": [
+            "RCP-036 red_proof: `npx vitest run tests/recordatorio-telefono.test.js` exit 1 (2 failed, 0 passed) @ab412fc vs base ab412fc",
+            "RCP-039 green: `npx vitest run tests/recordatorio-telefono.test.js` exit 0 (0 failed, 2 passed) @2cc4435",
+            "RCP-042 regression: `npm test` exit 0 (0 failed, 37 passed) @2cc4435",
+            "RCP-045 e2e: `npm run test:e2e` exit 0 (0 failed, 3 passed) @2cc4435"
+          ],
+          "believed": [],
+          "blind_spots": [],
+          "receipts": [
+            "RCP-036",
+            "RCP-039",
+            "RCP-042",
+            "RCP-045"
+          ],
+          "built_at": 1792430530873
+        },
+        "summary": "esTelefonoValido; seleccionarRecordatorios devuelve omitidos y la API los lista; RCP-036 rojo (2 fallando), verde, regresion, e2e; el fixture '111' de rules.test.js cambio a un telefono valido"
+      }
+    },
+    {
+      "id": "PND-042",
+      "title": "Auditoria 13 #4: el escaneo de secretos corre en CI como dice SECURITY.md",
+      "category": "infra",
+      "priority": 18,
+      "created_at": 1792430175786,
+      "updated_at": 1792430175786,
+      "spec": {
+        "acceptance": [
+          "un push con una clave de prueba en el codigo pone la cadena en rojo"
+        ],
+        "how_verified": "paso en ci.yml con el grep de SECURITY.md; prueba en rama con secreto falso",
+        "flows": [
+          "cadena"
+        ]
+      }
+    },
+    {
+      "id": "PND-043",
+      "title": "Auditoria 13 #7: servir estaticos comparando con separador de ruta, no startsWith a secas",
+      "category": "bug",
+      "priority": 19,
+      "created_at": 1792430179537,
+      "updated_at": 1792430179537,
+      "spec": {
+        "acceptance": [
+          "una ruta fuera de public/ responde 404 aunque comparta prefijo"
+        ],
+        "how_verified": "test de server",
+        "flows": [
+          "pantalla"
+        ]
+      }
+    },
+    {
+      "id": "PND-044",
+      "title": "Auditoria 13 #8: el mapa productor-consumidor documenta 413 y 500",
+      "category": "autopilot",
+      "priority": 20,
+      "created_at": 1792430182856,
+      "updated_at": 1792430533972,
+      "spec": {
+        "acceptance": [
+          "docs/PRODUCER_CONSUMER_MAP.md lista 413 y 500 con su consumidor"
+        ],
+        "how_verified": "lectura",
+        "flows": [
+          "docs"
+        ]
+      },
+      "history": [
+        {
+          "at": 1792430533960,
+          "note": "OVERRIDE de la evidencia: Cambio solo de documentacion, sin codigo: no hay test que ponga en rojo; verificado por lectura [faltaban 3 recibos]",
+          "kind": "progress"
+        },
+        {
+          "at": 1792430533972,
+          "note": "docs/PRODUCER_CONSUMER_MAP.md documenta 413 y 500",
+          "kind": "resolution"
+        }
+      ],
+      "closed_at": 1792430533972,
+      "closed_reason": "shipped",
+      "implementation": {
+        "collected_at": 1792430533973,
+        "report": {
+          "verified": [],
+          "believed": [],
+          "blind_spots": [
+            "no red proof: the new test was never shown failing against the base",
+            "no regression receipt: the neighbouring suite was not re-run",
+            "flow \"docs\" has no end-to-end receipt (screen to backend)"
+          ],
+          "receipts": [],
+          "built_at": 1792430533971
+        },
+        "summary": "docs/PRODUCER_CONSUMER_MAP.md documenta 413 y 500"
+      }
+    },
+    {
+      "id": "PND-045",
+      "title": "Auditoria 13 #9: resumenMensual de rules.js es codigo muerto duplicado del SQL del store",
+      "category": "autopilot",
+      "priority": 21,
+      "created_at": 1792430186181,
+      "updated_at": 1792430186181,
+      "spec": {
+        "acceptance": [
+          "la funcion se elimina o el store la usa; una sola fuente del resumen"
+        ],
+        "how_verified": "npm test y eslint sin referencias muertas",
+        "flows": [
+          "resumen"
+        ]
+      }
+    },
+    {
+      "id": "PND-046",
+      "title": "Auditoria 13 #10: stryker configurado pero no instalado: instalar y correr la mutacion o quitar la config",
+      "category": "autopilot",
+      "priority": 22,
+      "created_at": 1792430189429,
+      "updated_at": 1792430189429,
+      "spec": {
+        "acceptance": [
+          "docs/CODE_QUALITY.md con el puntaje de mutacion o la decision escrita de posponer"
+        ],
+        "how_verified": "npx stryker run",
+        "flows": [
+          "calidad"
+        ]
+      }
+    },
+    {
+      "id": "PND-047",
+      "title": "Auditoria 13 #13: refresco automatico de la agenda entre recepcionistas",
+      "category": "autopilot",
+      "priority": 23,
+      "created_at": 1792430192722,
+      "updated_at": 1792430192722,
+      "spec": {
+        "acceptance": [
+          "la agenda se refresca sola cada 30 segundos sin perder lo que se esta tipeando"
+        ],
+        "how_verified": "e2e",
+        "flows": [
+          "agenda"
+        ]
+      }
+    },
+    {
+      "id": "PND-048",
+      "title": "Auditoria 13 #14: cabeceras de endurecimiento HTTP",
+      "category": "autopilot",
+      "priority": 24,
+      "created_at": 1792430196234,
+      "updated_at": 1792430196234,
+      "spec": {
+        "acceptance": [
+          "X-Content-Type-Options, Referrer-Policy y CSP basica en cada respuesta"
+        ],
+        "how_verified": "test de server",
+        "flows": [
+          "pantalla"
+        ]
+      }
+    },
+    {
+      "id": "PND-049",
+      "title": "Auditoria 13 #15: el 413 cierra el socket de la peticion",
+      "category": "autopilot",
+      "priority": 25,
+      "created_at": 1792430200430,
+      "updated_at": 1792430200430,
+      "spec": {
+        "acceptance": [
+          "un cuerpo mayor al limite recibe 413 y la conexion se cierra"
+        ],
+        "how_verified": "test de server",
+        "flows": [
+          "api"
+        ]
+      }
+    }
+  ]
+}
