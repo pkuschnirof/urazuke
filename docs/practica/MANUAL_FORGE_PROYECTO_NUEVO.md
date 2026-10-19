@@ -280,11 +280,28 @@ versión anterior) es NOT OK y no cuenta: así se cierra la puerta al rojo inven
 
 Lo que pasó en Turnera, con honestidad:
 
-- Los seis rojos del bloque 1 fueron **rojos triviales**: contra el esqueleto, el módulo no
+- Los seis rojos del bloque 1 fueron **rojos débiles**: contra el esqueleto, el módulo no
   existía y el archivo de test no cargaba ("1 files failed"). Forge primero los rechazó (su
   regla era "al menos un test fallado") y después se decidió aceptar el fallo a nivel archivo
-  como rojo, porque el runner lo reporta como fallo. Es un recibo válido pero flojo. La
-  retrospectiva propone que el primer bloque de un proyecto nuevo pruebe el rojo por mutación.
+  como rojo, porque el runner lo reporta como fallo. Es un recibo válido pero flojo, y la
+  retrospectiva lo convirtió en un cambio al método (**D-037**): cuando la versión anterior no
+  tiene el módulo, el rojo se prueba **por mutación**. Así quedó, corrido sobre el mismo
+  pendiente del sobreturno con el motor ya cambiado:
+
+  ```
+  yf urazuke evidence run red_proof --pending PND-027 --step 8 \
+    --mutate mutante_sobreturno.diff --command "npx vitest run tests/store.test.js -t sobreturno"
+  RCP-049 red_proof for PND-027 -- OK
+    ref     : 10e1473 (base 10e1473+mutant)
+    mode    : mutation -- a defect planted in the new code (diff on record, 11 lines)
+    exit    : 1  counts: 2 failed, 1 files failed, 1 passed
+  ```
+
+  El diff planta un defecto de una línea en `buscarSobreturno` (compara la hora con `!==` en
+  vez de `===`); Forge lo aplica en un worktree temporal con el código actual, corre el test,
+  exige que fallen **tests** (no alcanza con romper la carga del archivo), guarda el diff en el
+  recibo y deja el árbol de trabajo intacto. Desde D-037, un pendiente cuyo único rojo es "el
+  archivo no carga" **no se cierra**: Forge pide un rojo de comportamiento o uno por mutación.
 - El bloque 2 (los hallazgos de la auditoría) tuvo **rojos de verdad**: los tests fallaban
   contra el código vigente con 3, 1 y 2 tests en rojo, y pasaron con el cambio.
 - La primera corrida de un rojo **borró `node_modules` del proyecto**: el runner enlazaba la
@@ -463,7 +480,9 @@ agregue al plan después.
 
 La sección 3 terminó en dos propuestas concretas al método (el rojo del primer bloque por
 mutación; separar los errores de la herramienta de los del sistema), cada una con el incidente
-que la justifica.
+que la justifica. Las dos entraron al método el mismo día (decisiones D-037 y D-038, en los
+ocho idiomas) y al motor de Forge, junto con la tercera que dejó la práctica del proyecto
+heredado (D-039, la ventana de la medición) y un aviso (D-040, el auditor declarado).
 
 ## 6. Lo que Forge verificó, lo que creímos y lo que no vimos
 

@@ -1,0 +1,11 @@
+diff --git a/src/rules.js b/src/rules.js
+--- a/src/rules.js
++++ b/src/rules.js
+@@ -80,6 +80,6 @@ export function buscarSobreturno(turnos, candidato) {
+   return turnos.find((t) => t.id !== candidato.id
+     && ocupaAgenda(t)
+     && t.profesional === candidato.profesional
+     && t.fecha === candidato.fecha
+-    && t.hora === candidato.hora) ?? null;
++    && t.hora !== candidato.hora) ?? null;
+ }

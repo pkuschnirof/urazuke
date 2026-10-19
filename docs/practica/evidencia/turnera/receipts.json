@@ -1,7 +1,7 @@
 {
   "version": 1,
   "project_slug": "turnera",
-  "next_id": 48,
+  "next_id": 50,
   "items": [
     {
       "kind": "red_proof",
@@ -925,6 +925,52 @@
       "output_tail": "0 violations, 0 dup blocks",
       "step": 9,
       "id": "RCP-047",
+      "verdict": "ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/store.test.js -t sobreturno",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "10e1473",
+      "dirty": false,
+      "base_ref": "10e1473+mutant",
+      "mode": "mutation",
+      "mutation_diff": "diff --git a/src/rules.js b/src/rules.js\n--- a/src/rules.js\n+++ b/src/rules.js\n@@ -80,5 +80,5 @@ export function buscarSobreturno(turnos, candidato) {\n   return turnos.find((t) => t.id !== candidato.id\n     && ocupaAgenda(t)\n     && t.profesional === candidato.profesional\n     && t.fecha === candidato.fecha\n-    && t.hora === candidato.hora) ?? null;\n+    && t.hora !== candidato.hora) ?? null;\n }",
+      "exit_code": 0,
+      "started_at": 1792435712281,
+      "duration_ms": 0,
+      "counts": {},
+      "output_tail": "[forge] mutation diff does not apply to the current code: Command failed: git apply --whitespace=nowarn C:\\Users\\ASUS\\AppData\\Local\\Temp\\yf-redproof-A9X9hK\\.yf-mutant.diff",
+      "pending_id": "PND-027",
+      "step": 8,
+      "note": "D-037: rojo por mutacion sobre el bloque 1 (el mutante invierte la comparacion de la hora en buscarSobreturno) mutation red (D-037): a defect planted on the current code, diff on record",
+      "id": "RCP-048",
+      "verdict": "not_ok"
+    },
+    {
+      "kind": "red_proof",
+      "command": "npx vitest run tests/store.test.js -t sobreturno",
+      "cwd": "C:\\urazuke-practica\\turnera",
+      "ref": "10e1473",
+      "dirty": false,
+      "base_ref": "10e1473+mutant",
+      "mode": "mutation",
+      "mutation_diff": "diff --git a/src/rules.js b/src/rules.js\n--- a/src/rules.js\n+++ b/src/rules.js\n@@ -80,6 +80,6 @@ export function buscarSobreturno(turnos, candidato) {\n   return turnos.find((t) => t.id !== candidato.id\n     && ocupaAgenda(t)\n     && t.profesional === candidato.profesional\n     && t.fecha === candidato.fecha\n-    && t.hora === candidato.hora) ?? null;\n+    && t.hora !== candidato.hora) ?? null;\n }",
+      "exit_code": 1,
+      "started_at": 1792435784897,
+      "duration_ms": 4538,
+      "counts": {
+        "failed": 2,
+        "failed_files": 1,
+        "passed": 1,
+        "skipped": 7,
+        "total": 10
+      },
+      "output_tail": "\n RUN  v5.0.5 C:/Users/ASUS/AppData/Local/Temp/yf-redproof-JPFv7v\n\n(node:25836) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n ❯ tests/store.test.js (10 tests | 2 failed | 7 skipped) 144ms\n   ❯ sobreturno (3)\n     × rechaza con 409 un segundo turno vigente en el mismo slot del mismo profesional 56ms\n     × reprogramar a un slot ocupado tambien es sobreturno 43ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/store.test.js > sobreturno > rechaza con 409 un segundo turno vigente en el mismo slot del mismo profesional\nError: se esperaba un error\n ❯ esperarError tests/store.test.js:32:9\n     30|     return err;\n     31|   }\n     32|   throw new Error('se esperaba un error');\n       |         ^\n     33| }\n     34|\n ❯ tests/store.test.js:69:17\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯\n\n FAIL  tests/store.test.js > sobreturno > reprogramar a un slot ocupado tambien es sobreturno\nError: se esperaba un error\n ❯ esperarError tests/store.test.js:32:9\n     30|     return err;\n     31|   }\n     32|   throw new Error('se esperaba un error');\n       |         ^\n     33| }\n     34|\n ❯ tests/store.test.js:86:17\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 1 passed | 7 skipped (10)\n   Start at  15:49:48\n   Duration  932ms (tests 41%, transform 35%, import 15%, worker 9%)\n\n",
+      "pending_id": "PND-027",
+      "step": 8,
+      "note": "D-037: rojo por mutacion sobre el bloque 1 (el mutante invierte la comparacion de la hora en buscarSobreturno) mutation red (D-037): a defect planted on the current code, diff on record",
+      "id": "RCP-049",
       "verdict": "ok"
     }
   ]

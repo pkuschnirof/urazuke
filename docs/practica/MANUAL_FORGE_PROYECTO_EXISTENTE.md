@@ -224,8 +224,10 @@ Dos cosas de esta parte que vale la pena contar:
 - El primer reporte cíclico abrió una **falsa alarma** de dimensionamiento: la base de prueba de
   30.000 filas cubre tres años y se pasó al comando como si fuera un año; Forge comparó 30.000
   por año contra los 10.000 declarados y abrió un pendiente. Se rechazó con motivo y se volvió a
-  correr con la ventana correcta (admisible, 1x). La retrospectiva propone que la ventana salga
-  de la base y no de la mano del operador.
+  correr con la ventana correcta (admisible, 1x). La retrospectiva propuso que la ventana salga
+  de la base y no de la mano del operador, y así quedó en el método (**D-039**) y en Forge: con
+  `window_sql` en `.forge/cycle.json` la ventana se lee de la base; una ventana escrita a mano
+  se marca como tal en el reporte y solo avisa, nunca abre un pendiente por sí sola.
 - La retrospectiva (`yf urazuke retro`) dio: 3 rojos probados, 3 verdes, 3 regresiones, 2 de
   punta a punta, 0 recibos NOT OK, 1 override con razón, 27 de 27 cerrados.
 
@@ -242,7 +244,8 @@ local (es la semántica, no se probó desde otra máquina).
 
 **Puntos ciegos:** la base y el archivo de salida reales, la máquina del consultorio, y quién
 leía el archivo antes (la dueña contestó: nadie; quedó en D-14). N3 la hizo la misma sesión que
-N2.
+N2: desde D-040, Forge pide que el informe de auditoría empiece diciendo quién lo hizo (sesión y
+modelo) y avisa cuando falta.
 
 ## Apéndice: todos los comandos, en orden
 

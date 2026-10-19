@@ -1,5 +1,5 @@
 声  Recibos de evidencia -- turnera
-  47 recibos: 9 rojo probado, 9 verde, 11 regresion, 10 e2e, 2 calidad, 0 mutacion
+  49 recibos: 10 rojo probado, 9 verde, 11 regresion, 10 e2e, 2 calidad, 0 mutacion
 
 RCP-001 red_proof for PND-025 -- OK
   command : npx vitest run tests/server.test.js
@@ -282,4 +282,18 @@ RCP-047 quality -- OK
   ref     : working-tree
   exit    : 0  counts: 0 failed
   when    : 2026-10-19T17:24:39.134Z (1093 ms)
+
+RCP-048 red_proof for PND-027 -- NOT_OK
+  command : npx vitest run tests/store.test.js -t sobreturno
+  ref     : 10e1473 (base 10e1473+mutant)
+  mode    : mutation -- a defect planted in the new code (diff on record, 11 lines)
+  exit    : 0
+  when    : 2026-10-19T18:48:32.281Z (0 ms)
+
+RCP-049 red_proof for PND-027 -- OK
+  command : npx vitest run tests/store.test.js -t sobreturno
+  ref     : 10e1473 (base 10e1473+mutant)
+  mode    : mutation -- a defect planted in the new code (diff on record, 11 lines)
+  exit    : 1  counts: 2 failed, 1 files failed, 1 passed
+  when    : 2026-10-19T18:49:44.897Z (4538 ms)
 
