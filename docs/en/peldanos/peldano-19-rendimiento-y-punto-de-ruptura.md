@@ -1,6 +1,6 @@
 # Step 19 — Performance tests at volume and the breaking point (step contract)
 
-**Stretch:** operational quality, before the first deployment to production.
+**Stretch:** going live.
 **When:** in the go-live phase, after step 16 (without observability you do not know what broke)
 and after step 17 (on an already optimized persistence layer), and before the first deployment to
 production. It is repeated before every deployment that changes the architecture, the persistence
@@ -21,7 +21,7 @@ the volume the business stated (does the most used screen respond within what th
 tolerate?), how it behaves at "times ten" (does it hold, or what stops holding first?), and
 **where it breaks**: the exact load at which something gives way, and what that something is (the
 database connections, the memory, a queue, a lock). The breaking point is the most useful number
-of the whole stretch, because the alert thresholds of step 20 come out of it: an alert set "by
+of the whole stretch, because the alert thresholds of step 21 come out of it: an alert set "by
 eye" warns too late or warns always; an alert set below the measured breaking point, with a
 margin, warns while there is still time. The scale patterns I took from a system in production
 [Ref. 12](../REFERENCIAS.md#ref-12) and the test suite that was dying by memory and looked like a
@@ -104,7 +104,7 @@ diagnosis is changing what was not the problem.
   now.
 
 > Record in `docs/PERFORMANCE.md`: the expected volume, the ten-times volume, the breaking point
-> with what breaks, and the alert thresholds that monitoring (step 20) will use, set below the
+> with what breaks, and the alert thresholds that monitoring (step 21) will use, set below the
 > breaking point with a margin and above the expected volume. Open a pending item for each
 > bottleneck that sits below [ten times the expected volume / the volume I decided], with the
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
@@ -112,7 +112,7 @@ diagnosis is changing what was not the problem.
 > flow, and its results are archived with date and version. Show me the first run archived.
 
 What I am asking for: the alert thresholds derived from the breaking point, which is the hook into
-step 20; the bottlenecks as pending items with the number as the criterion (that way they are
+step 21; the bottlenecks as pending items with the number as the criterion (that way they are
 closed with evidence and not with "it runs better now"); and the load test as an archived gate, so
 that in six months you can compare.
 

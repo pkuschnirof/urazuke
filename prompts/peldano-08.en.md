@@ -1,15 +1,15 @@
 # Urazuke — step 8 prompts (English, single source)
 
-Generated from `docs/peldanos/peldano-08-simetria-y-antipatrones.md` by `build/prompts.mjs`. Do not edit by hand.
+Generated from `docs/peldanos/peldano-08-tests-en-rojo.md` by `build/prompts.mjs`. Do not edit by hand.
 
 ## Prompt 1
 
-Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table, a file format, a list of values), who produces it and who consumes it. If there are parts of the system you cannot access or do not understand, tell me instead of leaving them out of the map. Reply in my language.
+To close this pending item I need evidence, not your word. (1) Write the test that proves what the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily revert the change, or run the test against the old version, but show me the red output. (3) Show me the green output with the change. (4) Run the regression suite for the neighbouring items and show me it is still green. (5) Run the end-to-end test of the flow this item touches, from the screen to the backend, and show me the backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end to end requires something you lack (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the commit message says "proved red against [what]" and the test counts.
 
 ## Prompt 2
 
-Before closing any change that touches a contract, look up every consumer in the map and update them in the same commit. Always prefer that the producer defines the list (columns, causes, states) and the consumer reads it, rather than each keeping its own copy. If the map does not have that relationship, add it.
+Run the complete end-to-end suite of every flow that exists so far, in the test environment, with the exact version that will be promoted. Show me the counts, and for each flow the backend check that proves it. If any flow has no end-to-end test, say so and open a pending item for it; do not pass it as covered.
 
 ## Prompt 3
 
-This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if possible, a test or an automatic check that detects it.
+Explain why it cannot be tested, what would have to be added so that it can, and open a pending item for that. The change is not closed until it can be tested.

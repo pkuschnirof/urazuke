@@ -1,7 +1,7 @@
 # Étape 2 — La définition du projet, l'arbre sémantique et la lecture obligatoire (contrat de l'échelon)
 
 **Tronçon :** démarrage.
-**Quand :** s'écrit une fois, la première semaine, après le contrat ; l'arbre sémantique et l'état
+**Quand :** s'écrit une fois, après le contrat ; l'arbre sémantique et l'état
 vivant se tiennent à jour pendant tout le projet, avec chaque bloc et chaque décision nouvelle.
 **Forme :** conversation : l'agent rédige, demande ce qui manque, vous corrigez.
 **Taille :** obligatoire dans tout projet. Dans un petit projet, le fichier de projet peut faire

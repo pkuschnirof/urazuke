@@ -1,7 +1,7 @@
 # Peldaño 3 — Dimensionar antes de diseñar la arquitectura (contrato del peldaño)
 
 **Tramo:** arranque.
-**Cuándo:** una vez, en la primera semana, después de la definición y antes de armar el esqueleto;
+**Cuándo:** una vez, después de la definición y antes de armar el esqueleto;
 se rehace si el negocio cambia de escala.
 **Forma:** conversación: el agente calcula y presenta opciones; vos elegís.
 **Tamaño:** obligatorio siempre, pero proporcional: en un proyecto chico el dimensionamiento puede

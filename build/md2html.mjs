@@ -60,6 +60,7 @@ let para = [];
 let enPeldano = false;
 let ultimoPrompt = -1;   // índice en `out` del último bloque de prompt (para colgarle la traducción)
 let enAntes = false;     // dentro de una caja "Antes de enviar el prompt" todavía abierta
+let usaMermaid = false;  // el documento tiene al menos un diagrama mermaid
 const cerrarAntes = () => { if (enAntes) { out.push('</div>'); enAntes = false; } };
 // Unir líneas envueltas: con espacio, salvo cuando el corte cae entre dos caracteres CJK (japonés,
 // chino), donde el espacio sobra y se nota.
@@ -81,6 +82,17 @@ const renderQuote = q => q.join('\n').split(/\n\s*\n/).map(x => `<p>${inline(uni
 while (i < md.length) {
   const line = md[i];
   if (/^---\s*$/.test(line)) { flushPara(); cerrarAntes(); out.push('<hr>'); i++; continue; }
+  // Bloques de código con ``` ; los de mermaid se dibujan en el navegador (mermaid.js).
+  const fence = /^```\s*(\w+)?\s*$/.exec(line);
+  if (fence) {
+    flushPara(); cerrarAntes();
+    const lang = fence[1] || ''; const code = []; i++;
+    while (i < md.length && !/^```\s*$/.test(md[i])) { code.push(md[i]); i++; }
+    i++;
+    if (lang === 'mermaid') { usaMermaid = true; out.push(`<pre class="mermaid">${esc(code.join('\n'))}</pre>`); }
+    else out.push(`<pre class="code"><code>${esc(code.join('\n'))}</code></pre>`);
+    continue;
+  }
   const h = /^(#{1,3}) (.*)$/.exec(line);
   if (h) {
     flushPara(); cerrarAntes();
@@ -215,6 +227,9 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 .antes ul{margin:.3em 0 .45em;padding-left:1.4em}
 .antes li{margin:.4em 0}
 .antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
 .glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
 .glos p strong{color:#3a2f00}
 .meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
@@ -225,10 +240,11 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 const js = `document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});`;
 
 const titulo = (md.find(l => /^# /.test(l)) || '# Documento').slice(2).replace(/</g,'&lt;');
+const mermaidJs = usaMermaid ? `<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad:true,theme:'neutral',flowchart:{curve:'basis'}});</script>` : '';
 const html = `<!DOCTYPE html><html lang="${idioma}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${titulo}</title><style>${css}</style></head><body><div class="wrap">
 ${body.replace(/(<h1[^>]*>.*?<\/h1>)/, '$1' + tocHtml)}
 ${pie}
-</div><script>${js}</script></body></html>`;
+</div><script>${js}</script>${mermaidJs}</body></html>`;
 writeFileSync(destino, html, 'utf8');
 console.log('escrito', destino, html.length, 'bytes | secciones:', toc.filter(t => t.lvl === 2).length, '| peldanos:', toc.filter(t => RE_PELDANO.test(t.txt)).length);

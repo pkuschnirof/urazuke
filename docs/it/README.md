@@ -28,14 +28,15 @@ per questo la prova deve dimostrare se stessa.
 
 | File | Cos'è |
 |---|---|
-| `ESCALERA_METODOLOGICA.md` | Il documento principale: la tesi, da dove viene il metodo, la linea del tempo (quando si sale ogni gradino e cosa succede nel mezzo: infrastruttura, CI/CD, acquisizione dei requisiti, sviluppo, test end to end, sguardo umano, prove umane), i ventidue gradini con la loro scheda (gli ultimi sei, di qualità operativa: osservabilità, persistenza, vulnerabilità, rendimento, e i due monitoraggi), ciò che manca, e il glossario. |
+| `ESCALERA_METODOLOGICA.md` | Il documento principale: la tesi, da dove viene il metodo, la linea del tempo (quando si sale ogni gradino e cosa succede nel mezzo: infrastruttura, CI/CD, acquisizione dei requisiti, sviluppo, test end to end, sguardo umano, prove umane), i ventiquattro gradini con la loro scheda (gli ultimi sei, di qualità operativa: osservabilità, persistenza, vulnerabilità, rendimento, e i due monitoraggi), ciò che manca, e il glossario. |
 | `EVOLUTIVO_CORRECTIVO.md` | Il percorso per un sistema che esiste già e non è nato con il metodo: i tre casi d'uso del metodo, il principio di normalizzare senza riscrivere, le otto stazioni di normalizzazione (da N0 a N7) con i loro contratti e prompt, il ciclo in modalità correttiva ed evolutiva, e la lista di uscita dal tratto. |
 | `REFERENCIAS.md` | I casi reali dietro il metodo, numerati ("Ref. N"), con data e prova, perché le procedure restino pulite e il dettaglio sia a un clic. Include le cronologie dei tre sistemi e la tabella dei fallimenti per gradino. |
 | `peldanos/peldano-NN-*.md` | Il contratto di ogni gradino: quando, contesto richiesto, prompt in inglese con la loro traduzione e, prima di ciascuno, il blocco "Prima di inviare il prompt" con i file che devi costruire tu e il loro contenuto; risultato atteso, verifica di completezza senza leggere codice, segnali d'allarme. |
 | `peldanos/README.md` | L'indice dei contratti. |
-| `MANUAL_CURSO.md` | Il corso: calendario, ventidue lezioni con compiti pratici e prompt, progetto guida ("Turnera"), lista di uscita in produzione. |
+| `MANUAL_CURSO.md` | Il corso: calendario, ventiquattro lezioni con compiti pratici e prompt, progetto guida ("Turnera"), lista di uscita in produzione. |
 | `MANUAL_CURSO_EVOLUTIVO.md` | La parte 2 del corso: il progetto guida ereditato ("Turnera ereditata"), dieci lezioni (da N0 a N7, R1 e R2) per normalizzare un legacy e poi correggerlo e farlo evolvere. |
 | `../DECISIONES.md` | Le decisioni del progetto, con data e parole testuali. Il metodo si applica a se stesso. Solo in spagnolo. |
+| `TRABAJO_COLABORATIVO.md` | Come si applica il metodo quando più sviluppatori, ciascuno con il suo agente, lavorano sullo stesso ramo: le sette regole del ramo condiviso, come si distribuiscono i gradini, e i prompt. |
 | `CAPACITACION_JUNIOR.md` | L'impatto del metodo sulla formazione degli sviluppatori junior: quali fuochi perdono peso, quali ne guadagnano, con quale obiettivo e come formare un junior nell'era successiva alla programmazione a mano. |
 | `../PLAN_CURSO_MENTORING.md` | La bozza del piano commerciale del corso e del mentoring. Solo in spagnolo. |
 | `../html/it/` | Le versioni HTML per una lettura comoda, con il pulsante che traduce ogni prompt. Non si modificano a mano. |
@@ -59,8 +60,9 @@ node build/build.mjs
 Verifica che i prompt in inglese siano identici nelle otto versioni (quelli dei contratti e quelli
 del percorso evolutivo-correttivo) e produce, per ogni lingua, `ESCALERA_METODOLOGICA.html`,
 `REFERENCIAS.html`, `EVOLUTIVO_CORRECTIVO.html`, `MANUAL_CURSO.html`,
-`MANUAL_CURSO_EVOLUTIVO.html` e `CONTRATOS_DE_PELDANO.html` (lo spagnolo in `docs/html/`, le altre
-lingue in `docs/html/<lingua>/`).
+`MANUAL_CURSO_EVOLUTIVO.html`, `CAPACITACION_JUNIOR.html`, `TRABAJO_COLABORATIVO.html` e
+`CONTRATOS_DE_PELDANO.html` (lo spagnolo in `docs/html/`, le altre lingue in
+`docs/html/<lingua>/`).
 
 ## Lingue
 
@@ -68,12 +70,13 @@ Lo spagnolo è la fonte della verità; questa versione italiana è una traduzion
 esiste nelle otto lingue di NAC3: spagnolo (`docs/`), inglese (`docs/en/`), portoghese
 (`docs/pt/`), francese (`docs/fr/`), tedesco (`docs/de/`), italiano (`docs/it/`), giapponese
 (`docs/ja/`) e cinese (`docs/zh/`). Ogni cartella ha il suo README, il documento principale, le
-referenze, i ventidue contratti, il percorso evolutivo-correttivo e le due parti del manuale-corso.
-I prompt per il modello sono un unico pezzo in inglese, identico in tutte le versioni, con la
-traduzione nella lingua del documento accanto; `node build/prompts.mjs --check` fallisce se una
-traduzione li ha alterati. Il nome non si traduce; il sottotitolo sì: *the evidence method*, *o
-método da evidência*, *la méthode de la preuve*, *die Nachweis-Methode*, *il metodo del
-riscontro*, 裏付けの方法, 验证方法.
+referenze, i ventiquattro contratti, il percorso evolutivo-correttivo e le due parti del
+manuale-corso. I prompt per il modello sono un unico pezzo in inglese, identico in tutte le
+versioni, con la traduzione nella lingua del documento accanto;
+`node build/prompts.mjs --check` fallisce se una traduzione li ha alterati. Il nome non si
+traduce; il sottotitolo sì: *the evidence method*, *o método da evidência*,
+*la méthode de la preuve*, *die Nachweis-Methode*, *il metodo del riscontro*, 裏付けの方法,
+验证方法.
 
 Le decisioni (`docs/DECISIONES.md`) e il piano del corso restano solo in spagnolo perché citano
 parole testuali.
@@ -84,7 +87,7 @@ Il metodo è pubblicato con licenza **Creative Commons Attribuzione – Condivid
 4.0** (`LICENSE`): si può usare, tradurre e adattare, con attribuzione e condividendo allo stesso
 modo. I miglioramenti a **questo** repository entrano tramite pull request da un fork, con la loro
 prova, e li integra un manutentore dopo averli revisionati; nessun altro scrive su `main`. Il
-processo è in `CONTRIBUTING.md`. Il gradino 15 del metodo chiede che ogni retrospettiva finisca
+processo è in `CONTRIBUTING.md`. Il gradino 23 del metodo chiede che ogni retrospettiva finisca
 in una proposta concreta di modifica alla scala; questa è la forma attesa di contribuire.
 
 I clienti dei sistemi di origine sono anonimizzati ("la Mutua", "l'Associazione"); i numeri, le

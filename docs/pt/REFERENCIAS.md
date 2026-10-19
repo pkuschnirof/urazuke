@@ -56,7 +56,7 @@ escrevê-lo para um colaborador que cada manhã chega sem memória de ontem. É 
 Em 27 de maio (commit `73f4029`) abri `GOTCHAS.md`: um arquivo onde cada erro que se repetiu
 fica anotado com um formato fixo, como cheira, qual é a causa raiz, como foi corrigido, e como
 detectá-lo da próxima vez antes que doa. Abri-o porque o modelo cometia o mesmo erro em sessões
-diferentes sem nenhuma memória de tê-lo cometido antes. É a metade "antipadrões" do degrau 8.
+diferentes sem nenhuma memória de tê-lo cometido antes. É a metade "antipadrões" do degrau 11.
 
 ### Ref. 3 — As comportas do fluxo, injetadas só quando correspondem (2 de junho)
 
@@ -90,7 +90,7 @@ esqueletos) que passavam trabalho entre si. Fiz um experimento medido: essa equi
 dólares e 73 minutos e entregou algo pela metade; uma única sessão com um único agente levou 90
 minutos e entregou algo publicável. Em 5 de junho (commit `7584f8b`, documentado num paper
 interno) eliminei a equipe inteira. É o primeiro caso de "retrospectiva com um número na mão, e
-redesenho", e é o motivo pelo qual o degrau 15 exige números e não impressões.
+redesenho", e é o motivo pelo qual o degrau 23 exige números e não impressões.
 
 ### Ref. 7 — O plano passa a ser a lista de pendências (6 de junho)
 
@@ -105,8 +105,8 @@ Em 10 de junho (commits `7ab9d8a` e `2c552c0`, documentos `verification-honesty.
 `workflow-kinds.md`) tornei obrigatória a doutrina em cada prompt e escrevi a regra de
 "honestidade de verificação": verificar que a rede realmente fica vermelha quando tem que ficar,
 declarar os pontos cegos, e fazer afirmações proporcionais ao que foi comprovado. Separei além
-disso três tipos de fluxo: projeto novo, correção e evolução. É a origem do degrau 10 e da
-metade "vermelho" do degrau 7.
+disso três tipos de fluxo: projeto novo, correção e evolução. É a origem do degrau 12 e da
+metade "vermelho" do degrau 8.
 
 ### Ref. 9 — Trabalho descartado por não ler o mapa (12 de junho)
 
@@ -121,27 +121,27 @@ Entre 14 e 21 de junho deixei o agente trabalhar sozinho durante um dia, e depoi
 mandato escrito: commit e push por cada peça, sem perguntar, e eu recebia um resumo. Conto isso
 porque prova que o método aguenta autonomia longa quando o contrato de convivência e o registro
 de pendências estão bem feitos; e porque foi ali que aprendi a ler resumos com desconfiança, que
-é o degrau 10.
+é o degrau 12.
 
 ### Ref. 11 — Modo diagnóstico sobre sistemas alheios (julho)
 
 Em julho (documento `diagnostic-mode.md`) o agente começou a entrar em sistemas produtivos de
 clientes em modo diagnóstico: somente leitura, delimitado, sem tocar em nada. É o primeiro nível
-do escopo do agente residente do degrau 15.
+do escopo do agente residente do degrau 23.
 
 ### Ref. 12 — Padrões de desempenho tomados da produção do Plano de Saúde (22 de julho)
 
 Em 22 de julho (commit `873339c`) incorporei à ferramenta padrões de escala extraídos do sistema
 do Plano de Saúde: o das duas transações e, sobretudo, "medir antes de tocar". Foi a primeira
 vez que o método se alimentou de um sistema que já estava em produção, e é um antecedente do
-degrau 9.
+degrau 7.
 
 ### Ref. 13 — O agente fica residente na produção do Plano de Saúde (14 de agosto)
 
 Em 14 de agosto o agente ficou instalado dentro do sistema do cliente, como assistente
 residente, com três regras: um mapa do sistema obrigatório antes de operar, "primeiro a solução
 operacional" quando algo falha, e a capacidade de abrir tickets. É a origem da primeira metade do
-degrau 15.
+degrau 23.
 
 ### Ref. 14 — O dimensionamento como comporta (10 e 11 de outubro)
 
@@ -164,7 +164,7 @@ degrau 3.
 Em 14 de outubro o agente trabalhou uma hora e quarenta e três minutos invisível para mim, e fez
 seis commits nesse intervalo. Foi uma falha do método, e feia. Corrigi-a na raiz na versão 1.18.0
 (commit `b80a659`): um vigia de silêncio que mata o turno se ele deixa de dar sinais de vida, uma
-correia entre processos para que o filho morra com o pai, e 28 testes. Cai no degrau 10 (o
+correia entre processos para que o filho morra com o pai, e 28 testes. Cai no degrau 12 (o
 relatório tem que ser visível) e no 12 (na dúvida, o sistema não segue).
 
 ---
@@ -181,44 +181,43 @@ no degrau 5, é que a especificação vale como ponto de partida e o plano vivo 
 
 Em 23 de junho fiz a primeira auditoria de "full scans" (consultas que leem a tabela inteira
 porque não há um índice) sobre um sistema vivo. Os achados se converteram em pendências, não num
-relatório arquivado. É a origem do degrau 11.
+relatório arquivado. É a origem do degrau 13.
 
 ### Ref. 19 — Lições da nuvem do Google (24 de junho)
 
 Os erros de infraestrutura das primeiras semanas na nuvem do Google ficaram escritos como lições
-para não repeti-los. É a primeira versão do que depois foi o manual de infraestrutura do degrau
-14.
+para não repeti-los. É a primeira versão do que depois foi o manual de infraestrutura do degrau 20.
 
 ### Ref. 20 — O manual de usuário nasce junto com o sistema (26 de junho)
 
 Em 26 de junho já havia manual de usuário, com o sistema construído pela metade. Fiz assim de
 propósito: nos projetos clássicos o manual se escrevia no final, quando já ninguém se lembrava de
 nada; com um modelo que o regenera grátis, não há desculpa para que não nasça com o sistema.
-Degrau 14.
+Degrau 20.
 
 ### Ref. 21 — Cópia de segurança de segunda camada (13 de julho)
 
 Antes de confiar no sistema com dados reais coloquei duas camadas de backup: uma local e outra
-no armazenamento do Google. Degrau 13 e manual de recuperação do 14.
+no armazenamento do Google. Degrau 15 e manual de recuperação do 14.
 
 ### Ref. 22 — PND-300: quatro rodadas até a causa raiz (14 de julho)
 
 Um bug voltou três vezes até que se encontrou a causa real, em 14 de julho. Cada "correção"
 anterior tinha sido sobre o sintoma. Aqui "a correção é na raiz ou não é correção", que já
 estava no contrato de convivência, deixou de ser uma frase e virou prática: há que medir a
-hipótese antes de tocar. Degraus 1 e 9.
+hipótese antes de tocar. Degraus 1 e 7.
 
 ### Ref. 23 — Auditoria de segurança (16 de julho)
 
 Em 16 de julho fiz a primeira auditoria de segurança formal, com achados convertidos em
 pendências. Foi a que me convenceu a tratar a segurança como uma auditoria periódica e não como
-uma lista que se marca uma vez no começo. Degrau 11.
+uma lista que se marca uma vez no começo. Degrau 13.
 
 ### Ref. 24 — Manual interno e manual de recuperação de desastres (26 e 29 de julho)
 
 Em 26 e 29 de julho (commits `6444ce6`, pendência 442, e `a30cee3`, pendência 459) deixei
 documentado tudo o que é operacional, implantar, recuperar, manter, de forma "reproduzível à mão,
-sem IA". O critério que usei, e que está no degrau 14, é que se amanhã não há agente, uma pessoa
+sem IA". O critério que usei, e que está no degrau 20, é que se amanhã não há agente, uma pessoa
 de confiança que não programa possa seguir o manual.
 
 ### Ref. 25 — O fail-closed como reflexo (27 de julho)
@@ -226,7 +225,7 @@ de confiança que não programa possa seguir o manual.
 Em 27 de julho (commit `e18406d`, pendência 452): se uma tabela não existe ou uma busca falha, a
 linha simplesmente fica sem seu botão; nunca se quebra a listagem inteira. Na dúvida, não agir e
 não quebrar. E o teste dessa correção foi provado em vermelho "sem o try/except", isto é,
-demonstrou-se que sem a proteção a listagem quebrava. Degraus 7 e 12.
+demonstrou-se que sem a proteção a listagem quebrava. Degraus 8 e 14.
 
 ### Ref. 26 — Os contadores que não coincidiam: 1.355 contra 1.234 (6 e 7 de agosto)
 
@@ -235,21 +234,21 @@ mostrava 1.355 aprovações e a consulta ao banco mostrava 1.234. Em 6 e 7 de ag
 `ab3e529`, pendência 517, e `1f5feb9`, pendência 514) verificou-se a causa raiz diretamente sobre
 a produção em somente leitura, decompôs-se a diferença número por número (145 a mais, 24 a menos;
 145 menos 24 são 121), escreveu-se um teste que foi provado EM VERMELHO contra o critério antigo,
-e o script de diagnóstico ficou no repositório para a próxima vez. Degraus 7, 8 e 9.
+e o script de diagnóstico ficou no repositório para a próxima vez. Degraus 8, 11 e 7.
 
 ### Ref. 27 — Simetria entre produtor e consumidor (6 de agosto)
 
 Em 6 de agosto (commits `50fe968`, pendência 510, e `7251129`, pendência 509) impus que a "causa
 de espera" que o usuário vê se calcule com as MESMAS comportas com que o robô decide, e que a
 lista de colunas da grade seja definida pelo servidor e o frontend a consuma. Assim não podem
-divergir. É a regra "toda lista tem um único dono" do degrau 8.
+divergir. É a regra "toda lista tem um único dono" do degrau 11.
 
 ### Ref. 28 — Botão de pânico com cadeado, modo de ensaio do aprovador, vigia com guardas (7 de agosto)
 
 Em 7 de agosto (commit `0954740`, pendência 524) ficaram os cadeados do sistema: um botão de
 pânico com dupla trava, o aprovador automático rodando primeiro em modo de ensaio (faz tudo menos
 aprovar, e registra o que teria aprovado), e um vigia que empurra o que ficou travado com guardas
-para não empurrar duas vezes. Degrau 12.
+para não empurrar duas vezes. Degrau 14.
 
 ### Ref. 29 — As regras de domínio escritas no commit (10 de agosto)
 
@@ -266,7 +265,7 @@ e com dono, colada ao código que a implementa. Degrau 6.
 Kikan foi o primeiro projeto que começou com tudo o anterior já escrito desde o dia um: um
 arquivo de projeto operacional e pendências como plano desde o primeiro commit (21 de agosto). Em
 28 e 29 de agosto fiz uma série de auditorias precoces (AUD-1, AUD-2…) que se converteu
-diretamente em 19 documentos de pendências. Degraus 2, 5 e 11.
+diretamente em 19 documentos de pendências. Degraus 2, 5 e 13.
 
 ### Ref. 31 — Integração contínua desde a primeira semana; implantação como pacote (28 de agosto, 23 e 24 de setembro)
 
@@ -284,18 +283,18 @@ de duplicar (`076df76`, pendência 134), o material do cliente fora da árvore q
 (`9d76af8`, pendência 130), e a bateria de testes que já não suja a configuração que viaja na
 implantação (`0bd20a8`, pendência 107, 3 de outubro). Se o esqueleto tivesse sido implantado
 vazio na primeira semana, esses cinco tropeços teriam acontecido com zero funcionalidade em jogo.
-Degraus 4 e 13.
+Degraus 4 e 15.
 
 ### Ref. 33 — Promoção de UAT para produção (4 e 8 de outubro)
 
 Em 4 e 8 de outubro (commits `4eb5ad7`, pendência 027, e `7658e2e`) ficou um circuito explícito
-para passar configuração e campanhas do ambiente de teste para o de produção. Degrau 13.
+para passar configuração e campanhas do ambiente de teste para o de produção. Degrau 15.
 
 ### Ref. 34 — O esquema derivado do código, com cadeado (11 de outubro)
 
 Na etapa 1 da reengenharia da persistência (commits `6113319` e `68819ce`) o inventário de
 tabelas e campos se derivou do próprio código, com um teste que o protege, e se abriu no quadro
-compartilhado para que eu o revisasse. É uma lista com um único dono, o código. Degrau 8.
+compartilhado para que eu o revisasse. É uma lista com um único dono, o código. Degrau 11.
 
 ### Ref. 35 — A catraca estática, e o medidor que não via (11 a 13 de outubro)
 
@@ -303,14 +302,14 @@ Na etapa 6 da reengenharia (commits `06b2734`, `f6e5221`, `2fc6239`, `1d55a93`) 
 "catraca": um contador de chamadas ao banco sem `await`, isto é, sem esperar o resultado, que só
 pode descer e nunca subir. E aconteceu algo que vale a pena contar: descobriu-se DUAS vezes que o
 medidor não via partes do código. Primeiro 70 chamadas, depois 84, com o contador em zero. Se o
-instrumento não se verifica, o número tranquiliza e mente. Degrau 9.
+instrumento não se verifica, o número tranquiliza e mente. Degrau 7.
 
 ### Ref. 36 — Os medidores que mentiam e as cinco regras da seção 11.b (13 e 14 de outubro)
 
 Textual dos commits de 13 de outubro (`880ac0f`, `f955620`): "o medidor de E7.5 mentia sobre um
 banco com o ALTER já aplicado"; "são 44, não 27". E uns dias antes, um plano afirmava que havia
 121 laços de certo tipo e quem executou mediu 79. De tudo isso escrevi a seção 11.b do documento
-de reengenharia, com as cinco regras que hoje são o degrau 9: medidor com guarda; se o
+de reengenharia, com as cinco regras que hoje são o degrau 7: medidor com guarda; se o
 instrumento não existe, constrói-se; audita-se em duas direções; o aproximado se marca; e quem
 executa verifica os números de quem planejou. Com a frase que resume: "três de quatro afirmações
 estavam erradas; onde havia instrumento, exato".
@@ -320,14 +319,14 @@ estavam erradas; onde havia instrumento, exato".
 Na etapa 8 (commits `5926b3f`, `10ada00`) cada caminho da aplicação ficou com um orçamento de
 consultas ao banco medido e protegido por um teste, e a troca de motor de banco de dados ficou
 como um interruptor por ambiente. Na etapa 9 (`0730082`, `7f5f1af`) o teto se apertou ao medido
-mais uma margem pequena: 63 sobre 60. O orçamento não é um número inventado. Degrau 9.
+mais uma margem pequena: 63 sobre 60. O orçamento não é um número inventado. Degrau 7.
 
 ### Ref. 38 — Retenção por tabela, e um relatório de integridade feito por outra sessão (14 de outubro)
 
 Nas etapas 10 e 12 (commits `f72b15a`, `b266f11`) o pacote real passou a trazer os scripts de
 migração, a retenção de dados se declarou por tabela e se delimitou em produção, e um relatório
 de integridade feito por uma sessão diferente do Claude Code, que não tinha construído o sistema,
-foi absorvido como pendências. É o auditor diferente do construtor do degrau 11.
+foi absorvido como pendências. É o auditor diferente do construtor do degrau 13.
 
 ### Ref. 39 — A implantação só empacota, e a cota que se queimou (14 de outubro)
 
@@ -335,14 +334,14 @@ Os testes rodavam três vezes por cada commit, entre 16 e 27 minutos cada vez; e
 consumiram-se 2.000 minutos de cota do GitHub Actions, e um dia de 23 pushes acabou de queimá-la.
 Em 14 de outubro (commit `39497b0`) parti o circuito: os testes rodam UMA única vez, na
 integração contínua; a implantação espera esse resultado e só empacota. De 16 a 27 minutos por
-commit, para 11. Degrau 13.
+commit, para 11. Degrau 15.
 
 ### Ref. 40 — Duas portas de administrador em vinte e quatro horas (15 de outubro)
 
 Em 15 de outubro criaram-se duas portas de administrador num único dia (pendências 223 e 257).
 Uma revisão externa detectou; retirei uma (commits `69bdab2`, `20fdbe7`, `1558ee4`) e ficou uma
 única via. Conto isso como evidência de que o método aguenta "desfazer rápido" sem drama, e de
-por que a auditoria tem que ser feita por alguém que não construiu. Degraus 11 e 12.
+por que a auditoria tem que ser feita por alguém que não construiu. Degraus 13 e 14.
 
 ### Ref. 41 — A auditoria de qualidade: uma vulnerabilidade, um componente enorme, um arquivo de projeto de 9.661 linhas (15 de outubro)
 
@@ -350,18 +349,18 @@ A auditoria de qualidade de 15 de outubro encontrou uma vulnerabilidade conhecid
 dependência, um componente de tela de 2.679 linhas, oito módulos duplicados entre a versão web e
 a móvel, e um `CLAUDE.md` que tinha crescido até 9.661 linhas e 789 kilobytes, um arquivo que a
 essa altura ninguém lê, nem o modelo. Daí a regra do degrau 2: o arquivo de projeto é o programa,
-não o histórico, e o livro de casos vai à parte. Degraus 2, 8 e 11.
+não o histórico, e o livro de casos vai à parte. Degraus 2, 11 e 13.
 
 ### Ref. 42 — Segredos colados no chat (14 e 16 de outubro)
 
 Em 14 de outubro uma chave do banco de dados ficou impressa numa transcrição, e em 16 umas chaves
 de API apareceram coladas no chat. Nenhuma das duas foi "vista por ninguém", e as duas há que
 rotacionar do mesmo jeito, porque um segredo que esteve num chat, num log ou num commit já não é
-um segredo. Degrau 13.
+um segredo. Degrau 15.
 
 ### Ref. 43 — Três relatórios que não eram o que diziam (14 a 16 de outubro)
 
-Três casos pequenos e muito ilustrativos do degrau 10. Em 14 de outubro um erro de autenticação
+Três casos pequenos e muito ilustrativos do degrau 12. Em 14 de outubro um erro de autenticação
 foi relatado pela ferramenta com a legenda "success". Em 16 o CORS do servidor se derivou só do
 primeiro nome de domínio, e o assistente de configuração do ambiente de teste dava um erro 500
 que o relatório não mencionava. E o aplicativo móvel perdia as abas em condições que o relatório
@@ -372,7 +371,7 @@ e declarar os pontos cegos.
 
 Uma bateria inteira de testes "morreu" por falta de memória (commit `1d7a20b`), e o relatório
 leu isso como um teste que falhava. Até que não se olhou a saída completa não se entendeu que não
-tinha falhado nenhum teste: o processo tinha caído. É o motivo pelo qual o degrau 7 pede os
+tinha falhado nenhum teste: o processo tinha caído. É o motivo pelo qual o degrau 8 pede os
 números do vermelho e do verde, não só o veredito.
 
 ---
@@ -390,7 +389,7 @@ que medi-la antes de construir, porque costumo ter razão no sintoma e a causa c
 lado. "Valide os limites com o log, não com a prosa": uma negativa do modelo não prova que o
 limite esteja aplicado; há que forçar a invocação e ler o registro. E "compare primeiro a versão
 publicada": diante de um "continua quebrado", olhar que versão roda onde eu vejo o problema antes
-de voltar a diagnosticar. Degraus 9 e 10.
+de voltar a diagnosticar. Degraus 7 e 12.
 
 ### Ref. 46 — Os projetos que recusei, e de onde saem os critérios excludentes (17 de outubro)
 
@@ -476,21 +475,21 @@ aparecesse um que não cai em nenhum, faltaria um degrau.
 
 | Falha | Referência | Degrau que a cobre | Estado |
 |---|---|---|---|
-| A equipe multiagente que gastava o dobro e entregava a metade | Ref. 6 | 15, retrospectiva com número | fechado |
+| A equipe multiagente que gastava o dobro e entregava a metade | Ref. 6 | 23, retrospectiva com número | fechado |
 | Trabalho descartado por não ler o mapa | Ref. 9 | 2, leitura obrigatória | fechado |
-| PND-300: três correções que não eram na raiz | Ref. 22 | 1, zero dívida; 9, medir | fechado |
-| Contadores 1.355 contra 1.234 | Ref. 26 | 9, instrumento; 8, simetria | fechado |
+| PND-300: três correções que não eram na raiz | Ref. 22 | 1, zero dívida; 7, medir | fechado |
+| Contadores 1.355 contra 1.234 | Ref. 26 | 7, instrumento; 11, simetria | fechado |
 | 3,4 milhões de linhas por ano sobre arquivos JSON | Ref. 15 | 3, dimensionar | fechado |
-| Medidores que mentiam; catraca em zero | Refs. 35 e 36 | 9, verificar o instrumento | fechado |
-| Turno órfão de 1 h 43 | Ref. 16 | 10 e 12 | fechado |
-| Testes três vezes por commit; cota queimada | Ref. 39 | 13 | fechado; a cota há que ampliar |
-| Duas portas de administrador em 24 horas | Ref. 40 | 11 e 12 | fechado |
-| Segredos colados no chat | Ref. 42 | 13 | rotação pendente |
-| Erro de autenticação relatado como sucesso | Ref. 43 | 10 | pendente, uma linha |
+| Medidores que mentiam; catraca em zero | Refs. 35 e 36 | 7, verificar o instrumento | fechado |
+| Turno órfão de 1 h 43 | Ref. 16 | 12 e 14 | fechado |
+| Testes três vezes por commit; cota queimada | Ref. 39 | 15 | fechado; a cota há que ampliar |
+| Duas portas de administrador em 24 horas | Ref. 40 | 13 e 14 | fechado |
+| Segredos colados no chat | Ref. 42 | 15 | rotação pendente |
+| Erro de autenticação relatado como sucesso | Ref. 43 | 12 | pendente, uma linha |
 | Arquivo de projeto de 9.661 linhas | Ref. 41 | 2 | pendente |
-| CORS do primeiro domínio; assistente de configuração com erro 500 | Ref. 43 | 13 e 8 | aplicação pendente |
-| O aplicativo móvel perde abas | Ref. 43 | 10 e 12 | diagnóstico feito; correção pendente |
-| Consultas sem índice sobre um sistema vivo | Ref. 18 | 11 e 17 | fechado |
-| Auditoria de segurança feita uma vez, não como rotina | Ref. 23 | 11 e 18 | fechado; o calendário é novo |
-| Teto apertado ao medido; cota esgotada sem que ninguém olhasse | Refs. 37 e 39 | 9, 13 e 20 | fechado |
-| O turno órfão se encontrou pelo log, não pelo código | Ref. 16 | 16 e 21 | fechado |
+| CORS do primeiro domínio; assistente de configuração com erro 500 | Ref. 43 | 15 e 11 | aplicação pendente |
+| O aplicativo móvel perde abas | Ref. 43 | 12 e 14 | diagnóstico feito; correção pendente |
+| Consultas sem índice sobre um sistema vivo | Ref. 18 | 13 e 17 | fechado |
+| Auditoria de segurança feita uma vez, não como rotina | Ref. 23 | 13 e 18 | fechado; o calendário é novo |
+| Teto apertado ao medido; cota esgotada sem que ninguém olhasse | Refs. 37 e 39 | 7, 15 e 21 | fechado |
+| O turno órfão se encontrou pelo log, não pelo código | Ref. 16 | 16 e 22 | fechado |

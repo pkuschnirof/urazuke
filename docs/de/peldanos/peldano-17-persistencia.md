@@ -1,10 +1,10 @@
 # Schritt 17 — Optimierung der Persistenzschicht, vorher und nachher gemessen (Schrittvertrag)
 
-**Abschnitt:** Betriebsqualität, vor dem ersten Deployment in die Produktion.
+**Abschnitt:** Produktionsfreigabe.
 **Wann:** in der Phase der Produktionsfreigabe, nach der 16 (man muss die Abfragen sehen können,
 um sie zu messen) und vor der 19 (die Lasttests laufen auf der bereits optimierten Persistenz;
 sonst messen sie das Problem, das man schon kannte). Er wiederholt sich, wenn ein Block eine
-große Tabelle hinzufügt oder einen kritischen Fluss ändert, und wenn das Monitoring (20) eine
+große Tabelle hinzufügt oder einen kritischen Fluss ändert, und wenn das Monitoring (21) eine
 Abfrage außerhalb des Bereichs zeigt. In einem Altsystem stammen die Messungen aus N6, und das
 meiste von dem, was man findet, wird „beim Anfassen“ bezahlt, außer dem, was schon außerhalb des
 Bereichs liegt.
@@ -18,7 +18,7 @@ Die Persistenzschicht ist der Ort, an dem Systeme langsam sterben: sie laufen gu
 Datensätzen, annehmbar mit zehntausend, und bei hunderttausend braucht jeder Bildschirm zwanzig
 Sekunden, und niemand weiß, wann das angefangen hat. Diesen Schritt gibt es, damit das mit Zahlen
 und vor der Produktion entschieden wird, nicht mit Beschwerden und danach. Und damit es **mit der
-Methode von Schritt 9** entschieden wird: jede Abfrage, die das System macht, wird mit einem
+Methode von Schritt 7** entschieden wird: jede Abfrage, die das System macht, wird mit einem
 Messgerät gezählt und gestoppt, das einen Test hat, es wird geändert, was die Zahlen sagen, und
 es wird auf denselben Daten noch einmal gemessen. Das erste Audit der Abfragen ohne Index auf
 einem lebenden System [Ref. 18](../REFERENCIAS.md#ref-18) und das auf das Gemessene gezurrte
@@ -50,7 +50,7 @@ den Prompt schickst“, der jedem einzelnen vorangeht.
 
 - Die Dimensionierung und die Mengen (Schritt 3, oder N6 in einem Altsystem): die Volumina, bei
   denen gemessen werden muss.
-- Die Produzenten-Konsumenten-Karte (Schritt 8): was jede Tabelle konsumiert.
+- Die Produzenten-Konsumenten-Karte (Schritt 11): was jede Tabelle konsumiert.
 - Die Beobachtbarkeit (16): jede Abfrage mit ihrer Zeit sichtbar.
 - Die Testumgebung, geladen mit Daten im erwarteten Volumen.
 
@@ -68,7 +68,7 @@ machst es, nicht der Agent:
   Projekt ist, verlang vom Agenten, dass er synthetische Daten in der Form des semantischen Baums
   und mit den Volumina der Dimensionierung erzeugt und das als Skript im Repository hinterlässt.
   Das ist ein vorheriger offener Posten, nicht Teil dieses Prompts.
-- `docs/PRODUCER_CONSUMER_MAP.md` (Schritt 8), auf dem neuesten Stand.
+- `docs/PRODUCER_CONSUMER_MAP.md` (Schritt 11), auf dem neuesten Stand.
 - Wenn es eine Produktion gibt: nur lesender Zugang, mit dem Zugangsschlüssel außerhalb des Chats,
   um zusätzlich zu den Testdaten auf echten Daten zu messen.
 - Ein bekannter Fall für den Test jedes Messgeräts (eine Tabelle, deren Zeilenzahl du kennst).
@@ -103,7 +103,7 @@ machst es, nicht der Agent:
 > Änderung den erwarteten Gewinn, das Risiko, und welche Konsumenten der Karte sie berührt. Ändere
 > noch nichts: ich gebe die Liste frei. Antworte in meiner Sprache.
 
-Was ich hier verlange: messen mit der Methode von Schritt 9 (Messgerät mit Test, in beide
+Was ich hier verlange: messen mit der Methode von Schritt 7 (Messgerät mit Test, in beide
 Richtungen auditiert, Zahl mit Befehl), bevor vorgeschlagen wird; Abfrage für Abfrage
 vorschlagen, mit dem Gewinn und dem Risiko, und mit den Konsumenten der Karte, die jede Änderung
 berührt (ein neuer Index berührt niemanden; eine Retention pro Tabelle berührt alle, die diese
@@ -141,7 +141,7 @@ am meisten „verbessert“ wird, was niemand verlangt hat.
 Was ich hier verlange: ein Commit pro Änderung, damit das Vorher und das Nachher zuordenbar sind;
 dasselbe Messgerät auf denselben Daten (wenn sich die Daten ändern, sagt die Zahl nichts); das
 Budget mit Test, das verhindert, dass die N+1-Schleife in drei Monaten zurückkommt; und die
-Symmetrie von Schritt 8, angewandt auf die Persistenz.
+Symmetrie von Schritt 11, angewandt auf die Persistenz.
 
 ## 3. Erwartetes Ergebnis
 

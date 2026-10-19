@@ -3,7 +3,7 @@
 **Tronçon :** boucle.
 **Quand :** à chaque session de la boucle, chaque fois que l'agent tombe sur une règle métier non
 écrite ou sur une bifurcation qui change ce que l'utilisateur voit. Il y en a en général deux ou
-trois par bloc. Aussi au démarrage (échelons 0 et 3) et à la mise en production (12 et 13).
+trois par bloc. Aussi au démarrage (échelons 0 et 3) et à la mise en production (14 et 15).
 **Forme :** courte conversation : l'agent détecte qu'il y a une décision, demande, et la laisse
 écrite.
 **Taille :** obligatoire dans tout projet. Dans un petit projet, le registre peut être un tableau

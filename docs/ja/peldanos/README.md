@@ -14,35 +14,37 @@
 
 これらは、現在本番稼働している三つのシステムで私が行ったことから書いたもので、このままの
 形ではまだ実行していません。最初から最後までこれを使う最初のプロジェクトがいくつかを修正
-するでしょう。それは第15段の一部です。契約が実際の事例を引用するときは `[Ref. N]` の印で
+するでしょう。それは第23段の一部です。契約が実際の事例を引用するときは `[Ref. N]` の印で
 [参照文書](../REFERENCIAS.md)へリンクします。手順はきれいなまま、詳細はワンクリック先に
 あります。
 
 | 段 | ファイル | 区間 | いつ |
 |---|---|---|---|
-| 0 — このプロジェクトはこの方法で取り組めるか？ | `peldano-00-elegibilidad.md` | 立ち上げ | 最初の週、すべての前に |
-| 1 — 共働の約束 | `peldano-01-contrato-de-convivencia.md` | 立ち上げ | 最初の週、適格性の後 |
-| 2 — プロジェクトの定義と必読 | `peldano-02-definicion-y-lectura.md` | 立ち上げ | 最初の週。常に保守する |
-| 3 — アーキテクチャの前にサイジング | `peldano-03-dimensionar.md` | 立ち上げ | 最初の週、骨組みの前 |
-| 4 — ゲート付きの骨組み | `peldano-04-esqueleto.md` | 立ち上げ | 最初の週の締め |
+| 0 — このプロジェクトはこの方法で取り組めるか？ | `peldano-00-elegibilidad.md` | 立ち上げ | すべての前に |
+| 1 — 共働の約束 | `peldano-01-contrato-de-convivencia.md` | 立ち上げ | 適格性の後 |
+| 2 — プロジェクトの定義と必読 | `peldano-02-definicion-y-lectura.md` | 立ち上げ | 約束の後。常に保守する |
+| 3 — アーキテクチャの前にサイジング | `peldano-03-dimensionar.md` | 立ち上げ | 定義の後、骨組みの前 |
+| 4 — ゲート付きの骨組み | `peldano-04-esqueleto.md` | 立ち上げ | 立ち上げの締め |
 | 5 — 計画とは保留項目のこと | `peldano-05-pendientes.md` | ループ | 各ブロックを開くとき。毎セッション |
 | 6 — 決定はコードの隣に書く | `peldano-06-decisiones.md` | ループ | ルールが欠けるたびに |
-| 7 — 錠としてのテスト、赤で証明 | `peldano-07-tests-en-rojo.md` | ループ | 各保留項目を閉じるとき |
-| 8 — 生産者/消費者の対称性とアンチパターン | `peldano-08-simetria-y-antipatrones.md` | ループ | 契約の変更ごとに |
-| 9 — 構築の前に計測 | `peldano-09-medir.md` | ループ | 数字の上に構築する前に |
-| 10 — 誠実な検証と釣り合った報告 | `peldano-10-verificacion-honesta.md` | ループ | 報告ごとに |
-| 11 — 計画への入力としての定期監査 | `peldano-11-auditoria.md` | 運用 | 本番の前。その後は定期的に |
-| 12 — フェイルクローズド、錠、静かな損害ゼロ | `peldano-12-fail-closed.md` | 運用 | 世界に作用するものを構築する前に |
-| 13 — 継続的インテグレーション、環境、秘密、デプロイ | `peldano-13-ci-entornos-secretos-deploy.md` | 運用 | 本番への締め。デプロイごとのルーチン |
-| 14 — 生きた文書とAIなしのマニュアル | `peldano-14-documentacion-viva.md` | 運用 | 各ブロックの締めに。本番の前に完全版 |
-| 15 — 常駐エージェントと数字による振り返り | `peldano-15-agente-residente-y-retrospectiva.md` | 運用と締め | 運用に入るとき。各段階の締めに |
-| 16 — 設定可能なレベルを持つ完全な可観測性とトレーサビリティ | `peldano-16-observabilidad-y-trazabilidad.md` | 運用品質 | 本番リリース、第13段の後、第19段の前 |
-| 17 — 永続化層の最適化 | `peldano-17-persistencia.md` | 運用品質 | 本番リリース、第16段の後、第19段の前。クエリが範囲外に出たら繰り返す |
-| 18 — 脆弱性の走査と解決 | `peldano-18-vulnerabilidades.md` | 運用品質 | 最初のデプロイの前。その後は各プッシュと週次で |
-| 19 — 性能テストと破断点 | `peldano-19-rendimiento-y-punto-de-ruptura.md` | 運用品質 | 最初のデプロイの前。アーキテクチャ、永続化、重要なフローを変えるデプロイのたびに |
-| 20 — 資源と性能の監視、周期報告 | `peldano-20-monitoreo-de-recursos-y-rendimiento.md` | 運用品質 | 最初のデプロイの週。その後は独りで走り、サイクルごとに読む |
-| 21 — エラーの監視、周期報告 | `peldano-21-monitoreo-de-errores.md` | 運用品質 | 最初のデプロイの週、第20段とともに |
+| 7 — 構築の前に計測 | `peldano-07-medir.md` | ループ | 数字の上に構築する前に |
+| 8 — 錠としてのテスト、赤で証明 | `peldano-08-tests-en-rojo.md` | ループ | 各保留項目を閉じるとき |
+| 9 — 機械で検証されるコードの品質 | `peldano-09-calidad-de-codigo.md` | ループ | 最初のブロックを開くときに組み立てる。各コミットで走る |
+| 10 — 機能とともに作る手動テストケース | `peldano-10-casos-de-prueba-manual.md` | ループ | 各保留項目とともに。人による実行は各ブロックの締め、受け入れ時、各デプロイの後 |
+| 11 — 生産者/消費者の対称性とアンチパターン | `peldano-11-simetria-y-antipatrones.md` | ループ | 契約の変更ごとに |
+| 12 — 誠実な検証と釣り合った報告 | `peldano-12-verificacion-honesta.md` | ループ | 報告ごとに |
+| 13 — 計画への入力としての定期監査 | `peldano-13-auditoria.md` | 本番リリース | 本番の前。その後は定期的に |
+| 14 — フェイルクローズド、錠、静かな損害ゼロ | `peldano-14-fail-closed.md` | 本番リリース | 世界に作用するものを構築する前に |
+| 15 — 継続的インテグレーション、環境、秘密、デプロイ | `peldano-15-ci-entornos-secretos-deploy.md` | 本番リリース | 本番への締め。デプロイごとのルーチン |
+| 16 — 設定可能なレベルを持つ完全な可観測性とトレーサビリティ | `peldano-16-observabilidad-y-trazabilidad.md` | 本番リリース | 本番リリース、第15段の後、第19段の前 |
+| 17 — 永続化層の最適化 | `peldano-17-persistencia.md` | 本番リリース | 本番リリース、第16段の後、第19段の前。クエリが範囲外に出たら繰り返す |
+| 18 — 脆弱性の走査と解決 | `peldano-18-vulnerabilidades.md` | 本番リリース | 最初のデプロイの前。その後は各プッシュと週次で |
+| 19 — 性能テストと破断点 | `peldano-19-rendimiento-y-punto-de-ruptura.md` | 本番リリース | 最初のデプロイの前。アーキテクチャ、永続化、重要なフローを変えるデプロイのたびに |
+| 20 — 生きた文書とAIなしのマニュアル | `peldano-20-documentacion-viva.md` | 本番リリース | 各ブロックの締めに。本番の前に完全版 |
+| 21 — 資源と性能の監視、周期報告 | `peldano-21-monitoreo-de-recursos-y-rendimiento.md` | 運用 | 最初のデプロイとともに。その後は独りで走り、サイクルごとに読む |
+| 22 — エラーの監視、周期報告 | `peldano-22-monitoreo-de-errores.md` | 運用 | 最初のデプロイとともに、第21段とともに |
+| 23 — 常駐エージェントと数字による振り返り | `peldano-23-agente-residente-y-retrospectiva.md` | 運用 | 運用に入るとき。各段階の締めに |
 
 区間：**立ち上げ**はプロジェクトごとに一度登る。**ループ**は変更のたびに繰り返す。**運用**
-はシステムが既に稼働しているとき。第15段は次のプロジェクトのために第0段へ戻る。段と段の
+はシステムが既に稼働しているとき。第23段は次のプロジェクトのために第0段へ戻る。段と段の
 間に何が起きるかを含む完全なタイムラインは、主文書のパートBにあります。

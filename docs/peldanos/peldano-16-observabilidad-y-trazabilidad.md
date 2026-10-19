@@ -1,7 +1,7 @@
 # Peldaño 16 — Observabilidad y trazabilidad totales, con nivel configurable (contrato del peldaño)
 
-**Tramo:** calidad operativa, antes del primer despliegue a producción.
-**Cuándo:** en la fase de salida a producción, después del 13 (ya hay cadena de despliegue y
+**Tramo:** salida a producción.
+**Cuándo:** en la fase de salida a producción, después del 15 (ya hay cadena de despliegue y
 configuración por entorno) y antes de las pruebas de rendimiento (19), porque sin observabilidad
 las pruebas de rendimiento no dicen qué se rompió. En un legado, el nivel mínimo (registros
 estructurados con nivel configurable y un identificador de correlación) entra en el cinturón de
@@ -20,7 +20,7 @@ registros en producción, en un minuto, sin volver a desplegar, y bajarlo despu�
 observabilidad: ver lo que el sistema hace. Y lo segundo es trazabilidad: que toda acción con
 consecuencia (cobró, envió, borró, aprobó) deje un rastro de quién, cuándo, qué, desde dónde y
 con qué resultado, en un registro que la aplicación no puede editar. Sin esto, el agente
-residente del peldaño 15 opera a ciegas, el monitoreo de los peldaños 20 y 21 no tiene de qué
+residente del peldaño 23 opera a ciegas, el monitoreo de los peldaños 21 y 22 no tiene de qué
 alimentarse, y cada incidente se diagnostica con hipótesis en vez de con evidencia. El turno
 huérfano que siguió vivo una hora cuarenta y tres se encontró por el log, no por el código
 [Ref. 16](../REFERENCIAS.md#ref-16); y el agente residente arrancó, justamente, leyendo logs
@@ -47,8 +47,8 @@ Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener 
 prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
 el prompt" que precede a cada uno.
 
-- La cadena de despliegue y la configuración por entorno (peldaño 13): el nivel se configura ahí.
-- La tabla de candados (peldaño 12): cada acción con consecuencia es una entrada de la auditoría.
+- La cadena de despliegue y la configuración por entorno (peldaño 15): el nivel se configura ahí.
+- La tabla de candados (peldaño 14): cada acción con consecuencia es una entrada de la auditoría.
 - El relevamiento inicial con los datos personales marcados: los registros no pueden contenerlos.
 - Dónde van a vivir los registros y las métricas (un archivo rotado, un servicio): lo decidís vos.
 
@@ -59,9 +59,9 @@ el prompt" que precede a cada uno.
 **Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
 el agente:
 
-- `docs/DEPLOYMENT.md` (peldaño 13) con la forma en que se lee la configuración por entorno: el
+- `docs/DEPLOYMENT.md` (peldaño 15) con la forma en que se lee la configuración por entorno: el
   nivel de registro va a ser una variable más de esa configuración.
-- `docs/LOCKS.md` (peldaño 12): la lista de acciones con consecuencia es la lista de lo que tiene
+- `docs/LOCKS.md` (peldaño 14): la lista de acciones con consecuencia es la lista de lo que tiene
   que quedar en la auditoría.
 - En `docs/INITIAL_SURVEY.md`, la lista de qué datos son personales (nombres, teléfonos, correos,
   documentos, diagnósticos), escrita por vos con el dueño: es lo que los registros tienen que
@@ -83,7 +83,7 @@ el agente:
 > backend, to the database and to every external call; (3) traceability of every consequential
 > action in `docs/LOCKS.md`: who, when, what, from where, with which input and which outcome, in
 > an audit record the application cannot edit; (4) health and metrics endpoints or files
-> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 20 and 21
+> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 21 and 22
 > will read; (5) masking of every personal field listed in `docs/INITIAL_SURVEY.md`, so that no
 > log record contains personal data. Show me one real request followed by its id through every
 > layer, and show me the level changing in the test environment without a redeploy. Document the
@@ -105,7 +105,7 @@ el agente:
 > con consecuencia de `docs/LOCKS.md`: quién, cuándo, qué, desde dónde, con qué entrada y con qué
 > resultado, en un registro de auditoría que la aplicación no puede editar; (4) puntos o archivos
 > de salud y métricas (pedidos, latencia, errores, tamaño de las colas, uso de recursos) que el
-> monitoreo de los peldaños 20 y 21 va a leer; (5) enmascaramiento de todo campo personal listado
+> monitoreo de los peldaños 21 y 22 va a leer; (5) enmascaramiento de todo campo personal listado
 > en `docs/INITIAL_SURVEY.md`, de modo que ningún registro contenga datos personales. Mostrame un
 > pedido real seguido por su identificador a través de cada capa, y mostrame el nivel cambiando en
 > el entorno de prueba sin volver a desplegar. Documentá los niveles, dónde se cambian y dónde

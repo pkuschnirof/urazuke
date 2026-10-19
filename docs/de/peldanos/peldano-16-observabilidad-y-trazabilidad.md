@@ -1,7 +1,7 @@
 # Schritt 16 — Vollständige Beobachtbarkeit und Nachverfolgbarkeit, mit konfigurierbarem Level (Schrittvertrag)
 
-**Abschnitt:** Betriebsqualität, vor dem ersten Deployment in die Produktion.
-**Wann:** in der Phase der Produktionsfreigabe, nach der 13 (es gibt schon eine Deployment-Kette
+**Abschnitt:** Produktionsfreigabe.
+**Wann:** in der Phase der Produktionsfreigabe, nach der 15 (es gibt schon eine Deployment-Kette
 und Konfiguration pro Umgebung) und vor den Lasttests (19), denn ohne Beobachtbarkeit sagen die
 Lasttests nicht, was kaputtgegangen ist. In einem Altsystem gehört das Mindestniveau
 (strukturierte Logs mit konfigurierbarem Level und eine Korrelations-ID) in den Sicherheitsgurt
@@ -21,7 +21,7 @@ und danach wieder herunterdrehen. Das ist Beobachtbarkeit: sehen, was das System
 Zweite ist Nachverfolgbarkeit: dass jede Aktion mit Konsequenz (abgebucht, gesendet, gelöscht,
 genehmigt) eine Spur hinterlässt — wer, wann, was, von wo und mit welchem Ergebnis —, in einer
 Aufzeichnung, die die Anwendung nicht bearbeiten kann. Ohne das agiert der residente Agent aus
-Schritt 15 blind, das Monitoring der Schritte 20 und 21 hat nichts, wovon es sich ernähren
+Schritt 23 blind, das Monitoring der Schritte 21 und 22 hat nichts, wovon es sich ernähren
 könnte, und jeder Vorfall wird mit Hypothesen statt mit Belegen diagnostiziert. Der verwaiste
 Zug, der eine Stunde dreiundvierzig weiterlebte, wurde über das Log gefunden, nicht über den Code
 [Ref. 16](../REFERENCIAS.md#ref-16); und der residente Agent fing genau damit an, Logs zu lesen
@@ -48,9 +48,9 @@ Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Pro
 musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
 den Prompt schickst“, der jedem einzelnen vorangeht.
 
-- Die Deployment-Kette und die Konfiguration pro Umgebung (Schritt 13): das Level wird dort
+- Die Deployment-Kette und die Konfiguration pro Umgebung (Schritt 15): das Level wird dort
   konfiguriert.
-- Die Tabelle der Sperren (Schritt 12): jede Aktion mit Konsequenz ist ein Eintrag des Audit-Logs.
+- Die Tabelle der Sperren (Schritt 14): jede Aktion mit Konsequenz ist ein Eintrag des Audit-Logs.
 - Die anfängliche Erhebung mit den markierten personenbezogenen Daten: die Logs dürfen sie nicht
   enthalten.
 - Wo die Logs und die Metriken leben werden (eine rotierte Datei, ein Dienst): das entscheidest du.
@@ -62,9 +62,9 @@ den Prompt schickst“, der jedem einzelnen vorangeht.
 **Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
 machst es, nicht der Agent:
 
-- `docs/DEPLOYMENT.md` (Schritt 13) mit der Art, wie die Konfiguration pro Umgebung gelesen wird:
+- `docs/DEPLOYMENT.md` (Schritt 15) mit der Art, wie die Konfiguration pro Umgebung gelesen wird:
   das Log-Level wird eine weitere Variable dieser Konfiguration sein.
-- `docs/LOCKS.md` (Schritt 12): die Liste der Aktionen mit Konsequenz ist die Liste dessen, was im
+- `docs/LOCKS.md` (Schritt 14): die Liste der Aktionen mit Konsequenz ist die Liste dessen, was im
   Audit-Log stehen muss.
 - In `docs/INITIAL_SURVEY.md` die Liste, welche Daten personenbezogen sind (Namen, Telefonnummern,
   E-Mail-Adressen, Ausweisnummern, Diagnosen), von dir mit dem Eigentümer geschrieben: das ist
@@ -87,7 +87,7 @@ machst es, nicht der Agent:
 > backend, to the database and to every external call; (3) traceability of every consequential
 > action in `docs/LOCKS.md`: who, when, what, from where, with which input and which outcome, in
 > an audit record the application cannot edit; (4) health and metrics endpoints or files
-> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 20 and 21
+> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 21 and 22
 > will read; (5) masking of every personal field listed in `docs/INITIAL_SURVEY.md`, so that no
 > log record contains personal data. Show me one real request followed by its id through every
 > layer, and show me the level changing in the test environment without a redeploy. Document the
@@ -109,7 +109,7 @@ machst es, nicht der Agent:
 > Nachverfolgbarkeit jeder Aktion mit Konsequenz aus `docs/LOCKS.md`: wer, wann, was, von wo, mit
 > welcher Eingabe und mit welchem Ergebnis, in einem Audit-Eintrag, den die Anwendung nicht
 > bearbeiten kann; (4) Endpunkte oder Dateien für Gesundheit und Metriken (Anfragen, Latenz,
-> Fehler, Größe der Warteschlangen, Ressourcennutzung), die das Monitoring der Schritte 20 und 21
+> Fehler, Größe der Warteschlangen, Ressourcennutzung), die das Monitoring der Schritte 21 und 22
 > lesen wird; (5) Maskierung jedes personenbezogenen Feldes, das in `docs/INITIAL_SURVEY.md`
 > aufgelistet ist, sodass kein Log-Eintrag personenbezogene Daten enthält. Zeig mir eine echte
 > Anfrage, der über jede Schicht hinweg ihre ID folgt, und zeig mir das Level, das sich in der

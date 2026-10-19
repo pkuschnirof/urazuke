@@ -1,10 +1,10 @@
 # Step 17 — Optimization of the persistence layer, measured before and after (step contract)
 
-**Stretch:** operational quality, before the first deployment to production.
+**Stretch:** going live.
 **When:** in the go-live phase, after step 16 (you need to see the queries in order to measure
 them) and before step 19 (the performance tests are run on an already optimized persistence
 layer; otherwise they measure the problem that was already known). It is repeated when a block
-adds a large table or changes a critical flow, and when the monitoring (20) shows a query out of
+adds a large table or changes a critical flow, and when the monitoring (21) shows a query out of
 range. In a legacy system, the measurements come out of N6 and most of what is found is paid
 "when touched", except what is already out of range.
 **Form:** two shots: measure and propose; apply with before and after.
@@ -17,7 +17,7 @@ The persistence layer is where systems die slowly: they work well with a hundred
 acceptably with ten thousand, and at a hundred thousand every screen takes twenty seconds, and
 nobody knows when it started. This step exists so that this gets decided with numbers and before
 production, not with complaints and afterwards. And so that it gets decided **with the method of
-step 9**: every query the system makes is counted and timed with a meter that has a test, what the
+step 7**: every query the system makes is counted and timed with a meter that has a test, what the
 numbers say gets changed, and it is measured again on the same data. The first audit of queries
 without an index on a live system [Ref. 18](../REFERENCIAS.md#ref-18) and the query budget tightened
 to the measured value [Ref. 37](../REFERENCIAS.md#ref-37) are the origin of this step; the decision
@@ -45,7 +45,7 @@ with their content and their minimum state, are in section 2, in the "Before sen
 block that precedes each one.
 
 - The sizing and the volume data (step 3, or N6 in a legacy system): the volumes to measure at.
-- The producer/consumer map (step 8): what consumes each table.
+- The producer/consumer map (step 11): what consumes each table.
 - The observability (16): every query visible with its time.
 - The test environment loaded with data at the expected volume.
 
@@ -62,7 +62,7 @@ the agent:
   agent to generate synthetic data with the shape of the semantic tree and the volumes of the
   sizing, and to leave it as a script in the repository. This is a prior pending item, not part of
   this prompt.
-- `docs/PRODUCER_CONSUMER_MAP.md` (step 8), up to date.
+- `docs/PRODUCER_CONSUMER_MAP.md` (step 11), up to date.
 - If there is a production: read-only access, with the credential outside the chat, to measure on
   real data as well as on test data.
 - A known case for the test of each meter (a table whose number of rows you know).
@@ -82,7 +82,7 @@ the agent:
 > risk, and which consumers in the map it touches. Do not change anything yet: I approve the list.
 > Reply in my language.
 
-What I am asking for: measuring with the method of step 9 (a meter with a test, audited in both
+What I am asking for: measuring with the method of step 7 (a meter with a test, audited in both
 directions, a number with its command) before proposing; proposing query by query, with the gain
 and the risk, and with the consumers of the map that each change touches (a new index touches
 nobody; a retention policy per table touches everybody who reads that table); and **not changing
@@ -111,7 +111,7 @@ anything until I approve**, because optimization is the place where what nobody 
 What I am asking for: one commit per change, so that the before and the after are attributable;
 the same meter on the same data (if the data changes, the number says nothing); the budget with a
 test, which is what stops the N+1 loop from coming back in three months; and the symmetry of step
-8 applied to persistence.
+11 applied to persistence.
 
 ## 3. Expected result
 

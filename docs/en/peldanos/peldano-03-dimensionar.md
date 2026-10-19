@@ -1,7 +1,7 @@
 # Step 3 — Size before designing the architecture (step contract)
 
 **Stretch:** start-up.
-**When:** once, in the first week, after the definition and before building the skeleton; redone
+**When:** once, after the definition and before building the skeleton; redone
 if the business changes scale.
 **Form:** conversation: the agent computes and presents options; you choose.
 **Size:** always mandatory, but proportional: in a small project the sizing can be half a page and

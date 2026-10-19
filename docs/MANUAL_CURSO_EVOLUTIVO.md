@@ -2,7 +2,7 @@
 
 Autor: Pablo Kuschniroff, asistido por Claude Code. Versión 1, 18 de octubre de 2026. Esta es la
 segunda parte del [manual del curso](MANUAL_CURSO.md): da por hecho que hiciste la primera, o al
-menos que leíste las lecciones 0 a 7, porque acá no vuelvo a explicar qué es un pendiente, un test
+menos que leíste las lecciones 0 a 8, porque acá no vuelvo a explicar qué es un pendiente, un test
 en rojo o un árbol semántico. El método de esta parte está en la página del
 [camino evolutivo-correctivo](EVOLUTIVO_CORRECTIVO.md); acá está la práctica, con un segundo
 proyecto guía. Las palabras raras, en el glosario del documento principal; los casos reales, en
@@ -31,16 +31,16 @@ que ya actúa sobre el mundo, el dimensionamiento con números medidos, y un bac
 el pedido del cliente conviven, emparejados por módulo. Y después, el primer bug corregido con su
 test en rojo y la primera funcionalidad nueva construida con el método completo.
 
-### El calendario de esta parte
+### El orden de esta parte
 
-| Semana | Lecciones | Qué hacés además |
+| Etapa | Lecciones | Qué hacés además |
 |---|---|---|
 | 1 | N0, N1, N2, N3 | **Lectura.** Nada se cambia. Recorrés el árbol recuperado con el dueño, decidís las discrepancias una por una, leés la auditoría. Al cierre: el mapa y el inventario de deuda. |
 | 2 | N4, N5 | **El cinturón.** Entorno de prueba con datos anonimizados, despliegue dos veces, secretos rotados, batería de caracterización con su rojo por mutación. Candados confirmados sobre lo que ya actúa. Al cierre: el sistema corre en prueba y la batería está en verde. |
 | 3 | N6, N7, R1 | **Medir, ordenar, corregir.** Dimensionamiento medido. El backlog con las dos marcas. El primer bloque: el bug conocido, cerrado en modo correctivo con sus emparejados. |
-| 4 | R2 | **Evolucionar.** El segundo bloque: la funcionalidad nueva, construida con el método completo (lecciones 5 a 10 de la primera parte), con la caracterización como regresión. |
-| 5 y 6 | 11, 12, 13, 14, 16, 17, 18, 19 de la primera parte | **Salida a producción.** Auditoría periódica, candados restantes, cierre del camino a producción, los tres manuales (que el legado no tenía), y los cuatro peldaños de calidad operativa previos al despliegue: observabilidad completa, persistencia con lo que N6 midió, escaneo de vulnerabilidades como compuerta, prueba de carga con el punto de ruptura. |
-| 7 | 15, 20, 21 de la primera parte | **Operación.** Los dos monitoreos montados en la semana del despliegue, con la primera lectura como línea base del legado; agente residente; retrospectiva con la pregunta propia del legado: cuánto costó normalizar. |
+| 4 | R2 | **Evolucionar.** El segundo bloque: la funcionalidad nueva, construida con el método completo (lecciones 5 a 12 de la primera parte), con la caracterización como regresión. |
+| 5 y 6 | 13, 14, 15, 20, 16, 17, 18, 19 de la primera parte | **Salida a producción.** Auditoría periódica, candados restantes, cierre del camino a producción, los tres manuales (que el legado no tenía), y los cuatro peldaños de calidad operativa previos al despliegue: observabilidad completa, persistencia con lo que N6 midió, escaneo de vulnerabilidades como compuerta, prueba de carga con el punto de ruptura. |
+| 7 | 23, 21, 22 de la primera parte | **Operación.** Los dos monitoreos montados con el despliegue, con la primera lectura como línea base del legado; agente residente; retrospectiva con la pregunta propia del legado: cuánto costó normalizar. |
 
 ### El proyecto guía: "Turnera heredada"
 
@@ -81,94 +81,63 @@ Estas ocho lecciones son el tramo que la primera parte no tenía. Las cuatro pri
 lectura: no se cambia nada, y la tentación de cambiar algo va a ser enorme. Las dos siguientes
 arman el cinturón. Las dos últimas miden y ordenan. Recién después se toca funcionalidad.
 
-### Lección N0 — Elegibilidad de un sistema existente
+### Lección N0 — Elegibilidad de un sistema existente: prerrequisitos que el agente verifica haciendo
 
-**Qué tenés que entender.** Los dos criterios excluyentes son los mismos de la lección 0, pero
-acá X2 (pantallas operables por programa) se contesta pantalla por pantalla, y si alguna está en
-rojo no es motivo para no empezar: es el primer pendiente, y bloquea. Se agregan cuatro criterios
-propios del legado: si hay alguien que sepa cómo funciona, si producción se puede consultar en
-solo lectura, si existe algún test, y si el respaldo se restauró alguna vez. El último es el que
-casi todos descubren que está en rojo.
+**Qué tenés que entender.** En la lección 0 los criterios los respondía el relevamiento. Acá hay
+un sistema, y entonces los criterios se pueden **verificar haciendo**, por el agente, sin que
+nadie opine: ¿puede montar un ambiente completo con fuentes, datos y persistencia? ¿Puede entender
+el código? ¿Puede escribir, solo a partir del código, un documento que describa toda la
+funcionalidad y que la encargada reconozca como su sistema? ¿Puede operar las pantallas con una
+herramienta de prueba y correr un test de punta a punta? ¿Se construye con herramientas de hoy?
+¿Se pueden copiar y anonimizar los datos, y hay un respaldo que se restauró? ¿Las integraciones
+tienen modo de prueba? Son siete prerrequisitos, y la regla nueva es que un rojo no es un "no
+va": es un **proyecto previo**, con su propio alcance, para que el sistema se vuelva elegible.
 
 **Antes de enviar el prompt**, con tus manos:
 
 - `docs/INITIAL_SURVEY.md`, corto: qué hace Turnos y para quién según la encargada, qué duele
   (el recordatorio doble, lo que falta), quién lo hizo y cuánto tarda en contestar, dónde corre,
   quién tiene acceso, y que hay un respaldo "automático" que nadie restauró. Media página.
-- `docs/ELIGIBILITY_CRITERIA.md`: la ficha de la lección 0 con cuatro filas más: alguien que sepa,
-  producción consultable, tests existentes, respaldo restaurado. Columnas vacías.
-- Acceso de lectura al repositorio para el agente y, si lo conseguís, una credencial de solo
-  lectura a la base, fuera del chat.
+- `docs/ELIGIBILITY_CRITERIA.md`: la ficha de la lección 0 más los siete prerrequisitos del legado
+  (copialos de la página del camino evolutivo-correctivo, estación N0), con tres columnas vacías:
+  verde o rojo, evidencia, proyecto previo.
+- Acceso de lectura al repositorio, una copia de la base (o producción en solo lectura) y un lugar
+  donde el agente pueda intentar levantar el sistema (tu máquina alcanza para el curso), con las
+  credenciales fuera del chat.
 
-1. Pegale:
+1. Pegale el prompt inicial de la estación N0 (en la página del camino evolutivo-correctivo), tal
+   cual.
+2. Va a tardar: tiene que montar el ambiente, leer todo, escribir `docs/FUNCTIONALITY_RECOVERED.md`
+   y correr un test. Cuando termine, leé ese documento con la encargada: ¿describe el sistema que
+   ella cree tener? Lo que no coincida, anotalo: es la primera lista de discrepancias.
+3. Mirá la ficha: cada prerrequisito tiene que tener evidencia de algo que el agente hizo, no una
+   respuesta tuya.
 
-> We are going to assess whether this existing system can be taken over with the Urazuke method.
-> Read the initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
-> `docs/ELIGIBILITY_CRITERIA.md`, which for an existing system adds four criteria: whether anyone
-> who knows how the system works is available; whether production can be queried read-only;
-> whether any automated test exists; and whether a backup exists and has ever been restored. Then
-> explore the repository and, if I gave you access, the environment where it runs: change nothing.
-> Fill in the sheet criterion by criterion with the answer, its source (survey, code, database,
-> configuration, or inferred) and, for the exclusionary criteria X1 and X2, green or red. For X2,
-> list every screen and say for each whether it can be driven by a program today and whether the
-> effect can be checked in the backend. If a criterion cannot be answered from what you have, ask
-> me; do not assume. Do not decide: present me the completed sheet with your reading and your
-> doubts, and I will decide. Reply in my language.
+**Antes de enviar el prompt** de cierre: tu decisión en una línea y, para cada rojo, si el
+proyecto previo se encara ahora, después, o nunca.
 
-> [es]
-> Vamos a evaluar si este sistema existente se puede tomar con el método Urazuke. Leé el
-> relevamiento inicial en `docs/INITIAL_SURVEY.md` y la ficha de criterios en
-> `docs/ELIGIBILITY_CRITERIA.md`, que para un sistema existente agrega cuatro criterios: si hay
-> alguien disponible que sepa cómo funciona el sistema; si producción se puede consultar en solo
-> lectura; si existe algún test automático; y si existe una copia de respaldo y alguna vez se
-> restauró. Después explorá el repositorio y, si te di acceso, el entorno donde corre: no cambies
-> nada. Completá la ficha criterio por criterio con la respuesta, su fuente (relevamiento, código,
-> base, configuración, o inferido) y, para los criterios excluyentes X1 y X2, verde o rojo. Para
-> X2, listá cada pantalla y decí para cada una si hoy se puede operar por programa y si el efecto
-> se puede verificar en el backend. Si un criterio no se puede responder con lo que tenés,
-> preguntame; no supongas. No decidas: presentame la ficha completa con tu lectura y tus dudas, y
-> decido yo. Respondé en mi idioma.
+4. Pegale el prompt de cierre de la estación N0.
 
-   Le estás pidiendo lo mismo que en la lección 0, más tres cosas: que explore sin cambiar nada,
-   que cada respuesta diga de dónde salió, y que X2 se mida pantalla por pantalla.
+**Verificación de completitud.** ¿Cada prerrequisito tiene evidencia hecha, no dicha? ¿Existe el
+documento de funcionalidad recuperada y la encargada lo reconoció? ¿Corrió un test de punta a
+punta real? ¿Cada rojo tiene su proyecto previo como pendiente bloqueante?
 
-2. Contestá sus preguntas y leé la ficha. Mirá sobre todo la fila de cada pantalla en X2.
-3. Decidí.
+**Entregable.** `docs/ELIGIBILITY.md`, `docs/FUNCTIONALITY_RECOVERED.md`, y los pendientes
+bloqueantes de los proyectos previos, si los hay.
 
-**Antes de enviar el prompt** de cierre: tu decisión en una línea, y una condición que en este
-proyecto es obligatoria: restaurar el respaldo en tu máquina antes de la lección N4.
+**Errores típicos.** Aceptar un verde que el agente contestó sin hacer ("sí, el código es
+entendible"). Y tratar un rojo como rechazo: el método pide un proyecto previo, no una renuncia.
 
-4. Pegale el prompt de cierre:
-
-> Decision: [go under this condition: the backup is restored at least once before N4]. Write the
-> final sheet to `docs/ELIGIBILITY.md` with the date, who decided, every answer with its source,
-> and the conditions if any. If X2 is red for any screen, create `docs/PENDING.md` and open the
-> first pending item: make every screen drivable by a program with its backend effect checkable;
-> mark it as blocking. Include the questions you asked and my answers.
-
-> [es]
-> Decisión: [va con esta condición: el respaldo se restaura al menos una vez antes de N4]. Escribí
-> la ficha final en `docs/ELIGIBILITY.md` con la fecha, quién decidió, cada respuesta con su fuente,
-> y las condiciones si las hay. Si X2 está en rojo para alguna pantalla, creá `docs/PENDING.md` y
-> abrí el primer pendiente: hacer que toda pantalla se pueda operar por programa con su efecto en
-> el backend verificable; marcalo como bloqueante. Incluí las preguntas que hiciste y mis
-> respuestas.
-
-**Verificación de completitud.** ¿X2 tiene una respuesta por pantalla? ¿Los cuatro criterios del
-legado tienen respuesta con fuente? ¿El respaldo quedó como condición con fecha?
-
-**Entregable.** `docs/ELIGIBILITY.md`, y si hace falta el primer pendiente bloqueante.
-
-**Errores típicos.** Contestar X2 en verde "porque es web". Y saltear la condición del respaldo
-porque "hay uno automático": en la lección N4 el agente va a copiar la base de producción, y si
-algo sale mal, ese respaldo que nadie probó es lo único que hay.
-
-**En el proyecto guía.** El agente encuentra que de las seis pantallas de Turnos, cuatro se pueden
-operar por programa y dos no (el formulario de turno usa un calendario sin identificadores, y la
-búsqueda de pacientes es un campo que no responde a eventos de teclado); abre el pendiente
-bloqueante. Encuentra el proceso programado de los recordatorios, que la encargada no mencionó.
-Hay respaldo, nunca restaurado: condición. Sobre el sobrino: "disponible, cada dos semanas", que
-el agente propone leer como "no disponible", y tiene razón. Va, con una condición.
+**En el proyecto guía.** El agente monta Turnos en tu máquina con una copia de la base (verde),
+entiende el código salvo un módulo de reportes escrito en un lenguaje de plantillas viejo (verde,
+con nota), escribe el documento de funcionalidad y la encargada descubre ahí dos cosas que no
+sabía que el sistema hacía (verde: el documento es mejor que su memoria), opera cuatro de seis
+pantallas y corre un test del flujo de carga (rojo: dos pantallas no operables, proyecto previo:
+"hacer operables el calendario y la búsqueda"), construye con las herramientas de hoy salvo una
+dependencia muerta del generador de PDF (rojo: proyecto previo chico), copia y anonimiza los datos
+(verde) pero el respaldo nunca se restauró (rojo: restaurarlo es el proyecto previo más barato de
+todos), y el proveedor de mensajes tiene modo de prueba (verde). Decisión: va, después de tres
+proyectos previos chicos.
 
 ### Lección N1 — El contrato de convivencia para un legado
 
@@ -183,7 +152,7 @@ dueño diga otra cosa, y nada entra sin la caracterización en verde.
 
 - Tus preferencias de trabajo, como en la lección 1, y una decisión más: cuánto riesgo aceptás
   mientras se normaliza. Para el curso: el agente puede desplegar al entorno de prueba solo; a
-  producción, nunca, hasta la lección 13.
+  producción, nunca, hasta la lección 15.
 - `docs/ELIGIBILITY.md` cerrado.
 
 1. Pegale:
@@ -366,7 +335,7 @@ es la que más la sorprende, y la decide en un minuto: "eso no se borra más". P
 
 ### Lección N3 — La auditoría como inventario de la deuda
 
-**Qué tenés que entender.** La lección 11, pero al principio, en vez de al final, y con un campo
+**Qué tenés que entender.** La lección 13, pero al principio, en vez de al final, y con un campo
 más por hallazgo: si bloquea (hay que arreglarlo antes de cualquier cambio), si se paga al tocar
 el módulo, o si puede esperar. Sin ese campo, un legado auditado tiene cuarenta hallazgos y nadie
 sabe por cuál empezar. Qué bloquea lo decidís vos, no el auditor: en general, un secreto expuesto,
@@ -422,7 +391,7 @@ y lo que pueda dañar datos o cobrar de más.
 **Antes de enviar el prompt** de cierre: el informe leído, los dos hallazgos verificados, y la
 sesión del constructor abierta (el cierre va al constructor, no al auditor).
 
-3. Volvé a la sesión del constructor y pegale el prompt de cierre de la lección 11, agregándole
+3. Volvé a la sesión del constructor y pegale el prompt de cierre de la lección 13, agregándole
    al final: "Each pending item keeps the speed mark of its finding."
 
 **Verificación de completitud.** ¿Dice qué no pudo auditar? ¿Hay al menos un "bloquea"? ¿Cada
@@ -450,7 +419,7 @@ duplicado del formato de fecha en tres lugares.
 verde, no se cambia una línea de funcionalidad. El cinturón tiene cinco piezas: un entorno de
 prueba con datos anonimizados, un despliegue que se repite, los secretos fuera del código y
 rotados, la integración continua corriendo lo que haya, y la batería de caracterización. Esta
-última es la lección 7 al revés: el test nace en verde, porque captura lo que el sistema hace hoy,
+última es la lección 8 al revés: el test nace en verde, porque captura lo que el sistema hace hoy,
 defectos incluidos, y la prueba de que sirve es que se pone en rojo cuando rompés el flujo a
 propósito. Sin ese rojo por mutación, es un test que pasa porque no mira nada.
 
@@ -547,7 +516,7 @@ rotados, y la lista de los cinco flujos críticos para el hueco del prompt.
    discrepancia, no arreglado.
 
 5. Las dos pantallas no operables (el pendiente bloqueante de N0) se resuelven acá, antes de la
-   batería o como parte de ella: pedile que cierre ese pendiente con la rutina de la lección 7,
+   batería o como parte de ella: pedile que cierre ese pendiente con la rutina de la lección 8,
    y que después escriba los tests de caracterización de esos flujos.
 6. Corré vos la batería con el comando de `docs/STATUS.md`. Tiene que estar en verde.
 
@@ -560,7 +529,7 @@ su rojo por mutación a la vista? ¿Corriste vos la batería?
 `docs/GATES.md`, los secretos rotados, la integración continua en verde, y la batería de
 caracterización en verde con sus cinco rojos demostrados.
 
-**Errores típicos.** Dejar la batería "para la semana que viene" y empezar a arreglar el bug: el
+**Errores típicos.** Dejar la batería "para después" y empezar a arreglar el bug: el
 cinturón a medias es la causa número uno de romper lo que andaba. Datos de prueba "de ejemplo" en
 vez de la copia anonimizada: los bugs de un legado viven en los datos reales (el recordatorio
 doble de Turnos solo aparece con ciertos pacientes). Y mover el secreto sin rotarlo: estaba en el
@@ -575,7 +544,7 @@ comenta la línea que encola el mensaje, el test falla, la descomenta, pasa.
 
 ### Lección N5 — Candados y mapa productor-consumidor desde el código
 
-**Qué tenés que entender.** Las lecciones 12 y 8, hechas por inventario sobre lo que ya existe,
+**Qué tenés que entender.** Las lecciones 14 y 11, hechas por inventario sobre lo que ya existe,
 antes de cambiar nada. El agente va a encontrar en el código más de lo que el negocio recuerda
 que el sistema hace hacia afuera: envíos, borrados, procesos nocturnos. La comparación entre las
 dos listas es el resultado. Y cada candado lleva una propuesta de "ahora" o "al tocar": un candado
@@ -627,7 +596,7 @@ que toque ese módulo.
 **Antes de enviar el prompt** de cierre: la tabla con tu veredicto por fila, y la lista de los
 candados "ahora" para el hueco del prompt.
 
-3. Cerrá con el prompt de cierre de la lección 12, listando solo los candados "ahora"; los demás
+3. Cerrá con el prompt de cierre de la lección 14, listando solo los candados "ahora"; los demás
    quedan en el backlog con su marca.
 
 **Verificación de completitud.** ¿La lista del agente tiene más acciones que la de la encargada?
@@ -638,7 +607,7 @@ rojo contra la versión sin candado? ¿La planilla mensual está en el mapa como
 `docs/LOCKS.md` con los candados "ahora" implementados y probados.
 
 **Errores típicos.** Implementar todos los candados ahora "ya que estamos": es la regla de las dos
-velocidades violada, y es una semana que no se dedica al bug que el cliente pidió.
+velocidades violada, y es tiempo que no se dedica al bug que el cliente pidió.
 
 **En el proyecto guía.** El agente encuentra tres acciones que la encargada no listó: el borrado
 nocturno de turnos cancelados viejos, un correo que el sistema manda al profesional cuando se
@@ -652,7 +621,7 @@ columna, la planilla se rompe en silencio.
 ### Lección N6 — Dimensionar con números reales
 
 **Qué tenés que entender.** La lección 3 con una ventaja: los datos primarios están en la base y
-en los logs. No se preguntan, se miden, con un medidor con test (lección 9). La encargada aporta
+en los logs. No se preguntan, se miden, con un medidor con test (lección 7). La encargada aporta
 solo lo que no está en ningún lado: cuánto esperan crecer, y si el sistema se va a vender a otros
 consultorios.
 
@@ -799,7 +768,7 @@ reemplaza). Y unos doce de normalización, de los cuales tres "pueden esperar" y
 
 ### Lección R1 — El primer bloque: el bug, en modo correctivo
 
-**Qué tenés que entender.** Un pendiente correctivo es un bug conocido. En la lección 7 el rojo se
+**Qué tenés que entender.** Un pendiente correctivo es un bug conocido. En la lección 8 el rojo se
 fabricaba; acá el rojo es el bug mismo: el test que reproduce la falla, operando el flujo como el
 usuario que la reportó, tiene que fallar contra el código actual. Si no falla, reprodujiste otro
 bug. Ese rojo es la prueba de que arreglás lo correcto, y vale más que cualquier explicación del
@@ -857,7 +826,7 @@ escribió, y eso lo decidís vos.
 3. Leé la causa raíz antes de autorizar el arreglo. Si te pregunta una regla de negocio, decidila
    con la encargada y contestá con el formato de cierre de la lección 6.
 4. Al cierre: corré vos la batería de caracterización. Y usá el sistema en el entorno de prueba
-   media hora, como la recepcionista: la vista humana no se delega.
+   un rato, como la recepcionista: la vista humana no se delega.
 
 **Verificación de completitud.** ¿Viste el rojo del test que reproduce el bug, con números? ¿La
 causa raíz estaba escrita en prosa antes del arreglo? ¿La caracterización sigue en verde? ¿Los
@@ -884,7 +853,7 @@ planilla mensual, que es consumidor de la tabla; la encargada lo aprueba.
 ### Lección R2 — El segundo bloque: la seña, en modo evolutivo
 
 **Qué tenés que entender.** Lo nuevo sobre lo viejo se construye con el método completo, tal cual
-las lecciones 5 a 10 de la primera parte: especificación en el pendiente, decisiones con fecha,
+las lecciones 5 a 12 de la primera parte: especificación en el pendiente, decisiones con fecha,
 test en rojo, prueba de punta a punta, reporte honesto. Dos diferencias. La regresión de los
 vecinos es el sistema entero, y la batería de caracterización es la que lo dice. Y cuando el
 bloque entra a un módulo, los pendientes de normalización marcados "se paga al tocar" de ese
@@ -898,17 +867,17 @@ hizo al viejo.
   turnos llevan seña, cuánto, qué pasa si no se paga.
 - El relevamiento de acciones con consecuencia (N5) con la fila "cobrar seña" agregada, porque
   es una acción nueva que actúa sobre el mundo: candado antes de construir, como en la lección
-  12.
+  14.
 - La batería de caracterización en verde.
 
 1. Abrí el bloque con el prompt de apertura de la lección 5, sobre el pedido de la seña, y leé la
    especificación como la encargada.
-2. Antes de construir, el candado: pegale el prompt de cierre de la lección 12 para la acción
+2. Antes de construir, el candado: pegale el prompt de cierre de la lección 14 para la acción
    "cobrar seña", con modo de ensayo primero.
-3. Construí con la rutina de la lección 7, pendiente por pendiente, con los emparejados en el
+3. Construí con la rutina de la lección 8, pendiente por pendiente, con los emparejados en el
    mismo bloque.
 4. Al cierre del bloque: la batería completa de punta a punta (la de caracterización más los
-   tests nuevos), con el prompt de cierre de bloque de la lección 7, y media hora tuya usando el
+   tests nuevos), con el prompt de cierre de bloque de la lección 8, y un rato tuyo usando el
    sistema.
 
 **Verificación de completitud.** ¿La seña tiene candado con test en rojo antes de que exista el
@@ -924,7 +893,7 @@ pago, no cobramos nosotros": el link se manda a un paciente; eso es una acción 
 
 **En el proyecto guía.** La seña usa el mismo canal que los recordatorios, que ahora tiene cola
 (la decisión asimétrica de N6 pagando sola). Candado: confirmación explícita de la recepcionista y
-monto fijado por el profesional; modo de ensayo durante una semana registrando "habría pedido
+monto fijado por el profesional; modo de ensayo durante un tiempo registrando "habría pedido
 seña a". El emparejado de la pantalla de cancelación (la confirmación) se paga en este bloque
 porque la seña cambia qué pasa al cancelar. Al cierre, la batería corre siete flujos: los cinco de
 caracterización, el del bug de R1 y el de la seña.
@@ -933,16 +902,16 @@ caracterización, el del bug de R1 y el de la seña.
 
 ## Después: salida a producción y operación
 
-Desde acá, el legado es un sistema con método, y las lecciones 11 a 21 de la primera parte se
+Desde acá, el legado es un sistema con método, y las lecciones 13 a 22 de la primera parte se
 aplican tal cual, con cuatro notas. La primera es sobre los seis peldaños de calidad operativa:
 la observabilidad mínima y el escaneo de vulnerabilidades ya entraron con el cinturón, las
 mediciones de persistencia ya están en N6, y la prueba de carga se corre con esos volúmenes antes
 del primer despliegue; los dos monitoreos arrancan con la primera lectura como línea base, y lo
-que ya estaba mal el primer día se vuelve pendiente con su marca. Las otras tres notas son estas. La auditoría de la lección 11 compara contra la de N3: cuánta
-deuda se pagó, cuánta sigue. Los manuales de la lección 14 en un legado suelen no existir, y se
+que ya estaba mal el primer día se vuelve pendiente con su marca. Las otras tres notas son estas. La auditoría de la lección 13 compara contra la de N3: cuánta
+deuda se pagó, cuánta sigue. Los manuales de la lección 20 en un legado suelen no existir, y se
 generan a partir del sistema como está y de los pendientes cerrados, que ahora sí documentan lo
-hecho. Y la retrospectiva de la lección 15 tiene una pregunta propia de este camino: cuánto costó
-normalizar (en horas, en tokens, en semanas antes del primer cambio), y qué de la deuda marcada
+hecho. Y la retrospectiva de la lección 23 tiene una pregunta propia de este camino: cuánto costó
+normalizar (en horas, en tokens, en etapas antes del primer cambio), y qué de la deuda marcada
 "puede esperar" terminó costando igual. Esa respuesta es la que va a corregir el calendario de
 esta parte en la próxima versión.
 

@@ -1,7 +1,7 @@
 # Passo 4 — O esqueleto com suas comportas (contrato do degrau)
 
 **Fase:** arranque.
-**Quando:** uma vez, no fechamento da primeira semana, depois do dimensionamento e antes de
+**Quando:** uma vez, no fechamento do arranque, depois do dimensionamento e antes de
 qualquer funcionalidade. É aqui que se faz toda a infraestrutura inicial e a cadeia de integração
 e implantação.
 **Forma:** um disparo longo, com aprovação visual sua no final.
@@ -14,7 +14,7 @@ que pagar.
 Faça o sistema arrancar, ser testado e ser implantado VAZIO antes de ter funcionalidade.
 Descobrir a implantação no final é caríssimo: num dos meus sistemas ela chegou um mês depois do
 arranque e custou cinco pendências seguidas [Ref. 32](../REFERENCIAS.md#ref-32). Se o esqueleto
-é implantado na primeira semana, esses tropeços acontecem com zero funcionalidade em jogo.
+é implantado no arranque, esses tropeços acontecem com zero funcionalidade em jogo.
 
 A ideia geral por trás: **o caminho para a produção é parte do produto**, não um trâmite do
 final. Um sistema que funciona na máquina do programador e não pode ser implantado não é um

@@ -1,10 +1,10 @@
 # Peldaño 17 — Optimización de la capa de persistencia, medida antes y después (contrato del peldaño)
 
-**Tramo:** calidad operativa, antes del primer despliegue a producción.
+**Tramo:** salida a producción.
 **Cuándo:** en la fase de salida a producción, después del 16 (hace falta ver las consultas para
 medirlas) y antes del 19 (las pruebas de rendimiento se corren sobre la persistencia ya
 optimizada; si no, miden el problema que ya se conocía). Se repite cuando un bloque agrega una
-tabla grande o cambia un flujo crítico, y cuando el monitoreo (20) muestra una consulta fuera de
+tabla grande o cambia un flujo crítico, y cuando el monitoreo (21) muestra una consulta fuera de
 rango. En un legado, las mediciones salen de N6 y la mayor parte de lo que se encuentra se paga
 "al tocar", salvo lo que ya está fuera de rango.
 **Forma:** dos tiros: medir y proponer; aplicar con antes y después.
@@ -16,7 +16,7 @@ los bucles N+1; en uno con consecuencias, completo, con presupuestos por camino.
 La capa de persistencia es donde los sistemas se mueren despacio: funcionan bien con cien
 registros, aceptablemente con diez mil, y a los cien mil cada pantalla tarda veinte segundos, y
 nadie sabe cuándo empezó. Este peldaño existe para que eso se decida con números y antes de
-producción, no con quejas y después. Y para que se decida **con el método del peldaño 9**: cada
+producción, no con quejas y después. Y para que se decida **con el método del peldaño 7**: cada
 consulta que el sistema hace se cuenta y se cronometra con un medidor que tiene test, se cambia
 lo que los números dicen, y se vuelve a medir sobre los mismos datos. La primera auditoría de
 consultas sin índice sobre un sistema vivo [Ref. 18](../REFERENCIAS.md#ref-18) y el presupuesto de
@@ -46,7 +46,7 @@ el prompt" que precede a cada uno.
 
 - El dimensionamiento y la volumetría (peldaño 3, o N6 en un legado): los volúmenes a los que hay
   que medir.
-- El mapa productor-consumidor (peldaño 8): qué consume cada tabla.
+- El mapa productor-consumidor (peldaño 11): qué consume cada tabla.
 - La observabilidad (16): cada consulta visible con su tiempo.
 - El entorno de prueba cargado con datos al volumen esperado.
 
@@ -63,7 +63,7 @@ el agente:
   agente que genere datos sintéticos con la forma del árbol semántico y los volúmenes del
   dimensionamiento, y que lo deje como script en el repositorio. Esto es un pendiente previo, no
   parte de este prompt.
-- `docs/PRODUCER_CONSUMER_MAP.md` (peldaño 8), al día.
+- `docs/PRODUCER_CONSUMER_MAP.md` (peldaño 11), al día.
 - Si hay producción: acceso de solo lectura, con la credencial fuera del chat, para medir sobre
   datos reales además de los de prueba.
 - Un caso conocido para el test de cada medidor (una tabla cuya cantidad de filas sabés).
@@ -97,7 +97,7 @@ el agente:
 > cada cambio, la ganancia esperada, el riesgo, y qué consumidores del mapa toca. No cambies nada
 > todavía: yo apruebo la lista. Respondé en mi idioma.
 
-Qué le estoy pidiendo: medir con el método del peldaño 9 (medidor con test, auditado en dos
+Qué le estoy pidiendo: medir con el método del peldaño 7 (medidor con test, auditado en dos
 direcciones, número con comando) antes de proponer; proponer consulta por consulta, con la
 ganancia y el riesgo, y con los consumidores del mapa que cada cambio toca (un índice nuevo no
 toca a nadie; una retención por tabla toca a todos los que leen esa tabla); y **no cambiar nada
@@ -133,7 +133,7 @@ pidió.
 Qué le estoy pidiendo: un commit por cambio, para que el antes y el después sean atribuibles; el
 mismo medidor sobre los mismos datos (si cambian los datos, el número no dice nada); el
 presupuesto con test, que es lo que impide que el bucle N+1 vuelva en tres meses; y la simetría
-del peldaño 8 aplicada a la persistencia.
+del peldaño 11 aplicada a la persistencia.
 
 ## 3. Resultado esperado
 

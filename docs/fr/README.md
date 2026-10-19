@@ -29,14 +29,15 @@ fabrique aussi la preuve, et c'est pourquoi la preuve doit se prouver elle-même
 
 | Fichier | Ce que c'est |
 |---|---|
-| `docs/ESCALERA_METODOLOGICA.md` | Le document principal : la thèse, d'où vient la méthode, la ligne de temps (quand on gravit chaque échelon et ce qui se passe entre-temps : infrastructure, CI/CD, ingestion des exigences, développement, tests de bout en bout, regard humain, tests humains), les vingt-deux échelons avec leur fiche (les six derniers, de qualité opérationnelle : observabilité, persistance, vulnérabilités, performance, et les deux supervisions), ce qui manque encore, et le glossaire. |
+| `docs/ESCALERA_METODOLOGICA.md` | Le document principal : la thèse, d'où vient la méthode, la ligne de temps (quand on gravit chaque échelon et ce qui se passe entre-temps : infrastructure, CI/CD, ingestion des exigences, développement, tests de bout en bout, regard humain, tests humains), les vingt-quatre échelons avec leur fiche (les six derniers, de qualité opérationnelle : observabilité, persistance, vulnérabilités, performance, et les deux supervisions), ce qui manque encore, et le glossaire. |
 | `docs/EVOLUTIVO_CORRECTIVO.md` | Le chemin pour un système qui existe déjà et qui n'est pas né avec la méthode : les trois cas d'utilisation de la méthode, le principe de normaliser sans réécrire, les huit stations de normalisation (N0 à N7) avec leurs contrats et leurs prompts, la boucle en mode correctif et évolutif, et la liste de sortie du tronçon. |
 | `docs/REFERENCIAS.md` | Les cas réels derrière la méthode, numérotés (« Ref. N »), avec date et preuve, pour que les procédures restent propres et que le détail reste à un clic. Comprend les chronologies des trois systèmes et la table des échecs par échelon. |
 | `docs/peldanos/peldano-NN-*.md` | Le contrat de chaque échelon : quand, contexte requis, prompts en anglais avec leur traduction et, avant chacun d'eux, le bloc « Avant d'envoyer le prompt » avec les fichiers que vous devez construire vous-même et leur contenu ; résultat attendu, vérification de complétude sans lire de code, signaux d'alarme. |
 | `docs/peldanos/README.md` | L'index des contrats. |
-| `docs/MANUAL_CURSO.md` | Le cours : calendrier, vingt-deux leçons avec tâches pratiques et prompts, projet-guide (« Turnera »), liste de mise en production. |
+| `docs/MANUAL_CURSO.md` | Le cours : calendrier, vingt-quatre leçons avec tâches pratiques et prompts, projet-guide (« Turnera »), liste de mise en production. |
 | `docs/MANUAL_CURSO_EVOLUTIVO.md` | La partie 2 du cours : le projet-guide hérité (« Turnera héritée »), dix leçons (N0 à N7, R1 et R2) pour normaliser un legacy puis le corriger et le faire évoluer. |
 | `docs/DECISIONES.md` | Les décisions du projet, avec date et mots textuels. La méthode s'applique à elle-même. |
+| `docs/TRABAJO_COLABORATIVO.md` | Comment s'applique la méthode quand plusieurs développeurs, chacun avec son agent, travaillent sur la même branche : les sept règles de la branche partagée, comment se répartissent les échelons, et les prompts. |
 | `docs/CAPACITACION_JUNIOR.md` | L'impact de la méthode sur la formation des développeurs juniors : quels axes perdent du poids, lesquels en gagnent, avec quel objectif et comment former un junior à l'ère de l'après-programmation à la main. |
 | `docs/PLAN_CURSO_MENTORING.md` | Le brouillon du plan commercial du cours et du mentoring. |
 | `docs/html/` | Les versions HTML pour une lecture confortable, avec le bouton qui traduit chaque prompt. Elles ne s'éditent pas à la main. |
@@ -60,15 +61,16 @@ node build/build.mjs
 Il vérifie que les prompts en anglais sont identiques dans les huit versions (ceux des contrats et
 ceux du chemin évolutif-correctif) et produit, pour chaque langue, `ESCALERA_METODOLOGICA.html`,
 `REFERENCIAS.html`, `EVOLUTIVO_CORRECTIVO.html`, `MANUAL_CURSO.html`,
-`MANUAL_CURSO_EVOLUTIVO.html` et `CONTRATOS_DE_PELDANO.html` (l'espagnol dans `docs/html/`, les
-autres dans `docs/html/<langue>/`).
+`MANUAL_CURSO_EVOLUTIVO.html`, `CAPACITACION_JUNIOR.html`, `TRABAJO_COLABORATIVO.html` et
+`CONTRATOS_DE_PELDANO.html` (l'espagnol dans `docs/html/`, les autres dans
+`docs/html/<langue>/`).
 
 ## Langues
 
 L'espagnol est la source de vérité. La documentation existe dans les huit langues de NAC3 :
 espagnol (`docs/`), anglais (`docs/en/`), portugais (`docs/pt/`), français (`docs/fr/`), allemand
 (`docs/de/`), italien (`docs/it/`), japonais (`docs/ja/`) et chinois (`docs/zh/`). Chaque dossier a
-son README, le document principal, les références, les vingt-deux contrats, le chemin
+son README, le document principal, les références, les vingt-quatre contrats, le chemin
 évolutif-correctif et les deux parties du manuel-cours. Les
 prompts destinés au modèle sont une pièce unique en anglais, identique dans toutes les versions,
 avec leur traduction dans la langue du document juste à côté ; `node build/prompts.mjs --check`
@@ -85,7 +87,7 @@ La méthode est publiée sous **Creative Commons Attribution – Partage dans le
 4.0** (`LICENSE`) : on peut l'utiliser, la traduire et l'adapter, avec attribution et en partageant
 dans les mêmes conditions. Les améliorations à **ce** dépôt entrent par pull request depuis un
 fork, avec leur preuve, et sont fusionnées par un mainteneur après révision ; personne d'autre
-n'écrit dans `main`. Le processus est dans `CONTRIBUTING.md`. L'échelon 15 de la méthode demande
+n'écrit dans `main`. Le processus est dans `CONTRIBUTING.md`. L'échelon 23 de la méthode demande
 que chaque rétrospective se termine par une proposition concrète de changement à l'échelle ; c'est
 la forme attendue de la contribution.
 

@@ -1,7 +1,7 @@
 # Passo 16 — Osservabilità e tracciabilità totali, con livello configurabile (contratto del gradino)
 
-**Fase:** qualità operativa, prima del primo deployment in produzione.
-**Quando:** nella fase di uscita in produzione, dopo il 13 (c'è già la catena di deployment e la
+**Fase:** uscita in produzione.
+**Quando:** nella fase di uscita in produzione, dopo il 15 (c'è già la catena di deployment e la
 configurazione per ambiente) e prima delle prove di rendimento (19), perché senza osservabilità
 le prove di rendimento non dicono cosa si è rotto. In un legacy, il livello minimo (registri
 strutturati con livello configurabile e un identificatore di correlazione) entra nella cintura di
@@ -20,8 +20,8 @@ dei registri in produzione, in un minuto, senza rifare il deployment, e riabbass
 è l'osservabilità: vedere ciò che il sistema fa. E la seconda cosa è la tracciabilità: che ogni
 azione con conseguenza (ha incassato, ha inviato, ha cancellato, ha approvato) lasci una traccia
 di chi, quando, cosa, da dove e con quale risultato, in un registro che l'applicazione non può
-modificare. Senza questo, l'agente residente del gradino 15 opera alla cieca, il monitoraggio dei
-gradini 20 e 21 non ha di che alimentarsi, e ogni incidente si diagnostica con ipotesi invece che
+modificare. Senza questo, l'agente residente del gradino 23 opera alla cieca, il monitoraggio dei
+gradini 21 e 22 non ha di che alimentarsi, e ogni incidente si diagnostica con ipotesi invece che
 con prove. Il turno orfano che è rimasto vivo un'ora e quarantatré si è trovato dal log, non dal
 codice [Ref. 16](../REFERENCIAS.md#ref-16); e l'agente residente è partito, appunto, leggendo log
 [Ref. 13](../REFERENCIAS.md#ref-13).
@@ -47,9 +47,9 @@ Quello che segue è la lista generica. I file concreti che devi avere pronti pri
 con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
 inviare il prompt" che precede ciascuno.
 
-- La catena di deployment e la configurazione per ambiente (gradino 13): il livello si configura
+- La catena di deployment e la configurazione per ambiente (gradino 15): il livello si configura
   lì.
-- La tabella dei lucchetti (gradino 12): ogni azione con conseguenza è una voce dell'audit.
+- La tabella dei lucchetti (gradino 14): ogni azione con conseguenza è una voce dell'audit.
 - La rilevazione iniziale con i dati personali segnati: i registri non possono contenerli.
 - Dove vivranno i registri e le metriche (un file ruotato, un servizio): lo decidi tu.
 
@@ -60,9 +60,9 @@ inviare il prompt" che precede ciascuno.
 **Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
 l'agente:
 
-- `docs/DEPLOYMENT.md` (gradino 13) con il modo in cui si legge la configurazione per ambiente:
+- `docs/DEPLOYMENT.md` (gradino 15) con il modo in cui si legge la configurazione per ambiente:
   il livello di registro sarà una variabile in più di quella configurazione.
-- `docs/LOCKS.md` (gradino 12): la lista delle azioni con conseguenza è la lista di ciò che deve
+- `docs/LOCKS.md` (gradino 14): la lista delle azioni con conseguenza è la lista di ciò che deve
   restare nell'audit.
 - In `docs/INITIAL_SURVEY.md`, la lista di quali dati sono personali (nomi, telefoni, email,
   documenti, diagnosi), scritta da te con il proprietario: è ciò che i registri devono mascherare.
@@ -84,7 +84,7 @@ l'agente:
 > backend, to the database and to every external call; (3) traceability of every consequential
 > action in `docs/LOCKS.md`: who, when, what, from where, with which input and which outcome, in
 > an audit record the application cannot edit; (4) health and metrics endpoints or files
-> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 20 and 21
+> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 21 and 22
 > will read; (5) masking of every personal field listed in `docs/INITIAL_SURVEY.md`, so that no
 > log record contains personal data. Show me one real request followed by its id through every
 > layer, and show me the level changing in the test environment without a redeploy. Document the
@@ -106,7 +106,7 @@ l'agente:
 > chiamata esterna; (3) la tracciabilità di ogni azione con conseguenza di `docs/LOCKS.md`: chi,
 > quando, cosa, da dove, con quale input e con quale esito, in un record di audit che
 > l'applicazione non può modificare; (4) endpoint o file di salute e metriche (richieste, latenza,
-> errori, dimensione delle code, uso delle risorse) che il monitoraggio dei gradini 20 e 21
+> errori, dimensione delle code, uso delle risorse) che il monitoraggio dei gradini 21 e 22
 > leggerà; (5) il mascheramento di ogni campo personale elencato in `docs/INITIAL_SURVEY.md`, in
 > modo che nessun record di log contenga dati personali. Mostrami una richiesta reale seguita dal
 > suo identificatore attraverso ogni strato, e mostrami il livello che cambia nell'ambiente di

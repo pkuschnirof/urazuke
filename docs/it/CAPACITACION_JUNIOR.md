@@ -40,7 +40,7 @@ programmazione cambia di natura: da mestiere ad alfabetizzazione.
 | **Come impara** | Scrivendo e ricevendo correzioni sul codice. | Dirigendo il modello gradino per gradino e ricevendo correzioni sulle prove che ha preteso e su quelle che ha accettato senza pretendere. |
 | **Cosa revisiona il senior** | Il suo codice. | Il suo criterio: cosa ha chiesto al modello, cosa ha supposto il modello senza che lui lo rilevasse, cosa ha accettato come "fatto" senza prova. |
 | **Qual è il suo errore tipico** | Un bug. | Credere al modello. |
-| **Quanto ci mette a essere utile** | Mesi, fino a scrivere codice che non vada riscritto. | Settimane, se entra dal metodo: il primo progetto piccolo con i ventidue gradini lo lascia operativo. |
+| **Quando è utile** | Quando scrive codice che non va riscritto, e questo richiede tempo. | Quando finisce il suo primo progetto piccolo con i ventiquattro gradini: il metodo non promette velocità, promette un sistema utilizzabile e un criterio formato. |
 | **In cosa diventa** | Un programmatore che sa più linguaggi e framework. | Qualcuno che può rispondere di un sistema senza averne scritto una riga: un ingegnere dei sistemi che dirige modelli. |
 
 ## L'impatto sui fuochi della formazione
@@ -78,7 +78,7 @@ Li ordino per il gradino in cui si esercitano, perché quello è il modo di inse
    invece di stimarlo. È l'abilità numero uno, ed è quella che l'industria ha smesso di insegnare
    vent'anni fa. Il modello è pessimo in questo per costruzione: riempie i buchi con ciò che è più
    probabile, e ciò che è più probabile non è ciò di cui il business ha bisogno.
-2. **Progettazione della verifica** (gradini 7, 9, 10, 19). Non scrivere il test: sapere quale
+2. **Progettazione della verifica** (gradini 8, 7, 12, 19). Non scrivere il test: sapere quale
    test dimostra cosa, perché un test deve vedersi in rosso prima di valere, cos'è una prova end
    to end e cos'è una simulazione che non prova niente, quale numero decide qualcosa e con quale
    strumento si misura, come si legge un rapporto e si distingue ciò che è verificato da ciò che è
@@ -88,15 +88,15 @@ Li ordino per il gradino in cui si esercitano, perché quello è il modo di inse
    verificato, il punto cieco non dichiarato, il "fatto" che non lo era
    [Ref. 43](REFERENCIAS.md#ref-43). Questa abilità non esisteva come fuoco di formazione perché
    non c'era nessuno che mentisse con tanta sicurezza e una scrittura così buona.
-4. **Dimensionamento ed esercizio** (gradini 3, 4, 13, da 16 a 21). Cos'è un ambiente, come si fa
+4. **Dimensionamento ed esercizio** (gradini 3, 4, 15, da 16 a 22). Cos'è un ambiente, come si fa
    un deployment, cos'è l'integrazione continua, cosa si misura in produzione, cos'è un indice, un
    punto di rottura, una soglia di allerta. Prima era territorio di un altro ruolo; adesso il
    junior dirige il modello che lo fa, e deve sapere cosa chiedergli e come verificare che lo
    abbia fatto.
-5. **Sicurezza e conseguenza** (gradini 12, 18). Quali azioni del sistema agiscono sul mondo,
+5. **Sicurezza e conseguenza** (gradini 14, 18). Quali azioni del sistema agiscono sul mondo,
    cos'è un lucchetto, cos'è il fail-closed, cos'è una vulnerabilità e perché un aggiornamento di
    dipendenza è una modifica.
-6. **Decisione e comunicazione con il proprietario** (gradini 1, 6, 14). Domandare bene, con
+6. **Decisione e comunicazione con il proprietario** (gradini 1, 6, 20). Domandare bene, con
    raccomandazione e alternativa; scrivere una decisione con parole testuali, data e proprietario;
    scrivere un manuale che una persona che non programma possa seguire. Il junior è, nel metodo,
    il traduttore tra il proprietario e il modello, e la traduzione si fa nelle due direzioni.
@@ -128,13 +128,13 @@ l'alfabetizzazione minima non è negoziabile. La lista:
 - **Git**: cos'è un commit, un ramo, un push, una storia. Quanto basta per leggere la traccia di
   prove che il metodo lascia lì.
 - **SQL di base**: leggere una query e capire quale tabella legge e con quale filtro. È la lingua
-  dei dati, e dei numeri del gradino 9.
+  dei dati, e dei numeri del gradino 7.
 - **Il terminale**: eseguire un comando che il modello ti ha dato e leggerne l'output. Se il
   junior non può eseguire il misuratore, non può verificare il numero.
 - **Il debug come ultimo strumento**: quando il log, il test e il misuratore non sono bastati,
   aprire il codice con il modello accanto e leggere insieme.
 
-Si insegna in due o tre settimane, si pratica durante tutto il corso, e non è il mestiere: è
+Si insegna nella prima tappa, si pratica durante tutto il corso, e non è il mestiere: è
 l'alfabetizzazione che permette di esercitarlo.
 
 ## Con quale obiettivo formare un junior
@@ -142,8 +142,9 @@ l'alfabetizzazione che permette di esercitarlo.
 Lo dico senza giri di parole, perché dalla chiarezza dell'obiettivo dipende tutto il resto.
 L'obiettivo di formare un junior nell'era successiva alla programmazione a mano è formare qualcuno
 che **possa rispondere di un sistema in produzione senza averne scritto una riga di codice**: che
-possa portare un progetto piccolo attraverso i ventidue gradini da un capo all'altro, dirigendo un
-modello, esigendo prove a ogni passo, decidendo con il proprietario, e sapendo in ogni momento
+possa portare un progetto piccolo attraverso i ventiquattro gradini da un capo all'altro,
+dirigendo un modello, esigendo prove a ogni passo, decidendo con il proprietario, e sapendo in
+ogni momento
 cosa è verificato, cosa è creduto e cosa non si vede. Io lo chiamo, provvisoriamente, *proprietario
 tecnico della prova*: quello che non legge il codice e tuttavia può dire, con le prove in mano, che
 il sistema fa ciò che il business ha chiesto e continuerà a farlo domani.
@@ -164,67 +165,69 @@ Tre conseguenze dell'obiettivo, che ordinano la formazione:
    voci in sospeso" nel ciclo, che è la cosa più simile a dargli compiti piccoli di codice. È un
    errore: il ciclo senza l'avvio è costruire sulla sabbia, e il junior che non ha mai fatto un
    gradino 0 o un 3 non capisce perché il 5 ha la forma che ha. I due progetti guida esistono per
-   questo: uno nuovo e uno ereditato, da un capo all'altro, i ventidue gradini e le otto stazioni.
+   questo: uno nuovo e uno ereditato, da un capo all'altro, i ventiquattro gradini e le otto
+   stazioni.
 
 ## Come formarlo: il piano
 
-Quello che segue è il piano che userei, e che userò con la prima coorte. Dodici settimane di
-lavoro parziale, con un mentore, sui due progetti guida del corso, e poi un progetto reale piccolo
+Quello che segue è il piano che userei, e che userò con la prima coorte: quattro tappe, senza
+scadenze (il metodo non ne ha, e nemmeno la formazione: ogni tappa finisce quando la sua lista di
+uscita dà "sì"), con un mentore, sui due progetti guida del corso, e poi un progetto reale piccolo
 con un proprietario vero.
 
-### Settimane 1 e 2: alfabetizzazione e il modello come oggetto di studio
+### Tappa 1: alfabetizzazione e il modello come oggetto di studio
 
 - L'alfabetizzazione di cui sopra: leggere codice, come gira un sistema, git, SQL di base, il
   terminale. Con il modello accanto, che spiega; il junior non scrive, legge ed esegue.
-- **Il modello come oggetto di studio**: una settimana di richieste al modello con l'unico scopo
+- **Il modello come oggetto di studio**: un periodo di richieste al modello con l'unico scopo
   di vederlo fallire. Chiedergli un dato che non ha e vedere se lo inventa. Dargli una richiesta
   ambigua e vedere se chiede. Chiedergli di chiudere qualcosa e vedere se dice "fatto" senza
   prova. Chiedergli di sistemare un bug senza riprodurlo. Ogni fallimento si annota con il suo
-  odore. Alla fine della settimana il junior ha il suo catalogo, ed è il catalogo del documento
+  odore. Alla fine della tappa il junior ha il suo catalogo, ed è il catalogo del documento
   delle referenze, scoperto.
 - Lettura del documento principale, con il glossario sottomano, e delle referenze: la storia di
   dove viene ogni regola.
 
-### Settimane da 3 a 8: il progetto nuovo, con mentore
+### Tappa 2: il progetto nuovo, con mentore
 
 Il manuale del corso, parte 1, tale e quale, sul progetto guida "Turnera" o su un progetto proprio
-piccolo. I ventidue gradini. Con tre regole di mentoring:
+piccolo. I ventiquattro gradini. Con tre regole di mentoring:
 
 - **Il mentore revisiona le prove, non il codice.** Legge il patto di convivenza, l'albero
   semantico, la specifica di tre voci in sospeso, il rapporto di chiusura di una voce, il rapporto
   dell'audit, il rapporto della prova di carico. E fa una sola domanda ogni volta: "come fai a
   sapere che questo è vero?". Se la risposta è "perché lo ha detto il modello", il gradino non è
   salito.
-- **Il mentore progetta gli incidenti.** Una volta a settimana, senza avvisare, altera qualcosa:
+- **Il mentore progetta gli incidenti.** Ogni tanto, senza avvisare, altera qualcosa:
   cambia un dato della rilevazione, mette una supposizione nella volumetria, chiede una modifica
   fuori perimetro attraverso il modello. Il junior deve rilevarlo dalle prove.
 - **Il junior tiene il proprio registro dei fallimenti del modello**: ogni volta che lo ha preso,
   che odore aveva, in quale gradino. Alla fine del progetto quel registro è la sua retrospettiva
-  personale, e la proposta di modifica alla scala (gradino 15) la scrive lui.
+  personale, e la proposta di modifica alla scala (gradino 23) la scrive lui.
 
-### Settimane da 9 a 11: il progetto ereditato, con meno mentore
+### Tappa 3: il progetto ereditato, con meno mentore
 
 Il manuale, parte 2: la Turnera ereditata, o un legacy reale piccolo. Il tratto di normalizzazione
 e i primi due blocchi. Qui il mentoring cala: il mentore legge la mappa recuperata e le
 discrepanze, il rapporto dell'audit con le sue marche di velocità, e la chiusura del primo bug in
-modalità correttiva. L'obiettivo di queste settimane è che il junior impari ciò che il progetto
+modalità correttiva. L'obiettivo di questa tappa è che il junior impari ciò che il progetto
 nuovo non insegna: a leggere un sistema altrui attraverso il modello, a decidere con il
 proprietario cosa di ciò che il codice fa è sbagliato e cosa era una regola dimenticata, e a non
 riscrivere.
 
-### Settimana 12: il progetto reale, da solo
+### Tappa 4: il progetto reale, da solo
 
 Un progetto piccolo per davvero, con un proprietario vero che ha quindici minuti al giorno, da un
 capo all'altro. Il mentore non interviene; legge la retrospettiva con i numeri alla fine. Se il
-junior arriva in produzione con le ventidue condizioni della lista di uscita su "sì", è formato.
+junior arriva in produzione con le ventiquattro condizioni della lista di uscita su "sì", è formato.
 Se no, la lista dice esattamente quale gradino risalire, e anche quella è formazione.
 
 ### Cosa misura il progresso
 
 Non quante voci in sospeso ha chiuso. Tre cose, in quest'ordine:
 
-1. **Quante volte ha preso il modello**, e in quale gradino. Un junior che in sei settimane non ha
-   preso il modello nemmeno una volta non sta guardando: il modello fallisce sempre.
+1. **Quante volte ha preso il modello**, e in quale gradino. Un junior che in tutto il progetto
+   nuovo non ha preso il modello nemmeno una volta non sta guardando: il modello fallisce sempre.
 2. **Quanto è costato al proprietario.** Minuti al giorno di domande; se salgono, il junior sta
    trasferendo al proprietario ciò che il metodo chiede a lui di risolvere (gradino 1).
 3. **La qualità della sua proposta di modifica alla scala.** È l'indicatore di criterio: un junior
@@ -241,7 +244,7 @@ forma:
   perché dirige un modello che costruisce in fretta; per questo il metodo è la condizione, non
   un'aggiunta.
 - **Il senior** smette di revisionare codice e passa a tre cose: scrivere e mantenere i contratti
-  (quello di convivenza, i cancelli, i lucchetti), fare audit con un'altra sessione (gradino 11) e
+  (quello di convivenza, i cancelli, i lucchetti), fare audit con un'altra sessione (gradino 13) e
   decidere ciò che il junior non può decidere (architettura, il "per dieci", cosa blocca). Il suo
   valore si sposta dalla tastiera al criterio, che è dove è sempre stato nei bravi.
 - **La squadra si rimpicciolisce e si appiattisce.** Un senior e due o tre junior con il metodo
@@ -263,10 +266,10 @@ forma:
   junior formato su un solo strumento impara le sue scorciatoie e non il metodo; la formazione deve
   passare per almeno due.
 - **Il costo invisibile.** Un junior con un modello spende token come se fossero gratis. Il budget
-  dei token deve far parte della formazione dalla settimana 1, con il numero in vista.
-- **L'illusione della velocità.** Il modello costruisce in un pomeriggio ciò che prima richiedeva
-  una settimana, e il junior può credere di aver finito. La lista di uscita in produzione, con le
-  sue ventidue condizioni, è l'antidoto: "finito" ha una definizione, e non è "funziona".
+  dei token deve far parte della formazione dalla prima tappa, con il numero in vista.
+- **L'illusione della velocità.** Il modello costruisce in una sessione ciò che prima richiedeva
+  molto di più, e il junior può credere di aver finito. La lista di uscita in produzione, con le
+  sue ventiquattro condizioni, è l'antidoto: "finito" ha una definizione, e non è "funziona".
 - **Il mentore che revisiona codice per abitudine.** È il rischio dal lato del senior, ed è serio:
   un mentore che legge il codice insegna al junior che le prove non bastano, che è esattamente il
   contrario del metodo. Il mentore deve formarsi nel metodo prima del junior.
@@ -276,7 +279,7 @@ forma:
 1. Quanta programmazione bisogna aver fatto per leggere bene il codice di un altro. La mia
    intuizione è che ciò che conta sia aver debuggato, non aver scritto, e che basti poco. Senza
    dati, per ora.
-2. Il piano di dodici settimane è scritto a partire dai miei progetti e da ciò che ho insegnato
+2. Il piano di quattro tappe è scritto a partire dai miei progetti e da ciò che ho insegnato
    prima dei modelli, non a partire da una coorte. La prima lo correggerà, come correggerà il
    corso.
 3. Se il "proprietario tecnico della prova" sia un ruolo nuovo o sia l'ingegnere dei sistemi di

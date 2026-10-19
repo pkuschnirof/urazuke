@@ -1,7 +1,7 @@
 # Passo 18 — Varredura e solução de vulnerabilidades, na cadeia e com calendário (contrato do degrau)
 
-**Fase:** qualidade operacional, antes da primeira implantação em produção.
-**Quando:** na fase de saída para produção, depois do 13 (a varredura roda na integração
+**Fase:** saída para produção.
+**Quando:** na fase de saída para produção, depois do 15 (a varredura roda na integração
 contínua) e antes da primeira implantação: nenhum P0 aberto se promove. Depois, em cada push, e
 com um calendário próprio (semanal) ainda que não haja pushes, porque as vulnerabilidades novas
 aparecem sem que você mude nada. Num legado, a primeira rodada é parte de N3 (a dimensão de
@@ -12,7 +12,7 @@ segredos não se negocia; a análise estática e a linha base de configuração,
 
 ## Para que serve
 
-A auditoria do degrau 11 olha o sistema com olhos frescos de vez em quando; este degrau olha uma
+A auditoria do degrau 13 olha o sistema com olhos frescos de vez em quando; este degrau olha uma
 só coisa, a segurança, o tempo todo e por máquina. São complementares: a auditoria encontra o que
 exige critério (uma porta de administrador que ninguém deveria ter
 [Ref. 40](../REFERENCIAS.md#ref-40)); a varredura encontra o que exige constância (a dependência que
@@ -42,7 +42,7 @@ O que segue é a lista genérica. Os arquivos concretos que você tem que ter pr
 prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
 prompt" que precede cada um.
 
-- A integração contínua (degrau 4 e 13), onde roda a varredura.
+- A integração contínua (degrau 4 e 15), onde roda a varredura.
 - O levantamento de ambientes: que servidor, que contêiner, que portas, para a linha base de
   configuração.
 - A auditoria anterior (11, ou N3), para não reportar o que já é conhecido.
@@ -56,11 +56,11 @@ prompt" que precede cada um.
 **Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
 o agente:
 
-- A integração contínua rodando em cada push (degrau 4 e 13), com cota suficiente: a varredura
+- A integração contínua rodando em cada push (degrau 4 e 15), com cota suficiente: a varredura
   acrescenta minutos por rodada; descubra quantos lhe restam.
 - `docs/ENVIRONMENTS_SURVEY.md` com o servidor, o contêiner se houver, as portas expostas e quem
   administra o domínio, para que o agente saiba que linha base aplicar.
-- `docs/AUDIT_[data].md` (degrau 11 ou N3), para que não reporte o conhecido.
+- `docs/AUDIT_[data].md` (degrau 13 ou N3), para que não reporte o conhecido.
 - O seu critério de P0 em duas linhas, para o vazio do prompt. Para a maioria dos sistemas: o que
   permite entrar sem credencial, o que expõe dados pessoais, o que permite cobrar, enviar ou
   apagar sem controle.
@@ -101,7 +101,7 @@ o agente:
 
 O que estou pedindo: as quatro camadas de varredura (dependências, código, segredos no histórico,
 configuração), na cadeia **e com calendário**, porque as vulnerabilidades novas não esperam o seu
-próximo push; o relatório com a forma do degrau 11, com a cláusula de "não varrido" em vez de
+próximo push; o relatório com a forma do degrau 13, com a cláusula de "não varrido" em vez de
 "limpo"; o critério de P0 dado por mim; e a proibição de atualizar sem passar pelo ciclo, que é a
 que evita a sexta-feira quebrada.
 
@@ -130,7 +130,7 @@ que evita a sexta-feira quebrada.
 > P1 novo abre uma pendência automaticamente. Registre a política, o calendário e o que não está
 > coberto em `docs/SECURITY.md`.
 
-O que estou pedindo: uma pendência por correção, com o vermelho do degrau 7 onde é possível (uma
+O que estou pedindo: uma pendência por correção, com o vermelho do degrau 8 onde é possível (uma
 vulnerabilidade corrigida sem teste volta com a próxima refatoração); a varredura repetida como
 evidência; e a conversão em comporta, que é o que faz este degrau continuar vivo quando ninguém
 olha.

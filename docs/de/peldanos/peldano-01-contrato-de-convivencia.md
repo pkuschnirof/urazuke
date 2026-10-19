@@ -1,8 +1,8 @@
 # Schritt 1 — Die Arbeitsvereinbarung (Schrittvertrag)
 
 **Abschnitt:** Start.
-**Wann:** ein einziges Mal, in der ersten Woche, unmittelbar nach der Eignung; wird überarbeitet,
-wenn ein Rückschlag es verlangt. Eine halbe Stunde.
+**Wann:** ein einziges Mal, unmittelbar nach der Eignung; wird überarbeitet,
+wenn ein Rückschlag es verlangt.
 **Form:** ein einziger Durchgang, mit einer Anpassungsrunde von dir.
 **Größe:** verpflichtend in jedem Projekt. Es ist der billigste Schritt von allen und der, der am
 meisten Frustration vermeidet.

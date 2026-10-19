@@ -1,6 +1,6 @@
 # Passo 19 — Prove di rendimento in volume e punto di rottura (contratto del gradino)
 
-**Fase:** qualità operativa, prima del primo deployment in produzione.
+**Fase:** uscita in produzione.
 **Quando:** nella fase di uscita in produzione, dopo il 16 (senza osservabilità non si sa cosa si
 è rotto) e dopo il 17 (sulla persistenza già ottimizzata), e prima del primo deployment in
 produzione. Si ripete prima di ogni deployment che cambi l'architettura, la persistenza o un
@@ -21,7 +21,7 @@ al volume che il business ha dichiarato (la schermata più usata risponde in un 
 proprietario tollererebbe?), come si comporta al "per dieci" (regge, o cosa smette di reggere per
 primo?), e **dove si rompe**: il carico esatto al quale qualcosa cede, e cos'è quel qualcosa (le
 connessioni al database, la memoria, una coda, un blocco). Il punto di rottura è il numero più
-utile di tutta la fase, perché da lì escono le soglie di allerta del gradino 20: un'allerta messa
+utile di tutta la fase, perché da lì escono le soglie di allerta del gradino 21: un'allerta messa
 "a occhio" avvisa tardi o avvisa sempre; un'allerta messa sotto il punto di rottura misurato, con
 un margine, avvisa quando c'è ancora tempo. Gli schemi di scala che ho ricavato da un sistema in
 produzione [Ref. 12](../REFERENCIAS.md#ref-12) e la batteria che moriva per memoria e sembrava un
@@ -124,7 +124,7 @@ ottimizzare senza leggere la diagnosi è cambiare ciò che non era.
   sistemano adesso.
 
 > Record in `docs/PERFORMANCE.md`: the expected volume, the ten-times volume, the breaking point
-> with what breaks, and the alert thresholds that monitoring (step 20) will use, set below the
+> with what breaks, and the alert thresholds that monitoring (step 21) will use, set below the
 > breaking point with a margin and above the expected volume. Open a pending item for each
 > bottleneck that sits below [ten times the expected volume / the volume I decided], with the
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
@@ -133,7 +133,7 @@ ottimizzare senza leggere la diagnosi è cambiare ciò che non era.
 
 > [it]
 > Registra in `docs/PERFORMANCE.md`: il volume atteso, il volume per dieci, il punto di rottura
-> con cosa si rompe, e le soglie di allerta che il monitoraggio (gradino 20) userà, fissate sotto
+> con cosa si rompe, e le soglie di allerta che il monitoraggio (gradino 21) userà, fissate sotto
 > il punto di rottura con un margine e sopra il volume atteso. Apri una voce in sospeso per ogni
 > collo di bottiglia che resti sotto [dieci volte il volume atteso / il volume che ho deciso], con
 > il numero misurato come suo criterio di accettazione. Rendi la prova di carico un cancello in
@@ -142,7 +142,7 @@ ottimizzare senza leggere la diagnosi è cambiare ciò che non era.
 > esecuzione archiviata.
 
 Cosa gli sto chiedendo: le soglie di allerta derivate dal punto di rottura, che è l'aggancio con
-il gradino 20; i colli di bottiglia come voci in sospeso con il numero come criterio (così si
+il gradino 21; i colli di bottiglia come voci in sospeso con il numero come criterio (così si
 chiudono con una prova e non con "adesso va meglio"); e la prova di carico come cancello
 archiviato, perché tra sei mesi si possa confrontare.
 

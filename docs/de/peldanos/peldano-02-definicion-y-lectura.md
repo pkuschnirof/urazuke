@@ -1,7 +1,7 @@
 # Schritt 2 — Die Projektdefinition, der semantische Baum und die Pflichtlektüre (Schrittvertrag)
 
 **Abschnitt:** Start.
-**Wann:** wird einmal geschrieben, in der ersten Woche, nach der Vereinbarung; der semantische
+**Wann:** wird einmal geschrieben, nach der Vereinbarung; der semantische
 Baum und der lebende Zustand werden während des ganzen Projekts gepflegt, mit jedem Block und jeder
 neuen Entscheidung.
 **Form:** Gespräch: der Agent verfasst, fragt nach dem, was fehlt, du korrigierst.

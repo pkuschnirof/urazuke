@@ -1,10 +1,9 @@
 # Peldaño 0 — ¿Este proyecto se puede encarar así? (contrato del peldaño)
 
 **Tramo:** arranque.
-**Cuándo:** una sola vez, en la primera semana, antes de abrir el repositorio y antes de cualquier
-otra cosa. Una hora de trabajo.
+**Cuándo:** una sola vez, antes de abrir el repositorio y antes de cualquier otra cosa.
 **Forma:** conversación: el agente evalúa y pregunta; vos decidís.
-**Tamaño:** obligatorio en todo proyecto, por chico que sea. Lleva una hora; ahorra meses.
+**Tamaño:** obligatorio en todo proyecto, por chico que sea.
 **Estado:** los criterios excluyentes X1 y X2 están cerrados; los criterios que ponderan (D1 a D10)
 todavía los estoy calibrando y los marco como hipótesis.
 

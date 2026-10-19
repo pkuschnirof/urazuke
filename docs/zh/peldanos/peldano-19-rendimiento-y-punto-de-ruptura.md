@@ -1,6 +1,6 @@
 # 步骤 19 — 量级下的性能测试与断裂点（台阶契约）
 
-**阶段：** 运维质量，第一次部署到生产之前。
+**阶段：** 上线生产。
 **时机：** 在上线生产阶段，第 16 级之后（没有可观测性就不知道是什么坏了）和第 17 级之后（跑在
 已经优化过的持久化之上），并且在第一次部署到生产之前。在每次会改变架构、持久化或某条关键流程的
 部署之前重复，以及当容量估算变了（卖给了另一个客户、量级翻倍）时重复。在遗留系统里，用 N6 测出
@@ -15,7 +15,7 @@
 我想知道三件事：系统在业务说的那个量级下表现如何（最常用的那个界面，响应时间是所有者能容忍的
 吗？），在"乘以十"下表现如何（扛得住吗，还是什么会先扛不住？），以及**它在哪里断裂**：某样东西
 屈服时的确切负载，以及那样东西是什么（数据库连接、内存、一个队列、一个锁）。断裂点是整个阶段里
-最有用的数字，因为第 20 级台阶的告警阈值就是从它来的：一个"拍脑袋"定的告警不是报晚了就是一直在
+最有用的数字，因为第 21 级台阶的告警阈值就是从它来的：一个"拍脑袋"定的告警不是报晚了就是一直在
 报；一个定在测出来的断裂点之下、带一点余量的告警，在还来得及的时候报。我从一个生产系统里提取的
 伸缩模式 [Ref. 12](../REFERENCIAS.md#ref-12)，以及那个因内存而死、看起来像测试失败的测试套件
 [Ref. 44](../REFERENCIAS.md#ref-44)，是两个前身：第一个，关于测量真实负载；第二个，关于一个没有及
@@ -99,7 +99,7 @@
 - 最低可接受状态：你读了断裂点，并决定了哪些瓶颈现在修。
 
 > Record in `docs/PERFORMANCE.md`: the expected volume, the ten-times volume, the breaking point
-> with what breaks, and the alert thresholds that monitoring (step 20) will use, set below the
+> with what breaks, and the alert thresholds that monitoring (step 21) will use, set below the
 > breaking point with a margin and above the expected volume. Open a pending item for each
 > bottleneck that sits below [ten times the expected volume / the volume I decided], with the
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
@@ -108,12 +108,12 @@
 
 > [zh]
 > 把这些记进 `docs/PERFORMANCE.md`：预期量级、十倍量级、断裂点连同是什么断了，以及监控
-> （第 20 级台阶）将要用的告警阈值，定在断裂点之下留一点余量、并在预期量级之上。为每个落
+> （第 21 级台阶）将要用的告警阈值，定在断裂点之下留一点余量、并在预期量级之上。为每个落
 > 在 [预期量级的十倍 / 我决定的量级] 之下的瓶颈开一个待办项，以测出来的数字作为验收标
 > 准。把负载测试做成 `docs/GATES.md` 里的一道闸门：在每次会改变架构、持久化或某条关键流
 > 程的部署之前重跑，而且它的结果带日期和版本归档。给我看归档的第一次运行。
 
-我在要求什么：从断裂点推导出来的告警阈值，那是和第 20 级台阶的挂钩；瓶颈作为以数字为准则的待办
+我在要求什么：从断裂点推导出来的告警阈值，那是和第 21 级台阶的挂钩；瓶颈作为以数字为准则的待办
 项（这样它们是带着证据关闭的，而不是"现在跑得好多了"）；以及作为归档闸门的负载测试，好让六个月
 之后还能比较。
 

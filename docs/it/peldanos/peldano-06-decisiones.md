@@ -3,7 +3,7 @@
 **Fase:** ciclo.
 **Quando:** in ogni sessione del ciclo, ogni volta che l'agente si imbatte in una regola di
 business non scritta o in una biforcazione che cambia ciò che l'utente vede. Di solito sono due o
-tre per blocco. Anche nell'avvio (gradini 0 e 3) e nell'uscita in produzione (12 e 13).
+tre per blocco. Anche nell'avvio (gradini 0 e 3) e nell'uscita in produzione (14 e 15).
 **Forma:** conversazione breve: l'agente rileva che c'è una decisione, chiede, e la lascia
 scritta.
 **Dimensione:** obbligatorio in ogni progetto. In uno piccolo il registro può essere una tabella

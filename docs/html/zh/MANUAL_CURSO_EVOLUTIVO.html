@@ -52,6 +52,9 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 .antes ul{margin:.3em 0 .45em;padding-left:1.4em}
 .antes li{margin:.4em 0}
 .antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
 .glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
 .glos p strong{color:#3a2f00}
 .meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
@@ -59,16 +62,16 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 @media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
 @media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
 </style></head><body><div class="wrap">
-<section><h1 id="urazuke-2">Urazuke — 课程第 2 部分：继承来的项目。把一个不是用方法诞生的系统规范化，然后让它演进</h1><nav class="toc"><div class="toc-t">目录</div><ul><li class="l2"><a href="#">开始之前</a></li><li class="l3"><a href="#">这一部分是给谁的</a></li><li class="l3"><a href="#">结束时你会拥有什么</a></li><li class="l3"><a href="#">这一部分的日历</a></li><li class="l3"><a href="#turnera">引导项目："继承来的 Turnera"</a></li><li class="l2"><a href="#n0-n7">规范化阶段：第 N0 到 N7 课</a></li><li class="l3"><a href="#n0">第 N0 课 — 既有系统的适格性</a></li><li class="l3"><a href="#n1">第 N1 课 — 遗留系统的协作契约</a></li><li class="l3"><a href="#n2">第 N2 课 — 阅读系统：恢复出来的地图和那些不一致</a></li><li class="l3"><a href="#n3">第 N3 课 — 作为债务清单的审计</a></li><li class="l3"><a href="#n4">第 N4 课 — 安全带</a></li><li class="l3"><a href="#n5">第 N5 课 — 从代码里找出锁和生产者-消费者地图</a></li><li class="l3"><a href="#n6">第 N6 课 — 用真实数字做容量估算</a></li><li class="l3"><a href="#n7">第 N7 课 — 和客户请求配对的规范化待办队列</a></li><li class="l2"><a href="#r1-r2">对遗留系统跑循环：第 R1 和 R2 课</a></li><li class="l3"><a href="#r1-bug">第 R1 课 — 第一个功能块：那个 bug，纠正模式</a></li><li class="l3"><a href="#r2">第 R2 课 — 第二个功能块：定金，演进模式</a></li><li class="l2"><a href="#">之后：上线生产与运维</a></li><li class="l2"><a href="#">规范化阶段的出口清单</a></li><li class="l2"><a href="#">附录 — 这一部分还没有的东西</a></li></ul></nav>
-<p>作者：Pablo Kuschniroff，由 Claude Code 辅助。第 1 版，2026 年 10 月 18 日。这是<a href="MANUAL_CURSO.html">课程手册 </a>的第二部分：它假定你做过第一部分，或者至少读过第 0 到 7 课，因为这里我不会再解释什么是待办项、什么是红色测试、什么是语义树。这一部分的方法在<a href="EVOLUTIVO_CORRECTIVO.html">演进-纠正之路 </a>那一页；这里是实践，带一个第二号引导项目。陌生的词在主文档的术语表里；真实案例在<a href="REFERENCIAS.html">参考资料</a>里。公开仓库： <a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">github.com/pkuschnirof/urazuke</a>。</p>
+<section><h1 id="urazuke-2">Urazuke — 课程第 2 部分：继承来的项目。把一个不是用方法诞生的系统规范化，然后让它演进</h1><nav class="toc"><div class="toc-t">目录</div><ul><li class="l2"><a href="#">开始之前</a></li><li class="l3"><a href="#">这一部分是给谁的</a></li><li class="l3"><a href="#">结束时你会拥有什么</a></li><li class="l3"><a href="#">这一部分的顺序</a></li><li class="l3"><a href="#turnera">引导项目："继承来的 Turnera"</a></li><li class="l2"><a href="#n0-n7">规范化阶段：第 N0 到 N7 课</a></li><li class="l3"><a href="#n0">第 N0 课 — 既有系统的适格性：由代理做出来验证的前提条件</a></li><li class="l3"><a href="#n1">第 N1 课 — 遗留系统的协作契约</a></li><li class="l3"><a href="#n2">第 N2 课 — 阅读系统：恢复出来的地图和那些不一致</a></li><li class="l3"><a href="#n3">第 N3 课 — 作为债务清单的审计</a></li><li class="l3"><a href="#n4">第 N4 课 — 安全带</a></li><li class="l3"><a href="#n5">第 N5 课 — 从代码里找出锁和生产者-消费者地图</a></li><li class="l3"><a href="#n6">第 N6 课 — 用真实数字做容量估算</a></li><li class="l3"><a href="#n7">第 N7 课 — 和客户请求配对的规范化待办队列</a></li><li class="l2"><a href="#r1-r2">对遗留系统跑循环：第 R1 和 R2 课</a></li><li class="l3"><a href="#r1-bug">第 R1 课 — 第一个功能块：那个 bug，纠正模式</a></li><li class="l3"><a href="#r2">第 R2 课 — 第二个功能块：定金，演进模式</a></li><li class="l2"><a href="#">之后：上线生产与运维</a></li><li class="l2"><a href="#">规范化阶段的出口清单</a></li><li class="l2"><a href="#">附录 — 这一部分还没有的东西</a></li></ul></nav>
+<p>作者：Pablo Kuschniroff，由 Claude Code 辅助。第 1 版，2026 年 10 月 18 日。这是<a href="MANUAL_CURSO.html">课程手册 </a>的第二部分：它假定你做过第一部分，或者至少读过第 0 到 8 课，因为这里我不会再解释什么是待办项、什么是红色测试、什么是语义树。这一部分的方法在<a href="EVOLUTIVO_CORRECTIVO.html">演进-纠正之路 </a>那一页；这里是实践，带一个第二号引导项目。陌生的词在主文档的术语表里；真实案例在<a href="REFERENCIAS.html">参考资料</a>里。公开仓库： <a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">github.com/pkuschnirof/urazuke</a>。</p>
 </section><section>
 <h2 id="">开始之前</h2>
 <h3 id="">这一部分是给谁的</h3>
 <p>给那些做完第一部分、然后发现在现实生活里几乎没人会给你一个空文件夹的人。给你的是一个已经在跑的系统，有依赖它的用户，然后让你"把这个修一下"或者"给它加上那个"。也给那些几个月前"凭感觉写" 了点什么、它居然能用、而现在必须在它上面继续构建又不能让它塌掉的人。这两种人站在同一个地方：面对一个遗留系统，哪怕其中一个是自己写的。</p>
 <h3 id="">结束时你会拥有什么</h3>
 <p>还是你继承来的那个系统，做着它一直在做的事，但是方法所预设的一切都在它周围了：一份带遗留规则的协作契约、一张从系统里恢复出来的地图（每条断言都标着它从哪里来）、一份"代码做的事"和"业务以为的事"之间的不一致清单、一份变成了带速度标记的待办队列的审计、一个带匿名化数据的测试环境、一条重复得了的部署链、代码之外并且轮换过的密钥、一套看守关键流程的表征测试套件、给那些已经作用于现实世界的东西上的锁、用测出来的数字做的容量估算，以及一条债务和客户请求按模块配对住在一起的待办队列。再然后，第一个带着红色测试被纠正掉的 bug，和第一个用完整方法构建出来的新功能。</p>
-<h3 id="">这一部分的日历</h3>
-<div class="tw"><table><thead><tr><th>周</th><th>课</th><th>你还要做什么</th></tr></thead><tbody><tr><td>1</td><td>N0、N1、N2、N3</td><td><strong>阅读。</strong> 什么都不改。你和所有者一起走一遍恢复出来的树，一条一条地决定那些不一致，读审计。周末：地图和债务清单。</td></tr><tr><td>2</td><td>N4、N5</td><td><strong>安全带。</strong> 带匿名化数据的测试环境、部署跑两遍、密钥轮换、带变异红的表征测试套件。对已经作用于现实世界的东西确认锁。周末：系统在测试环境里跑起来，测试套件是绿的。</td></tr><tr><td>3</td><td>N6、N7、R1</td><td><strong>测量、排序、纠正。</strong> 测出来的容量估算。带两个标记的待办队列。第一个功能块：那个已知的 bug，以纠正模式连同它的配对项一起关闭。</td></tr><tr><td>4</td><td>R2</td><td><strong>演进。</strong> 第二个功能块：新功能，用完整的方法构建（第一部分的第 5 到 10 课），用表征测试作回归。</td></tr><tr><td>5 和 6</td><td>第一部分的 11、12、13、14、16、17、18、19</td><td><strong>上线生产。</strong> 定期审计、剩下的锁、通往生产之路的收尾、三份手册（遗留系统本来没有），以及部署之前的四级运维质量台阶：完整的可观测性、用 N6 测出来的东西做的持久化、作为闸门的漏洞扫描、带断裂点的负载测试。</td></tr><tr><td>7</td><td>第一部分的 15、20、21</td><td><strong>运维。</strong> 两个监控在部署的那一周搭起来，第一次阅读作为遗留系统的基线；驻留代理；带着遗留系统专属问题的复盘：规范化花了多少成本。</td></tr></tbody></table></div>
+<h3 id="">这一部分的顺序</h3>
+<div class="tw"><table><thead><tr><th>阶段</th><th>课</th><th>你还要做什么</th></tr></thead><tbody><tr><td>1</td><td>N0、N1、N2、N3</td><td><strong>阅读。</strong> 什么都不改。你和所有者一起走一遍恢复出来的树，一条一条地决定那些不一致，读审计。收尾时：地图和债务清单。</td></tr><tr><td>2</td><td>N4、N5</td><td><strong>安全带。</strong> 带匿名化数据的测试环境、部署跑两遍、密钥轮换、带变异红的表征测试套件。对已经作用于现实世界的东西确认锁。收尾时：系统在测试环境里跑起来，测试套件是绿的。</td></tr><tr><td>3</td><td>N6、N7、R1</td><td><strong>测量、排序、纠正。</strong> 测出来的容量估算。带两个标记的待办队列。第一个功能块：那个已知的 bug，以纠正模式连同它的配对项一起关闭。</td></tr><tr><td>4</td><td>R2</td><td><strong>演进。</strong> 第二个功能块：新功能，用完整的方法构建（第一部分的第 5 到 12 课），用表征测试作回归。</td></tr><tr><td>5 和 6</td><td>第一部分的 13、14、15、20、16、17、18、19</td><td><strong>上线生产。</strong> 定期审计、剩下的锁、通往生产之路的收尾、三份手册（遗留系统本来没有），以及部署之前的四级运维质量台阶：完整的可观测性、用 N6 测出来的东西做的持久化、作为闸门的漏洞扫描、带断裂点的负载测试。</td></tr><tr><td>7</td><td>第一部分的 23、21、22</td><td><strong>运维。</strong> 两个监控随部署搭起来，第一次阅读作为遗留系统的基线；驻留代理；带着遗留系统专属问题的复盘：规范化花了多少成本。</td></tr></tbody></table></div>
 <h3 id="turnera">引导项目："继承来的 Turnera"</h3>
 <p>还是第一部分里那家诊所，两年之后，而且在另一条时间线上：他们从来没有用方法做过 Turnera。取而代之的是，负责人的侄子在一个夏天给他们做了一个网页应用 "Turnos"，从那以后一直在用。今天有两名前台和三名专业人员每天在用它，登记了大约两万个预约，而没有一个人完整理解它：侄子搬到国外去了，两周回一次消息。</p>
 <p><strong>现有的东西。</strong> 一个 GitHub 仓库，里面是代码（只有一个分支，提交信息都是"修了点东西"之类），一个和应用跑在同一台服务器上的数据库，靠 FTP 复制文件的手工部署，数据库密码写在代码里，没有任何测试，服务器上有一个每天晚上发送提醒的定时任务，还有一张负责人每个月用一个桌面工具连数据库下载下来的表格。有一个"自动"备份，从来没人恢复过。</p>
@@ -80,30 +83,26 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 </section><section>
 <h2 id="n0-n7">规范化阶段：第 N0 到 N7 课</h2>
 <p>这八节课就是第一部分没有的那个阶段。头四节是阅读课：什么都不改，而想改点什么的冲动会非常大。接下来两节造安全带。最后两节测量和排序。再之后才碰功能。</p>
-<h3 id="n0">第 N0 课 — 既有系统的适格性</h3>
-<p><strong>你需要理解什么。</strong> 两条排他性准则和第 0 课的一样，但这里 X2（界面可由程序操作）要一个界面一个界面地回答，而且如果有哪个是红的，那不是不开工的理由：那是第一条待办项，而且它阻塞。另外加四条遗留系统专属的准则：有没有人知道它是怎么运作的、生产环境能不能以只读方式查询、有没有任何测试，以及备份有没有恢复过。最后一条是几乎所有人都会发现是红色的那一条。</p>
+<h3 id="n0">第 N0 课 — 既有系统的适格性：由代理做出来验证的前提条件</h3>
+<p><strong>你需要理解什么。</strong> 在第 0 课里，那些准则是由调研来回答的。这里有一个系统，于是那些准则可以 <strong>靠做来验证</strong>，由代理来做，不需要谁发表意见：它能不能搭起一套带源码、数据和持久化的完整环境？它能不能理解这份代码？它能不能只凭代码写出一份描述全部功能、而且负责人认得出那是她的系统的文档？它能不能用一个测试工具操作那些界面并跑一条端到端测试？它能不能用今天的工具构建出来？数据能不能被复制并匿名化，有没有一份恢复过的备份？那些集成有没有测试模式？一共七条前提条件，而新规则是：一条红的不是"不可行"，它是一个<strong>前置项目</strong>，有它自己的范围，好让这个系统变得适格。</p>
 <div class="antes"><p><strong>发送提示词之前</strong>，用你自己的手：</p>
-<ul><li><code>docs/INITIAL_SURVEY.md</code>，简短的：按负责人的说法，Turnos 做什么、给谁用；哪里疼（提醒发两次、缺的东西）；谁做的、他多久回一次话；它在哪里运行；谁有访问权；还有有一个"自动"备份从来没人恢复过。半页。</li><li><code>docs/ELIGIBILITY_CRITERIA.md</code>：第 0 课的卡片，再加四行：有人知道、生产可查询、已有测试、备份恢复过。那几列留空。</li><li>给代理的仓库读访问权，以及如果你弄得到的话，一个数据库的只读凭证，放在聊天之外。</li></ul>
+<ul><li><code>docs/INITIAL_SURVEY.md</code>，简短的：按负责人的说法，Turnos 做什么、给谁用；哪里疼（提醒发两次、缺的东西）；谁做的、他多久回一次话；它在哪里运行；谁有访问权；还有有一个"自动"备份从来没人恢复过。半页。</li><li><code>docs/ELIGIBILITY_CRITERIA.md</code>：第 0 课的卡片，再加遗留系统的那七条前提条件（从演进-纠正之路那一页的 N0 站点抄过来），带三列空白：绿或红、证据、前置项目。</li><li>给代理的仓库读访问权、一份数据库副本（或者生产环境的只读访问权），以及一个让代理可以尝试把系统跑起来的地方（对课程来说你自己的机器就够了），凭证放在聊天之外。</li></ul>
 </div>
-<ol><li>粘贴这条提示词：</li></ol>
-<div class="pbox"><blockquote class="prompt"><p>We are going to assess whether this existing system can be taken over with the Urazuke method. Read the initial survey in <code>docs/INITIAL_SURVEY.md</code> and the criteria sheet in <code>docs/ELIGIBILITY_CRITERIA.md</code>, which for an existing system adds four criteria: whether anyone who knows how the system works is available; whether production can be queried read-only; whether any automated test exists; and whether a backup exists and has ever been restored. Then explore the repository and, if I gave you access, the environment where it runs: change nothing. Fill in the sheet criterion by criterion with the answer, its source (survey, code, database, configuration, or inferred) and, for the exclusionary criteria X1 and X2, green or red. For X2, list every screen and say for each whether it can be driven by a program today and whether the effect can be checked in the backend. If a criterion cannot be answered from what you have, ask me; do not assume. Do not decide: present me the completed sheet with your reading and your doubts, and I will decide. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要评估这个既有系统能不能用 Urazuke 方法接下来。读 <code>docs/INITIAL_SURVEY.md</code> 里的初始调研和 <code>docs/ELIGIBILITY_CRITERIA.md</code> 里的准则卡片，对一个既有系统它多了四条准则：有没有人知道这个系统怎么运作而且找得到；生产环境能不能以只读方式查询；有没有任何自动化测试；以及有没有备份、它有没有被恢复过。然后探索仓库，如果我给了你访问权，还有它运行的环境：什么都不要改。逐条填写卡片，写上答案、它的来源（调研、代码、数据库、配置，或推断），并且对排他性准则 X1 和 X2 写上绿或红。对 X2，列出每一个界面，并对每一个说明它今天能不能由程序操作、效果能不能在后端验证。如果某条准则用你手上的东西回答不了，就问我；不要假设。不要做决定：把填好的卡片连同你的解读和你的疑问呈给我，由我来决定。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>你在要求的东西和第 0 课一样，再加三点：要它探索但什么都不改，要每个答案说明它从哪里来，以及 X2 要一个界面一个界面地测。</p>
-<ol start="2"><li>回答它的问题，并读那张卡片。尤其要看 X2 里每个界面那一行。</li><li>做决定。</li></ol>
-<div class="antes"><p><strong>发送提示词之前</strong>（收尾提示词）：你的决定，一行话，以及在这个项目里必须有的一个条件：在第 N4 课之前，在你自己的机器上恢复一次备份。</p>
+<ol><li>把 N0 站点的初始提示词（在演进-纠正之路那一页）原样贴给它。</li><li>它会花些时间：它得搭环境、把一切读完、写出 <code>docs/FUNCTIONALITY_RECOVERED.md</code>，还要跑一个测试。它做完之后，和负责人一起读那份文档：它描述的是她以为自己拥有的那个系统吗？对不上的地方记下来：那是第一份不一致清单。</li><li>看那张卡片：每条前提条件都必须有代理做了某件事的证据，而不是你给出的一个回答。</li></ol>
+<div class="antes"><p><strong>发送提示词之前</strong>（收尾提示词）：你的决定，一行话，以及对每一条红的，那个前置项目是现在做、以后做，还是永远不做。</p>
 </div>
-<ol start="4"><li>粘贴收尾提示词：</li></ol>
-<div class="pbox"><blockquote class="prompt"><p>Decision: [go under this condition: the backup is restored at least once before N4]. Write the final sheet to <code>docs/ELIGIBILITY.md</code> with the date, who decided, every answer with its source, and the conditions if any. If X2 is red for any screen, create <code>docs/PENDING.md</code> and open the first pending item: make every screen drivable by a program with its backend effect checkable; mark it as blocking. Include the questions you asked and my answers.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>决定：[在这个条件下可行：备份在 N4 之前至少恢复一次]。把最终卡片写到 <code>docs/ELIGIBILITY.md</code>，附上日期、谁做的决定、每个答案及其来源，以及条件（如果有）。如果 X2 对任何一个界面是红的，创建 <code>docs/PENDING.md</code> 并开出第一条待办项：让每一个界面都能由程序操作、其后端效果都能验证；把它标为阻塞。把你问过的问题和我的回答包含进去。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p><strong>完整性检验。</strong> X2 是每个界面一个答案吗？遗留系统的四条准则都有带来源的答案吗？备份有没有成为一个带日期的条件？</p>
-<p><strong>交付物。</strong> <code>docs/ELIGIBILITY.md</code>，以及如果需要的话，第一条阻塞待办项。</p>
-<p><strong>常见错误。</strong> 因为"它是网页的"就把 X2 答成绿色。还有因为"有一个自动备份"就跳过备份那条条件：在第 N4 课里代理会去复制生产数据库，而如果出了什么事，那份从来没人验证过的备份就是你唯一的依靠。</p>
-<p><strong>在引导项目中。</strong> 代理发现 Turnos 的六个界面里，四个能由程序操作，两个不能（预约表单用了一个没有标识符的日历，而患者搜索是一个不响应键盘事件的输入框）；它开出那条阻塞待办项。它找到了提醒的那个定时任务，而负责人没有提过。有备份，从来没恢复过：成为条件。关于那个侄子："找得到，两周一次"，代理提议把它读作"找不到"，而它是对的。可行，带一个条件。</p>
+<ol start="4"><li>粘贴 N0 站点的收尾提示词。</li></ol>
+<p><strong>完整性检验。</strong> 每条前提条件都有做出来的证据，而不是说出来的吗？功能恢复文档存在吗，负责人认得出它吗？它跑过一条真实的端到端测试吗？每一条红的都有它的前置项目作为阻塞待办项吗？</p>
+<p><strong>交付物。</strong> <code>docs/ELIGIBILITY.md</code>、<code>docs/FUNCTIONALITY_RECOVERED.md</code>，以及那些前置项目的阻塞待办项（如果有）。</p>
+<p><strong>常见错误。</strong> 接受一个代理没做就回答出来的绿（"是的，代码是能看懂的"）。还有把一条红当成拒绝：方法要的是一个前置项目，不是一次放弃。</p>
+<p><strong>在引导项目中。</strong> 代理用一份数据库副本在你的机器上把 Turnos 搭了起来（绿），它看得懂代码，只有一个用老模板语言写的报表模块除外（绿，附注），它写出了功能文档，而负责人在里面发现了两件她不知道系统会做的事（绿：这份文档比她的记忆更好），它操作了六个界面里的四个并跑了一条登记流程的测试（红：两个界面不可操作，前置项目："让日历和搜索变得可操作"），它用今天的工具构建了出来，只有 PDF 生成器的一个死掉的依赖除外（红：一个小的前置项目），它复制并匿名化了数据（绿），但那份备份从来没有恢复过（红：恢复它是所有前置项目里最便宜的一个），而消息服务商有测试模式（绿）。决定：可行，在三个前置项目之后。</p>
 <h3 id="n1">第 N1 课 — 遗留系统的协作契约</h3>
 <p><strong>你需要理解什么。</strong> 在第 1 课的六条规则之上再加五条，它们之所以存在，是因为一个模型面对别人的代码会条件反射地做三件事：重排它，在它觉得不对的地方"修"它，以及认定代码里和它预期不一样的东西就是错误。遗留系统的规则挡住这些反射：不重构没被要求的东西，动之前先读，怪事只记不修，当前行为就是规格直到所有者另有说法，以及表征测试不绿就什么都不许进。</p>
 <div class="antes"><p><strong>发送提示词之前</strong>，用你自己的手：</p>
-<ul><li>你的工作偏好，和第 1 课一样，再加一个决定：规范化期间你接受多大风险。课程里这样定：代理可以自己部署到测试环境；到生产环境永远不行，直到第 13 课。</li><li><code>docs/ELIGIBILITY.md</code> 已关闭。</li></ul>
+<ul><li>你的工作偏好，和第 1 课一样，再加一个决定：规范化期间你接受多大风险。课程里这样定：代理可以自己部署到测试环境；到生产环境永远不行，直到第 15 课。</li><li><code>docs/ELIGIBILITY.md</code> 已关闭。</li></ul>
 </div>
 <ol><li>粘贴这条提示词：</li></ol>
-<div class="pbox"><blockquote class="prompt"><p>Before we touch anything, we are going to set the working agreement between you and me for a system that already exists and has users. Write <code>docs/WORKING_AGREEMENT.md</code> with the six rules of the method (my time is sacred; zero technical debt; exact scope; documentation in the same commit; never report as done what you have not verified; speak my language), each with one line explaining what it prevents, and these five rules for an inherited system: (7) Nothing is refactored that was not asked for, and no module is rewritten. (8) Code you do not understand is read before it is touched, and what you learn goes into the system map. (9) Anything strange you find (a secret in the code, a dead path, a duplicated rule, a query without an index) is logged as a pending item with its evidence, never fixed in passing. (10) Current behaviour is the specification until the owner says otherwise: a difference between what the code does and what the business says is a discrepancy for me to decide, not a bug for you to fix silently. (11) No change reaches the test environment without the characterization suite green. Add any rules you think this system needs, marked as proposals. If you need to know something about how I work in order to write this, ask me.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>在我们动任何东西之前，要为一个已经存在、而且有用户的系统，定下你和我之间的协作契约。写 <code>docs/WORKING_AGREEMENT.md</code>，包含方法的六条规则（我的时间是神圣的；零技术债务；精确的范围；文档在同一次提交里；绝不把没验证过的东西报告为已完成；说我的语言），每条附一行说明它避免了什么，再加上这五条针对继承来的系统的规则：（7）不重构任何没被要求的东西，不重写任何模块。（8）你不理解的代码，先读再动，而你学到的东西要进系统地图。（9）你发现的任何怪事（代码里的一个密钥、一条死路径、一条重复的规则、一个没有索引的查询）都作为带证据的待办项记下来，绝不顺手修掉。（10）当前行为就是规格，直到所有者另有说法为止：代码做的事和业务说的事之间的差异，是一条由我来决定的不一致，不是一个由你悄悄修掉的 bug。（11）表征测试套件不绿，任何改动都不许进测试环境。你认为这个系统还需要什么规则，就加上，标为提案。如果你需要知道我是怎么工作的才能写出这份契约，就问我。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<div class="pbox"><blockquote class="prompt"><p>Before we touch anything, we are going to set the working agreement between you and me for a system that already exists and has users. Write <code>docs/WORKING_AGREEMENT.md</code> with the six rules of the method (my time is sacred; zero technical debt; exact scope; documentation in the same commit; never report as done what you have not verified; speak my language), each with one line explaining what it prevents, and these five rules for an inherited system: (7) Nothing is refactored that was not asked for, and no module is rewritten. (8) Code you do not understand is read before it is touched, and what you learn goes into the system map. (9) Anything strange you find (a secret in the code, a dead path, a duplicated rule, a query without an index) is logged as a pending item with its evidence, never fixed in passing. (10) Current behaviour is the specification until the owner says otherwise: a difference between what the code does and what the business says is a discrepancy for me to decide, not a bug for you to fix silently. (11) No change reaches the test environment without the characterization suite green. Add any rules you think this system needs, marked as proposals. If you need to know something about how I work in order to write this, ask me.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>在我们动任何东西之前，要为一个已经存在、而且有用户的系统，定下你和我之间的协作契约。写 <code>docs/WORKING_AGREEMENT.md</code>，包含方法的六条规则（我的时间是神圣的；零技术债务；精确的范围；文档在同一次提交里；绝不把没验证过的东西报告为已完成；说我的语言），每条附一行说明它避免了什么，再加上这五条针对继承来的系统的规则：（8）不重构任何没被要求的东西，不重写任何模块。（11）你不理解的代码，先读再动，而你学到的东西要进系统地图。（7）你发现的任何怪事（代码里的一个密钥、一条死路径、一条重复的规则、一个没有索引的查询）都作为带证据的待办项记下来，绝不顺手修掉。（12）当前行为就是规格，直到所有者另有说法为止：代码做的事和业务说的事之间的差异，是一条由我来决定的不一致，不是一个由你悄悄修掉的 bug。（13）表征测试套件不绿，任何改动都不许进测试环境。你认为这个系统还需要什么规则，就加上，标为提案。如果你需要知道我是怎么工作的才能写出这份契约，就问我。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
 <ol start="2"><li>读那些提案。如果有一条写着"随着触及逐步把代码现代化"，带着理由拒绝它：那是伪装起来的重写。</li></ol>
 <div class="antes"><p><strong>发送提示词之前</strong>（收尾提示词）：你对每条提案的裁决，各附一行理由，用来填提示词的空。</p>
 </div>
@@ -131,7 +130,7 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <p><strong>常见错误。</strong> 用"把代码改成负责人说的那样"来解决那些不一致，而不是一条一条地决定它们：那些不一致里有好几条是业务忘了、而代码还记得的规则。还有让代理在收尾时"为了干净一点"把标记抹掉：一棵没有标记的树，就再也无法验证了。</p>
 <p><strong>在引导项目中。</strong> Turnos 的树里有负责人预期中的"日程"领域，还有两样她没预期的：一个在数据库里存在、却没有任何界面显示的预约状态"已改期" <code>[数据库]</code>，以及一个定时任务，它除了发提醒之外还会删掉超过一年的已取消预约 <code>[代码]</code>；负责人不知道有东西被删掉了。典型的不一致有八条：取消要提前两小时这条规则在代码里不存在（随时都能取消）；提醒按她的说法是八点发，按配置是七点；患者的电话在数据库里不是必填，虽然她以为是；诸如此类。删除那条最让她吃惊，而她一分钟就做了决定： "这个以后不许删了"。开待办项。</p>
 <h3 id="n3">第 N3 课 — 作为债务清单的审计</h3>
-<p><strong>你需要理解什么。</strong> 第 11 课，但放在最前面而不是最后面，而且每条发现多一个字段：它是阻塞（任何改动之前必须修掉）、是触及那个模块时偿还，还是可以等待。没有那个字段，一个审计过的遗留系统有四十条发现，没人知道从哪条开始。什么算阻塞由你决定，不是审计者：一般来说，暴露的密钥、不能操作的界面、不能重复的部署、没有备份，以及任何可能损坏数据或多收钱的东西。</p>
+<p><strong>你需要理解什么。</strong> 第 13 课，但放在最前面而不是最后面，而且每条发现多一个字段：它是阻塞（任何改动之前必须修掉）、是触及那个模块时偿还，还是可以等待。没有那个字段，一个审计过的遗留系统有四十条发现，没人知道从哪条开始。什么算阻塞由你决定，不是审计者：一般来说，暴露的密钥、不能操作的界面、不能重复的部署、没有备份，以及任何可能损坏数据或多收钱的东西。</p>
 <div class="antes"><p><strong>发送提示词之前</strong>，用你自己的手：</p>
 <ul><li>一个代理的新会话，用一个干净的克隆和一份写着"你是审计者；你没读过、也不会去动这个系统"的指令文件。数据库和服务器的只读访问权。</li><li>N2 的 <code>PROJECT.md</code>、<code>docs/SEMANTIC_TREE.md</code> 和 <code>docs/DISCREPANCIES.md</code>，免得它再发现一遍已经写下来的东西。</li><li>你对"什么算阻塞"的标准，两行，用来填提示词的空。对 Turnos 来说：暴露的密钥、不能操作的界面、不能重复的部署、没有验证过的备份、任何不受控制地删除或发送的东西。</li></ul>
 </div>
@@ -140,13 +139,13 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ol start="2"><li>读报告。挑两条发现，向它要证据。复核那些速度标记：你可以把任何一条调高或调低，带上理由。</li></ol>
 <div class="antes"><p><strong>发送提示词之前</strong>（收尾提示词）：报告已读、两条发现已验证，而且构建者的会话已经打开（收尾是发给构建者的，不是审计者）。</p>
 </div>
-<ol start="3"><li>回到构建者的会话，粘贴第 11 课的收尾提示词，并在末尾加上一句："Each pending item keeps the speed mark of its finding."</li></ol>
+<ol start="3"><li>回到构建者的会话，粘贴第 13 课的收尾提示词，并在末尾加上一句："Each pending item keeps the speed mark of its finding."</li></ol>
 <p><strong>完整性检验。</strong> 它说了它没能审计什么吗？至少有一条"阻塞"吗？每条发现都有文件、行和证据吗？那些阻塞的已经是待办项了吗？</p>
 <p><strong>交付物。</strong> 带速度标记的 <code>docs/AUDIT_[日期].md</code>，以及开出来的那些阻塞待办项。</p>
 <p><strong>常见错误。</strong> 全都在"可以等待"，因为审计者不想打扰人。或者全都在"阻塞"，因为所有者被吓到了：那就什么都永远开不了工。在一个小系统里，三到八条阻塞是正常的。</p>
 <p><strong>在引导项目中。</strong> Turnos 的审计发现，属于阻塞的有：数据库密码在代码里（而且在 git 历史里，所以必须轮换，不只是挪走）；FTP 部署没有记录在跑的是哪个版本；那个删预约的定时任务没有锁；那两个不能操作的界面。属于"触及时偿还"的有：患者搜索没有索引（患者模块）、当天日程查询对每个预约都发一次查询（日程模块）、提醒发送没有幂等性（消息模块；这是那个 bug 的线索）。属于"可以等待"的有：一个没有已知漏洞的旧依赖，以及日期格式在三个地方重复的代码。</p>
 <h3 id="n4">第 N4 课 — 安全带</h3>
-<p><strong>你需要理解什么。</strong> 这是这条路上的硬闸门：安全带不绿，一行功能代码都不许改。安全带有五件：一个带匿名化数据的测试环境、一条重复得了的部署链、代码之外并且轮换过的密钥、跑着现有东西的持续集成，以及表征测试套件。最后这一件是反过来的第 7 课：测试诞生时是绿的，因为它捕捉系统今天做的事、缺陷也照收不误，而它有用的证据是当你故意弄坏流程时它会变红。没有那个变异红，它就是一个因为什么都没看着所以才通过的测试。</p>
+<p><strong>你需要理解什么。</strong> 这是这条路上的硬闸门：安全带不绿，一行功能代码都不许改。安全带有五件：一个带匿名化数据的测试环境、一条重复得了的部署链、代码之外并且轮换过的密钥、跑着现有东西的持续集成，以及表征测试套件。最后这一件是反过来的第 8 课：测试诞生时是绿的，因为它捕捉系统今天做的事、缺陷也照收不误，而它有用的证据是当你故意弄坏流程时它会变红。没有那个变异红，它就是一个因为什么都没看着所以才通过的测试。</p>
 <div class="antes"><p><strong>发送提示词之前</strong>，用你自己的手，和所有者一起：</p>
 <ul><li><code>docs/ENVIRONMENTS_SURVEY.md</code>，代理在 N2 带标记起草、由你补全的那份：测试环境将在哪里运行（课程里用一个免费服务或者你机器上的一个容器就够了）、今天怎么部署、密钥将来住在服务器的什么地方。</li><li>和负责人一起做的匿名化决定：患者的姓名、电话、邮箱和证件号都替换成假值；日期和数量保留。这是法律义务，不是技术细节。</li><li>给表征测试用的关键流程清单：负责人说的那五个。</li><li>在你自己的机器上恢复过的那份备份（N0 的条件）。如果你还没做，现在就做：代理要去复制生产数据库，而你需要知道有回头路。</li><li>代理对服务器的只读访问权，以及对测试环境所在位置的写访问权，凭证放在聊天之外。</li></ul>
 </div>
@@ -158,13 +157,13 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ol start="4"><li>粘贴这条提示词：</li></ol>
 <div class="pbox"><blockquote class="prompt"><p>We are going to write the characterization tests of these critical flows: [load an appointment; cancel an appointment; the reminder reaches the patient; search a patient; download the monthly sheet]. A characterization test captures what the system does today, exactly as it does it, defects included; it is not a test of what the system should do. For each flow: drive it from the screen as a user would and check the effect in the backend (the row, the state, the message queued). Every test must pass against the current code. Then prove that each test actually watches its flow: break the flow deliberately with a temporary change, show me the red output, revert the change, show me the green. If a flow cannot be driven from the screen, do not simulate it: say so and open a pending item marked as blocking. If while writing these tests you find behaviour that looks wrong, do not fix it: add it to <code>docs/DISCREPANCIES.md</code> with the evidence. Record the command to run the suite in <code>docs/STATUS.md</code>, and make the suite the gate for the test environment as <code>docs/GATES.md</code> says. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要为这些关键流程写表征测试：[登记一个预约；取消一个预约；提醒送到患者那里；查找一个患者；下载月度表格]。一个表征测试捕捉的是系统今天做了什么、而且完全按它今天的做法，缺陷也照收不误；它不是一个检验系统"本该做什么"的测试。对每个流程：像用户那样从界面操作它，并在后端验证效果（那一行、那个状态、那条进了队列的消息）。所有测试都必须对着当前代码通过。然后证明每个测试真的在看守它那个流程：用一处临时改动故意把流程弄坏，给我看红色输出，再把改动撤回，给我看绿色。如果某个流程没法从界面操作，不要模拟它：说出来，并开一条标为阻塞的待办项。如果在写这些测试的过程中你发现某个行为看起来不对，不要修它：把它连同证据加到 <code>docs/DISCREPANCIES.md</code> 里。把运行测试套件的命令记录到 <code>docs/STATUS.md</code>，并按 <code>docs/GATES.md</code> 所说，让这套测试成为测试环境的闸门。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
 <p>你在要求的是那种诞生时是绿的、靠变异变红来证明自己有用的测试；操作不了的东西不许模拟；看起来不对的东西记为不一致，不去修。</p>
-<ol start="5"><li>那两个不能操作的界面（N0 的阻塞待办项）在这里解决，在测试套件之前或者作为它的一部分：让它用第 7 课的例行关闭那条待办项，然后再写这些流程的表征测试。</li><li>你自己用 <code>docs/STATUS.md</code> 里的命令跑一遍测试套件。它必须是绿的。</li></ol>
+<ol start="5"><li>那两个不能操作的界面（N0 的阻塞待办项）在这里解决，在测试套件之前或者作为它的一部分：让它用第 8 课的例行关闭那条待办项，然后再写这些流程的表征测试。</li><li>你自己用 <code>docs/STATUS.md</code> 里的命令跑一遍测试套件。它必须是绿的。</li></ol>
 <p><strong>完整性检验。</strong> 你打开测试环境、而且没找到一个真名吗？部署跑了两遍，第二遍什么都没变吗？在仓库里搜密钥搜出来是空的，而且你把它找到的都轮换了吗？那五个流程每一个都有自己的测试和摆在眼前的变异红吗？测试套件是你自己跑的吗？</p>
 <p><strong>交付物。</strong> 带匿名化数据跑起来的测试环境、<code>docs/DEPLOYMENT.md</code>、<code>docs/GATES.md</code>、轮换过的密钥、绿色的持续集成，以及绿色的表征测试套件，连同它那五次演示过的红。</p>
 <p><strong>常见错误。</strong> 把测试套件留到"下周"然后开始修 bug：做了一半的安全带是弄坏本来能跑的东西的头号原因。用"示例"测试数据而不是匿名化副本：遗留系统的 bug 住在真实数据里（Turnos 的提醒发两次只在某些患者身上出现）。还有把密钥挪走却不轮换：它在 git 历史里；它已经不是密钥了。</p>
 <p><strong>在引导项目中。</strong> 提醒的那个表征测试最有意思：它捕捉到夜间任务会为第二天的每个预约往假收件箱发一条消息，并且通过。在写它的过程中，代理注意到如果这个任务跑两遍就会发两遍，并把它连同证据记为一条不一致。这是那个 bug 的线索，而现在还不去修它：当前行为就是规格，直到第 R1 课。变异红：代理把那行把消息入队的代码注释掉，测试失败，再取消注释，通过。</p>
 <h3 id="n5">第 N5 课 — 从代码里找出锁和生产者-消费者地图</h3>
-<p><strong>你需要理解什么。</strong> 第 12 和第 8 课，在已经存在的东西上靠盘点来做，在改动任何东西之前。代理会在代码里找到比业务记得的更多的对外动作：发送、删除、夜间任务。两份清单的比对就是结果。而每把锁都带一个"现在"还是"触及时"的提案：一把管着发消息的锁现在就上；一把管着月度导出的锁，可以等到触及那个模块的功能块。</p>
+<p><strong>你需要理解什么。</strong> 第 12 和第 11 课，在已经存在的东西上靠盘点来做，在改动任何东西之前。代理会在代码里找到比业务记得的更多的对外动作：发送、删除、夜间任务。两份清单的比对就是结果。而每把锁都带一个"现在"还是"触及时"的提案：一把管着发消息的锁现在就上；一把管着月度导出的锁，可以等到触及那个模块的功能块。</p>
 <div class="antes"><p><strong>发送提示词之前</strong>，用你自己的手，和所有者一起：</p>
 <ul><li>在 <code>docs/INITIAL_SURVEY.md</code> 里，写上负责人<strong>知道</strong>系统对外做了什么的清单：按她的说法，发提醒，别的没了。</li><li>代理对服务器定时任务的访问权。</li><li>住在仓库之外的东西的清单（那张月度表格），给地图用。</li><li>N4 的测试环境跑着。</li></ul>
 </div>
@@ -173,13 +172,13 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ol start="2"><li>和负责人一起一把锁一把锁地确认，以及每把锁的"现在"还是"触及时"标记。</li></ol>
 <div class="antes"><p><strong>发送提示词之前</strong>（收尾提示词）：带着你逐行裁决的那张表，以及"现在"那些锁的清单，用来填提示词的空。</p>
 </div>
-<ol start="3"><li>用第 12 课的收尾提示词收尾，只列"现在"的那些锁；其余的留在待办队列里，带着它们的标记。</li></ol>
+<ol start="3"><li>用第 14 课的收尾提示词收尾，只列"现在"的那些锁；其余的留在待办队列里，带着它们的标记。</li></ol>
 <p><strong>完整性检验。</strong> 代理的清单比负责人的清单多吗？（如果一样多，它就没看定时任务。）每一把"现在" 的锁都有它对着没有锁的版本的红色测试吗？那张月度表格作为消费者在地图里吗？</p>
 <p><strong>交付物。</strong> <code>docs/CONSEQUENTIAL_ACTIONS_SURVEY.md</code>、<code>docs/PRODUCER_CONSUMER_MAP.md</code>、 <code>docs/LOCKS.md</code>，其中"现在"的锁已实现并已验证。</p>
 <p><strong>常见错误。</strong> "反正都做到这儿了"就把所有锁现在都实现掉：那是违反两种速度的规则，而且是一周没有花在客户要的那个 bug 上。</p>
 <p><strong>在引导项目中。</strong> 代理找到三个负责人没有列出来的动作：夜间删除旧的已取消预约、预约被取消时系统发给专业人员的一封邮件（她不知道），以及喂那张表格的那个导出。"现在"的锁：夜间删除改成演练模式（记录它本会删掉什么），直到她做决定；提醒发送加一个每日上限。"触及时"：发送的幂等性（消息模块，和那个 bug 一起进）、取消时的确认（日程模块）。地图里有六份契约，而那张月度表格是预约表的消费者：如果有人改了一列，表格会悄无声息地坏掉。</p>
 <h3 id="n6">第 N6 课 — 用真实数字做容量估算</h3>
-<p><strong>你需要理解什么。</strong> 第 3 课，但有一个优势：原始数据就在数据库和日志里。它们不是问出来的，是用一把带测试的量具测出来的（第 9 课）。负责人只提供哪里都没有的东西：他们预期增长多少，以及这个系统会不会卖给别的诊所。</p>
+<p><strong>你需要理解什么。</strong> 第 3 课，但有一个优势：原始数据就在数据库和日志里。它们不是问出来的，是用一把带测试的量具测出来的（第 7 课）。负责人只提供哪里都没有的东西：他们预期增长多少，以及这个系统会不会卖给别的诊所。</p>
 <div class="antes"><p><strong>发送提示词之前</strong>，用你自己的手：</p>
 <ul><li>对生产数据库的只读访问权，或者 N4 那份完整副本（匿名化没有动过日期和数量），以及访问日志。</li><li>业务那两个答案：预期增长（"和现在差不多，也许多一个专业人员"）和"乘以十"（"如果好用，我姐姐还有一家诊所"）。</li><li>给量具的测试用的一个已知案例：专业人员的数量，是三个。</li></ul>
 </div>
@@ -209,14 +208,14 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 </section><section>
 <h2 id="r1-r2">对遗留系统跑循环：第 R1 和 R2 课</h2>
 <h3 id="r1-bug">第 R1 课 — 第一个功能块：那个 bug，纠正模式</h3>
-<p><strong>你需要理解什么。</strong> 一条纠正型待办项是一个已知的 bug。在第 7 课里红是制造出来的；在这里红就是那个 bug 本身：那个复现故障的测试，像报告它的那个用户一样操作流程，必须对着当前代码失败。如果它不失败，你复现的是另一个 bug。那个红是你在修对东西的证据，而且比代理关于"应该是在发生什么"的任何解释都更有价值 <a class="ref" href="REFERENCIAS.html#ref-22">Ref. 22</a>。还有根因要在动手之前用散文说出来，因为有时候根因是一条没人写下来的业务规则，而那是你来决定的。</p>
+<p><strong>你需要理解什么。</strong> 一条纠正型待办项是一个已知的 bug。在第 8 课里红是制造出来的；在这里红就是那个 bug 本身：那个复现故障的测试，像报告它的那个用户一样操作流程，必须对着当前代码失败。如果它不失败，你复现的是另一个 bug。那个红是你在修对东西的证据，而且比代理关于"应该是在发生什么"的任何解释都更有价值 <a class="ref" href="REFERENCIAS.html#ref-22">Ref. 22</a>。还有根因要在动手之前用散文说出来，因为有时候根因是一条没人写下来的业务规则，而那是你来决定的。</p>
 <div class="antes"><p><strong>发送提示词之前</strong>，用你自己的手：</p>
 <ul><li><code>docs/PENDING.md</code> 里那条纠正型待办项，带着用负责人的话写的复现方式，以及一个具体案例：上周那三张截图，带患者的名字（测试环境里用假名）和日期。没有案例就没有测试。</li><li>表征测试套件是绿的，命令在 <code>docs/STATUS.md</code> 里。</li><li>这条待办项的配对项，列在它里面。</li><li>已经通知负责人，今天你会问她一个业务问题。</li></ul>
 </div>
 <ol><li>用每次会话的例行打开这个功能块：代理宣布它接哪条待办项，并重读规格。</li><li>粘贴这条提示词：</li></ol>
 <div class="pbox"><blockquote class="prompt"><p>This pending item is a correction: [some patients receive the reminder twice and some receive none; three cases from last week are attached in the item]. Before changing anything: (1) Reproduce the failure with a test that drives the flow from the screen and checks the effect in the backend, and show me that it fails against the current code; that red is the proof that you reproduced the right defect. If you cannot reproduce it, tell me what you tried and what you need; do not fix what you cannot see. (2) Find the root cause and tell me in prose, with the evidence, before fixing. If the root cause is a business rule nobody wrote down, stop and ask me. (3) Fix at the root, not where it hurts, and nothing else: anything else you find goes to a pending item. (4) Show me the test green, the characterization suite still green, and the regression of the neighbouring items. (5) If the fix changes a current behaviour that someone may depend on, say so explicitly: that is a decision for me, not a side effect. Close the paired normalization items of this module in the same block, each with its own evidence. The commit message says "proved red against [version]" and the test counts. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>这条待办项是一次纠正：[有些患者收到两次提醒，有些一次都没收到；待办项里附了上周的三个案例]。在改动任何东西之前：（1）用一个从界面操作流程、并在后端验证效果的测试复现这次故障，并给我看它对着当前代码失败；那个红是你复现对了缺陷的证据。如果你复现不出来，告诉我你试过什么、你需要什么；不要去修你看不见的东西。（2）找出根因，并在修之前用散文连同证据告诉我。如果根因是一条没人写下来的业务规则，停下来问我。（3）在根上修，不要在疼的地方修，而且只修它：你发现的任何别的东西都进一条待办项。（4）给我看测试变绿、表征测试套件仍然是绿的，以及相邻待办项的回归。（5）如果这次修复改变了某个当前行为、而可能有人依赖它，明确说出来：那是我的一个决定，不是一个副作用。把这个模块里和它配对的规范化待办项在同一个功能块里关闭，每一条都带自己的证据。提交信息里写"对着[版本]先证红"以及测试的数字。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
 <p>你在要求的是：复现在诊断之前、根因在动手之前用散文说出来、在根上修而且只修它、表征测试作为整个系统的回归，以及行为的改变必须是你的一个决定。</p>
-<ol start="3"><li>在授权修复之前先读根因。如果它问你一条业务规则，和负责人一起决定它，然后用第 6 课的收尾格式回答。</li><li>收尾时：你自己跑一遍表征测试套件。再像前台那样，在测试环境里用半小时这个系统：人工查看不能外包。</li></ol>
+<ol start="3"><li>在授权修复之前先读根因。如果它问你一条业务规则，和负责人一起决定它，然后用第 6 课的收尾格式回答。</li><li>收尾时：你自己跑一遍表征测试套件。再像前台那样，在测试环境里用一会儿这个系统：人工查看不能外包。</li></ol>
 <p><strong>完整性检验。</strong> 你看到那个复现 bug 的测试变红了吗，带数字？根因是在修复之前用散文写出来的吗？表征测试还是绿的吗？那些配对项都带着各自的证据关闭了吗？提交信息里写了"先证红"吗？</p>
 <p><strong>交付物。</strong> 用完整例行关闭的那个 bug、关闭了的配对项，以及加进了这个 bug 的测试、因而扩大了的表征测试套件。</p>
 <p><strong>常见错误。</strong> 不读根因就授权修复：在 Turnos 里，代理的第一个假设通常是"这个任务跑了两遍"，而那只是一半的真相。还有让"反正都来了"去整理消息模块：规则 7。</p>
@@ -224,9 +223,9 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <h3 id="r2">第 R2 课 — 第二个功能块：定金，演进模式</h3>
 <p><strong>你需要理解什么。</strong> 在旧东西上做的新东西，要用完整的方法构建，完全照第一部分的第 5 到 10 课：待办项里的规格、带日期的决策、红色测试、端到端测试、诚实的报告。两点不同。相邻的回归是整个系统，而说这件事的是表征测试套件。还有当功能块进入某个模块时，那个模块里标着"触及时偿还"的规范化待办项跟着它一起进，带着各自的证据。不要对新模块做遗留系统当年对旧模块做的事。</p>
 <div class="antes"><p><strong>发送提示词之前</strong>，用你自己的手：</p>
-<ul><li><code>docs/PENDING.md</code> 里定金那条演进型待办项，带着由你读过的完整规格、它的配对项，以及负责人现在就能做的那些业务决策：哪些预约要收定金、收多少、不付会怎样。</li><li>有后果动作的调研（N5），加上"收定金"那一行，因为那是一个作用于现实世界的新动作：构建之前先上锁，和第 12 课一样。</li><li>表征测试套件是绿的。</li></ul>
+<ul><li><code>docs/PENDING.md</code> 里定金那条演进型待办项，带着由你读过的完整规格、它的配对项，以及负责人现在就能做的那些业务决策：哪些预约要收定金、收多少、不付会怎样。</li><li>有后果动作的调研（N5），加上"收定金"那一行，因为那是一个作用于现实世界的新动作：构建之前先上锁，和第 14 课一样。</li><li>表征测试套件是绿的。</li></ul>
 </div>
-<ol><li>用第 5 课的开启提示词打开这个功能块，针对定金这个请求，然后像负责人那样读规格。</li><li>在构建之前，先上锁：对"收定金"这个动作粘贴第 12 课的收尾提示词，先用演练模式。</li><li>用第 7 课的例行构建，一条待办项一条待办项地来，配对项放在同一个功能块里。</li><li>功能块收尾时：完整的端到端测试套件（表征的那些加上新的那些），用第 7 课的功能块收尾提示词，再加上你自己用系统的半小时。</li></ol>
+<ol><li>用第 5 课的开启提示词打开这个功能块，针对定金这个请求，然后像负责人那样读规格。</li><li>在构建之前，先上锁：对"收定金"这个动作粘贴第 14 课的收尾提示词，先用演练模式。</li><li>用第 8 课的例行构建，一条待办项一条待办项地来，配对项放在同一个功能块里。</li><li>功能块收尾时：完整的端到端测试套件（表征的那些加上新的那些），用第 8 课的功能块收尾提示词，再加上你自己用系统的一会儿功夫。</li></ol>
 <p><strong>完整性检验。</strong> 定金在收款存在之前就有带红色测试的锁吗？功能块之后表征测试还是绿的吗？那个模块的配对项都偿还了吗？有没有旧模块里的东西在没有待办项的情况下被"改进"了？</p>
 <p><strong>交付物。</strong> 定金在测试环境里以演练模式跑起来，带着它的规格、它的锁、它的测试和它的端到端测试；配对项已关闭。</p>
 <p><strong>常见错误。</strong> 为了让它合得上就"快点、照其余部分的做法"构建定金：新模块永远带着完整的方法出生。还有因为"那是一个支付链接，又不是我们收钱"就忘了上锁：那个链接会发给一个患者；那就是一个对外的动作。</p>
@@ -234,7 +233,7 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <hr>
 </section><section>
 <h2 id="">之后：上线生产与运维</h2>
-<p>从这里开始，这个遗留系统就是一个有方法的系统了，第一部分的第 11 到 21 课原样适用，加四条注记。第一条是关于那六级运维质量台阶的：最低限度的可观测性和漏洞扫描已经随安全带进来了，持久化的测量已经在 N6 里，而负载测试用那些量级在第一次部署之前跑；两个监控以第一次阅读作为基线起步，而第一天就已经不对的东西带着它的标记变成待办项。另外三条注记是这些。第 11 课的审计要和 N3 那次对照：偿还了多少债务，还剩多少。第 14 课的手册在遗留系统里往往不存在，要根据系统的现状和那些已关闭的待办项生成，而那些待办项现在确实记录了做过的事。还有第 15 课的复盘多了一个这条路专属的问题：规范化花了多少成本（多少小时、多少 token、第一个改动之前多少周），以及标着"可以等待"的债务里有哪些最后还是照样付了代价。那个答案会在下一版里修正这一部分的日历。</p>
+<p>从这里开始，这个遗留系统就是一个有方法的系统了，第一部分的第 11 到 21 课原样适用，加四条注记。第一条是关于那六级运维质量台阶的：最低限度的可观测性和漏洞扫描已经随安全带进来了，持久化的测量已经在 N6 里，而负载测试用那些量级在第一次部署之前跑；两个监控以第一次阅读作为基线起步，而第一天就已经不对的东西带着它的标记变成待办项。另外三条注记是这些。第 13 课的审计要和 N3 那次对照：偿还了多少债务，还剩多少。第 20 课的手册在遗留系统里往往不存在，要根据系统的现状和那些已关闭的待办项生成，而那些待办项现在确实记录了做过的事。还有第 23 课的复盘多了一个这条路专属的问题：规范化花了多少成本（多少小时、多少 token、第一个改动之前多少周），以及标着"可以等待"的债务里有哪些最后还是照样付了代价。那个答案会在下一版里修正这一部分的日历。</p>
 </section><section>
 <h2 id="">规范化阶段的出口清单</h2>
 <p>所有者不读代码就能验证的八个条件，在打开第一个功能块之前。它们和演进-纠正之路那一页上的一样；我在这里重复一遍，因为它们是这一部分的交付物。</p>

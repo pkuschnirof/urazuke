@@ -23,7 +23,7 @@ production it was by looking at one that already existed [Ref. 12](REFERENCIAS.m
 And here there is a trap I want to name before going on: the temptation, faced with a legacy
 system, is to choose between two extremes that are both wrong. One is "I rewrite it with the
 method, from scratch": it sounds clean, and it almost always ends in a second system that never
-manages to replace the first. The other is "I apply the loop directly, that is what steps 5 to 10
+manages to replace the first. The other is "I apply the loop directly, that is what steps 5 to 12
 are for": it sounds pragmatic, and it is building on sand, because the loop takes for granted
 that there is a definition, a map, a test environment, a suite that runs and a deployment that
 repeats. None of that exists in a system that was not born with the method. This path is the one
@@ -35,11 +35,11 @@ ladder**.
 The method has three use cases, and it is worth knowing which one you are in before opening the
 agent, because it changes where you enter.
 
-| Case | Starting point | Where you enter | How long the entry lasts | Where it is written |
+| Case | Starting point | Where you enter | What there is before the first functionality | Where it is written |
 |---|---|---|---|---|
-| **New project** | An empty folder and an owner with a request. | Step 0, and from there the twenty-two in order. | A week of start-up before the first functionality. | The main document, the twenty-two contracts and the course manual. |
-| **Evolutive-corrective on a system made with the method** | The system already climbed the ladder: it has a definition, a map, pending items closed with evidence, a suite, a deployment and manuals. | Step 5: a block is opened and the loop followed; step 11 periodically; step 15 at the close of the stage. | None: it is step 15 going back to step 0 for the next stage, which is already in Part B of the main document. | The main document (phase 4, operation). |
-| **Evolutive-corrective on a system made without the method** | A system that runs, with users, without any of those artefacts or with some of them half done. | The normalization stretch of this page (N0 to N7), and only then the loop, in corrective or evolutive mode. | Two to three weeks for a small system, before touching the first line of functionality. | This page and the course manual, part 2. |
+| **New project** | An empty folder and an owner with a request. | Step 0, and from there the twenty-four in order. | The whole start-up stretch before the first functionality. | The main document, the twenty-four contracts and the course manual. |
+| **Evolutive-corrective on a system made with the method** | The system already climbed the ladder: it has a definition, a map, pending items closed with evidence, a suite, a deployment and manuals. | Step 5: a block is opened and the loop followed; step 13 periodically; step 23 at the close of the stage. | None: it is step 23 going back to step 0 for the next stage, which is already in Part B of the main document. | The main document (phase 4, operation). |
+| **Evolutive-corrective on a system made without the method** | A system that runs, with users, without any of those artefacts or with some of them half done. | The normalization stretch of this page (N0 to N7), and only then the loop, in corrective or evolutive mode. | The whole normalization stretch, before touching the first line of functionality. | This page and the course manual, part 2. |
 
 What is left out, named so that it does not get confused: a **technology migration** (changing
 platform, language, database) is not a use case of the method; it is a different project, and it
@@ -58,6 +58,10 @@ ago. What changes is the effort of reading it, not the path.
 Normalizing is bringing the system to the state the method takes for granted when it opens the
 loop. And I do it with three rules I do not negotiate.
 
+And something that comes before the three rules: on this path there are no deadlines either. The
+method is a process, not a promise of speed; normalizing a legacy system takes as long as the
+legacy system demands, and the only things I fix are the order and the gates.
+
 **First: nothing is rewritten.** Normalization does not touch functionality. It puts around the
 system what it is missing (the definition, the map, the test environment, the suite, the
 repeatable deployment, the locks on whatever already acts on the world) and leaves the system
@@ -71,7 +75,7 @@ characterization suite of the critical flows that goes red if any of that change
 **hard gate**: nothing is changed without it, with a single written exception for an emergency in
 production, which I explain further down. The rest of the debt is paid **as it is touched**: when
 a block enters a module, the normalization pending items of that module enter with it. Never "a
-week of general cleanup".
+general cleanup" before starting.
 
 **Third: all the inputs of the previous stages have to exist, even if they have to be recovered
 by autodiscovery.** This is the rule that distinguishes this path from "apply the loop and be
@@ -101,12 +105,12 @@ in a new project, and how it is obtained on the evolutive-corrective path.
 | `docs/ELIGIBILITY_CRITERIA.md` and `docs/ELIGIBILITY.md` | Step 0. | N0, with four more criteria specific to a legacy system. | The owner decides. |
 | `docs/WORKING_AGREEMENT.md` | Step 1. | N1, with five more rules specific to a legacy system. | The owner. |
 | `PROJECT.md`, `docs/SEMANTIC_TREE.md`, `docs/STATUS.md` | Step 2, from the survey. | N2, from the system, with tags; plus the list of discrepancies. | The owner walks the tree and decides each discrepancy. |
-| `docs/AUDIT_[date].md` | Step 11, at the end. | N3, at the beginning: it is the inventory of the debt. | The owner reads it and verifies two findings. |
-| `docs/ENVIRONMENTS_SURVEY.md`, the test environment, continuous integration, the repeatable deployment, `docs/GATES.md` | Steps 4 and 13. | N4, the safety belt, with the characterization suite. | The owner sees the screenshot and the second run of the deployment. |
-| `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`, `docs/PRODUCER_CONSUMER_MAP.md` | Steps 12 and 8. | N5, by inventory of the code and the database. | The owner confirms lock by lock. |
-| `docs/VOLUME_SURVEY.md`, `docs/SIZING.md` | Step 3, with numbers the business gives. | N6, with numbers measured in the database and the logs (step 9 applied to the sizing). | The owner supplies only what cannot be measured. |
+| `docs/AUDIT_[date].md` | Step 13, at the end. | N3, at the beginning: it is the inventory of the debt. | The owner reads it and verifies two findings. |
+| `docs/ENVIRONMENTS_SURVEY.md`, the test environment, continuous integration, the repeatable deployment, `docs/GATES.md` | Steps 4 and 15. | N4, the safety belt, with the characterization suite. | The owner sees the screenshot and the second run of the deployment. |
+| `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`, `docs/PRODUCER_CONSUMER_MAP.md` | Steps 14 and 11. | N5, by inventory of the code and the database. | The owner confirms lock by lock. |
+| `docs/VOLUME_SURVEY.md`, `docs/SIZING.md` | Step 3, with numbers the business gives. | N6, with numbers measured in the database and the logs (step 7 applied to the sizing). | The owner supplies only what cannot be measured. |
 | `docs/PENDING.md` | Step 5, from the client's request. | N7, from the audit, the discrepancies and the client's request, with the mark "blocks / paid when touched / can wait". | The owner orders them. |
-| `docs/DECISIONS.md`, `docs/GOTCHAS.md`, `docs/LOCKS.md`, `docs/DEPLOYMENT.md` | Steps 6, 8, 12, 13. | They are created empty or completed in N2, N4 and N5, and they grow in the loop as in a new project. | The owner. |
+| `docs/DECISIONS.md`, `docs/GOTCHAS.md`, `docs/LOCKS.md`, `docs/DEPLOYMENT.md` | Steps 6, 11, 14, 15. | They are created empty or completed in N2, N4 and N5, and they grow in the loop as in a new project. | The owner. |
 
 If when N7 finishes any of these files is missing, the stretch has not been climbed. It does not
 matter that the system "works": the loop is going to need it in the first session.
@@ -114,19 +118,19 @@ matter that the system "works": the loop is going to need it in the first sessio
 ## The normalization stretch: the eight stations
 
 I call them stations and not steps, and I number them N0 to N7, so that they do not get confused
-with the twenty-two of the ladder. They are not new steps: they are the steps of the start-up and
-three of the operation (8, 11 and 12), in another order and with another input. In a new project
+with the twenty-four of the ladder. They are not new steps: they are the steps of the start-up and
+three of the operation (11, 13 and 14), in another order and with another input. In a new project
 the input is the survey; here the input is the system, and the reading is done by the agent.
 
 | Station | Steps it comes from | What changes with respect to a new project |
 |---|---|---|
-| N0 — Eligibility of an existing system | 0 | Four more criteria; X2 is measured screen by screen; if it is red, it is the first pending item, not a condition. |
+| N0 — Eligibility of an existing system | 0 | Seven prerequisites the model verifies by doing; a red one is a prerequisite project, not a rejection. |
 | N1 — The working agreement for a legacy system | 1 | Five more rules: do not refactor what was not asked for, read before touching, log instead of fixing in passing, current behaviour is the specification, nothing enters without characterization green. |
 | N2 — Reading the system | 2 | The survey, the project file and the tree come out of the code with source tags; the list of discrepancies appears. |
-| N3 — The audit as an inventory | 11 | It goes first, not last, and every finding says whether it blocks, whether it is paid when touched, or whether it can wait. |
-| N4 — The safety belt | 4, 7, 13 | A test environment with data, a repeatable deployment, secrets outside, continuous integration, and the characterization suite. A hard gate. |
-| N5 — Locks and map from the code | 12, 8 | An inventory of everything that acts on the world and of every contract between parts, before changing anything. |
-| N6 — Sizing with real numbers | 3, 9 | The primary figures are measured, not asked for; the owner supplies only what is not in the database. |
+| N3 — The audit as an inventory | 13 | It goes first, not last, and every finding says whether it blocks, whether it is paid when touched, or whether it can wait. |
+| N4 — The safety belt | 4, 8, 15 | A test environment with data, a repeatable deployment, secrets outside, continuous integration, and the characterization suite. A hard gate. |
+| N5 — Locks and map from the code | 14, 11 | An inventory of everything that acts on the world and of every contract between parts, before changing anything. |
+| N6 — Sizing with real numbers | 3, 7 | The primary figures are measured, not asked for; the owner supplies only what is not in the database. |
 | N7 — The normalization backlog | 5 | The debt and the client's request, in a single queue, with the speed mark and the pairing by module. |
 
 The order matters. N3 goes before N4 because the audit says what has to go into the belt (the
@@ -136,37 +140,54 @@ run the system somewhere where a mistake costs nothing. N6 goes last because it 
 test environment with data, which only exists from N4 on. And N7 closes because it brings
 everything before it into a single queue.
 
-### When: the normalization calendar
+### The order of normalization
 
-| Week | Stations | What else happens |
+There are no deadlines: each stage lasts as long as the system demands, and the only fixed thing
+is the order.
+
+| Stage | Stations | What else happens |
 |---|---|---|
-| 1 | N0, N1, N2, N3 | Reading the system with the owner alongside, confirming nodes and deciding discrepancies. Nothing is changed. At the close of the week: the recovered map and the inventory of the debt. |
+| 1 | N0, N1, N2, N3 | Reading the system with the owner alongside, confirming nodes and deciding discrepancies. Nothing is changed. At the close of the stage: the recovered map and the inventory of the debt. |
 | 2 | N4, N5 | The belt: test environment with data, deployment run twice, secrets rotated, characterization suite of the critical flows. Locks confirmed on whatever already acts. At the close: the system runs in test and the suite is green. |
 | 3 | N6, N7, and the first block | Sizing measured. The backlog ordered. The first block is opened with step 5, corrective or evolutive, with its normalization pending items paired. From here on it is the usual loop. |
 
-If the system is large, what stretches is week 1 (there is more to read) and the characterization
-suite of week 2 (there are more flows). N7 does not stretch: a normalization backlog that takes a
-week to write is a backlog nobody is going to maintain.
+If the system is large, what grows is stage 1 (there is more to read) and the characterization
+suite of stage 2 (there are more flows). N7 does not grow: a normalization backlog that cannot be
+written in one sitting is a backlog nobody is going to maintain.
 
 ---
 
-### N0 — Eligibility of an existing system
+### N0 — Eligibility of an existing system: the prerequisites a model can verify
 
-- **Intention**: decide whether this system can be taken on with the method, before touching it.
-  The two exclusionary criteria are the same as in step 0, X1 (an accessible repository managed
-  in a standard way) and X2 (screens drivable by a program, with the effect verifiable in the
-  backend), but here X2 is measured screen by screen over what exists, and if it is red it is not
-  a condition for starting: it is the first pending item of the backlog, marked as blocking.
-- **When**: once only, on the first day. Two hours.
-- **Inputs**: the initial survey (the request, who uses the system, what hurts), read access to
-  the repository and, if possible, to the environment where it runs.
-- **Artefact**: `docs/ELIGIBILITY.md` with the decision, and the four criteria I add for a legacy
-  system: whether there is anyone who knows how it works (and how much time they have); whether
-  production can be queried read-only; whether any automated test exists; and whether a backup
-  exists and has ever been restored.
-- **Gate**: X1 green; X2 green or with its blocking pending item open; the backup restored at
-  least once before N4.
-- **Who decides**: the owner.
+- **Intention**: decide whether this system can be taken on with the method, before touching it,
+  with criteria that do not depend on a human assessment but on what a frontier model can or
+  cannot do with the system. If a prerequisite is not met, it is not a "no-go": it is a **project
+  in itself**, a prior one, so that the system becomes eligible.
+- **When**: once only, before anything else.
+- **Inputs**: the short initial survey, read access to the repository and, if possible, to the
+  environment where it runs and to its database.
+- **Artefact**: `docs/ELIGIBILITY.md` with the decision and the seven exclusionary prerequisites
+  of a legacy system, each one verified by the agent with evidence, not declared by a person:
+  1. **A complete environment of the system can be set up**, with all its sources, its data model
+     and its persistence, from the repository and a copy of the data.
+  2. **The code is understandable and workable by a frontier model**: the agent can read it whole
+     and explain what each module does without inventing.
+  3. **From the code, the model can describe in a document the complete functionality of the
+     system**, in a form an end user recognises as their system and accepts.
+  4. **The frontend can be walked by testing tools** in order to generate end-to-end tests, with
+     every element accessible and the backend effect verifiable (this is X2).
+  5. **The system can be built and run from the sources with the tools available today**: the
+     dependencies resolve, the versions exist, nothing depends on a lost binary.
+  6. **The production data can be copied and anonymized** into a test environment, and there is a
+     backup that has been restored at least once.
+  7. **The external integrations have a test mode or can be isolated at the edge** (a fake inbox,
+     a provider in dry-run mode), so that the consequential actions can be tested without
+     consequences.
+- **Gate**: the seven green, with the agent's evidence (the environment brought up, the
+  functionality document written, one end-to-end test of one flow running). Every red one turns
+  into a prior project with its own exit pending item.
+- **Who decides**: the agent verifies and presents the evidence; the owner decides whether to
+  take on the prior projects or not.
 
 **Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
 the agent:
@@ -176,53 +197,60 @@ the agent:
   request, what is missing); who made it and whether they are available; where it runs; who has
   access to what; whether there is a backup and who takes it. Half a page, incomplete on purpose:
   in N2 the agent is going to complete it from the system.
-- `docs/ELIGIBILITY_CRITERIA.md`: the step 0 sheet (X1, X2 and the ones that weigh) plus four
-  rows for the legacy criteria: somebody who knows, production queryable, existing tests, backup
-  restored. Empty columns for the answer, the source and green or red.
-- Read access to the repository for the agent, and if possible to the test environment or to
-  production read-only, with the credentials outside the chat.
-- Minimum acceptable state: the agent can clone the repository and you know who made the system
-  and whether it is alive (the system and the person).
+- `docs/ELIGIBILITY_CRITERIA.md`: the step 0 sheet (X1, X2 and the ones that weigh) plus the seven
+  legacy prerequisites above, each one with three empty columns: green or red, the evidence (what
+  the agent did to verify it), and the prior project if it is red.
+- Read access to the repository for the agent, access to a copy of the data (or to production
+  read-only) and to a place where it can try to set the environment up, with the credentials
+  outside the chat. Without this, prerequisites 1, 5 and 6 cannot be verified and stay red.
+- Minimum acceptable state: the agent can clone the repository and has a place where it can try
+  to bring the system up.
 
 **Opening:**
 
-> We are going to assess whether this existing system can be taken over with the Urazuke method.
-> Read the initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
-> `docs/ELIGIBILITY_CRITERIA.md`, which for an existing system adds four criteria: whether anyone
-> who knows how the system works is available; whether production can be queried read-only;
-> whether any automated test exists; and whether a backup exists and has ever been restored. Then
-> explore the repository and, if I gave you access, the environment where it runs: change nothing.
-> Fill in the sheet criterion by criterion with the answer, its source (survey, code, database,
-> configuration, or inferred) and, for the exclusionary criteria X1 and X2, green or red. For X2,
-> list every screen and say for each whether it can be driven by a program today and whether the
-> effect can be checked in the backend. If a criterion cannot be answered from what you have, ask
-> me; do not assume. Do not decide: present me the completed sheet with your reading and your
-> doubts, and I will decide. Reply in my language.
+> We are going to assess whether this existing system can be taken over with the Urazuke method,
+> with prerequisites that you verify by doing, not by asking. Read the initial survey in
+> `docs/INITIAL_SURVEY.md` and the criteria sheet in `docs/ELIGIBILITY_CRITERIA.md`. Then, changing
+> nothing in the system, verify each prerequisite with evidence: (1) try to set up a complete
+> environment of the system from the repository and a copy of the data, with its sources, data
+> model and persistence, and tell me exactly what you could and could not bring up; (2) read the
+> whole code and tell me whether you can understand and work with it, module by module, naming
+> what you cannot understand; (3) from the code alone, write `docs/FUNCTIONALITY_RECOVERED.md`: the
+> complete functionality of the system described for an end user, screen by screen and process by
+> process, marking what you inferred; (4) list every screen and say whether it can be driven by a
+> test tool with each element accessible and the backend effect checkable, and prove it by writing
+> and running one end-to-end test of one flow; (5) try to build and run the system from the sources
+> with today's tools and report every dependency that does not resolve; (6) check whether the
+> production data can be copied and anonymized into a test environment and whether a backup exists
+> and has ever been restored; (7) list every external integration and say whether it has a test
+> mode or can be isolated at the edge. For each prerequisite: green or red, the evidence (what you
+> did and what happened), and, if red, what project would make it green. Do not decide: present me
+> the sheet, and I decide. Reply in my language.
 
-What I am asking for: the same as in step 0, with three differences. That it explore the system
-without changing anything, because here there is a system to explore; that every answer say where
-it came from, because the survey is short and most of the answers are going to come from the
-code; and that X2 be measured **screen by screen**, because in a legacy system the answer is
-never "yes" or "no" for the whole system, it is "these four yes, these two no", and those two are
-the first pending item.
+What I am asking for: that the prerequisites be verified **by doing** (setting up, reading,
+writing the document, running a test), because a frontier model can do all four things and then
+eligibility stops being an opinion; the recovered functionality document, which is the strongest
+proof that the code is workable, and which is also the first draft of what N2 is going to turn
+into the map; and that every red one come with the project that turns it green, because a missing
+prerequisite is not a rejection but a prior piece of work with its own scope.
 
 **Before sending the prompt** for the close: your decision in one line, taken after reading the
-complete sheet; the conditions, verifiable and no more than three (the one about the backup
-restored before N4 is almost always one of them); and the list of screens red for X2, which the
-prompt turns into the first pending item.
+sheet with the evidence of each prerequisite; and, for every red one, your decision about whether
+the prior project is taken on now, later, or never (and then the system is not eligible).
 
 **Closing:**
 
-> Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
-> `docs/ELIGIBILITY.md` with the date, who decided, every answer with its source, and the
-> conditions if any. If X2 is red for any screen, create `docs/PENDING.md` and open the first
-> pending item: make every screen drivable by a program with its backend effect checkable; mark it
-> as blocking. Include the questions you asked and my answers.
+> Decision: [go / go after these prerequisite projects: … / no-go]. Write the final sheet to
+> `docs/ELIGIBILITY.md` with the date, who decided, each prerequisite with its colour and its
+> evidence, and, for every red one, the prerequisite project as a pending item in `docs/PENDING.md`
+> marked as blocking, with its own acceptance criterion: the prerequisite verified green. Include
+> the questions you asked and my answers.
 
-Completeness check: does X2 have one answer per screen, not one for the whole system? Do the four
-legacy criteria have an answer with a source? If the backup was never restored, was that left as
-a condition before N4? Warning sign: the agent answered X2 green for everything because "it is a
-web application". Old web applications are the ones that can least be driven by a program.
+Completeness check: does every prerequisite have evidence of something the agent **did**, not an
+answer from you? Does `docs/FUNCTIONALITY_RECOVERED.md` exist, and did you read it as the owner:
+does it describe the system they believe they have? Did it run a real end-to-end test of one
+flow? Does every red one have its prior project with an exit criterion? Warning sign: all green
+in one afternoon for a system nobody understands. The agent answered instead of doing.
 
 ---
 
@@ -230,7 +258,7 @@ web application". Old web applications are the ones that can least be driven by 
 
 - **Intention**: set the rules before touching anything, with five more rules than step 1, which
   are the ones an inherited system needs so that the agent does not "improve" it on its own.
-- **When**: the first day, after N0. Half an hour.
+- **When**: after N0, before reading anything.
 - **Inputs**: your working preferences, as in step 1.
 - **Artefact**: `docs/WORKING_AGREEMENT.md` with the six rules of the method and the five of the
   legacy system.
@@ -244,7 +272,7 @@ web application". Old web applications are the ones that can least be driven by 
   you, what autonomy you give it, what you do not tolerate.
 - A decision of yours about the level of risk you accept while the system is being normalized:
   whether the agent may or may not deploy to the test environment on its own (to production,
-  never, until N4 is closed and step 13 climbed).
+  never, until N4 is closed and step 15 climbed).
 - `docs/ELIGIBILITY.md` (N0), closed.
 - Minimum acceptable state: you know how to answer the questions of step 1 and the one about
   risk.
@@ -287,7 +315,7 @@ the rewrite in disguise; reject it with a written reason.
   system itself, with source tags, and with the list of everything that does not match between
   the code, the database, the documentation and what the business believes. It is step 2 done by
   reverse engineering, and it is the move that gives the most value per hour of the whole path.
-- **When**: the first week, after N1. Two or three days, with the owner available to confirm.
+- **When**: after N1, with the owner available to confirm.
 - **Inputs**: the complete repository, the database schema read-only, the configuration of each
   environment, the logs if there are any, whatever documentation exists, and the short survey
   from N0.
@@ -383,13 +411,12 @@ compare); the project file goes over three hundred lines because "there was a lo
 
 ### N3 — The audit as an inventory of the debt
 
-- **Intention**: step 11, but at the beginning and with one more question per finding: does it
+- **Intention**: step 13, but at the beginning and with one more question per finding: does it
   block, is it paid when the module is touched, or can it wait? The report is not a report: it is
   the raw material of the belt (N4) and of the backlog (N7). In my first project that started
   with the method already written, the series of early audits turned directly into pending items
   [Ref. 30](REFERENCIAS.md#ref-30); here I do the same on somebody else's system.
-- **When**: the first week, after N2, in a different session from the one that read the system if
-  possible. One day.
+- **When**: after N2, in a different session from the one that read the system if possible.
 - **Inputs**: the repository read-only, the environment where it runs read-only, the recovered
   map (N2).
 - **Artefact**: `docs/AUDIT_[date].md` with every finding marked "blocks / paid when touched /
@@ -430,13 +457,13 @@ the agent:
 > it CAN WAIT. Grade every dimension you audited. End with every finding turned into a proposed
 > pending item, blocking ones first. Reply in my language.
 
-What I am asking for: the audit of step 11 with the "deployability" dimension added (because in a
+What I am asking for: the audit of step 13 with the "deployability" dimension added (because in a
 legacy system the deployment is usually the first problem) and with the speed field, which is
 what turns a report into a plan: without that field, an audited legacy system has forty findings
 and nobody knows which one to start with. The criterion for what blocks is given by me, not by
 the auditor, because it depends on the consequences for the business.
 
-**Closing:** the closing prompt of step 11, to the builder, with one addition: the pending items
+**Closing:** the closing prompt of step 13, to the builder, with one addition: the pending items
 it opens carry the speed mark of the finding.
 
 Check: does the report say what it could NOT audit? Is there at least one finding marked
@@ -453,9 +480,9 @@ want to bother anyone.
   functionality, what makes it safe to change: a test environment with data resembling the real
   data, a deployment that repeats, the secrets outside the code, continuous integration running
   whatever there is, and the **characterization suite** of the critical flows. It is step 4, the
-  first half of step 13 and an inverted form of step 7, together and before any change. It is a
+  first half of step 15 and an inverted form of step 8, together and before any change. It is a
   **hard gate**: until the belt is green, not one line of functionality is changed.
-- **When**: the second week, the whole of it.
+- **When**: after N3, before any change.
 - **Inputs**: the environments survey (recovered in N2 and confirmed by you), the N3 report with
   its blocking findings, the semantic tree with the processes, and access to the server and to
   the database.
@@ -513,7 +540,7 @@ the agent:
 > Reply in my language.
 
 What I am asking for: the skeleton of step 4 built around something that already exists, with
-half of step 13 brought forward (secrets outside, deployment documented) because in a legacy
+half of step 15 brought forward (secrets outside, deployment documented) because in a legacy
 system secrets in the code are the rule and not the exception
 [Ref. 42](REFERENCIAS.md#ref-42); the anonymisation as part of the environment and not as a
 detail; and the gates written before the suite exists, so that the suite is born already being a
@@ -538,7 +565,7 @@ closed before this suite or as part of it.
 > evidence. Record the command to run the suite in `docs/STATUS.md`, and make the suite the gate
 > for the test environment as `docs/GATES.md` says. Reply in my language.
 
-What I am asking for: step 7 the other way round. In a new project the test is born red and turns
+What I am asking for: step 8 the other way round. In a new project the test is born red and turns
 green with the change; here the test is born green, because it captures what is there, and the
 proof that it is useful is that **it goes red when you break the flow on purpose**. Without that
 demonstrated mutation, a characterization test is a test that passes because it watches nothing,
@@ -564,11 +591,11 @@ the example data).
 - **Intention**: to know, before changing anything, what the system does that acts on the world
   (charges, sends, approves, deletes, notifies, runs on its own at night) and who produces and
   consumes each contract between parts. In a new project this is decided before building (step
-  12) and mapped as the building goes on (step 8). In a legacy system it is already built, and
+  14) and mapped as the building goes on (step 11). In a legacy system it is already built, and
   nobody remembers all of it. An evolutive change can trigger a consequential action that was
   dormant, and a corrective change can leave a consumer out of date.
-- **When**: the second week, after the belt, because taking an inventory of actions requires
-  being able to run the system where a mistake costs nothing.
+- **When**: after the belt, because taking an inventory of actions requires being able to run
+  the system where a mistake costs nothing.
 - **Inputs**: the code, the database, the scheduled jobs of the server, the semantic tree, and the
   list of what lives outside the repository.
 - **Artefact**: `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md` with source tags,
@@ -609,13 +636,13 @@ the agent:
 > in the loop) and a proposal of which locks go NOW, before any change, and which can go when the
 > module is touched. Do not implement anything yet: I confirm lock by lock. Reply in my language.
 
-What I am asking for: the inventory of steps 12 and 8 in a single pass, because they walk the
+What I am asking for: the inventory of steps 14 and 11 in a single pass, because they walk the
 same code; the comparison between what the business remembers and what the code does, which is
 where the sends nobody remembered turn up; and the **now or when touched** proposal for each
 lock, which is the two-speeds rule applied to protection: a lock over an action that charges goes
 now; a lock over a monthly export can wait for the block that touches that module.
 
-**Closing:** the closing prompt of step 12, with the locks marked "now", each one with its test
+**Closing:** the closing prompt of step 14, with the locks marked "now", each one with its test
 red against the version without the lock; the rest stay in the backlog with their mark.
 
 Warning sign: the agent found exactly the same actions the business listed. In a legacy system
@@ -627,9 +654,9 @@ that never happens; it failed to look at the scheduled tasks or at the database 
 
 - **Intention**: step 3, but with the enormous advantage of a legacy system: the primary data do
   not have to be asked for, they are in the database and in the logs. They are measured with step
-  9 (a meter with a test, audited in both directions) and the owner supplies only what is nowhere
+  7 (a meter with a test, audited in both directions) and the owner supplies only what is nowhere
   to be found: how much they expect to grow and whether the system is going to be sold to others.
-- **When**: the third week, before opening the first block. Half a day.
+- **When**: after N5, before opening the first block.
 - **Inputs**: the production database read-only or the complete test copy, the logs, the semantic
   tree with the entities.
 - **Artefact**: `docs/VOLUME_SURVEY.md` with every number tagged `[database]` or `[log]` and its
@@ -666,7 +693,7 @@ that never happens; it failed to look at the scheduled tasks or at the database 
 > cheap today and expensive later. Do not change any code. Reply in my language.
 
 What I am asking for: measuring instead of asking, which is what a legacy system allows and a new
-project does not; the meter with a test and the audit in both directions of step 9, because
+project does not; the meter with a test and the audit in both directions of step 7, because
 meters lie [Ref. 35](REFERENCIAS.md#ref-35), [Ref. 36](REFERENCIAS.md#ref-36); and the sizing as
 a gate before evolving [Ref. 14](REFERENCIAS.md#ref-14): if the current architecture does not
 withstand the "times ten" and the client's request is precisely to grow, that is known now and
@@ -687,7 +714,7 @@ database, it is measured; if it is not there, it is asked for; there is no third
   the decisions of the sizing) and the client's request (what has to be corrected and what has to
   be added) live together, each with its speed mark and paired by module. It is step 5 with two
   more columns.
-- **When**: the third week, at the close of the stretch. Half a day. After that, the loop.
+- **When**: at the close of the stretch. After that, the loop.
 - **Inputs**: `docs/AUDIT_[date].md`, `docs/DISCREPANCIES.md` with the decisions,
   `docs/LOCKS.md`, `docs/SIZING.md`, the semantic tree, and the client's request for this stage.
 - **Artefact**: `docs/PENDING.md` with every pending item specified, marked "blocks / paid when
@@ -733,7 +760,7 @@ the agent:
 What I am asking for: the whole of step 5 (the detailed specification lives in each pending item,
 including the normalization ones), with the two marks that make this path what it is: the speed,
 which says when each debt is paid, and the type, which says how it is closed (a corrective item
-closes with the test that reproduces the failure; an evolutive one, with the test of step 7). And
+closes with the test that reproduces the failure; an evolutive one, with the test of step 8). And
 the **pairing by module**, which is the "paid when touched" rule made operational: when I open the
 block for "the deposit", the normalization pending items of the payments module enter with it,
 and neither before nor after.
@@ -750,14 +777,14 @@ disguised as a list. Archive what is never going to be paid, and say so.
 
 ## The loop on an inherited system: corrective mode and evolutive mode
 
-Once N7 is finished, the path joins the ladder: steps 5 to 10 are climbed with every pending item,
+Once N7 is finished, the path joins the ladder: steps 5 to 12 are climbed with every pending item,
 just as in a new project, with the same contracts and the same prompts. But there are two nuances
 worth a section of their own, because they are what distinguishes "touching a legacy system with
 method" from "touching a legacy system carefully".
 
 ### Corrective mode: red is natural
 
-A corrective pending item is a bug: something that fails today and the client knows it. In step 7
+A corrective pending item is a bug: something that fails today and the client knows it. In step 8
 of a new project the red is manufactured (the test is written, it is run against the old code, it
 is seen to fail). In a corrective item the red **is the bug itself**: the test that reproduces the
 failure, driving the flow from the screen as the user who reported it did, has to fail against the
@@ -807,7 +834,7 @@ evidence, not "later".
 ### Evolutive mode: characterization is the regression
 
 An evolutive pending item is something new over something that exists. It is opened with the
-prompt of step 5, built with steps 6 and 7 exactly as they are, and the only difference is what
+prompt of step 5, built with steps 6 and 8 exactly as they are, and the only difference is what
 "the regression of the neighbours" means: here the neighbours are the whole system, and the
 characterization suite is what says that what was working keeps working. Two more rules. First:
 when the block enters a module, the normalization pending items of that module marked "paid when
@@ -840,12 +867,12 @@ the way back (the N0 backup or the previous version) at hand.
 > the regression green. Reply in my language.
 
 What I am asking for: the minimum, with the rollback before and not after, and with the honest
-report of what was not verified (step 10); and the obligation to come back in through the loop the
+report of what was not verified (step 12); and the obligation to come back in through the loop the
 same day, which is what separates an exception from a habit.
 
-## The six operational quality steps in a legacy system
+## The six operational quality steps (16 to 19, 21 and 22) in a legacy system
 
-Steps 16 to 21 of the main document (observability and traceability, persistence,
+Steps 16 to 19, 21 and 22 of the main document (observability and traceability, persistence,
 vulnerabilities, performance, and the two monitorings) hold for both use cases, and in a legacy
 system they have a precise location, because several of them already have half the work done by
 the normalization stretch:
@@ -866,15 +893,14 @@ the normalization stretch:
   already corrected in what was blocking, before the first deployment after the normalization. In
   a legacy system it usually discovers that the breaking point is closer than the business
   believes.
-- **20 and 21, monitoring**: they are set up in the week of the first deployment, just as in a
+- **21 and 22, monitoring**: they are set up with the first deployment, just as in a
   new project, with one difference: the first reading of the report is the legacy system's
   baseline, and the deviations and the errors that already existed on the first day turn into
   pending items with their speed mark. None is left as "known" without a pending item.
 
-In practice, for a small system, the four that precede the deployment add a week to the
-normalization calendar (a fourth week, before the first evolutive block or together with it,
-depending on the urgency of the request), and the two monitorings are set up in the week of the
-deployment.
+In practice, the four that precede the deployment are one more stage of the normalization,
+before the first evolutive block or together with it depending on the urgency of the request,
+and the two monitorings are set up with the deployment.
 
 ## When the system is normalized
 
@@ -902,7 +928,7 @@ block is opened. That is the list:
 If the eight all say "yes", the system is normalized as far as this path demands, and what follows
 is the usual ladder. Phases 3 and 4 of the main document (go-live and operation) apply exactly as
 they are: the periodic audit, the manuals (which in a legacy system usually do not exist, and are
-generated with step 14 from the system as it is), the resident agent, and the retrospective with
+generated with step 20 from the system as it is), the resident agent, and the retrospective with
 numbers, which in a legacy system has a question of its own: how much it cost to normalize, and
 how much of the debt we marked "can wait" ended up costing anyway.
 
@@ -926,18 +952,17 @@ how much of the debt we marked "can wait" ended up costing anyway.
 
 ## What remains to be elaborated `[hypothesis]`
 
-1. The four eligibility criteria specific to a legacy system are written from my experience with
-   other people's systems in diagnostic mode; I did not calibrate them with rejected projects as I
-   did with X1 and X2. A legacy system with nobody who knows how it works may be viable anyway if
-   the database and the code are legible; a legacy system with tests nobody has run for two years
-   may be worse off than one with no tests at all. Casuistry is missing.
+1. The seven prerequisites of N0 are verified by doing, and that makes them calibrable: every
+   legacy system that goes through N0 leaves its sheet with evidence. What is missing is the
+   casuistry: how many legacy systems fail each prerequisite and how much the prior project that
+   turns it green costs. It is no longer a hypothesis about the criterion; it is a count I do not
+   have yet.
 2. The size of the characterization suite: between four and eight flows is what worked for me on
    small systems; on a large one I do not know whether the criterion is per flow, per module or
    per money at stake.
-3. How long normalization lasts on a large system: the three-week calendar is for a system the
-   size of the course's guide project. On one with dozens of modules, I suspect normalization is
-   done module by module, with one belt per module, and that N2 is done whole but N4 is spread
-   out. I have not tried it.
+3. How normalization is split on a large system: I suspect the reading (N2) is done whole but
+   the belt (N4) is assembled module by module, as each module is about to be touched, and that
+   the hard gate becomes hard per module and not per system. I have not tried it.
 4. What happens with a legacy system built by a model with the method half applied (agreement
    yes, tests no): whether this path is walked in full or whether there is a shortcut. My
    intuition is that there is no shortcut, and that the shortcut is precisely the mistake, but it

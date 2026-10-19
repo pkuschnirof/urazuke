@@ -1,6 +1,6 @@
 # Schritt 19 — Lasttests im Volumen und Bruchpunkt (Schrittvertrag)
 
-**Abschnitt:** Betriebsqualität, vor dem ersten Deployment in die Produktion.
+**Abschnitt:** Produktionsfreigabe.
 **Wann:** in der Phase der Produktionsfreigabe, nach der 16 (ohne Beobachtbarkeit weiß man nicht,
 was kaputtgegangen ist) und nach der 17 (auf der bereits optimierten Persistenz), und vor dem
 ersten Deployment in die Produktion. Er wiederholt sich vor jedem Deployment, das die
@@ -23,7 +23,7 @@ Bildschirm in dem, was der Eigentümer tolerieren würde?), wie es sich beim „
 (hält es aus, oder was hält als Erstes nicht mehr?), und **wo es bricht**: die genaue Last, bei
 der etwas nachgibt, und was dieses Etwas ist (die Verbindungen zur Datenbank, der Speicher, eine
 Warteschlange, eine Blockade). Der Bruchpunkt ist die nützlichste Zahl des ganzen Abschnitts, denn
-aus ihm kommen die Alarm-Schwellenwerte von Schritt 20: ein „nach Augenmaß“ gesetzter Alarm meldet
+aus ihm kommen die Alarm-Schwellenwerte von Schritt 21: ein „nach Augenmaß“ gesetzter Alarm meldet
 zu spät oder meldet immer; ein Alarm, der unter dem gemessenen Bruchpunkt gesetzt ist, mit einem
 Spielraum, meldet, solange noch Zeit ist. Die Skalierungsmuster, die ich aus einem System in
 Produktion gezogen habe [Ref. 12](../REFERENCIAS.md#ref-12), und die Batterie, die am Speicher
@@ -132,7 +132,7 @@ gelesen zu haben, heißt das zu ändern, was es nicht war.
   jetzt repariert werden.
 
 > Record in `docs/PERFORMANCE.md`: the expected volume, the ten-times volume, the breaking point
-> with what breaks, and the alert thresholds that monitoring (step 20) will use, set below the
+> with what breaks, and the alert thresholds that monitoring (step 21) will use, set below the
 > breaking point with a margin and above the expected volume. Open a pending item for each
 > bottleneck that sits below [ten times the expected volume / the volume I decided], with the
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
@@ -141,7 +141,7 @@ gelesen zu haben, heißt das zu ändern, was es nicht war.
 
 > [de]
 > Halt in `docs/PERFORMANCE.md` fest: das erwartete Volumen, das zehnfache Volumen, den Bruchpunkt
-> mit dem, was bricht, und die Alarm-Schwellenwerte, die das Monitoring (Schritt 20) benutzen
+> mit dem, was bricht, und die Alarm-Schwellenwerte, die das Monitoring (Schritt 21) benutzen
 > wird, gesetzt unter den Bruchpunkt mit einem Spielraum und über das erwartete Volumen. Eröffne
 > einen offenen Posten für jeden Flaschenhals, der unterhalb von [dem Zehnfachen des erwarteten
 > Volumens / dem Volumen, das ich entschieden habe] liegt, mit der gemessenen Zahl als
@@ -151,7 +151,7 @@ gelesen zu haben, heißt das zu ändern, was es nicht war.
 > Durchlauf.
 
 Was ich hier verlange: die Alarm-Schwellenwerte, abgeleitet aus dem Bruchpunkt, was die
-Verzahnung mit Schritt 20 ist; die Flaschenhälse als offene Posten mit der Zahl als Kriterium (so
+Verzahnung mit Schritt 21 ist; die Flaschenhälse als offene Posten mit der Zahl als Kriterium (so
 werden sie mit Belegen geschlossen und nicht mit „jetzt läuft es besser“); und den Lasttest als
 archiviertes Tor, damit man in sechs Monaten vergleichen kann.
 

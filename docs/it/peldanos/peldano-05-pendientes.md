@@ -65,7 +65,7 @@ l'agente:
   che l'agente deve chiedere.
 - `docs/SEMANTIC_TREE.md` (gradino 2), aggiornato: ogni voce in sospeso penderà da un nodo di lì.
 - `PROJECT.md` e `docs/STATUS.md` (gradino 2), aggiornati.
-- Se ci sono stati audit (gradino 11) o prove umane (la vista umana alla chiusura del blocco
+- Se ci sono stati audit (gradino 13) o prove umane (la vista umana alla chiusura del blocco
   precedente): i loro rilievi, in `docs/AUDIT_[data].md` o annotati nello stato vivo, perché sono
   voci candidate per questo blocco.
 - Stato minimo accettabile: la richiesta del blocco è scritta con le parole del cliente, e
@@ -106,7 +106,7 @@ scegliendo); la specifica completa di ogni voce, campo per campo, che è l'ingeg
 classica scomposta in unità piccole; il nodo dell'albero da cui pende, che è ciò che ti permette di
 rilevare una voce fuori perimetro; le regole di business con la loro decisione o marcate come
 mancanti, che è l'aggancio con il gradino 6; i criteri di accettazione nella forma classica, che
-sono il copione del test end to end del gradino 7; e un ordine proposto con la sua ragione, perché
+sono il copione del test end to end del gradino 8; e un ordine proposto con la sua ragione, perché
 tu lo confermi o lo cambi.
 
 **Routine di ogni sessione (va nel patto di convivenza):**

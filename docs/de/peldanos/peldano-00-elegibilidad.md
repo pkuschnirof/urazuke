@@ -1,10 +1,9 @@
 # Schritt 0 — Lässt sich dieses Projekt so angehen? (Schrittvertrag)
 
 **Abschnitt:** Start.
-**Wann:** ein einziges Mal, in der ersten Woche, bevor das Repository geöffnet wird und vor allem
-anderen. Eine Stunde Arbeit.
+**Wann:** ein einziges Mal, bevor das Repository geöffnet wird und vor allem anderen.
 **Form:** Gespräch: der Agent bewertet und fragt; du entscheidest.
-**Größe:** verpflichtend in jedem Projekt, so klein es auch sei. Dauert eine Stunde; spart Monate.
+**Größe:** verpflichtend in jedem Projekt, so klein es auch sei.
 **Stand:** die Ausschlusskriterien X1 und X2 sind geschlossen; die gewichtenden Kriterien (D1 bis
 D10) kalibriere ich noch und markiere sie als Hypothese.
 

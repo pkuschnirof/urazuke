@@ -57,13 +57,14 @@ modello senza prove, e di sapere esattamente quale prova chiedergli a ogni passo
    introduttivo basta. Non serve altro.
 3. **Un progetto.** L'ideale è che sia tuo: un sistema di cui hai bisogno o che un cliente ti ha
    chiesto, con utenti che lo useranno. Se non ne hai uno, usa il **progetto guida** che descrivo
-   sotto; è pensato per passare per i ventidue gradini senza saltarne nessuno. Se ciò che hai è un
-   sistema che esiste già e bisogna correggere o far crescere, questa prima parte ti insegna il
+   sotto; è pensato per passare per i ventiquattro gradini senza saltarne nessuno. Se ciò che hai
+   è un sistema che esiste già e bisogna correggere o far crescere, questa prima parte ti insegna il
    metodo su un progetto nuovo, e la [parte 2 del corso](MANUAL_CURSO_EVOLUTIVO.md) ti insegna a
    normalizzarlo prima, con un secondo progetto guida ereditato.
-4. **Tempo.** Il corso ha ventidue lezioni, una per gradino, e un calendario che ti dice in quale
-   settimana cade ogni cosa (vedi "Il calendario del corso"). Un progetto piccolo, da un capo
-   all'altro, sono tra sei e otto settimane di lavoro parziale.
+4. **Tempo.** Il corso ha ventiquattro lezioni, una per gradino, e un ordine che ti dice in quale
+   tappa cade ogni cosa (vedi "L'ordine del corso"). Non ti do scadenze, di proposito: il metodo è
+   un processo, non una promessa di velocità, e quanto dura ogni tappa lo mette la dimensione del
+   tuo progetto. Quello che ti do è l'ordine, e quello non si negozia.
 5. **Un proprietario del dominio con tempo per decidere.** Se il progetto è tuo, sei tu. Se è di
    un cliente, è il cliente, e deve sapere che dovrà rispondere a domande per tutto il progetto.
    Questo punto non è negoziabile: senza un proprietario che decida, decide il modello, e lì il
@@ -90,32 +91,31 @@ Una regola per tutto il corso: **non avanzare al gradino successivo con una veri
 tentazione del "dopo lo sistemo" è esattamente ciò che il metodo esiste per evitare. Se un gradino
 non si sale completo, quello successivo si costruisce sulla sabbia.
 
-### Il calendario del corso: quando si fa ogni cosa
+### L'ordine del corso: quando si fa ogni cosa
 
 Il documento principale ha, nella sua Parte B, la linea del tempo completa del metodo. Qui la
-traduco nel calendario del corso per un progetto piccolo come il progetto guida. Le settimane sono
-indicative; ciò che non è indicativo è l'ordine e, soprattutto, cosa succede tra una lezione e
-l'altra.
+traduco nell'ordine del corso per il progetto guida. Sono tappe, non settimane: ciascuna dura
+quanto il tuo progetto chiede, e ciò che non è negoziabile è l'ordine e, soprattutto, cosa succede
+tra una lezione e l'altra.
 
-| Settimana | Lezioni | Cosa fai oltre alle lezioni |
+| Tappa | Lezioni | Cosa fai oltre alle lezioni |
 |---|---|---|
-| 0 (due o tre giorni) | nessuna | **Acquisizione**: intervisti il proprietario e scrivi in prosa cosa vuole, per chi, cosa succede oggi, cosa ha conseguenze, quali numeri solo lui conosce. Nomini i casi d'uso che puoi ("la receptionist carica un appuntamento"), disegni le schermate principali anche a mano, ed elenchi le entità del business con i loro stati. Incompleto di proposito. |
+| 0 | nessuna | **Acquisizione**: intervisti il proprietario e scrivi in prosa cosa vuole, per chi, cosa succede oggi, cosa ha conseguenze, quali numeri solo lui conosce. Nomini i casi d'uso che puoi ("la receptionist carica un appuntamento"), disegni le schermate principali anche a mano, ed elenchi le entità del business con i loro stati. Incompleto di proposito. |
 | 1 | 0, 1, 2, 3, 4 | **Avvio, di seguito.** Idoneità, patto, definizione con albero semantico, dimensionamento, e lo scheletro con **tutta l'infrastruttura e la catena di integrazione e deployment**: repository, ambiente di test, integrazione continua, primo deployment vuoto. Alla chiusura, apri l'URL e vedi la schermata vuota. |
-| 2 | 5, 6, 7 | **Primo blocco funzionale** (l'agenda di base). Apri il blocco convertendo la richiesta in voci in sospeso specificate. Con ogni voce: decisioni, test in rosso, prova end to end del flusso, screenshot della schermata che guardi tu. Alla chiusura del blocco: batteria completa end to end, e tu usi il sistema nell'ambiente di test seguendo i flussi del blocco. |
-| 3 | 8, 9, 10 | **Secondo blocco** (pazienti e ricerca). Le tre lezioni restanti del ciclo si imparano su questo blocco. Stessa chiusura: end to end di tutti i flussi, prove umane, manuale utente con le schermate nuove. |
-| 4 | 11, 12 | **Uscita in produzione, prima metà.** Audit da parte di un'altra sessione. Lucchetti. E solo dopo, il **terzo blocco** (promemoria e caparra), costruito con il ciclo completo e lasciato in modalità di prova. |
-| 5 | 13, 14, 16, 17, 18, 19 | **Uscita in produzione, seconda metà.** Chiusura della catena verso la produzione con rollback provato. Osservabilità con livello configurabile, persistenza misurata prima e dopo, scansione delle vulnerabilità come cancello, prova di carico con il punto di rottura. I tre manuali; qualcuno che non programma segue quello di ripristino. **Test di accettazione** tuoi o del proprietario su tutti i flussi. Primo deployment in produzione senza utenti. |
-| 6 | 15, 20, 21 | **Esercizio.** Abiliti i promemoria dopo aver guardato il registro della modalità di prova. I due monitoraggi montati nella settimana del deployment: risorse e rendimento, errori; il primo rapporto ciclico letto con il proprietario. Agente residente. Retrospettiva con i numeri e proposta di modifica alla scala. |
+| 2 | 5, 6, 8, 10 | **Primo blocco funzionale** (l'agenda di base). Apri il blocco convertendo la richiesta in voci in sospeso specificate. Con ogni voce: decisioni, test in rosso, prova end to end del flusso, screenshot della schermata che guardi tu. Alla chiusura del blocco: batteria completa end to end, e tu usi il sistema nell'ambiente di test seguendo i flussi del blocco. |
+| 3 | 7, 9, 11, 12 | **Secondo blocco** (pazienti e ricerca). Le quattro lezioni restanti del ciclo si imparano su questo blocco. Stessa chiusura: end to end di tutti i flussi, prove umane, manuale utente con le schermate nuove. |
+| 4 | 13, 14 | **Uscita in produzione, prima metà.** Audit da parte di un'altra sessione. Lucchetti. E solo dopo, il **terzo blocco** (promemoria e caparra), costruito con il ciclo completo e lasciato in modalità di prova. |
+| 5 | 15, 16, 17, 18, 19, 20 | **Uscita in produzione, seconda metà.** Chiusura della catena verso la produzione con rollback provato. Osservabilità con livello configurabile, persistenza misurata prima e dopo, scansione delle vulnerabilità come cancello, prova di carico con il punto di rottura. I tre manuali; qualcuno che non programma segue quello di ripristino. **Test di accettazione** tuoi o del proprietario su tutti i flussi. Primo deployment in produzione senza utenti. |
+| 6 | 21, 22, 23 | **Esercizio.** Abiliti i promemoria dopo aver guardato il registro della modalità di prova. I due monitoraggi montati con il deployment: risorse e rendimento, errori; il primo rapporto ciclico letto con il proprietario. Agente residente. Retrospettiva con i numeri e proposta di modifica alla scala. |
 
-Se il tuo progetto è più grande, ciò che si allunga sono le settimane 2 e 3 (più blocchi), non la 1
-né la 4 e la 5. E se a un certo punto ti ritrovi a fare infrastruttura nella settimana 3, o a
-eseguire la batteria end to end per la prima volta nella settimana 5, torna al calendario: qualcosa
-è stato saltato.
+Se il tuo progetto è più grande, ciò che cresce sono le tappe 2 e 3 (più blocchi), non la 1 né la
+4 e la 5. E se a un certo punto ti ritrovi a fare infrastruttura nella tappa 3, o a eseguire la
+batteria end to end per la prima volta nella tappa 5, torna all'ordine: qualcosa è stato saltato.
 
 ### Il progetto guida: "Turnera"
 
 Se non hai un progetto tuo, usa questo. È piccolo, ma ha tutto ciò che serve perché nessuno dei
-ventidue gradini sia per finta: utenti reali, dati personali, messaggi che escono nel mondo, e
+ventiquattro gradini sia per finta: utenti reali, dati personali, messaggi che escono nel mondo, e
 soldi.
 
 **L'attività.** Un ambulatorio (può essere uno studio, un parrucchiere, un'officina: qualunque
@@ -156,7 +156,7 @@ che lo chieda.
 
 ## Fase di avvio: lezioni da 0 a 4
 
-Queste cinque lezioni si fanno una volta per progetto, nella settimana 1, prima di scrivere
+Queste cinque lezioni si fanno una volta per progetto, nella tappa 1, prima di scrivere
 funzionalità. Sono quelle che danno più tentazione di saltare ("voglio vedere qualcosa che
 funziona"), e sono quelle che costa più caro saltare. Falle di seguito, e solo dopo apri il ciclo.
 
@@ -180,7 +180,7 @@ finire in "non va", e quello è un risultato valido del corso.
 
 **Prima di inviare il prompt**, con le tue mani (l'agente non può farlo per te):
 
-- `docs/INITIAL_SURVEY.md`: lo scrivi a mano, a partire dall'acquisizione della settimana 0: cosa
+- `docs/INITIAL_SURVEY.md`: lo scrivi a mano, a partire dall'acquisizione della tappa 0: cosa
   vuole il cliente, per chi, cosa succede oggi senza il sistema, che tecnologia c'è o si propone,
   se c'è un sistema precedente e se ha un repository, se le schermate si potranno operare da
   programma, chi è il proprietario e quanto tempo ha, che conseguenza ha un errore, quali
@@ -250,7 +250,7 @@ L'ovvio è ciò che non si scrive, e ciò che non si scrive è ciò su cui poi s
 **Nel progetto guida.** L'agente dovrebbe chiedere, come minimo, se l'interfaccia sarà web o
 mobile (perché X2 dipende da questo), se c'è un sistema precedente anche solo un Excel, e quale
 canale di messaggi si userà (WhatsApp ha requisiti che l'email non ha). La scheda finisce in "va",
-con una condizione ragionevole: avere il canale di messaggi definito prima del gradino 12.
+con una condizione ragionevole: avere il canale di messaggi definito prima del gradino 14.
 
 ### Lezione 1 — Il patto di convivenza
 
@@ -339,7 +339,7 @@ silenzioso: non provare mai se lo legge. Nella lezione 2 vedrai come.
 
 **Nel progetto guida.** Una regola propria che l'agente di solito propone per Turnera, e che vale
 la pena accettare: "non mando mai un messaggio reale a un paziente da un ambiente che non sia la
-produzione; in test, i messaggi vanno in una casella finta". È il gradino 12 che si affaccia
+produzione; in test, i messaggi vanno in una casella finta". È il gradino 14 che si affaccia
 presto.
 
 ### Lezione 2 — La definizione del progetto, l'albero semantico e la lettura obbligatoria
@@ -594,12 +594,12 @@ distribuirsi **vuoto**. Sembra una perdita di tempo ("distribuire cosa, se non c
 il contrario: il cammino verso la produzione è parte del prodotto, e l'unico modo per sapere che
 funziona è percorrerlo quando ancora non c'è niente da perdere. In uno dei miei sistemi il
 deployment è arrivato un mese dopo l'avvio ed è costato cinque voci in sospeso di seguito
-[Ref. 32](REFERENCIAS.md#ref-32); con lo scheletro distribuito la prima settimana, quei cinque
+[Ref. 32](REFERENCIAS.md#ref-32); con lo scheletro distribuito nell'avvio, quei cinque
 colpi si sarebbero presi a vuoto.
 
 Questa lezione è, inoltre, **dove si fa tutta l'infrastruttura e la catena di integrazione e
-deployment** del progetto. Non la toccherai più fino alla lezione 13, e nel frattempo costruirai
-tutta la funzionalità sopra di essa. Per questo occupa la maggior parte della settimana 1.
+deployment** del progetto. Non la toccherai più fino alla lezione 15, e nel frattempo costruirai
+tutta la funzionalità sopra di essa. Per questo occupa la maggior parte della tappa 1.
 
 I **cancelli** sono le condizioni per passare da una tappa all'altra ("la batteria è in verde",
 "il deployment in test ha funzionato"). Scriverli adesso, anche se sembrano ovvi, è ciò che poi
@@ -649,7 +649,7 @@ permette di dire "questo non passa" senza discutere.
    uno scheletro, i cancelli scritti, uno screenshot reale dell'ambiente di test, e il divieto di
    aggiungere funzionalità.
 
-2. Questo compito è lungo (una o due ore di lavoro dell'agente) e avrà andirivieni: credenziali che
+2. Questo compito è lungo e avrà andirivieni: credenziali che
    mancano, un servizio che chiede di confermare l'email, ecc. È normale. Ciò che non è normale è
    che ti dica "fatto" senza lo screenshot dell'ambiente di test.
 3. Quando ti mostra lo screenshot, apri tu l'URL nel tuo browser. Si deve vedere la stessa cosa. È
@@ -693,20 +693,21 @@ vuota su un URL reale.
 
 ---
 
-## Fase del ciclo: lezioni da 5 a 10
+## Fase del ciclo: lezioni da 5 a 12
 
-Queste sei lezioni sono quelle che userai **a ogni modifica**, per tutto il progetto. Si imparano
-nelle settimane 2 e 3 sui primi due blocchi funzionali, e si praticano fino alla fine. L'idea è che
-finita la fase tu abbia il riflesso: aprire un blocco convertendo la richiesta in voci in sospeso
-specificate, prenderne una, costruire, provare in rosso, eseguire la prova end to end del flusso,
-aggiornare l'altro lato, misurare ciò che c'è da misurare, riportare separando il verificato dal
-creduto, documentare la voce chiusa, e alla chiusura del blocco usare il sistema tu stesso. Quel
-riflesso è il metodo.
+Queste otto lezioni sono quelle che userai **a ogni modifica**, per tutto il progetto. Si imparano
+nelle tappe 2 e 3 sui primi due blocchi funzionali, e si praticano fino alla fine. Vanno
+nell'ordine in cui si fanno con ogni voce in sospeso: aprire un blocco convertendo la richiesta in
+voci in sospeso specificate, prenderne una, decidere ciò che manca, misurare ciò che c'è da
+misurare, costruire, provare in rosso e end to end, passare il cancello di qualità, scrivere i
+casi di prova manuale, aggiornare l'altro lato, e riportare separando il verificato dal creduto.
+Alla chiusura del blocco, eseguire i casi di prova manuale tu stesso. Quel riflesso è il metodo.
 
 Per praticarle avrai bisogno di funzionalità reale. Nel progetto guida, il primo blocco è l'agenda
 di base: vedere gli appuntamenti del giorno, caricare un appuntamento, cancellarlo. Il secondo,
 pazienti e ricerca. Niente messaggi né pagamenti ancora; quello viene dopo i lucchetti (lezione
-12).
+14).
+
 ### Lezione 5 — Il piano sono le voci in sospeso, e la specifica dettagliata vive in ciascuna
 
 **Cosa devi capire.** Non c'è un "piano" da una parte e una "lista di compiti" dall'altra: **la
@@ -935,249 +936,7 @@ professionista l'ha abilitato"; "il telefono del paziente è obbligatorio; l'ema
 la data e con il nome della responsabile, e ciascuna incollata nella specifica della voce in
 sospeso che ne aveva bisogno.
 
-### Lezione 7 — I test come lucchetti, provati in rosso, e le prove end to end
-
-**Cosa devi capire.** Questa è la lezione centrale del corso. Di un test che non hai mai visto
-fallire non sai se prova qualcosa. Il modello scrive il codice e il test nella stessa sessione, con
-la stessa comprensione: se ha capito male la richiesta, il test prova ciò che ha capito, e passa.
-L'unico modo economico per sapere che il test guarda ciò che conta è **vederlo in rosso contro il
-codice vecchio**: se anche il codice di prima della modifica lo passa, il test non distingue il
-prima dal dopo, e allora non serve. Per questo la richiesta non è "scrivi test" ma "mostrami il
-rosso, poi il verde, poi la regressione". Il caso che lo mostra meglio è quello dei contatori che
-non coincidevano [Ref. 26](REFERENCIAS.md#ref-26).
-
-E la seconda idea, che è importante quanto la prima: le prove end to end. Un test che verifica
-dalla schermata (clicca, digita, legge) e controlla l'effetto nel backend (la riga è rimasta, lo
-stato è cambiato) è quello che sostituisce la tua lettura del codice. I criteri di accettazione
-della voce in sospeso ("dato, quando, allora") sono il suo copione. E si eseguono **tre volte, a
-tre scale**: il flusso toccato, con ogni voce; tutti i flussi che esistono, alla chiusura di ogni
-blocco; e tutti i flussi con la versione esatta, prima di ogni deployment in produzione. Se fai
-solo la terza, arrivi alla fine con un sistema che nessuno ha provato end to end per settimane.
-
-**Il compito.**
-
-**Prima di inviare il prompt**, con le tue mani:
-
-- `docs/WORKING_AGREEMENT.md`, dove va la routine.
-- La voce in sospeso che si chiuderà, con i suoi criteri di accettazione "dato, quando, allora" e
-  il suo "come si verifica" in `docs/PENDING.md`: sono il copione del test. Se non li ha, torna
-  alla lezione 5 prima di chiedere il test.
-- La batteria e il comando per eseguirla in `docs/STATUS.md` (lezione 4), e l'ambiente di test in
-  esecuzione, con dati sufficienti per il flusso che si tocca; se mancano dati, caricali tu o
-  chiedigli di crearli come parte del test, ma che non li simuli.
-
-1. Aggiungi al patto la routine delle prove. Incollagli:
-
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
-> not your word. (1) Write the test that proves what the item asks for, following its acceptance
-> criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
-> revert the change, or run the test against the old version, but show me the red output. (3)
-> Show me the green output with the change. (4) Run the regression suite for the neighbouring
-> items and show me it is still green. (5) Run the end-to-end test of the flow this item
-> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
-> with mocks the very part you are trying to test. If testing end to end requires something you
-> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
-> Finally, the commit message says 'proved red against [what]' and the test counts."
-
-> [it]
-> Aggiungi questa routine a `docs/WORKING_AGREEMENT.md`: "Per chiudere una voce in sospeso ho
-> bisogno di prove, non della tua parola. (1) Scrivi il test che prova ciò che la voce chiede,
-> seguendo i suoi criteri di accettazione. (2) Dimostra che quel test fallisce contro il codice
-> precedente: puoi annullare temporaneamente la modifica, o eseguire il test contro la versione
-> vecchia, ma mostrami l'output in rosso. (3) Mostrami l'output in verde con la modifica. (4)
-> Esegui la regressione delle voci vicine e mostrami che è ancora in verde. (5) Esegui la prova
-> end to end del flusso che questa voce tocca, dalla schermata fino al backend, e mostrami
-> l'effetto nel backend. (6) Non sostituire con simulazioni proprio la parte che stai provando.
-> Se provare end to end richiede qualcosa che non hai (dati, accesso, un ambiente), chiedimelo;
-> non simulare ciò che non hai. Infine, il messaggio del commit dice 'provato in rosso contro
-> [cosa]' e i numeri dei test."
-
-   Gli stai chiedendo il test guidato dai criteri di accettazione, **il rosso dimostrato con
-   l'output in vista**, il verde, la regressione delle voci vicine, la prova end to end del flusso
-   con l'effetto nel backend, niente simulazioni proprio di ciò che si prova, e di chiedere ciò
-   che manca invece di simularlo.
-
-2. Prendi la voce del doppio appuntamento (PND-003 in Turnera, o l'equivalente nel tuo progetto:
-   una regola che impedisce qualcosa). Chiedigli di chiuderla con la routine. Leggi il rapporto:
-   deve esserci un output in rosso con i numeri ("1 su 1 fallisce contro la versione senza la
-   regola"), poi il verde, e la prova end to end: un browser controllato da programma che apre la
-   schermata, prova a caricare il doppio appuntamento, legge l'avviso, e controlla nel database
-   che non è stato salvato.
-3. Se ti dice che non può provare end to end perché la schermata non si può operare da programma,
-   fermati: è X2 che fallisce, e va sistemato adesso (aggiungere identificatori agli elementi
-   della schermata) prima di proseguire.
-
-**Prima di inviare il prompt**: distingui se gli manca un input che hai tu (dati, un accesso, un
-ambiente: daglielo e non mandare questo prompt) o se davvero il sistema non è testabile lì (questo
-prompt).
-
-4. Incollagli:
-
-> Explain why it cannot be tested, what would have to be added so that it can, and open a
-> pending item for that. The change is not closed until it can be tested.
-
-> [it]
-> Spiega perché non si può provare, cosa bisognerebbe aggiungere perché si possa, e apri una
-> voce in sospeso per quello. La modifica non è chiusa finché non si può provare.
-
-5. **Alla chiusura del blocco**, quando le sei voci sono chiuse, esegui la batteria completa.
-
-**Prima di inviare il prompt** della batteria: le sei voci chiuse con la routine, la versione
-esatta che si promuoverà identificata e distribuita nell'ambiente di test, e la tua lista dei
-flussi che esistono (ricavata dai casi d'uso dell'albero semantico), per confrontarla con ciò che
-l'agente dirà di aver coperto.
-
-6. Incollagli:
-
-> Run the complete end-to-end suite of every flow that exists so far, in the test environment,
-> with the exact version that will be promoted. Show me the counts, and for each flow the
-> backend check that proves it. If any flow has no end-to-end test, say so and open a pending
-> item for it; do not pass it as covered.
-
-> [it]
-> Esegui la batteria completa end to end di tutti i flussi che esistono finora, nell'ambiente di
-> test, con la versione esatta che sarà promossa. Mostrami i numeri e, per ogni flusso, la
-> verifica nel backend che lo prova. Se qualche flusso non ha una prova end to end, dillo e apri
-> una voce in sospeso; non darlo per coperto.
-
-7. E dopo di questo, **usa il sistema tu**. Apri l'ambiente di test e fai ciò che farebbe la
-   receptionist: carica un appuntamento, prova il doppio appuntamento, cancella, cerca. Ciò che ti
-   dà fastidio, ciò che non capisci, ciò che sta dove non dovrebbe: annotalo come voce in sospeso.
-   Questa mezz'ora trova ciò che nessun test trova.
-
-**Verifica di completezza.** Il rapporto mostra il rosso, con i numeri? La regressione è stata
-eseguita nella stessa sessione, con i numeri? La prova end to end verifica anche il backend? C'è
-qualche parte simulata proprio dove sta la modifica? Il commit dice "provato in rosso"? Alla
-chiusura del blocco: ci sono tutti i flussi nella batteria end to end? Hai usato il sistema tu e
-annotato ciò che hai trovato?
-
-**Consegna.** Almeno tre voci in sospeso chiuse con la routine completa (rosso, verde,
-regressione, end to end), la batteria completa end to end del blocco in verde, e le voci in
-sospeso uscite dalle tue prove umane.
-
-**Errori tipici.** Accettare "i test passano" senza numeri e senza rosso. Accettare che la
-batteria si "acceleri" sostituendo le prove end to end con simulazioni. Lasciar passare un "non si
-può provare" senza aprire la voce in sospeso. E chiudere il blocco senza usarlo tu: lo sguardo
-umano non si delega.
-
-**Nel progetto guida.** Il rosso del doppio appuntamento si vede così: l'agente toglie
-temporaneamente la regola, esegue il test, e l'output dice che il test è fallito perché il secondo
-appuntamento è stato salvato. Rimette la regola, esegue, verde. Poi la regressione: i test di
-PND-001 e PND-002 sono ancora in verde. E quello end to end: un browser controllato da programma
-carica il modulo, preme "salva", legge il messaggio "quell'orario è già occupato", e una query al
-database conferma che c'è un solo appuntamento a quell'ora. Alla chiusura del blocco, la batteria
-end to end percorre i tre flussi che esistono (vedere il giorno, caricare, cancellare), e la
-responsabile carica dieci appuntamenti di prova e scopre che l'ora si sceglie con un menu a
-tendina scomodo. Voce in sospeso nuova. Quando vedrai quel rapporto per la prima volta, capirai a
-cosa serve tutto il metodo.
-
-### Lezione 8 — Simmetria tra produttore e consumatore, e il registro degli anti-pattern
-
-**Cosa devi capire.** Quando cambi un capo del sistema (il server, il database, un robot), l'altro
-capo (la schermata, un contatore, un report) deve cambiare nello stesso commit. Se no, divergono, e
-l'utente vede un numero da una parte e un altro dall'altra [Ref. 26](REFERENCIAS.md#ref-26). Il
-principio che lo evita è semplice da enunciare e difficile da sostenere: **ogni lista ha un solo
-proprietario**. Gli stati possibili di un appuntamento, le colonne di un report, le cause per cui
-qualcosa aspetta: le definisce una sola parte (il produttore) e le altre le leggono da lì
-[Ref. 27](REFERENCIAS.md#ref-27). L'albero semantico è il primo posto in cui quelle liste si
-dichiarano. Appena ci sono due copie, una è vecchia; resta solo da sapere quale.
-
-La seconda metà della lezione è il registro degli anti-pattern (GOTCHAS): gli errori che ti sei
-già mangiato una volta, annotati con il loro odore, la loro causa radice, la loro correzione e come
-rilevarli prima [Ref. 2](REFERENCIAS.md#ref-2). L'importante non è annotarli: è aggiungere la
-verifica automatica che li rilevi, perché un anti-pattern annotato e non automatizzato si ripete
-quando cambia la sessione.
-
-**Il compito.**
-
-**Prima di inviare il prompt**, con le tue mani:
-
-- Almeno un blocco funzionale costruito: senza contratti tra le parti non c'è mappa da fare.
-- `docs/SEMANTIC_TREE.md` aggiornato: le liste (stati, tipi, cause) sono dichiarate lì, e la mappa
-  deve coincidere con l'albero.
-- Una lista scritta da te di ciò che vive fuori dal repository e produce o consuma qualcosa del
-  sistema (un robot, un foglio di calcolo, un processo di un'altra squadra), o la constatazione
-  che non c'è nulla.
-
-1. Chiedigli la mappa dei contratti:
-
-> Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
-> a file format, a list of values), who produces it and who consumes it. If there are parts of
-> the system you cannot access or do not understand, tell me instead of leaving them out of the
-> map. Reply in my language.
-
-> [it]
-> Costruisci `docs/PRODUCER_CONSUMER_MAP.md`: per ogni contratto del sistema (un servizio, una
-> tabella, un formato di file, una lista di valori), chi lo produce e chi lo consuma. Se ci sono
-> parti del sistema a cui non puoi accedere o che non capisci, dimmelo invece di lasciarle fuori
-> dalla mappa. Rispondi nella mia lingua.
-
-   Gli stai chiedendo l'inventario dei contratti con i loro due lati, e che ciò che non vede lo
-   dichiari invece di ometterlo.
-
-**Prima di inviare il prompt** della routine: la mappa rivista da te (scegli un contratto e
-verifica che i due lati siano quelli che conosci) e `docs/WORKING_AGREEMENT.md`.
-
-2. Aggiungi la routine al patto:
-
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "Before closing any change that touches a
-> contract, look up every consumer in the map and update them in the same commit. Always prefer
-> that the producer defines the list (columns, causes, states) and the consumer reads it, rather
-> than each keeping its own copy. If the map does not have that relationship, add it."
-
-> [it]
-> Aggiungi questa routine a `docs/WORKING_AGREEMENT.md`: "Prima di chiudere qualunque modifica
-> che tocchi un contratto, cerca nella mappa ogni consumatore e aggiornali nello stesso commit.
-> Preferisci sempre che il produttore definisca la lista (colonne, cause, stati) e il consumatore
-> la legga, invece che ciascuno tenga la propria copia. Se la mappa non ha quella relazione,
-> aggiungila."
-
-3. Fai la prova della lista: scegli una lista che compare nella schermata (in Turnera, gli stati
-   di un appuntamento: in attesa, confermato, cancellato, assente) e chiedi all'agente di
-   mostrarti dove è definita e dove viene letta. Se ci sono due definizioni, chiedigli di
-   lasciarne una sola, e che coincida con l'albero semantico.
-4. La prima volta che qualcosa si rompe per la seconda volta (succederà nelle prossime
-   settimane), registralo.
-
-**Prima di inviare il prompt**: la voce in sospeso o il commit della prima volta, individuato da
-te tra quelle chiuse di `docs/PENDING.md`, per incollarglielo insieme al prompt (senza quel
-riferimento l'anti-pattern esce generico); e `docs/GOTCHAS.md` creato anche se vuoto, con il
-formato nell'intestazione: odore, causa radice, correzione, come rilevarlo prima.
-
-5. Incollagli:
-
-> This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
-> sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
-> possible, a test or an automatic check that detects it.
-
-> [it]
-> Questo ci è già successo. Registralo in `docs/GOTCHAS.md` con: come odora (il segnale precoce),
-> la causa radice, la correzione, e come rilevarlo la prossima volta prima che faccia male. E
-> aggiungi, se si può, un test o una verifica automatica che lo rilevi.
-
-**Verifica di completezza.** Scegli un contratto della mappa: ogni consumatore lo legge dal
-produttore o ha la propria copia? C'è un numero che compare in due schermate e danno lo stesso
-risultato? Gli stati delle entità coincidono tra il codice e l'albero semantico? Ogni voce di
-GOTCHAS ha le quattro parti? Si è ripetuto qualcosa che era già annotato?
-
-**Consegna.** `docs/PRODUCER_CONSUMER_MAP.md`, la routine nel patto, e `docs/GOTCHAS.md` (anche se
-parte con una sola voce).
-
-**Errori tipici.** Fare la mappa una volta e non guardarla più: deve crescere con ogni contratto
-nuovo. Annotare anti-pattern come aneddoti ("una volta è successo che…") senza la parte "come
-rilevarlo prima". E il classico: lo stesso testo di uno stato scritto a mano nel server e nella
-schermata; il giorno che uno cambia, l'altro resta.
-
-**Nel progetto guida.** La mappa di Turnera ha, all'inizio, quattro o cinque contratti: la lista
-degli stati dell'appuntamento (la definisce il server, la leggono la schermata e il report
-mensile); la tabella degli appuntamenti (la scrive il caricamento, la leggono l'agenda del giorno
-e il report); la tabella dei pazienti; e, più avanti, la coda dei messaggi (la scrive l'agenda, la
-legge chi invia). Il primo GOTCHA di solito è di date: l'agenda mostrava l'appuntamento nel giorno
-sbagliato perché il server salvava in un fuso orario e la schermata mostrava in un altro. Odore:
-"l'appuntamento delle 23 compare domani". Causa radice: due fusi orari. Correzione: uno solo, nel
-server. Rilevamento: un test con un appuntamento alle 23:30.
-
-### Lezione 9 — Misurare prima di costruire, con uno strumento che a sua volta si verifica
+### Lezione 7 — Misurare prima di costruire, con uno strumento che a sua volta si verifica
 
 **Cosa devi capire.** Il modello produce affermazioni con un numero ("ci sono circa 120 query di
 quel tipo") e suonano esattamente uguali quando sono misurate e quando sono stimate. Tu non puoi
@@ -1291,7 +1050,352 @@ base (diciamo, 2). Se c'era il ciclo, i numeri sono 12, 52 e 202; si sistema, di
 e il budget resta a 4 con un test che fallisce se l'agenda fa più di 4 query per qualunque
 quantità di appuntamenti.
 
-### Lezione 10 — Verifica onesta e rapporto proporzionato
+### Lezione 8 — I test come lucchetti, provati in rosso, e le prove end to end
+
+**Cosa devi capire.** Questa è la lezione centrale del corso. Di un test che non hai mai visto
+fallire non sai se prova qualcosa. Il modello scrive il codice e il test nella stessa sessione, con
+la stessa comprensione: se ha capito male la richiesta, il test prova ciò che ha capito, e passa.
+L'unico modo economico per sapere che il test guarda ciò che conta è **vederlo in rosso contro il
+codice vecchio**: se anche il codice di prima della modifica lo passa, il test non distingue il
+prima dal dopo, e allora non serve. Per questo la richiesta non è "scrivi test" ma "mostrami il
+rosso, poi il verde, poi la regressione". Il caso che lo mostra meglio è quello dei contatori che
+non coincidevano [Ref. 26](REFERENCIAS.md#ref-26).
+
+E la seconda idea, che è importante quanto la prima: le prove end to end. Un test che verifica
+dalla schermata (clicca, digita, legge) e controlla l'effetto nel backend (la riga è rimasta, lo
+stato è cambiato) è quello che sostituisce la tua lettura del codice. I criteri di accettazione
+della voce in sospeso ("dato, quando, allora") sono il suo copione. E si eseguono **tre volte, a
+tre scale**: il flusso toccato, con ogni voce; tutti i flussi che esistono, alla chiusura di ogni
+blocco; e tutti i flussi con la versione esatta, prima di ogni deployment in produzione. Se fai
+solo la terza, arrivi alla fine con un sistema che nessuno ha provato end to end per settimane.
+
+**Il compito.**
+
+**Prima di inviare il prompt**, con le tue mani:
+
+- `docs/WORKING_AGREEMENT.md`, dove va la routine.
+- La voce in sospeso che si chiuderà, con i suoi criteri di accettazione "dato, quando, allora" e
+  il suo "come si verifica" in `docs/PENDING.md`: sono il copione del test. Se non li ha, torna
+  alla lezione 5 prima di chiedere il test.
+- La batteria e il comando per eseguirla in `docs/STATUS.md` (lezione 4), e l'ambiente di test in
+  esecuzione, con dati sufficienti per il flusso che si tocca; se mancano dati, caricali tu o
+  chiedigli di crearli come parte del test, ma che non li simuli.
+
+1. Aggiungi al patto la routine delle prove. Incollagli:
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
+> not your word. (1) Write the test that proves what the item asks for, following its acceptance
+> criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
+> revert the change, or run the test against the old version, but show me the red output. (3)
+> Show me the green output with the change. (4) Run the regression suite for the neighbouring
+> items and show me it is still green. (5) Run the end-to-end test of the flow this item
+> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
+> with mocks the very part you are trying to test. If testing end to end requires something you
+> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
+> Finally, the commit message says 'proved red against [what]' and the test counts."
+
+> [it]
+> Aggiungi questa routine a `docs/WORKING_AGREEMENT.md`: "Per chiudere una voce in sospeso ho
+> bisogno di prove, non della tua parola. (1) Scrivi il test che prova ciò che la voce chiede,
+> seguendo i suoi criteri di accettazione. (2) Dimostra che quel test fallisce contro il codice
+> precedente: puoi annullare temporaneamente la modifica, o eseguire il test contro la versione
+> vecchia, ma mostrami l'output in rosso. (3) Mostrami l'output in verde con la modifica. (4)
+> Esegui la regressione delle voci vicine e mostrami che è ancora in verde. (5) Esegui la prova
+> end to end del flusso che questa voce tocca, dalla schermata fino al backend, e mostrami
+> l'effetto nel backend. (6) Non sostituire con simulazioni proprio la parte che stai provando.
+> Se provare end to end richiede qualcosa che non hai (dati, accesso, un ambiente), chiedimelo;
+> non simulare ciò che non hai. Infine, il messaggio del commit dice 'provato in rosso contro
+> [cosa]' e i numeri dei test."
+
+   Gli stai chiedendo il test guidato dai criteri di accettazione, **il rosso dimostrato con
+   l'output in vista**, il verde, la regressione delle voci vicine, la prova end to end del flusso
+   con l'effetto nel backend, niente simulazioni proprio di ciò che si prova, e di chiedere ciò
+   che manca invece di simularlo.
+
+2. Prendi la voce del doppio appuntamento (PND-003 in Turnera, o l'equivalente nel tuo progetto:
+   una regola che impedisce qualcosa). Chiedigli di chiuderla con la routine. Leggi il rapporto:
+   deve esserci un output in rosso con i numeri ("1 su 1 fallisce contro la versione senza la
+   regola"), poi il verde, e la prova end to end: un browser controllato da programma che apre la
+   schermata, prova a caricare il doppio appuntamento, legge l'avviso, e controlla nel database
+   che non è stato salvato.
+3. Se ti dice che non può provare end to end perché la schermata non si può operare da programma,
+   fermati: è X2 che fallisce, e va sistemato adesso (aggiungere identificatori agli elementi
+   della schermata) prima di proseguire.
+
+**Prima di inviare il prompt**: distingui se gli manca un input che hai tu (dati, un accesso, un
+ambiente: daglielo e non mandare questo prompt) o se davvero il sistema non è testabile lì (questo
+prompt).
+
+4. Incollagli:
+
+> Explain why it cannot be tested, what would have to be added so that it can, and open a
+> pending item for that. The change is not closed until it can be tested.
+
+> [it]
+> Spiega perché non si può provare, cosa bisognerebbe aggiungere perché si possa, e apri una
+> voce in sospeso per quello. La modifica non è chiusa finché non si può provare.
+
+5. **Alla chiusura del blocco**, quando le sei voci sono chiuse, esegui la batteria completa.
+
+**Prima di inviare il prompt** della batteria: le sei voci chiuse con la routine, la versione
+esatta che si promuoverà identificata e distribuita nell'ambiente di test, e la tua lista dei
+flussi che esistono (ricavata dai casi d'uso dell'albero semantico), per confrontarla con ciò che
+l'agente dirà di aver coperto.
+
+6. Incollagli:
+
+> Run the complete end-to-end suite of every flow that exists so far, in the test environment,
+> with the exact version that will be promoted. Show me the counts, and for each flow the
+> backend check that proves it. If any flow has no end-to-end test, say so and open a pending
+> item for it; do not pass it as covered.
+
+> [it]
+> Esegui la batteria completa end to end di tutti i flussi che esistono finora, nell'ambiente di
+> test, con la versione esatta che sarà promossa. Mostrami i numeri e, per ogni flusso, la
+> verifica nel backend che lo prova. Se qualche flusso non ha una prova end to end, dillo e apri
+> una voce in sospeso; non darlo per coperto.
+
+7. E dopo di questo, **usa il sistema tu**. Apri l'ambiente di test e fai ciò che farebbe la
+   receptionist: carica un appuntamento, prova il doppio appuntamento, cancella, cerca. Ciò che ti
+   dà fastidio, ciò che non capisci, ciò che sta dove non dovrebbe: annotalo come voce in sospeso.
+   Questo momento trova ciò che nessun test trova.
+
+**Verifica di completezza.** Il rapporto mostra il rosso, con i numeri? La regressione è stata
+eseguita nella stessa sessione, con i numeri? La prova end to end verifica anche il backend? C'è
+qualche parte simulata proprio dove sta la modifica? Il commit dice "provato in rosso"? Alla
+chiusura del blocco: ci sono tutti i flussi nella batteria end to end? Hai usato il sistema tu e
+annotato ciò che hai trovato?
+
+**Consegna.** Almeno tre voci in sospeso chiuse con la routine completa (rosso, verde,
+regressione, end to end), la batteria completa end to end del blocco in verde, e le voci in
+sospeso uscite dalle tue prove umane.
+
+**Errori tipici.** Accettare "i test passano" senza numeri e senza rosso. Accettare che la
+batteria si "acceleri" sostituendo le prove end to end con simulazioni. Lasciar passare un "non si
+può provare" senza aprire la voce in sospeso. E chiudere il blocco senza usarlo tu: lo sguardo
+umano non si delega.
+
+**Nel progetto guida.** Il rosso del doppio appuntamento si vede così: l'agente toglie
+temporaneamente la regola, esegue il test, e l'output dice che il test è fallito perché il secondo
+appuntamento è stato salvato. Rimette la regola, esegue, verde. Poi la regressione: i test di
+PND-001 e PND-002 sono ancora in verde. E quello end to end: un browser controllato da programma
+carica il modulo, preme "salva", legge il messaggio "quell'orario è già occupato", e una query al
+database conferma che c'è un solo appuntamento a quell'ora. Alla chiusura del blocco, la batteria
+end to end percorre i tre flussi che esistono (vedere il giorno, caricare, cancellare), e la
+responsabile carica dieci appuntamenti di prova e scopre che l'ora si sceglie con un menu a
+tendina scomodo. Voce in sospeso nuova. Quando vedrai quel rapporto per la prima volta, capirai a
+cosa serve tutto il metodo.
+
+### Lezione 9 — Qualità del codice verificata dalla macchina
+
+**Cosa devi capire.** Tu non leggi il codice, e va bene; ma il codice esiste e qualcuno lo
+manterrà. Se nessuno lo legge, lo deve guardare una macchina: un *linter* (come il correttore
+ortografico di un elaboratore di testi, ma per il codice), un *formattatore* (un solo stile per
+tutto), limiti di dimensione dei file e delle funzioni, limiti di *complessità* (quanti percorsi
+ha una funzione), rilevamento di codice duplicato e morto, e la *copertura* dei test con un
+*cricchetto* (quella di oggi è il pavimento di domani). Tutto nell'integrazione continua, in rosso
+quando viene violato. Io l'ho fatto in tutti i miei progetti; un audit mi ha restituito un
+componente di più di duemila righe perché nessun limite l'aveva fermato
+[Ref. 41](REFERENCIAS.md#ref-41).
+
+**Prima di inviare il prompt**, con le tue mani:
+
+- L'integrazione continua che gira (lezione 4) e almeno una voce in sospeso del blocco chiusa con
+  la lezione 8, perché ci sia codice reale da misurare.
+- I tuoi due limiti, in una riga: per Turnera, trecento righe per file e quaranta per funzione, e
+  la copertura può solo salire.
+
+1. Incollagli il prompt iniziale del contratto del gradino 9 (in `docs/peldanos/`), con i tuoi
+   limiti nei buchi.
+2. Leggi `docs/CODE_QUALITY.md`. Ci sarà una lista di ciò che oggi fallisce; decidi cosa si
+   sistema subito (una voce in sospeso per ciascuno) e cosa si tollera con una data, e scrivilo
+   nello stesso file.
+
+**Prima di inviare il prompt** della routine: `docs/CODE_QUALITY.md` letto e con le tue decisioni,
+e `docs/WORKING_AGREEMENT.md`.
+
+3. Aggiungi al patto la routine del gradino 9, avvolta in "Add this routine to
+   `docs/WORKING_AGREEMENT.md`:" come le altre.
+4. Chiedigli di inserire apposta, in un ramo, una funzione di cento righe e una variabile senza
+   uso: la catena deve andare in rosso per entrambe le cose.
+
+**Verifica di completezza.** L'ultima esecuzione della catena ha la qualità in verde? La prova del
+ramo è andata in rosso? Ci sono eccezioni al linter, e ciascuna ha la sua ragione scritta? La
+copertura di oggi è maggiore o uguale a quella di ieri?
+
+**Consegna.** Il cancello di qualità nella catena, `docs/CODE_QUALITY.md` con limiti e valori, e
+la routine nel patto.
+
+**Errori tipici.** Lasciare che l'agente "disattivi questa regola perché è troppo severa" senza
+che passi da te. Alzare un limite perché passi. E confondere la copertura con la qualità: la
+copertura conta i test, il rosso della lezione 8 dice se provano qualcosa.
+
+**Nel progetto guida.** La prima esecuzione di Turnera dà rosso su tre cose: il modulo
+dell'appuntamento ha una funzione di 70 righe (si spezza in due: voce in sospeso), ci sono due
+copie del formato della data (una sola, nel server: voce in sospeso), e la copertura è al 61 %. Il
+cricchetto resta a 61 e sale con ogni voce in sospeso. Alla chiusura del blocco, 74 %.
+
+### Lezione 10 — I casi di prova manuale si scrivono insieme alla funzionalità
+
+**Cosa devi capire.** Tutte le prove che abbiamo visto fin qui le scrive e le esegue il modello, e
+provano ciò che il modello ha capito. Manca la prova che fa una persona con i suoi occhi e le sue
+mani, seguendo un *copione*: un caso di prova manuale, con precondizione, passi, risultato atteso
+e una tabella per annotare ogni esecuzione. Il copione lo scrive l'agente insieme a ogni voce in
+sospeso, a partire dai criteri di accettazione; lo esegui tu (o la responsabile) alla chiusura di
+ogni blocco, prima del primo deployment e dopo ogni deployment; e ciò che fallisce torna nel ciclo
+come voce in sospeso correttiva, con le tue parole. È lo sguardo umano con copione, ed è la
+chiusura del circuito del grafico del processo: l'esecuzione manuale reimmette requisiti.
+
+**Prima di inviare il prompt**, con le tue mani:
+
+- `docs/MANUAL_TESTS.md` creato, anche se vuoto, con il formato nell'intestazione (copialo dal
+  contratto del gradino 10).
+- La decisione su chi esegue e quando, scritta nel patto: per il corso, tu alla chiusura di ogni
+  blocco e la responsabile prima del primo deployment.
+- Una voce in sospeso del blocco chiusa con le lezioni 8 e 9.
+
+1. Aggiungi al patto la routine del gradino 10 (nel contratto, "Routine di ogni voce in sospeso"),
+   avvolta come le altre. Da adesso, ogni voce in sospeso che tocca una schermata si chiude con il
+   suo caso.
+2. Chiedigli di scrivere i casi delle voci in sospeso già chiuse del blocco. Prendine uno a caso e
+   seguilo tu nell'ambiente di test senza chiedergli niente: se hai dovuto chiedere, il caso non è
+   scritto per una persona; faglielo riscrivere.
+3. Alla chiusura del blocco, esegui tutti i casi del blocco tu, a mano, e annota in ciascuno la
+   data, il tuo nome, passato o fallito, e l'osservazione. Ciò che ti dà fastidio e non entra in
+   nessun caso, annotalo alla fine del file.
+
+**Prima di inviare il prompt** dell'esecuzione: le tue esecuzioni annotate nel file, caso per
+caso, e le osservazioni sparse alla fine.
+
+4. Incollagli il prompt di esecuzione del contratto del gradino 10. Ogni fallimento deve tornare
+   come voce in sospeso correttiva con le tue parole.
+
+**Verifica di completezza.** Hai potuto seguire un caso senza chiedere? Ogni voce in sospeso
+chiusa che tocca una schermata ha il suo caso? Ogni caso dice cosa verificare dall'altro lato
+dello schermo? L'esecuzione ha data e nome in ogni caso? Ogni fallimento ha la sua voce in sospeso
+con le tue parole?
+
+**Consegna.** `docs/MANUAL_TESTS.md` con un caso per flusso del blocco, la prima esecuzione
+registrata, e una voce in sospeso per ogni fallimento.
+
+**Errori tipici.** Lasciare che l'agente marchi i casi come eseguiti. Casi che sono il test
+automatico in prosa. E sistemare i fallimenti sul momento, senza voce in sospeso: si perdono le
+tue parole e la traccia di cosa si ripete.
+
+**Nel progetto guida.** I casi del primo blocco di Turnera sono sei: vedere l'agenda del giorno,
+caricare un appuntamento, tentare un sovrappuntamento, cancellare, cercare un paziente, registrare
+un paziente. Nella prima esecuzione ne falliscono due: quello di cancellare (l'agenda non si
+aggiorna finché non si ricarica la pagina; osservazione della responsabile: "pensavo che non si
+fosse cancellato") e quello di cercare (con due pazienti dello stesso cognome ne mostra uno solo).
+Due voci in sospeso correttive, con le sue parole. Il menu a tendina scomodo dell'ora, che nessun
+test ha visto, compare come osservazione sparsa.
+
+### Lezione 11 — Simmetria tra produttore e consumatore, e il registro degli anti-pattern
+
+**Cosa devi capire.** Quando cambi un capo del sistema (il server, il database, un robot), l'altro
+capo (la schermata, un contatore, un report) deve cambiare nello stesso commit. Se no, divergono, e
+l'utente vede un numero da una parte e un altro dall'altra [Ref. 26](REFERENCIAS.md#ref-26). Il
+principio che lo evita è semplice da enunciare e difficile da sostenere: **ogni lista ha un solo
+proprietario**. Gli stati possibili di un appuntamento, le colonne di un report, le cause per cui
+qualcosa aspetta: le definisce una sola parte (il produttore) e le altre le leggono da lì
+[Ref. 27](REFERENCIAS.md#ref-27). L'albero semantico è il primo posto in cui quelle liste si
+dichiarano. Appena ci sono due copie, una è vecchia; resta solo da sapere quale.
+
+La seconda metà della lezione è il registro degli anti-pattern (GOTCHAS): gli errori che ti sei
+già mangiato una volta, annotati con il loro odore, la loro causa radice, la loro correzione e come
+rilevarli prima [Ref. 2](REFERENCIAS.md#ref-2). L'importante non è annotarli: è aggiungere la
+verifica automatica che li rilevi, perché un anti-pattern annotato e non automatizzato si ripete
+quando cambia la sessione.
+
+**Il compito.**
+
+**Prima di inviare il prompt**, con le tue mani:
+
+- Almeno un blocco funzionale costruito: senza contratti tra le parti non c'è mappa da fare.
+- `docs/SEMANTIC_TREE.md` aggiornato: le liste (stati, tipi, cause) sono dichiarate lì, e la mappa
+  deve coincidere con l'albero.
+- Una lista scritta da te di ciò che vive fuori dal repository e produce o consuma qualcosa del
+  sistema (un robot, un foglio di calcolo, un processo di un'altra squadra), o la constatazione
+  che non c'è nulla.
+
+1. Chiedigli la mappa dei contratti:
+
+> Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
+> a file format, a list of values), who produces it and who consumes it. If there are parts of
+> the system you cannot access or do not understand, tell me instead of leaving them out of the
+> map. Reply in my language.
+
+> [it]
+> Costruisci `docs/PRODUCER_CONSUMER_MAP.md`: per ogni contratto del sistema (un servizio, una
+> tabella, un formato di file, una lista di valori), chi lo produce e chi lo consuma. Se ci sono
+> parti del sistema a cui non puoi accedere o che non capisci, dimmelo invece di lasciarle fuori
+> dalla mappa. Rispondi nella mia lingua.
+
+   Gli stai chiedendo l'inventario dei contratti con i loro due lati, e che ciò che non vede lo
+   dichiari invece di ometterlo.
+
+**Prima di inviare il prompt** della routine: la mappa rivista da te (scegli un contratto e
+verifica che i due lati siano quelli che conosci) e `docs/WORKING_AGREEMENT.md`.
+
+2. Aggiungi la routine al patto:
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "Before closing any change that touches a
+> contract, look up every consumer in the map and update them in the same commit. Always prefer
+> that the producer defines the list (columns, causes, states) and the consumer reads it, rather
+> than each keeping its own copy. If the map does not have that relationship, add it."
+
+> [it]
+> Aggiungi questa routine a `docs/WORKING_AGREEMENT.md`: "Prima di chiudere qualunque modifica
+> che tocchi un contratto, cerca nella mappa ogni consumatore e aggiornali nello stesso commit.
+> Preferisci sempre che il produttore definisca la lista (colonne, cause, stati) e il consumatore
+> la legga, invece che ciascuno tenga la propria copia. Se la mappa non ha quella relazione,
+> aggiungila."
+
+3. Fai la prova della lista: scegli una lista che compare nella schermata (in Turnera, gli stati
+   di un appuntamento: in attesa, confermato, cancellato, assente) e chiedi all'agente di
+   mostrarti dove è definita e dove viene letta. Se ci sono due definizioni, chiedigli di
+   lasciarne una sola, e che coincida con l'albero semantico.
+4. La prima volta che qualcosa si rompe per la seconda volta (succederà), registralo.
+
+**Prima di inviare il prompt**: la voce in sospeso o il commit della prima volta, individuato da
+te tra quelle chiuse di `docs/PENDING.md`, per incollarglielo insieme al prompt (senza quel
+riferimento l'anti-pattern esce generico); e `docs/GOTCHAS.md` creato anche se vuoto, con il
+formato nell'intestazione: odore, causa radice, correzione, come rilevarlo prima.
+
+5. Incollagli:
+
+> This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
+> sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
+> possible, a test or an automatic check that detects it.
+
+> [it]
+> Questo ci è già successo. Registralo in `docs/GOTCHAS.md` con: come odora (il segnale precoce),
+> la causa radice, la correzione, e come rilevarlo la prossima volta prima che faccia male. E
+> aggiungi, se si può, un test o una verifica automatica che lo rilevi.
+
+**Verifica di completezza.** Scegli un contratto della mappa: ogni consumatore lo legge dal
+produttore o ha la propria copia? C'è un numero che compare in due schermate e danno lo stesso
+risultato? Gli stati delle entità coincidono tra il codice e l'albero semantico? Ogni voce di
+GOTCHAS ha le quattro parti? Si è ripetuto qualcosa che era già annotato?
+
+**Consegna.** `docs/PRODUCER_CONSUMER_MAP.md`, la routine nel patto, e `docs/GOTCHAS.md` (anche se
+parte con una sola voce).
+
+**Errori tipici.** Fare la mappa una volta e non guardarla più: deve crescere con ogni contratto
+nuovo. Annotare anti-pattern come aneddoti ("una volta è successo che…") senza la parte "come
+rilevarlo prima". E il classico: lo stesso testo di uno stato scritto a mano nel server e nella
+schermata; il giorno che uno cambia, l'altro resta.
+
+**Nel progetto guida.** La mappa di Turnera ha, all'inizio, quattro o cinque contratti: la lista
+degli stati dell'appuntamento (la definisce il server, la leggono la schermata e il report
+mensile); la tabella degli appuntamenti (la scrive il caricamento, la leggono l'agenda del giorno
+e il report); la tabella dei pazienti; e, più avanti, la coda dei messaggi (la scrive l'agenda, la
+legge chi invia). Il primo GOTCHA di solito è di date: l'agenda mostrava l'appuntamento nel giorno
+sbagliato perché il server salvava in un fuso orario e la schermata mostrava in un altro. Odore:
+"l'appuntamento delle 23 compare domani". Causa radice: due fusi orari. Correzione: uno solo, nel
+server. Rilevamento: un test con un appuntamento alle 23:30.
+
+### Lezione 12 — Verifica onesta e rapporto proporzionato
 
 **Cosa devi capire.** Se tu non leggerai codice, il rapporto dell'agente deve essere affidabile, e
 questo non succede da solo. Il modello è stato addestrato per essere utile e completo, e un
@@ -1379,15 +1483,18 @@ come appare lo stato 'cancellato' sul cellulare della receptionist; provalo tu."
 
 ---
 
-## Fase di esercizio: lezioni da 11 a 15
+## Fase di uscita in produzione: lezioni da 13 a 20
 
-Queste cinque lezioni sono quelle che trasformano "funziona" in "si può sostenere". Si fanno
-nelle settimane 4 e 5, quando i primi due blocchi sono costruiti con il ciclo e provati da te
+Queste otto lezioni sono quelle che trasformano "funziona" in "si può sostenere", e si fanno una
+volta, in ordine, quando i primi due blocchi sono costruiti con il ciclo e provati da te
 nell'ambiente di test, e prima che il sistema agisca sul mondo (mandi messaggi, addebiti) o abbia
 utenti reali. Nel progetto guida, è il momento di aggiungere i promemoria e la caparra, e per
-questo la lezione 12 (lucchetti) va prima di costruire quelle funzionalità, non dopo.
+questo la lezione 14 (lucchetti) va prima di costruire quelle funzionalità, non dopo. Le quattro
+di qualità operativa (da 16 a 19) sono quelle che io facevo senza nominarle; se sei alle prime
+armi, ogni contratto di quelle lezioni ha un paragrafo "Se sei alle prime armi" che spiega le sue
+parole nel linguaggio di tutti i giorni; leggilo prima della lezione.
 
-### Lezione 11 — L'audit periodico come input del piano
+### Lezione 13 — L'audit periodico come input del piano
 
 **Cosa devi capire.** Ogni tanto bisogna guardare il sistema intero con occhi freschi, e ciò che
 si vede non va in un rapporto che si archivia: va nella lista delle voci in sospeso. La parte
@@ -1450,7 +1557,7 @@ all'auditor), con la data del file nello spazio.
 > Leggi `docs/AUDIT_[data].md`. Apri una voce in sospeso per ogni P0 e P1, citando il rilievo. Se
 > non sei d'accordo con qualcuno, dimmelo con la prova contraria; non ignorarlo.
 
-4. Ripeti questa lezione prima del primo deployment in produzione (lezione 13) e, poi, ogni uno o
+4. Ripeti questa lezione prima del primo deployment in produzione (lezione 15) e, poi, ogni uno o
    due mesi.
 
 **Verifica di completezza.** Il rapporto dice cosa NON ha potuto verificare? Due rilievi a caso
@@ -1471,7 +1578,7 @@ niente.
 futura (P1); e qualche dipendenza con una vulnerabilità nota (P1). Quattro voci in sospeso nuove,
 tutte con file e riga.
 
-### Lezione 12 — Fail-closed, lucchetti e zero danno silenzioso
+### Lezione 14 — Fail-closed, lucchetti e zero danno silenzioso
 
 **Cosa devi capire.** Il software, per default, davanti al dubbio va avanti: se la validazione
 fallisce, il codice continua; se il servizio non risponde, si assume che tutto vada bene. È
@@ -1541,7 +1648,7 @@ non confermato è un lucchetto che non si implementa.
 > nuova: modalità di prova per prima, registrando ciò che avrebbe fatto, finché non la abilito io.
 
 4. Adesso apri il terzo blocco (i promemoria, la caparra) con la lezione 5, costruiscilo con il
-   ciclo completo delle lezioni da 5 a 10, e lascialo in modalità di prova. Guarda per qualche
+   ciclo completo delle lezioni da 5 a 12, e lascialo in modalità di prova. Guarda per qualche
    giorno il registro di "avrebbe mandato" prima di abilitare l'invio reale.
 
 **Verifica di completezza.** Ogni azione che addebita, invia, approva o cancella è nella tabella?
@@ -1567,7 +1674,7 @@ ricreare l'appuntamento); cancellare un paziente (irreversibile; lucchetto: dopp
 la responsabile, e solo se non ha appuntamenti futuri; ritorno: nessuno, per questo doppia). Ogni
 lucchetto con un test che mostra che, senza il lucchetto, l'azione avveniva.
 
-### Lezione 13 — Integrazione continua, ambienti, segreti e deployment come parte del prodotto
+### Lezione 15 — Integrazione continua, ambienti, segreti e deployment come parte del prodotto
 
 **Cosa devi capire.** Arrivare in produzione deve essere un pacchetto riproducibile: i test girano
 **una** volta, il deployment impacchetta e carica soltanto, la configurazione vive nel server e non
@@ -1625,9 +1732,9 @@ in test. Questa lezione lo completa verso la produzione.
    deployment che impacchetta soltanto, la configurazione fuori, la promozione ripetibile, il
    rollback provato, il lucchetto contro i segreti, e la documentazione per una persona.
 
-2. Prima del primo deployment in produzione, fai l'audit della lezione 11 se non l'hai fatto, ed
+2. Prima del primo deployment in produzione, fai l'audit della lezione 13 se non l'hai fatto, ed
    esegui la batteria completa end to end di tutti i flussi con la versione esatta che promuoverai
-   (il prompt di chiusura del blocco della lezione 7).
+   (il prompt di chiusura del blocco della lezione 8).
 
 **Prima di inviare il prompt** della routine: `docs/DEPLOYMENT.md` scritto e letto da te (lo
 potresti seguire da solo?), e `docs/WORKING_AGREEMENT.md`.
@@ -1686,7 +1793,213 @@ quella del provider di pagamento, la URL del database) in un file di ambiente ne
 sta nel repository. Il rollback è lo stesso comando con la versione precedente. E il lucchetto
 anti-segreti è una verifica a ogni commit che rifiuta qualunque cosa che sembri una chiave.
 
-### Lezione 14 — Documentazione viva e manuali che una persona può seguire senza IA
+### Lezione 16 — Osservabilità e tracciabilità, con livello configurabile
+
+**Cosa devi capire.** Quando qualcosa fallirà in produzione, vorrai sapere cosa è successo senza
+aprire il codice e senza che l'agente "controlli": cercare un numero e far comparire la storia
+completa di quell'azione, dalla schermata al database. Questo è un *registro strutturato* con un
+*identificatore di correlazione*. E vorrai alzare il dettaglio di ciò che il sistema scrive, per
+un minuto, mentre indaghi, senza rifare il deployment: questo è il *livello configurabile*. La
+*tracciabilità* è l'altra metà: ogni azione con conseguenza (ha incassato, ha inviato, ha
+cancellato) resta in una lista che l'applicazione non può modificare, con chi, quando e cosa.
+Senza questo, l'agente residente della lezione 23 opera alla cieca e i monitoraggi delle lezioni
+21 e 22 non hanno niente da guardare [Ref. 16](REFERENCIAS.md#ref-16).
+
+**Prima di inviare il prompt**, con le tue mani e con il proprietario:
+
+- `docs/DEPLOYMENT.md` (lezione 15), con come si legge la configurazione per ambiente: il livello
+  sarà una variabile in più.
+- `docs/LOCKS.md` (lezione 14): la lista delle azioni che devono restare nell'audit.
+- In `docs/INITIAL_SURVEY.md`, la lista di quali dati sono personali (in Turnera: nome, telefono,
+  email e documento del paziente), scritta con la responsabile. I registri li devono mascherare;
+  è un obbligo di legge.
+- La tua decisione su dove vivono i registri e per quanto tempo si conservano. Per il corso: un
+  file ruotato sul server, novanta giorni.
+
+1. Incollagli il prompt iniziale del contratto del gradino 16 (in `docs/peldanos/`), tale e quale.
+2. Quando ti mostra l'identificatore di una richiesta reale, cercalo tu nei registri
+   dell'ambiente di test: deve comparire nella schermata, nel backend, nel database e nella
+   chiamata al provider di messaggi.
+3. Alza tu il livello a debug, fai un'azione, guarda, riabbassalo. Se hai dovuto fare il
+   deployment, non è salito.
+4. Cerca "Giovanni" (o qualunque nome di prova) nei registri: non ci deve essere.
+
+**Prima di inviare il prompt** della routine: `docs/OBSERVABILITY.md` letto da te, e il livello
+alzato e riabbassato da te una volta.
+
+5. Aggiungi al patto la routine del gradino 16 (nel contratto, "Routine"), avvolta in "Add this
+   routine to `docs/WORKING_AGREEMENT.md`:" come le altre.
+
+**Verifica di completezza.** Hai seguito tu un identificatore attraverso tutti gli strati? Hai
+cambiato il livello senza fare il deployment? C'è qualche dato personale nei registri? La
+cancellazione di un appuntamento in test è rimasta nell'audit con chi e quando?
+`docs/OBSERVABILITY.md` ti basta per trovare un registro da solo?
+
+**Consegna.** Registri strutturati con livello configurabile, l'identificatore propagato, l'audit
+delle azioni con conseguenza, `docs/OBSERVABILITY.md`, e la routine nel patto.
+
+**Errori tipici.** Accettare dei "log" che ogni modulo scrive in modo diverso. Lasciare la
+produzione su debug "per ora". E che l'identificatore non arrivi al processo notturno dei
+promemoria, che è proprio dove gli incidenti si perdono.
+
+**Nel progetto guida.** L'identificatore di "cancellare l'appuntamento 17" compare nel clic, nel
+server, nella riga marcata nel database e nell'email al professionista. L'audit dice "reception1
+ha cancellato l'appuntamento 17 alle 10:42 dall'agenda del giorno; esito: ok". La responsabile
+alza il livello a traccia per vedere perché un promemoria ha tardato, lo trova, e lo riabbassa.
+
+### Lezione 17 — Ottimizzazione dello strato di persistenza, misurata prima e dopo
+
+**Cosa devi capire.** Il database è dove i sistemi muoiono lentamente: bene con cento
+appuntamenti, male con centomila. Un *indice* è come quello di un libro: senza di esso, il
+database legge l'intera tabella per trovare un appuntamento. Un *ciclo N+1* è fare cento query per
+mostrare cento appuntamenti invece di una. Questa lezione applica la lezione 7 al database:
+misurare ogni query con un misuratore con test, cambiare ciò che i numeri dicono, misurare di
+nuovo sugli stessi dati, e lasciare un budget con test perché non torni
+[Ref. 18](REFERENCIAS.md#ref-18), [Ref. 37](REFERENCIAS.md#ref-37). Non è riscrivere il database
+né cambiare motore: quella era la lezione 3.
+
+**Prima di inviare il prompt**, con le tue mani:
+
+- `docs/SIZING.md` e `docs/VOLUME_SURVEY.md` (lezione 3): i volumi da caricare.
+- L'ambiente di test con dati **al volume atteso**: per Turnera, diecimila appuntamenti e
+  trentamila messaggi di un anno, generati da uno script che l'agente lascia nel repository
+  (chiediglielo come voce in sospeso precedente, con la forma dell'albero semantico).
+- `docs/PRODUCER_CONSUMER_MAP.md` (lezione 11), aggiornato.
+- Un caso noto per il test del misuratore: la tabella dei professionisti ha tre righe.
+
+1. Incollagli il prompt iniziale del contratto del gradino 17.
+2. Leggi la lista delle modifiche proposte come la responsabile leggerebbe una lista di lavori
+   dell'ambulatorio: capisci cosa guadagna ciascuna e che rischio ha? Approva o rifiuta una per
+   una. Rifai un conto a mano (righe al mese della tabella degli appuntamenti).
+
+**Prima di inviare il prompt** di chiusura: la lista con il tuo verdetto per ogni modifica e il
+conto rifatto che coincide.
+
+3. Incollagli il prompt di chiusura del contratto del gradino 17, con la lista approvata.
+4. Esegui tu un misuratore prima e dopo, con i due comandi che ti ha dato.
+
+**Verifica di completezza.** Le tue esecuzioni coincidono con la tabella di
+`docs/PERSISTENCE.md`? Resta qualche query che legge una tabella intera in un flusso critico?
+Ogni tabella ha la sua retention scritta? I budget hanno un test (chiedigli di superarne uno e di
+mostrarti il rosso)?
+
+**Consegna.** I misuratori con test, `docs/PERSISTENCE.md` con prima e dopo, i budget con test, e
+la batteria in verde.
+
+**Errori tipici.** Misurare con i dieci record dello scheletro. Accettare "meglio migrare a un
+altro database". E migliorare un numero rompendo il foglio mensile che leggeva quella tabella: è
+mancata la mappa.
+
+**Nel progetto guida.** L'agenda del giorno faceva una query per appuntamento (il ciclo della
+lezione 7): 52 query per 50 appuntamenti diventano 3. La ricerca dei pazienti per nome leggeva la
+tabella intera: un indice la fa scendere da 800 millisecondi a 4 con diecimila pazienti.
+Retention: i messaggi si archiviano dopo un anno; gli appuntamenti, mai. Budget: 4 query per
+l'agenda, con test.
+
+### Lezione 18 — Scansione e soluzione delle vulnerabilità
+
+**Cosa devi capire.** Una *vulnerabilità* è un difetto che qualcuno può usare per entrare, rubare
+dati o far fare al sistema ciò che non deve. L'audit (lezione 13) le cerca con criterio, ogni
+tanto; questa lezione le cerca a macchina, tutto il tempo, in quattro strati: le *dipendenze*
+(pezzi di altri che il tuo sistema usa, con i loro difetti noti pubblicati), il codice (*analisi
+statica*), i segreti nella storia del repository, e la configurazione del server. E una regola:
+aggiornare una dipendenza è una modifica, e passa dal ciclo; "ho alzato la versione per chiudere
+il rilievo" senza regressione è il modo più comune di rompere la produzione di venerdì
+[Ref. 41](REFERENCIAS.md#ref-41), [Ref. 23](REFERENCIAS.md#ref-23).
+
+**Prima di inviare il prompt**, con le tue mani:
+
+- L'integrazione continua che gira (lezioni 4 e 15), e quanta quota ti resta: la scansione
+  aggiunge minuti.
+- `docs/ENVIRONMENTS_SURVEY.md` con il server, le porte e chi amministra il dominio.
+- `docs/AUDIT_[data].md` (lezione 13), perché non ripeta ciò che è noto.
+- Il tuo criterio di P0, in due righe: per Turnera, ciò che lascia entrare senza credenziale, ciò
+  che espone dati dei pazienti, ciò che permette di mandare messaggi o incassare senza controllo.
+
+1. Incollagli il prompt iniziale del contratto del gradino 18, con il tuo criterio nel buco.
+2. Leggi `docs/SECURITY_[data].md`. Scegli due rilievi e chiedigli la prova. Dice cosa NON ha
+   scansionato?
+
+**Prima di inviare il prompt** di chiusura: la lista delle soluzioni approvate; per ogni
+aggiornamento di dipendenza, la consapevolezza che eseguirà la regressione e l'end to end.
+
+3. Incollagli il prompt di chiusura del contratto del gradino 18.
+4. Chiedigli di mettere apposta, in un ramo, una dipendenza con vulnerabilità nota: la catena
+   deve andare in rosso.
+
+**Verifica di completezza.** L'ultima esecuzione della scansione è in verde e di che data è? Ogni
+P0 ha la sua voce in sospeso chiusa con prova? La scansione è un cancello in `docs/GATES.md`? Sai
+quando gira la prossima scansione programmata?
+
+**Consegna.** La scansione in quattro strati nella catena e con un calendario,
+`docs/SECURITY_[data].md`, `docs/SECURITY.md`, i P0 e i P1 sistemati, il cancello.
+
+**Errori tipici.** Una scansione "pulita al primo colpo" in un sistema di più di un mese: è
+mancato uno strato. Dieci dipendenze aggiornate in un commit. Un P0 "accettato" senza voce in
+sospeso né data.
+
+**Nel progetto guida.** La scansione di Turnera trova: una dipendenza del generatore di PDF con
+una vulnerabilità nota (P1, si aggiorna con regressione ed end to end); l'header che impedisce di
+incorporare l'agenda in un altro sito, assente (P1, una riga di configurazione, con test); una
+chiave di prova del provider di pagamenti nella storia del repository (P0: si ruota, anche se è
+di prova); e una porta del database aperta al mondo sul server di test (P0: si chiude). La
+scansione resta come cancello e gira il lunedì.
+
+### Lezione 19 — Prove di rendimento in volume e punto di rottura
+
+**Cosa devi capire.** La lezione 3 ha dimensionato con i conti; questa li verifica con il sistema
+in esecuzione. Una *prova di carico* simula molti utenti alla volta. Si guardano il *rendimento*
+(azioni al secondo), la *latenza* (quanto ci mette ogni azione; la mediana e il *percentile 95*,
+che è ciò che vedono quelli che si lamentano) e il tasso di errore, al volume atteso e al "per
+dieci". E poi si alza il carico finché qualcosa non si rompe: il *punto di rottura* non è
+"diventa lento" ma "le connessioni al database si sono esaurite a 180 utenti". Quel numero è il
+più utile della fase, perché da lì escono le *soglie* di allerta della lezione 21
+[Ref. 12](REFERENCIAS.md#ref-12), [Ref. 44](REFERENCIAS.md#ref-44).
+
+**Prima di inviare il prompt**, con le tue mani e con il proprietario:
+
+- `docs/SIZING.md` con il volume atteso e il "per dieci": per Turnera, due utenti al picco e
+  quaranta appuntamenti al giorno; per dieci, venti utenti e quattrocento appuntamenti.
+- I flussi critici per il buco del prompt: caricare un appuntamento, vedere l'agenda del giorno,
+  cercare un paziente, l'invio notturno dei promemoria.
+- La tolleranza della responsabile per la schermata più usata (l'agenda del giorno): "se ci mette
+  più di due secondi, le ragazze si lamentano".
+- L'ambiente di test con i dati al volume (lezione 17) e, se differisce dalla produzione nelle
+  risorse, annotato come in `docs/ENVIRONMENTS_SURVEY.md`.
+- L'osservabilità della lezione 16 accesa.
+
+1. Incollagli il prompt iniziale del contratto del gradino 19, con i flussi e la tolleranza nei
+   buchi.
+2. Leggi `docs/PERFORMANCE_[data].md` con la tolleranza accanto: l'agenda del giorno rientra in
+   due secondi al volume atteso? E al per dieci? Cosa si è rotto per primo e a quale carico?
+3. Decidi con la responsabile fino a quale volume si sistemano i colli di bottiglia adesso: se
+   pensano di venderlo ad altri ambulatori, il "per dieci" è adesso; se no, con una data.
+
+**Prima di inviare il prompt** di chiusura: il rapporto letto, la decisione sul "per dieci".
+
+4. Incollagli il prompt di chiusura del contratto del gradino 19.
+5. Esegui tu lo script al volume atteso con il comando che ti ha dato: i numeri si devono
+   somigliare.
+
+**Verifica di completezza.** La schermata più usata rientra nella tolleranza, o c'è una voce in
+sospeso con il numero? Il punto di rottura dice cosa si è rotto e a quale carico? Le soglie di
+`docs/PERFORMANCE.md` stanno sotto il punto di rottura e sopra l'atteso? La prova è un cancello e
+la prima esecuzione è archiviata?
+
+**Consegna.** Lo script di carico con test, `docs/PERFORMANCE_[data].md`, `docs/PERFORMANCE.md`
+con soglie e cancello, e una voce in sospeso per ogni collo di bottiglia.
+
+**Errori tipici.** "Regge il per dieci senza problemi" senza punto di rottura: non ha alzato
+abbastanza il carico. Uno script che colpisce l'API e non la schermata. Sistemare colli di
+bottiglia durante la prova, "già che c'ero".
+
+**Nel progetto guida.** Al volume atteso, l'agenda risponde in 300 millisecondi; al per dieci, in
+1,4 secondi; l'invio notturno di 400 promemoria ci mette 50 secondi. Il punto di rottura: a 180
+utenti concorrenti si esaurisce il pool di connessioni (10) e le azioni cominciano a fallire.
+Soglie: allerta se l'agenda supera 1,5 secondi o se le connessioni in uso superano 7. Voce in
+sospeso: l'invio notturno a lotti di 50, perché la responsabile vuole davvero venderlo.
+
+### Lezione 20 — Documentazione viva e manuali che una persona può seguire senza IA
 
 **Cosa devi capire.** Il sistema deve potersi usare, mantenere e ripristinare senza l'agente e
 senza di te. Il criterio per il manuale di ripristino è concreto: **deve poterlo seguire una
@@ -1789,7 +2102,119 @@ lezione), e chi chiamare. La responsabile l'ha seguito nell'ambiente di test e s
 "ripristinare il database" perché il comando dava per scontata una cartella che lei non aveva; si
 è sistemato il manuale.
 
-### Lezione 15 — L'agente dentro il sistema, e la retrospettiva con i numeri
+---
+
+## Fase di esercizio: lezioni da 21 a 23
+
+Queste tre lezioni cominciano con il primo deployment in produzione e non finiscono: i due
+monitoraggi si montano con esso e girano da soli da allora, e la retrospettiva chiude ogni tappa e
+torna allo 0 per la successiva.
+
+### Lezione 21 — Monitoraggio di risorse e rendimento, con rapporto ciclico
+
+**Cosa devi capire.** La lezione 19 dice come si comporta il sistema un giorno; la produzione è
+tutti i giorni, con i dati che crescono. *Monitorare* è guardare a macchina, tutto il tempo,
+l'uso delle *risorse* (processore, memoria, disco, connessioni, quota del provider di messaggi) e
+il tempo di risposta di ogni funzione e di ogni query, e avvisare quando qualcosa esce dal range:
+sopra una *soglia* (quelle della lezione 19) o molto diverso dalla *linea base* (ciò che dava
+prima). Un'*allerta* avvisa sul momento; il *rapporto ciclico* si legge con calma ogni settimana
+o ogni mese. Due regole: un'allerta che nessuno legge è un difetto dell'allerta; e una soglia non
+si alza per far tacere un'allerta senza una ragione misurata e scritta
+[Ref. 37](REFERENCIAS.md#ref-37), [Ref. 39](REFERENCIAS.md#ref-39).
+
+**Prima di inviare il prompt**, con le tue mani e con il proprietario:
+
+- `docs/OBSERVABILITY.md` (16), `docs/PERSISTENCE.md` (17) e `docs/PERFORMANCE.md` (19) chiusi.
+- Il canale delle allerte deciso con la responsabile: a chi arriva e da dove. Per il corso: alla
+  tua email e alla tua messaggistica.
+- Il ciclo: mensile per Turnera; settimanale se ci fossero soldi in gioco tutti i giorni.
+- Lo scostamento che consideri un allarme: 30 % sulla media degli ultimi quattordici giorni.
+- Accesso in sola lettura del monitoraggio alla produzione, con la credenziale fuori dalla chat.
+
+1. Incollagli il prompt iniziale del contratto del gradino 21, con il canale, il ciclo e lo
+   scostamento nei buchi.
+2. Chiedigli di superare una soglia apposta in test: ti deve arrivare l'allerta dal canale.
+3. Leggi il primo rapporto: ogni evento fuori range deve avere una causa o una proposta.
+
+**Prima di inviare il prompt** della routine: il primo rapporto letto da te.
+
+4. Aggiungi al patto la routine del gradino 21, avvolta in "Add this routine to
+   `docs/WORKING_AGREEMENT.md`:".
+
+**Verifica di completezza.** Ti è arrivata l'allerta provocata? Il rapporto ha ogni scostamento
+con causa o proposta? C'è una voce in sospeso per ogni scostamento che hai deciso di affrontare,
+con il numero come criterio? Qualche soglia è salita dalla lezione 19, e con quale ragione? Il
+rapporto guarda la quota del provider di messaggi?
+
+**Consegna.** Raccolta con storia, allerte, il rapporto ciclico, `docs/MONITORING.md`, la routine
+nel patto.
+
+**Errori tipici.** Allerte tutti i giorni che nessuno legge. Tre rapporti di fila che dicono
+"tutto normale". Una soglia alzata "perché smetta di avvisare". Dati personali conservati "per
+diagnosticare".
+
+**Nel progetto guida.** Il primo rapporto mensile di Turnera dice: disco al 40 %, memoria
+stabile, l'agenda del giorno a 320 millisecondi di mediana (linea base), la ricerca dei pazienti
+salita da 4 a 9 millisecondi (la tabella cresce; dentro il range), e la quota di messaggi al 60 %
+(proposta: avvisare all'80 %). Uno scostamento: il rapporto mensile della responsabile ci ha
+messo 11 secondi il giorno 1 (proposta: precalcolarlo di notte; voce in sospeso).
+
+### Lezione 22 — Monitoraggio degli errori e rapporto ciclico
+
+**Cosa devi capire.** Un sistema in produzione produce errori che nessuno segnala: la
+receptionist che ha visto la schermata bianca ed è tornata a provare, il processo notturno che si
+è interrotto. Questa lezione li *cattura* nei tre posti dove si nascondono (il backend, i
+processi e il browser), li *raggruppa* (mille volte lo stesso errore è una voce con un
+contatore), avvisa di quelli nuovi e di quelli che crescono, e produce un rapporto con il *tasso
+di errore per flusso* (su cento appuntamenti caricati, quanti sono falliti). Due regole: nessun
+errore senza voce in sospeso, e non esiste l'"errore noto" senza una voce in sospeso che dica
+perché si tollera e fino a quando [Ref. 43](REFERENCIAS.md#ref-43),
+[Ref. 22](REFERENCIAS.md#ref-22).
+
+**Prima di inviare il prompt**, con le tue mani:
+
+- `docs/OBSERVABILITY.md` (16): gli errori escono già con identificatore, versione e attore.
+- `docs/LOCKS.md` (12): gli errori nelle azioni con conseguenza sono allerta immediata.
+- Il canale e il ciclo della lezione 21, e il numero di occorrenze all'ora di un errore noto a
+  partire dal quale vuoi un'allerta: per Turnera, dieci.
+- Dove si conservano gli errori e per quanto tempo, senza dati personali.
+
+1. Incollagli il prompt iniziale del contratto del gradino 22, con il canale, il ciclo e il
+   numero nei buchi.
+2. Provoca tu un errore nel browser, in test (una data impossibile nel modulo dell'appuntamento,
+   per esempio): deve comparire nella cattura con il tuo identificatore, e ti deve arrivare
+   l'allerta se è nuovo.
+
+**Prima di inviare il prompt** della routine: il primo rapporto degli errori letto da te, e
+`docs/PENDING.md` sottomano.
+
+3. Aggiungi al patto la routine del gradino 22, avvolta come le altre.
+4. Con il primo rapporto: apri le voci in sospeso correttive degli errori nuovi, ciascuna con la
+   sua riproduzione, e chiudile con la routine della lezione 8 (il test che lo riproduce in
+   rosso).
+
+**Verifica di completezza.** Il tuo errore provocato è arrivato alla cattura, all'allerta e al
+rapporto? C'è qualche errore ricorrente senza voce in sospeso né ragione con data? Un errore
+"sistemato" del rapporto ha il test in rosso nella sua voce in sospeso? Il tasso di errore per
+flusso c'è, ed è confrontato con il periodo precedente? Ci sono dati personali nella cattura?
+
+**Consegna.** La cattura centralizzata e raggruppata, le allerte, il rapporto ciclico con il
+tasso per flusso, `docs/MONITORING.md` completo, la routine nel patto, e una voce in sospeso per
+ogni errore.
+
+**Errori tipici.** "Zero errori in un mese" con utenti reali: la cattura non vede il browser o i
+processi. Un errore con mille occorrenze e il commento "noto, non influisce". Errori che si
+"sistemano" riavviando. E leggere il rapporto degli errori senza incrociarlo con quello delle
+risorse: la query lenta dell'uno è il timeout dell'altro.
+
+**Nel progetto guida.** Il primo rapporto di Turnera ha tre errori: uno nel browser (l'agenda
+fallisce se il nome del professionista ha un apostrofo; 14 volte; voce in sospeso, test in
+rosso), uno nel processo notturno (il provider di messaggi ha restituito un errore una notte; 1
+volta; voce in sospeso per riprovare con registro), e uno "noto" del nipote nel foglio mensile
+(voce in sospeso con data: si sostituisce con il rapporto della lezione R2 nella parte 2). Tasso
+di errore: 0,3 % in "caricare appuntamento", 0 % negli altri.
+
+### Lezione 23 — L'agente dentro il sistema, e la retrospettiva con i numeri
 
 **Cosa devi capire.** Due cose chiudono il ciclo. La prima è opzionale: lasciare l'agente
 residente in produzione, con perimetro limitato, per diagnosticare e dare supporto senza che tu ci
@@ -1906,343 +2331,23 @@ proposta concreta di modifica?
 **Errori tipici.** Dare all'agente residente un livello alto "perché possa risolvere tutto":
 comincia dalla sola lettura e sali quando ci sono prove. Una retrospettiva che dice che è andato
 tutto bene: non va mai tutto bene; è scritta per te, non per il metodo. E non mandare la proposta
-di modifica: il gradino 15 si chiude quando la scala cambia, non quando il documento si scrive.
+di modifica: il gradino 23 si chiude quando la scala cambia, non quando il documento si scrive.
 
-**Nel progetto guida.** La retrospettiva di Turnera, in un corso tipico: sei settimane, una
-quarantina di ore dell'allievo, ventotto voci in sospeso, quelle che hanno fatto più giri sono
-state quelle dei messaggi (fusi orari e il provider di WhatsApp); due incidenti, uno nel gradino 8
+**Nel progetto guida.** La retrospettiva di Turnera, in un corso tipico: una quarantina di ore
+dell'allievo, ventotto voci in sospeso, quelle che hanno fatto più giri sono
+state quelle dei messaggi (fusi orari e il provider di WhatsApp); due incidenti, uno nel gradino 11
 (lo stato "assente" esisteva nella schermata e non nel server, e nemmeno nell'albero semantico) e
-un altro nel 13 (un deployment in produzione con la configurazione di test, rilevato dalla
+un altro nel 15 (un deployment in produzione con la configurazione di test, rilevato dalla
 verifica end to end dopo il deployment). Proposta di modifica: che la routine di deployment del
-gradino 13 esiga di mostrare la differenza di configurazione tra test e produzione prima di
+gradino 15 esiga di mostrare la differenza di configurazione tra test e produzione prima di
 promuovere, non solo "cosa cambia".
 
 ---
 
-## Fase di qualità operativa: lezioni da 16 a 21
-
-Queste sei lezioni sono quelle che io facevo senza nominarle, e che un lettore mi ha chiesto, a
-ragione, di scrivere. Quattro si fanno nella settimana 5, insieme alle lezioni 13 e 14 e prima del
-primo deployment in produzione: osservabilità, persistenza, vulnerabilità e rendimento. Due si
-montano nella settimana 6, quella del primo deployment, e girano da sole da allora: i due
-monitoraggi. Se sei alle prime armi, ogni contratto di questi sei gradini ha un paragrafo "Se sei
-alle prime armi" che spiega le sue parole nel linguaggio di tutti i giorni; leggilo prima della
-lezione.
-
-### Lezione 16 — Osservabilità e tracciabilità, con livello configurabile
-
-**Cosa devi capire.** Quando qualcosa fallirà in produzione, vorrai sapere cosa è successo senza
-aprire il codice e senza che l'agente "controlli": cercare un numero e far comparire la storia
-completa di quell'azione, dalla schermata al database. Questo è un *registro strutturato* con un
-*identificatore di correlazione*. E vorrai alzare il dettaglio di ciò che il sistema scrive, per
-un minuto, mentre indaghi, senza rifare il deployment: questo è il *livello configurabile*. La
-*tracciabilità* è l'altra metà: ogni azione con conseguenza (ha incassato, ha inviato, ha
-cancellato) resta in una lista che l'applicazione non può modificare, con chi, quando e cosa.
-Senza questo, l'agente residente della lezione 15 opera alla cieca e i monitoraggi delle lezioni
-20 e 21 non hanno niente da guardare [Ref. 16](REFERENCIAS.md#ref-16).
-
-**Prima di inviare il prompt**, con le tue mani e con il proprietario:
-
-- `docs/DEPLOYMENT.md` (lezione 13), con come si legge la configurazione per ambiente: il livello
-  sarà una variabile in più.
-- `docs/LOCKS.md` (lezione 12): la lista delle azioni che devono restare nell'audit.
-- In `docs/INITIAL_SURVEY.md`, la lista di quali dati sono personali (in Turnera: nome, telefono,
-  email e documento del paziente), scritta con la responsabile. I registri li devono mascherare;
-  è un obbligo di legge.
-- La tua decisione su dove vivono i registri e per quanto tempo si conservano. Per il corso: un
-  file ruotato sul server, novanta giorni.
-
-1. Incollagli il prompt iniziale del contratto del gradino 16 (in `docs/peldanos/`), tale e quale.
-2. Quando ti mostra l'identificatore di una richiesta reale, cercalo tu nei registri
-   dell'ambiente di test: deve comparire nella schermata, nel backend, nel database e nella
-   chiamata al provider di messaggi.
-3. Alza tu il livello a debug, fai un'azione, guarda, riabbassalo. Se hai dovuto fare il
-   deployment, non è salito.
-4. Cerca "Giovanni" (o qualunque nome di prova) nei registri: non ci deve essere.
-
-**Prima di inviare il prompt** della routine: `docs/OBSERVABILITY.md` letto da te, e il livello
-alzato e riabbassato da te una volta.
-
-5. Aggiungi al patto la routine del gradino 16 (nel contratto, "Routine"), avvolta in "Add this
-   routine to `docs/WORKING_AGREEMENT.md`:" come le altre.
-
-**Verifica di completezza.** Hai seguito tu un identificatore attraverso tutti gli strati? Hai
-cambiato il livello senza fare il deployment? C'è qualche dato personale nei registri? La
-cancellazione di un appuntamento in test è rimasta nell'audit con chi e quando?
-`docs/OBSERVABILITY.md` ti basta per trovare un registro da solo?
-
-**Consegna.** Registri strutturati con livello configurabile, l'identificatore propagato, l'audit
-delle azioni con conseguenza, `docs/OBSERVABILITY.md`, e la routine nel patto.
-
-**Errori tipici.** Accettare dei "log" che ogni modulo scrive in modo diverso. Lasciare la
-produzione su debug "per ora". E che l'identificatore non arrivi al processo notturno dei
-promemoria, che è proprio dove gli incidenti si perdono.
-
-**Nel progetto guida.** L'identificatore di "cancellare l'appuntamento 17" compare nel clic, nel
-server, nella riga marcata nel database e nell'email al professionista. L'audit dice "reception1
-ha cancellato l'appuntamento 17 alle 10:42 dall'agenda del giorno; esito: ok". La responsabile
-alza il livello a traccia per vedere perché un promemoria ha tardato, lo trova, e lo riabbassa.
-
-### Lezione 17 — Ottimizzazione dello strato di persistenza, misurata prima e dopo
-
-**Cosa devi capire.** Il database è dove i sistemi muoiono lentamente: bene con cento
-appuntamenti, male con centomila. Un *indice* è come quello di un libro: senza di esso, il
-database legge l'intera tabella per trovare un appuntamento. Un *ciclo N+1* è fare cento query per
-mostrare cento appuntamenti invece di una. Questa lezione applica la lezione 9 al database:
-misurare ogni query con un misuratore con test, cambiare ciò che i numeri dicono, misurare di
-nuovo sugli stessi dati, e lasciare un budget con test perché non torni
-[Ref. 18](REFERENCIAS.md#ref-18), [Ref. 37](REFERENCIAS.md#ref-37). Non è riscrivere il database
-né cambiare motore: quella era la lezione 3.
-
-**Prima di inviare il prompt**, con le tue mani:
-
-- `docs/SIZING.md` e `docs/VOLUME_SURVEY.md` (lezione 3): i volumi da caricare.
-- L'ambiente di test con dati **al volume atteso**: per Turnera, diecimila appuntamenti e
-  trentamila messaggi di un anno, generati da uno script che l'agente lascia nel repository
-  (chiediglielo come voce in sospeso precedente, con la forma dell'albero semantico).
-- `docs/PRODUCER_CONSUMER_MAP.md` (lezione 8), aggiornato.
-- Un caso noto per il test del misuratore: la tabella dei professionisti ha tre righe.
-
-1. Incollagli il prompt iniziale del contratto del gradino 17.
-2. Leggi la lista delle modifiche proposte come la responsabile leggerebbe una lista di lavori
-   dell'ambulatorio: capisci cosa guadagna ciascuna e che rischio ha? Approva o rifiuta una per
-   una. Rifai un conto a mano (righe al mese della tabella degli appuntamenti).
-
-**Prima di inviare il prompt** di chiusura: la lista con il tuo verdetto per ogni modifica e il
-conto rifatto che coincide.
-
-3. Incollagli il prompt di chiusura del contratto del gradino 17, con la lista approvata.
-4. Esegui tu un misuratore prima e dopo, con i due comandi che ti ha dato.
-
-**Verifica di completezza.** Le tue esecuzioni coincidono con la tabella di
-`docs/PERSISTENCE.md`? Resta qualche query che legge una tabella intera in un flusso critico?
-Ogni tabella ha la sua retention scritta? I budget hanno un test (chiedigli di superarne uno e di
-mostrarti il rosso)?
-
-**Consegna.** I misuratori con test, `docs/PERSISTENCE.md` con prima e dopo, i budget con test, e
-la batteria in verde.
-
-**Errori tipici.** Misurare con i dieci record dello scheletro. Accettare "meglio migrare a un
-altro database". E migliorare un numero rompendo il foglio mensile che leggeva quella tabella: è
-mancata la mappa.
-
-**Nel progetto guida.** L'agenda del giorno faceva una query per appuntamento (il ciclo della
-lezione 9): 52 query per 50 appuntamenti diventano 3. La ricerca dei pazienti per nome leggeva la
-tabella intera: un indice la fa scendere da 800 millisecondi a 4 con diecimila pazienti.
-Retention: i messaggi si archiviano dopo un anno; gli appuntamenti, mai. Budget: 4 query per
-l'agenda, con test.
-
-### Lezione 18 — Scansione e soluzione delle vulnerabilità
-
-**Cosa devi capire.** Una *vulnerabilità* è un difetto che qualcuno può usare per entrare, rubare
-dati o far fare al sistema ciò che non deve. L'audit (lezione 11) le cerca con criterio, ogni
-tanto; questa lezione le cerca a macchina, tutto il tempo, in quattro strati: le *dipendenze*
-(pezzi di altri che il tuo sistema usa, con i loro difetti noti pubblicati), il codice (*analisi
-statica*), i segreti nella storia del repository, e la configurazione del server. E una regola:
-aggiornare una dipendenza è una modifica, e passa dal ciclo; "ho alzato la versione per chiudere
-il rilievo" senza regressione è il modo più comune di rompere la produzione di venerdì
-[Ref. 41](REFERENCIAS.md#ref-41), [Ref. 23](REFERENCIAS.md#ref-23).
-
-**Prima di inviare il prompt**, con le tue mani:
-
-- L'integrazione continua che gira (lezioni 4 e 13), e quanta quota ti resta: la scansione
-  aggiunge minuti.
-- `docs/ENVIRONMENTS_SURVEY.md` con il server, le porte e chi amministra il dominio.
-- `docs/AUDIT_[data].md` (lezione 11), perché non ripeta ciò che è noto.
-- Il tuo criterio di P0, in due righe: per Turnera, ciò che lascia entrare senza credenziale, ciò
-  che espone dati dei pazienti, ciò che permette di mandare messaggi o incassare senza controllo.
-
-1. Incollagli il prompt iniziale del contratto del gradino 18, con il tuo criterio nel buco.
-2. Leggi `docs/SECURITY_[data].md`. Scegli due rilievi e chiedigli la prova. Dice cosa NON ha
-   scansionato?
-
-**Prima di inviare il prompt** di chiusura: la lista delle soluzioni approvate; per ogni
-aggiornamento di dipendenza, la consapevolezza che eseguirà la regressione e l'end to end.
-
-3. Incollagli il prompt di chiusura del contratto del gradino 18.
-4. Chiedigli di mettere apposta, in un ramo, una dipendenza con vulnerabilità nota: la catena
-   deve andare in rosso.
-
-**Verifica di completezza.** L'ultima esecuzione della scansione è in verde e di che data è? Ogni
-P0 ha la sua voce in sospeso chiusa con prova? La scansione è un cancello in `docs/GATES.md`? Sai
-quando gira la prossima scansione programmata?
-
-**Consegna.** La scansione in quattro strati nella catena e con un calendario,
-`docs/SECURITY_[data].md`, `docs/SECURITY.md`, i P0 e i P1 sistemati, il cancello.
-
-**Errori tipici.** Una scansione "pulita al primo colpo" in un sistema di più di un mese: è
-mancato uno strato. Dieci dipendenze aggiornate in un commit. Un P0 "accettato" senza voce in
-sospeso né data.
-
-**Nel progetto guida.** La scansione di Turnera trova: una dipendenza del generatore di PDF con
-una vulnerabilità nota (P1, si aggiorna con regressione ed end to end); l'header che impedisce di
-incorporare l'agenda in un altro sito, assente (P1, una riga di configurazione, con test); una
-chiave di prova del provider di pagamenti nella storia del repository (P0: si ruota, anche se è
-di prova); e una porta del database aperta al mondo sul server di test (P0: si chiude). La
-scansione resta come cancello e gira il lunedì.
-
-### Lezione 19 — Prove di rendimento in volume e punto di rottura
-
-**Cosa devi capire.** La lezione 3 ha dimensionato con i conti; questa li verifica con il sistema
-in esecuzione. Una *prova di carico* simula molti utenti alla volta. Si guardano il *rendimento*
-(azioni al secondo), la *latenza* (quanto ci mette ogni azione; la mediana e il *percentile 95*,
-che è ciò che vedono quelli che si lamentano) e il tasso di errore, al volume atteso e al "per
-dieci". E poi si alza il carico finché qualcosa non si rompe: il *punto di rottura* non è
-"diventa lento" ma "le connessioni al database si sono esaurite a 180 utenti". Quel numero è il
-più utile della fase, perché da lì escono le *soglie* di allerta della lezione 20
-[Ref. 12](REFERENCIAS.md#ref-12), [Ref. 44](REFERENCIAS.md#ref-44).
-
-**Prima di inviare il prompt**, con le tue mani e con il proprietario:
-
-- `docs/SIZING.md` con il volume atteso e il "per dieci": per Turnera, due utenti al picco e
-  quaranta appuntamenti al giorno; per dieci, venti utenti e quattrocento appuntamenti.
-- I flussi critici per il buco del prompt: caricare un appuntamento, vedere l'agenda del giorno,
-  cercare un paziente, l'invio notturno dei promemoria.
-- La tolleranza della responsabile per la schermata più usata (l'agenda del giorno): "se ci mette
-  più di due secondi, le ragazze si lamentano".
-- L'ambiente di test con i dati al volume (lezione 17) e, se differisce dalla produzione nelle
-  risorse, annotato come in `docs/ENVIRONMENTS_SURVEY.md`.
-- L'osservabilità della lezione 16 accesa.
-
-1. Incollagli il prompt iniziale del contratto del gradino 19, con i flussi e la tolleranza nei
-   buchi.
-2. Leggi `docs/PERFORMANCE_[data].md` con la tolleranza accanto: l'agenda del giorno rientra in
-   due secondi al volume atteso? E al per dieci? Cosa si è rotto per primo e a quale carico?
-3. Decidi con la responsabile fino a quale volume si sistemano i colli di bottiglia adesso: se
-   pensano di venderlo ad altri ambulatori, il "per dieci" è adesso; se no, con una data.
-
-**Prima di inviare il prompt** di chiusura: il rapporto letto, la decisione sul "per dieci".
-
-4. Incollagli il prompt di chiusura del contratto del gradino 19.
-5. Esegui tu lo script al volume atteso con il comando che ti ha dato: i numeri si devono
-   somigliare.
-
-**Verifica di completezza.** La schermata più usata rientra nella tolleranza, o c'è una voce in
-sospeso con il numero? Il punto di rottura dice cosa si è rotto e a quale carico? Le soglie di
-`docs/PERFORMANCE.md` stanno sotto il punto di rottura e sopra l'atteso? La prova è un cancello e
-la prima esecuzione è archiviata?
-
-**Consegna.** Lo script di carico con test, `docs/PERFORMANCE_[data].md`, `docs/PERFORMANCE.md`
-con soglie e cancello, e una voce in sospeso per ogni collo di bottiglia.
-
-**Errori tipici.** "Regge il per dieci senza problemi" senza punto di rottura: non ha alzato
-abbastanza il carico. Uno script che colpisce l'API e non la schermata. Sistemare colli di
-bottiglia durante la prova, "già che c'ero".
-
-**Nel progetto guida.** Al volume atteso, l'agenda risponde in 300 millisecondi; al per dieci, in
-1,4 secondi; l'invio notturno di 400 promemoria ci mette 50 secondi. Il punto di rottura: a 180
-utenti concorrenti si esaurisce il pool di connessioni (10) e le azioni cominciano a fallire.
-Soglie: allerta se l'agenda supera 1,5 secondi o se le connessioni in uso superano 7. Voce in
-sospeso: l'invio notturno a lotti di 50, perché la responsabile vuole davvero venderlo.
-
-### Lezione 20 — Monitoraggio di risorse e rendimento, con rapporto ciclico
-
-**Cosa devi capire.** La lezione 19 dice come si comporta il sistema un giorno; la produzione è
-tutti i giorni, con i dati che crescono. *Monitorare* è guardare a macchina, tutto il tempo,
-l'uso delle *risorse* (processore, memoria, disco, connessioni, quota del provider di messaggi) e
-il tempo di risposta di ogni funzione e di ogni query, e avvisare quando qualcosa esce dal range:
-sopra una *soglia* (quelle della lezione 19) o molto diverso dalla *linea base* (ciò che dava
-prima). Un'*allerta* avvisa sul momento; il *rapporto ciclico* si legge con calma ogni settimana
-o ogni mese. Due regole: un'allerta che nessuno legge è un difetto dell'allerta; e una soglia non
-si alza per far tacere un'allerta senza una ragione misurata e scritta
-[Ref. 37](REFERENCIAS.md#ref-37), [Ref. 39](REFERENCIAS.md#ref-39).
-
-**Prima di inviare il prompt**, con le tue mani e con il proprietario:
-
-- `docs/OBSERVABILITY.md` (16), `docs/PERSISTENCE.md` (17) e `docs/PERFORMANCE.md` (19) chiusi.
-- Il canale delle allerte deciso con la responsabile: a chi arriva e da dove. Per il corso: alla
-  tua email e alla tua messaggistica.
-- Il ciclo: mensile per Turnera; settimanale se ci fossero soldi in gioco tutti i giorni.
-- Lo scostamento che consideri un allarme: 30 % sulla media degli ultimi quattordici giorni.
-- Accesso in sola lettura del monitoraggio alla produzione, con la credenziale fuori dalla chat.
-
-1. Incollagli il prompt iniziale del contratto del gradino 20, con il canale, il ciclo e lo
-   scostamento nei buchi.
-2. Chiedigli di superare una soglia apposta in test: ti deve arrivare l'allerta dal canale.
-3. Leggi il primo rapporto: ogni evento fuori range deve avere una causa o una proposta.
-
-**Prima di inviare il prompt** della routine: il primo rapporto letto da te.
-
-4. Aggiungi al patto la routine del gradino 20, avvolta in "Add this routine to
-   `docs/WORKING_AGREEMENT.md`:".
-
-**Verifica di completezza.** Ti è arrivata l'allerta provocata? Il rapporto ha ogni scostamento
-con causa o proposta? C'è una voce in sospeso per ogni scostamento che hai deciso di affrontare,
-con il numero come criterio? Qualche soglia è salita dalla lezione 19, e con quale ragione? Il
-rapporto guarda la quota del provider di messaggi?
-
-**Consegna.** Raccolta con storia, allerte, il rapporto ciclico, `docs/MONITORING.md`, la routine
-nel patto.
-
-**Errori tipici.** Allerte tutti i giorni che nessuno legge. Tre rapporti di fila che dicono
-"tutto normale". Una soglia alzata "perché smetta di avvisare". Dati personali conservati "per
-diagnosticare".
-
-**Nel progetto guida.** Il primo rapporto mensile di Turnera dice: disco al 40 %, memoria
-stabile, l'agenda del giorno a 320 millisecondi di mediana (linea base), la ricerca dei pazienti
-salita da 4 a 9 millisecondi (la tabella cresce; dentro il range), e la quota di messaggi al 60 %
-(proposta: avvisare all'80 %). Uno scostamento: il rapporto mensile della responsabile ci ha
-messo 11 secondi il giorno 1 (proposta: precalcolarlo di notte; voce in sospeso).
-
-### Lezione 21 — Monitoraggio degli errori e rapporto ciclico
-
-**Cosa devi capire.** Un sistema in produzione produce errori che nessuno segnala: la
-receptionist che ha visto la schermata bianca ed è tornata a provare, il processo notturno che si
-è interrotto. Questa lezione li *cattura* nei tre posti dove si nascondono (il backend, i
-processi e il browser), li *raggruppa* (mille volte lo stesso errore è una voce con un
-contatore), avvisa di quelli nuovi e di quelli che crescono, e produce un rapporto con il *tasso
-di errore per flusso* (su cento appuntamenti caricati, quanti sono falliti). Due regole: nessun
-errore senza voce in sospeso, e non esiste l'"errore noto" senza una voce in sospeso che dica
-perché si tollera e fino a quando [Ref. 43](REFERENCIAS.md#ref-43),
-[Ref. 22](REFERENCIAS.md#ref-22).
-
-**Prima di inviare il prompt**, con le tue mani:
-
-- `docs/OBSERVABILITY.md` (16): gli errori escono già con identificatore, versione e attore.
-- `docs/LOCKS.md` (12): gli errori nelle azioni con conseguenza sono allerta immediata.
-- Il canale e il ciclo della lezione 20, e il numero di occorrenze all'ora di un errore noto a
-  partire dal quale vuoi un'allerta: per Turnera, dieci.
-- Dove si conservano gli errori e per quanto tempo, senza dati personali.
-
-1. Incollagli il prompt iniziale del contratto del gradino 21, con il canale, il ciclo e il
-   numero nei buchi.
-2. Provoca tu un errore nel browser, in test (una data impossibile nel modulo dell'appuntamento,
-   per esempio): deve comparire nella cattura con il tuo identificatore, e ti deve arrivare
-   l'allerta se è nuovo.
-
-**Prima di inviare il prompt** della routine: il primo rapporto degli errori letto da te, e
-`docs/PENDING.md` sottomano.
-
-3. Aggiungi al patto la routine del gradino 21, avvolta come le altre.
-4. Con il primo rapporto: apri le voci in sospeso correttive degli errori nuovi, ciascuna con la
-   sua riproduzione, e chiudile con la routine della lezione 7 (il test che lo riproduce in
-   rosso).
-
-**Verifica di completezza.** Il tuo errore provocato è arrivato alla cattura, all'allerta e al
-rapporto? C'è qualche errore ricorrente senza voce in sospeso né ragione con data? Un errore
-"sistemato" del rapporto ha il test in rosso nella sua voce in sospeso? Il tasso di errore per
-flusso c'è, ed è confrontato con il periodo precedente? Ci sono dati personali nella cattura?
-
-**Consegna.** La cattura centralizzata e raggruppata, le allerte, il rapporto ciclico con il
-tasso per flusso, `docs/MONITORING.md` completo, la routine nel patto, e una voce in sospeso per
-ogni errore.
-
-**Errori tipici.** "Zero errori in un mese" con utenti reali: la cattura non vede il browser o i
-processi. Un errore con mille occorrenze e il commento "noto, non influisce". Errori che si
-"sistemano" riavviando. E leggere il rapporto degli errori senza incrociarlo con quello delle
-risorse: la query lenta dell'uno è il timeout dell'altro.
-
-**Nel progetto guida.** Il primo rapporto di Turnera ha tre errori: uno nel browser (l'agenda
-fallisce se il nome del professionista ha un apostrofo; 14 volte; voce in sospeso, test in
-rosso), uno nel processo notturno (il provider di messaggi ha restituito un errore una notte; 1
-volta; voce in sospeso per riprovare con registro), e uno "noto" del nipote nel foglio mensile
-(voce in sospeso con data: si sostituisce con il rapporto della lezione R2 nella parte 2). Tasso
-di errore: 0,3 % in "caricare appuntamento", 0 % negli altri.
-
 ## La lista di uscita in produzione
 
-Quando le ventidue lezioni sono fatte, il sistema soddisfa questa lista. È la definizione operativa
-di "production grade" in Urazuke, e si può usare come lista di verifica finale, con il
+Quando le ventiquattro lezioni sono fatte, il sistema soddisfa questa lista. È la definizione
+operativa di "production grade" in Urazuke, e si può usare come lista di verifica finale, con il
 proprietario, senza aprire il codice:
 
 1. C'è una scheda di idoneità con decisione, data e nome (P0).
@@ -2252,29 +2357,30 @@ proprietario, senza aprire il codice:
    semantico confermato dal proprietario, e ogni voce in sospeso pende da un nodo (P2).
 4. C'è un dimensionamento con dati primari con fonte, derivati con il conto, e lo scenario "per
    dieci" (P3).
-5. Lo scheletro è stato distribuito vuoto nella prima settimana, con la catena di integrazione e
+5. Lo scheletro è stato distribuito vuoto nell'avvio, con la catena di integrazione e
    deployment, e il deployment è stato eseguito due volte (P4).
 6. Ogni modifica ha la sua voce in sospeso con specifica dettagliata, e ogni voce chiusa conserva
    la sua specifica e la sua prova: è la documentazione di ciò che è stato fatto (P5).
 7. Ogni regola di business ha proprietario, data e parole testuali, nel commit, nella voce in
    sospeso e nel registro (P6).
-8. Ogni test importante si è visto in rosso prima del verde; ogni flusso ha la sua prova end to
+8. Ogni numero che ha deciso qualcosa ha un misuratore con test che tu puoi eseguire (P7).
+9. Ogni test importante si è visto in rosso prima del verde; ogni flusso ha la sua prova end to
    end che verifica il backend dalla schermata; la batteria completa è stata eseguita alla
-   chiusura di ogni blocco e prima della produzione (P7).
-9. Ogni lista ha un solo proprietario; c'è una mappa produttore/consumatore; c'è un registro degli
-   anti-pattern con verifica automatica (P8).
-10. Ogni numero che ha deciso qualcosa ha un misuratore con test che tu puoi eseguire (P9).
-11. Ogni rapporto separa verificato, creduto e punti ciechi (P10).
-12. C'è stato almeno un audit da parte di una sessione diversa, e i suoi P0 sono voci in sospeso
-    (P11).
-13. Ogni azione con conseguenze ha un lucchetto con test in rosso e via del ritorno; le automazioni
-    sono passate per la modalità di prova (P12).
-14. I test girano una volta per commit; la configurazione è fuori dal repository; il rollback è
-    stato provato; nessun segreto vive nel repository né nella chat senza essere ruotato (P13).
-15. Ci sono tre manuali con data e versione, montati dalle voci in sospeso chiuse; una persona che
-    non programma ha seguito quello di ripristino; il proprietario ha fatto i test di accettazione
-    su tutti i flussi (P14).
-16. C'è una retrospettiva con i numeri e una proposta di modifica alla scala (P15).
+   chiusura di ogni blocco e prima della produzione (P8).
+10. La qualità del codice si verifica a macchina a ogni commit, è un cancello, e la copertura non
+   è mai scesa (P9).
+11. Ogni funzionalità ha i suoi casi di prova manuale, scritti per una persona; sono stati
+   eseguiti alla chiusura di ogni blocco e nell'accettazione, con data e nome; ogni fallimento è
+   tornato come voce in sospeso (P10).
+12. Ogni lista ha un solo proprietario; c'è una mappa produttore/consumatore; c'è un registro
+   degli anti-pattern con verifica automatica (P11).
+13. Ogni rapporto separa verificato, creduto e punti ciechi (P12).
+14. C'è stato almeno un audit da parte di una sessione diversa, e i suoi P0 sono voci in sospeso
+    (P13).
+15. Ogni azione con conseguenze ha un lucchetto con test in rosso e via del ritorno; le
+    automazioni sono passate per la modalità di prova (P14).
+16. I test girano una volta per commit; la configurazione è fuori dal repository; il rollback è
+    stato provato; nessun segreto vive nel repository né nella chat senza essere ruotato (P15).
 17. I registri sono strutturati, con livello configurabile senza deployment, con un identificatore
     che segue ogni azione dalla schermata al database; le azioni con conseguenza restano in un
     audit immutabile; nessun dato personale nei registri (P16).
@@ -2284,13 +2390,17 @@ proprietario, senza aprire il codice:
     c'è nessun P0 aperto (P18).
 20. C'è una prova di carico con test, eseguita al volume atteso e al "per dieci", con il punto di
     rottura scritto e le soglie derivate da esso (P19).
-21. L'uso delle risorse e i tempi di risposta sono sorvegliati con allerte e rapporto ciclico, e
-    ogni scostamento ha una causa o una voce in sospeso (P20).
-22. Gli errori si catturano nel backend, nei processi e nel browser, si raggruppano, si riportano
-    per ciclo con il tasso per flusso, e nessuno resta senza voce in sospeso (P21).
+21. Ci sono tre manuali con data e versione, montati dalle voci in sospeso chiuse; una persona
+    che non programma ha seguito quello di ripristino; il proprietario ha fatto i test di
+    accettazione su tutti i flussi (P20).
+22. L'uso delle risorse e i tempi di risposta sono sorvegliati con allerte e rapporto ciclico, e
+    ogni scostamento ha una causa o una voce in sospeso (P21).
+23. Gli errori si catturano nel backend, nei processi e nel browser, si raggruppano, si riportano
+    per ciclo con il tasso per flusso, e nessuno resta senza voce in sospeso (P22).
+24. C'è una retrospettiva con i numeri e una proposta di modifica alla scala (P23).
 
-Se tutte e ventidue danno "sì", il sistema è pronto per entrare in esercizio. Se qualcuna dà "no",
-sai già quale gradino risalire.
+Se tutte e ventiquattro danno "sì", il sistema è pronto per entrare in esercizio. Se qualcuna dà
+"no", sai già quale gradino risalire.
 
 ---
 
@@ -2337,9 +2447,9 @@ sistema, lo strumento non sta caricando il file in cui hai messo il patto.
 
 ## Allegato C — Ciò che questo manuale ancora non ha
 
-- Una coorte che l'abbia seguito. I tempi del calendario, gli errori tipici e il progetto guida
+- Una coorte che l'abbia seguito. L'ordine delle tappe, gli errori tipici e il progetto guida
   sono scritti a partire dai miei tre sistemi, non da allievi. La prima coorte li correggerà (e
-  questo è, letteralmente, il gradino 15 applicato al corso).
+  questo è, letteralmente, il gradino 23 applicato al corso).
 - I pesi dei criteri di idoneità (lezione 0), che sto calibrando.
 - Un esempio completo di `docs/PENDING.md` del progetto guida, con le ventotto voci in sospeso
   specificate e chiuse, perché un allievo veda com'è la documentazione di ciò che è stato fatto

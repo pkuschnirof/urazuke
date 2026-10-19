@@ -61,7 +61,7 @@ Am 27. Mai (Commit `73f4029`) eröffnete ich `GOTCHAS.md`: eine Datei, in der je
 wiederholt hat, mit einem festen Format notiert wird: wie er riecht, was die Grundursache ist, wie
 er behoben wurde, und wie man ihn nächstes Mal erkennt, bevor es wehtut. Ich eröffnete sie, weil
 das Modell in verschiedenen Sitzungen denselben Fehler beging, ohne jede Erinnerung daran, ihn
-schon einmal begangen zu haben. Es ist die Hälfte „Anti-Muster“ von Schritt 8.
+schon einmal begangen zu haben. Es ist die Hälfte „Anti-Muster“ von Schritt 11.
 
 ### Ref. 3 — Die Tore des Arbeitsablaufs, nur injiziert, wenn sie zutreffen (2. Juni)
 
@@ -98,7 +98,7 @@ sich Arbeit gegenseitig zuschoben. Ich machte ein gemessenes Experiment: dieses 
 und 73 Minuten aus und lieferte etwas Halbfertiges; eine einzige Sitzung mit einem einzigen
 Agenten brauchte 90 Minuten und lieferte etwas Veröffentlichbares. Am 5. Juni (Commit `7584f8b`,
 dokumentiert in einem internen Papier) schaffte ich das ganze Team ab. Es ist der erste Fall von
-„Retrospektive mit einer Zahl in der Hand, und Neuentwurf“, und es ist der Grund, warum Schritt 15
+„Retrospektive mit einer Zahl in der Hand, und Neuentwurf“, und es ist der Grund, warum Schritt 23
 Zahlen verlangt und keine Eindrücke.
 
 ### Ref. 7 — Der Plan wird zur Liste der offenen Posten (6. Juni)
@@ -115,7 +115,7 @@ Am 10. Juni (Commits `7ab9d8a` und `2c552c0`, Dokumente `verification-honesty.md
 „Verifikationsehrlichkeit“: prüfen, dass das Netz wirklich rot wird, wenn es rot werden muss, die
 blinden Flecken erklären, und Behauptungen aufstellen, die dem Geprüften angemessen sind. Außerdem
 trennte ich drei Arbeitsablauf-Typen: neues Projekt, Korrektur und Weiterentwicklung. Es ist der
-Ursprung von Schritt 10 und der Hälfte „rot“ von Schritt 7.
+Ursprung von Schritt 12 und der Hälfte „rot“ von Schritt 8.
 
 ### Ref. 9 — Verworfene Arbeit, weil die Karte nicht gelesen wurde (12. Juni)
 
@@ -130,27 +130,27 @@ Zwischen dem 14. und 21. Juni ließ ich den Agenten einen Tag lang allein arbeit
 mit einem schriftlichen Mandat: Commit und Push für jedes Stück, ohne zu fragen, und ich bekam eine
 Zusammenfassung. Ich erzähle das, weil es beweist, dass die Methode lange Autonomie aushält, wenn
 die Arbeitsvereinbarung und das Register der offenen Posten gut gemacht sind; und weil ich dort
-gelernt habe, Zusammenfassungen mit Misstrauen zu lesen, was Schritt 10 ist.
+gelernt habe, Zusammenfassungen mit Misstrauen zu lesen, was Schritt 12 ist.
 
 ### Ref. 11 — Diagnosemodus auf fremden Systemen (Juli)
 
 Im Juli (Dokument `diagnostic-mode.md`) begann der Agent, in Produktionssysteme von Kunden im
 Diagnosemodus einzutreten: nur lesend, begrenzt, ohne etwas anzufassen. Es ist die erste Stufe des
-Umfangs des residenten Agenten von Schritt 15.
+Umfangs des residenten Agenten von Schritt 23.
 
 ### Ref. 12 — Leistungsmuster, übernommen aus der Produktion der Krankenkasse (22. Juli)
 
 Am 22. Juli (Commit `873339c`) nahm ich ins Werkzeug Skalierungsmuster auf, die aus dem System der
 Krankenkasse extrahiert wurden: das der zwei Transaktionen und vor allem „messen, bevor man
 anfasst“. Es war das erste Mal, dass sich die Methode aus einem System nährte, das schon in
-Produktion war, und es ist ein Vorläufer von Schritt 9.
+Produktion war, und es ist ein Vorläufer von Schritt 7.
 
 ### Ref. 13 — Der Agent wird resident in der Produktion der Krankenkasse (14. August)
 
 Am 14. August wurde der Agent innerhalb des Systems des Kunden installiert, als residenter
 Assistent, mit drei Regeln: eine verpflichtende Systemkarte vor dem Betreiben, „zuerst die
 betriebliche Lösung“, wenn etwas ausfällt, und die Fähigkeit, Tickets zu eröffnen. Es ist der
-Ursprung der ersten Hälfte von Schritt 15.
+Ursprung der ersten Hälfte von Schritt 23.
 
 ### Ref. 14 — Die Dimensionierung als Tor (10. und 11. Oktober)
 
@@ -174,7 +174,7 @@ Am 14. Oktober arbeitete der Agent eine Stunde und dreiundvierzig Minuten lang f
 und machte in dieser Zeit sechs Commits. Es war ein Versagen der Methode, und ein hässliches. Ich
 behob es an der Wurzel in Version 1.18.0 (Commit `b80a659`): ein Stille-Wachhund, der den Zug
 beendet, wenn er keine Lebenszeichen mehr gibt, eine Leine zwischen Prozessen, damit das Kind mit
-dem Elternprozess stirbt, und 28 Tests. Es fällt in Schritt 10 (der Bericht muss sichtbar sein)
+dem Elternprozess stirbt, und 28 Tests. Es fällt in Schritt 12 (der Bericht muss sichtbar sein)
 und in 12 (im Zweifel macht das System nicht weiter).
 
 ---
@@ -192,44 +192,44 @@ offenen Posten sind.
 
 Am 23. Juni machte ich das erste Audit von „Full Scans“ (Abfragen, die die ganze Tabelle lesen,
 weil es keinen Index gibt) an einem lebenden System. Die Befunde wurden zu offenen Posten, nicht zu
-einem abgelegten Bericht. Es ist der Ursprung von Schritt 11.
+einem abgelegten Bericht. Es ist der Ursprung von Schritt 13.
 
 ### Ref. 19 — Lektionen aus der Google-Cloud (24. Juni)
 
 Die Infrastrukturfehler der ersten Wochen in der Google-Cloud wurden als Lektionen aufgeschrieben,
 um sie nicht zu wiederholen. Es ist die erste Fassung dessen, was später das Infrastrukturhandbuch
-von Schritt 14 wurde.
+von Schritt 20 wurde.
 
 ### Ref. 20 — Das Benutzerhandbuch entsteht zusammen mit dem System (26. Juni)
 
 Am 26. Juni gab es schon ein Benutzerhandbuch, bei halb gebautem System. Ich machte das mit
 Absicht so: in den klassischen Projekten wurde das Handbuch am Ende geschrieben, wenn sich niemand
 mehr an etwas erinnerte; mit einem Modell, das es gratis neu erzeugt, gibt es keine Entschuldigung
-dafür, dass es nicht mit dem System entsteht. Schritt 14.
+dafür, dass es nicht mit dem System entsteht. Schritt 20.
 
 ### Ref. 21 — Backup in zweiter Schicht (13. Juli)
 
 Bevor ich dem System mit echten Daten vertraute, legte ich zwei Backup-Schichten an: eine lokale
-und eine im Google-Speicher. Schritt 13 und Wiederherstellungshandbuch von 14.
+und eine im Google-Speicher. Schritt 15 und Wiederherstellungshandbuch von 20.
 
 ### Ref. 22 — PND-300: vier Runden bis zur Grundursache (14. Juli)
 
 Ein Bug kam dreimal zurück, bis am 14. Juli die wirkliche Ursache gefunden wurde. Jede vorherige
 „Behebung“ hatte am Symptom angesetzt. Hier hörte „die Behebung ist an der Wurzel oder sie ist
 keine Behebung“, was schon in der Arbeitsvereinbarung stand, auf, ein Satz zu sein, und wurde zur
-Praxis: man muss die Hypothese messen, bevor man anfasst. Schritte 1 und 9.
+Praxis: man muss die Hypothese messen, bevor man anfasst. Schritte 1 und 7.
 
 ### Ref. 23 — Sicherheitsaudit (16. Juli)
 
 Am 16. Juli machte ich das erste formale Sicherheitsaudit, mit Befunden, die zu offenen Posten
 wurden. Es war das, das mich überzeugte, Sicherheit als periodisches Audit zu behandeln und nicht
-als Liste, die einmal am Anfang abgehakt wird. Schritt 11.
+als Liste, die einmal am Anfang abgehakt wird. Schritt 13.
 
 ### Ref. 24 — Internes Handbuch und Handbuch zur Wiederherstellung nach Katastrophen (26. und 29. Juli)
 
 Am 26. und 29. Juli (Commits `6444ce6`, offener Posten 442, und `a30cee3`, offener Posten 459)
 ließ ich alles Betriebliche dokumentiert, deployen, wiederherstellen, warten, in der Form „von
-Hand reproduzierbar, ohne KI“. Das Kriterium, das ich verwendete und das in Schritt 14 steht, ist,
+Hand reproduzierbar, ohne KI“. Das Kriterium, das ich verwendete und das in Schritt 20 steht, ist,
 dass, wenn es morgen keinen Agenten gibt, eine Vertrauensperson, die nicht programmiert, dem
 Handbuch folgen kann.
 
@@ -238,8 +238,8 @@ Handbuch folgen kann.
 Am 27. Juli (Commit `e18406d`, offener Posten 452): wenn eine Tabelle nicht existiert oder eine
 Suche fehlschlägt, bleibt die Zeile einfach ohne ihren Knopf; nie bricht die ganze Liste. Im
 Zweifel nicht handeln und nicht brechen. Und der Test dieser Korrektur wurde rot bewiesen „ohne
-das try/except“, das heißt, es wurde gezeigt, dass ohne den Schutz die Liste brach. Schritte 7 und
-12.
+das try/except“, das heißt, es wurde gezeigt, dass ohne den Schutz die Liste brach. Schritte 8 und
+14.
 
 ### Ref. 26 — Die Zähler, die nicht übereinstimmten: 1.355 gegen 1.234 (6. und 7. August)
 
@@ -249,7 +249,7 @@ August (Commits `ab3e529`, offener Posten 517, und `1f5feb9`, offener Posten 514
 Grundursache direkt auf der nur lesend zugänglichen Produktion verifiziert, die Differenz Zahl
 für Zahl zerlegt (145 zu viel, 24 zu wenig; 145 minus 24 sind 121), ein Test geschrieben, der ROT
 gegen das alte Kriterium bewiesen wurde, und das Diagnoseskript blieb im Repository für das nächste
-Mal. Schritte 7, 8 und 9.
+Mal. Schritte 8, 11 und 7.
 
 ### Ref. 27 — Symmetrie zwischen Produzent und Konsument (6. August)
 
@@ -257,14 +257,14 @@ Am 6. August (Commits `50fe968`, offener Posten 510, und `7251129`, offener Post
 durch, dass der „Wartegrund“, den der Nutzer sieht, mit DENSELBEN Toren berechnet wird, mit denen
 der Roboter entscheidet, und dass die Spaltenliste des Rasters vom Server definiert und vom Frontend
 konsumiert wird. So können sie nicht auseinanderdriften. Es ist die Regel „jede Liste hat einen
-einzigen Eigentümer“ von Schritt 8.
+einzigen Eigentümer“ von Schritt 11.
 
 ### Ref. 28 — Panikknopf mit Sperre, Trockenlauf des Genehmigers, Wächter mit Schutzvorrichtungen (7. August)
 
 Am 7. August (Commit `0954740`, offener Posten 524) standen die Sperren des Systems: ein Panikknopf
 mit doppelter Sicherung, der automatische Genehmiger, der zuerst im Trockenlauf lief (er tut alles
 außer genehmigen und protokolliert, was er genehmigt hätte), und ein Wächter, der Hängengebliebenes
-anstößt, mit Schutzvorrichtungen, um nicht zweimal anzustoßen. Schritt 12.
+anstößt, mit Schutzvorrichtungen, um nicht zweimal anzustoßen. Schritt 14.
 
 ### Ref. 29 — Die Domänenregeln, im Commit geschrieben (10. August)
 
@@ -281,7 +281,7 @@ Datum und Eigentümer, direkt am Code, der sie umsetzt. Schritt 6.
 Kikan war das erste Projekt, das mit allem Vorherigen schon vom ersten Tag an geschrieben begann:
 eine betriebliche Projektdatei und offene Posten als Plan vom ersten Commit an (21. August). Am 28.
 und 29. August machte ich eine Serie früher Audits (AUD-1, AUD-2 …), die direkt zu 19 Dokumenten
-offener Posten wurde. Schritte 2, 5 und 11.
+offener Posten wurde. Schritte 2, 5 und 13.
 
 ### Ref. 31 — Continuous Integration ab der ersten Woche; Deployment als Paket (28. August, 23. und 24. September)
 
@@ -299,20 +299,20 @@ die abgleicht statt zu duplizieren (`076df76`, offener Posten 134), das Material
 außerhalb des gespiegelten Baums (`9d76af8`, offener Posten 130), und die Testbatterie, die die im
 Deployment mitreisende Konfiguration nicht mehr verschmutzt (`0bd20a8`, offener Posten 107, 3.
 Oktober). Wäre das Skelett in der ersten Woche leer deployt worden, hätten diese fünf Schläge
-mit null Funktionalität auf dem Spiel getroffen. Schritte 4 und 13.
+mit null Funktionalität auf dem Spiel getroffen. Schritte 4 und 15.
 
 ### Ref. 33 — Beförderung von UAT in die Produktion (4. und 8. Oktober)
 
 Am 4. und 8. Oktober (Commits `4eb5ad7`, offener Posten 027, und `7658e2e`) stand ein expliziter
 Kreislauf, um Konfiguration und Kampagnen von der Testumgebung in die Produktion zu bringen.
-Schritt 13.
+Schritt 15.
 
 ### Ref. 34 — Das aus dem Code abgeleitete Schema, mit Sperre (11. Oktober)
 
 In Etappe 1 der Persistenz-Neuentwicklung (Commits `6113319` und `68819ce`) wurde das Inventar der
 Tabellen und Felder aus dem Code selbst abgeleitet, mit einem Test, der es schützt, und am geteilten
 Board eröffnet, damit ich es prüfe. Es ist eine Liste mit einem einzigen Eigentümer, dem Code.
-Schritt 8.
+Schritt 11.
 
 ### Ref. 35 — Die statische Ratsche, und das Messgerät, das nicht sah (11. bis 13. Oktober)
 
@@ -321,7 +321,7 @@ In Etappe 6 der Neuentwicklung (Commits `06b2734`, `f6e5221`, `2fc6239`, `1d55a9
 warten, der nur sinken und nie steigen kann. Und es passierte etwas, das es wert ist, erzählt zu
 werden: ZWEIMAL wurde entdeckt, dass das Messgerät Teile des Codes nicht sah. Zuerst 70 Aufrufe,
 dann 84, mit dem Zähler auf null. Wenn das Instrument nicht geprüft wird, beruhigt die Zahl und
-lügt. Schritt 9.
+lügt. Schritt 7.
 
 ### Ref. 36 — Die lügenden Messgeräte und die fünf Regeln von Abschnitt 11.b (13. und 14. Oktober)
 
@@ -329,7 +329,7 @@ Wörtlich aus den Commits vom 13. Oktober (`880ac0f`, `f955620`): „das Messger
 eine Datenbank mit dem schon angewendeten ALTER“; „es sind 44, nicht 27“. Und ein paar Tage zuvor
 behauptete ein Plan, es gebe 121 Schleifen eines bestimmten Typs, und wer ausführte, maß 79. Aus
 all dem schrieb ich Abschnitt 11.b des Neuentwicklungsdokuments, mit den fünf Regeln, die heute
-Schritt 9 sind: Messgerät mit Schutz; wenn das Instrument nicht existiert, wird es gebaut; es wird
+Schritt 7 sind: Messgerät mit Schutz; wenn das Instrument nicht existiert, wird es gebaut; es wird
 in zwei Richtungen auditiert; das Näherungsweise wird markiert; und wer ausführt, verifiziert die
 Zahlen dessen, der geplant hat. Mit dem Satz, der es zusammenfasst: „drei von vier Behauptungen
 waren falsch; wo es ein Instrument gab, exakt“.
@@ -340,7 +340,7 @@ In Etappe 8 (Commits `5926b3f`, `10ada00`) bekam jeder Pfad der Anwendung ein ge
 einen Test geschütztes Budget an Datenbankabfragen, und der Wechsel der Datenbank-Engine wurde zu
 einem Schalter pro Umgebung. In Etappe 9 (`0730082`, `7f5f1af`) wurde die Obergrenze auf das
 Gemessene plus eine kleine Marge gezurrt: 63 über 60. Das Budget ist keine erfundene Zahl.
-Schritt 9.
+Schritt 7.
 
 ### Ref. 38 — Aufbewahrung pro Tabelle, und ein Integritätsbericht von einer anderen Sitzung (14. Oktober)
 
@@ -348,7 +348,7 @@ In den Etappen 10 und 12 (Commits `f72b15a`, `b266f11`) brachte das echte Paket 
 Migrationsskripte mit, die Datenaufbewahrung wurde pro Tabelle deklariert und in der Produktion
 begrenzt, und ein Integritätsbericht, erstellt von einer anderen Sitzung von Claude Code, die das
 System nicht gebaut hatte, wurde als offene Posten aufgenommen. Es ist der vom Bauenden
-verschiedene Auditor von Schritt 11.
+verschiedene Auditor von Schritt 13.
 
 ### Ref. 39 — Das Deployment verpackt nur, und das Kontingent, das verbrannte (14. Oktober)
 
@@ -356,7 +356,7 @@ Die Tests liefen dreimal pro Commit, jedes Mal zwischen 16 und 27 Minuten; in 16
 2.000 Minuten Kontingent von GitHub Actions verbraucht, und ein Tag mit 23 Pushes verbrannte es
 endgültig. Am 14. Oktober (Commit `39497b0`) teilte ich den Kreislauf: die Tests laufen EIN
 einziges Mal, in der Continuous Integration; das Deployment wartet auf dieses Ergebnis und verpackt
-nur. Von 16 bis 27 Minuten pro Commit auf 11. Schritt 13.
+nur. Von 16 bis 27 Minuten pro Commit auf 11. Schritt 15.
 
 ### Ref. 40 — Zwei Administrator-Türen in vierundzwanzig Stunden (15. Oktober)
 
@@ -364,7 +364,7 @@ Am 15. Oktober wurden an einem einzigen Tag zwei Administrator-Türen angelegt (
 und 257). Eine externe Prüfung entdeckte es; ich entfernte eine (Commits `69bdab2`, `20fdbe7`,
 `1558ee4`) und es blieb ein einziger Weg. Ich erzähle das als Beleg dafür, dass die Methode
 „schnelles Rückgängigmachen“ ohne Drama aushält, und dafür, warum das Audit jemand machen muss, der
-nicht gebaut hat. Schritte 11 und 12.
+nicht gebaut hat. Schritte 13 und 14.
 
 ### Ref. 41 — Das Qualitätsaudit: eine Schwachstelle, eine riesige Komponente, eine Projektdatei mit 9.661 Zeilen (15. Oktober)
 
@@ -372,18 +372,18 @@ Das Qualitätsaudit vom 15. Oktober fand eine bekannte Schwachstelle in einer Ab
 Bildschirmkomponente mit 2.679 Zeilen, acht zwischen Web- und Mobilversion duplizierte Module, und
 eine `CLAUDE.md`, die auf 9.661 Zeilen und 789 Kilobyte gewachsen war, eine Datei, die in diesem
 Zustand niemand liest, auch nicht das Modell. Daher die Regel von Schritt 2: die Projektdatei ist
-das Programm, nicht die Historie, und das Fallbuch gehört getrennt. Schritte 2, 8 und 11.
+das Programm, nicht die Historie, und das Fallbuch gehört getrennt. Schritte 2, 11 und 13.
 
 ### Ref. 42 — In den Chat eingefügte Geheimnisse (14. und 16. Oktober)
 
 Am 14. Oktober blieb ein Datenbankschlüssel in einem Transkript abgedruckt, und am 16. tauchten
 API-Schlüssel in den Chat eingefügt auf. Keines von beiden wurde „von jemandem gesehen“, und beide
 müssen trotzdem rotiert werden, denn ein Geheimnis, das in einem Chat, in einem Log oder in einem
-Commit war, ist kein Geheimnis mehr. Schritt 13.
+Commit war, ist kein Geheimnis mehr. Schritt 15.
 
 ### Ref. 43 — Drei Berichte, die nicht waren, was sie sagten (14. bis 16. Oktober)
 
-Drei kleine und sehr anschauliche Fälle für Schritt 10. Am 14. Oktober wurde ein
+Drei kleine und sehr anschauliche Fälle für Schritt 12. Am 14. Oktober wurde ein
 Authentifizierungsfehler vom Werkzeug mit der Aufschrift „success“ gemeldet. Am 16. wurde das CORS
 des Servers nur aus dem ersten Domainnamen abgeleitet, und der Konfigurationsassistent der
 Testumgebung gab einen Fehler 500, den der Bericht nicht erwähnte. Und die mobile Anwendung verlor
@@ -395,7 +395,7 @@ Regel korrigiert: das Verifizierte vom Geglaubten trennen und die blinden Flecke
 Eine ganze Testbatterie „starb“ aus Speichermangel (Commit `1d7a20b`), und der Bericht las es als
 einen Test, der fehlschlug. Erst als man sich die vollständige Ausgabe ansah, verstand man, dass
 kein einziger Test fehlgeschlagen war: der Prozess war abgestürzt. Das ist der Grund, warum
-Schritt 7 die Zahlen des Rot und des Grün verlangt, nicht nur das Urteil.
+Schritt 8 die Zahlen des Rot und des Grün verlangt, nicht nur das Urteil.
 
 ---
 
@@ -414,7 +414,7 @@ meist daneben. „Prüf die Grenzen mit dem Log, nicht mit der Prosa“: eine We
 beweist nicht, dass die Grenze angewendet wird; man muss den Aufruf erzwingen und die Aufzeichnung
 lesen. Und „vergleich zuerst die veröffentlichte Version“: bei einem „ist immer noch kaputt“
 nachsehen, welche Version dort läuft, wo ich das Problem sehe, bevor man erneut diagnostiziert.
-Schritte 9 und 10.
+Schritte 7 und 12.
 
 ### Ref. 46 — Die Projekte, die ich abgelehnt habe, und woher die Ausschlusskriterien stammen (17. Oktober)
 
@@ -501,21 +501,21 @@ fallen. Tauchte einer auf, der in keinen fällt, würde ein Schritt fehlen.
 
 | Fehlschlag | Referenz | Schritt, der ihn abdeckt | Stand |
 |---|---|---|---|
-| Das Multi-Agenten-Team, das das Doppelte ausgab und die Hälfte lieferte | Ref. 6 | 15, Retrospektive mit Zahlen | geschlossen |
+| Das Multi-Agenten-Team, das das Doppelte ausgab und die Hälfte lieferte | Ref. 6 | 23, Retrospektive mit Zahlen | geschlossen |
 | Verworfene Arbeit, weil die Karte nicht gelesen wurde | Ref. 9 | 2, Pflichtlektüre | geschlossen |
-| PND-300: drei Behebungen, die nicht an der Wurzel waren | Ref. 22 | 1, null Schulden; 9, messen | geschlossen |
-| Zähler 1.355 gegen 1.234 | Ref. 26 | 9, Instrument; 8, Symmetrie | geschlossen |
+| PND-300: drei Behebungen, die nicht an der Wurzel waren | Ref. 22 | 1, null Schulden; 7, messen | geschlossen |
+| Zähler 1.355 gegen 1.234 | Ref. 26 | 7, Instrument; 11, Symmetrie | geschlossen |
 | 3,4 Millionen Zeilen pro Jahr auf JSON-Dateien | Ref. 15 | 3, dimensionieren | geschlossen |
-| Lügende Messgeräte; Ratsche auf null | Refs. 35 und 36 | 9, das Instrument prüfen | geschlossen |
-| Verwaister Zug von 1 h 43 | Ref. 16 | 10 und 12 | geschlossen |
-| Tests dreimal pro Commit; verbranntes Kontingent | Ref. 39 | 13 | geschlossen; das Kontingent muss erweitert werden |
-| Zwei Administrator-Türen in 24 Stunden | Ref. 40 | 11 und 12 | geschlossen |
-| In den Chat eingefügte Geheimnisse | Ref. 42 | 13 | Rotation ausstehend |
-| Authentifizierungsfehler als Erfolg gemeldet | Ref. 43 | 10 | ausstehend, eine Zeile |
+| Lügende Messgeräte; Ratsche auf null | Refs. 35 und 36 | 7, das Instrument prüfen | geschlossen |
+| Verwaister Zug von 1 h 43 | Ref. 16 | 12 und 14 | geschlossen |
+| Tests dreimal pro Commit; verbranntes Kontingent | Ref. 39 | 15 | geschlossen; das Kontingent muss erweitert werden |
+| Zwei Administrator-Türen in 24 Stunden | Ref. 40 | 13 und 14 | geschlossen |
+| In den Chat eingefügte Geheimnisse | Ref. 42 | 15 | Rotation ausstehend |
+| Authentifizierungsfehler als Erfolg gemeldet | Ref. 43 | 12 | ausstehend, eine Zeile |
 | Projektdatei mit 9.661 Zeilen | Ref. 41 | 2 | ausstehend |
-| CORS der ersten Domain; Konfigurationsassistent mit Fehler 500 | Ref. 43 | 13 und 8 | Anwendung ausstehend |
-| Die mobile Anwendung verliert Tabs | Ref. 43 | 10 und 12 | Diagnose gemacht; Korrektur ausstehend |
-| Abfragen ohne Index auf einem lebenden System | Ref. 18 | 11 und 17 | geschlossen |
-| Sicherheitsaudit einmal gemacht, nicht als Routine | Ref. 23 | 11 und 18 | geschlossen; der Zeitplan ist neu |
-| Obergrenze auf das Gemessene gezurrt; Kontingent verbrannt, ohne dass jemand hinsah | Refs. 37 und 39 | 9, 13 und 20 | geschlossen |
-| Der verwaiste Zug wurde über das Log gefunden, nicht über den Code | Ref. 16 | 16 und 21 | geschlossen |
+| CORS der ersten Domain; Konfigurationsassistent mit Fehler 500 | Ref. 43 | 15 und 11 | Anwendung ausstehend |
+| Die mobile Anwendung verliert Tabs | Ref. 43 | 12 und 14 | Diagnose gemacht; Korrektur ausstehend |
+| Abfragen ohne Index auf einem lebenden System | Ref. 18 | 13 und 17 | geschlossen |
+| Sicherheitsaudit einmal gemacht, nicht als Routine | Ref. 23 | 13 und 18 | geschlossen; der Zeitplan ist neu |
+| Obergrenze auf das Gemessene gezurrt; Kontingent verbrannt, ohne dass jemand hinsah | Refs. 37 und 39 | 7, 15 und 21 | geschlossen |
+| Der verwaiste Zug wurde über das Log gefunden, nicht über den Code | Ref. 16 | 16 und 22 | geschlossen |

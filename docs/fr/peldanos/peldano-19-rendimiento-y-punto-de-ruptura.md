@@ -1,6 +1,6 @@
 # Étape 19 — Tests de performance en volume et point de rupture (contrat de l'échelon)
 
-**Tronçon :** qualité opérationnelle, avant le premier déploiement en production.
+**Tronçon :** mise en production.
 **Quand :** dans la phase de mise en production, après le 16 (sans observabilité on ne sait pas ce
 qui a cassé) et après le 17 (sur une persistance déjà optimisée), et avant le premier déploiement
 en production. On le répète avant chaque déploiement qui change l'architecture, la persistance ou
@@ -22,7 +22,7 @@ le propriétaire tolérerait ?), comment il se comporte au « fois dix » (tient
 cesse de tenir en premier ?), et **où il casse** : la charge exacte à laquelle quelque chose cède,
 et quelle est cette chose (les connexions à la base, la mémoire, une file, un verrouillage). Le
 point de rupture est le chiffre le plus utile de tout le tronçon, parce que c'est de lui que
-sortent les seuils d'alerte de l'échelon 20 : une alerte posée « à vue de nez » prévient trop tard
+sortent les seuils d'alerte de l'échelon 21 : une alerte posée « à vue de nez » prévient trop tard
 ou prévient toujours ; une alerte posée sous le point de rupture mesuré, avec une marge, prévient
 quand il est encore temps. Les motifs d'échelle que j'ai tirés d'un système en production
 [Ref. 12](../REFERENCIAS.md#ref-12) et la batterie qui mourait par la mémoire et ressemblait à un
@@ -128,7 +128,7 @@ qu'optimiser sans lire le diagnostic, c'est changer ce qui n'était pas en cause
   se corrigent maintenant.
 
 > Record in `docs/PERFORMANCE.md`: the expected volume, the ten-times volume, the breaking point
-> with what breaks, and the alert thresholds that monitoring (step 20) will use, set below the
+> with what breaks, and the alert thresholds that monitoring (step 21) will use, set below the
 > breaking point with a margin and above the expected volume. Open a pending item for each
 > bottleneck that sits below [ten times the expected volume / the volume I decided], with the
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
@@ -137,7 +137,7 @@ qu'optimiser sans lire le diagnostic, c'est changer ce qui n'était pas en cause
 
 > [fr]
 > Consigne dans `docs/PERFORMANCE.md` : le volume attendu, le volume fois dix, le point de rupture
-> avec ce qui casse, et les seuils d'alerte que la supervision (échelon 20) va utiliser, fixés sous
+> avec ce qui casse, et les seuils d'alerte que la supervision (échelon 21) va utiliser, fixés sous
 > le point de rupture avec une marge et au-dessus du volume attendu. Ouvre un élément en attente
 > pour chaque goulot d'étranglement situé sous [dix fois le volume attendu / le volume que j'ai
 > décidé], avec le chiffre mesuré comme critère d'acceptation. Fais du test de charge une porte dans
@@ -146,7 +146,7 @@ qu'optimiser sans lire le diagnostic, c'est changer ce qui n'était pas en cause
 > première passe archivée.
 
 Ce que je lui demande : les seuils d'alerte dérivés du point de rupture, qui est l'accroche avec
-l'échelon 20 ; les goulots d'étranglement comme éléments en attente avec le chiffre pour critère
+l'échelon 21 ; les goulots d'étranglement comme éléments en attente avec le chiffre pour critère
 (ainsi ils se closent avec une preuve et non avec « maintenant ça marche mieux ») ; et le test de
 charge comme porte archivée, pour que dans six mois on puisse comparer.
 

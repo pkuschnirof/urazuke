@@ -1,6 +1,6 @@
 # Passo 19 — Testes de desempenho em volume e ponto de ruptura (contrato do degrau)
 
-**Fase:** qualidade operacional, antes da primeira implantação em produção.
+**Fase:** saída para produção.
 **Quando:** na fase de saída para produção, depois do 16 (sem observabilidade não se sabe o que
 quebrou) e do 17 (sobre a persistência já otimizada), e antes da primeira implantação em
 produção. Repete-se antes de cada implantação que mude a arquitetura, a persistência ou um fluxo
@@ -21,7 +21,7 @@ que o negócio disse (a tela mais usada responde no que o dono toleraria?), como
 "vezes dez" (aguenta, ou o que deixa de aguentar primeiro?), e **onde quebra**: a carga exata em
 que algo cede, e o que é esse algo (as conexões ao banco, a memória, uma fila, um bloqueio). O
 ponto de ruptura é o número mais útil de toda a fase, porque dele saem os limiares de alerta do
-degrau 20: um alerta posto "a olho" avisa tarde ou avisa sempre; um alerta posto abaixo do ponto
+degrau 21: um alerta posto "a olho" avisa tarde ou avisa sempre; um alerta posto abaixo do ponto
 de ruptura medido, com uma margem, avisa quando ainda há tempo. Os padrões de escala que tirei de
 um sistema em produção [Ref. 12](../REFERENCIAS.md#ref-12) e a bateria que morria por memória e
 parecia um teste falho [Ref. 44](../REFERENCIAS.md#ref-44) são os dois antecedentes: o primeiro, de
@@ -117,7 +117,7 @@ e **nada de otimizar ainda**, porque otimizar sem ler o diagnóstico é mudar o 
 - Estado mínimo aceitável: você leu o ponto de ruptura e decidiu que gargalos se corrigem agora.
 
 > Record in `docs/PERFORMANCE.md`: the expected volume, the ten-times volume, the breaking point
-> with what breaks, and the alert thresholds that monitoring (step 20) will use, set below the
+> with what breaks, and the alert thresholds that monitoring (step 21) will use, set below the
 > breaking point with a margin and above the expected volume. Open a pending item for each
 > bottleneck that sits below [ten times the expected volume / the volume I decided], with the
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
@@ -126,7 +126,7 @@ e **nada de otimizar ainda**, porque otimizar sem ler o diagnóstico é mudar o 
 
 > [pt]
 > Registre em `docs/PERFORMANCE.md`: o volume esperado, o volume vezes dez, o ponto de ruptura
-> com o que quebra, e os limiares de alerta que o monitoramento (degrau 20) vai usar, fixados
+> com o que quebra, e os limiares de alerta que o monitoramento (degrau 21) vai usar, fixados
 > abaixo do ponto de ruptura com uma margem e acima do volume esperado. Abra uma pendência para
 > cada gargalo que fique abaixo de [dez vezes o volume esperado / o volume que decidi], com o
 > número medido como critério de aceitação. Faça do teste de carga uma comporta em
@@ -135,7 +135,7 @@ e **nada de otimizar ainda**, porque otimizar sem ler o diagnóstico é mudar o 
 > rodada arquivada.
 
 O que estou pedindo: os limiares de alerta derivados do ponto de ruptura, que é o encaixe com o
-degrau 20; os gargalos como pendências com o número como critério (assim se fecham com evidência
+degrau 21; os gargalos como pendências com o número como critério (assim se fecham com evidência
 e não com "agora anda melhor"); e o teste de carga como comporta arquivada, para que dentro de
 seis meses se possa comparar.
 

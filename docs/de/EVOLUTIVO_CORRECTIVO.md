@@ -26,7 +26,7 @@ Und hier gibt es eine Falle, die ich benennen will, bevor ich weitermache: die V
 einem Altsystem ist, zwischen zwei Extremen zu wählen, die beide falsch sind. Das eine ist „ich
 schreibe es mit der Methode neu, von null“: es klingt sauber und endet fast immer in einem zweiten
 System, das es nie schafft, das erste zu ersetzen. Das andere ist „ich wende einfach die Schleife
-an, dafür gibt es ja die Schritte 5 bis 10“: es klingt pragmatisch und heißt, auf Sand zu bauen,
+an, dafür gibt es ja die Schritte 5 bis 12“: es klingt pragmatisch und heißt, auf Sand zu bauen,
 denn die Schleife setzt voraus, dass es eine Vereinbarung gibt, eine Karte, eine Testumgebung,
 eine Batterie, die läuft, und ein Deployment, das sich wiederholt. Nichts davon existiert in einem
 System, das nicht mit der Methode geboren wurde. Dieser Weg ist der, der in der Mitte verläuft:
@@ -37,11 +37,11 @@ System, das nicht mit der Methode geboren wurde. Dieser Weg ist der, der in der 
 Die Methode hat drei Anwendungsfälle, und es lohnt sich zu wissen, in welchem du steckst, bevor du
 den Agenten öffnest, denn es ändert sich, wo man einsteigt.
 
-| Fall | Ausgangspunkt | Wo man einsteigt | Wie lange der Einstieg dauert | Wo es geschrieben steht |
+| Fall | Ausgangspunkt | Wo man einsteigt | Was es vor der ersten Funktionalität gibt | Wo es geschrieben steht |
 |---|---|---|---|---|
-| **Neues Projekt** | Leerer Ordner und ein Eigentümer mit einer Anfrage. | Schritt 0, und von dort die zweiundzwanzig der Reihe nach. | Eine Woche Start vor der ersten Funktionalität. | Das Hauptdokument, die zweiundzwanzig Verträge und das Kurshandbuch. |
-| **Evolutiv-korrektiv über einem System, das mit der Methode gemacht wurde** | Das System hat die Leiter schon erklommen: es hat Vereinbarung, Karte, mit Beleg geschlossene offene Posten, Batterie, Deployment und Handbücher. | Schritt 5: ein Block wird geöffnet und die Schleife durchlaufen; die 11 periodisch; die 15 beim Abschluss der Etappe. | Keiner: es ist Schritt 15, der für die nächste Etappe zur 0 zurückkehrt, und das steht schon in Teil B des Hauptdokuments. | Das Hauptdokument (Phase 4, Betrieb). |
-| **Evolutiv-korrektiv über einem System, das ohne die Methode gemacht wurde** | Ein System, das läuft, mit Nutzern, ohne eines dieser Artefakte oder mit einigen halb fertig. | Der Normalisierungsabschnitt dieser Seite (N0 bis N7), und erst danach die Schleife, im korrektiven oder im evolutiven Modus. | Zwei bis drei Wochen für ein kleines System, bevor die erste Zeile Funktionalität angefasst wird. | Diese Seite und das Kurshandbuch, Teil 2. |
+| **Neues Projekt** | Leerer Ordner und ein Eigentümer mit einer Anfrage. | Schritt 0, und von dort die vierundzwanzig der Reihe nach. | Der ganze Startabschnitt vor der ersten Funktionalität. | Das Hauptdokument, die vierundzwanzig Verträge und das Kurshandbuch. |
+| **Evolutiv-korrektiv über einem System, das mit der Methode gemacht wurde** | Das System hat die Leiter schon erklommen: es hat Vereinbarung, Karte, mit Beleg geschlossene offene Posten, Batterie, Deployment und Handbücher. | Schritt 5: ein Block wird geöffnet und die Schleife durchlaufen; die 13 periodisch; die 23 beim Abschluss der Etappe. | Keiner: es ist Schritt 23, der für die nächste Etappe zur 0 zurückkehrt, und das steht schon in Teil B des Hauptdokuments. | Das Hauptdokument (Phase 4, Betrieb). |
+| **Evolutiv-korrektiv über einem System, das ohne die Methode gemacht wurde** | Ein System, das läuft, mit Nutzern, ohne eines dieser Artefakte oder mit einigen halb fertig. | Der Normalisierungsabschnitt dieser Seite (N0 bis N7), und erst danach die Schleife, im korrektiven oder im evolutiven Modus. | Der ganze Normalisierungsabschnitt, bevor die erste Zeile Funktionalität angefasst wird. | Diese Seite und das Kurshandbuch, Teil 2. |
 
 Was draußen bleibt, benannt, damit es nicht verwechselt wird: die **technologische Migration**
 (die Plattform, die Sprache, die Datenbank wechseln) ist kein Anwendungsfall der Methode; sie ist
@@ -61,6 +61,11 @@ Es ändert sich der Aufwand, es zu lesen, nicht der Weg.
 Normalisieren heißt, das System in den Zustand zu bringen, den die Methode beim Öffnen der
 Schleife voraussetzt. Und ich tue es mit drei Regeln, über die ich nicht verhandle.
 
+Und etwas, das den drei Regeln vorausgeht: auf diesem Weg gibt es ebenfalls keine Fristen. Die
+Methode ist ein Prozess, keine Versprechung von Geschwindigkeit; ein Altsystem zu normalisieren
+dauert, was das Altsystem verlangt, und das Einzige, was ich festlege, sind die Reihenfolge und
+die Tore.
+
 **Erstens: es wird nicht neu geschrieben.** Die Normalisierung fasst keine Funktionalität an. Sie
 legt um das System herum, was ihm fehlt (die Vereinbarung, die Karte, die Testumgebung, die
 Batterie, das wiederholbare Deployment, die Sperren auf dem, was schon auf die Welt wirkt), und
@@ -74,7 +79,8 @@ Codes haben, und eine Charakterisierungsbatterie der kritischen Flüsse haben, d
 sich davon etwas ändert. Der Gurt ist ein **hartes Tor**: ohne ihn wird nichts geändert, mit einer
 einzigen schriftlichen Ausnahme für den Notfall in der Produktion, die ich weiter unten erkläre.
 Der Rest der Schuld wird **beim Anfassen** bezahlt: wenn ein Block in ein Modul eintritt, treten
-die Normalisierungsposten dieses Moduls mit ihm ein. Niemals „eine Woche allgemeines Aufräumen“.
+die Normalisierungsposten dieses Moduls mit ihm ein. Niemals „ein allgemeines Aufräumen“ vor dem
+Anfangen.
 
 **Drittens: alle Eingaben der vorherigen Etappen müssen existieren, auch wenn sie durch
 Selbsterschließung wiedergewonnen werden müssen.** Das ist die Regel, die diesen Weg von „einfach
@@ -107,12 +113,12 @@ entsteht, und wie sie auf dem evolutiv-korrektiven Weg beschafft wird.
 | `docs/ELIGIBILITY_CRITERIA.md` und `docs/ELIGIBILITY.md` | Schritt 0. | N0, mit vier weiteren Kriterien, die dem Altsystem eigen sind. | Der Eigentümer entscheidet. |
 | `docs/WORKING_AGREEMENT.md` | Schritt 1. | N1, mit fünf weiteren Regeln, die dem Altsystem eigen sind. | Der Eigentümer. |
 | `PROJECT.md`, `docs/SEMANTIC_TREE.md`, `docs/STATUS.md` | Schritt 2, aus der Erhebung. | N2, aus dem System, mit Marken; dazu die Liste der Diskrepanzen. | Der Eigentümer geht den Baum durch und entscheidet jede Diskrepanz. |
-| `docs/AUDIT_[Datum].md` | Schritt 11, am Ende. | N3, am Anfang: es ist das Inventar der Schuld. | Der Eigentümer liest und verifiziert zwei Befunde. |
-| `docs/ENVIRONMENTS_SURVEY.md`, die Testumgebung, die Continuous Integration, das wiederholbare Deployment, `docs/GATES.md` | Schritt 4 und 13. | N4, der Sicherheitsgurt, mit der Charakterisierungsbatterie. | Der Eigentümer sieht den Screenshot und den zweiten Lauf des Deployments. |
-| `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`, `docs/PRODUCER_CONSUMER_MAP.md` | Schritt 12 und 8. | N5, durch Inventur des Codes und der Datenbank. | Der Eigentümer bestätigt Sperre für Sperre. |
-| `docs/VOLUME_SURVEY.md`, `docs/SIZING.md` | Schritt 3, mit Zahlen, die das Geschäft liefert. | N6, mit in der Datenbank und in den Logs gemessenen Zahlen (Schritt 9 auf die Dimensionierung angewendet). | Der Eigentümer steuert nur bei, was sich nicht messen lässt. |
+| `docs/AUDIT_[Datum].md` | Schritt 13, am Ende. | N3, am Anfang: es ist das Inventar der Schuld. | Der Eigentümer liest und verifiziert zwei Befunde. |
+| `docs/ENVIRONMENTS_SURVEY.md`, die Testumgebung, die Continuous Integration, das wiederholbare Deployment, `docs/GATES.md` | Schritt 4 und 15. | N4, der Sicherheitsgurt, mit der Charakterisierungsbatterie. | Der Eigentümer sieht den Screenshot und den zweiten Lauf des Deployments. |
+| `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`, `docs/PRODUCER_CONSUMER_MAP.md` | Schritt 14 und 11. | N5, durch Inventur des Codes und der Datenbank. | Der Eigentümer bestätigt Sperre für Sperre. |
+| `docs/VOLUME_SURVEY.md`, `docs/SIZING.md` | Schritt 3, mit Zahlen, die das Geschäft liefert. | N6, mit in der Datenbank und in den Logs gemessenen Zahlen (Schritt 7 auf die Dimensionierung angewendet). | Der Eigentümer steuert nur bei, was sich nicht messen lässt. |
 | `docs/PENDING.md` | Schritt 5, aus der Anfrage des Kunden. | N7, aus dem Audit, den Diskrepanzen und der Anfrage des Kunden, mit der Marke „blockiert / wird beim Anfassen bezahlt / kann warten“. | Der Eigentümer ordnet. |
-| `docs/DECISIONS.md`, `docs/GOTCHAS.md`, `docs/LOCKS.md`, `docs/DEPLOYMENT.md` | Schritte 6, 8, 12, 13. | Sie werden leer angelegt oder in N2, N4 und N5 ausgefüllt, und sie wachsen in der Schleife wie im neuen Projekt. | Der Eigentümer. |
+| `docs/DECISIONS.md`, `docs/GOTCHAS.md`, `docs/LOCKS.md`, `docs/DEPLOYMENT.md` | Schritte 6, 11, 14, 15. | Sie werden leer angelegt oder in N2, N4 und N5 ausgefüllt, und sie wachsen in der Schleife wie im neuen Projekt. | Der Eigentümer. |
 
 Wenn am Ende von N7 eine dieser Dateien fehlt, ist der Abschnitt nicht erklommen. Es spielt keine
 Rolle, dass das System „funktioniert“: die Schleife wird sie in der ersten Sitzung brauchen.
@@ -120,20 +126,20 @@ Rolle, dass das System „funktioniert“: die Schleife wird sie in der ersten S
 ## Der Normalisierungsabschnitt: die acht Stationen
 
 Ich nenne sie Stationen und nicht Schritte, und ich nummeriere sie N0 bis N7, damit sie nicht mit
-den zweiundzwanzig der Leiter verwechselt werden. Es sind keine neuen Schritte: es sind die Schritte des
-Starts und drei aus dem Betrieb (die 8, die 11 und die 12), in anderer Reihenfolge und mit anderem
-Eingang. Im neuen Projekt ist der Eingang die Erhebung; hier ist der Eingang das System, und das
-Lesen übernimmt der Agent.
+den vierundzwanzig der Leiter verwechselt werden. Es sind keine neuen Schritte: es sind die
+Schritte des Starts und drei aus dem Betrieb (die 11, die 13 und die 14), in anderer Reihenfolge
+und mit anderem Eingang. Im neuen Projekt ist der Eingang die Erhebung; hier ist der Eingang das
+System, und das Lesen übernimmt der Agent.
 
 | Station | Ursprungsschritte | Was sich gegenüber dem neuen Projekt ändert |
 |---|---|---|
-| N0 — Eignung eines bestehenden Systems | 0 | Vier Kriterien mehr; X2 wird Bildschirm für Bildschirm gemessen; wenn es rot ist, ist es der erste offene Posten, keine Bedingung. |
+| N0 — Eignung eines bestehenden Systems | 0 | Sieben Voraussetzungen, die der Agent durch Tun verifiziert; jede rote wird zu einem Vorprojekt, nicht zu einer Ablehnung. |
 | N1 — Die Arbeitsvereinbarung für ein Altsystem | 1 | Fünf Regeln mehr: nicht refaktorieren, was nicht verlangt wurde, lesen bevor angefasst wird, notieren statt nebenbei reparieren, das aktuelle Verhalten ist die Spezifikation, nichts tritt ein ohne grüne Charakterisierung. |
 | N2 — Das Lesen des Systems | 2 | Die Erhebung, die Projektdatei und der Baum entstehen aus dem Code mit Quellenmarken; es erscheint die Liste der Diskrepanzen. |
-| N3 — Das Audit als Inventar | 11 | Es kommt zuerst, nicht zuletzt, und jeder Befund sagt, ob er blockiert, ob er beim Anfassen bezahlt wird, oder ob er warten kann. |
-| N4 — Der Sicherheitsgurt | 4, 7, 13 | Testumgebung mit Daten, wiederholbares Deployment, Geheimnisse draußen, Continuous Integration, und die Charakterisierungsbatterie. Hartes Tor. |
-| N5 — Sperren und Karte aus dem Code | 12, 8 | Inventar von allem, was auf die Welt wirkt, und von allen Verträgen zwischen Teilen, bevor etwas geändert wird. |
-| N6 — Dimensionieren mit echten Zahlen | 3, 9 | Die Primärzahlen werden gemessen, nicht erfragt; der Eigentümer steuert nur bei, was nicht in der Datenbank steht. |
+| N3 — Das Audit als Inventar | 13 | Es kommt zuerst, nicht zuletzt, und jeder Befund sagt, ob er blockiert, ob er beim Anfassen bezahlt wird, oder ob er warten kann. |
+| N4 — Der Sicherheitsgurt | 4, 8, 15 | Testumgebung mit Daten, wiederholbares Deployment, Geheimnisse draußen, Continuous Integration, und die Charakterisierungsbatterie. Hartes Tor. |
+| N5 — Sperren und Karte aus dem Code | 14, 11 | Inventar von allem, was auf die Welt wirkt, und von allen Verträgen zwischen Teilen, bevor etwas geändert wird. |
+| N6 — Dimensionieren mit echten Zahlen | 3, 7 | Die Primärzahlen werden gemessen, nicht erfragt; der Eigentümer steuert nur bei, was nicht in der Datenbank steht. |
 | N7 — Das Normalisierungs-Backlog | 5 | Die Schuld und die Anfrage des Kunden in einer einzigen Warteschlange, mit der Geschwindigkeitsmarke und der Paarung nach Modul. |
 
 Die Reihenfolge ist wichtig. N3 kommt vor N4, weil das Audit sagt, was in den Gurt hineingehört
@@ -144,39 +150,59 @@ ein Fehler nichts kostet. N6 kommt zuletzt, weil es auf der Testumgebung mit Dat
 seit N4 existiert. Und N7 schließt ab, weil es alles Vorherige in einer einzigen Warteschlange
 zusammenführt.
 
-### Wann: der Kalender der Normalisierung
+### Die Reihenfolge der Normalisierung
 
-| Woche | Stationen | Was sonst passiert |
+Es gibt keine Fristen: jede Etappe dauert, was das System verlangt, und das Einzige, was feststeht,
+ist die Reihenfolge.
+
+| Etappe | Stationen | Was sonst passiert |
 |---|---|---|
-| 1 | N0, N1, N2, N3 | Lesen des Systems mit dem Eigentümer daneben, der Knoten bestätigt und Diskrepanzen entscheidet. Nichts wird geändert. Zum Wochenabschluss: die wiedergewonnene Karte und das Inventar der Schuld. |
+| 1 | N0, N1, N2, N3 | Lesen des Systems mit dem Eigentümer daneben, der Knoten bestätigt und Diskrepanzen entscheidet. Nichts wird geändert. Zum Abschluss der Etappe: die wiedergewonnene Karte und das Inventar der Schuld. |
 | 2 | N4, N5 | Der Gurt: Testumgebung mit Daten, zweimal wiederholtes Deployment, rotierte Geheimnisse, Charakterisierungsbatterie der kritischen Flüsse. Bestätigte Sperren auf dem, was schon wirkt. Zum Abschluss: das System läuft im Test und die Batterie ist grün. |
 | 3 | N6, N7, und der erste Block | Gemessene Dimensionierung. Das geordnete Backlog. Es wird der erste Block mit Schritt 5 geöffnet, korrektiv oder evolutiv, mit seinen gepaarten Normalisierungsposten. Ab hier ist es die Schleife wie immer. |
 
-Wenn das System groß ist, verlängert sich die Woche 1 (es gibt mehr zu lesen) und die
-Charakterisierungsbatterie der Woche 2 (es gibt mehr Flüsse). Was sich nicht verlängert, ist N7:
-ein Normalisierungs-Backlog, das eine Woche zum Schreiben braucht, ist ein Backlog, das niemand
+Wenn das System groß ist, wächst die Etappe 1 (es gibt mehr zu lesen) und die
+Charakterisierungsbatterie der Etappe 2 (es gibt mehr Flüsse). Was nicht wächst, ist N7: ein
+Normalisierungs-Backlog, das sich nicht in einem Zug schreiben lässt, ist ein Backlog, das niemand
 pflegen wird.
 
 ---
 
-### N0 — Eignung eines bestehenden Systems
+### N0 — Eignung eines bestehenden Systems: die Voraussetzungen, die ein Modell verifizieren kann
 
 - **Absicht**: entscheiden, ob dieses System mit der Methode übernommen werden kann, bevor es
-  angefasst wird. Die zwei Ausschlusskriterien sind dieselben wie in Schritt 0, X1 (zugängliches
-  und auf Standardart verwaltetes Repository) und X2 (programmatisch bedienbare Bildschirme, mit
-  Prüfung der Wirkung im Backend), aber hier wird X2 Bildschirm für Bildschirm an dem gemessen,
-  was existiert, und wenn es rot ist, ist es keine Bedingung für den Anfang: es ist der erste
-  offene Posten des Backlogs, als blockierend markiert.
-- **Wann**: einmal, am ersten Tag. Zwei Stunden.
-- **Eingaben**: die Ersterhebung (die Anfrage, wer das System benutzt, was weh tut), Lesezugang
-  zum Repository und, wenn möglich, zu der Umgebung, in der es läuft.
-- **Artefakt**: `docs/ELIGIBILITY.md` mit der Entscheidung, und die vier Kriterien, die ich für
-  ein Altsystem hinzufüge: ob es jemanden gibt, der weiß, wie es funktioniert (und wie viel Zeit
-  er hat); ob die Produktion nur lesend abgefragt werden kann; ob irgendein automatischer Test
-  existiert; ob eine Sicherungskopie existiert und jemals wiederhergestellt wurde.
-- **Tor**: X1 grün; X2 grün oder mit seinem blockierenden offenen Posten eröffnet; Backup
-  mindestens einmal wiederhergestellt vor N4.
-- **Wer entscheidet**: der Eigentümer.
+  angefasst wird, mit Kriterien, die nicht von einer menschlichen Einschätzung abhängen, sondern
+  davon, was ein Frontier-Modell mit dem System tun kann und was nicht. Wenn eine Voraussetzung
+  nicht erfüllt ist, ist das kein „geht nicht“: es ist ein **eigenes Projekt**, vorher, damit das
+  System geeignet wird.
+- **Wann**: einmal, vor allem anderen.
+- **Eingaben**: die kurze Ersterhebung, Lesezugang zum Repository und, wenn möglich, zu der
+  Umgebung, in der es läuft, und zu seiner Datenbank.
+- **Artefakt**: `docs/ELIGIBILITY.md` mit der Entscheidung und den sieben ausschließenden
+  Voraussetzungen des Altsystems, jede vom Agenten mit Beleg verifiziert, nicht von einer Person
+  erklärt:
+  1. **Es lässt sich eine vollständige Umgebung des Systems aufbauen**, mit all seinen Quellen,
+     seinem Datenmodell und seiner Persistenz, aus dem Repository und einer Kopie der Daten.
+  2. **Der Code ist für ein Frontier-Modell verständlich und handhabbar**: der Agent kann ihn
+     ganz lesen und erklären, was jedes Modul tut, ohne zu erfinden.
+  3. **Aus dem Code heraus kann das Modell die vollständige Funktionalität des Systems in einem
+     Dokument beschreiben**, in einer Form, die ein Endnutzer als sein System wiedererkennt und
+     akzeptiert.
+  4. **Das Frontend lässt sich von Testwerkzeugen durchlaufen**, um Ende-zu-Ende-Tests zu
+     erzeugen, mit jedem Element zugänglich und der Wirkung im Backend prüfbar (das ist X2).
+  5. **Das System lässt sich mit heute verfügbaren Werkzeugen aus den Quellen bauen und
+     ausführen**: die Abhängigkeiten lösen sich auf, die Versionen existieren, nichts hängt von
+     einer verlorenen Binärdatei ab.
+  6. **Die Produktionsdaten lassen sich kopieren und anonymisieren** für eine Testumgebung, und
+     es gibt eine Sicherungskopie, die mindestens einmal wiederhergestellt wurde.
+  7. **Die externen Integrationen haben einen Testmodus oder lassen sich am Rand isolieren** (ein
+     falsches Postfach, ein Anbieter im Trockenlauf), damit die Aktionen mit Konsequenz ohne
+     Konsequenzen geprüft werden können.
+- **Tor**: alle sieben grün, mit dem Beleg des Agenten (die aufgebaute Umgebung, das
+  geschriebene Funktionalitätsdokument, ein laufender Ende-zu-Ende-Test eines Flusses). Jedes Rot
+  wird zu einem Vorprojekt mit seinem eigenen Ausgangskriterium.
+- **Wer entscheidet**: der Agent verifiziert und legt den Beleg vor; der Eigentümer entscheidet,
+  ob er die Vorprojekte angeht oder nicht.
 
 **Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
 machst es, nicht der Agent:
@@ -187,77 +213,92 @@ machst es, nicht der Agent:
   hat; ob es ein Backup gibt und wer es macht. Eine halbe Seite, absichtlich unvollständig: in N2
   wird der Agent sie aus dem System vervollständigen.
 - `docs/ELIGIBILITY_CRITERIA.md`: das Blatt von Schritt 0 (X1, X2 und die gewichtenden Kriterien)
-  plus vier Zeilen für die Kriterien des Altsystems: jemand, der Bescheid weiß, abfragbare
-  Produktion, vorhandene Tests, wiederhergestelltes Backup. Spalten für Antwort, Quelle und grün
-  oder rot leer.
-- Lesezugang zum Repository für den Agenten, und wenn möglich zur Testumgebung oder nur lesend zur
-  Produktion, mit den Zugangsdaten außerhalb des Chats.
-- Akzeptabler Mindestzustand: der Agent kann das Repository klonen, und du weißt, wer das System
-  gemacht hat und ob es lebt (das System und die Person).
+  plus die sieben Voraussetzungen des Altsystems von oben, jede mit drei leeren Spalten: grün oder
+  rot, der Beleg (was der Agent getan hat, um es zu verifizieren) und das Vorprojekt, falls sie
+  rot ist.
+- Lesezugang zum Repository für den Agenten, Zugang zu einer Kopie der Daten (oder nur lesend zur
+  Produktion) und zu einem Ort, an dem er versuchen kann, die Umgebung aufzubauen, mit den
+  Zugangsdaten außerhalb des Chats. Ohne das lassen sich die Voraussetzungen 1, 5 und 6 nicht
+  verifizieren und bleiben rot.
+- Akzeptabler Mindestzustand: der Agent kann das Repository klonen und hat einen Ort, an dem er
+  versuchen kann, das System hochzufahren.
 
 **Anfangs:**
 
-> We are going to assess whether this existing system can be taken over with the Urazuke method.
-> Read the initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
-> `docs/ELIGIBILITY_CRITERIA.md`, which for an existing system adds four criteria: whether anyone
-> who knows how the system works is available; whether production can be queried read-only;
-> whether any automated test exists; and whether a backup exists and has ever been restored. Then
-> explore the repository and, if I gave you access, the environment where it runs: change nothing.
-> Fill in the sheet criterion by criterion with the answer, its source (survey, code, database,
-> configuration, or inferred) and, for the exclusionary criteria X1 and X2, green or red. For X2,
-> list every screen and say for each whether it can be driven by a program today and whether the
-> effect can be checked in the backend. If a criterion cannot be answered from what you have, ask
-> me; do not assume. Do not decide: present me the completed sheet with your reading and your
-> doubts, and I will decide. Reply in my language.
+> We are going to assess whether this existing system can be taken over with the Urazuke method,
+> with prerequisites that you verify by doing, not by asking. Read the initial survey in
+> `docs/INITIAL_SURVEY.md` and the criteria sheet in `docs/ELIGIBILITY_CRITERIA.md`. Then, changing
+> nothing in the system, verify each prerequisite with evidence: (1) try to set up a complete
+> environment of the system from the repository and a copy of the data, with its sources, data
+> model and persistence, and tell me exactly what you could and could not bring up; (2) read the
+> whole code and tell me whether you can understand and work with it, module by module, naming
+> what you cannot understand; (3) from the code alone, write `docs/FUNCTIONALITY_RECOVERED.md`: the
+> complete functionality of the system described for an end user, screen by screen and process by
+> process, marking what you inferred; (4) list every screen and say whether it can be driven by a
+> test tool with each element accessible and the backend effect checkable, and prove it by writing
+> and running one end-to-end test of one flow; (5) try to build and run the system from the sources
+> with today's tools and report every dependency that does not resolve; (6) check whether the
+> production data can be copied and anonymized into a test environment and whether a backup exists
+> and has ever been restored; (7) list every external integration and say whether it has a test
+> mode or can be isolated at the edge. For each prerequisite: green or red, the evidence (what you
+> did and what happened), and, if red, what project would make it green. Do not decide: present me
+> the sheet, and I decide. Reply in my language.
 
 > [de]
-> Wir werden bewerten, ob dieses bestehende System mit der Urazuke-Methode übernommen werden kann.
-> Lies die Ersterhebung in `docs/INITIAL_SURVEY.md` und das Kriterienblatt in
-> `docs/ELIGIBILITY_CRITERIA.md`, das für ein bestehendes System vier Kriterien hinzufügt: ob
-> jemand verfügbar ist, der weiß, wie das System funktioniert; ob die Produktion nur lesend
-> abgefragt werden kann; ob irgendein automatischer Test existiert; und ob eine Sicherungskopie
-> existiert und jemals wiederhergestellt wurde. Erkunde danach das Repository und, wenn ich dir
-> Zugang gegeben habe, die Umgebung, in der es läuft: ändere nichts. Füll das Blatt Kriterium für
-> Kriterium aus mit der Antwort, ihrer Quelle (Erhebung, Code, Datenbank, Konfiguration oder
-> erschlossen) und, für die Ausschlusskriterien X1 und X2, grün oder rot. Liste für X2 jeden
-> Bildschirm auf und sag für jeden, ob er sich heute programmatisch bedienen lässt und ob sich die
-> Wirkung im Backend prüfen lässt. Wenn sich ein Kriterium mit dem, was du hast, nicht beantworten
-> lässt, frag mich; nimm nichts an. Entscheide nicht: leg mir das ausgefüllte Blatt mit deiner
-> Lesart und deinen Zweifeln vor, und ich entscheide. Antworte in meiner Sprache.
+> Wir werden bewerten, ob dieses bestehende System mit der Urazuke-Methode übernommen werden kann,
+> mit Voraussetzungen, die du durch Tun verifizierst, nicht durch Fragen. Lies die Ersterhebung in
+> `docs/INITIAL_SURVEY.md` und das Kriterienblatt in `docs/ELIGIBILITY_CRITERIA.md`. Verifiziere
+> danach, ohne irgendetwas am System zu ändern, jede Voraussetzung mit Beleg: (1) versuch, eine
+> vollständige Umgebung des Systems aus dem Repository und einer Kopie der Daten aufzubauen, mit
+> seinen Quellen, seinem Datenmodell und seiner Persistenz, und sag mir genau, was du hochfahren
+> konntest und was nicht; (2) lies den ganzen Code und sag mir, ob du ihn verstehen und mit ihm
+> arbeiten kannst, Modul für Modul, und benenn, was du nicht verstehst; (3) schreib allein aus dem
+> Code `docs/FUNCTIONALITY_RECOVERED.md`: die vollständige Funktionalität des Systems, für einen
+> Endnutzer beschrieben, Bildschirm für Bildschirm und Prozess für Prozess, und markier, was du
+> erschlossen hast; (4) liste jeden Bildschirm auf und sag, ob er sich mit einem Testwerkzeug
+> bedienen lässt, mit jedem Element zugänglich und der Wirkung im Backend prüfbar, und beweis es,
+> indem du einen Ende-zu-Ende-Test eines Flusses schreibst und laufen lässt; (5) versuch, das
+> System mit den heutigen Werkzeugen aus den Quellen zu bauen und auszuführen, und melde jede
+> Abhängigkeit, die sich nicht auflöst; (6) prüf, ob sich die Produktionsdaten in eine
+> Testumgebung kopieren und anonymisieren lassen und ob eine Sicherungskopie existiert, die jemals
+> wiederhergestellt wurde; (7) liste jede externe Integration auf und sag, ob sie einen Testmodus
+> hat oder sich am Rand isolieren lässt. Für jede Voraussetzung: grün oder rot, der Beleg (was du
+> getan hast und was passiert ist) und, falls rot, welches Projekt sie grün machen würde.
+> Entscheide nicht: leg mir das Blatt vor, und ich entscheide. Antworte in meiner Sprache.
 
-Was ich hier verlange: dasselbe wie in Schritt 0, mit drei Unterschieden. Dass er das System
-erkundet, ohne etwas zu ändern, denn hier gibt es ein System zu erkunden; dass jede Antwort sagt,
-woher sie stammt, denn die Erhebung ist kurz und die meisten Antworten werden aus dem Code kommen;
-und dass X2 **Bildschirm für Bildschirm** gemessen wird, denn in einem Altsystem ist die Antwort
-nie „ja“ oder „nein“ für das ganze System, sie lautet „diese vier ja, diese zwei nicht“, und diese
-zwei sind der erste offene Posten.
+Was ich hier verlange: dass die Voraussetzungen **durch Tun** verifiziert werden (aufbauen, lesen,
+das Dokument schreiben, einen Test laufen lassen), denn ein Frontier-Modell kann alle vier Dinge
+tun, und damit hört die Eignung auf, eine Meinung zu sein; das Dokument der wiedergewonnenen
+Funktionalität, das der stärkste Beweis dafür ist, dass der Code handhabbar ist, und das außerdem
+der erste Entwurf dessen ist, was N2 in die Karte verwandeln wird; und dass jedes Rot mit dem
+Projekt kommt, das es grün macht, denn eine fehlende Voraussetzung ist keine Ablehnung, sondern
+eine Vorarbeit mit eigenem Umfang.
 
 **Bevor du den Prompt schickst** zum Abschluss: deine Entscheidung in einer Zeile, getroffen nach
-dem Lesen des vollständigen Blatts; die Bedingungen, prüfbar und nicht mehr als drei (die mit dem
-vor N4 wiederhergestellten Backup ist fast immer eine davon); und die Liste der roten Bildschirme
-für X2, die der Prompt in den ersten offenen Posten verwandelt.
+dem Lesen des Blatts mit dem Beleg jeder Voraussetzung; und, für jedes Rot, deine Entscheidung,
+ob das Vorprojekt jetzt, später oder nie angegangen wird (und dann ist das System nicht geeignet).
 
 **Zum Abschluss:**
 
-> Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
-> `docs/ELIGIBILITY.md` with the date, who decided, every answer with its source, and the
-> conditions if any. If X2 is red for any screen, create `docs/PENDING.md` and open the first
-> pending item: make every screen drivable by a program with its backend effect checkable; mark it
-> as blocking. Include the questions you asked and my answers.
+> Decision: [go / go after these prerequisite projects: … / no-go]. Write the final sheet to
+> `docs/ELIGIBILITY.md` with the date, who decided, each prerequisite with its colour and its
+> evidence, and, for every red one, the prerequisite project as a pending item in `docs/PENDING.md`
+> marked as blocking, with its own acceptance criterion: the prerequisite verified green. Include
+> the questions you asked and my answers.
 
 > [de]
-> Entscheidung: [go / no-go / go unter diesen Bedingungen: …]. Schreibe das endgültige Blatt nach
-> `docs/ELIGIBILITY.md` mit dem Datum, wer entschieden hat, jeder Antwort mit ihrer Quelle, und
-> den Bedingungen, falls es welche gibt. Wenn X2 für irgendeinen Bildschirm rot ist, lege
-> `docs/PENDING.md` an und eröffne den ersten offenen Posten: jeden Bildschirm programmatisch
-> bedienbar machen, mit prüfbarer Wirkung im Backend; markiere ihn als blockierend. Nimm die
-> Fragen auf, die du gestellt hast, und meine Antworten.
+> Entscheidung: [go / go nach diesen Vorprojekten: … / no-go]. Schreibe das endgültige Blatt nach
+> `docs/ELIGIBILITY.md` mit dem Datum, wer entschieden hat, jeder Voraussetzung mit ihrer Farbe und
+> ihrem Beleg und, für jede rote, dem Vorprojekt als offenem Posten in `docs/PENDING.md`, als
+> blockierend markiert, mit seinem eigenen Abnahmekriterium: die Voraussetzung grün verifiziert.
+> Nimm die Fragen auf, die du gestellt hast, und meine Antworten.
 
-Vollständigkeitsprüfung: hat X2 eine Antwort pro Bildschirm, nicht eine für das ganze System?
-Haben die vier Kriterien des Altsystems eine Antwort mit Quelle? Ist, falls das Backup nie
-wiederhergestellt wurde, dies als Bedingung vor N4 festgehalten? Warnsignal: der Agent hat X2 für
-alles grün beantwortet, weil „es eine Webanwendung ist“. Alte Webanwendungen sind die, die sich am
-wenigsten programmatisch bedienen lassen.
+Vollständigkeitsprüfung: hat jede Voraussetzung einen Beleg für etwas, das der Agent **getan**
+hat, und nicht eine Antwort von dir? Existiert `docs/FUNCTIONALITY_RECOVERED.md`, und hast du es
+wie der Eigentümer gelesen: beschreibt es das System, das er zu haben glaubt? Hat er einen echten
+Ende-zu-Ende-Test eines Flusses laufen lassen? Hat jedes Rot sein Vorprojekt mit
+Ausgangskriterium? Warnsignal: alle an einem Nachmittag grün, für ein System, das niemand
+versteht. Der Agent hat geantwortet, statt zu tun.
 
 ---
 
@@ -266,7 +307,7 @@ wenigsten programmatisch bedienen lassen.
 - **Absicht**: die Regeln festlegen, bevor irgendetwas angefasst wird, mit fünf Regeln mehr als
   Schritt 1, nämlich denen, die ein geerbtes System braucht, damit der Agent es nicht auf eigene
   Faust „verbessert“.
-- **Wann**: am ersten Tag, nach N0. Eine halbe Stunde.
+- **Wann**: nach N0, bevor irgendetwas gelesen wird.
 - **Eingaben**: deine Arbeitsvorlieben, wie in Schritt 1.
 - **Artefakt**: `docs/WORKING_AGREEMENT.md` mit den sechs Regeln der Methode und den fünf des
   Altsystems.
@@ -280,7 +321,7 @@ wenigsten programmatisch bedienen lassen.
   fragen soll, welche Autonomie du ihm gibst, was du nicht tolerierst.
 - Eine Entscheidung von dir über das Risikoniveau, das du während der Normalisierung akzeptierst:
   ob der Agent auf eigene Faust in die Testumgebung deployen darf oder nicht (in die Produktion
-  niemals, bis N4 abgeschlossen und Schritt 13 erklommen ist).
+  niemals, bis N4 abgeschlossen und Schritt 15 erklommen ist).
 - `docs/ELIGIBILITY.md` (N0), abgeschlossen.
 - Akzeptabler Mindestzustand: du kannst die Fragen von Schritt 1 und die zum Risiko beantworten.
 
@@ -342,7 +383,7 @@ Diese Regel ist die verkleidete Neuschreibung; lehn sie mit schriftlicher Begrü
   Code, der Datenbank, der Dokumentation und dem, was das Geschäft glaubt, nicht übereinstimmt. Es
   ist Schritt 2 durch Reverse Engineering, und es ist der Schritt, der pro Stunde den meisten Wert
   des ganzen Weges bringt.
-- **Wann**: in der ersten Woche, nach N1. Zwei oder drei Tage, mit dem Eigentümer verfügbar zum
+- **Wann**: nach N1, mit dem Eigentümer verfügbar zum
   Bestätigen.
 - **Eingaben**: das vollständige Repository, das Schema der Datenbank nur lesend, die
   Konfiguration jeder Umgebung, die Logs, falls es welche gibt, die Dokumentation, die existiert,
@@ -472,13 +513,13 @@ gab“ (das gehört in den Baum, und was passiert ist, gehört in den lebendigen
 
 ### N3 — Das Audit als Inventar der Schuld
 
-- **Absicht**: Schritt 11, aber am Anfang und mit einer zusätzlichen Frage pro Befund: blockiert
+- **Absicht**: Schritt 13, aber am Anfang und mit einer zusätzlichen Frage pro Befund: blockiert
   er, wird er beim Anfassen des Moduls bezahlt, oder kann er warten? Der Bericht ist kein Bericht:
   er ist der Rohstoff des Gurts (N4) und des Backlogs (N7). In meinem ersten Projekt, das mit der
   schon geschriebenen Methode anlief, verwandelte sich die Serie der frühen Audits direkt in
   offene Posten [Ref. 30](REFERENCIAS.md#ref-30); hier mache ich dasselbe an einem fremden System.
-- **Wann**: in der ersten Woche, nach N2, in einer anderen Sitzung als der, die das System gelesen
-  hat, wenn das möglich ist. Ein Tag.
+- **Wann**: nach N2, in einer anderen Sitzung als der, die das System gelesen
+  hat, wenn das möglich ist.
 - **Eingaben**: das Repository nur lesend, die Umgebung, in der es läuft, nur lesend, die
   wiedergewonnene Karte (N2).
 - **Artefakt**: `docs/AUDIT_[Datum].md` mit jedem Befund markiert als „blockiert / wird beim
@@ -537,13 +578,13 @@ machst es, nicht der Agent:
 > Note. Schließ damit ab, dass jeder Befund in einen vorgeschlagenen offenen Posten verwandelt
 > wird, die blockierenden zuerst. Antworte in meiner Sprache.
 
-Was ich hier verlange: das Audit von Schritt 11 mit der hinzugefügten Dimension „Deploybarkeit“
+Was ich hier verlange: das Audit von Schritt 13 mit der hinzugefügten Dimension „Deploybarkeit“
 (denn in einem Altsystem ist das Deployment meist das erste Problem) und mit dem
 Geschwindigkeitsfeld, das einen Bericht in einen Plan verwandelt: ohne dieses Feld hat ein
 auditiertes Altsystem vierzig Befunde und niemand weiß, womit er anfangen soll. Das Kriterium, was
 blockiert, gebe ich vor, nicht der Auditor, denn es hängt von den Konsequenzen des Geschäfts ab.
 
-**Zum Abschluss:** der Abschluss-Prompt von Schritt 11, an den Konstrukteur, mit einer Ergänzung:
+**Zum Abschluss:** der Abschluss-Prompt von Schritt 13, an den Konstrukteur, mit einer Ergänzung:
 die offenen Posten, die er eröffnet, tragen die Geschwindigkeitsmarke des Befunds.
 
 Prüfung: sagt der Bericht, was er NICHT auditieren konnte? Gibt es mindestens einen Befund mit der
@@ -560,10 +601,10 @@ stören will.
   was es sicher macht, es zu ändern: eine Testumgebung mit realitätsnahen Daten, ein Deployment,
   das sich wiederholt, die Geheimnisse außerhalb des Codes, die Continuous Integration, die laufen
   lässt, was es gibt, und die **Charakterisierungsbatterie** der kritischen Flüsse. Es ist Schritt
-  4, die erste Hälfte von Schritt 13 und eine umgekehrte Form von Schritt 7, zusammen und vor
+  4, die erste Hälfte von Schritt 15 und eine umgekehrte Form von Schritt 8, zusammen und vor
   jeder Änderung. Es ist ein **hartes Tor**: solange der Gurt nicht grün ist, wird keine Zeile
   Funktionalität geändert.
-- **Wann**: die zweite Woche, ganz.
+- **Wann**: nach N3, vor jeder Änderung.
 - **Eingaben**: die Erhebung der Umgebungen (in N2 wiedergewonnen und von dir bestätigt), der
   Bericht aus N3 mit seinen blockierenden Befunden, der semantische Baum mit den Prozessen, und
   Zugang zum Server und zur Datenbank.
@@ -642,7 +683,7 @@ machst es, nicht der Agent:
 > zeig ihn mir. Antworte in meiner Sprache.
 
 Was ich hier verlange: das Skelett von Schritt 4, um etwas herum gebaut, das schon existiert, mit
-der halben Schritt 13 vorgezogen (Geheimnisse draußen, Deployment dokumentiert), denn in einem
+der halben Schritt 15 vorgezogen (Geheimnisse draußen, Deployment dokumentiert), denn in einem
 Altsystem sind die Geheimnisse im Code die Regel und nicht die Ausnahme
 [Ref. 42](REFERENCIAS.md#ref-42); die Anonymisierung als Teil der Umgebung und nicht als Detail;
 und die Tore geschrieben, bevor die Batterie existiert, damit die Batterie schon als Tor geboren
@@ -682,7 +723,7 @@ offene Posten, der sie bedienbar macht, geschlossen vorher oder als Teil dieser 
 > `docs/STATUS.md` fest, und mach die Batterie zum Tor der Testumgebung, wie `docs/GATES.md` es
 > sagt. Antworte in meiner Sprache.
 
-Was ich hier verlange: Schritt 7 verkehrt herum. Im neuen Projekt wird der Test rot geboren und
+Was ich hier verlange: Schritt 8 verkehrt herum. Im neuen Projekt wird der Test rot geboren und
 geht mit der Änderung auf Grün; hier wird der Test grün geboren, denn er erfasst, was da ist, und
 der Beweis, dass er taugt, ist, dass er **rot wird, wenn du den Fluss absichtlich kaputt machst**.
 Ohne diese bewiesene Mutation ist ein Charakterisierungstest ein Test, der besteht, weil er nichts
@@ -708,11 +749,11 @@ Altsystems leben in den echten Daten, nicht in den Beispieldaten).
 - **Absicht**: wissen, bevor irgendetwas geändert wird, was das System tut, das auf die Welt wirkt
   (abbuchen, senden, genehmigen, löschen, benachrichtigen, nachts allein laufen) und wer jeden
   Vertrag zwischen Teilen produziert und konsumiert. Im neuen Projekt wird das vor dem Bauen
-  entschieden (Schritt 12) und beim Bauen kartiert (Schritt 8). Im Altsystem ist es schon gebaut,
+  entschieden (Schritt 14) und beim Bauen kartiert (Schritt 11). Im Altsystem ist es schon gebaut,
   und niemand erinnert es vollständig. Eine evolutive Änderung kann eine Aktion mit Konsequenz
   auslösen, die schlief, und eine korrektive Änderung kann einen Konsumenten veraltet
   zurücklassen.
-- **Wann**: die zweite Woche, nach dem Gurt, denn Aktionen zu inventarisieren verlangt, das System
+- **Wann**: nach dem Gurt, denn Aktionen zu inventarisieren verlangt, das System
   dort laufen lassen zu können, wo ein Fehler nichts kostet.
 - **Eingaben**: der Code, die Datenbank, die geplanten Prozesse des Servers, der semantische Baum,
   und die Liste von dem, was außerhalb des Repositorys lebt.
@@ -774,14 +815,14 @@ machst es, nicht der Agent:
 > angefasst wird. Implementier noch nichts: ich bestätige Sperre für Sperre. Antworte in meiner
 > Sprache.
 
-Was ich hier verlange: das Inventar der Schritte 12 und 8 in einem Durchgang, denn sie durchlaufen
+Was ich hier verlange: das Inventar der Schritte 14 und 11 in einem Durchgang, denn sie durchlaufen
 denselben Code; den Vergleich zwischen dem, was das Geschäft erinnert, und dem, was der Code tut,
 wo die Versendungen auftauchen, an die sich niemand erinnerte; und den Vorschlag **jetzt oder beim
 Anfassen** für jede Sperre, der die Regel der zwei Geschwindigkeiten auf den Schutz angewendet
 ist: eine Sperre auf einer Aktion, die abbucht, kommt jetzt; eine Sperre auf einem monatlichen
 Export kann auf den Block warten, der dieses Modul anfasst.
 
-**Zum Abschluss:** der Abschluss-Prompt von Schritt 12, mit den als „jetzt“ markierten Sperren,
+**Zum Abschluss:** der Abschluss-Prompt von Schritt 14, mit den als „jetzt“ markierten Sperren,
 jede mit ihrem roten Test gegen die Version ohne Sperre; die übrigen bleiben im Backlog mit ihrer
 Marke.
 
@@ -794,11 +835,11 @@ Trigger der Datenbank.
 ### N6 — Dimensionieren mit echten Zahlen
 
 - **Absicht**: Schritt 3, aber mit dem enormen Vorteil des Altsystems: die Primärdaten muss man
-  nicht erfragen, sie stehen in der Datenbank und in den Logs. Sie werden mit Schritt 9 gemessen
+  nicht erfragen, sie stehen in der Datenbank und in den Logs. Sie werden mit Schritt 7 gemessen
   (ein Messgerät mit Test, in zwei Richtungen auditiert), und der Eigentümer steuert nur bei, was
   nirgends steht: wie stark sie zu wachsen erwarten und ob das System an andere verkauft werden
   wird.
-- **Wann**: die dritte Woche, bevor der erste Block geöffnet wird. Ein halber Tag.
+- **Wann**: nach N5, bevor der erste Block geöffnet wird.
 - **Eingaben**: die Produktionsdatenbank nur lesend oder die vollständige Testkopie, die Logs, der
   semantische Baum mit den Entitäten.
 - **Artefakt**: `docs/VOLUME_SURVEY.md` mit jeder Zahl markiert als `[Datenbank]` oder `[Log]` und
@@ -855,7 +896,7 @@ Trigger der Datenbank.
 > teuer sind. Ändere keinen Code. Antworte in meiner Sprache.
 
 Was ich hier verlange: messen statt fragen, was das Altsystem erlaubt und das neue Projekt nicht;
-das Messgerät mit Test und das Audit in zwei Richtungen aus Schritt 9, denn Messgeräte lügen
+das Messgerät mit Test und das Audit in zwei Richtungen aus Schritt 7, denn Messgeräte lügen
 [Ref. 35](REFERENCIAS.md#ref-35), [Ref. 36](REFERENCIAS.md#ref-36); und die Dimensionierung als
 Tor vor dem Weiterentwickeln [Ref. 14](REFERENCIAS.md#ref-14): wenn die aktuelle Architektur das
 „mal zehn“ nicht aushält und die Anfrage des Kunden genau das Wachsen ist, weiß man das jetzt und
@@ -876,7 +917,7 @@ gemessen; wenn sie nicht darin steht, wird sie erfragt; eine dritte Möglichkeit
   ausstehenden Sperren, den Entscheidungen der Dimensionierung kam) und die Anfrage des Kunden
   (was zu korrigieren und was hinzuzufügen ist) zusammenleben, jeder mit seiner
   Geschwindigkeitsmarke und nach Modul gepaart. Es ist Schritt 5 mit zwei Spalten mehr.
-- **Wann**: die dritte Woche, zum Abschluss des Abschnitts. Ein halber Tag. Danach die Schleife.
+- **Wann**: zum Abschluss des Abschnitts. Danach die Schleife.
 - **Eingaben**: `docs/AUDIT_[Datum].md`, `docs/DISCREPANCIES.md` mit den Entscheidungen,
   `docs/LOCKS.md`, `docs/SIZING.md`, der semantische Baum, und die Anfrage des Kunden für diese
   Etappe.
@@ -946,7 +987,7 @@ Was ich hier verlange: den vollständigen Schritt 5 (die detaillierte Spezifikat
 offenen Posten, auch in denen der Normalisierung), mit den zwei Marken, die diesen Weg ausmachen:
 die Geschwindigkeit, die sagt, wann jede Schuld bezahlt wird, und der Typ, der sagt, wie sie
 geschlossen wird (ein korrektiver wird mit dem Test geschlossen, der den Fehler reproduziert; ein
-evolutiver mit dem aus Schritt 7). Und die **Paarung nach Modul**, die die Regel „wird beim
+evolutiver mit dem aus Schritt 8). Und die **Paarung nach Modul**, die die Regel „wird beim
 Anfassen bezahlt“ operativ macht: wenn ich den Block „die Anzahlung“ öffne, treten die
 Normalisierungsposten des Zahlungsmoduls mit ihm ein, und nicht vorher und nicht nachher.
 
@@ -963,7 +1004,7 @@ ist die als Liste verkleidete Neuschreibung. Archivier, was nie bezahlt werden w
 
 ## Die Schleife über einem geerbten System: korrektiver Modus und evolutiver Modus
 
-Nach N7 trifft der Weg auf die Leiter: die Schritte 5 bis 10 werden mit jedem offenen Posten
+Nach N7 trifft der Weg auf die Leiter: die Schritte 5 bis 12 werden mit jedem offenen Posten
 erklommen, genau wie im neuen Projekt, mit denselben Verträgen und denselben Prompts. Aber es gibt
 zwei Nuancen, die einen eigenen Abschnitt wert sind, denn sie sind das, was „ein Altsystem mit
 Methode anfassen“ von „ein Altsystem vorsichtig anfassen“ unterscheidet.
@@ -971,7 +1012,7 @@ Methode anfassen“ von „ein Altsystem vorsichtig anfassen“ unterscheidet.
 ### Der korrektive Modus: das Rot ist natürlich
 
 Ein korrektiver offener Posten ist ein Bug: etwas, das heute fehlschlägt, und der Kunde weiß es.
-In Schritt 7 des neuen Projekts wird das Rot hergestellt (der Test wird geschrieben, gegen den
+In Schritt 8 des neuen Projekts wird das Rot hergestellt (der Test wird geschrieben, gegen den
 alten Code ausgeführt, man sieht ihn fehlschlagen). Im korrektiven Modus **ist das Rot der Bug
 selbst**: der Test, der den Fehler reproduziert, indem er den Fluss vom Bildschirm aus bedient wie
 der Nutzer, der ihn gemeldet hat, muss gegen den aktuellen Code fehlschlagen. Wenn er nicht
@@ -1039,7 +1080,7 @@ jetzt bezahlt, mit ihrem Beleg, nicht „später“.
 ### Der evolutive Modus: die Charakterisierung ist die Regression
 
 Ein evolutiver offener Posten ist etwas Neues auf etwas, das existiert. Er wird mit dem Prompt von
-Schritt 5 geöffnet, mit Schritt 6 und 7 genau so gebaut, und der einzige Unterschied ist, was „die
+Schritt 5 geöffnet, mit Schritt 6 und 8 genau so gebaut, und der einzige Unterschied ist, was „die
 Regression der Nachbarn“ bedeutet: hier sind die Nachbarn das ganze System, und die
 Charakterisierungsbatterie ist die, die sagt, dass das, was lief, weiter läuft. Zwei Regeln mehr.
 Erstens: wenn der Block in ein Modul eintritt, treten die als „wird beim Anfassen bezahlt“
@@ -1083,13 +1124,14 @@ informierten Eigentümer, und den Rückweg (das Backup aus N0 oder die vorherige
 > grün. Antworte in meiner Sprache.
 
 Was ich hier verlange: das Minimum, mit dem Rückweg vorher und nicht nachher, und mit dem
-ehrlichen Bericht über das Nichtverifizierte (Schritt 10); und die Pflicht, am selben Tag wieder
+ehrlichen Bericht über das Nichtverifizierte (Schritt 12); und die Pflicht, am selben Tag wieder
 durch die Schleife einzutreten, was eine Ausnahme von einer Gewohnheit unterscheidet.
 
-## Die sechs Schritte der Betriebsqualität in einem Altsystem
+## Die sechs Schritte der Betriebsqualität (16 bis 19, 21 und 22) in einem Altsystem
 
-Die Schritte 16 bis 21 des Hauptdokuments (Beobachtbarkeit und Nachverfolgbarkeit, Persistenz,
-Schwachstellen, Leistung und die beiden Monitorings) gelten für beide Anwendungsfälle, und in
+Die Schritte 16 bis 19, 21 und 22 des Hauptdokuments (Beobachtbarkeit und Nachverfolgbarkeit,
+Persistenz, Schwachstellen, Leistung und die beiden Monitorings) gelten für beide
+Anwendungsfälle, und in
 einem Altsystem haben sie einen präzisen Platz, denn bei mehreren von ihnen ist die halbe Arbeit
 schon vom Normalisierungsabschnitt erledigt:
 
@@ -1109,15 +1151,14 @@ schon vom Normalisierungsabschnitt erledigt:
 - **19, Leistung**: er läuft mit den in N6 gemessenen Volumina, auf der Persistenz, die in dem
   schon korrigiert wurde, was blockierte, vor dem ersten Deployment nach der Normalisierung. In
   einem Altsystem entdeckt er meist, dass der Bruchpunkt näher liegt, als das Geschäft glaubt.
-- **20 und 21, Monitoring**: sie werden in der Woche des ersten Deployments aufgebaut, genau wie
+- **21 und 22, Monitoring**: sie werden mit dem ersten Deployment aufgebaut, genau wie
   im neuen Projekt, mit einem Unterschied: die erste Lesung des Berichts ist die Basislinie des
   Altsystems, und die Abweichungen und die Fehler, die am ersten Tag schon existierten, werden zu
   offenen Posten mit ihrer Geschwindigkeitsmarke. Keiner bleibt als „bekannt“ ohne offenen Posten.
 
-In der Praxis fügen die vier vor dem Deployment für ein kleines System dem Kalender der
-Normalisierung eine Woche hinzu (eine vierte Woche, vor dem ersten evolutiven Block oder
-zusammen mit ihm, je nach Dringlichkeit der Anfrage), und die beiden Monitorings werden in der
-Woche des Deployments aufgebaut.
+In der Praxis sind die vier vor dem Deployment eine weitere Etappe der Normalisierung, vor dem
+ersten evolutiven Block oder zusammen mit ihm, je nach Dringlichkeit der Anfrage, und die beiden
+Monitorings werden mit dem Deployment aufgebaut.
 
 ## Wann das System normalisiert ist
 
@@ -1147,7 +1188,7 @@ Abschnitts**, nämlich dann, wenn der erste Block geöffnet wird. Das ist die Li
 Wenn alle acht „ja“ ergeben, ist das System so weit normalisiert, wie dieser Weg es verlangt, und
 was folgt, ist die Leiter wie immer. Die Phasen 3 und 4 des Hauptdokuments (Produktionsfreigabe
 und Betrieb) gelten unverändert: das periodische Audit, die Handbücher (die es in einem Altsystem
-meist nicht gibt und die mit Schritt 14 aus dem System, wie es ist, erzeugt werden), der residente
+meist nicht gibt und die mit Schritt 20 aus dem System, wie es ist, erzeugt werden), der residente
 Agent, und die Retrospektive mit Zahlen, die in einem Altsystem eine eigene Frage hat: wie viel
 das Normalisieren gekostet hat, und was von der als „kann warten“ markierten Schuld am Ende doch
 gekostet hat.
@@ -1173,19 +1214,18 @@ gekostet hat.
 
 ## Was noch auszuarbeiten ist `[Hypothese]`
 
-1. Die vier Eignungskriterien, die dem Altsystem eigen sind, sind aus meiner Erfahrung mit fremden
-   Systemen im Diagnosemodus geschrieben; ich habe sie nicht an abgelehnten Projekten kalibriert,
-   wie ich es mit X1 und X2 getan habe. Ein Altsystem ohne jemanden, der weiß, wie es
-   funktioniert, kann trotzdem tragfähig sein, wenn die Datenbank und der Code lesbar sind; ein
-   Altsystem mit Tests, die seit zwei Jahren niemand laufen lässt, ist vielleicht schlechter dran
-   als eines ohne Tests. Es fehlt die Kasuistik.
+1. Die sieben Voraussetzungen von N0 werden durch Tun verifiziert, und das macht sie kalibrierbar:
+   jedes Altsystem, das durch N0 geht, hinterlässt sein Blatt mit Beleg. Was fehlt, ist die
+   Kasuistik: wie viele Altsysteme an welcher Voraussetzung scheitern und was das Vorprojekt
+   kostet, das sie grün macht. Es ist keine Hypothese mehr über das Kriterium; es ist eine
+   Rechnung, die ich noch nicht habe.
 2. Die Größe der Charakterisierungsbatterie: zwischen vier und acht Flüssen ist das, was bei mir
    in kleinen Systemen funktioniert hat; in einem großen weiß ich nicht, ob das Kriterium pro
    Fluss, pro Modul oder nach dem Geld läuft, das auf dem Spiel steht.
-3. Wie lange die Normalisierung in einem großen System dauert: der Kalender von drei Wochen gilt
-   für ein System von der Größe des Leitprojekts. In einem mit Dutzenden von Modulen vermute ich,
-   dass die Normalisierung pro Modul gemacht wird, mit einem Gurt pro Modul, und dass N2 ganz
-   gemacht wird, N4 aber aufgeteilt. Ich habe es nicht erprobt.
+3. Wie sich die Normalisierung in einem großen System aufteilt: ich vermute, dass das Lesen (N2)
+   ganz gemacht wird, der Gurt (N4) aber pro Modul aufgebaut wird, in dem Maß, in dem jedes Modul
+   angefasst werden soll, und dass das harte Tor dann hart pro Modul wird und nicht pro System.
+   Ich habe es nicht erprobt.
 4. Was mit einem Altsystem passiert, das von einem Modell mit halber Methode gebaut wurde
    (Vereinbarung ja, Tests nein): ob dieser Weg ganz gegangen wird oder ob es eine Abkürzung gibt.
    Meine Intuition ist, dass es keine Abkürzung gibt und dass die Abkürzung genau der Fehler ist,

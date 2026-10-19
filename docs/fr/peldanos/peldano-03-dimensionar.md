@@ -1,7 +1,7 @@
 # Étape 3 — Dimensionner avant de concevoir l'architecture (contrat de l'échelon)
 
 **Tronçon :** démarrage.
-**Quand :** une fois, la première semaine, après la définition et avant de monter le squelette ;
+**Quand :** une fois, après la définition et avant de monter le squelette ;
 on le refait si le métier change d'échelle.
 **Forme :** conversation : l'agent calcule et présente des options ; vous choisissez.
 **Taille :** obligatoire toujours, mais proportionnel : dans un petit projet, le dimensionnement

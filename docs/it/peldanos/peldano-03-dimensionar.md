@@ -1,8 +1,8 @@
 # Passo 3 — Dimensionare prima di progettare l'architettura (contratto del gradino)
 
 **Fase:** avvio.
-**Quando:** una volta, nella prima settimana, dopo la definizione e prima di montare lo
-scheletro; si rifà se il business cambia di scala.
+**Quando:** una volta, dopo la definizione e prima di montare lo scheletro; si rifà se il
+business cambia di scala.
 **Forma:** conversazione: l'agente calcola e presenta opzioni; tu scegli.
 **Dimensione:** obbligatorio sempre, ma proporzionale: in un progetto piccolo il dimensionamento
 può essere mezza pagina e una sola decisione ("sta in SQLite per anni"). Ciò che non può è non

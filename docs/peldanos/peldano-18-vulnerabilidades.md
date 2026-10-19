@@ -1,7 +1,7 @@
 # Peldaño 18 — Escaneo y solución de vulnerabilidades, en la cadena y con calendario (contrato del peldaño)
 
-**Tramo:** calidad operativa, antes del primer despliegue a producción.
-**Cuándo:** en la fase de salida a producción, después del 13 (el escaneo corre en la
+**Tramo:** salida a producción.
+**Cuándo:** en la fase de salida a producción, después del 15 (el escaneo corre en la
 integración continua) y antes del primer despliegue: ningún P0 abierto se promueve. Después, en
 cada push, y con un calendario propio (semanal) aunque no haya pushes, porque las
 vulnerabilidades nuevas aparecen sin que vos cambies nada. En un legado, la primera corrida es
@@ -13,7 +13,7 @@ de secretos no se negocia; el análisis estático y la línea base de configurac
 
 ## Para qué sirve
 
-La auditoría del peldaño 11 mira el sistema con ojos frescos cada tanto; este peldaño mira una
+La auditoría del peldaño 13 mira el sistema con ojos frescos cada tanto; este peldaño mira una
 sola cosa, la seguridad, todo el tiempo y por máquina. Son complementarios: la auditoría encuentra
 lo que requiere criterio (una puerta de administrador que nadie debería tener
 [Ref. 40](../REFERENCIAS.md#ref-40)); el escaneo encuentra lo que requiere constancia (la dependencia
@@ -43,10 +43,10 @@ Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener 
 prompt, con su contenido y su estado mínimo, están en la sección 2, en el bloque "Antes de enviar
 el prompt" que precede a cada uno.
 
-- La integración continua (peldaño 4 y 13), donde corre el escaneo.
+- La integración continua (peldaño 4 y 15), donde corre el escaneo.
 - El relevamiento de entornos: qué servidor, qué contenedor, qué puertos, para la línea base de
   configuración.
-- La auditoría anterior (11, o N3), para no reportar lo ya conocido.
+- La auditoría anterior (13, o N3), para no reportar lo ya conocido.
 - Tu criterio sobre qué es P0: lo que permite entrar, lo que expone datos personales, lo que
   permite cobrar o enviar sin control.
 
@@ -57,11 +57,11 @@ el prompt" que precede a cada uno.
 **Antes de enviar el prompt**, esto tiene que existir, y lo hacés vos (o el negocio con vos), no
 el agente:
 
-- La integración continua corriendo en cada push (peldaño 4 y 13), con cuota suficiente: el
+- La integración continua corriendo en cada push (peldaño 4 y 15), con cuota suficiente: el
   escaneo agrega minutos por corrida; averiguá cuántos te quedan.
 - `docs/ENVIRONMENTS_SURVEY.md` con el servidor, el contenedor si hay, los puertos expuestos y
   quién administra el dominio, para que el agente sepa qué línea base aplicar.
-- `docs/AUDIT_[fecha].md` (peldaño 11 o N3), para que no reporte lo conocido.
+- `docs/AUDIT_[fecha].md` (peldaño 13 o N3), para que no reporte lo conocido.
 - Tu criterio de P0 en dos líneas, para el hueco del prompt. Para la mayoría de los sistemas: lo
   que permite entrar sin credencial, lo que expone datos personales, lo que permite cobrar,
   enviar o borrar sin control.
@@ -102,7 +102,7 @@ el agente:
 
 Qué le estoy pidiendo: las cuatro capas de escaneo (dependencias, código, secretos en el
 historial, configuración), en la cadena **y con calendario**, porque las vulnerabilidades nuevas
-no esperan a tu próximo push; el informe con la forma del peldaño 11, con la cláusula de "no
+no esperan a tu próximo push; el informe con la forma del peldaño 13, con la cláusula de "no
 escaneado" en vez de "limpio"; el criterio de P0 dado por mí; y la prohibición de actualizar sin
 pasar por el bucle, que es la que evita el viernes roto.
 
@@ -131,7 +131,7 @@ pasar por el bucle, que es la que evita el viernes roto.
 > nuevo abre un pendiente automáticamente. Registrá la política, el calendario y lo que no está
 > cubierto en `docs/SECURITY.md`.
 
-Qué le estoy pidiendo: un pendiente por arreglo, con el rojo del peldaño 7 donde se puede (una
+Qué le estoy pidiendo: un pendiente por arreglo, con el rojo del peldaño 8 donde se puede (una
 vulnerabilidad arreglada sin test vuelve con el próximo refactor); el escaneo repetido como
 evidencia; y la conversión en compuerta, que es lo que hace que este peldaño siga vivo cuando
 nadie lo mira.

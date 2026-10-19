@@ -40,7 +40,7 @@ programación cambia de naturaleza: de oficio a alfabetización.
 | **Cómo aprende** | Escribiendo y recibiendo correcciones sobre el código. | Dirigiendo al modelo peldaño por peldaño y recibiendo correcciones sobre la evidencia que exigió y la que aceptó sin exigir. |
 | **Qué revisa el senior** | Su código. | Su criterio: qué le pidió al modelo, qué supuso el modelo sin que él lo detectara, qué aceptó como "listo" sin prueba. |
 | **Cuál es su error típico** | Un bug. | Creerle al modelo. |
-| **Cuánto tarda en ser útil** | Meses, hasta escribir código que no haya que reescribir. | Semanas, si entra por el método: el primer proyecto chico con los veintidós peldaños lo deja operativo. |
+| **Cuándo es útil** | Cuando escribe código que no hay que reescribir, y eso tarda. | Cuando termina su primer proyecto chico con los veinticuatro peldaños: el método no promete velocidad, promete un sistema operable y un criterio formado. |
 | **En qué se convierte** | En un programador que sabe más lenguajes y frameworks. | En alguien que puede responder por un sistema sin haber escrito una línea: un ingeniero de sistemas que dirige modelos. |
 
 ## El impacto en los focos de capacitación
@@ -77,7 +77,7 @@ Los ordeno por el peldaño donde se ejercitan, porque esa es la forma de enseña
    estimarlo. Es la habilidad número uno, y es la que la industria dejó de enseñar hace veinte
    años. El modelo es pésimo en esto por diseño: completa los huecos con lo más probable, y lo
    más probable no es lo que el negocio necesita.
-2. **Diseño de la verificación** (peldaños 7, 9, 10, 19). No escribir el test: saber qué test
+2. **Diseño de la verificación** (peldaños 8, 7, 12, 19). No escribir el test: saber qué test
    demuestra qué, por qué un test tiene que verse en rojo antes de valer, qué es una prueba de
    punta a punta y qué es una simulación que no prueba nada, qué número decide algo y con qué
    instrumento se mide, cómo se lee un reporte y se distingue lo verificado de lo creído. El
@@ -87,14 +87,14 @@ Los ordeno por el peldaño donde se ejercitan, porque esa es la forma de enseña
    verificado, el punto ciego no declarado, el "listo" que no era [Ref. 43](REFERENCIAS.md#ref-43).
    Esta habilidad no existía como foco de formación porque no había nadie que mintiera con tanta
    seguridad y tan buena redacción.
-4. **Dimensionamiento y operación** (peldaños 3, 4, 13, 16 a 21). Qué es un entorno, cómo se
+4. **Dimensionamiento y operación** (peldaños 3, 4, 15, 16 a 22). Qué es un entorno, cómo se
    despliega, qué es la integración continua, qué se mide en producción, qué es un índice, un
    punto de ruptura, un umbral de alerta. Antes era territorio de otro rol; ahora el junior
    dirige al modelo que lo hace, y tiene que saber qué pedirle y cómo verificar que lo hizo.
-5. **Seguridad y consecuencia** (peldaños 12, 18). Qué acciones del sistema actúan sobre el
+5. **Seguridad y consecuencia** (peldaños 14, 18). Qué acciones del sistema actúan sobre el
    mundo, qué es un candado, qué es fail-closed, qué es una vulnerabilidad y por qué una
    actualización de dependencia es un cambio.
-6. **Decisión y comunicación con el dueño** (peldaños 1, 6, 14). Preguntar bien, con
+6. **Decisión y comunicación con el dueño** (peldaños 1, 6, 20). Preguntar bien, con
    recomendación y alternativa; escribir una decisión con palabras textuales, fecha y dueño;
    escribir un manual que una persona que no programa pueda seguir. El junior es, en el método,
    el traductor entre el dueño y el modelo, y la traducción se hace en los dos sentidos.
@@ -125,13 +125,13 @@ alfabetización mínima no es negociable. La lista:
 - **Git**: qué es un commit, una rama, un push, un historial. Lo suficiente para leer el rastro de
   evidencia que el método deja ahí.
 - **SQL básico**: leer una consulta y entender qué tabla lee y con qué filtro. Es el idioma de
-  los datos, y de los números del peldaño 9.
+  los datos, y de los números del peldaño 7.
 - **La terminal**: correr un comando que el modelo te dio y leer su salida. Si el junior no puede
   correr el medidor, no puede verificar el número.
 - **Depuración como última herramienta**: cuando el log, el test y el medidor no alcanzaron, abrir
   el código con el modelo al lado y leer juntos.
 
-Se enseña en dos o tres semanas, se practica durante todo el curso, y no es el oficio: es la
+Se enseña en la primera etapa, se practica durante todo el curso, y no es el oficio: es la
 alfabetización que permite ejercerlo.
 
 ## Con qué objetivo capacitar a un junior
@@ -139,7 +139,7 @@ alfabetización que permite ejercerlo.
 Lo digo sin rodeos, porque de la claridad del objetivo depende todo lo demás. El objetivo de
 capacitar a un junior en la era posterior a la programación a mano es formar a alguien que
 **pueda responder por un sistema en producción sin haber escrito una línea de su código**: que
-pueda llevar un proyecto chico por los veintidós peldaños de punta a punta, dirigiendo a un
+pueda llevar un proyecto chico por los veinticuatro peldaños de punta a punta, dirigiendo a un
 modelo, exigiéndole evidencia en cada paso, decidiendo con el dueño, y sabiendo en todo momento
 qué está verificado, qué está creído y qué no se ve. Yo lo llamo, provisoriamente, *dueño
 técnico de la evidencia*: el que no lee el código y sin embargo puede decir, con pruebas en la
@@ -161,64 +161,65 @@ Tres consecuencias del objetivo, que ordenan la capacitación:
    pendientes" en el bucle, que es lo más parecido a darle tareas chicas de código. Es un error:
    el bucle sin el arranque es construir sobre arena, y el junior que nunca hizo un peldaño 0 o
    un 3 no entiende por qué el 5 tiene la forma que tiene. Los dos proyectos guía existen para
-   eso: uno nuevo y uno heredado, de punta a punta, los veintidós peldaños y las ocho estaciones.
+   eso: uno nuevo y uno heredado, de punta a punta, los veinticuatro peldaños y las ocho estaciones.
 
 ## Cómo capacitarlo: el plan
 
-Lo que sigue es el plan que usaría, y que voy a usar con la primera cohorte. Doce semanas de
-trabajo parcial, con un mentor, sobre los dos proyectos guía del curso, y después un proyecto real
+Lo que sigue es el plan que usaría, y que voy a usar con la primera cohorte: cuatro etapas, sin
+plazos (el método no los tiene, y la formación tampoco: cada etapa termina cuando su lista de
+salida da "sí"), con un mentor, sobre los dos proyectos guía del curso, y después un proyecto real
 chico con un dueño de verdad.
 
-### Semanas 1 y 2: alfabetización y el modelo como objeto de estudio
+### Etapa 1: alfabetización y el modelo como objeto de estudio
 
 - La alfabetización de arriba: leer código, cómo corre un sistema, git, SQL básico, la terminal.
   Con el modelo al lado, explicando; el junior no escribe, lee y corre.
-- **El modelo como objeto de estudio**: una semana de hacerle pedidos al modelo con el único
+- **El modelo como objeto de estudio**: un tiempo de hacerle pedidos al modelo con el único
   propósito de verlo fallar. Pedirle un dato que no tiene y ver si lo inventa. Darle un pedido
   ambiguo y ver si pregunta. Pedirle que cierre algo y ver si dice "listo" sin prueba. Pedirle
-  que arregle un bug sin reproducirlo. Cada fallo se anota con su olor. Al final de la semana el
+  que arregle un bug sin reproducirlo. Cada fallo se anota con su olor. Al final de la etapa el
   junior tiene su propio catálogo, y es el catálogo del documento de referencias, descubierto.
 - Lectura del documento principal, con el glosario a mano, y de las referencias: la historia de
   dónde sale cada regla.
 
-### Semanas 3 a 8: el proyecto nuevo, con mentor
+### Etapa 2: el proyecto nuevo, con mentor
 
 El manual del curso, parte 1, tal cual, sobre el proyecto guía "Turnera" o sobre un proyecto
-propio chico. Los veintidós peldaños. Con tres reglas de mentoría:
+propio chico. Los veinticuatro peldaños. Con tres reglas de mentoría:
 
 - **El mentor revisa evidencia, no código.** Lee el contrato de convivencia, el árbol semántico,
   la especificación de tres pendientes, el reporte de cierre de un pendiente, el informe de la
   auditoría, el reporte de la prueba de carga. Y hace una sola pregunta cada vez: "¿cómo sabés
   que esto es cierto?". Si la respuesta es "porque el modelo lo dijo", el peldaño no está subido.
-- **El mentor diseña incidentes.** Una vez por semana, sin avisar, altera algo: cambia un dato
+- **El mentor diseña incidentes.** Cada tanto, sin avisar, altera algo: cambia un dato
   del relevamiento, mete un supuesto en la volumetría, pide un cambio fuera del alcance a través
   del modelo. El junior tiene que detectarlo por la evidencia.
 - **El junior lleva su propio registro de fallos del modelo**: cada vez que lo atrapó, qué olor
   tenía, en qué peldaño. Al final del proyecto ese registro es su retrospectiva personal, y la
-  propuesta de cambio a la escalera (peldaño 15) la escribe él.
+  propuesta de cambio a la escalera (peldaño 23) la escribe él.
 
-### Semanas 9 a 11: el proyecto heredado, con menos mentor
+### Etapa 3: el proyecto heredado, con menos mentor
 
 El manual, parte 2: la Turnera heredada, o un legado real chico. El tramo de normalización y los
 dos primeros bloques. Acá la mentoría baja: el mentor lee el mapa recuperado y las discrepancias,
 el informe de la auditoría con sus marcas de velocidad, y el cierre del primer bug en modo
-correctivo. El objetivo de estas semanas es que el junior aprenda lo que el proyecto nuevo no
+correctivo. El objetivo de esta etapa es que el junior aprenda lo que el proyecto nuevo no
 enseña: a leer un sistema ajeno a través del modelo, a decidir con el dueño qué de lo que el
 código hace está mal y qué era una regla olvidada, y a no reescribir.
 
-### Semana 12: el proyecto real, solo
+### Etapa 4: el proyecto real, solo
 
 Un proyecto chico de verdad, con un dueño de verdad que tiene quince minutos por día, de punta
 a punta. El mentor no interviene; lee la retrospectiva con números al final. Si el junior llega
-a producción con las veintidós condiciones de la lista de salida en "sí", está formado. Si no,
+a producción con las veinticuatro condiciones de la lista de salida en "sí", está formado. Si no,
 la lista dice exactamente qué peldaño volver a subir, y eso también es formación.
 
 ### Qué mide el progreso
 
 No cuántos pendientes cerró. Tres cosas, en este orden:
 
-1. **Cuántas veces atrapó al modelo**, y en qué peldaño. Un junior que en seis semanas no atrapó
-   al modelo ninguna vez no está mirando: el modelo falla siempre.
+1. **Cuántas veces atrapó al modelo**, y en qué peldaño. Un junior que en todo el proyecto nuevo
+   no atrapó al modelo ninguna vez no está mirando: el modelo falla siempre.
 2. **Cuánto le costó al dueño.** Minutos por día de preguntas; si suben, el junior está
    trasladando al dueño lo que el método le pide resolver a él (peldaño 1).
 3. **La calidad de su propuesta de cambio a la escalera.** Es el indicador de criterio: un junior
@@ -234,7 +235,7 @@ cambia de forma:
   entero con el método. Es más valioso antes, y es más peligroso antes, porque dirige un modelo
   que construye rápido; por eso el método es la condición, no un agregado.
 - **El senior** deja de revisar código y pasa a tres cosas: escribir y mantener los contratos (el
-  de convivencia, las compuertas, los candados), auditar con otra sesión (peldaño 11) y decidir
+  de convivencia, las compuertas, los candados), auditar con otra sesión (peldaño 13) y decidir
   lo que el junior no puede decidir (arquitectura, el "por diez", qué bloquea). Su valor se mueve
   del teclado al criterio, que es donde siempre estuvo en los buenos.
 - **El equipo se achica y se aplana.** Un senior y dos o tres juniors con método llevan lo que
@@ -256,10 +257,10 @@ cambia de forma:
   junior formado en una sola herramienta aprende sus atajos y no el método; la formación tiene
   que pasar por al menos dos.
 - **El costo invisible.** Un junior con un modelo gasta tokens como si fueran gratis. El
-  presupuesto de tokens tiene que ser parte de la formación desde la semana 1, con el número a la
-  vista.
-- **La ilusión de velocidad.** El modelo construye en una tarde lo que antes llevaba una semana,
-  y el junior puede creer que terminó. La lista de salida a producción, con sus veintidós
+  presupuesto de tokens tiene que ser parte de la formación desde la primera etapa, con el número a
+  la vista.
+- **La ilusión de velocidad.** El modelo construye en una sesión lo que antes llevaba mucho más,
+  y el junior puede creer que terminó. La lista de salida a producción, con sus veinticuatro
   condiciones, es el antídoto: "terminado" tiene una definición, y no es "funciona".
 - **El mentor que revisa código por costumbre.** Es el riesgo del lado del senior, y es serio: un
   mentor que lee el código le enseña al junior que la evidencia no alcanza, que es exactamente lo
@@ -269,7 +270,7 @@ cambia de forma:
 
 1. Cuánta programación hay que haber hecho para leer bien el código de otro. Mi intuición es que
    lo que importa es haber depurado, no haber escrito, y que alcanza con poco. Sin datos todavía.
-2. El plan de doce semanas está escrito desde mis proyectos y desde lo que enseñé antes de los
+2. El plan de cuatro etapas está escrito desde mis proyectos y desde lo que enseñé antes de los
    modelos, no desde una cohorte. La primera lo va a corregir, igual que al curso.
 3. Si el "dueño técnico de la evidencia" es un rol nuevo o es el ingeniero de sistemas de siempre
    con otra herramienta. Me inclino por lo segundo, y entonces el nombre sobra; pero el mercado

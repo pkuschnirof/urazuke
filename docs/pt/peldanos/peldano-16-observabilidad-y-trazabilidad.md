@@ -1,7 +1,7 @@
 # Passo 16 — Observabilidade e rastreabilidade totais, com nível configurável (contrato do degrau)
 
-**Fase:** qualidade operacional, antes da primeira implantação em produção.
-**Quando:** na fase de saída para produção, depois do 13 (já há cadeia de implantação e
+**Fase:** saída para produção.
+**Quando:** na fase de saída para produção, depois do 15 (já há cadeia de implantação e
 configuração por ambiente) e antes dos testes de desempenho (19), porque sem observabilidade os
 testes de desempenho não dizem o que quebrou. Num legado, o nível mínimo (registros estruturados
 com nível configurável e um identificador de correlação) entra no cinto de segurança (N4); o
@@ -19,8 +19,8 @@ pedir ao agente que "revise". E quero poder subir o nível de detalhe dos regist
 em um minuto, sem voltar a implantar, e baixá-lo depois. Isso é observabilidade: ver o que o
 sistema faz. E a segunda coisa é rastreabilidade: que toda ação com consequência (cobrou, enviou,
 apagou, aprovou) deixe um rastro de quem, quando, o quê, de onde e com que resultado, num
-registro que a aplicação não pode editar. Sem isto, o agente residente do degrau 15 opera às
-cegas, o monitoramento dos degraus 20 e 21 não tem do que se alimentar, e cada incidente se
+registro que a aplicação não pode editar. Sem isto, o agente residente do degrau 23 opera às
+cegas, o monitoramento dos degraus 21 e 22 não tem do que se alimentar, e cada incidente se
 diagnostica com hipóteses em vez de com evidência. O turno órfão que continuou vivo uma hora e
 quarenta e três se encontrou pelo log, não pelo código [Ref. 16](../REFERENCIAS.md#ref-16); e o
 agente residente arrancou, justamente, lendo logs [Ref. 13](../REFERENCIAS.md#ref-13).
@@ -46,8 +46,8 @@ O que segue é a lista genérica. Os arquivos concretos que você tem que ter pr
 prompt, com seu conteúdo e seu estado mínimo, estão na seção 2, no bloco "Antes de enviar o
 prompt" que precede cada um.
 
-- A cadeia de implantação e a configuração por ambiente (degrau 13): o nível se configura ali.
-- A tabela de cadeados (degrau 12): cada ação com consequência é uma entrada da auditoria.
+- A cadeia de implantação e a configuração por ambiente (degrau 15): o nível se configura ali.
+- A tabela de cadeados (degrau 14): cada ação com consequência é uma entrada da auditoria.
 - O levantamento inicial com os dados pessoais marcados: os registros não podem contê-los.
 - Onde vão viver os registros e as métricas (um arquivo rotacionado, um serviço): você decide.
 
@@ -58,9 +58,9 @@ prompt" que precede cada um.
 **Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
 o agente:
 
-- `docs/DEPLOYMENT.md` (degrau 13) com a forma como se lê a configuração por ambiente: o nível de
+- `docs/DEPLOYMENT.md` (degrau 15) com a forma como se lê a configuração por ambiente: o nível de
   registro vai ser mais uma variável dessa configuração.
-- `docs/LOCKS.md` (degrau 12): a lista de ações com consequência é a lista do que tem que ficar
+- `docs/LOCKS.md` (degrau 14): a lista de ações com consequência é a lista do que tem que ficar
   na auditoria.
 - Em `docs/INITIAL_SURVEY.md`, a lista de que dados são pessoais (nomes, telefones, e-mails,
   documentos, diagnósticos), escrita por você com o dono: é o que os registros têm que mascarar.
@@ -82,7 +82,7 @@ o agente:
 > backend, to the database and to every external call; (3) traceability of every consequential
 > action in `docs/LOCKS.md`: who, when, what, from where, with which input and which outcome, in
 > an audit record the application cannot edit; (4) health and metrics endpoints or files
-> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 20 and 21
+> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 21 and 22
 > will read; (5) masking of every personal field listed in `docs/INITIAL_SURVEY.md`, so that no
 > log record contains personal data. Show me one real request followed by its id through every
 > layer, and show me the level changing in the test environment without a redeploy. Document the
@@ -104,7 +104,7 @@ o agente:
 > `docs/LOCKS.md`: quem, quando, o quê, de onde, com que entrada e com que resultado, num
 > registro de auditoria que a aplicação não pode editar; (4) pontos ou arquivos de saúde e
 > métricas (pedidos, latência, erros, tamanho das filas, uso de recursos) que o monitoramento dos
-> degraus 20 e 21 vai ler; (5) mascaramento de todo campo pessoal listado em
+> degraus 21 e 22 vai ler; (5) mascaramento de todo campo pessoal listado em
 > `docs/INITIAL_SURVEY.md`, de modo que nenhum registro contenha dados pessoais. Mostre-me um
 > pedido real seguido pelo seu identificador através de cada camada, e mostre-me o nível mudando
 > no ambiente de teste sem voltar a implantar. Documente os níveis, onde se mudam e onde vivem os

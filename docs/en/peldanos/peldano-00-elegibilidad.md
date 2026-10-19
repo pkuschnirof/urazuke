@@ -1,10 +1,9 @@
 # Step 0 — Can this project be run this way? (step contract)
 
 **Stretch:** start-up.
-**When:** once only, in the first week, before opening the repository and before anything else.
-One hour of work.
+**When:** once only, before opening the repository and before anything else.
 **Form:** conversation: the agent evaluates and asks; you decide.
-**Size:** mandatory in every project, however small. It takes an hour; it saves months.
+**Size:** mandatory in every project, however small.
 **Status:** the exclusionary criteria X1 and X2 are closed; the weighted criteria (D1 to D10) I am
 still calibrating, and I mark them as hypotheses.
 

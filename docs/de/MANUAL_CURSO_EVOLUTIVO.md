@@ -2,7 +2,7 @@
 
 Autor: Pablo Kuschniroff, unterstützt von Claude Code. Version 1, 18. Oktober 2026. Das ist der
 zweite Teil des [Kurshandbuchs](MANUAL_CURSO.md): er setzt voraus, dass du den ersten gemacht
-hast, oder zumindest, dass du die Lektionen 0 bis 7 gelesen hast, denn hier erkläre ich nicht noch
+hast, oder zumindest, dass du die Lektionen 0 bis 8 gelesen hast, denn hier erkläre ich nicht noch
 einmal, was ein offener Posten, ein roter Test oder ein semantischer Baum ist. Die Methode dieses
 Teils steht auf der Seite des [evolutiv-korrektiven Weges](EVOLUTIVO_CORRECTIVO.md); hier steht
 die Praxis, mit einem zweiten Leitprojekt. Die seltsamen Wörter stehen im Glossar des
@@ -33,16 +33,16 @@ Welt wirkt, die Dimensionierung mit gemessenen Zahlen, und ein Backlog, in dem d
 Anfrage des Kunden zusammenleben, nach Modul gepaart. Und danach der erste Bug, korrigiert mit
 seinem roten Test, und die erste neue Funktionalität, gebaut mit der vollständigen Methode.
 
-### Der Kalender dieses Teils
+### Die Reihenfolge dieses Teils
 
-| Woche | Lektionen | Was du zusätzlich machst |
+| Etappe | Lektionen | Was du zusätzlich machst |
 |---|---|---|
 | 1 | N0, N1, N2, N3 | **Lesen.** Nichts wird geändert. Du gehst den wiedergewonnenen Baum mit dem Eigentümer durch, entscheidest die Diskrepanzen eine nach der anderen, liest das Audit. Zum Abschluss: die Karte und das Inventar der Schuld. |
 | 2 | N4, N5 | **Der Gurt.** Testumgebung mit anonymisierten Daten, Deployment zweimal, rotierte Geheimnisse, Charakterisierungsbatterie mit ihrem Rot durch Mutation. Bestätigte Sperren auf dem, was schon wirkt. Zum Abschluss: das System läuft im Test und die Batterie ist grün. |
 | 3 | N6, N7, R1 | **Messen, ordnen, korrigieren.** Gemessene Dimensionierung. Das Backlog mit den zwei Marken. Der erste Block: der bekannte Bug, im korrektiven Modus geschlossen, mit seinen gepaarten Posten. |
-| 4 | R2 | **Weiterentwickeln.** Der zweite Block: die neue Funktionalität, gebaut mit der vollständigen Methode (Lektionen 5 bis 10 des ersten Teils), mit der Charakterisierung als Regression. |
-| 5 und 6 | 11, 12, 13, 14, 16, 17, 18, 19 des ersten Teils | **Produktionsfreigabe.** Periodisches Audit, restliche Sperren, Abschluss des Weges in die Produktion, die drei Handbücher (die das Altsystem nicht hatte), und die vier Schritte der Betriebsqualität vor dem Deployment: vollständige Beobachtbarkeit, Persistenz mit dem, was N6 gemessen hat, Schwachstellen-Scan als Tor, Lasttest mit dem Bruchpunkt. |
-| 7 | 15, 20, 21 des ersten Teils | **Betrieb.** Die beiden Monitorings, aufgebaut in der Woche des Deployments, mit der ersten Lesung als Basislinie des Altsystems; residenter Agent; Retrospektive mit der dem Altsystem eigenen Frage: wie viel das Normalisieren gekostet hat. |
+| 4 | R2 | **Weiterentwickeln.** Der zweite Block: die neue Funktionalität, gebaut mit der vollständigen Methode (Lektionen 5 bis 12 des ersten Teils), mit der Charakterisierung als Regression. |
+| 5 und 6 | 13, 14, 15, 20, 16, 17, 18, 19 des ersten Teils | **Produktionsfreigabe.** Periodisches Audit, restliche Sperren, Abschluss des Weges in die Produktion, die drei Handbücher (die das Altsystem nicht hatte), und die vier Schritte der Betriebsqualität vor dem Deployment: vollständige Beobachtbarkeit, Persistenz mit dem, was N6 gemessen hat, Schwachstellen-Scan als Tor, Lasttest mit dem Bruchpunkt. |
+| 7 | 23, 21, 22 des ersten Teils | **Betrieb.** Die beiden Monitorings, aufgebaut mit dem Deployment, mit der ersten Lesung als Basislinie des Altsystems; residenter Agent; Retrospektive mit der dem Altsystem eigenen Frage: wie viel das Normalisieren gekostet hat. |
 
 ### Das Leitprojekt: „Geerbte Turnera“
 
@@ -87,15 +87,18 @@ Lesen: nichts wird geändert, und die Versuchung, etwas zu ändern, wird enorm s
 folgenden bauen den Gurt. Die zwei letzten messen und ordnen. Erst danach wird Funktionalität
 angefasst.
 
-### Lektion N0 — Eignung eines bestehenden Systems
+### Lektion N0 — Eignung eines bestehenden Systems: Voraussetzungen, die der Agent durch Tun verifiziert
 
-**Was du verstehen musst.** Die zwei Ausschlusskriterien sind dieselben wie in Lektion 0, aber
-hier wird X2 (programmatisch bedienbare Bildschirme) Bildschirm für Bildschirm beantwortet, und
-wenn einer rot ist, ist das kein Grund, nicht anzufangen: er ist der erste offene Posten, und er
-blockiert. Es kommen vier Kriterien hinzu, die dem Altsystem eigen sind: ob es jemanden gibt, der
-weiß, wie es funktioniert, ob die Produktion nur lesend abgefragt werden kann, ob irgendein Test
-existiert, und ob das Backup jemals wiederhergestellt wurde. Das letzte ist das, von dem fast alle
-entdecken, dass es rot ist.
+**Was du verstehen musst.** In Lektion 0 beantwortete die Erhebung die Kriterien. Hier gibt es ein
+System, und also lassen sich die Kriterien **durch Tun verifizieren**, vom Agenten, ohne dass
+jemand eine Meinung abgibt: Kann er eine vollständige Umgebung mit Quellen, Daten und Persistenz
+aufbauen? Kann er den Code verstehen? Kann er allein aus dem Code ein Dokument schreiben, das die
+ganze Funktionalität beschreibt und das die Leiterin als ihr System wiedererkennt? Kann er die
+Bildschirme mit einem Testwerkzeug bedienen und einen Ende-zu-Ende-Test laufen lassen? Lässt es
+sich mit heutigen Werkzeugen bauen? Lassen sich die Daten kopieren und anonymisieren, und gibt es
+ein Backup, das wiederhergestellt wurde? Haben die Integrationen einen Testmodus? Es sind sieben
+Voraussetzungen, und die neue Regel lautet: ein Rot ist kein „geht nicht“, es ist ein
+**Vorprojekt**, mit eigenem Umfang, damit das System geeignet wird.
 
 **Bevor du den Prompt schickst**, mit deinen Händen:
 
@@ -103,87 +106,50 @@ entdecken, dass es rot ist.
   doppelte Erinnerung, das, was fehlt), wer es gemacht hat und wie lange er zum Antworten braucht,
   wo es läuft, wer Zugang hat, und dass es ein „automatisches“ Backup gibt, das nie jemand
   wiederhergestellt hat. Eine halbe Seite.
-- `docs/ELIGIBILITY_CRITERIA.md`: das Blatt aus Lektion 0 mit vier Zeilen mehr: jemand, der
-  Bescheid weiß, abfragbare Produktion, vorhandene Tests, wiederhergestelltes Backup. Spalten
-  leer.
-- Lesezugang zum Repository für den Agenten und, wenn du ihn bekommst, einen nur lesenden Zugang
-  zur Datenbank, außerhalb des Chats.
+- `docs/ELIGIBILITY_CRITERIA.md`: das Blatt aus Lektion 0 plus die sieben Voraussetzungen des
+  Altsystems (kopier sie von der Seite des evolutiv-korrektiven Weges, Station N0), mit drei
+  leeren Spalten: grün oder rot, Beleg, Vorprojekt.
+- Lesezugang zum Repository, eine Kopie der Datenbank (oder nur lesend die Produktion) und ein
+  Ort, an dem der Agent versuchen kann, das System hochzufahren (deine Maschine reicht für den
+  Kurs), mit den Zugangsdaten außerhalb des Chats.
 
-1. Füg ihm diesen Prompt ein:
+1. Füg ihm den anfänglichen Prompt der Station N0 ein (auf der Seite des evolutiv-korrektiven
+   Weges), genau so.
+2. Es wird dauern: er muss die Umgebung aufbauen, alles lesen, `docs/FUNCTIONALITY_RECOVERED.md`
+   schreiben und einen Test laufen lassen. Wenn er fertig ist, lies dieses Dokument mit der
+   Leiterin: beschreibt es das System, das sie zu haben glaubt? Was nicht übereinstimmt, notier
+   es: das ist die erste Liste der Diskrepanzen.
+3. Sieh dir das Blatt an: jede Voraussetzung muss einen Beleg für etwas haben, das der Agent
+   getan hat, nicht eine Antwort von dir.
 
-> We are going to assess whether this existing system can be taken over with the Urazuke method.
-> Read the initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
-> `docs/ELIGIBILITY_CRITERIA.md`, which for an existing system adds four criteria: whether anyone
-> who knows how the system works is available; whether production can be queried read-only;
-> whether any automated test exists; and whether a backup exists and has ever been restored. Then
-> explore the repository and, if I gave you access, the environment where it runs: change nothing.
-> Fill in the sheet criterion by criterion with the answer, its source (survey, code, database,
-> configuration, or inferred) and, for the exclusionary criteria X1 and X2, green or red. For X2,
-> list every screen and say for each whether it can be driven by a program today and whether the
-> effect can be checked in the backend. If a criterion cannot be answered from what you have, ask
-> me; do not assume. Do not decide: present me the completed sheet with your reading and your
-> doubts, and I will decide. Reply in my language.
+**Bevor du den Prompt schickst** zum Abschluss: deine Entscheidung in einer Zeile und, für jedes
+Rot, ob das Vorprojekt jetzt, später oder nie angegangen wird.
 
-> [de]
-> Wir werden bewerten, ob dieses bestehende System mit der Urazuke-Methode übernommen werden kann.
-> Lies die Ersterhebung in `docs/INITIAL_SURVEY.md` und das Kriterienblatt in
-> `docs/ELIGIBILITY_CRITERIA.md`, das für ein bestehendes System vier Kriterien hinzufügt: ob
-> jemand verfügbar ist, der weiß, wie das System funktioniert; ob die Produktion nur lesend
-> abgefragt werden kann; ob irgendein automatischer Test existiert; und ob eine Sicherungskopie
-> existiert und jemals wiederhergestellt wurde. Erkunde danach das Repository und, wenn ich dir
-> Zugang gegeben habe, die Umgebung, in der es läuft: ändere nichts. Füll das Blatt Kriterium für
-> Kriterium aus mit der Antwort, ihrer Quelle (Erhebung, Code, Datenbank, Konfiguration oder
-> erschlossen) und, für die Ausschlusskriterien X1 und X2, grün oder rot. Liste für X2 jeden
-> Bildschirm auf und sag für jeden, ob er sich heute programmatisch bedienen lässt und ob sich die
-> Wirkung im Backend prüfen lässt. Wenn sich ein Kriterium mit dem, was du hast, nicht beantworten
-> lässt, frag mich; nimm nichts an. Entscheide nicht: leg mir das ausgefüllte Blatt mit deiner
-> Lesart und deinen Zweifeln vor, und ich entscheide. Antworte in meiner Sprache.
+4. Füg ihm den Abschluss-Prompt der Station N0 ein.
 
-   Du verlangst von ihm dasselbe wie in Lektion 0, plus drei Dinge: dass er erkundet, ohne etwas
-   zu ändern, dass jede Antwort sagt, woher sie stammt, und dass X2 Bildschirm für Bildschirm
-   gemessen wird.
+**Vollständigkeitsprüfung.** Hat jede Voraussetzung einen getanen, nicht einen gesagten Beleg?
+Existiert das Dokument der wiedergewonnenen Funktionalität, und hat die Leiterin es
+wiedererkannt? Hat er einen echten Ende-zu-Ende-Test laufen lassen? Hat jedes Rot sein Vorprojekt
+als blockierenden offenen Posten?
 
-2. Beantworte seine Fragen und lies das Blatt. Schau dir vor allem die Zeile jedes Bildschirms in
-   X2 an.
-3. Entscheide.
+**Ergebnis.** `docs/ELIGIBILITY.md`, `docs/FUNCTIONALITY_RECOVERED.md`, und die blockierenden
+offenen Posten der Vorprojekte, falls es welche gibt.
 
-**Bevor du den Prompt schickst** zum Abschluss: deine Entscheidung in einer Zeile, und eine
-Bedingung, die in diesem Projekt verpflichtend ist: das Backup vor der Lektion N4 auf deiner
-Maschine wiederherstellen.
+**Typische Fehler.** Ein Grün akzeptieren, das der Agent geantwortet hat, ohne es zu tun („ja, der
+Code ist verständlich“). Und ein Rot als Ablehnung behandeln: die Methode verlangt ein Vorprojekt,
+keinen Verzicht.
 
-4. Füg ihm den Abschluss-Prompt ein:
-
-> Decision: [go under this condition: the backup is restored at least once before N4]. Write the
-> final sheet to `docs/ELIGIBILITY.md` with the date, who decided, every answer with its source,
-> and the conditions if any. If X2 is red for any screen, create `docs/PENDING.md` and open the
-> first pending item: make every screen drivable by a program with its backend effect checkable;
-> mark it as blocking. Include the questions you asked and my answers.
-
-> [de]
-> Entscheidung: [go unter dieser Bedingung: das Backup wird mindestens einmal vor N4
-> wiederhergestellt]. Schreibe das endgültige Blatt nach `docs/ELIGIBILITY.md` mit dem Datum, wer
-> entschieden hat, jeder Antwort mit ihrer Quelle, und den Bedingungen, falls es welche gibt. Wenn
-> X2 für irgendeinen Bildschirm rot ist, lege `docs/PENDING.md` an und eröffne den ersten offenen
-> Posten: jeden Bildschirm programmatisch bedienbar machen, mit prüfbarer Wirkung im Backend;
-> markiere ihn als blockierend. Nimm die Fragen auf, die du gestellt hast, und meine Antworten.
-
-**Vollständigkeitsprüfung.** Hat X2 eine Antwort pro Bildschirm? Haben die vier Kriterien des
-Altsystems eine Antwort mit Quelle? Ist das Backup als Bedingung mit Datum festgehalten?
-
-**Ergebnis.** `docs/ELIGIBILITY.md`, und falls nötig der erste blockierende offene Posten.
-
-**Typische Fehler.** X2 grün beantworten, „weil es web ist“. Und die Bedingung mit dem Backup
-überspringen, weil „es ein automatisches gibt“: in der Lektion N4 wird der Agent die
-Produktionsdatenbank kopieren, und wenn etwas schiefgeht, ist dieses nie erprobte Backup das
-Einzige, was es gibt.
-
-**Im Leitprojekt.** Der Agent findet, dass von den sechs Bildschirmen von Turnos vier
-programmatisch bedienbar sind und zwei nicht (das Terminformular benutzt einen Kalender ohne
-Kennungen, und die Patientensuche ist ein Feld, das nicht auf Tastaturereignisse reagiert); er
-eröffnet den blockierenden offenen Posten. Er findet den geplanten Prozess der Erinnerungen, den
-die Leiterin nicht erwähnt hat. Es gibt ein Backup, nie wiederhergestellt: Bedingung. Über den
-Neffen: „verfügbar, alle zwei Wochen“, was der Agent als „nicht verfügbar“ zu lesen vorschlägt,
-und er hat recht. Es geht, mit einer Bedingung.
+**Im Leitprojekt.** Der Agent baut Turnos auf deiner Maschine mit einer Kopie der Datenbank auf
+(grün), versteht den Code bis auf ein Berichtsmodul in einer alten Vorlagensprache (grün, mit
+Notiz), schreibt das Funktionalitätsdokument, und die Leiterin entdeckt darin zwei Dinge, von
+denen sie nicht wusste, dass das System sie tut (grün: das Dokument ist besser als ihr
+Gedächtnis), bedient vier von sechs Bildschirmen und lässt einen Test des Eintragungsflusses
+laufen (rot: zwei Bildschirme nicht bedienbar, Vorprojekt: „den Kalender und die Suche bedienbar
+machen“), baut mit den heutigen Werkzeugen bis auf eine tote Abhängigkeit des PDF-Generators (rot:
+kleines Vorprojekt), kopiert und anonymisiert die Daten (grün), aber das Backup wurde nie
+wiederhergestellt (rot: es wiederherzustellen ist das billigste Vorprojekt von allen), und der
+Nachrichtenanbieter hat einen Testmodus (grün). Entscheidung: es geht, nach drei kleinen
+Vorprojekten.
 
 ### Lektion N1 — Die Arbeitsvereinbarung für ein Altsystem
 
@@ -199,7 +165,7 @@ anderes sagt, und nichts tritt ein ohne grüne Charakterisierung.
 
 - Deine Arbeitsvorlieben, wie in Lektion 1, und eine Entscheidung mehr: wie viel Risiko du während
   der Normalisierung akzeptierst. Für den Kurs: der Agent darf allein in die Testumgebung
-  deployen; in die Produktion niemals, bis zur Lektion 13.
+  deployen; in die Produktion niemals, bis zur Lektion 15.
 - `docs/ELIGIBILITY.md` abgeschlossen.
 
 1. Füg ihm diesen Prompt ein:
@@ -397,7 +363,7 @@ einer Minute: „das wird nicht mehr gelöscht“. Offener Posten.
 
 ### Lektion N3 — Das Audit als Inventar der Schuld
 
-**Was du verstehen musst.** Die Lektion 11, aber am Anfang statt am Ende, und mit einem Feld mehr
+**Was du verstehen musst.** Die Lektion 13, aber am Anfang statt am Ende, und mit einem Feld mehr
 pro Befund: ob er blockiert (er muss vor jeder Änderung behoben werden), ob er beim Anfassen des
 Moduls bezahlt wird, oder ob er warten kann. Ohne dieses Feld hat ein auditiertes Altsystem
 vierzig Befunde und niemand weiß, womit er anfangen soll. Was blockiert, entscheidest du, nicht
@@ -458,7 +424,7 @@ beschädigen oder zu viel abbuchen kann.
 Befunde, und die Sitzung des Konstrukteurs geöffnet (der Abschluss geht an den Konstrukteur, nicht
 an den Auditor).
 
-3. Geh zurück in die Sitzung des Konstrukteurs und füg ihm den Abschluss-Prompt aus Lektion 11
+3. Geh zurück in die Sitzung des Konstrukteurs und füg ihm den Abschluss-Prompt aus Lektion 13
    ein, mit der Ergänzung am Ende: „Each pending item keeps the speed mark of its finding.“
 
 **Vollständigkeitsprüfung.** Sagt er, was er nicht auditieren konnte? Gibt es mindestens ein
@@ -486,7 +452,7 @@ der doppelte Code der Datumsformatierung an drei Stellen.
 wird keine Zeile Funktionalität geändert. Der Gurt hat fünf Teile: eine Testumgebung mit
 anonymisierten Daten, ein Deployment, das sich wiederholt, die Geheimnisse außerhalb des Codes und
 rotiert, die Continuous Integration, die laufen lässt, was es gibt, und die
-Charakterisierungsbatterie. Letztere ist die Lektion 7 verkehrt herum: der Test wird grün geboren,
+Charakterisierungsbatterie. Letztere ist die Lektion 8 verkehrt herum: der Test wird grün geboren,
 denn er erfasst, was das System heute tut, Defekte eingeschlossen, und der Beweis, dass er taugt,
 ist, dass er rot wird, wenn du den Fluss absichtlich kaputt machst. Ohne dieses Rot durch Mutation
 ist es ein Test, der besteht, weil er nichts ansieht.
@@ -591,7 +557,7 @@ rotierten Geheimnisse, und die Liste der fünf kritischen Flüsse für die Lück
 
 5. Die zwei nicht bedienbaren Bildschirme (der blockierende offene Posten aus N0) werden hier
    gelöst, vor der Batterie oder als Teil von ihr: verlang von ihm, diesen offenen Posten mit der
-   Routine aus Lektion 7 zu schließen, und danach die Charakterisierungstests dieser Flüsse zu
+   Routine aus Lektion 8 zu schließen, und danach die Charakterisierungstests dieser Flüsse zu
    schreiben.
 6. Lass du die Batterie mit dem Befehl aus `docs/STATUS.md` laufen. Sie muss grün sein.
 
@@ -605,7 +571,7 @@ laufen lassen?
 `docs/GATES.md`, die rotierten Geheimnisse, die Continuous Integration grün, und die
 Charakterisierungsbatterie grün mit ihren fünf bewiesenen Rots.
 
-**Typische Fehler.** Die Batterie „auf nächste Woche“ verschieben und anfangen, den Bug zu
+**Typische Fehler.** Die Batterie „auf später“ verschieben und anfangen, den Bug zu
 reparieren: der halb fertige Gurt ist die Ursache Nummer eins dafür, kaputt zu machen, was lief.
 Testdaten „als Beispiel“ statt der anonymisierten Kopie: die Bugs eines Altsystems leben in den
 echten Daten (die doppelte Erinnerung von Turnos tritt nur bei bestimmten Patienten auf). Und das
@@ -622,7 +588,7 @@ einreiht, der Test schlägt fehl, er kommentiert sie wieder ein, er besteht.
 
 ### Lektion N5 — Sperren und Produzenten-Konsumenten-Karte aus dem Code
 
-**Was du verstehen musst.** Die Lektionen 12 und 8, als Inventur über dem gemacht, was schon
+**Was du verstehen musst.** Die Lektionen 14 und 11, als Inventur über dem gemacht, was schon
 existiert, bevor etwas geändert wird. Der Agent wird im Code mehr finden, als das Geschäft
 erinnert, was das System nach außen tut: Versendungen, Löschungen, nächtliche Prozesse. Der
 Vergleich zwischen den zwei Listen ist das Ergebnis. Und jede Sperre trägt einen Vorschlag „jetzt“
@@ -677,7 +643,7 @@ einem monatlichen Export kann auf den Block warten, der dieses Modul anfasst.
 **Bevor du den Prompt schickst** zum Abschluss: die Tabelle mit deinem Urteil pro Zeile, und die
 Liste der Sperren „jetzt“ für die Lücke des Prompts.
 
-3. Schließ mit dem Abschluss-Prompt aus Lektion 12 ab, wobei du nur die Sperren „jetzt“ aufführst;
+3. Schließ mit dem Abschluss-Prompt aus Lektion 14 ab, wobei du nur die Sperren „jetzt“ aufführst;
    die übrigen bleiben im Backlog mit ihrer Marke.
 
 **Vollständigkeitsprüfung.** Hat die Liste des Agenten mehr Aktionen als die der Leiterin? (Wenn
@@ -688,7 +654,7 @@ roten Test gegen die Version ohne Sperre? Steht die Monatstabelle als Konsument 
 `docs/LOCKS.md` mit den implementierten und geprüften Sperren „jetzt“.
 
 **Typische Fehler.** Alle Sperren jetzt implementieren, „wo wir schon dabei sind“: das ist die
-verletzte Regel der zwei Geschwindigkeiten, und es ist eine Woche, die nicht dem Bug gewidmet
+verletzte Regel der zwei Geschwindigkeiten, und es ist Zeit, die nicht dem Bug gewidmet
 wird, den der Kunde verlangt hat.
 
 **Im Leitprojekt.** Der Agent findet drei Aktionen, die die Leiterin nicht aufgelistet hat: das
@@ -705,7 +671,7 @@ zusammen.
 
 **Was du verstehen musst.** Die Lektion 3 mit einem Vorteil: die Primärdaten stehen in der
 Datenbank und in den Logs. Sie werden nicht erfragt, sie werden gemessen, mit einem Messgerät mit
-Test (Lektion 9). Die Leiterin steuert nur bei, was nirgends steht: wie stark sie zu wachsen
+Test (Lektion 7). Die Leiterin steuert nur bei, was nirgends steht: wie stark sie zu wachsen
 erwarten, und ob das System an andere Praxen verkauft werden wird.
 
 **Bevor du den Prompt schickst**, mit deinen Händen:
@@ -859,7 +825,7 @@ können“, und das wird gesagt.
 
 ### Lektion R1 — Der erste Block: der Bug, im korrektiven Modus
 
-**Was du verstehen musst.** Ein korrektiver offener Posten ist ein bekannter Bug. In Lektion 7
+**Was du verstehen musst.** Ein korrektiver offener Posten ist ein bekannter Bug. In Lektion 8
 wurde das Rot hergestellt; hier ist das Rot der Bug selbst: der Test, der den Fehler reproduziert,
 indem er den Fluss wie der Nutzer bedient, der ihn gemeldet hat, muss gegen den aktuellen Code
 fehlschlagen. Wenn er nicht fehlschlägt, hast du einen anderen Bug reproduziert. Dieses Rot ist
@@ -920,7 +886,7 @@ die niemand geschrieben hat, und das entscheidest du.
 3. Lies die Grundursache, bevor du die Reparatur freigibst. Wenn er dich nach einer Geschäftsregel
    fragt, entscheide sie mit der Leiterin und antworte mit dem Abschlussformat aus Lektion 6.
 4. Zum Abschluss: lass du die Charakterisierungsbatterie laufen. Und benutz das System in der
-   Testumgebung eine halbe Stunde lang, wie die Empfangskraft: der menschliche Blick wird nicht
+   Testumgebung eine Weile, wie die Empfangskraft: der menschliche Blick wird nicht
    delegiert.
 
 **Vollständigkeitsprüfung.** Hast du das Rot des Tests gesehen, der den Bug reproduziert, mit
@@ -950,7 +916,7 @@ Tabelle ist; die Leiterin genehmigt es.
 ### Lektion R2 — Der zweite Block: die Anzahlung, im evolutiven Modus
 
 **Was du verstehen musst.** Das Neue über dem Alten wird mit der vollständigen Methode gebaut,
-genau wie in den Lektionen 5 bis 10 des ersten Teils: Spezifikation im offenen Posten,
+genau wie in den Lektionen 5 bis 12 des ersten Teils: Spezifikation im offenen Posten,
 Entscheidungen mit Datum, roter Test, Ende-zu-Ende-Test, ehrlicher Bericht. Zwei Unterschiede. Die
 Regression der Nachbarn ist das ganze System, und die Charakterisierungsbatterie ist die, die es
 sagt. Und wenn der Block in ein Modul eintritt, treten die als „wird beim Anfassen bezahlt“
@@ -964,17 +930,17 @@ neuen Modul nicht an, was das Altsystem dem alten angetan hat.
   Leiterin schon treffen kann: welche Termine eine Anzahlung tragen, wie viel, was passiert, wenn
   nicht gezahlt wird.
 - Die Erhebung der Aktionen mit Konsequenz (N5) mit der hinzugefügten Zeile „Anzahlung einziehen“,
-  denn das ist eine neue Aktion, die auf die Welt wirkt: Sperre vor dem Bauen, wie in Lektion 12.
+  denn das ist eine neue Aktion, die auf die Welt wirkt: Sperre vor dem Bauen, wie in Lektion 14.
 - Die Charakterisierungsbatterie grün.
 
 1. Öffne den Block mit dem Eröffnungs-Prompt aus Lektion 5, über die Anfrage der Anzahlung, und
    lies die Spezifikation wie die Leiterin.
-2. Vor dem Bauen die Sperre: füg ihm den Abschluss-Prompt aus Lektion 12 für die Aktion „Anzahlung
+2. Vor dem Bauen die Sperre: füg ihm den Abschluss-Prompt aus Lektion 14 für die Aktion „Anzahlung
    einziehen“ ein, mit Trockenlauf-Modus zuerst.
-3. Bau mit der Routine aus Lektion 7, offener Posten für offener Posten, mit den gepaarten Posten
+3. Bau mit der Routine aus Lektion 8, offener Posten für offener Posten, mit den gepaarten Posten
    im selben Block.
 4. Zum Abschluss des Blocks: die vollständige Ende-zu-Ende-Batterie (die der Charakterisierung
-   plus die neuen Tests), mit dem Blockabschluss-Prompt aus Lektion 7, und eine halbe Stunde von
+   plus die neuen Tests), mit dem Blockabschluss-Prompt aus Lektion 8, und eine Weile von
    dir mit dem System.
 
 **Vollständigkeitsprüfung.** Hat die Anzahlung eine Sperre mit rotem Test, bevor das Einziehen
@@ -993,7 +959,7 @@ Patienten geschickt; das ist eine Aktion nach außen.
 **Im Leitprojekt.** Die Anzahlung benutzt denselben Kanal wie die Erinnerungen, der jetzt eine
 Warteschlange hat (die asymmetrische Entscheidung aus N6, die sich von allein bezahlt macht).
 Sperre: ausdrückliche Bestätigung der Empfangskraft und von der Fachkraft festgelegter Betrag;
-Trockenlauf-Modus eine Woche lang, der protokolliert „hätte Anzahlung verlangt von“. Der gepaarte
+Trockenlauf-Modus eine Zeit lang, der protokolliert „hätte Anzahlung verlangt von“. Der gepaarte
 Posten des Absage-Bildschirms (die Bestätigung) wird in diesem Block bezahlt, weil die Anzahlung
 ändert, was beim Absagen passiert. Zum Abschluss lässt die Batterie sieben Flüsse laufen: die fünf
 der Charakterisierung, den des Bugs aus R1 und den der Anzahlung.
@@ -1002,19 +968,19 @@ der Charakterisierung, den des Bugs aus R1 und den der Anzahlung.
 
 ## Danach: Produktionsfreigabe und Betrieb
 
-Ab hier ist das Altsystem ein System mit Methode, und die Lektionen 11 bis 21 des ersten Teils
+Ab hier ist das Altsystem ein System mit Methode, und die Lektionen 13 bis 22 des ersten Teils
 gelten unverändert, mit vier Anmerkungen. Die erste betrifft die sechs Schritte der
 Betriebsqualität: die minimale Beobachtbarkeit und der Schwachstellen-Scan sind schon mit dem
 Gurt hereingekommen, die Persistenzmessungen stehen schon in N6, und der Lasttest läuft mit
 diesen Volumina vor dem ersten Deployment; die beiden Monitorings starten mit der ersten Lesung
 als Basislinie, und was am ersten Tag schon schlecht war, wird zu einem offenen Posten mit seiner
-Marke. Die anderen drei Anmerkungen sind diese. Das Audit aus Lektion 11 vergleicht gegen das
+Marke. Die anderen drei Anmerkungen sind diese. Das Audit aus Lektion 13 vergleicht gegen das
 aus N3:
-wie viel Schuld bezahlt wurde, wie viel bleibt. Die Handbücher aus Lektion 14 gibt es in einem
+wie viel Schuld bezahlt wurde, wie viel bleibt. Die Handbücher aus Lektion 20 gibt es in einem
 Altsystem meist nicht, und sie werden aus dem System, wie es ist, und aus den geschlossenen
 offenen Posten erzeugt, die jetzt tatsächlich das Erledigte dokumentieren. Und die Retrospektive
-aus Lektion 15 hat eine Frage, die diesem Weg eigen ist: wie viel das Normalisieren gekostet hat
-(in Stunden, in Token, in Wochen vor der ersten Änderung), und was von der als „kann warten“
+aus Lektion 23 hat eine Frage, die diesem Weg eigen ist: wie viel das Normalisieren gekostet hat
+(in Stunden, in Token, in Etappen vor der ersten Änderung), und was von der als „kann warten“
 markierten Schuld am Ende doch gekostet hat. Diese Antwort ist die, die den Kalender dieses Teils
 in der nächsten Version korrigieren wird.
 

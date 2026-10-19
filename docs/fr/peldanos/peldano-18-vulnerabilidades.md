@@ -1,6 +1,6 @@
 # Étape 18 — Scan et résolution des vulnérabilités, dans la chaîne et avec un calendrier (contrat de l'échelon)
 
-**Tronçon :** qualité opérationnelle, avant le premier déploiement en production.
+**Tronçon :** mise en production.
 **Quand :** dans la phase de mise en production, après le 13 (le scan tourne dans l'intégration
 continue) et avant le premier déploiement : aucun P0 ouvert n'est promu. Ensuite, à chaque push, et
 avec un calendrier propre (hebdomadaire) même s'il n'y a pas de push, parce que les nouvelles
@@ -15,7 +15,7 @@ proportionnelles.
 
 ## À quoi il sert
 
-L'audit de l'échelon 11 regarde le système avec un œil neuf de temps en temps ; cet échelon regarde
+L'audit de l'échelon 13 regarde le système avec un œil neuf de temps en temps ; cet échelon regarde
 une seule chose, la sécurité, tout le temps et par machine. Ils sont complémentaires : l'audit
 trouve ce qui demande du jugement (une porte d'administrateur que personne ne devrait avoir
 [Ref. 40](../REFERENCIAS.md#ref-40)) ; le scan trouve ce qui demande de la constance (la dépendance
@@ -46,7 +46,7 @@ Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir
 prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
 d'envoyer le prompt » qui précède chacun d'eux.
 
-- L'intégration continue (échelons 4 et 13), où tourne le scan.
+- L'intégration continue (échelons 4 et 15), où tourne le scan.
 - Le relevé des environnements : quel serveur, quel conteneur, quels ports, pour la ligne de base
   de configuration.
 - L'audit précédent (11, ou N3), pour ne pas rapporter ce qui est déjà connu.
@@ -60,11 +60,11 @@ d'envoyer le prompt » qui précède chacun d'eux.
 **Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
 faites, pas l'agent :
 
-- L'intégration continue qui tourne à chaque push (échelons 4 et 13), avec un quota suffisant : le
+- L'intégration continue qui tourne à chaque push (échelons 4 et 15), avec un quota suffisant : le
   scan ajoute des minutes par passage ; renseignez-vous sur ce qu'il vous reste.
 - `docs/ENVIRONMENTS_SURVEY.md` avec le serveur, le conteneur s'il y en a un, les ports exposés et
   qui administre le domaine, pour que l'agent sache quelle ligne de base appliquer.
-- `docs/AUDIT_[date].md` (échelon 11 ou N3), pour qu'il ne rapporte pas ce qui est connu.
+- `docs/AUDIT_[date].md` (échelon 13 ou N3), pour qu'il ne rapporte pas ce qui est connu.
 - Votre critère de P0 en deux lignes, pour le trou du prompt. Pour la plupart des systèmes : ce qui
   permet d'entrer sans identifiant, ce qui expose des données personnelles, ce qui permet de
   facturer, d'envoyer ou d'effacer sans contrôle.
@@ -106,7 +106,7 @@ faites, pas l'agent :
 
 Ce que je lui demande : les quatre couches de scan (dépendances, code, secrets dans l'historique,
 configuration), dans la chaîne **et avec un calendrier**, parce que les nouvelles vulnérabilités
-n'attendent pas votre prochain push ; le rapport avec la forme de l'échelon 11, avec la clause du
+n'attendent pas votre prochain push ; le rapport avec la forme de l'échelon 13, avec la clause du
 « non scanné » au lieu de « propre » ; le critère de P0 donné par moi ; et l'interdiction de mettre
 à jour sans passer par la boucle, qui est celle qui évite le vendredi cassé.
 
@@ -136,7 +136,7 @@ n'attendent pas votre prochain push ; le rapport avec la forme de l'échelon 11,
 > un nouveau P1 ouvre un élément en attente automatiquement. Consigne la politique, le calendrier et
 > ce qui n'est pas couvert dans `docs/SECURITY.md`.
 
-Ce que je lui demande : un élément en attente par correction, avec le rouge de l'échelon 7 là où
+Ce que je lui demande : un élément en attente par correction, avec le rouge de l'échelon 8 là où
 c'est possible (une vulnérabilité corrigée sans test revient au prochain remaniement) ; le scan
 relancé comme preuve ; et la transformation en porte, qui est ce qui fait que cet échelon reste
 vivant quand personne ne le regarde.

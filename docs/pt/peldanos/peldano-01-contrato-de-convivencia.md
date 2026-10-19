@@ -1,8 +1,8 @@
 # Passo 1 — O contrato de convivência (contrato do degrau)
 
 **Fase:** arranque.
-**Quando:** uma única vez, na primeira semana, imediatamente depois da elegibilidade; revisa-se
-quando um tropeço o exige. Meia hora.
+**Quando:** uma única vez, imediatamente depois da elegibilidade; revisa-se quando um tropeço o
+exige.
 **Forma:** um disparo, com uma volta de ajuste sua.
 **Tamanho:** obrigatório em todo projeto. É o degrau mais barato de todos e o que mais frustração
 evita.

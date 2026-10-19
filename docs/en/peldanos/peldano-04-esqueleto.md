@@ -1,7 +1,8 @@
 # Step 4 — The skeleton with its gates (step contract)
 
 **Stretch:** start-up.
-**When:** once, at the close of the first week, after the sizing and before any functionality.
+**When:** once, at the close of the start-up stretch, after the sizing and before any
+functionality.
 This is where all the initial infrastructure and the integration and deployment pipeline get
 built.
 **Form:** one long shot, with your visual approval at the end.
@@ -14,7 +15,7 @@ that has to be paid for.
 Make the system start, test and deploy EMPTY before it has any functionality. Discovering
 deployment at the end is hugely expensive: in one of my systems it arrived a month after the start
 and cost five pending items in a row [Ref. 32](../REFERENCIAS.md#ref-32). If the skeleton is
-deployed in the first week, those blows land with zero functionality at stake.
+deployed during start-up, those blows land with zero functionality at stake.
 
 The general idea behind it: **the path to production is part of the product**, not a formality at
 the end. A system that works on the programmer's machine and cannot be deployed is not a system;

@@ -3,7 +3,7 @@
 **Fase:** ciclo.
 **Quando:** em cada sessão do ciclo, cada vez que o agente topa com uma regra de negócio não
 escrita ou com uma bifurcação que muda o que o usuário vê. Costumam ser duas ou três por bloco.
-Também no arranque (degraus 0 e 3) e na saída para produção (12 e 13).
+Também no arranque (degraus 0 e 3) e na saída para produção (14 e 15).
 **Forma:** conversa curta: o agente detecta que há uma decisão, pergunta, e a deixa escrita.
 **Tamanho:** obrigatório em todo projeto. Num pequeno o registro pode ser uma tabela de dez
 linhas; o que importa é que as regras de negócio tenham dono.

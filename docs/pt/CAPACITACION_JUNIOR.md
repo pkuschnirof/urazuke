@@ -39,7 +39,7 @@ programação muda de natureza: de ofício a alfabetização.
 | **Como aprende** | Escrevendo e recebendo correções sobre o código. | Dirigindo o modelo degrau por degrau e recebendo correções sobre a evidência que exigiu e a que aceitou sem exigir. |
 | **O que o sênior revisa** | O seu código. | O seu critério: o que pediu ao modelo, o que o modelo supôs sem que ele detectasse, o que aceitou como "pronto" sem prova. |
 | **Qual é o seu erro típico** | Um bug. | Acreditar no modelo. |
-| **Quanto demora para ser útil** | Meses, até escrever código que não seja preciso reescrever. | Semanas, se entrar pelo método: o primeiro projeto pequeno com os vinte e dois degraus já o deixa operativo. |
+| **Quando é útil** | Quando escreve código que não é preciso reescrever, e isso demora. | Quando termina o seu primeiro projeto pequeno com os vinte e quatro degraus: o método não promete velocidade, promete um sistema operável e um critério formado. |
 | **Em que se transforma** | Num programador que sabe mais linguagens e frameworks. | Em alguém que pode responder por um sistema sem ter escrito uma linha: um engenheiro de sistemas que dirige modelos. |
 
 ## O impacto nos focos de capacitação
@@ -76,7 +76,7 @@ Ordeno-os pelo degrau onde se exercitam, porque essa é a forma de ensiná-los.
    habilidade número um, e é a que a indústria deixou de ensinar há vinte anos. O modelo é péssimo
    nisto por desenho: completa os vazios com o mais provável, e o mais provável não é o que o
    negócio precisa.
-2. **Desenho da verificação** (degraus 7, 9, 10, 19). Não escrever o teste: saber que teste
+2. **Desenho da verificação** (degraus 8, 7, 12, 19). Não escrever o teste: saber que teste
    demonstra o quê, por que um teste tem que ser visto em vermelho antes de valer, o que é um
    teste de ponta a ponta e o que é uma simulação que não prova nada, que número decide alguma
    coisa e com que instrumento se mede, como se lê um relatório e se distingue o verificado do
@@ -86,14 +86,14 @@ Ordeno-os pelo degrau onde se exercitam, porque essa é a forma de ensiná-los.
    ponto cego não declarado, o "pronto" que não era [Ref. 43](REFERENCIAS.md#ref-43). Esta
    habilidade não existia como foco de formação porque não havia ninguém que mentisse com tanta
    segurança e tão boa redação.
-4. **Dimensionamento e operação** (degraus 3, 4, 13, 16 a 21). O que é um ambiente, como se
+4. **Dimensionamento e operação** (degraus 3, 4, 15, 16 a 22). O que é um ambiente, como se
    implanta, o que é a integração contínua, o que se mede em produção, o que é um índice, um ponto
    de ruptura, um limiar de alerta. Antes era território de outro papel; agora o júnior dirige o
    modelo que o faz, e tem que saber o que pedir e como verificar que ele fez.
-5. **Segurança e consequência** (degraus 12, 18). Que ações do sistema agem sobre o mundo, o que
+5. **Segurança e consequência** (degraus 14, 18). Que ações do sistema agem sobre o mundo, o que
    é um cadeado, o que é fail-closed, o que é uma vulnerabilidade e por que uma atualização de
    dependência é uma mudança.
-6. **Decisão e comunicação com o dono** (degraus 1, 6, 14). Perguntar bem, com recomendação e
+6. **Decisão e comunicação com o dono** (degraus 1, 6, 20). Perguntar bem, com recomendação e
    alternativa; escrever uma decisão com palavras textuais, data e dono; escrever um manual que
    uma pessoa que não programa possa seguir. O júnior é, no método, o tradutor entre o dono e o
    modelo, e a tradução se faz nos dois sentidos.
@@ -124,13 +124,13 @@ alfabetização mínima não é negociável. A lista:
 - **Git**: o que é um commit, um ramo, um push, um histórico. O suficiente para ler o rastro de
   evidência que o método deixa ali.
 - **SQL básico**: ler uma consulta e entender que tabela ela lê e com que filtro. É o idioma dos
-  dados, e dos números do degrau 9.
+  dados, e dos números do degrau 7.
 - **O terminal**: rodar um comando que o modelo lhe deu e ler a sua saída. Se o júnior não
   consegue rodar o medidor, não consegue verificar o número.
 - **Depuração como última ferramenta**: quando o log, o teste e o medidor não bastaram, abrir o
   código com o modelo ao lado e ler juntos.
 
-Ensina-se em duas ou três semanas, pratica-se durante todo o curso, e não é o ofício: é a
+Ensina-se na primeira etapa, pratica-se durante todo o curso, e não é o ofício: é a
 alfabetização que permite exercê-lo.
 
 ## Com que objetivo capacitar um júnior
@@ -138,7 +138,7 @@ alfabetização que permite exercê-lo.
 Digo-o sem rodeios, porque da clareza do objetivo depende todo o resto. O objetivo de capacitar um
 júnior na era posterior à programação à mão é formar alguém que **possa responder por um sistema
 em produção sem ter escrito uma linha do seu código**: que possa levar um projeto pequeno pelos
-vinte e dois degraus de ponta a ponta, dirigindo um modelo, exigindo-lhe evidência em cada passo,
+vinte e quatro degraus de ponta a ponta, dirigindo um modelo, exigindo-lhe evidência em cada passo,
 decidindo com o dono, e sabendo a todo momento o que está verificado, o que está acreditado e o
 que não se vê. Eu o chamo, provisoriamente, de *dono técnico da evidência*: aquele que não lê o
 código e, ainda assim, pode dizer, com provas na mão, que o sistema faz o que o negócio pediu e
@@ -160,63 +160,65 @@ Três consequências do objetivo, que ordenam a capacitação:
    no ciclo, que é o mais parecido com dar-lhe tarefas pequenas de código. É um erro: o ciclo sem
    o arranque é construir sobre areia, e o júnior que nunca fez um degrau 0 ou um 3 não entende
    por que o 5 tem a forma que tem. Os dois projetos-guia existem para isso: um novo e um herdado,
-   de ponta a ponta, os vinte e dois degraus e as oito estações.
+   de ponta a ponta, os vinte e quatro degraus e as oito estações.
 
 ## Como capacitá-lo: o plano
 
-O que segue é o plano que eu usaria, e que vou usar com a primeira turma. Doze semanas de trabalho
-parcial, com um mentor, sobre os dois projetos-guia do curso, e depois um projeto real pequeno com
-um dono de verdade.
+O que segue é o plano que eu usaria, e que vou usar com a primeira turma: quatro etapas, sem
+prazos (o método não os tem, e a formação também não: cada etapa termina quando a sua lista de
+saída dá "sim"), com um mentor, sobre os dois projetos-guia do curso, e depois um projeto real
+pequeno com um dono de verdade.
 
-### Semanas 1 e 2: alfabetização e o modelo como objeto de estudo
+### Etapa 1: alfabetização e o modelo como objeto de estudo
 
 - A alfabetização de cima: ler código, como roda um sistema, git, SQL básico, o terminal. Com o
   modelo ao lado, explicando; o júnior não escreve, lê e roda.
-- **O modelo como objeto de estudo**: uma semana de fazer pedidos ao modelo com o único propósito
+- **O modelo como objeto de estudo**: um tempo de fazer pedidos ao modelo com o único propósito
   de vê-lo falhar. Pedir-lhe um dado que ele não tem e ver se o inventa. Dar-lhe um pedido ambíguo
   e ver se ele pergunta. Pedir-lhe que feche algo e ver se diz "pronto" sem prova. Pedir-lhe que
-  corrija um bug sem reproduzi-lo. Cada falha se anota com o seu cheiro. No fim da semana o júnior
+  corrija um bug sem reproduzi-lo. Cada falha se anota com o seu cheiro. No fim da etapa o júnior
   tem o seu próprio catálogo, e é o catálogo do documento de referências, descoberto.
 - Leitura do documento principal, com o glossário à mão, e das referências: a história de onde sai
   cada regra.
 
-### Semanas 3 a 8: o projeto novo, com mentor
+### Etapa 2: o projeto novo, com mentor
 
 O manual do curso, parte 1, tal como está, sobre o projeto-guia "Turnera" ou sobre um projeto
-próprio pequeno. Os vinte e dois degraus. Com três regras de mentoria:
+próprio pequeno. Os vinte e quatro degraus. Com três regras de mentoria:
 
 - **O mentor revisa evidência, não código.** Lê o contrato de convivência, a árvore semântica, a
   especificação de três pendências, o relatório de fechamento de uma pendência, o relatório da
   auditoria, o relatório do teste de carga. E faz uma única pergunta de cada vez: "como você sabe
   que isto é verdade?". Se a resposta for "porque o modelo disse", o degrau não está subido.
-- **O mentor desenha incidentes.** Uma vez por semana, sem avisar, altera alguma coisa: muda um
+- **O mentor desenha incidentes.** De vez em quando, sem avisar, altera alguma coisa: muda um
   dado do levantamento, mete uma suposição na volumetria, pede uma mudança fora do escopo através
   do modelo. O júnior tem que detectá-lo pela evidência.
 - **O júnior mantém o seu próprio registro de falhas do modelo**: cada vez que o pegou, que cheiro
   tinha, em que degrau. No fim do projeto esse registro é a sua retrospectiva pessoal, e a
-  proposta de mudança à escada (degrau 15) quem a escreve é ele.
+  proposta de mudança à escada (degrau 23) quem a escreve é ele.
 
-### Semanas 9 a 11: o projeto herdado, com menos mentor
+### Etapa 3: o projeto herdado, com menos mentor
 
 O manual, parte 2: a Turnera herdada, ou um legado real pequeno. A fase de normalização e os dois
 primeiros blocos. Aqui a mentoria baixa: o mentor lê o mapa recuperado e as discrepâncias, o
 relatório da auditoria com as suas marcas de velocidade, e o fechamento do primeiro bug em modo
-corretivo. O objetivo destas semanas é que o júnior aprenda o que o projeto novo não ensina: a ler
+corretivo. O objetivo desta etapa é que o júnior aprenda o que o projeto novo não ensina: a ler
 um sistema alheio através do modelo, a decidir com o dono o que do que o código faz está errado e
 o que era uma regra esquecida, e a não reescrever.
 
-### Semana 12: o projeto real, sozinho
+### Etapa 4: o projeto real, sozinho
 
 Um projeto pequeno de verdade, com um dono de verdade que tem quinze minutos por dia, de ponta a
 ponta. O mentor não intervém; lê a retrospectiva com números no final. Se o júnior chegar à
-produção com as vinte e duas condições da lista de saída em "sim", está formado. Se não, a lista
+produção com as vinte e quatro condições da lista de saída em "sim", está formado. Se não, a lista
 diz exatamente que degrau voltar a subir, e isso também é formação.
 
 ### O que mede o progresso
 
 Não quantas pendências fechou. Três coisas, nesta ordem:
 
-1. **Quantas vezes pegou o modelo**, e em que degrau. Um júnior que em seis semanas não pegou o
+1. **Quantas vezes pegou o modelo**, e em que degrau. Um júnior que em todo o projeto novo não
+   pegou o
    modelo nenhuma vez não está olhando: o modelo falha sempre.
 2. **Quanto custou ao dono.** Minutos por dia de perguntas; se sobem, o júnior está transferindo
    ao dono o que o método pede que ele resolva (degrau 1).
@@ -233,7 +235,7 @@ de forma:
   inteiro com o método. É mais valioso antes, e é mais perigoso antes, porque dirige um modelo que
   constrói rápido; por isso o método é a condição, não um acréscimo.
 - **O sênior** deixa de revisar código e passa a três coisas: escrever e manter os contratos (o de
-  convivência, as comportas, os cadeados), auditar com outra sessão (degrau 11) e decidir o que o
+  convivência, as comportas, os cadeados), auditar com outra sessão (degrau 13) e decidir o que o
   júnior não pode decidir (arquitetura, o "vezes dez", o que bloqueia). O seu valor se move do
   teclado para o critério, que é onde sempre esteve nos bons.
 - **A equipe encolhe e se achata.** Um sênior e dois ou três juniores com método levam o que antes
@@ -254,9 +256,9 @@ de forma:
   júnior formado numa só ferramenta aprende os seus atalhos e não o método; a formação tem que
   passar por pelo menos duas.
 - **O custo invisível.** Um júnior com um modelo gasta tokens como se fossem de graça. O orçamento
-  de tokens tem que ser parte da formação desde a semana 1, com o número à vista.
-- **A ilusão de velocidade.** O modelo constrói numa tarde o que antes levava uma semana, e o
-  júnior pode acreditar que terminou. A lista de saída para produção, com as suas vinte e duas
+  de tokens tem que ser parte da formação desde a primeira etapa, com o número à vista.
+- **A ilusão de velocidade.** O modelo constrói numa sessão o que antes levava muito mais, e o
+  júnior pode acreditar que terminou. A lista de saída para produção, com as suas vinte e quatro
   condições, é o antídoto: "terminado" tem uma definição, e não é "funciona".
 - **O mentor que revisa código por costume.** É o risco do lado do sênior, e é sério: um mentor
   que lê o código ensina ao júnior que a evidência não basta, que é exatamente o contrário do
@@ -266,7 +268,7 @@ de forma:
 
 1. Quanta programação é preciso ter feito para ler bem o código de outro. A minha intuição é que o
    que importa é ter depurado, não ter escrito, e que basta pouco. Sem dados ainda.
-2. O plano de doze semanas está escrito a partir dos meus projetos e do que ensinei antes dos
+2. O plano de quatro etapas está escrito a partir dos meus projetos e do que ensinei antes dos
    modelos, não a partir de uma turma. A primeira vai corrigi-lo, igual que ao curso.
 3. Se o "dono técnico da evidência" é um papel novo ou é o engenheiro de sistemas de sempre com
    outra ferramenta. Inclino-me para o segundo, e então o nome sobra; mas o mercado vai precisar

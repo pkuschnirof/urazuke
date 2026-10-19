@@ -33,7 +33,7 @@ vienne avec son appui, et que l'appui puisse se vérifier sans lire le code. Le 
 pas ; le sous-titre, « la méthode de la preuve », si : *the evidence method*, *o método da
 evidência*, *la méthode de la preuve*, *die Nachweis-Methode*, *il metodo del riscontro*,
 裏付けの方法, 验证方法. Dans ce document, « l'échelle » est la structure de la méthode — ses
-vingt-deux échelons — et « Urazuke » est la méthode entière.
+vingt-quatre échelons — et « Urazuke » est la méthode entière.
 
 ## De quoi s'agit-il
 
@@ -44,7 +44,12 @@ livré est complet. Le pari est que n'importe qui, avec n'importe quel outil d'i
 artificielle capable de programmer, puisse construire du logiciel en conversant avec un modèle au
 lieu de taper le code à la main, et que ce qui en sorte soit robuste, prêt pour la production et,
 c'est là l'important, **n'exige pas que le propriétaire du projet relise une seule ligne de
-code**.
+code**. Et je veux être tout aussi clair sur ce qu'elle n'est pas : ce n'est pas un procédé pour
+faire des systèmes plus vite. C'est un procédé pour faire des systèmes exploitables et
+maintenables sans que personne n'ait besoin de comprendre un seul bit de leur code, parce que le
+code, c'est le cadre agentique qui l'écrit qui le comprend et le maintient. La vitesse, quand elle
+apparaît, est une conséquence, et c'est pourquoi il n'y a pas de délais dans ce document : la
+taille et la complexité de chaque système les fixent, et la méthode ne fixe que l'ordre.
 
 Cela paraît ambitieux, et ça l'est. Mais j'ai quelque chose que presque personne n'a : trois
 systèmes réels que j'ai construits exactement ainsi, qui fonctionnent aujourd'hui avec de vrais
@@ -67,7 +72,7 @@ premier est **ma propre connaissance de l'ingénierie des systèmes**. Cela fait
 que j'applique ce que n'importe qui venant des systèmes reconnaît tout de suite : relevé avant de
 concevoir, exigences écrites, dimensionnement avec des chiffres, conception, construction, tests
 comme preuve, déploiement reproductible, exploitation, audit périodique, documentation comme partie
-du produit. La plus grande partie de ce que j'exige dans les vingt-deux échelons est ce que j'ai
+du produit. La plus grande partie de ce que j'exige dans les vingt-quatre échelons est ce que j'ai
 toujours exigé dans un projet bien mené. Je ne l'ai pas inventé pour les modèles ; je l'ai apporté
 d'avant.
 
@@ -99,12 +104,12 @@ fréquent. La méthode a trois cas d'utilisation, et il vaut mieux savoir dans l
 avant d'ouvrir l'agent, parce que cela change par où l'on entre :
 
 1. **Projet neuf.** Dossier vide et un propriétaire avec une demande. On entre par l'échelon 0 et
-   on gravit les vingt-deux dans l'ordre. C'est ce que décrit ce document, avec ses contrats et le
+   on gravit les vingt-quatre dans l'ordre. C'est ce que décrit ce document, avec ses contrats et le
    manuel du cours.
 2. **Évolutif-correctif sur un système fait avec la méthode.** Le système a déjà gravi l'échelle :
    il a un contrat, une carte, des éléments en attente clos avec leur preuve, une batterie, un
    déploiement et des manuels. On entre par l'échelon 5, en ouvrant un bloc, et on suit la
-   boucle ; le 11 périodique ; le 15 à la clôture de chaque étape. C'est la phase 4 de la ligne de
+   boucle ; le 13 périodique ; le 23 à la clôture de chaque étape. C'est la phase 4 de la ligne de
    temps (Partie B).
 3. **Évolutif-correctif sur un système fait sans la méthode.** Un système qui tourne, avec des
    utilisateurs, fait par un autre ou par soi-même sans preuve, qu'il faut corriger ou faire
@@ -170,8 +175,8 @@ Ce qui change vraiment, et c'est là que se trouve mon apport, ce sont trois cho
    l'erreur d'authentification rapportée comme « succès » [Ref. 43](REFERENCIAS.md#ref-43), les
    trois assertions sur quatre qui étaient fausses. Alors « réviser la preuve au lieu du code »
    reste le principe correct, mais **la preuve doit se prouver elle-même** : le test vu en rouge
-   (échelon 7), l'instrument avec sa garde (échelon 9), le rapport qui sépare le vérifié du cru
-   (échelon 10), l'auditeur distinct du constructeur (échelon 11). Ce n'est pas une inquiétude
+   (échelon 8), l'instrument avec sa garde (échelon 7), le rapport qui sépare le vérifié du cru
+   (échelon 12), l'auditeur distinct du constructeur (échelon 13). Ce n'est pas une inquiétude
    nouvelle : c'est la même discipline d'indépendance du contrôle qualité, portée un pas plus loin
    vers l'intérieur.
 
@@ -210,15 +215,15 @@ Chaque échelon a huit parties, toujours les mêmes, pour qu'on puisse les compa
 Deux précisions importantes. D'abord : **l'échelle est neutre vis-à-vis de l'outil**. Chaque
 artefact est un fichier, un test ou un script ; aucun n'exige mon outil ni aucun autre. Forge les
 automatise (les portes, les commandes, le registre des éléments en attente), mais l'échelon existe
-sans Forge. Ensuite : **les échelons ne sont pas strictement séquentiels**. Il y a quatre
-tronçons : ceux de 0 à 4 sont de démarrage et se gravissent une fois par projet ; ceux de 5 à 10
-sont la boucle qui se répète à chaque changement ; ceux de 11 à 15 sont d'exploitation, quand le
-système est déjà vivant ; et ceux de 16 à 21 sont de qualité opérationnelle : quatre qui se
-gravissent avant le premier déploiement en production (observabilité, persistance,
-vulnérabilités, performance) et deux qui surveillent le système une fois déployé (supervision des
-ressources et des erreurs). Le 15 ferme le cycle et revient au 0 pour le prochain projet. Mais « pas
-strictement séquentiels » ne veut pas dire « dans n'importe quel ordre » : la Partie B dit
-exactement quand on gravit chacun et ce qui se passe entre les deux.
+sans Forge. Ensuite : **les échelons sont numérotés dans l'ordre où on les gravit**, et ils se
+regroupent en quatre tronçons : ceux de 0 à 4 sont de démarrage et se gravissent une fois par
+projet ; ceux de 5 à 12 sont la boucle qui se répète à chaque changement ; ceux de 13 à 20 sont
+de mise en production, et se gravissent une fois, avant le premier déploiement ; et ceux de 21 à
+23 sont d'exploitation, quand le système est déjà vivant. Le 23 ferme le cycle et revient au 0
+pour le prochain projet. À l'intérieur d'un tronçon, le numéro dit l'ordre ; entre tronçons, la
+boucle se répète pendant que les trois autres se gravissent une fois. Mais « pas strictement
+séquentiels » ne veut pas dire « dans n'importe quel ordre » : la Partie B dit exactement quand on
+gravit chacun et ce qui se passe entre les deux.
 
 ---
 
@@ -227,36 +232,98 @@ exactement quand on gravit chacun et ce qui se passe entre les deux.
 Cette partie n'existait pas dans les versions précédentes, et son absence était un défaut
 sérieux : la méthode disait quoi faire et comment le vérifier, mais elle ne disait pas **quand**.
 Et « quand » est la moitié d'une méthode. Un lecteur qui l'aurait prise au pied de la lettre
-pouvait gravir les vingt-deux échelons l'un après l'autre et se demander à quel moment, alors, on
+pouvait gravir les vingt-quatre échelons l'un après l'autre et se demander à quel moment, alors, on
 fait
 l'infrastructure, la chaîne d'intégration et de déploiement continus, l'ingestion des exigences, le
 développement de la fonctionnalité, les tests de bout en bout de tous les flux, le regard humain
 sur les écrans, et les tests humains d'acceptation. Tout cela se passe, et se passe à des moments
 précis, entre les échelons et à l'intérieur d'eux. Je l'écris ici.
 
+### B.0 Le procédé entier, en un graphique
+
+Avant les tableaux, le dessin. Il est en notation de procédé (à la manière de BPMN : événements
+ronds, tâches rectangulaires, portes en losange, flèches de retour pointillées), et il dit trois
+choses que les tableaux disent moins bien. Première : le procédé **commence en dehors de la
+méthode**, dans l'ingénierie des exigences, qui est un prérequis et qui est en outre permanente :
+elle ne finit jamais, et chaque nouvelle exigence y rentre à nouveau. Deuxième : une exigence
+nouvelle n'entre pas seulement dans la boucle ; **elle se réinjecte dans les échelons
+d'évaluation**, parce qu'elle peut changer les chiffres avec lesquels l'architecture a été décidée
+(est-ce que ça tient encore le « fois dix » ?), et de là vers l'avant. Troisième : le procédé **se
+termine par l'exécution manuelle des cas de test** par des personnes (échelon 10), et ce que cette
+exécution trouve revient dans la boucle comme exigence. Le circuit se ferme avec des gens, pas avec
+des machines.
+
+```mermaid
+flowchart TB
+  subgraph RE["Ingénierie des exigences · prérequis externe et permanent"]
+    direction TB
+    E0((Demande du métier)) --> RE1["Relevé : entretiens, cas d'utilisation, modèle de domaine, prototypes"]
+    RE1 --> RE2["Exigence nouvelle ou modifiée"]
+  end
+  subgraph ARR["Démarrage · échelons 0 à 4, une fois"]
+    direction TB
+    P0["0 Éligibilité"] --> P1["1 Contrat de collaboration"] --> P2["2 Définition et arbre sémantique"] --> P3["3 Dimensionner"]
+    P3 --> G1{"L'architecture tient-elle les chiffres ?"}
+    G1 -- oui --> P4["4 Squelette avec portes"]
+    G1 -- non --> P3
+  end
+  subgraph LOOP["Boucle · échelons 5 à 12, à chaque changement"]
+    direction TB
+    P5["5 Éléments en attente spécifiés"] --> P6["6 Décisions écrites"] --> P7["7 Mesurer"] --> P8["8 Test en rouge et bout en bout"] --> P9["9 Qualité du code"] --> P10["10 Cas de test manuel"] --> P11["11 Symétrie"] --> P12["12 Rapport honnête"]
+    P12 --> G2{"Clôture de bloc ?"}
+    G2 -- non --> P5
+  end
+  H1["Exécution manuelle des cas de test, par des personnes"]
+  subgraph OUT["Mise en production · échelons 13 à 20, une fois"]
+    direction TB
+    P13["13 Audit"] --> P14["14 Verrous"] --> P15["15 Chaîne vers la production"] --> P16["16 Observabilité"] --> P17["17 Persistance"] --> P18["18 Vulnérabilités"] --> P19["19 Performance"] --> P20["20 Documentation vivante"]
+  end
+  D((Premier déploiement))
+  subgraph OPS["Exploitation · échelons 21 à 23"]
+    direction TB
+    P21["21 Supervision des ressources"] --> P22["22 Supervision des erreurs"] --> P23["23 Résident et rétrospective"]
+  end
+  RE1 --> P0
+  P4 --> P5
+  RE2 -. "réinjecte : les chiffres changent-ils ?" .-> P3
+  RE2 --> P5
+  G2 -- oui --> H1
+  H1 -- "constats = exigences" --> RE2
+  H1 --> P13
+  P20 --> D --> P21
+  P21 -. "écarts = éléments en attente" .-> P5
+  P22 -. "erreurs = éléments en attente" .-> P5
+  P23 -. "revient au 0 pour l'étape suivante" .-> P0
+```
+
+Si le dessin ne s'affiche pas (le lecteur de markdown ne dessine pas mermaid), le texte ci-dessus
+le décrit en entier ; dans la version HTML il se dessine tout seul.
+
 ### B.1 Les cinq phases d'un projet
 
 Un projet mené avec cette méthode passe par cinq phases. Les trois du milieu sont celles qui
-correspondent aux tronçons de l'échelle (le quatrième tronçon, qualité opérationnelle, se répartit
-entre la phase 3 et la phase 4) ; les deux des extrémités sont l'ingestion initiale et
-la vie en production, que la méthode couvre aussi même si ce ne sont pas des « échelons » en soi.
+correspondent aux tronçons de la boucle, de la mise en production et de l'exploitation ; la phase 1
+est le tronçon de démarrage ; et la phase 0 est l'ingestion initiale, que la méthode couvre aussi
+même si ce n'est pas un « échelon » en soi. Je ne mets pas de durées : elles dépendent de la taille
+et de la complexité de ce qui est demandé, et une durée écrite se transforme en attente fausse. Ce
+qui ne dépend pas de la taille, c'est l'ordre.
 
-| Phase | Durée typique dans un petit projet | Échelons gravis | Que se passe-t-il d'autre dans cette phase |
-|---|---|---|---|
-| 0. Ingestion | de deux jours à une semaine, en parallèle avec la phase 1 | aucun encore ; c'est la matière première du 0, du 2, du 3 et du 5 | Relevé du métier avec le propriétaire, avec les méthodes classiques de l'ingénierie des exigences (voir B.5) : entretiens, cas d'utilisation ou récits utilisateur, modèle de domaine, prototypes d'écran. Il s'écrit en prose, incomplet à dessein ; l'agent le complète en posant des questions. |
-| 1. Démarrage | une semaine, d'affilée | 0, 1, 2, 3, 4 | Éligibilité, contrat, définition, dimensionnement. Et **toute l'infrastructure initiale** : le dépôt, l'environnement de test, l'intégration continue, le premier déploiement avec le système vide. |
-| 2. Boucle | de trois à six semaines, en blocs fonctionnels d'une à deux semaines | 5, 6, 7, 8, 9, 10 à chaque changement | Développement fonctionnel bloc par bloc ; tests en rouge ; tests de bout en bout du flux qui vient d'être construit ; regard humain sur chaque écran nouveau ; à la clôture de chaque bloc, tests humains dans l'environnement de test. |
-| 3. Mise en production | d'une à deux semaines | 11, 12, 13, 14, et les quatre de qualité opérationnelle préalables au déploiement : 16, 17, 18, 19 | Audit par une autre session ; verrous sur tout ce qui agit sur le monde ; clôture de la chaîne de déploiement vers la production avec retour arrière testé ; les trois manuels ; tests d'acceptation avec le propriétaire sur tous les flux. |
-| 4. Exploitation | tant que le système vit | 15 ; 20 et 21 montés dans la semaine du premier déploiement ; la boucle (5 à 10) pour chaque évolution ; 11 et 18 périodiques | Agent résident ; audit tous les un ou deux mois ; chaque nouveau changement entre par la boucle complète et sort par la chaîne de déploiement ; rétrospective à la clôture de chaque étape. |
+| Phase | Échelons gravis | Que se passe-t-il d'autre dans cette phase |
+|---|---|---|
+| 0. Ingestion | aucun encore ; c'est la matière première du 0, du 2, du 3 et du 5 | Relevé du métier avec le propriétaire, avec les méthodes classiques de l'ingénierie des exigences (voir B.5) : entretiens, cas d'utilisation ou récits utilisateur, modèle de domaine, prototypes d'écran. Il s'écrit en prose, incomplet à dessein ; l'agent le complète en posant des questions. |
+| 1. Démarrage | 0, 1, 2, 3, 4 | Éligibilité, contrat, définition, dimensionnement. Et **toute l'infrastructure initiale** : le dépôt, l'environnement de test, l'intégration continue, le premier déploiement avec le système vide. |
+| 2. Boucle | 5 à 12 à chaque changement : éléments en attente, décisions, mesurer, test en rouge, qualité, cas de test manuel, symétrie, rapport | Développement fonctionnel bloc par bloc ; tests en rouge ; tests de bout en bout du flux qui vient d'être construit ; regard humain sur chaque écran nouveau ; à la clôture de chaque bloc, tests humains dans l'environnement de test. |
+| 3. Mise en production | 13 à 20, dans l'ordre : audit, verrous, chaîne vers la production, observabilité, persistance, vulnérabilités, performance, documentation | Audit par une autre session ; verrous sur tout ce qui agit sur le monde ; clôture de la chaîne de déploiement vers la production avec retour arrière testé ; les trois manuels ; tests d'acceptation avec le propriétaire sur tous les flux. |
+| 4. Exploitation | 21 et 22 montés avec le premier déploiement ; 23 à la clôture de chaque étape ; la boucle (5 à 12) pour chaque évolution ; 13 et 18 périodiques | Agent résident ; audit tous les un ou deux mois ; chaque nouveau changement entre par la boucle complète et sort par la chaîne de déploiement ; rétrospective à la clôture de chaque étape. |
 
 Ce tableau est celui du projet neuf. Quand le système existe déjà et qu'il n'est pas né avec la
-méthode, les phases 0 et 1 se remplacent par le tronçon de normalisation (trois semaines pour un
-petit système : lecture, ceinture, mesurer et ordonner) qui est dans le [chemin
-évolutif-correctif](EVOLUTIVO_CORRECTIVO.md) ; les phases 2, 3 et 4 sont les mêmes.
+méthode, les phases 0 et 1 se remplacent par le tronçon de normalisation (lecture, ceinture,
+mesurer et ordonner) qui est dans le [chemin évolutif-correctif](EVOLUTIVO_CORRECTIVO.md) ; les
+phases 2, 3 et 4 sont les mêmes.
 
-Les durées sont pour un petit projet, de la taille du projet-guide du cours. Dans un projet avec
-des utilisateurs et des conséquences, la boucle s'allonge et les phases 1 et 3 restent presque les
-mêmes, parce que ce qui grandit est la fonctionnalité, pas l'infrastructure ni la clôture.
+Dans un projet avec des utilisateurs et des conséquences, ce qui grandit, c'est la boucle : la
+fonctionnalité. Le démarrage, la mise en production et l'exploitation ont la même forme dans un
+petit système et dans un grand ; ce qui change, c'est combien il y a à mesurer, pas quoi.
 
 ### B.2 Ce qui se passe entre un échelon et le suivant
 
@@ -264,16 +331,16 @@ Voici ce qui manquait. Pour chaque phase, quelles tâches de chaque type on fait
 exact par rapport aux échelons. Lisez la table par lignes : chaque ligne est un type de travail, et
 chaque cellule dit quand on le fait dans cette phase.
 
-| Type de travail | Démarrage (échelons 0 à 4) | Boucle (échelons 5 à 10, par bloc) | Mise en production (11 à 14 et 16 à 19) | Exploitation (15, 20, 21 et boucle) |
+| Type de travail | Démarrage (échelons 0 à 4) | Boucle (échelons 5 à 12, par bloc) | Mise en production (13 à 20) | Exploitation (21 à 23 et boucle) |
 |---|---|---|---|---|
-| **Ingestion des exigences** | Avant l'échelon 0 : relevé en prose avec le propriétaire, avec entretiens, cas d'utilisation et modèle de domaine. Il se complète au 2 (définition et arbre sémantique) et au 3 (volumétrie). | À l'ouverture de chaque bloc : la demande du client pour ce bloc, telle qu'il la formulerait, se convertit en éléments en attente avec **spécification détaillée** (échelon 5) : description, critères d'acceptation, règles applicables, données, écrans, cas limites. Les questions que pose l'agent sont l'ingestion fine. | Avant le 12 : relevé des actions à conséquence. Avant le 13 : relevé des environnements et des accès. | Chaque nouvelle demande entre comme élément en attente spécifié, accroché à son nœud de l'arbre sémantique ; l'agent résident recueille ce que demandent les utilisateurs. |
-| **Infrastructure** | Toute l'initiale, à l'échelon 4 : dépôt, structure, environnement de test, identifiants, domaine de test. On ne construit pas de fonctionnalité tant que le squelette vide n'est pas déployé. | Aucune, sauf si un bloc l'exige (une file, un service externe). S'il l'exige, c'est un élément en attente avec son test. | Au 13 : environnement de production, secrets sur le serveur, domaine réel, sauvegardes, supervision minimale. | Les changements d'infrastructure entrent par la boucle et par le 13 ; jamais « à la main, vite fait ». |
-| **Chaîne CI/CD** | À l'échelon 4 : l'intégration continue lance la batterie à chaque push dès la première semaine, et le déploiement vers l'environnement de test est automatique à la fusion. | Elle fonctionne seule. Chaque commit la traverse ; si elle n'est pas au vert, le bloc ne se clôture pas. | Au 13 elle se complète : le déploiement en production attend le résultat de l'intégration et ne fait qu'empaqueter ; la promotion est une procédure écrite ; le retour arrière se teste. | Chaque déploiement suit la routine du 13 : test au vert avec la même version, retour arrière prêt, vérification de bout en bout en production après. |
-| **Développement fonctionnel** | Aucun. Le squelette se déploie vide à dessein. | C'est le centre de la boucle : l'agent prend un élément en attente (5), demande les règles métier qui manquent (6), construit, et clôture avec des preuves (7, 8, 9, 10). Bloc par bloc, du basique à ce qui a des conséquences. | Ce qui agit sur le monde (facturer, envoyer) se construit dans la boucle **après** l'échelon 12, avec ses verrous, et démarre en mode à blanc. | Les évolutions entrent par la boucle. |
-| **Tests automatiques** | Un test de fumée qui passe, au 4. C'est la graine de la batterie. | Avec chaque élément en attente : le test prouvé en rouge (7), la régression des voisins dans la même session, et **un test de bout en bout du flux qui vient d'être construit**, de l'écran jusqu'au backend. À la clôture d'un bloc : la batterie complète de bout en bout de **tous** les flux existants, dans l'environnement de test. | Avant le premier déploiement en production : la batterie complète de bout en bout de tous les flux, au vert, avec la même version qui va être promue. Après le déploiement : une vérification de bout en bout sur la production, en lecture seule. | À chaque changement, la même chose que dans la boucle. |
-| **Regard humain sur les écrans** | À la clôture du 4 : le propriétaire ouvre l'URL de l'environnement de test et voit l'écran vide. Cela paraît trivial et c'est la première fois que quelqu'un qui n'est pas l'agent regarde le système. | **Avec chaque élément en attente qui touche un écran** : l'agent livre une capture réelle de l'environnement de test et le propriétaire la regarde. Dix secondes. C'est la façon la moins chère de trouver ce qu'aucun test ne trouve : que le bouton est là où il ne devrait pas être, que le texte dit autre chose, que le flux n'est pas celui que le métier imaginait. | Au 14 : les captures du manuel utilisateur sont le dernier regard humain systématique avant la production. | Chaque écran nouveau ou modifié, comme dans la boucle. |
-| **Tests humains** | Aucun encore, sauf ouvrir l'écran vide. | **À la clôture de chaque bloc fonctionnel** : le propriétaire, ou un utilisateur de confiance, utilise le système dans l'environnement de test comme il l'utiliserait pour de vrai, en suivant les flux du bloc. Ce qu'il trouve se note comme éléments en attente. On n'ouvre pas le bloc suivant avec des trouvailles humaines sans élément en attente. | Avant le premier déploiement en production : **tests d'acceptation** du propriétaire sur tous les flux, avec des données de test réalistes, dans l'environnement de test. Et au 14, une personne qui ne programme pas suit le manuel de reprise. | À chaque évolution, à la clôture de son bloc. |
-| **Décisions du propriétaire** | Au 0 (ça passe ou ça ne passe pas), au 1 (le contrat), au 2 (ce que ce N'EST PAS), au 3 (l'option d'architecture). | Chaque fois que l'agent s'arrête sur une règle métier non écrite (6). Il y en a généralement deux ou trois par bloc. | Au 12 (verrou par verrou), au 13 (promouvoir en production), au 15 (le niveau de l'agent résident). | Celles qui surgissent ; toujours écrites. |
+| **Ingestion des exigences** | Avant l'échelon 0 : relevé en prose avec le propriétaire, avec entretiens, cas d'utilisation et modèle de domaine. Il se complète au 2 (définition et arbre sémantique) et au 3 (volumétrie). | À l'ouverture de chaque bloc : la demande du client pour ce bloc, telle qu'il la formulerait, se convertit en éléments en attente avec **spécification détaillée** (échelon 5) : description, critères d'acceptation, règles applicables, données, écrans, cas limites. Les questions que pose l'agent sont l'ingestion fine. | Avant le 14 : relevé des actions à conséquence. Avant le 15 : relevé des environnements et des accès. | Chaque nouvelle demande entre comme élément en attente spécifié, accroché à son nœud de l'arbre sémantique ; l'agent résident recueille ce que demandent les utilisateurs. |
+| **Infrastructure** | Toute l'initiale, à l'échelon 4 : dépôt, structure, environnement de test, identifiants, domaine de test. On ne construit pas de fonctionnalité tant que le squelette vide n'est pas déployé. | Aucune, sauf si un bloc l'exige (une file, un service externe). S'il l'exige, c'est un élément en attente avec son test. | Au 15 : environnement de production, secrets sur le serveur, domaine réel, sauvegardes, supervision minimale. | Les changements d'infrastructure entrent par la boucle et par le 15 ; jamais « à la main, vite fait ». |
+| **Chaîne CI/CD** | À l'échelon 4 : l'intégration continue lance la batterie à chaque push dès le démarrage, et le déploiement vers l'environnement de test est automatique à la fusion. | Elle fonctionne seule. Chaque commit la traverse ; si elle n'est pas au vert, le bloc ne se clôture pas. | Au 15 elle se complète : le déploiement en production attend le résultat de l'intégration et ne fait qu'empaqueter ; la promotion est une procédure écrite ; le retour arrière se teste. | Chaque déploiement suit la routine du 15 : test au vert avec la même version, retour arrière prêt, vérification de bout en bout en production après. |
+| **Développement fonctionnel** | Aucun. Le squelette se déploie vide à dessein. | C'est le centre de la boucle : l'agent prend un élément en attente (5), demande les règles métier qui manquent (6), construit, et clôture avec des preuves (7, 8, 9, 10, 11, 12). Bloc par bloc, du basique à ce qui a des conséquences. | Ce qui agit sur le monde (facturer, envoyer) se construit dans la boucle **après** l'échelon 14, avec ses verrous, et démarre en mode à blanc. | Les évolutions entrent par la boucle. |
+| **Tests automatiques** | Un test de fumée qui passe, au 4. C'est la graine de la batterie. | Avec chaque élément en attente : le test prouvé en rouge (8), la régression des voisins dans la même session, et **un test de bout en bout du flux qui vient d'être construit**, de l'écran jusqu'au backend. À la clôture d'un bloc : la batterie complète de bout en bout de **tous** les flux existants, dans l'environnement de test. | Avant le premier déploiement en production : la batterie complète de bout en bout de tous les flux, au vert, avec la même version qui va être promue. Après le déploiement : une vérification de bout en bout sur la production, en lecture seule. | À chaque changement, la même chose que dans la boucle. |
+| **Regard humain sur les écrans** | À la clôture du 4 : le propriétaire ouvre l'URL de l'environnement de test et voit l'écran vide. Cela paraît trivial et c'est la première fois que quelqu'un qui n'est pas l'agent regarde le système. | **Avec chaque élément en attente qui touche un écran** : l'agent livre une capture réelle de l'environnement de test et le propriétaire la regarde. Dix secondes. C'est la façon la moins chère de trouver ce qu'aucun test ne trouve : que le bouton est là où il ne devrait pas être, que le texte dit autre chose, que le flux n'est pas celui que le métier imaginait. | Au 20 : les captures du manuel utilisateur sont le dernier regard humain systématique avant la production. | Chaque écran nouveau ou modifié, comme dans la boucle. |
+| **Tests humains** | Aucun encore, sauf ouvrir l'écran vide. | **À la clôture de chaque bloc fonctionnel** : le propriétaire, ou un utilisateur de confiance, utilise le système dans l'environnement de test comme il l'utiliserait pour de vrai, en suivant les flux du bloc. Ce qu'il trouve se note comme éléments en attente. On n'ouvre pas le bloc suivant avec des trouvailles humaines sans élément en attente. | Avant le premier déploiement en production : **tests d'acceptation** du propriétaire sur tous les flux, avec des données de test réalistes, dans l'environnement de test. Et au 20, une personne qui ne programme pas suit le manuel de reprise. | À chaque évolution, à la clôture de son bloc. |
+| **Décisions du propriétaire** | Au 0 (ça passe ou ça ne passe pas), au 1 (le contrat), au 2 (ce que ce N'EST PAS), au 3 (l'option d'architecture). | Chaque fois que l'agent s'arrête sur une règle métier non écrite (6). Il y en a généralement deux ou trois par bloc. | Au 14 (verrou par verrou), au 15 (promouvoir en production), au 23 (le niveau de l'agent résident). | Celles qui surgissent ; toujours écrites. |
 
 Un détail que je veux souligner parce que c'est là que les gens qui viennent du vibecoding se
 trompent le plus : **les tests de bout en bout de tous les flux ne se font pas une seule fois à la
@@ -287,33 +354,33 @@ semaines, et la mise en production se transforme en une semaine de réparations.
 
 Un bloc fonctionnel est un ensemble de quatre à huit éléments en attente liés entre eux, qui
 ensemble font quelque chose que le métier peut utiliser : « l'agenda de base », « les rappels », « le
-rapport mensuel ». Un bloc dure entre une et deux semaines dans un petit projet. Voici à quoi il
-ressemble de l'intérieur :
+rapport mensuel ». Voici à quoi il ressemble de l'intérieur :
 
-1. **Ouverture du bloc (une demi-journée).** Le propriétaire raconte, en prose, ce qu'il veut pour
-   ce bloc. L'agent le convertit en éléments en attente numérotés, avec leur « comment on vérifie »,
-   et demande ce qui ne suffit pas pour écrire un élément en attente vérifiable (échelon 5). Le
-   propriétaire priorise.
-2. **Chaque élément en attente (de deux heures à une journée).** L'agent annonce quel élément il
-   prend et pourquoi. Il construit. Si en chemin apparaît une règle métier qui n'est pas écrite, il
-   s'arrête et demande (6). Quand il termine, il clôture avec la routine du 7 : test prouvé en rouge,
-   vert, régression des voisins ; un test de bout en bout du flux touché ; et, si le changement a
-   touché un contrat entre deux parties du système, l'autre côté mis à jour dans le même commit (8).
-   Si l'élément dépendait d'un nombre — combien de requêtes, combien de temps —, on a d'abord
-   mesuré avec un instrument doté d'un test (9). Et le rapport sépare le vérifié du cru et déclare
-   les angles morts (10). Le propriétaire lit le rapport et regarde la capture de l'écran. Il ne lit
-   pas de code.
-3. **Clôture du bloc (d'une demi-journée à une journée).** La batterie complète de bout en bout au
-   vert dans l'environnement de test. Le propriétaire ou un utilisateur de confiance utilise le
-   système en suivant les flux du bloc. Ce qu'il trouve se note comme éléments en attente. On met à
-   jour le manuel utilisateur avec les nouveaux écrans (14, dans le même commit). C'est seulement
-   alors qu'on ouvre le bloc suivant.
+1. **Ouverture du bloc.** Le propriétaire raconte, en prose, ce qu'il veut pour ce bloc. L'agent le
+   convertit en éléments en attente numérotés, avec leur « comment on vérifie », et demande ce qui
+   ne suffit pas pour écrire un élément en attente vérifiable (échelon 5). Le propriétaire
+   priorise.
+2. **Chaque élément en attente.** L'agent annonce quel élément il prend et pourquoi. Si en chemin
+   apparaît une règle métier qui n'est pas écrite, il s'arrête et demande (6). Si l'élément dépend
+   d'un nombre — combien de requêtes, combien de temps —, il le mesure d'abord avec un instrument
+   doté d'un test (7). Il construit. Quand il termine, il clôture dans cet ordre : le test prouvé en
+   rouge, vert, la régression des voisins et un test de bout en bout du flux touché (8) ; la porte
+   de qualité du code au vert (9) ; les cas de test manuel du flux, écrits pour une personne (10) ;
+   et, si le changement a touché un contrat entre deux parties du système, l'autre côté mis à jour
+   dans le même commit (11). Le rapport sépare le vérifié du cru et déclare les angles morts (12).
+   Le propriétaire lit le rapport et regarde la capture de l'écran. Il ne lit pas de code.
+3. **Clôture du bloc.** La batterie complète de bout en bout au vert dans l'environnement de test.
+   Le propriétaire ou un utilisateur de confiance exécute les cas de test manuel du bloc (10) et
+   note ce qui s'est passé et ce qui a échoué ; chaque échec revient dans la boucle comme élément
+   en attente correctif. On lit le rapport de qualité du bloc (9). On met à jour le manuel
+   utilisateur avec les nouveaux écrans (20, dans le même commit). C'est seulement alors qu'on
+   ouvre le bloc suivant.
 
 Dans une journée typique de la boucle, le propriétaire investit entre quinze et trente minutes :
 répondre à deux ou trois questions de règles métier, lire deux ou trois rapports, regarder deux ou
 trois captures. C'est tout ce que la méthode lui demande. S'il investit davantage, soit l'agent
 demande ce qu'il pourrait résoudre seul (échelon 1), soit le propriétaire lit du code (et alors
-quelque chose de l'échelon 7 ou du 10 ne fonctionne pas).
+quelque chose de l'échelon 8 ou du 12 ne fonctionne pas).
 
 ### B.4 Les jalons humains
 
@@ -324,17 +391,19 @@ aucun ne peut se déléguer à l'agent :
 - **Fin du démarrage** : ouvrir l'URL de l'environnement de test et voir le système vide.
 - **Avec chaque élément en attente qui touche un écran** : regarder la capture réelle de
   l'environnement de test.
-- **À la clôture de chaque bloc** : utiliser le système dans l'environnement de test en suivant les
-  flux du bloc.
-- **Avant le premier déploiement en production** : tests d'acceptation sur tous les flux.
-- **À l'échelon 14** : une personne qui ne programme pas suit le manuel de reprise dans
+- **À la clôture de chaque bloc** : exécuter les cas de test manuel du bloc (10) dans
+  l'environnement de test et noter le résultat ; ce qui échoue revient dans la boucle comme
+  exigence.
+- **Avant le premier déploiement en production** : tests d'acceptation sur tous les flux, en
+  suivant tous les cas de test manuel.
+- **À l'échelon 20** : une personne qui ne programme pas suit le manuel de reprise dans
   l'environnement de test.
 - **Après chaque déploiement en production** : vérifier que la version qui tourne est celle qu'on
   voulait, et faire une passe en lecture seule sur les flux critiques.
 - **Avant le premier déploiement, au 19** : lire les chiffres du test de charge avec la tolérance
   du métier à côté, et le point de rupture.
-- **À chaque cycle de la supervision (20 et 21)** : lire le rapport cyclique avec l'agent et
-  décider quel écart et quelle erreur deviennent des éléments en attente. Une demi-heure par cycle.
+- **À chaque cycle de la supervision (21 et 22)** : lire le rapport cyclique avec l'agent et
+  décider quel écart et quelle erreur deviennent des éléments en attente.
 
 Tout le reste — les tests, les mesures, les audits, la documentation — c'est le modèle qui le fait
 et l'humain le vérifie par l'artefact, pas par le code.
@@ -406,7 +475,17 @@ de la routine de l'échelon 5.
 
 ---
 
-## Partie C — Les vingt-deux échelons
+## Partie C — Les vingt-quatre échelons
+
+
+Ils vont dans l'ordre où on les gravit. Les six échelons de qualité opérationnelle (16 à 19 avant
+le premier déploiement ; 21 et 22 après) sont ceux que je faisais sans les nommer : que le système
+puisse se **voir** pendant qu'il tourne, qu'il tienne le volume pour lequel il a été dimensionné,
+qu'il n'ait pas de trous connus, et qu'une fois en production personne n'apprenne un problème par
+un utilisateur en colère. Les deux supervisions finissent au même endroit que tout le reste : la
+boucle, comme éléments en attente correctifs. Si vous débutez, chacun de ces six contrats, et ceux
+des échelons 9 et 10, commencent par un paragraphe qui explique leurs mots dans le langage de tous
+les jours, et le glossaire les a tous.
 
 ### Étape 0 — Ce projet peut-il être abordé ainsi ? (l'éligibilité)
 
@@ -422,8 +501,7 @@ le signale comme tel.
   ou non, AVANT d'ouvrir le dépôt. Parce que si vous entrez dans un projet qui ne s'y prête pas, la
   méthode se dégrade en « programmer avec l'IA », et là, oui, le propriétaire finit par lire du
   code.
-- **Quand** : une seule fois, la première semaine, avant toute autre chose. Une heure de travail ;
-  elle économise des mois. Si le système existe déjà, cet échelon se gravit dans sa version pour
+- **Quand** : une seule fois, avant toute autre chose. Si le système existe déjà, cet échelon se gravit dans sa version pour
   les legacy (la station N0 du [chemin évolutif-correctif](EVOLUTIVO_CORRECTIVO.md)), avec quatre
   critères de plus et X2 mesuré écran par écran.
 - **Entrées** : la demande du client, le domaine métier, les données, la technologie, les
@@ -443,8 +521,8 @@ le signale comme tel.
 
 | # | Critère excluant | Pourquoi il tue la méthode |
 |---|---|---|
-| X1 | Technologie héritée sans dépôt accessible, ou avec des dépôts qui ne suivent pas un standard | Sans dépôt standard il n'y a nulle part où déposer la preuve : pas d'éléments en attente cités dans les commits (échelon 5), pas de tests qui voyagent avec le code (7), pas d'intégration ni de déploiement comme paquet (13), pas de documentation dans le même commit (14). L'agent travaille à l'aveugle et ne laisse aucune trace vérifiable. |
-| X2 | Technologie qu'on ne peut pas tester de bout en bout : on ne peut pas exécuter les écrans et accéder à chaque élément de l'interface avec ses différentes méthodes, en validant que le changement est bien arrivé au backend | Sans cette vérification de l'écran au backend l'agent ne peut pas se tester seul (échelons 7, 9 et 10), et alors le propriétaire devrait lire du code, ce qui est précisément ce que la méthode promet d'éviter. |
+| X1 | Technologie héritée sans dépôt accessible, ou avec des dépôts qui ne suivent pas un standard | Sans dépôt standard il n'y a nulle part où déposer la preuve : pas d'éléments en attente cités dans les commits (échelon 5), pas de tests qui voyagent avec le code (8), pas d'intégration ni de déploiement comme paquet (15), pas de documentation dans le même commit (20). L'agent travaille à l'aveugle et ne laisse aucune trace vérifiable. |
+| X2 | Technologie qu'on ne peut pas tester de bout en bout : on ne peut pas exécuter les écrans et accéder à chaque élément de l'interface avec ses différentes méthodes, en validant que le changement est bien arrivé au backend | Sans cette vérification de l'écran au backend l'agent ne peut pas se tester seul (échelons 8, 7 et 12), et alors le propriétaire devrait lire du code, ce qui est précisément ce que la méthode promet d'éviter. |
 
 Une précision qui vaut de l'or pour la neutralité vis-à-vis de l'outil : **NAC3 (le protocole
 qu'utilise mon outil pour que les écrans puissent être pilotés par programme) N'EST PAS une
@@ -485,8 +563,8 @@ qui n'est pas écrit, vous allez devoir le lui répéter à chaque fois, et à c
 différemment.
 
 - **Intention** : fixer comment travaillent l'humain et l'agent avant la première ligne de code.
-- **Quand** : une seule fois, la première semaine, immédiatement après l'éligibilité. Une
-  demi-heure. On le révise quand un coup dur l'exige.
+- **Quand** : une seule fois, immédiatement après l'éligibilité. On le révise quand un coup dur
+  l'exige.
 - **Entrées** : rien du projet ; c'est le premier fichier. De vous : vos préférences de travail.
 - **Artefact** : un document de standards de qualité qui dise, au minimum : le temps de l'humain
   est sacré (on ne le dépense pas en choses que l'agent peut résoudre seul) ; zéro dette technique,
@@ -512,7 +590,7 @@ que personne ne lit n'agit pas, et une carte longue, personne ne la lit.
 
 - **Intention** : que chaque session démarre en sachant ce qu'est le projet, dans quel état il se
   trouve et quelles décisions ont déjà été prises.
-- **Quand** : elle s'écrit une fois, la première semaine, après le contrat ; elle se maintient à
+- **Quand** : elle s'écrit une fois, après le contrat ; elle se maintient à
   jour pendant tout le projet, avec chaque nouvelle décision.
 - **Entrées** : le contrat (échelon 1) et le relevé du métier.
 - **Artefact** : un fichier de projet opérationnel, et ici j'insiste : COURT. C'est le programme,
@@ -537,7 +615,7 @@ qui les a, pas le modèle.
 
 - **Intention** : que les décisions structurelles (quel moteur de base de données, si l'interface
   est synchrone ou asynchrone, combien de concurrence) se prennent avec des chiffres et non au goût.
-- **Quand** : une fois, la première semaine, avant de monter le squelette ; on le refait si le
+- **Quand** : une fois, avant de monter le squelette ; on le refait si le
   métier change d'échelle. Une demi-page et une décision dans un petit projet.
 - **Entrées** : un relevé de données de volumétrie fait avec le métier, par nature incomplet ; et
   un accès en lecture au système précédent s'il existe. Il y a des données que **seul le métier
@@ -563,11 +641,11 @@ Avant que le système fasse quoi que ce soit d'utile, il doit démarrer, se test
 VIDE. Oui, vide. Parce que le chemin vers la production fait partie du produit, et la seule façon
 de savoir qu'il fonctionne est de le parcourir quand il n'y a encore rien à perdre. C'est l'échelon
 où se fait **toute l'infrastructure initiale et la chaîne d'intégration et de déploiement**, et
-c'est pour cela qu'il occupe la plus grande partie de la première semaine.
+c'est pour cela qu'il est le plus long du démarrage.
 
 - **Intention** : avoir un système qui démarre, se teste et se déploie sans aucune fonctionnalité
   encore.
-- **Quand** : une fois, à la fin de la première semaine, après le dimensionnement et avant toute
+- **Quand** : une fois, à la fin du démarrage, après le dimensionnement et avant toute
   fonctionnalité. C'est la clôture du tronçon de démarrage.
 - **Entrées** : le dimensionnement (échelon 3), le relevé des environnements, et les identifiants
   de l'endroit où l'on va déployer.
@@ -621,7 +699,7 @@ avec vos mots, votre nom et la date.
   et un lieu.
 - **Quand** : à chaque session de la boucle, chaque fois que l'agent bute sur une règle non écrite.
   Il y en a en général deux ou trois par bloc fonctionnel. Aussi au démarrage (échelons 0 et 3) et
-  à la mise en production (12 et 13).
+  à la mise en production (14 et 15).
 - **Entrées** : la conversation avec le propriétaire. C'est le seul intrant.
 - **Artefact** : la décision écrite dans le commit et dans un registre des décisions, avec les mots
   textuels. Si le propriétaire n'a pas répondu et que l'agent a dû choisir, elle reste marquée
@@ -635,57 +713,7 @@ avec vos mots, votre nom et la date.
   outil [Ref. 5](REFERENCIAS.md#ref-5).
 - **Contrat** : `peldanos/peldano-06-decisiones.md`.
 
-### Étape 7 — Les tests comme verrous, prouvés en rouge
-
-Un test que vous n'avez jamais vu échouer, vous ne savez pas s'il prouve quelque chose. C'est
-pourquoi ici la règle n'est pas « écrivez des tests » ; c'est « démontrez que le test passe au rouge
-contre l'ancien code, puis au vert, puis que la régression reste au vert ». Et les tests de bout en
-bout, de l'écran jusqu'au backend, sont ceux qui remplacent votre lecture du code.
-
-- **Intention** : que chaque comportement qui compte ait un test qui ÉCHOUE s'il casse, et qu'on
-  sache avec certitude qu'il échoue.
-- **Quand** : avec chaque élément en attente de la boucle, à sa clôture. Le test de bout en bout du
-  flux touché, dans la même clôture. La batterie complète de bout en bout, à la clôture de chaque
-  bloc et avant chaque déploiement en production.
-- **Entrées** : le changement déjà implémenté et l'élément en attente avec son « comment on
-  vérifie ».
-- **Artefact** : le nouveau test, la sortie en rouge et en vert avec des chiffres, la régression
-  des voisins dans la même session, et le commit qui dit contre quoi on a prouvé le rouge.
-- **Porte** : rouge démontré, vert, régression au vert. Et l'agent ne simule pas précisément la
-  partie qu'il veut tester.
-- **Qui décide** : l'agent exécute et rapporte ; le propriétaire lit le rapport, pas le test.
-- **Échec évité** : les tests qui passent parce qu'ils ne prouvent rien, et le vert qui cache un
-  bug [Ref. 44](REFERENCIAS.md#ref-44). Le cas des compteurs est l'exemple complet d'un test prouvé
-  en rouge contre l'ancien critère [Ref. 26](REFERENCIAS.md#ref-26).
-- **Contrat** : `peldanos/peldano-07-tests-en-rojo.md`.
-
-### Étape 8 — Symétrie entre producteur et consommateur, et le registre des anti-patrons
-
-Quand vous changez un bout (le serveur, la base, un robot), l'autre bout (l'écran, un compteur, un
-rapport) doit changer dans le même commit. Le principe qui soutient cela est que **toute liste a un
-seul propriétaire**. Et les erreurs que vous avez déjà payées une fois se notent avec leur
-vérification automatique, pour ne pas les payer deux fois.
-
-- **Intention** : qu'un changement à un bout entraîne l'autre, toujours, dans le même commit.
-- **Quand** : avec chaque élément en attente qui touche un contrat entre deux parties du système ;
-  la carte des contrats se construit à l'ouverture du deuxième bloc fonctionnel, quand il y a déjà
-  un écran et un serveur ; le registre des anti-patrons grandit chaque fois que quelque chose casse
-  pour la deuxième fois.
-- **Entrées** : la carte de qui produit et qui consomme chaque contrat ; le registre des
-  anti-patrons.
-- **Artefact** : le serveur définit la liste et le consommateur la lit ; la carte
-  producteur/consommateur ; le registre des anti-patrons avec odeur, cause racine, correctif et
-  détection précoce.
-- **Porte** : automatique : l'agent cherche l'autre côté avant de considérer un changement comme
-  clos.
-- **Qui décide** : personne ; c'est automatique.
-- **Échec évité** : le compteur qui ne coïncide pas avec la requête
-  [Ref. 26](REFERENCIAS.md#ref-26) ; deux copies du même module qui se désynchronisent
-  [Ref. 41](REFERENCIAS.md#ref-41). La solution de la source unique, je l'ai imposée à la Mutuelle
-  [Ref. 27](REFERENCIAS.md#ref-27).
-- **Contrat** : `peldanos/peldano-08-simetria-y-antipatrones.md`.
-
-### Étape 9 — Mesurer avant de construire, avec un instrument lui-même vérifié
+### Étape 7 — Mesurer avant de construire, avec un instrument lui-même vérifié
 
 C'est, pour moi, l'échelon le plus adulte de tous, et celui que j'ai mis le plus de temps à
 formaliser parce que je tenais pour acquis qu'un modèle l'appliquerait seul. Il ne l'applique pas.
@@ -712,9 +740,120 @@ vérifie, parce que les compteurs mentent.
   [Ref. 36](REFERENCIAS.md#ref-36) ; le cliquet à zéro qui ne voyait pas 84 appels
   [Ref. 35](REFERENCIAS.md#ref-35). Les règles, c'est moi qui les ai écrites, en session, avant
   qu'elles ne deviennent doctrine [Ref. 45](REFERENCIAS.md#ref-45).
-- **Contrat** : `peldanos/peldano-09-medir.md`.
+- **Contrat** : `peldanos/peldano-07-medir.md`.
 
-### Étape 10 — Vérification honnête et rapport proportionné
+### Étape 8 — Les tests comme verrous, prouvés en rouge
+
+Un test que vous n'avez jamais vu échouer, vous ne savez pas s'il prouve quelque chose. C'est
+pourquoi ici la règle n'est pas « écrivez des tests » ; c'est « démontrez que le test passe au rouge
+contre l'ancien code, puis au vert, puis que la régression reste au vert ». Et les tests de bout en
+bout, de l'écran jusqu'au backend, sont ceux qui remplacent votre lecture du code.
+
+- **Intention** : que chaque comportement qui compte ait un test qui ÉCHOUE s'il casse, et qu'on
+  sache avec certitude qu'il échoue.
+- **Quand** : avec chaque élément en attente de la boucle, à sa clôture. Le test de bout en bout du
+  flux touché, dans la même clôture. La batterie complète de bout en bout, à la clôture de chaque
+  bloc et avant chaque déploiement en production.
+- **Entrées** : le changement déjà implémenté et l'élément en attente avec son « comment on
+  vérifie ».
+- **Artefact** : le nouveau test, la sortie en rouge et en vert avec des chiffres, la régression
+  des voisins dans la même session, et le commit qui dit contre quoi on a prouvé le rouge.
+- **Porte** : rouge démontré, vert, régression au vert. Et l'agent ne simule pas précisément la
+  partie qu'il veut tester.
+- **Qui décide** : l'agent exécute et rapporte ; le propriétaire lit le rapport, pas le test.
+- **Échec évité** : les tests qui passent parce qu'ils ne prouvent rien, et le vert qui cache un
+  bug [Ref. 44](REFERENCIAS.md#ref-44). Le cas des compteurs est l'exemple complet d'un test prouvé
+  en rouge contre l'ancien critère [Ref. 26](REFERENCIAS.md#ref-26).
+- **Contrat** : `peldanos/peldano-08-tests-en-rojo.md`.
+
+### Étape 9 — Qualité du code vérifiée par machine, avec une porte
+
+Le propriétaire ne lit pas le code, et c'est tout l'intérêt. Mais quelqu'un va maintenir ce code,
+et un code qui marche aujourd'hui et qui sera illisible demain est une dette qui se paie au
+troisième mois. Si personne ne le lit, c'est une machine qui doit le regarder : à chaque commit,
+ce qu'un relecteur humain regarderait, converti en un chiffre avec une limite. Je l'ai fait dans
+tous mes projets sans le nommer comme un échelon.
+
+- **Intention** : que la qualité du code se vérifie par machine à chaque commit, avec la
+  construction au rouge comme conséquence, et qu'elle ne se dégrade jamais toute seule.
+- **Quand** : elle se monte à l'ouverture du premier bloc fonctionnel et tourne à chaque push ;
+  chaque élément en attente se clos avec la qualité au vert, après le test en rouge (8) ; le
+  rapport se lit avec le propriétaire à la clôture de chaque bloc. Dans un système hérité, la
+  première exécution est la ligne de base.
+- **Entrées** : l'intégration continue (4), le code d'au moins un élément en attente clos, et les
+  limites décidées par le propriétaire (taille de fichier et de fonction, pour commencer).
+- **Artefact** : linter et formateur avec une seule configuration ; limites de taille et de
+  complexité ; détection de duplication et de code mort ; couverture avec cliquet ; types si le
+  langage le permet ; `docs/CODE_QUALITY.md` avec chaque limite et sa valeur mesurée ; la porte
+  dans `docs/GATES.md`.
+- **Porte** : rien n'est fusionné avec la qualité au rouge ; aucune exception au linter sans
+  raison écrite ; aucune limite relevée pour passer.
+- **Qui décide** : le propriétaire fixe les limites et décide ce qui se corrige maintenant et ce
+  qui se tolère avec une date ; l'agent mesure et corrige dans le même commit.
+- **Échec évité** : le composant de plus de deux mille lignes et le fichier de presque dix mille
+  qu'un audit a trouvés parce qu'aucune limite ne les avait arrêtés
+  [Ref. 41](REFERENCIAS.md#ref-41) ; le chiffre de qualité qui empire sans que personne ne le voie
+  [Ref. 35](REFERENCIAS.md#ref-35).
+- **Contrat** : `peldanos/peldano-09-calidad-de-codigo.md`.
+
+### Étape 10 — Les cas de test manuel s'écrivent avec la fonctionnalité, et ce sont des personnes qui les exécutent
+
+Les tests automatiques, c'est le modèle qui les écrit et les lance, et ils testent ce que le
+modèle a compris. Il manque le test que fait une personne avec ses yeux et ses mains, en suivant
+un scénario. Le scénario est écrit par celui-là même qui a construit la fonctionnalité, au même
+moment, à partir des critères d'acceptation ; des personnes l'exécutent à la clôture de chaque
+bloc, à l'acceptation et après chaque déploiement ; et ce qui échoue revient dans la boucle comme
+exigence. C'est la fermeture du circuit que montre le graphique du procédé.
+
+- **Intention** : que toute fonctionnalité naisse avec son cas de test manuel, écrit pour une
+  personne qui ne sait pas comment le système est fait, et que chaque exécution humaine réinjecte
+  ce qui échoue comme élément en attente.
+- **Quand** : avec chaque élément en attente, à sa clôture, après le test en rouge (8) et la
+  qualité (9). Exécution par des personnes à la clôture de chaque bloc, avant le premier
+  déploiement (acceptation) et après chaque déploiement, en lecture seule.
+- **Entrées** : les critères d'acceptation de l'élément en attente (5), l'environnement de test
+  avec des données, et la décision de qui exécute et quand.
+- **Artefact** : `docs/MANUAL_TESTS.md` avec un cas par flux touché (identifiant, élément en
+  attente, précondition, étapes avec ce qu'on fait et ce qu'on voit, résultat attendu avec l'effet
+  côté backend vérifiable par une personne, données, tableau des exécutions) ; les exécutions
+  enregistrées ; un élément en attente correctif par échec.
+- **Porte** : aucun élément en attente qui touche un écran ne se clos sans son cas ; aucune
+  exécution sans date et sans nom ; aucun échec sans élément en attente avec les mots de la
+  personne.
+- **Qui décide** : le propriétaire ou un utilisateur de confiance exécute ; l'agent écrit les cas
+  et ouvre les éléments en attente ; le modèle ne marque jamais un cas comme exécuté.
+- **Échec évité** : le test humain sans scénario qui trouve des choses différentes à chaque fois,
+  et la trouvaille humaine qui se corrige sur le moment et se perd ; le menu déroulant incommode
+  qu'aucun test n'a vu et que la responsable, elle, a vu, dans le projet-guide du cours.
+- **Contrat** : `peldanos/peldano-10-casos-de-prueba-manual.md`.
+
+### Étape 11 — Symétrie entre producteur et consommateur, et le registre des anti-patrons
+
+Quand vous changez un bout (le serveur, la base, un robot), l'autre bout (l'écran, un compteur, un
+rapport) doit changer dans le même commit. Le principe qui soutient cela est que **toute liste a un
+seul propriétaire**. Et les erreurs que vous avez déjà payées une fois se notent avec leur
+vérification automatique, pour ne pas les payer deux fois.
+
+- **Intention** : qu'un changement à un bout entraîne l'autre, toujours, dans le même commit.
+- **Quand** : avec chaque élément en attente qui touche un contrat entre deux parties du système ;
+  la carte des contrats se construit à l'ouverture du deuxième bloc fonctionnel, quand il y a déjà
+  un écran et un serveur ; le registre des anti-patrons grandit chaque fois que quelque chose casse
+  pour la deuxième fois.
+- **Entrées** : la carte de qui produit et qui consomme chaque contrat ; le registre des
+  anti-patrons.
+- **Artefact** : le serveur définit la liste et le consommateur la lit ; la carte
+  producteur/consommateur ; le registre des anti-patrons avec odeur, cause racine, correctif et
+  détection précoce.
+- **Porte** : automatique : l'agent cherche l'autre côté avant de considérer un changement comme
+  clos.
+- **Qui décide** : personne ; c'est automatique.
+- **Échec évité** : le compteur qui ne coïncide pas avec la requête
+  [Ref. 26](REFERENCIAS.md#ref-26) ; deux copies du même module qui se désynchronisent
+  [Ref. 41](REFERENCIAS.md#ref-41). La solution de la source unique, je l'ai imposée à la Mutuelle
+  [Ref. 27](REFERENCIAS.md#ref-27).
+- **Contrat** : `peldanos/peldano-11-simetria-y-antipatrones.md`.
+
+### Étape 12 — Vérification honnête et rapport proportionné
 
 Si vous n'allez pas lire le code, le rapport de l'agent doit être fiable, et cela n'arrive pas tout
 seul. Le modèle a été entraîné pour être utile et complet, et un rapport qui dit « ceci, je n'ai pas
@@ -737,9 +876,9 @@ explicitement les mauvaises nouvelles, les angles morts et ce qu'il n'a pas fait
   ne l'était pas [Ref. 43](REFERENCIAS.md#ref-43) ; le tour qui a travaillé invisible pendant une
   heure quarante-trois [Ref. 16](REFERENCIAS.md#ref-16). La règle d'honnêteté de vérification, je
   l'ai écrite en juin [Ref. 8](REFERENCIAS.md#ref-8).
-- **Contrat** : `peldanos/peldano-10-verificacion-honesta.md`.
+- **Contrat** : `peldanos/peldano-12-verificacion-honesta.md`.
 
-### Étape 11 — L'audit périodique comme intrant du plan
+### Étape 13 — L'audit périodique comme intrant du plan
 
 De temps en temps il faut regarder le système entier avec des yeux neufs, et ce qu'on y voit ne va
 pas dans un rapport qu'on archive : il va dans la file des éléments en attente. La partie
@@ -763,9 +902,9 @@ autre fichier d'instructions, suffit.
   deux portes d'administrateur que personne n'avait vues jusqu'à ce qu'un autre les regarde
   [Ref. 40](REFERENCIAS.md#ref-40) ; une vulnérabilité connue et un composant énorme
   [Ref. 41](REFERENCIAS.md#ref-41).
-- **Contrat** : `peldanos/peldano-11-auditoria.md`.
+- **Contrat** : `peldanos/peldano-13-auditoria.md`.
 
-### Étape 12 — Fail-closed, verrous et zéro dommage silencieux
+### Étape 14 — Fail-closed, verrous et zéro dommage silencieux
 
 Dans le doute ou en cas d'échec, le système N'AGIT PAS. Et il le dit. Cela semble évident, mais
 c'est le contraire de ce que fait le logiciel par défaut, qui, dans le doute, continue. Cet échelon
@@ -785,9 +924,9 @@ vient **avant** de construire les fonctionnalités qui agissent sur le monde, pa
   la suppression de données du client. Les verrous de la Mutuelle sont le modèle
   [Ref. 28](REFERENCIAS.md#ref-28) ; le réflexe de ne pas casser le listing entier, aussi
   [Ref. 25](REFERENCIAS.md#ref-25).
-- **Contrat** : `peldanos/peldano-12-fail-closed.md`.
+- **Contrat** : `peldanos/peldano-14-fail-closed.md`.
 
-### Étape 13 — Intégration continue, environnements, secrets et déploiement comme partie du produit
+### Étape 15 — Intégration continue, environnements, secrets et déploiement comme partie du produit
 
 Arriver en production doit être un paquet reproductible : les tests tournent UNE fois, le
 déploiement ne fait qu'empaqueter et téléverser, la configuration vit sur le serveur et non dans le
@@ -812,9 +951,118 @@ cet échelon le complète vers la production.
   [Ref. 39](REFERENCIAS.md#ref-39) ; le déploiement durci à coups d'éléments en attente pour l'avoir
   découvert tard [Ref. 32](REFERENCIAS.md#ref-32) ; des secrets collés dans le chat
   [Ref. 42](REFERENCIAS.md#ref-42).
-- **Contrat** : `peldanos/peldano-13-ci-entornos-secretos-deploy.md`.
+- **Contrat** : `peldanos/peldano-15-ci-entornos-secretos-deploy.md`.
 
-### Étape 14 — Documentation vivante et manuels qu'une personne peut suivre sans IA
+### Étape 16 — Observabilité et traçabilité totales, avec un niveau configurable
+
+Quand quelque chose cassera en production, je veux suivre une action depuis l'écran jusqu'à la
+base de données avec un seul identifiant, sans ouvrir le code ; je veux pouvoir monter le détail
+des journaux en production en une minute, sans redéployer ; et je veux que toute action à
+conséquence laisse une trace que l'application ne puisse pas effacer.
+
+- **Intention** : que le système puisse se voir pendant qu'il tourne (observabilité) et que chaque
+  action importante ait sa trace (traçabilité), avec un niveau de détail qui se change par
+  configuration.
+- **Quand** : dans la mise en production, après le 15 et avant le 19. Dans un système hérité, le
+  niveau minimum entre dans la ceinture de sécurité (N4) et le niveau complet ici. La règle « tout
+  nouveau module journalise et propage » vaut pendant toute l'exploitation.
+- **Entrées** : la configuration par environnement (15), la table des verrous (14), la liste des
+  données personnelles du relevé, et la décision sur l'endroit où vivent les journaux.
+- **Artefact** : des journaux structurés avec un niveau configurable sans déployer ; un
+  identifiant de corrélation dans chaque enregistrement, de l'écran à la base ; un audit immuable
+  des actions à conséquence ; des points de santé et de métriques ; `docs/OBSERVABILITY.md`.
+- **Porte** : un identifiant réel suivi à travers toutes les couches ; le niveau changé sans
+  déployer ; aucune donnée personnelle dans les journaux.
+- **Qui décide** : le propriétaire décide où vivent les journaux, combien de temps on les conserve
+  et ce qu'est une donnée personnelle ; l'agent monte le dispositif.
+- **Échec évité** : le processus qui a continué de vivre une heure quarante-trois et qu'on a
+  trouvé par le journal [Ref. 16](REFERENCIAS.md#ref-16) ; l'agent résident qui travaille en
+  aveugle s'il n'y a pas de journaux à lire [Ref. 13](REFERENCIAS.md#ref-13).
+- **Contrat** : `peldanos/peldano-16-observabilidad-y-trazabilidad.md`.
+
+### Étape 17 — Optimisation de la couche de persistance, mesurée avant et après
+
+La base de données est l'endroit où les systèmes meurent lentement : bien avec cent
+enregistrements, mal avec cent mille, et personne ne sait quand ça a commencé. Ici cela se décide
+avec des chiffres, avant la production, et avec la méthode de l'échelon 7 : mesurer, changer,
+remesurer sur les mêmes données.
+
+- **Intention** : que les requêtes réelles du système, aux volumes du dimensionnement, entrent
+  dans ce que le métier tolère, avec des budgets qui empêchent qu'elles en ressortent.
+- **Quand** : dans la mise en production, après le 16 et avant le 19 ; se répète quand un bloc
+  ajoute une grande table ou que la supervision (21) montre une requête hors plage. Dans un
+  système hérité, les mesures sortent de N6 et presque tout se paie « quand on y touche ».
+- **Entrées** : le dimensionnement (3 ou N6), la carte producteur-consommateur (11),
+  l'observabilité (16), et l'environnement de test chargé au volume attendu.
+- **Artefact** : des compteurs de requêtes avec test ; `docs/PERSISTENCE.md` avec la table de
+  l'avant et de l'après par changement, les budgets par chemin et la rétention par table ; un test
+  par budget.
+- **Porte** : aucune requête qui lise une table entière dans un flux critique ; chaque budget avec
+  son test ; l'écran le plus lent dans ce que le dimensionnement attendait.
+- **Qui décide** : le propriétaire approuve la liste des changements, un par un ; l'agent mesure
+  et applique.
+- **Échec évité** : les requêtes qui lisaient des tables entières dans un système vivant
+  [Ref. 18](REFERENCIAS.md#ref-18) ; le budget qu'il a fallu resserrer à ce qui avait été mesuré
+  [Ref. 37](REFERENCIAS.md#ref-37) ; les millions de lignes sur des fichiers
+  [Ref. 15](REFERENCIAS.md#ref-15).
+- **Contrat** : `peldanos/peldano-17-persistencia.md`.
+
+### Étape 18 — Scan et résolution des vulnérabilités, dans la chaîne et avec un calendrier
+
+L'audit (13) regarde le système entier avec discernement, de temps en temps ; cet échelon regarde
+une seule chose, la sécurité, tout le temps et par machine : dépendances, code, secrets dans
+l'historique et configuration du serveur. Et une règle : une mise à jour de dépendance est un
+changement, et elle entre par la boucle.
+
+- **Intention** : qu'aucune vulnérabilité connue n'arrive en production, et que les nouvelles se
+  détectent toutes seules même si personne ne touche au système.
+- **Quand** : dans la mise en production, après le 15 et avant le premier déploiement ; ensuite, à
+  chaque push et avec un calendrier hebdomadaire. Dans un système hérité, la première passe fait
+  partie de N3.
+- **Entrées** : l'intégration continue (4 et 15), le relevé des environnements, l'audit précédent,
+  et le critère du propriétaire sur ce qui est urgent.
+- **Artefact** : le scan en quatre couches qui tourne dans la chaîne et avec un calendrier ;
+  `docs/SECURITY_[date].md` avec les constats et ce qui n'a pas été scanné ; `docs/SECURITY.md`
+  avec la politique ; la porte dans `docs/GATES.md` ; les P0 et P1 corrigés avec leur élément en
+  attente.
+- **Porte** : aucun P0 ouvert n'est promu en production ; un nouveau P1 ouvre un élément en
+  attente tout seul.
+- **Qui décide** : le propriétaire définit ce qu'est un P0 et approuve les corrections ; l'agent
+  monte le dispositif et le lance.
+- **Échec évité** : la vulnérabilité connue qui est apparue dans l'audit de qualité
+  [Ref. 41](REFERENCIAS.md#ref-41) ; les portes d'administrateur que seule une autre session a
+  vues [Ref. 40](REFERENCIAS.md#ref-40) ; la sécurité traitée comme une liste que l'on coche une
+  fois [Ref. 23](REFERENCIAS.md#ref-23).
+- **Contrat** : `peldanos/peldano-18-vulnerabilidades.md`.
+
+### Étape 19 — Tests de performance en volume et point de rupture
+
+L'échelon 3 a dimensionné avec des calculs ; celui-ci vérifie les calculs avec le système qui
+tourne : au volume attendu, au « fois dix », et jusqu'à ce que quelque chose casse. Le point de
+rupture est le chiffre le plus utile du tronçon, parce que c'est de lui que sortent les seuils
+d'alerte du 21.
+
+- **Intention** : savoir comment se comporte le système au volume attendu, au « fois dix », et où
+  et pourquoi il casse, avant que le premier utilisateur n'entre.
+- **Quand** : dans la mise en production, après le 16 et le 17, avant le premier déploiement ; se
+  répète avant chaque déploiement qui change l'architecture, la persistance ou un flux critique.
+  Dans un système hérité, avec les volumes mesurés en N6.
+- **Entrées** : le dimensionnement, l'observabilité allumée, la persistance optimisée, les flux
+  critiques et la tolérance du métier pour l'écran le plus utilisé.
+- **Artefact** : le script de charge dans le dépôt, avec test ; `docs/PERFORMANCE_[date].md` avec
+  les trois passes, le point de rupture et le diagnostic ; `docs/PERFORMANCE.md` avec les seuils
+  et la porte ; un élément en attente par goulot d'étranglement.
+- **Porte** : l'écran le plus utilisé dans la tolérance au volume attendu, ou un élément en
+  attente avec le chiffre ; le point de rupture écrit avec ce qui casse.
+- **Qui décide** : le propriétaire donne la tolérance et décide jusqu'à quel volume les goulots
+  d'étranglement se corrigent maintenant.
+- **Échec évité** : la charge réelle que l'on n'a connue qu'en regardant la production
+  [Ref. 12](REFERENCIAS.md#ref-12) ; le point de rupture qui s'est déguisé en test raté
+  [Ref. 44](REFERENCIAS.md#ref-44) ; le dimensionnement comme porte
+  [Ref. 14](REFERENCIAS.md#ref-14).
+- **Contrat** : `peldanos/peldano-19-rendimiento-y-punto-de-ruptura.md`.
+
+### Étape 20 — Documentation vivante et manuels qu'une personne peut suivre sans IA
 
 Le système doit pouvoir s'utiliser, se maintenir et se rétablir sans l'agent et sans vous. Si le
 jour où il n'y a pas d'agent on ne peut pas déployer, il n'est pas terminé. Et comme régénérer la
@@ -824,9 +1072,9 @@ documentation avec un modèle est gratuit, la règle devient « dans le même co
   sans le constructeur.
 - **Quand** : le manuel utilisateur grandit avec chaque bloc fonctionnel, à sa clôture, avec les
   nouveaux écrans. Les trois manuels complets se génèrent dans le tronçon de mise en production,
-  après le 13, et le test avec une personne qui ne programme pas se fait avant le premier
+  après le 15, et le test avec une personne qui ne programme pas se fait avant le premier
   déploiement. La routine du même commit s'applique pendant toute l'exploitation.
-- **Entrées** : le système qui tourne dans l'environnement de test ; les artefacts du 12 et du 13.
+- **Entrées** : le système qui tourne dans l'environnement de test ; les artefacts du 14 et du 15.
 - **Artefact** : le manuel utilisateur avec des captures réelles, celui de maintenance, et celui
   d'infrastructure et de reprise écrit pour une personne qui doit le faire à la main à trois heures
   du matin ; chacun avec date et version.
@@ -836,9 +1084,63 @@ documentation avec un modèle est gratuit, la règle devient « dans le même co
 - **Échec évité** : le document périmé qui a provoqué un commit dans le mauvais dépôt ; le fichier
   de projet transformé en historique [Ref. 41](REFERENCIAS.md#ref-41). Les manuels reproductibles à
   la main sont ceux de la Mutuelle [Ref. 24](REFERENCIAS.md#ref-24).
-- **Contrat** : `peldanos/peldano-14-documentacion-viva.md`.
+- **Contrat** : `peldanos/peldano-20-documentacion-viva.md`.
 
-### Étape 15 — L'agent dans le système, et la rétrospective chiffrée
+### Étape 21 — Supervision des ressources, des fonctions et des requêtes hors plage, avec rapport cyclique
+
+Les tests du 19 disent comment se comporte le système un jour ; la production, c'est tous les
+jours, avec les données qui grandissent. Cet échelon surveille l'usage des ressources et le temps
+de réponse de chaque fonction et de chaque requête par rapport aux seuils du 19 et à sa propre
+histoire, prévient quand quelque chose sort de la plage, et produit un rapport cyclique que l'on
+lit avec le propriétaire. Chaque écart est un élément en attente.
+
+- **Intention** : voir un problème de ressources ou de performance avant que l'utilisateur ne le
+  voie, et que chaque écart ait une cause ou un élément en attente.
+- **Quand** : elle se monte avec le premier déploiement en production ; à partir de là
+  elle tourne seule, et le rapport se lit à chaque cycle (hebdomadaire avec des conséquences,
+  mensuel dans un petit projet). Dans un système hérité, la première lecture est la ligne de base.
+- **Entrées** : les métriques du 16, les budgets du 17, les seuils du 19, la production en lecture
+  seule, et le canal et le cycle décidés avec le propriétaire.
+- **Artefact** : une collecte avec historique ; des alertes par seuil et par écart ; le rapport
+  cyclique généré tout seul ; `docs/MONITORING.md` ; la routine de lecture dans le contrat.
+- **Porte** : une alerte provoquée est arrivée au canal ; le premier rapport a chaque écart avec
+  sa cause ou sa proposition ; aucun seuil n'a monté sans raison écrite.
+- **Qui décide** : le propriétaire décide le canal, le cycle et quel écart se traite maintenant ;
+  l'agent monte et propose.
+- **Échec évité** : le plafond qu'il a fallu resserrer à ce qui avait été mesuré
+  [Ref. 37](REFERENCIAS.md#ref-37) ; le quota qui a fondu sans que personne ne regarde
+  [Ref. 39](REFERENCIAS.md#ref-39).
+- **Contrat** : `peldanos/peldano-21-monitoreo-de-recursos-y-rendimiento.md`.
+
+### Étape 22 — Supervision des erreurs et rapport cyclique : aucune erreur sans élément en attente
+
+Un système en production produit des erreurs que personne ne signale. Cet échelon les capture dans
+les trois endroits où elles se cachent (le backend, les tâches, le navigateur de l'utilisateur),
+les regroupe, prévient de celles qui sont nouvelles et de celles qui croissent, et produit un
+rapport cyclique. Deux règles : aucune erreur sans élément en attente, et l'« erreur connue »
+n'existe pas sans un élément en attente qui dise pourquoi on la tolère et jusqu'à quand.
+
+- **Intention** : qu'aucune erreur en production ne passe inaperçue, et que chacune se close avec
+  le test qui la reproduit en rouge.
+- **Quand** : elle se monte avec le premier déploiement, avec le 21 ; à partir de là
+  elle tourne seule, avec des alertes sur le moment et un rapport cyclique. Dans un système
+  hérité, les erreurs qui existaient déjà le premier jour deviennent des éléments en attente avec
+  leur marque de vitesse.
+- **Entrées** : les journaux du 16, la table des verrous (14), la production avec le navigateur
+  inclus, le canal et le cycle du 21.
+- **Artefact** : une capture centralisée et regroupée, sans données personnelles ; des alertes par
+  erreur nouvelle, récurrente qui croît et à conséquence ; le rapport cyclique avec le taux
+  d'erreur par flux ; `docs/MONITORING.md` ; la routine dans le contrat.
+- **Porte** : une erreur provoquée dans le navigateur suivie jusqu'au rapport ; aucune erreur
+  récurrente sans élément en attente ni raison datée.
+- **Qui décide** : le propriétaire lit le rapport et décide ce qui se traite ; l'agent capture,
+  regroupe et propose.
+- **Échec évité** : l'erreur d'authentification rapportée comme un succès
+  [Ref. 43](REFERENCIAS.md#ref-43) ; les quatre tours jusqu'à la cause racine faute d'avoir
+  l'erreur reproduite [Ref. 22](REFERENCIAS.md#ref-22).
+- **Contrat** : `peldanos/peldano-22-monitoreo-de-errores.md`.
+
+### Étape 23 — L'agent dans le système, et la rétrospective chiffrée
 
 Le dernier échelon a deux parties qui ferment le même cycle. D'abord : l'agent reste résident en
 production, avec un périmètre borné, agissant au nom d'une personne. Ensuite : la méthode elle-même
@@ -861,192 +1163,9 @@ se révise avec des chiffres, et ce qu'on apprend revient à l'échelon 0 pour l
   après projet sans apprendre. La rétrospective chiffrée qui a tué l'équipe multi-agents est le
   modèle [Ref. 6](REFERENCIAS.md#ref-6) ; l'agent résident, celui de la Mutuelle
   [Ref. 13](REFERENCIAS.md#ref-13).
-- **Contrat** : `peldanos/peldano-15-agente-residente-y-retrospectiva.md`.
+- **Contrat** : `peldanos/peldano-23-agente-residente-y-retrospectiva.md`.
 
 ---
-
-### Les six échelons de qualité opérationnelle (16 à 21)
-
-Les seize échelons précédents font que le système est bien construit et qu'il peut se soutenir.
-Ces six-là font quelque chose de différent, et que j'avais laissé implicite parce que dans mes
-projets je le faisais sans le nommer : que le système puisse se **voir** pendant qu'il tourne,
-qu'il tienne le volume pour lequel il a été dimensionné, qu'il n'ait pas de trous connus, et
-qu'une fois en production personne n'apprenne un problème par un utilisateur en colère. Quatre se
-gravissent avant le premier déploiement en production, dans cet ordre : observabilité (16),
-persistance (17), vulnérabilités (18) et performance (19). Deux se montent dans la semaine du
-premier déploiement et tournent seuls à partir de là : la supervision des ressources et de la
-performance (20) et celle des erreurs (21). Les deux supervisions finissent au même endroit que
-tout le reste : la boucle, comme éléments en attente correctifs. Et les six valent pour les deux
-cas d'utilisation : dans un projet neuf, à l'endroit que dit leur « quand » ; dans un système
-hérité, avec les différences que marque chaque fiche et qui sont détaillées dans le chemin
-évolutif-correctif.
-
-Si vous débutez, chacun de ces six contrats commence par un paragraphe qui explique ses mots
-(journal, index, vulnérabilité, latence, seuil) dans le langage de tous les jours, et le glossaire
-les a tous.
-
-### Étape 16 — Observabilité et traçabilité totales, avec un niveau configurable
-
-Quand quelque chose cassera en production, je veux suivre une action depuis l'écran jusqu'à la
-base de données avec un seul identifiant, sans ouvrir le code ; je veux pouvoir monter le détail
-des journaux en production en une minute, sans redéployer ; et je veux que toute action à
-conséquence laisse une trace que l'application ne puisse pas effacer.
-
-- **Intention** : que le système puisse se voir pendant qu'il tourne (observabilité) et que chaque
-  action importante ait sa trace (traçabilité), avec un niveau de détail qui se change par
-  configuration.
-- **Quand** : dans la mise en production, après le 13 et avant le 19. Dans un système hérité, le
-  niveau minimum entre dans la ceinture de sécurité (N4) et le niveau complet ici. La règle « tout
-  nouveau module journalise et propage » vaut pendant toute l'exploitation.
-- **Entrées** : la configuration par environnement (13), la table des verrous (12), la liste des
-  données personnelles du relevé, et la décision sur l'endroit où vivent les journaux.
-- **Artefact** : des journaux structurés avec un niveau configurable sans déployer ; un
-  identifiant de corrélation dans chaque enregistrement, de l'écran à la base ; un audit immuable
-  des actions à conséquence ; des points de santé et de métriques ; `docs/OBSERVABILITY.md`.
-- **Porte** : un identifiant réel suivi à travers toutes les couches ; le niveau changé sans
-  déployer ; aucune donnée personnelle dans les journaux.
-- **Qui décide** : le propriétaire décide où vivent les journaux, combien de temps on les conserve
-  et ce qu'est une donnée personnelle ; l'agent monte le dispositif.
-- **Échec évité** : le processus qui a continué de vivre une heure quarante-trois et qu'on a
-  trouvé par le journal [Ref. 16](REFERENCIAS.md#ref-16) ; l'agent résident qui travaille en
-  aveugle s'il n'y a pas de journaux à lire [Ref. 13](REFERENCIAS.md#ref-13).
-- **Contrat** : `peldanos/peldano-16-observabilidad-y-trazabilidad.md`.
-
-### Étape 17 — Optimisation de la couche de persistance, mesurée avant et après
-
-La base de données est l'endroit où les systèmes meurent lentement : bien avec cent
-enregistrements, mal avec cent mille, et personne ne sait quand ça a commencé. Ici cela se décide
-avec des chiffres, avant la production, et avec la méthode de l'échelon 9 : mesurer, changer,
-remesurer sur les mêmes données.
-
-- **Intention** : que les requêtes réelles du système, aux volumes du dimensionnement, entrent
-  dans ce que le métier tolère, avec des budgets qui empêchent qu'elles en ressortent.
-- **Quand** : dans la mise en production, après le 16 et avant le 19 ; se répète quand un bloc
-  ajoute une grande table ou que la supervision (20) montre une requête hors plage. Dans un
-  système hérité, les mesures sortent de N6 et presque tout se paie « quand on y touche ».
-- **Entrées** : le dimensionnement (3 ou N6), la carte producteur-consommateur (8),
-  l'observabilité (16), et l'environnement de test chargé au volume attendu.
-- **Artefact** : des compteurs de requêtes avec test ; `docs/PERSISTENCE.md` avec la table de
-  l'avant et de l'après par changement, les budgets par chemin et la rétention par table ; un test
-  par budget.
-- **Porte** : aucune requête qui lise une table entière dans un flux critique ; chaque budget avec
-  son test ; l'écran le plus lent dans ce que le dimensionnement attendait.
-- **Qui décide** : le propriétaire approuve la liste des changements, un par un ; l'agent mesure
-  et applique.
-- **Échec évité** : les requêtes qui lisaient des tables entières dans un système vivant
-  [Ref. 18](REFERENCIAS.md#ref-18) ; le budget qu'il a fallu resserrer à ce qui avait été mesuré
-  [Ref. 37](REFERENCIAS.md#ref-37) ; les millions de lignes sur des fichiers
-  [Ref. 15](REFERENCIAS.md#ref-15).
-- **Contrat** : `peldanos/peldano-17-persistencia.md`.
-
-### Étape 18 — Scan et résolution des vulnérabilités, dans la chaîne et avec un calendrier
-
-L'audit (11) regarde le système entier avec discernement, de temps en temps ; cet échelon regarde
-une seule chose, la sécurité, tout le temps et par machine : dépendances, code, secrets dans
-l'historique et configuration du serveur. Et une règle : une mise à jour de dépendance est un
-changement, et elle entre par la boucle.
-
-- **Intention** : qu'aucune vulnérabilité connue n'arrive en production, et que les nouvelles se
-  détectent toutes seules même si personne ne touche au système.
-- **Quand** : dans la mise en production, après le 13 et avant le premier déploiement ; ensuite, à
-  chaque push et avec un calendrier hebdomadaire. Dans un système hérité, la première passe fait
-  partie de N3.
-- **Entrées** : l'intégration continue (4 et 13), le relevé des environnements, l'audit précédent,
-  et le critère du propriétaire sur ce qui est urgent.
-- **Artefact** : le scan en quatre couches qui tourne dans la chaîne et avec un calendrier ;
-  `docs/SECURITY_[date].md` avec les constats et ce qui n'a pas été scanné ; `docs/SECURITY.md`
-  avec la politique ; la porte dans `docs/GATES.md` ; les P0 et P1 corrigés avec leur élément en
-  attente.
-- **Porte** : aucun P0 ouvert n'est promu en production ; un nouveau P1 ouvre un élément en
-  attente tout seul.
-- **Qui décide** : le propriétaire définit ce qu'est un P0 et approuve les corrections ; l'agent
-  monte le dispositif et le lance.
-- **Échec évité** : la vulnérabilité connue qui est apparue dans l'audit de qualité
-  [Ref. 41](REFERENCIAS.md#ref-41) ; les portes d'administrateur que seule une autre session a
-  vues [Ref. 40](REFERENCIAS.md#ref-40) ; la sécurité traitée comme une liste que l'on coche une
-  fois [Ref. 23](REFERENCIAS.md#ref-23).
-- **Contrat** : `peldanos/peldano-18-vulnerabilidades.md`.
-
-### Étape 19 — Tests de performance en volume et point de rupture
-
-L'échelon 3 a dimensionné avec des calculs ; celui-ci vérifie les calculs avec le système qui
-tourne : au volume attendu, au « fois dix », et jusqu'à ce que quelque chose casse. Le point de
-rupture est le chiffre le plus utile du tronçon, parce que c'est de lui que sortent les seuils
-d'alerte du 20.
-
-- **Intention** : savoir comment se comporte le système au volume attendu, au « fois dix », et où
-  et pourquoi il casse, avant que le premier utilisateur n'entre.
-- **Quand** : dans la mise en production, après le 16 et le 17, avant le premier déploiement ; se
-  répète avant chaque déploiement qui change l'architecture, la persistance ou un flux critique.
-  Dans un système hérité, avec les volumes mesurés en N6.
-- **Entrées** : le dimensionnement, l'observabilité allumée, la persistance optimisée, les flux
-  critiques et la tolérance du métier pour l'écran le plus utilisé.
-- **Artefact** : le script de charge dans le dépôt, avec test ; `docs/PERFORMANCE_[date].md` avec
-  les trois passes, le point de rupture et le diagnostic ; `docs/PERFORMANCE.md` avec les seuils
-  et la porte ; un élément en attente par goulot d'étranglement.
-- **Porte** : l'écran le plus utilisé dans la tolérance au volume attendu, ou un élément en
-  attente avec le chiffre ; le point de rupture écrit avec ce qui casse.
-- **Qui décide** : le propriétaire donne la tolérance et décide jusqu'à quel volume les goulots
-  d'étranglement se corrigent maintenant.
-- **Échec évité** : la charge réelle que l'on n'a connue qu'en regardant la production
-  [Ref. 12](REFERENCIAS.md#ref-12) ; le point de rupture qui s'est déguisé en test raté
-  [Ref. 44](REFERENCIAS.md#ref-44) ; le dimensionnement comme porte
-  [Ref. 14](REFERENCIAS.md#ref-14).
-- **Contrat** : `peldanos/peldano-19-rendimiento-y-punto-de-ruptura.md`.
-
-### Étape 20 — Supervision des ressources, des fonctions et des requêtes hors plage, avec rapport cyclique
-
-Les tests du 19 disent comment se comporte le système un jour ; la production, c'est tous les
-jours, avec les données qui grandissent. Cet échelon surveille l'usage des ressources et le temps
-de réponse de chaque fonction et de chaque requête par rapport aux seuils du 19 et à sa propre
-histoire, prévient quand quelque chose sort de la plage, et produit un rapport cyclique que l'on
-lit avec le propriétaire. Chaque écart est un élément en attente.
-
-- **Intention** : voir un problème de ressources ou de performance avant que l'utilisateur ne le
-  voie, et que chaque écart ait une cause ou un élément en attente.
-- **Quand** : elle se monte dans la semaine du premier déploiement en production ; à partir de là
-  elle tourne seule, et le rapport se lit à chaque cycle (hebdomadaire avec des conséquences,
-  mensuel dans un petit projet). Dans un système hérité, la première lecture est la ligne de base.
-- **Entrées** : les métriques du 16, les budgets du 17, les seuils du 19, la production en lecture
-  seule, et le canal et le cycle décidés avec le propriétaire.
-- **Artefact** : une collecte avec historique ; des alertes par seuil et par écart ; le rapport
-  cyclique généré tout seul ; `docs/MONITORING.md` ; la routine de lecture dans le contrat.
-- **Porte** : une alerte provoquée est arrivée au canal ; le premier rapport a chaque écart avec
-  sa cause ou sa proposition ; aucun seuil n'a monté sans raison écrite.
-- **Qui décide** : le propriétaire décide le canal, le cycle et quel écart se traite maintenant ;
-  l'agent monte et propose.
-- **Échec évité** : le plafond qu'il a fallu resserrer à ce qui avait été mesuré
-  [Ref. 37](REFERENCIAS.md#ref-37) ; le quota qui a fondu sans que personne ne regarde
-  [Ref. 39](REFERENCIAS.md#ref-39).
-- **Contrat** : `peldanos/peldano-20-monitoreo-de-recursos-y-rendimiento.md`.
-
-### Étape 21 — Supervision des erreurs et rapport cyclique : aucune erreur sans élément en attente
-
-Un système en production produit des erreurs que personne ne signale. Cet échelon les capture dans
-les trois endroits où elles se cachent (le backend, les tâches, le navigateur de l'utilisateur),
-les regroupe, prévient de celles qui sont nouvelles et de celles qui croissent, et produit un
-rapport cyclique. Deux règles : aucune erreur sans élément en attente, et l'« erreur connue »
-n'existe pas sans un élément en attente qui dise pourquoi on la tolère et jusqu'à quand.
-
-- **Intention** : qu'aucune erreur en production ne passe inaperçue, et que chacune se close avec
-  le test qui la reproduit en rouge.
-- **Quand** : elle se monte dans la semaine du premier déploiement, avec le 20 ; à partir de là
-  elle tourne seule, avec des alertes sur le moment et un rapport cyclique. Dans un système
-  hérité, les erreurs qui existaient déjà le premier jour deviennent des éléments en attente avec
-  leur marque de vitesse.
-- **Entrées** : les journaux du 16, la table des verrous (12), la production avec le navigateur
-  inclus, le canal et le cycle du 20.
-- **Artefact** : une capture centralisée et regroupée, sans données personnelles ; des alertes par
-  erreur nouvelle, récurrente qui croît et à conséquence ; le rapport cyclique avec le taux
-  d'erreur par flux ; `docs/MONITORING.md` ; la routine dans le contrat.
-- **Porte** : une erreur provoquée dans le navigateur suivie jusqu'au rapport ; aucune erreur
-  récurrente sans élément en attente ni raison datée.
-- **Qui décide** : le propriétaire lit le rapport et décide ce qui se traite ; l'agent capture,
-  regroupe et propose.
-- **Échec évité** : l'erreur d'authentification rapportée comme un succès
-  [Ref. 43](REFERENCIAS.md#ref-43) ; les quatre tours jusqu'à la cause racine faute d'avoir
-  l'erreur reproduite [Ref. 22](REFERENCIAS.md#ref-22).
-- **Contrat** : `peldanos/peldano-21-monitoreo-de-errores.md`.
 
 ## Partie D — Comment s'exécute, combien on exige, et avec quel outil
 
@@ -1095,40 +1214,41 @@ mais la conversation n'a aucune raison de l'être.
 ### Ce qui est obligatoire et ce qui est proportionnel, selon la taille du projet
 
 Une question qui surgit tout de suite : « tout cela pour un petit système ? ». La réponse est que
-vingt-deux échelons ne font pas vingt-deux semaines ; plusieurs se gravissent en une heure, et ceux
-qui sont
-proportionnels rétrécissent avec le projet. Ce qui ne rétrécit pas, c'est la liste de ceux qui ne
+vingt-quatre échelons ne font pas vingt-quatre longues étapes ; plusieurs se gravissent en une
+seule session, et ceux qui sont proportionnels rétrécissent avec le projet. Ce qui ne rétrécit pas, c'est la liste de ceux qui ne
 se négocient pas. Cette table est une proposition `[hypothèse]` à confirmer avec le premier projet
 qui utilisera la méthode de bout en bout :
 
 | Échelon | Petit projet (un propriétaire, peu d'utilisateurs, pas d'argent en jeu) | Projet avec utilisateurs et conséquences |
 |---|---|---|
-| 0 Éligibilité | obligatoire (une heure) | obligatoire |
-| 1 Contrat | obligatoire (une demi-heure) | obligatoire |
+| 0 Éligibilité | obligatoire | obligatoire |
+| 1 Contrat | obligatoire | obligatoire |
 | 2 Définition | obligatoire, cinquante lignes suffisent | obligatoire |
 | 3 Dimensionner | obligatoire, une demi-page et une décision | obligatoire, complet |
 | 4 Squelette | obligatoire s'il va avoir des utilisateurs | obligatoire |
 | 5 Éléments en attente | obligatoire | obligatoire |
 | 6 Décisions | obligatoire | obligatoire |
-| 7 Tests en rouge | obligatoire | obligatoire |
-| 8 Symétrie | la règle, oui ; la carte, optionnelle | obligatoire avec carte |
-| 9 Mesurer | proportionnel : compter et noter | obligatoire, avec compteurs et budgets |
-| 10 Vérification honnête | obligatoire | obligatoire |
-| 11 Audit | un, avant la production | périodique |
-| 12 Fail-closed | optionnel si c'est en lecture seule | obligatoire |
-| 13 Intégration et déploiement | minimum : tests seuls, configuration dehors, retour arrière | obligatoire, complet |
-| 14 Documentation | minimum : reprise | les trois manuels |
-| 15 Résident et rétrospective | rétrospective d'une page | les deux |
+| 7 Mesurer | proportionnel : compter et noter | obligatoire, avec compteurs et budgets |
+| 8 Tests en rouge | obligatoire | obligatoire |
+| 9 Qualité du code | minimum : linter et limite de taille dans la chaîne | obligatoire, complet, avec cliquet de couverture |
+| 10 Cas de test manuel | obligatoire : un cas par flux, exécuté par le propriétaire à la clôture de chaque bloc | obligatoire, avec exécution enregistrée à chaque cycle |
+| 11 Symétrie | la règle, oui ; la carte, optionnelle | obligatoire avec carte |
+| 12 Vérification honnête | obligatoire | obligatoire |
+| 13 Audit | un, avant la production | périodique |
+| 14 Fail-closed | optionnel si c'est en lecture seule | obligatoire |
+| 15 Intégration et déploiement | minimum : tests seuls, configuration dehors, retour arrière | obligatoire, complet |
 | 16 Observabilité et traçabilité | minimum : journaux structurés avec niveau configurable et un identifiant par action | obligatoire, complet, avec audit immuable |
 | 17 Persistance | proportionnel : les index des requêtes réelles et la fin des boucles N+1 | obligatoire, avec budgets par chemin |
 | 18 Vulnérabilités | obligatoire : dépendances et secrets dans la chaîne | obligatoire, les quatre couches et avec calendrier |
 | 19 Performance | proportionnel : une passe au volume attendu et une au « fois dix » | obligatoire, avec point de rupture et seuils |
-| 20 Supervision des ressources | minimum : un rapport mensuel et deux alertes (disque, base) | obligatoire, avec seuils par fonction et rapport hebdomadaire |
-| 21 Supervision des erreurs | obligatoire : capture centralisée et rapport | obligatoire, avec alertes sur le moment |
+| 20 Documentation | minimum : reprise | les trois manuels |
+| 21 Supervision des ressources | minimum : un rapport mensuel et deux alertes (disque, base) | obligatoire, avec seuils par fonction et rapport hebdomadaire |
+| 22 Supervision des erreurs | obligatoire : capture centralisée et rapport | obligatoire, avec alertes sur le moment |
+| 23 Résident et rétrospective | rétrospective d'une page | les deux |
 
-En résumé : il y a onze échelons qui ne se négocient dans aucun projet (0, 1, 2, 3, 5, 6, 7, 10, la
-rétrospective du 15, le scan de dépendances du 18 et la capture d'erreurs du 21), et onze qui se
-dimensionnent avec le projet.
+En résumé : il y a treize échelons qui ne se négocient dans aucun projet (0, 1, 2, 3, 5, 6, 8, 9
+dans son minimum, 10, 12, le scan de dépendances du 18, la capture d'erreurs du 22 et la
+rétrospective du 23), et onze qui se dimensionnent avec le projet.
 
 ### Comment l'utiliser avec n'importe quel outil
 
@@ -1138,12 +1258,12 @@ fin 2026 :
 
 | Artefact de la méthode | Claude Code | Cursor | Codex CLI / Gemini CLI | Forge |
 |---|---|---|---|---|
-| Contrat de collaboration (E1) et routines (E5, E6, E7, E8, E10, E14) | `CLAUDE.md` du projet | `.cursor/rules/` | `AGENTS.md` / `GEMINI.md` | doctrines injectées par porte |
+| Contrat de collaboration (E1) et routines (E5, E6, E8, E9, E10, E11, E12, E20) | `CLAUDE.md` du projet | `.cursor/rules/` | `AGENTS.md` / `GEMINI.md` | doctrines injectées par porte |
 | Définition du projet (E2) | `CLAUDE.md` + `docs/STATUS.md` | idem, dans les règles et les docs | idem | `PROJECT.md` + fichier de contexte |
 | Registre des éléments en attente (E5) | `docs/PENDING.md` ou issues | idem | idem | registre des éléments en attente natif avec verbes |
 | Prompts d'échelon (tous) | collés dans le chat en gravissant l'échelon | idem | idem | injectés en franchissant la porte |
 | Portes (E4) | `docs/GATES.md`, manuel | idem | idem | G1 à G9, automatiques |
-| Compteurs et budgets (E9) | scripts dans le dépôt avec test | idem | idem | idem, plus le cliquet statique |
+| Compteurs et budgets (E7) | scripts dans le dépôt avec test | idem | idem | idem, plus le cliquet statique |
 
 La colonne Forge est celle qui automatise le plus ; les trois autres fonctionnent tout aussi bien si
 le propriétaire fait à la main ce que Forge fait tout seul : coller le prompt de l'échelon au bon
@@ -1159,11 +1279,12 @@ pratique du cours.
 2. **Un nom mémorable pour chaque échelon**, en une phrase, pour les manuels et les publications.
 3. **L'export vers Forge** : quels échelons sont déjà des portes ou des commandes et lesquels
    manquent pour pouvoir faire tourner l'échelle comme un flux d'exécution.
-4. **Tester les contrats dans un projet réel de bout en bout.** Les prompts des vingt-deux
+4. **Tester les contrats dans un projet réel de bout en bout.** Les prompts des vingt-quatre
    contrats sont écrits à partir de ce que j'ai fait, pas exécutés tels quels. Le premier projet
-   qui les utilisera en entier en corrigera plusieurs ; cela fait partie de l'échelon 15.
-5. **La première cohorte du cours**, qui va corriger les durées de la ligne de temps et les erreurs
-   typiques, qui sont aujourd'hui écrites depuis mes projets et non depuis des élèves.
+   qui les utilisera en entier en corrigera plusieurs ; cela fait partie de l'échelon 23.
+5. **La première cohorte du cours**, qui va corriger l'ordre de la ligne de temps là où il le faut
+   et les erreurs typiques, qui sont aujourd'hui écrites depuis mes projets et non depuis des
+   élèves.
 6. **Le chemin évolutif-correctif éprouvé de bout en bout sur un legacy réel.** Les huit stations
    sont écrites à partir de ce que j'ai fait dans des systèmes d'autrui en mode diagnostic et à
    partir des échelons réordonnés, pas à partir d'une normalisation complète exécutée avec ces
@@ -1260,11 +1381,11 @@ Le contraire de « frontend » (l'écran).
 
 **Bloc fonctionnel** — Un ensemble de quatre à huit éléments en attente liés entre eux qui, à eux
 tous, font quelque chose que le métier peut utiliser. C'est l'unité de travail de la boucle ; il
-dure entre une et deux semaines dans un petit projet.
+dure ce que sa taille demande.
 
 **Boucle N+1** — Une erreur de persistance très courante : pour afficher cent éléments, le système
 fait une requête pour la liste puis cent de plus, une par élément, au lieu d'une ou deux. Elle se
-détecte en comptant les requêtes (échelon 9) et se corrige à l'échelon 17.
+détecte en comptant les requêtes (échelon 7) et se corrige à l'échelon 17.
 
 **Coffre (vault)** — Un endroit chiffré où l'on garde les secrets (clés, mots de passe) au lieu de
 les laisser dans des fichiers texte.
@@ -1278,6 +1399,18 @@ comme il le fait, défauts compris ; non pas ce qu'il devrait faire. Il naît au
 qu'il sert à quelque chose est qu'il passe au rouge quand on casse le flux délibérément (une
 mutation). C'est la batterie qui protège un legacy pendant qu'on le change. Le terme vient de la
 littérature sur le code hérité ; je l'emploie tel quel.
+
+**Qualité du code (vérifiée par machine)** — Ce qu'un relecteur humain regarderait dans le code,
+mesuré par des outils à chaque commit et converti en un chiffre avec une limite : style (linter et
+formateur), taille des fichiers et des fonctions, complexité, duplication, code mort, couverture
+avec cliquet, types. Échelon 9. Cela ne remplace pas le test en rouge : cela évite le code correct
+que plus personne ne peut toucher.
+
+**Cas de test manuel** — La recette pour qu'une personne teste une fonctionnalité : identifiant,
+élément en attente d'origine, précondition, étapes (ce qu'elle fait et ce qu'elle doit voir),
+résultat attendu avec l'effet côté backend qu'une personne peut vérifier, données de test, et le
+tableau des exécutions. L'agent l'écrit avec la fonctionnalité (échelon 10) ; des personnes
+l'exécutent ; ce qui échoue réinjecte un élément en attente.
 
 **Cause racine** — Le motif réel d'un problème, par opposition au symptôme. Corriger le symptôme
 fait revenir le problème ; corriger la cause racine, non.
@@ -1316,6 +1449,15 @@ remplie, on ne passe pas. Dans Forge elles sont numérotées G1 à G9.
 **Concurrence** — Combien de choses se passent en même temps dans le système (utilisateurs
 simultanés, processus en parallèle).
 
+**Couverture (de tests)** — Quel pourcentage du code est exécuté par au moins un test. Dans la
+méthode, elle se mesure avec un cliquet : celle d'aujourd'hui est le plancher de demain
+(échelon 9). Elle mesure la quantité, pas la qualité : c'est pour cela qu'elle va avec le rouge
+démontré de l'échelon 8.
+
+**Complexité (d'une fonction)** — Le nombre de chemins différents qu'une fonction peut prendre ;
+chaque « si » l'augmente. Une fonction avec quarante chemins, personne ne la comprend, et
+l'échelon 9 lui pose une limite.
+
 **CORS** — Un mécanisme de sécurité des navigateurs qui décide depuis quels domaines on peut
 appeler un serveur. Mal configuré, il bloque des appels légitimes avec des erreurs confuses.
 
@@ -1327,7 +1469,7 @@ scénario du test de bout en bout.
 **CVE** — Un identifiant public d'une vulnérabilité de sécurité connue dans un composant logiciel.
 
 **Débit (throughput)** — Combien d'actions par seconde le système supporte. Il se mesure avec le
-test de charge (19) et se surveille dans la supervision (20).
+test de charge (19) et se surveille dans la supervision (21).
 
 **Dette technique** — Ce qui reste mal fait « pour corriger plus tard ». La méthode l'interdit : ce
 qui casse se répare à la racine dans la même session.
@@ -1362,7 +1504,7 @@ etc.). Si elles manquent, le scan de l'échelon 18 les signale.
 du programmeur), UAT (test du client) et PROD (production, le vrai).
 
 **Exception non gérée** — Une erreur que le code n'avait pas prévue et qui interrompt ce qu'il
-était en train de faire. L'échelon 21 les capture toutes, dans le backend, dans les tâches et dans
+était en train de faire. L'échelon 22 les capture toutes, dans le backend, dans les tâches et dans
 le navigateur.
 
 **Spécification des exigences** — Dans la méthode classique, un document long qui décrivait tout ce
@@ -1454,17 +1596,21 @@ système en production.
 
 **Latence** — Combien de temps une action met à répondre. On regarde la médiane (la moitié des
 actions a mis moins) et le centile 95 (95 % ont mis moins ; les 5 % restants sont les utilisateurs
-qui se plaignent). Échelons 19 et 20.
+qui se plaignent). Échelons 19 et 21.
 
 **Legacy (hérité)** — Un ancien système toujours en usage.
 
 **Ligne de base** — Ce qu'un chiffre donnait normalement (par exemple, la moyenne des quatorze
-derniers jours). « Hors plage » à l'échelon 20, c'est au-dessus d'un seuil fixe ou très différent
+derniers jours). « Hors plage » à l'échelon 21, c'est au-dessus d'un seuil fixe ou très différent
 de la ligne de base.
 
 **Ligne de temps** — La Partie B de ce document : quand on gravit chaque échelon et quelles tâches
 d'infrastructure, d'ingestion, de développement, de tests et de regard humain se passent entre les
 deux.
+
+**Linter / formateur** — Le linter est un programme qui lit le code et signale ce qui est mal
+écrit ou dangereux, comme un correcteur orthographique ; le formateur le met en forme avec un
+style unique. Les deux tournent à chaque commit à l'échelon 9.
 
 **Journal (log)** — L'enregistrement de ce qu'un programme fait au fur et à mesure. « Valide avec le
 journal » signifie : ne fais pas confiance à ce que l'agent dit avoir fait, regarde le journal.
@@ -1509,8 +1655,8 @@ qu'on a épinglé la version pour que tous les environnements utilisent la même
 tient pour acquis au moment d'ouvrir la boucle, sans toucher à sa fonctionnalité. Cela se fait à
 deux vitesses : la ceinture de sécurité avant tout changement, et le reste de la dette **au fur et
 à mesure qu'on y touche**, module par module (les éléments en attente de normalisation marqués
-« se paie quand on y touche » entrent avec le bloc qui entre dans leur module). Jamais « une
-semaine de grand nettoyage ».
+« se paie quand on y touche » entrent avec le bloc qui entre dans leur module). Jamais « un grand
+nettoyage général » avant de commencer.
 
 **Mutuelle (la)** — C'est ainsi que j'appelle l'organisme de santé client du premier système en
 production (son nom réel reste réservé).
@@ -1551,7 +1697,7 @@ mesuré et protégé par un test.
 **Point de rupture** — La charge exacte à laquelle quelque chose du système cesse de fonctionner,
 et ce qu'est ce quelque chose (les connexions à la base, la mémoire, une file). Il se trouve en
 montant la charge palier par palier (échelon 19), et c'est de lui que sortent les seuils d'alerte
-du 20.
+du 21.
 
 **Pool de connexions** — Le nombre de « lignes ouvertes » que le système maintient avec la base de
 données en même temps. S'il s'épuise, les actions attendent ou échouent ; c'est souvent la
@@ -1571,12 +1717,13 @@ Ils sont humains ; ce n'est pas l'agent qui les fait.
 
 **Pull / push** — Descendre et monter du code depuis et vers le dépôt distant (GitHub).
 
-**Qualité opérationnelle (tronçon)** — Le quatrième tronçon de l'échelle, échelons 16 à 21 :
-quatre qui se gravissent avant le premier déploiement en production (observabilité, persistance,
-vulnérabilités, performance) et deux qui surveillent le système une fois déployé (supervision des
-ressources et des erreurs).
+**Qualité opérationnelle** — Les six échelons qui font que le système peut se voir et qu'il tient
+la charge : 16 observabilité, 17 persistance, 18 vulnérabilités et 19 performance, avant le
+premier déploiement ; 21 et 22, les supervisions, après. Ce n'est pas un tronçon à part : les
+quatre premiers sont dans le tronçon de mise en production et les deux derniers dans celui de
+l'exploitation.
 
-**Rapport cyclique** — Le résumé que la supervision (20 et 21) génère toute seule chaque semaine
+**Rapport cyclique** — Le résumé que la supervision (21 et 22) génère toute seule chaque semaine
 ou chaque mois, avec les écarts et les erreurs de la période, et que le propriétaire lit avec
 l'agent pour décider ce qui devient un élément en attente. Le contraire d'une alerte : il se lit au
 calme.
@@ -1587,6 +1734,11 @@ disponible.
 
 **Régression** — Un test qui vérifie que quelque chose qui fonctionnait déjà continue de fonctionner
 après un changement.
+
+**Réinjection (des exigences)** — Ce qui revient dans la boucle comme élément en attente depuis
+l'extérieur du développement : une nouvelle demande du métier, un échec trouvé par une personne en
+exécutant les cas de test manuel (10), un écart de la supervision (21), une erreur capturée (22).
+Le graphique du procédé (Partie B) les montre comme des flèches de retour.
 
 **Dépôt (repo)** — L'endroit où vit le code avec toute son histoire. « Dépôt standard » veut dire
 un dépôt géré avec Git et avec une structure reconnaissable.
@@ -1605,7 +1757,7 @@ lancer deux fois sans rien casser.
 
 **Seuil** — Un chiffre limite à partir duquel la supervision prévient. Dans la méthode on ne le
 pose pas « à vue de nez » : il sort du point de rupture (19) avec une marge, et on ne le monte pas
-pour faire taire une alerte sans une raison mesurée écrite (20).
+pour faire taire une alerte sans une raison mesurée écrite (21).
 
 **Shift left** — Déplacer les tests plus tôt dans le processus de développement.
 
@@ -1617,14 +1769,14 @@ pour faire taire une alerte sans une raison mesurée écrite (20).
 
 **Station (N0 à N7)** — Chacune des huit étapes du tronçon de normalisation du chemin
 évolutif-correctif. Je les appelle des stations et non des échelons pour qu'elles ne se confondent
-pas avec les vingt-deux de l'échelle : ce ne sont pas de nouveaux échelons, ce sont ceux du
+pas avec les vingt-quatre de l'échelle : ce ne sont pas de nouveaux échelons, ce sont ceux du
 démarrage
-(et le 8, le 11 et le 12) dans un autre ordre et avec une autre entrée.
+(et le 11, le 13 et le 14) dans un autre ordre et avec une autre entrée.
 
 **Tag** — Une étiquette sur un commit qui marque une version.
 
 **Taux d'erreur par flux** — Sur cent fois où quelqu'un a utilisé un flux (enregistrer un
-rendez-vous), combien ont échoué. C'est le chiffre du rapport d'erreurs (21) que le propriétaire
+rendez-vous), combien ont échoué. C'est le chiffre du rapport d'erreurs (22) que le propriétaire
 comprend sans explication.
 
 **TDD** — « D'abord le test, ensuite le code ». La méthode le laisse comme option pour les petits
@@ -1637,8 +1789,8 @@ pour trouver le point de rupture. Échelon 19.
 **Token (jeton)** — Deux sens. En IA : l'unité avec laquelle on mesure (et on facture) le texte que
 traite le modèle. En sécurité : un identifiant d'accès.
 
-**Tronçon** — Chacun des quatre groupes d'échelons : démarrage (0 à 4), boucle (5 à 10),
-exploitation (11 à 15) et qualité opérationnelle (16 à 21).
+**Tronçon** — Chacun des quatre groupes d'échelons, dans l'ordre où on les gravit : démarrage
+(0 à 4), boucle (5 à 12), mise en production (13 à 20) et exploitation (21 à 23).
 
 **Traçabilité** — Deux sens, les deux dans la méthode. Dans les exigences : pouvoir suivre une
 exigence jusqu'à l'élément en attente qui l'implémente, le test qui la prouve et le commit qui l'a

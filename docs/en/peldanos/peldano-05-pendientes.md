@@ -68,7 +68,7 @@ the agent:
 - `docs/SEMANTIC_TREE.md` (step 2), up to date: every pending item is going to hang from a node
   in there.
 - `PROJECT.md` and `docs/STATUS.md` (step 2), up to date.
-- If there were audits (step 11) or human tests (the human view at the close of the previous
+- If there were audits (step 13) or human tests (the human view at the close of the previous
   block): their findings, in `docs/AUDIT_[date].md` or noted down in the living status, because
   they are candidate pending items for this block.
 - Minimum acceptable state: the block's request is written in the client's words, and the tree
@@ -94,7 +94,7 @@ choosing); the complete specification of each pending item, field by field, whic
 requirements engineering decomposed into small units; the node of the tree it hangs from, which is
 what lets you spot an out-of-scope pending item; the business rules with their decision or marked
 as missing, which is the hook into step 6; the acceptance criteria in the classic form, which are
-the script of the end-to-end test of step 7; and a proposed order with its reason, so that you
+the script of the end-to-end test of step 8; and a proposed order with its reason, so that you
 confirm it or change it.
 
 **Routine of every session (goes in the working agreement):**

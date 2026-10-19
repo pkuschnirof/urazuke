@@ -1,7 +1,7 @@
 # Étape 4 — Le squelette avec ses portes (contrat de l'échelon)
 
 **Tronçon :** démarrage.
-**Quand :** une fois, à la clôture de la première semaine, après le dimensionnement et avant toute
+**Quand :** une fois, à la clôture du démarrage, après le dimensionnement et avant toute
 fonctionnalité. C'est ici que se fait toute l'infrastructure initiale et la chaîne d'intégration et
 de déploiement.
 **Forme :** un seul envoi long, avec votre approbation visuelle à la fin.
@@ -14,7 +14,7 @@ chose à payer.
 Faites en sorte que le système démarre, se teste et se déploie VIDE avant d'avoir des
 fonctionnalités. Découvrir le déploiement à la fin coûte très cher : dans un de mes systèmes, il est
 arrivé un mois après le démarrage et a coûté cinq éléments en attente d'affilée
-[Ref. 32](../REFERENCIAS.md#ref-32). Si le squelette se déploie la première semaine, ces coups durs
+[Ref. 32](../REFERENCIAS.md#ref-32). Si le squelette se déploie au démarrage, ces coups durs
 se prennent avec zéro fonctionnalité en jeu.
 
 L'idée générale derrière : **le chemin vers la production fait partie du produit**, ce n'est pas une

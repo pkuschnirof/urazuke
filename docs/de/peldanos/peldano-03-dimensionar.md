@@ -1,7 +1,7 @@
 # Schritt 3 — Dimensionieren, bevor die Architektur entworfen wird (Schrittvertrag)
 
 **Abschnitt:** Start.
-**Wann:** einmal, in der ersten Woche, nach der Definition und bevor das Skelett gebaut wird; wird
+**Wann:** einmal, nach der Definition und bevor das Skelett gebaut wird; wird
 neu gemacht, wenn das Geschäft seine Größenordnung ändert.
 **Form:** Gespräch: der Agent rechnet und legt Optionen vor; du wählst.
 **Größe:** immer verpflichtend, aber proportional: in einem kleinen Projekt kann die Dimensionierung

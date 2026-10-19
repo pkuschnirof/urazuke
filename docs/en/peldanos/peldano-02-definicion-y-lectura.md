@@ -1,7 +1,7 @@
 # Step 2 — The project definition, the semantic tree and mandatory reading (step contract)
 
 **Stretch:** start-up.
-**When:** written once, in the first week, after the agreement; the semantic tree and the living
+**When:** written once, after the agreement; the semantic tree and the living
 state are kept up to date throughout the project, with every block and every new decision.
 **Form:** conversation: the agent drafts, asks for what is missing, you correct.
 **Size:** mandatory in every project. In a small one the project file can be fifty lines and the

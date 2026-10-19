@@ -43,7 +43,7 @@ Alphabetisierung.
 | **Wie er lernt** | Indem er schreibt und Korrekturen zum Code bekommt. | Indem er das Modell Schritt für Schritt führt und Korrekturen zu dem Beleg bekommt, den er verlangt hat, und zu dem, den er ohne Verlangen akzeptiert hat. |
 | **Was der Senior prüft** | Seinen Code. | Sein Urteilsvermögen: was er vom Modell verlangt hat, was das Modell angenommen hat, ohne dass er es bemerkte, was er ohne Beweis als „fertig“ akzeptiert hat. |
 | **Was sein typischer Fehler ist** | Ein Bug. | Dem Modell zu glauben. |
-| **Wie lange er braucht, um nützlich zu sein** | Monate, bis er Code schreibt, den man nicht neu schreiben muss. | Wochen, wenn er über die Methode einsteigt: das erste kleine Projekt mit den zweiundzwanzig Schritten macht ihn einsatzfähig. |
+| **Wann er nützlich ist** | Wenn er Code schreibt, den man nicht neu schreiben muss, und das dauert. | Wenn er sein erstes kleines Projekt mit den vierundzwanzig Schritten beendet: die Methode verspricht keine Geschwindigkeit, sie verspricht ein betreibbares System und ein ausgebildetes Urteilsvermögen. |
 | **Wozu er wird** | Zu einem Programmierer, der mehr Sprachen und Frameworks kann. | Zu jemandem, der für ein System geradestehen kann, ohne eine Zeile geschrieben zu haben: ein Systemtechniker, der Modelle führt. |
 
 ## Die Auswirkung auf die Schwerpunkte der Ausbildung
@@ -82,7 +82,7 @@ Ich ordne sie nach dem Schritt, in dem sie geübt werden, denn das ist die Art, 
    die die Branche vor zwanzig Jahren aufgehört hat zu lehren. Das Modell ist darin von Haus aus
    miserabel: es füllt die Lücken mit dem Wahrscheinlichsten, und das Wahrscheinlichste ist nicht
    das, was das Geschäft braucht.
-2. **Entwurf der Verifikation** (Schritte 7, 9, 10, 19). Nicht den Test schreiben: wissen, welcher
+2. **Entwurf der Verifikation** (Schritte 8, 7, 12, 19). Nicht den Test schreiben: wissen, welcher
    Test was beweist, warum ein Test rot gesehen werden muss, bevor er etwas wert ist, was eine
    Ende-zu-Ende-Prüfung ist und was eine Simulation, die nichts beweist, welche Zahl etwas
    entscheidet und mit welchem Instrument sie gemessen wird, wie man einen Bericht liest und das
@@ -93,15 +93,15 @@ Ich ordne sie nach dem Schritt, in dem sie geübt werden, denn das ist die Art, 
    funktionieren“, den nicht erklärten blinden Fleck, das „fertig“, das keines war
    [Ref. 43](REFERENCIAS.md#ref-43). Diese Fähigkeit gab es als Ausbildungsschwerpunkt nicht, weil
    es niemanden gab, der mit so viel Sicherheit und so guter Formulierung log.
-4. **Dimensionierung und Betrieb** (Schritte 3, 4, 13, 16 bis 21). Was eine Umgebung ist, wie
+4. **Dimensionierung und Betrieb** (Schritte 3, 4, 15, 16 bis 22). Was eine Umgebung ist, wie
    deployt wird, was Continuous Integration ist, was in der Produktion gemessen wird, was ein
    Index ist, ein Bruchpunkt, ein Alarm-Schwellenwert. Früher war das das Gebiet einer anderen
    Rolle; jetzt führt der Junior das Modell, das es macht, und er muss wissen, was er von ihm
    verlangen muss und wie er prüft, dass es gemacht wurde.
-5. **Sicherheit und Konsequenz** (Schritte 12, 18). Welche Aktionen des Systems auf die Welt
+5. **Sicherheit und Konsequenz** (Schritte 14, 18). Welche Aktionen des Systems auf die Welt
    wirken, was eine Sperre ist, was fail-closed ist, was eine Schwachstelle ist und warum eine
    Aktualisierung einer Abhängigkeit eine Änderung ist.
-6. **Entscheidung und Kommunikation mit dem Eigentümer** (Schritte 1, 6, 14). Gut fragen, mit
+6. **Entscheidung und Kommunikation mit dem Eigentümer** (Schritte 1, 6, 20). Gut fragen, mit
    Empfehlung und Alternative; eine Entscheidung mit wörtlichen Worten, Datum und Eigentümer
    schreiben; ein Handbuch schreiben, dem eine Person folgen kann, die nicht programmiert. Der
    Junior ist in der Methode der Übersetzer zwischen dem Eigentümer und dem Modell, und die
@@ -136,13 +136,13 @@ wohl hinsehen muss. Deshalb ist die Mindestalphabetisierung nicht verhandelbar. 
 - **Git**: was ein Commit ist, ein Zweig, ein Push, eine Historie. So viel, dass er die Belegspur
   lesen kann, die die Methode dort hinterlässt.
 - **Grundlegendes SQL**: eine Abfrage lesen und verstehen, welche Tabelle sie liest und mit
-  welchem Filter. Es ist die Sprache der Daten, und die der Zahlen von Schritt 9.
+  welchem Filter. Es ist die Sprache der Daten, und die der Zahlen von Schritt 7.
 - **Das Terminal**: einen Befehl ausführen, den das Modell dir gegeben hat, und seine Ausgabe
   lesen. Wenn der Junior das Messgerät nicht laufen lassen kann, kann er die Zahl nicht prüfen.
 - **Debuggen als letztes Werkzeug**: wenn das Log, der Test und das Messgerät nicht gereicht
   haben, den Code mit dem Modell daneben öffnen und gemeinsam lesen.
 
-Das lehrt man in zwei oder drei Wochen, man übt es den ganzen Kurs über, und es ist nicht das
+Das lehrt man in der ersten Etappe, man übt es den ganzen Kurs über, und es ist nicht das
 Handwerk: es ist die Alphabetisierung, die es erlaubt, das Handwerk auszuüben.
 
 ## Mit welchem Ziel man einen Junior ausbildet
@@ -150,7 +150,7 @@ Handwerk: es ist die Alphabetisierung, die es erlaubt, das Handwerk auszuüben.
 Ich sage es ohne Umschweife, denn von der Klarheit des Ziels hängt alles andere ab. Das Ziel,
 einen Junior in der Ära nach dem Programmieren von Hand auszubilden, ist, jemanden auszubilden,
 der **für ein System in Produktion geradestehen kann, ohne eine Zeile seines Codes geschrieben zu
-haben**: der ein kleines Projekt von Anfang bis Ende über die zweiundzwanzig Schritte bringen
+haben**: der ein kleines Projekt von Anfang bis Ende über die vierundzwanzig Schritte bringen
 kann, indem er ein Modell führt, ihm bei jedem Schritt Belege abverlangt, mit dem Eigentümer
 entscheidet, und jederzeit weiß, was verifiziert ist, was geglaubt ist und was man nicht sieht.
 Ich nenne ihn, vorläufig, *technischer Eigentümer des Belegs*: der, der den Code nicht liest und
@@ -176,62 +176,63 @@ Drei Konsequenzen aus dem Ziel, die die Ausbildung ordnen:
    am ähnlichsten ist. Das ist ein Fehler: die Schleife ohne den Start ist auf Sand gebaut, und
    der Junior, der nie einen Schritt 0 oder einen 3 gemacht hat, versteht nicht, warum die 5 die
    Form hat, die sie hat. Die beiden Leitprojekte gibt es dafür: eines neu und eines geerbt, von
-   Anfang bis Ende, die zweiundzwanzig Schritte und die acht Stationen.
+   Anfang bis Ende, die vierundzwanzig Schritte und die acht Stationen.
 
 ## Wie man ihn ausbildet: der Plan
 
 Was folgt, ist der Plan, den ich benutzen würde und den ich mit der ersten Kohorte benutzen
-werde. Zwölf Wochen Teilzeitarbeit, mit einem Mentor, an den beiden Leitprojekten des Kurses, und
-danach ein kleines reales Projekt mit einem echten Eigentümer.
+werde: vier Etappen, ohne Fristen (die Methode hat keine, und die Ausbildung auch nicht: jede
+Etappe endet, wenn ihre Ausgangsliste „ja“ ergibt), mit einem Mentor, an den beiden Leitprojekten
+des Kurses, und danach ein kleines reales Projekt mit einem echten Eigentümer.
 
-### Wochen 1 und 2: Alphabetisierung und das Modell als Studienobjekt
+### Etappe 1: Alphabetisierung und das Modell als Studienobjekt
 
 - Die Alphabetisierung von oben: Code lesen, wie ein System läuft, Git, grundlegendes SQL, das
   Terminal. Mit dem Modell daneben, das erklärt; der Junior schreibt nicht, er liest und führt
   aus.
-- **Das Modell als Studienobjekt**: eine Woche lang Anfragen an das Modell stellen mit dem
+- **Das Modell als Studienobjekt**: eine Zeit lang Anfragen an das Modell stellen mit dem
   einzigen Zweck, es scheitern zu sehen. Ein Datum verlangen, das es nicht hat, und sehen, ob es
   das erfindet. Ihm eine mehrdeutige Anfrage geben und sehen, ob es fragt. Verlangen, dass es
   etwas abschließt, und sehen, ob es ohne Beweis „fertig“ sagt. Verlangen, dass es einen Bug
   repariert, ohne ihn zu reproduzieren. Jeder Fehler wird mit seinem Geruch notiert. Am Ende der
-  Woche hat der Junior seinen eigenen Katalog, und es ist der Katalog des Referenzdokuments, selbst
+  Etappe hat der Junior seinen eigenen Katalog, und es ist der Katalog des Referenzdokuments, selbst
   entdeckt.
 - Lektüre des Hauptdokuments, mit dem Glossar zur Hand, und der Referenzen: die Geschichte, woher
   jede Regel kommt.
 
-### Wochen 3 bis 8: das neue Projekt, mit Mentor
+### Etappe 2: das neue Projekt, mit Mentor
 
 Das Kurshandbuch, Teil 1, genau so, am Leitprojekt „Turnera“ oder an einem eigenen kleinen
-Projekt. Die zweiundzwanzig Schritte. Mit drei Mentoring-Regeln:
+Projekt. Die vierundzwanzig Schritte. Mit drei Mentoring-Regeln:
 
 - **Der Mentor prüft Belege, nicht Code.** Er liest die Arbeitsvereinbarung, den semantischen
   Baum, die Spezifikation von drei offenen Posten, den Abschlussbericht eines offenen Postens, den
   Auditbericht, den Bericht des Lasttests. Und er stellt jedes Mal eine einzige Frage: „woher
   weißt du, dass das wahr ist?“. Wenn die Antwort lautet „weil das Modell es gesagt hat“, ist der
   Schritt nicht erklommen.
-- **Der Mentor entwirft Vorfälle.** Einmal pro Woche verändert er, ohne Vorwarnung, etwas: er
+- **Der Mentor entwirft Vorfälle.** Ab und zu verändert er, ohne Vorwarnung, etwas: er
   ändert ein Datum der Erhebung, schmuggelt eine Annahme in die Mengen, verlangt über das Modell
   eine Änderung außerhalb des Umfangs. Der Junior muss das am Beleg erkennen.
 - **Der Junior führt sein eigenes Register der Fehler des Modells**: jedes Mal, wenn er es
   erwischt hat, welchen Geruch es hatte, in welchem Schritt. Am Ende des Projekts ist dieses
-  Register seine persönliche Retrospektive, und den Vorschlag zur Änderung der Leiter (Schritt 15)
+  Register seine persönliche Retrospektive, und den Vorschlag zur Änderung der Leiter (Schritt 23)
   schreibt er.
 
-### Wochen 9 bis 11: das geerbte Projekt, mit weniger Mentor
+### Etappe 3: das geerbte Projekt, mit weniger Mentor
 
 Das Handbuch, Teil 2: die geerbte Turnera, oder ein kleines reales Altsystem. Der
 Normalisierungsabschnitt und die ersten beiden Blöcke. Hier sinkt das Mentoring: der Mentor liest
 die wiedergewonnene Karte und die Diskrepanzen, den Auditbericht mit seinen
 Geschwindigkeitsmarken, und den Abschluss des ersten Bugs im korrektiven Modus. Das Ziel dieser
-Wochen ist, dass der Junior lernt, was das neue Projekt nicht lehrt: ein fremdes System durch das
+Etappe ist, dass der Junior lernt, was das neue Projekt nicht lehrt: ein fremdes System durch das
 Modell hindurch zu lesen, mit dem Eigentümer zu entscheiden, was von dem, was der Code tut,
 falsch ist und was eine vergessene Regel war, und nicht neu zu schreiben.
 
-### Woche 12: das reale Projekt, allein
+### Etappe 4: das reale Projekt, allein
 
 Ein kleines, echtes Projekt, mit einem echten Eigentümer, der fünfzehn Minuten pro Tag hat, von
 Anfang bis Ende. Der Mentor greift nicht ein; er liest am Ende die Retrospektive mit Zahlen. Wenn
-der Junior mit den zweiundzwanzig Bedingungen der Produktionsreife-Liste auf „ja“ in die
+der Junior mit den vierundzwanzig Bedingungen der Produktionsreife-Liste auf „ja“ in die
 Produktion kommt, ist er ausgebildet. Wenn nicht, sagt die Liste genau, welcher Schritt noch
 einmal erklommen werden muss, und auch das ist Ausbildung.
 
@@ -239,8 +240,9 @@ einmal erklommen werden muss, und auch das ist Ausbildung.
 
 Nicht, wie viele offene Posten er geschlossen hat. Drei Dinge, in dieser Reihenfolge:
 
-1. **Wie oft er das Modell erwischt hat**, und in welchem Schritt. Ein Junior, der in sechs Wochen
-   das Modell kein einziges Mal erwischt hat, schaut nicht hin: das Modell scheitert immer.
+1. **Wie oft er das Modell erwischt hat**, und in welchem Schritt. Ein Junior, der im ganzen
+   neuen Projekt das Modell kein einziges Mal erwischt hat, schaut nicht hin: das Modell scheitert
+   immer.
 2. **Wie viel er den Eigentümer gekostet hat.** Minuten pro Tag an Fragen; wenn sie steigen,
    verlagert der Junior auf den Eigentümer, was die Methode ihm selbst zu lösen aufträgt
    (Schritt 1).
@@ -259,7 +261,7 @@ ausbildet, ändert das Team seine Form:
   und keine Zugabe.
 - **Der Senior** hört auf, Code zu prüfen, und wendet sich drei Dingen zu: die Vereinbarungen
   schreiben und pflegen (die Arbeitsvereinbarung, die Tore, die Sperren), mit einer anderen
-  Sitzung auditieren (Schritt 11) und das entscheiden, was der Junior nicht entscheiden kann
+  Sitzung auditieren (Schritt 13) und das entscheiden, was der Junior nicht entscheiden kann
   (Architektur, das „mal zehn“, was blockiert). Sein Wert wandert von der Tastatur zum
   Urteilsvermögen, wo er bei den Guten immer schon lag.
 - **Das Team wird kleiner und flacher.** Ein Senior und zwei oder drei Juniors mit Methode tragen
@@ -282,10 +284,11 @@ ausbildet, ändert das Team seine Form:
   der an einem einzigen Werkzeug ausgebildet wird, lernt dessen Abkürzungen und nicht die Methode;
   die Ausbildung muss durch mindestens zwei gehen.
 - **Die unsichtbaren Kosten.** Ein Junior mit einem Modell verbraucht Tokens, als wären sie
-  gratis. Das Token-Budget muss ab Woche 1 Teil der Ausbildung sein, mit der Zahl vor Augen.
-- **Die Illusion der Geschwindigkeit.** Das Modell baut an einem Nachmittag, was früher eine Woche
+  gratis. Das Token-Budget muss ab der ersten Etappe Teil der Ausbildung sein, mit der Zahl vor
+  Augen.
+- **Die Illusion der Geschwindigkeit.** Das Modell baut in einer Sitzung, was früher viel länger
   gedauert hat, und der Junior kann glauben, dass er fertig ist. Die Produktionsreife-Liste, mit
-  ihren zweiundzwanzig Bedingungen, ist das Gegenmittel: „fertig“ hat eine Definition, und sie
+  ihren vierundzwanzig Bedingungen, ist das Gegenmittel: „fertig“ hat eine Definition, und sie
   lautet nicht „es funktioniert“.
 - **Der Mentor, der aus Gewohnheit Code prüft.** Das ist das Risiko auf der Seite des Seniors, und
   es ist ernst: ein Mentor, der den Code liest, lehrt den Junior, dass der Beleg nicht reicht, was
@@ -297,7 +300,7 @@ ausbildet, ändert das Team seine Form:
 1. Wie viel man programmiert haben muss, um den Code eines anderen gut zu lesen. Meine Intuition
    ist, dass es darauf ankommt, debuggt zu haben, nicht geschrieben zu haben, und dass wenig
    reicht. Noch ohne Daten.
-2. Der Zwölf-Wochen-Plan ist aus meinen Projekten und aus dem geschrieben, was ich vor den
+2. Der Vier-Etappen-Plan ist aus meinen Projekten und aus dem geschrieben, was ich vor den
    Modellen unterrichtet habe, nicht aus einer Kohorte. Die erste wird ihn korrigieren, genau wie
    den Kurs.
 3. Ob der „technische Eigentümer des Belegs“ eine neue Rolle ist oder der Systemtechniker von

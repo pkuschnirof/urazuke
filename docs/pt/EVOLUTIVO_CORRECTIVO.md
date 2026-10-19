@@ -23,7 +23,7 @@ produção foi olhando um que já existia [Ref. 12](REFERENCIAS.md#ref-12).
 E aqui há uma armadilha que quero nomear antes de seguir: a tentação, diante de um legado, é
 escolher entre dois extremos que estão os dois errados. Um é "reescrevo com o método, do zero":
 soa limpo, e quase sempre termina num segundo sistema que não chega a substituir o primeiro. O
-outro é "aplico o ciclo diretamente, que é para isso que estão os degraus 5 a 10": soa pragmático,
+outro é "aplico o ciclo diretamente, que é para isso que estão os degraus 5 a 12": soa pragmático,
 e é construir sobre areia, porque o ciclo dá por suposto que existe um contrato, um mapa, um
 ambiente de teste, uma bateria que roda e uma implantação que se repete. Nada disso existe num
 sistema que não nasceu com o método. Este caminho é o que vai pelo meio: **primeiro se normaliza,
@@ -34,11 +34,11 @@ sem reescrever, e depois se sobe a escada**.
 O método tem três casos de uso, e convém saber em qual você está antes de abrir o agente, porque
 muda por onde se entra.
 
-| Caso | Ponto de partida | Por onde se entra | Quanto dura a entrada | Onde está escrito |
+| Caso | Ponto de partida | Por onde se entra | O que há antes da primeira funcionalidade | Onde está escrito |
 |---|---|---|---|---|
-| **Projeto novo** | Pasta vazia e um dono com um pedido. | Degrau 0, e daí os vinte e dois em ordem. | Uma semana de arranque antes da primeira funcionalidade. | O documento principal, os vinte e dois contratos e o manual do curso. |
-| **Evolutivo-corretivo sobre um sistema feito com o método** | O sistema já subiu a escada: tem contrato, mapa, pendências fechadas com evidência, bateria, implantação e manuais. | Degrau 5: abre-se um bloco e segue-se o ciclo; o 11 periódico; o 15 no fechamento da etapa. | Nenhuma: é o degrau 15 voltando ao 0 para a etapa seguinte, que já está na Parte B do documento principal. | O documento principal (fase 4, operação). |
-| **Evolutivo-corretivo sobre um sistema feito sem o método** | Um sistema que roda, com usuários, sem nenhum desses artefatos ou com alguns pela metade. | O trecho de normalização desta página (N0 a N7), e só depois o ciclo, em modo corretivo ou evolutivo. | De duas a três semanas para um sistema pequeno, antes de tocar a primeira linha de funcionalidade. | Esta página e o manual do curso, parte 2. |
+| **Projeto novo** | Pasta vazia e um dono com um pedido. | Degrau 0, e daí os vinte e quatro em ordem. | O trecho de arranque inteiro antes da primeira funcionalidade. | O documento principal, os vinte e quatro contratos e o manual do curso. |
+| **Evolutivo-corretivo sobre um sistema feito com o método** | O sistema já subiu a escada: tem contrato, mapa, pendências fechadas com evidência, bateria, implantação e manuais. | Degrau 5: abre-se um bloco e segue-se o ciclo; o 13 periódico; o 23 no fechamento da etapa. | Nenhuma: é o degrau 23 voltando ao 0 para a etapa seguinte, que já está na Parte B do documento principal. | O documento principal (fase 4, operação). |
+| **Evolutivo-corretivo sobre um sistema feito sem o método** | Um sistema que roda, com usuários, sem nenhum desses artefatos ou com alguns pela metade. | O trecho de normalização desta página (N0 a N7), e só depois o ciclo, em modo corretivo ou evolutivo. | O trecho de normalização inteiro, antes de tocar a primeira linha de funcionalidade. | Esta página e o manual do curso, parte 2. |
 
 O que fica de fora, nomeado para que não se confunda: a **migração tecnológica** (mudar de
 plataforma, de linguagem, de banco de dados) não é um caso de uso do método; é outro projeto, e em
@@ -56,6 +56,10 @@ legado quanto o que um contratado fez há três anos. Muda o esforço de lê-lo,
 Normalizar é levar o sistema ao estado que o método dá por suposto ao abrir o ciclo. E faço isso
 com três regras que não negocio.
 
+E algo prévio às três regras: neste caminho também não há prazos. O método é um processo, não
+uma promessa de velocidade; normalizar um legado demora o que o legado pedir, e a única coisa
+que fixo é a ordem e as comportas.
+
 **Primeira: não se reescreve.** A normalização não toca em funcionalidade. Coloca em volta do
 sistema o que lhe falta (o contrato, o mapa, o ambiente de teste, a bateria, a implantação
 repetível, os cadeados sobre o que já age sobre o mundo) e deixa o sistema fazendo o mesmo que
@@ -69,7 +73,7 @@ bateria de caracterização dos fluxos críticos que fica em vermelho se algo di
 uma **comporta dura**: nada se muda sem ele, com uma única exceção escrita para a urgência em
 produção, que explico mais abaixo. O resto da dívida se paga **à medida que se toca**: quando um
 bloco entra num módulo, as pendências de normalização desse módulo entram com ele. Nunca "uma
-semana de faxina geral".
+faxina geral" antes de começar.
 
 **Terceira: todos os insumos das etapas anteriores têm que existir, mesmo que seja preciso
 recuperá-los por autodescobrimento.** Esta é a regra que distingue este caminho de "aplicar o
@@ -99,20 +103,21 @@ novo, e como se consegue no caminho evolutivo-corretivo.
 | `docs/ELIGIBILITY_CRITERIA.md` e `docs/ELIGIBILITY.md` | Degrau 0. | N0, com quatro critérios a mais, próprios do legado. | O dono decide. |
 | `docs/WORKING_AGREEMENT.md` | Degrau 1. | N1, com cinco regras a mais, próprias do legado. | O dono. |
 | `PROJECT.md`, `docs/SEMANTIC_TREE.md`, `docs/STATUS.md` | Degrau 2, a partir do levantamento. | N2, a partir do sistema, com marcas; mais a lista de discrepâncias. | O dono percorre a árvore e decide cada discrepância. |
-| `docs/AUDIT_[fecha].md` | Degrau 11, no final. | N3, no começo: é o inventário da dívida. | O dono lê e verifica dois achados. |
+| `docs/AUDIT_[fecha].md` | Degrau 13, no final. | N3, no começo: é o inventário da dívida. | O dono lê e verifica dois achados. |
 | `docs/ENVIRONMENTS_SURVEY.md`, o ambiente de teste, a integração contínua, a implantação repetível, `docs/GATES.md` | Degraus 4 e 13. | N4, o cinto de segurança, com a bateria de caracterização. | O dono vê a captura e a segunda rodada da implantação. |
-| `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`, `docs/PRODUCER_CONSUMER_MAP.md` | Degraus 12 e 8. | N5, por inventário do código e do banco. | O dono confirma cadeado por cadeado. |
-| `docs/VOLUME_SURVEY.md`, `docs/SIZING.md` | Degrau 3, com números que o negócio dá. | N6, com números medidos no banco e nos logs (degrau 9 aplicado ao dimensionamento). | O dono aporta só o que não se pode medir. |
+| `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`, `docs/PRODUCER_CONSUMER_MAP.md` | Degraus 14 e 11. | N5, por inventário do código e do banco. | O dono confirma cadeado por cadeado. |
+| `docs/VOLUME_SURVEY.md`, `docs/SIZING.md` | Degrau 3, com números que o negócio dá. | N6, com números medidos no banco e nos logs (degrau 7 aplicado ao dimensionamento). | O dono aporta só o que não se pode medir. |
 | `docs/PENDING.md` | Degrau 5, a partir do pedido do cliente. | N7, a partir da auditoria, das discrepâncias e do pedido do cliente, com a marca "bloqueia / paga-se ao tocar / pode esperar". | O dono ordena. |
-| `docs/DECISIONS.md`, `docs/GOTCHAS.md`, `docs/LOCKS.md`, `docs/DEPLOYMENT.md` | Degraus 6, 8, 12, 13. | Criam-se vazios ou se completam em N2, N4 e N5, e crescem no ciclo como no projeto novo. | O dono. |
+| `docs/DECISIONS.md`, `docs/GOTCHAS.md`, `docs/LOCKS.md`, `docs/DEPLOYMENT.md` | Degraus 6, 11, 14, 15. | Criam-se vazios ou se completam em N2, N4 e N5, e crescem no ciclo como no projeto novo. | O dono. |
 
 Se ao terminar N7 faltar algum destes arquivos, o trecho não está subido. Não importa que o
 sistema "funcione": o ciclo vai precisar dele na primeira sessão.
 
 ## O trecho de normalização: as oito estações
 
-Chamo-as estações e não degraus, e as numero N0 a N7, para que não se confundam com os vinte e dois da escada. Não são degraus novos: são os degraus do arranque e três da operação (o 8, o 11 e o
-12), em outra ordem e com outra entrada. No projeto novo a entrada é o levantamento; aqui a
+Chamo-as estações e não degraus, e as numero N0 a N7, para que não se confundam com os vinte e
+quatro da escada. Não são degraus novos: são os degraus do arranque e três da operação (o 11, o
+13 e o 14), em outra ordem e com outra entrada. No projeto novo a entrada é o levantamento; aqui a
 entrada é o sistema, e a leitura é feita pelo agente.
 
 | Estação | Degraus de origem | O que muda em relação ao projeto novo |
@@ -120,10 +125,10 @@ entrada é o sistema, e a leitura é feita pelo agente.
 | N0 — Elegibilidade de um sistema existente | 0 | Quatro critérios a mais; X2 se mede tela por tela; se está em vermelho, é a primeira pendência, não uma condição. |
 | N1 — O contrato de convivência para um legado | 1 | Cinco regras a mais: não refatorar o que não foi pedido, ler antes de tocar, anotar em vez de consertar de passagem, o comportamento atual é a especificação, nada entra sem a caracterização em verde. |
 | N2 — A leitura do sistema | 2 | O levantamento, o arquivo de projeto e a árvore saem do código com marcas de fonte; aparece a lista de discrepâncias. |
-| N3 — A auditoria como inventário | 11 | Vai primeiro, não por último, e cada achado diz se bloqueia, se se paga ao tocar, ou se pode esperar. |
+| N3 — A auditoria como inventário | 13 | Vai primeiro, não por último, e cada achado diz se bloqueia, se se paga ao tocar, ou se pode esperar. |
 | N4 — O cinto de segurança | 4, 7, 13 | Ambiente de teste com dados, implantação repetível, segredos fora, integração contínua, e a bateria de caracterização. Comporta dura. |
-| N5 — Cadeados e mapa a partir do código | 12, 8 | Inventário de tudo o que age sobre o mundo e de todos os contratos entre partes, antes de mudar nada. |
-| N6 — Dimensionar com números reais | 3, 9 | Os primários se medem, não se perguntam; o dono aporta só o que não está no banco. |
+| N5 — Cadeados e mapa a partir do código | 14, 11 | Inventário de tudo o que age sobre o mundo e de todos os contratos entre partes, antes de mudar nada. |
+| N6 — Dimensionar com números reais | 3, 7 | Os primários se medem, não se perguntam; o dono aporta só o que não está no banco. |
 | N7 — O backlog de normalização | 5 | A dívida e o pedido do cliente, numa única fila, com a marca de velocidade e o emparelhamento por módulo. |
 
 A ordem importa. N3 vai antes de N4 porque a auditoria diz o que tem que entrar no cinto (os
@@ -132,37 +137,54 @@ N5 vai depois do cinto porque inventariar ações com consequência exige poder 
 lugar onde errar não custe. N6 vai no final porque mede sobre o ambiente de teste com dados, que
 só existe a partir de N4. E N7 fecha porque junta tudo o anterior numa única fila.
 
-### Quando: o calendário da normalização
+### A ordem da normalização
 
-| Semana | Estações | O que mais acontece |
+Não há prazos: cada etapa dura o que o sistema pedir, e a única coisa fixa é a ordem.
+
+| Etapa | Estações | O que mais acontece |
 |---|---|---|
-| 1 | N0, N1, N2, N3 | Leitura do sistema com o dono ao lado, confirmando nós e decidindo discrepâncias. Nada se muda. No fechamento da semana: o mapa recuperado e o inventário de dívida. |
+| 1 | N0, N1, N2, N3 | Leitura do sistema com o dono ao lado, confirmando nós e decidindo discrepâncias. Nada se muda. No fechamento da etapa: o mapa recuperado e o inventário de dívida. |
 | 2 | N4, N5 | O cinto: ambiente de teste com dados, implantação repetida duas vezes, segredos rotacionados, bateria de caracterização dos fluxos críticos. Cadeados confirmados sobre o que já age. No fechamento: o sistema roda em teste e a bateria está em verde. |
 | 3 | N6, N7, e o primeiro bloco | Dimensionamento medido. O backlog ordenado. Abre-se o primeiro bloco com o degrau 5, corretivo ou evolutivo, com as suas pendências de normalização emparelhadas. Daqui em diante é o ciclo de sempre. |
 
-Se o sistema é grande, o que se estica é a semana 1 (há mais para ler) e a bateria de
-caracterização da semana 2 (há mais fluxos). Não se estica N7: um backlog de normalização que
-demora uma semana para ser escrito é um backlog que ninguém vai manter.
+Se o sistema é grande, o que cresce é a etapa 1 (há mais para ler) e a bateria de
+caracterização da etapa 2 (há mais fluxos). Não cresce N7: um backlog de normalização que não se
+pode escrever de uma sentada é um backlog que ninguém vai manter.
 
 ---
 
-### N0 — Elegibilidade de um sistema existente
+### N0 — Elegibilidade de um sistema existente: os pré-requisitos que um modelo pode verificar
 
-- **Intenção**: decidir se este sistema pode ser encarado com o método, antes de tocá-lo. Os dois
-  excludentes são os mesmos do degrau 0, X1 (repositório acessível e manejado de forma padrão) e
-  X2 (telas operáveis por programa, com verificação do efeito no backend), mas aqui X2 se mede
-  tela por tela sobre o que existe, e se está em vermelho não é uma condição para começar: é a
-  primeira pendência do backlog, marcada como bloqueante.
-- **Quando**: uma vez, no primeiro dia. Duas horas.
-- **Entradas**: o levantamento inicial (o pedido, quem usa o sistema, o que dói), acesso de
-  leitura ao repositório e, se der, ao ambiente onde ele roda.
-- **Artefato**: `docs/ELIGIBILITY.md` com a decisão, e os quatro critérios que acrescento para um
-  legado: se há alguém que saiba como funciona (e quanto tempo tem); se a produção pode ser
-  consultada em somente leitura; se existe algum teste automático; se existe uma cópia de
-  segurança e se alguma vez foi restaurada.
-- **Comporta**: X1 em verde; X2 em verde ou com a sua pendência bloqueante aberta; cópia de
-  segurança restaurada pelo menos uma vez antes de N4.
-- **Quem decide**: o dono.
+- **Intenção**: decidir se este sistema pode ser encarado com o método, antes de tocá-lo, com
+  critérios que não dependem de uma avaliação humana e sim do que um modelo de fronteira pode
+  fazer ou não fazer com o sistema. Se um pré-requisito não se cumpre, não é um "não vai": é um
+  **projeto em si mesmo**, prévio, para que o sistema se torne elegível.
+- **Quando**: uma vez, antes de qualquer outra coisa.
+- **Entradas**: o levantamento inicial curto, acesso de leitura ao repositório e, se der, ao
+  ambiente onde ele roda e à sua base.
+- **Artefato**: `docs/ELIGIBILITY.md` com a decisão e os sete pré-requisitos excludentes do
+  legado, cada um verificado pelo agente com evidência, não declarado por uma pessoa:
+  1. **Pode-se montar um ambiente completo do sistema**, com todos os seus fontes, o seu modelo
+     de dados e a sua persistência, a partir do repositório e de uma cópia dos dados.
+  2. **O código é entendível e abordável por um modelo de fronteira**: o agente pode lê-lo
+     inteiro e explicar o que cada módulo faz sem inventar.
+  3. **A partir do código, o modelo pode descrever num documento a funcionalidade completa do
+     sistema**, numa forma que um usuário final reconheça como o seu sistema e aceite.
+  4. **O frontend pode ser percorrido por ferramentas de teste** para gerar testes de ponta a
+     ponta, com cada elemento acessível e o efeito no backend verificável (é o X2).
+  5. **O sistema pode ser construído e executado a partir dos fontes com as ferramentas
+     disponíveis hoje**: as dependências se resolvem, as versões existem, nada depende de um
+     binário perdido.
+  6. **Os dados de produção podem ser copiados e anonimizados** para um ambiente de teste, e há
+     uma cópia de segurança que foi restaurada pelo menos uma vez.
+  7. **As integrações externas têm um modo de teste ou podem ser isoladas na borda** (uma caixa
+     falsa, um provedor em modo de ensaio), para que as ações com consequência se provem sem
+     consequências.
+- **Comporta**: os sete em verde, com a evidência do agente (o ambiente montado, o documento de
+  funcionalidade escrito, um teste de ponta a ponta de um fluxo rodando). Cada vermelho se
+  converte num projeto prévio com a sua própria pendência de saída.
+- **Quem decide**: o agente verifica e apresenta a evidência; o dono decide se encara os projetos
+  prévios ou não.
 
 **Antes de enviar o prompt**, isto tem que existir, e quem faz é você (ou o negócio com você), não
 o agente:
@@ -172,73 +194,88 @@ o agente:
   quem o fez e se está disponível; onde roda; quem tem acesso a quê; se há cópia de segurança e
   quem a faz. Meia página, incompleta de propósito: em N2 o agente vai completá-la a partir do
   sistema.
-- `docs/ELIGIBILITY_CRITERIA.md`: a ficha do degrau 0 (X1, X2 e os que ponderam) mais quatro
-  linhas para os critérios do legado: alguém que saiba, produção consultável, testes existentes,
-  cópia de segurança restaurada. Colunas vazias para resposta, fonte e verde ou vermelho.
-- Acesso de leitura ao repositório para o agente, e se possível ao ambiente de teste ou à produção
-  em somente leitura, com as credenciais fora do chat.
-- Estado mínimo aceitável: o agente pode clonar o repositório e você sabe quem fez o sistema e se
-  está vivo (o sistema e a pessoa).
+- `docs/ELIGIBILITY_CRITERIA.md`: a ficha do degrau 0 (X1, X2 e os que ponderam) mais os sete
+  pré-requisitos do legado de cima, cada um com três colunas vazias: verde ou vermelho, a
+  evidência (o que o agente fez para verificá-lo), e o projeto prévio se estiver em vermelho.
+- Acesso de leitura ao repositório para o agente, acesso a uma cópia dos dados (ou à produção em
+  somente leitura) e a um lugar onde ele possa tentar montar o ambiente, com as credenciais fora
+  do chat. Sem isso, os pré-requisitos 1, 5 e 6 não podem ser verificados e ficam em vermelho.
+- Estado mínimo aceitável: o agente pode clonar o repositório e tem um lugar onde tentar levantar
+  o sistema.
 
 **Inicial:**
 
-> We are going to assess whether this existing system can be taken over with the Urazuke method.
-> Read the initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
-> `docs/ELIGIBILITY_CRITERIA.md`, which for an existing system adds four criteria: whether anyone
-> who knows how the system works is available; whether production can be queried read-only;
-> whether any automated test exists; and whether a backup exists and has ever been restored. Then
-> explore the repository and, if I gave you access, the environment where it runs: change nothing.
-> Fill in the sheet criterion by criterion with the answer, its source (survey, code, database,
-> configuration, or inferred) and, for the exclusionary criteria X1 and X2, green or red. For X2,
-> list every screen and say for each whether it can be driven by a program today and whether the
-> effect can be checked in the backend. If a criterion cannot be answered from what you have, ask
-> me; do not assume. Do not decide: present me the completed sheet with your reading and your
-> doubts, and I will decide. Reply in my language.
+> We are going to assess whether this existing system can be taken over with the Urazuke method,
+> with prerequisites that you verify by doing, not by asking. Read the initial survey in
+> `docs/INITIAL_SURVEY.md` and the criteria sheet in `docs/ELIGIBILITY_CRITERIA.md`. Then, changing
+> nothing in the system, verify each prerequisite with evidence: (1) try to set up a complete
+> environment of the system from the repository and a copy of the data, with its sources, data
+> model and persistence, and tell me exactly what you could and could not bring up; (2) read the
+> whole code and tell me whether you can understand and work with it, module by module, naming
+> what you cannot understand; (3) from the code alone, write `docs/FUNCTIONALITY_RECOVERED.md`: the
+> complete functionality of the system described for an end user, screen by screen and process by
+> process, marking what you inferred; (4) list every screen and say whether it can be driven by a
+> test tool with each element accessible and the backend effect checkable, and prove it by writing
+> and running one end-to-end test of one flow; (5) try to build and run the system from the sources
+> with today's tools and report every dependency that does not resolve; (6) check whether the
+> production data can be copied and anonymized into a test environment and whether a backup exists
+> and has ever been restored; (7) list every external integration and say whether it has a test
+> mode or can be isolated at the edge. For each prerequisite: green or red, the evidence (what you
+> did and what happened), and, if red, what project would make it green. Do not decide: present me
+> the sheet, and I decide. Reply in my language.
 
 > [pt]
-> Vamos avaliar se este sistema existente pode ser encarado com o método Urazuke. Leia o
-> levantamento inicial em `docs/INITIAL_SURVEY.md` e a ficha de critérios em
-> `docs/ELIGIBILITY_CRITERIA.md`, que para um sistema existente acrescenta quatro critérios: se há
-> alguém disponível que saiba como o sistema funciona; se a produção pode ser consultada em
-> somente leitura; se existe algum teste automático; e se existe uma cópia de segurança e se
-> alguma vez foi restaurada. Depois explore o repositório e, se eu lhe dei acesso, o ambiente onde
-> ele roda: não mude nada. Preencha a ficha critério por critério com a resposta, a sua fonte
-> (levantamento, código, base, configuração, ou inferido) e, para os critérios excludentes X1 e
-> X2, verde ou vermelho. Para X2, liste cada tela e diga para cada uma se hoje pode ser operada
-> por programa e se o efeito pode ser verificado no backend. Se um critério não puder ser
-> respondido com o que você tem, pergunte-me; não suponha. Não decida: apresente-me a ficha
-> completa com a sua leitura e as suas dúvidas, e eu decido. Responda no meu idioma.
+> Vamos avaliar se este sistema existente pode ser encarado com o método Urazuke, com
+> pré-requisitos que você verifica fazendo, não perguntando. Leia o levantamento inicial em
+> `docs/INITIAL_SURVEY.md` e a ficha de critérios em `docs/ELIGIBILITY_CRITERIA.md`. Depois, sem
+> mudar nada no sistema, verifique cada pré-requisito com evidência: (1) tente montar um ambiente
+> completo do sistema a partir do repositório e de uma cópia dos dados, com os seus fontes, o seu
+> modelo de dados e a sua persistência, e diga-me exatamente o que conseguiu levantar e o que
+> não; (2) leia todo o código e diga-me se consegue entendê-lo e trabalhar com ele, módulo por
+> módulo, nomeando o que não entende; (3) só a partir do código, escreva
+> `docs/FUNCTIONALITY_RECOVERED.md`: a funcionalidade completa do sistema descrita para um
+> usuário final, tela por tela e processo por processo, marcando o que inferiu; (4) liste cada
+> tela e diga se pode ser operada por uma ferramenta de teste com cada elemento acessível e o
+> efeito no backend verificável, e demonstre-o escrevendo e rodando um teste de ponta a ponta de
+> um fluxo; (5) tente construir e executar o sistema a partir dos fontes com as ferramentas de
+> hoje e reporte cada dependência que não se resolva; (6) verifique se os dados de produção podem
+> ser copiados e anonimizados para um ambiente de teste e se existe uma cópia de segurança que
+> alguma vez foi restaurada; (7) liste cada integração externa e diga se tem um modo de teste ou
+> pode ser isolada na borda. Para cada pré-requisito: verde ou vermelho, a evidência (o que você
+> fez e o que aconteceu) e, se estiver em vermelho, que projeto o poria em verde. Não decida:
+> apresente-me a ficha, e eu decido. Responda no meu idioma.
 
-O que estou pedindo: o mesmo que no degrau 0, com três diferenças. Que explore o sistema sem mudar
-nada, porque aqui há um sistema para explorar; que cada resposta diga de onde saiu, porque o
-levantamento é curto e a maioria das respostas vai vir do código; e que X2 se meça **tela por
-tela**, porque num legado a resposta nunca é "sim" ou "não" para todo o sistema, é "estas quatro
-sim, estas duas não", e essas duas são a primeira pendência.
+O que estou pedindo: que os pré-requisitos se verifiquem **fazendo** (montar, ler, escrever o
+documento, rodar um teste), porque um modelo de fronteira pode fazer as quatro coisas e então a
+elegibilidade deixa de ser uma opinião; o documento de funcionalidade recuperada, que é a prova
+mais forte de que o código é abordável, e que além disso é o primeiro rascunho do que N2 vai
+converter no mapa; e que cada vermelho venha com o projeto que o põe em verde, porque um
+pré-requisito que falta não é uma recusa e sim um trabalho prévio com o seu próprio alcance.
 
 **Antes de enviar o prompt** de fechamento: a sua decisão em uma linha, tomada depois de ler a
-ficha completa; as condições, verificáveis e não mais de três (a da cópia de segurança restaurada
-antes de N4 é quase sempre uma); e a lista de telas em vermelho para X2, que o prompt converte na
-primeira pendência.
+ficha com a evidência de cada pré-requisito; e, para cada vermelho, a sua decisão de se o projeto
+prévio se encara agora, depois, ou nunca (e então o sistema não é elegível).
 
 **De fechamento:**
 
-> Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
-> `docs/ELIGIBILITY.md` with the date, who decided, every answer with its source, and the
-> conditions if any. If X2 is red for any screen, create `docs/PENDING.md` and open the first
-> pending item: make every screen drivable by a program with its backend effect checkable; mark it
-> as blocking. Include the questions you asked and my answers.
+> Decision: [go / go after these prerequisite projects: … / no-go]. Write the final sheet to
+> `docs/ELIGIBILITY.md` with the date, who decided, each prerequisite with its colour and its
+> evidence, and, for every red one, the prerequisite project as a pending item in `docs/PENDING.md`
+> marked as blocking, with its own acceptance criterion: the prerequisite verified green. Include
+> the questions you asked and my answers.
 
 > [pt]
-> Decisão: [vai / não vai / vai com estas condições: …]. Escreva a ficha final em
-> `docs/ELIGIBILITY.md` com a data, quem decidiu, cada resposta com a sua fonte, e as condições,
-> se houver. Se X2 está em vermelho para alguma tela, crie `docs/PENDING.md` e abra a primeira
-> pendência: fazer com que toda tela possa ser operada por programa com o seu efeito no backend
-> verificável; marque-a como bloqueante. Inclua as perguntas que você fez e as minhas respostas.
+> Decisão: [vai / vai depois destes projetos prévios: … / não vai]. Escreva a ficha final em
+> `docs/ELIGIBILITY.md` com a data, quem decidiu, cada pré-requisito com a sua cor e a sua
+> evidência, e, para cada um em vermelho, o projeto prévio como pendência em `docs/PENDING.md`
+> marcada como bloqueante, com o seu próprio critério de aceitação: o pré-requisito verificado em
+> verde. Inclua as perguntas que você fez e as minhas respostas.
 
-Verificação de completude: X2 tem uma resposta por tela, e não uma para todo o sistema? Os quatro
-critérios do legado têm resposta com fonte? Se a cópia de segurança nunca foi restaurada, isso
-ficou como condição antes de N4? Sinal de alerta: o agente respondeu X2 em verde para tudo porque
-"é uma aplicação web". As aplicações web antigas são as que menos podem ser operadas por programa.
+Verificação de completude: cada pré-requisito tem evidência de algo que o agente **fez**, e não
+uma resposta sua? Existe `docs/FUNCTIONALITY_RECOVERED.md`, e você o leu como o dono: ele descreve
+o sistema que ele acredita ter? Rodou um teste de ponta a ponta real de um fluxo? Cada vermelho
+tem o seu projeto prévio com critério de saída? Sinal de alerta: todos em verde numa tarde para um
+sistema que ninguém entende. O agente respondeu em vez de fazer.
 
 ---
 
@@ -247,7 +284,7 @@ ficou como condição antes de N4? Sinal de alerta: o agente respondeu X2 em ver
 - **Intenção**: fixar as regras antes de tocar em nada, com cinco regras a mais do que o degrau 1,
   que são as de que um sistema herdado precisa para que o agente não o "melhore" por conta
   própria.
-- **Quando**: no primeiro dia, depois de N0. Meia hora.
+- **Quando**: depois de N0, antes de ler nada.
 - **Entradas**: as suas preferências de trabalho, como no degrau 1.
 - **Artefato**: `docs/WORKING_AGREEMENT.md` com as seis regras do método e as cinco do legado.
 - **Comporta**: o contrato tem data e versão, e o arquivo de projeto (quando existir, em N2) manda
@@ -260,7 +297,7 @@ ficou como condição antes de N4? Sinal de alerta: o agente respondeu X2 em ver
   que ele pergunte, que autonomia você lhe dá, o que você não tolera.
 - Uma decisão sua sobre o nível de risco que você aceita enquanto se normaliza: se o agente pode
   ou não implantar no ambiente de teste por conta própria (em produção, nunca, até N4 fechado e o
-  degrau 13 subido).
+  degrau 15 subido).
 - `docs/ELIGIBILITY.md` (N0), fechado.
 - Estado mínimo aceitável: você sabe responder às perguntas do degrau 1 e à do risco.
 
@@ -319,8 +356,7 @@ Sinal de alerta: o agente propõe como regra "modernizar o código à medida que
   sistema, com marcas de fonte, e com a lista de tudo o que não coincide entre o código, o banco,
   a documentação e o que o negócio acredita. É o degrau 2 feito por engenharia reversa, e é o
   passo que mais valor dá por hora de todo o caminho.
-- **Quando**: na primeira semana, depois de N1. Dois ou três dias, com o dono disponível para
-  confirmar.
+- **Quando**: depois de N1, com o dono disponível para confirmar.
 - **Entradas**: o repositório completo, o esquema do banco em somente leitura, a configuração de
   cada ambiente, os logs se houver, a documentação que existir, e o levantamento curto de N0.
 - **Artefato**: `docs/INITIAL_SURVEY.md` completado com marcas; `PROJECT.md`;
@@ -441,12 +477,12 @@ que aconteceu vai para o estado vivo [Ref. 41](REFERENCIAS.md#ref-41)).
 
 ### N3 — A auditoria como inventário da dívida
 
-- **Intenção**: o degrau 11, mas no começo e com uma pergunta a mais por achado: bloqueia, paga-se
+- **Intenção**: o degrau 13, mas no começo e com uma pergunta a mais por achado: bloqueia, paga-se
   ao tocar o módulo, ou pode esperar? O relatório não é um relatório: é a matéria-prima do cinto
   (N4) e do backlog (N7). No meu primeiro projeto que arrancou com o método já escrito, a série de
   auditorias precoces se converteu diretamente em pendências [Ref. 30](REFERENCIAS.md#ref-30);
   aqui faço o mesmo sobre um sistema alheio.
-- **Quando**: na primeira semana, depois de N2, numa sessão distinta da que leu o sistema, se der.
+- **Quando**: depois de N2, numa sessão distinta da que leu o sistema, se der.
   Um dia.
 - **Entradas**: o repositório em somente leitura, o ambiente onde ele roda em somente leitura, o
   mapa recuperado (N2).
@@ -501,13 +537,13 @@ o agente:
 > no seu módulo), ou se PODE ESPERAR. Dê uma nota a cada dimensão que você auditou. Termine com
 > cada achado convertido em pendência proposta, os bloqueantes primeiro. Responda no meu idioma.
 
-O que estou pedindo: a auditoria do degrau 11 com a dimensão "capacidade de implantação"
+O que estou pedindo: a auditoria do degrau 13 com a dimensão "capacidade de implantação"
 acrescentada (porque num legado a implantação costuma ser o primeiro problema) e com o campo de
 velocidade, que é o que converte um relatório em um plano: sem esse campo, um legado auditado tem
 quarenta achados e ninguém sabe por qual começar. O critério do que bloqueia sou eu que dou, não o
 auditor, porque depende das consequências do negócio.
 
-**De fechamento:** o prompt de fechamento do degrau 11, ao construtor, com um acréscimo: as
+**De fechamento:** o prompt de fechamento do degrau 13, ao construtor, com um acréscimo: as
 pendências que ele abrir levam a marca de velocidade do achado.
 
 Verificação: o relatório diz o que NÃO pôde auditar? Há pelo menos um achado marcado "bloqueia"?
@@ -522,10 +558,10 @@ esperar". É um auditor que não quer incomodar.
 - **Intenção**: que exista, em volta do sistema e sem tocar na sua funcionalidade, o que torna
   seguro mudá-lo: um ambiente de teste com dados parecidos com os reais, uma implantação que se
   repete, os segredos fora do código, a integração contínua rodando o que houver, e a **bateria de
-  caracterização** dos fluxos críticos. É o degrau 4, a primeira metade do 13 e uma forma
-  invertida do 7, juntos e antes de qualquer mudança. É uma **comporta dura**: até que o cinto não
+  caracterização** dos fluxos críticos. É o degrau 4, a primeira metade do 15 e uma forma
+  invertida do 8, juntos e antes de qualquer mudança. É uma **comporta dura**: até que o cinto não
   esteja em verde, não se muda uma linha de funcionalidade.
-- **Quando**: a segunda semana, inteira.
+- **Quando**: depois de N3, antes de qualquer mudança.
 - **Entradas**: o levantamento de ambientes (recuperado em N2 e confirmado por você), o relatório
   de N3 com os seus achados bloqueantes, a árvore semântica com os processos, e acesso ao servidor
   e ao banco.
@@ -600,7 +636,7 @@ o agente:
 > meu idioma.
 
 O que estou pedindo: o esqueleto do degrau 4 construído em volta de algo que já existe, com a
-metade do degrau 13 adiantada (segredos fora, implantação documentada) porque num legado os
+metade do degrau 15 adiantada (segredos fora, implantação documentada) porque num legado os
 segredos no código são a regra e não a exceção [Ref. 42](REFERENCIAS.md#ref-42); a anonimização
 como parte do ambiente e não como um detalhe; e as comportas escritas antes de existir a bateria,
 para que a bateria nasça já sendo comporta.
@@ -638,7 +674,7 @@ antes ou como parte desta bateria.
 > `docs/STATUS.md`, e faça com que a bateria seja a comporta do ambiente de teste como diz
 > `docs/GATES.md`. Responda no meu idioma.
 
-O que estou pedindo: o degrau 7 ao contrário. No projeto novo o teste nasce em vermelho e passa a
+O que estou pedindo: o degrau 8 ao contrário. No projeto novo o teste nasce em vermelho e passa a
 verde com a mudança; aqui o teste nasce em verde, porque captura o que há, e a prova de que serve
 é que **fica em vermelho quando você quebra o fluxo de propósito**. Sem essa mutação demonstrada,
 um teste de caracterização é um teste que passa porque não olha nada, que é o mesmo problema do
@@ -661,11 +697,11 @@ anonimizada (os bugs de um legado vivem nos dados reais, não nos de exemplo).
 
 - **Intenção**: saber, antes de mudar nada, o que o sistema faz que age sobre o mundo (cobra,
   envia, aprova, apaga, avisa, roda sozinho de noite) e quem produz e consome cada contrato entre
-  partes. No projeto novo isso se decide antes de construir (degrau 12) e se mapeia à medida que
-  se constrói (degrau 8). No legado já está construído, e ninguém se lembra disso por inteiro. Uma
+  partes. No projeto novo isso se decide antes de construir (degrau 14) e se mapeia à medida que
+  se constrói (degrau 11). No legado já está construído, e ninguém se lembra disso por inteiro. Uma
   mudança evolutiva pode disparar uma ação com consequência que estava adormecida, e uma mudança
   corretiva pode deixar um consumidor desatualizado.
-- **Quando**: a segunda semana, depois do cinto, porque inventariar ações exige poder rodar o
+- **Quando**: depois do cinto, porque inventariar ações exige poder rodar o
   sistema onde errar não custe.
 - **Entradas**: o código, o banco, os processos agendados do servidor, a árvore semântica, e a
   lista do que vive fora do repositório.
@@ -723,13 +759,13 @@ o agente:
 > podem ir quando se tocar o módulo. Não implemente nada ainda: eu confirmo cadeado por cadeado.
 > Responda no meu idioma.
 
-O que estou pedindo: o inventário dos degraus 12 e 8 numa passada, porque percorrem o mesmo
+O que estou pedindo: o inventário dos degraus 14 e 11 numa passada, porque percorrem o mesmo
 código; a comparação entre o que o negócio se lembra e o que o código faz, que é onde aparecem os
 envios de que ninguém se lembrava; e a proposta de **agora ou ao tocar** para cada cadeado, que é
 a regra das duas velocidades aplicada à proteção: um cadeado sobre uma ação que cobra vai agora;
 um cadeado sobre uma exportação mensal pode esperar o bloco que tocar esse módulo.
 
-**De fechamento:** o prompt de fechamento do degrau 12, com os cadeados marcados "agora", cada um
+**De fechamento:** o prompt de fechamento do degrau 14, com os cadeados marcados "agora", cada um
 com o seu teste em vermelho contra a versão sem cadeado; os demais ficam no backlog com a sua
 marca.
 
@@ -741,10 +777,10 @@ isso nunca acontece; faltou olhar as tarefas agendadas ou os gatilhos do banco.
 ### N6 — Dimensionar com números reais
 
 - **Intenção**: o degrau 3, mas com a vantagem enorme do legado: os dados primários não é preciso
-  perguntar, estão no banco e nos logs. Medem-se com o degrau 9 (um medidor com teste, auditado
+  perguntar, estão no banco e nos logs. Medem-se com o degrau 7 (um medidor com teste, auditado
   nas duas direções) e o dono aporta só o que não está em lugar nenhum: quanto esperam crescer e
   se o sistema vai ser vendido a outros.
-- **Quando**: a terceira semana, antes de abrir o primeiro bloco. Meio dia.
+- **Quando**: depois de N5, antes de abrir o primeiro bloco.
 - **Entradas**: o banco de produção em somente leitura ou a cópia completa de teste, os logs, a
   árvore semântica com as entidades.
 - **Artefato**: `docs/VOLUME_SURVEY.md` com cada número marcado `[base]` ou `[log]` e o seu
@@ -797,7 +833,7 @@ isso nunca acontece; faltou olhar as tarefas agendadas ou os gatilhos do banco.
 > meu idioma.
 
 O que estou pedindo: medir em vez de perguntar, que é o que o legado permite e o projeto novo não;
-o medidor com teste e a auditoria nas duas direções do degrau 9, porque os medidores mentem
+o medidor com teste e a auditoria nas duas direções do degrau 7, porque os medidores mentem
 [Ref. 35](REFERENCIAS.md#ref-35), [Ref. 36](REFERENCIAS.md#ref-36); e o dimensionamento como
 comporta antes de evoluir [Ref. 14](REFERENCIAS.md#ref-14): se a arquitetura atual não aguenta o
 "por dez" e o pedido do cliente é justamente crescer, isso se sabe agora e não no terceiro bloco.
@@ -817,7 +853,7 @@ está, pede-se; não há terceira opção.
   decisões do dimensionamento) e o pedido do cliente (o que é preciso corrigir e o que é preciso
   acrescentar), cada um com a sua marca de velocidade e emparelhados por módulo. É o degrau 5 com
   duas colunas a mais.
-- **Quando**: a terceira semana, no fechamento do trecho. Meio dia. Depois, o ciclo.
+- **Quando**: no fechamento do trecho. Depois, o ciclo.
 - **Entradas**: `docs/AUDIT_[fecha].md`, `docs/DISCREPANCIES.md` com as decisões, `docs/LOCKS.md`,
   `docs/SIZING.md`, a árvore semântica, e o pedido do cliente para esta etapa.
 - **Artefato**: `docs/PENDING.md` com todas as pendências especificadas, marcadas "bloqueia /
@@ -881,7 +917,7 @@ o agente:
 O que estou pedindo: o degrau 5 completo (a especificação detalhada vive em cada pendência, também
 nas de normalização), com as duas marcas que fazem este caminho: a velocidade, que diz quando se
 paga cada dívida, e o tipo, que diz como se fecha (um corretivo se fecha com o teste que reproduz
-a falha; um evolutivo, com o do degrau 7). E o **emparelhamento por módulo**, que é a regra
+a falha; um evolutivo, com o do degrau 8). E o **emparelhamento por módulo**, que é a regra
 "paga-se ao tocar" tornada operativa: quando abro o bloco do "sinal", as pendências de
 normalização do módulo de pagamentos entram com ele, e não antes nem depois.
 
@@ -897,14 +933,14 @@ lista. Arquive o que não vai ser pago nunca e diga isso.
 
 ## O ciclo sobre um sistema herdado: modo corretivo e modo evolutivo
 
-Terminado N7, o caminho se junta com a escada: os degraus 5 a 10 se sobem com cada pendência,
+Terminado N7, o caminho se junta com a escada: os degraus 5 a 12 se sobem com cada pendência,
 igual ao projeto novo, com os mesmos contratos e os mesmos prompts. Mas há dois detalhes que valem
 um item à parte, porque são os que distinguem "tocar um legado com método" de "tocar um legado com
 cuidado".
 
 ### O modo corretivo: o vermelho é natural
 
-Uma pendência corretiva é um bug: algo que hoje falha e o cliente sabe. No degrau 7 do projeto
+Uma pendência corretiva é um bug: algo que hoje falha e o cliente sabe. No degrau 8 do projeto
 novo, o vermelho se fabrica (escreve-se o teste, roda-se contra o código antigo, vê-se falhar). No
 corretivo o vermelho **é o próprio bug**: o teste que reproduz a falha, operando o fluxo a partir
 da tela como o usuário que a reportou, tem que falhar contra o código atual. Se não falha, você
@@ -968,7 +1004,7 @@ dívida deste módulo se paga agora, com a sua evidência, não "depois".
 ### O modo evolutivo: a caracterização é a regressão
 
 Uma pendência evolutiva é algo novo sobre algo que existe. Abre-se com o prompt do degrau 5,
-constrói-se com o 6 e o 7 tal e qual, e a única diferença é o que significa "a regressão das
+constrói-se com o 6 e o 8 tal e qual, e a única diferença é o que significa "a regressão das
 vizinhas": aqui as vizinhas são o sistema inteiro, e a bateria de caracterização é a que diz que o
 que funcionava continua funcionando. Mais duas regras. Primeira: quando o bloco entra num módulo,
 as pendências de normalização marcadas "paga-se ao tocar" desse módulo entram com ele, com a sua
@@ -1009,12 +1045,12 @@ forma de voltar atrás (a cópia de segurança de N0 ou a versão anterior) à m
 > e a regressão em verde. Responda no meu idioma.
 
 O que estou pedindo: o mínimo, com o caminho de volta antes e não depois, e com o relatório
-honesto do que não foi verificado (degrau 10); e a obrigação de voltar a entrar pelo ciclo no
+honesto do que não foi verificado (degrau 12); e a obrigação de voltar a entrar pelo ciclo no
 mesmo dia, que é o que separa uma exceção de um hábito.
 
-## Os seis degraus de qualidade operacional num legado
+## Os seis degraus de qualidade operacional (16 a 19, 21 e 22) num legado
 
-Os degraus 16 a 21 do documento principal (observabilidade e rastreabilidade, persistência,
+Os degraus 16 a 19, 21 e 22 do documento principal (observabilidade e rastreabilidade, persistência,
 vulnerabilidades, desempenho, e os dois monitoramentos) valem para os dois casos de uso, e num
 legado têm uma localização precisa, porque vários deles já têm metade do trabalho feito pelo
 trecho de normalização:
@@ -1033,14 +1069,14 @@ trecho de normalização:
 - **19, desempenho**: roda-se com os volumes medidos em N6, sobre a persistência já corrigida no
   que bloqueava, antes da primeira implantação posterior à normalização. Num legado costuma
   descobrir que o ponto de ruptura está mais perto do que o negócio acredita.
-- **20 e 21, monitoramento**: montam-se na semana da primeira implantação, igual que no projeto
+- **21 e 22, monitoramento**: montam-se com a primeira implantação, igual que no projeto
   novo, com uma diferença: a primeira leitura do relatório é a linha base do legado, e os desvios
   e os erros que já existiam no primeiro dia viram pendências com a sua marca de velocidade.
   Nenhum fica como "conhecido" sem pendência.
 
-Na prática, para um sistema pequeno, os quatro prévios à implantação acrescentam uma semana ao
-calendário da normalização (uma quarta semana, antes do primeiro bloco evolutivo ou junto com
-ele, conforme a urgência do pedido), e os dois monitoramentos montam-se na semana da implantação.
+Na prática, os quatro prévios à implantação são mais uma etapa da normalização, antes do
+primeiro bloco evolutivo ou junto com ele conforme a urgência do pedido, e os dois monitoramentos
+montam-se com a implantação.
 
 ## Quando o sistema está normalizado
 
@@ -1068,7 +1104,7 @@ primeiro bloco. Esta é a lista:
 Se as oito dão "sim", o sistema está normalizado até onde este caminho exige, e o que segue é a
 escada de sempre. As fases 3 e 4 do documento principal (saída para produção e operação) se
 aplicam tal e qual: a auditoria periódica, os manuais (que num legado costumam não existir, e se
-geram com o degrau 14 a partir do sistema como está), o agente residente, e a retrospectiva com
+geram com o degrau 20 a partir do sistema como está), o agente residente, e a retrospectiva com
 números, que num legado tem uma pergunta própria: quanto custou normalizar, e o que da dívida que
 marcamos "pode esperar" acabou custando do mesmo jeito.
 
@@ -1091,17 +1127,16 @@ marcamos "pode esperar" acabou custando do mesmo jeito.
 
 ## O que falta elaborar `[hipótese]`
 
-1. Os quatro critérios de elegibilidade próprios do legado estão escritos a partir da minha
-   experiência com sistemas alheios em modo diagnóstico; não os calibrei com projetos recusados
-   como fiz com X1 e X2. Um legado sem ninguém que saiba como funciona pode ser viável do mesmo
-   jeito se o banco e o código forem legíveis; um legado com testes que ninguém roda há dois anos
-   talvez esteja pior do que um sem testes. Falta casuística.
+1. Os sete pré-requisitos de N0 se verificam fazendo, e isso os torna calibráveis: cada legado
+   que passe por N0 deixa a sua ficha com evidência. O que falta é a casuística: quantos legados
+   falham cada pré-requisito e quanto custa o projeto prévio que o põe em verde. Já não é uma
+   hipótese sobre o critério; é uma conta que ainda não tenho.
 2. O tamanho da bateria de caracterização: entre quatro e oito fluxos é o que funcionou comigo em
    sistemas pequenos; num grande não sei se o critério é por fluxo, por módulo ou por dinheiro em
    jogo.
-3. Quanto dura a normalização num sistema grande: o calendário de três semanas é para um sistema
-   do tamanho do projeto-guia. Num com dezenas de módulos, suspeito que a normalização se faça por
-   módulo, com um cinto por módulo, e que N2 se faça inteiro mas N4 se reparta. Não o provei.
+3. Como se reparte a normalização num sistema grande: suspeito que a leitura (N2) se faça
+   inteira mas o cinto (N4) se monte por módulo, à medida que cada módulo vai ser tocado, e que
+   a comporta dura passe a ser dura por módulo e não por sistema. Não o provei.
 4. O que acontece com um legado construído por um modelo com o método pela metade (contrato sim,
    testes não): se este caminho se percorre inteiro ou se há um atalho. A minha intuição é que não
    há atalho, e que o atalho é justamente o erro, mas é intuição.

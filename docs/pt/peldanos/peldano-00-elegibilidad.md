@@ -1,10 +1,9 @@
 # Passo 0 — Este projeto pode ser encarado assim? (contrato do degrau)
 
 **Fase:** arranque.
-**Quando:** uma única vez, na primeira semana, antes de abrir o repositório e antes de qualquer
-outra coisa. Uma hora de trabalho.
+**Quando:** uma única vez, antes de abrir o repositório e antes de qualquer outra coisa.
 **Forma:** conversa: o agente avalia e pergunta; você decide.
-**Tamanho:** obrigatório em todo projeto, por menor que seja. Leva uma hora; economiza meses.
+**Tamanho:** obrigatório em todo projeto, por menor que seja.
 **Estado:** os critérios excludentes X1 e X2 estão fechados; os critérios que ponderam (D1 a D10)
 ainda estou calibrando e os marco como hipótese.
 

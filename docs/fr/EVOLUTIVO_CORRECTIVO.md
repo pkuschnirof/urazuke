@@ -25,7 +25,7 @@ Et il y a ici un piège que je veux nommer avant d'aller plus loin : la tentatio
 legacy, est de choisir entre deux extrêmes qui sont tous les deux mauvais. Le premier est « je le
 réécris avec la méthode, depuis zéro » : cela sonne propre, et cela finit presque toujours par un
 deuxième système qui n'arrive jamais à remplacer le premier. Le second est « je lui applique la
-boucle directement, c'est bien à ça que servent les échelons 5 à 10 » : cela sonne pragmatique, et
+boucle directement, c'est bien à ça que servent les échelons 5 à 12 » : cela sonne pragmatique, et
 c'est construire sur du sable, parce que la boucle tient pour acquis qu'il existe un contrat, une
 carte, un environnement de test, une batterie qui tourne et un déploiement qui se répète. Rien de
 tout cela n'existe dans un système qui n'est pas né avec la méthode. Ce chemin est celui qui passe
@@ -36,11 +36,11 @@ par le milieu : **on normalise d'abord, sans réécrire, et ensuite on gravit l'
 La méthode a trois cas d'utilisation, et il vaut mieux savoir dans lequel vous êtes avant d'ouvrir
 l'agent, parce que cela change par où l'on entre.
 
-| Cas | Point de départ | Par où l'on entre | Combien dure l'entrée | Où c'est écrit |
+| Cas | Point de départ | Par où l'on entre | Ce qu'il y a avant la première fonctionnalité | Où c'est écrit |
 |---|---|---|---|---|
-| **Projet neuf** | Dossier vide et un propriétaire avec une demande. | Échelon 0, et de là les vingt-deux dans l'ordre. | Une semaine de démarrage avant la première fonctionnalité. | Le document principal, les vingt-deux contrats et le manuel du cours. |
-| **Évolutif-correctif sur un système fait avec la méthode** | Le système a déjà gravi l'échelle : il a un contrat, une carte, des éléments en attente clos avec leur preuve, une batterie, un déploiement et des manuels. | Échelon 5 : on ouvre un bloc et on suit la boucle ; le 11 périodique ; le 15 à la clôture de l'étape. | Aucune : c'est l'échelon 15 qui revient au 0 pour l'étape suivante, et c'est déjà dans la Partie B du document principal. | Le document principal (phase 4, exploitation). |
-| **Évolutif-correctif sur un système fait sans la méthode** | Un système qui tourne, avec des utilisateurs, sans aucun de ces artefacts ou avec quelques-uns à moitié faits. | Le tronçon de normalisation de cette page (N0 à N7), et seulement ensuite la boucle, en mode correctif ou évolutif. | De deux à trois semaines pour un petit système, avant de toucher la première ligne de fonctionnalité. | Cette page et le manuel du cours, partie 2. |
+| **Projet neuf** | Dossier vide et un propriétaire avec une demande. | Échelon 0, et de là les vingt-quatre dans l'ordre. | Tout le tronçon de démarrage avant la première fonctionnalité. | Le document principal, les vingt-quatre contrats et le manuel du cours. |
+| **Évolutif-correctif sur un système fait avec la méthode** | Le système a déjà gravi l'échelle : il a un contrat, une carte, des éléments en attente clos avec leur preuve, une batterie, un déploiement et des manuels. | Échelon 5 : on ouvre un bloc et on suit la boucle ; le 13 périodique ; le 23 à la clôture de l'étape. | Aucune : c'est l'échelon 23 qui revient au 0 pour l'étape suivante, et c'est déjà dans la Partie B du document principal. | Le document principal (phase 4, exploitation). |
+| **Évolutif-correctif sur un système fait sans la méthode** | Un système qui tourne, avec des utilisateurs, sans aucun de ces artefacts ou avec quelques-uns à moitié faits. | Le tronçon de normalisation de cette page (N0 à N7), et seulement ensuite la boucle, en mode correctif ou évolutif. | Tout le tronçon de normalisation, avant de toucher la première ligne de fonctionnalité. | Cette page et le manuel du cours, partie 2. |
 
 Ce qui reste dehors, nommé pour qu'il n'y ait pas de confusion : la **migration technologique**
 (changer de plateforme, de langage, de base de données) n'est pas un cas d'utilisation de la
@@ -60,6 +60,10 @@ change, c'est l'effort de le lire, pas le chemin.
 Normaliser, c'est amener le système à l'état que la méthode tient pour acquis au moment d'ouvrir
 la boucle. Et je le fais avec trois règles que je ne négocie pas.
 
+Et quelque chose qui précède les trois règles : sur ce chemin non plus, il n'y a pas de délais. La
+méthode est un procédé, pas une promesse de vitesse ; normaliser un legacy prend le temps que le
+legacy demande, et la seule chose que je fixe, c'est l'ordre et les portes.
+
 **Première : on ne réécrit pas.** La normalisation ne touche pas à la fonctionnalité. Elle met
 autour du système ce qui lui manque (le contrat, la carte, l'environnement de test, la batterie,
 le déploiement reproductible, les verrous sur ce qui agit déjà sur le monde) et laisse le système
@@ -73,8 +77,8 @@ hors du code, et avoir une batterie de caractérisation des flux critiques qui p
 l'une de ces choses change. La ceinture est une **porte dure** : rien ne se change sans elle, avec
 une seule exception écrite pour l'urgence en production, que j'explique plus bas. Le reste de la
 dette se paie **au fur et à mesure qu'on y touche** : quand un bloc entre dans un module, les
-éléments en attente de normalisation de ce module entrent avec lui. Jamais « une semaine de grand
-nettoyage ».
+éléments en attente de normalisation de ce module entrent avec lui. Jamais « un grand nettoyage
+général » avant de commencer.
 
 **Troisième : tous les intrants des étapes précédentes doivent exister, même s'il faut les
 récupérer par autodécouverte.** C'est la règle qui distingue ce chemin de « appliquer la boucle et
@@ -106,12 +110,12 @@ le projet neuf, et comment on l'obtient sur le chemin évolutif-correctif.
 | `docs/ELIGIBILITY_CRITERIA.md` et `docs/ELIGIBILITY.md` | Échelon 0. | N0, avec quatre critères de plus, propres au legacy. | Le propriétaire décide. |
 | `docs/WORKING_AGREEMENT.md` | Échelon 1. | N1, avec cinq règles de plus, propres au legacy. | Le propriétaire. |
 | `PROJECT.md`, `docs/SEMANTIC_TREE.md`, `docs/STATUS.md` | Échelon 2, depuis le relevé. | N2, depuis le système, avec les marques ; plus la liste des divergences. | Le propriétaire parcourt l'arbre et décide chaque divergence. |
-| `docs/AUDIT_[date].md` | Échelon 11, à la fin. | N3, au début : c'est l'inventaire de la dette. | Le propriétaire lit et vérifie deux constats. |
-| `docs/ENVIRONMENTS_SURVEY.md`, l'environnement de test, l'intégration continue, le déploiement reproductible, `docs/GATES.md` | Échelons 4 et 13. | N4, la ceinture de sécurité, avec la batterie de caractérisation. | Le propriétaire voit la capture et la deuxième exécution du déploiement. |
-| `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`, `docs/PRODUCER_CONSUMER_MAP.md` | Échelons 12 et 8. | N5, par inventaire du code et de la base. | Le propriétaire confirme verrou par verrou. |
-| `docs/VOLUME_SURVEY.md`, `docs/SIZING.md` | Échelon 3, avec des chiffres que donne le métier. | N6, avec des chiffres mesurés dans la base et les journaux (échelon 9 appliqué au dimensionnement). | Le propriétaire n'apporte que ce qui ne peut pas se mesurer. |
+| `docs/AUDIT_[date].md` | Échelon 13, à la fin. | N3, au début : c'est l'inventaire de la dette. | Le propriétaire lit et vérifie deux constats. |
+| `docs/ENVIRONMENTS_SURVEY.md`, l'environnement de test, l'intégration continue, le déploiement reproductible, `docs/GATES.md` | Échelons 4 et 15. | N4, la ceinture de sécurité, avec la batterie de caractérisation. | Le propriétaire voit la capture et la deuxième exécution du déploiement. |
+| `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`, `docs/PRODUCER_CONSUMER_MAP.md` | Échelons 14 et 11. | N5, par inventaire du code et de la base. | Le propriétaire confirme verrou par verrou. |
+| `docs/VOLUME_SURVEY.md`, `docs/SIZING.md` | Échelon 3, avec des chiffres que donne le métier. | N6, avec des chiffres mesurés dans la base et les journaux (échelon 7 appliqué au dimensionnement). | Le propriétaire n'apporte que ce qui ne peut pas se mesurer. |
 | `docs/PENDING.md` | Échelon 5, depuis la demande du client. | N7, depuis l'audit, les divergences et la demande du client, avec la marque « bloque / se paie quand on y touche / peut attendre ». | Le propriétaire ordonne. |
-| `docs/DECISIONS.md`, `docs/GOTCHAS.md`, `docs/LOCKS.md`, `docs/DEPLOYMENT.md` | Échelons 6, 8, 12, 13. | Ils se créent vides ou se complètent en N2, N4 et N5, et grandissent dans la boucle comme dans le projet neuf. | Le propriétaire. |
+| `docs/DECISIONS.md`, `docs/GOTCHAS.md`, `docs/LOCKS.md`, `docs/DEPLOYMENT.md` | Échelons 6, 11, 14, 15. | Ils se créent vides ou se complètent en N2, N4 et N5, et grandissent dans la boucle comme dans le projet neuf. | Le propriétaire. |
 
 S'il manque l'un de ces fichiers à la fin de N7, le tronçon n'est pas gravi. Peu importe que le
 système « fonctionne » : la boucle en aura besoin dès la première session.
@@ -119,20 +123,20 @@ système « fonctionne » : la boucle en aura besoin dès la première session.
 ## Le tronçon de normalisation : les huit stations
 
 Je les appelle des stations et non des échelons, et je les numérote de N0 à N7, pour qu'elles ne
-se confondent pas avec les vingt-deux de l'échelle. Ce ne sont pas de nouveaux échelons : ce sont les
-échelons du démarrage et trois de l'exploitation (le 8, le 11 et le 12), dans un autre ordre et
+se confondent pas avec les vingt-quatre de l'échelle. Ce ne sont pas de nouveaux échelons : ce sont
+les échelons du démarrage et trois de l'exploitation (le 11, le 13 et le 14), dans un autre ordre et
 avec une autre entrée. Dans le projet neuf, l'entrée est le relevé ; ici l'entrée est le système,
 et c'est l'agent qui fait la lecture.
 
 | Station | Échelons d'origine | Ce qui change par rapport au projet neuf |
 |---|---|---|
-| N0 — Éligibilité d'un système existant | 0 | Quatre critères de plus ; X2 se mesure écran par écran ; s'il est au rouge, c'est le premier élément en attente, pas une condition. |
+| N0 — Éligibilité d'un système existant | 0 | Sept prérequis vérifiés par le modèle en faisant, pas en demandant ; un prérequis au rouge n'est pas un refus, c'est un projet préalable. |
 | N1 — Le contrat de collaboration pour un legacy | 1 | Cinq règles de plus : ne pas refactoriser ce qui n'a pas été demandé, lire avant de toucher, noter au lieu de réparer en passant, le comportement actuel est la spécification, rien n'entre sans la caractérisation au vert. |
 | N2 — La lecture du système | 2 | Le relevé, le fichier de projet et l'arbre sortent du code avec les marques de source ; la liste des divergences apparaît. |
-| N3 — L'audit comme inventaire | 11 | Il vient en premier, pas en dernier, et chaque constat dit s'il bloque, s'il se paie quand on y touche, ou s'il peut attendre. |
+| N3 — L'audit comme inventaire | 13 | Il vient en premier, pas en dernier, et chaque constat dit s'il bloque, s'il se paie quand on y touche, ou s'il peut attendre. |
 | N4 — La ceinture de sécurité | 4, 7, 13 | Environnement de test avec des données, déploiement reproductible, secrets dehors, intégration continue, et la batterie de caractérisation. Porte dure. |
-| N5 — Verrous et carte depuis le code | 12, 8 | Inventaire de tout ce qui agit sur le monde et de tous les contrats entre parties, avant de rien changer. |
-| N6 — Dimensionner avec de vrais chiffres | 3, 9 | Les chiffres primaires se mesurent, ne se demandent pas ; le propriétaire n'apporte que ce qui n'est pas dans la base. |
+| N5 — Verrous et carte depuis le code | 14, 11 | Inventaire de tout ce qui agit sur le monde et de tous les contrats entre parties, avant de rien changer. |
+| N6 — Dimensionner avec de vrais chiffres | 3, 7 | Les chiffres primaires se mesurent, ne se demandent pas ; le propriétaire n'apporte que ce qui n'est pas dans la base. |
 | N7 — La file de normalisation | 5 | La dette et la demande du client, dans une seule file, avec la marque de vitesse et l'appariement par module. |
 
 L'ordre compte. N3 vient avant N4 parce que l'audit dit ce qui doit entrer dans la ceinture (les
@@ -142,38 +146,56 @@ pouvoir faire tourner le système dans un endroit où se tromper ne coûte rien.
 parce qu'il mesure sur l'environnement de test avec des données, qui n'existe que depuis N4. Et N7
 ferme la marche parce qu'il réunit tout ce qui précède dans une seule file.
 
-### Quand : le calendrier de la normalisation
+### L'ordre de la normalisation
 
-| Semaine | Stations | Ce qui se passe en plus |
+Il n'y a pas de délais : chaque étape dure ce que le système demande, et la seule chose fixe,
+c'est l'ordre.
+
+| Étape | Stations | Ce qui se passe en plus |
 |---|---|---|
-| 1 | N0, N1, N2, N3 | Lecture du système avec le propriétaire à côté, qui confirme les nœuds et décide les divergences. Rien ne se change. À la clôture de la semaine : la carte récupérée et l'inventaire de la dette. |
+| 1 | N0, N1, N2, N3 | Lecture du système avec le propriétaire à côté, qui confirme les nœuds et décide les divergences. Rien ne se change. À la clôture de l'étape : la carte récupérée et l'inventaire de la dette. |
 | 2 | N4, N5 | La ceinture : environnement de test avec des données, déploiement répété deux fois, secrets rotés, batterie de caractérisation des flux critiques. Verrous confirmés sur ce qui agit déjà. À la clôture : le système tourne en test et la batterie est au vert. |
 | 3 | N6, N7, et le premier bloc | Dimensionnement mesuré. La file ordonnée. On ouvre le premier bloc avec l'échelon 5, correctif ou évolutif, avec ses éléments en attente de normalisation appariés. À partir d'ici, c'est la boucle de toujours. |
 
-Si le système est grand, ce qui s'allonge c'est la semaine 1 (il y a plus à lire) et la batterie
-de caractérisation de la semaine 2 (il y a plus de flux). Ce qui ne s'allonge pas, c'est N7 : une
-file de normalisation qui met une semaine à s'écrire est une file que personne ne tiendra à jour.
+Si le système est grand, ce qui grandit c'est l'étape 1 (il y a plus à lire) et la batterie de
+caractérisation de l'étape 2 (il y a plus de flux). N7 ne grandit pas : une file de normalisation
+qu'on ne peut pas écrire d'une traite est une file que personne ne tiendra à jour.
 
 ---
 
-### N0 — Éligibilité d'un système existant
+### N0 — Éligibilité d'un système existant : les prérequis qu'un modèle peut vérifier
 
 - **Intention** : décider si ce système peut être pris en charge avec la méthode, avant d'y
-  toucher. Les deux critères excluants sont les mêmes qu'à l'échelon 0, X1 (dépôt accessible et
-  géré de façon standard) et X2 (écrans pilotables par programme, avec vérification de l'effet
-  dans le backend), mais ici X2 se mesure écran par écran sur ce qui existe, et s'il est au rouge
-  ce n'est pas une condition pour commencer : c'est le premier élément en attente de la file,
-  marqué comme bloquant.
-- **Quand** : une seule fois, le premier jour. Deux heures.
-- **Entrées** : le relevé initial (la demande, qui utilise le système, ce qui fait mal), un accès
-  en lecture au dépôt et, si possible, à l'environnement où il tourne.
-- **Artefact** : `docs/ELIGIBILITY.md` avec la décision, et les quatre critères que j'ajoute pour
-  un legacy : s'il y a quelqu'un qui sache comment ça marche (et combien de temps il a) ; si la
-  production peut se consulter en lecture seule ; s'il existe un test automatique ; s'il existe
-  une copie de sauvegarde et si elle a déjà été restaurée une fois.
-- **Porte** : X1 au vert ; X2 au vert ou avec son élément en attente bloquant ouvert ; sauvegarde
-  restaurée au moins une fois avant N4.
-- **Qui décide** : le propriétaire.
+  toucher, avec des critères qui ne dépendent pas d'une évaluation humaine mais de ce qu'un
+  modèle de frontière peut faire ou ne pas faire avec le système. Si un prérequis n'est pas
+  rempli, ce n'est pas un « ça ne passe pas » : c'est un **projet en soi**, préalable, pour que le
+  système devienne éligible.
+- **Quand** : une seule fois, avant toute autre chose.
+- **Entrées** : le relevé initial court, un accès en lecture au dépôt et, si possible, à
+  l'environnement où il tourne et à sa base.
+- **Artefact** : `docs/ELIGIBILITY.md` avec la décision et les sept prérequis excluants du legacy,
+  chacun vérifié par l'agent avec une preuve, pas déclaré par une personne :
+  1. **On peut monter un environnement complet du système**, avec toutes ses sources, son modèle
+     de données et sa persistance, depuis le dépôt et une copie des données.
+  2. **Le code est compréhensible et abordable par un modèle de frontière** : l'agent peut le lire
+     en entier et expliquer ce que fait chaque module sans inventer.
+  3. **À partir du code, le modèle peut décrire dans un document la fonctionnalité complète du
+     système**, sous une forme qu'un utilisateur final reconnaît comme son système et accepte.
+  4. **Le frontend peut être parcouru par des outils de test** pour générer des tests de bout en
+     bout, avec chaque élément accessible et l'effet dans le backend vérifiable (c'est X2).
+  5. **Le système peut se construire et s'exécuter depuis les sources avec les outils disponibles
+     aujourd'hui** : les dépendances se résolvent, les versions existent, rien ne dépend d'un
+     binaire perdu.
+  6. **Les données de production peuvent se copier et s'anonymiser** vers un environnement de
+     test, et il existe une copie de sauvegarde qui a été restaurée au moins une fois.
+  7. **Les intégrations externes ont un mode de test ou peuvent s'isoler en bordure** (une boîte
+     factice, un prestataire en mode à blanc), pour que les actions à conséquence se testent sans
+     conséquences.
+- **Porte** : les sept au vert, avec la preuve de l'agent (l'environnement monté, le document de
+  fonctionnalité écrit, un test de bout en bout d'un flux qui tourne). Chaque rouge se convertit
+  en un projet préalable avec son propre critère de sortie.
+- **Qui décide** : l'agent vérifie et présente la preuve ; le propriétaire décide s'il entreprend
+  les projets préalables ou non.
 
 **Avant d'envoyer le prompt**, ceci doit exister, et c'est vous qui le faites (ou le métier avec
 vous), pas l'agent :
@@ -183,77 +205,91 @@ vous), pas l'agent :
   demande, ce qui manque) ; qui l'a fait et s'il est disponible ; où il tourne ; qui a accès à
   quoi ; s'il y a une sauvegarde et qui la fait. Une demi-page, incomplète à dessein : en N2
   l'agent la complétera depuis le système.
-- `docs/ELIGIBILITY_CRITERIA.md` : la fiche de l'échelon 0 (X1, X2 et ceux qui pondèrent) plus
-  quatre lignes pour les critères du legacy : quelqu'un qui sait, production consultable, tests
-  existants, sauvegarde restaurée. Colonnes vides pour la réponse, la source et le vert ou rouge.
-- Un accès en lecture au dépôt pour l'agent, et si possible à l'environnement de test ou à la
-  production en lecture seule, avec les identifiants hors du chat.
-- État minimal acceptable : l'agent peut cloner le dépôt et vous savez qui a fait le système et
-  s'il est vivant (le système et la personne).
+- `docs/ELIGIBILITY_CRITERIA.md` : la fiche de l'échelon 0 (X1, X2 et ceux qui pondèrent) plus les
+  sept prérequis du legacy ci-dessus, chacun avec trois colonnes vides : vert ou rouge, la preuve
+  (ce que l'agent a fait pour le vérifier), et le projet préalable s'il est au rouge.
+- Un accès en lecture au dépôt pour l'agent, un accès à une copie des données (ou à la production
+  en lecture seule) et à un endroit où il puisse tenter de monter l'environnement, avec les
+  identifiants hors du chat. Sans cela, les prérequis 1, 5 et 6 ne peuvent pas se vérifier et
+  restent au rouge.
+- État minimal acceptable : l'agent peut cloner le dépôt et il a un endroit où tenter de lever le
+  système.
 
 **Initial :**
 
-> We are going to assess whether this existing system can be taken over with the Urazuke method.
-> Read the initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
-> `docs/ELIGIBILITY_CRITERIA.md`, which for an existing system adds four criteria: whether anyone
-> who knows how the system works is available; whether production can be queried read-only;
-> whether any automated test exists; and whether a backup exists and has ever been restored. Then
-> explore the repository and, if I gave you access, the environment where it runs: change nothing.
-> Fill in the sheet criterion by criterion with the answer, its source (survey, code, database,
-> configuration, or inferred) and, for the exclusionary criteria X1 and X2, green or red. For X2,
-> list every screen and say for each whether it can be driven by a program today and whether the
-> effect can be checked in the backend. If a criterion cannot be answered from what you have, ask
-> me; do not assume. Do not decide: present me the completed sheet with your reading and your
-> doubts, and I will decide. Reply in my language.
+> We are going to assess whether this existing system can be taken over with the Urazuke method,
+> with prerequisites that you verify by doing, not by asking. Read the initial survey in
+> `docs/INITIAL_SURVEY.md` and the criteria sheet in `docs/ELIGIBILITY_CRITERIA.md`. Then, changing
+> nothing in the system, verify each prerequisite with evidence: (1) try to set up a complete
+> environment of the system from the repository and a copy of the data, with its sources, data
+> model and persistence, and tell me exactly what you could and could not bring up; (2) read the
+> whole code and tell me whether you can understand and work with it, module by module, naming
+> what you cannot understand; (3) from the code alone, write `docs/FUNCTIONALITY_RECOVERED.md`: the
+> complete functionality of the system described for an end user, screen by screen and process by
+> process, marking what you inferred; (4) list every screen and say whether it can be driven by a
+> test tool with each element accessible and the backend effect checkable, and prove it by writing
+> and running one end-to-end test of one flow; (5) try to build and run the system from the sources
+> with today's tools and report every dependency that does not resolve; (6) check whether the
+> production data can be copied and anonymized into a test environment and whether a backup exists
+> and has ever been restored; (7) list every external integration and say whether it has a test
+> mode or can be isolated at the edge. For each prerequisite: green or red, the evidence (what you
+> did and what happened), and, if red, what project would make it green. Do not decide: present me
+> the sheet, and I decide. Reply in my language.
 
 > [fr]
-> Nous allons évaluer si ce système existant peut être pris en charge avec la méthode Urazuke. Lis
-> le relevé initial dans `docs/INITIAL_SURVEY.md` et la fiche de critères dans
-> `docs/ELIGIBILITY_CRITERIA.md`, qui pour un système existant ajoute quatre critères : s'il y a
-> quelqu'un de disponible qui sache comment le système fonctionne ; si la production peut se
-> consulter en lecture seule ; s'il existe un test automatique ; et s'il existe une copie de
-> sauvegarde et si elle a déjà été restaurée une fois. Ensuite explore le dépôt et, si je t'ai
-> donné l'accès, l'environnement où il tourne : ne change rien. Remplis la fiche critère par
-> critère avec la réponse, sa source (relevé, code, base, configuration, ou inféré) et, pour les
-> critères excluants X1 et X2, vert ou rouge. Pour X2, liste chaque écran et dis pour chacun s'il
-> peut aujourd'hui être piloté par programme et si l'effet peut se vérifier dans le backend. Si un
-> critère ne peut pas être répondu avec ce que tu as, demande-le-moi ; ne suppose pas. Ne décide
-> pas : présente-moi la fiche complète avec ta lecture et tes doutes, et c'est moi qui déciderai.
-> Réponds dans ma langue.
+> Nous allons évaluer si ce système existant peut être pris en charge avec la méthode Urazuke, avec
+> des prérequis que tu vérifies en faisant, pas en demandant. Lis le relevé initial dans
+> `docs/INITIAL_SURVEY.md` et la fiche de critères dans `docs/ELIGIBILITY_CRITERIA.md`. Ensuite,
+> sans rien changer dans le système, vérifie chaque prérequis avec une preuve : (1) essaie de
+> monter un environnement complet du système depuis le dépôt et une copie des données, avec ses
+> sources, son modèle de données et sa persistance, et dis-moi exactement ce que tu as pu et n'as
+> pas pu lever ; (2) lis tout le code et dis-moi si tu peux le comprendre et travailler avec,
+> module par module, en nommant ce que tu ne comprends pas ; (3) à partir du code seul, écris
+> `docs/FUNCTIONALITY_RECOVERED.md` : la fonctionnalité complète du système décrite pour un
+> utilisateur final, écran par écran et processus par processus, en marquant ce que tu as inféré ;
+> (4) liste chaque écran et dis s'il peut être piloté par un outil de test avec chaque élément
+> accessible et l'effet dans le backend vérifiable, et prouve-le en écrivant et en lançant un test
+> de bout en bout d'un flux ; (5) essaie de construire et d'exécuter le système depuis les sources
+> avec les outils d'aujourd'hui et rapporte chaque dépendance qui ne se résout pas ; (6) vérifie si
+> les données de production peuvent se copier et s'anonymiser vers un environnement de test et s'il
+> existe une sauvegarde qui a déjà été restaurée ; (7) liste chaque intégration externe et dis si
+> elle a un mode de test ou peut s'isoler en bordure. Pour chaque prérequis : vert ou rouge, la
+> preuve (ce que tu as fait et ce qui s'est passé) et, si c'est rouge, quel projet le rendrait
+> vert. Ne décide pas : présente-moi la fiche, et c'est moi qui décide. Réponds dans ma langue.
 
-Ce que je lui demande : la même chose qu'à l'échelon 0, avec trois différences. Qu'il explore le
-système sans rien changer, parce qu'ici il y a un système à explorer ; que chaque réponse dise
-d'où elle sort, parce que le relevé est court et que la plupart des réponses vont venir du code ;
-et que X2 se mesure **écran par écran**, parce que dans un legacy la réponse n'est jamais « oui »
-ou « non » pour tout le système, c'est « ces quatre-là oui, ces deux-là non », et ces deux-là sont
-le premier élément en attente.
+Ce que je lui demande : que les prérequis se vérifient **en faisant** (monter, lire, écrire le
+document, lancer un test), parce qu'un modèle de frontière peut faire ces quatre choses et
+qu'alors l'éligibilité cesse d'être une opinion ; le document de fonctionnalité récupérée, qui est
+la preuve la plus forte que le code est abordable, et qui est en outre le premier brouillon de ce
+que N2 va convertir en carte ; et que chaque rouge vienne avec le projet qui le rend vert, parce
+qu'un prérequis manquant n'est pas un refus mais un travail préalable avec son propre périmètre.
 
 **Avant d'envoyer le prompt** de clôture : votre décision en une ligne, prise après avoir lu la
-fiche complète ; les conditions, vérifiables et pas plus de trois (celle de la sauvegarde
-restaurée avant N4 en est presque toujours une) ; et la liste des écrans au rouge pour X2, que le
-prompt convertit en premier élément en attente.
+fiche avec la preuve de chaque prérequis ; et, pour chaque rouge, votre décision de savoir si le
+projet préalable s'entreprend maintenant, plus tard, ou jamais (et alors le système n'est pas
+éligible).
 
 **De clôture :**
 
-> Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
-> `docs/ELIGIBILITY.md` with the date, who decided, every answer with its source, and the
-> conditions if any. If X2 is red for any screen, create `docs/PENDING.md` and open the first
-> pending item: make every screen drivable by a program with its backend effect checkable; mark it
-> as blocking. Include the questions you asked and my answers.
+> Decision: [go / go after these prerequisite projects: … / no-go]. Write the final sheet to
+> `docs/ELIGIBILITY.md` with the date, who decided, each prerequisite with its colour and its
+> evidence, and, for every red one, the prerequisite project as a pending item in `docs/PENDING.md`
+> marked as blocking, with its own acceptance criterion: the prerequisite verified green. Include
+> the questions you asked and my answers.
 
 > [fr]
-> Décision : [ça passe / ça ne passe pas / ça passe à ces conditions : …]. Écris la fiche finale
-> dans `docs/ELIGIBILITY.md` avec la date, qui a décidé, chaque réponse avec sa source, et les
-> conditions s'il y en a. Si X2 est au rouge pour un écran, crée `docs/PENDING.md` et ouvre le
-> premier élément en attente : faire que tout écran puisse être piloté par programme avec son
-> effet vérifiable dans le backend ; marque-le comme bloquant. Inclus les questions que tu as
-> posées et mes réponses.
+> Décision : [ça passe / ça passe après ces projets préalables : … / ça ne passe pas]. Écris la
+> fiche finale dans `docs/ELIGIBILITY.md` avec la date, qui a décidé, chaque prérequis avec sa
+> couleur et sa preuve, et, pour chacun au rouge, le projet préalable comme élément en attente dans
+> `docs/PENDING.md` marqué comme bloquant, avec son propre critère d'acceptation : le prérequis
+> vérifié au vert. Inclus les questions que tu as posées et mes réponses.
 
-Vérification de complétude : X2 a-t-il une réponse par écran, et non une pour tout le système ?
-Les quatre critères du legacy ont-ils une réponse avec sa source ? Si la sauvegarde n'a jamais été
-restaurée, est-ce resté comme condition avant N4 ? Signal d'alarme : l'agent a répondu X2 au vert
-pour tout parce que « c'est une application web ». Les vieilles applications web sont justement
-celles qui se pilotent le moins par programme.
+Vérification de complétude : chaque prérequis a-t-il la preuve de quelque chose que l'agent a
+**fait**, et non une réponse de vous ? `docs/FUNCTIONALITY_RECOVERED.md` existe-t-il, et l'avez-vous
+lu comme le propriétaire : décrit-il le système qu'il croit avoir ? A-t-il lancé un vrai test de
+bout en bout d'un flux ? Chaque rouge a-t-il son projet préalable avec un critère de sortie ?
+Signal d'alarme : tous au vert en une après-midi pour un système que personne ne comprend. L'agent
+a répondu au lieu de faire.
 
 ---
 
@@ -262,7 +298,7 @@ celles qui se pilotent le moins par programme.
 - **Intention** : fixer les règles avant de toucher à quoi que ce soit, avec cinq règles de plus
   qu'à l'échelon 1, qui sont celles dont un système hérité a besoin pour que l'agent ne
   l'« améliore » pas de son propre chef.
-- **Quand** : le premier jour, après N0. Une demi-heure.
+- **Quand** : après N0, avant de rien lire.
 - **Entrées** : vos préférences de travail, comme à l'échelon 1.
 - **Artefact** : `docs/WORKING_AGREEMENT.md` avec les six règles de la méthode et les cinq du
   legacy.
@@ -276,7 +312,7 @@ celles qui se pilotent le moins par programme.
   vous voulez qu'il vous demande, quelle autonomie vous lui donnez, ce que vous ne tolérez pas.
 - Une décision de votre part sur le niveau de risque que vous acceptez pendant la normalisation :
   si l'agent peut ou non déployer tout seul vers l'environnement de test (vers la production,
-  jamais, tant que N4 n'est pas clos et l'échelon 13 gravi).
+  jamais, tant que N4 n'est pas clos et l'échelon 15 gravi).
 - `docs/ELIGIBILITY.md` (N0), clos.
 - État minimal acceptable : vous savez répondre aux questions de l'échelon 1 et à celle du risque.
 
@@ -337,7 +373,7 @@ touche ». Cette règle est la réécriture déguisée ; rejetez-la avec une rai
   système lui-même, avec les marques de source, et avec la liste de tout ce qui ne coïncide pas
   entre le code, la base, la documentation et ce que le métier croit. C'est l'échelon 2 fait par
   rétro-ingénierie, et c'est l'étape qui donne le plus de valeur par heure de tout le chemin.
-- **Quand** : la première semaine, après N1. Deux ou trois jours, avec le propriétaire disponible
+- **Quand** : après N1, avec le propriétaire disponible
   pour confirmer.
 - **Entrées** : le dépôt complet, le schéma de la base en lecture seule, la configuration de
   chaque environnement, les journaux s'il y en a, la documentation qui existe, et le relevé court
@@ -466,14 +502,14 @@ s'est passé va dans l'état vivant [Ref. 41](REFERENCIAS.md#ref-41)).
 
 ### N3 — L'audit comme inventaire de la dette
 
-- **Intention** : l'échelon 11, mais au début et avec une question de plus par constat : est-ce
+- **Intention** : l'échelon 13, mais au début et avec une question de plus par constat : est-ce
   que cela bloque, est-ce que cela se paie quand on touche au module, ou est-ce que cela peut
   attendre ? Le rapport n'est pas un rapport : c'est la matière première de la ceinture (N4) et de
   la file (N7). Dans mon premier projet qui a démarré avec la méthode déjà écrite, la série
   d'audits précoces s'est convertie directement en éléments en attente [Ref.
   30](REFERENCIAS.md#ref-30) ; ici je fais la même chose sur un système d'autrui.
-- **Quand** : la première semaine, après N2, dans une session différente de celle qui a lu le
-  système si c'est possible. Un jour.
+- **Quand** : après N2, dans une session différente de celle qui a lu le
+  système si c'est possible.
 - **Entrées** : le dépôt en lecture seule, l'environnement où il tourne en lecture seule, la carte
   récupérée (N2).
 - **Artefact** : `docs/AUDIT_[date].md` avec chaque constat marqué « bloque / se paie quand on y
@@ -530,13 +566,13 @@ vous), pas l'agent :
 > une note à chaque dimension que tu as auditée. Termine avec chaque constat converti en élément
 > en attente proposé, les bloquants d'abord. Réponds dans ma langue.
 
-Ce que je lui demande : l'audit de l'échelon 11 avec la dimension « déployabilité » ajoutée (parce
+Ce que je lui demande : l'audit de l'échelon 13 avec la dimension « déployabilité » ajoutée (parce
 que dans un legacy le déploiement est souvent le premier problème) et avec le champ de vitesse,
 qui est ce qui transforme un rapport en plan : sans ce champ, un legacy audité a quarante constats
 et personne ne sait par lequel commencer. Le critère de ce qui bloque, c'est moi qui le donne, pas
 l'auditeur, parce que cela dépend des conséquences pour le métier.
 
-**De clôture :** le prompt de clôture de l'échelon 11, au constructeur, avec un ajout : les
+**De clôture :** le prompt de clôture de l'échelon 13, au constructeur, avec un ajout : les
 éléments en attente qu'il ouvre portent la marque de vitesse de leur constat.
 
 Vérification : le rapport dit-il ce qu'il n'a PAS pu auditer ? Y a-t-il au moins un constat marqué
@@ -553,9 +589,9 @@ qui ne veut pas déranger.
   sûr de le changer : un environnement de test avec des données proches des vraies, un déploiement
   qui se répète, les secrets hors du code, l'intégration continue qui fait tourner ce qu'il y a,
   et la **batterie de caractérisation** des flux critiques. C'est l'échelon 4, la première moitié
-  du 13 et une forme inversée du 7, réunis et avant tout changement. C'est une **porte dure** :
+  du 15 et une forme inversée du 8, réunis et avant tout changement. C'est une **porte dure** :
   tant que la ceinture n'est pas au vert, on ne change pas une ligne de fonctionnalité.
-- **Quand** : la deuxième semaine, entière.
+- **Quand** : après N3, avant tout changement.
 - **Entrées** : le relevé des environnements (récupéré en N2 et confirmé par vous), le rapport de
   N3 avec ses constats bloquants, l'arbre sémantique avec les processus, et un accès au serveur et
   à la base.
@@ -636,7 +672,7 @@ vous), pas l'agent :
 > langue.
 
 Ce que je lui demande : le squelette de l'échelon 4 construit autour de quelque chose qui existe
-déjà, avec la moitié de l'échelon 13 avancée (secrets dehors, déploiement documenté) parce que
+déjà, avec la moitié de l'échelon 15 avancée (secrets dehors, déploiement documenté) parce que
 dans un legacy les secrets dans le code sont la règle et non l'exception [Ref.
 42](REFERENCIAS.md#ref-42) ; l'anonymisation comme partie de l'environnement et non comme un
 détail ; et les portes écrites avant que la batterie n'existe, pour que la batterie naisse déjà en
@@ -675,7 +711,7 @@ les rend pilotables, clos avant cette batterie ou dans le cadre de celle-ci.
 > lancer la batterie dans `docs/STATUS.md`, et fais de la batterie la porte de l'environnement de
 > test comme le dit `docs/GATES.md`. Réponds dans ma langue.
 
-Ce que je lui demande : l'échelon 7 à l'envers. Dans le projet neuf le test naît au rouge et passe
+Ce que je lui demande : l'échelon 8 à l'envers. Dans le projet neuf le test naît au rouge et passe
 au vert avec le changement ; ici le test naît au vert, parce qu'il capture ce qu'il y a, et la
 preuve qu'il sert à quelque chose est qu'il **passe au rouge quand vous cassez le flux
 délibérément**. Sans cette mutation démontrée, un test de caractérisation est un test qui passe
@@ -702,11 +738,11 @@ vraies données, pas dans celles d'exemple).
 - **Intention** : savoir, avant de rien changer, ce que fait le système qui agit sur le monde
   (encaisse, envoie, approuve, efface, prévient, tourne tout seul la nuit) et qui produit et
   consomme chaque contrat entre parties. Dans le projet neuf cela se décide avant de construire
-  (échelon 12) et se cartographie au fur et à mesure qu'on construit (échelon 8). Dans le legacy
+  (échelon 14) et se cartographie au fur et à mesure qu'on construit (échelon 11). Dans le legacy
   c'est déjà construit, et personne ne s'en souvient en entier. Un changement évolutif peut
   déclencher une action à conséquence qui dormait, et un changement correctif peut laisser un
   consommateur périmé.
-- **Quand** : la deuxième semaine, après la ceinture, parce qu'inventorier des actions exige de
+- **Quand** : après la ceinture, parce qu'inventorier des actions exige de
   pouvoir faire tourner le système là où se tromper ne coûte rien.
 - **Entrées** : le code, la base, les processus programmés du serveur, l'arbre sémantique, et la
   liste de ce qui vit hors du dépôt.
@@ -766,14 +802,14 @@ vous), pas l'agent :
 > avant tout changement, et lesquels peuvent aller quand on touchera au module. N'implémente rien
 > encore : je confirme verrou par verrou. Réponds dans ma langue.
 
-Ce que je lui demande : l'inventaire des échelons 12 et 8 en une seule passe, parce qu'ils
+Ce que je lui demande : l'inventaire des échelons 14 et 11 en une seule passe, parce qu'ils
 parcourent le même code ; la comparaison entre ce dont le métier se souvient et ce que le code
 fait, qui est là où apparaissent les envois dont personne ne se rappelait ; et la proposition de
 **maintenant ou quand on y touche** pour chaque verrou, qui est la règle des deux vitesses
 appliquée à la protection : un verrou sur une action qui encaisse va maintenant ; un verrou sur un
 export mensuel peut attendre le bloc qui touchera ce module.
 
-**De clôture :** le prompt de clôture de l'échelon 12, avec les verrous marqués « maintenant »,
+**De clôture :** le prompt de clôture de l'échelon 14, avec les verrous marqués « maintenant »,
 chacun avec son test au rouge contre la version sans verrou ; les autres restent dans la file avec
 leur marque.
 
@@ -787,10 +823,10 @@ les déclencheurs de la base.
 
 - **Intention** : l'échelon 3, mais avec l'énorme avantage du legacy : les données primaires n'ont
   pas à être demandées, elles sont dans la base et dans les journaux. Elles se mesurent avec
-  l'échelon 9 (un compteur avec son test, audité dans les deux directions) et le propriétaire
+  l'échelon 7 (un compteur avec son test, audité dans les deux directions) et le propriétaire
   n'apporte que ce qui n'est nulle part : de combien ils espèrent croître et si le système va être
   vendu à d'autres.
-- **Quand** : la troisième semaine, avant d'ouvrir le premier bloc. Une demi-journée.
+- **Quand** : après N5, avant d'ouvrir le premier bloc.
 - **Entrées** : la base de production en lecture seule ou la copie complète de test, les journaux,
   l'arbre sémantique avec les entités.
 - **Artefact** : `docs/VOLUME_SURVEY.md` avec chaque chiffre marqué `[base]` ou `[journal]` et sa
@@ -844,7 +880,7 @@ les déclencheurs de la base.
 > code. Réponds dans ma langue.
 
 Ce que je lui demande : mesurer au lieu de demander, ce que le legacy permet et le projet neuf
-non ; le compteur avec son test et l'audit dans les deux directions de l'échelon 9, parce que les
+non ; le compteur avec son test et l'audit dans les deux directions de l'échelon 7, parce que les
 compteurs mentent [Ref. 35](REFERENCIAS.md#ref-35), [Ref. 36](REFERENCIAS.md#ref-36) ; et le
 dimensionnement comme porte avant d'évoluer [Ref. 14](REFERENCIAS.md#ref-14) : si l'architecture
 actuelle ne tient pas le « fois dix » et que la demande du client est justement de croître, cela
@@ -865,7 +901,7 @@ il se mesure ; s'il n'y est pas, il se demande ; il n'y a pas de troisième opti
   les verrous en attente, les décisions du dimensionnement) et la demande du client (ce qu'il faut
   corriger et ce qu'il faut ajouter), chacun avec sa marque de vitesse et appariés par module.
   C'est l'échelon 5 avec deux colonnes de plus.
-- **Quand** : la troisième semaine, à la clôture du tronçon. Une demi-journée. Ensuite, la boucle.
+- **Quand** : à la clôture du tronçon. Ensuite, la boucle.
 - **Entrées** : `docs/AUDIT_[date].md`, `docs/DISCREPANCIES.md` avec les décisions,
   `docs/LOCKS.md`, `docs/SIZING.md`, l'arbre sémantique, et la demande du client pour cette étape.
 - **Artefact** : `docs/PENDING.md` avec tous les éléments en attente spécifiés, marqués « bloque /
@@ -933,7 +969,7 @@ vous), pas l'agent :
 Ce que je lui demande : l'échelon 5 complet (la spécification détaillée vit dans chaque élément en
 attente, y compris dans ceux de normalisation), avec les deux marques qui font ce chemin : la
 vitesse, qui dit quand se paie chaque dette, et le type, qui dit comment elle se clôt (un
-correctif se clôt avec le test qui reproduit la panne ; un évolutif, avec celui de l'échelon 7).
+correctif se clôt avec le test qui reproduit la panne ; un évolutif, avec celui de l'échelon 8).
 Et l'**appariement par module**, qui est la règle « se paie quand on y touche » rendue
 opérationnelle : quand j'ouvre le bloc de « l'acompte », les éléments en attente de normalisation
 du module de paiements entrent avec lui, et ni avant ni après.
@@ -959,7 +995,7 @@ legacy avec méthode » de « toucher un legacy avec précaution ».
 ### Le mode correctif : le rouge est naturel
 
 Un élément en attente correctif est un bug : quelque chose qui échoue aujourd'hui et que le client
-connaît. À l'échelon 7 du projet neuf, le rouge se fabrique (on écrit le test, on le lance contre
+connaît. À l'échelon 8 du projet neuf, le rouge se fabrique (on écrit le test, on le lance contre
 l'ancien code, on le voit échouer). Dans le correctif, le rouge **est le bug lui-même** : le test
 qui reproduit la panne, en pilotant le flux depuis l'écran comme l'utilisateur qui l'a signalée,
 doit échouer contre le code actuel. S'il n'échoue pas, vous n'avez pas reproduit le bug qu'on vous
@@ -1071,12 +1107,12 @@ version précédente) sous la main.
 > régression au vert. Réponds dans ma langue.
 
 Ce que je lui demande : le minimum, avec le retour arrière avant et non après, et avec le rapport
-honnête de ce qui n'a pas été vérifié (échelon 10) ; et l'obligation de repasser par la boucle le
+honnête de ce qui n'a pas été vérifié (échelon 12) ; et l'obligation de repasser par la boucle le
 jour même, qui est ce qui sépare une exception d'une habitude.
 
-## Les six échelons de qualité opérationnelle dans un système hérité
+## Les six échelons de qualité opérationnelle (16 à 19, 21 et 22) dans un système hérité
 
-Les échelons 16 à 21 du document principal (observabilité et traçabilité, persistance,
+Les échelons 16 à 19, 21 et 22 du document principal (observabilité et traçabilité, persistance,
 vulnérabilités, performance, et les deux supervisions) valent pour les deux cas d'utilisation, et
 dans un système hérité ils ont un emplacement précis, parce que plusieurs d'entre eux ont déjà la
 moitié du travail faite par le tronçon de normalisation :
@@ -1095,14 +1131,14 @@ moitié du travail faite par le tronçon de normalisation :
 - **19, performance** : on le lance avec les volumes mesurés en N6, sur la persistance déjà
   corrigée là où elle bloquait, avant le premier déploiement postérieur à la normalisation. Dans un
   legacy, il découvre souvent que le point de rupture est plus proche que ce que le métier croit.
-- **20 et 21, supervision** : elles se montent dans la semaine du premier déploiement, comme dans
+- **21 et 22, supervision** : elles se montent avec le premier déploiement, comme dans
   le projet neuf, avec une différence : la première lecture du rapport est la ligne de base du
   legacy, et les écarts et les erreurs qui existaient déjà le premier jour deviennent des éléments
   en attente avec leur marque de vitesse. Aucun ne reste comme « connu » sans élément en attente.
 
-En pratique, pour un petit système, les quatre préalables au déploiement ajoutent une semaine au
-calendrier de la normalisation (une quatrième semaine, avant le premier bloc évolutif ou avec lui,
-selon l'urgence de la demande), et les deux supervisions se montent dans la semaine du déploiement.
+En pratique, les quatre préalables au déploiement sont une étape de plus de la normalisation,
+avant le premier bloc évolutif ou avec lui selon l'urgence de la demande, et les deux supervisions
+se montent avec le déploiement.
 
 ## Quand le système est normalisé
 
@@ -1132,7 +1168,7 @@ tronçon**, qui est le moment où s'ouvre le premier bloc. Voici la liste :
 Si les huit donnent « oui », le système est normalisé jusqu'où ce chemin l'exige, et ce qui suit
 est l'échelle de toujours. Les phases 3 et 4 du document principal (mise en production et
 exploitation) s'appliquent telles quelles : l'audit périodique, les manuels (qui dans un legacy
-n'existent souvent pas, et se génèrent avec l'échelon 14 à partir du système tel qu'il est),
+n'existent souvent pas, et se génèrent avec l'échelon 20 à partir du système tel qu'il est),
 l'agent résident, et la rétrospective chiffrée, qui dans un legacy a une question qui lui est
 propre : combien a coûté la normalisation, et quelle part de la dette que nous avions marquée
 « peut attendre » a fini par coûter quand même.
@@ -1157,19 +1193,18 @@ propre : combien a coûté la normalisation, et quelle part de la dette que nous
 
 ## Ce qu'il reste à élaborer `[hypothèse]`
 
-1. Les quatre critères d'éligibilité propres au legacy sont écrits à partir de mon expérience avec
-   des systèmes d'autrui en mode diagnostic ; je ne les ai pas calibrés avec des projets refusés
-   comme je l'ai fait pour X1 et X2. Un legacy sans personne qui sache comment il fonctionne peut
-   être viable quand même si la base et le code sont lisibles ; un legacy avec des tests que
-   personne ne lance depuis deux ans est peut-être en plus mauvais état qu'un legacy sans tests.
-   Il manque de la casuistique.
+1. Les sept prérequis de N0 se vérifient en faisant, et cela les rend calibrables : chaque legacy
+   qui passe par N0 laisse sa fiche avec ses preuves. Ce qui manque, c'est la casuistique :
+   combien de legacies échouent à chaque prérequis et combien coûte le projet préalable qui le
+   rend vert. Ce n'est déjà plus une hypothèse sur le critère ; c'est un calcul que je n'ai pas
+   encore.
 2. La taille de la batterie de caractérisation : entre quatre et huit flux est ce qui a marché
    pour moi sur de petits systèmes ; sur un grand, je ne sais pas si le critère est par flux, par
    module ou par argent en jeu.
-3. Combien dure la normalisation dans un grand système : le calendrier de trois semaines vaut pour
-   un système de la taille du projet-guide. Dans un système avec des dizaines de modules, je
-   soupçonne que la normalisation se fait par module, avec une ceinture par module, et que N2 se
-   fait en entier mais que N4 se répartit. Je ne l'ai pas éprouvé.
+3. Comment se répartit la normalisation dans un grand système : je soupçonne que la lecture (N2)
+   se fait en entier mais que la ceinture (N4) s'assemble par module, à mesure que chaque module
+   va être touché, et que la porte dure devient dure par module et non par système. Je ne l'ai pas
+   éprouvé.
 4. Ce qui se passe avec un legacy construit par un modèle avec la méthode à moitié appliquée
    (contrat oui, tests non) : si ce chemin se parcourt en entier ou s'il y a un raccourci. Mon
    intuition est qu'il n'y a pas de raccourci, et que le raccourci est justement l'erreur, mais

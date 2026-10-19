@@ -1,8 +1,8 @@
 # Passo 1 — Il patto di convivenza (contratto del gradino)
 
 **Fase:** avvio.
-**Quando:** una sola volta, nella prima settimana, immediatamente dopo l'idoneità; si rivede
-quando un colpo lo esige. Mezz'ora.
+**Quando:** una sola volta, immediatamente dopo l'idoneità; si rivede quando un colpo lo
+esige.
 **Forma:** un solo invio, con un giro di aggiustamento tuo.
 **Dimensione:** obbligatorio in ogni progetto. È il gradino più economico di tutti e quello che
 evita più frustrazione.

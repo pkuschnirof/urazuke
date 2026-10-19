@@ -1,10 +1,10 @@
 # Passo 17 — Ottimizzazione dello strato di persistenza, misurata prima e dopo (contratto del gradino)
 
-**Fase:** qualità operativa, prima del primo deployment in produzione.
+**Fase:** uscita in produzione.
 **Quando:** nella fase di uscita in produzione, dopo il 16 (serve vedere le query per misurarle) e
 prima del 19 (le prove di rendimento si eseguono sulla persistenza già ottimizzata; altrimenti
 misurano il problema che si conosceva già). Si ripete quando un blocco aggiunge una tabella grande
-o cambia un flusso critico, e quando il monitoraggio (20) mostra una query fuori range. In un
+o cambia un flusso critico, e quando il monitoraggio (21) mostra una query fuori range. In un
 legacy, le misurazioni escono da N6 e la maggior parte di ciò che si trova si paga "al tocco",
 salvo ciò che è già fuori range.
 **Forma:** due invii: misurare e proporre; applicare con prima e dopo.
@@ -16,7 +16,7 @@ cicli N+1; in uno con conseguenze, completo, con budget per percorso.
 Lo strato di persistenza è dove i sistemi muoiono lentamente: funzionano bene con cento record,
 accettabilmente con diecimila, e a centomila ogni schermata ci mette venti secondi, e nessuno sa
 quando è cominciato. Questo gradino esiste perché quella cosa si decida con i numeri e prima della
-produzione, non con le lamentele e dopo. E perché si decida **con il metodo del gradino 9**: ogni
+produzione, non con le lamentele e dopo. E perché si decida **con il metodo del gradino 7**: ogni
 query che il sistema fa si conta e si cronometra con un misuratore che ha il suo test, si cambia
 ciò che i numeri dicono, e si misura di nuovo sugli stessi dati. Il primo audit di query senza
 indice su un sistema vivo [Ref. 18](../REFERENCIAS.md#ref-18) e il budget di query stretto a ciò che
@@ -46,7 +46,7 @@ inviare il prompt" che precede ciascuno.
 
 - Il dimensionamento e la volumetria (gradino 3, o N6 in un legacy): i volumi ai quali bisogna
   misurare.
-- La mappa produttore-consumatore (gradino 8): cosa consuma ogni tabella.
+- La mappa produttore-consumatore (gradino 11): cosa consuma ogni tabella.
 - L'osservabilità (16): ogni query visibile con il suo tempo.
 - L'ambiente di test caricato con dati al volume atteso.
 
@@ -63,7 +63,7 @@ l'agente:
   all'agente di generare dati sintetici con la forma dell'albero semantico e i volumi del
   dimensionamento, e di lasciarlo come script nel repository. Questa è una voce in sospeso
   precedente, non parte di questo prompt.
-- `docs/PRODUCER_CONSUMER_MAP.md` (gradino 8), aggiornato.
+- `docs/PRODUCER_CONSUMER_MAP.md` (gradino 11), aggiornato.
 - Se c'è la produzione: accesso in sola lettura, con la credenziale fuori dalla chat, per misurare
   su dati reali oltre a quelli di test.
 - Un caso noto per il test di ogni misuratore (una tabella di cui conosci il numero di righe).
@@ -97,7 +97,7 @@ l'agente:
 > per ogni modifica, il guadagno atteso, il rischio, e quali consumatori della mappa tocca. Non
 > cambiare ancora nulla: la lista la approvo io. Rispondi nella mia lingua.
 
-Cosa gli sto chiedendo: misurare con il metodo del gradino 9 (misuratore con test, verificato
+Cosa gli sto chiedendo: misurare con il metodo del gradino 7 (misuratore con test, verificato
 nelle due direzioni, numero con comando) prima di proporre; proporre query per query, con il
 guadagno e il rischio, e con i consumatori della mappa che ogni modifica tocca (un indice nuovo
 non tocca nessuno; una retention per tabella tocca tutti quelli che leggono quella tabella); e
@@ -133,7 +133,7 @@ non tocca nessuno; una retention per tabella tocca tutti quelli che leggono quel
 Cosa gli sto chiedendo: un commit per modifica, perché il prima e il dopo siano attribuibili; lo
 stesso misuratore sugli stessi dati (se cambiano i dati, il numero non dice niente); il budget
 con test, che è ciò che impedisce al ciclo N+1 di tornare tra tre mesi; e la simmetria del gradino
-8 applicata alla persistenza.
+11 applicata alla persistenza.
 
 ## 3. Risultato atteso
 

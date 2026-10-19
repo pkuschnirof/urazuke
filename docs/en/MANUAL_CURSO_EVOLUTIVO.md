@@ -2,7 +2,7 @@
 
 Author: Pablo Kuschniroff, assisted by Claude Code. Version 1, 18 October 2026. This is the second
 part of the [course manual](MANUAL_CURSO.md): it takes for granted that you did the first part, or
-at least that you read lessons 0 to 7, because here I do not explain again what a pending item, a
+at least that you read lessons 0 to 8, because here I do not explain again what a pending item, a
 red test or a semantic tree is. The method of this part is on the page of the
 [evolutive-corrective path](EVOLUTIVO_CORRECTIVO.md); here is the practice, with a second guide
 project. The odd words are in the glossary of the main document; the real cases, in the
@@ -31,16 +31,16 @@ already acts on the world, the sizing with measured numbers, and a backlog where
 client's request live together, paired by module. And after that, the first bug corrected with its
 test red and the first new functionality built with the full method.
 
-### The calendar of this part
+### The order of this part
 
-| Week | Lessons | What else you do |
+| Stage | Lessons | What else you do |
 |---|---|---|
 | 1 | N0, N1, N2, N3 | **Reading.** Nothing is changed. You walk the recovered tree with the owner, you decide the discrepancies one by one, you read the audit. At the close: the map and the inventory of the debt. |
 | 2 | N4, N5 | **The belt.** Test environment with anonymised data, deployment run twice, secrets rotated, characterization suite with its red by mutation. Locks confirmed on whatever already acts. At the close: the system runs in test and the suite is green. |
 | 3 | N6, N7, R1 | **Measure, order, correct.** Sizing measured. The backlog with the two marks. The first block: the known bug, closed in corrective mode with its paired items. |
-| 4 | R2 | **Evolve.** The second block: the new functionality, built with the full method (lessons 5 to 10 of the first part), with the characterization as the regression. |
-| 5 and 6 | 11, 12, 13, 14, 16, 17, 18, 19 of the first part | **Go-live.** Periodic audit, remaining locks, closing of the path to production, the three manuals (which the legacy system did not have), and the four operational quality steps that precede the deployment: complete observability, persistence with what N6 measured, the vulnerability scan as a gate, the load test with the breaking point. |
-| 7 | 15, 20, 21 of the first part | **Operation.** The two monitorings set up in the week of the deployment, with the first reading as the legacy system's baseline; resident agent; retrospective with the question a legacy system brings of its own: how much it cost to normalize. |
+| 4 | R2 | **Evolve.** The second block: the new functionality, built with the full method (lessons 5 to 12 of the first part), with the characterization as the regression. |
+| 5 and 6 | 13, 14, 15, 20, 16, 17, 18, 19 of the first part | **Go-live.** Periodic audit, remaining locks, closing of the path to production, the three manuals (which the legacy system did not have), and the four operational quality steps that precede the deployment: complete observability, persistence with what N6 measured, the vulnerability scan as a gate, the load test with the breaking point. |
+| 7 | 23, 21, 22 of the first part | **Operation.** The two monitorings set up with the deployment, with the first reading as the legacy system's baseline; resident agent; retrospective with the question a legacy system brings of its own: how much it cost to normalize. |
 
 ### The guide project: "Turnera inherited"
 
@@ -82,14 +82,17 @@ These eight lessons are the stretch the first part did not have. The first four 
 nothing is changed, and the temptation to change something is going to be enormous. The next two
 build the belt. The last two measure and order. Only then is functionality touched.
 
-### Lesson N0 — Eligibility of an existing system
+### Lesson N0 — Eligibility of an existing system: prerequisites the agent verifies by doing
 
-**What you need to understand.** The two exclusionary criteria are the same as in lesson 0, but
-here X2 (screens drivable by a program) is answered screen by screen, and if any of them is red
-it is not a reason not to start: it is the first pending item, and it blocks. Four criteria
-specific to a legacy system are added: whether there is anyone who knows how it works, whether
-production can be queried read-only, whether any test exists, and whether the backup has ever
-been restored. The last one is the one almost everybody discovers is red.
+**What you need to understand.** In lesson 0 the criteria were answered by the survey. Here there
+is a system, and so the criteria can be **verified by doing**, by the agent, with nobody giving
+an opinion: can it set up a complete environment with sources, data and persistence? Can it
+understand the code? Can it write, from the code alone, a document describing all the
+functionality that the practice manager recognises as her system? Can it drive the screens with a
+testing tool and run an end-to-end test? Does it build with today's tools? Can the data be copied
+and anonymized, and is there a backup that has been restored? Do the integrations have a test
+mode? There are seven prerequisites, and the new rule is that a red one is not a "no-go": it is a
+**prior project**, with its own scope, so that the system becomes eligible.
 
 **Before sending the prompt**, with your own hands:
 
@@ -97,59 +100,48 @@ been restored. The last one is the one almost everybody discovers is red.
   manager, what hurts (the double reminder, what is missing), who made it and how long they take
   to reply, where it runs, who has access, and that there is an "automatic" backup nobody has
   restored. Half a page.
-- `docs/ELIGIBILITY_CRITERIA.md`: the lesson 0 sheet with four more rows: somebody who knows,
-  production queryable, existing tests, backup restored. Empty columns.
-- Read access to the repository for the agent and, if you can get it, a read-only credential to
-  the database, outside the chat.
+- `docs/ELIGIBILITY_CRITERIA.md`: the lesson 0 sheet plus the seven legacy prerequisites (copy
+  them from the page of the evolutive-corrective path, station N0), with three empty columns:
+  green or red, evidence, prior project.
+- Read access to the repository, a copy of the database (or production read-only) and a place
+  where the agent can try to bring the system up (your machine is enough for the course), with
+  the credentials outside the chat.
 
-1. Paste it:
+1. Paste it the opening prompt of station N0 (on the page of the evolutive-corrective path),
+   exactly as it is.
+2. It is going to take a while: it has to set the environment up, read everything, write
+   `docs/FUNCTIONALITY_RECOVERED.md` and run a test. When it finishes, read that document with
+   the practice manager: does it describe the system she believes she has? Whatever does not
+   match, write it down: it is the first list of discrepancies.
+3. Look at the sheet: every prerequisite has to have evidence of something the agent did, not an
+   answer from you.
 
-> We are going to assess whether this existing system can be taken over with the Urazuke method.
-> Read the initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
-> `docs/ELIGIBILITY_CRITERIA.md`, which for an existing system adds four criteria: whether anyone
-> who knows how the system works is available; whether production can be queried read-only;
-> whether any automated test exists; and whether a backup exists and has ever been restored. Then
-> explore the repository and, if I gave you access, the environment where it runs: change nothing.
-> Fill in the sheet criterion by criterion with the answer, its source (survey, code, database,
-> configuration, or inferred) and, for the exclusionary criteria X1 and X2, green or red. For X2,
-> list every screen and say for each whether it can be driven by a program today and whether the
-> effect can be checked in the backend. If a criterion cannot be answered from what you have, ask
-> me; do not assume. Do not decide: present me the completed sheet with your reading and your
-> doubts, and I will decide. Reply in my language.
+**Before sending the prompt** for the close: your decision in one line and, for every red one,
+whether the prior project is taken on now, later, or never.
 
-   You are asking it for the same as in lesson 0, plus three things: that it explore without
-   changing anything, that every answer say where it came from, and that X2 be measured screen by
-   screen.
+4. Paste it the closing prompt of station N0.
 
-2. Answer its questions and read the sheet. Look above all at the row for each screen in X2.
-3. Decide.
+**Completeness check.** Does every prerequisite have evidence that was made, not said? Does the
+recovered functionality document exist, and did the practice manager recognise it? Did it run a
+real end-to-end test? Does every red one have its prior project as a blocking pending item?
 
-**Before sending the prompt** for the close: your decision in one line, and a condition that in
-this project is mandatory: restore the backup on your machine before lesson N4.
+**Deliverable.** `docs/ELIGIBILITY.md`, `docs/FUNCTIONALITY_RECOVERED.md`, and the blocking
+pending items of the prior projects, if there are any.
 
-4. Paste it the closing prompt:
+**Typical mistakes.** Accepting a green the agent answered without doing anything ("yes, the code
+is understandable"). And treating a red one as a rejection: the method asks for a prior project,
+not for giving up.
 
-> Decision: [go under this condition: the backup is restored at least once before N4]. Write the
-> final sheet to `docs/ELIGIBILITY.md` with the date, who decided, every answer with its source,
-> and the conditions if any. If X2 is red for any screen, create `docs/PENDING.md` and open the
-> first pending item: make every screen drivable by a program with its backend effect checkable;
-> mark it as blocking. Include the questions you asked and my answers.
-
-**Completeness check.** Does X2 have one answer per screen? Do the four legacy criteria have an
-answer with a source? Was the backup left as a condition with a date?
-
-**Deliverable.** `docs/ELIGIBILITY.md`, and if need be the first blocking pending item.
-
-**Typical mistakes.** Answering X2 green "because it is a web application". And skipping the
-backup condition because "there is an automatic one": in lesson N4 the agent is going to copy the
-production database, and if something goes wrong, that backup nobody tested is all there is.
-
-**In the guide project.** The agent finds that of the six screens of Turnos, four can be driven by
-a program and two cannot (the appointment form uses a calendar with no identifiers, and the
-patient search is a field that does not respond to keyboard events); it opens the blocking pending
-item. It finds the scheduled job for the reminders, which the practice manager did not mention.
-There is a backup, never restored: a condition. On the nephew: "available, once a fortnight",
-which the agent proposes reading as "not available", and it is right. Go, with one condition.
+**In the guide project.** The agent brings Turnos up on your machine with a copy of the database
+(green), understands the code except for a reports module written in an old template language
+(green, with a note), writes the functionality document and the practice manager discovers in it
+two things she did not know the system did (green: the document is better than her memory),
+drives four of the six screens and runs a test of the booking flow (red: two screens not
+drivable, prior project: "make the calendar and the search drivable"), builds with today's tools
+except for a dead dependency of the PDF generator (red: a small prior project), copies and
+anonymizes the data (green) but the backup was never restored (red: restoring it is the cheapest
+prior project of them all), and the message provider has a test mode (green). Decision: go, after
+three small prior projects.
 
 ### Lesson N1 — The working agreement for a legacy system
 
@@ -165,7 +157,7 @@ the characterization green.
 
 - Your working preferences, as in lesson 1, and one more decision: how much risk you accept while
   the system is being normalized. For the course: the agent may deploy to the test environment on
-  its own; to production, never, until lesson 13.
+  its own; to production, never, until lesson 15.
 - `docs/ELIGIBILITY.md` closed.
 
 1. Paste it:
@@ -308,7 +300,7 @@ surprises her most, and she decides it in a minute: "that is never deleted again
 
 ### Lesson N3 — The audit as an inventory of the debt
 
-**What you need to understand.** Lesson 11, but at the beginning instead of at the end, and with
+**What you need to understand.** Lesson 13, but at the beginning instead of at the end, and with
 one more field per finding: whether it blocks (it has to be fixed before any change), whether it is
 paid when the module is touched, or whether it can wait. Without that field, an audited legacy
 system has forty findings and nobody knows which one to start with. What blocks is decided by you,
@@ -349,7 +341,7 @@ that cannot be repeated, the absence of a backup, and anything that can damage d
 **Before sending the prompt** for the close: the report read, the two findings verified, and the
 builder's session open (the close goes to the builder, not to the auditor).
 
-3. Go back to the builder's session and paste it the closing prompt of lesson 11, adding at the
+3. Go back to the builder's session and paste it the closing prompt of lesson 13, adding at the
    end: "Each pending item keeps the speed mark of its finding."
 
 **Completeness check.** Does it say what it could not audit? Is there at least one "blocks"? Does
@@ -375,7 +367,7 @@ code in three places.
 **What you need to understand.** It is the hard gate of this path: until the belt is green, not one
 line of functionality is changed. The belt has five pieces: a test environment with anonymised
 data, a deployment that repeats, the secrets outside the code and rotated, continuous integration
-running whatever there is, and the characterization suite. This last one is lesson 7 the other way
+running whatever there is, and the characterization suite. This last one is lesson 8 the other way
 round: the test is born green, because it captures what the system does today, defects included,
 and the proof that it is useful is that it goes red when you break the flow on purpose. Without
 that red by mutation, it is a test that passes because it watches nothing.
@@ -442,7 +434,7 @@ rotated, and the list of the five critical flows for the gap in the prompt.
 
 5. The two screens that cannot be driven (the blocking pending item from N0) are resolved here,
    before the suite or as part of it: ask it to close that pending item with the routine of lesson
-   7, and then to write the characterization tests of those flows.
+   8, and then to write the characterization tests of those flows.
 6. Run the suite yourself with the command in `docs/STATUS.md`. It has to be green.
 
 **Completeness check.** Did you open the test environment and fail to find a real name? Did the
@@ -454,7 +446,7 @@ its test and its red by mutation in view? Did you run the suite yourself?
 `docs/GATES.md`, the secrets rotated, continuous integration green, and the characterization suite
 green with its five reds demonstrated.
 
-**Typical mistakes.** Leaving the suite "for next week" and starting to fix the bug: a half-done
+**Typical mistakes.** Leaving the suite "for later" and starting to fix the bug: a half-done
 belt is the number one cause of breaking what was working. "Example" test data instead of the
 anonymised copy: the bugs of a legacy system live in the real data (the double reminder in Turnos
 only shows up with certain patients). And moving the secret without rotating it: it was in the git
@@ -470,7 +462,7 @@ passes.
 
 ### Lesson N5 — Locks and producer/consumer map from the code
 
-**What you need to understand.** Lessons 12 and 8, done by inventory over what already exists,
+**What you need to understand.** Lessons 14 and 11, done by inventory over what already exists,
 before changing anything. The agent is going to find more in the code than the business remembers
 the system does outwards: sends, deletions, nightly jobs. The comparison between the two lists is
 the result. And every lock carries a proposal of "now" or "when touched": a lock over something
@@ -507,7 +499,7 @@ module.
 **Before sending the prompt** for the close: the table with your verdict per row, and the list of
 the "now" locks for the gap in the prompt.
 
-3. Close with the closing prompt of lesson 12, listing only the "now" locks; the rest stay in the
+3. Close with the closing prompt of lesson 14, listing only the "now" locks; the rest stay in the
    backlog with their mark.
 
 **Completeness check.** Does the agent's list have more actions than the practice manager's? (If it
@@ -518,7 +510,7 @@ against the version without the lock? Is the monthly sheet in the map as a consu
 `docs/LOCKS.md` with the "now" locks implemented and proved.
 
 **Typical mistakes.** Implementing every lock now "while we are at it": that is the two-speeds rule
-violated, and it is a week not spent on the bug the client asked about.
+violated, and it is time not spent on the bug the client asked about.
 
 **In the guide project.** The agent finds three actions the practice manager did not list: the
 nightly deletion of old cancelled appointments, an email the system sends the practitioner when an
@@ -532,7 +524,7 @@ somebody changes a column on it, the sheet breaks silently.
 ### Lesson N6 — Sizing with real numbers
 
 **What you need to understand.** Lesson 3 with one advantage: the primary data are in the database
-and in the logs. They are not asked for, they are measured, with a meter with a test (lesson 9).
+and in the logs. They are not asked for, they are measured, with a meter with a test (lesson 7).
 The practice manager supplies only what is nowhere to be found: how much they expect to grow, and
 whether the system is going to be sold to other practices.
 
@@ -647,7 +639,7 @@ is said so.
 
 ### Lesson R1 — The first block: the bug, in corrective mode
 
-**What you need to understand.** A corrective pending item is a known bug. In lesson 7 the red was
+**What you need to understand.** A corrective pending item is a known bug. In lesson 8 the red was
 manufactured; here the red is the bug itself: the test that reproduces the failure, driving the
 flow as the user who reported it did, has to fail against the current code. If it does not fail,
 you reproduced a different bug. That red is the proof that you are fixing the right thing, and it
@@ -689,7 +681,7 @@ because sometimes the root cause is a business rule nobody wrote down, and that 
 3. Read the root cause before authorising the fix. If it asks you about a business rule, decide it
    with the practice manager and answer with the closing format of lesson 6.
 4. At the close: run the characterization suite yourself. And use the system in the test
-   environment for half an hour, as the receptionist would: the human look is not delegated.
+   environment for a while, as the receptionist would: the human look is not delegated.
 
 **Completeness check.** Did you see the red of the test that reproduces the bug, with numbers? Was
 the root cause written in prose before the fix? Is the characterization still green? Were the
@@ -717,7 +709,7 @@ approves it.
 ### Lesson R2 — The second block: the deposit, in evolutive mode
 
 **What you need to understand.** The new over the old is built with the full method, exactly as in
-lessons 5 to 10 of the first part: specification in the pending item, decisions with a date, test
+lessons 5 to 12 of the first part: specification in the pending item, decisions with a date, test
 red, end-to-end test, honest report. Two differences. The regression of the neighbours is the whole
 system, and the characterization suite is what says so. And when the block enters a module, the
 normalization pending items of that module marked "paid when touched" enter with it, with their own
@@ -729,17 +721,17 @@ evidence. What the legacy system did to the old module is not done to the new on
   by you, its paired items, and the business decisions the practice manager can already take: which
   appointments carry a deposit, how much, what happens if it is not paid.
 - The consequential actions survey (N5) with the row "charge a deposit" added, because it is a new
-  action that acts on the world: a lock before building, as in lesson 12.
+  action that acts on the world: a lock before building, as in lesson 14.
 - The characterization suite green.
 
 1. Open the block with the opening prompt of lesson 5, on the request for the deposit, and read the
    specification as the practice manager would.
-2. Before building, the lock: paste it the closing prompt of lesson 12 for the action "charge a
+2. Before building, the lock: paste it the closing prompt of lesson 14 for the action "charge a
    deposit", with dry-run mode first.
-3. Build with the routine of lesson 7, pending item by pending item, with the paired ones in the
+3. Build with the routine of lesson 8, pending item by pending item, with the paired ones in the
    same block.
 4. At the close of the block: the complete end-to-end suite (the characterization one plus the new
-   tests), with the block-closing prompt of lesson 7, and half an hour of you using the system.
+   tests), with the block-closing prompt of lesson 8, and a while of you using the system.
 
 **Completeness check.** Does the deposit have a lock with its test red before the charging exists?
 Is the characterization still green after the block? Were the module's paired items paid? Is there
@@ -755,7 +747,7 @@ outwards.
 
 **In the guide project.** The deposit uses the same channel as the reminders, which now has a queue
 (the asymmetric decision from N6 paying for itself). Lock: explicit confirmation from the
-receptionist and an amount set by the practitioner; dry-run mode for a week, logging "would have
+receptionist and an amount set by the practitioner; dry-run mode for a while, logging "would have
 asked for a deposit from". The paired item on the cancellation screen (the confirmation) is paid in
 this block because the deposit changes what happens on cancelling. At the close, the suite runs
 seven flows: the five characterization ones, the one for the R1 bug and the one for the deposit.
@@ -764,17 +756,17 @@ seven flows: the five characterization ones, the one for the R1 bug and the one 
 
 ## Afterwards: go-live and operation
 
-From here on, the legacy system is a system with method, and lessons 11 to 21 of the first part
+From here on, the legacy system is a system with method, and lessons 13 to 22 of the first part
 apply exactly as they are, with four notes. The first is about the six operational quality steps:
 the minimum observability and the vulnerability scan already came in with the belt, the
 persistence measurements are already in N6, and the load test is run with those volumes before
 the first deployment; the two monitorings start with the first reading as the baseline, and
 whatever was already wrong on the first day turns into a pending item with its mark. The other
-three notes are these. The audit of lesson 11 compares against the N3 one:
-how much debt was paid, how much remains. The manuals of lesson 14 in a legacy system usually do
+three notes are these. The audit of lesson 13 compares against the N3 one:
+how much debt was paid, how much remains. The manuals of lesson 20 in a legacy system usually do
 not exist, and they are generated from the system as it is and from the closed pending items,
-which now do document what was done. And the retrospective of lesson 15 has a question of its own
-on this path: how much it cost to normalize (in hours, in tokens, in weeks before the first
+which now do document what was done. And the retrospective of lesson 23 has a question of its own
+on this path: how much it cost to normalize (in hours, in tokens, in stages before the first
 change), and how much of the debt marked "can wait" ended up costing anyway. That answer is what
 is going to correct the calendar of this part in the next version.
 

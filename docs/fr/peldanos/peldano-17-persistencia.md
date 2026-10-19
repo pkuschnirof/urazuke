@@ -1,6 +1,6 @@
 # Étape 17 — Optimisation de la couche de persistance, mesurée avant et après (contrat de l'échelon)
 
-**Tronçon :** qualité opérationnelle, avant le premier déploiement en production.
+**Tronçon :** mise en production.
 **Quand :** dans la phase de mise en production, après le 16 (il faut voir les requêtes pour les
 mesurer) et avant le 19 (les tests de performance se lancent sur une persistance déjà optimisée ;
 sinon, ils mesurent le problème qu'on connaissait déjà). On le répète quand un bloc ajoute une
@@ -17,7 +17,7 @@ La couche de persistance est l'endroit où les systèmes meurent lentement : ils
 avec cent enregistrements, acceptablement avec dix mille, et à cent mille chaque écran met vingt
 secondes, et personne ne sait quand ça a commencé. Cet échelon existe pour que cela se décide avec
 des chiffres et avant la production, pas avec des plaintes et après. Et pour que cela se décide
-**avec la méthode de l'échelon 9** : chaque requête que le système fait se compte et se chronomètre
+**avec la méthode de l'échelon 7** : chaque requête que le système fait se compte et se chronomètre
 avec un compteur qui a un test, on change ce que les chiffres disent, et on remesure sur les mêmes
 données. Le premier audit des requêtes sans index sur un système vivant
 [Ref. 18](../REFERENCIAS.md#ref-18) et le budget resserré à ce qui a été mesuré
@@ -47,7 +47,7 @@ d'envoyer le prompt » qui précède chacun d'eux.
 
 - Le dimensionnement et la volumétrie (échelon 3, ou N6 dans un système hérité) : les volumes
   auxquels il faut mesurer.
-- La carte producteur-consommateur (échelon 8) : ce qui consomme chaque table.
+- La carte producteur-consommateur (échelon 11) : ce qui consomme chaque table.
 - L'observabilité (16) : chaque requête visible avec son temps.
 - L'environnement de test chargé avec des données au volume attendu.
 
@@ -64,7 +64,7 @@ faites, pas l'agent :
   projet neuf, demandez à l'agent de générer des données synthétiques avec la forme de l'arbre
   sémantique et les volumes du dimensionnement, et de laisser cela comme script dans le dépôt.
   C'est un élément en attente préalable, pas une partie de ce prompt.
-- `docs/PRODUCER_CONSUMER_MAP.md` (échelon 8), à jour.
+- `docs/PRODUCER_CONSUMER_MAP.md` (échelon 11), à jour.
 - S'il y a une production : un accès en lecture seule, avec l'identifiant hors du chat, pour
   mesurer sur des données réelles en plus de celles de test.
 - Un cas connu pour le test de chaque compteur (une table dont vous connaissez le nombre de lignes).
@@ -99,7 +99,7 @@ faites, pas l'agent :
 > quels consommateurs de la carte il touche. Ne change rien encore : c'est moi qui approuve la
 > liste. Réponds dans ma langue.
 
-Ce que je lui demande : mesurer avec la méthode de l'échelon 9 (compteur avec test, audité dans les
+Ce que je lui demande : mesurer avec la méthode de l'échelon 7 (compteur avec test, audité dans les
 deux sens, chiffre avec sa commande) avant de proposer ; proposer requête par requête, avec le gain
 et le risque, et avec les consommateurs de la carte que chaque changement touche (un nouvel index ne
 touche personne ; une rétention par table touche tous ceux qui lisent cette table) ; et **ne rien
@@ -136,7 +136,7 @@ le plus ce que personne n'avait demandé.
 Ce que je lui demande : un commit par changement, pour que l'avant et l'après soient attribuables ;
 le même compteur sur les mêmes données (si les données changent, le chiffre ne dit rien) ; le budget
 avec son test, qui est ce qui empêche la boucle N+1 de revenir dans trois mois ; et la symétrie de
-l'échelon 8 appliquée à la persistance.
+l'échelon 11 appliquée à la persistance.
 
 ## 3. Résultat attendu
 

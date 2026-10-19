@@ -1,11 +1,9 @@
 # Passo 0 — Questo progetto si può affrontare così? (contratto del gradino)
 
 **Fase:** avvio.
-**Quando:** una sola volta, nella prima settimana, prima di aprire il repository e prima di
-qualunque altra cosa. Un'ora di lavoro.
+**Quando:** una sola volta, prima di aprire il repository e prima di qualunque altra cosa.
 **Forma:** conversazione: l'agente valuta e chiede; tu decidi.
-**Dimensione:** obbligatorio in ogni progetto, per quanto piccolo. Richiede un'ora; fa risparmiare
-mesi.
+**Dimensione:** obbligatorio in ogni progetto, per quanto piccolo.
 **Stato:** i criteri escludenti X1 e X2 sono chiusi; i criteri che pesano (da D1 a D10) li sto
 ancora calibrando e li marco come ipotesi.
 

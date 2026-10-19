@@ -1,7 +1,7 @@
 # Schritt 18 — Scannen und Beheben von Schwachstellen, in der Kette und mit Zeitplan (Schrittvertrag)
 
-**Abschnitt:** Betriebsqualität, vor dem ersten Deployment in die Produktion.
-**Wann:** in der Phase der Produktionsfreigabe, nach der 13 (der Scan läuft in der Continuous
+**Abschnitt:** Produktionsfreigabe.
+**Wann:** in der Phase der Produktionsfreigabe, nach der 15 (der Scan läuft in der Continuous
 Integration) und vor dem ersten Deployment: kein offenes P0 wird befördert. Danach bei jedem
 Push, und mit einem eigenen Zeitplan (wöchentlich), auch wenn es keine Pushes gibt, denn neue
 Schwachstellen tauchen auf, ohne dass du irgendetwas änderst. In einem Altsystem ist der erste
@@ -15,7 +15,7 @@ sind proportional.
 
 ## Wozu er dient
 
-Das Audit aus Schritt 11 sieht sich das System hin und wieder mit frischen Augen an; dieser
+Das Audit aus Schritt 13 sieht sich das System hin und wieder mit frischen Augen an; dieser
 Schritt sieht sich eine einzige Sache an, die Sicherheit, die ganze Zeit und maschinell. Sie
 ergänzen sich: das Audit findet das, was Urteilsvermögen verlangt (eine Administratortür, die
 niemand haben dürfte [Ref. 40](../REFERENCIAS.md#ref-40)); der Scan findet das, was Beharrlichkeit
@@ -47,7 +47,7 @@ Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Pro
 musst, mit ihrem Inhalt und ihrem Mindestzustand, stehen in Abschnitt 2, in dem Block „Bevor du
 den Prompt schickst“, der jedem einzelnen vorangeht.
 
-- Die Continuous Integration (Schritt 4 und 13), in der der Scan läuft.
+- Die Continuous Integration (Schritt 4 und 15), in der der Scan läuft.
 - Die Erhebung der Umgebungen: welcher Server, welcher Container, welche Ports, für die
   Konfigurations-Basislinie.
 - Das vorherige Audit (11, oder N3), um nicht schon Bekanntes zu melden.
@@ -61,12 +61,12 @@ den Prompt schickst“, der jedem einzelnen vorangeht.
 **Bevor du den Prompt schickst**, muss das hier existieren, und du (oder das Geschäft mit dir)
 machst es, nicht der Agent:
 
-- Die Continuous Integration, die bei jedem Push läuft (Schritt 4 und 13), mit ausreichendem
+- Die Continuous Integration, die bei jedem Push läuft (Schritt 4 und 15), mit ausreichendem
   Kontingent: der Scan fügt pro Durchlauf Minuten hinzu; finde heraus, wie viele dir bleiben.
 - `docs/ENVIRONMENTS_SURVEY.md` mit dem Server, dem Container, falls es einen gibt, den
   freigegebenen Ports und der Angabe, wer die Domain verwaltet, damit der Agent weiß, welche
   Basislinie er anwenden soll.
-- `docs/AUDIT_[Datum].md` (Schritt 11 oder N3), damit er nichts Bekanntes meldet.
+- `docs/AUDIT_[Datum].md` (Schritt 13 oder N3), damit er nichts Bekanntes meldet.
 - Dein P0-Kriterium in zwei Zeilen, für die Lücke im Prompt. Für die meisten Systeme: was das
   Eindringen ohne Zugangsdaten erlaubt, was personenbezogene Daten offenlegt, was das Abbuchen,
   Senden oder Löschen ohne Kontrolle erlaubt.
@@ -110,7 +110,7 @@ machst es, nicht der Agent:
 
 Was ich hier verlange: die vier Scan-Schichten (Abhängigkeiten, Code, Geheimnisse in der
 Historie, Konfiguration), in der Kette **und mit Zeitplan**, denn neue Schwachstellen warten
-nicht auf deinen nächsten Push; den Bericht in der Form von Schritt 11, mit der Klausel „nicht
+nicht auf deinen nächsten Push; den Bericht in der Form von Schritt 13, mit der Klausel „nicht
 gescannt“ statt „sauber“; das von mir vorgegebene P0-Kriterium; und das Verbot, ohne Durchgang
 durch die Schleife zu aktualisieren, das den kaputten Freitag verhindert.
 
@@ -140,7 +140,7 @@ durch die Schleife zu aktualisieren, das den kaputten Freitag verhindert.
 > befördert, und ein neues P1 eröffnet automatisch einen offenen Posten. Halt die Richtlinie, den
 > Zeitplan und das, was nicht abgedeckt ist, in `docs/SECURITY.md` fest.
 
-Was ich hier verlange: ein offener Posten pro Reparatur, mit dem Rot von Schritt 7, wo es möglich
+Was ich hier verlange: ein offener Posten pro Reparatur, mit dem Rot von Schritt 8, wo es möglich
 ist (eine ohne Test reparierte Schwachstelle kommt mit dem nächsten Refactor zurück); den
 wiederholten Scan als Beleg; und die Verwandlung in ein Tor, die dafür sorgt, dass dieser Schritt
 weiterlebt, wenn niemand hinsieht.

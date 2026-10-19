@@ -1,8 +1,8 @@
 # Peldaño 1 — El contrato de convivencia (contrato del peldaño)
 
 **Tramo:** arranque.
-**Cuándo:** una sola vez, en la primera semana, inmediatamente después de la elegibilidad; se
-revisa cuando un golpe lo exige. Media hora.
+**Cuándo:** una sola vez, inmediatamente después de la elegibilidad; se
+revisa cuando un golpe lo exige.
 **Forma:** un solo tiro, con una vuelta de ajuste tuya.
 **Tamaño:** obligatorio en todo proyecto. Es el peldaño más barato de todos y el que más
 frustración evita.

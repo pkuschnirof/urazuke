@@ -1,15 +1,15 @@
 # Urazuke — step 15 prompts (English, single source)
 
-Generated from `docs/peldanos/peldano-15-agente-residente-y-retrospectiva.md` by `build/prompts.mjs`. Do not edit by hand.
+Generated from `docs/peldanos/peldano-15-ci-entornos-secretos-deploy.md` by `build/prompts.mjs`. Do not edit by hand.
 
 ## Prompt 1
 
-We are going to leave you resident in production. First, build the map of the system you will need in order to operate it: modules, environments, where each configuration lives, which actions are consequential (read `docs/LOCKS.md`), whom to notify. If there are parts of the system you cannot see from where you are, tell me; the map must not have hidden gaps. Then propose your scope in three levels: read-only and diagnosis; configuration changes with my approval; consequential actions behind locks. I choose the level. Your credential acts as the person who created it: everything you do is logged under that person's name. Reply in my language.
+We are going to close the path to production. Read the environments and access survey. Evaluate whether you have what is needed to deploy to production safely (access, domain, where the secrets live, how to roll back); if anything is missing, ask me. Then set up: (1) continuous integration runs the full test suite exactly once per commit; (2) the deployment waits for that run's result and only packages and uploads, without running tests again; (3) each environment's configuration lives on the server (environment file or vault), never in the repository; (4) a written procedure to promote from the test environment to production, which can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by hand without you. Reply in my language.
 
 ## Prompt 2
 
-Level [X]. Write in `docs/RESIDENT_AGENT.md` the map, the scope, the credential (never its value), and the procedure to request my approval. Then prove, with a real attempt recorded in the log, that something outside your scope is rejected.
+Before touching production: the test environment is green with the same version; the rollback is ready; and tell me what changes in the configuration. After deploying: show me the version running in production and an end-to-end check on production, read-only.
 
 ## Prompt 3
 
-[The stage / the project] is over. Do the retrospective with numbers, not impressions: what it cost (tokens, quota, my time), how many pending items, which ones took the most rounds and why, which incidents happened and which step of the ladder each falls into, and which step failed or was missing. If you lack the data for any figure (my time, for instance), ask me for it or mark it as an estimate; do not invent it. End with a concrete proposal to change the ladder: which step is modified, how, and which incident justifies it. Write it to `docs/RETROSPECTIVE_[date].md`. Reply in my language.
+That secret is compromised: rotate it now, tell me everywhere else it was used, and add the check that would have caught it.

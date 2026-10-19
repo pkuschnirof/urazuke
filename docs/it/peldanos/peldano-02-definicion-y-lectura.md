@@ -1,7 +1,7 @@
 # Passo 2 — La definizione del progetto, l'albero semantico e la lettura obbligatoria (contratto del gradino)
 
 **Fase:** avvio.
-**Quando:** si scrive una volta, nella prima settimana, dopo il patto; l'albero semantico e lo
+**Quando:** si scrive una volta, dopo il patto; l'albero semantico e lo
 stato vivo si mantengono aggiornati per tutto il progetto, con ogni blocco e ogni decisione nuova.
 **Forma:** conversazione: l'agente redige, chiede ciò che manca, tu correggi.
 **Dimensione:** obbligatorio in ogni progetto. In uno piccolo, il file di progetto può avere

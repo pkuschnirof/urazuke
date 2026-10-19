@@ -58,7 +58,7 @@ On 27 May (commit `73f4029`) I opened `GOTCHAS.md`: a file where every error tha
 is written down in a fixed format: how it smells, what the root cause is, how it was fixed, and
 how to detect it next time before it hurts. I opened it because the model was making the same
 mistake in different sessions with no memory whatsoever of having made it before. It is the
-"anti-patterns" half of step 8.
+"anti-patterns" half of step 11.
 
 ### Ref. 3 — The gates of the workflow, injected only when they apply (2 June)
 
@@ -92,7 +92,7 @@ work among themselves. I ran a measured experiment: that team spent 60 dollars a
 delivered something half-done; a single session with a single agent took 90 minutes and delivered
 something publishable. On 5 June (commit `7584f8b`, documented in an internal paper) I
 eliminated the whole team. It is the first case of "retrospective with a number in hand, and
-redesign", and it is the reason why step 15 demands numbers and not impressions.
+redesign", and it is the reason why step 23 demands numbers and not impressions.
 
 ### Ref. 7 — The plan becomes the list of pending items (6 June)
 
@@ -107,8 +107,8 @@ On 10 June (commits `7ab9d8a` and `2c552c0`, documents `verification-honesty.md`
 `workflow-kinds.md`) I made the doctrine mandatory in every prompt and wrote the rule of
 "verification honesty": verify that the net really turns red when it has to, declare the blind
 spots, and make claims proportional to what was checked. I also separated three workflow kinds:
-new project, correction and evolution. It is the origin of step 10 and of the "red" half of
-step 7.
+new project, correction and evolution. It is the origin of step 12 and of the "red" half of
+step 8.
 
 ### Ref. 9 — Work discarded for not reading the map (12 June)
 
@@ -123,26 +123,26 @@ Between 14 and 21 June I let the agent work alone for a day, and then two, with 
 mandate: commit and push for every piece, without asking, and I received a summary. I tell it
 because it proves that the method withstands long autonomy when the working agreement and the
 pending-items register are well made; and because it was there that I learned to read summaries
-with distrust, which is step 10.
+with distrust, which is step 12.
 
 ### Ref. 11 — Diagnostic mode on other people's systems (July)
 
 In July (document `diagnostic-mode.md`) the agent started entering clients' production systems
 in diagnostic mode: read-only, bounded, touching nothing. It is the first level of the scope of
-the resident agent of step 15.
+the resident agent of step 23.
 
 ### Ref. 12 — Performance patterns taken from the Health Fund's production (22 July)
 
 On 22 July (commit `873339c`) I incorporated into the tool scale patterns extracted from the
 Health Fund's system: the two-transaction one and, above all, "measure before touching". It was
 the first time the method fed on a system that was already in production, and it is a precedent
-of step 9.
+of step 7.
 
 ### Ref. 13 — The agent becomes resident in the Health Fund's production (14 August)
 
 On 14 August the agent was installed inside the client's system, as a resident assistant, with
 three rules: a mandatory map of the system before operating, "operational solution first" when
-something fails, and the ability to open tickets. It is the origin of the first half of step 15.
+something fails, and the ability to open tickets. It is the origin of the first half of step 23.
 
 ### Ref. 14 — Sizing as a gate (10 and 11 October)
 
@@ -166,7 +166,7 @@ On 14 October the agent worked for one hour and forty-three minutes invisible to
 commits in that span. It was a failure of the method, and an ugly one. I fixed it at the root in
 version 1.18.0 (commit `b80a659`): a silence watchdog that kills the turn if it stops giving signs
 of life, an inter-process leash so that the child dies with the parent, and 28 tests. It falls
-under step 10 (the report has to be visible) and step 12 (on doubt, the system does not go on).
+under step 12 (the report has to be visible) and step 14 (on doubt, the system does not go on).
 
 ---
 
@@ -183,44 +183,44 @@ plan is the pending items.
 
 On 23 June I did the first audit of "full scans" (queries that read the whole table because there
 is no index) on a live system. The findings became pending items, not a filed report. It is the
-origin of step 11.
+origin of step 13.
 
 ### Ref. 19 — Lessons from Google's cloud (24 June)
 
 The infrastructure mistakes of the first weeks on Google's cloud were written down as lessons so
 as not to repeat them. It is the first version of what later became the infrastructure manual of
-step 14.
+step 20.
 
 ### Ref. 20 — The user manual is born together with the system (26 June)
 
 On 26 June there was already a user manual, with the system half built. I did it that way on
 purpose: in classic projects the manual was written at the end, when nobody remembered anything
 any more; with a model that regenerates it for free, there is no excuse for it not to be born
-with the system. Step 14.
+with the system. Step 20.
 
 ### Ref. 21 — Second-layer backup (13 July)
 
 Before trusting the system with real data I put two layers of backup in place: one local and
-another in Google's storage. Step 13 and the recovery manual of step 14.
+another in Google's storage. Step 15 and the recovery manual of step 20.
 
 ### Ref. 22 — PND-300: four rounds until the root cause (14 July)
 
 A bug came back three times until the real cause was found, on 14 July. Each previous "fix" had
 been on the symptom. Here "the fix is at the root or it is not a fix", which was already in the
 working agreement, stopped being a phrase and became practice: the hypothesis has to be measured
-before touching. Steps 1 and 9.
+before touching. Steps 1 and 7.
 
 ### Ref. 23 — Security audit (16 July)
 
 On 16 July I did the first formal security audit, with findings turned into pending items. It was
 the one that convinced me to treat security as a periodic audit and not as a list that gets
-ticked once at the beginning. Step 11.
+ticked once at the beginning. Step 13.
 
 ### Ref. 24 — Internal manual and disaster recovery manual (26 and 29 July)
 
 On 26 and 29 July (commits `6444ce6`, pending item 442, and `a30cee3`, pending item 459) I left
 everything operational documented, deploying, recovering, maintaining, in a form "reproducible by
-hand, without AI". The criterion I used, and which is in step 14, is that if tomorrow there is no
+hand, without AI". The criterion I used, and which is in step 20, is that if tomorrow there is no
 agent, a trusted person who does not program can follow the manual.
 
 ### Ref. 25 — Fail-closed as a reflex (27 July)
@@ -228,7 +228,7 @@ agent, a trusted person who does not program can follow the manual.
 On 27 July (commit `e18406d`, pending item 452): if a table does not exist or a lookup fails, the
 row simply stays without its button; the whole listing never breaks. On doubt, do not act and do
 not break. And the test for that correction was proved red "without the try/except", that is, it
-was demonstrated that without the protection the listing broke. Steps 7 and 12.
+was demonstrated that without the protection the listing broke. Steps 8 and 14.
 
 ### Ref. 26 — The counters that did not match: 1,355 versus 1,234 (6 and 7 August)
 
@@ -237,22 +237,22 @@ screen showed 1,355 approvals and the query to the database showed 1,234. On 6 a
 (commits `ab3e529`, pending item 517, and `1f5feb9`, pending item 514) the root cause was
 verified directly on production in read-only mode, the difference was decomposed number by number
 (145 too many, 24 too few; 145 minus 24 is 121), a test was written and proved RED against the
-old criterion, and the diagnostic script stayed in the repository for the next time. Steps 7, 8
-and 9.
+old criterion, and the diagnostic script stayed in the repository for the next time. Steps 8, 11
+and 7.
 
 ### Ref. 27 — Producer/consumer symmetry (6 August)
 
 On 6 August (commits `50fe968`, pending item 510, and `7251129`, pending item 509) I imposed that
 the "reason for waiting" the user sees be computed with the SAME gates the robot decides with,
 and that the list of columns of the grid be defined by the server and consumed by the frontend.
-That way they cannot diverge. It is the rule "every list has a single owner" of step 8.
+That way they cannot diverge. It is the rule "every list has a single owner" of step 11.
 
 ### Ref. 28 — Panic button with a lock, dry-run mode for the approver, watchman with guards (7 August)
 
 On 7 August (commit `0954740`, pending item 524) the system's locks were in place: a panic
 button with a double safety, the auto-approver running first in dry-run mode (it does everything
 except approve, and logs what it would have approved), and a watchman that pushes what got stuck,
-with guards so as not to push twice. Step 12.
+with guards so as not to push twice. Step 14.
 
 ### Ref. 29 — The domain rules written in the commit (10 August)
 
@@ -270,7 +270,7 @@ owner, attached to the code that implements it. Step 6.
 Kikan was the first project that started with everything above already written from day one: an
 operational project file and pending items as the plan from the first commit (21 August). On 28
 and 29 August I did a series of early audits (AUD-1, AUD-2…) that turned directly into 19
-pending-item documents. Steps 2, 5 and 11.
+pending-item documents. Steps 2, 5 and 13.
 
 ### Ref. 31 — Continuous integration from the first week; deployment as a package (28 August, 23 and 24 September)
 
@@ -288,20 +288,20 @@ reconciles instead of duplicating (`076df76`, pending item 134), the client's ma
 the mirrored tree (`9d76af8`, pending item 130), and the test suite that no longer dirties the
 configuration that travels in the deployment (`0bd20a8`, pending item 107, 3 October). If the
 skeleton had been deployed empty in the first week, those five blows would have been taken with
-zero functionality at stake. Steps 4 and 13.
+zero functionality at stake. Steps 4 and 15.
 
 ### Ref. 33 — Promotion from UAT to production (4 and 8 October)
 
 On 4 and 8 October (commits `4eb5ad7`, pending item 027, and `7658e2e`) an explicit circuit was
 put in place to move configuration and campaigns from the test environment to the production
-one. Step 13.
+one. Step 15.
 
 ### Ref. 34 — The schema derived from the code, with a lock (11 October)
 
 In stage 1 of the persistence re-engineering (commits `6113319` and `68819ce`) the inventory of
 tables and fields was derived from the code itself, with a test that protects it, and it was
 opened on the shared board so that I could review it. It is a list with a single owner, the
-code. Step 8.
+code. Step 11.
 
 ### Ref. 35 — The static ratchet, and the meter that could not see (11 to 13 October)
 
@@ -309,7 +309,7 @@ In stage 6 of the re-engineering (commits `06b2734`, `f6e5221`, `2fc6239`, `1d55
 "ratchet": a counter of calls to the database without `await`, that is, without waiting for the
 result, which can only go down and never up. And something happened that is worth telling: it was
 discovered TWICE that the meter could not see parts of the code. First 70 calls, then 84, with
-the counter at zero. If the instrument is not verified, the number reassures and lies. Step 9.
+the counter at zero. If the instrument is not verified, the number reassures and lies. Step 7.
 
 ### Ref. 36 — The meters that lied and the five rules of section 11.b (13 and 14 October)
 
@@ -317,7 +317,7 @@ Verbatim from the commits of 13 October (`880ac0f`, `f955620`): "the E7.5 meter 
 database with the ALTER already applied"; "it is 44, not 27". And a few days earlier, a plan
 claimed there were 121 loops of a certain kind and the one who executed measured 79. Out of all
 this I wrote section 11.b of the re-engineering document, with the five rules that today are
-step 9: a guarded meter; if the instrument does not exist, it gets built; it is audited in both
+step 7: a guarded meter; if the instrument does not exist, it gets built; it is audited in both
 directions; what is approximate is marked; and the one who executes verifies the numbers of the
 one who planned. With the sentence that sums it up: "three out of four assertions were wrong;
 where there was an instrument, exact".
@@ -327,14 +327,14 @@ where there was an instrument, exact".
 In stage 8 (commits `5926b3f`, `10ada00`) every path of the application was left with a budget
 of database queries, measured and protected by a test, and the change of database engine was left
 as a switch per environment. In stage 9 (`0730082`, `7f5f1af`) the ceiling was tightened to the
-measured value plus a small margin: 63 over 60. The budget is not an invented number. Step 9.
+measured value plus a small margin: 63 over 60. The budget is not an invented number. Step 7.
 
 ### Ref. 38 — Retention per table, and an integrity report made by another session (14 October)
 
 In stages 10 and 12 (commits `f72b15a`, `b266f11`) the real package started carrying the
 migration scripts, data retention was declared per table and bounded in production, and an
 integrity report made by a different Claude Code session, one that had not built the system, was
-absorbed as pending items. It is the auditor distinct from the builder of step 11.
+absorbed as pending items. It is the auditor distinct from the builder of step 13.
 
 ### Ref. 39 — The deployment only packages, and the quota that got burned (14 October)
 
@@ -342,14 +342,14 @@ The tests were run three times for every commit, between 16 and 27 minutes each 
 2,000 minutes of GitHub Actions quota were consumed, and a day of 23 pushes finished burning it.
 On 14 October (commit `39497b0`) I split the circuit: the tests run ONCE only, in continuous
 integration; the deployment waits for that result and only packages. From 16 to 27 minutes per
-commit, down to 11. Step 13.
+commit, down to 11. Step 15.
 
 ### Ref. 40 — Two administrator doors in twenty-four hours (15 October)
 
 On 15 October two administrator doors were created in a single day (pending items 223 and 257).
 An external review detected it; I withdrew one (commits `69bdab2`, `20fdbe7`, `1558ee4`) and a
 single way in remained. I tell it as evidence that the method withstands "undo quickly" without
-drama, and of why the audit has to be done by someone who did not build. Steps 11 and 12.
+drama, and of why the audit has to be done by someone who did not build. Steps 13 and 14.
 
 ### Ref. 41 — The quality audit: a vulnerability, a huge component, a project file of 9,661 lines (15 October)
 
@@ -357,18 +357,18 @@ The quality audit of 15 October found a known vulnerability in a dependency, a s
 of 2,679 lines, eight modules duplicated between the web version and the mobile one, and a
 `CLAUDE.md` that had grown to 9,661 lines and 789 kilobytes, a file that at that point nobody
 reads, not even the model. From there comes the rule of step 2: the project file is the
-programme, not the history, and the casebook goes separately. Steps 2, 8 and 11.
+programme, not the history, and the casebook goes separately. Steps 2, 11 and 13.
 
 ### Ref. 42 — Secrets pasted in the chat (14 and 16 October)
 
 On 14 October a database key was printed in a transcript, and on 16 October some API keys showed
 up pasted in the chat. Neither of the two was "seen by anyone", and both have to be rotated all
 the same, because a secret that has been in a chat, in a log or in a commit is no longer a
-secret. Step 13.
+secret. Step 15.
 
 ### Ref. 43 — Three reports that were not what they said (14 to 16 October)
 
-Three small and very illustrative cases of step 10. On 14 October an authentication error was
+Three small and very illustrative cases of step 12. On 14 October an authentication error was
 reported by the tool with the label "success". On 16 October the server's CORS was derived only
 from the first domain name, and the configuration assistant of the test environment was giving a
 500 error that the report did not mention. And the mobile application lost its tabs under
@@ -379,7 +379,7 @@ what was verified from what is believed and declare the blind spots.
 
 A whole test suite "died" from lack of memory (commit `1d7a20b`), and the report read it as a
 failing test. Until the complete output was looked at, it was not understood that no test had
-failed: the process had crashed. It is the reason why step 7 asks for the counts of the red and
+failed: the process had crashed. It is the reason why step 8 asks for the counts of the red and
 the green, not just the verdict.
 
 ---
@@ -398,7 +398,7 @@ building, because I tend to be right about the symptom and the cause tends to be
 it. "Validate the limits with the log, not with the prose": a refusal by the model does not prove
 the limit is enforced; you have to force the invocation and read the log. And "compare the
 published version first": faced with "it is still broken", look at which version is running where
-I see the problem before diagnosing again. Steps 9 and 10.
+I see the problem before diagnosing again. Steps 7 and 12.
 
 ### Ref. 46 — The projects I rejected, and where the exclusionary criteria come from (17 October)
 
@@ -484,21 +484,21 @@ appeared that falls into none, a step would be missing.
 
 | Failure | Reference | Step that covers it | Status |
 |---|---|---|---|
-| The multi-agent team that spent double and delivered half | Ref. 6 | 15, retrospective with numbers | closed |
+| The multi-agent team that spent double and delivered half | Ref. 6 | 23, retrospective with numbers | closed |
 | Work discarded for not reading the map | Ref. 9 | 2, mandatory reading | closed |
-| PND-300: three fixes that were not at the root | Ref. 22 | 1, zero debt; 9, measure | closed |
-| Counters 1,355 versus 1,234 | Ref. 26 | 9, instrument; 8, symmetry | closed |
+| PND-300: three fixes that were not at the root | Ref. 22 | 1, zero debt; 7, measure | closed |
+| Counters 1,355 versus 1,234 | Ref. 26 | 7, instrument; 11, symmetry | closed |
 | 3.4 million rows per year on JSON files | Ref. 15 | 3, sizing | closed |
-| Meters that lied; ratchet at zero | Refs. 35 and 36 | 9, verify the instrument | closed |
-| Orphan turn of 1 h 43 | Ref. 16 | 10 and 12 | closed |
-| Tests three times per commit; quota burned | Ref. 39 | 13 | closed; the quota has to be raised |
-| Two administrator doors in 24 hours | Ref. 40 | 11 and 12 | closed |
-| Secrets pasted in the chat | Ref. 42 | 13 | rotation pending |
-| Authentication error reported as success | Ref. 43 | 10 | pending, one line |
+| Meters that lied; ratchet at zero | Refs. 35 and 36 | 7, verify the instrument | closed |
+| Orphan turn of 1 h 43 | Ref. 16 | 12 and 14 | closed |
+| Tests three times per commit; quota burned | Ref. 39 | 15 | closed; the quota has to be raised |
+| Two administrator doors in 24 hours | Ref. 40 | 13 and 14 | closed |
+| Secrets pasted in the chat | Ref. 42 | 15 | rotation pending |
+| Authentication error reported as success | Ref. 43 | 12 | pending, one line |
 | Project file of 9,661 lines | Ref. 41 | 2 | pending |
-| CORS from the first domain; configuration assistant with a 500 error | Ref. 43 | 13 and 8 | application pending |
-| The mobile application loses its tabs | Ref. 43 | 10 and 12 | diagnosis done; correction pending |
-| Queries without an index on a live system | Ref. 18 | 11 and 17 | closed |
-| Security audit done once, not as a routine | Ref. 23 | 11 and 18 | closed; the schedule is new |
-| Ceiling tightened to the measured value; quota burned without anybody looking | Refs. 37 and 39 | 9, 13 and 20 | closed |
-| The orphan turn was found through the log, not through the code | Ref. 16 | 16 and 21 | closed |
+| CORS from the first domain; configuration assistant with a 500 error | Ref. 43 | 15 and 11 | application pending |
+| The mobile application loses its tabs | Ref. 43 | 12 and 14 | diagnosis done; correction pending |
+| Queries without an index on a live system | Ref. 18 | 13 and 17 | closed |
+| Security audit done once, not as a routine | Ref. 23 | 13 and 18 | closed; the schedule is new |
+| Ceiling tightened to the measured value; quota burned without anybody looking | Refs. 37 and 39 | 7, 15 and 21 | closed |
+| The orphan turn was found through the log, not through the code | Ref. 16 | 16 and 22 | closed |

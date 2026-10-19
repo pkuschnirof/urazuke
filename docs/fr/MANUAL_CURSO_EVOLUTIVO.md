@@ -2,7 +2,7 @@
 
 Auteur : Pablo Kuschniroff, assisté par Claude Code. Version 1, 18 octobre 2026. Ceci est la
 deuxième partie du [manuel du cours](MANUAL_CURSO.md) : elle tient pour acquis que vous avez fait
-la première, ou au moins que vous avez lu les leçons 0 à 7, parce qu'ici je ne réexplique pas ce
+la première, ou au moins que vous avez lu les leçons 0 à 8, parce qu'ici je ne réexplique pas ce
 qu'est un élément en attente, un test au rouge ou un arbre sémantique. La méthode de cette partie
 est dans la page du [chemin évolutif-correctif](EVOLUTIVO_CORRECTIVO.md) ; ici il y a la pratique,
 avec un second projet-guide. Les mots étranges, dans le glossaire du document principal ; les cas
@@ -33,16 +33,16 @@ avec des chiffres mesurés, et une file où la dette et la demande du client coh
 par module. Et ensuite, le premier bug corrigé avec son test au rouge et la première
 fonctionnalité nouvelle construite avec la méthode complète.
 
-### Le calendrier de cette partie
+### L'ordre de cette partie
 
-| Semaine | Leçons | Ce que vous faites en plus |
+| Étape | Leçons | Ce que vous faites en plus |
 |---|---|---|
 | 1 | N0, N1, N2, N3 | **Lecture.** Rien ne se change. Vous parcourez l'arbre récupéré avec le propriétaire, vous décidez les divergences une par une, vous lisez l'audit. À la clôture : la carte et l'inventaire de la dette. |
 | 2 | N4, N5 | **La ceinture.** Environnement de test avec des données anonymisées, déploiement deux fois, secrets rotés, batterie de caractérisation avec son rouge par mutation. Verrous confirmés sur ce qui agit déjà. À la clôture : le système tourne en test et la batterie est au vert. |
 | 3 | N6, N7, R1 | **Mesurer, ordonner, corriger.** Dimensionnement mesuré. La file avec les deux marques. Le premier bloc : le bug connu, clos en mode correctif avec ses appariés. |
-| 4 | R2 | **Évoluer.** Le second bloc : la fonctionnalité nouvelle, construite avec la méthode complète (leçons 5 à 10 de la première partie), avec la caractérisation comme régression. |
-| 5 et 6 | 11, 12, 13, 14, 16, 17, 18, 19 de la première partie | **Mise en production.** Audit périodique, verrous restants, clôture du chemin vers la production, les trois manuels (que le legacy n'avait pas), et les quatre échelons de qualité opérationnelle préalables au déploiement : observabilité complète, persistance avec ce que N6 a mesuré, scan de vulnérabilités comme porte, test de charge avec le point de rupture. |
-| 7 | 15, 20, 21 de la première partie | **Exploitation.** Les deux supervisions montées dans la semaine du déploiement, avec la première lecture comme ligne de base du legacy ; agent résident ; rétrospective avec la question propre au legacy : combien a coûté la normalisation. |
+| 4 | R2 | **Évoluer.** Le second bloc : la fonctionnalité nouvelle, construite avec la méthode complète (leçons 5 à 12 de la première partie), avec la caractérisation comme régression. |
+| 5 et 6 | 13, 14, 15, 20, 16, 17, 18, 19 de la première partie | **Mise en production.** Audit périodique, verrous restants, clôture du chemin vers la production, les trois manuels (que le legacy n'avait pas), et les quatre échelons de qualité opérationnelle préalables au déploiement : observabilité complète, persistance avec ce que N6 a mesuré, scan de vulnérabilités comme porte, test de charge avec le point de rupture. |
+| 7 | 23, 21, 22 de la première partie | **Exploitation.** Les deux supervisions montées avec le déploiement, avec la première lecture comme ligne de base du legacy ; agent résident ; rétrospective avec la question propre au legacy : combien a coûté la normalisation. |
 
 ### Le projet-guide : « Turnera héritée »
 
@@ -88,14 +88,19 @@ lecture : rien ne se change, et la tentation de changer quelque chose sera énor
 suivantes montent la ceinture. Les deux dernières mesurent et ordonnent. C'est seulement ensuite
 qu'on touche à la fonctionnalité.
 
-### Leçon N0 — Éligibilité d'un système existant
+### Leçon N0 — Éligibilité d'un système existant : des prérequis que l'agent vérifie en faisant
 
-**Ce que vous devez comprendre.** Les deux critères excluants sont les mêmes qu'à la leçon 0, mais
-ici X2 (écrans pilotables par programme) se répond écran par écran, et si l'un d'eux est au rouge
-ce n'est pas un motif de ne pas commencer : c'est le premier élément en attente, et il bloque. On
-ajoute quatre critères propres au legacy : s'il y a quelqu'un qui sache comment ça marche, si la
-production peut se consulter en lecture seule, s'il existe un test, et si la sauvegarde a déjà été
-restaurée une fois. Le dernier est celui que presque tout le monde découvre au rouge.
+**Ce que vous devez comprendre.** À la leçon 0, c'est le relevé qui répondait aux critères. Ici il
+y a un système, et alors les critères peuvent se **vérifier en faisant**, par l'agent, sans que
+personne n'ait d'avis : peut-il monter un environnement complet avec les sources, les données et
+la persistance ? Peut-il comprendre le code ? Peut-il écrire, à partir du code seul, un document
+qui décrive toute la fonctionnalité et que la responsable reconnaisse comme son système ?
+Peut-il piloter les écrans avec un outil de test et lancer un test de bout en bout ? Le système
+se construit-il avec les outils d'aujourd'hui ? Les données peuvent-elles se copier et
+s'anonymiser, et y a-t-il une sauvegarde qui a été restaurée ? Les intégrations ont-elles un mode
+de test ? Ce sont sept prérequis, et la règle nouvelle est qu'un rouge n'est pas un « ça ne passe
+pas » : c'est un **projet préalable**, avec son propre périmètre, pour que le système devienne
+éligible.
 
 **Avant d'envoyer le prompt**, de vos mains :
 
@@ -103,83 +108,49 @@ restaurée une fois. Le dernier est celui que presque tout le monde découvre au
   fait mal (le rappel en double, ce qui manque), qui l'a fait et combien de temps il met à
   répondre, où il tourne, qui a accès, et qu'il y a une sauvegarde « automatique » que personne
   n'a restaurée. Une demi-page.
-- `docs/ELIGIBILITY_CRITERIA.md` : la fiche de la leçon 0 avec quatre lignes de plus : quelqu'un
-  qui sait, production consultable, tests existants, sauvegarde restaurée. Colonnes vides.
-- Un accès en lecture au dépôt pour l'agent et, si vous l'obtenez, un identifiant en lecture seule
-  sur la base, hors du chat.
+- `docs/ELIGIBILITY_CRITERIA.md` : la fiche de la leçon 0 plus les sept prérequis du legacy
+  (copiez-les de la page du chemin évolutif-correctif, station N0), avec trois colonnes vides :
+  vert ou rouge, preuve, projet préalable.
+- Un accès en lecture au dépôt, une copie de la base (ou la production en lecture seule) et un
+  endroit où l'agent puisse tenter de lever le système (votre machine suffit pour le cours), avec
+  les identifiants hors du chat.
 
-1. Collez-lui :
+1. Collez-lui le prompt initial de la station N0 (dans la page du chemin évolutif-correctif), tel
+   quel.
+2. Cela va prendre du temps : il doit monter l'environnement, tout lire, écrire
+   `docs/FUNCTIONALITY_RECOVERED.md` et lancer un test. Quand il a fini, lisez ce document avec la
+   responsable : décrit-il le système qu'elle croit avoir ? Ce qui ne coïncide pas, notez-le :
+   c'est la première liste de divergences.
+3. Regardez la fiche : chaque prérequis doit avoir la preuve de quelque chose que l'agent a fait,
+   et non une réponse de vous.
 
-> We are going to assess whether this existing system can be taken over with the Urazuke method.
-> Read the initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
-> `docs/ELIGIBILITY_CRITERIA.md`, which for an existing system adds four criteria: whether anyone
-> who knows how the system works is available; whether production can be queried read-only;
-> whether any automated test exists; and whether a backup exists and has ever been restored. Then
-> explore the repository and, if I gave you access, the environment where it runs: change nothing.
-> Fill in the sheet criterion by criterion with the answer, its source (survey, code, database,
-> configuration, or inferred) and, for the exclusionary criteria X1 and X2, green or red. For X2,
-> list every screen and say for each whether it can be driven by a program today and whether the
-> effect can be checked in the backend. If a criterion cannot be answered from what you have, ask
-> me; do not assume. Do not decide: present me the completed sheet with your reading and your
-> doubts, and I will decide. Reply in my language.
+**Avant d'envoyer le prompt** de clôture : votre décision en une ligne et, pour chaque rouge, si
+le projet préalable s'entreprend maintenant, plus tard, ou jamais.
 
-> [fr]
-> Nous allons évaluer si ce système existant peut être pris en charge avec la méthode Urazuke. Lis
-> le relevé initial dans `docs/INITIAL_SURVEY.md` et la fiche de critères dans
-> `docs/ELIGIBILITY_CRITERIA.md`, qui pour un système existant ajoute quatre critères : s'il y a
-> quelqu'un de disponible qui sache comment le système fonctionne ; si la production peut se
-> consulter en lecture seule ; s'il existe un test automatique ; et s'il existe une copie de
-> sauvegarde et si elle a déjà été restaurée une fois. Ensuite explore le dépôt et, si je t'ai
-> donné l'accès, l'environnement où il tourne : ne change rien. Remplis la fiche critère par
-> critère avec la réponse, sa source (relevé, code, base, configuration, ou inféré) et, pour les
-> critères excluants X1 et X2, vert ou rouge. Pour X2, liste chaque écran et dis pour chacun s'il
-> peut aujourd'hui être piloté par programme et si l'effet peut se vérifier dans le backend. Si un
-> critère ne peut pas être répondu avec ce que tu as, demande-le-moi ; ne suppose pas. Ne décide
-> pas : présente-moi la fiche complète avec ta lecture et tes doutes, et c'est moi qui déciderai.
-> Réponds dans ma langue.
+4. Collez-lui le prompt de clôture de la station N0.
 
-   Vous lui demandez la même chose qu'à la leçon 0, plus trois choses : qu'il explore sans rien
-   changer, que chaque réponse dise d'où elle sort, et que X2 se mesure écran par écran.
+**Vérification de complétude.** Chaque prérequis a-t-il une preuve faite, et non dite ? Le
+document de fonctionnalité récupérée existe-t-il et la responsable l'a-t-elle reconnu ? A-t-il
+lancé un vrai test de bout en bout ? Chaque rouge a-t-il son projet préalable comme élément en
+attente bloquant ?
 
-2. Répondez à ses questions et lisez la fiche. Regardez surtout la ligne de chaque écran dans X2.
-3. Décidez.
+**Livrable.** `docs/ELIGIBILITY.md`, `docs/FUNCTIONALITY_RECOVERED.md`, et les éléments en attente
+bloquants des projets préalables, s'il y en a.
 
-**Avant d'envoyer le prompt** de clôture : votre décision en une ligne, et une condition qui dans
-ce projet est obligatoire : restaurer la sauvegarde sur votre machine avant la leçon N4.
+**Erreurs typiques.** Accepter un vert que l'agent a répondu sans faire (« oui, le code est
+compréhensible »). Et traiter un rouge comme un refus : la méthode demande un projet préalable,
+pas un renoncement.
 
-4. Collez-lui le prompt de clôture :
-
-> Decision: [go under this condition: the backup is restored at least once before N4]. Write the
-> final sheet to `docs/ELIGIBILITY.md` with the date, who decided, every answer with its source,
-> and the conditions if any. If X2 is red for any screen, create `docs/PENDING.md` and open the
-> first pending item: make every screen drivable by a program with its backend effect checkable;
-> mark it as blocking. Include the questions you asked and my answers.
-
-> [fr]
-> Décision : [ça passe à cette condition : la sauvegarde est restaurée au moins une fois avant
-> N4]. Écris la fiche finale dans `docs/ELIGIBILITY.md` avec la date, qui a décidé, chaque réponse
-> avec sa source, et les conditions s'il y en a. Si X2 est au rouge pour un écran, crée
-> `docs/PENDING.md` et ouvre le premier élément en attente : faire que tout écran puisse être
-> piloté par programme avec son effet vérifiable dans le backend ; marque-le comme bloquant.
-> Inclus les questions que tu as posées et mes réponses.
-
-**Vérification de complétude.** X2 a-t-il une réponse par écran ? Les quatre critères du legacy
-ont-ils une réponse avec sa source ? La sauvegarde est-elle restée comme condition avec une date ?
-
-**Livrable.** `docs/ELIGIBILITY.md`, et si nécessaire le premier élément en attente bloquant.
-
-**Erreurs typiques.** Répondre X2 au vert « parce que c'est du web ». Et sauter la condition de la
-sauvegarde parce qu'« il y en a une automatique » : à la leçon N4 l'agent va copier la base de
-production, et si quelque chose tourne mal, cette sauvegarde que personne n'a éprouvée est tout ce
-qu'il y a.
-
-**Dans le projet-guide.** L'agent découvre que sur les six écrans de Turnos, quatre peuvent être
-pilotés par programme et deux non (le formulaire de rendez-vous utilise un calendrier sans
-identifiants, et la recherche de patients est un champ qui ne répond pas aux événements du
-clavier) ; il ouvre l'élément en attente bloquant. Il trouve le processus programmé des rappels,
-que la responsable n'a pas mentionné. Il y a une sauvegarde, jamais restaurée : condition. Sur le
-neveu : « disponible, toutes les deux semaines », que l'agent propose de lire comme « non
-disponible », et il a raison. Ça passe, avec une condition.
+**Dans le projet-guide.** L'agent monte Turnos sur votre machine avec une copie de la base (vert),
+comprend le code sauf un module de rapports écrit dans un vieux langage de gabarits (vert, avec
+une note), écrit le document de fonctionnalité et la responsable y découvre deux choses qu'elle ne
+savait pas que le système faisait (vert : le document est meilleur que sa mémoire), pilote quatre
+écrans sur six et lance un test du flux d'enregistrement (rouge : deux écrans non pilotables,
+projet préalable : « rendre pilotables le calendrier et la recherche »), construit avec les outils
+d'aujourd'hui sauf une dépendance morte du générateur de PDF (rouge : petit projet préalable),
+copie et anonymise les données (vert) mais la sauvegarde n'a jamais été restaurée (rouge : la
+restaurer est le projet préalable le moins cher de tous), et le prestataire de messages a un mode
+de test (vert). Décision : ça passe, après trois petits projets préalables.
 
 ### Leçon N1 — Le contrat de collaboration pour un legacy
 
@@ -195,7 +166,7 @@ chose, et rien n'entre sans la caractérisation au vert.
 
 - Vos préférences de travail, comme à la leçon 1, et une décision de plus : combien de risque vous
   acceptez pendant la normalisation. Pour le cours : l'agent peut déployer tout seul vers
-  l'environnement de test ; vers la production, jamais, jusqu'à la leçon 13.
+  l'environnement de test ; vers la production, jamais, jusqu'à la leçon 15.
 - `docs/ELIGIBILITY.md` clos.
 
 1. Collez-lui :
@@ -390,7 +361,7 @@ attente.
 
 ### Leçon N3 — L'audit comme inventaire de la dette
 
-**Ce que vous devez comprendre.** La leçon 11, mais au début au lieu de la fin, et avec un champ
+**Ce que vous devez comprendre.** La leçon 13, mais au début au lieu de la fin, et avec un champ
 de plus par constat : s'il bloque (il faut le corriger avant tout changement), s'il se paie quand
 on touche au module, ou s'il peut attendre. Sans ce champ, un legacy audité a quarante constats et
 personne ne sait par lequel commencer. Ce qui bloque, c'est vous qui le décidez, pas l'auditeur :
@@ -448,7 +419,7 @@ se répéter, l'absence de sauvegarde, et ce qui peut abîmer des données ou fa
 **Avant d'envoyer le prompt** de clôture : le rapport lu, les deux constats vérifiés, et la
 session du constructeur ouverte (la clôture va au constructeur, pas à l'auditeur).
 
-3. Revenez à la session du constructeur et collez-lui le prompt de clôture de la leçon 11, en
+3. Revenez à la session du constructeur et collez-lui le prompt de clôture de la leçon 13, en
    ajoutant à la fin : « Each pending item keeps the speed mark of its finding. »
 
 **Vérification de complétude.** Dit-il ce qu'il n'a pas pu auditer ? Y a-t-il au moins un
@@ -477,7 +448,7 @@ sans vulnérabilité connue, et le code dupliqué du format de date à trois end
 pas au vert, on ne change pas une ligne de fonctionnalité. La ceinture a cinq pièces : un
 environnement de test avec des données anonymisées, un déploiement qui se répète, les secrets hors
 du code et rotés, l'intégration continue qui fait tourner ce qu'il y a, et la batterie de
-caractérisation. Cette dernière est la leçon 7 à l'envers : le test naît au vert, parce qu'il
+caractérisation. Cette dernière est la leçon 8 à l'envers : le test naît au vert, parce qu'il
 capture ce que le système fait aujourd'hui, défauts compris, et la preuve qu'il sert à quelque
 chose est qu'il passe au rouge quand vous cassez le flux délibérément. Sans ce rouge par mutation,
 c'est un test qui passe parce qu'il ne regarde rien.
@@ -583,7 +554,7 @@ secrets rotés, et la liste des cinq flux critiques pour le trou du prompt.
 
 5. Les deux écrans non pilotables (l'élément en attente bloquant de N0) se résolvent ici, avant la
    batterie ou dans le cadre de celle-ci : demandez-lui de clore cet élément avec la routine de la
-   leçon 7, et d'écrire ensuite les tests de caractérisation de ces flux.
+   leçon 8, et d'écrire ensuite les tests de caractérisation de ces flux.
 6. Lancez vous-même la batterie avec la commande de `docs/STATUS.md`. Elle doit être au vert.
 
 **Vérification de complétude.** Avez-vous ouvert l'environnement de test sans y trouver un vrai
@@ -596,7 +567,7 @@ batterie vous-même ?
 `docs/GATES.md`, les secrets rotés, l'intégration continue au vert, et la batterie de
 caractérisation au vert avec ses cinq rouges démontrés.
 
-**Erreurs typiques.** Laisser la batterie « pour la semaine prochaine » et commencer à réparer le
+**Erreurs typiques.** Laisser la batterie « pour plus tard » et commencer à réparer le
 bug : la ceinture à moitié faite est la cause numéro un de casser ce qui marchait. Des données de
 test « d'exemple » au lieu de la copie anonymisée : les bugs d'un legacy vivent dans les vraies
 données (le rappel en double de Turnos n'apparaît qu'avec certains patients). Et déplacer le
@@ -612,7 +583,7 @@ décommente, il passe.
 
 ### Leçon N5 — Verrous et carte producteur-consommateur depuis le code
 
-**Ce que vous devez comprendre.** Les leçons 12 et 8, faites par inventaire sur ce qui existe
+**Ce que vous devez comprendre.** Les leçons 14 et 11, faites par inventaire sur ce qui existe
 déjà, avant de rien changer. L'agent va trouver dans le code plus de choses que le métier ne se
 rappelle que le système fait vers l'extérieur : envois, effacements, processus nocturnes. La
 comparaison entre les deux listes est le résultat. Et chaque verrou porte une proposition de
@@ -666,7 +637,7 @@ maintenant ; un verrou sur un export mensuel peut attendre le bloc qui touchera 
 **Avant d'envoyer le prompt** de clôture : le tableau avec votre verdict par ligne, et la liste
 des verrous « maintenant » pour le trou du prompt.
 
-3. Clôturez avec le prompt de clôture de la leçon 12, en ne listant que les verrous
+3. Clôturez avec le prompt de clôture de la leçon 14, en ne listant que les verrous
    « maintenant » ; les autres restent dans la file avec leur marque.
 
 **Vérification de complétude.** La liste de l'agent a-t-elle plus d'actions que celle de la
@@ -678,7 +649,7 @@ est-elle dans la carte comme consommateur ?
 `docs/LOCKS.md` avec les verrous « maintenant » implémentés et éprouvés.
 
 **Erreurs typiques.** Implémenter tous les verrous maintenant « tant qu'on y est » : c'est la
-règle des deux vitesses violée, et c'est une semaine qui n'est pas consacrée au bug que le client
+règle des deux vitesses violée, et c'est du temps qui n'est pas consacré au bug que le client
 a demandé.
 
 **Dans le projet-guide.** L'agent trouve trois actions que la responsable n'avait pas listées :
@@ -695,7 +666,7 @@ colonne, la feuille se casse en silence.
 
 **Ce que vous devez comprendre.** La leçon 3 avec un avantage : les données primaires sont dans la
 base et dans les journaux. Elles ne se demandent pas, elles se mesurent, avec un compteur et son
-test (leçon 9). La responsable n'apporte que ce qui n'est nulle part : de combien ils espèrent
+test (leçon 7). La responsable n'apporte que ce qui n'est nulle part : de combien ils espèrent
 croître, et si le système va être vendu à d'autres cabinets.
 
 **Avant d'envoyer le prompt**, de vos mains :
@@ -850,7 +821,7 @@ attendre » et on le dit.
 
 ### Leçon R1 — Le premier bloc : le bug, en mode correctif
 
-**Ce que vous devez comprendre.** Un élément en attente correctif est un bug connu. À la leçon 7
+**Ce que vous devez comprendre.** Un élément en attente correctif est un bug connu. À la leçon 8
 le rouge se fabriquait ; ici le rouge est le bug lui-même : le test qui reproduit la panne, en
 pilotant le flux comme l'utilisateur qui l'a signalée, doit échouer contre le code actuel. S'il
 n'échoue pas, vous avez reproduit un autre bug. Ce rouge est la preuve que vous réparez la bonne
@@ -910,7 +881,7 @@ c'est vous qui le décidez.
 3. Lisez la cause racine avant d'autoriser la réparation. S'il vous pose une question de métier,
    décidez-la avec la responsable et répondez avec le format de clôture de la leçon 6.
 4. À la clôture : lancez vous-même la batterie de caractérisation. Et utilisez le système dans
-   l'environnement de test pendant une demi-heure, comme la réceptionniste : le regard humain ne
+   l'environnement de test pendant un moment, comme la réceptionniste : le regard humain ne
    se délègue pas.
 
 **Vérification de complétude.** Avez-vous vu le rouge du test qui reproduit le bug, avec des
@@ -940,7 +911,7 @@ mensuelle, qui est consommatrice de la table ; la responsable l'approuve.
 ### Leçon R2 — Le second bloc : l'acompte, en mode évolutif
 
 **Ce que vous devez comprendre.** Le nouveau sur l'ancien se construit avec la méthode complète,
-exactement comme aux leçons 5 à 10 de la première partie : spécification dans l'élément en
+exactement comme aux leçons 5 à 12 de la première partie : spécification dans l'élément en
 attente, décisions avec leur date, test au rouge, test de bout en bout, rapport honnête. Deux
 différences. La régression des voisins, c'est le système entier, et c'est la batterie de
 caractérisation qui le dit. Et quand le bloc entre dans un module, les éléments en attente de
@@ -954,17 +925,17 @@ propre preuve. On ne fait pas au nouveau module ce que le legacy a fait à l'anc
   prendre : quels rendez-vous portent un acompte, de combien, ce qui se passe s'il n'est pas payé.
 - Le relevé des actions à conséquence (N5) avec la ligne « encaisser un acompte » ajoutée, parce
   que c'est une action nouvelle qui agit sur le monde : verrou avant de construire, comme à la
-  leçon 12.
+  leçon 14.
 - La batterie de caractérisation au vert.
 
 1. Ouvrez le bloc avec le prompt d'ouverture de la leçon 5, sur la demande de l'acompte, et lisez
    la spécification comme la responsable.
-2. Avant de construire, le verrou : collez-lui le prompt de clôture de la leçon 12 pour l'action
+2. Avant de construire, le verrou : collez-lui le prompt de clôture de la leçon 14 pour l'action
    « encaisser un acompte », avec le mode à blanc d'abord.
-3. Construisez avec la routine de la leçon 7, élément en attente par élément en attente, avec les
+3. Construisez avec la routine de la leçon 8, élément en attente par élément en attente, avec les
    appariés dans le même bloc.
 4. À la clôture du bloc : la batterie complète de bout en bout (celle de caractérisation plus les
-   tests nouveaux), avec le prompt de clôture de bloc de la leçon 7, et une demi-heure de votre
+   tests nouveaux), avec le prompt de clôture de bloc de la leçon 8, et un moment de votre
    part à utiliser le système.
 
 **Vérification de complétude.** L'acompte a-t-il un verrou avec son test au rouge avant que
@@ -982,7 +953,7 @@ patient ; c'est une action vers l'extérieur.
 
 **Dans le projet-guide.** L'acompte utilise le même canal que les rappels, qui a maintenant une
 file d'attente (la décision asymétrique de N6 qui se rembourse toute seule). Verrou : confirmation
-explicite de la réceptionniste et montant fixé par le praticien ; mode à blanc pendant une semaine
+explicite de la réceptionniste et montant fixé par le praticien ; mode à blanc pendant un temps
 en consignant « j'aurais demandé un acompte à ». L'apparié de l'écran d'annulation (la
 confirmation) se paie dans ce bloc parce que l'acompte change ce qui se passe à l'annulation. À la
 clôture, la batterie lance sept flux : les cinq de caractérisation, celui du bug de R1 et celui de
@@ -992,20 +963,20 @@ l'acompte.
 
 ## Ensuite : mise en production et exploitation
 
-À partir d'ici, le legacy est un système avec méthode, et les leçons 11 à 21 de la première partie
+À partir d'ici, le legacy est un système avec méthode, et les leçons 13 à 22 de la première partie
 s'appliquent telles quelles, avec quatre remarques. La première porte sur les six échelons de
 qualité opérationnelle : l'observabilité minimale et le scan de vulnérabilités sont déjà entrés
 avec la ceinture, les mesures de persistance sont déjà en N6, et le test de charge se lance avec
 ces volumes avant le premier déploiement ; les deux supervisions démarrent avec la première
 lecture comme ligne de base, et ce qui allait déjà mal le premier jour devient un élément en
-attente avec sa marque. Les trois autres remarques sont celles-ci. L'audit de la leçon 11 se
+attente avec sa marque. Les trois autres remarques sont celles-ci. L'audit de la leçon 13 se
 compare à celui de N3 : combien de dette a été payée, combien il en reste. Les manuels de la
-leçon 14 n'existent souvent pas dans un legacy, et ils se génèrent à partir du système tel qu'il est et des éléments
+leçon 20 n'existent souvent pas dans un legacy, et ils se génèrent à partir du système tel qu'il est et des éléments
 en attente clos, qui maintenant documentent bel et bien ce qui a été fait. Et la rétrospective de
-la leçon 15 a une question propre à ce chemin : combien a coûté la normalisation (en heures, en
-jetons, en semaines avant le premier changement), et quelle part de la dette marquée « peut
-attendre » a fini par coûter quand même. Cette réponse est celle qui corrigera le calendrier de
-cette partie dans la prochaine version.
+la leçon 23 a une question propre à ce chemin : combien a coûté la normalisation (en heures, en
+jetons, en étapes avant le premier changement), et quelle part de la dette marquée « peut
+attendre » a fini par coûter quand même. Cette réponse est celle qui corrigera l'ordre de cette
+partie dans la prochaine version.
 
 ## Liste de sortie du tronçon de normalisation
 

@@ -3,7 +3,7 @@
 **Stretch:** loop.
 **When:** in every session of the loop, every time the agent runs into an unwritten business rule
 or a fork that changes what the user sees. There are usually two or three per block. Also during
-start-up (steps 0 and 3) and at go-live (12 and 13).
+start-up (steps 0 and 3) and at go-live (14 and 15).
 **Form:** short conversation: the agent detects that there is a decision, asks, and leaves it
 written down.
 **Size:** mandatory in every project. In a small one the register can be a ten-row table; what

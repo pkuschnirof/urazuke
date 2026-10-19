@@ -64,7 +64,7 @@ o agente:
   prioridade, também. Não o "melhore" você: as ambiguidades são o que o agente tem que perguntar.
 - `docs/SEMANTIC_TREE.md` (degrau 2), em dia: cada pendência vai pender de um nó dali.
 - `PROJECT.md` e `docs/STATUS.md` (degrau 2), em dia.
-- Se houve auditorias (degrau 11) ou testes humanos (a vista humana no fechamento do bloco
+- Se houve auditorias (degrau 13) ou testes humanos (a vista humana no fechamento do bloco
   anterior): seus achados, em `docs/AUDIT_[data].md` ou anotados no estado vivo, porque são
   pendências candidatas para este bloco.
 - Estado mínimo aceitável: o pedido do bloco está escrito com as palavras do cliente, e a árvore
@@ -105,7 +105,7 @@ especificação completa de cada pendência, campo por campo, que é a engenhari
 clássica decomposta em unidades pequenas; o nó da árvore de que pende, que é o que permite a você
 detectar uma pendência fora de escopo; as regras de negócio com sua decisão ou marcadas como
 faltantes, que é o engate com o degrau 6; os critérios de aceitação na forma clássica, que são o
-roteiro do teste de ponta a ponta do degrau 7; e uma ordem proposta com sua razão, para que você a
+roteiro do teste de ponta a ponta do degrau 8; e uma ordem proposta com sua razão, para que você a
 confirme ou mude.
 
 **Rotina de cada sessão (vai no contrato de convivência):**

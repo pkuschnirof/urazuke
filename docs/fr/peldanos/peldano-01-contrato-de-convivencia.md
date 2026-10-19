@@ -1,8 +1,8 @@
 # Étape 1 — Le contrat de collaboration (contrat de l'échelon)
 
 **Tronçon :** démarrage.
-**Quand :** une seule fois, la première semaine, immédiatement après l'éligibilité ; on le révise
-quand un coup dur l'exige. Une demi-heure.
+**Quand :** une seule fois, immédiatement après l'éligibilité ; on le révise
+quand un coup dur l'exige.
 **Forme :** un seul envoi, avec un tour d'ajustement de votre part.
 **Taille :** obligatoire dans tout projet. C'est l'échelon le moins cher de tous et celui qui évite
 le plus de frustration.

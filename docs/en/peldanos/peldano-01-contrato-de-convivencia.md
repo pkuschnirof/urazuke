@@ -1,8 +1,8 @@
 # Step 1 — The working agreement (step contract)
 
 **Stretch:** start-up.
-**When:** once only, in the first week, immediately after eligibility; revised when a hard lesson
-demands it. Half an hour.
+**When:** once only, immediately after eligibility; revised when a hard lesson
+demands it.
 **Form:** one shot, with one adjustment round from you.
 **Size:** mandatory in every project. It is the cheapest step of all and the one that prevents
 the most frustration.

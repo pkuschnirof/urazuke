@@ -32,7 +32,7 @@ weil es genau das sagt, was die Methode verlangt: dass jede Behauptung des Model
 Rückhalt kommt, und dass sich der Rückhalt prüfen lässt, ohne den Code zu lesen. Der Name wird
 nicht übersetzt; der Untertitel, „die Nachweis-Methode“, schon: *the evidence method*, *o método
 da evidência*, *la méthode de la preuve*, *il metodo del riscontro*, 裏付けの方法, 验证方法. In
-diesem Dokument ist „die Leiter“ die Struktur der Methode —ihre zweiundzwanzig Schritte— und
+diesem Dokument ist „die Leiter“ die Struktur der Methode —ihre vierundzwanzig Schritte— und
 „Urazuke“ die ganze Methode.
 
 ## Worum es geht
@@ -43,7 +43,13 @@ was es dir liefern muss, und wie du —ohne Code zu lesen— weißt, dass das, w
 vollständig ist. Die Wette ist, dass jede Person, mit jedem Werkzeug der künstlichen Intelligenz,
 das zum Programmieren taugt, Software bauen kann, indem sie sich mit einem Modell unterhält, statt
 den Code von Hand zu tippen, und dass das, was herauskommt, robust ist, produktionsreif, und, das
-ist das Wichtige, **nicht verlangt, dass der Projekteigentümer eine einzige Zeile Code durchsieht**.
+ist das Wichtige, **nicht verlangt, dass der Projekteigentümer eine einzige Zeile Code
+durchsieht**. Und ich will genauso klar darüber sein, was sie nicht ist: sie ist kein Prozess,
+um Systeme schneller zu machen. Sie ist ein Prozess, um Systeme betreibbar und wartbar zu machen,
+ohne dass irgendjemand auch nur ein Bit ihres Codes verstehen muss, denn den Code versteht und
+pflegt der agentische Rahmen, der ihn schreibt. Die Geschwindigkeit ist, wenn sie auftaucht, eine
+Folge, und deshalb gibt es in diesem Dokument keine Fristen: die setzen die Größe und die
+Komplexität jedes Systems, und die Methode setzt nur die Reihenfolge.
 
 Das klingt ehrgeizig, und das ist es. Aber ich habe etwas, das fast niemand hat: drei reale
 Systeme, die ich genau so gebaut habe, die heute mit echten Kunden laufen, und aus denen ich jede
@@ -66,7 +72,7 @@ allein. Der erste ist **mein eigenes Wissen über Systemtechnik**. Ich wende sei
 was jeder, der aus der Systemwelt kommt, sofort wiedererkennt: Erhebung vor dem Entwurf,
 geschriebene Anforderungen, Dimensionierung mit Zahlen, Entwurf, Bau, Tests als Beleg,
 reproduzierbares Deployment, Betrieb, periodisches Audit, Dokumentation als Teil des Produkts. Das
-meiste von dem, was ich in den zweiundzwanzig Schritten verlange, ist das, was ich in einem gut
+meiste von dem, was ich in den vierundzwanzig Schritten verlange, ist das, was ich in einem gut
 geführten Projekt immer verlangt habe. Ich habe es nicht für die Modelle erfunden; ich habe es
 von früher mitgebracht.
 
@@ -98,12 +104,12 @@ nicht der häufigste. Die Methode hat drei Anwendungsfälle, und es lohnt sich z
 du steckst, bevor du den Agenten öffnest, denn es ändert sich, wo man einsteigt:
 
 1. **Neues Projekt.** Leerer Ordner und ein Eigentümer mit einer Anfrage. Man steigt bei Schritt 0
-   ein und erklimmt die zweiundzwanzig der Reihe nach. Das ist es, was dieses Dokument
+   ein und erklimmt die vierundzwanzig der Reihe nach. Das ist es, was dieses Dokument
    beschreibt, mit seinen Verträgen und dem Kurshandbuch.
 2. **Evolutiv-korrektiv über einem System, das mit der Methode gemacht wurde.** Das System hat die
    Leiter schon erklommen: es hat Vereinbarung, Karte, mit Beleg geschlossene offene Posten,
    Batterie, Deployment und Handbücher. Man steigt bei Schritt 5 ein, indem man einen Block
-   öffnet, und folgt der Schleife; die 11 periodisch; die 15 beim Abschluss jeder Etappe. Es ist
+   öffnet, und folgt der Schleife; die 13 periodisch; die 23 beim Abschluss jeder Etappe. Es ist
    die Phase 4 der Zeitlinie (Teil B).
 3. **Evolutiv-korrektiv über einem System, das ohne die Methode gemacht wurde.** Ein System, das
    läuft, mit Nutzern, von einem anderen gemacht oder von einem selbst ohne Beleg, das korrigiert
@@ -169,9 +175,9 @@ Was sich sehr wohl ändert, und wo mein Beitrag liegt, sind drei Dinge:
    [Ref. 36](REFERENCIAS.md#ref-36), der Authentifizierungsfehler, der als „Erfolg“ gemeldet wurde
    [Ref. 43](REFERENCIAS.md#ref-43), die drei von vier Behauptungen, die falsch waren. Also bleibt
    „Belege prüfen statt Code“ das richtige Prinzip, aber **der Beleg muss sich selbst beweisen**:
-   der rot gesehene Test (Schritt 7), das Instrument mit seinem Schutz (Schritt 9), der Bericht,
-   der das Verifizierte vom Geglaubten trennt (Schritt 10), der vom Bauenden verschiedene Auditor
-   (Schritt 11). Das ist keine neue Sorge: es ist dieselbe Disziplin der Unabhängigkeit der
+   der rot gesehene Test (Schritt 8), das Instrument mit seinem Schutz (Schritt 7), der Bericht,
+   der das Verifizierte vom Geglaubten trennt (Schritt 12), der vom Bauenden verschiedene Auditor
+   (Schritt 13). Das ist keine neue Sorge: es ist dieselbe Disziplin der Unabhängigkeit der
    Qualitätskontrolle, einen Schritt weiter nach innen getragen.
 
 3. **Die Kosten der Artefakte.** In der klassischen Methode war Dokumentation teuer, also machte
@@ -210,15 +216,16 @@ Jeder Schritt hat acht Teile, immer dieselben, damit sie sich vergleichen lassen
 Zwei wichtige Klarstellungen. Erstens: **die Leiter ist neutral gegenüber dem Werkzeug**. Jedes
 Artefakt ist eine Datei, ein Test oder ein Skript; keines verlangt mein Werkzeug oder irgendein
 anderes. Forge automatisiert sie (die Tore, die Befehle, das Register der offenen Posten), aber der
-Schritt existiert ohne Forge. Zweitens: **die Schritte sind nicht streng sequenziell**. Es gibt
-vier Abschnitte: die von 0 bis 4 sind der Start und werden einmal pro Projekt erklommen; die von 5
-bis 10 sind die Schleife, die sich mit jeder Änderung wiederholt; die von 11 bis 15 sind der
-Betrieb, wenn das System schon lebt; und die von 16 bis 21 sind die Betriebsqualität: vier, die
-vor dem ersten Deployment in die Produktion erklommen werden (Beobachtbarkeit, Persistenz,
-Schwachstellen, Leistung), und zwei, die das System überwachen, sobald es deployt ist (Monitoring
-der Ressourcen und Monitoring der Fehler). Die 15 schließt den Kreis und kehrt zur 0 für das
-nächste Projekt zurück. Aber „nicht streng sequenziell“ heißt nicht „in beliebiger Reihenfolge“:
-Teil B sagt genau, wann jeder erklommen wird und was dazwischen passiert.
+Schritt existiert ohne Forge. Zweitens: **die Schritte sind in der Reihenfolge nummeriert, in der
+sie erklommen werden**, und sie gruppieren sich in vier Abschnitte: die von 0 bis 4 sind der Start
+und werden einmal pro Projekt erklommen; die von 5 bis 12 sind die Schleife, die sich mit jeder
+Änderung wiederholt; die von 13 bis 20 sind die Produktionsfreigabe und werden einmal erklommen,
+vor dem ersten Deployment; und die von 21 bis 23 sind der Betrieb, wenn das System schon lebt.
+Die 23 schließt den Kreis und kehrt zur 0 für das nächste Projekt zurück. Innerhalb eines
+Abschnitts sagt die Zahl die Reihenfolge; zwischen den Abschnitten wiederholt sich die Schleife,
+während die anderen drei einmal erklommen werden. Aber „nicht streng sequenziell“ heißt nicht
+„in beliebiger Reihenfolge“: Teil B sagt genau, wann jeder erklommen wird und was dazwischen
+passiert.
 
 ---
 
@@ -227,38 +234,97 @@ Teil B sagt genau, wann jeder erklommen wird und was dazwischen passiert.
 Dieser Teil existierte in den vorherigen Versionen nicht, und sein Fehlen war ein ernster Mangel:
 die Methode sagte, was zu tun ist und wie es zu prüfen ist, aber sie sagte nicht, **wann**. Und
 „wann“ ist die Hälfte einer Methode. Ein Leser, der sie wörtlich nahm, konnte die
-zweiundzwanzig Schritte einen nach dem anderen erklimmen und sich fragen, in welchem Moment dann
+vierundzwanzig Schritte einen nach dem anderen erklimmen und sich fragen, in welchem Moment dann
 die Infrastruktur gemacht
 wird, die Kette aus Continuous Integration und Deployment, die Aufnahme der Anforderungen, die
 Entwicklung der Funktionalität, die Ende-zu-Ende-Tests aller Flüsse, der menschliche Blick auf die
 Bildschirme, und die menschlichen Abnahmetests. All das passiert, und es passiert in präzisen
 Momenten, zwischen den Schritten und innerhalb von ihnen. Hier schreibe ich es auf.
 
+### B.0 Der ganze Prozess in einem Bild
+
+Vor den Tabellen die Zeichnung. Sie ist in Prozessnotation gehalten (im Stil von BPMN: runde
+Ereignisse, rechteckige Aufgaben, rautenförmige Tore, gepunktete Rückflusspfeile) und sagt drei
+Dinge, die die Tabellen schlechter sagen. Erstens: der Prozess **beginnt außerhalb der Methode**,
+in der Anforderungstechnik, die eine Voraussetzung und zugleich permanent ist: sie hört nie auf,
+und jede neue Anforderung tritt wieder ein. Zweitens: eine neue Anforderung tritt nicht einfach in
+die Schleife ein; sie **speist in die Bewertungsschritte zurück**, denn sie kann die Zahlen
+ändern, mit denen die Architektur entschieden wurde (hält sie das „mal zehn“ noch aus?), und von
+da an weiter. Drittens: der Prozess **endet in der manuellen Ausführung der Testfälle** durch
+Menschen (Schritt 10), und was diese Ausführung findet, kehrt als Anforderung in die Schleife
+zurück. Der Kreis schließt sich mit Menschen, nicht mit Maschinen.
+
+```mermaid
+flowchart TB
+  subgraph RE["Anforderungstechnik · externe und permanente Voraussetzung"]
+    direction TB
+    E0((Anfrage des Geschäfts)) --> RE1["Erhebung: Interviews, Anwendungsfälle, Domänenmodell, Prototypen"]
+    RE1 --> RE2["Neue oder geänderte Anforderung"]
+  end
+  subgraph ARR["Start · Schritte 0 bis 4, einmal"]
+    direction TB
+    P0["0 Eignung"] --> P1["1 Arbeitsvereinbarung"] --> P2["2 Definition und semantischer Baum"] --> P3["3 Dimensionieren"]
+    P3 --> G1{"Hält die Architektur die Zahlen aus?"}
+    G1 -- ja --> P4["4 Skelett mit Toren"]
+    G1 -- nein --> P3
+  end
+  subgraph LOOP["Schleife · Schritte 5 bis 12, mit jeder Änderung"]
+    direction TB
+    P5["5 Spezifizierte offene Posten"] --> P6["6 Geschriebene Entscheidungen"] --> P7["7 Messen"] --> P8["8 Roter Test und Ende zu Ende"] --> P9["9 Code-Qualität"] --> P10["10 Manuelle Testfälle"] --> P11["11 Symmetrie"] --> P12["12 Ehrlicher Bericht"]
+    P12 --> G2{"Abschluss des Blocks?"}
+    G2 -- nein --> P5
+  end
+  H1["Manuelle Ausführung der Testfälle, durch Menschen"]
+  subgraph OUT["Produktionsfreigabe · Schritte 13 bis 20, einmal"]
+    direction TB
+    P13["13 Audit"] --> P14["14 Sperren"] --> P15["15 Kette in die Produktion"] --> P16["16 Beobachtbarkeit"] --> P17["17 Persistenz"] --> P18["18 Schwachstellen"] --> P19["19 Leistung"] --> P20["20 Lebendige Dokumentation"]
+  end
+  D((Erstes Deployment))
+  subgraph OPS["Betrieb · Schritte 21 bis 23"]
+    direction TB
+    P21["21 Monitoring der Ressourcen"] --> P22["22 Monitoring der Fehler"] --> P23["23 Resident und Retrospektive"]
+  end
+  RE1 --> P0
+  P4 --> P5
+  RE2 -. "speist zurück: ändern sich die Zahlen?" .-> P3
+  RE2 --> P5
+  G2 -- ja --> H1
+  H1 -- "Befunde = Anforderungen" --> RE2
+  H1 --> P13
+  P20 --> D --> P21
+  P21 -. "Abweichungen = offene Posten" .-> P5
+  P22 -. "Fehler = offene Posten" .-> P5
+  P23 -. "zurück zur 0 für die nächste Etappe" .-> P0
+```
+
+Wenn die Zeichnung nicht zu sehen ist (der Markdown-Betrachter zeichnet kein Mermaid), beschreibt
+der Text darüber sie vollständig; in der HTML-Fassung zeichnet sie sich von allein.
+
 ### B.1 Die fünf Phasen eines Projekts
 
 Ein Projekt, das mit dieser Methode geführt wird, durchläuft fünf Phasen. Die drei mittleren
-entsprechen den Abschnitten der Leiter (der vierte Abschnitt, die Betriebsqualität, verteilt
-sich auf die Phase 3 und die Phase 4); die zwei an den Enden sind die anfängliche Aufnahme
-und das Leben in Produktion, die die Methode ebenfalls abdeckt, auch wenn sie keine „Schritte“ an
-sich sind.
+entsprechen den Abschnitten der Schleife, der Produktionsfreigabe und des Betriebs; die Phase 1 ist
+der Abschnitt des Starts; und die Phase 0 ist die anfängliche Aufnahme, die die Methode ebenfalls
+abdeckt, auch wenn sie kein „Schritt“ an sich ist. Ich schreibe keine Dauern hin: sie hängen von
+der Größe und der Komplexität dessen ab, was verlangt wird, und eine geschriebene Dauer wird zu
+einer falschen Erwartung. Was nicht von der Größe abhängt, ist die Reihenfolge.
 
-| Phase | Typische Dauer in einem kleinen Projekt | Schritte, die erklommen werden | Was sonst in dieser Phase passiert |
-|---|---|---|---|
-| 0. Aufnahme | zwei Tage bis eine Woche, parallel zu Phase 1 | noch keiner; sie ist der Rohstoff für 0, 2, 3 und 5 | Erhebung des Geschäfts mit dem Eigentümer, mit den klassischen Methoden der Anforderungstechnik (siehe B.5): Interviews, Anwendungsfälle oder User Stories, Domänenmodell, Bildschirmprototypen. Wird in Prosa geschrieben, absichtlich unvollständig; der Agent vervollständigt sie durch Fragen. |
-| 1. Start | eine Woche, am Stück | 0, 1, 2, 3, 4 | Eignung, Vereinbarung, Definition, Dimensionierung. Und **die gesamte anfängliche Infrastruktur**: das Repository, die Testumgebung, die Continuous Integration, das erste Deployment mit dem leeren System. |
-| 2. Schleife | drei bis sechs Wochen, in Funktionsblöcken von ein bis zwei Wochen | 5, 6, 7, 8, 9, 10 mit jeder Änderung | Funktionale Entwicklung Block für Block; rote Tests; Ende-zu-Ende-Tests des gerade gebauten Flusses; menschlicher Blick auf jeden neuen Bildschirm; beim Abschluss jedes Blocks menschliche Tests in der Testumgebung. |
-| 3. Produktionsfreigabe | eine bis zwei Wochen | 11, 12, 13, 14, und die vier der Betriebsqualität vor dem Deployment: 16, 17, 18, 19 | Audit durch eine andere Sitzung; Sperren auf allem, was auf die Welt wirkt; Abschluss der Deployment-Kette in die Produktion mit getestetem Rollback; die drei Handbücher; Abnahmetests mit dem Eigentümer über alle Flüsse. |
-| 4. Betrieb | solange das System lebt | 15; 20 und 21, in der Woche des ersten Deployments aufgebaut; die Schleife (5 bis 10) für jede Weiterentwicklung; 11 und 18 periodisch | Residenter Agent; Audit alle ein bis zwei Monate; jede neue Änderung geht durch die vollständige Schleife hinein und durch die Deployment-Kette hinaus; Retrospektive beim Abschluss jeder Etappe. |
+| Phase | Schritte, die erklommen werden | Was sonst in dieser Phase passiert |
+|---|---|---|
+| 0. Aufnahme | noch keiner; sie ist der Rohstoff für 0, 2, 3 und 5 | Erhebung des Geschäfts mit dem Eigentümer, mit den klassischen Methoden der Anforderungstechnik (siehe B.5): Interviews, Anwendungsfälle oder User Stories, Domänenmodell, Bildschirmprototypen. Wird in Prosa geschrieben, absichtlich unvollständig; der Agent vervollständigt sie durch Fragen. |
+| 1. Start | 0, 1, 2, 3, 4 | Eignung, Vereinbarung, Definition, Dimensionierung. Und **die gesamte anfängliche Infrastruktur**: das Repository, die Testumgebung, die Continuous Integration, das erste Deployment mit dem leeren System. |
+| 2. Schleife | 5 bis 12 mit jeder Änderung: offene Posten, Entscheidungen, messen, roter Test, Qualität, manuelle Testfälle, Symmetrie, Bericht | Funktionale Entwicklung Block für Block; rote Tests; Ende-zu-Ende-Tests des gerade gebauten Flusses; menschlicher Blick auf jeden neuen Bildschirm; beim Abschluss jedes Blocks menschliche Tests in der Testumgebung. |
+| 3. Produktionsfreigabe | 13 bis 20, der Reihe nach: Audit, Sperren, Kette in die Produktion, Beobachtbarkeit, Persistenz, Schwachstellen, Leistung, Dokumentation | Audit durch eine andere Sitzung; Sperren auf allem, was auf die Welt wirkt; Abschluss der Deployment-Kette in die Produktion mit getestetem Rollback; die drei Handbücher; Abnahmetests mit dem Eigentümer über alle Flüsse. |
+| 4. Betrieb | 21 und 22, mit dem ersten Deployment aufgebaut; 23 beim Abschluss jeder Etappe; die Schleife (5 bis 12) für jede Weiterentwicklung; 13 und 18 periodisch | Residenter Agent; Audit alle ein bis zwei Monate; jede neue Änderung geht durch die vollständige Schleife hinein und durch die Deployment-Kette hinaus; Retrospektive beim Abschluss jeder Etappe. |
 
 Diese Tabelle ist die des neuen Projekts. Wenn das System schon existiert und nicht mit der
-Methode geboren wurde, werden die Phasen 0 und 1 durch den Normalisierungsabschnitt ersetzt (drei
-Wochen für ein kleines System: Lesen, Gurt, messen und ordnen), der im
+Methode geboren wurde, werden die Phasen 0 und 1 durch den Normalisierungsabschnitt ersetzt
+(Lesen, Gurt, messen und ordnen), der im
 [evolutiv-korrektiven Weg](EVOLUTIVO_CORRECTIVO.md) steht; die Phasen 2, 3 und 4 sind dieselben.
 
-Die Zeiten gelten für ein kleines Projekt, von der Größe des Leitprojekts des Kurses. In einem
-Projekt mit Nutzern und Konsequenzen verlängert sich die Schleife, und die Phasen 1 und 3 bleiben
-fast gleich, denn was wächst, ist die Funktionalität, nicht die Infrastruktur und nicht der
-Abschluss.
+In einem Projekt mit Nutzern und Konsequenzen wächst die Schleife: die Funktionalität. Der Start,
+die Produktionsfreigabe und der Betrieb haben in einem kleinen und in einem großen System dieselbe
+Form; es ändert sich, wie viel zu messen ist, nicht was.
 
 ### B.2 Was zwischen Schritt und Schritt passiert
 
@@ -266,16 +332,16 @@ Hier ist das, was gefehlt hat. Für jede Phase, welche Aufgaben welcher Art gema
 welchem exakten Moment relativ zu den Schritten. Lies die Tabelle zeilenweise: jede Zeile ist eine
 Art von Arbeit, und jede Zelle sagt, wann sie innerhalb dieser Phase gemacht wird.
 
-| Art der Arbeit | Start (Schritte 0 bis 4) | Schleife (Schritte 5 bis 10, pro Block) | Produktionsfreigabe (11 bis 14 und 16 bis 19) | Betrieb (15, 20, 21 und Schleife) |
+| Art der Arbeit | Start (Schritte 0 bis 4) | Schleife (Schritte 5 bis 12, pro Block) | Produktionsfreigabe (13 bis 20) | Betrieb (21 bis 23 und Schleife) |
 |---|---|---|---|---|
-| **Anforderungsaufnahme** | Vor Schritt 0: Erhebung in Prosa mit dem Eigentümer, mit Interviews, Anwendungsfällen und Domänenmodell. Wird in 2 (Definition und semantischer Baum) und in 3 (Mengen) vervollständigt. | Beim Öffnen jedes Blocks: die Anfrage des Kunden für diesen Block, so wie er sie sagen würde, wird in offene Posten mit **detaillierter Spezifikation** verwandelt (Schritt 5): Beschreibung, Abnahmekriterien, anwendbare Regeln, Daten, Bildschirme, Randfälle. Die Fragen, die der Agent stellt, sind die Feinaufnahme. | Vor 12: Erhebung der Aktionen mit Konsequenz. Vor 13: Erhebung der Umgebungen und Zugänge. | Jede neue Anfrage tritt als spezifizierter offener Posten ein, an seinem Knoten des semantischen Baums hängend; der residente Agent sammelt, was die Nutzer verlangen. |
-| **Infrastruktur** | Die gesamte anfängliche, in Schritt 4: Repository, Struktur, Testumgebung, Zugangsdaten, Testdomain. Es wird keine Funktionalität gebaut, bis das leere Skelett deployt ist. | Keine, es sei denn, ein Block verlangt sie (eine Warteschlange, ein externer Dienst). Wenn er sie verlangt, ist es ein offener Posten mit seinem Test. | In 13: Produktionsumgebung, Geheimnisse auf dem Server, echte Domain, Backups, minimales Monitoring. | Infrastrukturänderungen gehen durch die Schleife und durch 13; nie „von Hand, schnell“. |
-| **CI/CD-Kette** | In Schritt 4: die Continuous Integration lässt die Batterie bei jedem Push ab der ersten Woche laufen, und das Deployment in die Testumgebung ist beim Mergen automatisch. | Läuft von allein. Jeder Commit durchläuft sie; wenn sie nicht grün ist, schließt der Block nicht. | In 13 wird sie vervollständigt: das Deployment in die Produktion wartet auf das Ergebnis der Integration und verpackt nur; die Beförderung ist ein schriftliches Verfahren; das Rollback wird getestet. | Jedes Deployment folgt der Routine von 13: Testumgebung grün mit derselben Version, Rollback bereit, danach Ende-zu-Ende-Prüfung in der Produktion. |
-| **Funktionale Entwicklung** | Keine. Das Skelett wird absichtlich leer deployt. | Sie ist das Zentrum der Schleife: der Agent nimmt einen offenen Posten (5), fragt nach den fehlenden Geschäftsregeln (6), baut, und schließt mit Beleg (7, 8, 9, 10). Block für Block, vom Grundlegenden zu dem, was Konsequenzen hat. | Was auf die Welt wirkt (abbuchen, senden), wird in der Schleife **nach** Schritt 12 gebaut, mit seinen Sperren, und startet im Trockenlauf. | Die Weiterentwicklungen gehen durch die Schleife. |
-| **Automatische Tests** | Ein Smoke-Test, der besteht, in 4. Er ist der Keim der Batterie. | Mit jedem offenen Posten: der rot bewiesene Test (7), die Regression der Nachbarn in derselben Sitzung, und **ein Ende-zu-Ende-Test des gerade gebauten Flusses**, vom Bildschirm bis zum Backend. Beim Schließen eines Blocks: die vollständige Ende-zu-Ende-Batterie **aller** bestehenden Flüsse, in der Testumgebung. | Vor dem ersten Deployment in die Produktion: die vollständige Ende-zu-Ende-Batterie aller Flüsse, grün, mit derselben Version, die befördert wird. Nach dem Deployment: eine Ende-zu-Ende-Prüfung auf der Produktion, nur lesend. | Mit jeder Änderung dasselbe wie in der Schleife. |
-| **Menschlicher Blick auf die Bildschirme** | Beim Abschluss von 4: der Eigentümer öffnet die URL der Testumgebung und sieht den leeren Bildschirm. Es wirkt trivial und ist das erste Mal, dass jemand, der nicht der Agent ist, das System ansieht. | **Mit jedem offenen Posten, der einen Bildschirm berührt**: der Agent liefert einen echten Screenshot aus der Testumgebung, und der Eigentümer sieht ihn an. Zehn Sekunden. Es ist die billigste Art, das zu finden, was kein Test findet: dass der Knopf steht, wo er nicht hingehört, dass der Text etwas anderes sagt, dass der Fluss nicht der ist, den sich das Geschäft vorgestellt hat. | In 14: die Screenshots des Benutzerhandbuchs sind der letzte systematische menschliche Blick vor der Produktion. | Jeder neue oder geänderte Bildschirm, wie in der Schleife. |
-| **Menschliche Tests** | Noch keine, außer den leeren Bildschirm zu öffnen. | **Beim Abschluss jedes Funktionsblocks**: der Eigentümer, oder ein vertrauenswürdiger Nutzer, benutzt das System in der Testumgebung so, wie er es wirklich benutzen würde, entlang der Flüsse des Blocks. Was er findet, wird als offene Posten notiert. Der nächste Block wird nicht geöffnet, solange es menschliche Befunde ohne offenen Posten gibt. | Vor dem ersten Deployment in die Produktion: **Abnahmetests** des Eigentümers über alle Flüsse, mit realistischen Testdaten, in der Testumgebung. Und in 14 folgt eine Person, die nicht programmiert, dem Wiederherstellungshandbuch. | Mit jeder Weiterentwicklung, beim Abschluss ihres Blocks. |
-| **Entscheidungen des Eigentümers** | In 0 (go oder no-go), 1 (die Vereinbarung), 2 (was es NICHT ist), 3 (die Architekturoption). | Jedes Mal, wenn der Agent wegen einer nicht geschriebenen Geschäftsregel anhält (6). Meist sind es zwei oder drei pro Block. | In 12 (Sperre für Sperre), in 13 (in die Produktion befördern), in 15 (die Stufe des residenten Agenten). | Die, die anfallen; immer schriftlich. |
+| **Anforderungsaufnahme** | Vor Schritt 0: Erhebung in Prosa mit dem Eigentümer, mit Interviews, Anwendungsfällen und Domänenmodell. Wird in 2 (Definition und semantischer Baum) und in 3 (Mengen) vervollständigt. | Beim Öffnen jedes Blocks: die Anfrage des Kunden für diesen Block, so wie er sie sagen würde, wird in offene Posten mit **detaillierter Spezifikation** verwandelt (Schritt 5): Beschreibung, Abnahmekriterien, anwendbare Regeln, Daten, Bildschirme, Randfälle. Die Fragen, die der Agent stellt, sind die Feinaufnahme. | Vor 14: Erhebung der Aktionen mit Konsequenz. Vor 15: Erhebung der Umgebungen und Zugänge. | Jede neue Anfrage tritt als spezifizierter offener Posten ein, an seinem Knoten des semantischen Baums hängend; der residente Agent sammelt, was die Nutzer verlangen. |
+| **Infrastruktur** | Die gesamte anfängliche, in Schritt 4: Repository, Struktur, Testumgebung, Zugangsdaten, Testdomain. Es wird keine Funktionalität gebaut, bis das leere Skelett deployt ist. | Keine, es sei denn, ein Block verlangt sie (eine Warteschlange, ein externer Dienst). Wenn er sie verlangt, ist es ein offener Posten mit seinem Test. | In 15: Produktionsumgebung, Geheimnisse auf dem Server, echte Domain, Backups, minimales Monitoring. | Infrastrukturänderungen gehen durch die Schleife und durch 15; nie „von Hand, schnell“. |
+| **CI/CD-Kette** | In Schritt 4: die Continuous Integration lässt die Batterie bei jedem Push ab dem Start laufen, und das Deployment in die Testumgebung ist beim Mergen automatisch. | Läuft von allein. Jeder Commit durchläuft sie; wenn sie nicht grün ist, schließt der Block nicht. | In 15 wird sie vervollständigt: das Deployment in die Produktion wartet auf das Ergebnis der Integration und verpackt nur; die Beförderung ist ein schriftliches Verfahren; das Rollback wird getestet. | Jedes Deployment folgt der Routine von 15: Testumgebung grün mit derselben Version, Rollback bereit, danach Ende-zu-Ende-Prüfung in der Produktion. |
+| **Funktionale Entwicklung** | Keine. Das Skelett wird absichtlich leer deployt. | Sie ist das Zentrum der Schleife: der Agent nimmt einen offenen Posten (5), fragt nach den fehlenden Geschäftsregeln (6), baut, und schließt mit Beleg (7, 8, 9, 10, 11, 12). Block für Block, vom Grundlegenden zu dem, was Konsequenzen hat. | Was auf die Welt wirkt (abbuchen, senden), wird in der Schleife **nach** Schritt 14 gebaut, mit seinen Sperren, und startet im Trockenlauf. | Die Weiterentwicklungen gehen durch die Schleife. |
+| **Automatische Tests** | Ein Smoke-Test, der besteht, in 4. Er ist der Keim der Batterie. | Mit jedem offenen Posten: der rot bewiesene Test (8), die Regression der Nachbarn in derselben Sitzung, und **ein Ende-zu-Ende-Test des gerade gebauten Flusses**, vom Bildschirm bis zum Backend. Beim Schließen eines Blocks: die vollständige Ende-zu-Ende-Batterie **aller** bestehenden Flüsse, in der Testumgebung. | Vor dem ersten Deployment in die Produktion: die vollständige Ende-zu-Ende-Batterie aller Flüsse, grün, mit derselben Version, die befördert wird. Nach dem Deployment: eine Ende-zu-Ende-Prüfung auf der Produktion, nur lesend. | Mit jeder Änderung dasselbe wie in der Schleife. |
+| **Menschlicher Blick auf die Bildschirme** | Beim Abschluss von 4: der Eigentümer öffnet die URL der Testumgebung und sieht den leeren Bildschirm. Es wirkt trivial und ist das erste Mal, dass jemand, der nicht der Agent ist, das System ansieht. | **Mit jedem offenen Posten, der einen Bildschirm berührt**: der Agent liefert einen echten Screenshot aus der Testumgebung, und der Eigentümer sieht ihn an. Zehn Sekunden. Es ist die billigste Art, das zu finden, was kein Test findet: dass der Knopf steht, wo er nicht hingehört, dass der Text etwas anderes sagt, dass der Fluss nicht der ist, den sich das Geschäft vorgestellt hat. | In 20: die Screenshots des Benutzerhandbuchs sind der letzte systematische menschliche Blick vor der Produktion. | Jeder neue oder geänderte Bildschirm, wie in der Schleife. |
+| **Menschliche Tests** | Noch keine, außer den leeren Bildschirm zu öffnen. | **Beim Abschluss jedes Funktionsblocks**: der Eigentümer, oder ein vertrauenswürdiger Nutzer, benutzt das System in der Testumgebung so, wie er es wirklich benutzen würde, entlang der Flüsse des Blocks. Was er findet, wird als offene Posten notiert. Der nächste Block wird nicht geöffnet, solange es menschliche Befunde ohne offenen Posten gibt. | Vor dem ersten Deployment in die Produktion: **Abnahmetests** des Eigentümers über alle Flüsse, mit realistischen Testdaten, in der Testumgebung. Und in 20 folgt eine Person, die nicht programmiert, dem Wiederherstellungshandbuch. | Mit jeder Weiterentwicklung, beim Abschluss ihres Blocks. |
+| **Entscheidungen des Eigentümers** | In 0 (go oder no-go), 1 (die Vereinbarung), 2 (was es NICHT ist), 3 (die Architekturoption). | Jedes Mal, wenn der Agent wegen einer nicht geschriebenen Geschäftsregel anhält (6). Meist sind es zwei oder drei pro Block. | In 14 (Sperre für Sperre), in 15 (in die Produktion befördern), in 23 (die Stufe des residenten Agenten). | Die, die anfallen; immer schriftlich. |
 
 Ein Detail, das ich unterstreichen will, weil es das ist, wo sich die Leute, die vom Vibecoding
 kommen, am meisten irren: **die Ende-zu-Ende-Tests aller Flüsse sind nicht ein einziges Mal am
@@ -289,34 +355,35 @@ Produktionsfreigabe wird zu einer Woche voller Reparaturen.
 
 Ein Funktionsblock ist eine Menge von vier bis acht zusammenhängenden offenen Posten, die zusammen
 etwas tun, das das Geschäft benutzen kann: „die Grundagenda“, „die Erinnerungen“, „der
-Monatsbericht“. Ein Block dauert in einem kleinen Projekt zwischen einer und zwei Wochen. So sieht
-er von innen aus:
+Monatsbericht“. So sieht er von innen aus:
 
-1. **Öffnen des Blocks (ein halber Tag).** Der Eigentümer erzählt in Prosa, was er für diesen
-   Block will. Der Agent verwandelt es in nummerierte offene Posten, mit ihrem „wie wird geprüft“,
-   und fragt nach dem, was nicht ausreicht, um einen prüfbaren offenen Posten zu schreiben
-   (Schritt 5). Der Eigentümer priorisiert.
-2. **Jeder offene Posten (zwei Stunden bis ein Tag).** Der Agent kündigt an, welchen offenen Posten
-   er nimmt und warum. Er baut. Wenn unterwegs eine Geschäftsregel auftaucht, die nicht
-   aufgeschrieben ist, hält er an und fragt (6). Wenn er fertig ist, schließt er mit der Routine
-   von 7: rot bewiesener Test, grün, Regression der Nachbarn; ein Ende-zu-Ende-Test des berührten
-   Flusses; und, wenn die Änderung einen Vertrag zwischen zwei Teilen des Systems berührt hat, die
-   andere Seite im selben Commit aktualisiert (8). Wenn der offene Posten von einer Zahl abhing —wie
-   viele Abfragen, wie lange es dauert—, wurde zuerst mit einem Instrument mit Test gemessen (9).
-   Und der Bericht trennt das Verifizierte vom Geglaubten und erklärt die blinden Flecken (10). Der
-   Eigentümer liest den Bericht und sieht sich den Screenshot des Bildschirms an. Er liest keinen
-   Code.
-3. **Abschluss des Blocks (ein halber bis ein Tag).** Die vollständige Ende-zu-Ende-Batterie grün
-   in der Testumgebung. Der Eigentümer oder ein vertrauenswürdiger Nutzer benutzt das System entlang
-   der Flüsse des Blocks. Was er findet, wird als offene Posten notiert. Das Benutzerhandbuch wird
-   mit den neuen Bildschirmen aktualisiert (14, im selben Commit). Erst dann wird der nächste Block
-   geöffnet.
+1. **Öffnen des Blocks.** Der Eigentümer erzählt in Prosa, was er für diesen Block will. Der
+   Agent verwandelt es in nummerierte offene Posten, mit ihrem „wie wird geprüft“, und fragt nach
+   dem, was nicht ausreicht, um einen prüfbaren offenen Posten zu schreiben (Schritt 5). Der
+   Eigentümer priorisiert.
+2. **Jeder offene Posten.** Der Agent kündigt an, welchen offenen Posten er nimmt und warum. Wenn
+   unterwegs eine Geschäftsregel auftaucht, die nicht aufgeschrieben ist, hält er an und fragt (6).
+   Wenn der offene Posten von einer Zahl abhängt —wie viele Abfragen, wie lange es dauert—, misst
+   er sie zuerst mit einem Instrument mit Test (7). Er baut. Wenn er fertig ist, schließt er in
+   dieser Reihenfolge: der rot bewiesene Test, grün, die Regression der Nachbarn und ein
+   Ende-zu-Ende-Test des berührten Flusses (8); das Tor der Code-Qualität in Grün (9); die
+   manuellen Testfälle des Flusses, für eine Person geschrieben (10); und, wenn die Änderung einen
+   Vertrag zwischen zwei Teilen des Systems berührt hat, die andere Seite im selben Commit
+   aktualisiert (11). Der Bericht trennt das Verifizierte vom Geglaubten und erklärt die blinden
+   Flecken (12). Der Eigentümer liest den Bericht und sieht sich den Screenshot des Bildschirms an.
+   Er liest keinen Code.
+3. **Abschluss des Blocks.** Die vollständige Ende-zu-Ende-Batterie grün in der Testumgebung. Der
+   Eigentümer oder ein vertrauenswürdiger Nutzer führt die manuellen Testfälle des Blocks aus (10)
+   und notiert, was passiert ist und was fehlgeschlagen ist; jeder Fehlschlag kehrt als korrektiver
+   offener Posten in die Schleife zurück. Der Qualitätsbericht des Blocks wird gelesen (9). Das
+   Benutzerhandbuch wird mit den neuen Bildschirmen aktualisiert (20, im selben Commit). Erst dann
+   wird der nächste Block geöffnet.
 
 An einem typischen Tag der Schleife investiert der Eigentümer zwischen fünfzehn und dreißig
 Minuten: zwei oder drei Fragen zu Geschäftsregeln beantworten, zwei oder drei Berichte lesen, zwei
 oder drei Screenshots ansehen. Das ist alles, was die Methode von ihm verlangt. Wenn er mehr
 investiert, fragt entweder der Agent, was er allein lösen könnte (Schritt 1), oder der Eigentümer
-liest Code (und dann funktioniert etwas an Schritt 7 oder 10 nicht).
+liest Code (und dann funktioniert etwas an Schritt 8 oder 12 nicht).
 
 ### B.4 Die menschlichen Meilensteine
 
@@ -327,18 +394,19 @@ Momenten, und keiner lässt sich an den Agenten delegieren:
 - **Ende des Starts**: die URL der Testumgebung öffnen und das leere System sehen.
 - **Mit jedem offenen Posten, der einen Bildschirm berührt**: den echten Screenshot aus der
   Testumgebung ansehen.
-- **Beim Abschluss jedes Blocks**: das System in der Testumgebung entlang der Flüsse des Blocks
-  benutzen.
-- **Vor dem ersten Deployment in die Produktion**: Abnahmetests über alle Flüsse.
-- **In Schritt 14**: eine Person, die nicht programmiert, folgt dem Wiederherstellungshandbuch in
+- **Beim Abschluss jedes Blocks**: die manuellen Testfälle des Blocks (10) in der Testumgebung
+  ausführen und das Ergebnis notieren; was fehlschlägt, kehrt als Anforderung in die Schleife
+  zurück.
+- **Vor dem ersten Deployment in die Produktion**: Abnahmetests über alle Flüsse, allen manuellen
+  Testfällen folgend.
+- **In Schritt 20**: eine Person, die nicht programmiert, folgt dem Wiederherstellungshandbuch in
   der Testumgebung.
 - **Nach jedem Deployment in die Produktion**: prüfen, dass die laufende Version die gewollte ist,
   und einen nur lesenden Durchgang durch die kritischen Flüsse machen.
 - **Vor dem ersten Deployment, in der 19**: die Zahlen des Lasttests mit der Toleranz des
   Geschäfts daneben lesen, und den Bruchpunkt.
-- **In jedem Zyklus des Monitorings (20 und 21)**: den zyklischen Bericht mit dem Agenten lesen
-  und entscheiden, welche Abweichung und welcher Fehler zu offenen Posten werden. Eine halbe
-  Stunde pro Zyklus.
+- **In jedem Zyklus des Monitorings (21 und 22)**: den zyklischen Bericht mit dem Agenten lesen
+  und entscheiden, welche Abweichung und welcher Fehler zu offenen Posten werden.
 
 Alles andere —die Tests, die Messungen, die Audits, die Dokumentation— macht das Modell, und der
 Mensch prüft es am Artefakt, nicht am Code.
@@ -411,7 +479,17 @@ Schritt 5.
 
 ---
 
-## Teil C — Die zweiundzwanzig Schritte
+## Teil C — Die vierundzwanzig Schritte
+
+
+Sie stehen in der Reihenfolge, in der sie erklommen werden. Die sechs Schritte der
+Betriebsqualität (16 bis 19 vor dem ersten Deployment; 21 und 22 danach) sind die, die ich tat,
+ohne sie zu benennen: dass sich das System **sehen** lässt, während es läuft, dass es das Volumen
+aushält, für das es dimensioniert wurde, dass es keine bekannten Löcher hat, und dass, einmal in
+der Produktion, niemand von einem Problem durch einen wütenden Nutzer erfährt. Die beiden
+Monitorings enden am selben Ort wie alles andere: in der Schleife, als korrektive offene Posten.
+Wenn du Anfänger bist: jeder Vertrag dieser sechs, und die der Schritte 9 und 10, beginnen mit
+einem Absatz, der seine Wörter in der Sprache des Alltags erklärt, und das Glossar hat sie alle.
 
 ### Schritt 0 — Lässt sich dieses Projekt so angehen? (die Eignung)
 
@@ -427,10 +505,10 @@ markiere ich sie.
   Steuer, oder nicht, BEVOR das Repository geöffnet wird. Denn wenn du in ein Projekt einsteigst,
   das nicht taugt, verkommt die Methode zu „mit KI programmieren“, und dann liest der Eigentümer
   tatsächlich Code.
-- **Wann**: ein einziges Mal, in der ersten Woche, vor allem anderen. Eine Stunde Arbeit; spart
-  Monate. Wenn das System schon existiert, wird dieser Schritt in seiner Fassung für Altsysteme
-  erklommen (die Station N0 des [evolutiv-korrektiven Weges](EVOLUTIVO_CORRECTIVO.md)), mit vier
-  weiteren Kriterien und X2 Bildschirm für Bildschirm gemessen.
+- **Wann**: ein einziges Mal, vor allem anderen. Wenn das System schon existiert, wird dieser
+  Schritt in seiner Fassung für Altsysteme erklommen (die Station N0 des
+  [evolutiv-korrektiven Weges](EVOLUTIVO_CORRECTIVO.md)), mit vier weiteren Kriterien und X2
+  Bildschirm für Bildschirm gemessen.
 - **Eingaben**: die Anfrage des Kunden, die Domäne des Geschäfts, die Daten, die Technologie, die
   verfügbaren Umgebungen, und wer der Eigentümer sein wird.
 - **Artefakt**: ein Eignungsblatt von einer Seite, mit den bewerteten Kriterien und der
@@ -448,8 +526,8 @@ markiere ich sie.
 
 | # | Ausschlusskriterium | Warum es die Methode tötet |
 |---|---|---|
-| X1 | Alttechnologie ohne zugängliches Repository, oder mit Repositories, die keinem Standard folgen | Ohne Standard-Repository gibt es keinen Ort, an dem der Beleg hinterlassen werden kann: keine in Commits zitierten offenen Posten (Schritt 5), keine mit dem Code reisenden Tests (7), keine Integration und kein Deployment als Paket (13), keine Dokumentation im selben Commit (14). Der Agent arbeitet blind und hinterlässt keine prüfbare Spur. |
-| X2 | Technologie, die sich nicht Ende zu Ende testen lässt: man kann die Bildschirme nicht ausführen und nicht auf jedes Element der Oberfläche mit seinen verschiedenen Methoden zugreifen, um zu prüfen, dass die Änderung im Backend angekommen ist | Ohne diese Prüfung vom Bildschirm bis zum Backend kann sich der Agent nicht selbst prüfen (Schritte 7, 9 und 10), und dann müsste der Eigentümer Code lesen, was genau das ist, was die Methode zu vermeiden verspricht. |
+| X1 | Alttechnologie ohne zugängliches Repository, oder mit Repositories, die keinem Standard folgen | Ohne Standard-Repository gibt es keinen Ort, an dem der Beleg hinterlassen werden kann: keine in Commits zitierten offenen Posten (Schritt 5), keine mit dem Code reisenden Tests (8), keine Integration und kein Deployment als Paket (15), keine Dokumentation im selben Commit (20). Der Agent arbeitet blind und hinterlässt keine prüfbare Spur. |
+| X2 | Technologie, die sich nicht Ende zu Ende testen lässt: man kann die Bildschirme nicht ausführen und nicht auf jedes Element der Oberfläche mit seinen verschiedenen Methoden zugreifen, um zu prüfen, dass die Änderung im Backend angekommen ist | Ohne diese Prüfung vom Bildschirm bis zum Backend kann sich der Agent nicht selbst prüfen (Schritte 8, 7 und 12), und dann müsste der Eigentümer Code lesen, was genau das ist, was die Methode zu vermeiden verspricht. |
 
 Eine Präzisierung, die für die Werkzeugneutralität Gold wert ist: **NAC3 (das Protokoll, das mein
 Werkzeug benutzt, damit die Bildschirme programmatisch bedient werden können) ist KEINE Bedingung;
@@ -492,8 +570,8 @@ an gestern ankommt; was nicht aufgeschrieben ist, wirst du ihm jedes Mal wiederh
 jedes Mal ein bisschen anders.
 
 - **Absicht**: festlegen, wie Mensch und Agent arbeiten, vor der ersten Zeile Code.
-- **Wann**: ein einziges Mal, in der ersten Woche, unmittelbar nach der Eignung. Eine halbe Stunde.
-  Wird überarbeitet, wenn ein Rückschlag es verlangt.
+- **Wann**: ein einziges Mal, unmittelbar nach der Eignung. Wird überarbeitet, wenn ein
+  Rückschlag es verlangt.
 - **Eingaben**: nichts aus dem Projekt; es ist die erste Datei. Von dir: deine Arbeitsvorlieben.
 - **Artefakt**: ein Dokument der Qualitätsstandards, das mindestens sagt: die Zeit des Menschen ist
   heilig (sie wird nicht für Dinge verbraucht, die der Agent allein lösen kann); null technische
@@ -519,8 +597,8 @@ wirkt nicht, und eine lange Karte liest niemand.
 
 - **Absicht**: dass jede Sitzung beginnt und weiß, was das Projekt ist, in welchem Zustand es ist
   und welche Entscheidungen schon getroffen wurden.
-- **Wann**: wird einmal geschrieben, in der ersten Woche, nach der Vereinbarung; wird während des
-  ganzen Projekts aktuell gehalten, mit jeder neuen Entscheidung.
+- **Wann**: wird einmal geschrieben, nach der Vereinbarung; wird während des ganzen Projekts
+  aktuell gehalten, mit jeder neuen Entscheidung.
 - **Eingaben**: die Vereinbarung (Schritt 1) und die Erhebung des Geschäfts.
 - **Artefakt**: eine betriebliche Projektdatei, und hier eine Betonung: KURZ. Sie ist das
   Programm, nicht die Historie. Plus der **semantische Baum** des Systems (siehe B.5): Domänen,
@@ -545,9 +623,8 @@ Primärzahlen hat das Geschäft, nicht das Modell.
 - **Absicht**: dass die strukturellen Entscheidungen (welche Datenbank-Engine, ob die Schnittstelle
   synchron oder asynchron ist, wie viel Nebenläufigkeit) mit Zahlen getroffen werden und nicht nach
   Geschmack.
-- **Wann**: einmal, in der ersten Woche, bevor das Skelett gebaut wird; wird neu gemacht, wenn das
-  Geschäft seine Größenordnung ändert. Eine halbe Seite und eine Entscheidung in einem kleinen
-  Projekt.
+- **Wann**: einmal, bevor das Skelett gebaut wird; wird neu gemacht, wenn das Geschäft seine
+  Größenordnung ändert. Eine halbe Seite und eine Entscheidung in einem kleinen Projekt.
 - **Eingaben**: eine Erhebung der Mengendaten, mit dem Geschäft gemacht, von Natur aus
   unvollständig; und Lesezugang zum Vorgängersystem, falls es eines gibt. Es gibt Daten, die **nur
   das Geschäft hat** und das Modell nicht erschließen kann: deshalb verlangt der Prompt von ihm, zu
@@ -572,11 +649,11 @@ Bevor das System etwas Nützliches tut, muss es LEER starten, getestet und deplo
 leer. Denn der Weg in die Produktion ist Teil des Produkts, und die einzige Art zu wissen, dass er
 funktioniert, ist, ihn zu gehen, solange es noch nichts zu verlieren gibt. Das ist der Schritt, in
 dem **die gesamte anfängliche Infrastruktur und die Integrations- und Deployment-Kette** gemacht
-wird, und deshalb nimmt er den größten Teil der ersten Woche ein.
+wird, und deshalb ist er der längste des Starts.
 
 - **Absicht**: ein System haben, das startet, getestet und deployt wird, noch ohne jede
   Funktionalität.
-- **Wann**: einmal, am Ende der ersten Woche, nach der Dimensionierung und vor jeder
+- **Wann**: einmal, am Ende des Starts, nach der Dimensionierung und vor jeder
   Funktionalität. Es ist der Abschluss des Startabschnitts.
 - **Eingaben**: die Dimensionierung (Schritt 3), die Erhebung der Umgebungen, und die Zugangsdaten
   des Ortes, an den deployt wird.
@@ -633,7 +710,7 @@ Datum.
 - **Absicht**: dass jede Domänenregel oder strukturelle Entscheidung Eigentümer, Datum und Ort hat.
 - **Wann**: in jeder Sitzung der Schleife, jedes Mal, wenn der Agent auf eine nicht geschriebene
   Regel stößt. Meist sind es zwei oder drei pro Funktionsblock. Auch im Start (Schritte 0 und 3)
-  und in der Produktionsfreigabe (12 und 13).
+  und in der Produktionsfreigabe (14 und 15).
 - **Eingaben**: das Gespräch mit dem Eigentümer. Es ist die einzige Eingabe.
 - **Artefakt**: die Entscheidung, geschrieben im Commit und in einem Entscheidungsregister, mit den
   wörtlichen Worten. Wenn der Eigentümer nicht geantwortet hat und der Agent wählen musste, bleibt
@@ -647,59 +724,7 @@ Datum.
   Werkzeug [Ref. 5](REFERENCIAS.md#ref-5).
 - **Vertrag**: `peldanos/peldano-06-decisiones.md`.
 
-### Schritt 7 — Tests als Sperren, rot bewiesen
-
-Von einem Test, den du nie hast fehlschlagen sehen, weißt du nicht, ob er etwas beweist. Deshalb
-lautet die Regel hier nicht „schreib Tests“; sie lautet „beweise, dass der Test gegen den alten
-Code rot wird, danach grün, und danach dass die Regression weiter grün ist“. Und die
-Ende-zu-Ende-Tests, vom Bildschirm bis zum Backend, sind die, die deine Lektüre des Codes ersetzen.
-
-- **Absicht**: dass jedes Verhalten, das zählt, einen Test hat, der FEHLSCHLÄGT, wenn es bricht,
-  und dass man mit Sicherheit weiß, dass er fehlschlägt.
-- **Wann**: mit jedem offenen Posten der Schleife, beim Schließen. Der Ende-zu-Ende-Test des
-  berührten Flusses im selben Abschluss. Die vollständige Ende-zu-Ende-Batterie beim Abschluss
-  jedes Blocks und vor jedem Deployment in die Produktion.
-- **Eingaben**: die bereits umgesetzte Änderung und der offene Posten mit seinem „wie wird
-  geprüft“.
-- **Artefakt**: der neue Test, die Ausgabe in Rot und in Grün mit Zahlen, die Regression der
-  Nachbarn in derselben Sitzung, und der Commit, der sagt, wogegen rot bewiesen wurde.
-- **Tor**: Rot bewiesen, Grün, Regression grün. Und der Agent simuliert nicht ausgerechnet den
-  Teil, den er prüfen will.
-- **Wer entscheidet**: der Agent führt aus und berichtet; der Eigentümer liest den Bericht, nicht
-  den Test.
-- **Fehler, den er verhindert**: die Tests, die bestehen, weil sie nichts prüfen, und das Grün, das
-  einen Bug versteckt [Ref. 44](REFERENCIAS.md#ref-44). Der Fall der Zähler ist das vollständige
-  Beispiel eines Tests, der rot gegen das alte Kriterium bewiesen wurde
-  [Ref. 26](REFERENCIAS.md#ref-26).
-- **Vertrag**: `peldanos/peldano-07-tests-en-rojo.md`.
-
-### Schritt 8 — Symmetrie zwischen Produzent und Konsument, und das Register der Anti-Muster
-
-Wenn du ein Ende änderst (den Server, die Datenbank, einen Roboter), muss sich das andere Ende (der
-Bildschirm, ein Zähler, ein Bericht) im selben Commit ändern. Das Prinzip, das das trägt, ist, dass
-**jede Liste einen einzigen Eigentümer hat**. Und die Fehler, die du schon einmal bezahlt hast,
-werden mit ihrer automatischen Prüfung notiert, um sie nicht zweimal zu bezahlen.
-
-- **Absicht**: dass eine Änderung an einem Ende das andere mitzieht, immer, im selben Commit.
-- **Wann**: mit jedem offenen Posten, der einen Vertrag zwischen zwei Teilen des Systems berührt;
-  die Vertragskarte wird beim Öffnen des zweiten Funktionsblocks gebaut, wenn es schon Bildschirm
-  und Server gibt; das Register der Anti-Muster wächst jedes Mal, wenn etwas zum zweiten Mal
-  bricht.
-- **Eingaben**: die Karte, wer jeden Vertrag produziert und wer ihn konsumiert; das Register der
-  Anti-Muster.
-- **Artefakt**: der Server definiert die Liste und der Konsument liest sie; die
-  Produzent/Konsument-Karte; das Register der Anti-Muster mit Geruch, Grundursache, Behebung und
-  Früherkennung.
-- **Tor**: automatisch: der Agent sucht die andere Seite, bevor er eine Änderung als geschlossen
-  betrachtet.
-- **Wer entscheidet**: niemand; es ist automatisch.
-- **Fehler, den er verhindert**: den Zähler, der nicht mit der Abfrage übereinstimmt
-  [Ref. 26](REFERENCIAS.md#ref-26); zwei Kopien desselben Moduls, die auseinanderdriften
-  [Ref. 41](REFERENCIAS.md#ref-41). Die Lösung der einzigen Quelle habe ich bei der Krankenkasse
-  durchgesetzt [Ref. 27](REFERENCIAS.md#ref-27).
-- **Vertrag**: `peldanos/peldano-08-simetria-y-antipatrones.md`.
-
-### Schritt 9 — Messen vor dem Bauen, mit einem Instrument, das ebenfalls geprüft wird
+### Schritt 7 — Messen vor dem Bauen, mit einem Instrument, das ebenfalls geprüft wird
 
 Das ist für mich der erwachsenste Schritt von allen, und der, den ich am spätesten formalisiert
 habe, weil ich davon ausging, dass ein Modell ihn von allein anwenden würde. Tut es nicht. Die
@@ -727,9 +752,123 @@ wird ebenfalls geprüft, denn Messgeräte lügen.
   falschen Zahlen [Ref. 36](REFERENCIAS.md#ref-36); die Ratsche auf null, die 84 Aufrufe nicht sah
   [Ref. 35](REFERENCIAS.md#ref-35). Die Regeln habe ich selbst geschrieben, in der Sitzung, bevor
   sie Doktrin wurden [Ref. 45](REFERENCIAS.md#ref-45).
-- **Vertrag**: `peldanos/peldano-09-medir.md`.
+- **Vertrag**: `peldanos/peldano-07-medir.md`.
 
-### Schritt 10 — Ehrliche Verifikation und verhältnismäßiger Bericht
+### Schritt 8 — Tests als Sperren, rot bewiesen
+
+Von einem Test, den du nie hast fehlschlagen sehen, weißt du nicht, ob er etwas beweist. Deshalb
+lautet die Regel hier nicht „schreib Tests“; sie lautet „beweise, dass der Test gegen den alten
+Code rot wird, danach grün, und danach dass die Regression weiter grün ist“. Und die
+Ende-zu-Ende-Tests, vom Bildschirm bis zum Backend, sind die, die deine Lektüre des Codes ersetzen.
+
+- **Absicht**: dass jedes Verhalten, das zählt, einen Test hat, der FEHLSCHLÄGT, wenn es bricht,
+  und dass man mit Sicherheit weiß, dass er fehlschlägt.
+- **Wann**: mit jedem offenen Posten der Schleife, beim Schließen. Der Ende-zu-Ende-Test des
+  berührten Flusses im selben Abschluss. Die vollständige Ende-zu-Ende-Batterie beim Abschluss
+  jedes Blocks und vor jedem Deployment in die Produktion.
+- **Eingaben**: die bereits umgesetzte Änderung und der offene Posten mit seinem „wie wird
+  geprüft“.
+- **Artefakt**: der neue Test, die Ausgabe in Rot und in Grün mit Zahlen, die Regression der
+  Nachbarn in derselben Sitzung, und der Commit, der sagt, wogegen rot bewiesen wurde.
+- **Tor**: Rot bewiesen, Grün, Regression grün. Und der Agent simuliert nicht ausgerechnet den
+  Teil, den er prüfen will.
+- **Wer entscheidet**: der Agent führt aus und berichtet; der Eigentümer liest den Bericht, nicht
+  den Test.
+- **Fehler, den er verhindert**: die Tests, die bestehen, weil sie nichts prüfen, und das Grün, das
+  einen Bug versteckt [Ref. 44](REFERENCIAS.md#ref-44). Der Fall der Zähler ist das vollständige
+  Beispiel eines Tests, der rot gegen das alte Kriterium bewiesen wurde
+  [Ref. 26](REFERENCIAS.md#ref-26).
+- **Vertrag**: `peldanos/peldano-08-tests-en-rojo.md`.
+
+### Schritt 9 — Maschinell verifizierte Code-Qualität, mit Tor
+
+Der Eigentümer liest den Code nicht, und genau das ist der Sinn. Aber den Code wird irgendjemand
+pflegen, und ein Code, der heute funktioniert und morgen unlesbar ist, ist Schuld, die im dritten
+Monat eingetrieben wird. Wenn ihn niemand liest, muss ihn eine Maschine ansehen: bei jedem Commit
+das, was ein menschlicher Prüfer ansehen würde, verwandelt in eine Zahl mit einer Grenze. Ich habe
+es in all meinen Projekten gemacht, ohne es Schritt zu nennen.
+
+- **Absicht**: dass die Code-Qualität bei jedem Commit maschinell verifiziert wird, mit dem roten
+  Build als Konsequenz, und dass sie nie von allein verfällt.
+- **Wann**: wird beim Öffnen des ersten Funktionsblocks aufgebaut und läuft bei jedem Push; jeder
+  offene Posten wird mit grüner Qualität geschlossen, nach dem roten Test (8); der Bericht wird
+  beim Abschluss jedes Blocks mit dem Eigentümer gelesen. In einem Altsystem ist der erste Lauf
+  die Basislinie.
+- **Eingaben**: die Continuous Integration (4), Code aus mindestens einem geschlossenen offenen
+  Posten, und die vom Eigentümer entschiedenen Grenzen (Größe von Datei und Funktion, zum
+  Anfangen).
+- **Artefakt**: Linter und Formatierer mit einer einzigen Konfiguration; Grenzen für Größe und
+  Komplexität; Erkennung von Duplizierung und totem Code; Abdeckung mit Ratsche; Typen, wenn die
+  Sprache es erlaubt; `docs/CODE_QUALITY.md` mit jeder Grenze und ihrem gemessenen Wert; das Tor
+  in `docs/GATES.md`.
+- **Tor**: nichts wird mit roter Qualität zusammengeführt; keine Linter-Ausnahme ohne
+  geschriebene Begründung; keine Grenze angehoben, um durchzukommen.
+- **Wer entscheidet**: der Eigentümer legt die Grenzen fest und entscheidet, was jetzt repariert
+  und was mit Datum toleriert wird; der Agent misst und repariert im selben Commit.
+- **Fehler, den er verhindert**: die Komponente mit mehr als zweitausend Zeilen und die Datei mit
+  fast zehntausend, die ein Audit fand, weil keine Grenze sie gestoppt hatte
+  [Ref. 41](REFERENCIAS.md#ref-41); die Qualitätszahl, die schlechter wird, ohne dass es jemand
+  sieht [Ref. 35](REFERENCIAS.md#ref-35).
+- **Vertrag**: `peldanos/peldano-09-calidad-de-codigo.md`.
+
+### Schritt 10 — Die manuellen Testfälle werden zusammen mit der Funktionalität geschrieben, und Menschen führen sie aus
+
+Die automatischen Tests schreibt und lässt das Modell laufen, und sie prüfen, was das Modell
+verstanden hat. Es fehlt der Test, den eine Person mit ihren Augen und ihren Händen macht, einem
+Drehbuch folgend. Das Drehbuch schreibt derselbe, der die Funktionalität gebaut hat, im selben
+Moment, aus den Abnahmekriterien; ausgeführt wird es von Menschen beim Abschluss jedes Blocks, bei
+der Abnahme und nach jedem Deployment; und was fehlschlägt, kehrt als Anforderung in die Schleife
+zurück. Das ist der Schluss des Kreises, den das Prozessbild zeigt.
+
+- **Absicht**: dass jede Funktionalität mit ihrem manuellen Testfall geboren wird, geschrieben für
+  eine Person, die nicht weiß, wie das System gemacht ist, und dass jede menschliche Ausführung
+  das, was fehlschlägt, als offenen Posten zurückspeist.
+- **Wann**: bei jedem offenen Posten, beim Schließen, nach dem roten Test (8) und nach der
+  Qualität (9). Ausführung durch Menschen beim Abschluss jedes Blocks, vor dem ersten Deployment
+  (Abnahme) und nach jedem Deployment, nur lesend.
+- **Eingaben**: die Abnahmekriterien des offenen Postens (5), die Testumgebung mit Daten, und die
+  Entscheidung, wer ausführt und wann.
+- **Artefakt**: `docs/MANUAL_TESTS.md` mit einem Fall pro berührtem Fluss (Kennung, offener
+  Posten, Vorbedingung, Schritte mit dem, was getan und was gesehen wird, erwartetes Ergebnis mit
+  einer von einer Person verifizierbaren Wirkung im Backend, Daten, Ausführungstabelle); die
+  festgehaltenen Ausführungen; ein korrektiver offener Posten pro Fehlschlag.
+- **Tor**: kein offener Posten, der einen Bildschirm berührt, wird ohne seinen Fall geschlossen;
+  keine Ausführung ohne Datum und Namen; kein Fehlschlag ohne offenen Posten mit den Worten der
+  Person.
+- **Wer entscheidet**: der Eigentümer oder ein Nutzer des Vertrauens führt aus; der Agent schreibt
+  die Fälle und öffnet die offenen Posten; das Modell markiert nie einen Fall als ausgeführt.
+- **Fehler, den er verhindert**: den menschlichen Test ohne Drehbuch, der jedes Mal etwas anderes
+  findet, und den menschlichen Fund, der im Moment repariert wird und verloren geht; das
+  unbequeme Auswahlmenü, das kein Test sah und die Leiterin sehr wohl, im Leitprojekt des Kurses.
+- **Vertrag**: `peldanos/peldano-10-casos-de-prueba-manual.md`.
+
+### Schritt 11 — Symmetrie zwischen Produzent und Konsument, und das Register der Anti-Muster
+
+Wenn du ein Ende änderst (den Server, die Datenbank, einen Roboter), muss sich das andere Ende (der
+Bildschirm, ein Zähler, ein Bericht) im selben Commit ändern. Das Prinzip, das das trägt, ist, dass
+**jede Liste einen einzigen Eigentümer hat**. Und die Fehler, die du schon einmal bezahlt hast,
+werden mit ihrer automatischen Prüfung notiert, um sie nicht zweimal zu bezahlen.
+
+- **Absicht**: dass eine Änderung an einem Ende das andere mitzieht, immer, im selben Commit.
+- **Wann**: mit jedem offenen Posten, der einen Vertrag zwischen zwei Teilen des Systems berührt;
+  die Vertragskarte wird beim Öffnen des zweiten Funktionsblocks gebaut, wenn es schon Bildschirm
+  und Server gibt; das Register der Anti-Muster wächst jedes Mal, wenn etwas zum zweiten Mal
+  bricht.
+- **Eingaben**: die Karte, wer jeden Vertrag produziert und wer ihn konsumiert; das Register der
+  Anti-Muster.
+- **Artefakt**: der Server definiert die Liste und der Konsument liest sie; die
+  Produzent/Konsument-Karte; das Register der Anti-Muster mit Geruch, Grundursache, Behebung und
+  Früherkennung.
+- **Tor**: automatisch: der Agent sucht die andere Seite, bevor er eine Änderung als geschlossen
+  betrachtet.
+- **Wer entscheidet**: niemand; es ist automatisch.
+- **Fehler, den er verhindert**: den Zähler, der nicht mit der Abfrage übereinstimmt
+  [Ref. 26](REFERENCIAS.md#ref-26); zwei Kopien desselben Moduls, die auseinanderdriften
+  [Ref. 41](REFERENCIAS.md#ref-41). Die Lösung der einzigen Quelle habe ich bei der Krankenkasse
+  durchgesetzt [Ref. 27](REFERENCIAS.md#ref-27).
+- **Vertrag**: `peldanos/peldano-11-simetria-y-antipatrones.md`.
+
+### Schritt 12 — Ehrliche Verifikation und verhältnismäßiger Bericht
 
 Wenn du keinen Code lesen wirst, muss der Bericht des Agenten vertrauenswürdig sein, und das
 passiert nicht von allein. Das Modell wurde darauf trainiert, nützlich und vollständig zu sein, und
@@ -753,9 +892,9 @@ Flecken und das, was er nicht getan hat.
   verifiziert erklärten, was es nicht war [Ref. 43](REFERENCIAS.md#ref-43); den Zug, der eine
   Stunde dreiundvierzig unsichtbar arbeitete [Ref. 16](REFERENCIAS.md#ref-16). Die Regel der
   Verifikationsehrlichkeit habe ich im Juni geschrieben [Ref. 8](REFERENCIAS.md#ref-8).
-- **Vertrag**: `peldanos/peldano-10-verificacion-honesta.md`.
+- **Vertrag**: `peldanos/peldano-12-verificacion-honesta.md`.
 
-### Schritt 11 — Das periodische Audit als Input für den Plan
+### Schritt 13 — Das periodische Audit als Input für den Plan
 
 Ab und zu muss man sich das ganze System mit frischen Augen ansehen, und was man sieht, geht nicht
 in einen Bericht, der abgelegt wird: es geht in die Warteschlange der offenen Posten. Der wichtige
@@ -777,9 +916,9 @@ Anweisungsdatei.
   zwei Administrator-Türen, die niemand sah, bis ein anderer hinschaute
   [Ref. 40](REFERENCIAS.md#ref-40); eine bekannte Schwachstelle und eine riesige Komponente
   [Ref. 41](REFERENCIAS.md#ref-41).
-- **Vertrag**: `peldanos/peldano-11-auditoria.md`.
+- **Vertrag**: `peldanos/peldano-13-auditoria.md`.
 
-### Schritt 12 — Fail-closed, Sperren und null stiller Schaden
+### Schritt 14 — Fail-closed, Sperren und null stiller Schaden
 
 Bei Zweifel oder Fehler handelt das System NICHT. Und es sagt es. Klingt offensichtlich, ist aber
 das Gegenteil von dem, was Software standardmäßig tut, nämlich im Zweifel weiterzumachen. Dieser
@@ -800,9 +939,9 @@ Schritt kommt **vor** dem Bau der Funktionalitäten, die auf die Welt wirken, ni
   Menschen, das Löschen von Kundendaten. Die Sperren der Krankenkasse sind das Vorbild
   [Ref. 28](REFERENCIAS.md#ref-28); der Reflex, nicht die ganze Liste zu brechen, ebenfalls
   [Ref. 25](REFERENCIAS.md#ref-25).
-- **Vertrag**: `peldanos/peldano-12-fail-closed.md`.
+- **Vertrag**: `peldanos/peldano-14-fail-closed.md`.
 
-### Schritt 13 — Continuous Integration, Umgebungen, Geheimnisse und Deployment als Teil des Produkts
+### Schritt 15 — Continuous Integration, Umgebungen, Geheimnisse und Deployment als Teil des Produkts
 
 In die Produktion zu kommen muss ein reproduzierbares Paket sein: die Tests laufen EINMAL, das
 Deployment verpackt nur und lädt hoch, die Konfiguration lebt auf dem Server und nicht im
@@ -827,9 +966,121 @@ dieser Schritt vervollständigt ihn Richtung Produktion.
   [Ref. 39](REFERENCIAS.md#ref-39); das Schlag für Schlag mit offenen Posten gehärtete Deployment,
   weil es spät entdeckt wurde [Ref. 32](REFERENCIAS.md#ref-32); in den Chat eingefügte Geheimnisse
   [Ref. 42](REFERENCIAS.md#ref-42).
-- **Vertrag**: `peldanos/peldano-13-ci-entornos-secretos-deploy.md`.
+- **Vertrag**: `peldanos/peldano-15-ci-entornos-secretos-deploy.md`.
 
-### Schritt 14 — Lebendige Dokumentation und Handbücher, denen eine Person ohne KI folgen kann
+### Schritt 16 — Vollständige Beobachtbarkeit und Nachverfolgbarkeit, mit konfigurierbarem Level
+
+Wenn in der Produktion etwas schiefgeht, will ich einer Aktion vom Bildschirm bis zur Datenbank
+mit einer einzigen Kennung folgen, ohne den Code zu öffnen; ich will das Detail der Logs in der
+Produktion in einer Minute hochdrehen können, ohne neu zu deployen; und ich will, dass jede
+Aktion mit Konsequenz eine Spur hinterlässt, die die Anwendung nicht löschen kann.
+
+- **Absicht**: dass sich das System sehen lässt, während es läuft (Beobachtbarkeit), und dass
+  jede wichtige Aktion ihre Spur hat (Nachverfolgbarkeit), mit einem Detailniveau, das sich per
+  Konfiguration ändert.
+- **Wann**: in der Produktionsfreigabe, nach der 15 und vor der 19. In einem Altsystem gehört das
+  Mindestniveau in den Sicherheitsgurt (N4) und das vollständige hierher. Die Regel „jedes neue
+  Modul loggt und propagiert“ gilt während des ganzen Betriebs.
+- **Eingaben**: die Konfiguration pro Umgebung (15), die Tabelle der Sperren (14), die Liste der
+  personenbezogenen Daten aus der Erhebung, und die Entscheidung, wo die Logs leben.
+- **Artefakt**: strukturierte Logs mit konfigurierbarem Level ohne Deployment; eine
+  Korrelations-ID in jedem Eintrag, vom Bildschirm bis zur Datenbank; ein unveränderliches
+  Audit-Log der Aktionen mit Konsequenz; Endpunkte für Gesundheit und Metriken;
+  `docs/OBSERVABILITY.md`.
+- **Tor**: eine echte Kennung, der durch alle Schichten gefolgt wird; das Level ohne Deployment
+  geändert; keine personenbezogenen Daten in den Logs.
+- **Wer entscheidet**: der Eigentümer entscheidet, wo die Logs leben, wie lange sie aufbewahrt
+  werden und was ein personenbezogenes Datum ist; der Agent baut.
+- **Fehler, den er verhindert**: den Prozess, der eine Stunde dreiundvierzig weiterlebte und über
+  das Log gefunden wurde [Ref. 16](REFERENCIAS.md#ref-16); den residenten Agenten, der blind
+  agiert, wenn es keine Logs zu lesen gibt [Ref. 13](REFERENCIAS.md#ref-13).
+- **Vertrag**: `peldanos/peldano-16-observabilidad-y-trazabilidad.md`.
+
+### Schritt 17 — Optimierung der Persistenzschicht, vorher und nachher gemessen
+
+Die Datenbank ist der Ort, an dem Systeme langsam sterben: gut mit hundert Datensätzen, schlecht
+mit hunderttausend, und niemand weiß, wann es angefangen hat. Hier wird mit Zahlen entschieden,
+vor der Produktion, und mit der Methode von Schritt 7: messen, ändern, auf denselben Daten noch
+einmal messen.
+
+- **Absicht**: dass die echten Abfragen des Systems, bei den Volumina der Dimensionierung, in
+  das passen, was das Geschäft toleriert, mit Budgets, die verhindern, dass sie wieder
+  herauslaufen.
+- **Wann**: in der Produktionsfreigabe, nach der 16 und vor der 19; wiederholt sich, wenn ein
+  Block eine große Tabelle hinzufügt oder das Monitoring (21) eine Abfrage außerhalb des Bereichs
+  zeigt. In einem Altsystem stammen die Messungen aus N6 und fast alles wird „beim Anfassen“
+  bezahlt.
+- **Eingaben**: die Dimensionierung (3 oder N6), die Produzenten-Konsumenten-Karte (8), die
+  Beobachtbarkeit (16), und die auf das erwartete Volumen geladene Testumgebung.
+- **Artefakt**: Messgeräte für Abfragen mit Test; `docs/PERSISTENCE.md` mit der Tabelle von
+  Vorher und Nachher pro Änderung, den Budgets pro Pfad und der Retention pro Tabelle; ein Test
+  pro Budget.
+- **Tor**: keine Abfrage, die in einem kritischen Fluss eine ganze Tabelle liest; jedes Budget
+  mit seinem Test; der langsamste Bildschirm innerhalb dessen, was die Dimensionierung erwartet
+  hat.
+- **Wer entscheidet**: der Eigentümer gibt die Liste der Änderungen frei, eine nach der anderen;
+  der Agent misst und wendet an.
+- **Fehler, den er verhindert**: die Abfragen, die in einem lebenden System ganze Tabellen lasen
+  [Ref. 18](REFERENCIAS.md#ref-18); das Budget, das auf das Gemessene gezurrt werden musste
+  [Ref. 37](REFERENCIAS.md#ref-37); die Millionen Zeilen auf Dateien
+  [Ref. 15](REFERENCIAS.md#ref-15).
+- **Vertrag**: `peldanos/peldano-17-persistencia.md`.
+
+### Schritt 18 — Scannen und Beheben von Schwachstellen, in der Kette und mit Zeitplan
+
+Das Audit (13) sieht sich das ganze System mit Urteilsvermögen an, hin und wieder; dieser Schritt
+sieht sich eine einzige Sache an, die Sicherheit, die ganze Zeit und maschinell: Abhängigkeiten,
+Code, Geheimnisse in der Historie und Konfiguration des Servers. Und eine Regel: eine
+Aktualisierung einer Abhängigkeit ist eine Änderung, und sie geht durch die Schleife.
+
+- **Absicht**: dass keine bekannte Schwachstelle in die Produktion gelangt, und dass die neuen
+  von allein entdeckt werden, auch wenn niemand das System anfasst.
+- **Wann**: in der Produktionsfreigabe, nach der 15 und vor dem ersten Deployment; danach bei
+  jedem Push und mit wöchentlichem Zeitplan. In einem Altsystem ist der erste Durchlauf Teil von
+  N3.
+- **Eingaben**: die Continuous Integration (4 und 15), die Erhebung der Umgebungen, das vorherige
+  Audit, und das Kriterium des Eigentümers dazu, was dringend ist.
+- **Artefakt**: der Scan in vier Schichten, der in der Kette und mit Zeitplan läuft;
+  `docs/SECURITY_[Datum].md` mit den Befunden und dem nicht Gescannten; `docs/SECURITY.md` mit
+  der Richtlinie; das Tor in `docs/GATES.md`; die P0 und P1 mit ihrem offenen Posten repariert.
+- **Tor**: kein offenes P0 wird in die Produktion befördert; ein neues P1 eröffnet von allein
+  einen offenen Posten.
+- **Wer entscheidet**: der Eigentümer definiert, was P0 ist, und gibt die Reparaturen frei; der
+  Agent baut auf und lässt laufen.
+- **Fehler, den er verhindert**: die bekannte Schwachstelle, die im Qualitätsaudit auftauchte
+  [Ref. 41](REFERENCIAS.md#ref-41); die Administratortüren, die nur eine andere Sitzung sah
+  [Ref. 40](REFERENCIAS.md#ref-40); die Sicherheit, behandelt als eine Liste, die man einmal
+  abhakt [Ref. 23](REFERENCIAS.md#ref-23).
+- **Vertrag**: `peldanos/peldano-18-vulnerabilidades.md`.
+
+### Schritt 19 — Lasttests im Volumen und Bruchpunkt
+
+Schritt 3 hat mit Rechnungen dimensioniert; dieser überprüft die Rechnungen mit dem laufenden
+System: im erwarteten Volumen, beim „mal zehn“, und bis etwas bricht. Der Bruchpunkt ist die
+nützlichste Zahl des Abschnitts, denn aus ihm kommen die Alarm-Schwellenwerte der 21.
+
+- **Absicht**: wissen, wie sich das System im erwarteten Volumen und beim „mal zehn“ verhält, und
+  wo und warum es bricht, bevor der erste Nutzer hereinkommt.
+- **Wann**: in der Produktionsfreigabe, nach der 16 und der 17, vor dem ersten Deployment;
+  wiederholt sich vor jedem Deployment, das die Architektur, die Persistenz oder einen kritischen
+  Fluss ändert. In einem Altsystem mit den in N6 gemessenen Volumina.
+- **Eingaben**: die Dimensionierung, die eingeschaltete Beobachtbarkeit, die optimierte
+  Persistenz, die kritischen Flüsse und die Toleranz des Geschäfts für den meistbenutzten
+  Bildschirm.
+- **Artefakt**: das Lastskript im Repository, mit Test; `docs/PERFORMANCE_[Datum].md` mit den
+  drei Durchläufen, dem Bruchpunkt und der Diagnose; `docs/PERFORMANCE.md` mit den
+  Schwellenwerten und dem Tor; ein offener Posten pro Flaschenhals.
+- **Tor**: der meistbenutzte Bildschirm innerhalb der Toleranz im erwarteten Volumen, oder ein
+  offener Posten mit der Zahl; der Bruchpunkt geschrieben, mit dem, was bricht.
+- **Wer entscheidet**: der Eigentümer gibt die Toleranz vor und entscheidet, bis zu welchem
+  Volumen die Flaschenhälse jetzt repariert werden.
+- **Fehler, den er verhindert**: die echte Last, die man erst durch den Blick auf die Produktion
+  kannte [Ref. 12](REFERENCIAS.md#ref-12); den Bruchpunkt, der sich als fehlgeschlagener Test
+  verkleidete [Ref. 44](REFERENCIAS.md#ref-44); die Dimensionierung als Tor
+  [Ref. 14](REFERENCIAS.md#ref-14).
+- **Vertrag**: `peldanos/peldano-19-rendimiento-y-punto-de-ruptura.md`.
+
+### Schritt 20 — Lebendige Dokumentation und Handbücher, denen eine Person ohne KI folgen kann
 
 Das System muss sich ohne den Agenten und ohne dich benutzen, warten und wiederherstellen lassen.
 Wenn es an dem Tag, an dem es keinen Agenten gibt, nicht deployt werden kann, ist es nicht fertig.
@@ -840,9 +1091,9 @@ Commit“.
   wiederherstellen lässt.
 - **Wann**: das Benutzerhandbuch wächst mit jedem Funktionsblock, beim Abschluss, mit den neuen
   Bildschirmen. Die drei vollständigen Handbücher werden im Abschnitt der Produktionsfreigabe
-  erzeugt, nach 13, und der Test mit einer Person, die nicht programmiert, findet vor dem ersten
+  erzeugt, nach 15, und der Test mit einer Person, die nicht programmiert, findet vor dem ersten
   Deployment statt. Die Routine des selben Commits gilt im ganzen Betrieb.
-- **Eingaben**: das System, das in der Testumgebung läuft; die Artefakte von 12 und 13.
+- **Eingaben**: das System, das in der Testumgebung läuft; die Artefakte von 14 und 15.
 - **Artefakt**: das Benutzerhandbuch mit echten Screenshots, das Wartungshandbuch, und das
   Infrastruktur- und Wiederherstellungshandbuch, geschrieben für eine Person, die es um drei Uhr
   morgens von Hand tun muss; jedes mit Datum und Version.
@@ -852,9 +1103,63 @@ Commit“.
 - **Fehler, den er verhindert**: das veraltete Dokument, das einen Commit im falschen Repository
   verursachte; die Projektdatei, die zur Historie wurde [Ref. 41](REFERENCIAS.md#ref-41). Die von
   Hand reproduzierbaren Handbücher sind die der Krankenkasse [Ref. 24](REFERENCIAS.md#ref-24).
-- **Vertrag**: `peldanos/peldano-14-documentacion-viva.md`.
+- **Vertrag**: `peldanos/peldano-20-documentacion-viva.md`.
 
-### Schritt 15 — Der Agent im System, und die Retrospektive mit Zahlen
+### Schritt 21 — Monitoring von Ressourcen, Funktionen und Abfragen außerhalb des Bereichs, mit zyklischem Bericht
+
+Die Tests der 19 sagen, wie sich das System an einem Tag verhält; die Produktion ist jeden Tag,
+mit wachsenden Daten. Dieser Schritt wacht über die Ressourcennutzung und die Antwortzeit jeder
+Funktion und jeder Abfrage gegen die Schwellenwerte der 19 und gegen ihre eigene Geschichte,
+meldet, wenn etwas aus dem Bereich läuft, und erzeugt einen zyklischen Bericht, der mit dem
+Eigentümer gelesen wird. Jede Abweichung ist ein offener Posten.
+
+- **Absicht**: ein Ressourcen- oder Leistungsproblem sehen, bevor der Nutzer es sieht, und dass
+  jede Abweichung eine Ursache oder einen offenen Posten hat.
+- **Wann**: wird mit dem ersten Deployment in die Produktion aufgebaut; von da an läuft
+  er allein, und der Bericht wird in jedem Zyklus gelesen (wöchentlich mit Konsequenzen,
+  monatlich in einem kleinen Projekt). In einem Altsystem ist die erste Lesung die Basislinie.
+- **Eingaben**: die Metriken der 16, die Budgets der 17, die Schwellenwerte der 19, die Produktion
+  nur lesend, und der Kanal und der Zyklus, mit dem Eigentümer entschieden.
+- **Artefakt**: Erfassung mit Geschichte; Alarme nach Schwellenwert und nach Abweichung; der
+  allein erzeugte zyklische Bericht; `docs/MONITORING.md`; die Leseroutine in der Vereinbarung.
+- **Tor**: ein provozierter Alarm ist am Kanal angekommen; der erste Bericht hat jede Abweichung
+  mit Ursache oder Vorschlag; kein Schwellenwert wurde ohne geschriebene Begründung angehoben.
+- **Wer entscheidet**: der Eigentümer entscheidet den Kanal, den Zyklus und welche Abweichung
+  jetzt angegangen wird; der Agent baut auf und schlägt vor.
+- **Fehler, den er verhindert**: die Obergrenze, die auf das Gemessene gezurrt werden musste
+  [Ref. 37](REFERENCIAS.md#ref-37); das Kontingent, das verbrannte, ohne dass jemand hinsah
+  [Ref. 39](REFERENCIAS.md#ref-39).
+- **Vertrag**: `peldanos/peldano-21-monitoreo-de-recursos-y-rendimiento.md`.
+
+### Schritt 22 — Fehler-Monitoring und zyklischer Bericht: kein Fehler ohne offenen Posten
+
+Ein System in Produktion erzeugt Fehler, die niemand meldet. Dieser Schritt erfasst sie an den
+drei Orten, an denen sie sich verstecken (das Backend, die Aufgaben, der Browser des Nutzers),
+gruppiert sie, meldet die neuen und die, die wachsen, und erzeugt einen zyklischen Bericht. Zwei
+Regeln: kein Fehler ohne offenen Posten, und es gibt keinen „bekannten Fehler“ ohne einen offenen
+Posten, der sagt, warum er toleriert wird und bis wann.
+
+- **Absicht**: dass kein Fehler in der Produktion ungesehen bleibt, und dass jeder mit dem Test
+  geschlossen wird, der ihn rot reproduziert.
+- **Wann**: wird mit dem ersten Deployment aufgebaut, zusammen mit der 21; von da an
+  läuft er allein, mit Alarmen im Moment und zyklischem Bericht. In einem Altsystem werden die
+  Fehler, die am ersten Tag schon existierten, zu offenen Posten mit ihrer
+  Geschwindigkeitsmarke.
+- **Eingaben**: die Logs der 16, die Tabelle der Sperren (14), die Produktion mit dem Browser
+  eingeschlossen, der Kanal und der Zyklus der 21.
+- **Artefakt**: zentrale und gruppierte Erfassung, ohne personenbezogene Daten; Alarme bei neuem
+  Fehler, bei wiederkehrendem, der wächst, und bei Fehlern mit Konsequenz; der zyklische Bericht
+  mit der Fehlerrate pro Fluss; `docs/MONITORING.md`; die Routine in der Vereinbarung.
+- **Tor**: ein im Browser provozierter Fehler, dem bis zum Bericht gefolgt wird; kein
+  wiederkehrender Fehler ohne offenen Posten und ohne Begründung mit Datum.
+- **Wer entscheidet**: der Eigentümer liest den Bericht und entscheidet, was angegangen wird; der
+  Agent erfasst, gruppiert und schlägt vor.
+- **Fehler, den er verhindert**: den Authentifizierungsfehler, der als Erfolg gemeldet wurde
+  [Ref. 43](REFERENCIAS.md#ref-43); die vier Runden bis zur Grundursache, weil der Fehler nicht
+  reproduziert war [Ref. 22](REFERENCIAS.md#ref-22).
+- **Vertrag**: `peldanos/peldano-22-monitoreo-de-errores.md`.
+
+### Schritt 23 — Der Agent im System, und die Retrospektive mit Zahlen
 
 Der letzte Schritt hat zwei Teile, die denselben Kreis schließen. Erstens: der Agent bleibt
 resident in der Produktion, mit begrenztem Umfang, und handelt im Namen einer Person. Zweitens: die
@@ -878,195 +1183,9 @@ Projekt zurück.
   Projekt für Projekt gleich wiederholt, ohne zu lernen. Die Retrospektive mit Zahlen, die das
   Multi-Agenten-Team abgeschafft hat, ist das Vorbild [Ref. 6](REFERENCIAS.md#ref-6); der residente
   Agent der der Krankenkasse [Ref. 13](REFERENCIAS.md#ref-13).
-- **Vertrag**: `peldanos/peldano-15-agente-residente-y-retrospectiva.md`.
+- **Vertrag**: `peldanos/peldano-23-agente-residente-y-retrospectiva.md`.
 
 ---
-
-### Die sechs Schritte der Betriebsqualität (16 bis 21)
-
-Die sechzehn vorherigen Schritte sorgen dafür, dass das System gut gebaut ist und sich tragen
-lässt. Diese sechs tun etwas anderes, etwas, das ich implizit gelassen hatte, weil ich es in
-meinen Projekten tat, ohne es zu benennen: dass sich das System **sehen** lässt, während es
-läuft, dass es das Volumen aushält, für das es dimensioniert wurde, dass es keine bekannten
-Löcher hat, und dass, einmal in der Produktion, niemand von einem Problem durch einen wütenden
-Nutzer erfährt. Vier werden vor dem ersten Deployment in die Produktion erklommen, in dieser
-Reihenfolge: Beobachtbarkeit (16), Persistenz (17), Schwachstellen (18) und Leistung (19). Zwei
-werden in der Woche des ersten Deployments aufgebaut und laufen von da an allein: das Monitoring
-der Ressourcen und der Leistung (20) und das der Fehler (21). Die beiden Monitorings enden am
-selben Ort wie alles andere: in der Schleife, als korrektive offene Posten. Und die sechs gelten
-für beide Anwendungsfälle: in einem neuen Projekt an der Stelle, die ihr „wann“ nennt; in einem
-Altsystem mit den Unterschieden, die jede Karte markiert und die im evolutiv-korrektiven Weg
-ausführlich stehen.
-
-Wenn du Anfänger bist: jeder Vertrag dieser sechs beginnt mit einem Absatz, der seine Wörter
-(Log, Index, Schwachstelle, Latenz, Schwellenwert) in der Sprache des Alltags erklärt, und das
-Glossar hat sie alle.
-
-### Schritt 16 — Vollständige Beobachtbarkeit und Nachverfolgbarkeit, mit konfigurierbarem Level
-
-Wenn in der Produktion etwas schiefgeht, will ich einer Aktion vom Bildschirm bis zur Datenbank
-mit einer einzigen Kennung folgen, ohne den Code zu öffnen; ich will das Detail der Logs in der
-Produktion in einer Minute hochdrehen können, ohne neu zu deployen; und ich will, dass jede
-Aktion mit Konsequenz eine Spur hinterlässt, die die Anwendung nicht löschen kann.
-
-- **Absicht**: dass sich das System sehen lässt, während es läuft (Beobachtbarkeit), und dass
-  jede wichtige Aktion ihre Spur hat (Nachverfolgbarkeit), mit einem Detailniveau, das sich per
-  Konfiguration ändert.
-- **Wann**: in der Produktionsfreigabe, nach der 13 und vor der 19. In einem Altsystem gehört das
-  Mindestniveau in den Sicherheitsgurt (N4) und das vollständige hierher. Die Regel „jedes neue
-  Modul loggt und propagiert“ gilt während des ganzen Betriebs.
-- **Eingaben**: die Konfiguration pro Umgebung (13), die Tabelle der Sperren (12), die Liste der
-  personenbezogenen Daten aus der Erhebung, und die Entscheidung, wo die Logs leben.
-- **Artefakt**: strukturierte Logs mit konfigurierbarem Level ohne Deployment; eine
-  Korrelations-ID in jedem Eintrag, vom Bildschirm bis zur Datenbank; ein unveränderliches
-  Audit-Log der Aktionen mit Konsequenz; Endpunkte für Gesundheit und Metriken;
-  `docs/OBSERVABILITY.md`.
-- **Tor**: eine echte Kennung, der durch alle Schichten gefolgt wird; das Level ohne Deployment
-  geändert; keine personenbezogenen Daten in den Logs.
-- **Wer entscheidet**: der Eigentümer entscheidet, wo die Logs leben, wie lange sie aufbewahrt
-  werden und was ein personenbezogenes Datum ist; der Agent baut.
-- **Fehler, den er verhindert**: den Prozess, der eine Stunde dreiundvierzig weiterlebte und über
-  das Log gefunden wurde [Ref. 16](REFERENCIAS.md#ref-16); den residenten Agenten, der blind
-  agiert, wenn es keine Logs zu lesen gibt [Ref. 13](REFERENCIAS.md#ref-13).
-- **Vertrag**: `peldanos/peldano-16-observabilidad-y-trazabilidad.md`.
-
-### Schritt 17 — Optimierung der Persistenzschicht, vorher und nachher gemessen
-
-Die Datenbank ist der Ort, an dem Systeme langsam sterben: gut mit hundert Datensätzen, schlecht
-mit hunderttausend, und niemand weiß, wann es angefangen hat. Hier wird mit Zahlen entschieden,
-vor der Produktion, und mit der Methode von Schritt 9: messen, ändern, auf denselben Daten noch
-einmal messen.
-
-- **Absicht**: dass die echten Abfragen des Systems, bei den Volumina der Dimensionierung, in
-  das passen, was das Geschäft toleriert, mit Budgets, die verhindern, dass sie wieder
-  herauslaufen.
-- **Wann**: in der Produktionsfreigabe, nach der 16 und vor der 19; wiederholt sich, wenn ein
-  Block eine große Tabelle hinzufügt oder das Monitoring (20) eine Abfrage außerhalb des Bereichs
-  zeigt. In einem Altsystem stammen die Messungen aus N6 und fast alles wird „beim Anfassen“
-  bezahlt.
-- **Eingaben**: die Dimensionierung (3 oder N6), die Produzenten-Konsumenten-Karte (8), die
-  Beobachtbarkeit (16), und die auf das erwartete Volumen geladene Testumgebung.
-- **Artefakt**: Messgeräte für Abfragen mit Test; `docs/PERSISTENCE.md` mit der Tabelle von
-  Vorher und Nachher pro Änderung, den Budgets pro Pfad und der Retention pro Tabelle; ein Test
-  pro Budget.
-- **Tor**: keine Abfrage, die in einem kritischen Fluss eine ganze Tabelle liest; jedes Budget
-  mit seinem Test; der langsamste Bildschirm innerhalb dessen, was die Dimensionierung erwartet
-  hat.
-- **Wer entscheidet**: der Eigentümer gibt die Liste der Änderungen frei, eine nach der anderen;
-  der Agent misst und wendet an.
-- **Fehler, den er verhindert**: die Abfragen, die in einem lebenden System ganze Tabellen lasen
-  [Ref. 18](REFERENCIAS.md#ref-18); das Budget, das auf das Gemessene gezurrt werden musste
-  [Ref. 37](REFERENCIAS.md#ref-37); die Millionen Zeilen auf Dateien
-  [Ref. 15](REFERENCIAS.md#ref-15).
-- **Vertrag**: `peldanos/peldano-17-persistencia.md`.
-
-### Schritt 18 — Scannen und Beheben von Schwachstellen, in der Kette und mit Zeitplan
-
-Das Audit (11) sieht sich das ganze System mit Urteilsvermögen an, hin und wieder; dieser Schritt
-sieht sich eine einzige Sache an, die Sicherheit, die ganze Zeit und maschinell: Abhängigkeiten,
-Code, Geheimnisse in der Historie und Konfiguration des Servers. Und eine Regel: eine
-Aktualisierung einer Abhängigkeit ist eine Änderung, und sie geht durch die Schleife.
-
-- **Absicht**: dass keine bekannte Schwachstelle in die Produktion gelangt, und dass die neuen
-  von allein entdeckt werden, auch wenn niemand das System anfasst.
-- **Wann**: in der Produktionsfreigabe, nach der 13 und vor dem ersten Deployment; danach bei
-  jedem Push und mit wöchentlichem Zeitplan. In einem Altsystem ist der erste Durchlauf Teil von
-  N3.
-- **Eingaben**: die Continuous Integration (4 und 13), die Erhebung der Umgebungen, das vorherige
-  Audit, und das Kriterium des Eigentümers dazu, was dringend ist.
-- **Artefakt**: der Scan in vier Schichten, der in der Kette und mit Zeitplan läuft;
-  `docs/SECURITY_[Datum].md` mit den Befunden und dem nicht Gescannten; `docs/SECURITY.md` mit
-  der Richtlinie; das Tor in `docs/GATES.md`; die P0 und P1 mit ihrem offenen Posten repariert.
-- **Tor**: kein offenes P0 wird in die Produktion befördert; ein neues P1 eröffnet von allein
-  einen offenen Posten.
-- **Wer entscheidet**: der Eigentümer definiert, was P0 ist, und gibt die Reparaturen frei; der
-  Agent baut auf und lässt laufen.
-- **Fehler, den er verhindert**: die bekannte Schwachstelle, die im Qualitätsaudit auftauchte
-  [Ref. 41](REFERENCIAS.md#ref-41); die Administratortüren, die nur eine andere Sitzung sah
-  [Ref. 40](REFERENCIAS.md#ref-40); die Sicherheit, behandelt als eine Liste, die man einmal
-  abhakt [Ref. 23](REFERENCIAS.md#ref-23).
-- **Vertrag**: `peldanos/peldano-18-vulnerabilidades.md`.
-
-### Schritt 19 — Lasttests im Volumen und Bruchpunkt
-
-Schritt 3 hat mit Rechnungen dimensioniert; dieser überprüft die Rechnungen mit dem laufenden
-System: im erwarteten Volumen, beim „mal zehn“, und bis etwas bricht. Der Bruchpunkt ist die
-nützlichste Zahl des Abschnitts, denn aus ihm kommen die Alarm-Schwellenwerte der 20.
-
-- **Absicht**: wissen, wie sich das System im erwarteten Volumen und beim „mal zehn“ verhält, und
-  wo und warum es bricht, bevor der erste Nutzer hereinkommt.
-- **Wann**: in der Produktionsfreigabe, nach der 16 und der 17, vor dem ersten Deployment;
-  wiederholt sich vor jedem Deployment, das die Architektur, die Persistenz oder einen kritischen
-  Fluss ändert. In einem Altsystem mit den in N6 gemessenen Volumina.
-- **Eingaben**: die Dimensionierung, die eingeschaltete Beobachtbarkeit, die optimierte
-  Persistenz, die kritischen Flüsse und die Toleranz des Geschäfts für den meistbenutzten
-  Bildschirm.
-- **Artefakt**: das Lastskript im Repository, mit Test; `docs/PERFORMANCE_[Datum].md` mit den
-  drei Durchläufen, dem Bruchpunkt und der Diagnose; `docs/PERFORMANCE.md` mit den
-  Schwellenwerten und dem Tor; ein offener Posten pro Flaschenhals.
-- **Tor**: der meistbenutzte Bildschirm innerhalb der Toleranz im erwarteten Volumen, oder ein
-  offener Posten mit der Zahl; der Bruchpunkt geschrieben, mit dem, was bricht.
-- **Wer entscheidet**: der Eigentümer gibt die Toleranz vor und entscheidet, bis zu welchem
-  Volumen die Flaschenhälse jetzt repariert werden.
-- **Fehler, den er verhindert**: die echte Last, die man erst durch den Blick auf die Produktion
-  kannte [Ref. 12](REFERENCIAS.md#ref-12); den Bruchpunkt, der sich als fehlgeschlagener Test
-  verkleidete [Ref. 44](REFERENCIAS.md#ref-44); die Dimensionierung als Tor
-  [Ref. 14](REFERENCIAS.md#ref-14).
-- **Vertrag**: `peldanos/peldano-19-rendimiento-y-punto-de-ruptura.md`.
-
-### Schritt 20 — Monitoring von Ressourcen, Funktionen und Abfragen außerhalb des Bereichs, mit zyklischem Bericht
-
-Die Tests der 19 sagen, wie sich das System an einem Tag verhält; die Produktion ist jeden Tag,
-mit wachsenden Daten. Dieser Schritt wacht über die Ressourcennutzung und die Antwortzeit jeder
-Funktion und jeder Abfrage gegen die Schwellenwerte der 19 und gegen ihre eigene Geschichte,
-meldet, wenn etwas aus dem Bereich läuft, und erzeugt einen zyklischen Bericht, der mit dem
-Eigentümer gelesen wird. Jede Abweichung ist ein offener Posten.
-
-- **Absicht**: ein Ressourcen- oder Leistungsproblem sehen, bevor der Nutzer es sieht, und dass
-  jede Abweichung eine Ursache oder einen offenen Posten hat.
-- **Wann**: wird in der Woche des ersten Deployments in die Produktion aufgebaut; von da an läuft
-  er allein, und der Bericht wird in jedem Zyklus gelesen (wöchentlich mit Konsequenzen,
-  monatlich in einem kleinen Projekt). In einem Altsystem ist die erste Lesung die Basislinie.
-- **Eingaben**: die Metriken der 16, die Budgets der 17, die Schwellenwerte der 19, die Produktion
-  nur lesend, und der Kanal und der Zyklus, mit dem Eigentümer entschieden.
-- **Artefakt**: Erfassung mit Geschichte; Alarme nach Schwellenwert und nach Abweichung; der
-  allein erzeugte zyklische Bericht; `docs/MONITORING.md`; die Leseroutine in der Vereinbarung.
-- **Tor**: ein provozierter Alarm ist am Kanal angekommen; der erste Bericht hat jede Abweichung
-  mit Ursache oder Vorschlag; kein Schwellenwert wurde ohne geschriebene Begründung angehoben.
-- **Wer entscheidet**: der Eigentümer entscheidet den Kanal, den Zyklus und welche Abweichung
-  jetzt angegangen wird; der Agent baut auf und schlägt vor.
-- **Fehler, den er verhindert**: die Obergrenze, die auf das Gemessene gezurrt werden musste
-  [Ref. 37](REFERENCIAS.md#ref-37); das Kontingent, das verbrannte, ohne dass jemand hinsah
-  [Ref. 39](REFERENCIAS.md#ref-39).
-- **Vertrag**: `peldanos/peldano-20-monitoreo-de-recursos-y-rendimiento.md`.
-
-### Schritt 21 — Fehler-Monitoring und zyklischer Bericht: kein Fehler ohne offenen Posten
-
-Ein System in Produktion erzeugt Fehler, die niemand meldet. Dieser Schritt erfasst sie an den
-drei Orten, an denen sie sich verstecken (das Backend, die Aufgaben, der Browser des Nutzers),
-gruppiert sie, meldet die neuen und die, die wachsen, und erzeugt einen zyklischen Bericht. Zwei
-Regeln: kein Fehler ohne offenen Posten, und es gibt keinen „bekannten Fehler“ ohne einen offenen
-Posten, der sagt, warum er toleriert wird und bis wann.
-
-- **Absicht**: dass kein Fehler in der Produktion ungesehen bleibt, und dass jeder mit dem Test
-  geschlossen wird, der ihn rot reproduziert.
-- **Wann**: wird in der Woche des ersten Deployments aufgebaut, zusammen mit der 20; von da an
-  läuft er allein, mit Alarmen im Moment und zyklischem Bericht. In einem Altsystem werden die
-  Fehler, die am ersten Tag schon existierten, zu offenen Posten mit ihrer
-  Geschwindigkeitsmarke.
-- **Eingaben**: die Logs der 16, die Tabelle der Sperren (12), die Produktion mit dem Browser
-  eingeschlossen, der Kanal und der Zyklus der 20.
-- **Artefakt**: zentrale und gruppierte Erfassung, ohne personenbezogene Daten; Alarme bei neuem
-  Fehler, bei wiederkehrendem, der wächst, und bei Fehlern mit Konsequenz; der zyklische Bericht
-  mit der Fehlerrate pro Fluss; `docs/MONITORING.md`; die Routine in der Vereinbarung.
-- **Tor**: ein im Browser provozierter Fehler, dem bis zum Bericht gefolgt wird; kein
-  wiederkehrender Fehler ohne offenen Posten und ohne Begründung mit Datum.
-- **Wer entscheidet**: der Eigentümer liest den Bericht und entscheidet, was angegangen wird; der
-  Agent erfasst, gruppiert und schlägt vor.
-- **Fehler, den er verhindert**: den Authentifizierungsfehler, der als Erfolg gemeldet wurde
-  [Ref. 43](REFERENCIAS.md#ref-43); die vier Runden bis zur Grundursache, weil der Fehler nicht
-  reproduziert war [Ref. 22](REFERENCIAS.md#ref-22).
-- **Vertrag**: `peldanos/peldano-21-monitoreo-de-errores.md`.
 
 ## Teil D — Wie es ausgeführt wird, wie viel verlangt wird, und mit welchem Werkzeug
 
@@ -1115,39 +1234,41 @@ in my language“, denn der Prompt ist auf Englisch, aber das Gespräch muss es 
 ### Was verpflichtend ist und was proportional, je nach Projektgröße
 
 Eine Frage, die sofort auftaucht: „all das für ein kleines System?“. Die Antwort ist, dass
-zweiundzwanzig Schritte nicht zweiundzwanzig Wochen sind; mehrere werden in einer Stunde
+vierundzwanzig Schritte nicht vierundzwanzig lange Etappen sind; mehrere werden in einer Sitzung
 erklommen, und die, die proportional sind, schrumpfen mit dem Projekt. Was nicht schrumpft, ist
 die Liste derer, die nicht verhandelbar sind. Diese Tabelle ist ein Vorschlag `[Hypothese]`, zu
 bestätigen mit dem ersten Projekt, das die Methode von Anfang bis Ende benutzt:
 
 | Schritt | Kleines Projekt (ein Eigentümer, wenige Nutzer, kein Geld auf dem Spiel) | Projekt mit Nutzern und Konsequenzen |
 |---|---|---|
-| 0 Eignung | verpflichtend (eine Stunde) | verpflichtend |
-| 1 Vereinbarung | verpflichtend (eine halbe Stunde) | verpflichtend |
+| 0 Eignung | verpflichtend | verpflichtend |
+| 1 Vereinbarung | verpflichtend | verpflichtend |
 | 2 Definition | verpflichtend, fünfzig Zeilen reichen | verpflichtend |
 | 3 Dimensionieren | verpflichtend, eine halbe Seite und eine Entscheidung | verpflichtend, vollständig |
 | 4 Skelett | verpflichtend, wenn es Nutzer haben wird | verpflichtend |
 | 5 Offene Posten | verpflichtend | verpflichtend |
 | 6 Entscheidungen | verpflichtend | verpflichtend |
-| 7 Rote Tests | verpflichtend | verpflichtend |
-| 8 Symmetrie | die Regel ja; die Karte optional | verpflichtend mit Karte |
-| 9 Messen | proportional: zählen und notieren | verpflichtend, mit Messgeräten und Budgets |
-| 10 Ehrliche Verifikation | verpflichtend | verpflichtend |
-| 11 Audit | eines, vor der Produktion | periodisch |
-| 12 Fail-closed | optional, wenn nur lesend | verpflichtend |
-| 13 Integration und Deployment | Minimum: Tests allein, Konfiguration draußen, Rollback | verpflichtend, vollständig |
-| 14 Dokumentation | Minimum: Wiederherstellung | die drei Handbücher |
-| 15 Resident und Retrospektive | Retrospektive von einer Seite | beides |
+| 7 Messen | proportional: zählen und notieren | verpflichtend, mit Messgeräten und Budgets |
+| 8 Rote Tests | verpflichtend | verpflichtend |
+| 9 Code-Qualität | Minimum: Linter und Größenbeschränkung in der Kette | verpflichtend, vollständig, mit Abdeckungs-Ratsche |
+| 10 Manuelle Testfälle | verpflichtend: ein Fall pro Fluss, vom Eigentümer beim Abschluss jedes Blocks ausgeführt | verpflichtend, mit in jedem Zyklus festgehaltener Ausführung |
+| 11 Symmetrie | die Regel ja; die Karte optional | verpflichtend mit Karte |
+| 12 Ehrliche Verifikation | verpflichtend | verpflichtend |
+| 13 Audit | eines, vor der Produktion | periodisch |
+| 14 Fail-closed | optional, wenn nur lesend | verpflichtend |
+| 15 Integration und Deployment | Minimum: Tests allein, Konfiguration draußen, Rollback | verpflichtend, vollständig |
 | 16 Beobachtbarkeit und Nachverfolgbarkeit | Minimum: strukturierte Logs mit konfigurierbarem Level und eine Kennung pro Aktion | verpflichtend, vollständig, mit unveränderlichem Audit-Log |
 | 17 Persistenz | proportional: die Indizes der echten Abfragen und das Ende der N+1-Schleifen | verpflichtend, mit Budgets pro Pfad |
 | 18 Schwachstellen | verpflichtend: Abhängigkeiten und Geheimnisse in der Kette | verpflichtend, die vier Schichten und mit Zeitplan |
 | 19 Leistung | proportional: ein Durchlauf im erwarteten Volumen und einer im „mal zehn“ | verpflichtend, mit Bruchpunkt und Schwellenwerten |
-| 20 Monitoring der Ressourcen | Minimum: ein monatlicher Bericht und zwei Alarme (Platte, Datenbank) | verpflichtend, mit Schwellenwerten pro Funktion und wöchentlichem Bericht |
-| 21 Monitoring der Fehler | verpflichtend: zentrale Erfassung und Bericht | verpflichtend, mit Alarmen im Moment |
+| 20 Dokumentation | Minimum: Wiederherstellung | die drei Handbücher |
+| 21 Monitoring der Ressourcen | Minimum: ein monatlicher Bericht und zwei Alarme (Platte, Datenbank) | verpflichtend, mit Schwellenwerten pro Funktion und wöchentlichem Bericht |
+| 22 Monitoring der Fehler | verpflichtend: zentrale Erfassung und Bericht | verpflichtend, mit Alarmen im Moment |
+| 23 Resident und Retrospektive | Retrospektive von einer Seite | beides |
 
-Zusammengefasst: es gibt elf Schritte, die in keinem Projekt verhandelbar sind (0, 1, 2, 3, 5, 6,
-7, 10, die Retrospektive von 15, der Scan der Abhängigkeiten von 18 und die Fehlererfassung von
-21), und elf, die mit dem Projekt dimensioniert werden.
+Zusammengefasst: es gibt dreizehn Schritte, die in keinem Projekt verhandelbar sind (0, 1, 2, 3, 5,
+6, 8, 9 in seinem Minimum, 10, 12, der Scan der Abhängigkeiten von 18, die Fehlererfassung von 22
+und die Retrospektive von 23), und elf, die mit dem Projekt dimensioniert werden.
 
 ### Wie es mit jedem Werkzeug benutzt wird
 
@@ -1157,12 +1278,12 @@ Werkzeuge:
 
 | Artefakt der Methode | Claude Code | Cursor | Codex CLI / Gemini CLI | Forge |
 |---|---|---|---|---|
-| Arbeitsvereinbarung (S1) und Routinen (S5, S6, S7, S8, S10, S14) | `CLAUDE.md` des Projekts | `.cursor/rules/` | `AGENTS.md` / `GEMINI.md` | pro Tor injizierte Doktrinen |
+| Arbeitsvereinbarung (S1) und Routinen (S5, S6, S8, S9, S10, S11, S12, S20) | `CLAUDE.md` des Projekts | `.cursor/rules/` | `AGENTS.md` / `GEMINI.md` | pro Tor injizierte Doktrinen |
 | Projektdefinition (S2) | `CLAUDE.md` + `docs/STATUS.md` | dito, in Regeln und Docs | dito | `PROJECT.md` + Kontextdatei |
 | Register der offenen Posten (S5) | `docs/PENDING.md` oder Issues | dito | dito | natives Register offener Posten mit Verben |
 | Schritt-Prompts (alle) | werden beim Erklimmen des Schritts in den Chat eingefügt | dito | dito | werden beim Durchschreiten des Tors injiziert |
 | Tore (S4) | `docs/GATES.md`, manuell | dito | dito | G1 bis G9, automatisch |
-| Messgeräte und Budgets (S9) | Skripte im Repo mit Test | dito | dito | dito, plus die statische Ratsche |
+| Messgeräte und Budgets (S7) | Skripte im Repo mit Test | dito | dito | dito, plus die statische Ratsche |
 
 Die Forge-Spalte ist die, die am meisten automatisiert; die anderen drei funktionieren genauso gut,
 wenn der Eigentümer von Hand tut, was Forge allein tut: den Prompt des Schritts im richtigen Moment
@@ -1180,11 +1301,12 @@ die Praxis des Kurses.
 3. **Der Export nach Forge**: welche Schritte schon Tore oder Befehle sind und welche fehlen, um
    die Leiter als Ausführungsablauf laufen lassen zu können.
 4. **Die Verträge in einem realen Projekt von Anfang bis Ende testen.** Die Prompts der
-   zweiundzwanzig Verträge sind aus dem geschrieben, was ich getan habe, nicht eins zu eins
+   vierundzwanzig Verträge sind aus dem geschrieben, was ich getan habe, nicht eins zu eins
    ausgeführt. Das erste Projekt, das
-   sie vollständig benutzt, wird mehrere korrigieren; das ist Teil von Schritt 15.
-5. **Die erste Kohorte des Kurses**, die die Zeiten der Zeitlinie und die typischen Fehler
-   korrigieren wird, die heute aus meinen Projekten und nicht aus Teilnehmern geschrieben sind.
+   sie vollständig benutzt, wird mehrere korrigieren; das ist Teil von Schritt 23.
+5. **Die erste Kohorte des Kurses**, die die Reihenfolge der Zeitlinie dort korrigieren wird, wo
+   es nötig ist, und die typischen Fehler, die heute aus meinen Projekten und nicht aus
+   Teilnehmern geschrieben sind.
 6. **Der evolutiv-korrektive Weg, an einem echten Altsystem von Anfang bis Ende erprobt.** Die
    acht Stationen sind aus dem geschrieben, was ich in fremden Systemen im Diagnosemodus getan
    habe, und aus den umgeordneten Schritten, nicht aus einer vollständigen Normalisierung, die mit
@@ -1204,6 +1326,11 @@ vorkommt, erklärt. In alphabetischer Reihenfolge. Einige Einträge sind Begriff
 oder Commit-Nachrichten der Ursprungs-Repositories vorkommen; ich behalte sie bei, damit der Beleg
 nachverfolgt werden kann.
 
+**Abdeckung (von Tests)** — Welcher Prozentsatz des Codes von irgendeinem Test ausgeführt wird.
+In der Methode wird sie mit einer Ratsche gemessen: die von heute ist der Boden von morgen
+(Schritt 9). Sie misst Menge, nicht Qualität: deshalb geht sie zusammen mit dem bewiesenen Rot
+von Schritt 8.
+
 **Abfragebudget** — Die maximale Anzahl von Datenbankabfragen, die ein Pfad der Anwendung machen
 darf, gemessen und durch einen Test geschützt.
 
@@ -1216,8 +1343,9 @@ Ende-zu-Ende-Tests.
 er das System so benutzt, wie er es wirklich benutzen würde, bevor er es für die Produktion
 abnimmt. Sie sind menschlich; der Agent macht sie nicht.
 
-**Abschnitt** — Jede der vier Gruppen von Schritten: Start (0 bis 4), Schleife (5 bis 10),
-Betrieb (11 bis 15) und Betriebsqualität (16 bis 21).
+**Abschnitt** — Jede der vier Gruppen von Schritten, in der Reihenfolge, in der sie erklommen
+werden: Start (0 bis 4), Schleife (5 bis 12), Produktionsfreigabe (13 bis 20) und Betrieb
+(21 bis 23).
 
 **Agent** — Ein Programm der künstlichen Intelligenz, das nicht nur Fragen beantwortet, sondern
 Aktionen ausführt: Dateien liest, Code schreibt, Befehle ausführt, Commits macht. In diesem
@@ -1282,7 +1410,7 @@ Daten hat.
 Gegenteil von „Frontend“ (dem Bildschirm).
 
 **Basislinie** — Was eine Zahl normalerweise ergeben hat (zum Beispiel der Durchschnitt der
-letzten vierzehn Tage). „Außerhalb des Bereichs“ in Schritt 20 heißt über einem festen
+letzten vierzehn Tage). „Außerhalb des Bereichs“ in Schritt 21 heißt über einem festen
 Schwellenwert oder sehr verschieden von der Basislinie.
 
 **Batterie (von Tests)** — Die vollständige Menge der Tests eines Projekts, alle zusammen
@@ -1294,15 +1422,16 @@ ausgeführt.
 konfigurierbarem Level, eine Korrelations-ID pro Aktion, Metriken zur Gesundheit. Ohne
 Beobachtbarkeit wird jeder Vorfall mit Hypothesen statt mit Belegen diagnostiziert. Schritt 16.
 
-**Betriebsqualität (Abschnitt)** — Der vierte Abschnitt der Leiter, Schritte 16 bis 21: vier, die
-vor dem ersten Deployment in die Produktion erklommen werden (Beobachtbarkeit, Persistenz,
-Schwachstellen, Leistung) und zwei, die das System überwachen, sobald es deployt ist (Monitoring
-der Ressourcen und der Fehler).
+**Betriebsqualität** — Die sechs Schritte, die dafür sorgen, dass sich das System sehen lässt und
+dass es aushält: 16 Beobachtbarkeit, 17 Persistenz, 18 Schwachstellen und 19 Leistung, vor dem
+ersten Deployment; 21 und 22, die Monitorings, danach. Sie sind kein eigener Abschnitt: die
+ersten vier stehen im Abschnitt der Produktionsfreigabe und die letzten zwei in dem des
+Betriebs.
 
 **Bruchpunkt** — Die genaue Last, bei der etwas im System aufhört zu funktionieren, und was
 dieses Etwas ist (die Verbindungen zur Datenbank, der Speicher, eine Warteschlange). Er wird
 gefunden, indem die Last Stufe für Stufe hochgefahren wird (Schritt 19), und aus ihm kommen die
-Alarm-Schwellenwerte der 20.
+Alarm-Schwellenwerte der 21.
 
 **Charakterisierungstest** — Ein Test, der erfasst, was das System heute tut, genau so, wie es
 es tut, Defekte eingeschlossen; nicht das, was es tun sollte. Er wird grün geboren, und der
@@ -1320,6 +1449,12 @@ wissen, was das Projekt ist und wie darin zu arbeiten ist.
 **Claude Code** — Das Werkzeug von Anthropic, mit dem ich diese Projekte bearbeitet und dieses
 Dokument geschrieben habe: eine Sitzung eines Modells mit Zugang zum Repository, die liest,
 schreibt, ausführt und Commits macht.
+
+**Code-Qualität (maschinell verifiziert)** — Was ein menschlicher Prüfer im Code ansehen würde,
+von Werkzeugen bei jedem Commit gemessen und in eine Zahl mit einer Grenze verwandelt: Stil
+(Linter und Formatierer), Größe von Dateien und Funktionen, Komplexität, Duplizierung, toter
+Code, Abdeckung mit Ratsche, Typen. Schritt 9. Er ersetzt nicht den roten Test: er verhindert
+den korrekten Code, den niemand mehr anfassen kann.
 
 **Commit** — Ein gespeicherter Punkt in der Geschichte des Codes, mit einer Nachricht, die erklärt,
 was sich geändert hat und warum. Jeder Commit hat eine kurze Kennung (zum Beispiel `2219f7a`).
@@ -1349,7 +1484,7 @@ endgültigen Aktion. Der automatische Genehmiger lief zuerst so und zeigte, was 
 ohne etwas zu genehmigen.
 
 **Durchsatz (throughput)** — Wie viele Aktionen pro Sekunde das System aushält. Wird mit dem
-Lasttest gemessen (19) und im Monitoring überwacht (20).
+Lasttest gemessen (19) und im Monitoring überwacht (21).
 
 **Eingebettet (embed)** — Forge, installiert im System des Kunden, als residenter Assistent, mit
 begrenzten Berechtigungen.
@@ -1371,7 +1506,7 @@ Methode verbietet es: wenn es ein altes System gibt, wird es auditiert und migri
 als stilles Sicherheitsnetz belassen.
 
 **Fehlerrate pro Fluss** — Von hundert Malen, die jemand einen Fluss benutzt hat (einen Termin
-eintragen), wie viele fehlgeschlagen sind. Es ist die Zahl des Fehlerberichts (21), die der
+eintragen), wie viele fehlgeschlagen sind. Es ist die Zahl des Fehlerberichts (22), die der
 Eigentümer ohne Erklärung versteht.
 
 **Fixture** — Testdaten, die geladen werden, bevor ein Test oder ein Deployment läuft.
@@ -1390,8 +1525,8 @@ ihr hilft. Bei kleinen Tabellen merkt man es nicht; bei Millionen Zeilen bringt 
 Fall.
 
 **Funktionsblock** — Eine Menge von vier bis acht zusammenhängenden offenen Posten, die zusammen
-etwas tun, das das Geschäft benutzen kann. Er ist die Arbeitseinheit der Schleife; er dauert in
-einem kleinen Projekt zwischen einer und zwei Wochen.
+etwas tun, das das Geschäft benutzen kann. Er ist die Arbeitseinheit der Schleife; er dauert,
+was seine Größe verlangt.
 
 **G-DOC** — In Forge das Tor, das verlangt, dass die Dokumentation im selben Commit wie die
 Änderung aktualisiert wird.
@@ -1446,6 +1581,10 @@ Datenbank. Zum Anfangen gut; für Millionen Zeilen unbrauchbar.
 **Kikan** — Das Omnikanal-Servicedesk- und Kampagnensystem des Vereins, das zweite
 Produktionssystem.
 
+**Komplexität (einer Funktion)** — Wie viele verschiedene Wege eine Funktion nehmen kann; jedes
+„wenn“ erhöht sie. Eine Funktion mit vierzig Wegen versteht niemand, und Schritt 9 setzt ihr
+eine Grenze.
+
 **Korrelations-ID** — Eine eindeutige Nummer, die jeder Aktion zu Beginn gegeben wird (ein Klick,
 eine nächtliche Aufgabe, eine eintreffende Nachricht) und die an allem klebt, was diese Aktion
 auslöst, bis zur Datenbank und zu den externen Aufrufen. Sucht man diese Nummer in den Logs,
@@ -1460,9 +1599,13 @@ messen und um den Bruchpunkt zu finden. Schritt 19.
 
 **Latenz** — Wie lange eine Aktion zum Antworten braucht. Man sieht sich den Median an (die
 Hälfte der Aktionen brauchte weniger) und das 95. Perzentil (95 % brauchten weniger; die
-restlichen 5 % sind die Nutzer, die sich beschweren). Schritte 19 und 20.
+restlichen 5 % sind die Nutzer, die sich beschweren). Schritte 19 und 21.
 
 **Legacy (Altsystem)** — Ein altes System, das noch in Gebrauch ist.
+
+**Linter / Formatierer** — Der Linter ist ein Programm, das den Code liest und markiert, was
+schlecht geschrieben oder gefährlich ist, wie eine Rechtschreibprüfung; der Formatierer rückt
+ihn in einem einzigen Stil zurecht. Beide laufen in Schritt 9 bei jedem Commit.
 
 **Log** — Die Aufzeichnung dessen, was ein Programm nach und nach tut. „Prüf mit dem Log“
 bedeutet: vertraue nicht dem, was der Agent sagt, getan zu haben, schau in die Aufzeichnung.
@@ -1474,6 +1617,12 @@ neu zu deployen (Schritt 16).
 
 **Lügen (ein Messgerät)** — Wenn ein Instrument eine falsche Zahl liefert, weil es einen Teil
 dessen, was es messen soll, nicht sieht. Uns ist das zweimal passiert.
+
+**Manueller Testfall** — Das Rezept, damit eine Person eine Funktionalität prüft: Kennung,
+offener Posten, aus dem er stammt, Vorbedingung, Schritte (was getan wird und was zu sehen sein
+muss), erwartetes Ergebnis mit der von einer Person verifizierbaren Wirkung im Backend,
+Testdaten und die Ausführungstabelle. Der Agent schreibt ihn zusammen mit der Funktionalität
+(Schritt 10); Menschen führen ihn aus; was fehlschlägt, speist einen offenen Posten zurück.
 
 **MariaDB** — Die SQL-Datenbank-Engine, die Kikan in Produktion verwendet.
 
@@ -1502,7 +1651,7 @@ Test, der besteht, weil er nichts ansieht.
 
 **N+1-Schleife** — Ein sehr häufiger Persistenzfehler: um hundert Elemente anzuzeigen, macht das
 System eine Abfrage für die Liste und danach hundert weitere, eine pro Element, statt einer oder
-zweier. Man erkennt ihn, indem man Abfragen zählt (Schritt 9), und korrigiert ihn in Schritt 17.
+zweier. Man erkennt ihn, indem man Abfragen zählt (Schritt 7), und korrigiert ihn in Schritt 17.
 
 **NAC3** — Das Protokoll von Forge, das die Bildschirme einer Anwendung programmatisch bedienbar
 macht (jedes Element der Oberfläche hat eine Kennung und Methoden). Es ermöglicht das
@@ -1528,7 +1677,7 @@ bringen, den die Methode beim Öffnen der Schleife voraussetzt, ohne seine Funkt
 anzufassen. Es geschieht in zwei Geschwindigkeiten: der Sicherheitsgurt vor jeder Änderung, und
 der Rest der Schuld **beim Anfassen** jedes Moduls (die mit „wird beim Anfassen bezahlt“
 markierten Normalisierungsposten treten mit dem Block ein, der in ihr Modul eintritt). Niemals
-„eine Woche allgemeines Aufräumen“.
+„ein allgemeines Aufräumen“ vor dem Anfangen.
 
 **Obergrenze zurren** — Ein Limit (ein Budget, ein erlaubtes Maximum) senken, bis es knapp über
 dem Gemessenen liegt, damit jede Verschlechterung einen Test fehlschlagen lässt.
@@ -1578,6 +1727,11 @@ die Behebung ihn grün macht.
 
 **RPAForce** — Meine Marke, unter der diese Systeme geliefert werden.
 
+**Rückspeisung (von Anforderungen)** — Was von außerhalb der Entwicklung als offener Posten in
+die Schleife zurückkehrt: eine neue Anfrage des Geschäfts, ein Fehlschlag, den eine Person beim
+Ausführen der manuellen Testfälle gefunden hat (10), eine Abweichung des Monitorings (21), ein
+erfasster Fehler (22). Das Prozessbild (Teil B) zeigt sie als Rückflusspfeile.
+
 **Runbook** — Ein Schritt für Schritt aufgeschriebenes Betriebsverfahren. „Idempotent“ heißt, es
 kann zweimal laufen, ohne etwas zu brechen.
 
@@ -1591,7 +1745,7 @@ behandelt sie als offene Posten.
 **Schwellenwert** — Eine Grenzzahl, ab der das Monitoring meldet. In der Methode wird er nicht
 „nach Augenmaß“ gesetzt: er kommt aus dem Bruchpunkt (19) mit einem Spielraum, und er wird nicht
 angehoben, um einen Alarm zum Schweigen zu bringen, ohne eine gemessene, geschriebene Begründung
-(20).
+(21).
 
 **Selbsterschließung** — Auf dem evolutiv-korrektiven Weg die Art, die Eingaben zu beschaffen,
 die niemand geschrieben hat: der Agent gewinnt sie zurück, indem er das System selbst liest (den
@@ -1632,8 +1786,8 @@ gedrückt werden.
 
 **Station (N0 bis N7)** — Jeder der acht Schritte des Normalisierungsabschnitts des
 evolutiv-korrektiven Weges. Ich nenne sie Stationen und nicht Schritte, damit sie nicht mit den
-zweiundzwanzig der Leiter verwechselt werden: es sind keine neuen Schritte, es sind die des
-Starts (und die 8, die 11 und die 12) in anderer Reihenfolge und mit anderem Eingang.
+vierundzwanzig der Leiter verwechselt werden: es sind keine neuen Schritte, es sind die des
+Starts (und die 11, die 13 und die 14) in anderer Reihenfolge und mit anderem Eingang.
 
 **Statische Analyse** — Den Code maschinell lesen, ohne ihn auszuführen, und dabei nach
 bekannten gefährlichen Mustern suchen (einer Injektion, einem im Code geschriebenen Schlüssel).
@@ -1675,7 +1829,7 @@ das, was sie von hinten stützt; *urazukeru*, mit Belegen untermauern. Ausgespro
 Wird nicht übersetzt.
 
 **Unbehandelte Ausnahme** — Ein Fehler, den der Code nicht vorgesehen hat und der abbricht, was
-er gerade tat. Schritt 21 erfasst sie alle, im Backend, in den Aufgaben und im Browser.
+er gerade tat. Schritt 22 erfasst sie alle, im Backend, in den Aufgaben und im Browser.
 
 **Verbindungspool** — Die Anzahl der „offenen Leitungen“, die das System gleichzeitig zur
 Datenbank hält. Ist er erschöpft, warten die Aktionen oder sie schlagen fehl; meist ist er das
@@ -1705,7 +1859,7 @@ Infrastruktur, Aufnahme, Entwicklung, Tests und des menschlichen Blicks dazwisch
 **Zug** — Eine Runde des Gesprächs mit dem Agenten: der Nutzer bittet, der Agent arbeitet und
 antwortet.
 
-**Zyklischer Bericht** — Die Zusammenfassung, die das Monitoring (20 und 21) jede Woche oder
+**Zyklischer Bericht** — Die Zusammenfassung, die das Monitoring (21 und 22) jede Woche oder
 jeden Monat von allein erzeugt, mit den Abweichungen und den Fehlern des Zeitraums, und die der
 Eigentümer mit dem Agenten liest, um zu entscheiden, was zu einem offenen Posten wird. Das
 Gegenteil eines Alarms: sie wird in Ruhe gelesen.

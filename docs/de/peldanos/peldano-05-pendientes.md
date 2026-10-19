@@ -71,7 +71,7 @@ machst es, nicht der Agent:
 - `docs/SEMANTIC_TREE.md` (Schritt 2), aktuell: jeder offene Posten wird an einem Knoten von dort
   hängen.
 - `PROJECT.md` und `docs/STATUS.md` (Schritt 2), aktuell.
-- Wenn es Audits (Schritt 11) oder menschliche Tests gab (der menschliche Blick beim Abschluss des
+- Wenn es Audits (Schritt 13) oder menschliche Tests gab (der menschliche Blick beim Abschluss des
   vorigen Blocks): ihre Befunde, in `docs/AUDIT_[Datum].md` oder im lebendigen Stand notiert, denn
   sie sind Kandidaten für offene Posten dieses Blocks.
 - Akzeptabler Mindestzustand: die Anfrage des Blocks ist mit den Worten des Kunden geschrieben,
@@ -115,7 +115,7 @@ die die klassische Anforderungstechnik ist, in kleine Einheiten zerlegt; den Kno
 dem er hängt, der es dir erlaubt, einen offenen Posten außerhalb des Umfangs zu erkennen; die
 Geschäftsregeln mit ihrer Entscheidung oder als fehlend markiert, was die Verbindung zu Schritt 6
 ist; die Abnahmekriterien in der klassischen Form, die das Drehbuch des Ende-zu-Ende-Tests von
-Schritt 7 sind; und eine vorgeschlagene Reihenfolge mit ihrem Grund, damit du sie bestätigst oder
+Schritt 8 sind; und eine vorgeschlagene Reihenfolge mit ihrem Grund, damit du sie bestätigst oder
 änderst.
 
 **Routine jeder Sitzung (gehört in die Arbeitsvereinbarung):**

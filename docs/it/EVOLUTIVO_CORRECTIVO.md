@@ -25,7 +25,7 @@ E qui c'è una trappola che voglio nominare prima di andare avanti: la tentazion
 legacy, è scegliere fra due estremi che sono sbagliati entrambi. Uno è "lo riscrivo con il metodo,
 da zero": suona pulito, e quasi sempre finisce in un secondo sistema che non arriva a sostituire
 il primo. L'altro è "gli applico direttamente il ciclo, che per questo ci sono i gradini dal 5 al
-10": suona pragmatico, ed è costruire sulla sabbia, perché il ciclo dà per scontato che esistano
+12": suona pragmatico, ed è costruire sulla sabbia, perché il ciclo dà per scontato che esistano
 un contratto, una mappa, un ambiente di test, una batteria che gira e un deployment che si ripete.
 Niente di tutto questo esiste in un sistema che non è nato con il metodo. Questo percorso è quello
 che passa in mezzo: **prima si normalizza, senza riscrivere, e poi si sale la scala**.
@@ -35,11 +35,11 @@ che passa in mezzo: **prima si normalizza, senza riscrivere, e poi si sale la sc
 Il metodo ha tre casi d'uso, e conviene sapere in quale ti trovi prima di aprire l'agente, perché
 cambia da dove si entra.
 
-| Caso | Punto di partenza | Da dove si entra | Quanto dura l'ingresso | Dov'è scritto |
+| Caso | Punto di partenza | Da dove si entra | Cosa c'è prima della prima funzionalità | Dov'è scritto |
 |---|---|---|---|---|
-| **Progetto nuovo** | Cartella vuota e un proprietario con una richiesta. | Gradino 0, e di lì i ventidue in ordine. | Una settimana di avvio prima della prima funzionalità. | Il documento principale, i ventidue contratti e il manuale del corso. |
-| **Evolutivo-correttivo su un sistema fatto con il metodo** | Il sistema ha già salito la scala: ha contratto, mappa, voci in sospeso chiuse con prove, batteria, deployment e manuali. | Gradino 5: si apre un blocco e si segue il ciclo; l'11 periodico; il 15 alla chiusura della tappa. | Nessuno: è il gradino 15 che torna allo 0 per la tappa successiva, ed è già nella Parte B del documento principale. | Il documento principale (fase 4, esercizio). |
-| **Evolutivo-correttivo su un sistema fatto senza il metodo** | Un sistema che gira, con utenti, senza nessuno di quegli artefatti o con alcuni a metà. | Il tratto di normalizzazione di questa pagina (da N0 a N7), e solo dopo il ciclo, in modalità correttiva o evolutiva. | Da due a tre settimane per un sistema piccolo, prima di toccare la prima riga di funzionalità. | Questa pagina e il manuale del corso, parte 2. |
+| **Progetto nuovo** | Cartella vuota e un proprietario con una richiesta. | Gradino 0, e di lì i ventiquattro in ordine. | Il tratto di avvio intero prima della prima funzionalità. | Il documento principale, i ventiquattro contratti e il manuale del corso. |
+| **Evolutivo-correttivo su un sistema fatto con il metodo** | Il sistema ha già salito la scala: ha contratto, mappa, voci in sospeso chiuse con prove, batteria, deployment e manuali. | Gradino 5: si apre un blocco e si segue il ciclo; il 13 periodico; il 23 alla chiusura della tappa. | Nessuno: è il gradino 23 che torna allo 0 per la tappa successiva, ed è già nella Parte B del documento principale. | Il documento principale (fase 4, esercizio). |
+| **Evolutivo-correttivo su un sistema fatto senza il metodo** | Un sistema che gira, con utenti, senza nessuno di quegli artefatti o con alcuni a metà. | Il tratto di normalizzazione di questa pagina (da N0 a N7), e solo dopo il ciclo, in modalità correttiva o evolutiva. | Il tratto di normalizzazione intero, prima di toccare la prima riga di funzionalità. | Questa pagina e il manuale del corso, parte 2. |
 
 Ciò che resta fuori, nominato perché non ci si confonda: la **migrazione tecnologica** (cambiare
 piattaforma, linguaggio, database) non è un caso d'uso del metodo; è un altro progetto, e in
@@ -58,6 +58,10 @@ percorso.
 Normalizzare è portare il sistema allo stato che il metodo dà per scontato quando si apre il
 ciclo. E lo faccio con tre regole che non negozio.
 
+E una cosa prima delle tre regole: anche in questo percorso non ci sono scadenze. Il metodo è un
+processo, non una promessa di velocità; normalizzare un legacy richiede il tempo che il legacy
+chiede, e l'unica cosa che fisso è l'ordine e i cancelli.
+
 **Prima: non si riscrive.** La normalizzazione non tocca la funzionalità. Mette attorno al sistema
 ciò che gli manca (il contratto, la mappa, l'ambiente di test, la batteria, il deployment
 ripetibile, i lucchetti su ciò che già agisce sul mondo) e lascia il sistema a fare le stesse cose
@@ -71,7 +75,7 @@ una batteria di caratterizzazione dei flussi critici che va in rosso se una di q
 La cintura è un **cancello duro**: non si cambia nulla senza di essa, con una sola eccezione
 scritta per l'urgenza in produzione, che spiego più sotto. Il resto del debito si paga **man mano
 che si tocca**: quando un blocco entra in un modulo, le voci in sospeso di normalizzazione di quel
-modulo entrano con lui. Mai "una settimana di pulizia generale".
+modulo entrano con lui. Mai "una pulizia generale" prima di cominciare.
 
 **Terza: tutti gli input delle tappe precedenti devono esistere, anche se bisogna recuperarli per
 autoscoperta.** Questa è la regola che distingue questo percorso da "applicare il ciclo e via".
@@ -102,32 +106,32 @@ e come si ottiene nel percorso evolutivo-correttivo.
 | `docs/ELIGIBILITY_CRITERIA.md` e `docs/ELIGIBILITY.md` | Gradino 0. | N0, con quattro criteri in più propri del legacy. | Il proprietario decide. |
 | `docs/WORKING_AGREEMENT.md` | Gradino 1. | N1, con cinque regole in più proprie del legacy. | Il proprietario. |
 | `PROJECT.md`, `docs/SEMANTIC_TREE.md`, `docs/STATUS.md` | Gradino 2, dalla rilevazione. | N2, dal sistema, con le marche; più la lista delle discrepanze. | Il proprietario percorre l'albero e decide ogni discrepanza. |
-| `docs/AUDIT_[data].md` | Gradino 11, alla fine. | N3, all'inizio: è l'inventario del debito. | Il proprietario legge e verifica due rilievi. |
+| `docs/AUDIT_[data].md` | Gradino 13, alla fine. | N3, all'inizio: è l'inventario del debito. | Il proprietario legge e verifica due rilievi. |
 | `docs/ENVIRONMENTS_SURVEY.md`, l'ambiente di test, l'integrazione continua, il deployment ripetibile, `docs/GATES.md` | Gradini 4 e 13. | N4, la cintura di sicurezza, con la batteria di caratterizzazione. | Il proprietario vede lo screenshot e la seconda esecuzione del deployment. |
-| `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`, `docs/PRODUCER_CONSUMER_MAP.md` | Gradini 12 e 8. | N5, per inventario del codice e del database. | Il proprietario conferma lucchetto per lucchetto. |
-| `docs/VOLUME_SURVEY.md`, `docs/SIZING.md` | Gradino 3, con numeri che dà il business. | N6, con numeri misurati nel database e nei log (gradino 9 applicato al dimensionamento). | Il proprietario apporta solo ciò che non si può misurare. |
+| `docs/CONSEQUENTIAL_ACTIONS_SURVEY.md`, `docs/PRODUCER_CONSUMER_MAP.md` | Gradini 14 e 11. | N5, per inventario del codice e del database. | Il proprietario conferma lucchetto per lucchetto. |
+| `docs/VOLUME_SURVEY.md`, `docs/SIZING.md` | Gradino 3, con numeri che dà il business. | N6, con numeri misurati nel database e nei log (gradino 7 applicato al dimensionamento). | Il proprietario apporta solo ciò che non si può misurare. |
 | `docs/PENDING.md` | Gradino 5, dalla richiesta del cliente. | N7, dall'audit, dalle discrepanze e dalla richiesta del cliente, con la marca "blocca / si paga quando si tocca / può aspettare". | Il proprietario ordina. |
-| `docs/DECISIONS.md`, `docs/GOTCHAS.md`, `docs/LOCKS.md`, `docs/DEPLOYMENT.md` | Gradini 6, 8, 12, 13. | Si creano vuoti o si completano in N2, N4 e N5, e crescono nel ciclo come nel progetto nuovo. | Il proprietario. |
+| `docs/DECISIONS.md`, `docs/GOTCHAS.md`, `docs/LOCKS.md`, `docs/DEPLOYMENT.md` | Gradini 6, 11, 14, 15. | Si creano vuoti o si completano in N2, N4 e N5, e crescono nel ciclo come nel progetto nuovo. | Il proprietario. |
 
 Se alla fine di N7 manca uno di questi file, il tratto non è salito. Non importa che il sistema
 "funzioni": il ciclo ne avrà bisogno nella prima sessione.
 
 ## Il tratto di normalizzazione: le otto stazioni
 
-Le chiamo stazioni e non gradini, e le numero da N0 a N7, perché non si confondano con i ventidue
-della scala. Non sono gradini nuovi: sono i gradini dell'avvio e tre dell'esercizio (l'8, l'11 e
-il 12), in un altro ordine e con un altro ingresso. Nel progetto nuovo l'ingresso è la
-rilevazione; qui l'ingresso è il sistema, e la lettura la fa l'agente.
+Le chiamo stazioni e non gradini, e le numero da N0 a N7, perché non si confondano con i
+ventiquattro della scala. Non sono gradini nuovi: sono i gradini dell'avvio e tre
+dell'esercizio (l'11, il 13 e il 14), in un altro ordine e con un altro ingresso. Nel progetto
+nuovo l'ingresso è la rilevazione; qui l'ingresso è il sistema, e la lettura la fa l'agente.
 
 | Stazione | Gradini di origine | Cosa cambia rispetto al progetto nuovo |
 |---|---|---|
 | N0 — Idoneità di un sistema esistente | 0 | Quattro criteri in più; X2 si misura schermata per schermata; se è in rosso, è la prima voce in sospeso, non una condizione. |
 | N1 — Il patto di convivenza per un legacy | 1 | Cinque regole in più: non rifattorizzare ciò che non è stato chiesto, leggere prima di toccare, annotare invece di sistemare di sfuggita, il comportamento attuale è la specifica, nulla entra senza la caratterizzazione in verde. |
 | N2 — La lettura del sistema | 2 | La rilevazione, il file di progetto e l'albero escono dal codice con le marche di origine; compare la lista delle discrepanze. |
-| N3 — L'audit come inventario | 11 | Va per primo, non per ultimo, e ogni rilievo dice se blocca, se si paga quando si tocca, o se può aspettare. |
+| N3 — L'audit come inventario | 13 | Va per primo, non per ultimo, e ogni rilievo dice se blocca, se si paga quando si tocca, o se può aspettare. |
 | N4 — La cintura di sicurezza | 4, 7, 13 | Ambiente di test con dati, deployment ripetibile, segreti fuori, integrazione continua, e la batteria di caratterizzazione. Cancello duro. |
-| N5 — Lucchetti e mappa dal codice | 12, 8 | Inventario di tutto ciò che agisce sul mondo e di tutti i contratti fra le parti, prima di cambiare qualunque cosa. |
-| N6 — Dimensionare con numeri reali | 3, 9 | I primari si misurano, non si chiedono; il proprietario apporta solo ciò che non è nel database. |
+| N5 — Lucchetti e mappa dal codice | 14, 11 | Inventario di tutto ciò che agisce sul mondo e di tutti i contratti fra le parti, prima di cambiare qualunque cosa. |
+| N6 — Dimensionare con numeri reali | 3, 7 | I primari si misurano, non si chiedono; il proprietario apporta solo ciò che non è nel database. |
 | N7 — Il backlog di normalizzazione | 5 | Il debito e la richiesta del cliente, in una sola coda, con la marca di velocità e l'abbinamento per modulo. |
 
 L'ordine conta. N3 va prima di N4 perché l'audit dice cosa deve entrare nella cintura (i segreti
@@ -137,37 +141,53 @@ sistema in un posto dove sbagliare non costi. N6 va alla fine perché misura sul
 con dati, che esiste solo da N4. E N7 chiude perché mette insieme tutto quello che precede in una
 sola coda.
 
-### Quando: il calendario della normalizzazione
+### L'ordine della normalizzazione
 
-| Settimana | Stazioni | Cos'altro succede |
+Non ci sono scadenze: ogni tappa dura quanto il sistema chiede, e l'unica cosa fissa è l'ordine.
+
+| Tappa | Stazioni | Cos'altro succede |
 |---|---|---|
-| 1 | N0, N1, N2, N3 | Lettura del sistema con il proprietario accanto, che conferma i nodi e decide le discrepanze. Nulla si cambia. Alla chiusura della settimana: la mappa recuperata e l'inventario del debito. |
+| 1 | N0, N1, N2, N3 | Lettura del sistema con il proprietario accanto, che conferma i nodi e decide le discrepanze. Nulla si cambia. Alla chiusura della tappa: la mappa recuperata e l'inventario del debito. |
 | 2 | N4, N5 | La cintura: ambiente di test con dati, deployment ripetuto due volte, segreti ruotati, batteria di caratterizzazione dei flussi critici. Lucchetti confermati su ciò che già agisce. Alla chiusura: il sistema gira in test e la batteria è in verde. |
 | 3 | N6, N7, e il primo blocco | Dimensionamento misurato. Il backlog ordinato. Si apre il primo blocco con il gradino 5, correttivo o evolutivo, con le sue voci in sospeso di normalizzazione abbinate. Da qui in avanti è il ciclo di sempre. |
 
-Se il sistema è grande, ciò che si allunga è la settimana 1 (c'è più da leggere) e la batteria di
-caratterizzazione della settimana 2 (ci sono più flussi). Non si allunga N7: un backlog di
-normalizzazione che ci mette una settimana a essere scritto è un backlog che nessuno manterrà.
+Se il sistema è grande, ciò che cresce è la tappa 1 (c'è più da leggere) e la batteria di
+caratterizzazione della tappa 2 (ci sono più flussi). Non cresce N7: un backlog di normalizzazione
+che non si può scrivere in una sola seduta è un backlog che nessuno manterrà.
 
 ---
 
-### N0 — Idoneità di un sistema esistente
+### N0 — Idoneità di un sistema esistente: i prerequisiti che un modello può verificare
 
-- **Intenzione**: decidere se questo sistema si può prendere con il metodo, prima di toccarlo. I
-  due escludenti sono gli stessi del gradino 0, X1 (repository accessibile e gestito in modo
-  standard) e X2 (schermate operabili da programma, con verifica dell'effetto nel backend), ma qui
-  X2 si misura schermata per schermata su ciò che esiste, e se è in rosso non è una condizione per
-  cominciare: è la prima voce in sospeso del backlog, marcata come bloccante.
-- **Quando**: una volta sola, il primo giorno. Due ore.
-- **Input**: la rilevazione iniziale (la richiesta, chi usa il sistema, cosa fa male), accesso in
-  lettura al repository e, se si può, all'ambiente dove gira.
-- **Artefatto**: `docs/ELIGIBILITY.md` con la decisione, e i quattro criteri che aggiungo per un
-  legacy: se c'è qualcuno che sappia come funziona (e quanto tempo ha); se la produzione si può
-  consultare in sola lettura; se esiste qualche test automatico; se esiste una copia di backup e
-  se è mai stata ripristinata.
-- **Cancello**: X1 in verde; X2 in verde oppure con la sua voce in sospeso bloccante aperta;
-  backup ripristinato almeno una volta prima di N4.
-- **Chi decide**: il proprietario.
+- **Intenzione**: decidere se questo sistema si può prendere con il metodo, prima di toccarlo, con
+  criteri che non dipendono da una valutazione umana ma da ciò che un modello di frontiera può
+  fare o non fare con il sistema. Se un prerequisito non è soddisfatto, non è un "non va": è un
+  **progetto a sé**, precedente, perché il sistema diventi idoneo.
+- **Quando**: una volta sola, prima di qualunque altra cosa.
+- **Input**: la rilevazione iniziale breve, accesso in lettura al repository e, se si può,
+  all'ambiente dove gira e al suo database.
+- **Artefatto**: `docs/ELIGIBILITY.md` con la decisione e i sette prerequisiti escludenti del
+  legacy, ciascuno verificato dall'agente con prove, non dichiarato da una persona:
+  1. **Si può montare un ambiente completo del sistema**, con tutti i suoi sorgenti, il suo
+     modello di dati e la sua persistenza, dal repository e da una copia dei dati.
+  2. **Il codice è comprensibile e affrontabile da un modello di frontiera**: l'agente lo può
+     leggere per intero e spiegare cosa fa ogni modulo senza inventare.
+  3. **A partire dal codice, il modello può descrivere in un documento la funzionalità completa
+     del sistema**, in una forma che un utente finale riconosca come il suo sistema e accetti.
+  4. **Il frontend può essere percorso da strumenti di test** per generare test end to end, con
+     ogni elemento accessibile e l'effetto nel backend verificabile (è X2).
+  5. **Il sistema si può costruire ed eseguire dai sorgenti con gli strumenti disponibili oggi**:
+     le dipendenze si risolvono, le versioni esistono, nulla dipende da un binario perduto.
+  6. **I dati di produzione si possono copiare e anonimizzare** per un ambiente di test, e c'è una
+     copia di backup che è stata ripristinata almeno una volta.
+  7. **Le integrazioni esterne hanno una modalità di prova o si possono isolare al bordo** (una
+     casella finta, un fornitore in modalità di prova), perché le azioni con conseguenze si
+     provino senza conseguenze.
+- **Cancello**: i sette in verde, con la prova dell'agente (l'ambiente montato, il documento di
+  funzionalità scritto, un test end to end di un flusso che gira). Ogni rosso diventa un progetto
+  precedente con la sua voce in sospeso di uscita.
+- **Chi decide**: l'agente verifica e presenta le prove; il proprietario decide se affronta i
+  progetti precedenti o no.
 
 **Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business insieme a te),
 non l'agente:
@@ -177,76 +197,88 @@ non l'agente:
   che manca); chi l'ha fatto e se è disponibile; dove gira; chi ha accesso a cosa; se c'è un
   backup e chi lo fa. Mezza pagina, incompleta di proposito: in N2 l'agente la completerà a
   partire dal sistema.
-- `docs/ELIGIBILITY_CRITERIA.md`: la scheda del gradino 0 (X1, X2 e quelli che pesano) più quattro
-  righe per i criteri del legacy: qualcuno che sappia, produzione consultabile, test esistenti,
-  backup ripristinato. Colonne vuote per la risposta, la fonte e il verde o rosso.
-- Accesso in lettura al repository per l'agente, e se possibile all'ambiente di test o alla
-  produzione in sola lettura, con le credenziali fuori dalla chat.
-- Stato minimo accettabile: l'agente può clonare il repository e tu sai chi ha fatto il sistema e
-  se è vivo (il sistema e la persona).
+- `docs/ELIGIBILITY_CRITERIA.md`: la scheda del gradino 0 (X1, X2 e quelli che pesano) più i sette
+  prerequisiti del legacy qui sopra, ciascuno con tre colonne vuote: verde o rosso, la prova (cosa
+  ha fatto l'agente per verificarlo), e il progetto precedente se è in rosso.
+- Accesso in lettura al repository per l'agente, accesso a una copia dei dati (o alla produzione in
+  sola lettura) e a un posto dove possa provare a montare l'ambiente, con le credenziali fuori
+  dalla chat. Senza questo, i prerequisiti 1, 5 e 6 non si possono verificare e restano in rosso.
+- Stato minimo accettabile: l'agente può clonare il repository e ha un posto dove provare a
+  tirare su il sistema.
 
 **Iniziale:**
 
-> We are going to assess whether this existing system can be taken over with the Urazuke method.
-> Read the initial survey in `docs/INITIAL_SURVEY.md` and the criteria sheet in
-> `docs/ELIGIBILITY_CRITERIA.md`, which for an existing system adds four criteria: whether anyone
-> who knows how the system works is available; whether production can be queried read-only;
-> whether any automated test exists; and whether a backup exists and has ever been restored. Then
-> explore the repository and, if I gave you access, the environment where it runs: change nothing.
-> Fill in the sheet criterion by criterion with the answer, its source (survey, code, database,
-> configuration, or inferred) and, for the exclusionary criteria X1 and X2, green or red. For X2,
-> list every screen and say for each whether it can be driven by a program today and whether the
-> effect can be checked in the backend. If a criterion cannot be answered from what you have, ask
-> me; do not assume. Do not decide: present me the completed sheet with your reading and your
-> doubts, and I will decide. Reply in my language.
+> We are going to assess whether this existing system can be taken over with the Urazuke method,
+> with prerequisites that you verify by doing, not by asking. Read the initial survey in
+> `docs/INITIAL_SURVEY.md` and the criteria sheet in `docs/ELIGIBILITY_CRITERIA.md`. Then, changing
+> nothing in the system, verify each prerequisite with evidence: (1) try to set up a complete
+> environment of the system from the repository and a copy of the data, with its sources, data
+> model and persistence, and tell me exactly what you could and could not bring up; (2) read the
+> whole code and tell me whether you can understand and work with it, module by module, naming
+> what you cannot understand; (3) from the code alone, write `docs/FUNCTIONALITY_RECOVERED.md`: the
+> complete functionality of the system described for an end user, screen by screen and process by
+> process, marking what you inferred; (4) list every screen and say whether it can be driven by a
+> test tool with each element accessible and the backend effect checkable, and prove it by writing
+> and running one end-to-end test of one flow; (5) try to build and run the system from the sources
+> with today's tools and report every dependency that does not resolve; (6) check whether the
+> production data can be copied and anonymized into a test environment and whether a backup exists
+> and has ever been restored; (7) list every external integration and say whether it has a test
+> mode or can be isolated at the edge. For each prerequisite: green or red, the evidence (what you
+> did and what happened), and, if red, what project would make it green. Do not decide: present me
+> the sheet, and I decide. Reply in my language.
 
 > [it]
-> Valuteremo se questo sistema esistente si può prendere in carico con il metodo Urazuke. Leggi la
-> rilevazione iniziale in `docs/INITIAL_SURVEY.md` e la scheda dei criteri in
-> `docs/ELIGIBILITY_CRITERIA.md`, che per un sistema esistente aggiunge quattro criteri: se è
-> disponibile qualcuno che sappia come funziona il sistema; se la produzione si può interrogare in
-> sola lettura; se esiste qualche test automatico; e se esiste una copia di backup ed è mai stata
-> ripristinata. Poi esplora il repository e, se ti ho dato accesso, l'ambiente dove gira: non
-> cambiare nulla. Compila la scheda criterio per criterio con la risposta, la sua fonte
-> (rilevazione, codice, database, configurazione, o dedotto) e, per i criteri escludenti X1 e X2,
-> verde o rosso. Per X2, elenca ogni schermata e di' per ciascuna se oggi si può operare da
-> programma e se l'effetto si può verificare nel backend. Se a un criterio non si può rispondere
-> con ciò che hai, chiedimelo; non supporre. Non decidere: presentami la scheda completa con la
-> tua lettura e i tuoi dubbi, e decido io. Rispondi nella mia lingua.
+> Valuteremo se questo sistema esistente si può prendere in carico con il metodo Urazuke, con
+> prerequisiti che verifichi facendo, non chiedendo. Leggi la rilevazione iniziale in
+> `docs/INITIAL_SURVEY.md` e la scheda dei criteri in `docs/ELIGIBILITY_CRITERIA.md`. Poi, senza
+> cambiare nulla nel sistema, verifica ogni prerequisito con una prova: (1) prova a montare un
+> ambiente completo del sistema dal repository e da una copia dei dati, con i suoi sorgenti, il suo
+> modello di dati e la sua persistenza, e dimmi esattamente cosa sei riuscito a tirare su e cosa
+> no; (2) leggi tutto il codice e dimmi se riesci a capirlo e a lavorarci, modulo per modulo,
+> nominando ciò che non capisci; (3) solo a partire dal codice, scrivi
+> `docs/FUNCTIONALITY_RECOVERED.md`: la funzionalità completa del sistema descritta per un utente
+> finale, schermata per schermata e processo per processo, marcando ciò che hai dedotto; (4) elenca
+> ogni schermata e di' se si può operare con uno strumento di test con ogni elemento accessibile e
+> l'effetto nel backend verificabile, e dimostralo scrivendo ed eseguendo un test end to end di un
+> flusso; (5) prova a costruire ed eseguire il sistema dai sorgenti con gli strumenti di oggi e
+> riporta ogni dipendenza che non si risolve; (6) verifica se i dati di produzione si possono
+> copiare e anonimizzare in un ambiente di test e se esiste una copia di backup che sia mai stata
+> ripristinata; (7) elenca ogni integrazione esterna e di' se ha una modalità di prova o si può
+> isolare al bordo. Per ogni prerequisito: verde o rosso, la prova (cosa hai fatto e cosa è
+> successo) e, se è in rosso, quale progetto lo porterebbe in verde. Non decidere: presentami la
+> scheda, e decido io. Rispondi nella mia lingua.
 
-Cosa gli sto chiedendo: la stessa cosa del gradino 0, con tre differenze. Che esplori il sistema
-senza cambiare nulla, perché qui c'è un sistema da esplorare; che ogni risposta dica da dove è
-uscita, perché la rilevazione è breve e la maggior parte delle risposte verrà dal codice; e che X2
-si misuri **schermata per schermata**, perché in un legacy la risposta non è mai "sì" o "no" per
-tutto il sistema, è "queste quattro sì, queste due no", e quelle due sono la prima voce in
-sospeso.
+Cosa gli sto chiedendo: che i prerequisiti si verifichino **facendo** (montare, leggere, scrivere
+il documento, eseguire un test), perché un modello di frontiera può fare tutte e quattro le cose e
+allora l'idoneità smette di essere un'opinione; il documento di funzionalità recuperata, che è la
+prova più forte del fatto che il codice è affrontabile, e che per di più è la prima bozza di ciò
+che N2 trasformerà nella mappa; e che ogni rosso arrivi con il progetto che lo porta in verde,
+perché un prerequisito che manca non è un rifiuto ma un lavoro precedente con un suo perimetro.
 
 **Prima di inviare il prompt** di chiusura: la tua decisione in una riga, presa dopo aver letto la
-scheda completa; le condizioni, verificabili e non più di tre (quella del backup ripristinato
-prima di N4 è quasi sempre una); e la lista delle schermate in rosso per X2, che il prompt
-trasforma nella prima voce in sospeso.
+scheda con la prova di ogni prerequisito; e, per ogni rosso, la tua decisione se il progetto
+precedente si affronta adesso, dopo, o mai (e allora il sistema non è idoneo).
 
 **Di chiusura:**
 
-> Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
-> `docs/ELIGIBILITY.md` with the date, who decided, every answer with its source, and the
-> conditions if any. If X2 is red for any screen, create `docs/PENDING.md` and open the first
-> pending item: make every screen drivable by a program with its backend effect checkable; mark it
-> as blocking. Include the questions you asked and my answers.
+> Decision: [go / go after these prerequisite projects: … / no-go]. Write the final sheet to
+> `docs/ELIGIBILITY.md` with the date, who decided, each prerequisite with its colour and its
+> evidence, and, for every red one, the prerequisite project as a pending item in `docs/PENDING.md`
+> marked as blocking, with its own acceptance criterion: the prerequisite verified green. Include
+> the questions you asked and my answers.
 
 > [it]
-> Decisione: [va / non va / va con queste condizioni: …]. Scrivi la scheda finale in
-> `docs/ELIGIBILITY.md` con la data, chi ha deciso, ogni risposta con la sua fonte, e le
-> condizioni se ci sono. Se X2 è in rosso per qualche schermata, crea `docs/PENDING.md` e apri la
-> prima voce in sospeso: fare in modo che ogni schermata si possa operare da programma con il suo
-> effetto verificabile nel backend; marcala come bloccante. Includi le domande che hai fatto e le
-> mie risposte.
+> Decisione: [va / va dopo questi progetti precedenti: … / non va]. Scrivi la scheda finale in
+> `docs/ELIGIBILITY.md` con la data, chi ha deciso, ogni prerequisito con il suo colore e la sua
+> prova, e, per ciascuno in rosso, il progetto precedente come voce in sospeso in
+> `docs/PENDING.md` marcata come bloccante, con il suo criterio di accettazione: il prerequisito
+> verificato in verde. Includi le domande che hai fatto e le mie risposte.
 
-Verifica di completezza: X2 ha una risposta per schermata, non una per tutto il sistema? I quattro
-criteri del legacy hanno risposta con la fonte? Se il backup non è mai stato ripristinato, è
-rimasto come condizione prima di N4? Segnale d'allarme: l'agente ha risposto X2 in verde per tutto
-perché "è un'applicazione web". Le applicazioni web vecchie sono quelle che meno si possono
-operare da programma.
+Verifica di completezza: ogni prerequisito ha la prova di qualcosa che l'agente **ha fatto**, non
+una risposta tua? Esiste `docs/FUNCTIONALITY_RECOVERED.md`, e l'hai letto come il proprietario:
+descrive il sistema che lui crede di avere? Ha eseguito un test end to end reale di un flusso?
+Ogni rosso ha il suo progetto precedente con il criterio di uscita? Segnale d'allarme: tutti in
+verde in un pomeriggio per un sistema che nessuno capisce. L'agente ha risposto invece di fare.
 
 ---
 
@@ -255,7 +287,7 @@ operare da programma.
 - **Intenzione**: fissare le regole prima di toccare qualunque cosa, con cinque regole in più
   rispetto al gradino 1, che sono quelle di cui un sistema ereditato ha bisogno perché l'agente
   non lo "migliori" per conto suo.
-- **Quando**: il primo giorno, dopo N0. Mezz'ora.
+- **Quando**: dopo N0, prima di leggere qualunque cosa.
 - **Input**: le tue preferenze di lavoro, come nel gradino 1.
 - **Artefatto**: `docs/WORKING_AGREEMENT.md` con le sei regole del metodo e le cinque del legacy.
 - **Cancello**: il patto ha data e versione, e il file di progetto (quando esisterà, in N2) ordina
@@ -268,7 +300,7 @@ operare da programma.
   chieda, che autonomia gli dai, cosa non tolleri.
 - Una tua decisione sul livello di rischio che accetti mentre si normalizza: se l'agente può o no
   distribuire all'ambiente di test per conto suo (in produzione, mai, fino a N4 chiusa e al
-  gradino 13 salito).
+  gradino 15 salito).
 - `docs/ELIGIBILITY.md` (N0), chiuso.
 - Stato minimo accettabile: sai rispondere alle domande del gradino 1 e a quella del rischio.
 
@@ -327,8 +359,7 @@ Quella regola è la riscrittura travestita; rifiutala con una motivazione scritt
   dal sistema stesso, con le marche di origine, e con la lista di tutto ciò che non coincide fra
   il codice, il database, la documentazione e ciò che il business crede. È il gradino 2 fatto per
   ingegneria inversa, ed è il passo che dà più valore per ora di lavoro di tutto il percorso.
-- **Quando**: la prima settimana, dopo N1. Due o tre giorni, con il proprietario disponibile a
-  confermare.
+- **Quando**: dopo N1, con il proprietario disponibile a confermare.
 - **Input**: il repository completo, lo schema del database in sola lettura, la configurazione di
   ogni ambiente, i log se ci sono, la documentazione che esiste, e la rilevazione breve di N0.
 - **Artefatto**: `docs/INITIAL_SURVEY.md` completato con le marche; `PROJECT.md`;
@@ -450,13 +481,12 @@ molto da documentare" (quello va nell'albero, e ciò che è successo va nello st
 
 ### N3 — L'audit come inventario del debito
 
-- **Intenzione**: il gradino 11, ma all'inizio e con una domanda in più per ogni rilievo: blocca,
+- **Intenzione**: il gradino 13, ma all'inizio e con una domanda in più per ogni rilievo: blocca,
   si paga quando si tocca il modulo, o può aspettare? Il rapporto non è un rapporto: è la materia
   prima della cintura (N4) e del backlog (N7). Nel mio primo progetto partito con il metodo già
   scritto, la serie di audit precoci si è trasformata direttamente in voci in sospeso
   [Ref. 30](REFERENCIAS.md#ref-30); qui faccio lo stesso su un sistema altrui.
-- **Quando**: la prima settimana, dopo N2, in una sessione diversa da quella che ha letto il
-  sistema, se si può. Un giorno.
+- **Quando**: dopo N2, in una sessione diversa da quella che ha letto il sistema se si può.
 - **Input**: il repository in sola lettura, l'ambiente dove gira in sola lettura, la mappa
   recuperata (N2).
 - **Artefatto**: `docs/AUDIT_[data].md` con ogni rilievo marcato "blocca / si paga quando si tocca
@@ -511,13 +541,13 @@ non l'agente:
 > cui hai fatto l'audit. Finisci con ogni rilievo trasformato in una voce in sospeso proposta,
 > prima quelle bloccanti. Rispondi nella mia lingua.
 
-Cosa gli sto chiedendo: l'audit del gradino 11 con la dimensione "distribuibilità" aggiunta
+Cosa gli sto chiedendo: l'audit del gradino 13 con la dimensione "distribuibilità" aggiunta
 (perché in un legacy il deployment è di solito il primo problema) e con il campo di velocità, che
 è ciò che trasforma un rapporto in un piano: senza quel campo, un legacy sottoposto ad audit ha
 quaranta rilievi e nessuno sa da quale cominciare. Il criterio di cosa blocca lo do io, non
 l'auditor, perché dipende dalle conseguenze per il business.
 
-**Di chiusura:** il prompt di chiusura del gradino 11, al costruttore, con un'aggiunta: le voci in
+**Di chiusura:** il prompt di chiusura del gradino 13, al costruttore, con un'aggiunta: le voci in
 sospeso che apre portano la marca di velocità del rilievo.
 
 Verifica: il rapporto dice di cosa NON ha potuto fare l'audit? C'è almeno un rilievo marcato
@@ -532,10 +562,10 @@ in "può aspettare". È un auditor che non vuole disturbare.
 - **Intenzione**: che esista, attorno al sistema e senza toccarne la funzionalità, ciò che rende
   sicuro cambiarlo: un ambiente di test con dati simili a quelli reali, un deployment che si
   ripete, i segreti fuori dal codice, l'integrazione continua che esegue quel che c'è, e la
-  **batteria di caratterizzazione** dei flussi critici. È il gradino 4, la prima metà del 13 e una
-  forma rovesciata del 7, insieme e prima di qualunque modifica. È un **cancello duro**: finché la
+  **batteria di caratterizzazione** dei flussi critici. È il gradino 4, la prima metà del 15 e una
+  forma rovesciata dell'8, insieme e prima di qualunque modifica. È un **cancello duro**: finché la
   cintura non è in verde, non si cambia una riga di funzionalità.
-- **Quando**: la seconda settimana, intera.
+- **Quando**: dopo N3, prima di qualunque modifica.
 - **Input**: la rilevazione degli ambienti (recuperata in N2 e confermata da te), il rapporto di
   N3 con i suoi rilievi bloccanti, l'albero semantico con i processi, e l'accesso al server e al
   database.
@@ -611,7 +641,7 @@ non l'agente:
 > Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: lo scheletro del gradino 4 costruito attorno a qualcosa che esiste già,
-con metà del gradino 13 anticipata (segreti fuori, deployment documentato) perché in un legacy i
+con metà del gradino 15 anticipata (segreti fuori, deployment documentato) perché in un legacy i
 segreti nel codice sono la regola e non l'eccezione [Ref. 42](REFERENCIAS.md#ref-42);
 l'anonimizzazione come parte dell'ambiente e non come un dettaglio; e i cancelli scritti prima che
 esista la batteria, perché la batteria nasca già essendo cancello.
@@ -649,7 +679,7 @@ operabili chiusa prima o come parte di questa batteria.
 > `docs/STATUS.md`, e fai in modo che la batteria sia il cancello dell'ambiente di test come dice
 > `docs/GATES.md`. Rispondi nella mia lingua.
 
-Cosa gli sto chiedendo: il gradino 7 al contrario. Nel progetto nuovo il test nasce in rosso e
+Cosa gli sto chiedendo: il gradino 8 al contrario. Nel progetto nuovo il test nasce in rosso e
 passa al verde con la modifica; qui il test nasce in verde, perché cattura ciò che c'è, e la prova
 che serve è che **va in rosso quando rompi il flusso di proposito**. Senza quella mutazione
 dimostrata, un test di caratterizzazione è un test che passa perché non guarda nulla, che è lo
@@ -674,11 +704,11 @@ di esempio).
 
 - **Intenzione**: sapere, prima di cambiare qualunque cosa, cosa fa il sistema che agisce sul
   mondo (incassa, invia, approva, cancella, avvisa, gira da solo di notte) e chi produce e consuma
-  ogni contratto fra le parti. Nel progetto nuovo questo si decide prima di costruire (gradino 12)
-  e si mappa man mano che si costruisce (gradino 8). Nel legacy è già costruito, e nessuno lo
+  ogni contratto fra le parti. Nel progetto nuovo questo si decide prima di costruire (gradino 14)
+  e si mappa man mano che si costruisce (gradino 11). Nel legacy è già costruito, e nessuno lo
   ricorda per intero. Una modifica evolutiva può innescare un'azione con conseguenze che era
   addormentata, e una modifica correttiva può lasciare un consumatore disallineato.
-- **Quando**: la seconda settimana, dopo la cintura, perché inventariare azioni richiede di poter
+- **Quando**: dopo la cintura, perché inventariare azioni richiede di poter
   eseguire il sistema dove sbagliare non costi.
 - **Input**: il codice, il database, i processi pianificati del server, l'albero semantico, e la
   lista di ciò che vive fuori dal repository.
@@ -738,14 +768,14 @@ non l'agente:
 > possono andare quando si tocca il modulo. Non implementare ancora nulla: confermo io lucchetto
 > per lucchetto. Rispondi nella mia lingua.
 
-Cosa gli sto chiedendo: l'inventario dei gradini 12 e 8 in una passata sola, perché percorrono lo
+Cosa gli sto chiedendo: l'inventario dei gradini 14 e 11 in una passata sola, perché percorrono lo
 stesso codice; il confronto fra ciò che il business ricorda e ciò che il codice fa, che è dove
 compaiono gli invii di cui nessuno si ricordava; e la proposta di **adesso o quando si tocca** per
 ogni lucchetto, che è la regola delle due velocità applicata alla protezione: un lucchetto su
 un'azione che incassa va adesso; un lucchetto su un'esportazione mensile può aspettare il blocco
 che toccherà quel modulo.
 
-**Di chiusura:** il prompt di chiusura del gradino 12, con i lucchetti marcati "adesso", ciascuno
+**Di chiusura:** il prompt di chiusura del gradino 14, con i lucchetti marcati "adesso", ciascuno
 con il suo test in rosso contro la versione senza lucchetto; gli altri restano nel backlog con la
 loro marca.
 
@@ -758,10 +788,10 @@ database.
 ### N6 — Dimensionare con numeri reali
 
 - **Intenzione**: il gradino 3, ma con il vantaggio enorme del legacy: i dati primari non bisogna
-  chiederli, sono nel database e nei log. Si misurano con il gradino 9 (un misuratore con test,
+  chiederli, sono nel database e nei log. Si misurano con il gradino 7 (un misuratore con test,
   verificato nelle due direzioni) e il proprietario apporta solo ciò che non è da nessuna parte:
   quanto si aspettano di crescere e se il sistema verrà venduto ad altri.
-- **Quando**: la terza settimana, prima di aprire il primo blocco. Mezza giornata.
+- **Quando**: dopo N5, prima di aprire il primo blocco.
 - **Input**: il database di produzione in sola lettura o la copia completa di test, i log,
   l'albero semantico con le entità.
 - **Artefatto**: `docs/VOLUME_SURVEY.md` con ogni numero marcato `[base]` o `[log]` e il suo
@@ -813,7 +843,7 @@ database.
 > oggi sono economiche e dopo costose. Non cambiare nessun codice. Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: misurare invece di chiedere, che è ciò che il legacy permette e il
-progetto nuovo no; il misuratore con test e la verifica nelle due direzioni del gradino 9, perché
+progetto nuovo no; il misuratore con test e la verifica nelle due direzioni del gradino 7, perché
 i misuratori mentono [Ref. 35](REFERENCIAS.md#ref-35), [Ref. 36](REFERENCIAS.md#ref-36); e il
 dimensionamento come cancello prima di evolvere [Ref. 14](REFERENCIAS.md#ref-14): se
 l'architettura attuale non regge il "per dieci" e la richiesta del cliente è proprio crescere,
@@ -834,7 +864,7 @@ si misura; se non c'è, si chiede; non c'è una terza opzione.
   sospeso, le decisioni del dimensionamento) e la richiesta del cliente (ciò che va corretto e ciò
   che va aggiunto), ciascuno con la sua marca di velocità e abbinati per modulo. È il gradino 5
   con due colonne in più.
-- **Quando**: la terza settimana, alla chiusura del tratto. Mezza giornata. Dopo, il ciclo.
+- **Quando**: alla chiusura del tratto. Dopo, il ciclo.
 - **Input**: `docs/AUDIT_[data].md`, `docs/DISCREPANCIES.md` con le decisioni, `docs/LOCKS.md`,
   `docs/SIZING.md`, l'albero semantico, e la richiesta del cliente per questa tappa.
 - **Artefatto**: `docs/PENDING.md` con tutte le voci in sospeso specificate, marcate "blocca / si
@@ -898,7 +928,7 @@ non l'agente:
 Cosa gli sto chiedendo: il gradino 5 completo (la specifica dettagliata vive in ogni voce in
 sospeso, anche in quelle di normalizzazione), con le due marche che fanno questo percorso: la
 velocità, che dice quando si paga ogni debito, e il tipo, che dice come si chiude (un correttivo
-si chiude con il test che riproduce il guasto; un evolutivo, con quello del gradino 7). E
+si chiude con il test che riproduce il guasto; un evolutivo, con quello del gradino 8). E
 l'**abbinamento per modulo**, che è la regola "si paga quando si tocca" resa operativa: quando
 apro il blocco della "caparra", le voci di normalizzazione del modulo dei pagamenti entrano con
 lui, e non prima né dopo.
@@ -916,7 +946,7 @@ Archivia ciò che non si pagherà mai e dillo.
 
 ## Il ciclo su un sistema ereditato: modalità correttiva e modalità evolutiva
 
-Finito N7, il percorso si ricongiunge con la scala: i gradini dal 5 al 10 si salgono con ogni voce
+Finito N7, il percorso si ricongiunge con la scala: i gradini dal 5 al 12 si salgono con ogni voce
 in sospeso, come nel progetto nuovo, con gli stessi contratti e gli stessi prompt. Ma ci sono due
 sfumature che meritano un paragrafo, perché sono quelle che distinguono "toccare un legacy con
 metodo" da "toccare un legacy con cautela".
@@ -924,7 +954,7 @@ metodo" da "toccare un legacy con cautela".
 ### La modalità correttiva: il rosso è naturale
 
 Una voce in sospeso correttiva è un bug: qualcosa che oggi non funziona e il cliente lo sa. Nel
-gradino 7 del progetto nuovo, il rosso si fabbrica (si scrive il test, si esegue contro il codice
+gradino 8 del progetto nuovo, il rosso si fabbrica (si scrive il test, si esegue contro il codice
 vecchio, lo si vede fallire). Nel correttivo il rosso **è il bug stesso**: il test che riproduce
 il guasto, operando il flusso dalla schermata come l'utente che l'ha segnalato, deve fallire
 contro il codice attuale. Se non fallisce, non hai riprodotto il bug che ti hanno segnalato; ne
@@ -1031,15 +1061,15 @@ modo di tornare indietro (il backup di N0 o la versione precedente) pronto.
 > batteria di caratterizzazione e la regressione in verde. Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: il minimo, con il ritorno indietro prima e non dopo, e con il rapporto
-onesto di ciò che non è stato verificato (gradino 10); e l'obbligo di rientrare dal ciclo lo
+onesto di ciò che non è stato verificato (gradino 12); e l'obbligo di rientrare dal ciclo lo
 stesso giorno, che è ciò che separa un'eccezione da un'abitudine.
 
-## I sei gradini di qualità operativa in un legacy
+## I sei gradini di qualità operativa (16-19, 21 e 22) in un legacy
 
-I gradini da 16 a 21 del documento principale (osservabilità e tracciabilità, persistenza,
-vulnerabilità, rendimento, e i due monitoraggi) valgono per i due casi d'uso, e in un legacy hanno
-una collocazione precisa, perché diversi di essi hanno già metà del lavoro fatto dal tratto di
-normalizzazione:
+I gradini 16, 17, 18, 19, 21 e 22 del documento principale (osservabilità e tracciabilità,
+persistenza, vulnerabilità, rendimento, e i due monitoraggi) valgono per i due casi d'uso, e in
+un legacy hanno una collocazione precisa, perché diversi di essi hanno già metà del lavoro fatto
+dal tratto di normalizzazione:
 
 - **16, osservabilità e tracciabilità**: il livello minimo (registri strutturati con livello
   configurabile e un identificatore di correlazione nei flussi critici) entra nella cintura di
@@ -1055,15 +1085,14 @@ normalizzazione:
 - **19, rendimento**: si esegue con i volumi misurati in N6, sulla persistenza già corretta in ciò
   che bloccava, prima del primo deployment successivo alla normalizzazione. In un legacy di solito
   scopre che il punto di rottura è più vicino di quanto il business creda.
-- **20 e 21, monitoraggio**: si montano nella settimana del primo deployment, come nel progetto
+- **21 e 22, monitoraggio**: si montano con il primo deployment, come nel progetto
   nuovo, con una differenza: la prima lettura del rapporto è la linea base del legacy, e gli
   scostamenti e gli errori che esistevano già il primo giorno diventano voci in sospeso con la
   loro marca di velocità. Nessuno resta come "noto" senza voce in sospeso.
 
-In pratica, per un sistema piccolo, i quattro precedenti al deployment aggiungono una settimana al
-calendario della normalizzazione (una quarta settimana, prima del primo blocco evolutivo o insieme
-a esso, a seconda dell'urgenza della richiesta), e i due monitoraggi si montano nella settimana
-del deployment.
+In pratica, i quattro precedenti al deployment sono una tappa in più della normalizzazione, prima
+del primo blocco evolutivo o insieme a esso a seconda dell'urgenza della richiesta, e i due
+monitoraggi si montano con il deployment.
 
 ## Quando il sistema è normalizzato
 
@@ -1092,7 +1121,7 @@ apre il primo blocco. Questa è la lista:
 Se le otto danno "sì", il sistema è normalizzato fin dove questo percorso lo esige, e ciò che
 segue è la scala di sempre. Le fasi 3 e 4 del documento principale (uscita in produzione ed
 esercizio) si applicano tali e quali: l'audit periodico, i manuali (che in un legacy di solito non
-esistono, e si generano con il gradino 14 a partire dal sistema com'è), l'agente residente, e la
+esistono, e si generano con il gradino 20 a partire dal sistema com'è), l'agente residente, e la
 retrospettiva con i numeri, che in un legacy ha una domanda sua: quanto è costato normalizzare, e
 quanto del debito che abbiamo marcato "può aspettare" è finito per costare lo stesso.
 
@@ -1116,18 +1145,17 @@ quanto del debito che abbiamo marcato "può aspettare" è finito per costare lo 
 
 ## Cosa resta da elaborare `[ipotesi]`
 
-1. I quattro criteri di idoneità propri del legacy sono scritti a partire dalla mia esperienza con
-   sistemi altrui in modalità diagnostica; non li ho calibrati con progetti rifiutati come ho
-   fatto con X1 e X2. Un legacy senza nessuno che sappia come funziona può essere comunque
-   praticabile se il database e il codice sono leggibili; un legacy con test che nessuno esegue da
-   due anni forse sta peggio di uno senza test. Manca la casistica.
+1. I sette prerequisiti di N0 si verificano facendo, e questo li rende calibrabili: ogni legacy
+   che passa da N0 lascia la sua scheda con le prove. Ciò che manca è la casistica: quanti legacy
+   falliscono ogni prerequisito e quanto costa il progetto precedente che lo porta in verde. Non è
+   più un'ipotesi sul criterio; è un conto che ancora non ho.
 2. La dimensione della batteria di caratterizzazione: fra quattro e otto flussi è ciò che ha
    funzionato per me in sistemi piccoli; in uno grande non so se il criterio sia per flusso, per
    modulo o per denaro in gioco.
-3. Quanto dura la normalizzazione in un sistema grande: il calendario di tre settimane è per un
-   sistema della dimensione del progetto guida. In uno con decine di moduli, sospetto che la
-   normalizzazione si faccia per modulo, con una cintura per modulo, e che N2 si faccia intero ma
-   N4 si distribuisca. Non l'ho provato.
+3. Come si distribuisce la normalizzazione in un sistema grande: sospetto che la lettura (N2) si
+   faccia intera ma che la cintura (N4) si monti per modulo, man mano che ogni modulo sta per
+   essere toccato, e che il cancello duro diventi duro per modulo e non per sistema. Non l'ho
+   provato.
 4. Cosa succede con un legacy costruito da un modello con il metodo a metà (patto sì, test no): se
    questo percorso si percorre intero o se c'è una scorciatoia. La mia intuizione è che non ci sia
    scorciatoia, e che la scorciatoia sia proprio l'errore, ma è intuizione.

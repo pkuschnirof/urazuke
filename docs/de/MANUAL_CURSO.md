@@ -62,14 +62,16 @@ musst.
    anfängst; jedes Einführungstutorial reicht. Mehr braucht es nicht.
 3. **Ein Projekt.** Ideal ist, dass es deines ist: ein System, das du brauchst oder das ein Kunde
    von dir verlangt hat, mit Nutzern, die es benutzen werden. Wenn du keines hast, nimm das
-   **Leitprojekt**, das ich unten beschreibe; es ist so gedacht, dass es durch die zweiundzwanzig
+   **Leitprojekt**, das ich unten beschreibe; es ist so gedacht, dass es durch die vierundzwanzig
    Schritte geht, ohne einen zu überspringen. Wenn das, was du hast, ein System ist, das schon
    existiert und korrigiert oder weiterentwickelt werden muss, lehrt dich dieser erste Teil die
    Methode an einem neuen Projekt, und [Teil 2 des Kurses](MANUAL_CURSO_EVOLUTIVO.md) lehrt dich,
    es zuerst zu normalisieren, mit einem zweiten geerbten Leitprojekt.
-4. **Zeit.** Der Kurs hat zweiundzwanzig Lektionen, eine pro Schritt, und einen Kalender, der
-   dir sagt, in welche Woche jede Sache fällt (siehe „Der Kalender des Kurses“). Ein kleines
-   Projekt, von Anfang bis Ende, sind sechs bis acht Wochen Teilzeitarbeit.
+4. **Zeit.** Der Kurs hat vierundzwanzig Lektionen, eine pro Schritt, und eine Reihenfolge, die
+   dir sagt, in welche Etappe jede Sache fällt (siehe „Die Reihenfolge des Kurses“). Ich gebe
+   dir absichtlich keine Fristen: die Methode ist ein Prozess, keine Versprechung von
+   Geschwindigkeit, und wie lange jede Etappe dauert, bestimmt die Größe deines Projekts. Was
+   ich dir sehr wohl gebe, ist die Reihenfolge, und die ist nicht verhandelbar.
 5. **Einen Eigentümer der Domäne mit Zeit zum Entscheiden.** Wenn das Projekt deines ist, bist du
    das. Wenn es das eines Kunden ist, ist es der Kunde, und er muss wissen, dass er während des
    ganzen Projekts Fragen beantworten müssen wird. Dieser Punkt ist nicht verhandelbar: ohne
@@ -97,32 +99,32 @@ Eine Regel für den ganzen Kurs: **geh nicht zum nächsten Schritt mit einer Pr�
 Die Versuchung des „das repariere ich später“ ist genau das, wozu die Methode existiert, um es zu
 vermeiden. Wenn ein Schritt nicht vollständig erklommen wird, wird der nächste auf Sand gebaut.
 
-### Der Kalender des Kurses: wann jede Sache gemacht wird
+### Die Reihenfolge des Kurses: wann jede Sache gemacht wird
 
 Das Hauptdokument hat in seinem Teil B die vollständige Zeitlinie der Methode. Hier übersetze ich
-sie in den Kalender des Kurses für ein kleines Projekt wie das Leitprojekt. Die Wochen sind
-Richtwerte; was kein Richtwert ist, ist die Reihenfolge und vor allem, was zwischen Lektion und
-Lektion passiert.
+sie in die Reihenfolge des Kurses für das Leitprojekt. Es sind Etappen, keine Wochen: jede dauert,
+was dein Projekt verlangt, und was nicht verhandelbar ist, ist die Reihenfolge und vor allem, was
+zwischen Lektion und Lektion passiert.
 
-| Woche | Lektionen | Was du zusätzlich zu den Lektionen machst |
+| Etappe | Lektionen | Was du zusätzlich zu den Lektionen machst |
 |---|---|---|
-| 0 (zwei oder drei Tage) | keine | **Aufnahme**: du interviewst den Eigentümer und schreibst in Prosa auf, was er will, für wen, was heute passiert, was Konsequenzen hat, welche Zahlen nur er weiß. Du benennst die Anwendungsfälle, die du kannst („die Empfangskraft trägt einen Termin ein“), zeichnest die Hauptbildschirme, und sei es von Hand, und listest die Entitäten des Geschäfts mit ihren Zuständen. Absichtlich unvollständig. |
+| 0 | keine | **Aufnahme**: du interviewst den Eigentümer und schreibst in Prosa auf, was er will, für wen, was heute passiert, was Konsequenzen hat, welche Zahlen nur er weiß. Du benennst die Anwendungsfälle, die du kannst („die Empfangskraft trägt einen Termin ein“), zeichnest die Hauptbildschirme, und sei es von Hand, und listest die Entitäten des Geschäfts mit ihren Zuständen. Absichtlich unvollständig. |
 | 1 | 0, 1, 2, 3, 4 | **Start, am Stück.** Eignung, Vereinbarung, Definition mit semantischem Baum, Dimensionierung, und das Skelett mit **der gesamten Infrastruktur und der Integrations- und Deployment-Kette**: Repository, Testumgebung, Continuous Integration, erstes leeres Deployment. Zum Abschluss öffnest du die URL und siehst den leeren Bildschirm. |
-| 2 | 5, 6, 7 | **Erster Funktionsblock** (die Grundagenda). Du öffnest den Block, indem du die Anfrage in spezifizierte offene Posten verwandelst. Mit jedem offenen Posten: Entscheidungen, roter Test, Ende-zu-Ende-Test des Flusses, Screenshot des Bildschirms, den du dir ansiehst. Beim Abschluss des Blocks: vollständige Ende-zu-Ende-Batterie, und du benutzt das System in der Testumgebung entlang der Flüsse des Blocks. |
-| 3 | 8, 9, 10 | **Zweiter Block** (Patienten und Suche). Die drei restlichen Lektionen der Schleife werden an diesem Block gelernt. Derselbe Abschluss: Ende zu Ende aller Flüsse, menschliche Tests, Benutzerhandbuch mit den neuen Bildschirmen. |
-| 4 | 11, 12 | **Produktionsfreigabe, erste Hälfte.** Audit durch eine andere Sitzung. Sperren. Und erst danach der **dritte Block** (Erinnerungen und Anzahlung), gebaut mit der vollständigen Schleife und im Trockenlauf belassen. |
-| 5 | 13, 14, 16, 17, 18, 19 | **Produktionsfreigabe, zweite Hälfte.** Abschluss der Kette in die Produktion mit getestetem Rollback. Beobachtbarkeit mit konfigurierbarem Level, Persistenz vorher und nachher gemessen, Schwachstellen-Scan als Tor, Lasttest mit dem Bruchpunkt. Die drei Handbücher; jemand, der nicht programmiert, folgt dem Wiederherstellungshandbuch. **Abnahmetests** von dir oder vom Eigentümer über alle Flüsse. Erstes Deployment in die Produktion ohne Nutzer. |
-| 6 | 15, 20, 21 | **Betrieb.** Du schaltest die Erinnerungen frei, nachdem du das Trockenlauf-Protokoll angesehen hast. Die beiden Monitorings, aufgebaut in der Woche des Deployments: Ressourcen und Leistung, Fehler; der erste zyklische Bericht mit der Eigentümerin gelesen. Residenter Agent. Retrospektive mit Zahlen und Änderungsvorschlag für die Leiter. |
+| 2 | 5, 6, 8, 10 | **Erster Funktionsblock** (die Grundagenda). Du öffnest den Block, indem du die Anfrage in spezifizierte offene Posten verwandelst. Mit jedem offenen Posten: Entscheidungen, roter Test, Ende-zu-Ende-Test des Flusses, Screenshot des Bildschirms, den du dir ansiehst. Beim Abschluss des Blocks: vollständige Ende-zu-Ende-Batterie, und du benutzt das System in der Testumgebung entlang der Flüsse des Blocks. |
+| 3 | 7, 9, 11, 12 | **Zweiter Block** (Patienten und Suche). Die vier restlichen Lektionen der Schleife werden an diesem Block gelernt. Derselbe Abschluss: Ende zu Ende aller Flüsse, menschliche Tests, Benutzerhandbuch mit den neuen Bildschirmen. |
+| 4 | 13, 14 | **Produktionsfreigabe, erste Hälfte.** Audit durch eine andere Sitzung. Sperren. Und erst danach der **dritte Block** (Erinnerungen und Anzahlung), gebaut mit der vollständigen Schleife und im Trockenlauf belassen. |
+| 5 | 15, 16, 17, 18, 19, 20 | **Produktionsfreigabe, zweite Hälfte.** Abschluss der Kette in die Produktion mit getestetem Rollback. Beobachtbarkeit mit konfigurierbarem Level, Persistenz vorher und nachher gemessen, Schwachstellen-Scan als Tor, Lasttest mit dem Bruchpunkt. Die drei Handbücher; jemand, der nicht programmiert, folgt dem Wiederherstellungshandbuch. **Abnahmetests** von dir oder vom Eigentümer über alle Flüsse. Erstes Deployment in die Produktion ohne Nutzer. |
+| 6 | 21, 22, 23 | **Betrieb.** Du schaltest die Erinnerungen frei, nachdem du das Trockenlauf-Protokoll angesehen hast. Die beiden Monitorings, aufgebaut mit dem Deployment: Ressourcen und Leistung, Fehler; der erste zyklische Bericht mit der Eigentümerin gelesen. Residenter Agent. Retrospektive mit Zahlen und Änderungsvorschlag für die Leiter. |
 
-Wenn dein Projekt größer ist, dehnen sich die Wochen 2 und 3 (mehr Blöcke), nicht die 1 und nicht
-die 4 und 5. Und wenn du dich irgendwann dabei ertappst, in Woche 3 Infrastruktur zu machen oder in
-Woche 5 die Ende-zu-Ende-Batterie zum ersten Mal laufen zu lassen, geh zum Kalender zurück: etwas
-wurde übersprungen.
+Wenn dein Projekt größer ist, wachsen die Etappen 2 und 3 (mehr Blöcke), nicht die 1 und nicht
+die 4 und 5. Und wenn du dich irgendwann dabei ertappst, in Etappe 3 Infrastruktur zu machen oder
+in Etappe 5 die Ende-zu-Ende-Batterie zum ersten Mal laufen zu lassen, geh zur Reihenfolge
+zurück: etwas wurde übersprungen.
 
 ### Das Leitprojekt: „Turnera“
 
 Wenn du kein eigenes Projekt hast, nimm dieses. Es ist klein, hat aber alles, was nötig ist, damit
-keiner der zweiundzwanzig Schritte nur zum Schein ist: echte Nutzer, personenbezogene Daten,
+keiner der vierundzwanzig Schritte nur zum Schein ist: echte Nutzer, personenbezogene Daten,
 Nachrichten, die in die Welt hinausgehen, und Geld.
 
 **Das Geschäft.** Eine Praxis (es kann eine Kanzlei, ein Friseursalon, eine Werkstatt sein: jeder
@@ -165,7 +167,7 @@ er es fragt.
 
 ## Startabschnitt: Lektionen 0 bis 4
 
-Diese fünf Lektionen werden einmal pro Projekt gemacht, in Woche 1, bevor Funktionalität
+Diese fünf Lektionen werden einmal pro Projekt gemacht, in Etappe 1, bevor Funktionalität
 geschrieben wird. Sie sind die, bei denen die Versuchung zu überspringen am größten ist („ich will
 etwas laufen sehen“), und die, deren Überspringen am teuersten kommt. Mach sie am Stück, und öffne
 erst danach die Schleife.
@@ -191,7 +193,7 @@ eigenen Projekt kann diese Lektion mit „no-go“ enden, und das ist ein gülti
 
 **Bevor du den Prompt schickst**, mit deinen Händen (der Agent kann das nicht für dich tun):
 
-- `docs/INITIAL_SURVEY.md`: das schreibst du von Hand, aus der Aufnahme der Woche 0: was der Kunde
+- `docs/INITIAL_SURVEY.md`: das schreibst du von Hand, aus der Aufnahme der Etappe 0: was der Kunde
   will, für wen, was heute ohne das System passiert, welche Technologie es gibt oder vorgeschlagen
   wird, ob es ein Vorgängersystem gibt und ob es ein Repository hat, ob sich die Bildschirme
   programmatisch werden bedienen lassen, wer der Eigentümer ist und wie viel Zeit er hat, welche
@@ -268,7 +270,7 @@ aufgeschrieben wird, und was nicht aufgeschrieben wird, ist das, worüber späte
 **Im Leitprojekt.** Der Agent sollte mindestens fragen, ob die Oberfläche Web oder mobil sein
 wird (denn X2 hängt davon ab), ob es ein Vorgängersystem gibt, und sei es ein Excel, und welcher
 Nachrichtenkanal verwendet werden soll (WhatsApp hat Anforderungen, die E-Mail nicht hat). Das
-Blatt endet mit „go“, mit einer vernünftigen Bedingung: den Nachrichtenkanal vor Schritt 12
+Blatt endet mit „go“, mit einer vernünftigen Bedingung: den Nachrichtenkanal vor Schritt 14
 festgelegt zu haben.
 
 ### Lektion 1 — Die Arbeitsvereinbarung
@@ -363,7 +365,7 @@ du sehen, wie.
 **Im Leitprojekt.** Eine eigene Regel, die der Agent für Turnera meist vorschlägt und die es wert
 ist, angenommen zu werden: „ich sende nie eine echte Nachricht an einen Patienten aus einer
 Umgebung, die nicht Produktion ist; in der Testumgebung gehen die Nachrichten in einen falschen
-Postausgang“. Das ist Schritt 12, der früh hereinschaut.
+Postausgang“. Das ist Schritt 14, der früh hereinschaut.
 
 ### Lektion 2 — Die Projektdefinition, der semantische Baum und die Pflichtlektüre
 
@@ -630,13 +632,13 @@ getestet und deployt werden. Es wirkt wie Zeitverschwendung („was deployen, we
 gibt?“) und ist das Gegenteil: der Weg in die Produktion ist Teil des Produkts, und die einzige
 Art zu wissen, dass er funktioniert, ist, ihn zu gehen, solange es noch nichts zu verlieren gibt.
 In einem meiner Systeme kam das Deployment einen Monat nach dem Start und kostete fünf offene
-Posten in Folge [Ref. 32](REFERENCIAS.md#ref-32); mit dem in der ersten Woche deployten Skelett
+Posten in Folge [Ref. 32](REFERENCIAS.md#ref-32); mit dem im Start deployten Skelett
 hätten diese fünf Schläge ins Leere getroffen.
 
 Diese Lektion ist außerdem **der Ort, an dem die gesamte Infrastruktur und die Integrations- und
-Deployment-Kette** des Projekts gemacht wird. Du wirst sie bis Lektion 13 nicht wieder anfassen,
+Deployment-Kette** des Projekts gemacht wird. Du wirst sie bis Lektion 15 nicht wieder anfassen,
 und dazwischen wirst du die ganze Funktionalität darauf bauen. Deshalb nimmt sie den größten Teil
-der Woche 1 ein.
+der Etappe 1 ein.
 
 Die **Tore** sind die Bedingungen, um von einer Etappe zur anderen zu kommen („die Batterie ist
 grün“, „das Deployment in die Testumgebung hat funktioniert“). Sie jetzt aufzuschreiben, auch wenn
@@ -687,7 +689,7 @@ diskutieren.
    ein Skelett ist, die Tore schriftlich, einen echten Screenshot aus der Testumgebung, und das
    Verbot, Funktionalität hinzuzufügen.
 
-2. Diese Aufgabe ist lang (ein oder zwei Stunden Arbeit des Agenten) und wird Hin und Her haben:
+2. Diese Aufgabe ist lang und wird Hin und Her haben:
    Zugangsdaten, die fehlen, ein Dienst, der verlangt, die E-Mail zu bestätigen, usw. Das ist
    normal. Was nicht normal ist, ist, dass er dir „erledigt“ sagt ohne den Screenshot aus der
    Testumgebung.
@@ -734,21 +736,22 @@ befriedigend es ist, diese leere Seite unter einer echten URL zu sehen.
 
 ---
 
-## Schleifenabschnitt: Lektionen 5 bis 10
+## Schleifenabschnitt: Lektionen 5 bis 12
 
-Diese sechs Lektionen sind die, die du **mit jeder Änderung** benutzen wirst, während des ganzen
-Projekts. Sie werden in den Wochen 2 und 3 an den ersten zwei Funktionsblöcken gelernt und bis zum
-Ende geübt. Die Idee ist, dass du am Ende des Abschnitts den Reflex hast: einen Block öffnen, indem
-die Anfrage in spezifizierte offene Posten verwandelt wird, einen nehmen, bauen, rot beweisen, den
-Ende-zu-Ende-Test des Flusses laufen lassen, die andere Seite aktualisieren, messen, was zu messen
-ist, berichten und dabei das Verifizierte vom Geglaubten trennen, den geschlossenen Posten
-dokumentieren, und beim Abschluss des Blocks das System selbst benutzen. Dieser Reflex ist die
-Methode.
+Diese acht Lektionen sind die, die du **mit jeder Änderung** benutzen wirst, während des ganzen
+Projekts. Sie werden in den Etappen 2 und 3 an den ersten zwei Funktionsblöcken gelernt und bis
+zum Ende geübt. Sie stehen in der Reihenfolge, in der sie bei jedem offenen Posten gemacht werden:
+einen Block öffnen, indem die Anfrage in spezifizierte offene Posten verwandelt wird, einen
+nehmen, entscheiden, was fehlt, messen, was zu messen ist, bauen, rot und Ende zu Ende beweisen,
+das Qualitätstor passieren, die manuellen Testfälle schreiben, die andere Seite aktualisieren, und
+berichten und dabei das Verifizierte vom Geglaubten trennen. Beim Abschluss des Blocks führst du
+die manuellen Testfälle selbst aus. Dieser Reflex ist die Methode.
 
 Um sie zu üben, wirst du echte Funktionalität brauchen. Im Leitprojekt ist der erste Block die
 Grundagenda: die Termine des Tages sehen, einen Termin eintragen, ihn absagen. Der zweite:
 Patienten und Suche. Noch keine Nachrichten und keine Zahlungen; das kommt nach den Sperren
-(Lektion 12).
+(Lektion 14).
+
 ### Lektion 5 — Der Plan sind die offenen Posten, und die detaillierte Spezifikation lebt in jedem einzelnen
 
 **Was du verstehen musst.** Es gibt keinen „Plan“ auf der einen und keine „Aufgabenliste“ auf
@@ -989,259 +992,7 @@ die Fachkraft ihn freigegeben hat“; „das Telefon des Patienten ist Pflicht; 
 Jede mit Datum und dem Namen der Leiterin, und jede in die Spezifikation des offenen Postens
 eingefügt, der sie brauchte.
 
-### Lektion 7 — Tests als Sperren, rot bewiesen, und die Ende-zu-Ende-Tests
-
-**Was du verstehen musst.** Das ist die zentrale Lektion des Kurses. Von einem Test, den du nie
-hast fehlschlagen sehen, weißt du nicht, ob er etwas beweist. Das Modell schreibt den Code und den
-Test in derselben Sitzung, mit demselben Verständnis: wenn es die Anfrage falsch verstanden hat,
-prüft der Test, was es verstanden hat, und besteht. Die einzige billige Art zu wissen, dass der
-Test auf das schaut, was zählt, ist, **ihn rot gegen den alten Code zu sehen**: wenn der Code von
-vor der Änderung ihn auch besteht, unterscheidet der Test das Vorher nicht vom Nachher, und dann
-taugt er nichts. Deshalb lautet die Anfrage nicht „schreib Tests“, sondern „zeig mir das Rot, dann
-das Grün, dann die Regression“. Der Fall, der das am besten zeigt, ist der der Zähler, die nicht
-übereinstimmten [Ref. 26](REFERENCIAS.md#ref-26).
-
-Und die zweite Idee, die so wichtig ist wie die erste: die Ende-zu-Ende-Tests. Ein Test, der vom
-Bildschirm aus prüft (klickt, tippt, liest) und die Wirkung im Backend kontrolliert (die Zeile ist
-da, der Zustand hat sich geändert), ist der, der deine Lektüre des Codes ersetzt. Die
-Abnahmekriterien des offenen Postens („gegeben, wenn, dann“) sind sein Drehbuch. Und sie laufen
-**dreimal, in drei Maßstäben**: der berührte Fluss mit jedem offenen Posten; alle Flüsse, die es
-gibt, beim Abschluss jedes Blocks; und alle Flüsse mit der exakten Version vor jedem Deployment in
-die Produktion. Wenn du nur das dritte machst, kommst du am Ende mit einem System an, das
-wochenlang niemand Ende zu Ende getestet hat.
-
-**Die Aufgabe.**
-
-**Bevor du den Prompt schickst**, mit deinen Händen:
-
-- `docs/WORKING_AGREEMENT.md` (Lektion 1), wo die Routine hinkommt.
-- Den offenen Posten, der geschlossen werden soll, mit seinen Abnahmekriterien „gegeben, wenn,
-  dann“ und seinem „wie geprüft wird“ in `docs/PENDING.md`: sie sind das Drehbuch des Tests. Wenn
-  er sie nicht hat, geh zurück zu Lektion 5, bevor du den Test verlangst.
-- Die Batterie und den Befehl, um sie laufen zu lassen, in `docs/STATUS.md` (Lektion 4), und die
-  Testumgebung laufend, mit genügend Daten für den Fluss, der berührt wird; wenn Daten fehlen, lade
-  sie selbst hoch oder bitte ihn, sie als Teil des Tests anzulegen, aber er darf sie nicht
-  simulieren.
-
-1. Füg der Vereinbarung die Belegroutine hinzu. Füg ihm ein:
-
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
-> not your word. (1) Write the test that proves what the item asks for, following its acceptance
-> criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
-> revert the change, or run the test against the old version, but show me the red output. (3)
-> Show me the green output with the change. (4) Run the regression suite for the neighbouring
-> items and show me it is still green. (5) Run the end-to-end test of the flow this item
-> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
-> with mocks the very part you are trying to test. If testing end to end requires something you
-> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
-> Finally, the commit message says 'proved red against [what]' and the test counts."
-
-> [de]
-> Füge diese Routine zu `docs/WORKING_AGREEMENT.md` hinzu: „Um einen offenen Posten zu
-> schließen, brauche ich Belege, nicht dein Wort. (1) Schreib den Test, der beweist, was der
-> Posten verlangt, nach seinen Abnahmekriterien. (2) Zeige, dass dieser Test gegen den vorherigen
-> Code fehlschlägt: du kannst die Änderung vorübergehend zurücknehmen oder den Test gegen die
-> alte Version laufen lassen, aber zeig mir die rote Ausgabe. (3) Zeig mir die grüne Ausgabe mit
-> der Änderung. (4) Lass die Regression der benachbarten Posten laufen und zeig mir, dass sie
-> weiter grün ist. (5) Lass den Ende-zu-Ende-Test des Flusses laufen, den dieser Posten berührt,
-> vom Bildschirm bis zum Backend, und zeig mir die Wirkung im Backend. (6) Ersetze nicht
-> ausgerechnet den Teil durch Mocks, den du prüfen willst. Wenn das Ende-zu-Ende-Testen etwas
-> erfordert, das dir fehlt (Daten, Zugang, eine Umgebung), bitte mich darum; simuliere nicht, was
-> du nicht hast. Zum Schluss sagt die Commit-Nachricht ‚rot bewiesen gegen [was]‘ und die
-> Testzahlen.“
-
-   Du verlangst von ihm den von den Abnahmekriterien geführten Test, **das bewiesene Rot mit der
-   Ausgabe vor Augen**, das Grün, die Regression der Nachbarn, den Ende-zu-Ende-Test des Flusses
-   mit der Wirkung im Backend, nichts ausgerechnet dort zu simulieren, wo geprüft wird, und um das
-   Fehlende zu bitten, statt es zu simulieren.
-
-2. Nimm den offenen Posten der Doppelbuchung (PND-003 in Turnera, oder das Äquivalent in deinem
-   Projekt: eine Regel, die etwas verhindert). Bitte ihn, ihn mit der Routine zu schließen. Lies
-   den Bericht: es muss eine rote Ausgabe mit Zahlen geben („1 von 1 schlägt gegen die Version
-   ohne die Regel fehl“), dann das Grün, und den Ende-zu-Ende-Test: ein programmatisch gesteuerter
-   Browser, der den Bildschirm öffnet, versucht, die Doppelbuchung einzutragen, die Warnung liest
-   und in der Datenbank prüft, dass nichts gespeichert wurde.
-3. Wenn er dir sagt, dass er nicht Ende zu Ende testen kann, weil sich der Bildschirm nicht
-   programmatisch bedienen lässt, halt an: das ist X2, das versagt, und es muss jetzt behoben
-   werden (Kennungen zu den Elementen des Bildschirms hinzufügen), bevor es weitergeht.
-
-**Bevor du den Prompt schickst**: unterscheide, ob ihm eine Eingabe fehlt, die du hast (Daten, ein
-Zugang, eine Umgebung: gib sie ihm und schick diesen Prompt nicht), oder ob das System dort
-wirklich nicht testbar ist (dieser Prompt).
-
-4. Füg ihm ein:
-
-> Explain why it cannot be tested, what would have to be added so that it can, and open a
-> pending item for that. The change is not closed until it can be tested.
-
-> [de]
-> Erkläre, warum es sich nicht testen lässt, was hinzugefügt werden müsste, damit es geht, und
-> öffne einen offenen Posten dafür. Die Änderung ist nicht geschlossen, bis sie sich testen lässt.
-
-5. **Beim Abschluss des Blocks**, wenn die sechs offenen Posten geschlossen sind, lass die
-   vollständige Batterie laufen.
-
-**Bevor du den Prompt schickst** der Batterie: die sechs offenen Posten mit der Routine
-geschlossen, die exakte Version, die befördert werden soll, identifiziert und in der Testumgebung
-deployt, und deine eigene Liste der Flüsse, die es gibt (aus den Anwendungsfällen des semantischen
-Baums), um sie mit dem zu vergleichen, was der Agent abgedeckt zu haben sagt.
-
-6. Füg ihm ein:
-
-> Run the complete end-to-end suite of every flow that exists so far, in the test environment,
-> with the exact version that will be promoted. Show me the counts, and for each flow the
-> backend check that proves it. If any flow has no end-to-end test, say so and open a pending
-> item for it; do not pass it as covered.
-
-> [de]
-> Lass die vollständige Ende-zu-Ende-Batterie aller bisher existierenden Flüsse laufen, in der
-> Testumgebung, mit der exakten Version, die befördert werden soll. Zeig mir die Zahlen und für
-> jeden Fluss die Backend-Prüfung, die ihn beweist. Wenn ein Fluss keinen Ende-zu-Ende-Test hat,
-> sag es und öffne einen offenen Posten dafür; lass ihn nicht als abgedeckt durchgehen.
-
-7. Und danach **benutz das System selbst**. Öffne die Testumgebung und tu, was die Empfangskraft
-   tun würde: trag einen Termin ein, versuch die Doppelbuchung, sag ab, such. Was dich stört, was
-   du nicht verstehst, was steht, wo es nicht hingehört: notier es als offenen Posten. Diese halbe
-   Stunde findet, was kein Test findet.
-
-**Vollständigkeitsprüfung.** Zeigt der Bericht das Rot, mit Zahlen? Lief die Regression in
-derselben Sitzung, mit Zahlen? Prüft der Ende-zu-Ende-Test auch das Backend? Gibt es einen
-simulierten Teil genau dort, wo die Änderung ist? Sagt der Commit „rot bewiesen“? Beim Abschluss
-des Blocks: sind alle Flüsse in der Ende-zu-Ende-Batterie? Hast du das System selbst benutzt und
-notiert, was du gefunden hast?
-
-**Ergebnis.** Mindestens drei offene Posten, geschlossen mit der vollständigen Routine (Rot, Grün,
-Regression, Ende zu Ende), die vollständige Ende-zu-Ende-Batterie des Blocks grün, und die offenen
-Posten, die aus deinen menschlichen Tests entstanden sind.
-
-**Typische Fehler.** „Die Tests bestehen“ ohne Zahlen und ohne Rot akzeptieren. Akzeptieren, dass
-die Batterie „beschleunigt“ wird, indem die Ende-zu-Ende-Tests durch Simulationen ersetzt werden.
-Ein „lässt sich nicht testen“ durchgehen lassen, ohne den offenen Posten zu öffnen. Und den Block
-schließen, ohne ihn selbst zu benutzen: der menschliche Blick wird nicht delegiert.
-
-**Im Leitprojekt.** Das Rot der Doppelbuchung sieht so aus: der Agent entfernt vorübergehend die
-Regel, lässt den Test laufen, und die Ausgabe sagt, dass der Test fehlgeschlagen ist, weil der
-zweite Termin gespeichert wurde. Er setzt die Regel wieder ein, lässt laufen, grün. Dann die
-Regression: die Tests von PND-001 und PND-002 sind weiter grün. Und der Ende-zu-Ende-Test: ein
-programmatisch gesteuerter Browser füllt das Formular aus, drückt „speichern“, liest die Nachricht
-„diese Uhrzeit ist schon belegt“, und eine Datenbankabfrage bestätigt, dass es nur einen Termin zu
-dieser Uhrzeit gibt. Beim Abschluss des Blocks durchläuft die Ende-zu-Ende-Batterie die drei
-Flüsse, die es gibt (den Tag sehen, eintragen, absagen), und die Leiterin trägt zehn Testtermine
-ein und entdeckt, dass die Uhrzeit mit einem unbequemen Dropdown-Menü gewählt wird. Neuer offener
-Posten. Wenn du diesen Bericht zum ersten Mal siehst, wirst du verstehen, wofür die ganze Methode
-da ist.
-
-### Lektion 8 — Symmetrie zwischen Produzent und Konsument, und das Register der Anti-Muster
-
-**Was du verstehen musst.** Wenn du ein Ende des Systems änderst (den Server, die Datenbank, einen
-Roboter), muss sich das andere Ende (der Bildschirm, ein Zähler, ein Bericht) im selben Commit
-ändern. Sonst driften sie auseinander, und der Nutzer sieht auf der einen Seite eine Zahl und auf
-der anderen eine andere [Ref. 26](REFERENCIAS.md#ref-26). Das Prinzip, das das verhindert, ist
-einfach auszusprechen und schwer durchzuhalten: **jede Liste hat einen einzigen Eigentümer**. Die
-möglichen Zustände eines Termins, die Spalten eines Berichts, die Gründe, warum etwas wartet: ein
-einziger Teil (der Produzent) definiert sie, und die anderen lesen sie von dort
-[Ref. 27](REFERENCIAS.md#ref-27). Der semantische Baum ist der erste Ort, an dem diese Listen
-deklariert werden. Sobald es zwei Kopien gibt, ist eine veraltet; man weiß nur noch nicht, welche.
-
-Die zweite Hälfte der Lektion ist das Register der Anti-Muster (GOTCHAS): die Fehler, die du schon
-einmal ausgebadet hast, notiert mit ihrem Geruch, ihrer Grundursache, ihrer Behebung und wie man
-sie vorher erkennt [Ref. 2](REFERENCIAS.md#ref-2). Das Wichtige ist nicht, sie zu notieren: es
-ist, die automatische Prüfung hinzuzufügen, die sie erkennt, denn ein notiertes, aber nicht
-automatisiertes Anti-Muster wiederholt sich, wenn die Sitzung wechselt.
-
-**Die Aufgabe.**
-
-**Bevor du den Prompt schickst**, mit deinen Händen:
-
-- Mindestens einen gebauten Funktionsblock: ohne Verträge zwischen Teilen gibt es keine Karte zu
-  machen.
-- `docs/SEMANTIC_TREE.md` auf dem neuesten Stand: die Listen (Zustände, Typen, Gründe) sind dort
-  deklariert, und die Karte muss mit dem Baum übereinstimmen.
-- Eine von dir geschriebene Liste dessen, was außerhalb des Repositorys lebt und etwas vom System
-  produziert oder konsumiert (ein Roboter, eine Tabelle, ein Prozess eines anderen Teams), oder
-  die Feststellung, dass es nichts gibt.
-
-1. Bitte ihn um die Vertragskarte:
-
-> Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
-> a file format, a list of values), who produces it and who consumes it. If there are parts of
-> the system you cannot access or do not understand, tell me instead of leaving them out of the
-> map. Reply in my language.
-
-> [de]
-> Baue `docs/PRODUCER_CONSUMER_MAP.md`: für jeden Vertrag im System (einen Dienst, eine Tabelle,
-> ein Dateiformat, eine Werteliste), wer ihn produziert und wer ihn konsumiert. Wenn es Teile des
-> Systems gibt, auf die du nicht zugreifen kannst oder die du nicht verstehst, sag es mir, statt
-> sie aus der Karte wegzulassen. Antworte in meiner Sprache.
-
-   Du verlangst von ihm das Inventar der Verträge mit ihren zwei Seiten, und dass er, was er nicht
-   sieht, erklärt, statt es wegzulassen.
-
-**Bevor du den Prompt schickst** der Routine: die von dir geprüfte Karte (wähl einen Vertrag und
-prüf, dass die beiden Seiten die sind, die du kennst) und `docs/WORKING_AGREEMENT.md`.
-
-2. Füg die Routine der Vereinbarung hinzu:
-
-> Add this routine to `docs/WORKING_AGREEMENT.md`: "Before closing any change that touches a
-> contract, look up every consumer in the map and update them in the same commit. Always prefer
-> that the producer defines the list (columns, causes, states) and the consumer reads it, rather
-> than each keeping its own copy. If the map does not have that relationship, add it."
-
-> [de]
-> Füge diese Routine zu `docs/WORKING_AGREEMENT.md` hinzu: „Bevor du eine Änderung schließt, die
-> einen Vertrag berührt, such in der Karte jeden Konsumenten und aktualisiere sie im selben
-> Commit. Bevorzuge immer, dass der Produzent die Liste definiert (Spalten, Gründe, Zustände) und
-> der Konsument sie liest, statt dass jeder seine eigene Kopie hält. Wenn die Karte diese
-> Beziehung nicht hat, füge sie hinzu.“
-
-3. Mach die Listenprobe: wähl eine Liste, die auf dem Bildschirm erscheint (in Turnera die
-   Zustände eines Termins: ausstehend, bestätigt, abgesagt, nicht erschienen), und bitte den
-   Agenten, dir zu zeigen, wo sie definiert ist und wo sie gelesen wird. Wenn es zwei Definitionen
-   gibt, bitte ihn, nur eine zu lassen, und dass sie mit dem semantischen Baum übereinstimmt.
-4. Beim ersten Mal, dass etwas zum zweiten Mal bricht (das wird in den nächsten Wochen passieren),
-   halt es fest.
-
-**Bevor du den Prompt schickst**: den offenen Posten oder den Commit des ersten Mals, von dir
-zwischen den geschlossenen Posten von `docs/PENDING.md` aufgespürt, um ihn zusammen mit dem Prompt
-einzufügen (ohne diesen Verweis kommt das Anti-Muster generisch heraus); und `docs/GOTCHAS.md`
-angelegt, auch wenn leer, mit dem Format in der Kopfzeile: Geruch, Grundursache, Behebung, wie man
-es vorher erkennt.
-
-5. Füg ihm ein:
-
-> This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
-> sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
-> possible, a test or an automatic check that detects it.
-
-> [de]
-> Das ist uns schon einmal passiert. Halte es in `docs/GOTCHAS.md` fest mit: wie es riecht (das
-> frühe Zeichen), der Grundursache, der Behebung, und wie man es nächstes Mal erkennt, bevor es
-> wehtut. Und füge, wenn möglich, einen Test oder eine automatische Prüfung hinzu, die es erkennt.
-
-**Vollständigkeitsprüfung.** Wähl einen Vertrag aus der Karte: liest jeder Konsument ihn vom
-Produzenten oder hat er seine Kopie? Gibt es eine Zahl, die auf zwei Bildschirmen gezeigt wird und
-übereinstimmt? Stimmen die Zustände der Entitäten zwischen dem Code und dem semantischen Baum
-überein? Hat jeder Eintrag in GOTCHAS die vier Teile? Hat sich etwas wiederholt, das schon notiert
-war?
-
-**Ergebnis.** `docs/PRODUCER_CONSUMER_MAP.md`, die Routine in der Vereinbarung, und
-`docs/GOTCHAS.md` (auch wenn es mit einem einzigen Eintrag beginnt).
-
-**Typische Fehler.** Die Karte einmal machen und nie wieder ansehen: sie muss mit jedem neuen
-Vertrag wachsen. Anti-Muster als Anekdoten notieren („einmal ist es passiert, dass …“) ohne den
-Teil „wie man es vorher erkennt“. Und der Klassiker: derselbe Text eines Zustands von Hand im Server
-und im Bildschirm geschrieben; an dem Tag, an dem einer sich ändert, bleibt der andere.
-
-**Im Leitprojekt.** Die Karte von Turnera hat anfangs vier oder fünf Verträge: die Liste der
-Terminzustände (der Server definiert sie, der Bildschirm und der Monatsbericht lesen sie); die
-Termintabelle (die Eintragung schreibt sie, die Tagesagenda und der Bericht lesen sie); die
-Patiententabelle; und später die Nachrichtenwarteschlange (die Agenda schreibt sie, der Versender
-liest sie). Das erste GOTCHA ist meist eines mit Datumsangaben: die Agenda zeigte den Termin am
-falschen Tag, weil der Server in einer Zeitzone speicherte und der Bildschirm in einer anderen
-anzeigte. Geruch: „der Termin um 23 Uhr erscheint morgen“. Grundursache: zwei Zeitzonen. Behebung:
-eine einzige, auf dem Server. Erkennung: ein Test mit einem Termin um 23:30.
-
-### Lektion 9 — Messen vor dem Bauen, mit einem Instrument, das ebenfalls geprüft wird
+### Lektion 7 — Messen vor dem Bauen, mit einem Instrument, das ebenfalls geprüft wird
 
 **Was du verstehen musst.** Das Modell produziert Behauptungen mit Zahl („es gibt etwa 120
 Abfragen dieser Art“), und sie klingen exakt gleich, wenn sie gemessen und wenn sie geschätzt
@@ -1363,7 +1114,364 @@ Grundabfragen zählt (sagen wir 2). Wenn es eine Schleife gab, sind die Zahlen 1
 behebt es, sie werden zu 3, 3 und 3, und das Budget bleibt bei 4 mit einem Test, der fehlschlägt,
 wenn die Agenda für irgendeine Anzahl von Terminen mehr als 4 Abfragen macht.
 
-### Lektion 10 — Ehrliche Verifikation und verhältnismäßiger Bericht
+### Lektion 8 — Tests als Sperren, rot bewiesen, und die Ende-zu-Ende-Tests
+
+**Was du verstehen musst.** Das ist die zentrale Lektion des Kurses. Von einem Test, den du nie
+hast fehlschlagen sehen, weißt du nicht, ob er etwas beweist. Das Modell schreibt den Code und den
+Test in derselben Sitzung, mit demselben Verständnis: wenn es die Anfrage falsch verstanden hat,
+prüft der Test, was es verstanden hat, und besteht. Die einzige billige Art zu wissen, dass der
+Test auf das schaut, was zählt, ist, **ihn rot gegen den alten Code zu sehen**: wenn der Code von
+vor der Änderung ihn auch besteht, unterscheidet der Test das Vorher nicht vom Nachher, und dann
+taugt er nichts. Deshalb lautet die Anfrage nicht „schreib Tests“, sondern „zeig mir das Rot, dann
+das Grün, dann die Regression“. Der Fall, der das am besten zeigt, ist der der Zähler, die nicht
+übereinstimmten [Ref. 26](REFERENCIAS.md#ref-26).
+
+Und die zweite Idee, die so wichtig ist wie die erste: die Ende-zu-Ende-Tests. Ein Test, der vom
+Bildschirm aus prüft (klickt, tippt, liest) und die Wirkung im Backend kontrolliert (die Zeile ist
+da, der Zustand hat sich geändert), ist der, der deine Lektüre des Codes ersetzt. Die
+Abnahmekriterien des offenen Postens („gegeben, wenn, dann“) sind sein Drehbuch. Und sie laufen
+**dreimal, in drei Maßstäben**: der berührte Fluss mit jedem offenen Posten; alle Flüsse, die es
+gibt, beim Abschluss jedes Blocks; und alle Flüsse mit der exakten Version vor jedem Deployment in
+die Produktion. Wenn du nur das dritte machst, kommst du am Ende mit einem System an, das
+wochenlang niemand Ende zu Ende getestet hat.
+
+**Die Aufgabe.**
+
+**Bevor du den Prompt schickst**, mit deinen Händen:
+
+- `docs/WORKING_AGREEMENT.md` (Lektion 1), wo die Routine hinkommt.
+- Den offenen Posten, der geschlossen werden soll, mit seinen Abnahmekriterien „gegeben, wenn,
+  dann“ und seinem „wie geprüft wird“ in `docs/PENDING.md`: sie sind das Drehbuch des Tests. Wenn
+  er sie nicht hat, geh zurück zu Lektion 5, bevor du den Test verlangst.
+- Die Batterie und den Befehl, um sie laufen zu lassen, in `docs/STATUS.md` (Lektion 4), und die
+  Testumgebung laufend, mit genügend Daten für den Fluss, der berührt wird; wenn Daten fehlen, lade
+  sie selbst hoch oder bitte ihn, sie als Teil des Tests anzulegen, aber er darf sie nicht
+  simulieren.
+
+1. Füg der Vereinbarung die Belegroutine hinzu. Füg ihm ein:
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "To close a pending item I need evidence,
+> not your word. (1) Write the test that proves what the item asks for, following its acceptance
+> criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily
+> revert the change, or run the test against the old version, but show me the red output. (3)
+> Show me the green output with the change. (4) Run the regression suite for the neighbouring
+> items and show me it is still green. (5) Run the end-to-end test of the flow this item
+> touches, from the screen to the backend, and show me the backend effect. (6) Do not replace
+> with mocks the very part you are trying to test. If testing end to end requires something you
+> lack (data, access, an environment), ask me for it; do not simulate what you do not have.
+> Finally, the commit message says 'proved red against [what]' and the test counts."
+
+> [de]
+> Füge diese Routine zu `docs/WORKING_AGREEMENT.md` hinzu: „Um einen offenen Posten zu
+> schließen, brauche ich Belege, nicht dein Wort. (1) Schreib den Test, der beweist, was der
+> Posten verlangt, nach seinen Abnahmekriterien. (2) Zeige, dass dieser Test gegen den vorherigen
+> Code fehlschlägt: du kannst die Änderung vorübergehend zurücknehmen oder den Test gegen die
+> alte Version laufen lassen, aber zeig mir die rote Ausgabe. (3) Zeig mir die grüne Ausgabe mit
+> der Änderung. (4) Lass die Regression der benachbarten Posten laufen und zeig mir, dass sie
+> weiter grün ist. (5) Lass den Ende-zu-Ende-Test des Flusses laufen, den dieser Posten berührt,
+> vom Bildschirm bis zum Backend, und zeig mir die Wirkung im Backend. (6) Ersetze nicht
+> ausgerechnet den Teil durch Mocks, den du prüfen willst. Wenn das Ende-zu-Ende-Testen etwas
+> erfordert, das dir fehlt (Daten, Zugang, eine Umgebung), bitte mich darum; simuliere nicht, was
+> du nicht hast. Zum Schluss sagt die Commit-Nachricht ‚rot bewiesen gegen [was]‘ und die
+> Testzahlen.“
+
+   Du verlangst von ihm den von den Abnahmekriterien geführten Test, **das bewiesene Rot mit der
+   Ausgabe vor Augen**, das Grün, die Regression der Nachbarn, den Ende-zu-Ende-Test des Flusses
+   mit der Wirkung im Backend, nichts ausgerechnet dort zu simulieren, wo geprüft wird, und um das
+   Fehlende zu bitten, statt es zu simulieren.
+
+2. Nimm den offenen Posten der Doppelbuchung (PND-003 in Turnera, oder das Äquivalent in deinem
+   Projekt: eine Regel, die etwas verhindert). Bitte ihn, ihn mit der Routine zu schließen. Lies
+   den Bericht: es muss eine rote Ausgabe mit Zahlen geben („1 von 1 schlägt gegen die Version
+   ohne die Regel fehl“), dann das Grün, und den Ende-zu-Ende-Test: ein programmatisch gesteuerter
+   Browser, der den Bildschirm öffnet, versucht, die Doppelbuchung einzutragen, die Warnung liest
+   und in der Datenbank prüft, dass nichts gespeichert wurde.
+3. Wenn er dir sagt, dass er nicht Ende zu Ende testen kann, weil sich der Bildschirm nicht
+   programmatisch bedienen lässt, halt an: das ist X2, das versagt, und es muss jetzt behoben
+   werden (Kennungen zu den Elementen des Bildschirms hinzufügen), bevor es weitergeht.
+
+**Bevor du den Prompt schickst**: unterscheide, ob ihm eine Eingabe fehlt, die du hast (Daten, ein
+Zugang, eine Umgebung: gib sie ihm und schick diesen Prompt nicht), oder ob das System dort
+wirklich nicht testbar ist (dieser Prompt).
+
+4. Füg ihm ein:
+
+> Explain why it cannot be tested, what would have to be added so that it can, and open a
+> pending item for that. The change is not closed until it can be tested.
+
+> [de]
+> Erkläre, warum es sich nicht testen lässt, was hinzugefügt werden müsste, damit es geht, und
+> öffne einen offenen Posten dafür. Die Änderung ist nicht geschlossen, bis sie sich testen lässt.
+
+5. **Beim Abschluss des Blocks**, wenn die sechs offenen Posten geschlossen sind, lass die
+   vollständige Batterie laufen.
+
+**Bevor du den Prompt schickst** der Batterie: die sechs offenen Posten mit der Routine
+geschlossen, die exakte Version, die befördert werden soll, identifiziert und in der Testumgebung
+deployt, und deine eigene Liste der Flüsse, die es gibt (aus den Anwendungsfällen des semantischen
+Baums), um sie mit dem zu vergleichen, was der Agent abgedeckt zu haben sagt.
+
+6. Füg ihm ein:
+
+> Run the complete end-to-end suite of every flow that exists so far, in the test environment,
+> with the exact version that will be promoted. Show me the counts, and for each flow the
+> backend check that proves it. If any flow has no end-to-end test, say so and open a pending
+> item for it; do not pass it as covered.
+
+> [de]
+> Lass die vollständige Ende-zu-Ende-Batterie aller bisher existierenden Flüsse laufen, in der
+> Testumgebung, mit der exakten Version, die befördert werden soll. Zeig mir die Zahlen und für
+> jeden Fluss die Backend-Prüfung, die ihn beweist. Wenn ein Fluss keinen Ende-zu-Ende-Test hat,
+> sag es und öffne einen offenen Posten dafür; lass ihn nicht als abgedeckt durchgehen.
+
+7. Und danach **benutz das System selbst**. Öffne die Testumgebung und tu, was die Empfangskraft
+   tun würde: trag einen Termin ein, versuch die Doppelbuchung, sag ab, such. Was dich stört, was
+   du nicht verstehst, was steht, wo es nicht hingehört: notier es als offenen Posten. Diese Weile
+   findet, was kein Test findet.
+
+**Vollständigkeitsprüfung.** Zeigt der Bericht das Rot, mit Zahlen? Lief die Regression in
+derselben Sitzung, mit Zahlen? Prüft der Ende-zu-Ende-Test auch das Backend? Gibt es einen
+simulierten Teil genau dort, wo die Änderung ist? Sagt der Commit „rot bewiesen“? Beim Abschluss
+des Blocks: sind alle Flüsse in der Ende-zu-Ende-Batterie? Hast du das System selbst benutzt und
+notiert, was du gefunden hast?
+
+**Ergebnis.** Mindestens drei offene Posten, geschlossen mit der vollständigen Routine (Rot, Grün,
+Regression, Ende zu Ende), die vollständige Ende-zu-Ende-Batterie des Blocks grün, und die offenen
+Posten, die aus deinen menschlichen Tests entstanden sind.
+
+**Typische Fehler.** „Die Tests bestehen“ ohne Zahlen und ohne Rot akzeptieren. Akzeptieren, dass
+die Batterie „beschleunigt“ wird, indem die Ende-zu-Ende-Tests durch Simulationen ersetzt werden.
+Ein „lässt sich nicht testen“ durchgehen lassen, ohne den offenen Posten zu öffnen. Und den Block
+schließen, ohne ihn selbst zu benutzen: der menschliche Blick wird nicht delegiert.
+
+**Im Leitprojekt.** Das Rot der Doppelbuchung sieht so aus: der Agent entfernt vorübergehend die
+Regel, lässt den Test laufen, und die Ausgabe sagt, dass der Test fehlgeschlagen ist, weil der
+zweite Termin gespeichert wurde. Er setzt die Regel wieder ein, lässt laufen, grün. Dann die
+Regression: die Tests von PND-001 und PND-002 sind weiter grün. Und der Ende-zu-Ende-Test: ein
+programmatisch gesteuerter Browser füllt das Formular aus, drückt „speichern“, liest die Nachricht
+„diese Uhrzeit ist schon belegt“, und eine Datenbankabfrage bestätigt, dass es nur einen Termin zu
+dieser Uhrzeit gibt. Beim Abschluss des Blocks durchläuft die Ende-zu-Ende-Batterie die drei
+Flüsse, die es gibt (den Tag sehen, eintragen, absagen), und die Leiterin trägt zehn Testtermine
+ein und entdeckt, dass die Uhrzeit mit einem unbequemen Dropdown-Menü gewählt wird. Neuer offener
+Posten. Wenn du diesen Bericht zum ersten Mal siehst, wirst du verstehen, wofür die ganze Methode
+da ist.
+
+### Lektion 9 — Maschinell verifizierte Code-Qualität
+
+**Was du verstehen musst.** Du liest den Code nicht, und das ist in Ordnung; aber der Code
+existiert, und jemand wird ihn pflegen. Wenn ihn niemand liest, muss ihn eine Maschine ansehen:
+ein *Linter* (wie die Rechtschreibprüfung einer Textverarbeitung, aber für Code), ein
+*Formatierer* (ein einziger Stil für alles), Grenzen für die Größe von Dateien und Funktionen,
+Grenzen für die *Komplexität* (wie viele Wege eine Funktion hat), Erkennung von dupliziertem und
+totem Code, und die *Abdeckung* der Tests mit einer *Ratsche* (die von heute ist der Boden von
+morgen). Alles in der Continuous Integration, rot, wenn es verletzt wird. Ich habe das in all
+meinen Projekten gemacht; ein Audit brachte mir eine Komponente mit mehr als zweitausend Zeilen
+zurück, weil keine Grenze sie gestoppt hatte [Ref. 41](REFERENCIAS.md#ref-41).
+
+**Bevor du den Prompt schickst**, mit deinen Händen:
+
+- Die laufende Continuous Integration (Lektion 4) und mindestens ein offener Posten des Blocks,
+  mit Lektion 8 geschlossen, damit es echten Code zu messen gibt.
+- Deine zwei Grenzen, in einer Zeile: für Turnera dreihundert Zeilen pro Datei und vierzig pro
+  Funktion, und die Abdeckung steigt nur.
+
+1. Füg ihm den anfänglichen Prompt des Vertrags von Schritt 9 ein (in `docs/peldanos/`), mit
+   deinen Grenzen in den Lücken.
+2. Lies `docs/CODE_QUALITY.md`. Es wird eine Liste dessen geben, was heute fehlschlägt;
+   entscheide, was sofort repariert wird (je ein offener Posten) und was mit Datum toleriert wird,
+   und schreib es in dieselbe Datei.
+
+**Bevor du den Prompt schickst** für die Routine: `docs/CODE_QUALITY.md` gelesen und mit deinen
+Entscheidungen, und `docs/WORKING_AGREEMENT.md`.
+
+3. Füg der Vereinbarung die Routine von Schritt 9 hinzu, eingepackt in „Add this routine to
+   `docs/WORKING_AGREEMENT.md`:“ wie die anderen.
+4. Verlang, dass er absichtlich, in einem Zweig, eine Funktion mit hundert Zeilen und eine
+   ungenutzte Variable einbaut: die Kette muss wegen beider Dinge rot werden.
+
+**Vollständigkeitsprüfung.** Hat der letzte Lauf der Kette die Qualität in Grün? Ist der Test
+mit dem Zweig rot geworden? Gibt es Linter-Ausnahmen, und hat jede eine geschriebene Begründung?
+Ist die Abdeckung von heute größer oder gleich der von gestern?
+
+**Ergebnis.** Das Qualitätstor in der Kette, `docs/CODE_QUALITY.md` mit Grenzen und Werten, und
+die Routine in der Vereinbarung.
+
+**Typische Fehler.** Den Agenten „diese Regel abschalten lassen, weil sie zu streng ist“, ohne
+dass es über dich geht. Eine Grenze anheben, damit es durchgeht. Und Abdeckung mit Qualität
+verwechseln: die Abdeckung zählt Tests, das Rot aus Lektion 8 sagt, ob sie etwas beweisen.
+
+**Im Leitprojekt.** Der erste Lauf von Turnera wird in drei Dingen rot: das Terminformular hat
+eine Funktion mit 70 Zeilen (wird in zwei geteilt: offener Posten), es gibt zwei Kopien des
+Datumsformats (nur eine, im Server: offener Posten), und die Abdeckung liegt bei 61 %. Die Ratsche
+steht auf 61 und steigt mit jedem offenen Posten. Beim Abschluss des Blocks: 74 %.
+
+### Lektion 10 — Die manuellen Testfälle werden zusammen mit der Funktionalität geschrieben
+
+**Was du verstehen musst.** Alle Tests, die wir bis hierher gesehen haben, schreibt und lässt das
+Modell laufen, und sie prüfen, was das Modell verstanden hat. Es fehlt der Test, den eine Person
+mit ihren Augen und ihren Händen macht, einem *Drehbuch* folgend: ein manueller Testfall, mit
+Vorbedingung, Schritten, erwartetem Ergebnis und einer Tabelle, um jede Ausführung zu notieren.
+Das Drehbuch schreibt der Agent zusammen mit jedem offenen Posten, aus den Abnahmekriterien; du
+führst es aus (oder die Leiterin) beim Abschluss jedes Blocks, vor dem ersten Deployment und nach
+jedem Deployment; und was fehlschlägt, kehrt als korrektiver offener Posten in die Schleife
+zurück, mit deinen Worten. Es ist der menschliche Blick mit Drehbuch, und es ist der Schluss des
+Kreises im Prozessbild: die manuelle Ausführung speist Anforderungen zurück.
+
+**Bevor du den Prompt schickst**, mit deinen Händen:
+
+- `docs/MANUAL_TESTS.md` angelegt, und sei es leer, mit dem Format in der Kopfzeile (kopier es
+  aus dem Vertrag von Schritt 10).
+- Die Entscheidung, wer ausführt und wann, in der Vereinbarung geschrieben: für den Kurs du beim
+  Abschluss jedes Blocks und die Leiterin vor dem ersten Deployment.
+- Ein offener Posten des Blocks, mit den Lektionen 8 und 9 geschlossen.
+
+1. Füg der Vereinbarung die Routine von Schritt 10 hinzu (im Vertrag, „Routine bei jedem offenen
+   Posten“), eingepackt wie die anderen. Von jetzt an wird jeder offene Posten, der einen
+   Bildschirm berührt, mit seinem Fall geschlossen.
+2. Verlang, dass er die Fälle der schon geschlossenen Posten des Blocks schreibt. Nimm einen
+   beliebigen und folg ihm selbst in der Testumgebung, ohne etwas zu fragen: wenn du fragen
+   musstest, ist der Fall nicht für eine Person geschrieben; lass ihn neu schreiben.
+3. Beim Abschluss des Blocks führ alle Fälle des Blocks selbst aus, von Hand, und notier bei
+   jedem das Datum, deinen Namen, bestanden oder fehlgeschlagen, und die Anmerkung. Was dich
+   stört und in keinen Fall fällt, notier es am Ende der Datei.
+
+**Bevor du den Prompt schickst** für die Ausführung: deine Ausführungen in der Datei notiert,
+Fall für Fall, und die losen Anmerkungen am Ende.
+
+4. Füg ihm den Ausführungs-Prompt des Vertrags von Schritt 10 ein. Jeder Fehlschlag muss als
+   korrektiver offener Posten mit deinen Worten zurückkommen.
+
+**Vollständigkeitsprüfung.** Konntest du einem Fall folgen, ohne zu fragen? Hat jeder geschlossene
+offene Posten, der einen Bildschirm berührt, seinen Fall? Sagt jeder Fall, was auf der anderen
+Seite des Bildschirms zu verifizieren ist? Hat die Ausführung bei jedem Fall Datum und Namen? Hat
+jeder Fehlschlag seinen offenen Posten mit deinen Worten?
+
+**Ergebnis.** `docs/MANUAL_TESTS.md` mit einem Fall pro Fluss des Blocks, die erste Ausführung
+festgehalten, und ein offener Posten pro Fehlschlag.
+
+**Typische Fehler.** Den Agenten die Fälle als ausgeführt markieren lassen. Fälle, die der
+automatische Test in Prosa sind. Und die Fehlschläge im Moment reparieren, ohne offenen Posten:
+deine Worte gehen verloren und auch die Spur davon, was sich wiederholt.
+
+**Im Leitprojekt.** Die Fälle des ersten Blocks von Turnera sind sechs: die Tagesagenda sehen,
+einen Termin eintragen, einen Überbuchungstermin versuchen, absagen, einen Patienten suchen, einen
+Patienten anlegen. In der ersten Ausführung schlagen zwei fehl: der zum Absagen (die Agenda
+aktualisiert sich erst beim Neuladen der Seite; Anmerkung der Leiterin: „ich dachte, es wäre nicht
+abgesagt worden“) und der zum Suchen (bei zwei Patienten mit demselben Nachnamen zeigt er nur
+einen). Zwei korrektive offene Posten, mit ihren Worten. Das unbequeme Auswahlmenü für die
+Uhrzeit, das kein Test sah, erscheint als lose Anmerkung.
+
+### Lektion 11 — Symmetrie zwischen Produzent und Konsument, und das Register der Anti-Muster
+
+**Was du verstehen musst.** Wenn du ein Ende des Systems änderst (den Server, die Datenbank, einen
+Roboter), muss sich das andere Ende (der Bildschirm, ein Zähler, ein Bericht) im selben Commit
+ändern. Sonst driften sie auseinander, und der Nutzer sieht auf der einen Seite eine Zahl und auf
+der anderen eine andere [Ref. 26](REFERENCIAS.md#ref-26). Das Prinzip, das das verhindert, ist
+einfach auszusprechen und schwer durchzuhalten: **jede Liste hat einen einzigen Eigentümer**. Die
+möglichen Zustände eines Termins, die Spalten eines Berichts, die Gründe, warum etwas wartet: ein
+einziger Teil (der Produzent) definiert sie, und die anderen lesen sie von dort
+[Ref. 27](REFERENCIAS.md#ref-27). Der semantische Baum ist der erste Ort, an dem diese Listen
+deklariert werden. Sobald es zwei Kopien gibt, ist eine veraltet; man weiß nur noch nicht, welche.
+
+Die zweite Hälfte der Lektion ist das Register der Anti-Muster (GOTCHAS): die Fehler, die du schon
+einmal ausgebadet hast, notiert mit ihrem Geruch, ihrer Grundursache, ihrer Behebung und wie man
+sie vorher erkennt [Ref. 2](REFERENCIAS.md#ref-2). Das Wichtige ist nicht, sie zu notieren: es
+ist, die automatische Prüfung hinzuzufügen, die sie erkennt, denn ein notiertes, aber nicht
+automatisiertes Anti-Muster wiederholt sich, wenn die Sitzung wechselt.
+
+**Die Aufgabe.**
+
+**Bevor du den Prompt schickst**, mit deinen Händen:
+
+- Mindestens einen gebauten Funktionsblock: ohne Verträge zwischen Teilen gibt es keine Karte zu
+  machen.
+- `docs/SEMANTIC_TREE.md` auf dem neuesten Stand: die Listen (Zustände, Typen, Gründe) sind dort
+  deklariert, und die Karte muss mit dem Baum übereinstimmen.
+- Eine von dir geschriebene Liste dessen, was außerhalb des Repositorys lebt und etwas vom System
+  produziert oder konsumiert (ein Roboter, eine Tabelle, ein Prozess eines anderen Teams), oder
+  die Feststellung, dass es nichts gibt.
+
+1. Bitte ihn um die Vertragskarte:
+
+> Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
+> a file format, a list of values), who produces it and who consumes it. If there are parts of
+> the system you cannot access or do not understand, tell me instead of leaving them out of the
+> map. Reply in my language.
+
+> [de]
+> Baue `docs/PRODUCER_CONSUMER_MAP.md`: für jeden Vertrag im System (einen Dienst, eine Tabelle,
+> ein Dateiformat, eine Werteliste), wer ihn produziert und wer ihn konsumiert. Wenn es Teile des
+> Systems gibt, auf die du nicht zugreifen kannst oder die du nicht verstehst, sag es mir, statt
+> sie aus der Karte wegzulassen. Antworte in meiner Sprache.
+
+   Du verlangst von ihm das Inventar der Verträge mit ihren zwei Seiten, und dass er, was er nicht
+   sieht, erklärt, statt es wegzulassen.
+
+**Bevor du den Prompt schickst** der Routine: die von dir geprüfte Karte (wähl einen Vertrag und
+prüf, dass die beiden Seiten die sind, die du kennst) und `docs/WORKING_AGREEMENT.md`.
+
+2. Füg die Routine der Vereinbarung hinzu:
+
+> Add this routine to `docs/WORKING_AGREEMENT.md`: "Before closing any change that touches a
+> contract, look up every consumer in the map and update them in the same commit. Always prefer
+> that the producer defines the list (columns, causes, states) and the consumer reads it, rather
+> than each keeping its own copy. If the map does not have that relationship, add it."
+
+> [de]
+> Füge diese Routine zu `docs/WORKING_AGREEMENT.md` hinzu: „Bevor du eine Änderung schließt, die
+> einen Vertrag berührt, such in der Karte jeden Konsumenten und aktualisiere sie im selben
+> Commit. Bevorzuge immer, dass der Produzent die Liste definiert (Spalten, Gründe, Zustände) und
+> der Konsument sie liest, statt dass jeder seine eigene Kopie hält. Wenn die Karte diese
+> Beziehung nicht hat, füge sie hinzu.“
+
+3. Mach die Listenprobe: wähl eine Liste, die auf dem Bildschirm erscheint (in Turnera die
+   Zustände eines Termins: ausstehend, bestätigt, abgesagt, nicht erschienen), und bitte den
+   Agenten, dir zu zeigen, wo sie definiert ist und wo sie gelesen wird. Wenn es zwei Definitionen
+   gibt, bitte ihn, nur eine zu lassen, und dass sie mit dem semantischen Baum übereinstimmt.
+4. Beim ersten Mal, dass etwas zum zweiten Mal bricht (das wird passieren),
+   halt es fest.
+
+**Bevor du den Prompt schickst**: den offenen Posten oder den Commit des ersten Mals, von dir
+zwischen den geschlossenen Posten von `docs/PENDING.md` aufgespürt, um ihn zusammen mit dem Prompt
+einzufügen (ohne diesen Verweis kommt das Anti-Muster generisch heraus); und `docs/GOTCHAS.md`
+angelegt, auch wenn leer, mit dem Format in der Kopfzeile: Geruch, Grundursache, Behebung, wie man
+es vorher erkennt.
+
+5. Füg ihm ein:
+
+> This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
+> sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
+> possible, a test or an automatic check that detects it.
+
+> [de]
+> Das ist uns schon einmal passiert. Halte es in `docs/GOTCHAS.md` fest mit: wie es riecht (das
+> frühe Zeichen), der Grundursache, der Behebung, und wie man es nächstes Mal erkennt, bevor es
+> wehtut. Und füge, wenn möglich, einen Test oder eine automatische Prüfung hinzu, die es erkennt.
+
+**Vollständigkeitsprüfung.** Wähl einen Vertrag aus der Karte: liest jeder Konsument ihn vom
+Produzenten oder hat er seine Kopie? Gibt es eine Zahl, die auf zwei Bildschirmen gezeigt wird und
+übereinstimmt? Stimmen die Zustände der Entitäten zwischen dem Code und dem semantischen Baum
+überein? Hat jeder Eintrag in GOTCHAS die vier Teile? Hat sich etwas wiederholt, das schon notiert
+war?
+
+**Ergebnis.** `docs/PRODUCER_CONSUMER_MAP.md`, die Routine in der Vereinbarung, und
+`docs/GOTCHAS.md` (auch wenn es mit einem einzigen Eintrag beginnt).
+
+**Typische Fehler.** Die Karte einmal machen und nie wieder ansehen: sie muss mit jedem neuen
+Vertrag wachsen. Anti-Muster als Anekdoten notieren („einmal ist es passiert, dass …“) ohne den
+Teil „wie man es vorher erkennt“. Und der Klassiker: derselbe Text eines Zustands von Hand im Server
+und im Bildschirm geschrieben; an dem Tag, an dem einer sich ändert, bleibt der andere.
+
+**Im Leitprojekt.** Die Karte von Turnera hat anfangs vier oder fünf Verträge: die Liste der
+Terminzustände (der Server definiert sie, der Bildschirm und der Monatsbericht lesen sie); die
+Termintabelle (die Eintragung schreibt sie, die Tagesagenda und der Bericht lesen sie); die
+Patiententabelle; und später die Nachrichtenwarteschlange (die Agenda schreibt sie, der Versender
+liest sie). Das erste GOTCHA ist meist eines mit Datumsangaben: die Agenda zeigte den Termin am
+falschen Tag, weil der Server in einer Zeitzone speicherte und der Bildschirm in einer anderen
+anzeigte. Geruch: „der Termin um 23 Uhr erscheint morgen“. Grundursache: zwei Zeitzonen. Behebung:
+eine einzige, auf dem Server. Erkennung: ein Test mit einem Termin um 23:30.
+
+### Lektion 12 — Ehrliche Verifikation und verhältnismäßiger Bericht
 
 **Was du verstehen musst.** Wenn du keinen Code lesen wirst, muss der Bericht des Agenten
 vertrauenswürdig sein, und das passiert nicht von allein. Das Modell wurde darauf trainiert,
@@ -1455,16 +1563,18 @@ nicht sehen, wie der Zustand ‚abgesagt‘ auf dem Handy der Empfangskraft auss
 
 ---
 
-## Betriebsabschnitt: Lektionen 11 bis 15
+## Abschnitt Produktionsfreigabe: Lektionen 13 bis 20
 
-Diese fünf Lektionen sind die, die „funktioniert“ in „lässt sich halten“ verwandeln. Sie werden in
-den Wochen 4 und 5 gemacht, wenn die ersten zwei Blöcke mit der Schleife gebaut und von dir in der
-Testumgebung getestet sind, und bevor das System auf die Welt wirkt (Nachrichten sendet, abbucht)
-oder echte Nutzer hat. Im Leitprojekt ist das der Moment, die Erinnerungen und die Anzahlung
-hinzuzufügen, und deshalb kommt Lektion 12 (Sperren) vor dem Bau dieser Funktionalitäten, nicht
-danach.
+Diese acht Lektionen sind die, die „funktioniert“ in „lässt sich halten“ verwandeln, und sie
+werden einmal gemacht, der Reihe nach, wenn die ersten zwei Blöcke mit der Schleife gebaut und von
+dir in der Testumgebung getestet sind, und bevor das System auf die Welt wirkt (Nachrichten
+sendet, abbucht) oder echte Nutzer hat. Im Leitprojekt ist das der Moment, die Erinnerungen und
+die Anzahlung hinzuzufügen, und deshalb kommt Lektion 14 (Sperren) vor dem Bau dieser
+Funktionalitäten, nicht danach. Die vier der Betriebsqualität (16 bis 19) sind die, die ich
+machte, ohne sie zu benennen; wenn du Anfänger bist, hat jeder ihrer Verträge einen Absatz „Wenn
+du Anfänger bist“, der seine Wörter erklärt; lies ihn vor der Lektion.
 
-### Lektion 11 — Das periodische Audit als Input für den Plan
+### Lektion 13 — Das periodische Audit als Input für den Plan
 
 **Was du verstehen musst.** Ab und zu muss man sich das ganze System mit frischen Augen ansehen,
 und was man sieht, geht nicht in einen Bericht, der abgelegt wird: es geht in die Liste der offenen
@@ -1531,7 +1641,7 @@ nicht an den Auditor), mit dem Datum der Datei in der Lücke.
 > den Befund. Wenn du mit einem nicht einverstanden bist, sag es mir mit dem Gegenbeleg;
 > ignoriere ihn nicht.
 
-4. Wiederhol diese Lektion vor dem ersten Deployment in die Produktion (Lektion 13) und danach
+4. Wiederhol diese Lektion vor dem ersten Deployment in die Produktion (Lektion 15) und danach
    alle ein bis zwei Monate.
 
 **Vollständigkeitsprüfung.** Sagt der Bericht, was er NICHT auditieren konnte? Haben zwei
@@ -1552,7 +1662,7 @@ sich bei 5.000 Patienten bemerkbar machen); das Terminformular ohne Validierung,
 der Zukunft liegt (P1); und irgendeine Abhängigkeit mit einer bekannten Schwachstelle (P1). Vier
 neue offene Posten, alle mit Datei und Zeile.
 
-### Lektion 12 — Fail-closed, Sperren und null stiller Schaden
+### Lektion 14 — Fail-closed, Sperren und null stiller Schaden
 
 **Was du verstehen musst.** Software macht standardmäßig im Zweifel weiter: wenn die Validierung
 fehlschlägt, läuft der Code weiter; wenn der Dienst nicht antwortet, wird angenommen, alles sei in
@@ -1625,7 +1735,7 @@ bestätigte Sperre ist eine Sperre, die nicht umgesetzt wird.
 > freischalte.
 
 4. Jetzt öffne den dritten Block (die Erinnerungen, die Anzahlung) mit Lektion 5, bau ihn mit der
-   vollständigen Schleife der Lektionen 5 bis 10, und lass ihn im Trockenlauf. Sieh dir ein paar
+   vollständigen Schleife der Lektionen 5 bis 12, und lass ihn im Trockenlauf. Sieh dir ein paar
    Tage lang das Protokoll „hätte gesendet“ an, bevor du den echten Versand freischaltest.
 
 **Vollständigkeitsprüfung.** Steht jede Aktion, die abbucht, sendet, genehmigt oder löscht, in der
@@ -1652,7 +1762,7 @@ Patient löschen (unumkehrbar; Sperre: doppelte Bestätigung, nur die Leiterin, 
 keine zukünftigen Termine hat; Rückweg: keiner, deshalb doppelt). Jede Sperre mit einem Test, der
 zeigt, dass ohne die Sperre die Aktion stattfand.
 
-### Lektion 13 — Continuous Integration, Umgebungen, Geheimnisse und Deployment als Teil des Produkts
+### Lektion 15 — Continuous Integration, Umgebungen, Geheimnisse und Deployment als Teil des Produkts
 
 **Was du verstehen musst.** In die Produktion zu kommen muss ein reproduzierbares Paket sein: die
 Tests laufen **einmal**, das Deployment verpackt nur und lädt hoch, die Konfiguration lebt auf dem
@@ -1711,9 +1821,9 @@ das Deployment in die Testumgebung. Diese Lektion vervollständigt ihn Richtung 
    das Deployment, das nur verpackt, die Konfiguration draußen, die wiederholbare Beförderung, das
    getestete Rollback, die Sperre gegen Geheimnisse, und die Dokumentation für eine Person.
 
-2. Vor dem ersten Deployment in die Produktion mach das Audit von Lektion 11, falls du es nicht
+2. Vor dem ersten Deployment in die Produktion mach das Audit von Lektion 13, falls du es nicht
    gemacht hast, und lass die vollständige Ende-zu-Ende-Batterie aller Flüsse mit der exakten
-   Version laufen, die du befördern wirst (der Blockabschluss-Prompt von Lektion 7).
+   Version laufen, die du befördern wirst (der Blockabschluss-Prompt von Lektion 8).
 
 **Bevor du den Prompt schickst** der Routine: `docs/DEPLOYMENT.md` geschrieben und von dir gelesen
 (könntest du ihm allein folgen?), und `docs/WORKING_AGREEMENT.md`.
@@ -1775,7 +1885,227 @@ Repository ist. Das Rollback ist derselbe Befehl mit der vorherigen Version. Und
 Anti-Geheimnis-Sperre ist eine Prüfung bei jedem Commit, die alles ablehnt, was wie ein Schlüssel
 aussieht.
 
-### Lektion 14 — Lebendige Dokumentation und Handbücher, denen eine Person ohne KI folgen kann
+### Lektion 16 — Beobachtbarkeit und Nachverfolgbarkeit, mit konfigurierbarem Level
+
+**Was du verstehen musst.** Wenn in der Produktion etwas schiefgeht, wirst du wissen wollen, was
+passiert ist, ohne den Code zu öffnen und ohne dass der Agent „nachsieht“: eine Nummer suchen und
+die ganze Geschichte dieser Aktion erscheinen lassen, vom Bildschirm bis zur Datenbank. Das ist
+ein *strukturiertes Log* mit einer *Korrelations-ID*. Und du wirst das Detail dessen, was das
+System schreibt, eine Minute lang hochdrehen wollen, während du untersuchst, ohne neu zu
+deployen: das ist das *konfigurierbare Level*. Die *Nachverfolgbarkeit* ist die andere Hälfte:
+jede Aktion mit Konsequenz (abgebucht, gesendet, gelöscht) landet in einer Liste, die die
+Anwendung nicht bearbeiten kann, mit wer, wann und was. Ohne das agiert der residente Agent aus
+Lektion 23 blind, und die Monitorings der Lektionen 21 und 22 haben nichts anzusehen
+[Ref. 16](REFERENCIAS.md#ref-16).
+
+**Bevor du den Prompt schickst**, mit deinen Händen und mit der Eigentümerin:
+
+- `docs/DEPLOYMENT.md` (Lektion 15), mit der Art, wie die Konfiguration pro Umgebung gelesen
+  wird: das Level wird eine weitere Variable sein.
+- `docs/LOCKS.md` (Lektion 14): die Liste der Aktionen, die im Audit-Log stehen müssen.
+- In `docs/INITIAL_SURVEY.md` die Liste, welche Daten personenbezogen sind (in Turnera: Name,
+  Telefonnummer, E-Mail-Adresse und Ausweisnummer der Patientin), mit der Leiterin geschrieben.
+  Die Logs müssen sie maskieren; es ist eine gesetzliche Pflicht.
+- Deine Entscheidung, wo die Logs leben und wie lange sie aufbewahrt werden. Für den Kurs: eine
+  rotierte Datei auf dem Server, neunzig Tage.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 16 ein (in `docs/peldanos/`), genau so.
+2. Wenn er dir die Kennung einer echten Anfrage zeigt, such sie selbst in den Logs der
+   Testumgebung: sie muss im Bildschirm, im Backend, in der Datenbank und im Aufruf an den
+   Nachrichtenanbieter erscheinen.
+3. Dreh das Level selbst auf Debug, mach eine Aktion, schau nach, dreh es wieder herunter. Wenn
+   du deployen musstest, ist der Schritt nicht erklommen.
+4. Such „Juan“ (oder irgendeinen Testnamen) in den Logs: er darf nicht da sein.
+
+**Bevor du den Prompt schickst** der Routine: `docs/OBSERVABILITY.md` von dir gelesen, und das
+Level einmal von dir hoch- und wieder heruntergedreht.
+
+5. Füg der Vereinbarung die Routine von Schritt 16 hinzu (im Vertrag, „Routine“), eingepackt in
+   „Add this routine to `docs/WORKING_AGREEMENT.md`:“ wie die übrigen.
+
+**Vollständigkeitsprüfung.** Bist du selbst einer Kennung durch alle Schichten gefolgt? Hast du
+das Level ohne Deployment geändert? Steht irgendein personenbezogenes Datum in den Logs? Ist die
+Absage eines Termins in der Testumgebung mit wer und wann im Audit-Log gelandet? Reicht dir
+`docs/OBSERVABILITY.md`, um allein einen Log-Eintrag zu finden?
+
+**Ergebnis.** Strukturierte Logs mit konfigurierbarem Level, die weitergegebene Kennung, das
+Audit-Log der Aktionen mit Konsequenz, `docs/OBSERVABILITY.md`, und die Routine in der
+Vereinbarung.
+
+**Typische Fehler.** „Logs“ akzeptieren, die jedes Modul anders schreibt. Die Produktion „erst
+mal“ auf Debug lassen. Und dass die Kennung nicht bis zur nächtlichen Aufgabe der Erinnerungen
+kommt, was genau der Ort ist, an dem die Vorfälle verloren gehen.
+
+**Im Leitprojekt.** Die Kennung von „Termin 17 absagen“ erscheint im Klick, im Server, in der
+markierten Zeile der Datenbank und in der E-Mail an die Fachkraft. Das Audit-Log sagt:
+„recepcion1 hat den Termin 17 um 10:42 aus der Tagesagenda abgesagt; Ergebnis: ok“. Die Leiterin
+dreht das Level auf Trace, um zu sehen, warum eine Erinnerung sich verspätet hat, findet es, und
+dreht es wieder herunter.
+
+### Lektion 17 — Optimierung der Persistenzschicht, vorher und nachher gemessen
+
+**Was du verstehen musst.** Die Datenbank ist der Ort, an dem Systeme langsam sterben: gut mit
+hundert Terminen, schlecht mit hunderttausend. Ein *Index* ist wie der eines Buches: ohne ihn
+liest die Datenbank die ganze Tabelle, um einen Termin zu finden. Eine *N+1-Schleife* ist, hundert
+Abfragen zu machen, um hundert Termine anzuzeigen, statt einer. Diese Lektion wendet Lektion 7 auf
+die Datenbank an: jede Abfrage mit einem Messgerät mit Test messen, ändern, was die Zahlen sagen,
+auf denselben Daten noch einmal messen, und ein Budget mit Test hinterlassen, damit es nicht
+zurückkommt [Ref. 18](REFERENCIAS.md#ref-18), [Ref. 37](REFERENCIAS.md#ref-37). Es ist nicht, die
+Datenbank neu zu schreiben oder sie zu wechseln: das war Lektion 3.
+
+**Bevor du den Prompt schickst**, mit deinen Händen:
+
+- `docs/SIZING.md` und `docs/VOLUME_SURVEY.md` (Lektion 3): die zu ladenden Volumina.
+- Die Testumgebung mit Daten **im erwarteten Volumen**: für Turnera zehntausend Termine und
+  dreißigtausend Nachrichten eines Jahres, erzeugt von einem Skript, das der Agent im Repository
+  hinterlässt (verlang es als vorherigen offenen Posten, mit der Form des semantischen Baums).
+- `docs/PRODUCER_CONSUMER_MAP.md` (Lektion 11), auf dem neuesten Stand.
+- Ein bekannter Fall für den Test des Messgeräts: die Tabelle der Fachkräfte hat drei Zeilen.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 17 ein.
+2. Lies die Liste der vorgeschlagenen Änderungen so, wie die Leiterin eine Liste von Reparaturen
+   der Praxis lesen würde: verstehst du, was jede gewinnt und welches Risiko sie hat? Gib eine
+   nach der anderen frei oder lehn sie ab. Rechne eine Zahl von Hand nach (Zeilen pro Monat der
+   Terminetabelle).
+
+**Bevor du den Prompt schickst** zum Abschluss: die Liste mit deinem Urteil pro Änderung und die
+nachgerechnete Zahl, die übereinstimmt.
+
+3. Füg ihm den Abschluss-Prompt des Vertrags von Schritt 17 ein, mit der freigegebenen Liste.
+4. Lass selbst ein Messgerät vorher und nachher laufen, mit den beiden Befehlen, die er dir
+   gegeben hat.
+
+**Vollständigkeitsprüfung.** Stimmen deine Durchläufe mit der Tabelle von `docs/PERSISTENCE.md`
+überein? Bleibt irgendeine Abfrage, die in einem kritischen Fluss eine ganze Tabelle liest? Hat
+jede Tabelle eine geschriebene Retention? Haben die Budgets einen Test (verlang von ihm, eines zu
+überschreiten und dir das Rot zu zeigen)?
+
+**Ergebnis.** Die Messgeräte mit Test, `docs/PERSISTENCE.md` mit Vorher und Nachher, die Budgets
+mit Test, und die Batterie in Grün.
+
+**Typische Fehler.** Mit den zehn Datensätzen des Skeletts messen. „Besser migrieren wir auf eine
+andere Datenbank“ akzeptieren. Und eine Zahl verbessern und dabei die monatliche Tabelle kaputt
+machen, die diese Tabelle las: da fehlte die Karte.
+
+**Im Leitprojekt.** Die Tagesagenda machte eine Abfrage pro Termin (die Schleife aus Lektion 7):
+52 Abfragen für 50 Termine werden zu 3. Die Patientensuche nach Namen las die ganze Tabelle: ein
+Index senkt sie von 800 Millisekunden auf 4 bei zehntausend Patientinnen. Retention: die
+Nachrichten werden nach einem Jahr archiviert; die Termine nie. Budget: 4 Abfragen für die
+Agenda, mit Test.
+
+### Lektion 18 — Scannen und Beheben von Schwachstellen
+
+**Was du verstehen musst.** Eine *Schwachstelle* ist ein Defekt, den jemand nutzen kann, um
+einzudringen, Daten zu stehlen oder das System tun zu lassen, was es nicht soll. Das Audit
+(Lektion 13) sucht sie mit Urteilsvermögen, hin und wieder; diese Lektion sucht sie maschinell,
+die ganze Zeit, in vier Schichten: die *Abhängigkeiten* (Bausteine anderer, die dein System
+benutzt, mit ihren veröffentlichten bekannten Defekten), den Code (*statische Analyse*), die
+Geheimnisse in der Historie des Repositorys, und die Konfiguration des Servers. Und eine Regel:
+eine Abhängigkeit zu aktualisieren ist eine Änderung und geht durch die Schleife; „ich habe die
+Version hochgezogen, um den Befund zu schließen“, ohne Regression, ist die häufigste Art, die
+Produktion an einem Freitag kaputtzumachen [Ref. 41](REFERENCIAS.md#ref-41),
+[Ref. 23](REFERENCIAS.md#ref-23).
+
+**Bevor du den Prompt schickst**, mit deinen Händen:
+
+- Die laufende Continuous Integration (Lektion 4 und 15), und wie viel Kontingent dir bleibt: der
+  Scan fügt Minuten hinzu.
+- `docs/ENVIRONMENTS_SURVEY.md` mit dem Server, den Ports und der Angabe, wer die Domain
+  verwaltet.
+- `docs/AUDIT_[Datum].md` (Lektion 13), damit er Bekanntes nicht wiederholt.
+- Dein P0-Kriterium, in zwei Zeilen: für Turnera das, was ohne Zugangsdaten hineinlässt, was
+  Patientendaten offenlegt, was erlaubt, ohne Kontrolle Nachrichten zu senden oder abzubuchen.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 18 ein, mit deinem Kriterium in der Lücke.
+2. Lies `docs/SECURITY_[Datum].md`. Wähl zwei Befunde und verlang den Beleg. Sagt es, was es
+   NICHT gescannt hat?
+
+**Bevor du den Prompt schickst** zum Abschluss: die Liste der freigegebenen Reparaturen; für jede
+Aktualisierung einer Abhängigkeit das Bewusstsein, dass die Regression und die Ende-zu-Ende-
+Batterie laufen werden.
+
+3. Füg ihm den Abschluss-Prompt des Vertrags von Schritt 18 ein.
+4. Verlang von ihm, absichtlich, in einem Zweig, eine Abhängigkeit mit bekannter Schwachstelle
+   einzufügen: die Kette muss rot werden.
+
+**Vollständigkeitsprüfung.** Ist der letzte Durchlauf des Scans grün, und von welchem Datum? Hat
+jedes P0 seinen mit Beleg geschlossenen offenen Posten? Ist der Scan ein Tor in `docs/GATES.md`?
+Weißt du, wann der nächste geplante Scan läuft?
+
+**Ergebnis.** Der Scan in vier Schichten in der Kette und mit Zeitplan,
+`docs/SECURITY_[Datum].md`, `docs/SECURITY.md`, die reparierten P0 und P1, das Tor.
+
+**Typische Fehler.** Ein Scan, der „beim ersten Mal sauber“ ist, in einem System, das älter als
+ein Monat ist: da fehlte eine Schicht. Zehn Abhängigkeiten in einem Commit aktualisiert. Ein
+„akzeptiertes“ P0 ohne offenen Posten und ohne Datum.
+
+**Im Leitprojekt.** Der Scan von Turnera findet: eine Abhängigkeit des PDF-Generators mit einer
+bekannten Schwachstelle (P1, wird mit Regression und Ende-zu-Ende-Prüfung aktualisiert); den
+Header, der das Einbetten der Agenda in eine andere Website verhindert, fehlend (P1, eine Zeile
+Konfiguration, mit Test); einen Testschlüssel des Zahlungsanbieters in der Historie des
+Repositorys (P0: er wird rotiert, auch wenn er nur zum Testen war); und einen Port der Datenbank,
+der auf dem Testserver zur Welt offen steht (P0: er wird geschlossen). Der Scan bleibt als Tor
+und läuft montags.
+
+### Lektion 19 — Lasttests im Volumen und Bruchpunkt
+
+**Was du verstehen musst.** Lektion 3 hat mit Rechnungen dimensioniert; diese überprüft sie mit
+dem laufenden System. Ein *Lasttest* simuliert viele Nutzer gleichzeitig. Man sieht sich den
+*Durchsatz* an (Aktionen pro Sekunde), die *Latenz* (wie lange jede Aktion braucht; den Median
+und das *95. Perzentil*, das ist das, was die sehen, die sich beschweren) und die Fehlerrate, im
+erwarteten Volumen und beim „mal zehn“. Und danach wird die Last hochgefahren, bis etwas bricht:
+der *Bruchpunkt* ist nicht „es wird langsam“, sondern „die Verbindungen zur Datenbank waren bei
+180 Nutzerinnen erschöpft“. Diese Zahl ist die nützlichste des Abschnitts, denn aus ihr kommen die
+*Schwellenwerte* für die Alarme von Lektion 21 [Ref. 12](REFERENCIAS.md#ref-12),
+[Ref. 44](REFERENCIAS.md#ref-44).
+
+**Bevor du den Prompt schickst**, mit deinen Händen und mit der Eigentümerin:
+
+- `docs/SIZING.md` mit dem erwarteten Volumen und dem „mal zehn“: für Turnera zwei Nutzerinnen in
+  der Spitze und vierzig Termine pro Tag; mal zehn, zwanzig Nutzerinnen und vierhundert Termine.
+- Die kritischen Flüsse für die Lücke im Prompt: einen Termin eintragen, die Tagesagenda ansehen,
+  eine Patientin suchen, der nächtliche Versand der Erinnerungen.
+- Die Toleranz der Leiterin für den meistbenutzten Bildschirm (die Tagesagenda): „wenn er länger
+  als zwei Sekunden braucht, beschweren sich die Mädchen“.
+- Die Testumgebung mit den Daten im Volumen (Lektion 17) und, wenn sie sich in den Ressourcen von
+  der Produktion unterscheidet, in `docs/ENVIRONMENTS_SURVEY.md` notiert, wie.
+- Die Beobachtbarkeit aus Lektion 16 eingeschaltet.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 19 ein, mit den Flüssen und der Toleranz
+   in den Lücken.
+2. Lies `docs/PERFORMANCE_[Datum].md` mit der Toleranz daneben: bleibt die Tagesagenda im
+   erwarteten Volumen unter zwei Sekunden? Und beim mal zehn? Was ist zuerst gebrochen und bei
+   welcher Last?
+3. Entscheide mit der Leiterin, bis zu welchem Volumen die Flaschenhälse jetzt repariert werden:
+   wenn sie es an andere Praxen verkaufen wollen, ist das „mal zehn“ jetzt; wenn nicht, mit Datum.
+
+**Bevor du den Prompt schickst** zum Abschluss: der gelesene Bericht, die Entscheidung über das
+„mal zehn“.
+
+4. Füg ihm den Abschluss-Prompt des Vertrags von Schritt 19 ein.
+5. Lass selbst das Skript im erwarteten Volumen laufen, mit dem Befehl, den er dir gegeben hat:
+   die Zahlen müssen sich ähneln.
+
+**Vollständigkeitsprüfung.** Bleibt der meistbenutzte Bildschirm in der Toleranz, oder gibt es
+einen offenen Posten mit der Zahl? Sagt der Bruchpunkt, was gebrochen ist und bei welcher Last?
+Liegen die Schwellenwerte aus `docs/PERFORMANCE.md` unter dem Bruchpunkt und über dem erwarteten
+Volumen? Ist der Test ein Tor, und ist der erste Durchlauf archiviert?
+
+**Ergebnis.** Das Lastskript mit Test, `docs/PERFORMANCE_[Datum].md`, `docs/PERFORMANCE.md` mit
+Schwellenwerten und Tor, und ein offener Posten pro Flaschenhals.
+
+**Typische Fehler.** „Es hält das mal zehn ohne Probleme aus“ ohne Bruchpunkt: er hat die Last
+nicht weit genug hochgefahren. Ein Skript, das auf die API geht und nicht auf den Bildschirm.
+Während des Tests Flaschenhälse reparieren, „wo man schon mal dabei war“.
+
+**Im Leitprojekt.** Im erwarteten Volumen antwortet die Agenda in 300 Millisekunden; beim mal
+zehn in 1,4 Sekunden; der nächtliche Versand von 400 Erinnerungen braucht 50 Sekunden. Der
+Bruchpunkt: bei 180 gleichzeitigen Nutzerinnen ist der Verbindungspool (10) erschöpft und die
+Aktionen fangen an fehlzuschlagen. Schwellenwerte: Alarm, wenn die Agenda über 1,5 Sekunden geht
+oder wenn die benutzten Verbindungen über 7 gehen. Offener Posten: der nächtliche Versand in
+Stapeln zu 50, denn die Leiterin will es tatsächlich verkaufen.
+
+### Lektion 20 — Lebendige Dokumentation und Handbücher, denen eine Person ohne KI folgen kann
 
 **Was du verstehen musst.** Das System muss sich ohne den Agenten und ohne dich benutzen, warten
 und wiederherstellen lassen. Das Kriterium für das Wiederherstellungshandbuch ist konkret: **eine
@@ -1882,7 +2212,125 @@ anruft. Die Leiterin folgte ihm in der Testumgebung und blieb bei „Datenbank w
 hängen, weil der Befehl einen Ordner voraussetzte, den sie nicht hatte; das Handbuch wurde
 repariert.
 
-### Lektion 15 — Der Agent im System, und die Retrospektive mit Zahlen
+## Betriebsabschnitt: Lektionen 21 bis 23
+
+Diese drei Lektionen beginnen mit dem ersten Deployment in die Produktion und enden nicht: die
+beiden Monitorings werden mit ihm aufgebaut und laufen von da an allein, und die Retrospektive
+schließt jede Etappe und kehrt zur 0 für die nächste zurück.
+
+### Lektion 21 — Monitoring von Ressourcen und Leistung, mit zyklischem Bericht
+
+**Was du verstehen musst.** Lektion 19 sagt, wie sich das System an einem Tag verhält; die
+Produktion ist jeden Tag, mit wachsenden Daten. *Monitoren* heißt, maschinell und die ganze Zeit
+die Nutzung der *Ressourcen* anzusehen (Prozessor, Speicher, Platte, Verbindungen, Kontingent des
+Nachrichtenanbieters) und die Antwortzeit jeder Funktion und jeder Abfrage, und zu melden, wenn
+etwas aus dem Bereich läuft: über einem *Schwellenwert* (denen aus Lektion 19) oder sehr
+verschieden von der *Basislinie* (dem, was es bisher ergeben hat). Ein *Alarm* meldet im Moment;
+der *zyklische Bericht* wird jede Woche oder jeden Monat in Ruhe gelesen. Zwei Regeln: ein Alarm,
+den niemand liest, ist ein Defekt des Alarms; und ein Schwellenwert wird nicht angehoben, um
+einen Alarm zum Schweigen zu bringen, ohne eine gemessene, geschriebene Begründung
+[Ref. 37](REFERENCIAS.md#ref-37), [Ref. 39](REFERENCIAS.md#ref-39).
+
+**Bevor du den Prompt schickst**, mit deinen Händen und mit der Eigentümerin:
+
+- `docs/OBSERVABILITY.md` (16), `docs/PERSISTENCE.md` (17) und `docs/PERFORMANCE.md` (19),
+  abgeschlossen.
+- Der Alarmkanal, mit der Leiterin entschieden: bei wem er ankommt und worüber. Für den Kurs: an
+  deine E-Mail und an deinen Messenger.
+- Der Zyklus: monatlich für Turnera; wöchentlich, wenn jeden Tag Geld im Spiel wäre.
+- Die Abweichung, die du als Alarm ansiehst: 30 % über dem Durchschnitt der letzten vierzehn Tage.
+- Nur lesender Zugang des Monitorings zur Produktion, mit dem Zugangsschlüssel außerhalb des
+  Chats.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 21 ein, mit dem Kanal, dem Zyklus und der
+   Abweichung in den Lücken.
+2. Verlang von ihm, absichtlich einen Schwellenwert in der Testumgebung zu überschreiten: der
+   Alarm muss über den Kanal bei dir ankommen.
+3. Lies den ersten Bericht: jedes Ereignis außerhalb des Bereichs muss eine Ursache oder einen
+   Vorschlag haben.
+
+**Bevor du den Prompt schickst** der Routine: der erste Bericht, von dir gelesen.
+
+4. Füg der Vereinbarung die Routine von Schritt 21 hinzu, eingepackt in „Add this routine to
+   `docs/WORKING_AGREEMENT.md`:“.
+
+**Vollständigkeitsprüfung.** Ist der provozierte Alarm bei dir angekommen? Hat der Bericht jede
+Abweichung mit Ursache oder Vorschlag? Gibt es einen offenen Posten für jede Abweichung, die du
+angehen wolltest, mit der Zahl als Kriterium? Ist seit Lektion 19 ein Schwellenwert angehoben
+worden, und mit welcher Begründung? Sieht sich der Bericht das Kontingent des
+Nachrichtenanbieters an?
+
+**Ergebnis.** Erfassung mit Geschichte, Alarme, der zyklische Bericht, `docs/MONITORING.md`, die
+Routine in der Vereinbarung.
+
+**Typische Fehler.** Jeden Tag Alarme, die niemand liest. Drei Berichte hintereinander, die „alles
+normal“ sagen. Ein Schwellenwert, der angehoben wurde, „damit er aufhört zu melden“.
+Personenbezogene Daten, gespeichert „um zu diagnostizieren“.
+
+**Im Leitprojekt.** Der erste Monatsbericht von Turnera sagt: Platte zu 40 %, Speicher stabil,
+die Tagesagenda bei 320 Millisekunden im Median (Basislinie), die Patientensuche ist von 4 auf 9
+Millisekunden gestiegen (die Tabelle wächst; im Bereich), und das Nachrichtenkontingent bei 60 %
+(Vorschlag: bei 80 % melden). Eine Abweichung: die monatliche Auswertung der Leiterin brauchte am
+Ersten 11 Sekunden (Vorschlag: sie nachts vorberechnen; offener Posten).
+
+### Lektion 22 — Fehler-Monitoring und zyklischer Bericht
+
+**Was du verstehen musst.** Ein System in Produktion erzeugt Fehler, die niemand meldet: die
+Empfangskraft, die den weißen Bildschirm gesehen und es noch einmal versucht hat, die nächtliche
+Aufgabe, die abgebrochen ist. Diese Lektion *erfasst* sie an den drei Orten, an denen sie sich
+verstecken (das Backend, die Aufgaben und der Browser), *gruppiert* sie (tausendmal derselbe
+Fehler ist ein Eintrag mit einem Zähler), meldet die neuen und die, die wachsen, und erzeugt
+einen Bericht mit der *Fehlerrate pro Fluss* (von hundert eingetragenen Terminen, wie viele
+fehlgeschlagen sind). Zwei Regeln: kein Fehler ohne offenen Posten, und es gibt keinen „bekannten
+Fehler“ ohne einen offenen Posten, der sagt, warum er toleriert wird und bis wann
+[Ref. 43](REFERENCIAS.md#ref-43), [Ref. 22](REFERENCIAS.md#ref-22).
+
+**Bevor du den Prompt schickst**, mit deinen Händen:
+
+- `docs/OBSERVABILITY.md` (16): die Fehler kommen schon mit Kennung, Version und Akteur heraus.
+- `docs/LOCKS.md` (14): die Fehler in Aktionen mit Konsequenz sind sofortiger Alarm.
+- Der Kanal und der Zyklus aus Lektion 21, und die Zahl der Vorkommen pro Stunde eines bekannten
+  Fehlers, ab der du einen Alarm willst: für Turnera zehn.
+- Wo die Fehler gespeichert werden und wie lange, ohne personenbezogene Daten.
+
+1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 22 ein, mit dem Kanal, dem Zyklus und der
+   Zahl in den Lücken.
+2. Provozier selbst einen Fehler im Browser, in der Testumgebung (ein unmögliches Datum im
+   Terminformular zum Beispiel): er muss mit deiner Kennung in der Erfassung erscheinen, und der
+   Alarm muss bei dir ankommen, wenn er neu ist.
+
+**Bevor du den Prompt schickst** der Routine: der erste Fehlerbericht von dir gelesen, und
+`docs/PENDING.md` zur Hand.
+
+3. Füg der Vereinbarung die Routine von Schritt 22 hinzu, eingepackt wie die übrigen.
+4. Mit dem ersten Bericht: eröffne die korrektiven offenen Posten der neuen Fehler, jeden mit
+   seiner Reproduktion, und schließ sie mit der Routine von Lektion 8 (dem Test, der ihn rot
+   reproduziert).
+
+**Vollständigkeitsprüfung.** Ist dein provozierter Fehler in der Erfassung, im Alarm und im
+Bericht angekommen? Gibt es einen wiederkehrenden Fehler ohne offenen Posten und ohne Begründung
+mit Datum? Hat ein „reparierter“ Fehler aus dem Bericht den roten Test in seinem offenen Posten?
+Ist die Fehlerrate pro Fluss da, und mit dem vorigen Zeitraum verglichen? Gibt es
+personenbezogene Daten in der Erfassung?
+
+**Ergebnis.** Die zentrale und gruppierte Erfassung, die Alarme, der zyklische Bericht mit der
+Rate pro Fluss, `docs/MONITORING.md` vollständig, die Routine in der Vereinbarung, und ein
+offener Posten pro Fehler.
+
+**Typische Fehler.** „Null Fehler in einem Monat“ mit echten Nutzern: die Erfassung sieht den
+Browser oder die Aufgaben nicht. Ein Fehler mit tausend Vorkommen und dem Kommentar „bekannt,
+stört nicht“. Fehler, die sich durch einen Neustart „reparieren“. Und den Fehlerbericht lesen,
+ohne ihn mit dem der Ressourcen zu kreuzen: die langsame Abfrage des einen ist der abgelaufene
+Timeout des anderen.
+
+**Im Leitprojekt.** Der erste Bericht von Turnera hat drei Fehler: einen im Browser (die Agenda
+schlägt fehl, wenn der Name der Fachkraft einen Apostroph hat; 14 Mal; offener Posten, Test in
+Rot), einen in der nächtlichen Aufgabe (der Nachrichtenanbieter gab eine Nacht lang einen Fehler
+zurück; 1 Mal; offener Posten, um mit Protokollierung erneut zu versuchen), und einen „bekannten“
+des Neffen in der monatlichen Tabelle (offener Posten mit Datum: er wird durch den Bericht aus
+Lektion R2 in Teil 2 ersetzt). Fehlerrate: 0,3 % bei „Termin eintragen“, 0 % bei den übrigen.
+
+### Lektion 23 — Der Agent im System, und die Retrospektive mit Zahlen
 
 **Was du verstehen musst.** Zwei Dinge schließen den Kreis. Das erste ist optional: den Agenten
 resident in der Produktion lassen, mit begrenztem Umfang, um zu diagnostizieren und Support zu
@@ -2002,365 +2450,23 @@ einen Schritt? Gibt es mindestens einen konkreten Änderungsvorschlag?
 **Typische Fehler.** Dem residenten Agenten eine hohe Stufe geben, „damit er alles lösen kann“:
 fang mit nur lesend an und steig auf, wenn es Belege gibt. Eine Retrospektive, die sagt, dass
 alles gut gelaufen ist: es läuft nie alles gut; sie ist für dich geschrieben, nicht für die
-Methode. Und den Änderungsvorschlag nicht schicken: Schritt 15 schließt, wenn sich die Leiter
+Methode. Und den Änderungsvorschlag nicht schicken: Schritt 23 schließt, wenn sich die Leiter
 ändert, nicht wenn das Dokument geschrieben wird.
 
-**Im Leitprojekt.** Die Retrospektive von Turnera, in einem typischen Kurs: sechs Wochen, etwa
+**Im Leitprojekt.** Die Retrospektive von Turnera, in einem typischen Kurs: etwa
 vierzig Stunden des Teilnehmers, achtundzwanzig offene Posten, die meisten Runden drehten die der
-Nachrichten (Zeitzonen und der WhatsApp-Anbieter); zwei Vorfälle, einer in Schritt 8 (der Zustand
+Nachrichten (Zeitzonen und der WhatsApp-Anbieter); zwei Vorfälle, einer in Schritt 11 (der Zustand
 „nicht erschienen“ existierte im Bildschirm und nicht im Server, und auch nicht im semantischen
-Baum) und einer in 13 (ein Deployment in die Produktion mit der Testkonfiguration, entdeckt durch
+Baum) und einer in 15 (ein Deployment in die Produktion mit der Testkonfiguration, entdeckt durch
 die Ende-zu-Ende-Prüfung nach dem Deployment). Änderungsvorschlag: dass die Deployment-Routine von
-Schritt 13 verlangt, die Konfigurationsdifferenz zwischen Test und Produktion vor dem Befördern zu
+Schritt 15 verlangt, die Konfigurationsdifferenz zwischen Test und Produktion vor dem Befördern zu
 zeigen, nicht nur „was sich ändert“.
 
 ---
 
-## Abschnitt Betriebsqualität: Lektionen 16 bis 21
-
-Diese sechs Lektionen sind die, die ich machte, ohne sie zu benennen, und die mich ein Leser,
-zu Recht, zu schreiben gebeten hat. Vier werden in Woche 5 gemacht, zusammen mit den Lektionen 13
-und 14 und vor dem ersten Deployment in die Produktion: Beobachtbarkeit, Persistenz,
-Schwachstellen und Leistung. Zwei werden in Woche 6 aufgebaut, der des ersten Deployments, und
-laufen von da an allein: die beiden Monitorings. Wenn du Anfänger bist: jeder Vertrag dieser
-sechs Schritte hat einen Absatz „Wenn du Anfänger bist“, der seine Wörter in der Sprache des
-Alltags erklärt; lies ihn vor der Lektion.
-
-### Lektion 16 — Beobachtbarkeit und Nachverfolgbarkeit, mit konfigurierbarem Level
-
-**Was du verstehen musst.** Wenn in der Produktion etwas schiefgeht, wirst du wissen wollen, was
-passiert ist, ohne den Code zu öffnen und ohne dass der Agent „nachsieht“: eine Nummer suchen und
-die ganze Geschichte dieser Aktion erscheinen lassen, vom Bildschirm bis zur Datenbank. Das ist
-ein *strukturiertes Log* mit einer *Korrelations-ID*. Und du wirst das Detail dessen, was das
-System schreibt, eine Minute lang hochdrehen wollen, während du untersuchst, ohne neu zu
-deployen: das ist das *konfigurierbare Level*. Die *Nachverfolgbarkeit* ist die andere Hälfte:
-jede Aktion mit Konsequenz (abgebucht, gesendet, gelöscht) landet in einer Liste, die die
-Anwendung nicht bearbeiten kann, mit wer, wann und was. Ohne das agiert der residente Agent aus
-Lektion 15 blind, und die Monitorings der Lektionen 20 und 21 haben nichts anzusehen
-[Ref. 16](REFERENCIAS.md#ref-16).
-
-**Bevor du den Prompt schickst**, mit deinen Händen und mit der Eigentümerin:
-
-- `docs/DEPLOYMENT.md` (Lektion 13), mit der Art, wie die Konfiguration pro Umgebung gelesen
-  wird: das Level wird eine weitere Variable sein.
-- `docs/LOCKS.md` (Lektion 12): die Liste der Aktionen, die im Audit-Log stehen müssen.
-- In `docs/INITIAL_SURVEY.md` die Liste, welche Daten personenbezogen sind (in Turnera: Name,
-  Telefonnummer, E-Mail-Adresse und Ausweisnummer der Patientin), mit der Leiterin geschrieben.
-  Die Logs müssen sie maskieren; es ist eine gesetzliche Pflicht.
-- Deine Entscheidung, wo die Logs leben und wie lange sie aufbewahrt werden. Für den Kurs: eine
-  rotierte Datei auf dem Server, neunzig Tage.
-
-1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 16 ein (in `docs/peldanos/`), genau so.
-2. Wenn er dir die Kennung einer echten Anfrage zeigt, such sie selbst in den Logs der
-   Testumgebung: sie muss im Bildschirm, im Backend, in der Datenbank und im Aufruf an den
-   Nachrichtenanbieter erscheinen.
-3. Dreh das Level selbst auf Debug, mach eine Aktion, schau nach, dreh es wieder herunter. Wenn
-   du deployen musstest, ist der Schritt nicht erklommen.
-4. Such „Juan“ (oder irgendeinen Testnamen) in den Logs: er darf nicht da sein.
-
-**Bevor du den Prompt schickst** der Routine: `docs/OBSERVABILITY.md` von dir gelesen, und das
-Level einmal von dir hoch- und wieder heruntergedreht.
-
-5. Füg der Vereinbarung die Routine von Schritt 16 hinzu (im Vertrag, „Routine“), eingepackt in
-   „Add this routine to `docs/WORKING_AGREEMENT.md`:“ wie die übrigen.
-
-**Vollständigkeitsprüfung.** Bist du selbst einer Kennung durch alle Schichten gefolgt? Hast du
-das Level ohne Deployment geändert? Steht irgendein personenbezogenes Datum in den Logs? Ist die
-Absage eines Termins in der Testumgebung mit wer und wann im Audit-Log gelandet? Reicht dir
-`docs/OBSERVABILITY.md`, um allein einen Log-Eintrag zu finden?
-
-**Ergebnis.** Strukturierte Logs mit konfigurierbarem Level, die weitergegebene Kennung, das
-Audit-Log der Aktionen mit Konsequenz, `docs/OBSERVABILITY.md`, und die Routine in der
-Vereinbarung.
-
-**Typische Fehler.** „Logs“ akzeptieren, die jedes Modul anders schreibt. Die Produktion „erst
-mal“ auf Debug lassen. Und dass die Kennung nicht bis zur nächtlichen Aufgabe der Erinnerungen
-kommt, was genau der Ort ist, an dem die Vorfälle verloren gehen.
-
-**Im Leitprojekt.** Die Kennung von „Termin 17 absagen“ erscheint im Klick, im Server, in der
-markierten Zeile der Datenbank und in der E-Mail an die Fachkraft. Das Audit-Log sagt:
-„recepcion1 hat den Termin 17 um 10:42 aus der Tagesagenda abgesagt; Ergebnis: ok“. Die Leiterin
-dreht das Level auf Trace, um zu sehen, warum eine Erinnerung sich verspätet hat, findet es, und
-dreht es wieder herunter.
-
-### Lektion 17 — Optimierung der Persistenzschicht, vorher und nachher gemessen
-
-**Was du verstehen musst.** Die Datenbank ist der Ort, an dem Systeme langsam sterben: gut mit
-hundert Terminen, schlecht mit hunderttausend. Ein *Index* ist wie der eines Buches: ohne ihn
-liest die Datenbank die ganze Tabelle, um einen Termin zu finden. Eine *N+1-Schleife* ist, hundert
-Abfragen zu machen, um hundert Termine anzuzeigen, statt einer. Diese Lektion wendet Lektion 9 auf
-die Datenbank an: jede Abfrage mit einem Messgerät mit Test messen, ändern, was die Zahlen sagen,
-auf denselben Daten noch einmal messen, und ein Budget mit Test hinterlassen, damit es nicht
-zurückkommt [Ref. 18](REFERENCIAS.md#ref-18), [Ref. 37](REFERENCIAS.md#ref-37). Es ist nicht, die
-Datenbank neu zu schreiben oder sie zu wechseln: das war Lektion 3.
-
-**Bevor du den Prompt schickst**, mit deinen Händen:
-
-- `docs/SIZING.md` und `docs/VOLUME_SURVEY.md` (Lektion 3): die zu ladenden Volumina.
-- Die Testumgebung mit Daten **im erwarteten Volumen**: für Turnera zehntausend Termine und
-  dreißigtausend Nachrichten eines Jahres, erzeugt von einem Skript, das der Agent im Repository
-  hinterlässt (verlang es als vorherigen offenen Posten, mit der Form des semantischen Baums).
-- `docs/PRODUCER_CONSUMER_MAP.md` (Lektion 8), auf dem neuesten Stand.
-- Ein bekannter Fall für den Test des Messgeräts: die Tabelle der Fachkräfte hat drei Zeilen.
-
-1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 17 ein.
-2. Lies die Liste der vorgeschlagenen Änderungen so, wie die Leiterin eine Liste von Reparaturen
-   der Praxis lesen würde: verstehst du, was jede gewinnt und welches Risiko sie hat? Gib eine
-   nach der anderen frei oder lehn sie ab. Rechne eine Zahl von Hand nach (Zeilen pro Monat der
-   Terminetabelle).
-
-**Bevor du den Prompt schickst** zum Abschluss: die Liste mit deinem Urteil pro Änderung und die
-nachgerechnete Zahl, die übereinstimmt.
-
-3. Füg ihm den Abschluss-Prompt des Vertrags von Schritt 17 ein, mit der freigegebenen Liste.
-4. Lass selbst ein Messgerät vorher und nachher laufen, mit den beiden Befehlen, die er dir
-   gegeben hat.
-
-**Vollständigkeitsprüfung.** Stimmen deine Durchläufe mit der Tabelle von `docs/PERSISTENCE.md`
-überein? Bleibt irgendeine Abfrage, die in einem kritischen Fluss eine ganze Tabelle liest? Hat
-jede Tabelle eine geschriebene Retention? Haben die Budgets einen Test (verlang von ihm, eines zu
-überschreiten und dir das Rot zu zeigen)?
-
-**Ergebnis.** Die Messgeräte mit Test, `docs/PERSISTENCE.md` mit Vorher und Nachher, die Budgets
-mit Test, und die Batterie in Grün.
-
-**Typische Fehler.** Mit den zehn Datensätzen des Skeletts messen. „Besser migrieren wir auf eine
-andere Datenbank“ akzeptieren. Und eine Zahl verbessern und dabei die monatliche Tabelle kaputt
-machen, die diese Tabelle las: da fehlte die Karte.
-
-**Im Leitprojekt.** Die Tagesagenda machte eine Abfrage pro Termin (die Schleife aus Lektion 9):
-52 Abfragen für 50 Termine werden zu 3. Die Patientensuche nach Namen las die ganze Tabelle: ein
-Index senkt sie von 800 Millisekunden auf 4 bei zehntausend Patientinnen. Retention: die
-Nachrichten werden nach einem Jahr archiviert; die Termine nie. Budget: 4 Abfragen für die
-Agenda, mit Test.
-
-### Lektion 18 — Scannen und Beheben von Schwachstellen
-
-**Was du verstehen musst.** Eine *Schwachstelle* ist ein Defekt, den jemand nutzen kann, um
-einzudringen, Daten zu stehlen oder das System tun zu lassen, was es nicht soll. Das Audit
-(Lektion 11) sucht sie mit Urteilsvermögen, hin und wieder; diese Lektion sucht sie maschinell,
-die ganze Zeit, in vier Schichten: die *Abhängigkeiten* (Bausteine anderer, die dein System
-benutzt, mit ihren veröffentlichten bekannten Defekten), den Code (*statische Analyse*), die
-Geheimnisse in der Historie des Repositorys, und die Konfiguration des Servers. Und eine Regel:
-eine Abhängigkeit zu aktualisieren ist eine Änderung und geht durch die Schleife; „ich habe die
-Version hochgezogen, um den Befund zu schließen“, ohne Regression, ist die häufigste Art, die
-Produktion an einem Freitag kaputtzumachen [Ref. 41](REFERENCIAS.md#ref-41),
-[Ref. 23](REFERENCIAS.md#ref-23).
-
-**Bevor du den Prompt schickst**, mit deinen Händen:
-
-- Die laufende Continuous Integration (Lektion 4 und 13), und wie viel Kontingent dir bleibt: der
-  Scan fügt Minuten hinzu.
-- `docs/ENVIRONMENTS_SURVEY.md` mit dem Server, den Ports und der Angabe, wer die Domain
-  verwaltet.
-- `docs/AUDIT_[Datum].md` (Lektion 11), damit er Bekanntes nicht wiederholt.
-- Dein P0-Kriterium, in zwei Zeilen: für Turnera das, was ohne Zugangsdaten hineinlässt, was
-  Patientendaten offenlegt, was erlaubt, ohne Kontrolle Nachrichten zu senden oder abzubuchen.
-
-1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 18 ein, mit deinem Kriterium in der Lücke.
-2. Lies `docs/SECURITY_[Datum].md`. Wähl zwei Befunde und verlang den Beleg. Sagt es, was es
-   NICHT gescannt hat?
-
-**Bevor du den Prompt schickst** zum Abschluss: die Liste der freigegebenen Reparaturen; für jede
-Aktualisierung einer Abhängigkeit das Bewusstsein, dass die Regression und die Ende-zu-Ende-
-Batterie laufen werden.
-
-3. Füg ihm den Abschluss-Prompt des Vertrags von Schritt 18 ein.
-4. Verlang von ihm, absichtlich, in einem Zweig, eine Abhängigkeit mit bekannter Schwachstelle
-   einzufügen: die Kette muss rot werden.
-
-**Vollständigkeitsprüfung.** Ist der letzte Durchlauf des Scans grün, und von welchem Datum? Hat
-jedes P0 seinen mit Beleg geschlossenen offenen Posten? Ist der Scan ein Tor in `docs/GATES.md`?
-Weißt du, wann der nächste geplante Scan läuft?
-
-**Ergebnis.** Der Scan in vier Schichten in der Kette und mit Zeitplan,
-`docs/SECURITY_[Datum].md`, `docs/SECURITY.md`, die reparierten P0 und P1, das Tor.
-
-**Typische Fehler.** Ein Scan, der „beim ersten Mal sauber“ ist, in einem System, das älter als
-ein Monat ist: da fehlte eine Schicht. Zehn Abhängigkeiten in einem Commit aktualisiert. Ein
-„akzeptiertes“ P0 ohne offenen Posten und ohne Datum.
-
-**Im Leitprojekt.** Der Scan von Turnera findet: eine Abhängigkeit des PDF-Generators mit einer
-bekannten Schwachstelle (P1, wird mit Regression und Ende-zu-Ende-Prüfung aktualisiert); den
-Header, der das Einbetten der Agenda in eine andere Website verhindert, fehlend (P1, eine Zeile
-Konfiguration, mit Test); einen Testschlüssel des Zahlungsanbieters in der Historie des
-Repositorys (P0: er wird rotiert, auch wenn er nur zum Testen war); und einen Port der Datenbank,
-der auf dem Testserver zur Welt offen steht (P0: er wird geschlossen). Der Scan bleibt als Tor
-und läuft montags.
-
-### Lektion 19 — Lasttests im Volumen und Bruchpunkt
-
-**Was du verstehen musst.** Lektion 3 hat mit Rechnungen dimensioniert; diese überprüft sie mit
-dem laufenden System. Ein *Lasttest* simuliert viele Nutzer gleichzeitig. Man sieht sich den
-*Durchsatz* an (Aktionen pro Sekunde), die *Latenz* (wie lange jede Aktion braucht; den Median
-und das *95. Perzentil*, das ist das, was die sehen, die sich beschweren) und die Fehlerrate, im
-erwarteten Volumen und beim „mal zehn“. Und danach wird die Last hochgefahren, bis etwas bricht:
-der *Bruchpunkt* ist nicht „es wird langsam“, sondern „die Verbindungen zur Datenbank waren bei
-180 Nutzerinnen erschöpft“. Diese Zahl ist die nützlichste des Abschnitts, denn aus ihr kommen die
-*Schwellenwerte* für die Alarme von Lektion 20 [Ref. 12](REFERENCIAS.md#ref-12),
-[Ref. 44](REFERENCIAS.md#ref-44).
-
-**Bevor du den Prompt schickst**, mit deinen Händen und mit der Eigentümerin:
-
-- `docs/SIZING.md` mit dem erwarteten Volumen und dem „mal zehn“: für Turnera zwei Nutzerinnen in
-  der Spitze und vierzig Termine pro Tag; mal zehn, zwanzig Nutzerinnen und vierhundert Termine.
-- Die kritischen Flüsse für die Lücke im Prompt: einen Termin eintragen, die Tagesagenda ansehen,
-  eine Patientin suchen, der nächtliche Versand der Erinnerungen.
-- Die Toleranz der Leiterin für den meistbenutzten Bildschirm (die Tagesagenda): „wenn er länger
-  als zwei Sekunden braucht, beschweren sich die Mädchen“.
-- Die Testumgebung mit den Daten im Volumen (Lektion 17) und, wenn sie sich in den Ressourcen von
-  der Produktion unterscheidet, in `docs/ENVIRONMENTS_SURVEY.md` notiert, wie.
-- Die Beobachtbarkeit aus Lektion 16 eingeschaltet.
-
-1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 19 ein, mit den Flüssen und der Toleranz
-   in den Lücken.
-2. Lies `docs/PERFORMANCE_[Datum].md` mit der Toleranz daneben: bleibt die Tagesagenda im
-   erwarteten Volumen unter zwei Sekunden? Und beim mal zehn? Was ist zuerst gebrochen und bei
-   welcher Last?
-3. Entscheide mit der Leiterin, bis zu welchem Volumen die Flaschenhälse jetzt repariert werden:
-   wenn sie es an andere Praxen verkaufen wollen, ist das „mal zehn“ jetzt; wenn nicht, mit Datum.
-
-**Bevor du den Prompt schickst** zum Abschluss: der gelesene Bericht, die Entscheidung über das
-„mal zehn“.
-
-4. Füg ihm den Abschluss-Prompt des Vertrags von Schritt 19 ein.
-5. Lass selbst das Skript im erwarteten Volumen laufen, mit dem Befehl, den er dir gegeben hat:
-   die Zahlen müssen sich ähneln.
-
-**Vollständigkeitsprüfung.** Bleibt der meistbenutzte Bildschirm in der Toleranz, oder gibt es
-einen offenen Posten mit der Zahl? Sagt der Bruchpunkt, was gebrochen ist und bei welcher Last?
-Liegen die Schwellenwerte aus `docs/PERFORMANCE.md` unter dem Bruchpunkt und über dem erwarteten
-Volumen? Ist der Test ein Tor, und ist der erste Durchlauf archiviert?
-
-**Ergebnis.** Das Lastskript mit Test, `docs/PERFORMANCE_[Datum].md`, `docs/PERFORMANCE.md` mit
-Schwellenwerten und Tor, und ein offener Posten pro Flaschenhals.
-
-**Typische Fehler.** „Es hält das mal zehn ohne Probleme aus“ ohne Bruchpunkt: er hat die Last
-nicht weit genug hochgefahren. Ein Skript, das auf die API geht und nicht auf den Bildschirm.
-Während des Tests Flaschenhälse reparieren, „wo man schon mal dabei war“.
-
-**Im Leitprojekt.** Im erwarteten Volumen antwortet die Agenda in 300 Millisekunden; beim mal
-zehn in 1,4 Sekunden; der nächtliche Versand von 400 Erinnerungen braucht 50 Sekunden. Der
-Bruchpunkt: bei 180 gleichzeitigen Nutzerinnen ist der Verbindungspool (10) erschöpft und die
-Aktionen fangen an fehlzuschlagen. Schwellenwerte: Alarm, wenn die Agenda über 1,5 Sekunden geht
-oder wenn die benutzten Verbindungen über 7 gehen. Offener Posten: der nächtliche Versand in
-Stapeln zu 50, denn die Leiterin will es tatsächlich verkaufen.
-
-### Lektion 20 — Monitoring von Ressourcen und Leistung, mit zyklischem Bericht
-
-**Was du verstehen musst.** Lektion 19 sagt, wie sich das System an einem Tag verhält; die
-Produktion ist jeden Tag, mit wachsenden Daten. *Monitoren* heißt, maschinell und die ganze Zeit
-die Nutzung der *Ressourcen* anzusehen (Prozessor, Speicher, Platte, Verbindungen, Kontingent des
-Nachrichtenanbieters) und die Antwortzeit jeder Funktion und jeder Abfrage, und zu melden, wenn
-etwas aus dem Bereich läuft: über einem *Schwellenwert* (denen aus Lektion 19) oder sehr
-verschieden von der *Basislinie* (dem, was es bisher ergeben hat). Ein *Alarm* meldet im Moment;
-der *zyklische Bericht* wird jede Woche oder jeden Monat in Ruhe gelesen. Zwei Regeln: ein Alarm,
-den niemand liest, ist ein Defekt des Alarms; und ein Schwellenwert wird nicht angehoben, um
-einen Alarm zum Schweigen zu bringen, ohne eine gemessene, geschriebene Begründung
-[Ref. 37](REFERENCIAS.md#ref-37), [Ref. 39](REFERENCIAS.md#ref-39).
-
-**Bevor du den Prompt schickst**, mit deinen Händen und mit der Eigentümerin:
-
-- `docs/OBSERVABILITY.md` (16), `docs/PERSISTENCE.md` (17) und `docs/PERFORMANCE.md` (19),
-  abgeschlossen.
-- Der Alarmkanal, mit der Leiterin entschieden: bei wem er ankommt und worüber. Für den Kurs: an
-  deine E-Mail und an deinen Messenger.
-- Der Zyklus: monatlich für Turnera; wöchentlich, wenn jeden Tag Geld im Spiel wäre.
-- Die Abweichung, die du als Alarm ansiehst: 30 % über dem Durchschnitt der letzten vierzehn Tage.
-- Nur lesender Zugang des Monitorings zur Produktion, mit dem Zugangsschlüssel außerhalb des
-  Chats.
-
-1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 20 ein, mit dem Kanal, dem Zyklus und der
-   Abweichung in den Lücken.
-2. Verlang von ihm, absichtlich einen Schwellenwert in der Testumgebung zu überschreiten: der
-   Alarm muss über den Kanal bei dir ankommen.
-3. Lies den ersten Bericht: jedes Ereignis außerhalb des Bereichs muss eine Ursache oder einen
-   Vorschlag haben.
-
-**Bevor du den Prompt schickst** der Routine: der erste Bericht, von dir gelesen.
-
-4. Füg der Vereinbarung die Routine von Schritt 20 hinzu, eingepackt in „Add this routine to
-   `docs/WORKING_AGREEMENT.md`:“.
-
-**Vollständigkeitsprüfung.** Ist der provozierte Alarm bei dir angekommen? Hat der Bericht jede
-Abweichung mit Ursache oder Vorschlag? Gibt es einen offenen Posten für jede Abweichung, die du
-angehen wolltest, mit der Zahl als Kriterium? Ist seit Lektion 19 ein Schwellenwert angehoben
-worden, und mit welcher Begründung? Sieht sich der Bericht das Kontingent des
-Nachrichtenanbieters an?
-
-**Ergebnis.** Erfassung mit Geschichte, Alarme, der zyklische Bericht, `docs/MONITORING.md`, die
-Routine in der Vereinbarung.
-
-**Typische Fehler.** Jeden Tag Alarme, die niemand liest. Drei Berichte hintereinander, die „alles
-normal“ sagen. Ein Schwellenwert, der angehoben wurde, „damit er aufhört zu melden“.
-Personenbezogene Daten, gespeichert „um zu diagnostizieren“.
-
-**Im Leitprojekt.** Der erste Monatsbericht von Turnera sagt: Platte zu 40 %, Speicher stabil,
-die Tagesagenda bei 320 Millisekunden im Median (Basislinie), die Patientensuche ist von 4 auf 9
-Millisekunden gestiegen (die Tabelle wächst; im Bereich), und das Nachrichtenkontingent bei 60 %
-(Vorschlag: bei 80 % melden). Eine Abweichung: die monatliche Auswertung der Leiterin brauchte am
-Ersten 11 Sekunden (Vorschlag: sie nachts vorberechnen; offener Posten).
-
-### Lektion 21 — Fehler-Monitoring und zyklischer Bericht
-
-**Was du verstehen musst.** Ein System in Produktion erzeugt Fehler, die niemand meldet: die
-Empfangskraft, die den weißen Bildschirm gesehen und es noch einmal versucht hat, die nächtliche
-Aufgabe, die abgebrochen ist. Diese Lektion *erfasst* sie an den drei Orten, an denen sie sich
-verstecken (das Backend, die Aufgaben und der Browser), *gruppiert* sie (tausendmal derselbe
-Fehler ist ein Eintrag mit einem Zähler), meldet die neuen und die, die wachsen, und erzeugt
-einen Bericht mit der *Fehlerrate pro Fluss* (von hundert eingetragenen Terminen, wie viele
-fehlgeschlagen sind). Zwei Regeln: kein Fehler ohne offenen Posten, und es gibt keinen „bekannten
-Fehler“ ohne einen offenen Posten, der sagt, warum er toleriert wird und bis wann
-[Ref. 43](REFERENCIAS.md#ref-43), [Ref. 22](REFERENCIAS.md#ref-22).
-
-**Bevor du den Prompt schickst**, mit deinen Händen:
-
-- `docs/OBSERVABILITY.md` (16): die Fehler kommen schon mit Kennung, Version und Akteur heraus.
-- `docs/LOCKS.md` (12): die Fehler in Aktionen mit Konsequenz sind sofortiger Alarm.
-- Der Kanal und der Zyklus aus Lektion 20, und die Zahl der Vorkommen pro Stunde eines bekannten
-  Fehlers, ab der du einen Alarm willst: für Turnera zehn.
-- Wo die Fehler gespeichert werden und wie lange, ohne personenbezogene Daten.
-
-1. Füg ihm den Anfangs-Prompt des Vertrags von Schritt 21 ein, mit dem Kanal, dem Zyklus und der
-   Zahl in den Lücken.
-2. Provozier selbst einen Fehler im Browser, in der Testumgebung (ein unmögliches Datum im
-   Terminformular zum Beispiel): er muss mit deiner Kennung in der Erfassung erscheinen, und der
-   Alarm muss bei dir ankommen, wenn er neu ist.
-
-**Bevor du den Prompt schickst** der Routine: der erste Fehlerbericht von dir gelesen, und
-`docs/PENDING.md` zur Hand.
-
-3. Füg der Vereinbarung die Routine von Schritt 21 hinzu, eingepackt wie die übrigen.
-4. Mit dem ersten Bericht: eröffne die korrektiven offenen Posten der neuen Fehler, jeden mit
-   seiner Reproduktion, und schließ sie mit der Routine von Lektion 7 (dem Test, der ihn rot
-   reproduziert).
-
-**Vollständigkeitsprüfung.** Ist dein provozierter Fehler in der Erfassung, im Alarm und im
-Bericht angekommen? Gibt es einen wiederkehrenden Fehler ohne offenen Posten und ohne Begründung
-mit Datum? Hat ein „reparierter“ Fehler aus dem Bericht den roten Test in seinem offenen Posten?
-Ist die Fehlerrate pro Fluss da, und mit dem vorigen Zeitraum verglichen? Gibt es
-personenbezogene Daten in der Erfassung?
-
-**Ergebnis.** Die zentrale und gruppierte Erfassung, die Alarme, der zyklische Bericht mit der
-Rate pro Fluss, `docs/MONITORING.md` vollständig, die Routine in der Vereinbarung, und ein
-offener Posten pro Fehler.
-
-**Typische Fehler.** „Null Fehler in einem Monat“ mit echten Nutzern: die Erfassung sieht den
-Browser oder die Aufgaben nicht. Ein Fehler mit tausend Vorkommen und dem Kommentar „bekannt,
-stört nicht“. Fehler, die sich durch einen Neustart „reparieren“. Und den Fehlerbericht lesen,
-ohne ihn mit dem der Ressourcen zu kreuzen: die langsame Abfrage des einen ist der abgelaufene
-Timeout des anderen.
-
-**Im Leitprojekt.** Der erste Bericht von Turnera hat drei Fehler: einen im Browser (die Agenda
-schlägt fehl, wenn der Name der Fachkraft einen Apostroph hat; 14 Mal; offener Posten, Test in
-Rot), einen in der nächtlichen Aufgabe (der Nachrichtenanbieter gab eine Nacht lang einen Fehler
-zurück; 1 Mal; offener Posten, um mit Protokollierung erneut zu versuchen), und einen „bekannten“
-des Neffen in der monatlichen Tabelle (offener Posten mit Datum: er wird durch den Bericht aus
-Lektion R2 in Teil 2 ersetzt). Fehlerrate: 0,3 % bei „Termin eintragen“, 0 % bei den übrigen.
-
 ## Die Produktionsreife-Liste
 
-Wenn die zweiundzwanzig Lektionen gemacht sind, erfüllt das System diese Liste. Sie ist die
+Wenn die vierundzwanzig Lektionen gemacht sind, erfüllt das System diese Liste. Sie ist die
 betriebliche Definition von „production grade“ in Urazuke, und sie lässt sich als abschließende
 Prüfliste verwenden, mit dem Eigentümer, ohne den Code zu öffnen:
 
@@ -2372,29 +2478,30 @@ Prüfliste verwenden, mit dem Eigentümer, ohne den Code zu öffnen:
    Knoten (S2).
 4. Es gibt eine Dimensionierung mit Primärdaten mit Quelle, abgeleiteten mit Rechnung, und dem
    Szenario „mal zehn“ (S3).
-5. Das Skelett wurde in der ersten Woche leer deployt, mit der Integrations- und Deployment-Kette,
+5. Das Skelett wurde im Start leer deployt, mit der Integrations- und Deployment-Kette,
    und das Deployment lief zweimal (S4).
 6. Jede Änderung hat ihren offenen Posten mit detaillierter Spezifikation, und jeder geschlossene
    Posten behält seine Spezifikation und seinen Beleg: das ist die Dokumentation des Erledigten
    (S5).
 7. Jede Geschäftsregel hat Eigentümer, Datum und wörtliche Worte, im Commit, im offenen Posten und
    im Register (S6).
-8. Jeder wichtige Test wurde rot gesehen, bevor er grün war; jeder Fluss hat seinen
+8. Jede Zahl, die etwas entschieden hat, hat ein Messgerät mit Test, das du ausführen kannst (S7).
+9. Jeder wichtige Test wurde rot gesehen, bevor er grün war; jeder Fluss hat seinen
    Ende-zu-Ende-Test, der das Backend vom Bildschirm aus prüft; die vollständige Batterie lief beim
-   Abschluss jedes Blocks und vor der Produktion (S7).
-9. Jede Liste hat einen einzigen Eigentümer; es gibt eine Produzent/Konsument-Karte; es gibt ein
-   Register der Anti-Muster mit automatischer Prüfung (S8).
-10. Jede Zahl, die etwas entschieden hat, hat ein Messgerät mit Test, das du ausführen kannst (S9).
-11. Jeder Bericht trennt verifiziert, geglaubt und blinde Flecken (S10).
-12. Es gab mindestens ein Audit durch eine andere Sitzung, und seine P0 sind offene Posten (S11).
-13. Jede Aktion mit Konsequenz hat eine Sperre mit rotem Test und Rückweg; die Automatisierungen
-    sind durch den Trockenlauf gegangen (S12).
-14. Die Tests laufen einmal pro Commit; die Konfiguration ist außerhalb des Repositorys; das
-    Rollback wurde getestet; kein Geheimnis lebt im Repository oder im Chat ohne Rotation (S13).
-15. Es gibt drei Handbücher mit Datum und Version, zusammengesetzt aus den geschlossenen Posten;
-    eine Person, die nicht programmiert, ist dem Wiederherstellungshandbuch gefolgt; der Eigentümer
-    hat die Abnahmetests über alle Flüsse gemacht (S14).
-16. Es gibt eine Retrospektive mit Zahlen und einen Änderungsvorschlag für die Leiter (S15).
+   Abschluss jedes Blocks und vor der Produktion (S8).
+10. Die Code-Qualität wird bei jedem Commit maschinell verifiziert, sie ist ein Tor, und die
+   Abdeckung ist nie gesunken (S9).
+11. Jede Funktionalität hat ihre manuellen Testfälle, für eine Person geschrieben; sie wurden
+   beim Abschluss jedes Blocks und bei der Abnahme ausgeführt, mit Datum und Namen; jeder
+   Fehlschlag kam als offener Posten zurück (S10).
+12. Jede Liste hat einen einzigen Eigentümer; es gibt eine Produzent/Konsument-Karte; es gibt ein
+   Register der Anti-Muster mit automatischer Prüfung (S11).
+13. Jeder Bericht trennt verifiziert, geglaubt und blinde Flecken (S12).
+14. Es gab mindestens ein Audit durch eine andere Sitzung, und seine P0 sind offene Posten (S13).
+15. Jede Aktion mit Konsequenz hat eine Sperre mit rotem Test und Rückweg; die Automatisierungen
+    sind durch den Trockenlauf gegangen (S14).
+16. Die Tests laufen einmal pro Commit; die Konfiguration ist außerhalb des Repositorys; das
+    Rollback wurde getestet; kein Geheimnis lebt im Repository oder im Chat ohne Rotation (S15).
 17. Die Logs sind strukturiert, mit konfigurierbarem Level ohne Deployment, mit einer Kennung,
     die jeder Aktion vom Bildschirm bis zur Datenbank folgt; die Aktionen mit Konsequenz landen
     in einem unveränderlichen Audit-Log; keine personenbezogenen Daten in den Logs (S16).
@@ -2404,12 +2511,16 @@ Prüfliste verwenden, mit dem Eigentümer, ohne den Code zu öffnen:
     kein offenes P0 (S18).
 20. Es gibt einen Lasttest mit Test, gelaufen im erwarteten Volumen und beim „mal zehn“, mit dem
     geschriebenen Bruchpunkt und den daraus abgeleiteten Schwellenwerten (S19).
-21. Die Ressourcennutzung und die Antwortzeiten werden mit Alarmen und zyklischem Bericht
-    überwacht, und jede Abweichung hat eine Ursache oder einen offenen Posten (S20).
-22. Die Fehler werden im Backend, in den Aufgaben und im Browser erfasst, gruppiert, pro Zyklus
-    mit der Rate pro Fluss berichtet, und keiner bleibt ohne offenen Posten (S21).
+21. Es gibt drei Handbücher mit Datum und Version, zusammengesetzt aus den geschlossenen Posten;
+    eine Person, die nicht programmiert, ist dem Wiederherstellungshandbuch gefolgt; der Eigentümer
+    hat die Abnahmetests über alle Flüsse gemacht (S20).
+22. Die Ressourcennutzung und die Antwortzeiten werden mit Alarmen und zyklischem Bericht
+    überwacht, und jede Abweichung hat eine Ursache oder einen offenen Posten (S21).
+23. Die Fehler werden im Backend, in den Aufgaben und im Browser erfasst, gruppiert, pro Zyklus
+    mit der Rate pro Fluss berichtet, und keiner bleibt ohne offenen Posten (S22).
+24. Es gibt eine Retrospektive mit Zahlen und einen Änderungsvorschlag für die Leiter (S23).
 
-Wenn alle zweiundzwanzig „ja“ ergeben, ist das System bereit für die Einführung. Wenn eine „nein“
+Wenn alle vierundzwanzig „ja“ ergeben, ist das System bereit für die Einführung. Wenn eine „nein“
 ergibt, weißt du schon, welchen Schritt du noch einmal erklimmen musst.
 
 ---
@@ -2459,9 +2570,9 @@ tut, lädt das Werkzeug die Datei nicht, in die du die Vereinbarung gelegt hast.
 
 ## Anhang C — Was dieses Handbuch noch nicht hat
 
-- Eine Kohorte, die es durchlaufen hat. Die Zeiten des Kalenders, die typischen Fehler und das
+- Eine Kohorte, die es durchlaufen hat. Die Reihenfolge der Etappen, die typischen Fehler und das
   Leitprojekt sind aus meinen drei Systemen geschrieben, nicht aus Teilnehmern. Die erste Kohorte
-  wird sie korrigieren (und das ist, wörtlich, Schritt 15 angewandt auf den Kurs).
+  wird sie korrigieren (und das ist, wörtlich, Schritt 23 angewandt auf den Kurs).
 - Die Gewichte der Eignungskriterien (Lektion 0), die ich kalibriere.
 - Ein vollständiges Beispiel von `docs/PENDING.md` des Leitprojekts, mit den achtundzwanzig
   spezifizierten und geschlossenen offenen Posten, damit ein Teilnehmer sieht, wie die

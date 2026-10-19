@@ -1,7 +1,7 @@
 # Passo 4 — Lo scheletro con i suoi cancelli (contratto del gradino)
 
 **Fase:** avvio.
-**Quando:** una volta, alla chiusura della prima settimana, dopo il dimensionamento e prima di
+**Quando:** una volta, alla chiusura dell'avvio, dopo il dimensionamento e prima di
 qualunque funzionalità. È qui che si fa tutta l'infrastruttura iniziale e la catena di
 integrazione e deployment.
 **Forma:** un solo invio lungo, con approvazione visiva tua alla fine.
@@ -14,7 +14,7 @@ pagare.
 Fa' che il sistema parta, si provi e si distribuisca VUOTO prima di avere funzionalità. Scoprire il
 deployment alla fine è carissimo: in uno dei miei sistemi è arrivato un mese dopo l'avvio ed è
 costato cinque voci in sospeso di fila [Ref. 32](../REFERENCIAS.md#ref-32). Se lo scheletro si
-distribuisce la prima settimana, quei colpi si prendono con zero funzionalità in gioco.
+distribuisce nell'avvio, quei colpi si prendono con zero funzionalità in gioco.
 
 L'idea generale dietro: **la strada verso la produzione è parte del prodotto**, non una pratica
 della fine. Un sistema che funziona sulla macchina del programmatore e non si può distribuire non

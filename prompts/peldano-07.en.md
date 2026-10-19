@@ -1,15 +1,15 @@
 # Urazuke — step 7 prompts (English, single source)
 
-Generated from `docs/peldanos/peldano-07-tests-en-rojo.md` by `build/prompts.mjs`. Do not edit by hand.
+Generated from `docs/peldanos/peldano-07-medir.md` by `build/prompts.mjs`. Do not edit by hand.
 
 ## Prompt 1
 
-To close this pending item I need evidence, not your word. (1) Write the test that proves what the item asks for, following its acceptance criteria. (2) Demonstrate that this test fails against the previous code: you may temporarily revert the change, or run the test against the old version, but show me the red output. (3) Show me the green output with the change. (4) Run the regression suite for the neighbouring items and show me it is still green. (5) Run the end-to-end test of the flow this item touches, from the screen to the backend, and show me the backend effect. (6) Do not replace with mocks the very part you are trying to test. If testing end to end requires something you lack (data, access, an environment), ask me for it; do not simulate what you do not have. Finally, the commit message says "proved red against [what]" and the test counts.
+Before building anything, we are going to measure. The hypothesis is: [X]. Write a meter (a script that lives in the repository) that measures [the quantity], and a test for the meter that checks it against a known case where the answer is known in advance. If measuring requires access or data you lack, ask me; do not approximate silently. If some part can only be approximated, mark it as approximate and tell me the margin. Run the meter, show me the number together with the command that produces it, and audit it in both directions: from the code to the measurement (is everything that should be counted, counted?) and from the measurement to the code (does everything counted actually exist?). Only then propose what to build. Reply in my language.
 
 ## Prompt 2
 
-Run the complete end-to-end suite of every flow that exists so far, in the test environment, with the exact version that will be promoted. Show me the counts, and for each flow the backend check that proves it. If any flow has no end-to-end test, say so and open a pending item for it; do not pass it as covered.
+Set the budget for [queries / loops / time] on this path at the measured value plus a small margin, and protect it with a test that fails if it is exceeded. Tell me the number and the margin.
 
 ## Prompt 3
 
-Explain why it cannot be tested, what would have to be added so that it can, and open a pending item for that. The change is not closed until it can be tested.
+Before executing the plan, verify every number the plan asserts with the meter. If any does not match, stop and tell me; do not execute on a wrong number.

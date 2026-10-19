@@ -1,7 +1,7 @@
 # Peldaño 2 — La definición del proyecto, el árbol semántico y la lectura obligatoria (contrato del peldaño)
 
 **Tramo:** arranque.
-**Cuándo:** se escribe una vez, en la primera semana, después del contrato; el árbol semántico y el
+**Cuándo:** se escribe una vez, después del contrato; el árbol semántico y el
 estado vivo se mantienen al día durante todo el proyecto, con cada bloque y cada decisión nueva.
 **Forma:** conversación: el agente redacta, pregunta lo que falta, vos corregís.
 **Tamaño:** obligatorio en todo proyecto. En uno chico, el archivo de proyecto puede tener

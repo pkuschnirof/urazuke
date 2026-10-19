@@ -65,7 +65,7 @@ el agente:
   tiene que preguntar.
 - `docs/SEMANTIC_TREE.md` (peldaño 2), al día: cada pendiente va a colgar de un nodo de ahí.
 - `PROJECT.md` y `docs/STATUS.md` (peldaño 2), al día.
-- Si hubo auditorías (peldaño 11) o pruebas humanas (la vista humana al cierre del bloque
+- Si hubo auditorías (peldaño 13) o pruebas humanas (la vista humana al cierre del bloque
   anterior): sus hallazgos, en `docs/AUDIT_[fecha].md` o anotados en el estado vivo, porque son
   pendientes candidatos para este bloque.
 - Estado mínimo aceptable: el pedido del bloque está escrito con las palabras del cliente, y el
@@ -106,7 +106,7 @@ eligiendo); la especificación completa de cada pendiente, campo por campo, que 
 requerimientos clásica descompuesta en unidades chicas; el nodo del árbol del que cuelga, que es
 lo que te permite detectar un pendiente fuera de alcance; las reglas de negocio con su decisión o
 marcadas como faltantes, que es el enganche con el peldaño 6; los criterios de aceptación en la
-forma clásica, que son el guion del test de punta a punta del peldaño 7; y un orden propuesto con
+forma clásica, que son el guion del test de punta a punta del peldaño 8; y un orden propuesto con
 su razón, para que vos lo confirmes o lo cambies.
 
 **Rutina de cada sesión (va en el contrato de convivencia):**

@@ -60,7 +60,7 @@ Le 27 mai (commit `73f4029`) j'ai ouvert `GOTCHAS.md` : un fichier où chaque er
 répétée reste notée avec un format fixe, comment elle sent, quelle est la cause racine, comment on
 l'a réparée, et comment la détecter la prochaine fois avant qu'elle fasse mal. Je l'ai ouvert parce
 que le modèle commettait la même erreur dans des sessions différentes, sans aucune mémoire de
-l'avoir déjà commise. C'est la moitié « anti-patrons » de l'échelon 8.
+l'avoir déjà commise. C'est la moitié « anti-patrons » de l'échelon 11.
 
 ### Ref. 3 — Les portes du flux, injectées seulement quand elles s'appliquent (2 juin)
 
@@ -95,7 +95,7 @@ squelettes) qui se passaient le travail entre eux. J'ai fait une expérience mes
 a dépensé 60 dollars et 73 minutes et a livré quelque chose à moitié fait ; une seule session avec
 un seul agent a pris 90 minutes et a livré quelque chose de publiable. Le 5 juin (commit `7584f8b`,
 documenté dans un papier interne) j'ai éliminé l'équipe entière. C'est le premier cas de
-« rétrospective avec un chiffre en main, et refonte », et c'est la raison pour laquelle l'échelon 15
+« rétrospective avec un chiffre en main, et refonte », et c'est la raison pour laquelle l'échelon 23
 exige des chiffres et non des impressions.
 
 ### Ref. 7 — Le plan devient la liste des éléments en attente (6 juin)
@@ -112,7 +112,7 @@ Le 10 juin (commits `7ab9d8a` et `2c552c0`, documents `verification-honesty.md` 
 d'« honnêteté de vérification » : vérifier que le filet passe réellement au rouge quand il doit y
 passer, déclarer les angles morts, et faire des affirmations proportionnées à ce qui a été
 vérifié. J'ai en outre séparé trois types de flux : projet nouveau, correction et évolution. C'est
-l'origine de l'échelon 10 et de la moitié « rouge » de l'échelon 7.
+l'origine de l'échelon 12 et de la moitié « rouge » de l'échelon 8.
 
 ### Ref. 9 — Du travail jeté pour ne pas avoir lu la carte (12 juin)
 
@@ -127,27 +127,27 @@ Entre le 14 et le 21 juin j'ai laissé l'agent travailler seul pendant un jour, 
 mandat écrit : commit et push pour chaque pièce, sans demander, et je recevais un résumé. Je le
 raconte parce que cela prouve que la méthode supporte une autonomie longue quand le contrat de
 collaboration et le registre des éléments en attente sont bien faits ; et parce que c'est là que
-j'ai appris à lire les résumés avec méfiance, ce qui est l'échelon 10.
+j'ai appris à lire les résumés avec méfiance, ce qui est l'échelon 12.
 
 ### Ref. 11 — Mode diagnostic sur des systèmes d'autrui (juillet)
 
 En juillet (document `diagnostic-mode.md`) l'agent a commencé à entrer dans des systèmes en
 production de clients en mode diagnostic : lecture seule, périmètre borné, sans rien toucher. C'est
-le premier niveau du périmètre de l'agent résident de l'échelon 15.
+le premier niveau du périmètre de l'agent résident de l'échelon 23.
 
 ### Ref. 12 — Patrons de performance pris dans la production de la Mutuelle (22 juillet)
 
 Le 22 juillet (commit `873339c`) j'ai incorporé à l'outil des patrons de montée en charge extraits
 du système de la Mutuelle : celui des deux transactions et, surtout, « mesurer avant de toucher ».
 C'était la première fois que la méthode se nourrissait d'un système déjà en production, et c'est un
-antécédent de l'échelon 9.
+antécédent de l'échelon 7.
 
 ### Ref. 13 — L'agent devient résident dans la production de la Mutuelle (14 août)
 
 Le 14 août, l'agent a été installé à l'intérieur du système du client, comme assistant résident,
 avec trois règles : une carte du système obligatoire avant d'opérer, « d'abord la solution
 opérationnelle » quand quelque chose tombe en panne, et la capacité d'ouvrir des tickets. C'est
-l'origine de la première moitié de l'échelon 15.
+l'origine de la première moitié de l'échelon 23.
 
 ### Ref. 14 — Le dimensionnement comme porte (10 et 11 octobre)
 
@@ -171,7 +171,7 @@ Le 14 octobre l'agent a travaillé une heure et quarante-trois minutes de façon
 et a fait six commits dans ce laps de temps. Ce fut un échec de la méthode, et un vilain. Je l'ai
 réparé à la racine dans la version 1.18.0 (commit `b80a659`) : un veilleur de silence qui tue le
 tour s'il cesse de donner signe de vie, une laisse entre processus pour que le fils meure avec le
-père, et 28 tests. Cela tombe dans l'échelon 10 (le rapport doit être visible) et dans le 12 (en cas
+père, et 28 tests. Cela tombe dans l'échelon 12 (le rapport doit être visible) et dans le 14 (en cas
 de doute, le système ne continue pas).
 
 ---
@@ -189,44 +189,44 @@ que le plan vivant, ce sont les éléments en attente.
 
 Le 23 juin j'ai fait le premier audit de « full scans » (des requêtes qui lisent la table entière
 parce qu'il n'y a pas d'index) sur un système vivant. Les constats se sont transformés en éléments
-en attente, pas en un rapport archivé. C'est l'origine de l'échelon 11.
+en attente, pas en un rapport archivé. C'est l'origine de l'échelon 13.
 
 ### Ref. 19 — Leçons du cloud de Google (24 juin)
 
 Les erreurs d'infrastructure des premières semaines sur le cloud de Google ont été écrites comme
 des leçons pour ne pas les répéter. C'est la première version de ce qui est devenu ensuite le
-manuel d'infrastructure de l'échelon 14.
+manuel d'infrastructure de l'échelon 20.
 
 ### Ref. 20 — Le manuel d'utilisateur naît avec le système (26 juin)
 
 Le 26 juin il y avait déjà un manuel d'utilisateur, avec le système à moitié construit. Je l'ai
 fait ainsi à dessein : dans les projets classiques le manuel s'écrivait à la fin, quand plus
 personne ne se souvenait de rien ; avec un modèle qui le régénère gratuitement, il n'y a aucune
-excuse pour qu'il ne naisse pas avec le système. Échelon 14.
+excuse pour qu'il ne naisse pas avec le système. Échelon 20.
 
 ### Ref. 21 — Sauvegarde de seconde couche (13 juillet)
 
 Avant de faire confiance au système avec des données réelles, j'ai mis deux couches de sauvegarde :
-une locale et une autre dans le stockage de Google. Échelon 13 et manuel de reprise du 14.
+une locale et une autre dans le stockage de Google. Échelon 15 et manuel de reprise du 20.
 
 ### Ref. 22 — PND-300 : quatre tours jusqu'à la cause racine (14 juillet)
 
 Un bug est revenu trois fois avant qu'on trouve la cause réelle, le 14 juillet. Chaque
 « réparation » précédente avait porté sur le symptôme. C'est ici que « la réparation est à la racine
 ou n'est pas une réparation », qui était déjà dans le contrat de collaboration, a cessé d'être une
-phrase pour devenir une pratique : il faut mesurer l'hypothèse avant de toucher. Échelons 1 et 9.
+phrase pour devenir une pratique : il faut mesurer l'hypothèse avant de toucher. Échelons 1 et 7.
 
 ### Ref. 23 — Audit de sécurité (16 juillet)
 
 Le 16 juillet j'ai fait le premier audit de sécurité formel, avec des constats transformés en
 éléments en attente. C'est celui qui m'a convaincu de traiter la sécurité comme un audit périodique
-et non comme une liste qu'on coche une fois au début. Échelon 11.
+et non comme une liste qu'on coche une fois au début. Échelon 13.
 
 ### Ref. 24 — Manuel interne et manuel de reprise après sinistre (26 et 29 juillet)
 
 Les 26 et 29 juillet (commits `6444ce6`, élément en attente 442, et `a30cee3`, élément en attente
 459) j'ai laissé documenté tout l'opérationnel — déployer, récupérer, maintenir — de façon
-« reproductible à la main, sans IA ». Le critère que j'ai utilisé, et qui est dans l'échelon 14,
+« reproductible à la main, sans IA ». Le critère que j'ai utilisé, et qui est dans l'échelon 20,
 c'est que si demain il n'y a pas d'agent, une personne de confiance qui ne programme pas puisse
 suivre le manuel.
 
@@ -236,7 +236,7 @@ Le 27 juillet (commit `e18406d`, élément en attente 452) : si une table n'exis
 recherche échoue, la ligne reste simplement sans son bouton ; jamais on ne casse le listing entier.
 En cas de doute, ne pas agir et ne pas casser. Et le test de cette correction a été prouvé en rouge
 « sans le try/except », c'est-à-dire qu'on a démontré que sans la protection le listing se cassait.
-Échelons 7 et 12.
+Échelons 8 et 14.
 
 ### Ref. 26 — Les compteurs qui ne coïncidaient pas : 1 355 contre 1 234 (6 et 7 août)
 
@@ -246,7 +246,7 @@ l'écran affichait 1 355 approbations et la requête sur la base en montrait 1 2
 cause racine directement sur la production en lecture seule, on a décomposé la différence chiffre
 par chiffre (145 de trop, 24 de moins ; 145 moins 24 font 121), on a écrit un test qui a été prouvé
 EN ROUGE contre l'ancien critère, et le script de diagnostic est resté dans le dépôt pour la
-prochaine fois. Échelons 7, 8 et 9.
+prochaine fois. Échelons 8, 11 et 7.
 
 ### Ref. 27 — Symétrie entre producteur et consommateur (6 août)
 
@@ -254,14 +254,14 @@ Le 6 août (commits `50fe968`, élément en attente 510, et `7251129`, élément
 imposé que la « cause d'attente » que voit l'utilisateur se calcule avec les MÊMES portes que celles
 avec lesquelles le robot décide, et que la liste des colonnes de la grille soit définie par le
 serveur et consommée par le frontend. Ainsi elles ne peuvent pas diverger. C'est la règle « toute
-liste a un seul propriétaire » de l'échelon 8.
+liste a un seul propriétaire » de l'échelon 11.
 
 ### Ref. 28 — Bouton de panique avec verrou, mode à blanc de l'approbateur, veilleur avec gardes (7 août)
 
 Le 7 août (commit `0954740`, élément en attente 524) les verrous du système ont été posés : un
 bouton de panique à double sécurité, l'approbateur automatique qui tourne d'abord en mode à blanc
 (il fait tout sauf approuver, et enregistre ce qu'il aurait approuvé), et un veilleur qui pousse ce
-qui est bloqué avec des gardes pour ne pas pousser deux fois. Échelon 12.
+qui est bloqué avec des gardes pour ne pas pousser deux fois. Échelon 14.
 
 ### Ref. 29 — Les règles de domaine écrites dans le commit (10 août)
 
@@ -278,7 +278,7 @@ restée avec une date et un propriétaire, collée au code qui l'implémente. É
 Kikan a été le premier projet à démarrer avec tout ce qui précède déjà écrit dès le premier jour :
 un fichier de projet opérationnel et des éléments en attente comme plan dès le premier commit
 (21 août). Les 28 et 29 août j'ai fait une série d'audits précoces (AUD-1, AUD-2…) qui s'est
-transformée directement en 19 documents d'éléments en attente. Échelons 2, 5 et 11.
+transformée directement en 19 documents d'éléments en attente. Échelons 2, 5 et 13.
 
 ### Ref. 31 — Intégration continue dès la première semaine ; déploiement comme paquet (28 août, 23 et 24 septembre)
 
@@ -296,20 +296,20 @@ attente 108), une fixture qui réconcilie au lieu de dupliquer (`076df76`, élé
 le matériel du client hors de l'arborescence qui se réplique (`9d76af8`, élément en attente 130), et
 la batterie de tests qui ne salit plus la configuration qui voyage dans le déploiement (`0bd20a8`,
 élément en attente 107, 3 octobre). Si le squelette avait été déployé vide la première semaine,
-ces cinq coups durs auraient été reçus avec zéro fonctionnalité en jeu. Échelons 4 et 13.
+ces cinq coups durs auraient été reçus avec zéro fonctionnalité en jeu. Échelons 4 et 15.
 
 ### Ref. 33 — Promotion de l'UAT vers la production (4 et 8 octobre)
 
 Les 4 et 8 octobre (commits `4eb5ad7`, élément en attente 027, et `7658e2e`) un circuit explicite a
 été mis en place pour passer la configuration et les campagnes de l'environnement de test vers
-celui de production. Échelon 13.
+celui de production. Échelon 15.
 
 ### Ref. 34 — Le schéma dérivé du code, avec verrou (11 octobre)
 
 Dans l'étape 1 de la réingénierie de la persistance (commits `6113319` et `68819ce`) l'inventaire
 des tables et des champs a été dérivé du code lui-même, avec un test qui le protège, et il a été
 ouvert sur le tableau partagé pour que je le révise. C'est une liste avec un seul propriétaire : le
-code. Échelon 8.
+code. Échelon 11.
 
 ### Ref. 35 — Le cliquet statique, et le compteur qui ne voyait pas (du 11 au 13 octobre)
 
@@ -318,7 +318,7 @@ un « cliquet » : un compteur d'appels à la base sans `await`, c'est-à-dire s
 résultat, qui ne peut que descendre et jamais monter. Et il s'est passé quelque chose qui vaut la
 peine d'être raconté : on a découvert DEUX fois que le compteur ne voyait pas des parties du code.
 D'abord 70 appels, puis 84, avec le compteur à zéro. Si l'instrument n'est pas vérifié, le chiffre
-rassure et ment. Échelon 9.
+rassure et ment. Échelon 7.
 
 ### Ref. 36 — Les compteurs qui mentaient et les cinq règles de la section 11.b (13 et 14 octobre)
 
@@ -326,7 +326,7 @@ Textuel des commits du 13 octobre (`880ac0f`, `f955620`) : « le compteur de E7.
 base avec l'ALTER déjà appliqué » ; « il y en a 44, pas 27 ». Et quelques jours plus tôt, un plan
 affirmait qu'il y avait 121 boucles d'un certain type et celui qui a exécuté en a mesuré 79. De
 tout cela j'ai écrit la section 11.b du document de réingénierie, avec les cinq règles qui sont
-aujourd'hui l'échelon 9 : compteur gardé ; si l'instrument n'existe pas, on le construit ; on
+aujourd'hui l'échelon 7 : compteur gardé ; si l'instrument n'existe pas, on le construit ; on
 l'audite dans les deux directions ; l'approximatif se marque ; et celui qui exécute vérifie les
 chiffres de celui qui a planifié. Avec la phrase qui résume tout : « trois affirmations sur quatre
 étaient fausses ; là où il y avait un instrument, exact ».
@@ -337,7 +337,7 @@ Dans l'étape 8 (commits `5926b3f`, `10ada00`) chaque chemin de l'application s'
 un budget de requêtes à la base mesuré et protégé par un test, et le changement de moteur de base
 de données est resté comme un interrupteur par environnement. Dans l'étape 9 (`0730082`,
 `7f5f1af`) le plafond a été resserré sur le mesuré plus une petite marge : 63 sur 60. Le budget
-n'est pas un chiffre inventé. Échelon 9.
+n'est pas un chiffre inventé. Échelon 7.
 
 ### Ref. 38 — Rétention par table, et un rapport d'intégrité fait par une autre session (14 octobre)
 
@@ -345,7 +345,7 @@ Dans les étapes 10 et 12 (commits `f72b15a`, `b266f11`) le vrai paquet s'est mi
 scripts de migration, la rétention des données a été déclarée par table et bornée en production, et
 un rapport d'intégrité fait par une session distincte de Claude Code, qui n'avait pas construit le
 système, a été absorbé comme éléments en attente. C'est l'auditeur distinct du constructeur de
-l'échelon 11.
+l'échelon 13.
 
 ### Ref. 39 — Le déploiement se contente d'empaqueter, et le quota qui a fondu (14 octobre)
 
@@ -353,7 +353,7 @@ Les tests tournaient trois fois pour chaque commit, entre 16 et 27 minutes à ch
 16 jours, 2 000 minutes de quota de GitHub Actions ont été consommées, et une journée de 23 pushes a
 achevé de le faire fondre. Le 14 octobre (commit `39497b0`) j'ai scindé le circuit : les tests
 tournent UNE seule fois, dans l'intégration continue ; le déploiement attend ce résultat et se
-contente d'empaqueter. De 16 à 27 minutes par commit, à 11. Échelon 13.
+contente d'empaqueter. De 16 à 27 minutes par commit, à 11. Échelon 15.
 
 ### Ref. 40 — Deux portes d'administrateur en vingt-quatre heures (15 octobre)
 
@@ -361,7 +361,7 @@ Le 15 octobre, deux portes d'administrateur ont été créées en une seule jour
 attente 223 et 257). Une relecture externe l'a détecté ; j'en ai retiré une (commits `69bdab2`,
 `20fdbe7`, `1558ee4`) et il est resté une voie unique. Je le raconte comme preuve que la méthode
 supporte « défaire vite » sans drame, et de la raison pour laquelle l'audit doit être fait par
-quelqu'un qui n'a pas construit. Échelons 11 et 12.
+quelqu'un qui n'a pas construit. Échelons 13 et 14.
 
 ### Ref. 41 — L'audit de qualité : une vulnérabilité, un composant énorme, un fichier de projet de 9 661 lignes (15 octobre)
 
@@ -369,18 +369,18 @@ L'audit de qualité du 15 octobre a trouvé une vulnérabilité connue dans une 
 composant d'écran de 2 679 lignes, huit modules dupliqués entre la version web et la version mobile,
 et un `CLAUDE.md` qui avait grossi jusqu'à 9 661 lignes et 789 kilo-octets, un fichier qu'à ce
 stade plus personne ne lit, pas même le modèle. De là vient la règle de l'échelon 2 : le fichier de
-projet est le programme, pas l'historique, et le livre de cas va à part. Échelons 2, 8 et 11.
+projet est le programme, pas l'historique, et le livre de cas va à part. Échelons 2, 11 et 13.
 
 ### Ref. 42 — Des secrets collés dans le chat (14 et 16 octobre)
 
 Le 14 octobre, une clé de la base de données s'est retrouvée imprimée dans une transcription, et le
 16 des clés d'API sont apparues collées dans le chat. Aucune des deux n'a été « vue par personne »,
 et il faut les faire tourner toutes les deux quand même, parce qu'un secret qui a été dans un chat,
-dans un journal ou dans un commit n'est plus un secret. Échelon 13.
+dans un journal ou dans un commit n'est plus un secret. Échelon 15.
 
 ### Ref. 43 — Trois rapports qui n'étaient pas ce qu'ils disaient (du 14 au 16 octobre)
 
-Trois cas petits et très parlants pour l'échelon 10. Le 14 octobre, une erreur d'authentification
+Trois cas petits et très parlants pour l'échelon 12. Le 14 octobre, une erreur d'authentification
 a été rapportée par l'outil avec la mention « success ». Le 16, le CORS du serveur s'est dérivé du
 seul premier nom de domaine, et l'assistant de configuration de l'environnement de test renvoyait
 une erreur 500 que le rapport ne mentionnait pas. Et l'application mobile perdait les onglets dans
@@ -392,7 +392,7 @@ séparer le vérifié du cru et déclarer les angles morts.
 Une batterie entière de tests est « morte » par manque de mémoire (commit `1d7a20b`), et le
 rapport l'a lue comme un test qui échouait. Tant qu'on n'a pas regardé la sortie complète, on n'a
 pas compris qu'aucun test n'avait échoué : c'est le processus qui s'était effondré. C'est la raison
-pour laquelle l'échelon 7 demande les chiffres du rouge et du vert, pas seulement le verdict.
+pour laquelle l'échelon 8 demande les chiffres du rouge et du vert, pas seulement le verdict.
 
 ---
 
@@ -410,7 +410,7 @@ avant de construire, parce que j'ai en général raison sur le symptôme et que 
 général juste à côté. « Valide les limites avec le journal, pas avec la prose » : un refus du modèle
 ne prouve pas que la limite est appliquée ; il faut forcer l'invocation et lire le journal. Et
 « compare d'abord la version publiée » : devant un « c'est toujours cassé », regarder quelle version
-tourne là où je vois le problème avant de recommencer à diagnostiquer. Échelons 9 et 10.
+tourne là où je vois le problème avant de recommencer à diagnostiquer. Échelons 7 et 12.
 
 ### Ref. 46 — Les projets que j'ai refusés, et d'où sortent les critères excluants (17 octobre)
 
@@ -497,21 +497,21 @@ Cette table est, d'une certaine façon, la preuve de l'échelle : chaque coup du
 
 | Échec | Référence | Échelon qui le couvre | État |
 |---|---|---|---|
-| L'équipe multi-agents qui dépensait le double et livrait la moitié | Ref. 6 | 15, rétrospective chiffrée | clos |
+| L'équipe multi-agents qui dépensait le double et livrait la moitié | Ref. 6 | 23, rétrospective chiffrée | clos |
 | Du travail jeté pour ne pas avoir lu la carte | Ref. 9 | 2, lecture obligatoire | clos |
-| PND-300 : trois réparations qui n'étaient pas à la racine | Ref. 22 | 1, zéro dette ; 9, mesurer | clos |
-| Compteurs 1 355 contre 1 234 | Ref. 26 | 9, instrument ; 8, symétrie | clos |
+| PND-300 : trois réparations qui n'étaient pas à la racine | Ref. 22 | 1, zéro dette ; 7, mesurer | clos |
+| Compteurs 1 355 contre 1 234 | Ref. 26 | 7, instrument ; 11, symétrie | clos |
 | 3,4 millions de lignes par an sur des fichiers JSON | Ref. 15 | 3, dimensionner | clos |
-| Compteurs qui mentaient ; cliquet à zéro | Refs. 35 et 36 | 9, vérifier l'instrument | clos |
-| Tour orphelin de 1 h 43 | Ref. 16 | 10 et 12 | clos |
-| Tests trois fois par commit ; quota fondu | Ref. 39 | 13 | clos ; le quota doit être élargi |
-| Deux portes d'administrateur en 24 heures | Ref. 40 | 11 et 12 | clos |
-| Des secrets collés dans le chat | Ref. 42 | 13 | rotation en attente |
-| Erreur d'authentification rapportée comme succès | Ref. 43 | 10 | en attente, une ligne |
+| Compteurs qui mentaient ; cliquet à zéro | Refs. 35 et 36 | 7, vérifier l'instrument | clos |
+| Tour orphelin de 1 h 43 | Ref. 16 | 12 et 14 | clos |
+| Tests trois fois par commit ; quota fondu | Ref. 39 | 15 | clos ; le quota doit être élargi |
+| Deux portes d'administrateur en 24 heures | Ref. 40 | 13 et 14 | clos |
+| Des secrets collés dans le chat | Ref. 42 | 15 | rotation en attente |
+| Erreur d'authentification rapportée comme succès | Ref. 43 | 12 | en attente, une ligne |
 | Fichier de projet de 9 661 lignes | Ref. 41 | 2 | en attente |
-| CORS du premier domaine ; assistant de configuration avec erreur 500 | Ref. 43 | 13 et 8 | application en attente |
-| L'application mobile perd les onglets | Ref. 43 | 10 et 12 | diagnostic fait ; correction en attente |
-| Requêtes sans index sur un système vivant | Ref. 18 | 11 et 17 | clos |
-| Audit de sécurité fait une fois, non comme routine | Ref. 23 | 11 et 18 | clos ; le calendrier est nouveau |
-| Plafond resserré à ce qui a été mesuré ; quota fondu sans que personne ne regarde | Refs. 37 et 39 | 9, 13 et 20 | clos |
-| Le tour orphelin s'est trouvé par le journal, pas par le code | Ref. 16 | 16 et 21 | clos |
+| CORS du premier domaine ; assistant de configuration avec erreur 500 | Ref. 43 | 15 et 11 | application en attente |
+| L'application mobile perd les onglets | Ref. 43 | 12 et 14 | diagnostic fait ; correction en attente |
+| Requêtes sans index sur un système vivant | Ref. 18 | 13 et 17 | clos |
+| Audit de sécurité fait une fois, non comme routine | Ref. 23 | 13 et 18 | clos ; le calendrier est nouveau |
+| Plafond resserré à ce qui a été mesuré ; quota fondu sans que personne ne regarde | Refs. 37 et 39 | 7, 15 et 21 | clos |
+| Le tour orphelin s'est trouvé par le journal, pas par le code | Ref. 16 | 16 et 22 | clos |

@@ -1,7 +1,7 @@
 # Passo 18 — Scansione e soluzione delle vulnerabilità, nella catena e con un calendario (contratto del gradino)
 
-**Fase:** qualità operativa, prima del primo deployment in produzione.
-**Quando:** nella fase di uscita in produzione, dopo il 13 (la scansione gira nell'integrazione
+**Fase:** uscita in produzione.
+**Quando:** nella fase di uscita in produzione, dopo il 15 (la scansione gira nell'integrazione
 continua) e prima del primo deployment: nessun P0 aperto viene promosso. Poi, a ogni push, e con
 un calendario proprio (settimanale) anche se non ci sono push, perché le vulnerabilità nuove
 compaiono senza che tu cambi nulla. In un legacy, la prima esecuzione fa parte di N3 (la
@@ -13,7 +13,7 @@ dei segreti non si negozia; l'analisi statica e la linea base di configurazione,
 
 ## A cosa serve
 
-L'audit del gradino 11 guarda il sistema con occhi freschi ogni tanto; questo gradino guarda una
+L'audit del gradino 13 guarda il sistema con occhi freschi ogni tanto; questo gradino guarda una
 cosa sola, la sicurezza, tutto il tempo e a macchina. Sono complementari: l'audit trova ciò che
 richiede criterio (una porta di amministratore che nessuno dovrebbe avere
 [Ref. 40](../REFERENCIAS.md#ref-40)); la scansione trova ciò che richiede costanza (la dipendenza
@@ -43,10 +43,10 @@ Quello che segue è la lista generica. I file concreti che devi avere pronti pri
 con il loro contenuto e il loro stato minimo, stanno nella sezione 2, nel blocco "Prima di
 inviare il prompt" che precede ciascuno.
 
-- L'integrazione continua (gradini 4 e 13), dove gira la scansione.
+- L'integrazione continua (gradini 4 e 15), dove gira la scansione.
 - La rilevazione degli ambienti: quale server, quale contenitore, quali porte, per la linea base
   di configurazione.
-- L'audit precedente (11, o N3), per non riportare ciò che è già noto.
+- L'audit precedente (13, o N3), per non riportare ciò che è già noto.
 - Il tuo criterio su cosa è P0: ciò che permette di entrare, ciò che espone dati personali, ciò
   che permette di incassare o inviare senza controllo.
 
@@ -57,11 +57,11 @@ inviare il prompt" che precede ciascuno.
 **Prima di inviare il prompt**, questo deve esistere, e lo fai tu (o il business con te), non
 l'agente:
 
-- L'integrazione continua che gira a ogni push (gradini 4 e 13), con quota sufficiente: la
+- L'integrazione continua che gira a ogni push (gradini 4 e 15), con quota sufficiente: la
   scansione aggiunge minuti per esecuzione; informati su quanti te ne restano.
 - `docs/ENVIRONMENTS_SURVEY.md` con il server, il contenitore se c'è, le porte esposte e chi
   amministra il dominio, perché l'agente sappia quale linea base applicare.
-- `docs/AUDIT_[data].md` (gradino 11 o N3), perché non riporti ciò che è noto.
+- `docs/AUDIT_[data].md` (gradino 13 o N3), perché non riporti ciò che è noto.
 - Il tuo criterio di P0 in due righe, per il buco del prompt. Per la maggior parte dei sistemi:
   ciò che permette di entrare senza credenziale, ciò che espone dati personali, ciò che permette
   di incassare, inviare o cancellare senza controllo.
@@ -103,7 +103,7 @@ l'agente:
 
 Cosa gli sto chiedendo: i quattro strati di scansione (dipendenze, codice, segreti nella storia,
 configurazione), nella catena **e con un calendario**, perché le vulnerabilità nuove non aspettano
-il tuo prossimo push; il rapporto con la forma del gradino 11, con la clausola di "non
+il tuo prossimo push; il rapporto con la forma del gradino 13, con la clausola di "non
 scansionato" invece di "pulito"; il criterio di P0 dato da me; e il divieto di aggiornare senza
 passare dal ciclo, che è quello che evita il venerdì rotto.
 
@@ -132,7 +132,7 @@ passare dal ciclo, che è quello che evita il venerdì rotto.
 > un P1 nuovo apre automaticamente una voce in sospeso. Registra la politica, il calendario e ciò
 > che non è coperto in `docs/SECURITY.md`.
 
-Cosa gli sto chiedendo: una voce in sospeso per soluzione, con il rosso del gradino 7 dove si può
+Cosa gli sto chiedendo: una voce in sospeso per soluzione, con il rosso del gradino 8 dove si può
 (una vulnerabilità sistemata senza test torna con il prossimo refactor); la scansione ripetuta
 come prova; e la conversione in cancello, che è ciò che fa sì che questo gradino resti vivo
 quando nessuno lo guarda.

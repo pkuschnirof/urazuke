@@ -12,34 +12,36 @@
 是英文。
 
 它们是根据我在三个如今正在生产中的系统里做过的事写成的，我还没有按原样执行过。第一个从头到
-尾使用它们的项目会修正其中若干条；那是第 15 级台阶的一部分。当一份契约引用真实案例时，用
+尾使用它们的项目会修正其中若干条；那是第 23 级台阶的一部分。当一份契约引用真实案例时，用
 `[Ref. N]` 标记链接到[参考资料文档](../REFERENCIAS.md)；流程保持干净，细节一点即达。
 
 | 台阶 | 文件 | 阶段 | 时机 |
 |---|---|---|---|
-| 0 — 这个项目能这样做吗？ | `peldano-00-elegibilidad.md` | 启动 | 第一周，先于一切 |
-| 1 — 协作契约 | `peldano-01-contrato-de-convivencia.md` | 启动 | 第一周，适格性之后 |
-| 2 — 项目定义与必读 | `peldano-02-definicion-y-lectura.md` | 启动 | 第一周；始终维护 |
-| 3 — 在架构之前先做容量估算 | `peldano-03-dimensionar.md` | 启动 | 第一周，骨架之前 |
-| 4 — 带闸门的骨架 | `peldano-04-esqueleto.md` | 启动 | 第一周收尾 |
+| 0 — 这个项目能这样做吗？ | `peldano-00-elegibilidad.md` | 启动 | 先于一切 |
+| 1 — 协作契约 | `peldano-01-contrato-de-convivencia.md` | 启动 | 适格性之后 |
+| 2 — 项目定义与必读 | `peldano-02-definicion-y-lectura.md` | 启动 | 契约之后；始终维护 |
+| 3 — 在架构之前先做容量估算 | `peldano-03-dimensionar.md` | 启动 | 定义之后，骨架之前 |
+| 4 — 带闸门的骨架 | `peldano-04-esqueleto.md` | 启动 | 启动阶段收尾 |
 | 5 — 计划就是待办项 | `peldano-05-pendientes.md` | 循环 | 每个功能块开启时；每次会话 |
 | 6 — 决策写在代码旁边 | `peldano-06-decisiones.md` | 循环 | 每次缺一条规则时 |
-| 7 — 作为锁的测试，先证红 | `peldano-07-tests-en-rojo.md` | 循环 | 每个待办项关闭时 |
-| 8 — 生产者/消费者对称性与反模式 | `peldano-08-simetria-y-antipatrones.md` | 循环 | 每次契约变更时 |
-| 9 — 构建之前先测量 | `peldano-09-medir.md` | 循环 | 在一个数字之上构建之前 |
-| 10 — 诚实的验证与相称的报告 | `peldano-10-verificacion-honesta.md` | 循环 | 每份报告 |
-| 11 — 作为计划输入的定期审计 | `peldano-11-auditoria.md` | 运维 | 生产之前；之后定期 |
-| 12 — 失败即关闭、锁与零静默损害 | `peldano-12-fail-closed.md` | 运维 | 在构建作用于现实世界的功能之前 |
-| 13 — 持续集成、环境、密钥与部署 | `peldano-13-ci-entornos-secretos-deploy.md` | 运维 | 面向生产的收尾；每次部署的例行 |
-| 14 — 活的文档与无需 AI 的手册 | `peldano-14-documentacion-viva.md` | 运维 | 每个功能块收尾时；生产之前完整 |
-| 15 — 驻留代理与带数字的复盘 | `peldano-15-agente-residente-y-retrospectiva.md` | 运维与收尾 | 进入运维时；每个阶段收尾时 |
-| 16 — 完整的可观测性与可追溯性，级别可配置 | `peldano-16-observabilidad-y-trazabilidad.md` | 运维质量 | 上线生产，第 13 级之后、第 19 级之前 |
-| 17 — 持久化层的优化 | `peldano-17-persistencia.md` | 运维质量 | 上线生产，第 16 级之后、第 19 级之前；每当一条查询超出范围时重复 |
-| 18 — 漏洞的扫描与解决 | `peldano-18-vulnerabilidades.md` | 运维质量 | 第一次部署之前；之后，每次 push 和每周 |
-| 19 — 性能测试与断裂点 | `peldano-19-rendimiento-y-punto-de-ruptura.md` | 运维质量 | 第一次部署之前；每次会改变架构、持久化或某条关键流程的部署之前 |
-| 20 — 资源与性能的监控，周期报告 | `peldano-20-monitoreo-de-recursos-y-rendimiento.md` | 运维质量 | 第一次部署的那一周；之后自己跑，按周期阅读 |
-| 21 — 错误监控，周期报告 | `peldano-21-monitoreo-de-errores.md` | 运维质量 | 第一次部署的那一周，和第 20 级一起 |
+| 7 — 构建之前先测量 | `peldano-07-medir.md` | 循环 | 在一个数字之上构建之前 |
+| 8 — 作为锁的测试，先证红 | `peldano-08-tests-en-rojo.md` | 循环 | 每个待办项关闭时 |
+| 9 — 由机器验证的代码质量 | `peldano-09-calidad-de-codigo.md` | 循环 | 开启第一个功能块时搭建；每次提交时运行 |
+| 10 — 人工测试用例和功能一起写 | `peldano-10-casos-de-prueba-manual.md` | 循环 | 每个待办项；人工执行在每个功能块收尾时、验收时和每次部署之后 |
+| 11 — 生产者/消费者对称性与反模式 | `peldano-11-simetria-y-antipatrones.md` | 循环 | 每次契约变更时 |
+| 12 — 诚实的验证与相称的报告 | `peldano-12-verificacion-honesta.md` | 循环 | 每份报告 |
+| 13 — 作为计划输入的定期审计 | `peldano-13-auditoria.md` | 上线生产 | 生产之前；之后定期 |
+| 14 — 失败即关闭、锁与零静默损害 | `peldano-14-fail-closed.md` | 上线生产 | 在构建作用于现实世界的功能之前 |
+| 15 — 持续集成、环境、密钥与部署 | `peldano-15-ci-entornos-secretos-deploy.md` | 上线生产 | 面向生产的收尾；每次部署的例行 |
+| 16 — 完整的可观测性与可追溯性，级别可配置 | `peldano-16-observabilidad-y-trazabilidad.md` | 上线生产 | 上线生产，第 15 级之后、第 19 级之前 |
+| 17 — 持久化层的优化 | `peldano-17-persistencia.md` | 上线生产 | 上线生产，第 16 级之后、第 19 级之前；每当一条查询超出范围时重复 |
+| 18 — 漏洞的扫描与解决 | `peldano-18-vulnerabilidades.md` | 上线生产 | 第一次部署之前；之后，每次 push 和每周 |
+| 19 — 性能测试与断裂点 | `peldano-19-rendimiento-y-punto-de-ruptura.md` | 上线生产 | 第一次部署之前；每次会改变架构、持久化或某条关键流程的部署之前 |
+| 20 — 活的文档与无需 AI 的手册 | `peldano-20-documentacion-viva.md` | 上线生产 | 每个功能块收尾时；生产之前完整 |
+| 21 — 资源与性能的监控，周期报告 | `peldano-21-monitoreo-de-recursos-y-rendimiento.md` | 运维 | 随第一次部署；之后自己跑，按周期阅读 |
+| 22 — 错误监控，周期报告 | `peldano-22-monitoreo-de-errores.md` | 运维 | 随第一次部署，和第 21 级一起 |
+| 23 — 驻留代理与带数字的复盘 | `peldano-23-agente-residente-y-retrospectiva.md` | 运维 | 进入运维时；每个阶段收尾时 |
 
-阶段：**启动**每个项目登一次；**循环**每次变更都重复；**运维**在系统已上线之后。第 15 级
+阶段：**启动**每个项目登一次；**循环**每次变更都重复；**运维**在系统已上线之后。第 23 级
 回到第 0 级，为下一个项目做准备。完整的时间线，包括台阶与台阶之间发生的事，在主文档的
 B 部分。

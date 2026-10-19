@@ -1,7 +1,7 @@
 # Step 18 — Scanning and fixing vulnerabilities, in the chain and on a schedule (step contract)
 
-**Stretch:** operational quality, before the first deployment to production.
-**When:** in the go-live phase, after step 13 (the scan runs in continuous integration) and
+**Stretch:** going live.
+**When:** in the go-live phase, after step 15 (the scan runs in continuous integration) and
 before the first deployment: no open P0 gets promoted. Afterwards, on every push, and with a
 schedule of its own (weekly) even if there are no pushes, because new vulnerabilities appear
 without you changing anything. In a legacy system, the first run is part of N3 (the security
@@ -13,7 +13,7 @@ proportional.
 
 ## What it is for
 
-The audit of step 11 looks at the system with fresh eyes every so often; this step looks at a
+The audit of step 13 looks at the system with fresh eyes every so often; this step looks at a
 single thing, security, all the time and by machine. They are complementary: the audit finds what
 requires judgement (an administrator door nobody should have
 [Ref. 40](../REFERENCIAS.md#ref-40)); the scan finds what requires persistence (the dependency that
@@ -42,10 +42,10 @@ What follows is the generic list. The concrete files you have to have made befor
 with their content and their minimum state, are in section 2, in the "Before sending the prompt"
 block that precedes each one.
 
-- Continuous integration (steps 4 and 13), where the scan runs.
+- Continuous integration (steps 4 and 15), where the scan runs.
 - The survey of environments: which server, which container, which ports, for the configuration
   baseline.
-- The previous audit (11, or N3), so as not to report what is already known.
+- The previous audit (13, or N3), so as not to report what is already known.
 - Your criteria about what is a P0: what lets somebody in, what exposes personal data, what allows
   charging or sending without control.
 
@@ -56,11 +56,11 @@ block that precedes each one.
 **Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
 the agent:
 
-- Continuous integration running on every push (steps 4 and 13), with enough quota: the scan adds
+- Continuous integration running on every push (steps 4 and 15), with enough quota: the scan adds
   minutes per run; find out how many you have left.
 - `docs/ENVIRONMENTS_SURVEY.md` with the server, the container if there is one, the exposed ports
   and who administers the domain, so that the agent knows which baseline to apply.
-- `docs/AUDIT_[date].md` (step 11 or N3), so that it does not report what is known.
+- `docs/AUDIT_[date].md` (step 13 or N3), so that it does not report what is known.
 - Your P0 criteria in two lines, for the prompt's slot. For most systems: what lets somebody in
   without a credential, what exposes personal data, what allows charging, sending or deleting
   without control.
@@ -85,7 +85,7 @@ the agent:
 
 What I am asking for: the four layers of scanning (dependencies, code, secrets in the history,
 configuration), in the chain **and on a schedule**, because new vulnerabilities do not wait for
-your next push; the report with the shape of step 11, with the "not scanned" clause instead of
+your next push; the report with the shape of step 13, with the "not scanned" clause instead of
 "clean"; the P0 criteria given by me; and the ban on upgrading without going through the loop,
 which is the one that avoids the broken Friday.
 
@@ -105,7 +105,7 @@ which is the one that avoids the broken Friday.
 > promoted to production with an open P0, and a new P1 opens a pending item automatically. Record
 > the policy, the schedule and what is not covered in `docs/SECURITY.md`.
 
-What I am asking for: one pending item per fix, with the red of step 7 where it is possible (a
+What I am asking for: one pending item per fix, with the red of step 8 where it is possible (a
 vulnerability fixed without a test comes back with the next refactor); the repeated scan as
 evidence; and the conversion into a gate, which is what keeps this step alive when nobody is
 looking at it.

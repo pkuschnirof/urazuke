@@ -1,11 +1,9 @@
 # Étape 0 — Ce projet peut-il être abordé ainsi ? (contrat de l'échelon)
 
 **Tronçon :** démarrage.
-**Quand :** une seule fois, la première semaine, avant d'ouvrir le dépôt et avant toute autre
-chose. Une heure de travail.
+**Quand :** une seule fois, avant d'ouvrir le dépôt et avant toute autre chose.
 **Forme :** conversation : l'agent évalue et pose des questions ; vous décidez.
-**Taille :** obligatoire dans tout projet, si petit soit-il. Cela prend une heure ; cela épargne des
-mois.
+**Taille :** obligatoire dans tout projet, si petit soit-il.
 **État :** les critères excluants X1 et X2 sont clos ; les critères qui pondèrent (D1 à D10), je
 suis encore en train de les calibrer et je les marque comme hypothèses.
 

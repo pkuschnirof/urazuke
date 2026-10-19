@@ -1,7 +1,7 @@
 # Passo 3 — Dimensionar antes de desenhar a arquitetura (contrato do degrau)
 
 **Fase:** arranque.
-**Quando:** uma vez, na primeira semana, depois da definição e antes de montar o esqueleto;
+**Quando:** uma vez, depois da definição e antes de montar o esqueleto;
 refaz-se se o negócio muda de escala.
 **Forma:** conversa: o agente calcula e apresenta opções; você escolhe.
 **Tamanho:** obrigatório sempre, mas proporcional: num projeto pequeno o dimensionamento pode ser

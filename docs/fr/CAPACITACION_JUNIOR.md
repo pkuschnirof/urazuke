@@ -40,7 +40,7 @@ savoir de la programmation change de nature : de métier à alphabétisation.
 | **Comment il apprend** | En écrivant et en recevant des corrections sur le code. | En dirigeant le modèle échelon par échelon et en recevant des corrections sur la preuve qu'il a exigée et sur celle qu'il a acceptée sans l'exiger. |
 | **Ce que relit le senior** | Son code. | Son discernement : ce qu'il a demandé au modèle, ce que le modèle a supposé sans qu'il le détecte, ce qu'il a accepté comme « terminé » sans preuve. |
 | **Quelle est son erreur typique** | Un bug. | Croire le modèle. |
-| **Combien de temps avant d'être utile** | Des mois, jusqu'à écrire du code qu'il ne faut pas réécrire. | Des semaines, s'il entre par la méthode : le premier petit projet avec les vingt-deux échelons le rend opérationnel. |
+| **Quand il est utile** | Quand il écrit du code qu'il ne faut pas réécrire, et cela prend du temps. | Quand il termine son premier petit projet avec les vingt-quatre échelons : la méthode ne promet pas la vitesse, elle promet un système exploitable et un discernement formé. |
 | **En quoi il se transforme** | En un programmeur qui connaît plus de langages et de frameworks. | En quelqu'un qui peut répondre d'un système sans en avoir écrit une ligne : un ingénieur systèmes qui dirige des modèles. |
 
 ## L'impact sur les axes de formation
@@ -78,7 +78,7 @@ Je les ordonne par l'échelon où ils s'exercent, parce que c'est la façon de l
    demander la primaire au lieu de l'estimer. C'est la compétence numéro un, et c'est celle que
    l'industrie a cessé d'enseigner il y a vingt ans. Le modèle y est mauvais par conception : il
    comble les trous avec le plus probable, et le plus probable n'est pas ce dont le métier a besoin.
-2. **Conception de la vérification** (échelons 7, 9, 10, 19). Non pas écrire le test : savoir quel
+2. **Conception de la vérification** (échelons 8, 7, 12, 19). Non pas écrire le test : savoir quel
    test démontre quoi, pourquoi un test doit se voir en rouge avant de valoir quelque chose, ce
    qu'est un test de bout en bout et ce qu'est une simulation qui ne prouve rien, quel chiffre
    décide de quelque chose et avec quel instrument il se mesure, comment on lit un rapport et
@@ -89,15 +89,15 @@ Je les ordonne par l'échelon où ils s'exercent, parce que c'est la façon de l
    l'angle mort non déclaré, le « terminé » qui ne l'était pas
    [Ref. 43](REFERENCIAS.md#ref-43). Cette compétence n'existait pas comme axe de formation parce
    qu'il n'y avait personne qui mentît avec autant d'assurance et une aussi bonne rédaction.
-4. **Dimensionnement et exploitation** (échelons 3, 4, 13, 16 à 21). Ce qu'est un environnement,
+4. **Dimensionnement et exploitation** (échelons 3, 4, 15, 16 à 22). Ce qu'est un environnement,
    comment on déploie, ce qu'est l'intégration continue, ce qu'on mesure en production, ce qu'est
    un index, un point de rupture, un seuil d'alerte. Avant, c'était le territoire d'un autre rôle ;
    maintenant le junior dirige le modèle qui le fait, et il doit savoir quoi lui demander et
    comment vérifier qu'il l'a fait.
-5. **Sécurité et conséquence** (échelons 12, 18). Quelles actions du système agissent sur le monde,
+5. **Sécurité et conséquence** (échelons 14, 18). Quelles actions du système agissent sur le monde,
    ce qu'est un verrou, ce qu'est le fail-closed, ce qu'est une vulnérabilité et pourquoi une mise
    à jour de dépendance est un changement.
-6. **Décision et communication avec le propriétaire** (échelons 1, 6, 14). Bien demander, avec une
+6. **Décision et communication avec le propriétaire** (échelons 1, 6, 20). Bien demander, avec une
    recommandation et une solution de rechange ; écrire une décision avec les mots textuels, la date
    et le propriétaire ; écrire un manuel qu'une personne qui ne programme pas puisse suivre. Le
    junior est, dans la méthode, le traducteur entre le propriétaire et le modèle, et la traduction
@@ -130,13 +130,13 @@ bel et bien regarder. C'est pourquoi l'alphabétisation minimale n'est pas négo
 - **Git** : ce qu'est un commit, une branche, un push, un historique. Assez pour lire la trace de
   preuve que la méthode y laisse.
 - **SQL de base** : lire une requête et comprendre quelle table elle lit et avec quel filtre. C'est
-  la langue des données, et celle des chiffres de l'échelon 9.
+  la langue des données, et celle des chiffres de l'échelon 7.
 - **Le terminal** : lancer une commande que le modèle vous a donnée et lire sa sortie. Si le junior
   ne peut pas lancer le compteur, il ne peut pas vérifier le chiffre.
 - **Le débogage comme dernier outil** : quand le journal, le test et le compteur n'ont pas suffi,
   ouvrir le code avec le modèle à côté et lire ensemble.
 
-Cela s'enseigne en deux ou trois semaines, se pratique pendant tout le cours, et ce n'est pas le
+Cela s'enseigne à la première étape, se pratique pendant tout le cours, et ce n'est pas le
 métier : c'est l'alphabétisation qui permet de l'exercer.
 
 ## Avec quel objectif former un junior
@@ -144,7 +144,7 @@ métier : c'est l'alphabétisation qui permet de l'exercer.
 Je le dis sans détour, parce que de la clarté de l'objectif dépend tout le reste. L'objectif de
 former un junior à l'ère de l'après-programmation à la main est de former quelqu'un qui **puisse
 répondre d'un système en production sans en avoir écrit une ligne de code** : qui puisse mener un
-petit projet à travers les vingt-deux échelons de bout en bout, en dirigeant un modèle, en lui
+petit projet à travers les vingt-quatre échelons de bout en bout, en dirigeant un modèle, en lui
 exigeant des preuves à chaque pas, en décidant avec le propriétaire, et en sachant à tout moment ce
 qui est vérifié, ce qui est cru et ce qui ne se voit pas. Je l'appelle, provisoirement,
 *propriétaire technique de la preuve* : celui qui ne lit pas le code et qui pourtant peut dire,
@@ -169,67 +169,68 @@ Trois conséquences de cet objectif, qui ordonnent la formation :
    tâches de code. C'est une erreur : la boucle sans le démarrage, c'est construire sur du sable, et
    le junior qui n'a jamais fait un échelon 0 ou un 3 ne comprend pas pourquoi le 5 a la forme qu'il
    a. Les deux projets-guides existent pour cela : un neuf et un hérité, de bout en bout, les
-   vingt-deux échelons et les huit stations.
+   vingt-quatre échelons et les huit stations.
 
 ## Comment le former : le plan
 
-Ce qui suit est le plan que j'utiliserais, et que je vais utiliser avec la première cohorte. Douze
-semaines de travail à temps partiel, avec un mentor, sur les deux projets-guides du cours, et
-ensuite un petit projet réel avec un vrai propriétaire.
+Ce qui suit est le plan que j'utiliserais, et que je vais utiliser avec la première cohorte :
+quatre étapes, sans délais (la méthode n'en a pas, et la formation non plus : chaque étape se
+termine quand sa liste de sortie donne « oui »), avec un mentor, sur les deux projets-guides du
+cours, et ensuite un petit projet réel avec un vrai propriétaire.
 
-### Semaines 1 et 2 : alphabétisation et le modèle comme objet d'étude
+### Étape 1 : alphabétisation et le modèle comme objet d'étude
 
 - L'alphabétisation ci-dessus : lire du code, comment tourne un système, git, SQL de base, le
   terminal. Avec le modèle à côté, qui explique ; le junior n'écrit pas, il lit et il lance.
-- **Le modèle comme objet d'étude** : une semaine à faire des demandes au modèle dans le seul but
+- **Le modèle comme objet d'étude** : un temps à faire des demandes au modèle dans le seul but
   de le voir échouer. Lui demander une donnée qu'il n'a pas et voir s'il l'invente. Lui donner une
   demande ambiguë et voir s'il pose une question. Lui demander de clore quelque chose et voir s'il
   dit « terminé » sans preuve. Lui demander de corriger un bug sans le reproduire. Chaque échec se
-  note avec son odeur. À la fin de la semaine le junior a son propre catalogue, et c'est le
+  note avec son odeur. À la fin de l'étape le junior a son propre catalogue, et c'est le
   catalogue du document de références, redécouvert.
 - Lecture du document principal, le glossaire à portée de main, et des références : l'histoire d'où
   sort chaque règle.
 
-### Semaines 3 à 8 : le projet neuf, avec mentor
+### Étape 2 : le projet neuf, avec mentor
 
 Le manuel du cours, partie 1, tel quel, sur le projet-guide « Turnera » ou sur un petit projet à
-soi. Les vingt-deux échelons. Avec trois règles de mentorat :
+soi. Les vingt-quatre échelons. Avec trois règles de mentorat :
 
 - **Le mentor relit la preuve, pas le code.** Il lit le contrat de collaboration, l'arbre
   sémantique, la spécification de trois éléments en attente, le rapport de clôture d'un élément en
   attente, le rapport de l'audit, le rapport du test de charge. Et il pose une seule question à
   chaque fois : « comment sais-tu que c'est vrai ? ». Si la réponse est « parce que le modèle l'a
   dit », l'échelon n'est pas gravi.
-- **Le mentor conçoit des incidents.** Une fois par semaine, sans prévenir, il altère quelque
+- **Le mentor conçoit des incidents.** De temps en temps, sans prévenir, il altère quelque
   chose : il change une donnée du relevé, il glisse une supposition dans la volumétrie, il demande
   un changement hors périmètre à travers le modèle. Le junior doit le détecter par la preuve.
 - **Le junior tient son propre registre des échecs du modèle** : chaque fois qu'il l'a attrapé,
   quelle odeur cela avait, à quel échelon. À la fin du projet, ce registre est sa rétrospective
-  personnelle, et c'est lui qui écrit la proposition de changement à l'échelle (échelon 15).
+  personnelle, et c'est lui qui écrit la proposition de changement à l'échelle (échelon 23).
 
-### Semaines 9 à 11 : le projet hérité, avec moins de mentor
+### Étape 3 : le projet hérité, avec moins de mentor
 
 Le manuel, partie 2 : la Turnera héritée, ou un petit système hérité réel. Le tronçon de
 normalisation et les deux premiers blocs. Ici le mentorat baisse : le mentor lit la carte récupérée
 et les divergences, le rapport de l'audit avec ses marques de vitesse, et la clôture du premier bug
-en mode correctif. L'objectif de ces semaines est que le junior apprenne ce que le projet neuf
+en mode correctif. L'objectif de cette étape est que le junior apprenne ce que le projet neuf
 n'enseigne pas : lire un système qui n'est pas le sien à travers le modèle, décider avec le
 propriétaire ce qui, dans ce que le code fait, est faux et ce qui était une règle oubliée, et ne
 pas réécrire.
 
-### Semaine 12 : le projet réel, seul
+### Étape 4 : le projet réel, seul
 
 Un petit projet pour de vrai, avec un vrai propriétaire qui a quinze minutes par jour, de bout en
 bout. Le mentor n'intervient pas ; il lit la rétrospective chiffrée à la fin. Si le junior arrive
-en production avec les vingt-deux conditions de la liste de mise en production à « oui », il est
+en production avec les vingt-quatre conditions de la liste de mise en production à « oui », il est
 formé. Sinon, la liste dit exactement quel échelon regravir, et cela aussi, c'est de la formation.
 
 ### Ce qui mesure le progrès
 
 Pas combien d'éléments en attente il a clos. Trois choses, dans cet ordre :
 
-1. **Combien de fois il a attrapé le modèle**, et à quel échelon. Un junior qui en six semaines n'a
-   pas attrapé le modèle une seule fois ne regarde pas : le modèle échoue toujours.
+1. **Combien de fois il a attrapé le modèle**, et à quel échelon. Un junior qui, sur tout le projet
+   neuf, n'a pas attrapé le modèle une seule fois ne regarde pas : le modèle échoue toujours.
 2. **Combien cela a coûté au propriétaire.** Des minutes par jour de questions ; si elles montent,
    le junior transfère au propriétaire ce que la méthode lui demande à lui de résoudre
    (échelon 1).
@@ -247,7 +248,7 @@ l'équipe change de forme :
   qu'il dirige un modèle qui construit vite ; c'est pour cela que la méthode est la condition, pas
   un supplément.
 - **Le senior** cesse de relire du code et passe à trois choses : écrire et maintenir les contrats
-  (celui de collaboration, les portes, les verrous), auditer avec une autre session (échelon 11) et
+  (celui de collaboration, les portes, les verrous), auditer avec une autre session (échelon 13) et
   décider ce que le junior ne peut pas décider (l'architecture, le « fois dix », ce qui bloque). Sa
   valeur se déplace du clavier vers le discernement, là où elle a toujours été chez les bons.
 - **L'équipe rapetisse et s'aplatit.** Un senior et deux ou trois juniors avec la méthode portent
@@ -269,11 +270,11 @@ l'équipe change de forme :
   formé sur un seul outil apprend ses raccourcis et non la méthode ; la formation doit passer par
   au moins deux.
 - **Le coût invisible.** Un junior avec un modèle dépense des jetons comme s'ils étaient gratuits.
-  Le budget de jetons doit faire partie de la formation dès la semaine 1, avec le chiffre sous les
-  yeux.
-- **L'illusion de vitesse.** Le modèle construit en une après-midi ce qui prenait avant une semaine,
-  et le junior peut croire qu'il a fini. La liste de mise en production, avec ses vingt-deux
-  conditions, est l'antidote : « terminé » a une définition, et ce n'est pas « ça marche ».
+  Le budget de jetons doit faire partie de la formation dès la première étape, avec le chiffre sous
+  les yeux.
+- **L'illusion de vitesse.** Le modèle construit en une session ce qui prenait avant bien plus
+  longtemps, et le junior peut croire qu'il a fini. La liste de mise en production, avec ses
+  vingt-quatre conditions, est l'antidote : « terminé » a une définition, et ce n'est pas « ça marche ».
 - **Le mentor qui relit le code par habitude.** C'est le risque du côté du senior, et il est
   sérieux : un mentor qui lit le code enseigne au junior que la preuve ne suffit pas, ce qui est
   exactement le contraire de la méthode. Le mentor doit se former à la méthode avant le junior.
@@ -283,7 +284,7 @@ l'équipe change de forme :
 1. Combien de programmation il faut avoir faite pour bien lire le code d'un autre. Mon intuition est
    que ce qui compte est d'avoir débogué, pas d'avoir écrit, et qu'il en faut peu. Sans données pour
    l'instant.
-2. Le plan de douze semaines est écrit depuis mes projets et depuis ce que j'ai enseigné avant les
+2. Le plan de quatre étapes est écrit depuis mes projets et depuis ce que j'ai enseigné avant les
    modèles, pas depuis une cohorte. La première le corrigera, comme elle corrigera le cours.
 3. Si le « propriétaire technique de la preuve » est un rôle nouveau ou si c'est l'ingénieur
    systèmes de toujours avec un autre outil. Je penche pour la seconde hypothèse, et alors le nom

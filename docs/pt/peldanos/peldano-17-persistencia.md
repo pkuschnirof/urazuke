@@ -1,10 +1,10 @@
 # Passo 17 — Otimização da camada de persistência, medida antes e depois (contrato do degrau)
 
-**Fase:** qualidade operacional, antes da primeira implantação em produção.
+**Fase:** saída para produção.
 **Quando:** na fase de saída para produção, depois do 16 (é preciso ver as consultas para
 medi-las) e antes do 19 (os testes de desempenho se rodam sobre a persistência já otimizada; se
 não, medem o problema que já se conhecia). Repete-se quando um bloco acrescenta uma tabela grande
-ou muda um fluxo crítico, e quando o monitoramento (20) mostra uma consulta fora de faixa. Num
+ou muda um fluxo crítico, e quando o monitoramento (21) mostra uma consulta fora de faixa. Num
 legado, as medições saem de N6 e a maior parte do que se encontra se paga "ao tocar", salvo o que
 já está fora de faixa.
 **Forma:** dois disparos: medir e propor; aplicar com antes e depois.
@@ -16,7 +16,7 @@ N+1; num com consequências, completo, com orçamentos por caminho.
 A camada de persistência é onde os sistemas morrem devagar: funcionam bem com cem registros,
 aceitavelmente com dez mil, e aos cem mil cada tela demora vinte segundos, e ninguém sabe quando
 começou. Este degrau existe para que isso se decida com números e antes da produção, não com
-reclamações e depois. E para que se decida **com o método do degrau 9**: cada consulta que o
+reclamações e depois. E para que se decida **com o método do degrau 7**: cada consulta que o
 sistema faz se conta e se cronometra com um medidor que tem teste, muda-se o que os números
 dizem, e mede-se de novo sobre os mesmos dados. A primeira auditoria de consultas sem índice
 sobre um sistema vivo [Ref. 18](../REFERENCIAS.md#ref-18) e o orçamento de consultas apertado ao
@@ -45,7 +45,7 @@ prompt" que precede cada um.
 
 - O dimensionamento e a volumetria (degrau 3, ou N6 num legado): os volumes aos quais é preciso
   medir.
-- O mapa produtor-consumidor (degrau 8): o que consome cada tabela.
+- O mapa produtor-consumidor (degrau 11): o que consome cada tabela.
 - A observabilidade (16): cada consulta visível com o seu tempo.
 - O ambiente de teste carregado com dados ao volume esperado.
 
@@ -61,7 +61,7 @@ o agente:
   um sistema anterior ou produção, uma cópia anonimizada; se é um projeto novo, peça ao agente
   que gere dados sintéticos com a forma da árvore semântica e os volumes do dimensionamento, e
   que o deixe como script no repositório. Isto é uma pendência prévia, não parte deste prompt.
-- `docs/PRODUCER_CONSUMER_MAP.md` (degrau 8), em dia.
+- `docs/PRODUCER_CONSUMER_MAP.md` (degrau 11), em dia.
 - Se há produção: acesso de somente leitura, com a credencial fora do chat, para medir sobre
   dados reais além dos de teste.
 - Um caso conhecido para o teste de cada medidor (uma tabela cuja quantidade de linhas você
@@ -96,7 +96,7 @@ o agente:
 > esperado, o risco, e que consumidores do mapa ela toca. Não mude nada ainda: eu aprovo a lista.
 > Responda no meu idioma.
 
-O que estou pedindo: medir com o método do degrau 9 (medidor com teste, auditado nas duas
+O que estou pedindo: medir com o método do degrau 7 (medidor com teste, auditado nas duas
 direções, número com comando) antes de propor; propor consulta por consulta, com o ganho e o
 risco, e com os consumidores do mapa que cada mudança toca (um índice novo não toca ninguém; uma
 retenção por tabela toca todos os que leem essa tabela); e **não mudar nada até que eu aprove**,
@@ -130,7 +130,7 @@ porque a otimização é o lugar onde mais se "melhora" o que ninguém pediu.
 
 O que estou pedindo: um commit por mudança, para que o antes e o depois sejam atribuíveis; o
 mesmo medidor sobre os mesmos dados (se os dados mudam, o número não diz nada); o orçamento com
-teste, que é o que impede que o laço N+1 volte em três meses; e a simetria do degrau 8 aplicada à
+teste, que é o que impede que o laço N+1 volte em três meses; e a simetria do degrau 11 aplicada à
 persistência.
 
 ## 3. Resultado esperado

@@ -67,7 +67,7 @@ faites, pas l'agent :
 - `docs/SEMANTIC_TREE.md` (échelon 2), à jour : chaque élément en attente va s'accrocher à un
   nœud de là.
 - `PROJECT.md` et `docs/STATUS.md` (échelon 2), à jour.
-- S'il y a eu des audits (échelon 11) ou des tests humains (la vue humaine à la clôture du bloc
+- S'il y a eu des audits (échelon 13) ou des tests humains (la vue humaine à la clôture du bloc
   précédent) : leurs constats, dans `docs/AUDIT_[date].md` ou notés dans l'état vivant, parce que
   ce sont des éléments en attente candidats pour ce bloc.
 - État minimum acceptable : la demande du bloc est écrite avec les mots du client, et l'arbre a
@@ -109,7 +109,7 @@ qui est l'ingénierie des exigences classique décomposée en petites unités ; 
 dont il pend, qui est ce qui vous permet de repérer un élément hors périmètre ; les règles métier
 avec leur décision ou marquées comme manquantes, qui est l'accrochage avec l'échelon 6 ; les
 critères d'acceptation sous la forme classique, qui sont le scénario du test de bout en bout de
-l'échelon 7 ; et un ordre proposé avec sa raison, pour que vous le confirmiez ou le changiez.
+l'échelon 8 ; et un ordre proposé avec sa raison, pour que vous le confirmiez ou le changiez.
 
 **Routine de chaque session (va dans le contrat de collaboration) :**
 

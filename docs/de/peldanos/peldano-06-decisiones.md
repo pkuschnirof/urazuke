@@ -3,8 +3,8 @@
 **Abschnitt:** Schleife.
 **Wann:** in jeder Sitzung der Schleife, jedes Mal, wenn der Agent auf eine nicht aufgeschriebene
 Geschäftsregel oder auf eine Verzweigung stößt, die ändert, was der Nutzer sieht. Meist sind es
-zwei oder drei pro Block. Auch im Start (Schritte 0 und 3) und in der Produktionsfreigabe (12 und
-13).
+zwei oder drei pro Block. Auch im Start (Schritte 0 und 3) und in der Produktionsfreigabe (14 und
+15).
 **Form:** kurzes Gespräch: der Agent erkennt, dass eine Entscheidung ansteht, fragt und hält sie
 schriftlich fest.
 **Größe:** verpflichtend in jedem Projekt. In einem kleinen kann das Register eine Tabelle mit zehn

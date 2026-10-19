@@ -1,7 +1,7 @@
 # Schritt 4 — Das Skelett mit seinen Toren (Schrittvertrag)
 
 **Abschnitt:** Start.
-**Wann:** einmal, zum Abschluss der ersten Woche, nach der Dimensionierung und vor jeder
+**Wann:** einmal, zum Abschluss des Starts, nach der Dimensionierung und vor jeder
 Funktionalität. Hier wird die gesamte anfängliche Infrastruktur und die Integrations- und
 Deployment-Kette aufgebaut.
 **Form:** ein einziger langer Durchgang, mit deiner visuellen Freigabe am Ende.
@@ -14,7 +14,7 @@ Schritt das Erste, was bezahlt werden muss.
 Sorg dafür, dass das System LEER startet, getestet und deployt wird, bevor es Funktionalität hat.
 Das Deployment am Ende zu entdecken ist sündhaft teuer: in einem meiner Systeme kam es einen Monat
 nach dem Start und kostete fünf offene Posten in Folge [Ref. 32](../REFERENCIAS.md#ref-32). Wenn
-das Skelett in der ersten Woche deployt wird, treffen diese Schläge, wenn null Funktionalität auf
+das Skelett im Start deployt wird, treffen diese Schläge, wenn null Funktionalität auf
 dem Spiel steht.
 
 Die allgemeine Idee dahinter: **der Weg in die Produktion ist Teil des Produkts**, keine Formalität

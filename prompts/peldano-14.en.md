@@ -1,11 +1,11 @@
 # Urazuke — step 14 prompts (English, single source)
 
-Generated from `docs/peldanos/peldano-14-documentacion-viva.md` by `build/prompts.mjs`. Do not edit by hand.
+Generated from `docs/peldanos/peldano-14-fail-closed.md` by `build/prompts.mjs`. Do not edit by hand.
 
 ## Prompt 1
 
-Every change that modifies what the user sees, what the operator does, or how the system is deployed, updates the corresponding manual in the same commit. At the close of every functional block, add to the user manual the screens and flows of the pending items closed in that block, with real screenshots from the test environment, and add their entries to the changelog. If you do not know which manual, ask.
+We are going to decide which actions of the system need a lock. Read the survey of consequential actions, and go through the code looking for everything that charges, sends, approves, deletes or notifies outwards. Compare the two lists: if the code has actions the survey does not mention, or the other way round, ask me before going on. For every action propose: whether it is reversible, which lock it gets (explicit confirmation, double safety, dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong. General rule: on any doubt or failure along the way, the action is NOT executed and the reason is logged. Present me the table; I confirm lock by lock. Reply in my language.
 
 ## Prompt 2
 
-Generate three manuals from the system as it is today in the test environment: the user manual (screen by screen, with real screenshots, in the user's language, no jargon); the maintenance manual (how it is built, where everything is, how to run the test suite, how to add a module); and the infrastructure and recovery manual (how to deploy, how to roll back, how to restore a backup, what to do if it goes down; written for a person who has to do it by hand, without AI, at three in the morning). If for any section you need something only the business knows (who is responsible for what, which phone number to call), ask me; do not leave a gap and do not invent. Each manual carries a date and the system version. Reply in my language.
+I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves that, under the doubt condition, the action does NOT happen (proved red against the version without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation: dry-run mode first, logging what it would have done, until I enable it.

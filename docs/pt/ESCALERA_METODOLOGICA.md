@@ -34,7 +34,7 @@ afirmação do modelo venha com seu respaldo, e que o respaldo possa ser verific
 código. O nome não se traduz; o subtítulo, "o método da evidência", sim: *the evidence method*,
 *el método de la evidencia*, *la méthode de la preuve*, *die Nachweis-Methode*, *il metodo del
 riscontro*, 裏付けの方法, 验证方法. Neste documento, "a escada" é a estrutura do método — seus
-vinte e dois degraus — e "Urazuke" é o método inteiro.
+vinte e quatro degraus — e "Urazuke" é o método inteiro.
 
 ## Do que se trata
 
@@ -44,7 +44,12 @@ que ele tem que lhe entregar, e como saber — sem ler código — que o que ele
 completo. A aposta é que qualquer pessoa, com qualquer ferramenta de inteligência artificial que
 sirva para programar, possa construir software conversando com um modelo em vez de digitar o
 código à mão, e que o que sair seja robusto, esteja pronto para produção e, isto é o importante,
-**não exija que o dono do projeto revise uma única linha de código**.
+**não exija que o dono do projeto revise uma única linha de código**. E quero ser igualmente
+claro sobre o que ele não é: não é um processo para fazer sistemas mais rápido. É um processo
+para fazer sistemas operáveis e manteníveis sem que ninguém precise compreender um único bit do
+seu código, porque o código quem o compreende e o mantém é o marco agêntico que o escreve. A
+velocidade, quando aparece, é uma consequência, e por isso neste documento não há prazos: o
+tamanho e a complexidade de cada sistema os põem, e o método só põe a ordem.
 
 Soa ambicioso, e é. Mas tenho algo que quase ninguém tem: três sistemas reais que construí
 exatamente assim, que hoje funcionam com clientes de verdade, e dos quais extraí cada regra que
@@ -65,7 +70,7 @@ meu próprio conhecimento da engenharia de sistemas**. Levo muitos anos aplicand
 um que venha de sistemas reconhece na hora: levantamento antes de desenhar, requisitos escritos,
 dimensionamento com números, desenho, construção, testes como evidência, implantação
 reproduzível, operação, auditoria periódica, documentação como parte do produto. A maior parte do
-que exijo nos vinte e dois degraus é o que sempre exigi num projeto bem conduzido. Não o inventei
+que exijo nos vinte e quatro degraus é o que sempre exigi num projeto bem conduzido. Não o inventei
 para os modelos; eu o trouxe de antes.
 
 O segundo fator é o que os incidentes destes cinco meses me mostraram, um após outro: **onde os
@@ -94,11 +99,11 @@ caso mais claro para aprender, e não é o mais frequente. O método tem três c
 saber em qual você está antes de abrir o agente, porque muda por onde se entra:
 
 1. **Projeto novo.** Pasta vazia e um dono com um pedido. Entra-se pelo degrau 0 e sobem-se os
-   vinte e dois em ordem. É o que este documento descreve, com os seus contratos e o manual do
+   vinte e quatro em ordem. É o que este documento descreve, com os seus contratos e o manual do
    curso.
 2. **Evolutivo-corretivo sobre um sistema feito com o método.** O sistema já subiu a escada: tem
    contrato, mapa, pendências fechadas com evidência, bateria, implantação e manuais. Entra-se
-   pelo degrau 5, abrindo um bloco, e segue-se o ciclo; o 11 periódico; o 15 no fechamento de cada
+   pelo degrau 5, abrindo um bloco, e segue-se o ciclo; o 13 periódico; o 23 no fechamento de cada
    etapa. É a fase 4 da linha do tempo (Parte B).
 3. **Evolutivo-corretivo sobre um sistema feito sem o método.** Um sistema que roda, com usuários,
    feito por outra pessoa ou por você mesmo sem evidência, que é preciso corrigir ou fazer
@@ -160,9 +165,9 @@ O que de fato muda, e é onde está a minha contribuição, são três coisas:
    que mentiu duas vezes [Ref. 36](REFERENCIAS.md#ref-36), o erro de autenticação relatado como
    "sucesso" [Ref. 43](REFERENCIAS.md#ref-43), as três de quatro afirmações que estavam erradas.
    Então "revisar evidência em vez de código" segue sendo o princípio correto, mas **a evidência
-   tem que provar a si mesma**: o teste visto em vermelho (degrau 7), o instrumento com sua
-   guarda (degrau 9), o relatório que separa o verificado do acreditado (degrau 10), o auditor
-   diferente do construtor (degrau 11). Não é uma inquietação nova: é a mesma disciplina de
+   tem que provar a si mesma**: o teste visto em vermelho (degrau 8), o instrumento com sua
+   guarda (degrau 7), o relatório que separa o verificado do acreditado (degrau 12), o auditor
+   diferente do construtor (degrau 13). Não é uma inquietação nova: é a mesma disciplina de
    independência do controle de qualidade, levada um passo mais para dentro.
 
 3. **O custo dos artefatos.** No método clássico a documentação era cara, então se fazia uma vez
@@ -198,14 +203,14 @@ Cada degrau tem oito partes, sempre as mesmas, para que se possam comparar:
 Dois esclarecimentos importantes. Primeiro: **a escada é neutra em relação à ferramenta**. Cada
 artefato é um arquivo, um teste ou um script; nenhum exige a minha ferramenta nem nenhuma outra.
 O Forge os automatiza (as comportas, os comandos, o registro de pendências), mas o degrau existe
-sem o Forge. Segundo: **os degraus não são estritamente sequenciais**. Há quatro fases: os de 0 a
-4 são de arranque e se sobem uma vez por projeto; os de 5 a 10 são o ciclo que se repete com cada
-mudança; os de 11 a 15 são de operação, quando o sistema já está vivo; e os de 16 a 21 são de
-qualidade operacional: quatro que se sobem antes da primeira implantação em produção
-(observabilidade, persistência, vulnerabilidades, desempenho) e dois que vigiam o sistema uma vez
-implantado (monitoramento de recursos e de erros). O 15 fecha o ciclo e volta ao 0 para o
-próximo projeto. Mas "não estritamente sequenciais" não quer dizer "em qualquer ordem": a Parte B
-diz exatamente quando se sobe cada um e o que acontece no meio.
+sem o Forge. Segundo: **os degraus estão numerados na ordem em que se sobem**, e se agrupam em
+quatro fases: os de 0 a 4 são de arranque e se sobem uma vez por projeto; os de 5 a 12 são o
+ciclo que se repete com cada mudança; os de 13 a 20 são de saída para produção, e se sobem uma
+vez, antes da primeira implantação; e os de 21 a 23 são de operação, quando o sistema já está
+vivo. O 23 fecha o ciclo e volta ao 0 para o próximo projeto. Dentro de uma fase, o número diz a
+ordem; entre fases, o ciclo se repete enquanto as outras três se sobem uma vez. Mas "não
+estritamente sequenciais" não quer dizer "em qualquer ordem": a Parte B diz exatamente quando se
+sobe cada um e o que acontece no meio.
 
 ---
 
@@ -213,36 +218,94 @@ diz exatamente quando se sobe cada um e o que acontece no meio.
 
 Esta parte não existia nas versões anteriores, e sua ausência era um defeito sério: o método
 dizia o que fazer e como verificá-lo, mas não dizia **quando**. E "quando" é a metade de um
-método. Um leitor que o tomasse ao pé da letra podia subir os vinte e dois degraus um após outro
+método. Um leitor que o tomasse ao pé da letra podia subir os vinte e quatro degraus um após outro
 e se perguntar em que momento se faz, então, a infraestrutura, a cadeia de integração e
 implantação
 contínuas, a ingestão dos requisitos, o desenvolvimento da funcionalidade, os testes de ponta a
 ponta de todos os fluxos, o olhar humano sobre as telas, e os testes humanos de aceitação. Tudo
 isso acontece, e acontece em momentos precisos, entre os degraus e dentro deles. Aqui o escrevo.
 
+### B.0 O processo inteiro, num gráfico
+
+Antes das tabelas, o desenho. Está em notação de processo (ao estilo BPMN: eventos redondos,
+tarefas retangulares, comportas em losango, setas de volta pontilhadas), e diz três coisas que as
+tabelas dizem pior. Primeira: o processo **começa fora do método**, na engenharia de requisitos,
+que é um pré-requisito e além disso é permanente: não termina nunca, e cada requisito novo volta
+a entrar. Segunda: um requisito novo não entra sozinho no ciclo; **reinjeta nos degraus de
+avaliação**, porque pode mudar os números com os quais se decidiu a arquitetura (continua
+aguentando o "vezes dez"?), e daí para a frente. Terceira: o processo **termina na execução
+manual dos casos de teste** por pessoas (degrau 10), e o que essa execução encontra volta ao ciclo
+como requisito. O circuito se fecha com gente, não com máquinas.
+
+```mermaid
+flowchart TB
+  subgraph RE["Engenharia de requisitos · pré-requisito externo e permanente"]
+    direction TB
+    E0((Pedido do negócio)) --> RE1["Levantamento: entrevistas, casos de uso, modelo de domínio, protótipos"]
+    RE1 --> RE2["Requisito novo ou alterado"]
+  end
+  subgraph ARR["Arranque · degraus 0 a 4, uma vez"]
+    direction TB
+    P0["0 Elegibilidade"] --> P1["1 Contrato de convivência"] --> P2["2 Definição e árvore semântica"] --> P3["3 Dimensionar"]
+    P3 --> G1{"A arquitetura aguenta os números?"}
+    G1 -- sim --> P4["4 Esqueleto com comportas"]
+    G1 -- não --> P3
+  end
+  subgraph LOOP["Ciclo · degraus 5 a 12, com cada mudança"]
+    direction TB
+    P5["5 Pendências especificadas"] --> P6["6 Decisões escritas"] --> P7["7 Medir"] --> P8["8 Teste em vermelho e ponta a ponta"] --> P9["9 Qualidade do código"] --> P10["10 Casos de teste manual"] --> P11["11 Simetria"] --> P12["12 Relatório honesto"]
+    P12 --> G2{"Fechamento de bloco?"}
+    G2 -- não --> P5
+  end
+  H1["Execução manual dos casos de teste, por pessoas"]
+  subgraph OUT["Saída para produção · degraus 13 a 20, uma vez"]
+    direction TB
+    P13["13 Auditoria"] --> P14["14 Cadeados"] --> P15["15 Cadeia para produção"] --> P16["16 Observabilidade"] --> P17["17 Persistência"] --> P18["18 Vulnerabilidades"] --> P19["19 Desempenho"] --> P20["20 Documentação viva"]
+  end
+  D((Primeira implantação))
+  subgraph OPS["Operação · degraus 21 a 23"]
+    direction TB
+    P21["21 Monitoramento de recursos"] --> P22["22 Monitoramento de erros"] --> P23["23 Residente e retrospectiva"]
+  end
+  RE1 --> P0
+  P4 --> P5
+  RE2 -. "reinjeta: mudam os números?" .-> P3
+  RE2 --> P5
+  G2 -- sim --> H1
+  H1 -- "achados = requisitos" --> RE2
+  H1 --> P13
+  P20 --> D --> P21
+  P21 -. "desvios = pendências" .-> P5
+  P22 -. "erros = pendências" .-> P5
+  P23 -. "volta ao 0 para a etapa seguinte" .-> P0
+```
+
+Se o desenho não aparecer (o visualizador de markdown não desenha mermaid), o texto acima o
+descreve inteiro; na versão HTML ele se desenha sozinho.
+
 ### B.1 As cinco fases de um projeto
 
 Um projeto conduzido com este método passa por cinco fases. As três do meio são as que
-correspondem às fases da escada (a quarta fase, qualidade operacional, se reparte entre a fase 3
-e a 4); as duas dos extremos são a ingestão inicial e a vida em produção, que o método também
-cobre embora não sejam "degraus" em si.
+correspondem às fases do ciclo, da saída para produção e da operação; a fase 1 é a fase de
+arranque; e a fase 0 é a ingestão inicial, que o método também cobre embora não seja um "degrau"
+em si. Não ponho durações: dependem do tamanho e da complexidade do que se pede, e uma duração
+escrita se converte numa expectativa falsa. O que não depende do tamanho é a ordem.
 
-| Fase | Duração típica num projeto pequeno | Degraus que se sobem | O que mais acontece nessa fase |
-|---|---|---|---|
-| 0. Ingestão | de dois dias a uma semana, em paralelo com a fase 1 | nenhum ainda; é a matéria-prima do 0, do 2, do 3 e do 5 | Levantamento do negócio com o dono, com os métodos clássicos da engenharia de requisitos (ver B.5): entrevistas, casos de uso ou histórias de usuário, modelo de domínio, protótipos de tela. Escreve-se em prosa, incompleto de propósito; o agente o completa perguntando. |
-| 1. Arranque | uma semana, de uma vez | 0, 1, 2, 3, 4 | Elegibilidade, contrato, definição, dimensionamento. E **toda a infraestrutura inicial**: o repositório, o ambiente de teste, a integração contínua, a primeira implantação com o sistema vazio. |
-| 2. Ciclo | de três a seis semanas, em blocos funcionais de uma a duas semanas | 5, 6, 7, 8, 9, 10 com cada mudança | Desenvolvimento funcional bloco por bloco; testes em vermelho; testes de ponta a ponta do fluxo recém-construído; olhar humano sobre cada tela nova; no fechamento de cada bloco, testes humanos no ambiente de teste. |
-| 3. Saída para produção | de uma a duas semanas | 11, 12, 13, 14, e os quatro de qualidade operacional prévios à implantação: 16, 17, 18, 19 | Auditoria por outra sessão; cadeados sobre tudo o que age sobre o mundo; fechamento da cadeia de implantação em produção com caminho de volta provado; os três manuais; testes de aceitação com o dono sobre todos os fluxos. |
-| 4. Operação | enquanto o sistema viver | 15; 20 e 21 montados na semana da primeira implantação; o ciclo (5 a 10) para cada evolução; 11 e 18 periódicos | Agente residente; auditoria a cada um ou dois meses; cada mudança nova entra pelo ciclo completo e sai pela cadeia de implantação; retrospectiva no fechamento de cada etapa. |
+| Fase | Degraus que se sobem | O que mais acontece nessa fase |
+|---|---|---|
+| 0. Ingestão | nenhum ainda; é a matéria-prima do 0, do 2, do 3 e do 5 | Levantamento do negócio com o dono, com os métodos clássicos da engenharia de requisitos (ver B.5): entrevistas, casos de uso ou histórias de usuário, modelo de domínio, protótipos de tela. Escreve-se em prosa, incompleto de propósito; o agente o completa perguntando. |
+| 1. Arranque | 0, 1, 2, 3, 4 | Elegibilidade, contrato, definição, dimensionamento. E **toda a infraestrutura inicial**: o repositório, o ambiente de teste, a integração contínua, a primeira implantação com o sistema vazio. |
+| 2. Ciclo | 5 a 12 com cada mudança: pendências, decisões, medir, teste em vermelho, qualidade, casos de teste manual, simetria, relatório | Desenvolvimento funcional bloco por bloco; testes em vermelho; testes de ponta a ponta do fluxo recém-construído; olhar humano sobre cada tela nova; no fechamento de cada bloco, testes humanos no ambiente de teste. |
+| 3. Saída para produção | 13 a 20, em ordem: auditoria, cadeados, cadeia para produção, observabilidade, persistência, vulnerabilidades, desempenho, documentação | Auditoria por outra sessão; cadeados sobre tudo o que age sobre o mundo; fechamento da cadeia de implantação em produção com caminho de volta provado; os três manuais; testes de aceitação com o dono sobre todos os fluxos. |
+| 4. Operação | 21 e 22 montados com a primeira implantação; 23 no fechamento de cada etapa; o ciclo (5 a 12) para cada evolução; 13 e 18 periódicos | Agente residente; auditoria a cada um ou dois meses; cada mudança nova entra pelo ciclo completo e sai pela cadeia de implantação; retrospectiva no fechamento de cada etapa. |
 
 Esta tabela é a do projeto novo. Quando o sistema já existe e não nasceu com o método, as fases 0
-e 1 se substituem pelo trecho de normalização (três semanas para um sistema pequeno: leitura,
-cinto, medir e ordenar) que está no [caminho evolutivo-corretivo](EVOLUTIVO_CORRECTIVO.md); as
-fases 2, 3 e 4 são as mesmas.
+e 1 se substituem pelo trecho de normalização (leitura, cinto, medir e ordenar) que está no
+[caminho evolutivo-corretivo](EVOLUTIVO_CORRECTIVO.md); as fases 2, 3 e 4 são as mesmas.
 
-Os tempos são para um projeto pequeno, do tamanho do projeto-guia do curso. Num projeto com
-usuários e consequências, o ciclo se alonga e as fases 1 e 3 se mantêm quase iguais, porque o que
-cresce é a funcionalidade, não a infraestrutura nem o fechamento.
+Num projeto com usuários e consequências, o que cresce é o ciclo: a funcionalidade. O arranque, a
+saída para produção e a operação têm a mesma forma num sistema pequeno e num grande; muda quanto
+há que medir, não o quê.
 
 ### B.2 O que acontece entre degrau e degrau
 
@@ -250,16 +313,16 @@ Aqui está o que faltava. Para cada fase, que tarefas de cada tipo se fazem e em
 em relação aos degraus. Leia a tabela por linhas: cada linha é um tipo de trabalho, e cada célula
 diz quando se faz dentro dessa fase.
 
-| Tipo de trabalho | Arranque (degraus 0 a 4) | Ciclo (degraus 5 a 10, por bloco) | Saída para produção (11 a 14 e 16 a 19) | Operação (15, 20, 21 e ciclo) |
+| Tipo de trabalho | Arranque (degraus 0 a 4) | Ciclo (degraus 5 a 12, por bloco) | Saída para produção (13 a 20) | Operação (21 a 23 e ciclo) |
 |---|---|---|---|---|
-| **Ingestão de requisitos** | Antes do degrau 0: levantamento em prosa com o dono, com entrevistas, casos de uso e modelo de domínio. Completa-se no 2 (definição e árvore semântica) e no 3 (volumetria). | Ao abrir cada bloco: o pedido do cliente para esse bloco, tal como ele o diria, se converte em pendências com **especificação detalhada** (degrau 5): descrição, critérios de aceitação, regras aplicáveis, dados, telas, casos de borda. As perguntas que o agente faz são a ingestão fina. | Antes do 12: levantamento das ações com consequência. Antes do 13: levantamento de ambientes e acessos. | Cada pedido novo entra como pendência especificada, pendurada em seu nó da árvore semântica; o agente residente recolhe o que os usuários pedem. |
-| **Infraestrutura** | Toda a inicial, no degrau 4: repositório, estrutura, ambiente de teste, credenciais, domínio de teste. Não se constrói funcionalidade até que o esqueleto vazio esteja implantado. | Nenhuma, salvo que um bloco a exija (uma fila, um serviço externo). Se exige, é uma pendência com seu teste. | No 13: ambiente de produção, segredos no servidor, domínio real, backups, monitoramento mínimo. | Mudanças de infraestrutura entram pelo ciclo e pelo 13; nunca "à mão, rápido". |
-| **Cadeia CI/CD** | No degrau 4: a integração contínua roda a bateria em cada push desde a primeira semana, e a implantação no ambiente de teste é automática ao fazer merge. | Funciona sozinha. Cada commit a atravessa; se não está em verde, o bloco não fecha. | No 13 se completa: a implantação em produção espera o resultado da integração e só empacota; a promoção é um procedimento escrito; o caminho de volta se prova. | Cada implantação segue a rotina do 13: teste em verde com a mesma versão, caminho de volta pronto, verificação de ponta a ponta em produção depois. |
-| **Desenvolvimento funcional** | Nenhum. O esqueleto se implanta vazio de propósito. | É o centro do ciclo: o agente pega uma pendência (5), pergunta as regras de negócio que faltam (6), constrói, e fecha com evidência (7, 8, 9, 10). Bloco por bloco, do básico ao que tem consequências. | O que age sobre o mundo (cobrar, enviar) se constrói no ciclo **depois** do degrau 12, com seus cadeados, e começa em modo de ensaio. | As evoluções entram pelo ciclo. |
-| **Testes automáticos** | Um teste de fumaça que passa, no 4. É a semente da bateria. | Com cada pendência: o teste provado em vermelho (7), a regressão das vizinhas na mesma sessão, e **um teste de ponta a ponta do fluxo recém-construído**, desde a tela até o backend. Ao fechar um bloco: a bateria completa de ponta a ponta de **todos** os fluxos existentes, no ambiente de teste. | Antes da primeira implantação em produção: a bateria completa de ponta a ponta de todos os fluxos, em verde, com a mesma versão que vai ser promovida. Depois da implantação: uma verificação de ponta a ponta sobre a produção, em somente leitura. | Com cada mudança, o mesmo que no ciclo. |
-| **Vista humana das telas** | No fechamento do 4: o dono abre a URL do ambiente de teste e vê a tela vazia. Parece trivial e é a primeira vez que alguém que não é o agente olha o sistema. | **Com cada pendência que toca uma tela**: o agente entrega uma captura real do ambiente de teste e o dono a olha. Dez segundos. É a forma mais barata de encontrar o que nenhum teste encontra: que o botão está onde não deve, que o texto diz outra coisa, que o fluxo não é o que o negócio imaginava. | No 14: as capturas do manual de usuário são o último olhar humano sistemático antes da produção. | Cada tela nova ou mudada, igual que no ciclo. |
-| **Testes humanos** | Nenhum ainda, salvo abrir a tela vazia. | **No fechamento de cada bloco funcional**: o dono, ou um usuário de confiança, usa o sistema no ambiente de teste como o usaria de verdade, seguindo os fluxos do bloco. O que encontra se anota como pendências. Não se abre o bloco seguinte com achados humanos sem pendência. | Antes da primeira implantação em produção: **testes de aceitação** do dono sobre todos os fluxos, com dados de teste realistas, no ambiente de teste. E no 14, uma pessoa que não programa segue o manual de recuperação. | Com cada evolução, no fechamento de seu bloco. |
-| **Decisões do dono** | No 0 (vai ou não vai), no 1 (o contrato), no 2 (o que NÃO é), no 3 (a opção de arquitetura). | Cada vez que o agente para por uma regra de negócio não escrita (6). Costumam ser duas ou três por bloco. | No 12 (cadeado por cadeado), no 13 (promover para produção), no 15 (o nível do agente residente). | As que surgirem; sempre escritas. |
+| **Ingestão de requisitos** | Antes do degrau 0: levantamento em prosa com o dono, com entrevistas, casos de uso e modelo de domínio. Completa-se no 2 (definição e árvore semântica) e no 3 (volumetria). | Ao abrir cada bloco: o pedido do cliente para esse bloco, tal como ele o diria, se converte em pendências com **especificação detalhada** (degrau 5): descrição, critérios de aceitação, regras aplicáveis, dados, telas, casos de borda. As perguntas que o agente faz são a ingestão fina. | Antes do 14: levantamento das ações com consequência. Antes do 15: levantamento de ambientes e acessos. | Cada pedido novo entra como pendência especificada, pendurada em seu nó da árvore semântica; o agente residente recolhe o que os usuários pedem. |
+| **Infraestrutura** | Toda a inicial, no degrau 4: repositório, estrutura, ambiente de teste, credenciais, domínio de teste. Não se constrói funcionalidade até que o esqueleto vazio esteja implantado. | Nenhuma, salvo que um bloco a exija (uma fila, um serviço externo). Se exige, é uma pendência com seu teste. | No 15: ambiente de produção, segredos no servidor, domínio real, backups, monitoramento mínimo. | Mudanças de infraestrutura entram pelo ciclo e pelo 15; nunca "à mão, rápido". |
+| **Cadeia CI/CD** | No degrau 4: a integração contínua roda a bateria em cada push desde o arranque, e a implantação no ambiente de teste é automática ao fazer merge. | Funciona sozinha. Cada commit a atravessa; se não está em verde, o bloco não fecha. | No 15 se completa: a implantação em produção espera o resultado da integração e só empacota; a promoção é um procedimento escrito; o caminho de volta se prova. | Cada implantação segue a rotina do 15: teste em verde com a mesma versão, caminho de volta pronto, verificação de ponta a ponta em produção depois. |
+| **Desenvolvimento funcional** | Nenhum. O esqueleto se implanta vazio de propósito. | É o centro do ciclo: o agente pega uma pendência (5), pergunta as regras de negócio que faltam (6), constrói, e fecha com evidência (7, 8, 9, 10, 11, 12). Bloco por bloco, do básico ao que tem consequências. | O que age sobre o mundo (cobrar, enviar) se constrói no ciclo **depois** do degrau 14, com seus cadeados, e começa em modo de ensaio. | As evoluções entram pelo ciclo. |
+| **Testes automáticos** | Um teste de fumaça que passa, no 4. É a semente da bateria. | Com cada pendência: o teste provado em vermelho (8), a regressão das vizinhas na mesma sessão, e **um teste de ponta a ponta do fluxo recém-construído**, desde a tela até o backend. Ao fechar um bloco: a bateria completa de ponta a ponta de **todos** os fluxos existentes, no ambiente de teste. | Antes da primeira implantação em produção: a bateria completa de ponta a ponta de todos os fluxos, em verde, com a mesma versão que vai ser promovida. Depois da implantação: uma verificação de ponta a ponta sobre a produção, em somente leitura. | Com cada mudança, o mesmo que no ciclo. |
+| **Vista humana das telas** | No fechamento do 4: o dono abre a URL do ambiente de teste e vê a tela vazia. Parece trivial e é a primeira vez que alguém que não é o agente olha o sistema. | **Com cada pendência que toca uma tela**: o agente entrega uma captura real do ambiente de teste e o dono a olha. Dez segundos. É a forma mais barata de encontrar o que nenhum teste encontra: que o botão está onde não deve, que o texto diz outra coisa, que o fluxo não é o que o negócio imaginava. | No 20: as capturas do manual de usuário são o último olhar humano sistemático antes da produção. | Cada tela nova ou mudada, igual que no ciclo. |
+| **Testes humanos** | Nenhum ainda, salvo abrir a tela vazia. | **No fechamento de cada bloco funcional**: o dono, ou um usuário de confiança, usa o sistema no ambiente de teste como o usaria de verdade, seguindo os fluxos do bloco. O que encontra se anota como pendências. Não se abre o bloco seguinte com achados humanos sem pendência. | Antes da primeira implantação em produção: **testes de aceitação** do dono sobre todos os fluxos, com dados de teste realistas, no ambiente de teste. E no 20, uma pessoa que não programa segue o manual de recuperação. | Com cada evolução, no fechamento de seu bloco. |
+| **Decisões do dono** | No 0 (vai ou não vai), no 1 (o contrato), no 2 (o que NÃO é), no 3 (a opção de arquitetura). | Cada vez que o agente para por uma regra de negócio não escrita (6). Costumam ser duas ou três por bloco. | No 14 (cadeado por cadeado), no 15 (promover para produção), no 23 (o nível do agente residente). | As que surgirem; sempre escritas. |
 
 Um detalhe que quero sublinhar porque é onde mais erra a gente que vem do vibecoding: **os testes
 de ponta a ponta de todos os fluxos não são uma única vez no final**. São três vezes, em três
@@ -271,29 +334,31 @@ ponta durante semanas e a saída para produção se converte numa semana de cons
 ### B.3 O ritmo do ciclo: um bloco funcional típico
 
 Um bloco funcional é um conjunto de entre quatro e oito pendências relacionadas, que juntas fazem
-algo que o negócio pode usar: "a agenda básica", "os lembretes", "o relatório mensal". Um bloco
-dura entre uma e duas semanas num projeto pequeno. Assim se vê por dentro:
+algo que o negócio pode usar: "a agenda básica", "os lembretes", "o relatório mensal". Assim se
+vê por dentro:
 
-1. **Abertura do bloco (meio dia).** O dono conta, em prosa, o que quer para este bloco. O agente
-   o converte em pendências numeradas, com seu "como se verifica", e pergunta o que não dá para
-   escrever uma pendência verificável (degrau 5). O dono prioriza.
-2. **Cada pendência (de duas horas a um dia).** O agente anuncia que pendência pega e por quê.
-   Constrói. Se no caminho aparece uma regra de negócio que não está escrita, para e pergunta
-   (6). Quando termina, fecha com a rotina do 7: teste provado em vermelho, verde, regressão das
-   vizinhas; um teste de ponta a ponta do fluxo tocado; e, se a mudança tocou um contrato entre
-   duas partes do sistema, o outro lado atualizado no mesmo commit (8). Se a pendência dependia de
-   um número — quantas consultas, quanto demora —, primeiro se mediu com um instrumento com teste
-   (9). E o relatório separa o verificado do acreditado e declara os pontos cegos (10). O dono lê
+1. **Abertura do bloco.** O dono conta, em prosa, o que quer para este bloco. O agente o converte
+   em pendências numeradas, com seu "como se verifica", e pergunta o que não dá para escrever uma
+   pendência verificável (degrau 5). O dono prioriza.
+2. **Cada pendência.** O agente anuncia que pendência pega e por quê. Se no caminho aparece uma
+   regra de negócio que não está escrita, para e pergunta (6). Se a pendência depende de um
+   número — quantas consultas, quanto demora —, primeiro o mede com um instrumento com teste (7).
+   Constrói. Quando termina, fecha nesta ordem: o teste provado em vermelho, verde, a regressão
+   das vizinhas e um teste de ponta a ponta do fluxo tocado (8); a comporta de qualidade do
+   código em verde (9); os casos de teste manual do fluxo, escritos para uma pessoa (10); e, se a
+   mudança tocou um contrato entre duas partes do sistema, o outro lado atualizado no mesmo commit
+   (11). O relatório separa o verificado do acreditado e declara os pontos cegos (12). O dono lê
    o relatório e olha a captura da tela. Não lê código.
-3. **Fechamento do bloco (meio dia a um dia).** A bateria completa de ponta a ponta em verde no
-   ambiente de teste. O dono ou um usuário de confiança usa o sistema seguindo os fluxos do bloco.
-   O que encontra se anota como pendências. Atualiza-se o manual de usuário com as telas novas
-   (14, no mesmo commit). Só então se abre o bloco seguinte.
+3. **Fechamento do bloco.** A bateria completa de ponta a ponta em verde no ambiente de teste. O
+   dono ou um usuário de confiança executa os casos de teste manual do bloco (10) e anota o que
+   aconteceu e o que falhou; cada falha volta ao ciclo como pendência corretiva. Lê-se o
+   relatório de qualidade do bloco (9). Atualiza-se o manual de usuário com as telas novas (20, no
+   mesmo commit). Só então se abre o bloco seguinte.
 
 Num dia típico do ciclo, o dono investe entre quinze e trinta minutos: responder duas ou três
 perguntas de regras de negócio, ler dois ou três relatórios, olhar duas ou três capturas. Isso é
 tudo o que o método lhe pede. Se está investindo mais, ou o agente está perguntando o que poderia
-resolver sozinho (degrau 1), ou o dono está lendo código (e então algo do degrau 7 ou do 10 não
+resolver sozinho (degrau 1), ou o dono está lendo código (e então algo do degrau 8 ou do 12 não
 está funcionando).
 
 ### B.4 Os marcos humanos
@@ -303,17 +368,18 @@ ou usar o sistema. São poucos, estão em momentos precisos, e nenhum pode ser d
 
 - **Fim do arranque**: abrir a URL do ambiente de teste e ver o sistema vazio.
 - **Com cada pendência que toca uma tela**: olhar a captura real do ambiente de teste.
-- **No fechamento de cada bloco**: usar o sistema no ambiente de teste seguindo os fluxos do
-  bloco.
-- **Antes da primeira implantação em produção**: testes de aceitação sobre todos os fluxos.
-- **No degrau 14**: uma pessoa que não programa segue o manual de recuperação no ambiente de
+- **No fechamento de cada bloco**: executar os casos de teste manual do bloco (10) no ambiente de
+  teste e anotar o resultado; o que falha volta ao ciclo como requisito.
+- **Antes da primeira implantação em produção**: testes de aceitação sobre todos os fluxos,
+  seguindo todos os casos de teste manual.
+- **No degrau 20**: uma pessoa que não programa segue o manual de recuperação no ambiente de
   teste.
 - **Depois de cada implantação em produção**: verificar que a versão que roda é a que se queria,
   e fazer uma passada de somente leitura pelos fluxos críticos.
 - **Antes da primeira implantação, no 19**: ler os números do teste de carga com a tolerância do
   negócio ao lado, e o ponto de ruptura.
-- **Em cada ciclo do monitoramento (20 e 21)**: ler o relatório cíclico com o agente e decidir que
-  desvio e que erro viram pendências. Meia hora por ciclo.
+- **Em cada ciclo do monitoramento (21 e 22)**: ler o relatório cíclico com o agente e decidir que
+  desvio e que erro viram pendências.
 
 Todo o resto — os testes, as medições, as auditorias, a documentação — o modelo faz e o humano
 verifica pelo artefato, não pelo código.
@@ -377,7 +443,17 @@ fechamento de cada pendência, na mesma sessão, como parte da rotina do degrau 
 
 ---
 
-## Parte C — Os vinte e dois degraus
+## Parte C — Os vinte e quatro degraus
+
+
+Vão na ordem em que se sobem. Os seis degraus de qualidade operacional (16 a 19 antes da primeira
+implantação; 21 e 22 depois) são os que eu fazia sem nomear: que o sistema se possa **ver**
+enquanto roda, que aguente o volume para o qual foi dimensionado, que não tenha buracos
+conhecidos, e que, uma vez em produção, ninguém fique sabendo de um problema por um usuário
+irritado. Os dois monitoramentos terminam no mesmo lugar que todo o resto: o ciclo, como
+pendências corretivas. Se você está começando, cada contrato desses seis, e os dos degraus 9 e
+10, começam com um parágrafo que explica as suas palavras na linguagem de todos os dias, e o
+glossário as tem todas.
 
 ### Passo 0 — Este projeto pode ser encarado assim? (a elegibilidade)
 
@@ -391,8 +467,8 @@ calibrando, e assim os marco.
 - **Intenção**: decidir se um projeto se encara com este método, e com um agente à frente, ou
   não, ANTES de abrir o repositório. Porque se você entra num projeto que não dá, o método se
   degrada em "programar com IA" e aí sim o dono acaba lendo código.
-- **Quando**: uma única vez, na primeira semana, antes de qualquer outra coisa. Uma hora de
-  trabalho; economiza meses. Se o sistema já existe, este degrau se sobe na sua versão para
+- **Quando**: uma única vez, antes de qualquer outra coisa. Se o sistema já existe, este degrau
+  se sobe na sua versão para
   legados (a estação N0 do [caminho evolutivo-corretivo](EVOLUTIVO_CORRECTIVO.md)), com quatro
   critérios a mais e X2 medido tela por tela.
 - **Entradas**: o pedido do cliente, o domínio do negócio, os dados, a tecnologia, os ambientes
@@ -411,8 +487,8 @@ calibrando, e assim os marco.
 
 | # | Critério excludente | Por que mata o método |
 |---|---|---|
-| X1 | Tecnologia legada sem repositório acessível, ou com repositórios que não seguem um padrão | Sem um repositório padrão não há onde deixar a evidência: não há pendências citadas nos commits (degrau 5), nem testes que viajem com o código (7), nem integração e implantação como pacote (13), nem documentação no mesmo commit (14). O agente trabalha às cegas e não deixa rastro verificável. |
-| X2 | Tecnologia que não pode ser testada de ponta a ponta: não se podem executar as telas e acessar cada elemento da interface com seus diferentes métodos, validando que a mudança chegou ao backend | Sem essa verificação de tela a backend o agente não pode se testar sozinho (degraus 7, 9 e 10), e então o dono teria que ler código, que é justamente o que o método promete evitar. |
+| X1 | Tecnologia legada sem repositório acessível, ou com repositórios que não seguem um padrão | Sem um repositório padrão não há onde deixar a evidência: não há pendências citadas nos commits (degrau 5), nem testes que viajem com o código (8), nem integração e implantação como pacote (15), nem documentação no mesmo commit (20). O agente trabalha às cegas e não deixa rastro verificável. |
+| X2 | Tecnologia que não pode ser testada de ponta a ponta: não se podem executar as telas e acessar cada elemento da interface com seus diferentes métodos, validando que a mudança chegou ao backend | Sem essa verificação de tela a backend o agente não pode se testar sozinho (degraus 8, 7 e 12), e então o dono teria que ler código, que é justamente o que o método promete evitar. |
 
 Uma precisão que vale ouro para a neutralidade de ferramenta: **NAC3 (o protocolo que a minha
 ferramenta usa para que as telas possam ser operadas por programa) NÃO é condição; é o meio com
@@ -452,8 +528,8 @@ um. Pense que o agente chega cada manhã sem memória de ontem; o que não estiv
 ter que repetir a cada vez, e a cada vez um pouco diferente.
 
 - **Intenção**: fixar como trabalham o humano e o agente antes da primeira linha de código.
-- **Quando**: uma única vez, na primeira semana, imediatamente depois da elegibilidade. Meia
-  hora. Revisa-se quando um tropeço o exige.
+- **Quando**: uma única vez, imediatamente depois da elegibilidade. Revisa-se quando um tropeço
+  o exige.
 - **Entradas**: nada do projeto; é o primeiro arquivo. De você: suas preferências de trabalho.
 - **Artefato**: um documento de padrões de qualidade que diga, no mínimo: o tempo do humano é
   sagrado (não se gasta em coisas que o agente pode resolver sozinho); zero dívida técnica, isto
@@ -478,7 +554,7 @@ longo ninguém lê.
 
 - **Intenção**: que cada sessão comece sabendo o que é o projeto, em que estado está e que
   decisões já foram tomadas.
-- **Quando**: escreve-se uma vez, na primeira semana, depois do contrato; mantém-se em dia
+- **Quando**: escreve-se uma vez, depois do contrato; mantém-se em dia
   durante todo o projeto, com cada decisão nova.
 - **Entradas**: o contrato (degrau 1) e o levantamento do negócio.
 - **Artefato**: um arquivo de projeto operacional, e aqui vai uma ênfase: CURTO. É o programa,
@@ -501,7 +577,7 @@ se tomam com números, e os números primários o negócio tem, não o modelo.
 
 - **Intenção**: que as decisões estruturais (que motor de banco de dados, se a interface é
   síncrona ou assíncrona, quanta concorrência) se tomem com números e não com gosto.
-- **Quando**: uma vez, na primeira semana, antes de montar o esqueleto; refaz-se se o negócio
+- **Quando**: uma vez, antes de montar o esqueleto; refaz-se se o negócio
   muda de escala. Meia página e uma decisão num projeto pequeno.
 - **Entradas**: um levantamento de dados de volumetria feito com o negócio, por natureza
   incompleto; e acesso de leitura ao sistema anterior se existir. Há dados que **só o negócio
@@ -523,12 +599,12 @@ se tomam com números, e os números primários o negócio tem, não o modelo.
 Antes de o sistema fazer algo útil, tem que arrancar, ser testado e ser implantado VAZIO. Sim,
 vazio. Porque o caminho para a produção é parte do produto, e a única forma de saber que funciona
 é percorrê-lo quando ainda não há nada a perder. Este é o degrau onde se faz **toda a
-infraestrutura inicial e a cadeia de integração e implantação**, e por isso ocupa a maior parte
-da primeira semana.
+infraestrutura inicial e a cadeia de integração e implantação**, e por isso é o mais longo do
+arranque.
 
 - **Intenção**: ter um sistema que arranca, se testa e se implanta sem nenhuma funcionalidade
   ainda.
-- **Quando**: uma vez, no final da primeira semana, depois do dimensionamento e antes de qualquer
+- **Quando**: uma vez, no final do arranque, depois do dimensionamento e antes de qualquer
   funcionalidade. É o fechamento da fase de arranque.
 - **Entradas**: o dimensionamento (degrau 3), o levantamento de ambientes, e as credenciais do
   lugar onde vai ser implantado.
@@ -578,7 +654,7 @@ uma", e quando você decide, a decisão fica com as suas palavras, o seu nome e 
 - **Intenção**: que cada regra de domínio ou decisão estrutural tenha dono, data e lugar.
 - **Quando**: em cada sessão do ciclo, cada vez que o agente topa com uma regra não escrita.
   Costumam ser duas ou três por bloco funcional. Também no arranque (degraus 0 e 3) e na saída
-  para produção (12 e 13).
+  para produção (14 e 15).
 - **Entradas**: a conversa com o dono. É o único insumo.
 - **Artefato**: a decisão escrita no commit e num registro de decisões, com as palavras textuais.
   Se o dono não respondeu e o agente teve que escolher, fica marcada como "decisão por omissão"
@@ -591,51 +667,7 @@ uma", e quando você decide, a decisão fica com as suas palavras, o seu nome e 
   decisões antes de construir, da minha ferramenta [Ref. 5](REFERENCIAS.md#ref-5).
 - **Contrato**: `peldanos/peldano-06-decisiones.md`.
 
-### Passo 7 — Testes como cadeados, provados em vermelho
-
-Um teste que você nunca viu falhar, você não sabe se prova algo. Por isso aqui a regra não é
-"escreva testes"; é "demonstre que o teste fica em vermelho contra o código antigo, depois em
-verde, e depois que a regressão continua em verde". E os testes de ponta a ponta, desde a tela
-até o backend, são os que substituem a sua leitura do código.
-
-- **Intenção**: que cada comportamento que importa tenha um teste que FALHA se quebra, e que se
-  saiba com certeza que falha.
-- **Quando**: com cada pendência do ciclo, ao fechá-la. O teste de ponta a ponta do fluxo tocado,
-  no mesmo fechamento. A bateria completa de ponta a ponta, no fechamento de cada bloco e antes
-  de cada implantação em produção.
-- **Entradas**: a mudança já implementada e a pendência com seu "como se verifica".
-- **Artefato**: o teste novo, a saída em vermelho e em verde com números, a regressão das vizinhas
-  na mesma sessão, e o commit que diz contra o que se provou em vermelho.
-- **Comporta**: vermelho demonstrado, verde, regressão em verde. E o agente não simula justamente
-  a parte que quer provar.
-- **Quem decide**: o agente executa e relata; o dono lê o relatório, não o teste.
-- **Falha que evita**: os testes que passam porque não provam nada, e o verde que esconde um bug
-  [Ref. 44](REFERENCIAS.md#ref-44). O caso dos contadores é o exemplo completo de um teste provado
-  em vermelho contra o critério antigo [Ref. 26](REFERENCIAS.md#ref-26).
-- **Contrato**: `peldanos/peldano-07-tests-en-rojo.md`.
-
-### Passo 8 — Simetria entre produtor e consumidor, e o registro de antipadrões
-
-Quando você muda uma ponta (o servidor, o banco, um robô), a outra ponta (a tela, um contador, um
-relatório) tem que mudar no mesmo commit. O princípio que sustenta isso é que **toda lista tem um
-único dono**. E os erros que você já pagou uma vez se anotam com sua verificação automática, para
-não pagá-los duas vezes.
-
-- **Intenção**: que uma mudança numa ponta arraste a outra, sempre, no mesmo commit.
-- **Quando**: com cada pendência que toca um contrato entre duas partes do sistema; o mapa de
-  contratos se constrói ao abrir o segundo bloco funcional, quando já há tela e servidor; o
-  registro de antipadrões cresce cada vez que algo quebra pela segunda vez.
-- **Entradas**: o mapa de quem produz e quem consome cada contrato; o registro de antipadrões.
-- **Artefato**: o servidor define a lista e o consumidor a lê; o mapa produtor/consumidor; o
-  registro de antipadrões com cheiro, causa raiz, correção e detecção precoce.
-- **Comporta**: automática: o agente procura o outro lado antes de dar uma mudança por fechada.
-- **Quem decide**: ninguém; é automático.
-- **Falha que evita**: o contador que não coincide com a consulta [Ref. 26](REFERENCIAS.md#ref-26);
-  duas cópias do mesmo módulo que se dessincronizam [Ref. 41](REFERENCIAS.md#ref-41). A solução
-  de uma única fonte, eu a impus no Plano de Saúde [Ref. 27](REFERENCIAS.md#ref-27).
-- **Contrato**: `peldanos/peldano-08-simetria-y-antipatrones.md`.
-
-### Passo 9 — Medir antes de construir, com um instrumento que também se verifica
+### Passo 7 — Medir antes de construir, com um instrumento que também se verifica
 
 Este é, para mim, o degrau mais adulto de todos, e o que mais demorei a formalizar porque dava
 por certo que um modelo o aplicaria sozinho. Não aplica. A regra é: nenhum número que decide algo
@@ -659,9 +691,109 @@ rodar. E o medidor também se verifica, porque os medidores mentem.
   [Ref. 36](REFERENCIAS.md#ref-36); a catraca em zero que não via 84 chamadas
   [Ref. 35](REFERENCIAS.md#ref-35). As regras, eu as escrevi, em sessão, antes de que fossem
   doutrina [Ref. 45](REFERENCIAS.md#ref-45).
-- **Contrato**: `peldanos/peldano-09-medir.md`.
+- **Contrato**: `peldanos/peldano-07-medir.md`.
 
-### Passo 10 — Verificação honesta e relatório proporcional
+### Passo 8 — Testes como cadeados, provados em vermelho
+
+Um teste que você nunca viu falhar, você não sabe se prova algo. Por isso aqui a regra não é
+"escreva testes"; é "demonstre que o teste fica em vermelho contra o código antigo, depois em
+verde, e depois que a regressão continua em verde". E os testes de ponta a ponta, desde a tela
+até o backend, são os que substituem a sua leitura do código.
+
+- **Intenção**: que cada comportamento que importa tenha um teste que FALHA se quebra, e que se
+  saiba com certeza que falha.
+- **Quando**: com cada pendência do ciclo, ao fechá-la. O teste de ponta a ponta do fluxo tocado,
+  no mesmo fechamento. A bateria completa de ponta a ponta, no fechamento de cada bloco e antes
+  de cada implantação em produção.
+- **Entradas**: a mudança já implementada e a pendência com seu "como se verifica".
+- **Artefato**: o teste novo, a saída em vermelho e em verde com números, a regressão das vizinhas
+  na mesma sessão, e o commit que diz contra o que se provou em vermelho.
+- **Comporta**: vermelho demonstrado, verde, regressão em verde. E o agente não simula justamente
+  a parte que quer provar.
+- **Quem decide**: o agente executa e relata; o dono lê o relatório, não o teste.
+- **Falha que evita**: os testes que passam porque não provam nada, e o verde que esconde um bug
+  [Ref. 44](REFERENCIAS.md#ref-44). O caso dos contadores é o exemplo completo de um teste provado
+  em vermelho contra o critério antigo [Ref. 26](REFERENCIAS.md#ref-26).
+- **Contrato**: `peldanos/peldano-08-tests-en-rojo.md`.
+
+### Passo 9 — Qualidade do código verificada por máquina, com comporta
+
+O dono não lê o código, e esse é o ponto. Mas o código alguém vai manter, e um código que
+funciona hoje e é ilegível amanhã é dívida que se cobra no mês três. Se ninguém o lê, uma
+máquina tem que olhá-lo: em cada commit, o que um revisor humano olharia, convertido num número
+com um limite. Fiz isso em todos os meus projetos sem nomeá-lo como degrau.
+
+- **Intenção**: que a qualidade do código se verifique por máquina em cada commit, com a
+  construção em vermelho como consequência, e que nunca se degrade sozinha.
+- **Quando**: monta-se ao abrir o primeiro bloco funcional e roda em cada push; cada pendência se
+  fecha com a qualidade em verde, depois do teste em vermelho (8); o relatório se lê com o dono
+  no fechamento de cada bloco. Num legado, a primeira corrida é a linha base.
+- **Entradas**: a integração contínua (4), código de ao menos uma pendência fechada, e os limites
+  decididos pelo dono (tamanho de arquivo e de função, para começar).
+- **Artefato**: linter e formatador com uma só configuração; limites de tamanho e complexidade;
+  detecção de duplicação e código morto; cobertura com catraca; tipos se a linguagem permitir;
+  `docs/CODE_QUALITY.md` com cada limite e o seu valor medido; a comporta em `docs/GATES.md`.
+- **Comporta**: nada se funde com a qualidade em vermelho; nenhuma exceção ao linter sem razão
+  escrita; nenhum limite subido para passar.
+- **Quem decide**: o dono fixa os limites e decide o que se conserta agora e o que se tolera com
+  data; o agente mede e conserta no mesmo commit.
+- **Falha que evita**: o componente de mais de duas mil linhas e o arquivo de quase dez mil que
+  uma auditoria encontrou porque nenhum limite os tinha freado [Ref. 41](REFERENCIAS.md#ref-41);
+  o número de qualidade que piora sem que ninguém o veja [Ref. 35](REFERENCIAS.md#ref-35).
+- **Contrato**: `peldanos/peldano-09-calidad-de-codigo.md`.
+
+### Passo 10 — Os casos de teste manual se escrevem junto com a funcionalidade, e quem os executa são pessoas
+
+Os testes automáticos quem os escreve e quem os roda é o modelo, e provam o que o modelo
+entendeu. Falta a prova que faz uma pessoa com os seus olhos e as suas mãos, seguindo um
+roteiro. O roteiro é escrito por quem construiu a funcionalidade, no mesmo momento, a partir dos
+critérios de aceitação; executam-no pessoas no fechamento de cada bloco, na aceitação e depois de
+cada implantação; e o que falha volta ao ciclo como requisito. É o fechamento do circuito que o
+gráfico do processo mostra.
+
+- **Intenção**: que toda funcionalidade nasça com o seu caso de teste manual, escrito para uma
+  pessoa que não sabe como o sistema está feito, e que cada execução humana reinjete o que falha
+  como pendência.
+- **Quando**: com cada pendência, ao fechá-la, depois do teste em vermelho (8) e da qualidade (9).
+  Execução por pessoas no fechamento de cada bloco, antes da primeira implantação (aceitação) e
+  depois de cada implantação, em somente leitura.
+- **Entradas**: os critérios de aceitação da pendência (5), o ambiente de teste com dados, e a
+  decisão de quem executa e quando.
+- **Artefato**: `docs/MANUAL_TESTS.md` com um caso por fluxo tocado (identificador, pendência,
+  precondição, passos com o que se faz e o que se vê, resultado esperado com efeito no backend
+  verificável por uma pessoa, dados, tabela de execuções); as execuções registradas; uma pendência
+  corretiva por falha.
+- **Comporta**: nenhuma pendência que toque uma tela se fecha sem o seu caso; nenhuma execução
+  sem data e nome; nenhuma falha sem pendência com as palavras da pessoa.
+- **Quem decide**: o dono ou um usuário de confiança executa; o agente escreve os casos e abre as
+  pendências; o modelo nunca marca um caso como executado.
+- **Falha que evita**: o teste humano sem roteiro que encontra coisas diferentes a cada vez, e o
+  achado humano que se conserta na hora e se perde; o menu suspenso incomodo que nenhum teste viu
+  e a encarregada sim, no projeto-guia do curso.
+- **Contrato**: `peldanos/peldano-10-casos-de-prueba-manual.md`.
+
+### Passo 11 — Simetria entre produtor e consumidor, e o registro de antipadrões
+
+Quando você muda uma ponta (o servidor, o banco, um robô), a outra ponta (a tela, um contador, um
+relatório) tem que mudar no mesmo commit. O princípio que sustenta isso é que **toda lista tem um
+único dono**. E os erros que você já pagou uma vez se anotam com sua verificação automática, para
+não pagá-los duas vezes.
+
+- **Intenção**: que uma mudança numa ponta arraste a outra, sempre, no mesmo commit.
+- **Quando**: com cada pendência que toca um contrato entre duas partes do sistema; o mapa de
+  contratos se constrói ao abrir o segundo bloco funcional, quando já há tela e servidor; o
+  registro de antipadrões cresce cada vez que algo quebra pela segunda vez.
+- **Entradas**: o mapa de quem produz e quem consome cada contrato; o registro de antipadrões.
+- **Artefato**: o servidor define a lista e o consumidor a lê; o mapa produtor/consumidor; o
+  registro de antipadrões com cheiro, causa raiz, correção e detecção precoce.
+- **Comporta**: automática: o agente procura o outro lado antes de dar uma mudança por fechada.
+- **Quem decide**: ninguém; é automático.
+- **Falha que evita**: o contador que não coincide com a consulta [Ref. 26](REFERENCIAS.md#ref-26);
+  duas cópias do mesmo módulo que se dessincronizam [Ref. 41](REFERENCIAS.md#ref-41). A solução
+  de uma única fonte, eu a impus no Plano de Saúde [Ref. 27](REFERENCIAS.md#ref-27).
+- **Contrato**: `peldanos/peldano-11-simetria-y-antipatrones.md`.
+
+### Passo 12 — Verificação honesta e relatório proporcional
 
 Se você não vai ler código, o relatório do agente tem que ser confiável, e isso não acontece
 sozinho. O modelo foi treinado para ser útil e completo, e um relatório que diz "isto não consegui
@@ -682,9 +814,9 @@ notícias, os pontos cegos e o que ele não fez.
   que não estava [Ref. 43](REFERENCIAS.md#ref-43); o turno que trabalhou invisível uma hora e
   quarenta e três [Ref. 16](REFERENCIAS.md#ref-16). A regra de honestidade de verificação, eu a
   escrevi em junho [Ref. 8](REFERENCIAS.md#ref-8).
-- **Contrato**: `peldanos/peldano-10-verificacion-honesta.md`.
+- **Contrato**: `peldanos/peldano-12-verificacion-honesta.md`.
 
-### Passo 11 — A auditoria periódica como insumo do plano
+### Passo 13 — A auditoria periódica como insumo do plano
 
 De vez em quando há que olhar o sistema inteiro com olhos frescos, e o que se vê não vai para um
 relatório que se arquiva: vai para a fila de pendências. A parte importante é "olhos frescos":
@@ -705,9 +837,9 @@ pressupostos. Basta outra sessão do modelo, com outro arquivo de instruções.
   portas de administrador que ninguém viu até que outro as olhou
   [Ref. 40](REFERENCIAS.md#ref-40); uma vulnerabilidade conhecida e um componente enorme
   [Ref. 41](REFERENCIAS.md#ref-41).
-- **Contrato**: `peldanos/peldano-11-auditoria.md`.
+- **Contrato**: `peldanos/peldano-13-auditoria.md`.
 
-### Passo 12 — Fail-closed, cadeados e zero dano silencioso
+### Passo 14 — Fail-closed, cadeados e zero dano silencioso
 
 Diante da dúvida ou da falha, o sistema NÃO age. E o diz. Soa óbvio, mas é o contrário do que o
 software faz por padrão, que diante da dúvida segue em frente. Este degrau vai **antes** de
@@ -726,9 +858,9 @@ construir as funcionalidades que agem sobre o mundo, não depois.
   apagamento de dados do cliente. Os cadeados do Plano de Saúde são o modelo
   [Ref. 28](REFERENCIAS.md#ref-28); o reflexo de não quebrar a listagem inteira, também
   [Ref. 25](REFERENCIAS.md#ref-25).
-- **Contrato**: `peldanos/peldano-12-fail-closed.md`.
+- **Contrato**: `peldanos/peldano-14-fail-closed.md`.
 
-### Passo 13 — Integração contínua, ambientes, segredos e implantação como parte do produto
+### Passo 15 — Integração contínua, ambientes, segredos e implantação como parte do produto
 
 Chegar à produção tem que ser um pacote reproduzível: os testes rodam UMA vez, a implantação só
 empacota e sobe, a configuração vive no servidor e não no repositório, e o caminho de volta está
@@ -751,9 +883,109 @@ provado. Boa parte disto já existe desde o esqueleto; este degrau o completa ru
   [Ref. 39](REFERENCIAS.md#ref-39); a implantação endurecida a golpes de pendências por tê-la
   descoberto tarde [Ref. 32](REFERENCIAS.md#ref-32); segredos colados no chat
   [Ref. 42](REFERENCIAS.md#ref-42).
-- **Contrato**: `peldanos/peldano-13-ci-entornos-secretos-deploy.md`.
+- **Contrato**: `peldanos/peldano-15-ci-entornos-secretos-deploy.md`.
 
-### Passo 14 — Documentação viva e manuais que uma pessoa pode seguir sem IA
+### Passo 16 — Observabilidade e rastreabilidade totais, com nível configurável
+
+Quando algo falhar em produção quero seguir uma ação desde a tela até o banco de dados com um
+único identificador, sem abrir o código; quero poder subir o detalhe dos registros em produção em
+um minuto, sem voltar a implantar; e quero que toda ação com consequência deixe um rastro que a
+aplicação não possa apagar.
+
+- **Intenção**: que o sistema se possa ver enquanto roda (observabilidade) e que cada ação
+  importante tenha o seu rastro (rastreabilidade), com um nível de detalhe que se muda por
+  configuração.
+- **Quando**: na saída para produção, depois do 15 e antes do 19. Num legado, o nível mínimo
+  entra no cinto de segurança (N4) e o completo aqui. A regra "todo módulo novo registra e
+  propaga" vale durante toda a operação.
+- **Entradas**: a configuração por ambiente (15), a tabela de cadeados (14), a lista de dados
+  pessoais do levantamento, e a decisão de onde vivem os registros.
+- **Artefato**: registros estruturados com nível configurável sem implantar; um identificador de
+  correlação em cada registro, da tela ao banco; uma auditoria imutável das ações com
+  consequência; pontos de saúde e métricas; `docs/OBSERVABILITY.md`.
+- **Comporta**: um identificador real seguido por todas as camadas; o nível mudado sem implantar;
+  nenhum dado pessoal nos registros.
+- **Quem decide**: o dono decide onde vivem os registros, quanto se conservam e o que é dado
+  pessoal; o agente monta.
+- **Falha que evita**: o processo que continuou vivo uma hora e quarenta e três e se encontrou
+  pelo log [Ref. 16](REFERENCIAS.md#ref-16); o agente residente que opera às cegas se não há
+  registros para ler [Ref. 13](REFERENCIAS.md#ref-13).
+- **Contrato**: `peldanos/peldano-16-observabilidad-y-trazabilidad.md`.
+
+### Passo 17 — Otimização da camada de persistência, medida antes e depois
+
+O banco de dados é onde os sistemas morrem devagar: bem com cem registros, mal com cem mil, e
+ninguém sabe quando começou. Aqui se decide com números, antes da produção, e com o método do
+degrau 7: medir, mudar, voltar a medir sobre os mesmos dados.
+
+- **Intenção**: que as consultas reais do sistema, aos volumes do dimensionamento, entrem no que
+  o negócio tolera, com orçamentos que impeçam que voltem a sair.
+- **Quando**: na saída para produção, depois do 16 e antes do 19; repete-se quando um bloco
+  acrescenta uma tabela grande ou o monitoramento (21) mostra uma consulta fora de faixa. Num
+  legado, as medições saem de N6 e quase tudo se paga "ao tocar".
+- **Entradas**: o dimensionamento (3 ou N6), o mapa produtor-consumidor (11), a observabilidade
+  (16), e o ambiente de teste carregado ao volume esperado.
+- **Artefato**: medidores de consultas com teste; `docs/PERSISTENCE.md` com a tabela de antes e
+  depois por mudança, os orçamentos por caminho e a retenção por tabela; um teste por orçamento.
+- **Comporta**: nenhuma consulta que leia uma tabela inteira num fluxo crítico; cada orçamento
+  com o seu teste; a tela mais lenta dentro do que o dimensionamento esperava.
+- **Quem decide**: o dono aprova a lista de mudanças, uma por uma; o agente mede e aplica.
+- **Falha que evita**: as consultas que liam tabelas inteiras num sistema vivo
+  [Ref. 18](REFERENCIAS.md#ref-18); o orçamento que foi preciso apertar ao medido
+  [Ref. 37](REFERENCIAS.md#ref-37); os milhões de linhas sobre arquivos
+  [Ref. 15](REFERENCIAS.md#ref-15).
+- **Contrato**: `peldanos/peldano-17-persistencia.md`.
+
+### Passo 18 — Varredura e solução de vulnerabilidades, na cadeia e com calendário
+
+A auditoria (13) olha o sistema inteiro com critério, de vez em quando; este degrau olha uma só
+coisa, a segurança, o tempo todo e por máquina: dependências, código, segredos no histórico e
+configuração do servidor. E uma regra: uma atualização de dependência é uma mudança, e entra pelo
+ciclo.
+
+- **Intenção**: que nenhuma vulnerabilidade conhecida chegue à produção, e que as novas se
+  detectem sozinhas ainda que ninguém toque no sistema.
+- **Quando**: na saída para produção, depois do 15 e antes da primeira implantação; depois, em
+  cada push e com calendário semanal. Num legado, a primeira rodada é parte de N3.
+- **Entradas**: a integração contínua (4 e 13), o levantamento de ambientes, a auditoria
+  anterior, e o critério do dono sobre o que é urgente.
+- **Artefato**: a varredura em quatro camadas rodando na cadeia e com calendário;
+  `docs/SECURITY_[data].md` com os achados e o não varrido; `docs/SECURITY.md` com a política; a
+  comporta em `docs/GATES.md`; os P0 e P1 corrigidos com a sua pendência.
+- **Comporta**: nenhum P0 aberto se promove para produção; um P1 novo abre uma pendência sozinho.
+- **Quem decide**: o dono define o que é P0 e aprova as correções; o agente monta e roda.
+- **Falha que evita**: a vulnerabilidade conhecida que apareceu na auditoria de qualidade
+  [Ref. 41](REFERENCIAS.md#ref-41); as portas de administrador que só outra sessão viu
+  [Ref. 40](REFERENCIAS.md#ref-40); a segurança tratada como uma lista que se marca uma vez
+  [Ref. 23](REFERENCIAS.md#ref-23).
+- **Contrato**: `peldanos/peldano-18-vulnerabilidades.md`.
+
+### Passo 19 — Testes de desempenho em volume e ponto de ruptura
+
+O degrau 3 dimensionou com contas; este comprova as contas com o sistema rodando: ao volume
+esperado, ao "vezes dez", e até que algo quebre. O ponto de ruptura é o número mais útil da fase,
+porque dele saem os limiares de alerta do 21.
+
+- **Intenção**: saber como se comporta o sistema ao volume esperado, ao "vezes dez", e onde e por
+  que quebra, antes de entrar o primeiro usuário.
+- **Quando**: na saída para produção, depois do 16 e do 17, antes da primeira implantação;
+  repete-se antes de cada implantação que mude a arquitetura, a persistência ou um fluxo crítico.
+  Num legado, com os volumes medidos em N6.
+- **Entradas**: o dimensionamento, a observabilidade acesa, a persistência otimizada, os fluxos
+  críticos e a tolerância do negócio para a tela mais usada.
+- **Artefato**: o script de carga no repositório, com teste; `docs/PERFORMANCE_[data].md` com as
+  três rodadas, o ponto de ruptura e o diagnóstico; `docs/PERFORMANCE.md` com os limiares e a
+  comporta; uma pendência por gargalo.
+- **Comporta**: a tela mais usada dentro da tolerância ao volume esperado, ou uma pendência com o
+  número; o ponto de ruptura escrito com o que quebra.
+- **Quem decide**: o dono dá a tolerância e decide até que volume se corrigem os gargalos agora.
+- **Falha que evita**: a carga real que só se conheceu olhando produção
+  [Ref. 12](REFERENCIAS.md#ref-12); o ponto de ruptura que se disfarçou de teste falho
+  [Ref. 44](REFERENCIAS.md#ref-44); o dimensionamento como comporta
+  [Ref. 14](REFERENCIAS.md#ref-14).
+- **Contrato**: `peldanos/peldano-19-rendimiento-y-punto-de-ruptura.md`.
+
+### Passo 20 — Documentação viva e manuais que uma pessoa pode seguir sem IA
 
 O sistema tem que poder ser usado, mantido e recuperado sem o agente e sem você. Se no dia em
 que não há agente não se pode implantar, não está terminado. E como regenerar documentação com um
@@ -762,10 +994,10 @@ modelo é grátis, a regra passa a ser "no mesmo commit".
 - **Intenção**: que o sistema possa ser usado, mantido e recuperado sem o agente e sem o
   construtor.
 - **Quando**: o manual de usuário cresce com cada bloco funcional, no fechamento, com as telas
-  novas. Os três manuais completos se geram na fase de saída para produção, depois do 13, e o
+  novas. Os três manuais completos se geram na fase de saída para produção, depois do 15, e o
   teste com uma pessoa que não programa se faz antes da primeira implantação. A rotina do mesmo
   commit rege durante toda a operação.
-- **Entradas**: o sistema rodando no ambiente de teste; os artefatos do 12 e do 13.
+- **Entradas**: o sistema rodando no ambiente de teste; os artefatos do 14 e do 15.
 - **Artefato**: o manual de usuário com capturas reais, o de manutenção, e o de infraestrutura e
   recuperação escrito para uma pessoa que tem que fazê-lo à mão às três da manhã; cada um com data
   e versão.
@@ -775,9 +1007,60 @@ modelo é grátis, a regra passa a ser "no mesmo commit".
 - **Falha que evita**: o documento desatualizado que provocou um commit no repositório errado; o
   arquivo de projeto convertido em histórico [Ref. 41](REFERENCIAS.md#ref-41). Os manuais
   reproduzíveis à mão são os do Plano de Saúde [Ref. 24](REFERENCIAS.md#ref-24).
-- **Contrato**: `peldanos/peldano-14-documentacion-viva.md`.
+- **Contrato**: `peldanos/peldano-20-documentacion-viva.md`.
 
-### Passo 15 — O agente dentro do sistema, e a retrospectiva com número
+### Passo 21 — Monitoramento de recursos, funções e consultas fora de faixa, com relatório cíclico
+
+Os testes do 19 dizem como se comporta o sistema um dia; a produção é todos os dias, com os dados
+crescendo. Este degrau vigia o uso de recursos e o tempo de resposta de cada função e cada
+consulta contra os limiares do 19 e contra a sua própria história, avisa quando algo sai de
+faixa, e produz um relatório cíclico que se lê com o dono. Cada desvio é uma pendência.
+
+- **Intenção**: ver um problema de recursos ou de desempenho antes que o usuário o veja, e que
+  cada desvio tenha causa ou pendência.
+- **Quando**: monta-se com a primeira implantação em produção; a partir daí roda sozinho,
+  e o relatório se lê em cada ciclo (semanal com consequências, mensal num projeto pequeno). Num
+  legado, a primeira leitura é a linha base.
+- **Entradas**: as métricas do 16, os orçamentos do 17, os limiares do 19, produção em somente
+  leitura, e o canal e o ciclo decididos com o dono.
+- **Artefato**: coleta com história; alertas por limiar e por desvio; o relatório cíclico gerado
+  sozinho; `docs/MONITORING.md`; a rotina de leitura no contrato.
+- **Comporta**: um alerta provocado chegou ao canal; o primeiro relatório tem cada desvio com
+  causa ou proposta; nenhum limiar subiu sem razão escrita.
+- **Quem decide**: o dono decide o canal, o ciclo e que desvio se atende agora; o agente monta e
+  propõe.
+- **Falha que evita**: o teto que foi preciso apertar ao medido
+  [Ref. 37](REFERENCIAS.md#ref-37); a cota que se esgotou sem que ninguém olhasse
+  [Ref. 39](REFERENCIAS.md#ref-39).
+- **Contrato**: `peldanos/peldano-21-monitoreo-de-recursos-y-rendimiento.md`.
+
+### Passo 22 — Monitoramento de erros e relatório cíclico: nenhum erro sem pendência
+
+Um sistema em produção produz erros que ninguém reporta. Este degrau os captura nos três lugares
+onde se escondem (o backend, as tarefas, o navegador do usuário), agrupa-os, avisa dos novos e
+dos que crescem, e produz um relatório cíclico. Duas regras: nenhum erro sem pendência, e não
+existe o "erro conhecido" sem uma pendência que diga por que se tolera e até quando.
+
+- **Intenção**: que nenhum erro em produção passe sem ser visto, e que cada um se feche com o
+  teste que o reproduz em vermelho.
+- **Quando**: monta-se com a primeira implantação, junto com o 21; a partir daí roda
+  sozinho, com alertas na hora e relatório cíclico. Num legado, os erros que já existiam no
+  primeiro dia viram pendências com a sua marca de velocidade.
+- **Entradas**: os registros do 16, a tabela de cadeados (14), produção com o navegador incluído,
+  o canal e o ciclo do 21.
+- **Artefato**: captura centralizada e agrupada, sem dados pessoais; alertas por erro novo,
+  recorrente que cresce e com consequência; o relatório cíclico com a taxa de erro por fluxo;
+  `docs/MONITORING.md`; a rotina no contrato.
+- **Comporta**: um erro provocado no navegador seguido até o relatório; nenhum erro recorrente
+  sem pendência nem razão com data.
+- **Quem decide**: o dono lê o relatório e decide o que se atende; o agente captura, agrupa e
+  propõe.
+- **Falha que evita**: o erro de autenticação relatado como sucesso
+  [Ref. 43](REFERENCIAS.md#ref-43); as quatro rodadas até a causa raiz por não ter o erro
+  reproduzido [Ref. 22](REFERENCIAS.md#ref-22).
+- **Contrato**: `peldanos/peldano-22-monitoreo-de-errores.md`.
+
+### Passo 23 — O agente dentro do sistema, e a retrospectiva com número
 
 O último degrau tem duas partes que fecham o mesmo ciclo. Primeiro: o agente fica residente em
 produção, com escopo delimitado, agindo em nome de uma pessoa. Segundo: o próprio método se
@@ -800,179 +1083,11 @@ revisa com números, e o que se aprende volta ao degrau 0 para o próximo projet
   projeto sem aprender. A retrospectiva com número que matou a equipe multiagente é o modelo
   [Ref. 6](REFERENCIAS.md#ref-6); o agente residente, o do Plano de Saúde
   [Ref. 13](REFERENCIAS.md#ref-13).
-- **Contrato**: `peldanos/peldano-15-agente-residente-y-retrospectiva.md`.
+- **Contrato**: `peldanos/peldano-23-agente-residente-y-retrospectiva.md`.
 
 ---
 
-### Os seis degraus de qualidade operacional (16 a 21)
-
-Os dezesseis degraus anteriores fazem com que o sistema esteja bem construído e se possa
-sustentar. Estes seis fazem algo diferente e que eu tinha deixado implícito, porque nos meus
-projetos eu o fazia sem nomeá-lo: que o sistema se possa **ver** enquanto roda, que aguente o
-volume para o qual foi dimensionado, que não tenha buracos conhecidos, e que, uma vez em
-produção, ninguém fique sabendo de um problema por um usuário irritado. Quatro se sobem antes da
-primeira implantação em produção, nesta ordem: observabilidade (16), persistência (17),
-vulnerabilidades (18) e desempenho (19). Dois se montam na semana da primeira implantação e rodam
-sozinhos a partir daí: o monitoramento de recursos e desempenho (20) e o de erros (21). Os dois
-monitoramentos terminam no mesmo lugar que todo o resto: o ciclo, como pendências corretivas. E
-os seis valem para os dois casos de uso: num projeto novo, no lugar que diz o seu "quando"; num
-legado, com as diferenças que marca cada ficha e que estão detalhadas no caminho
-evolutivo-corretivo.
-
-Se você está começando, cada contrato destes seis começa com um parágrafo que explica as suas
-palavras (registro, índice, vulnerabilidade, latência, limiar) na linguagem de todos os dias, e o
-glossário as tem todas.
-
-### Passo 16 — Observabilidade e rastreabilidade totais, com nível configurável
-
-Quando algo falhar em produção quero seguir uma ação desde a tela até o banco de dados com um
-único identificador, sem abrir o código; quero poder subir o detalhe dos registros em produção em
-um minuto, sem voltar a implantar; e quero que toda ação com consequência deixe um rastro que a
-aplicação não possa apagar.
-
-- **Intenção**: que o sistema se possa ver enquanto roda (observabilidade) e que cada ação
-  importante tenha o seu rastro (rastreabilidade), com um nível de detalhe que se muda por
-  configuração.
-- **Quando**: na saída para produção, depois do 13 e antes do 19. Num legado, o nível mínimo
-  entra no cinto de segurança (N4) e o completo aqui. A regra "todo módulo novo registra e
-  propaga" vale durante toda a operação.
-- **Entradas**: a configuração por ambiente (13), a tabela de cadeados (12), a lista de dados
-  pessoais do levantamento, e a decisão de onde vivem os registros.
-- **Artefato**: registros estruturados com nível configurável sem implantar; um identificador de
-  correlação em cada registro, da tela ao banco; uma auditoria imutável das ações com
-  consequência; pontos de saúde e métricas; `docs/OBSERVABILITY.md`.
-- **Comporta**: um identificador real seguido por todas as camadas; o nível mudado sem implantar;
-  nenhum dado pessoal nos registros.
-- **Quem decide**: o dono decide onde vivem os registros, quanto se conservam e o que é dado
-  pessoal; o agente monta.
-- **Falha que evita**: o processo que continuou vivo uma hora e quarenta e três e se encontrou
-  pelo log [Ref. 16](REFERENCIAS.md#ref-16); o agente residente que opera às cegas se não há
-  registros para ler [Ref. 13](REFERENCIAS.md#ref-13).
-- **Contrato**: `peldanos/peldano-16-observabilidad-y-trazabilidad.md`.
-
-### Passo 17 — Otimização da camada de persistência, medida antes e depois
-
-O banco de dados é onde os sistemas morrem devagar: bem com cem registros, mal com cem mil, e
-ninguém sabe quando começou. Aqui se decide com números, antes da produção, e com o método do
-degrau 9: medir, mudar, voltar a medir sobre os mesmos dados.
-
-- **Intenção**: que as consultas reais do sistema, aos volumes do dimensionamento, entrem no que
-  o negócio tolera, com orçamentos que impeçam que voltem a sair.
-- **Quando**: na saída para produção, depois do 16 e antes do 19; repete-se quando um bloco
-  acrescenta uma tabela grande ou o monitoramento (20) mostra uma consulta fora de faixa. Num
-  legado, as medições saem de N6 e quase tudo se paga "ao tocar".
-- **Entradas**: o dimensionamento (3 ou N6), o mapa produtor-consumidor (8), a observabilidade
-  (16), e o ambiente de teste carregado ao volume esperado.
-- **Artefato**: medidores de consultas com teste; `docs/PERSISTENCE.md` com a tabela de antes e
-  depois por mudança, os orçamentos por caminho e a retenção por tabela; um teste por orçamento.
-- **Comporta**: nenhuma consulta que leia uma tabela inteira num fluxo crítico; cada orçamento
-  com o seu teste; a tela mais lenta dentro do que o dimensionamento esperava.
-- **Quem decide**: o dono aprova a lista de mudanças, uma por uma; o agente mede e aplica.
-- **Falha que evita**: as consultas que liam tabelas inteiras num sistema vivo
-  [Ref. 18](REFERENCIAS.md#ref-18); o orçamento que foi preciso apertar ao medido
-  [Ref. 37](REFERENCIAS.md#ref-37); os milhões de linhas sobre arquivos
-  [Ref. 15](REFERENCIAS.md#ref-15).
-- **Contrato**: `peldanos/peldano-17-persistencia.md`.
-
-### Passo 18 — Varredura e solução de vulnerabilidades, na cadeia e com calendário
-
-A auditoria (11) olha o sistema inteiro com critério, de vez em quando; este degrau olha uma só
-coisa, a segurança, o tempo todo e por máquina: dependências, código, segredos no histórico e
-configuração do servidor. E uma regra: uma atualização de dependência é uma mudança, e entra pelo
-ciclo.
-
-- **Intenção**: que nenhuma vulnerabilidade conhecida chegue à produção, e que as novas se
-  detectem sozinhas ainda que ninguém toque no sistema.
-- **Quando**: na saída para produção, depois do 13 e antes da primeira implantação; depois, em
-  cada push e com calendário semanal. Num legado, a primeira rodada é parte de N3.
-- **Entradas**: a integração contínua (4 e 13), o levantamento de ambientes, a auditoria
-  anterior, e o critério do dono sobre o que é urgente.
-- **Artefato**: a varredura em quatro camadas rodando na cadeia e com calendário;
-  `docs/SECURITY_[data].md` com os achados e o não varrido; `docs/SECURITY.md` com a política; a
-  comporta em `docs/GATES.md`; os P0 e P1 corrigidos com a sua pendência.
-- **Comporta**: nenhum P0 aberto se promove para produção; um P1 novo abre uma pendência sozinho.
-- **Quem decide**: o dono define o que é P0 e aprova as correções; o agente monta e roda.
-- **Falha que evita**: a vulnerabilidade conhecida que apareceu na auditoria de qualidade
-  [Ref. 41](REFERENCIAS.md#ref-41); as portas de administrador que só outra sessão viu
-  [Ref. 40](REFERENCIAS.md#ref-40); a segurança tratada como uma lista que se marca uma vez
-  [Ref. 23](REFERENCIAS.md#ref-23).
-- **Contrato**: `peldanos/peldano-18-vulnerabilidades.md`.
-
-### Passo 19 — Testes de desempenho em volume e ponto de ruptura
-
-O degrau 3 dimensionou com contas; este comprova as contas com o sistema rodando: ao volume
-esperado, ao "vezes dez", e até que algo quebre. O ponto de ruptura é o número mais útil da fase,
-porque dele saem os limiares de alerta do 20.
-
-- **Intenção**: saber como se comporta o sistema ao volume esperado, ao "vezes dez", e onde e por
-  que quebra, antes de entrar o primeiro usuário.
-- **Quando**: na saída para produção, depois do 16 e do 17, antes da primeira implantação;
-  repete-se antes de cada implantação que mude a arquitetura, a persistência ou um fluxo crítico.
-  Num legado, com os volumes medidos em N6.
-- **Entradas**: o dimensionamento, a observabilidade acesa, a persistência otimizada, os fluxos
-  críticos e a tolerância do negócio para a tela mais usada.
-- **Artefato**: o script de carga no repositório, com teste; `docs/PERFORMANCE_[data].md` com as
-  três rodadas, o ponto de ruptura e o diagnóstico; `docs/PERFORMANCE.md` com os limiares e a
-  comporta; uma pendência por gargalo.
-- **Comporta**: a tela mais usada dentro da tolerância ao volume esperado, ou uma pendência com o
-  número; o ponto de ruptura escrito com o que quebra.
-- **Quem decide**: o dono dá a tolerância e decide até que volume se corrigem os gargalos agora.
-- **Falha que evita**: a carga real que só se conheceu olhando produção
-  [Ref. 12](REFERENCIAS.md#ref-12); o ponto de ruptura que se disfarçou de teste falho
-  [Ref. 44](REFERENCIAS.md#ref-44); o dimensionamento como comporta
-  [Ref. 14](REFERENCIAS.md#ref-14).
-- **Contrato**: `peldanos/peldano-19-rendimiento-y-punto-de-ruptura.md`.
-
-### Passo 20 — Monitoramento de recursos, funções e consultas fora de faixa, com relatório cíclico
-
-Os testes do 19 dizem como se comporta o sistema um dia; a produção é todos os dias, com os dados
-crescendo. Este degrau vigia o uso de recursos e o tempo de resposta de cada função e cada
-consulta contra os limiares do 19 e contra a sua própria história, avisa quando algo sai de
-faixa, e produz um relatório cíclico que se lê com o dono. Cada desvio é uma pendência.
-
-- **Intenção**: ver um problema de recursos ou de desempenho antes que o usuário o veja, e que
-  cada desvio tenha causa ou pendência.
-- **Quando**: monta-se na semana da primeira implantação em produção; a partir daí roda sozinho,
-  e o relatório se lê em cada ciclo (semanal com consequências, mensal num projeto pequeno). Num
-  legado, a primeira leitura é a linha base.
-- **Entradas**: as métricas do 16, os orçamentos do 17, os limiares do 19, produção em somente
-  leitura, e o canal e o ciclo decididos com o dono.
-- **Artefato**: coleta com história; alertas por limiar e por desvio; o relatório cíclico gerado
-  sozinho; `docs/MONITORING.md`; a rotina de leitura no contrato.
-- **Comporta**: um alerta provocado chegou ao canal; o primeiro relatório tem cada desvio com
-  causa ou proposta; nenhum limiar subiu sem razão escrita.
-- **Quem decide**: o dono decide o canal, o ciclo e que desvio se atende agora; o agente monta e
-  propõe.
-- **Falha que evita**: o teto que foi preciso apertar ao medido
-  [Ref. 37](REFERENCIAS.md#ref-37); a cota que se esgotou sem que ninguém olhasse
-  [Ref. 39](REFERENCIAS.md#ref-39).
-- **Contrato**: `peldanos/peldano-20-monitoreo-de-recursos-y-rendimiento.md`.
-
-### Passo 21 — Monitoramento de erros e relatório cíclico: nenhum erro sem pendência
-
-Um sistema em produção produz erros que ninguém reporta. Este degrau os captura nos três lugares
-onde se escondem (o backend, as tarefas, o navegador do usuário), agrupa-os, avisa dos novos e
-dos que crescem, e produz um relatório cíclico. Duas regras: nenhum erro sem pendência, e não
-existe o "erro conhecido" sem uma pendência que diga por que se tolera e até quando.
-
-- **Intenção**: que nenhum erro em produção passe sem ser visto, e que cada um se feche com o
-  teste que o reproduz em vermelho.
-- **Quando**: monta-se na semana da primeira implantação, junto com o 20; a partir daí roda
-  sozinho, com alertas na hora e relatório cíclico. Num legado, os erros que já existiam no
-  primeiro dia viram pendências com a sua marca de velocidade.
-- **Entradas**: os registros do 16, a tabela de cadeados (12), produção com o navegador incluído,
-  o canal e o ciclo do 20.
-- **Artefato**: captura centralizada e agrupada, sem dados pessoais; alertas por erro novo,
-  recorrente que cresce e com consequência; o relatório cíclico com a taxa de erro por fluxo;
-  `docs/MONITORING.md`; a rotina no contrato.
-- **Comporta**: um erro provocado no navegador seguido até o relatório; nenhum erro recorrente
-  sem pendência nem razão com data.
-- **Quem decide**: o dono lê o relatório e decide o que se atende; o agente captura, agrupa e
-  propõe.
-- **Falha que evita**: o erro de autenticação relatado como sucesso
-  [Ref. 43](REFERENCIAS.md#ref-43); as quatro rodadas até a causa raiz por não ter o erro
-  reproduzido [Ref. 22](REFERENCIAS.md#ref-22).
-- **Contrato**: `peldanos/peldano-21-monitoreo-de-errores.md`.
+---
 
 ## Parte D — Como se executa, quanto se exige, e com que ferramenta
 
@@ -1018,39 +1133,40 @@ o prompt está em inglês mas a conversa não precisa estar.
 ### O que é obrigatório e o que é proporcional, segundo o tamanho do projeto
 
 Uma pergunta que aparece logo: "tudo isso para um sistema pequeno?". A resposta é que vinte e
-dois degraus não são vinte e duas semanas; vários se sobem numa hora, e os que são proporcionais
-encolhem
-com o projeto. O que não encolhe é a lista dos que não se negociam. Esta tabela é uma proposta
+quatro degraus não são vinte e quatro etapas longas; vários se sobem numa sessão, e os que são
+proporcionais encolhem com o projeto. O que não encolhe é a lista dos que não se negociam. Esta tabela é uma proposta
 `[hipótese]` para confirmar com o primeiro projeto que usar o método de ponta a ponta:
 
 | Degrau | Projeto pequeno (um dono, poucos usuários, sem dinheiro em jogo) | Projeto com usuários e consequências |
 |---|---|---|
-| 0 Elegibilidade | obrigatório (uma hora) | obrigatório |
-| 1 Contrato | obrigatório (meia hora) | obrigatório |
+| 0 Elegibilidade | obrigatório | obrigatório |
+| 1 Contrato | obrigatório | obrigatório |
 | 2 Definição | obrigatório, cinquenta linhas bastam | obrigatório |
 | 3 Dimensionar | obrigatório, meia página e uma decisão | obrigatório, completo |
 | 4 Esqueleto | obrigatório se vai ter usuários | obrigatório |
 | 5 Pendências | obrigatório | obrigatório |
 | 6 Decisões | obrigatório | obrigatório |
-| 7 Testes em vermelho | obrigatório | obrigatório |
-| 8 Simetria | a regra sim; o mapa, opcional | obrigatório com mapa |
-| 9 Medir | proporcional: contar e anotar | obrigatório, com medidores e orçamentos |
-| 10 Verificação honesta | obrigatório | obrigatório |
-| 11 Auditoria | uma, antes da produção | periódica |
-| 12 Fail-closed | opcional se é somente leitura | obrigatório |
-| 13 Integração e implantação | mínimo: testes sozinhos, configuração fora, caminho de volta | obrigatório, completo |
-| 14 Documentação | mínimo: recuperação | os três manuais |
-| 15 Residente e retrospectiva | retrospectiva de uma página | ambos |
+| 7 Medir | proporcional: contar e anotar | obrigatório, com medidores e orçamentos |
+| 8 Testes em vermelho | obrigatório | obrigatório |
+| 9 Qualidade de código | mínimo: linter e limite de tamanho na cadeia | obrigatório, completo, com catraca de cobertura |
+| 10 Casos de teste manual | obrigatório: um caso por fluxo, executado pelo dono no fechamento de cada bloco | obrigatório, com execução registrada em cada ciclo |
+| 11 Simetria | a regra sim; o mapa, opcional | obrigatório com mapa |
+| 12 Verificação honesta | obrigatório | obrigatório |
+| 13 Auditoria | uma, antes da produção | periódica |
+| 14 Fail-closed | opcional se é somente leitura | obrigatório |
+| 15 Integração e implantação | mínimo: testes sozinhos, configuração fora, caminho de volta | obrigatório, completo |
 | 16 Observabilidade e rastreabilidade | mínimo: registros estruturados com nível configurável e um identificador por ação | obrigatório, completo, com auditoria imutável |
 | 17 Persistência | proporcional: os índices das consultas reais e o fim dos laços N+1 | obrigatório, com orçamentos por caminho |
 | 18 Vulnerabilidades | obrigatório: dependências e segredos na cadeia | obrigatório, as quatro camadas e com calendário |
 | 19 Desempenho | proporcional: uma rodada ao volume esperado e uma ao "vezes dez" | obrigatório, com ponto de ruptura e limiares |
-| 20 Monitoramento de recursos | mínimo: um relatório mensal e dois alertas (disco, banco) | obrigatório, com limiares por função e relatório semanal |
-| 21 Monitoramento de erros | obrigatório: captura centralizada e relatório | obrigatório, com alertas na hora |
+| 20 Documentação | mínimo: recuperação | os três manuais |
+| 21 Monitoramento de recursos | mínimo: um relatório mensal e dois alertas (disco, banco) | obrigatório, com limiares por função e relatório semanal |
+| 22 Monitoramento de erros | obrigatório: captura centralizada e relatório | obrigatório, com alertas na hora |
+| 23 Residente e retrospectiva | retrospectiva de uma página | ambos |
 
-Em resumo: há onze degraus que não se negociam em nenhum projeto (0, 1, 2, 3, 5, 6, 7, 10, a
-retrospectiva do 15, a varredura de dependências do 18 e a captura de erros do 21), e onze que se
-dimensionam com o projeto.
+Em resumo: há treze degraus que não se negociam em nenhum projeto (0, 1, 2, 3, 5, 6, 8, 9 no seu
+mínimo, 10, 12, a varredura de dependências do 18, a captura de erros do 22 e a retrospectiva do
+23), e onze que se dimensionam com o projeto.
 
 ### Como se usa com qualquer ferramenta
 
@@ -1059,12 +1175,12 @@ para que o modelo o leia. A correspondência, para as ferramentas mais usadas no
 
 | Artefato do método | Claude Code | Cursor | Codex CLI / Gemini CLI | Forge |
 |---|---|---|---|---|
-| Contrato de convivência (P1) e rotinas (P5, P6, P7, P8, P10, P14) | `CLAUDE.md` do projeto | `.cursor/rules/` | `AGENTS.md` / `GEMINI.md` | doutrinas injetadas por comporta |
+| Contrato de convivência (P1) e rotinas (P5, P6, P8, P9, P10, P11, P12, P20) | `CLAUDE.md` do projeto | `.cursor/rules/` | `AGENTS.md` / `GEMINI.md` | doutrinas injetadas por comporta |
 | Definição do projeto (P2) | `CLAUDE.md` + `docs/STATUS.md` | igual, em regras e docs | igual | `PROJECT.md` + arquivo de contexto |
 | Registro de pendências (P5) | `docs/PENDING.md` ou issues | igual | igual | registro de pendências nativo com verbos |
 | Prompts de degrau (todos) | colam-se no chat ao subir o degrau | igual | igual | injetam-se ao cruzar a comporta |
 | Comportas (P4) | `docs/GATES.md`, manual | igual | igual | G1 a G9, automáticas |
-| Medidores e orçamentos (P9) | scripts no repo com teste | igual | igual | igual, mais a catraca estática |
+| Medidores e orçamentos (P7) | scripts no repo com teste | igual | igual | igual, mais a catraca estática |
 
 A coluna do Forge é a que mais automatiza; as outras três funcionam igualmente bem se o dono faz à
 mão o que o Forge faz sozinho: colar o prompt do degrau no momento certo e exigir a verificação de
@@ -1079,11 +1195,11 @@ completude antes de passar ao seguinte. Essa é, de fato, a prática do curso.
 2. **Um nome memorável para cada degrau**, numa frase, para os manuais e as publicações.
 3. **A exportação ao Forge**: que degraus já são comportas ou comandos e quais faltam para poder
    rodar a escada como fluxo de execução.
-4. **Provar os contratos num projeto real de ponta a ponta.** Os prompts dos vinte e dois
+4. **Provar os contratos num projeto real de ponta a ponta.** Os prompts dos vinte e quatro
    contratos estão escritos a partir do que fiz, não executados tal como estão. O primeiro
-   projeto que os usar completos vai corrigir vários; faz parte do degrau 15.
-5. **A primeira turma do curso**, que vai corrigir os tempos da linha do tempo e os erros típicos,
-   que hoje estão escritos a partir dos meus projetos e não de alunos.
+   projeto que os usar completos vai corrigir vários; faz parte do degrau 23.
+5. **A primeira turma do curso**, que vai corrigir a ordem da linha do tempo onde fizer falta e
+   os erros típicos, que hoje estão escritos a partir dos meus projetos e não de alunos.
 6. **O caminho evolutivo-corretivo provado num legado real de ponta a ponta.** As oito estações
    estão escritas a partir do que fiz em sistemas alheios em modo diagnóstico e a partir dos
    degraus reordenados, não a partir de uma normalização completa executada com esses prompts.
@@ -1170,8 +1286,7 @@ contrário de "frontend" (a tela).
 **Bateria (de testes)** — O conjunto completo de testes de um projeto, rodado todo junto.
 
 **Bloco funcional** — Um conjunto de entre quatro e oito pendências relacionadas que juntas fazem
-algo que o negócio pode usar. É a unidade de trabalho do ciclo; dura entre uma e duas semanas num
-projeto pequeno.
+algo que o negócio pode usar. É a unidade de trabalho do ciclo; dura o que o seu tamanho pedir.
 
 **Cabeçalhos de segurança** — Instruções que o servidor manda ao navegador em cada resposta
 para protegê-lo (não embutir a página em outro site, usar só cifragem, etc.). Se faltam, a
@@ -1189,6 +1304,12 @@ Tem página própria.
 faz, defeitos incluídos; não o que deveria fazer. Nasce em verde, e a prova de que serve é que
 fica em vermelho quando se quebra o fluxo de propósito (uma mutação). É a bateria que protege um
 legado enquanto se o muda. O termo vem da literatura sobre código herdado; eu o uso tal e qual.
+
+**Caso de teste manual** — A receita para que uma pessoa prove uma funcionalidade:
+identificador, pendência de origem, precondição, passos (o que faz e o que tem que ver),
+resultado esperado com o efeito no backend que uma pessoa pode verificar, dados de teste, e a
+tabela de execuções. Escreve-o o agente junto com a funcionalidade (degrau 10); executam-no
+pessoas; o que falha reinjeta uma pendência.
 
 **Catraca** — Um mecanismo que só gira para um lado. No Kikan, um contador de chamadas sem
 `await` que só pode descer: se sobe, o teste falha.
@@ -1211,6 +1332,14 @@ o projeto e como trabalhar nele.
 **Claude Code** — A ferramenta da Anthropic com que trabalhei estes projetos e com que escrevi
 este documento: uma sessão de um modelo com acesso ao repositório, que lê, escreve, executa e faz
 commits.
+
+**Cobertura (de testes)** — Que porcentagem do código é executada por algum teste. No método
+mede-se com uma catraca: a de hoje é o piso de amanhã (degrau 9). Mede quantidade, não
+qualidade: por isso vai junto com o vermelho demonstrado do degrau 8.
+
+**Complexidade (de uma função)** — Quantos caminhos diferentes uma função pode tomar; cada
+"se" a aumenta. Uma função com quarenta caminhos ninguém entende, e o degrau 9 lhe põe um
+limite.
 
 **Cofre (vault)** — Um lugar cifrado onde se guardam segredos (chaves, senhas) em vez de
 deixá-los em arquivos de texto.
@@ -1265,12 +1394,12 @@ completa, e a soma das pendências é a especificação do sistema. Ver B.5.
 testes vazios, se implanta.
 
 **Estação (N0 a N7)** — Cada um dos oito passos do trecho de normalização do caminho
-evolutivo-corretivo. Chamo-as estações e não degraus para que não se confundam com os vinte e dois
-da escada: não são degraus novos, são os do arranque (e o 8, o 11 e o 12) em outra ordem e com
-outra entrada.
+evolutivo-corretivo. Chamo-as estações e não degraus para que não se confundam com os vinte e
+quatro da escada: não são degraus novos, são os do arranque (e o 11, o 13 e o 14) em outra ordem
+e com outra entrada.
 
 **Exceção não tratada** — Um erro que o código não previu e que corta o que estava fazendo. O
-degrau 21 as captura todas, no backend, nas tarefas e no navegador.
+degrau 22 as captura todas, no backend, nas tarefas e no navegador.
 
 **Fail-closed** — "Falha fechado": diante da dúvida ou do erro, o sistema não age. O contrário de
 "fail-open", que diante da dúvida segue em frente.
@@ -1278,8 +1407,8 @@ degrau 21 as captura todas, no backend, nas tarefas e no navegador.
 **Fallback (ao legado)** — Voltar a um caminho antigo quando o novo falha. O método o proíbe: se
 há sistema antigo, audita-se e migra-se; não se deixa como rede de segurança silenciosa.
 
-**Fase (da escada)** — Cada um dos quatro grupos de degraus: arranque (0 a 4), ciclo (5 a 10),
-operação (11 a 15) e qualidade operacional (16 a 21).
+**Fase (da escada)** — Cada um dos quatro grupos de degraus, na ordem em que se sobem: arranque
+(0 a 4), ciclo (5 a 12), saída para produção (13 a 20) e operação (21 a 23).
 
 **Fixture** — Dados de teste que se carregam antes de rodar um teste ou uma implantação.
 
@@ -1350,24 +1479,28 @@ sistema em produção.
 
 **Laço N+1** — Um erro de persistência muito comum: para mostrar cem itens, o sistema faz uma
 consulta para a lista e depois mais cem, uma por item, em vez de uma ou duas. Detecta-se contando
-consultas (degrau 9) e corrige-se no degrau 17.
+consultas (degrau 7) e corrige-se no degrau 17.
 
 **Latência** — Quanto uma ação demora para responder. Olha-se a mediana (a metade das ações
 demorou menos) e o percentil 95 (95 % demorou menos; os 5 % restantes são os usuários que
-reclamam). Degraus 19 e 20.
+reclamam). Degraus 19 e 21.
 
 **Legado (legacy)** — Um sistema antigo que continua em uso.
 
 **Limiar** — Um número limite a partir do qual o monitoramento avisa. No método não se põe "a
 olho": sai do ponto de ruptura (19) com uma margem, e não se sobe para calar um alerta sem uma
-razão medida escrita (20).
+razão medida escrita (21).
 
 **Linha base** — O que um número vinha dando normalmente (por exemplo, a média dos últimos
-catorze dias). "Fora de faixa" no degrau 20 é acima de um limiar fixo ou muito diferente da linha
+catorze dias). "Fora de faixa" no degrau 21 é acima de um limiar fixo ou muito diferente da linha
 base.
 
 **Linha do tempo** — A Parte B deste documento: quando se sobe cada degrau e que tarefas de
 infraestrutura, ingestão, desenvolvimento, testes e olhar humano acontecem no meio.
+
+**Linter / formatador** — O linter é um programa que lê o código e marca o que está mal escrito
+ou é perigoso, como um corretor ortográfico; o formatador o arruma com um estilo único. Os dois
+rodam em cada commit no degrau 9.
 
 **Log** — O registro do que um programa vai fazendo. "Valide com o log" significa: não confie no
 que o agente diz que fez, olhe o registro.
@@ -1411,7 +1544,7 @@ que se cravou a versão para que todos os ambientes usem a mesma.
 suposto ao abrir o ciclo, sem tocar na sua funcionalidade. Faz-se em duas velocidades: o cinto de
 segurança antes de qualquer mudança, e o resto da dívida **à medida que se toca** cada módulo (as
 pendências de normalização marcadas "paga-se ao tocar" entram com o bloco que entra no seu
-módulo). Nunca "uma semana de faxina geral".
+módulo). Nunca "uma faxina geral" antes de começar.
 
 **Observabilidade** — Que o sistema se possa ver enquanto roda: registros estruturados com
 nível configurável, um identificador de correlação por ação, métricas de saúde. Sem
@@ -1452,7 +1585,7 @@ documentação do feito.
 
 **Ponto de ruptura** — A carga exata em que algo do sistema deixa de funcionar, e o que é esse
 algo (as conexões ao banco, a memória, uma fila). Encontra-se subindo a carga degrau por degrau
-(degrau 19), e dele saem os limiares de alerta do 20.
+(degrau 19), e dele saem os limiares de alerta do 21.
 
 **Pool de conexões** — A quantidade de "linhas abertas" que o sistema mantém com o banco de dados
 ao mesmo tempo. Se se esgota, as ações esperam ou falham; costuma ser o primeiro que quebra num
@@ -1471,10 +1604,16 @@ de que a correção o ponha em verde.
 **Quadro (o painel)** — O painel compartilhado do Forge onde o agente deixa relatórios para que
 eu os leia.
 
-**Qualidade operacional (fase)** — A quarta fase da escada, degraus 16 a 21: quatro que se sobem
-antes da primeira implantação em produção (observabilidade, persistência, vulnerabilidades,
-desempenho) e dois que vigiam o sistema uma vez implantado (monitoramento de recursos e de
-erros).
+**Qualidade de código (verificada por máquina)** — O que um revisor humano olharia no código,
+medido por ferramentas em cada commit e convertido num número com um limite: estilo (linter e
+formatador), tamanho de arquivos e funções, complexidade, duplicação, código morto, cobertura
+com catraca, tipos. Degrau 9. Não substitui o teste em vermelho: evita o código correto que
+ninguém pode voltar a tocar.
+
+**Qualidade operacional** — Os seis degraus que fazem com que o sistema se possa ver e aguente:
+16 observabilidade, 17 persistência, 18 vulnerabilidades e 19 desempenho, antes da primeira
+implantação; 21 e 22, os monitoramentos, depois. Não são uma fase à parte: os quatro primeiros
+estão na fase de saída para produção e os dois últimos na de operação.
 
 **Rastreabilidade** — Dois sentidos, os dois no método. Nos requisitos: poder seguir um requisito
 até a pendência que o implementa, o teste que o prova e o commit que o fechou; não é uma matriz à
@@ -1494,7 +1633,12 @@ correlação, ator, mensagem), para que se possa buscar por máquina. Degrau 16.
 **Regressão** — Um teste que verifica que algo que já funcionava continua funcionando depois de
 uma mudança.
 
-**Relatório cíclico** — O resumo que o monitoramento (20 e 21) gera sozinho a cada semana ou a
+**Reinjeção (de requisitos)** — O que volta ao ciclo como pendência desde fora do
+desenvolvimento: um pedido novo do negócio, uma falha encontrada por uma pessoa ao executar os
+casos de teste manual (10), um desvio do monitoramento (21), um erro capturado (22). O gráfico
+do processo (Parte B) as mostra como setas de volta.
+
+**Relatório cíclico** — O resumo que o monitoramento (21 e 22) gera sozinho a cada semana ou a
 cada mês, com os desvios e os erros do período, e que o dono lê com o agente para decidir o que
 vira pendência. O contrário de um alerta: lê-se com calma.
 
@@ -1525,7 +1669,7 @@ pode ser rodado duas vezes sem quebrar nada.
 **Tag** — Uma etiqueta sobre um commit que marca uma versão.
 
 **Taxa de erro por fluxo** — De cada cem vezes que alguém usou um fluxo (cadastrar um turno),
-quantas falharam. É o número do relatório de erros (21) que o dono entende sem explicação.
+quantas falharam. É o número do relatório de erros (22) que o dono entende sem explicação.
 
 **TDD** — "Primeiro o teste, depois o código". O método o deixa como opção para escopos
 pequenos, não como regra universal.
@@ -1548,7 +1692,7 @@ processa. Em segurança: uma credencial de acesso.
 sustenta por trás; *urazukeru*, respaldar com provas. Pronuncia-se u-ra-ZU-ke. Não se traduz.
 
 **Vazão (throughput)** — Quantas ações por segundo o sistema aguenta. Mede-se com o teste de
-carga (19) e vigia-se no monitoramento (20).
+carga (19) e vigia-se no monitoramento (21).
 
 **Vibecoding / vibecoder** — Construir software conversando com uma IA, descrevendo o que se
 quer, em vez de escrever o código à mão. Um vibecoder é quem faz isso.

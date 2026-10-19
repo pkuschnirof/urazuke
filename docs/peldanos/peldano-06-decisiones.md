@@ -3,7 +3,7 @@
 **Tramo:** bucle.
 **Cuándo:** en cada sesión del bucle, cada vez que el agente se topa con una regla de negocio no
 escrita o con una bifurcación que cambia lo que el usuario ve. Suelen ser dos o tres por bloque.
-También en el arranque (peldaños 0 y 3) y en la salida a producción (12 y 13).
+También en el arranque (peldaños 0 y 3) y en la salida a producción (14 y 15).
 **Forma:** conversación corta: el agente detecta que hay una decisión, pregunta, y la deja escrita.
 **Tamaño:** obligatorio en todo proyecto. En uno chico el registro puede ser una tabla de diez
 filas; lo que importa es que las reglas de negocio tengan dueño.

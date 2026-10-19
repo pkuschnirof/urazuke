@@ -52,6 +52,9 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 .antes ul{margin:.3em 0 .45em;padding-left:1.4em}
 .antes li{margin:.4em 0}
 .antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
 .glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
 .glos p strong{color:#3a2f00}
 .meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
@@ -59,16 +62,16 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 @media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
 @media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
 </style></head><body><div class="wrap">
-<section><h1 id="">台阶契约</h1><nav class="toc"><div class="toc-t">目录</div><ul><li class="l2"><a href="#0">步骤 0 — 这个项目能这样做吗？（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#1">步骤 1 — 协作契约（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#2">步骤 2 — 项目定义、语义树与必读（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#3">步骤 3 — 在设计架构之前先做容量估算（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#4">步骤 4 — 带闸门的骨架（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#5">步骤 5 — 计划就是待办项：详细规格活在每一项里（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#6">步骤 6 — 决策写在代码旁边（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#7">步骤 7 — 作为锁的测试，先证红（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#8">步骤 8 — 生产者与消费者之间的对称性，以及反模式记录（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#9">步骤 9 — 构建之前先测量，用一把自己也要被验证的量具（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#10">步骤 10 — 诚实的验证与相称的报告（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#11">步骤 11 — 作为计划输入的定期审计（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#12">步骤 12 — 失败即关闭、锁与零静默损害（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#13">步骤 13 — 持续集成、环境、密钥与作为产品一部分的部署（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#14-ai">步骤 14 — 活的文档与一个人无需 AI 即可遵循的手册（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#15">步骤 15 — 系统里的代理，以及带数字的复盘（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#16">步骤 16 — 完整的可观测性与可追溯性，级别可配置（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#17">步骤 17 — 持久化层的优化，前后都要测量（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#18">步骤 18 — 漏洞的扫描与解决，放进链条并带日程（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#19">步骤 19 — 量级下的性能测试与断裂点（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#20">步骤 20 — 对资源、函数和超出范围查询的监控，带周期报告（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#21">步骤 21 — 错误监控与周期报告：没有任何错误没有待办项（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li></ul></nav>
+<section><h1 id="">台阶契约</h1><nav class="toc"><div class="toc-t">目录</div><ul><li class="l2"><a href="#0">步骤 0 — 这个项目能这样做吗？（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#1">步骤 1 — 协作契约（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#2">步骤 2 — 项目定义、语义树与必读（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#3">步骤 3 — 在设计架构之前先做容量估算（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#4">步骤 4 — 带闸门的骨架（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#5">步骤 5 — 计划就是待办项：详细规格活在每一项里（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#6">步骤 6 — 决策写在代码旁边（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#7">步骤 7 — 构建之前先测量，用一把自己也要被验证的量具（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#8">步骤 8 — 作为锁的测试，先证红（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#9">步骤 9 — 由机器验证的代码质量，带闸门（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#10">步骤 10 — 人工测试用例和功能一起写，并且由人来执行（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#11">步骤 11 — 生产者与消费者之间的对称性，以及反模式记录（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#12">步骤 12 — 诚实的验证与相称的报告（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#13">步骤 13 — 作为计划输入的定期审计（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#14">步骤 14 — 失败即关闭、锁与零静默损害（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#15">步骤 15 — 持续集成、环境、密钥与作为产品一部分的部署（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#16">步骤 16 — 完整的可观测性与可追溯性，级别可配置（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#17">步骤 17 — 持久化层的优化，前后都要测量（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#18">步骤 18 — 漏洞的扫描与解决，放进链条并带日程（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#19">步骤 19 — 量级下的性能测试与断裂点（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#20-ai">步骤 20 — 活的文档与一个人无需 AI 即可遵循的手册（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#21">步骤 21 — 对资源、函数和超出范围查询的监控，带周期报告（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#22">步骤 22 — 错误监控与周期报告：没有任何错误没有待办项（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li><li class="l2"><a href="#23">步骤 23 — 系统里的代理，以及带数字的复盘（台阶契约）</a></li><li class="l3"><a href="#">用途</a></li></ul></nav>
 <p>每级台阶一个文件。所有文件都有相同的骨架，而且是有意的，为了让你能比较它们，也为了让读它们的反射随着时间变成自动的：标题栏包含阶段、时机、形式和规模（必需或按比例）；用途；(1) 所需上下文，以通用方式命名；(2) 提示词，<strong>英文</strong>，每条前面都有一个<strong>"发送提示词之前"</strong>的方框（在你粘贴它之前必须由你做好的文件和输入，连同它们的内容和最低状态），后面跟着它的翻译，再下面是我在要求模型什么、为什么每个条款都在那里的解释；(3) 预期结果及其特征；(4) 完整性检验，你不读代码就能做；(5) 警报信号，台阶没登好的症状。</p>
 <p>英文提示词是单一原件，在文档的八个版本中完全相同；<code>node build/build.mjs</code> 把它们提取到 <code>prompts/</code>，并检验没有任何翻译改动了它们。每条提示词旁边的翻译是为了让你理解；贴给模型的是英文。</p>
-<p>它们是根据我在三个如今正在生产中的系统里做过的事写成的，我还没有按原样执行过。第一个从头到尾使用它们的项目会修正其中若干条；那是第 15 级台阶的一部分。当一份契约引用真实案例时，用 <code>[Ref. N]</code> 标记链接到<a href="REFERENCIAS.html">参考资料文档</a>；流程保持干净，细节一点即达。</p>
-<div class="tw"><table><thead><tr><th>台阶</th><th>文件</th><th>阶段</th><th>时机</th></tr></thead><tbody><tr><td>0 — 这个项目能这样做吗？</td><td><code>peldano-00-elegibilidad.md</code></td><td>启动</td><td>第一周，先于一切</td></tr><tr><td>1 — 协作契约</td><td><code>peldano-01-contrato-de-convivencia.md</code></td><td>启动</td><td>第一周，适格性之后</td></tr><tr><td>2 — 项目定义与必读</td><td><code>peldano-02-definicion-y-lectura.md</code></td><td>启动</td><td>第一周；始终维护</td></tr><tr><td>3 — 在架构之前先做容量估算</td><td><code>peldano-03-dimensionar.md</code></td><td>启动</td><td>第一周，骨架之前</td></tr><tr><td>4 — 带闸门的骨架</td><td><code>peldano-04-esqueleto.md</code></td><td>启动</td><td>第一周收尾</td></tr><tr><td>5 — 计划就是待办项</td><td><code>peldano-05-pendientes.md</code></td><td>循环</td><td>每个功能块开启时；每次会话</td></tr><tr><td>6 — 决策写在代码旁边</td><td><code>peldano-06-decisiones.md</code></td><td>循环</td><td>每次缺一条规则时</td></tr><tr><td>7 — 作为锁的测试，先证红</td><td><code>peldano-07-tests-en-rojo.md</code></td><td>循环</td><td>每个待办项关闭时</td></tr><tr><td>8 — 生产者/消费者对称性与反模式</td><td><code>peldano-08-simetria-y-antipatrones.md</code></td><td>循环</td><td>每次契约变更时</td></tr><tr><td>9 — 构建之前先测量</td><td><code>peldano-09-medir.md</code></td><td>循环</td><td>在一个数字之上构建之前</td></tr><tr><td>10 — 诚实的验证与相称的报告</td><td><code>peldano-10-verificacion-honesta.md</code></td><td>循环</td><td>每份报告</td></tr><tr><td>11 — 作为计划输入的定期审计</td><td><code>peldano-11-auditoria.md</code></td><td>运维</td><td>生产之前；之后定期</td></tr><tr><td>12 — 失败即关闭、锁与零静默损害</td><td><code>peldano-12-fail-closed.md</code></td><td>运维</td><td>在构建作用于现实世界的功能之前</td></tr><tr><td>13 — 持续集成、环境、密钥与部署</td><td><code>peldano-13-ci-entornos-secretos-deploy.md</code></td><td>运维</td><td>面向生产的收尾；每次部署的例行</td></tr><tr><td>14 — 活的文档与无需 AI 的手册</td><td><code>peldano-14-documentacion-viva.md</code></td><td>运维</td><td>每个功能块收尾时；生产之前完整</td></tr><tr><td>15 — 驻留代理与带数字的复盘</td><td><code>peldano-15-agente-residente-y-retrospectiva.md</code></td><td>运维与收尾</td><td>进入运维时；每个阶段收尾时</td></tr><tr><td>16 — 完整的可观测性与可追溯性，级别可配置</td><td><code>peldano-16-observabilidad-y-trazabilidad.md</code></td><td>运维质量</td><td>上线生产，第 13 级之后、第 19 级之前</td></tr><tr><td>17 — 持久化层的优化</td><td><code>peldano-17-persistencia.md</code></td><td>运维质量</td><td>上线生产，第 16 级之后、第 19 级之前；每当一条查询超出范围时重复</td></tr><tr><td>18 — 漏洞的扫描与解决</td><td><code>peldano-18-vulnerabilidades.md</code></td><td>运维质量</td><td>第一次部署之前；之后，每次 push 和每周</td></tr><tr><td>19 — 性能测试与断裂点</td><td><code>peldano-19-rendimiento-y-punto-de-ruptura.md</code></td><td>运维质量</td><td>第一次部署之前；每次会改变架构、持久化或某条关键流程的部署之前</td></tr><tr><td>20 — 资源与性能的监控，周期报告</td><td><code>peldano-20-monitoreo-de-recursos-y-rendimiento.md</code></td><td>运维质量</td><td>第一次部署的那一周；之后自己跑，按周期阅读</td></tr><tr><td>21 — 错误监控，周期报告</td><td><code>peldano-21-monitoreo-de-errores.md</code></td><td>运维质量</td><td>第一次部署的那一周，和第 20 级一起</td></tr></tbody></table></div>
-<p>阶段：<strong>启动</strong>每个项目登一次；<strong>循环</strong>每次变更都重复；<strong>运维</strong>在系统已上线之后。第 15 级回到第 0 级，为下一个项目做准备。完整的时间线，包括台阶与台阶之间发生的事，在主文档的 B 部分。</p>
+<p>它们是根据我在三个如今正在生产中的系统里做过的事写成的，我还没有按原样执行过。第一个从头到尾使用它们的项目会修正其中若干条；那是第 23 级台阶的一部分。当一份契约引用真实案例时，用 <code>[Ref. N]</code> 标记链接到<a href="REFERENCIAS.html">参考资料文档</a>；流程保持干净，细节一点即达。</p>
+<div class="tw"><table><thead><tr><th>台阶</th><th>文件</th><th>阶段</th><th>时机</th></tr></thead><tbody><tr><td>0 — 这个项目能这样做吗？</td><td><code>peldano-00-elegibilidad.md</code></td><td>启动</td><td>先于一切</td></tr><tr><td>1 — 协作契约</td><td><code>peldano-01-contrato-de-convivencia.md</code></td><td>启动</td><td>适格性之后</td></tr><tr><td>2 — 项目定义与必读</td><td><code>peldano-02-definicion-y-lectura.md</code></td><td>启动</td><td>契约之后；始终维护</td></tr><tr><td>3 — 在架构之前先做容量估算</td><td><code>peldano-03-dimensionar.md</code></td><td>启动</td><td>定义之后，骨架之前</td></tr><tr><td>4 — 带闸门的骨架</td><td><code>peldano-04-esqueleto.md</code></td><td>启动</td><td>启动阶段收尾</td></tr><tr><td>5 — 计划就是待办项</td><td><code>peldano-05-pendientes.md</code></td><td>循环</td><td>每个功能块开启时；每次会话</td></tr><tr><td>6 — 决策写在代码旁边</td><td><code>peldano-06-decisiones.md</code></td><td>循环</td><td>每次缺一条规则时</td></tr><tr><td>7 — 构建之前先测量</td><td><code>peldano-07-medir.md</code></td><td>循环</td><td>在一个数字之上构建之前</td></tr><tr><td>8 — 作为锁的测试，先证红</td><td><code>peldano-08-tests-en-rojo.md</code></td><td>循环</td><td>每个待办项关闭时</td></tr><tr><td>9 — 由机器验证的代码质量</td><td><code>peldano-09-calidad-de-codigo.md</code></td><td>循环</td><td>开启第一个功能块时搭建；每次提交时运行</td></tr><tr><td>10 — 人工测试用例和功能一起写</td><td><code>peldano-10-casos-de-prueba-manual.md</code></td><td>循环</td><td>每个待办项；人工执行在每个功能块收尾时、验收时和每次部署之后</td></tr><tr><td>11 — 生产者/消费者对称性与反模式</td><td><code>peldano-11-simetria-y-antipatrones.md</code></td><td>循环</td><td>每次契约变更时</td></tr><tr><td>12 — 诚实的验证与相称的报告</td><td><code>peldano-12-verificacion-honesta.md</code></td><td>循环</td><td>每份报告</td></tr><tr><td>13 — 作为计划输入的定期审计</td><td><code>peldano-13-auditoria.md</code></td><td>上线生产</td><td>生产之前；之后定期</td></tr><tr><td>14 — 失败即关闭、锁与零静默损害</td><td><code>peldano-14-fail-closed.md</code></td><td>上线生产</td><td>在构建作用于现实世界的功能之前</td></tr><tr><td>15 — 持续集成、环境、密钥与部署</td><td><code>peldano-15-ci-entornos-secretos-deploy.md</code></td><td>上线生产</td><td>面向生产的收尾；每次部署的例行</td></tr><tr><td>16 — 完整的可观测性与可追溯性，级别可配置</td><td><code>peldano-16-observabilidad-y-trazabilidad.md</code></td><td>上线生产</td><td>上线生产，第 15 级之后、第 19 级之前</td></tr><tr><td>17 — 持久化层的优化</td><td><code>peldano-17-persistencia.md</code></td><td>上线生产</td><td>上线生产，第 16 级之后、第 19 级之前；每当一条查询超出范围时重复</td></tr><tr><td>18 — 漏洞的扫描与解决</td><td><code>peldano-18-vulnerabilidades.md</code></td><td>上线生产</td><td>第一次部署之前；之后，每次 push 和每周</td></tr><tr><td>19 — 性能测试与断裂点</td><td><code>peldano-19-rendimiento-y-punto-de-ruptura.md</code></td><td>上线生产</td><td>第一次部署之前；每次会改变架构、持久化或某条关键流程的部署之前</td></tr><tr><td>20 — 活的文档与无需 AI 的手册</td><td><code>peldano-20-documentacion-viva.md</code></td><td>上线生产</td><td>每个功能块收尾时；生产之前完整</td></tr><tr><td>21 — 资源与性能的监控，周期报告</td><td><code>peldano-21-monitoreo-de-recursos-y-rendimiento.md</code></td><td>运维</td><td>随第一次部署；之后自己跑，按周期阅读</td></tr><tr><td>22 — 错误监控，周期报告</td><td><code>peldano-22-monitoreo-de-errores.md</code></td><td>运维</td><td>随第一次部署，和第 21 级一起</td></tr><tr><td>23 — 驻留代理与带数字的复盘</td><td><code>peldano-23-agente-residente-y-retrospectiva.md</code></td><td>运维</td><td>进入运维时；每个阶段收尾时</td></tr></tbody></table></div>
+<p>阶段：<strong>启动</strong>每个项目登一次；<strong>循环</strong>每次变更都重复；<strong>运维</strong>在系统已上线之后。第 23 级回到第 0 级，为下一个项目做准备。完整的时间线，包括台阶与台阶之间发生的事，在主文档的 B 部分。</p>
 <hr>
 </section><section>
 <h2 id="0">步骤 0 — 这个项目能这样做吗？（台阶契约）</h2>
-<p><strong>阶段：</strong> 启动。 <strong>时机：</strong> 只做一次，在第一周，在打开仓库之前，先于其他一切。一个小时的工作。 <strong>形式：</strong> 对话：代理评估并提问；你决定。 <strong>规模：</strong> 所有项目必需，再小也是。花一个小时；省下几个月。 <strong>状态：</strong> 排他性准则 X1 和 X2 已经定稿；加权准则（D1 到 D10）我还在校准，标为假设。</p>
+<p><strong>阶段：</strong> 启动。 <strong>时机：</strong> 只做一次，在打开仓库之前，先于其他一切。 <strong>形式：</strong> 对话：代理评估并提问；你决定。 <strong>规模：</strong> 所有项目必需，再小也是。 <strong>状态：</strong> 排他性准则 X1 和 X2 已经定稿；加权准则（D1 到 D10）我还在校准，标为假设。</p>
 <h3 id="">用途</h3>
 <p>别进入一个方法无法运作的项目。如果代理没法自己端到端地验证自己，或者没有一个能做决定的领域所有者，方法就退化为"用 AI 编程"，而你最终会去读代码。这级台阶是入口：只跨一次，如果跨不过去，早知道比晚知道好。</p>
 <p>还有一个底层的想法，我希望你心里清楚：<strong>方法不是对任何项目都适用，而这不是缺陷</strong>。一个承诺对一切都适用的方法什么也没说。这级台阶做的是把边界写下来，让进或不进成为一个决定而不是一个希望。两条排他性准则来自我拒绝过的项目，而不是我接受过的 <a class="ref" href="REFERENCIAS.html#ref-46">Ref. 46</a>。</p>
@@ -100,7 +103,7 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <hr>
 </section><section>
 <h2 id="1">步骤 1 — 协作契约（台阶契约）</h2>
-<p><strong>阶段：</strong> 启动。 <strong>时机：</strong> 只做一次，在第一周，紧接着适格性之后；当一次教训要求时再修订。半小时。 <strong>形式：</strong> 一次发送，加上你的一轮调整。 <strong>规模：</strong> 所有项目必需。这是所有台阶里最便宜的一级，也是避免最多挫败的一级。</p>
+<p><strong>阶段：</strong> 启动。 <strong>时机：</strong> 只做一次，紧接着适格性之后；当一次教训要求时再修订。 <strong>形式：</strong> 一次发送，加上你的一轮调整。 <strong>规模：</strong> 所有项目必需。这是所有台阶里最便宜的一级，也是避免最多挫败的一级。</p>
 <h3 id="">用途</h3>
 <p>在第一行代码之前，把你和代理将如何工作写下来。看起来像走形式，其实不是：它避免代理通过扩大范围来"帮忙"、把债务留到以后、或者把它以为做了的事报告为已完成。在我的工具里这个文件叫 <code>SQ.md</code>（质量标准）；名字不重要，内容重要。</p>
 <p>这样想：代理是一个新同事，每天早上到来时不记得昨天。契约是你第一天对它说的话，也是它每天要重读的话。如果你不写下来，你每次都得再说一遍，而且每次说得都不一样。我第一次写它，是在每次会话重复同样的话两周之后 <a class="ref" href="REFERENCIAS.html#ref-1">Ref. 1</a>，而我写进去的没有一条在系统工程里是新的；新的是必须把它写给一个没有记忆的人。</p>
@@ -131,7 +134,7 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <hr>
 </section><section>
 <h2 id="2">步骤 2 — 项目定义、语义树与必读（台阶契约）</h2>
-<p><strong>阶段：</strong> 启动。 <strong>时机：</strong> 写一次，在第一周，契约之后；语义树和活状态在整个项目期间保持更新，随每个功能块和每个新决策。 <strong>形式：</strong> 对话：代理起草，问缺的，你纠正。 <strong>规模：</strong> 所有项目必需。在小项目里，项目文件可以是五十行，语义树二十个节点；它们不能做的是不存在。</p>
+<p><strong>阶段：</strong> 启动。 <strong>时机：</strong> 写一次，契约之后；语义树和活状态在整个项目期间保持更新，随每个功能块和每个新决策。 <strong>形式：</strong> 对话：代理起草，问缺的，你纠正。 <strong>规模：</strong> 所有项目必需。在小项目里，项目文件可以是五十行，语义树二十个节点；它们不能做的是不存在。</p>
 <h3 id="">用途</h3>
 <p>代理的每次会话都从零开始：它不记得昨天。给它一张地图，短的，告诉它项目是什么、处于什么状态、已经做了哪些决定，并强制它在动任何东西之前读。它避免的故障有两个：因为没读地图而白做的工作 <a class="ref" href="REFERENCIAS.html#ref-9">Ref. 9</a>，以及长到没法读的地图 <a class="ref" href="REFERENCIAS.html#ref-41">Ref. 41</a>。实用规则：<strong>项目文件是纲领，不是历史</strong>。发生过的事放别处。</p>
 <p>地图有两块，第二块干的活最多。第一块是项目文件：系统是什么，为谁，它<strong>不是</strong>什么，已做的决定。第二块是<strong>语义树</strong>：系统被分解成一棵树，有各个领域，每个领域下面是它的参与者、它的流程（用例）、它的实体及其状态、它的界面和它的集成；每个节点下挂着触及它的待办项和决策。这棵树来自你用需求工程的经典方法（访谈、用例、领域模型）做的调研，由代理构建，由你纠正，它给模型提供它将要触及的那个节点的精确上下文，而不必读整个项目。它也是让你不读代码就能验证代理理解的系统就是业务要的那个系统的东西。</p>
@@ -160,7 +163,7 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <hr>
 </section><section>
 <h2 id="3">步骤 3 — 在设计架构之前先做容量估算（台阶契约）</h2>
-<p><strong>阶段：</strong> 启动。 <strong>时机：</strong> 一次，在第一周，定义之后、搭骨架之前；业务规模变化时重做。 <strong>形式：</strong> 对话：代理计算并呈现选项；你选择。 <strong>规模：</strong> 始终必需，但按比例：在小项目里，容量估算可以是半页和一个决定（"SQLite 能撑好几年"）。它不能做的是不做，因为"会长多大？"这个问题花五分钟，而错误的答案花几周。</p>
+<p><strong>阶段：</strong> 启动。 <strong>时机：</strong> 一次，定义之后、搭骨架之前；业务规模变化时重做。 <strong>形式：</strong> 对话：代理计算并呈现选项；你选择。 <strong>规模：</strong> 始终必需，但按比例：在小项目里，容量估算可以是半页和一个决定（"SQLite 能撑好几年"）。它不能做的是不做，因为"会长多大？"这个问题花五分钟，而错误的答案花几周。</p>
 <h3 id="">用途</h3>
 <p>用数字而不是凭喜好来做结构性决定——用哪个数据库引擎、接口是同步还是异步、多大并发。这是跳过代价最大的一级台阶，我说这话有切身体会：在我的一个系统里，我用 JSON 文件起步，等到测量时发现它每年会产生 340 万行；之后改接口花了整整一个重构阶段 <a class="ref" href="REFERENCIAS.html#ref-15">Ref. 15</a>。</p>
 <p>有一个关键点值得你记住：<strong>有些数据只有业务才有</strong>（多少实体、每个实体多少事件、峰值时多少操作员、要保留多久），模型推断不出来。它能推断的是派生出来的东西。所以提示词要求它评估原始数据是否完整，并索要缺的，而不是一脸笃定地估计它们。知道自己缺什么才能计算的是模型，不是一张表单。</p>
@@ -191,9 +194,9 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <hr>
 </section><section>
 <h2 id="4">步骤 4 — 带闸门的骨架（台阶契约）</h2>
-<p><strong>阶段：</strong> 启动。 <strong>时机：</strong> 一次，在第一周收尾时，容量估算之后、任何功能之前。全部初始基础设施和集成与部署链就是在这里做的。 <strong>形式：</strong> 一次长发送，最后由你目视批准。 <strong>规模：</strong> 所有将有用户的项目必需。在一个用完即弃的原型里可以跳过；但如果原型活了下来（它们总是活下来），这级台阶是第一件要补的。</p>
+<p><strong>阶段：</strong> 启动。 <strong>时机：</strong> 一次，在启动阶段收尾时，容量估算之后、任何功能之前。全部初始基础设施和集成与部署链就是在这里做的。 <strong>形式：</strong> 一次长发送，最后由你目视批准。 <strong>规模：</strong> 所有将有用户的项目必需。在一个用完即弃的原型里可以跳过；但如果原型活了下来（它们总是活下来），这级台阶是第一件要补的。</p>
 <h3 id="">用途</h3>
-<p>让系统在拥有功能之前，先以<strong>空</strong>的状态启动、测试和部署。到最后才发现部署是极其昂贵的：在我的一个系统里，部署在启动一个月后才到来，花了连续五个待办项 <a class="ref" href="REFERENCIAS.html#ref-32">Ref. 32</a>。如果骨架在第一周就部署，那些教训会在零功能的情况下发生。</p>
+<p>让系统在拥有功能之前，先以<strong>空</strong>的状态启动、测试和部署。到最后才发现部署是极其昂贵的：在我的一个系统里，部署在启动一个月后才到来，花了连续五个待办项 <a class="ref" href="REFERENCIAS.html#ref-32">Ref. 32</a>。如果骨架在启动阶段就部署，那些教训会在零功能的情况下发生。</p>
 <p>背后的总体想法：<strong>通往生产的路是产品的一部分</strong>，不是最后的手续。一个在程序员机器上能跑、却没法部署的系统不是系统；是演示。而知道这条路能走通的唯一方法，是在还没有东西可失去的时候走一遍。所以在这级台阶里要搭起循环阶段之后会用到的一切：有结构的仓库、测试环境、每次 push 都运行测试套件的持续集成，以及到测试环境的自动部署。</p>
 <h3 id="1">1. 所需上下文</h3>
 <p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
@@ -231,10 +234,10 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <h3 id="2">2. 提示词</h3>
 <p><strong>开启一个功能块：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
-<ul><li>客户对这个功能块的请求，用散文写下来，就像他本人会说的那样，带着他的含糊。写在 <code>docs/INITIAL_SURVEY.md</code> 里以功能块命名的一个标题下，或者写在自己的文件里（比如 <code>docs/blocks/BLOCK_01_REQUEST.md</code>）；提示词说的是 "the client's request for this block"，没有给路径，所以要在聊天里告诉它在哪儿。如果你在需求摄入时写了用例或用户故事，就放在那里：它们是功能块的天然单位。如果所有者给了你一个优先级，也写上。不要由你去"改善"它：那些含糊正是代理应该来问的东西。</li><li><code>docs/SEMANTIC_TREE.md</code>（第 2 级台阶），保持最新：每个待办项都会挂在那里的一个节点上。</li><li><code>PROJECT.md</code> 和 <code>docs/STATUS.md</code>（第 2 级台阶），保持最新。</li><li>如果做过审计（第 11 级台阶）或人工测试（上一个功能块收尾时的人工查看）：它们的发现，放在 <code>docs/AUDIT_[日期].md</code> 里或记在活状态里，因为它们是这个功能块的候选待办项。</li><li>最低可接受状态：功能块的请求用客户的话写下来了，而且树里有这个功能块的节点，或者请求本身能看出缺的是哪些。</li></ul>
+<ul><li>客户对这个功能块的请求，用散文写下来，就像他本人会说的那样，带着他的含糊。写在 <code>docs/INITIAL_SURVEY.md</code> 里以功能块命名的一个标题下，或者写在自己的文件里（比如 <code>docs/blocks/BLOCK_01_REQUEST.md</code>）；提示词说的是 "the client's request for this block"，没有给路径，所以要在聊天里告诉它在哪儿。如果你在需求摄入时写了用例或用户故事，就放在那里：它们是功能块的天然单位。如果所有者给了你一个优先级，也写上。不要由你去"改善"它：那些含糊正是代理应该来问的东西。</li><li><code>docs/SEMANTIC_TREE.md</code>（第 2 级台阶），保持最新：每个待办项都会挂在那里的一个节点上。</li><li><code>PROJECT.md</code> 和 <code>docs/STATUS.md</code>（第 2 级台阶），保持最新。</li><li>如果做过审计（第 13 级台阶）或人工测试（上一个功能块收尾时的人工查看）：它们的发现，放在 <code>docs/AUDIT_[日期].md</code> 里或记在活状态里，因为它们是这个功能块的候选待办项。</li><li>最低可接受状态：功能块的请求用客户的话写下来了，而且树里有这个功能块的节点，或者请求本身能看出缺的是哪些。</li></ul>
 </div>
 <div class="pbox"><blockquote class="prompt"><p>We are going to turn everything that must be done in this block into numbered pending items, each one carrying its full specification. Read <code>PROJECT.md</code>, <code>docs/SEMANTIC_TREE.md</code>, the client's request for this block, and whatever is in <code>docs/STATUS.md</code>. If the request is ambiguous on any point such that you cannot write a verifiable pending item for it, ask me; do not resolve it by assuming. Then create or extend <code>docs/PENDING.md</code> with one item per thing to do, each with: number (PND-001 onwards); one-line title; the node of the semantic tree it hangs from; the user story or use case that originates it, in the client's words; the detailed description; the business rules that apply, each with its decision and date, or marked as "rule missing, asked"; the data in and out; the screens affected; the edge cases and exceptions; the acceptance criteria in the form "given, when, then"; how it will be verified as done; and status. If a node the item needs does not exist in the tree, propose it and mark it. Order the items by the priority I gave you; if I gave none, propose an order and tell me why. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要把这个功能块里必须做的一切转成编号的待办项，每一项都带有它的完整规格。读 <code>PROJECT.md</code>、<code>docs/SEMANTIC_TREE.md</code>、客户对这个功能块的请求，以及 <code>docs/STATUS.md</code> 里的内容。如果请求在某一点上含糊到你写不出一个可验证的待办项，问我；不要靠假设来解决。然后创建或扩展 <code>docs/PENDING.md</code>，每件要做的事一项，每项包含：编号（从 PND-001 起）；一行标题；它挂在语义树的哪个节点下；引发它的用户故事或用例，用客户的原话；详细描述；适用的业务规则，每条附决定和日期，或标为"规则缺失，已询问"；进出的数据；受影响的界面；边界情况和例外；"给定、当、那么"形式的验收标准；如何验证它已完成；以及状态。如果某项需要的节点在树里不存在，提议它并标出来。按我给你的优先级排序；如果我没给，提议一个顺序并告诉我为什么。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：把请求转成可验证的条目，并且<strong>当请求不足以写出可验证的条目时提问</strong>（含糊靠提问解决，不靠选择）；每个待办项的完整规格，逐字段，那是经典需求工程分解成小单位；它挂的树节点，那是让你发现超出范围的待办项的东西；业务规则附决定或标为缺失，那是与第 6 级台阶的挂钩；经典形式的验收标准，那是第 7 级台阶端到端测试的脚本；以及一个附理由的建议顺序，由你确认或更改。</p>
+<p>我在要求什么：把请求转成可验证的条目，并且<strong>当请求不足以写出可验证的条目时提问</strong>（含糊靠提问解决，不靠选择）；每个待办项的完整规格，逐字段，那是经典需求工程分解成小单位；它挂的树节点，那是让你发现超出范围的待办项的东西；业务规则附决定或标为缺失，那是与第 6 级台阶的挂钩；经典形式的验收标准，那是第 8 级台阶端到端测试的脚本；以及一个附理由的建议顺序，由你确认或更改。</p>
 <p><strong>每次会话的例行（放进协作契约）：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
 <ul><li><code>docs/PENDING.md</code>，这个功能块已经规格化，而且由你一个待办项一个待办项地读过，像客户一样读，你的修改已经做完（这是这级台阶最重要的任务，也是最容易让人想跳过的那个）。</li><li><code>docs/WORKING_AGREEMENT.md</code>（第 1 级台阶），这条例行要加进去的地方。</li><li>最低可接受状态：没有哪个待办项的规格只有一行。如果有，别开始构建：先让它补完。</li></ul>
@@ -252,7 +255,7 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <hr>
 </section><section>
 <h2 id="6">步骤 6 — 决策写在代码旁边（台阶契约）</h2>
-<p><strong>阶段：</strong> 循环。 <strong>时机：</strong> 循环的每次会话中，每当代理碰到一条没写下的业务规则，或者一个会改变用户所见的分叉。通常每个功能块两三次。也在启动阶段（第 0 和第 3 级台阶）和上线生产阶段（第 12 和第 13 级）。 <strong>形式：</strong> 简短对话：代理察觉有一个决定要做，提问，并把它写下来。 <strong>规模：</strong> 所有项目必需。在小项目里，记录可以是一张十行的表；重要的是业务规则有所有者。</p>
+<p><strong>阶段：</strong> 循环。 <strong>时机：</strong> 循环的每次会话中，每当代理碰到一条没写下的业务规则，或者一个会改变用户所见的分叉。通常每个功能块两三次。也在启动阶段（第 0 和第 3 级台阶）和上线生产阶段（第 14 和第 15 级）。 <strong>形式：</strong> 简短对话：代理察觉有一个决定要做，提问，并把它写下来。 <strong>规模：</strong> 所有项目必需。在小项目里，记录可以是一张十行的表；重要的是业务规则有所有者。</p>
 <h3 id="">用途</h3>
 <p>让每条业务规则和每个结构性决定都有所有者、日期和位置。否则，六周后没人知道"已批准加余额回到队列"是客户的决定还是代理的灵机一动。还要避免最糟的：代理因为觉得合理而发明领域规则。</p>
 <p>这有一个后果我想大声说出来：模型碰到规则里的空缺时，<strong>会把它填上</strong>。它不停下来；它用它觉得最可能的东西补全，而且和写其他东西一样自然。所以这级台阶的例行不是"写下决策"，而是"缺一条时停下来问"。后者是难的，也是必须写进契约里要求的。把规则连同我的原话和日期写进提交的做法，是我在互助会强制推行的 <a class="ref" href="REFERENCIAS.html#ref-29">Ref. 29</a>；在构建之前冻结决策的做法来自我的工具 <a class="ref" href="REFERENCIAS.html#ref-5">Ref. 5</a>。</p>
@@ -280,7 +283,42 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ul><li>过了一周的工作，决策记录没有增长。要么工作纯粹是机械的（罕见），要么代理自己做了决定。</li><li>记录的决定全都用同一种打磨过的风格写成。它们是代理的转述，不是你的话。</li><li>系统的一个用户问"它为什么这样做？"，没人找得到那个决定。</li></ul>
 <hr>
 </section><section>
-<h2 id="7">步骤 7 — 作为锁的测试，先证红（台阶契约）</h2>
+<h2 id="7">步骤 7 — 构建之前先测量，用一把自己也要被验证的量具（台阶契约）</h2>
+<p><strong>阶段：</strong> 循环。 <strong>时机：</strong> 每当一个待办项依赖一个数字或一个原因假设时，在构建<strong>之前</strong>。在启动阶段，容量估算是第一个案例。在小项目里，"测量"就是用一条命令数一数，并把数字连日期记下来。 <strong>形式：</strong> 每次测量一次发送；当假设是你的时，有时是一次对话。 <strong>规模：</strong> 按比例。棘轮和查询预算是给有数据量的系统的。不随规模改变的是：没有一个决定什么的数字出自印象。</p>
+<h3 id="">用途</h3>
+<p>让每个喂给决定的数字都出自一个带测试的程序，而不是文本搜索、印象，或者"我觉得大概一百个"。并让量具本身被审计，因为量具会撒谎：我的一把量具在计数器为零时看不见 84 次调用，另一把说 27 而其实是 44 <a class="ref" href="REFERENCIAS.html#ref-35">Ref. 35</a>、<a class="ref" href="REFERENCIAS.html#ref-36">Ref. 36</a>。我在那之后写下的五条规则是：带守卫的量具；仪器不存在就构建它；双向审计；近似的要标出来；执行者验证规划者的数字。</p>
+<p>这是我最晚形式化的一级台阶，原因值得一说：我以为"动手前先测量"这么基本的工程常识，模型会自己应用。它不会。模型非常善于产出带数字的断言（"那种循环大约有 120 个"），而那些断言在测过和估过的时候听起来一模一样。你没法靠语气分辨。唯一的办法是要求仪器："你用什么测的？给我看命令。"没有命令，那就是印象，不管它有几位小数。这些规则是我在会话中纠正代理时强制推行的，在它们成为教义之前 <a class="ref" href="REFERENCIAS.html#ref-45">Ref. 45</a>。</p>
+<h3 id="1">1. 所需上下文</h3>
+<p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
+<ul><li>假设，你的或代理的："我觉得问题是 X"、"应该有一百来个"。</li><li>对要测量之物的访问权：代码、只读的数据库、日志。</li><li>仓库里已有的量具，如果有。</li></ul>
+<h3 id="2">2. 提示词</h3>
+<p><strong>初始：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
+<ul><li>假设，写成一句话，你的或者取自代理的："我觉得日程表对它显示的每个预约都查一次数据库"、"大概有一百个循环吧"。它填进提示词的 [X] 空里，要测量的量填进另一个空。</li><li>对要测量的东西的访问权：代码（它已经有了）；如果测的是真实数据，数据库的只读权限，连接串放在仓库之外，变量名在聊天里说；日志，连同它的路径。</li><li>仓库里已经存在的量具，如果有的话，把它们的名字说出来，好让代理复用而不是另造一个。</li><li>一个用来测试量具的已知案例：一种你事先就知道答案的情形（"零个预约时，它必须恰好数出那两次基础查询"）。如果你想不出来，让代理提一个，但由你来验证：一把用它自己发明的案例验证过的量具，等于没验证。</li><li>最低可接受状态：假设一句话装得下，而且有一个已知案例可以用来检验这件仪器。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>Before building anything, we are going to measure. The hypothesis is: [X]. Write a meter (a script that lives in the repository) that measures [the quantity], and a test for the meter that checks it against a known case where the answer is known in advance. If measuring requires access or data you lack, ask me; do not approximate silently. If some part can only be approximated, mark it as approximate and tell me the margin. Run the meter, show me the number together with the command that produces it, and audit it in both directions: from the code to the measurement (is everything that should be counted, counted?) and from the measurement to the code (does everything counted actually exist?). Only then propose what to build. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>在构建任何东西之前，我们要先测量。假设是：[X]。写一把量具（一个活在仓库里的脚本）来测量 [那个数量]，再写一个量具的测试，对一个事先知道答案的已知案例检验它。如果测量需要你没有的访问权或数据，问我；不要悄悄近似。如果某部分只能近似，标为近似并告诉我误差范围。运行量具，把数字连同产生它的命令给我看，并双向审计它：从代码到测量（该数的都数了吗？）和从测量到代码（数到的都真的存在吗？）。只有那时才提议要构建什么。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么，逐条：量具<strong>在仓库里</strong>（不是一条会丢的零散命令）；对已知案例的<strong>量具测试</strong> （守卫）；适配测量的完整性条款（索要访问权，不悄悄近似）；把近似的标出来并附误差范围；数字 <strong>连同产生它的命令</strong>，让你能运行；双向审计，那是揭穿我那两把撒谎量具的东西；以及顺序：先测量，再提议。</p>
+<p><strong>当有预算时：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
+<ul><li>测出来的那个数字，是你自己用代理给的命令跑出来的，而且跑出来的结果一样。如果你没跑过，就别在它上面定预算。</li><li>你愿意给的余量，由你决定：比测出来的多一点，不是"以防万一"翻一倍。</li><li>最低可接受状态：量具是你自己跑的。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>Set the budget for [queries / loops / time] on this path at the measured value plus a small margin, and protect it with a test that fails if it is exceeded. Tell me the number and the margin.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>把这条路径上 [查询 / 循环 / 时间] 的预算定在测得的值加一个小余量，并用一个超过就失败的测试保护它。告诉我数字和余量。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：预算是测得的值加一点点，不是一个整数，并且有一个超过就失败的测试。这样一次性能退化会出现在测试套件里，而不是生产里 <a class="ref" href="REFERENCIAS.html#ref-37">Ref. 37</a>。</p>
+<p><strong>当规划者给了数字时（规则五）：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
+<ul><li>代理的一份计划，里面带着数字（"有 121 个循环"、"是 27 次查询"），就摆在对话里。</li><li>测量那个量的量具，已经存在（这级台阶的初始提示词）。如果那个数字没有对应的量具，先发初始提示词，再发这条。</li><li>最低可接受状态：计划里的每个数字，你都知道用哪把量具去核。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>Before executing the plan, verify every number the plan asserts with the meter. If any does not match, stop and tell me; do not execute on a wrong number.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>在执行计划之前，用量具验证计划断言的每一个数字。如果有任何一个不符，停下来告诉我；不要在错误的数字上执行。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：执行者不信任规划者的数字，哪怕是同一个模型在另一次会话里。在我的案例中，计划的四条断言有三条是错的；有仪器的地方，数字是精确的。</p>
+<h3 id="3">3. 预期结果</h3>
+<ul><li>仓库里的量具（<code>tools/measure_*.py</code>、<code>scripts/meter-*.mjs</code> 或类似），附其测试。</li><li>数字，附产生它的命令和日期。</li><li>双向审计，写成两三行。</li><li>近似的标为近似，附误差范围。</li><li>如果有预算：值、余量，以及保护它的测试。</li><li>提交里："measured: [number] with [meter]"。</li></ul>
+<h3 id="4">4. 完整性检验</h3>
+<ul><li>你自己能运行量具的命令并得到同样的数字吗？（你来运行；不需要理解它，只需要执行。）</li><li>量具有测试吗？对哪个已知案例？</li><li>报告里有没有哪个数字背后没有量具？问它从哪里来。</li><li>近似的标出来了吗？</li><li>如果计划带了数字，代理在执行之前验证了它们，并告诉你哪些不符吗？</li></ul>
+<h3 id="5">5. 警报信号</h3>
+<ul><li>一个数字在两份报告之间变了，而代码没变。两份中有一份没测。</li><li>量具得零。几乎从来不是零；几乎总是量具没看见某样东西。</li><li>代理提议"边测边建"以节省时间。顺序就是方法：先数字，后计划。</li></ul>
+<hr>
+</section><section>
+<h2 id="8">步骤 8 — 作为锁的测试，先证红（台阶契约）</h2>
 <p><strong>阶段：</strong> 循环。 <strong>时机：</strong> 每个待办项关闭时：红色和绿色的测试、邻近项的回归，以及所触及流程的端到端测试。全部流程的完整端到端测试套件，在每个功能块收尾时和每次部署到生产之前。 <strong>形式：</strong> 一次发送；代理执行并报告，你读报告。 <strong>规模：</strong> 所有项目必需。这是方法的核心：如果有一级台阶不可协商，就是这一级。</p>
 <h3 id="">用途</h3>
 <p>一个你从没见它失败过的测试，你不知道它是否证明了什么。这里的规则不是"写测试"：而是"证明测试对旧代码变红，然后对新代码变绿"。它避免因为什么都不证明而通过的测试，以及掩盖缺陷的绿色 <a class="ref" href="REFERENCIAS.html#ref-44">Ref. 44</a>。</p>
@@ -316,7 +354,67 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ul><li>这周所有新测试第一次就全绿，从没展示过红色。要么代理省略了步骤，要么测试什么都不证明。</li><li>测试套件越来越慢，没人知道为什么。通常是端到端测试被换成了模拟，"为了跑得快"。</li><li>代理报告"测试通过"而不说多少个。永远要带数字。</li><li>你到了上线生产，完整的端到端套件第一次运行。功能块的收尾被漏掉了。</li></ul>
 <hr>
 </section><section>
-<h2 id="8">步骤 8 — 生产者与消费者之间的对称性，以及反模式记录（台阶契约）</h2>
+<h2 id="9">步骤 9 — 由机器验证的代码质量，带闸门（台阶契约）</h2>
+<p><strong>阶段：</strong> 循环。 <strong>时机：</strong> 搭建一次，在开启第一个功能块时（启动阶段一结束就做），从那时起它在每次提交时自己跑，作为持续集成的闸门；每个待办项都在质量为绿时关闭，在先证红的测试（8）之后、人工测试用例（10）之前。每个功能块收尾时和每次部署之前，质量报告和所有者一起读。在遗留系统里，第一次运行就是基线，发现的东西带着速度标记进待办队列。 <strong>形式：</strong> 搭建时一次发送；之后是每次变更的例行和按功能块的阅读。 <strong>规模：</strong> 所有项目在其最低级别上必需（链条里一个 linter 和一条大小限制）；任何有用户的项目都要完整。</p>
+<h3 id="">用途</h3>
+<p>所有者不读代码，而这正是本方法的要点。但代码是存在的，总得有人维护它（下一个代理，下一个开发者），而一份今天能跑、明天没人看得懂的代码，就是会在第三个月被讨回的债。如果没人读它，<strong>那就得让一台机器来看</strong>：一些工具，在每次提交时测量一个人类评审会看的东西，并把它变成一个带限制的数字。我在我所有项目里都这么做过，只是没把它命名为一级台阶；而一次质量审计给我退回了一个两千多行的组件和一个将近一万行的项目文件 <a class="ref" href="REFERENCIAS.html#ref-41">Ref. 41</a>：这两个都过不了一条写下来的大小限制。静态棘轮——它不让某个质量数字变差 <a class="ref" href="REFERENCIAS.html#ref-35">Ref. 35</a>——就是我给这级台阶的形式。</p>
+<p>由机器测量的东西，按重要性排序：代码遵守唯一的风格（*linter* 和*格式化工具*）；没有任何函数、没有任何文件超过一个大小；每个函数的*复杂度*保持在一个限制之下；没有重复代码也没有死代码；依赖都已声明且在使用；测试的*覆盖率*永远不下降（棘轮）；以及，如果语言允许，类型能对得上。这些没有一样能取代先证红的测试：一份无可挑剔的代码也可能是错的。它避免的是那种正确却再没人能动的代码。</p>
+<p><strong>如果你是初学者。</strong> 一个 <em>linter</em> 是一个读代码并标出哪里写得不对或有危险的程序（一个没用到的变量，一个结果永远一样的比较），就像文字处理软件里的拼写检查。一个*格式化工具*把代码按唯一的风格摆好（缩进、空格），让所有代码看起来像同一只手写的。一个函数的*复杂度*是它能走多少条不同的路径（每一个"如果"都会增加它）；一个有四十条路径的函数谁也看不懂。*重复代码*是同一段被抄到两个地方：哪天修好了一个，另一个还是坏的。*覆盖率*是代码里有多大比例被某个测试执行到。而一个 *棘轮*是一种只许变好的机制：今天的数字就是明天的底线。</p>
+<h3 id="1">1. 所需上下文</h3>
+<p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
+<ul><li>持续集成在每次 push 时都在跑（第 4 级台阶）。</li><li>第一个功能块已经开启，至少有一个待办项已经构建：没有代码就没有质量可测。</li><li>你对那些限制的决定，或者愿意接受代理提议的限制并附上理由。</li><li>之前的审计（13，或遗留系统里的 N3），如果有过。</li></ul>
+<h3 id="2">2. 提示词</h3>
+<p><strong>初始（搭起闸门）：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
+<ul><li>持续集成在每次 push 时都在跑（第 4 级台阶），以及你还剩多少配额：质量检查会给每次运行加上几分钟。</li><li>第一个功能块里至少有一个待办项已经构建并用第 8 级台阶关闭，这样才有真实的代码可测，而不是空的骨架。</li><li>你对两条限制的决定，写成一行：一个文件和一个函数的最大大小（作为起点，三百行和四十行），以及覆盖率是不是只能往上走。其余的由代理提议，你批准。</li><li>在遗留系统里：<code>docs/AUDIT_[日期].md</code>（N3），好让代理不报告已知的东西，并让第一次运行成为基线。</li><li>最低可接受状态：链条在跑，有一个已关闭待办项的代码，而且你写下了那两条限制。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>We are going to make the code quality verified by machine, because nobody is going to read the code. Set up, in continuous integration, on every push: (1) a linter and a formatter with one configuration for the whole repository, failing the build on any violation; (2) limits on the size of every file and every function ([file lines] and [function lines]) and on the complexity of every function, failing the build when exceeded; (3) detection of duplicated code and of dead code (unused functions, variables, imports, dependencies); (4) a test coverage report with a ratchet: the measured coverage of today becomes the floor, and the build fails if it drops; (5) type checking if the language allows it. Run all of it now on the current code and write <code>docs/CODE_QUALITY.md</code> with: the tools, the configuration, every limit with its current measured value, and the list of what fails today with where it is. Do not fix anything yet: what fails today becomes pending items, and I decide which limits apply now and which are raised with a date. Make the whole set a gate in <code>docs/GATES.md</code>: nothing is merged with quality red. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要让代码质量由机器来验证，因为没有人会去读代码。请在持续集成里、在每次 push 时搭起： (1) 一个 linter 和一个格式化工具，整个仓库只用一份配置，任何违规都让构建失败；(2) 对每个文件和每个函数的大小（[每文件行数] 和 [每函数行数]）以及每个函数的复杂度设限制，超过就让构建失败；(3) 重复代码和死代码（没用到的函数、变量、导入和依赖）的检测；(4) 一份带棘轮的测试覆盖率报告：今天测得的覆盖率成为底线，一旦下降构建就失败；(5) 如果语言允许，做类型检查。现在就把这一切在当前代码上跑一遍，并写出 <code>docs/CODE_QUALITY.md</code>，内容包括：工具、配置、每条限制及其当前实测值，以及今天哪些没通过、它们在哪里的清单。先什么都不要修：今天没通过的东西会变成待办项，而哪些限制现在就生效、哪些带日期再提高，由我来决定。把这一整套做成 <code>docs/GATES.md</code> 里的一道闸门：质量为红时什么都不合并。用我的语言回答。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：一个人类评审会做的那五项检查，由机器来做，并且以构建变红作为后果，因为一项不拦路的检查只是一条建议；限制带着它的实测值，这样限制出自数字而不是出自一种看法；覆盖率的棘轮，那是让质量不会自己退化的那块零件；以及<strong>先什么都不要修</strong>，因为在一个已经写了代码的系统里，第一次运行永远是红的，而哪些现在修、哪些带日期容忍，是我的决定。</p>
+<p><strong>例行（放进协作契约）：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
+<ul><li><code>docs/CODE_QUALITY.md</code> 你自己读过：每一条限制你都懂它是什么、为什么在那里吗？</li><li>你对"今天哪些没通过"那份清单的决定：哪些现在就修（每条一个待办项），哪些带日期容忍，写在同一个文件里。</li><li><code>docs/WORKING_AGREEMENT.md</code>，这条例行要加进去的地方。</li><li>最低可接受状态：闸门是绿的，或者每一处红都有待办项或日期。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>Every pending item is closed with the quality gate green: linter, formatter, size and complexity limits, no new duplication, no dead code, coverage at or above the ratchet. A quality failure is fixed in the same commit, never silenced with an exception, and a limit is never raised to pass; if a limit must change, say so with the reason and I decide. At the close of every block, show me <code>docs/CODE_QUALITY.md</code> with the numbers of the block against the previous one.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>每个待办项都在质量闸门为绿时关闭：linter、格式化工具、大小和复杂度限制、没有新的重复、没有死代码、覆盖率等于或高于棘轮。一处质量失败在同一次提交中修好，绝不用例外把它消音，也绝不为了通过而提高某条限制；如果某条限制必须改，说出来并给出理由，由我决定。每个功能块收尾时，给我看 <code>docs/CODE_QUALITY.md</code>，用本块的数字对比上一块。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：质量成为每个待办项收尾的一部分，而不是一件另外的任务；禁止消音（一个模型面对红色的 linter 时，倾向于加上例外而不是去修，因为那样更快）和禁止把限制调高；以及按功能块的阅读，那是你唯一会去看这些数字的时刻。</p>
+<h3 id="3">3. 预期结果</h3>
+<ul><li>linter、格式化工具、各项限制、重复和死代码的检测、带棘轮的覆盖率以及类型，在每次 push 时运行，该红的时候就红。</li><li><code>docs/CODE_QUALITY.md</code>，里面有工具、配置、带实测值的限制，以及没通过的东西连同它的待办项或它的日期的清单。</li><li><code>docs/GATES.md</code> 里的闸门，以及写进契约的例行。</li></ul>
+<h3 id="4">4. 完整性检验（由你来做，不读代码）</h3>
+<ul><li>向它要链条最后一次运行的链接：质量是绿的吗？</li><li>让它在一个分支上故意塞进一个一百行的函数和一个没用到的变量：链条会因为这两件事都变红吗？</li><li>今天的覆盖率是不是大于或等于上一个功能块收尾时的？把两个数字都要过来。</li><li>代码里有没有任何对 linter 的例外？向它要清单；每一条都必须有写下来的理由。</li><li>从第一次运行以来有没有哪条限制被调高过？理由是什么，谁决定的？</li></ul>
+<h3 id="5">5. 警报信号</h3>
+<ul><li>质量在已经写好的代码上第一次就过了绿。这几乎从来不是真的：限制太松了。</li><li>代理提议"把这条规则关掉，因为它太严格了"。有时候它是对的；但永远要经过你，并附上写下来的理由。</li><li>覆盖率上升是因为加了一些什么都不证明的测试（藏起一个缺陷的那种绿，第 8 级台阶）。棘轮量的是数量；展示出来的红量的是质量。两者要一起走。</li><li>一个文件长到了限制，于是被拆成两个内容相同的文件。那是伪装成合规的重复。</li></ul>
+<hr>
+</section><section>
+<h2 id="10">步骤 10 — 人工测试用例和功能一起写，并且由人来执行（台阶契约）</h2>
+<p><strong>阶段：</strong> 循环。 <strong>时机：</strong> 每个待办项关闭时，在先证红的测试（8）和质量（9）之后：代理写出它所触及流程的人工测试用例。由人在三个时刻执行：每个功能块收尾时（人工测试）、第一次部署到生产之前（和所有者一起做的验收测试），以及每次部署之后，做一轮只读的检查。每一次失败的执行都把一条需求以纠正型待办项的形式重新注入循环。 <strong>形式：</strong> 每个待办项的例行；之后是按周期的人工执行。 <strong>规模：</strong> 所有有用户的项目必需：人工测试用例是唯一既不由模型来写、也不由模型来跑的测试。</p>
+<h3 id="">用途</h3>
+<p>本方法的自动测试已经够多了：先证红的测试、回归、三种量级上的端到端。全都是模型写的、模型跑的，而且全都在检验模型理解到的东西。还缺一种测试：一个人用自己的眼睛和自己的手，照着一份写下来的脚本去做，并且找出任何测试都找不出的东西：放错位置的按钮、看不懂的提示、技术上能跑而在人看来没用的流程。人工查看和人工测试本来就在时间线里；缺的是让它们有<strong>脚本</strong>，而且这份脚本由构建了那个功能的同一个人、在同一个时刻、根据待办项的验收标准写出来。没有脚本，人工测试就是"拿系统玩一会儿"，找到什么取决于那天的心情。有脚本，它每次都一样地执行，发生了什么会被记录下来，而没通过的东西作为需求回到循环里。这就是过程图所展示的那个回路的闭合：人工测试用例的执行把需求重新注入开发。</p>
+<p>一个人工测试用例永远是同一个形状：一个标识符；产生它的那个待办项；前置条件（开始之前必须存在什么：一个患者、一个昨天的预约）；编号的步骤，每一步写这个人做什么、必须看到什么；最后的预期结果，包括一个人能够验证的后端效果（出现的一条记录、假收件箱里的一条消息）；要用的测试数据；以及留给每一次执行结果的空位：日期、谁、通过还是失败、备注。</p>
+<p><strong>如果你是初学者。</strong> 一个*人工测试用例*是一份让人去测某个功能的食谱：要准备什么，一步一步做什么，每一步应该发生什么。它写出来是为了让任何人都能照样做一遍，不需要知道系统是怎么造的。 *执行*一个用例就是照着食谱做，并记下它通过还是失败。*前置条件*是开始之前必须存在的东西。而* 重新注入*的意思是，这个人发现的毛病会作为一条新的请求、用他自己的话，回到待办项清单里。</p>
+<h3 id="1">1. 所需上下文</h3>
+<p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
+<ul><li>正在关闭的那个待办项，附它"给定、当、那么"形式的验收标准（第 5 级台阶）：它们是用例的原料。</li><li>带数据的测试环境，好让那些步骤真的走得通。</li><li>谁来执行这些用例（所有者、一个信得过的用户），以及什么时候执行（功能块收尾、验收、每次部署之后）。</li></ul>
+<h3 id="2">2. 提示词</h3>
+<p><strong>每个待办项的例行（放进协作契约）：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
+<ul><li>那个待办项连同它的验收标准在 <code>docs/PENDING.md</code> 里（第 5 级台阶），已经构建好，而且先证红的测试和质量都已就绪（第 8 和 9 级台阶）。</li><li><code>docs/MANUAL_TESTS.md</code> 已创建，哪怕是空的，在开头写好用例的格式：标识符、待办项、前置条件、步骤（动作和可见结果）、包含一个人可验证的后端效果的预期结果、测试数据，以及执行表（日期、谁、通过还是失败、备注）。</li><li>谁执行、什么时候执行的决定，写在 <code>PROJECT.md</code> 或契约里：对一个小项目来说，就是所有者在每个功能块收尾时和第一次部署之前。</li><li><code>docs/WORKING_AGREEMENT.md</code>，这条例行要加进去的地方。</li><li>最低可接受状态：文件带着它的格式已经存在，而且待办项有验收标准。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>Every pending item that changes what a user sees or does is closed with its manual test cases written in <code>docs/MANUAL_TESTS.md</code>, derived from its acceptance criteria: one case per flow the item touches, with an id, the pending item, the precondition, the numbered steps (what the person does and what they must see), the expected result including a backend effect a person can verify without tools, the test data to use, and an empty execution table (date, who, passed or failed, observation). Write them for a person who does not know how the system is built. Keep the cases of closed items up to date: when a flow changes, its cases change in the same commit. Never mark a case as executed yourself: execution is human.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>每个会改变用户所见或所做之事的待办项，都要在它的人工测试用例写进 <code>docs/MANUAL_TESTS.md</code> 之后才算关闭，用例由它的验收标准推导出来：待办项触及的每条流程一个用例，带一个标识符、那个待办项、前置条件、编号的步骤（这个人做什么、必须看到什么）、预期结果（包括一个人不用工具就能验证的后端效果）、要用的测试数据，以及一张空的执行表（日期、谁、通过还是失败、备注）。写给一个不知道系统是怎么造的人看。把已关闭待办项的用例保持更新：当一条流程变了，它的用例在同一次提交中跟着变。绝不要自己把一个用例标为已执行：执行是人做的。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：用例出自验收标准（这样它检验的是被要求的东西，而不是模型理解到的东西）；它写给一个不知道系统怎么运转的人看，那正是一个测试用例和一份技术笔记之间的差别；它包含一个人能验证的后端效果，好让人工测试也看一眼屏幕的另一边；用例在同一次提交中保持更新，和文档一样；以及 <strong>模型绝不执行它们</strong>，因为由模型执行的用例不过是又一个测试，而要点恰恰在于由一个人来执行。</p>
+<p><strong>用于一次执行（功能块收尾、验收、一次部署之后）：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
+<ul><li>执行已经做完：一个人在测试环境里（或者在一次部署之后，在生产上以只读方式）照着 <code>docs/MANUAL_TESTS.md</code> 的用例走了一遍，并在每个用例的表里记下了日期、谁、通过还是失败，以及备注。这件事由那个人亲手做，在贴提示词之前；代理不做这件事。</li><li>那些塞不进任何用例的零散观察（什么让人别扭、什么看不懂），带日期记在文件末尾。</li><li>最低可接受状态：范围内所有用例都有今天的结果，哪怕是"没能执行"并附上理由。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>Read the executions of today in <code>docs/MANUAL_TESTS.md</code>. For every case that failed, and for every loose observation at the end of the file, open a corrective pending item in <code>docs/PENDING.md</code> with the person's words as the way to reproduce it, hanging from the node of the semantic tree it touches; do not fix anything now. For every case that passed, nothing. Then tell me, flow by flow, how many cases passed and how many failed, compared with the previous execution, and which failures repeat. If a case could not be executed, tell me why and whether the case or the system is the problem. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>读 <code>docs/MANUAL_TESTS.md</code> 里今天的那些执行。对每一个失败的用例，以及文件末尾每一条零散观察，在 <code>docs/PENDING.md</code> 里开一个纠正型待办项，用那个人的原话作为复现方式，挂在它所触及的语义树节点下；现在什么都不要修。对每一个通过的用例，什么都不做。然后逐条流程告诉我，多少个用例通过、多少个失败，和上一次执行作对比，以及哪些失败在重复出现。如果某个用例没能执行，告诉我为什么，以及问题出在用例身上还是系统身上。用我的语言回答。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：把重新注入做成可操作的：每一次人为发现的失败都是一个纠正型待办项，用那个人的话（不是模型的话）作为复现，并挂在树上；和上一次执行的对比，那是告诉你系统在功能块之间是在变好还是在退化的东西；以及"用例写错了"和"系统坏了"这两者的区分，它们是两个不同的待办项。</p>
+<h3 id="3">3. 预期结果</h3>
+<ul><li><code>docs/MANUAL_TESTS.md</code>，每个已关闭待办项所触及的每条流程都有一个用例，按那个格式，写给一个人看。</li><li>每个周期都有记录在案的执行，带日期和执行人。</li><li>每一处失败、每一条观察都有一个纠正型待办项。</li><li>写进契约的例行。</li></ul>
+<h3 id="4">4. 完整性检验（由你来做，不读代码）</h3>
+<ul><li>随便挑一个用例，你自己在测试环境里走一遍，什么都不要问代理：走得通吗？如果你不得不开口问，那这个用例就不是写给人看的。</li><li>每个触及界面的已关闭待办项都有它的用例吗？向它要没有用例的待办项清单。</li><li>用例有没有说要在屏幕的另一边验证什么效果，以及一个人怎么验证它？</li><li>最后一次执行在每个用例里都有日期和名字吗？有没有哪个"通过"是没有日期的？</li><li>最后一次执行里的每一处失败都有它的待办项吗，而且带着那个人的原话吗？</li></ul>
+<h3 id="5">5. 警报信号</h3>
+<ul><li>代理把那些用例标成了已执行。是它执行的，那和没执行是一回事。</li><li>用例是把自动测试用散文抄了一遍。人工用例必须看测试看不到的东西：看得见的、看得懂的、让人别扭的。</li><li>每一次执行里所有用例都通过。人总是能找到东西的；如果什么都没找到，那就是没在照脚本走，或者脚本没要求去看。</li><li>失败"当场就修了"，没有待办项。那个人的原话丢了，什么在重复出现的痕迹也丢了。</li></ul>
+<hr>
+</section><section>
+<h2 id="11">步骤 11 — 生产者与消费者之间的对称性，以及反模式记录（台阶契约）</h2>
 <p><strong>阶段：</strong> 循环。 <strong>时机：</strong> 每个触及系统两部分之间契约的待办项。契约地图在开启第二个功能块时构建，那时已经有了界面和服务器。反模式记录在每次有东西第二次坏掉时增长。 <strong>形式：</strong> 循环内自动；加上一个随每次教训增长的文件。 <strong>规模：</strong> 对称性始终必需；生产者/消费者地图在单模块项目里可选，一旦有了分开的界面和服务器就必需。</p>
 <h3 id="">用途</h3>
 <p>当你改动一端（服务器、机器人、数据库模式）时，让另一端（界面、计数器、消费者）在同一次提交中改动。否则它们迟早会分叉，用户在一边看到一个数字，在另一边看到另一个 <a class="ref" href="REFERENCIAS.html#ref-26">Ref. 26</a>。而你已经付过一次代价的错误，记下来，别付两次 <a class="ref" href="REFERENCIAS.html#ref-2">Ref. 2</a>。</p>
@@ -351,42 +449,7 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ul><li>同一个值在不止一个文件里手写出现（服务器和界面上都有"PENDIENTE"、"APROBADA"）。两份副本；总有一份会分叉。</li><li>一次对服务器的改动在服务器测试绿色后就关闭了，没人动界面。</li><li>GOTCHAS 有条目缺"如何提前检测"这部分。那是轶事，不是反模式。</li></ul>
 <hr>
 </section><section>
-<h2 id="9">步骤 9 — 构建之前先测量，用一把自己也要被验证的量具（台阶契约）</h2>
-<p><strong>阶段：</strong> 循环。 <strong>时机：</strong> 每当一个待办项依赖一个数字或一个原因假设时，在构建<strong>之前</strong>。在启动阶段，容量估算是第一个案例。在小项目里，"测量"就是用一条命令数一数，并把数字连日期记下来。 <strong>形式：</strong> 每次测量一次发送；当假设是你的时，有时是一次对话。 <strong>规模：</strong> 按比例。棘轮和查询预算是给有数据量的系统的。不随规模改变的是：没有一个决定什么的数字出自印象。</p>
-<h3 id="">用途</h3>
-<p>让每个喂给决定的数字都出自一个带测试的程序，而不是文本搜索、印象，或者"我觉得大概一百个"。并让量具本身被审计，因为量具会撒谎：我的一把量具在计数器为零时看不见 84 次调用，另一把说 27 而其实是 44 <a class="ref" href="REFERENCIAS.html#ref-35">Ref. 35</a>、<a class="ref" href="REFERENCIAS.html#ref-36">Ref. 36</a>。我在那之后写下的五条规则是：带守卫的量具；仪器不存在就构建它；双向审计；近似的要标出来；执行者验证规划者的数字。</p>
-<p>这是我最晚形式化的一级台阶，原因值得一说：我以为"动手前先测量"这么基本的工程常识，模型会自己应用。它不会。模型非常善于产出带数字的断言（"那种循环大约有 120 个"），而那些断言在测过和估过的时候听起来一模一样。你没法靠语气分辨。唯一的办法是要求仪器："你用什么测的？给我看命令。"没有命令，那就是印象，不管它有几位小数。这些规则是我在会话中纠正代理时强制推行的，在它们成为教义之前 <a class="ref" href="REFERENCIAS.html#ref-45">Ref. 45</a>。</p>
-<h3 id="1">1. 所需上下文</h3>
-<p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
-<ul><li>假设，你的或代理的："我觉得问题是 X"、"应该有一百来个"。</li><li>对要测量之物的访问权：代码、只读的数据库、日志。</li><li>仓库里已有的量具，如果有。</li></ul>
-<h3 id="2">2. 提示词</h3>
-<p><strong>初始：</strong></p>
-<div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
-<ul><li>假设，写成一句话，你的或者取自代理的："我觉得日程表对它显示的每个预约都查一次数据库"、"大概有一百个循环吧"。它填进提示词的 [X] 空里，要测量的量填进另一个空。</li><li>对要测量的东西的访问权：代码（它已经有了）；如果测的是真实数据，数据库的只读权限，连接串放在仓库之外，变量名在聊天里说；日志，连同它的路径。</li><li>仓库里已经存在的量具，如果有的话，把它们的名字说出来，好让代理复用而不是另造一个。</li><li>一个用来测试量具的已知案例：一种你事先就知道答案的情形（"零个预约时，它必须恰好数出那两次基础查询"）。如果你想不出来，让代理提一个，但由你来验证：一把用它自己发明的案例验证过的量具，等于没验证。</li><li>最低可接受状态：假设一句话装得下，而且有一个已知案例可以用来检验这件仪器。</li></ul>
-</div>
-<div class="pbox"><blockquote class="prompt"><p>Before building anything, we are going to measure. The hypothesis is: [X]. Write a meter (a script that lives in the repository) that measures [the quantity], and a test for the meter that checks it against a known case where the answer is known in advance. If measuring requires access or data you lack, ask me; do not approximate silently. If some part can only be approximated, mark it as approximate and tell me the margin. Run the meter, show me the number together with the command that produces it, and audit it in both directions: from the code to the measurement (is everything that should be counted, counted?) and from the measurement to the code (does everything counted actually exist?). Only then propose what to build. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>在构建任何东西之前，我们要先测量。假设是：[X]。写一把量具（一个活在仓库里的脚本）来测量 [那个数量]，再写一个量具的测试，对一个事先知道答案的已知案例检验它。如果测量需要你没有的访问权或数据，问我；不要悄悄近似。如果某部分只能近似，标为近似并告诉我误差范围。运行量具，把数字连同产生它的命令给我看，并双向审计它：从代码到测量（该数的都数了吗？）和从测量到代码（数到的都真的存在吗？）。只有那时才提议要构建什么。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么，逐条：量具<strong>在仓库里</strong>（不是一条会丢的零散命令）；对已知案例的<strong>量具测试</strong> （守卫）；适配测量的完整性条款（索要访问权，不悄悄近似）；把近似的标出来并附误差范围；数字 <strong>连同产生它的命令</strong>，让你能运行；双向审计，那是揭穿我那两把撒谎量具的东西；以及顺序：先测量，再提议。</p>
-<p><strong>当有预算时：</strong></p>
-<div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
-<ul><li>测出来的那个数字，是你自己用代理给的命令跑出来的，而且跑出来的结果一样。如果你没跑过，就别在它上面定预算。</li><li>你愿意给的余量，由你决定：比测出来的多一点，不是"以防万一"翻一倍。</li><li>最低可接受状态：量具是你自己跑的。</li></ul>
-</div>
-<div class="pbox"><blockquote class="prompt"><p>Set the budget for [queries / loops / time] on this path at the measured value plus a small margin, and protect it with a test that fails if it is exceeded. Tell me the number and the margin.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>把这条路径上 [查询 / 循环 / 时间] 的预算定在测得的值加一个小余量，并用一个超过就失败的测试保护它。告诉我数字和余量。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：预算是测得的值加一点点，不是一个整数，并且有一个超过就失败的测试。这样一次性能退化会出现在测试套件里，而不是生产里 <a class="ref" href="REFERENCIAS.html#ref-37">Ref. 37</a>。</p>
-<p><strong>当规划者给了数字时（规则五）：</strong></p>
-<div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
-<ul><li>代理的一份计划，里面带着数字（"有 121 个循环"、"是 27 次查询"），就摆在对话里。</li><li>测量那个量的量具，已经存在（这级台阶的初始提示词）。如果那个数字没有对应的量具，先发初始提示词，再发这条。</li><li>最低可接受状态：计划里的每个数字，你都知道用哪把量具去核。</li></ul>
-</div>
-<div class="pbox"><blockquote class="prompt"><p>Before executing the plan, verify every number the plan asserts with the meter. If any does not match, stop and tell me; do not execute on a wrong number.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>在执行计划之前，用量具验证计划断言的每一个数字。如果有任何一个不符，停下来告诉我；不要在错误的数字上执行。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：执行者不信任规划者的数字，哪怕是同一个模型在另一次会话里。在我的案例中，计划的四条断言有三条是错的；有仪器的地方，数字是精确的。</p>
-<h3 id="3">3. 预期结果</h3>
-<ul><li>仓库里的量具（<code>tools/measure_*.py</code>、<code>scripts/meter-*.mjs</code> 或类似），附其测试。</li><li>数字，附产生它的命令和日期。</li><li>双向审计，写成两三行。</li><li>近似的标为近似，附误差范围。</li><li>如果有预算：值、余量，以及保护它的测试。</li><li>提交里："measured: [number] with [meter]"。</li></ul>
-<h3 id="4">4. 完整性检验</h3>
-<ul><li>你自己能运行量具的命令并得到同样的数字吗？（你来运行；不需要理解它，只需要执行。）</li><li>量具有测试吗？对哪个已知案例？</li><li>报告里有没有哪个数字背后没有量具？问它从哪里来。</li><li>近似的标出来了吗？</li><li>如果计划带了数字，代理在执行之前验证了它们，并告诉你哪些不符吗？</li></ul>
-<h3 id="5">5. 警报信号</h3>
-<ul><li>一个数字在两份报告之间变了，而代码没变。两份中有一份没测。</li><li>量具得零。几乎从来不是零；几乎总是量具没看见某样东西。</li><li>代理提议"边测边建"以节省时间。顺序就是方法：先数字，后计划。</li></ul>
-<hr>
-</section><section>
-<h2 id="10">步骤 10 — 诚实的验证与相称的报告（台阶契约）</h2>
+<h2 id="12">步骤 12 — 诚实的验证与相称的报告（台阶契约）</h2>
 <p><strong>阶段：</strong> 循环。 <strong>时机：</strong> 每份报告，每个待办项，整个项目期间。这是代理告诉你的一切必须具备的形式。 <strong>形式：</strong> 例行；是代理每份报告必须具备的形式。 <strong>规模：</strong> 所有项目必需，无例外。它不花任何代价，而且是让所有者不读代码的东西。</p>
 <h3 id="">用途</h3>
 <p>如果你不打算读代码，代理的报告就必须可信。不是乐观的，不是"看起来完整的"：可信的。这是方法里真正新的东西：代码的作者也制造证据，而且无论对错都用同样笃定的语气。所以证据必须证明它自己，报告必须把已验证的和相信的分开。这条规则我在六月写下 <a class="ref" href="REFERENCIAS.html#ref-8">Ref. 8</a>，十月又再次需要它，那时一个认证错误被报告成了"success" <a class="ref" href="REFERENCIAS.html#ref-43">Ref. 43</a>。</p>
@@ -416,8 +479,8 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ul><li>连续十份报告没有任何盲点。没有人什么都看得见；那块是出于习惯而空，不是出于真相。</li><li>"已验证"块里有"应该能用"之类的句子。那是伪装的"相信"。</li><li>报告比变更还长。一份相称的报告说该说的；一份膨胀的报告在用篇幅遮盖什么。</li></ul>
 <hr>
 </section><section>
-<h2 id="11">步骤 11 — 作为计划输入的定期审计（台阶契约）</h2>
-<p><strong>阶段：</strong> 运维。 <strong>时机：</strong> 第一次部署到生产之前必需；它开启上线阶段。之后，在运维中，根据变化节奏每一到两个月一次，以及每个大阶段收尾时。 <strong>形式：</strong> 一次长发送，最好发给一个与构建者不同的代理。 <strong>规模：</strong> 任何项目第一次部署到生产之前必需；之后与变化节奏成比例（每周都变的系统每月审计一次；稳定的系统每六个月一次）。</p>
+<h2 id="13">步骤 13 — 作为计划输入的定期审计（台阶契约）</h2>
+<p><strong>阶段：</strong> 上线生产。 <strong>时机：</strong> 第一次部署到生产之前必需；它开启上线阶段。之后，在运维中，根据变化节奏每一到两个月一次，以及每个大阶段收尾时。 <strong>形式：</strong> 一次长发送，最好发给一个与构建者不同的代理。 <strong>规模：</strong> 任何项目第一次部署到生产之前必需；之后与变化节奏成比例（每周都变的系统每月审计一次；稳定的系统每六个月一次）。</p>
 <h3 id="">用途</h3>
 <p>每隔一段时间用新鲜的眼光看整个系统，并把看到的转成待办项。审计不是一份归档的报告：它是计划。它避免没人看见的写在代码里的密码、读整张表的查询 <a class="ref" href="REFERENCIAS.html#ref-18">Ref. 18</a>、依赖里的已知漏洞、几千行的组件 <a class="ref" href="REFERENCIAS.html#ref-41">Ref. 41</a>。它也是把质量控制的独立性再往里推一步：审计的人不是构建的人。</p>
 <p>关于独立性：不需要另一家公司或另一个工具。<strong>另一次会话，用另一个指令文件，没有参与过构建</strong> 就够了。你要的是审计者不共享构建者的预设。一个构建了某模块的模型"知道"硬编码的密码是临时的；一个第一次看到它的模型会如实报告。两道构建者在一天内留下的管理员入口就是这样被发现的 <a class="ref" href="REFERENCIAS.html#ref-40">Ref. 40</a>。</p>
@@ -445,8 +508,8 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ul><li>审计没有发现任何 P0。在一个超过三个月的系统里，这几乎从不为真；更可能是范围太小，或者审计者共享了预设。</li><li>发现没有文件行号。那是意见，不是发现。</li><li>过了两周，P0 还没有待办项。审计被归档了。</li></ul>
 <hr>
 </section><section>
-<h2 id="12">步骤 12 — 失败即关闭、锁与零静默损害（台阶契约）</h2>
-<p><strong>阶段：</strong> 运维。 <strong>时机：</strong> 在上线生产阶段，在构建任何收费、发送、批准或删除的功能<strong>之前</strong>；每有一个新的有后果的动作就复查。新的自动化从演练模式起步，看过它几天的记录后再启用。 <strong>形式：</strong> 对话：代理列出有后果的动作，你确认哪些上锁、上什么锁。 <strong>规模：</strong> 系统一做不可逆的事（收费、发送、删除、批准）就必需。只读的系统可以跳过；在它获得第一个作用于现实世界的按钮那一刻，这级台阶变成最重要的一级。</p>
+<h2 id="14">步骤 14 — 失败即关闭、锁与零静默损害（台阶契约）</h2>
+<p><strong>阶段：</strong> 上线生产。 <strong>时机：</strong> 在上线生产阶段，在构建任何收费、发送、批准或删除的功能<strong>之前</strong>；每有一个新的有后果的动作就复查。新的自动化从演练模式起步，看过它几天的记录后再启用。 <strong>形式：</strong> 对话：代理列出有后果的动作，你确认哪些上锁、上什么锁。 <strong>规模：</strong> 系统一做不可逆的事（收费、发送、删除、批准）就必需。只读的系统可以跳过；在它获得第一个作用于现实世界的按钮那一刻，这级台阶变成最重要的一级。</p>
 <h3 id="">用途</h3>
 <p>让系统面对疑问或故障时<strong>不</strong>行动，并且说出来。听起来显而易见，但它是软件默认行为的反面，软件面对疑问会继续往前走。它避免重复收费、不经人就自动批准、把凭证上传的 <code>git add -A</code>，以及删除客户数据。我在互助会放的锁是范本：带双重保险的紧急按钮、演练模式下的自动批准器、带守卫的哨兵 <a class="ref" href="REFERENCIAS.html#ref-28">Ref. 28</a>；还有让一次故障只让一行没有按钮、而不是弄坏整个列表的反射 <a class="ref" href="REFERENCIAS.html#ref-25">Ref. 25</a>。</p>
 <p>这个原则有名字，"失败即关闭"，来自物理安防：断电时保持关闭的安全门。反面，"失败即打开"，是会打开的门。在软件里大多数东西默认是失败即打开：验证失败，代码继续；服务没响应，就当一切正常。方法反转了默认：<strong>有疑问，就不</strong>。它既适用于系统，也适用于操作系统的代理。</p>
@@ -465,7 +528,7 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ul><li>代理呈上的那张表，和所有者一起一把锁一把锁地读过；对每一行，你的确认或你的修改，写好准备填进提示词的 [list]、[X] 和 [Y] 三个空。</li><li>最低可接受状态：没有哪一行缺裁决。一把没有确认的锁，就是一把不会被实现的锁。</li></ul>
 </div>
 <div class="pbox"><blockquote class="prompt"><p>I confirm locks [list]; change [X] to [Y]. Implement them with one test per lock that proves that, under the doubt condition, the action does NOT happen (proved red against the version without the lock). Record the final table in <code>docs/LOCKS.md</code>. And for any new automation: dry-run mode first, logging what it would have done, until I enable it.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我确认锁 [清单]；把 [X] 改为 [Y]。实现它们，每个锁一个测试，证明在疑问条件下动作不发生（对没有锁的版本先证红）。把最终的表记录到 <code>docs/LOCKS.md</code>。对任何新的自动化：先演练模式，记录它本会做什么，直到我启用它。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：每个锁的测试<strong>先证红</strong>（没有锁，动作发生；有锁，不发生），那是第 7 级台阶应用于安全；最终的表；以及所有新自动化的演练模式规则，那是让你在放手之前看到它本会做什么的东西。</p>
+<p>我在要求什么：每个锁的测试<strong>先证红</strong>（没有锁，动作发生；有锁，不发生），那是第 8 级台阶应用于安全；最终的表；以及所有新自动化的演练模式规则，那是让你在放手之前看到它本会做什么的东西。</p>
 <h3 id="3">3. 预期结果</h3>
 <ul><li><code>docs/LOCKS.md</code>：每个有后果的动作一行：它做什么、是否可逆、锁、回退路径、谁批准的、何时。</li><li>每个锁一个先证红的测试，验证面对疑问时动作不发生。</li><li>新的自动化从演练模式起步，附"本会做"的记录。</li><li>如果代理是嵌入的：它的权限写下来（能读什么、能改什么、什么需要批准）。</li></ul>
 <h3 id="4">4. 完整性检验</h3>
@@ -474,8 +537,8 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ul><li>一个自动化从"不存在"直接到"自动运行"，没有演练模式的时期。</li><li>日志里没有任何"因疑问未执行动作"的条目。要么系统从不怀疑（不可能），要么它怀疑时照样往前走。</li><li>一个锁可以用一个"用于测试"的参数跳过。那个参数会留在生产里。</li></ul>
 <hr>
 </section><section>
-<h2 id="13">步骤 13 — 持续集成、环境、密钥与作为产品一部分的部署（台阶契约）</h2>
-<p><strong>阶段：</strong> 运维。 <strong>时机：</strong> 集成链和到测试环境的部署在第 4 级台阶搭建。面向生产的收尾——真实环境、服务器上的密钥、提升、经测试的回滚、防密钥的锁——在上线阶段做，在审计和锁之后。每次部署的例行贯穿整个运维。 <strong>形式：</strong> 搭建时一次发送；每次部署时例行。 <strong>规模：</strong> 所有有用户的项目必需。在小项目里，"持续集成"可以是一个 GitHub action，"环境"可以是同一台服务器上的两个文件夹；不可协商的是测试自动运行、配置不在仓库里、有回滚。</p>
+<h2 id="15">步骤 15 — 持续集成、环境、密钥与作为产品一部分的部署（台阶契约）</h2>
+<p><strong>阶段：</strong> 上线生产。 <strong>时机：</strong> 集成链和到测试环境的部署在第 4 级台阶搭建。面向生产的收尾——真实环境、服务器上的密钥、提升、经测试的回滚、防密钥的锁——在上线阶段做，在审计和锁之后。每次部署的例行贯穿整个运维。 <strong>形式：</strong> 搭建时一次发送；每次部署时例行。 <strong>规模：</strong> 所有有用户的项目必需。在小项目里，"持续集成"可以是一个 GitHub action，"环境"可以是同一台服务器上的两个文件夹；不可协商的是测试自动运行、配置不在仓库里、有回滚。</p>
 <h3 id="">用途</h3>
 <p>让到达生产成为一个可复现的包：测试跑<strong>一</strong>次，配置活在仓库之外，密钥不到处乱跑。它避免每次提交跑三遍测试和烧光的配额 <a class="ref" href="REFERENCIAS.html#ref-39">Ref. 39</a>、因发现太晚而靠一个个待办项硬化的部署 <a class="ref" href="REFERENCIAS.html#ref-32">Ref. 32</a>，以及贴进聊天的密钥 <a class="ref" href="REFERENCIAS.html#ref-42">Ref. 42</a>。</p>
 <p>关于密钥有一条规则，把它当作反射，无例外：<strong>在聊天、日志或提交里出现过的密钥不再是密钥</strong>。 "没人看到"或"后来删了"都不重要。轮换。轮换花十分钟；查明是否有人用过它是不可能的。</p>
@@ -488,10 +551,10 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ul><li><code>docs/ENVIRONMENTS_SURVEY.md</code>（第 4 级台阶），用上生产环境还缺的部分补完：域名和谁来管理它；密钥将住在服务器的哪里（环境文件、保险库）以及有哪些密钥（名字，永远不写值）；今天如果有东西，是怎么从测试提升到生产的；谁可以动生产环境；你有多少持续集成的配额（你的供应商套餐的上限）以及已经用掉多少；今天如果要回滚会怎么做。提示词把它叫作 "the environments and access survey"：告诉它在哪儿。</li><li>给代理的生产环境访问权，由你决定：哪一种，用哪个凭据，而且凭据要在仓库之外、聊天之外。</li><li>带着持续集成和测试环境部署、已经跑通的骨架（第 4 级台阶），以及写着那些命令的 <code>docs/STATUS.md</code>。</li><li>最低可接受状态：你知道密钥会住在哪里，也知道还剩多少配额。如果你不知道配额，先去查清楚：这级台阶的存在，有一部分正是因为这个。</li></ul>
 </div>
 <div class="pbox"><blockquote class="prompt"><p>We are going to close the path to production. Read the environments and access survey. Evaluate whether you have what is needed to deploy to production safely (access, domain, where the secrets live, how to roll back); if anything is missing, ask me. Then set up: (1) continuous integration runs the full test suite exactly once per commit; (2) the deployment waits for that run's result and only packages and uploads, without running tests again; (3) each environment's configuration lives on the server (environment file or vault), never in the repository; (4) a written procedure to promote from the test environment to production, which can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check that prevents committing a secret. Document all of it in <code>docs/DEPLOYMENT.md</code> so that a person can do it by hand without you. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要收尾通往生产的路。读环境与访问调研。评估你是否具备安全部署到生产所需的东西（访问权、域名、密钥住在哪里、如何回滚）；如果缺什么，问我。然后搭建：(1) 持续集成每次提交恰好运行一次完整测试套件；(2) 部署等待那次运行的结果，只打包和上传，不再运行测试；(3) 每个环境的配置活在服务器上（环境文件或保险库），绝不在仓库里；(4) 一份从测试环境提升到生产的书面流程，可以运行两次而不弄坏任何东西；(5) 回滚，经过测试；(6) 一个阻止提交密钥的自动检查。把这一切写进 <code>docs/DEPLOYMENT.md</code>，让一个人不靠你也能手工完成。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么，逐条：开始前的访问权；测试每次提交<strong>只跑一次</strong>（跑三遍就是烧光配额的原因）；只打包的部署；仓库之外的配置；作为可重复流程的提升；<strong>经过测试</strong>的回滚（从没测过的回滚不存在）；提交里防密钥的锁；以及给一个人看的文档，那是第 14 级台阶应用于基础设施。</p>
+<p>我在要求什么，逐条：开始前的访问权；测试每次提交<strong>只跑一次</strong>（跑三遍就是烧光配额的原因）；只打包的部署；仓库之外的配置；作为可重复流程的提升；<strong>经过测试</strong>的回滚（从没测过的回滚不存在）；提交里防密钥的锁；以及给一个人看的文档，那是第 20 级台阶应用于基础设施。</p>
 <p><strong>每次部署的例行：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
-<ul><li><code>docs/WORKING_AGREEMENT.md</code>，这条例行要加进去的地方。</li><li><code>docs/DEPLOYMENT.md</code>（这级台阶的初始提示词），已写好并由你读过：你一个人能照着做下来吗？</li><li>在每次真实部署之前，还要有：用那个确切版本跑出来的完整端到端测试套件是绿的（第 7 级台阶，功能块收尾），以及，如果是第一次部署，审计已经做过（第 11 级台阶）。</li><li>最低可接受状态：在有用户之前，回滚至少被实测过一次。</li></ul>
+<ul><li><code>docs/WORKING_AGREEMENT.md</code>，这条例行要加进去的地方。</li><li><code>docs/DEPLOYMENT.md</code>（这级台阶的初始提示词），已写好并由你读过：你一个人能照着做下来吗？</li><li>在每次真实部署之前，还要有：用那个确切版本跑出来的完整端到端测试套件是绿的（第 8 级台阶，功能块收尾），以及，如果是第一次部署，审计已经做过（第 13 级台阶）。</li><li>最低可接受状态：在有用户之前，回滚至少被实测过一次。</li></ul>
 </div>
 <div class="pbox"><blockquote class="prompt"><p>Before touching production: the test environment is green with the same version; the rollback is ready; and tell me what changes in the configuration. After deploying: show me the version running in production and an end-to-end check on production, read-only.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>动生产之前：测试环境用同一版本是绿色的；回滚已就绪；并告诉我配置里有什么变化。部署之后：给我看生产中运行的版本，以及一次对生产的只读端到端检查。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
 <p>我在要求什么：三个前置条件（同一版本在测试环境绿色、回滚就绪、配置变化已宣布）和两个事后证据（运行中的版本，以及一次不写任何东西的端到端检查）。</p>
@@ -509,89 +572,21 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ul><li>部署到生产是"手工、快速，因为是个小改动"。小改动才是弄坏生产的，因为没人测它们。</li><li>配置示例文件里有看起来像真的值。很可能就是真的。</li><li>没人说得出上一次测试回滚是什么时候。</li></ul>
 <hr>
 </section><section>
-<h2 id="14-ai">步骤 14 — 活的文档与一个人无需 AI 即可遵循的手册（台阶契约）</h2>
-<p><strong>阶段：</strong> 运维。 <strong>时机：</strong> 用户手册随每个功能块在收尾时增长，加入新界面；由已关闭的待办项喂养，它们是所做之事的文档。三份完整的手册在上线生产阶段、第 13 级之后生成，找一个不编程的人做的测试在第一次部署到生产之前完成。同一次提交的例行贯穿整个运维。 <strong>形式：</strong> 例行；生成手册时加一次长发送。 <strong>规模：</strong> 按比例。小系统至少需要基础设施与恢复手册；用户手册可以是一页。不变的是：如果构建它的人消失了，另一个人必须能接着做。</p>
-<h3 id="">用途</h3>
-<p>让系统在没有代理、也没有你的情况下能用、能维护、能恢复。如果没有代理的那天没法部署，它就没完成。在经典方法里文档昂贵且会老化；这里重新生成是免费的，所以规则变成"在同一次提交中"和 "可手工复现"。我按这个标准为互助会写的手册是范本 <a class="ref" href="REFERENCIAS.html#ref-24">Ref. 24</a>；变成几千行历史的项目文件是反例 <a class="ref" href="REFERENCIAS.html#ref-41">Ref. 41</a>。</p>
-<p>恢复手册的一条质量标准，不懂技术也能用来评判：<strong>一个不编程的可信的人，在凌晨三点，系统宕机、代理离线的情况下，必须能照着做</strong>。如果某一步写着"咨询开发者"或"视情况而定"，那一步就不完整。</p>
-<p>还有一个不该浪费的来源：已关闭的待办项。每一个都带有它的规格、决定、证据和日期。用户手册不是在最后从零写起：它一块一块地从关闭的待办项组装起来，变更日志直接从它们生成。</p>
-<h3 id="1">1. 所需上下文</h3>
-<p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
-<ul><li>每份手册的读者是谁：最终用户、维护的人、运维基础设施的人。业务知道；不清楚的话代理提问。</li><li>在测试环境中运行的系统，用来取真实截图。</li><li>这个功能块已关闭的待办项，附其关闭文档（第 5 级台阶）。</li><li><code>docs/DEPLOYMENT.md</code>（第 13 级台阶）和 <code>docs/LOCKS.md</code>（第 12 级台阶），它们是输入。</li></ul>
-<h3 id="2">2. 提示词</h3>
-<p><strong>例行（放进协作契约）：</strong></p>
-<div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
-<ul><li><code>docs/WORKING_AGREEMENT.md</code>，这条例行要加进去的地方。</li><li>关于系统会有哪些手册、每本手册是给谁看的（最终用户、维护者、运维基础设施的人）的决定，写在 <code>PROJECT.md</code> 里或在聊天里说出来，好让"对应的手册"这句话有意义。</li><li>最低可接受状态：有一份手册清单，每本都有它的读者。</li></ul>
-</div>
-<div class="pbox"><blockquote class="prompt"><p>Every change that modifies what the user sees, what the operator does, or how the system is deployed, updates the corresponding manual in the same commit. At the close of every functional block, add to the user manual the screens and flows of the pending items closed in that block, with real screenshots from the test environment, and add their entries to the changelog. If you do not know which manual, ask.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>每一次改变用户所见、操作员所做或系统部署方式的变更，都在同一次提交中更新相应的手册。每个功能块收尾时，把该块中关闭的待办项的界面和流程加到用户手册里，附来自测试环境的真实截图，并把它们的条目加到变更日志。如果你不知道该进哪份手册，问。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：同一次提交的规则，那是唯一能让手册保持最新的规则；把功能块收尾作为已关闭待办项变成手册和变更日志的时刻；以及不清楚该进哪份手册时提问。</p>
-<p><strong>生成手册：</strong></p>
-<div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
-<ul><li>系统在测试环境里运行着，带着真实感的数据，不是空的：截图是从那里出来的。</li><li>带着收尾文档的已关闭待办项（第 5 级台阶），它们是用户手册和变更日志的来源。</li><li><code>docs/DEPLOYMENT.md</code>（第 13 级台阶）和 <code>docs/LOCKS.md</code>（第 12 级台阶），它们是基础设施与恢复手册的输入。</li><li>只有业务才知道的那些事，准备好等代理来问：谁对什么负责，系统倒了打哪个电话，谁做备份，用户用哪种语言阅读。</li><li>最低可接受状态：测试环境里有数据，而且你知道凌晨三点该给谁打电话。</li></ul>
-</div>
-<div class="pbox"><blockquote class="prompt"><p>Generate three manuals from the system as it is today in the test environment: the user manual (screen by screen, with real screenshots, in the user's language, no jargon); the maintenance manual (how it is built, where everything is, how to run the test suite, how to add a module); and the infrastructure and recovery manual (how to deploy, how to roll back, how to restore a backup, what to do if it goes down; written for a person who has to do it by hand, without AI, at three in the morning). If for any section you need something only the business knows (who is responsible for what, which phone number to call), ask me; do not leave a gap and do not invent. Each manual carries a date and the system version. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>根据系统今天在测试环境中的样子生成三份手册：用户手册（逐个界面，附真实截图，用用户的语言，不用行话）；维护手册（它是怎么构建的、每样东西在哪里、怎么运行测试套件、怎么添加一个模块）；以及基础设施与恢复手册（怎么部署、怎么回滚、怎么恢复备份、宕机了怎么办；写给一个必须在凌晨三点、没有 AI、手工完成的人）。如果某一节你需要只有业务知道的东西（谁负责什么、打哪个电话），问我；不要留空，也不要发明。每份手册都带日期和系统版本。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：三份手册及其读者；来自测试环境的<strong>真实</strong>截图（不是图画或描述）；恢复手册的凌晨三点标准；适配文档的完整性条款：只有业务知道的要问，<strong>不留空、不发明</strong>；以及日期和版本，让人知道每份手册对应哪个系统。</p>
-<h3 id="3">3. 预期结果</h3>
-<ul><li><code>docs/USER_MANUAL.md</code>（或 HTML），附嵌入的真实截图，一块一块长起来。</li><li><code>docs/MAINTENANCE_MANUAL.md</code>。</li><li><code>docs/INFRASTRUCTURE_AND_RECOVERY_MANUAL.md</code>：逐步，给一个人看。</li><li><code>docs/CHANGELOG.md</code>，由已关闭的待办项喂养。</li><li>每份都带日期和它记录的系统版本。</li><li>在改变界面、运维或部署的提交里：更新过的手册。</li></ul>
-<h3 id="4">4. 完整性检验</h3>
-<ul><li>随机翻到用户手册的一个界面：截图和今天测试环境里的一致吗？</li><li>恢复手册你自己、或一个不编程的可信的人能照着做吗？读"宕机了"一节：它按顺序、带命令地说了该做什么吗？</li><li>挑一次最近改了界面的提交：它动了手册吗？</li><li>变更日志有上一个功能块每个已关闭待办项的条目吗？</li><li>有没有"[待补]"或"咨询负责人"之类的空洞？那里代理本该提问。</li><li>每份手册都说了它对哪个系统版本有效吗？</li></ul>
-<h3 id="5">5. 警报信号</h3>
-<ul><li>用户手册的截图来自一个不再存在的版本。它生成过一次，没有维护：同一次提交的规则不在契约里，或者没在执行。</li><li>恢复手册以"打开一个与代理的会话"开头。如果代理是前提，它就不是给人看的手册。</li><li>构建者之外没人读过恢复手册。让某人在测试环境里照着做；卡住他的地方就是要修的地方。</li></ul>
-<hr>
-</section><section>
-<h2 id="15">步骤 15 — 系统里的代理，以及带数字的复盘（台阶契约）</h2>
-<p><strong>阶段：</strong> 运维与收尾。 <strong>时机：</strong> 驻留代理，在进入运维时，第一次部署到生产之后。复盘，在每个阶段和项目收尾时；它回到第 0 级台阶，为下一个项目做准备。 <strong>形式：</strong> 两部分：一次对话定义驻留代理的范围，一次长发送做复盘。 <strong>规模：</strong> 驻留代理是可选的（很多系统不需要；有用户要求支持的系统需要）。复盘在所有项目必需，哪怕只有一页：没有它方法就不学习。</p>
-<h3 id="">用途</h3>
-<p>两件闭合同一个循环的事。第一：把驻留代理留在生产里，范围受限，用来诊断、运维和提供支持，而你不必在场 <a class="ref" href="REFERENCIAS.html#ref-13">Ref. 13</a>。第二：用数字复查方法本身，并让学到的东西改变梯子。它避免没有系统地图就运维的代理，以及一个项目接一个项目原样重复、不学习的方法。让我砍掉整个代理团队的那次带数字的复盘，是第二件事的范本 <a class="ref" href="REFERENCIAS.html#ref-6">Ref. 6</a>。</p>
-<p>关于驻留代理，统领一切的规则：<strong>它以某人的名义行动</strong>。它的凭证映射到一个负责的人，它做的一切都以那个人的名义记录。它不是匿名的系统账户：它是一个有上司的雇员。这定义了它的范围（那个人授权它的东西）和它的可追溯性（谁为它做的事负责）。</p>
-<h3 id="1">1. 所需上下文</h3>
-<p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
-<p>对驻留代理：</p>
-<ul><li>代理在生产里能做什么、不能做什么：读、诊断、改配置、执行动作。由你决定。</li><li>代理如何向系统表明身份（一个自己的凭证，映射到一个负责的人）。</li><li>它遇到解决不了的事时通知谁（工单、邮件）。</li></ul>
-<p>对复盘：</p>
-<ul><li>项目的事故、成本（token、配额、你的时间）、折腾最多的待办项，以及日期。</li></ul>
-<h3 id="2">2. 提示词</h3>
-<p><strong>对驻留代理（初始）：</strong></p>
-<div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
-<ul><li>留一个驻留代理的决定，和所有者一起做出并写下来：为了什么（支持、诊断），以及初始的界限是什么。</li><li>代理在生产环境里专属的凭据，由你创建，映射到一个有名字的负责人，范围最小（一开始只读）；它的值，在聊天之外、仓库之外。</li><li><code>docs/LOCKS.md</code>（第 12 级台阶）和 <code>docs/DEPLOYMENT.md</code>（第 13 级台阶），保持最新：提示词要求它读第一份。</li><li>代理发现自己解决不了的事情时通知谁：一个由你决定的渠道（工单、邮件）。</li><li>最低可接受状态：凭据存在，有人类主人，而且是只读的。</li></ul>
-</div>
-<div class="pbox"><blockquote class="prompt"><p>We are going to leave you resident in production. First, build the map of the system you will need in order to operate it: modules, environments, where each configuration lives, which actions are consequential (read <code>docs/LOCKS.md</code>), whom to notify. If there are parts of the system you cannot see from where you are, tell me; the map must not have hidden gaps. Then propose your scope in three levels: read-only and diagnosis; configuration changes with my approval; consequential actions behind locks. I choose the level. Your credential acts as the person who created it: everything you do is logged under that person's name. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要把你留驻在生产里。首先，构建你运维它所需的系统地图：模块、环境、每个配置住在哪里、哪些动作有后果（读 <code>docs/LOCKS.md</code>）、通知谁。如果系统有你从你所在的位置看不到的部分，告诉我；地图不能有隐藏的空洞。然后分三个级别提议你的范围：只读与诊断；经我批准的配置变更；锁之后的有后果动作。我来选级别。你的凭证以创建它的人的身份行动：你做的一切都以那个人的名义记录。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：运维之前的系统地图（没有地图就运维正是这级台阶要避免的故障）；适配的完整性条款：<strong>地图的空洞要声明，不藏起来</strong>；三个范围级别，让你选一个而不是"看情况"；以及凭证以一个人的名义的规则。</p>
-<p><strong>对驻留代理（收尾）：</strong></p>
-<div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
-<ul><li>代理提出的地图和三个级别，由你读过，以及你选的级别（一开始，永远选第一个）。</li><li>一个在所选范围之外的具体动作，由你想好，让代理去尝试，而你在日志里看到那次拒绝（比如在级别 1 下：改一个配置）。</li><li>最低可接受状态：你选好了级别，而且知道哪一次尝试必须失败。</li></ul>
-</div>
-<div class="pbox"><blockquote class="prompt"><p>Level [X]. Write in <code>docs/RESIDENT_AGENT.md</code> the map, the scope, the credential (never its value), and the procedure to request my approval. Then prove, with a real attempt recorded in the log, that something outside your scope is rejected.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>级别 [X]。把地图、范围、凭证（绝不写它的值）和请求我批准的流程写进 <code>docs/RESIDENT_AGENT.md</code>。然后用一次记录在日志里的真实尝试证明，超出你范围的事会被拒绝。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：驻留代理的文档（绝不含凭证的值），以及范围的红色证明：一次真实的、记录在案的、做级别之外的事的尝试，被拒绝。那是第 7 级台阶应用于权限。</p>
-<p><strong>对复盘：</strong></p>
-<div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
-<ul><li>只有你才有的那些数字，事先收集好：你投入了多少小时（从你的日历里来，不是从记忆里来），在 AI 工具上花了多少钱（账单或消费面板），用掉了多少持续集成配额，以及这个阶段的开始和结束日期。把它们写进 <code>docs/RETROSPECTIVE_INPUTS.md</code>，或者在它要的时候在聊天里给它。</li><li>这个阶段的事故清单，按你记得的样子，附大致日期，用来和代理从待办项和提交里挖出来的东西对照。你记得而代理找不到的，就是一个文档的窟窿，值得记下来。</li><li><code>docs/PENDING.md</code>，里面有带文档的已关闭待办项（第 5 级台阶），以及 <code>docs/DECISIONS.md</code>（第 6 级台阶），它们是那些数字的来源。</li><li>最低可接受状态：小时数和花费都记下来了，附来源。没有这些，复盘就只能用形容词来做。</li></ul>
-</div>
-<div class="pbox"><blockquote class="prompt"><p>[The stage / the project] is over. Do the retrospective with numbers, not impressions: what it cost (tokens, quota, my time), how many pending items, which ones took the most rounds and why, which incidents happened and which step of the ladder each falls into, and which step failed or was missing. If you lack the data for any figure (my time, for instance), ask me for it or mark it as an estimate; do not invent it. End with a concrete proposal to change the ladder: which step is modified, how, and which incident justifies it. Write it to <code>docs/RETROSPECTIVE_[date].md</code>. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>[这个阶段 / 这个项目] 结束了。做带数字的复盘，不是印象：它花了什么（token、配额、我的时间）、多少个待办项、哪些折腾了最多轮、为什么，发生了哪些事故、每个落在梯子的哪级台阶，以及哪级台阶失败或缺失。如果某个数字你没有数据（比如我的时间），向我索要或标为估计；不要发明。以一条对梯子的具体修改提案收尾：修改哪级台阶、怎么改、哪个事故支持它。写到 <code>docs/RETROSPECTIVE_[日期].md</code>。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：带来源的数字（成本、待办项、轮次、事故）；每个事故映射到一级台阶，因为一个不落在任何一级的事故就是一级缺失的台阶；对它没有的数字的完整性条款（索要或标为估计）；以及 <strong>至少一条对梯子的具体修改提案</strong>，因为一次什么都不改变的复盘不是复盘。</p>
-<h3 id="3">3. 预期结果</h3>
-<ul><li><code>docs/RESIDENT_AGENT.md</code>：系统地图、选定的范围、映射到一个人的凭证、批准流程，以及记录在日志里的拒绝证明。</li><li><code>docs/RETROSPECTIVE_[日期].md</code>：带来源的数字、映射到台阶的事故，以及至少一条附理由的对梯子的修改提案。</li></ul>
-<h3 id="4">4. 完整性检验</h3>
-<ul><li>系统地图说了代理<strong>不能</strong>看到什么吗？没说的话，它有隐藏的空洞。</li><li>你测试过（或在日志里看到）范围之外的动作被拒绝吗？</li><li>代理的凭证以一个可识别的人的名义行动吗？</li><li>复盘有带来源的数字，还是形容词？（"花了很多"不是数字。）</li><li>每个事故都落在一级台阶上吗？如果有一个哪级都不落，缺一级台阶：那就是修改提案。</li><li>至少有一条对梯子的具体修改提案吗？如果复盘什么都不改变，它就不是复盘。</li></ul>
-<h3 id="5">5. 警报信号</h3>
-<ul><li>驻留代理每周都"需要"更高一级的权限。检查它要的是为了解决系统的问题，还是它自己的限制。</li><li>复盘说一切顺利。从来不会一切顺利；它是写给你看的，不是写给方法的。</li><li>连续两个项目发生了同样的事故，而梯子在两者之间没有改变。第 15 级台阶没有闭合：复盘写了却没应用。</li></ul>
-<hr>
-</section><section>
 <h2 id="16">步骤 16 — 完整的可观测性与可追溯性，级别可配置（台阶契约）</h2>
-<p><strong>阶段：</strong> 运维质量，第一次部署到生产之前。 <strong>时机：</strong> 在上线生产阶段，第 13 级之后（已经有部署链和按环境的配置），性能测试（19）之前，因为没有可观测性，性能测试说不出是什么坏了。在遗留系统里，最低级别（级别可配置的结构化日志，加一个关联标识符）进安全带（N4）；完整级别，在这里。"每个新模块都记录并传递"这条规则在整个运维期间有效。 <strong>形式：</strong> 一次长发送；代理搭建并演示；你读一条真实的追踪。 <strong>规模：</strong> 在任何将会有用户的项目里，最低级别必需；在任何有后果的项目里，完整。</p>
+<p><strong>阶段：</strong> 上线生产。 <strong>时机：</strong> 在上线生产阶段，第 15 级之后（已经有部署链和按环境的配置），性能测试（19）之前，因为没有可观测性，性能测试说不出是什么坏了。在遗留系统里，最低级别（级别可配置的结构化日志，加一个关联标识符）进安全带（N4）；完整级别，在这里。"每个新模块都记录并传递"这条规则在整个运维期间有效。 <strong>形式：</strong> 一次长发送；代理搭建并演示；你读一条真实的追踪。 <strong>规模：</strong> 在任何将会有用户的项目里，最低级别必需；在任何有后果的项目里，完整。</p>
 <h3 id="">用途</h3>
-<p>当生产里有什么东西坏掉的时候——而它一定会坏——我想能够用一个标识符把一个动作从界面一路跟到数据库、跟到每一次外部调用，不必打开代码，也不必请代理去"查一下"。而且我想能在一分钟内把生产的日志详细程度调高，不重新部署，之后再调回去。这就是可观测性：看见系统在做什么。第二件事是可追溯性：每个有后果的动作（收了钱、发了消息、删了数据、批准了什么）都留下一条谁、何时、做了什么、从哪里、结果如何的痕迹，记在一份应用改不了的记录里。没有这些，第 15 级台阶的驻留代理就是瞎着运维，第 20 和 21 级的监控没有东西可吃，每一次事故都靠假设而不是靠证据来诊断。那个活了一小时四十三分钟的孤儿轮次是靠日志找到的，不是靠代码 <a class="ref" href="REFERENCIAS.html#ref-16">Ref. 16</a>；而驻留代理恰恰是从读日志开始的 <a class="ref" href="REFERENCIAS.html#ref-13">Ref. 13</a>。</p>
+<p>当生产里有什么东西坏掉的时候——而它一定会坏——我想能够用一个标识符把一个动作从界面一路跟到数据库、跟到每一次外部调用，不必打开代码，也不必请代理去"查一下"。而且我想能在一分钟内把生产的日志详细程度调高，不重新部署，之后再调回去。这就是可观测性：看见系统在做什么。第二件事是可追溯性：每个有后果的动作（收了钱、发了消息、删了数据、批准了什么）都留下一条谁、何时、做了什么、从哪里、结果如何的痕迹，记在一份应用改不了的记录里。没有这些，第 23 级台阶的驻留代理就是瞎着运维，第 21 和 22 级的监控没有东西可吃，每一次事故都靠假设而不是靠证据来诊断。那个活了一小时四十三分钟的孤儿轮次是靠日志找到的，不是靠代码 <a class="ref" href="REFERENCIAS.html#ref-16">Ref. 16</a>；而驻留代理恰恰是从读日志开始的 <a class="ref" href="REFERENCIAS.html#ref-13">Ref. 13</a>。</p>
 <p>"级别可配置"是把这件事和"加点日志"区分开的条款：级别（错误、警告、信息、调试、追踪）在服务器上按环境用配置来改，不碰代码也不部署，而生产跑在"信息"上，除非正在调查什么。</p>
 <p><strong>如果你是初学者。</strong> 一条*日志记录*（log）是系统每做一件事就写下的一行："10:42:13，日程模块，用户 recepcion1，预约 17 已取消"。*结构化*的意思是所有行都按同样的顺序有同样的部分，好让机器能搜。*级别*是写多少细节：在"错误"上只写失败的；在"追踪"上，每一步都写。*关联标识符*是每个动作开始时（你按下了"取消"）拿到的一个唯一编号，它粘着这个动作引起的一切一起走（对数据库的查询、发给患者的消息），之后搜这个编号就出现完整的故事。而*审计*是一份改不了的重要动作清单：谁、在什么时候、做了什么。</p>
 <h3 id="1">1. 所需上下文</h3>
 <p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
-<ul><li>部署链和按环境的配置（第 13 级台阶）：级别就配置在那里。</li><li>锁的表格（第 12 级台阶）：每个有后果的动作都是审计里的一条记录。</li><li>标好个人数据的初始调研：日志不能包含它们。</li><li>日志和指标将住在哪里（一个轮转的文件、一个服务）：由你决定。</li></ul>
+<ul><li>部署链和按环境的配置（第 15 级台阶）：级别就配置在那里。</li><li>锁的表格（第 14 级台阶）：每个有后果的动作都是审计里的一条记录。</li><li>标好个人数据的初始调研：日志不能包含它们。</li><li>日志和指标将住在哪里（一个轮转的文件、一个服务）：由你决定。</li></ul>
 <h3 id="2">2. 提示词</h3>
 <p><strong>初始：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
-<ul><li><code>docs/DEPLOYMENT.md</code>（第 13 级台阶），写着按环境的配置是怎么读的：日志级别将是那份配置里多出来的一个变量。</li><li><code>docs/LOCKS.md</code>（第 12 级台阶）：有后果动作的清单，就是必须留在审计里的那份清单。</li><li>在 <code>docs/INITIAL_SURVEY.md</code> 里，哪些数据是个人数据的清单（姓名、电话、邮箱、证件、诊断），由你和所有者一起写：那是日志必须脱敏的东西。这是法律义务，不是偏好。</li><li>你关于日志和指标住在哪里的决定：对一个小项目，服务器上一个轮转的文件就够；对一个有后果的项目，一个日志服务。还有保存多久。</li><li>最低可接受状态：你知道哪些数据是个人数据，也知道日志将住在哪里。</li></ul>
+<ul><li><code>docs/DEPLOYMENT.md</code>（第 15 级台阶），写着按环境的配置是怎么读的：日志级别将是那份配置里多出来的一个变量。</li><li><code>docs/LOCKS.md</code>（第 14 级台阶）：有后果动作的清单，就是必须留在审计里的那份清单。</li><li>在 <code>docs/INITIAL_SURVEY.md</code> 里，哪些数据是个人数据的清单（姓名、电话、邮箱、证件、诊断），由你和所有者一起写：那是日志必须脱敏的东西。这是法律义务，不是偏好。</li><li>你关于日志和指标住在哪里的决定：对一个小项目，服务器上一个轮转的文件就够；对一个有后果的项目，一个日志服务。还有保存多久。</li><li>最低可接受状态：你知道哪些数据是个人数据，也知道日志将住在哪里。</li></ul>
 </div>
-<div class="pbox"><blockquote class="prompt"><p>We are going to make this system observable and traceable, end to end, with a level that I can change without redeploying. Read <code>PROJECT.md</code>, <code>docs/SEMANTIC_TREE.md</code>, <code>docs/DEPLOYMENT.md</code> and <code>docs/LOCKS.md</code>. Evaluate whether you have what is needed (where the logs and metrics will live, how configuration is read per environment, which external services are called); if anything is missing, ask me. Then set up: (1) structured logging, one record per event, with timestamp, level, module, correlation id and actor, with the level configurable per environment at runtime (error, warning, info, debug, trace) without a redeploy, and a default of info in production; (2) a correlation id created at the entry of every request, job and message, propagated through every call and written in every record, so that one id follows an action from the screen to the backend, to the database and to every external call; (3) traceability of every consequential action in <code>docs/LOCKS.md</code>: who, when, what, from where, with which input and which outcome, in an audit record the application cannot edit; (4) health and metrics endpoints or files (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 20 and 21 will read; (5) masking of every personal field listed in <code>docs/INITIAL_SURVEY.md</code>, so that no log record contains personal data. Show me one real request followed by its id through every layer, and show me the level changing in the test environment without a redeploy. Document the levels, where to change them and where the records live in <code>docs/OBSERVABILITY.md</code>. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要让这个系统从头到尾可观测、可追溯，而且级别由我来改、不用重新部署。读 <code>PROJECT.md</code>、<code>docs/SEMANTIC_TREE.md</code>、<code>docs/DEPLOYMENT.md</code> 和 <code>docs/LOCKS.md</code>。评估你是否具备所需的东西（日志和指标将住在哪里、按环境的配置怎么读、调用了哪些外部服务）；缺什么，向我索要。然后搭建：(1) 结构化日志，每个事件一条记录，带时间戳、级别、模块、关联标识符和执行者，级别在运行时按环境可配置（错误、警告、信息、调试、追踪），不用重新部署，生产的默认值为"信息"；(2) 一个在每个请求、任务和消息入口创建的关联标识符，经每一次调用传递，写进每一条记录，使得一个标识符能把一个动作从界面跟到后端、跟到数据库、跟到每一次外部调用；(3) 对 <code>docs/LOCKS.md</code> 中每个有后果动作的可追溯性：谁、何时、做了什么、从哪里、用什么输入、结果如何，记在一份应用改不了的审计记录里；(4) 第 20 和 21 级台阶的监控将要读的健康与指标端点或文件（请求数、延迟、错误、队列大小、资源使用）；(5) 对 <code>docs/INITIAL_SURVEY.md</code> 中列出的每个个人字段做脱敏，使得没有任何一条日志记录含有个人数据。给我看一个真实请求被它的标识符贯穿每一层，并给我看在测试环境里不重新部署就改变级别。把级别、在哪里改它们、日志住在哪里记进 <code>docs/OBSERVABILITY.md</code>。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<div class="pbox"><blockquote class="prompt"><p>We are going to make this system observable and traceable, end to end, with a level that I can change without redeploying. Read <code>PROJECT.md</code>, <code>docs/SEMANTIC_TREE.md</code>, <code>docs/DEPLOYMENT.md</code> and <code>docs/LOCKS.md</code>. Evaluate whether you have what is needed (where the logs and metrics will live, how configuration is read per environment, which external services are called); if anything is missing, ask me. Then set up: (1) structured logging, one record per event, with timestamp, level, module, correlation id and actor, with the level configurable per environment at runtime (error, warning, info, debug, trace) without a redeploy, and a default of info in production; (2) a correlation id created at the entry of every request, job and message, propagated through every call and written in every record, so that one id follows an action from the screen to the backend, to the database and to every external call; (3) traceability of every consequential action in <code>docs/LOCKS.md</code>: who, when, what, from where, with which input and which outcome, in an audit record the application cannot edit; (4) health and metrics endpoints or files (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 21 and 22 will read; (5) masking of every personal field listed in <code>docs/INITIAL_SURVEY.md</code>, so that no log record contains personal data. Show me one real request followed by its id through every layer, and show me the level changing in the test environment without a redeploy. Document the levels, where to change them and where the records live in <code>docs/OBSERVABILITY.md</code>. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要让这个系统从头到尾可观测、可追溯，而且级别由我来改、不用重新部署。读 <code>PROJECT.md</code>、<code>docs/SEMANTIC_TREE.md</code>、<code>docs/DEPLOYMENT.md</code> 和 <code>docs/LOCKS.md</code>。评估你是否具备所需的东西（日志和指标将住在哪里、按环境的配置怎么读、调用了哪些外部服务）；缺什么，向我索要。然后搭建：(1) 结构化日志，每个事件一条记录，带时间戳、级别、模块、关联标识符和执行者，级别在运行时按环境可配置（错误、警告、信息、调试、追踪），不用重新部署，生产的默认值为"信息"；(2) 一个在每个请求、任务和消息入口创建的关联标识符，经每一次调用传递，写进每一条记录，使得一个标识符能把一个动作从界面跟到后端、跟到数据库、跟到每一次外部调用；(3) 对 <code>docs/LOCKS.md</code> 中每个有后果动作的可追溯性：谁、何时、做了什么、从哪里、用什么输入、结果如何，记在一份应用改不了的审计记录里；(4) 第 21 和 22 级台阶的监控将要读的健康与指标端点或文件（请求数、延迟、错误、队列大小、资源使用）；(5) 对 <code>docs/INITIAL_SURVEY.md</code> 中列出的每个个人字段做脱敏，使得没有任何一条日志记录含有个人数据。给我看一个真实请求被它的标识符贯穿每一层，并给我看在测试环境里不重新部署就改变级别。把级别、在哪里改它们、日志住在哪里记进 <code>docs/OBSERVABILITY.md</code>。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
 <p>我在要求什么：那五件东西，以及两次演示，它们就是这级台阶的证据：<strong>一个真实标识符被所有层跟踪</strong> （如果它拿不出来，传递在某处断了）和<strong>不部署就改变级别</strong>（如果必须部署，那就不是可配置的）。有后果动作的审计必须对应用而言不可变，因为一条应用可以删掉的痕迹不是痕迹。而个人数据的脱敏放在同一条提示词里，因为日志正是个人数据最常在没人决定的情况下泄漏出去的地方。</p>
 <p><strong>例行（写进协作契约）：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
@@ -608,27 +603,27 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <hr>
 </section><section>
 <h2 id="17">步骤 17 — 持久化层的优化，前后都要测量（台阶契约）</h2>
-<p><strong>阶段：</strong> 运维质量，第一次部署到生产之前。 <strong>时机：</strong> 在上线生产阶段，第 16 级之后（需要看得见查询才能测量它们），第 19 级之前（性能测试跑在已经优化过的持久化之上；否则它们测的是早就知道的那个问题）。当某个功能块加进一张大表或改了一条关键流程时重复，以及当监控（20）显示某条查询超出范围时重复。在遗留系统里，测量来自 N6，找到的东西大部分"触及时偿还"，除了已经超出范围的那些。 <strong>形式：</strong> 两次发送：测量并提议；带前后对比地应用。 <strong>规模：</strong> 按比例：在小项目里，真实查询的索引和 N+1 循环的终结；在有后果的项目里，完整，带每条路径的预算。</p>
+<p><strong>阶段：</strong> 上线生产。 <strong>时机：</strong> 在上线生产阶段，第 16 级之后（需要看得见查询才能测量它们），第 19 级之前（性能测试跑在已经优化过的持久化之上；否则它们测的是早就知道的那个问题）。当某个功能块加进一张大表或改了一条关键流程时重复，以及当监控（21）显示某条查询超出范围时重复。在遗留系统里，测量来自 N6，找到的东西大部分"触及时偿还"，除了已经超出范围的那些。 <strong>形式：</strong> 两次发送：测量并提议；带前后对比地应用。 <strong>规模：</strong> 按比例：在小项目里，真实查询的索引和 N+1 循环的终结；在有后果的项目里，完整，带每条路径的预算。</p>
 <h3 id="">用途</h3>
-<p>持久化层是系统慢慢死掉的地方：一百条记录时好好的，一万条时还能接受，到了十万条每个界面要等二十秒，而没人知道是什么时候开始的。这级台阶的存在，是为了让那件事用数字来决定，而且在生产之前，不是靠抱怨、不是在之后。而且是<strong>用第 9 级台阶的方法</strong>来决定：系统做的每一条查询都用一把有测试的量具来计数和计时，按数字说的去改，然后在同样的数据上重新测量。对一个活着的系统做的第一次无索引查询审计 <a class="ref" href="REFERENCIAS.html#ref-18">Ref. 18</a>，以及被收紧到测量值的查询预算 <a class="ref" href="REFERENCIAS.html#ref-37">Ref. 37</a>，是这级台阶的来源；而从第一行起就用异步接口的那个决定 <a class="ref" href="REFERENCIAS.html#ref-15">Ref. 15</a>，是它在起步阶段的前身。</p>
+<p>持久化层是系统慢慢死掉的地方：一百条记录时好好的，一万条时还能接受，到了十万条每个界面要等二十秒，而没人知道是什么时候开始的。这级台阶的存在，是为了让那件事用数字来决定，而且在生产之前，不是靠抱怨、不是在之后。而且是<strong>用第 7 级台阶的方法</strong>来决定：系统做的每一条查询都用一把有测试的量具来计数和计时，按数字说的去改，然后在同样的数据上重新测量。对一个活着的系统做的第一次无索引查询审计 <a class="ref" href="REFERENCIAS.html#ref-18">Ref. 18</a>，以及被收紧到测量值的查询预算 <a class="ref" href="REFERENCIAS.html#ref-37">Ref. 37</a>，是这级台阶的来源；而从第一行起就用异步接口的那个决定 <a class="ref" href="REFERENCIAS.html#ref-15">Ref. 15</a>，是它在起步阶段的前身。</p>
 <p>它不是什么：不是"重写数据访问"，也不是换一个引擎。那是第 3 级台阶决定的。它是根据真实查询做的事，去调整现有的东西（索引、分页、批量、保留期、连接池大小）。</p>
 <p><strong>如果你是初学者。</strong> *持久化层*是系统里保存和读取数据的那一部分，几乎总是一个数据库。一个*索引 *就像一本书的目录：没有它，数据库为了找到一个预约要读整张表（那叫*全表扫描*）；有它，就直奔目标。*N+1 循环*是一个很常见的错误：为了显示一百个预约，系统先做一条查询取列表，然后再做一百条查询，每个预约一条，而不是只做一条。*分页*是一次显示二十条而不是全部一起。*保留期*是每条数据在归档或删除之前保存多久。而*连接池*是系统同时和数据库保持的"开着的线路"的数量。这些都不要求你读代码：它们要求你看前后的数字。</p>
 <h3 id="1">1. 所需上下文</h3>
 <p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
-<ul><li>容量估算和容量调研（第 3 级台阶，或遗留系统里的 N6）：要在什么量级上测量。</li><li>生产者-消费者地图（第 8 级台阶）：每张表被谁消费。</li><li>可观测性（16）：每条查询连同它的时间都看得见。</li><li>装载了预期量级数据的测试环境。</li></ul>
+<ul><li>容量估算和容量调研（第 3 级台阶，或遗留系统里的 N6）：要在什么量级上测量。</li><li>生产者-消费者地图（第 11 级台阶）：每张表被谁消费。</li><li>可观测性（16）：每条查询连同它的时间都看得见。</li><li>装载了预期量级数据的测试环境。</li></ul>
 <h3 id="2">2. 提示词</h3>
 <p><strong>初始（测量并提议）：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
-<ul><li><code>docs/SIZING.md</code> 和 <code>docs/VOLUME_SURVEY.md</code>（第 3 级台阶或 N6），已经收尾：要装载的量级。</li><li>装载了<strong>预期量级</strong>数据的测试环境，不是十条示例记录。如果有旧系统或生产，用一份匿名化的副本；如果是新项目，让代理按语义树的形状和容量估算的量级生成合成数据，并把它作为脚本留在仓库里。这是一个在先的待办项，不是这条提示词的一部分。</li><li><code>docs/PRODUCER_CONSUMER_MAP.md</code>（第 8 级台阶），保持最新。</li><li>如果有生产：只读访问权，凭证在聊天之外，以便除了测试数据之外也在真实数据上测量。</li><li>给每把量具的测试用的一个已知案例（一张你知道行数的表）。</li><li>最低可接受状态：测试环境有容量估算的量级，而且代理能看到每条查询连同它的时间（第 16 级台阶）。</li></ul>
+<ul><li><code>docs/SIZING.md</code> 和 <code>docs/VOLUME_SURVEY.md</code>（第 3 级台阶或 N6），已经收尾：要装载的量级。</li><li>装载了<strong>预期量级</strong>数据的测试环境，不是十条示例记录。如果有旧系统或生产，用一份匿名化的副本；如果是新项目，让代理按语义树的形状和容量估算的量级生成合成数据，并把它作为脚本留在仓库里。这是一个在先的待办项，不是这条提示词的一部分。</li><li><code>docs/PRODUCER_CONSUMER_MAP.md</code>（第 11 级台阶），保持最新。</li><li>如果有生产：只读访问权，凭证在聊天之外，以便除了测试数据之外也在真实数据上测量。</li><li>给每把量具的测试用的一个已知案例（一张你知道行数的表）。</li><li>最低可接受状态：测试环境有容量估算的量级，而且代理能看到每条查询连同它的时间（第 16 级台阶）。</li></ul>
 </div>
 <div class="pbox"><blockquote class="prompt"><p>We are going to optimize the persistence layer with measurements, not opinions. Read <code>docs/SIZING.md</code>, <code>docs/VOLUME_SURVEY.md</code> and <code>docs/PRODUCER_CONSUMER_MAP.md</code>. With the test environment loaded at the volumes of the sizing (and, if I gave you access, production read-only), measure first, with meters that live in the repository and have a test against a known case: every query the system runs per screen and per job, with its count and its time; the queries that read whole tables; the ones that run once per item; the size and monthly growth of every table; the connection pool usage at the peak. Audit each meter in both directions. Show me the numbers with the commands that produce them. Then propose, query by query, what to change: indexes derived from the real queries, pagination, batching, the elimination of N+1 loops, retention and archiving per table, pool size; for each change, the expected gain, the risk, and which consumers in the map it touches. Do not change anything yet: I approve the list. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要用测量而不是意见来优化持久化层。读 <code>docs/SIZING.md</code>、<code>docs/VOLUME_SURVEY.md</code> 和 <code>docs/PRODUCER_CONSUMER_MAP.md</code>。在按容量估算的量级装载好的测试环境里（以及，如果我给了你访问权，只读的生产上），先测量，用住在仓库里、而且有一个针对已知案例的测试的量具：系统每个界面、每个任务所做的每一条查询，连同它的次数和时间；读整张表的查询；每个条目跑一次的查询；每张表的大小和月增长；峰值时连接池的使用。在两个方向上审计每一把量具。把数字连同产生它们的命令给我看。然后逐条查询地提议改什么：从真实查询推导出来的索引、分页、批量、N+1 循环的消除、每张表的保留期和归档、连接池大小；对每项改动，说明预期收益、风险，以及它触及地图里的哪些消费者。先不要改任何东西：由我批准这份清单。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：在提议之前，用第 9 级台阶的方法测量（量具带测试，在两个方向上审计过，数字带命令）；逐条查询地提议，带上收益和风险，以及每项改动触及的地图消费者（一个新索引谁也不触及；一张表的保留期触及所有读那张表的人）；以及<strong>在我批准之前什么都不改</strong>，因为优化正是"改进"了没人要的东西最多的地方。</p>
+<p>我在要求什么：在提议之前，用第 7 级台阶的方法测量（量具带测试，在两个方向上审计过，数字带命令）；逐条查询地提议，带上收益和风险，以及每项改动触及的地图消费者（一个新索引谁也不触及；一张表的保留期触及所有读那张表的人）；以及<strong>在我批准之前什么都不改</strong>，因为优化正是"改进"了没人要的东西最多的地方。</p>
 <p><strong>收尾（带前后对比地应用）：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
 <ul><li>被提议的改动清单，读过了，每一项带着你的批准或拒绝；被拒绝的，附一行理由。对那些触及地图消费者的改动，确认你明白对他们来说有什么变化。</li><li>对测量里的某个数字手工重算一遍（比如最大那张表每月的行数），而且对得上。</li><li>最低可接受状态：每项改动都有裁决，而且你明白它触及哪个消费者。</li></ul>
 </div>
 <div class="pbox"><blockquote class="prompt"><p>Apply the approved changes [list], one commit each. For each one show me the meter before and after on the same data, the regression suite green, and the end-to-end suite green. Set a budget per critical path (queries and time) at the measured value plus a small margin, protected by a test that fails if it is exceeded. Update every consumer in the map that a change touches, in the same commit. Record the before and after table, the budgets and the retention per table in <code>docs/PERSISTENCE.md</code>.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>应用批准的改动 [清单]，每项一次提交。对每一项，把同样数据上的量具前后对比、绿色的回归、绿色的端到端套件给我看。按关键路径设一个预算（查询数和时间），定在测量值加一点小余量上，由一个超出就失败的测试保护。在同一次提交里更新每项改动所触及的地图消费者。把前后对比表、预算和每张表的保留期记进 <code>docs/PERSISTENCE.md</code>。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：一项改动一次提交，好让前和后可归因；同一把量具在同样的数据上（数据变了，数字就什么都说明不了）；带测试的预算，那是防止 N+1 循环三个月后回来的东西；以及第 8 级台阶的对称性应用到持久化上。</p>
+<p>我在要求什么：一项改动一次提交，好让前和后可归因；同一把量具在同样的数据上（数据变了，数字就什么都说明不了）；带测试的预算，那是防止 N+1 循环三个月后回来的东西；以及第 11 级台阶的对称性应用到持久化上。</p>
 <h3 id="3">3. 预期结果</h3>
 <ul><li>仓库里的查询量具，带测试。</li><li><code>docs/PERSISTENCE.md</code>，带每项改动的前后对比表、按路径的预算和每张表的保留期。</li><li>索引、分页、批量和保留期都已应用，每项一次提交，回归和端到端都是绿的。</li><li>每个预算一个超出就失败的测试。</li></ul>
 <h3 id="4">4. 完整性检验</h3>
@@ -638,27 +633,27 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <hr>
 </section><section>
 <h2 id="18">步骤 18 — 漏洞的扫描与解决，放进链条并带日程（台阶契约）</h2>
-<p><strong>阶段：</strong> 运维质量，第一次部署到生产之前。 <strong>时机：</strong> 在上线生产阶段，第 13 级之后（扫描跑在持续集成里），第一次部署之前：没有任何一个 P0 还开着的时候才提升。之后，在每次 push 时，以及按它自己的日程（每周）跑，哪怕没有 push，因为新漏洞会在你什么都不改的情况下出现。在遗留系统里，第一次运行是 N3 的一部分（审计的安全维度），发现的东西带着速度标记进待办队列。 <strong>形式：</strong> 一次长发送用来搭建和运行；之后自动，带一份由你来读的报告。 <strong>规模：</strong> 在任何将会有用户的项目里必需：依赖扫描和密钥扫描不可协商；静态分析和配置基线，按比例。</p>
+<p><strong>阶段：</strong> 上线生产。 <strong>时机：</strong> 在上线生产阶段，第 15 级之后（扫描跑在持续集成里），第一次部署之前：没有任何一个 P0 还开着的时候才提升。之后，在每次 push 时，以及按它自己的日程（每周）跑，哪怕没有 push，因为新漏洞会在你什么都不改的情况下出现。在遗留系统里，第一次运行是 N3 的一部分（审计的安全维度），发现的东西带着速度标记进待办队列。 <strong>形式：</strong> 一次长发送用来搭建和运行；之后自动，带一份由你来读的报告。 <strong>规模：</strong> 在任何将会有用户的项目里必需：依赖扫描和密钥扫描不可协商；静态分析和配置基线，按比例。</p>
 <h3 id="">用途</h3>
-<p>第 11 级台阶的审计每隔一段时间用新鲜的眼睛看整个系统；这级台阶只看一件事，安全，而且一直看、由机器看。它们是互补的：审计找需要判断力的东西（一道谁都不该有的管理员入口 <a class="ref" href="REFERENCIAS.html#ref-40">Ref. 40</a>）；扫描找需要恒心的东西（昨天还没有已知漏洞、今天有了的那个依赖 <a class="ref" href="REFERENCIAS.html#ref-41">Ref. 41</a>）。第一次正式的安全审计让我确信安全是一项周期性的例行，而不是一张打一次勾的清单 <a class="ref" href="REFERENCIAS.html#ref-23">Ref. 23</a>；这级台阶就是那项例行做成了机器。</p>
+<p>第 13 级台阶的审计每隔一段时间用新鲜的眼睛看整个系统；这级台阶只看一件事，安全，而且一直看、由机器看。它们是互补的：审计找需要判断力的东西（一道谁都不该有的管理员入口 <a class="ref" href="REFERENCIAS.html#ref-40">Ref. 40</a>）；扫描找需要恒心的东西（昨天还没有已知漏洞、今天有了的那个依赖 <a class="ref" href="REFERENCIAS.html#ref-41">Ref. 41</a>）。第一次正式的安全审计让我确信安全是一项周期性的例行，而不是一张打一次勾的清单 <a class="ref" href="REFERENCIAS.html#ref-23">Ref. 23</a>；这级台阶就是那项例行做成了机器。</p>
 <p>还有一条规则我希望写下来：<strong>一次依赖更新就是一次变更</strong>，它和其他任何变更一样要走循环。"升了个版本把漏洞关掉"而没有回归、没有端到端，是在星期五弄坏生产最常见的方式。</p>
 <p><strong>如果你是初学者。</strong> 一个*漏洞*是一个别人可以用来进来、偷数据，或者让系统做它不该做的事的缺陷。这级台阶由机器去找的有四类。在*依赖*里：你的系统用的别人的软件组件（有公开的数据库列出哪些有已知缺陷，用一个 CVE 编号标识）。在*代码*里：*静态分析*不执行代码地读它，寻找危险模式，比如一次*注入*（用户在表单里写的东西被数据库当成一条命令来解释）。在*历史*里：一个曾经被保存进仓库的密钥（一个密码、一把钥匙）即使后来被删掉也还在那里。还有在*配置*里：本来不需要却开着的端口、默认密码、缺失的*安全响应头*（服务器发给浏览器、用来保护它的指令）。</p>
 <h3 id="1">1. 所需上下文</h3>
 <p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
-<ul><li>持续集成（第 4 和 13 级台阶），扫描在那里跑。</li><li>环境调研：什么服务器、什么容器、哪些端口，用于配置基线。</li><li>之前的审计（11，或 N3），以免报告已经知道的东西。</li><li>你关于什么是 P0 的判断：能让人进来的、能暴露个人数据的、能不经控制就收钱或发送的。</li></ul>
+<ul><li>持续集成（第 4 和 15 级台阶），扫描在那里跑。</li><li>环境调研：什么服务器、什么容器、哪些端口，用于配置基线。</li><li>之前的审计（13，或 N3），以免报告已经知道的东西。</li><li>你关于什么是 P0 的判断：能让人进来的、能暴露个人数据的、能不经控制就收钱或发送的。</li></ul>
 <h3 id="2">2. 提示词</h3>
 <p><strong>初始（搭建、运行、提议）：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
-<ul><li>持续集成在每次 push 时都在跑（第 4 和 13 级台阶），而且配额够用：扫描会给每次运行加上几分钟；去查一下你还剩多少。</li><li><code>docs/ENVIRONMENTS_SURVEY.md</code>，写着服务器、容器（如果有）、暴露的端口和谁管理域名，好让代理知道该套用哪条基线。</li><li><code>docs/AUDIT_[日期].md</code>（第 11 级台阶或 N3），好让它不报告已知的东西。</li><li>你那两行的 P0 判断准则，填进提示词的空位。对大多数系统来说：能不带凭证就进来的、能暴露个人数据的、能不经控制就收钱、发送或删除的。</li><li>代理对服务器的读访问权，用于配置基线；如果你不给，那一部分就算作未扫描，而且它必须说出来。</li><li>最低可接受状态：持续集成在跑，你知道配额，而且你写下了什么是 P0。</li></ul>
+<ul><li>持续集成在每次 push 时都在跑（第 4 和 15 级台阶），而且配额够用：扫描会给每次运行加上几分钟；去查一下你还剩多少。</li><li><code>docs/ENVIRONMENTS_SURVEY.md</code>，写着服务器、容器（如果有）、暴露的端口和谁管理域名，好让代理知道该套用哪条基线。</li><li><code>docs/AUDIT_[日期].md</code>（第 13 级台阶或 N3），好让它不报告已知的东西。</li><li>你那两行的 P0 判断准则，填进提示词的空位。对大多数系统来说：能不带凭证就进来的、能暴露个人数据的、能不经控制就收钱、发送或删除的。</li><li>代理对服务器的读访问权，用于配置基线；如果你不给，那一部分就算作未扫描，而且它必须说出来。</li><li>最低可接受状态：持续集成在跑，你知道配额，而且你写下了什么是 P0。</li></ul>
 </div>
 <div class="pbox"><blockquote class="prompt"><p>We are going to scan this system for vulnerabilities and fix what matters before production. Set up, in continuous integration, on every push and also on a weekly schedule: (1) a scan of every dependency against the known vulnerability databases; (2) static analysis of the code for the common classes of defect (injection, insecure deserialization, path traversal, weak cryptography, hard-coded secrets, insecure defaults); (3) a secrets scan over the whole repository history; (4) a check of the server and container configuration against a baseline (exposed ports, default credentials, permissions, security headers, transport encryption). Run all of it now and write <code>docs/SECURITY_[date].md</code> with every finding: where, the risk, the evidence, the priority (P0 must be fixed now by my criteria: [criteria]; P1 before production; P2 when possible), and whether a fix exists (an upgrade, a patch, a configuration change). If a part cannot be scanned from where you are, say so and mark it as not scanned; do not pass it as clean. Then propose the fixes for every P0 and P1, one pending item each. Do not apply any upgrade yet: an upgrade is a change and goes through the full routine. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要在这个系统里扫描漏洞，并在生产之前修掉要紧的那些。在持续集成里搭建，在每次 push 时、也按每周日程运行：(1) 对每个依赖在已知漏洞数据库上做扫描；(2) 对代码做静态分析，查常见缺陷类别（注入、不安全的反序列化、路径穿越、弱加密、写死在代码里的密钥、不安全的默认值）；(3) 对整个仓库历史做密钥扫描；(4) 对服务器和容器的配置做一次基线核查（暴露的端口、默认凭据、权限、安全响应头、传输加密）。现在就全部跑一遍，并写出 <code>docs/SECURITY_[日期].md</code>，列出每一项发现：在哪里、风险、证据、优先级（P0 按我的准则必须马上修：[准则]；P1 在生产之前；P2 有条件就修），以及是否存在修复（一次升级、一个补丁、一处配置变更）。如果有一部分从你所在的位置扫描不到，说出来并标为未扫描；不要把它算作干净。然后为每个 P0 和 P1 提议修复，每个一个待办项。先不要应用任何升级：一次升级是一次变更，要走完整的例行。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：四层扫描（依赖、代码、历史里的密钥、配置），放进链条<strong>并带日程</strong>，因为新漏洞不会等你下一次 push；一份有第 11 级台阶那种形状的报告，带着"未扫描"而不是"干净"的条款；由我给出的 P0 准则；以及不走循环就不许更新的禁令，那是避免星期五出事的东西。</p>
+<p>我在要求什么：四层扫描（依赖、代码、历史里的密钥、配置），放进链条<strong>并带日程</strong>，因为新漏洞不会等你下一次 push；一份有第 13 级台阶那种形状的报告，带着"未扫描"而不是"干净"的条款；由我给出的 P0 准则；以及不走循环就不许更新的禁令，那是避免星期五出事的东西。</p>
 <p><strong>收尾（修复并变成闸门）：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
 <ul><li><code>docs/SECURITY_[日期].md</code>，由你读过，其中两项发现核实过（向它要证据）。</li><li>填进提示词空位的已批准修复清单；对每次依赖更新，清楚它是一次变更，要跑回归和端到端。</li><li>最低可接受状态：没有任何一个 P0 没有裁决。</li></ul>
 </div>
 <div class="pbox"><blockquote class="prompt"><p>Fix [list], each as its own pending item, with its test proved red where a test applies (an injection that no longer passes, a header that is now present, a secret that is now refused), and with the regression suite and the end-to-end suite green after every upgrade. Run the scan again and show me it is clean of P0 and P1. Make the scan a gate in <code>docs/GATES.md</code>: nothing is promoted to production with an open P0, and a new P1 opens a pending item automatically. Record the policy, the schedule and what is not covered in <code>docs/SECURITY.md</code>.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>修复 [清单]，每项作为自己的待办项，在测试适用的地方带上它被证明为红的测试（一次不再通过的注入、一个现在存在的响应头、一个现在会被拒绝的密钥），而且在每次升级之后回归套件和端到端套件都是绿的。重新跑一遍扫描，给我看它在 P0 和 P1 上是干净的。把扫描做成 <code>docs/GATES.md</code> 里的一道闸门：有 P0 开着就不往生产提升，而且一个新的 P1 自动开一个待办项。把策略、日程和没有覆盖到的东西记进 <code>docs/SECURITY.md</code>。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：一项修复一个待办项，在能做到的地方带上第 7 级台阶的红（一个没有测试就修好的漏洞会在下一次重构时回来）；重跑一遍扫描作为证据；以及变成闸门，那是让这级台阶在没人看的时候仍然活着的东西。</p>
+<p>我在要求什么：一项修复一个待办项，在能做到的地方带上第 8 级台阶的红（一个没有测试就修好的漏洞会在下一次重构时回来）；重跑一遍扫描作为证据；以及变成闸门，那是让这级台阶在没人看的时候仍然活着的东西。</p>
 <h3 id="3">3. 预期结果</h3>
 <ul><li>四层扫描在每次 push 和每周运行。</li><li><code>docs/SECURITY_[日期].md</code>，带发现和未扫描的部分；<code>docs/SECURITY.md</code>，带策略、日程、闸门和覆盖范围。</li><li>P0 和 P1 都修好了，每个带它的待办项，适用时带它的测试。</li><li><code>docs/GATES.md</code> 里的那道闸门。</li></ul>
 <h3 id="4">4. 完整性检验</h3>
@@ -668,9 +663,9 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <hr>
 </section><section>
 <h2 id="19">步骤 19 — 量级下的性能测试与断裂点（台阶契约）</h2>
-<p><strong>阶段：</strong> 运维质量，第一次部署到生产之前。 <strong>时机：</strong> 在上线生产阶段，第 16 级之后（没有可观测性就不知道是什么坏了）和第 17 级之后（跑在已经优化过的持久化之上），并且在第一次部署到生产之前。在每次会改变架构、持久化或某条关键流程的部署之前重复，以及当容量估算变了（卖给了另一个客户、量级翻倍）时重复。在遗留系统里，用 N6 测出来的量级跑，在规范化之后的第一次部署之前。 <strong>形式：</strong> 一次长发送；代理加载、测量并把它压垮；你读数字和断裂点。 <strong>规模：</strong> 按比例：在小项目里，一次预期量级的运行和一次"乘以十"的运行；在有后果的项目里，完整，找到断裂点并把阈值记下来给监控用。</p>
+<p><strong>阶段：</strong> 上线生产。 <strong>时机：</strong> 在上线生产阶段，第 16 级之后（没有可观测性就不知道是什么坏了）和第 17 级之后（跑在已经优化过的持久化之上），并且在第一次部署到生产之前。在每次会改变架构、持久化或某条关键流程的部署之前重复，以及当容量估算变了（卖给了另一个客户、量级翻倍）时重复。在遗留系统里，用 N6 测出来的量级跑，在规范化之后的第一次部署之前。 <strong>形式：</strong> 一次长发送；代理加载、测量并把它压垮；你读数字和断裂点。 <strong>规模：</strong> 按比例：在小项目里，一次预期量级的运行和一次"乘以十"的运行；在有后果的项目里，完整，找到断裂点并把阈值记下来给监控用。</p>
 <h3 id="">用途</h3>
-<p>第 3 级台阶用算式做了容量估算；这级台阶用真正跑着的系统来核对那些算式。在第一个用户进来之前，我想知道三件事：系统在业务说的那个量级下表现如何（最常用的那个界面，响应时间是所有者能容忍的吗？），在"乘以十"下表现如何（扛得住吗，还是什么会先扛不住？），以及<strong>它在哪里断裂</strong>：某样东西屈服时的确切负载，以及那样东西是什么（数据库连接、内存、一个队列、一个锁）。断裂点是整个阶段里最有用的数字，因为第 20 级台阶的告警阈值就是从它来的：一个"拍脑袋"定的告警不是报晚了就是一直在报；一个定在测出来的断裂点之下、带一点余量的告警，在还来得及的时候报。我从一个生产系统里提取的伸缩模式 <a class="ref" href="REFERENCIAS.html#ref-12">Ref. 12</a>，以及那个因内存而死、看起来像测试失败的测试套件 <a class="ref" href="REFERENCIAS.html#ref-44">Ref. 44</a>，是两个前身：第一个，关于测量真实负载；第二个，关于一个没有及时找到的断裂点会伪装成别的东西。</p>
+<p>第 3 级台阶用算式做了容量估算；这级台阶用真正跑着的系统来核对那些算式。在第一个用户进来之前，我想知道三件事：系统在业务说的那个量级下表现如何（最常用的那个界面，响应时间是所有者能容忍的吗？），在"乘以十"下表现如何（扛得住吗，还是什么会先扛不住？），以及<strong>它在哪里断裂</strong>：某样东西屈服时的确切负载，以及那样东西是什么（数据库连接、内存、一个队列、一个锁）。断裂点是整个阶段里最有用的数字，因为第 21 级台阶的告警阈值就是从它来的：一个"拍脑袋"定的告警不是报晚了就是一直在报；一个定在测出来的断裂点之下、带一点余量的告警，在还来得及的时候报。我从一个生产系统里提取的伸缩模式 <a class="ref" href="REFERENCIAS.html#ref-12">Ref. 12</a>，以及那个因内存而死、看起来像测试失败的测试套件 <a class="ref" href="REFERENCIAS.html#ref-44">Ref. 44</a>，是两个前身：第一个，关于测量真实负载；第二个，关于一个没有及时找到的断裂点会伪装成别的东西。</p>
 <p><strong>如果你是初学者。</strong> 一次*负载测试*是一个模拟很多用户同时使用系统的程序，用来看看会发生什么。* 吞吐量*是每秒能扛多少个动作。*延迟*是一个动作要多久才响应；要看*中位数*（一半的动作比这个快）和*95 百分位*（95% 比这个快；剩下的 5% 就是会来抱怨的那些用户）。*断裂点*是某样东西不再工作时的负载量：不是"变慢了"，而是"数据库连接耗尽了"或者"内存满了"。而一个*阈值*是一个数字界限，超过它监控就报警。</p>
 <h3 id="1">1. 所需上下文</h3>
 <p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
@@ -686,8 +681,8 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
 <ul><li><code>docs/PERFORMANCE_[日期].md</code>，由你读过，业务容忍度放在旁边：最常用的界面在预期量级下进得了容忍范围吗？"乘以十"呢？</li><li>和所有者一起，关于"乘以十"的决定：如果业务打算成长，"乘以十"之下的瓶颈现在就是待办项；如果不打算，它们可以等，带日期。</li><li>最低可接受状态：你读了断裂点，并决定了哪些瓶颈现在修。</li></ul>
 </div>
-<div class="pbox"><blockquote class="prompt"><p>Record in <code>docs/PERFORMANCE.md</code>: the expected volume, the ten-times volume, the breaking point with what breaks, and the alert thresholds that monitoring (step 20) will use, set below the breaking point with a margin and above the expected volume. Open a pending item for each bottleneck that sits below [ten times the expected volume / the volume I decided], with the measured number as its acceptance criterion. Make the load test a gate in <code>docs/GATES.md</code>: it reruns before every deployment that changes the architecture, the persistence or a critical flow, and its results are archived with date and version. Show me the first run archived.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>把这些记进 <code>docs/PERFORMANCE.md</code>：预期量级、十倍量级、断裂点连同是什么断了，以及监控（第 20 级台阶）将要用的告警阈值，定在断裂点之下留一点余量、并在预期量级之上。为每个落在 [预期量级的十倍 / 我决定的量级] 之下的瓶颈开一个待办项，以测出来的数字作为验收标准。把负载测试做成 <code>docs/GATES.md</code> 里的一道闸门：在每次会改变架构、持久化或某条关键流程的部署之前重跑，而且它的结果带日期和版本归档。给我看归档的第一次运行。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：从断裂点推导出来的告警阈值，那是和第 20 级台阶的挂钩；瓶颈作为以数字为准则的待办项（这样它们是带着证据关闭的，而不是"现在跑得好多了"）；以及作为归档闸门的负载测试，好让六个月之后还能比较。</p>
+<div class="pbox"><blockquote class="prompt"><p>Record in <code>docs/PERFORMANCE.md</code>: the expected volume, the ten-times volume, the breaking point with what breaks, and the alert thresholds that monitoring (step 21) will use, set below the breaking point with a margin and above the expected volume. Open a pending item for each bottleneck that sits below [ten times the expected volume / the volume I decided], with the measured number as its acceptance criterion. Make the load test a gate in <code>docs/GATES.md</code>: it reruns before every deployment that changes the architecture, the persistence or a critical flow, and its results are archived with date and version. Show me the first run archived.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>把这些记进 <code>docs/PERFORMANCE.md</code>：预期量级、十倍量级、断裂点连同是什么断了，以及监控（第 21 级台阶）将要用的告警阈值，定在断裂点之下留一点余量、并在预期量级之上。为每个落在 [预期量级的十倍 / 我决定的量级] 之下的瓶颈开一个待办项，以测出来的数字作为验收标准。把负载测试做成 <code>docs/GATES.md</code> 里的一道闸门：在每次会改变架构、持久化或某条关键流程的部署之前重跑，而且它的结果带日期和版本归档。给我看归档的第一次运行。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：从断裂点推导出来的告警阈值，那是和第 21 级台阶的挂钩；瓶颈作为以数字为准则的待办项（这样它们是带着证据关闭的，而不是"现在跑得好多了"）；以及作为归档闸门的负载测试，好让六个月之后还能比较。</p>
 <h3 id="3">3. 预期结果</h3>
 <ul><li>仓库里的负载脚本，带测试。</li><li><code>docs/PERFORMANCE_[日期].md</code>，带三次运行、数字、断裂点和诊断；<code>docs/PERFORMANCE.md</code>，带阈值和闸门。</li><li>每个瓶颈一个待办项，在所决定的量级之下。</li><li>负载测试作为那些需要它的部署之前的闸门。</li></ul>
 <h3 id="4">4. 完整性检验</h3>
@@ -696,25 +691,55 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <ul><li>"乘以十也毫无压力扛得住"，却没有断裂点。如果它没找到在哪里断，就是负载加得不够。</li><li>在一个由界面承载负载的系统里，负载脚本打的是 API 而不经过界面。它测的是别的东西。</li><li>结果来自代理那台机器上的一次运行，不是来自测试环境。</li><li>在测试过程中"顺手"修了瓶颈。现在你不知道哪个数字对应哪个版本。</li></ul>
 <hr>
 </section><section>
-<h2 id="20">步骤 20 — 对资源、函数和超出范围查询的监控，带周期报告（台阶契约）</h2>
-<p><strong>阶段：</strong> 运维质量，第一次部署到生产之后。 <strong>时机：</strong> 在运维阶段搭建，就在第一次部署到生产的同一周，用第 19 级的阈值和第 16 级的指标；从那时起它自己跑，而周期报告每个周期和所有者一起读（有后果的系统每周，小系统每月）。每个超出范围的事件作为纠正型待办项进入循环。在遗留系统里一样，只有一点不同：报告的第一次阅读就是基线，而第一天就已经超出范围的东西带着速度标记变成待办项。 <strong>形式：</strong> 一次长发送用来搭建；之后是周期性的例行。 <strong>规模：</strong> 在小项目里最低限度（一份月报、一条磁盘告警和一条数据库错误告警）；在有后果的项目里完整（按函数和按查询的阈值、告警、周报）。</p>
+<h2 id="20-ai">步骤 20 — 活的文档与一个人无需 AI 即可遵循的手册（台阶契约）</h2>
+<p><strong>阶段：</strong> 上线生产。 <strong>时机：</strong> 用户手册随每个功能块在收尾时增长，加入新界面；由已关闭的待办项喂养，它们是所做之事的文档。三份完整的手册在上线生产阶段、第 15 级之后生成，找一个不编程的人做的测试在第一次部署到生产之前完成。同一次提交的例行贯穿整个运维。 <strong>形式：</strong> 例行；生成手册时加一次长发送。 <strong>规模：</strong> 按比例。小系统至少需要基础设施与恢复手册；用户手册可以是一页。不变的是：如果构建它的人消失了，另一个人必须能接着做。</p>
+<h3 id="">用途</h3>
+<p>让系统在没有代理、也没有你的情况下能用、能维护、能恢复。如果没有代理的那天没法部署，它就没完成。在经典方法里文档昂贵且会老化；这里重新生成是免费的，所以规则变成"在同一次提交中"和 "可手工复现"。我按这个标准为互助会写的手册是范本 <a class="ref" href="REFERENCIAS.html#ref-24">Ref. 24</a>；变成几千行历史的项目文件是反例 <a class="ref" href="REFERENCIAS.html#ref-41">Ref. 41</a>。</p>
+<p>恢复手册的一条质量标准，不懂技术也能用来评判：<strong>一个不编程的可信的人，在凌晨三点，系统宕机、代理离线的情况下，必须能照着做</strong>。如果某一步写着"咨询开发者"或"视情况而定"，那一步就不完整。</p>
+<p>还有一个不该浪费的来源：已关闭的待办项。每一个都带有它的规格、决定、证据和日期。用户手册不是在最后从零写起：它一块一块地从关闭的待办项组装起来，变更日志直接从它们生成。</p>
+<h3 id="1">1. 所需上下文</h3>
+<p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
+<ul><li>每份手册的读者是谁：最终用户、维护的人、运维基础设施的人。业务知道；不清楚的话代理提问。</li><li>在测试环境中运行的系统，用来取真实截图。</li><li>这个功能块已关闭的待办项，附其关闭文档（第 5 级台阶）。</li><li><code>docs/DEPLOYMENT.md</code>（第 15 级台阶）和 <code>docs/LOCKS.md</code>（第 14 级台阶），它们是输入。</li></ul>
+<h3 id="2">2. 提示词</h3>
+<p><strong>例行（放进协作契约）：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
+<ul><li><code>docs/WORKING_AGREEMENT.md</code>，这条例行要加进去的地方。</li><li>关于系统会有哪些手册、每本手册是给谁看的（最终用户、维护者、运维基础设施的人）的决定，写在 <code>PROJECT.md</code> 里或在聊天里说出来，好让"对应的手册"这句话有意义。</li><li>最低可接受状态：有一份手册清单，每本都有它的读者。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>Every change that modifies what the user sees, what the operator does, or how the system is deployed, updates the corresponding manual in the same commit. At the close of every functional block, add to the user manual the screens and flows of the pending items closed in that block, with real screenshots from the test environment, and add their entries to the changelog. If you do not know which manual, ask.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>每一次改变用户所见、操作员所做或系统部署方式的变更，都在同一次提交中更新相应的手册。每个功能块收尾时，把该块中关闭的待办项的界面和流程加到用户手册里，附来自测试环境的真实截图，并把它们的条目加到变更日志。如果你不知道该进哪份手册，问。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：同一次提交的规则，那是唯一能让手册保持最新的规则；把功能块收尾作为已关闭待办项变成手册和变更日志的时刻；以及不清楚该进哪份手册时提问。</p>
+<p><strong>生成手册：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
+<ul><li>系统在测试环境里运行着，带着真实感的数据，不是空的：截图是从那里出来的。</li><li>带着收尾文档的已关闭待办项（第 5 级台阶），它们是用户手册和变更日志的来源。</li><li><code>docs/DEPLOYMENT.md</code>（第 15 级台阶）和 <code>docs/LOCKS.md</code>（第 14 级台阶），它们是基础设施与恢复手册的输入。</li><li>只有业务才知道的那些事，准备好等代理来问：谁对什么负责，系统倒了打哪个电话，谁做备份，用户用哪种语言阅读。</li><li>最低可接受状态：测试环境里有数据，而且你知道凌晨三点该给谁打电话。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>Generate three manuals from the system as it is today in the test environment: the user manual (screen by screen, with real screenshots, in the user's language, no jargon); the maintenance manual (how it is built, where everything is, how to run the test suite, how to add a module); and the infrastructure and recovery manual (how to deploy, how to roll back, how to restore a backup, what to do if it goes down; written for a person who has to do it by hand, without AI, at three in the morning). If for any section you need something only the business knows (who is responsible for what, which phone number to call), ask me; do not leave a gap and do not invent. Each manual carries a date and the system version. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>根据系统今天在测试环境中的样子生成三份手册：用户手册（逐个界面，附真实截图，用用户的语言，不用行话）；维护手册（它是怎么构建的、每样东西在哪里、怎么运行测试套件、怎么添加一个模块）；以及基础设施与恢复手册（怎么部署、怎么回滚、怎么恢复备份、宕机了怎么办；写给一个必须在凌晨三点、没有 AI、手工完成的人）。如果某一节你需要只有业务知道的东西（谁负责什么、打哪个电话），问我；不要留空，也不要发明。每份手册都带日期和系统版本。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：三份手册及其读者；来自测试环境的<strong>真实</strong>截图（不是图画或描述）；恢复手册的凌晨三点标准；适配文档的完整性条款：只有业务知道的要问，<strong>不留空、不发明</strong>；以及日期和版本，让人知道每份手册对应哪个系统。</p>
+<h3 id="3">3. 预期结果</h3>
+<ul><li><code>docs/USER_MANUAL.md</code>（或 HTML），附嵌入的真实截图，一块一块长起来。</li><li><code>docs/MAINTENANCE_MANUAL.md</code>。</li><li><code>docs/INFRASTRUCTURE_AND_RECOVERY_MANUAL.md</code>：逐步，给一个人看。</li><li><code>docs/CHANGELOG.md</code>，由已关闭的待办项喂养。</li><li>每份都带日期和它记录的系统版本。</li><li>在改变界面、运维或部署的提交里：更新过的手册。</li></ul>
+<h3 id="4">4. 完整性检验</h3>
+<ul><li>随机翻到用户手册的一个界面：截图和今天测试环境里的一致吗？</li><li>恢复手册你自己、或一个不编程的可信的人能照着做吗？读"宕机了"一节：它按顺序、带命令地说了该做什么吗？</li><li>挑一次最近改了界面的提交：它动了手册吗？</li><li>变更日志有上一个功能块每个已关闭待办项的条目吗？</li><li>有没有"[待补]"或"咨询负责人"之类的空洞？那里代理本该提问。</li><li>每份手册都说了它对哪个系统版本有效吗？</li></ul>
+<h3 id="5">5. 警报信号</h3>
+<ul><li>用户手册的截图来自一个不再存在的版本。它生成过一次，没有维护：同一次提交的规则不在契约里，或者没在执行。</li><li>恢复手册以"打开一个与代理的会话"开头。如果代理是前提，它就不是给人看的手册。</li><li>构建者之外没人读过恢复手册。让某人在测试环境里照着做；卡住他的地方就是要修的地方。</li></ul>
+<hr>
+</section><section>
+<h2 id="21">步骤 21 — 对资源、函数和超出范围查询的监控，带周期报告（台阶契约）</h2>
+<p><strong>阶段：</strong> 运维。 <strong>时机：</strong> 在运维阶段搭建，随第一次部署到生产，用第 19 级的阈值和第 16 级的指标；从那时起它自己跑，而周期报告每个周期和所有者一起读（有后果的系统每周，小系统每月）。每个超出范围的事件作为纠正型待办项进入循环。在遗留系统里一样，只有一点不同：报告的第一次阅读就是基线，而第一天就已经超出范围的东西带着速度标记变成待办项。 <strong>形式：</strong> 一次长发送用来搭建；之后是周期性的例行。 <strong>规模：</strong> 在小项目里最低限度（一份月报、一条磁盘告警和一条数据库错误告警）；在有后果的项目里完整（按函数和按查询的阈值、告警、周报）。</p>
 <h3 id="">用途</h3>
 <p>第 19 级台阶的测试说的是系统在某一天、在我选的某个负载下表现如何。生产是每一天，负载由用户来选，数据在长大，而且每周都有变更进来。十月还在范围里的东西，到了三月就出了范围，没人改过什么，只是因为那张表长大了。这级台阶存在，是为了让那件事<strong>在用户看到之前被看到</strong>：资源使用对比容量、每个函数每个入口每个任务每条查询的响应时间，和第 19 级的阈值以及它自己的历史做比较；有东西出了范围时的一条告警；以及一份我和所有者一起读的周期报告，其中每个偏离都有一个原因或一个待办项。被收紧到测量值的上限 <a class="ref" href="REFERENCIAS.html#ref-37">Ref. 37</a> 是背后的想法：范围不是一个意见，它是测出来的数字加一点余量；而在没人看的情况下被烧光的持续集成配额 <a class="ref" href="REFERENCIAS.html#ref-39">Ref. 39</a> 是它避免的故障：一项没有监控就被消耗的资源，是在它耗尽时才被发现的。</p>
 <p>有两条规则我不让步。一条被触发而没人读的告警是那条告警的缺陷，不是没读的人的缺陷：要么调整它，要么删掉它。还有，不能为了让一条告警闭嘴而在没有一条测出来的书面理由的情况下调高阈值。</p>
 <p><strong>如果你是初学者。</strong> *监控*就是由机器一直看着系统，并在有什么偏离正常时报警。*资源*是系统消耗的东西：处理器、内存、磁盘、数据库连接，还有外部服务的配额（供应商每月让你发多少条消息）。"*超出范围*"的意思是高于一个*阈值*（一个固定界限，来自第 19 级台阶的测试）或者和*基线*（同一个数字最近这些天一直给出的值）差得很远。一条*告警*是当场的通知；*周期报告*是每周或每月平心静气读的那份汇总。</p>
 <h3 id="1">1. 所需上下文</h3>
 <p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
-<ul><li>可观测性（16）：它赖以为生的指标和日志。</li><li>第 19 级的阈值和第 17 级的预算。</li><li>已部署的生产（13），带供监控用的只读访问权。</li><li>告警渠道和报告的周期：由你和所有者一起决定。</li></ul>
+<ul><li>可观测性（16）：它赖以为生的指标和日志。</li><li>第 19 级的阈值和第 17 级的预算。</li><li>已部署的生产（15），带供监控用的只读访问权。</li><li>告警渠道和报告的周期：由你和所有者一起决定。</li></ul>
 <h3 id="2">2. 提示词</h3>
 <p><strong>初始（搭建并演示）：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
 <ul><li><code>docs/OBSERVABILITY.md</code>（16）和 <code>docs/PERFORMANCE.md</code>（19）已收尾：指标和阈值。</li><li><code>docs/PERSISTENCE.md</code>（17），带按路径的预算。</li><li>和所有者一起决定的告警渠道：发给谁、走哪里（邮件、即时通讯），以及谁在几点读它。一条发到没人打开的信箱的告警是装饰。</li><li>报告的周期：每周还是每月，以及谁和你一起读。</li><li>监控对生产（服务器、数据库、日志）的只读访问权，凭证在聊天之外。</li><li>你认为算告警的、相对基线的偏离百分比（比如，比最近十四天的平均值高 30%），填进提示词的空位。</li><li>最低可接受状态：有写下来的阈值、有一个有人在读的渠道，还有一个周期。</li></ul>
 </div>
 <div class="pbox"><blockquote class="prompt"><p>We are going to keep this system watched in production. Using the metrics and logs of step 16, the budgets of <code>docs/PERSISTENCE.md</code> and the thresholds of <code>docs/PERFORMANCE.md</code>, set up: (1) collection of resource usage (CPU, memory, disk, database connections, queue sizes, external quotas) and of the response time of every function, endpoint, job and query, with the correlation id, kept with a history; (2) alerts when any of them is out of range: above the thresholds, or more than [X] percent over the baseline of the last [N] days, sent to [channel], with the rule that an alert that fires without a human reading it is a defect of the alert and gets fixed or removed; (3) a cyclic report, [weekly], generated automatically, with: resource usage against capacity and its trend, the slowest functions and queries and how they moved against the previous period, every out-of-range event with its cause if known, and what you propose for each; (4) the rule that every out-of-range event becomes a corrective pending item with the measured number as its acceptance criterion, closed with the full routine. Nothing here may read or store personal data. Show me the first report generated on real data from the test environment, and one alert fired on purpose by exceeding a threshold. Document the thresholds, the channel, the cycle and how to silence an alert with a written reason in <code>docs/MONITORING.md</code>. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要让这个系统在生产里被看着。用第 16 级台阶的指标和日志、<code>docs/PERSISTENCE.md</code> 的预算和 <code>docs/PERFORMANCE.md</code> 的阈值，搭建：(1) 资源使用（CPU、内存、磁盘、数据库连接、队列大小、外部配额）以及每个函数、端点、任务和查询的响应时间的采集，带关联标识符，保留历史；(2) 当其中任何一项超出范围时的告警：高于阈值，或者比最近 [N] 天的基线高出 [X] 个百分点，发到 [渠道]，并带上这条规则：一条被触发而没有人读的告警是那条告警的缺陷，要修掉或删掉；(3) 一份 [每周] 自动生成的周期报告，内容包括：资源使用对比容量及其趋势、最慢的函数和查询以及它们相对上一周期的变化、每个超出范围的事件及其原因（如果知道），以及你对每一项的提议；(4) 这条规则：每个超出范围的事件都变成一个以测出来的数字为验收标准的纠正型待办项，用完整的例行关闭。这里面的任何东西都不得读取或保存个人数据。给我看用测试环境的真实数据生成的第一份报告，以及一条故意超过阈值触发出来的告警。把阈值、渠道、周期，以及如何带着书面理由让一条告警静默，记进 <code>docs/MONITORING.md</code>。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
-<p>我在要求什么：带历史的采集（没有历史就没有基线，没有基线就没有"超出范围"）；对着两个参照的告警，第 19 级的绝对阈值和相对自身历史的偏离；有第 10 级台阶那种形状的周期报告（每个偏离带原因或带提议，不许"一切正常"）；每个偏离转成带数字的待办项；以及两次演示：第一份报告和一条被挑起来的告警。</p>
+<p>我在要求什么：带历史的采集（没有历史就没有基线，没有基线就没有"超出范围"）；对着两个参照的告警，第 19 级的绝对阈值和相对自身历史的偏离；有第 12 级台阶那种形状的周期报告（每个偏离带原因或带提议，不许"一切正常"）；每个偏离转成带数字的待办项；以及两次演示：第一份报告和一条被挑起来的告警。</p>
 <p><strong>每个周期的例行（写进协作契约）：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
-<ul><li>刚生成的周期报告，以及你和所有者一起读它的半小时。</li><li><code>docs/MONITORING.md</code> 放在手边，用来对照阈值。</li><li>最低可接受状态：你在粘贴提示词之前读过报告；代理不替你读。</li></ul>
+<ul><li>刚生成的周期报告，以及你和所有者一起读它的一会儿功夫。</li><li><code>docs/MONITORING.md</code> 放在手边，用来对照阈值。</li><li>最低可接受状态：你在粘贴提示词之前读过报告；代理不替你读。</li></ul>
 </div>
 <div class="pbox"><blockquote class="prompt"><p>With every cyclic report of resources and performance: go through it with me, event by event; tell me which out-of-range events become pending items now and which can wait, with your reason; write the decision with the date in the report itself; and tell me whether any threshold must change and why, with the measurement that justifies it. Never raise a threshold to silence an alert without a measured reason written down.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>每一份资源与性能的周期报告：和我一起逐个事件地走一遍；告诉我哪些超出范围的事件现在变成待办项、哪些可以等，连同你的理由；把带日期的决定写进报告本身；并告诉我是否有哪个阈值必须改、为什么，附上支持它的测量。绝不要为了让一条告警闭嘴而在没有一条测出来的书面理由的情况下调高阈值。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
 <p>我在要求什么：报告要被读、要做出决定，并留下痕迹；以及阈值那条规则，它是避免监控一点一点变哑的东西。</p>
@@ -723,21 +748,21 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <h3 id="4">4. 完整性检验</h3>
 <ul><li>要求在测试环境里故意超过一个阈值：告警按约定的渠道、带着标识符到你手上了吗？</li><li>读最后一份报告：每个超出范围的事件都有原因或提议吗？有哪个什么都没有吗？</li><li>你决定要处理的每个偏离，都有一个以数字为准则的待办项吗？</li><li>从第 19 级台阶以来有哪个阈值被调高过吗？附的书面理由是什么？</li><li>报告提到外部服务（即时通讯、持续集成）的配额了吗？</li></ul>
 <h3 id="5">5. 警报信号</h3>
-<ul><li>告警每天都在响而没人读。要把它们的数量降到每一条都有意义为止，而不是习惯它们。</li><li>报告连着三个周期说"一切正常"。要么系统没有用户，要么报告看的不是要紧的东西。</li><li>有个阈值被调高了"好让它别再报了"。那是第 20 级台阶在无声地死去。</li><li>监控"为了能诊断"而保存个人数据。那是一次有时刻表的泄漏。</li></ul>
+<ul><li>告警每天都在响而没人读。要把它们的数量降到每一条都有意义为止，而不是习惯它们。</li><li>报告连着三个周期说"一切正常"。要么系统没有用户，要么报告看的不是要紧的东西。</li><li>有个阈值被调高了"好让它别再报了"。那是第 21 级台阶在无声地死去。</li><li>监控"为了能诊断"而保存个人数据。那是一次有时刻表的泄漏。</li></ul>
 <hr>
 </section><section>
-<h2 id="21">步骤 21 — 错误监控与周期报告：没有任何错误没有待办项（台阶契约）</h2>
-<p><strong>阶段：</strong> 运维质量，第一次部署到生产之后。 <strong>时机：</strong> 在运维阶段搭建，就在第一次部署的同一周，和第 20 级一起，建在第 16 级的日志之上；从那时起它自己跑，带当场的告警和一份与所有者一起读的周期报告。每个新错误作为纠正型待办项进入循环，并用复现它的红色测试来关闭。在遗留系统里，第一次阅读就是基线：第一天就已经存在的错误带着速度标记变成待办项，而且没有任何一个会在没有一个说明为什么容忍它、容忍到什么时候的待办项的情况下留作"已知"。 <strong>形式：</strong> 一次长发送用来搭建；之后是周期性的例行。 <strong>规模：</strong> 在任何有用户的项目里必需：集中捕获和报告不可协商；当场的告警，按比例。</p>
+<h2 id="22">步骤 22 — 错误监控与周期报告：没有任何错误没有待办项（台阶契约）</h2>
+<p><strong>阶段：</strong> 运维。 <strong>时机：</strong> 在运维阶段搭建，随第一次部署，和第 21 级一起，建在第 16 级的日志之上；从那时起它自己跑，带当场的告警和一份与所有者一起读的周期报告。每个新错误作为纠正型待办项进入循环，并用复现它的红色测试来关闭。在遗留系统里，第一次阅读就是基线：第一天就已经存在的错误带着速度标记变成待办项，而且没有任何一个会在没有一个说明为什么容忍它、容忍到什么时候的待办项的情况下留作"已知"。 <strong>形式：</strong> 一次长发送用来搭建；之后是周期性的例行。 <strong>规模：</strong> 在任何有用户的项目里必需：集中捕获和报告不可协商；当场的告警，按比例。</p>
 <h3 id="">用途</h3>
-<p>一个生产中的系统会产生没有任何用户报告的错误：那个看到白屏又重试了一次的人，那个失败了而没人看的夜间任务，那个返回了错误而被代码吞掉的外部调用。如果我不捕获它们，它们就不存在，直到它们存在得太多。这级台阶是第 20 级的对应面：那个看守性能，这个看守错误，而且两个都终结在同一个地方，循环，作为纠正型待办项。背后的规则有两条。<strong>没有任何错误没有待办项</strong>：一个新错误开一个待办项，并用复现它的红色测试来关闭，就像演进之路的纠正模式所要求的那样。还有，<strong>不存在"已知错误"</strong>，除非有一个待办项说明为什么容忍它、容忍到什么时候；"那个错误一直都在"是一个系统腐烂时所用的句子。被报告为成功的认证错误 <a class="ref" href="REFERENCIAS.html#ref-43">Ref. 43</a>，以及一直到根因的四轮折腾 <a class="ref" href="REFERENCIAS.html#ref-22">Ref. 22</a>，是两个前身：第一个，关于错误如果不由机器捕获就会藏起来；第二个，关于一个没有复现的错误会被修好几次。</p>
+<p>一个生产中的系统会产生没有任何用户报告的错误：那个看到白屏又重试了一次的人，那个失败了而没人看的夜间任务，那个返回了错误而被代码吞掉的外部调用。如果我不捕获它们，它们就不存在，直到它们存在得太多。这级台阶是第 21 级的对应面：那个看守性能，这个看守错误，而且两个都终结在同一个地方，循环，作为纠正型待办项。背后的规则有两条。<strong>没有任何错误没有待办项</strong>：一个新错误开一个待办项，并用复现它的红色测试来关闭，就像演进之路的纠正模式所要求的那样。还有，<strong>不存在"已知错误"</strong>，除非有一个待办项说明为什么容忍它、容忍到什么时候；"那个错误一直都在"是一个系统腐烂时所用的句子。被报告为成功的认证错误 <a class="ref" href="REFERENCIAS.html#ref-43">Ref. 43</a>，以及一直到根因的四轮折腾 <a class="ref" href="REFERENCIAS.html#ref-22">Ref. 22</a>，是两个前身：第一个，关于错误如果不由机器捕获就会藏起来；第二个，关于一个没有复现的错误会被修好几次。</p>
 <p><strong>如果你是初学者。</strong> 一个*错误*是系统试着做而没做成的任何事情：一个没加载出来的界面、一个中断了的夜间任务、一次失败了的对其他服务的调用。一个*未处理异常*是代码没有预见到、并且会中断它正在做的事的错误。*捕获*一个错误，就是把它连同它的全部数据（什么时候、在哪个版本、带什么标识符，还有*调用栈*，也就是程序一直到出错为止的步骤清单）保存在一个集中的地方，而不是让它消失在某个用户的屏幕上。*分组*是把同一个错误发生的一千次合并成一条带计数器的条目。而*按流程的错误率*是：每一百次有人登记预约，其中有多少次失败了。</p>
 <h3 id="1">1. 所需上下文</h3>
 <p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
-<ul><li>可观测性（16）：错误带着关联标识符、版本和执行者过来。</li><li>锁的表格（12）：有后果动作里的错误是立即告警。</li><li>已部署的生产（13），用户的浏览器也包含在捕获里。</li><li>告警渠道和报告周期，和第 20 级共用。</li></ul>
+<ul><li>可观测性（16）：错误带着关联标识符、版本和执行者过来。</li><li>锁的表格（14）：有后果动作里的错误是立即告警。</li><li>已部署的生产（15），用户的浏览器也包含在捕获里。</li><li>告警渠道和报告周期，和第 21 级共用。</li></ul>
 <h3 id="2">2. 提示词</h3>
 <p><strong>初始（搭建并演示）：</strong></p>
 <div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
-<ul><li><code>docs/OBSERVABILITY.md</code>（16）已收尾：错误必须带着标识符、版本、环境和执行者出来。</li><li><code>docs/LOCKS.md</code>（12）：有后果动作的清单，它们的错误是当场告警。</li><li>渠道和报告周期，和第 20 级台阶一样，和所有者一起决定；以及一个已知错误每小时出现多少次你就想要告警，填进提示词的空位。</li><li>错误保存在哪里、保存多久（和日志同一个地方，或者一个错误捕获服务），由你决定，带着它们不含个人数据这条规则。</li><li>最低可接受状态：错误已经带着标识符出来（16），而且有一个有人在读的渠道。</li></ul>
+<ul><li><code>docs/OBSERVABILITY.md</code>（16）已收尾：错误必须带着标识符、版本、环境和执行者出来。</li><li><code>docs/LOCKS.md</code>（14）：有后果动作的清单，它们的错误是当场告警。</li><li>渠道和报告周期，和第 21 级台阶一样，和所有者一起决定；以及一个已知错误每小时出现多少次你就想要告警，填进提示词的空位。</li><li>错误保存在哪里、保存多久（和日志同一个地方，或者一个错误捕获服务），由你决定，带着它们不含个人数据这条规则。</li><li>最低可接受状态：错误已经带着标识符出来（16），而且有一个有人在读的渠道。</li></ul>
 </div>
 <div class="pbox"><blockquote class="prompt"><p>We are going to make sure that no error in production goes unseen. Using the records of step 16, set up: (1) centralized capture of every error and unhandled exception in the backend, in the jobs and in the user's browser, with the correlation id, the version, the environment, the actor (never personal data) and the stack; (2) grouping of errors by cause, so that one defect is one entry, with its count, first and last occurrence, versions affected and the flows it touches; (3) alerts to [channel] for every new error type, for a known error that crosses [N] occurrences per hour, and for any error inside a consequential action of <code>docs/LOCKS.md</code>; (4) a cyclic report, [weekly], generated automatically, with: new errors, recurring errors and their trend, the errors fixed in the period with their pending item, the error rate per flow against the previous period, and what you propose for each open one; (5) the rule that every new error type opens a corrective pending item, closed with the test that reproduces it in red, and that there is no "known error" without a pending item that says why it is tolerated and until when. Show me one error provoked on purpose in the test environment, in the browser, followed by its id to the backend record, the alert and the report. Document it in <code>docs/MONITORING.md</code>. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要确保生产里没有任何错误不被看见。用第 16 级台阶的记录，搭建：(1) 对后端、任务和用户浏览器里每个错误和未处理异常的集中捕获，带关联标识符、版本、环境、执行者（绝不含个人数据）和调用栈；(2) 按原因对错误分组，使得一个缺陷是一条条目，带它的次数、第一次和最后一次出现、受影响的版本和它触及的流程；(3) 向 [渠道] 发告警：每一个新类型的错误、一个已知错误超过每小时 [N] 次、以及 <code>docs/LOCKS.md</code> 中某个有后果动作内部的任何错误；(4) 一份 [每周] 自动生成的周期报告，内容包括：新错误、复发错误及其趋势、本期修好的错误及其待办项、按流程的错误率对比上一周期，以及你对每个还开着的错误的提议；(5) 这条规则：每个新类型的错误都开一个纠正型待办项，用复现它的红色测试来关闭，而且不存在"已知错误"，除非有一个待办项说明为什么容忍它、容忍到什么时候。给我看一个在测试环境里、在浏览器里故意引发的错误，被它的标识符一路跟到后端记录、告警和报告。把它记进 <code>docs/MONITORING.md</code>。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
 <p>我在要求什么：在错误藏身的三个地方（后端、任务、浏览器）都做捕获，带上第 16 级的标识符以便跟踪它们；分组，没有它报告就是一万行的清单；三类要紧的告警（新的、在长大的复发的、有后果的）；带按流程错误率的报告，那是所有者看得懂的数字；两条规则；以及从头到尾的演示，从浏览器到报告。</p>
@@ -748,11 +773,49 @@ td:first-child{white-space:nowrap;color:var(--mute)}
 <div class="pbox"><blockquote class="prompt"><p>With every cyclic error report: go through it with me; open the corrective pending items for the new errors, each with the way to reproduce it; confirm that every recurring error has a pending item or a written reason with a date; and tell me which errors disappeared and why, with the commit that fixed each one. An error that disappeared without a fix is not solved: it is hiding, and it stays in the report until its cause is known.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>每一份错误周期报告：和我一起走一遍；为新错误开纠正型待办项，每个带上复现它的方式；确认每个复发错误都有一个待办项或者一条带日期的书面理由；并告诉我哪些错误消失了、为什么，附上修好每一个的那次提交。一个没有修复就消失的错误并没有被解决：它藏起来了，而且它会留在报告里，直到它的原因被弄清楚。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
 <p>我在要求什么：周期的纪律，以及关于消失的错误的那条规则，它是最反直觉、也最有价值的一条：一个自己走掉的错误会自己回来。</p>
 <h3 id="3">3. 预期结果</h3>
-<ul><li>对后端、任务和浏览器的集中错误捕获，按原因分组，没有个人数据。</li><li>按新错误、在长大的复发错误和有后果的错误发出的告警。</li><li>带按流程错误率的周期报告。</li><li><code>docs/MONITORING.md</code> 完整（和第 20 级一起）；写进契约的例行。</li><li>每个开着的错误一个待办项；没有任何"已知"错误没有待办项。</li></ul>
+<ul><li>对后端、任务和浏览器的集中错误捕获，按原因分组，没有个人数据。</li><li>按新错误、在长大的复发错误和有后果的错误发出的告警。</li><li>带按流程错误率的周期报告。</li><li><code>docs/MONITORING.md</code> 完整（和第 21 级一起）；写进契约的例行。</li><li>每个开着的错误一个待办项；没有任何"已知"错误没有待办项。</li></ul>
 <h3 id="4">4. 完整性检验</h3>
 <ul><li>你自己在测试环境的浏览器里引发一个错误（一个你知道会失败的动作）：它带着你的标识符出现在捕获里了吗，告警到你手上了吗？</li><li>读最后一份报告：有没有哪个复发错误既没有待办项也没有理由？</li><li>从报告里挑一个"已修好"的错误：它的待办项里有那个把它复现成红色的测试吗？</li><li>按流程的错误率在不在，相对上一周期是降了还是升了？</li><li>在错误捕获里搜一个个人数据：不应该有。</li></ul>
 <h3 id="5">5. 警报信号</h3>
-<ul><li>有真实用户的情况下，生产里一个月零错误。没有这样的系统；捕获没有看到浏览器或者任务。</li><li>一个有一千次出现的错误，附一条"已知，不影响"的注释。没有待办项，没有日期。</li><li>错误靠重启服务来"修好"。它们消失，然后回来。</li><li>错误报告和资源报告由不同的人读，而且没人把它们交叉看：第 20 级的那条慢查询就是第 21 级那个等待超时的原因。</li></ul>
+<ul><li>有真实用户的情况下，生产里一个月零错误。没有这样的系统；捕获没有看到浏览器或者任务。</li><li>一个有一千次出现的错误，附一条"已知，不影响"的注释。没有待办项，没有日期。</li><li>错误靠重启服务来"修好"。它们消失，然后回来。</li><li>错误报告和资源报告由不同的人读，而且没人把它们交叉看：第 21 级的那条慢查询就是第 22 级那个等待超时的原因。</li></ul>
+<hr>
+</section><section>
+<h2 id="23">步骤 23 — 系统里的代理，以及带数字的复盘（台阶契约）</h2>
+<p><strong>阶段：</strong> 运维。 <strong>时机：</strong> 驻留代理，在进入运维时，第一次部署到生产之后。复盘，在每个阶段和项目收尾时；它回到第 0 级台阶，为下一个项目做准备。 <strong>形式：</strong> 两部分：一次对话定义驻留代理的范围，一次长发送做复盘。 <strong>规模：</strong> 驻留代理是可选的（很多系统不需要；有用户要求支持的系统需要）。复盘在所有项目必需，哪怕只有一页：没有它方法就不学习。</p>
+<h3 id="">用途</h3>
+<p>两件闭合同一个循环的事。第一：把驻留代理留在生产里，范围受限，用来诊断、运维和提供支持，而你不必在场 <a class="ref" href="REFERENCIAS.html#ref-13">Ref. 13</a>。第二：用数字复查方法本身，并让学到的东西改变梯子。它避免没有系统地图就运维的代理，以及一个项目接一个项目原样重复、不学习的方法。让我砍掉整个代理团队的那次带数字的复盘，是第二件事的范本 <a class="ref" href="REFERENCIAS.html#ref-6">Ref. 6</a>。</p>
+<p>关于驻留代理，统领一切的规则：<strong>它以某人的名义行动</strong>。它的凭证映射到一个负责的人，它做的一切都以那个人的名义记录。它不是匿名的系统账户：它是一个有上司的雇员。这定义了它的范围（那个人授权它的东西）和它的可追溯性（谁为它做的事负责）。</p>
+<h3 id="1">1. 所需上下文</h3>
+<p>下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第 2 节里，在每条提示词前面的"发送提示词之前"方框里。</p>
+<p>对驻留代理：</p>
+<ul><li>代理在生产里能做什么、不能做什么：读、诊断、改配置、执行动作。由你决定。</li><li>代理如何向系统表明身份（一个自己的凭证，映射到一个负责的人）。</li><li>它遇到解决不了的事时通知谁（工单、邮件）。</li></ul>
+<p>对复盘：</p>
+<ul><li>项目的事故、成本（token、配额、你的时间）、折腾最多的待办项，以及日期。</li></ul>
+<h3 id="2">2. 提示词</h3>
+<p><strong>对驻留代理（初始）：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
+<ul><li>留一个驻留代理的决定，和所有者一起做出并写下来：为了什么（支持、诊断），以及初始的界限是什么。</li><li>代理在生产环境里专属的凭据，由你创建，映射到一个有名字的负责人，范围最小（一开始只读）；它的值，在聊天之外、仓库之外。</li><li><code>docs/LOCKS.md</code>（第 14 级台阶）和 <code>docs/DEPLOYMENT.md</code>（第 15 级台阶），保持最新：提示词要求它读第一份。</li><li>代理发现自己解决不了的事情时通知谁：一个由你决定的渠道（工单、邮件）。</li><li>最低可接受状态：凭据存在，有人类主人，而且是只读的。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>We are going to leave you resident in production. First, build the map of the system you will need in order to operate it: modules, environments, where each configuration lives, which actions are consequential (read <code>docs/LOCKS.md</code>), whom to notify. If there are parts of the system you cannot see from where you are, tell me; the map must not have hidden gaps. Then propose your scope in three levels: read-only and diagnosis; configuration changes with my approval; consequential actions behind locks. I choose the level. Your credential acts as the person who created it: everything you do is logged under that person's name. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>我们要把你留驻在生产里。首先，构建你运维它所需的系统地图：模块、环境、每个配置住在哪里、哪些动作有后果（读 <code>docs/LOCKS.md</code>）、通知谁。如果系统有你从你所在的位置看不到的部分，告诉我；地图不能有隐藏的空洞。然后分三个级别提议你的范围：只读与诊断；经我批准的配置变更；锁之后的有后果动作。我来选级别。你的凭证以创建它的人的身份行动：你做的一切都以那个人的名义记录。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：运维之前的系统地图（没有地图就运维正是这级台阶要避免的故障）；适配的完整性条款：<strong>地图的空洞要声明，不藏起来</strong>；三个范围级别，让你选一个而不是"看情况"；以及凭证以一个人的名义的规则。</p>
+<p><strong>对驻留代理（收尾）：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，你手边必须有这些：</p>
+<ul><li>代理提出的地图和三个级别，由你读过，以及你选的级别（一开始，永远选第一个）。</li><li>一个在所选范围之外的具体动作，由你想好，让代理去尝试，而你在日志里看到那次拒绝（比如在级别 1 下：改一个配置）。</li><li>最低可接受状态：你选好了级别，而且知道哪一次尝试必须失败。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>Level [X]. Write in <code>docs/RESIDENT_AGENT.md</code> the map, the scope, the credential (never its value), and the procedure to request my approval. Then prove, with a real attempt recorded in the log, that something outside your scope is rejected.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>级别 [X]。把地图、范围、凭证（绝不写它的值）和请求我批准的流程写进 <code>docs/RESIDENT_AGENT.md</code>。然后用一次记录在日志里的真实尝试证明，超出你范围的事会被拒绝。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：驻留代理的文档（绝不含凭证的值），以及范围的红色证明：一次真实的、记录在案的、做级别之外的事的尝试，被拒绝。那是第 8 级台阶应用于权限。</p>
+<p><strong>对复盘：</strong></p>
+<div class="antes"><p><strong>发送提示词之前</strong>，下面这些必须已经存在，而且是你（或业务方和你一起）来做，不是代理：</p>
+<ul><li>只有你才有的那些数字，事先收集好：你投入了多少小时（从你的日历里来，不是从记忆里来），在 AI 工具上花了多少钱（账单或消费面板），用掉了多少持续集成配额，以及这个阶段的开始和结束日期。把它们写进 <code>docs/RETROSPECTIVE_INPUTS.md</code>，或者在它要的时候在聊天里给它。</li><li>这个阶段的事故清单，按你记得的样子，附大致日期，用来和代理从待办项和提交里挖出来的东西对照。你记得而代理找不到的，就是一个文档的窟窿，值得记下来。</li><li><code>docs/PENDING.md</code>，里面有带文档的已关闭待办项（第 5 级台阶），以及 <code>docs/DECISIONS.md</code>（第 6 级台阶），它们是那些数字的来源。</li><li>最低可接受状态：小时数和花费都记下来了，附来源。没有这些，复盘就只能用形容词来做。</li></ul>
+</div>
+<div class="pbox"><blockquote class="prompt"><p>[The stage / the project] is over. Do the retrospective with numbers, not impressions: what it cost (tokens, quota, my time), how many pending items, which ones took the most rounds and why, which incidents happened and which step of the ladder each falls into, and which step failed or was missing. If you lack the data for any figure (my time, for instance), ask me for it or mark it as an estimate; do not invent it. End with a concrete proposal to change the ladder: which step is modified, how, and which incident justifies it. Write it to <code>docs/RETROSPECTIVE_[date].md</code>. Reply in my language.</p></blockquote><blockquote class="prompt tr" lang="zh" hidden><p>[这个阶段 / 这个项目] 结束了。做带数字的复盘，不是印象：它花了什么（token、配额、我的时间）、多少个待办项、哪些折腾了最多轮、为什么，发生了哪些事故、每个落在梯子的哪级台阶，以及哪级台阶失败或缺失。如果某个数字你没有数据（比如我的时间），向我索要或标为估计；不要发明。以一条对梯子的具体修改提案收尾：修改哪级台阶、怎么改、哪个事故支持它。写到 <code>docs/RETROSPECTIVE_[日期].md</code>。用我的语言回复。</p></blockquote><button type="button" class="trbtn" data-a="翻译成中文" data-b="查看英文原文">翻译成中文</button></div>
+<p>我在要求什么：带来源的数字（成本、待办项、轮次、事故）；每个事故映射到一级台阶，因为一个不落在任何一级的事故就是一级缺失的台阶；对它没有的数字的完整性条款（索要或标为估计）；以及 <strong>至少一条对梯子的具体修改提案</strong>，因为一次什么都不改变的复盘不是复盘。</p>
+<h3 id="3">3. 预期结果</h3>
+<ul><li><code>docs/RESIDENT_AGENT.md</code>：系统地图、选定的范围、映射到一个人的凭证、批准流程，以及记录在日志里的拒绝证明。</li><li><code>docs/RETROSPECTIVE_[日期].md</code>：带来源的数字、映射到台阶的事故，以及至少一条附理由的对梯子的修改提案。</li></ul>
+<h3 id="4">4. 完整性检验</h3>
+<ul><li>系统地图说了代理<strong>不能</strong>看到什么吗？没说的话，它有隐藏的空洞。</li><li>你测试过（或在日志里看到）范围之外的动作被拒绝吗？</li><li>代理的凭证以一个可识别的人的名义行动吗？</li><li>复盘有带来源的数字，还是形容词？（"花了很多"不是数字。）</li><li>每个事故都落在一级台阶上吗？如果有一个哪级都不落，缺一级台阶：那就是修改提案。</li><li>至少有一条对梯子的具体修改提案吗？如果复盘什么都不改变，它就不是复盘。</li></ul>
+<h3 id="5">5. 警报信号</h3>
+<ul><li>驻留代理每周都"需要"更高一级的权限。检查它要的是为了解决系统的问题，还是它自己的限制。</li><li>复盘说一切顺利。从来不会一切顺利；它是写给你看的，不是写给方法的。</li><li>连续两个项目发生了同样的事故，而梯子在两者之间没有改变。第 23 级台阶没有闭合：复盘写了却没应用。</li></ul>
 <hr></section>
 <footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">方法的公开仓库: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
 </div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>

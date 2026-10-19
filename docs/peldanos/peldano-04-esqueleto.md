@@ -1,7 +1,7 @@
 # Peldaño 4 — El esqueleto con sus compuertas (contrato del peldaño)
 
 **Tramo:** arranque.
-**Cuándo:** una vez, al cierre de la primera semana, después del dimensionamiento y antes de
+**Cuándo:** una vez, al cierre del arranque, después del dimensionamiento y antes de
 cualquier funcionalidad. Es acá donde se hace toda la infraestructura inicial y la cadena de
 integración y despliegue.
 **Forma:** un solo tiro largo, con aprobación visual tuya al final.
@@ -14,7 +14,7 @@ hay que pagar.
 Hacé que el sistema arranque, se pruebe y se despliegue VACÍO antes de tener funcionalidad.
 Descubrir el despliegue al final es carísimo: en uno de mis sistemas llegó un mes después del
 arranque y costó cinco pendientes seguidos [Ref. 32](../REFERENCIAS.md#ref-32). Si el esqueleto se
-despliega la primera semana, esos golpes se dan con cero funcionalidad en juego.
+despliega en el arranque, esos golpes se dan con cero funcionalidad en juego.
 
 La idea general detrás: **el camino a producción es parte del producto**, no un trámite del final.
 Un sistema que funciona en la máquina del programador y no se puede desplegar no es un sistema; es

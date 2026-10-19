@@ -1,6 +1,6 @@
 # Peldaño 19 — Pruebas de rendimiento en volumen y punto de ruptura (contrato del peldaño)
 
-**Tramo:** calidad operativa, antes del primer despliegue a producción.
+**Tramo:** salida a producción.
 **Cuándo:** en la fase de salida a producción, después del 16 (sin observabilidad no se sabe qué
 se rompió) y del 17 (sobre la persistencia ya optimizada), y antes del primer despliegue a
 producción. Se repite antes de cada despliegue que cambie la arquitectura, la persistencia o un
@@ -21,7 +21,7 @@ sistema al volumen que el negocio dijo (¿la pantalla más usada responde en lo 
 toleraría?), cómo se comporta al "por diez" (¿aguanta, o qué deja de aguantar primero?), y
 **dónde se rompe**: la carga exacta a la que algo cede, y qué es ese algo (las conexiones a la
 base, la memoria, una cola, un bloqueo). El punto de ruptura es el número más útil de todo el
-tramo, porque de él salen los umbrales de alerta del peldaño 20: una alerta puesta "a ojo" avisa
+tramo, porque de él salen los umbrales de alerta del peldaño 21: una alerta puesta "a ojo" avisa
 tarde o avisa siempre; una alerta puesta debajo del punto de ruptura medido, con un margen, avisa
 cuando todavía hay tiempo. Los patrones de escala que saqué de un sistema en producción
 [Ref. 12](../REFERENCIAS.md#ref-12) y la batería que se moría por memoria y parecía un test fallido
@@ -120,7 +120,7 @@ diagnóstico es cambiar lo que no era.
   arreglan ahora.
 
 > Record in `docs/PERFORMANCE.md`: the expected volume, the ten-times volume, the breaking point
-> with what breaks, and the alert thresholds that monitoring (step 20) will use, set below the
+> with what breaks, and the alert thresholds that monitoring (step 21) will use, set below the
 > breaking point with a margin and above the expected volume. Open a pending item for each
 > bottleneck that sits below [ten times the expected volume / the volume I decided], with the
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
@@ -129,7 +129,7 @@ diagnóstico es cambiar lo que no era.
 
 > [es]
 > Registrá en `docs/PERFORMANCE.md`: el volumen esperado, el volumen por diez, el punto de ruptura
-> con qué se rompe, y los umbrales de alerta que el monitoreo (peldaño 20) va a usar, fijados
+> con qué se rompe, y los umbrales de alerta que el monitoreo (peldaño 21) va a usar, fijados
 > debajo del punto de ruptura con un margen y encima del volumen esperado. Abrí un pendiente por
 > cada cuello de botella que quede debajo de [diez veces el volumen esperado / el volumen que
 > decidí], con el número medido como criterio de aceptación. Hacé de la prueba de carga una
@@ -138,7 +138,7 @@ diagnóstico es cambiar lo que no era.
 > versión. Mostrame la primera corrida archivada.
 
 Qué le estoy pidiendo: los umbrales de alerta derivados del punto de ruptura, que es el enganche
-con el peldaño 20; los cuellos de botella como pendientes con el número como criterio (así se
+con el peldaño 21; los cuellos de botella como pendientes con el número como criterio (así se
 cierran con evidencia y no con "ahora anda mejor"); y la prueba de carga como compuerta
 archivada, para que dentro de seis meses se pueda comparar.
 

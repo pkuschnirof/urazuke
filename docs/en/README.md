@@ -26,14 +26,15 @@ the evidence, and that is why the evidence has to prove itself.
 
 | File | What it is |
 |---|---|
-| `ESCALERA_METODOLOGICA.md` | The main document: the thesis, where the method comes from, the timeline (when each step is climbed and what happens in between: infrastructure, CI/CD, requirements intake, development, end-to-end tests, the human look, human testing), the twenty-two steps with their card (the last six, on operational quality: observability, persistence, vulnerabilities, performance, and the two monitorings), what is still missing, and the glossary. |
+| `ESCALERA_METODOLOGICA.md` | The main document: the thesis, where the method comes from, the timeline (when each step is climbed and what happens in between: infrastructure, CI/CD, requirements intake, development, end-to-end tests, the human look, human testing), the twenty-four steps with their card (the last six, on operational quality: observability, persistence, vulnerabilities, performance, and the two monitorings), what is still missing, and the glossary. |
 | `EVOLUTIVO_CORRECTIVO.md` | The path for a system that already exists and was not born with the method: the three use cases of the method, the principle of normalizing without rewriting, the eight normalization stations (N0 to N7) with their contracts and prompts, the loop in corrective and evolutive mode, and the exit list of the stretch. |
 | `REFERENCIAS.md` | The real cases behind the method, numbered ("Ref. N"), with date and evidence, so that the procedures stay clean and the detail is one click away. Includes the chronologies of the three systems and the table of failures by step. |
 | `peldanos/peldano-NN-*.md` | The contract of each step: when, required context, the prompts in English with their explanation and, before each one, the "Before sending the prompt" block with the files you have to build yourself and their content; the expected result, the completeness check without reading code, the warning signs. |
 | `peldanos/README.md` | The index of the contracts. |
-| `MANUAL_CURSO.md` | The course: calendar, twenty-two lessons with hands-on tasks and prompts, the guide project ("Turnera"), the go-live checklist. |
+| `MANUAL_CURSO.md` | The course: calendar, twenty-four lessons with hands-on tasks and prompts, the guide project ("Turnera"), the go-live checklist. |
 | `MANUAL_CURSO_EVOLUTIVO.md` | Part 2 of the course: the inherited guide project ("Turnera inherited"), ten lessons (N0 to N7, R1 and R2) to normalize a legacy system and then correct it and evolve it. |
 | `../DECISIONES.md` | The project's decisions, with date and exact words. The method applies to itself. Spanish only. |
+| `TRABAJO_COLABORATIVO.md` | How the method is applied when several developers, each with their own agent, work on the same branch: the seven rules of the shared branch, how the steps are shared out, and the prompts. |
 | `CAPACITACION_JUNIOR.md` | The impact of the method on the training of junior developers: which focuses lose weight, which gain weight, with what objective and how to train a junior in the era after hand-written programming. |
 | `../PLAN_CURSO_MENTORING.md` | The draft of the commercial plan for the course and the mentoring. Spanish only. |
 | `../html/en/` | The HTML versions for comfortable reading, with the button that translates each prompt. Not edited by hand. |
@@ -57,15 +58,16 @@ node build/build.mjs
 It verifies that the English prompts are identical in the eight versions (the ones in the
 contracts and the ones on the evolutive-corrective path) and produces, for each language,
 `ESCALERA_METODOLOGICA.html`, `REFERENCIAS.html`, `EVOLUTIVO_CORRECTIVO.html`,
-`MANUAL_CURSO.html`, `MANUAL_CURSO_EVOLUTIVO.html` and `CONTRATOS_DE_PELDANO.html` (Spanish in
-`docs/html/`, the others in `docs/html/<language>/`).
+`MANUAL_CURSO.html`, `MANUAL_CURSO_EVOLUTIVO.html`, `CAPACITACION_JUNIOR.html`,
+`TRABAJO_COLABORATIVO.html` and `CONTRATOS_DE_PELDANO.html` (Spanish in `docs/html/`, the others
+in `docs/html/<language>/`).
 
 ## Languages
 
 Spanish is the source of truth. The documentation exists in the eight NAC3 languages: Spanish
 (`docs/`), English (`docs/en/`), Portuguese (`docs/pt/`), French (`docs/fr/`), German (`docs/de/`),
 Italian (`docs/it/`), Japanese (`docs/ja/`) and Chinese (`docs/zh/`). Each folder has its README,
-the main document, the references, the twenty-two contracts, the evolutive-corrective path and
+the main document, the references, the twenty-four contracts, the evolutive-corrective path and
 the two parts of the course manual. The prompts for the model are a single piece in English,
 identical in every version, with their translation into the document's language alongside;
 `node build/prompts.mjs --check` fails if a translation altered them. The name is never
@@ -81,7 +83,7 @@ exact words.
 The method is published under **Creative Commons Attribution-ShareAlike 4.0** (`LICENSE`): you may
 use, translate and adapt it, with attribution and sharing alike. Improvements to **this** repository
 come in by pull request from a fork, with their evidence, and a maintainer merges them after
-reviewing them; nobody else writes to `main`. The process is in `CONTRIBUTING.md`. Step 15 of the
+reviewing them; nobody else writes to `main`. The process is in `CONTRIBUTING.md`. Step 23 of the
 method asks that every retrospective end in a concrete proposal to change the ladder; that is the
 expected way to contribute.
 

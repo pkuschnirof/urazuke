@@ -58,7 +58,7 @@ Il 27 maggio (commit `73f4029`) ho aperto `GOTCHAS.md`: un file in cui ogni erro
 ripetuto resta annotato con un formato fisso, come odora, qual è la causa radice, come è stato
 corretto, e come rilevarlo la prossima volta prima che faccia male. L'ho aperto perché il modello
 commetteva lo stesso errore in sessioni diverse senza nessuna memoria di averlo commesso prima. È
-la metà "anti-pattern" del gradino 8.
+la metà "anti-pattern" del gradino 11.
 
 ### Ref. 3 — I cancelli del flusso, iniettati solo quando servono (2 giugno)
 
@@ -93,7 +93,7 @@ scheletri) che si passavano il lavoro tra loro. Ho fatto un esperimento misurato
 ha speso 60 dollari e 73 minuti e ha consegnato qualcosa a metà; una sola sessione con un solo
 agente ci ha messo 90 minuti e ha consegnato qualcosa di pubblicabile. Il 5 giugno (commit
 `7584f8b`, documentato in un paper interno) ho eliminato la squadra intera. È il primo caso di
-"retrospettiva con un numero in mano, e riprogettazione", ed è il motivo per cui il gradino 15
+"retrospettiva con un numero in mano, e riprogettazione", ed è il motivo per cui il gradino 23
 esige numeri e non impressioni.
 
 ### Ref. 7 — Il piano diventa la lista delle voci in sospeso (6 giugno)
@@ -109,8 +109,8 @@ Il 10 giugno (commit `7ab9d8a` e `2c552c0`, documenti `verification-honesty.md` 
 `workflow-kinds.md`) ho reso obbligatoria la dottrina in ogni prompt e ho scritto la regola di
 "onestà di verifica": verificare che la rete vada davvero in rosso quando deve andarci, dichiarare
 i punti ciechi, e fare affermazioni proporzionate a ciò che si è verificato. Ho separato inoltre
-tre tipi di flusso: progetto nuovo, correzione ed evoluzione. È l'origine del gradino 10 e della
-metà "rosso" del gradino 7.
+tre tipi di flusso: progetto nuovo, correzione ed evoluzione. È l'origine del gradino 12 e della
+metà "rosso" del gradino 8.
 
 ### Ref. 9 — Lavoro buttato per non aver letto la mappa (12 giugno)
 
@@ -125,27 +125,27 @@ Tra il 14 e il 21 giugno ho lasciato l'agente lavorare da solo per un giorno, e 
 mandato scritto: commit e push per ogni pezzo, senza chiedere, e io ricevevo un riassunto. Lo
 racconto perché prova che il metodo regge un'autonomia lunga quando il patto di convivenza e il
 registro delle voci in sospeso sono fatti bene; e perché è stato lì che ho imparato a leggere i
-riassunti con diffidenza, che è il gradino 10.
+riassunti con diffidenza, che è il gradino 12.
 
 ### Ref. 11 — Modalità diagnostica su sistemi altrui (luglio)
 
 A luglio (documento `diagnostic-mode.md`) l'agente ha cominciato a entrare in sistemi produttivi
 di clienti in modalità diagnostica: sola lettura, perimetro limitato, senza toccare niente. È il
-primo livello di perimetro dell'agente residente del gradino 15.
+primo livello di perimetro dell'agente residente del gradino 23.
 
 ### Ref. 12 — Pattern di prestazioni presi dalla produzione della Mutua (22 luglio)
 
 Il 22 luglio (commit `873339c`) ho incorporato nello strumento pattern di scala estratti dal
 sistema della Mutua: quello delle due transazioni e, soprattutto, "misurare prima di toccare". È
 stata la prima volta che il metodo si è alimentato di un sistema che era già in produzione, ed è
-un antecedente del gradino 9.
+un antecedente del gradino 7.
 
 ### Ref. 13 — L'agente resta residente nella produzione della Mutua (14 agosto)
 
 Il 14 agosto l'agente è rimasto installato dentro il sistema del cliente, come assistente
 residente, con tre regole: una mappa del sistema obbligatoria prima di operare, "prima la
 soluzione operativa" quando qualcosa fallisce, e la capacità di aprire ticket. È l'origine della
-prima metà del gradino 15.
+prima metà del gradino 23.
 
 ### Ref. 14 — Il dimensionamento come cancello (10 e 11 ottobre)
 
@@ -169,7 +169,7 @@ Il 14 ottobre l'agente ha lavorato un'ora e quarantatré minuti invisibile per m
 commit in quel lasso di tempo. È stato un fallimento del metodo, e brutto. L'ho corretto alla
 radice nella versione 1.18.0 (commit `b80a659`): una sentinella del silenzio che uccide il turno
 se smette di dare segni di vita, un guinzaglio tra processi perché il figlio muoia con il padre, e
-28 test. Ricade nel gradino 10 (il rapporto deve essere visibile) e nel 12 (davanti al dubbio, il
+28 test. Ricade nel gradino 12 (il rapporto deve essere visibile) e nel 14 (davanti al dubbio, il
 sistema non prosegue).
 
 ---
@@ -187,44 +187,44 @@ partenza e il piano vivo sono le voci in sospeso.
 
 Il 23 giugno ho fatto il primo audit dei "full scan" (query che leggono l'intera tabella perché
 non c'è un indice) su un sistema vivo. I rilievi sono diventati voci in sospeso, non un rapporto
-archiviato. È l'origine del gradino 11.
+archiviato. È l'origine del gradino 13.
 
 ### Ref. 19 — Lezioni dal cloud di Google (24 giugno)
 
 Gli errori di infrastruttura delle prime settimane nel cloud di Google sono rimasti scritti come
 lezioni per non ripeterli. È la prima versione di ciò che poi è stato il manuale di infrastruttura
-del gradino 14.
+del gradino 20.
 
 ### Ref. 20 — Il manuale utente nasce insieme al sistema (26 giugno)
 
 Il 26 giugno c'era già il manuale utente, con il sistema costruito a metà. L'ho fatto così di
 proposito: nei progetti classici il manuale si scriveva alla fine, quando ormai nessuno si
 ricordava di niente; con un modello che lo rigenera gratis, non c'è scusa perché non nasca con il
-sistema. Gradino 14.
+sistema. Gradino 20.
 
 ### Ref. 21 — Copia di backup di secondo livello (13 luglio)
 
 Prima di fidarmi del sistema con dati reali ho messo due livelli di backup: uno locale e un altro
-nello storage di Google. Gradino 13 e manuale di ripristino del 14.
+nello storage di Google. Gradino 15 e manuale di ripristino del 20.
 
 ### Ref. 22 — PND-300: quattro giri fino alla causa radice (14 luglio)
 
 Un bug è tornato tre volte finché non si è trovata la causa reale, il 14 luglio. Ogni "correzione"
 precedente era stata sul sintomo. Qui "la correzione è alla radice o non è correzione", che era
 già nel patto di convivenza, ha smesso di essere una frase ed è diventata pratica: bisogna misurare
-l'ipotesi prima di toccare. Gradini 1 e 9.
+l'ipotesi prima di toccare. Gradini 1 e 7.
 
 ### Ref. 23 — Audit di sicurezza (16 luglio)
 
 Il 16 luglio ho fatto il primo audit di sicurezza formale, con rilievi convertiti in voci in
 sospeso. È stato quello che mi ha convinto a trattare la sicurezza come un audit periodico e non
-come una lista che si spunta una volta all'inizio. Gradino 11.
+come una lista che si spunta una volta all'inizio. Gradino 13.
 
 ### Ref. 24 — Manuale interno e manuale di ripristino in caso di disastro (26 e 29 luglio)
 
 Il 26 e il 29 luglio (commit `6444ce6`, voce 442, e `a30cee3`, voce 459) ho lasciato documentato
 tutto l'operativo, distribuire, ripristinare, mantenere, in forma "riproducibile a mano, senza
-IA". Il criterio che ho usato, e che sta nel gradino 14, è che se domani non c'è l'agente, una
+IA". Il criterio che ho usato, e che sta nel gradino 20, è che se domani non c'è l'agente, una
 persona di fiducia che non programma possa seguire il manuale.
 
 ### Ref. 25 — Il fail-closed come riflesso (27 luglio)
@@ -232,7 +232,7 @@ persona di fiducia che non programma possa seguire il manuale.
 Il 27 luglio (commit `e18406d`, voce 452): se una tabella non esiste o una ricerca fallisce, la
 riga semplicemente resta senza il suo pulsante; non si rompe mai l'intero elenco. Davanti al
 dubbio, non agire e non rompere. E il test di quella correzione è stato provato in rosso "senza il
-try/except", cioè si è dimostrato che senza la protezione l'elenco si rompeva. Gradini 7 e 12.
+try/except", cioè si è dimostrato che senza la protezione l'elenco si rompeva. Gradini 8 e 14.
 
 ### Ref. 26 — I contatori che non coincidevano: 1.355 contro 1.234 (6 e 7 agosto)
 
@@ -241,21 +241,21 @@ schermata mostrava 1.355 approvazioni e la query al database ne mostrava 1.234. 
 (commit `ab3e529`, voce 517, e `1f5feb9`, voce 514) si è verificata la causa radice direttamente
 sulla produzione in sola lettura, si è scomposta la differenza numero per numero (145 in più, 24
 in meno; 145 meno 24 fa 121), si è scritto un test che è stato provato IN ROSSO contro il criterio
-vecchio, e lo script di diagnosi è rimasto nel repository per la prossima volta. Gradini 7, 8 e 9.
+vecchio, e lo script di diagnosi è rimasto nel repository per la prossima volta. Gradini 8, 11 e 7.
 
 ### Ref. 27 — Simmetria tra produttore e consumatore (6 agosto)
 
 Il 6 agosto (commit `50fe968`, voce 510, e `7251129`, voce 509) ho imposto che la "causa di
 attesa" che vede l'utente si calcoli con gli STESSI cancelli con cui il robot decide, e che la
 lista delle colonne della griglia la definisca il server e il frontend la consumi. Così non possono
-divergere. È la regola "ogni lista ha un solo proprietario" del gradino 8.
+divergere. È la regola "ogni lista ha un solo proprietario" del gradino 11.
 
 ### Ref. 28 — Pulsante di emergenza con lucchetto, modalità di prova dell'approvatore, sentinella con guardie (7 agosto)
 
 Il 7 agosto (commit `0954740`, voce 524) sono rimasti i lucchetti del sistema: un pulsante di
 emergenza con doppia sicura, l'approvatore automatico che gira prima in modalità di prova (fa
 tutto tranne approvare, e registra ciò che avrebbe approvato), e una sentinella che spinge ciò che
-è bloccato con guardie per non spingere due volte. Gradino 12.
+è bloccato con guardie per non spingere due volte. Gradino 14.
 
 ### Ref. 29 — Le regole di dominio scritte nel commit (10 agosto)
 
@@ -272,7 +272,7 @@ data e con proprietario, attaccata al codice che la implementa. Gradino 6.
 Kikan è stato il primo progetto partito con tutto quanto sopra già scritto dal primo giorno: un
 file di progetto operativo e voci in sospeso come piano dal primo commit (21 agosto). Il 28 e il
 29 agosto ho fatto una serie di audit precoci (AUD-1, AUD-2…) che si è convertita direttamente in
-19 documenti di voci in sospeso. Gradini 2, 5 e 11.
+19 documenti di voci in sospeso. Gradini 2, 5 e 13.
 
 ### Ref. 31 — Integrazione continua dalla prima settimana; deployment come pacchetto (28 agosto, 23 e 24 settembre)
 
@@ -290,19 +290,19 @@ invece di duplicare (`076df76`, voce 134), il materiale del cliente fuori dall'a
 replicato (`9d76af8`, voce 130), e la batteria di test che non sporca più la configurazione che
 viaggia nel deployment (`0bd20a8`, voce 107, 3 ottobre). Se lo scheletro fosse stato distribuito
 vuoto la prima settimana, quei cinque colpi si sarebbero presi con zero funzionalità in gioco.
-Gradini 4 e 13.
+Gradini 4 e 15.
 
 ### Ref. 33 — Promozione da UAT a produzione (4 e 8 ottobre)
 
 Il 4 e l'8 ottobre (commit `4eb5ad7`, voce 027, e `7658e2e`) è rimasto un circuito esplicito per
-passare configurazione e campagne dall'ambiente di test a quello di produzione. Gradino 13.
+passare configurazione e campagne dall'ambiente di test a quello di produzione. Gradino 15.
 
 ### Ref. 34 — Lo schema derivato dal codice, con lucchetto (11 ottobre)
 
 Nella tappa 1 della reingegnerizzazione della persistenza (commit `6113319` e `68819ce`)
 l'inventario di tabelle e campi è stato derivato dal codice stesso, con un test che lo protegge, ed
 è stato aperto sulla lavagna condivisa perché io lo rivedessi. È una lista con un solo
-proprietario, il codice. Gradino 8.
+proprietario, il codice. Gradino 11.
 
 ### Ref. 35 — Il cricchetto statico, e il misuratore che non vedeva (dall'11 al 13 ottobre)
 
@@ -311,7 +311,7 @@ messo un "cricchetto": un contatore di chiamate al database senza `await`, cioè
 risultato, che può solo scendere e mai salire. Ed è successa una cosa che vale la pena raccontare:
 si è scoperto DUE volte che il misuratore non vedeva parti del codice. Prima 70 chiamate, poi 84,
 con il contatore a zero. Se lo strumento non si verifica, il numero tranquillizza e mente. Gradino
-9.
+7.
 
 ### Ref. 36 — I misuratori che mentivano e le cinque regole della sezione 11.b (13 e 14 ottobre)
 
@@ -319,7 +319,7 @@ Testuale dai commit del 13 ottobre (`880ac0f`, `f955620`): "il misuratore di E7.
 database con l'ALTER già applicato"; "sono 44, non 27". E qualche giorno prima, un piano affermava
 che c'erano 121 cicli di un certo tipo e chi ha eseguito ne ha misurati 79. Da tutto questo ho
 scritto la sezione 11.b del documento di reingegnerizzazione, con le cinque regole che oggi sono
-il gradino 9: misuratore con guardia; se lo strumento non esiste si costruisce; si fa l'audit in
+il gradino 7: misuratore con guardia; se lo strumento non esiste si costruisce; si fa l'audit in
 due direzioni; l'approssimato si marca; e chi esegue verifica i numeri di chi ha pianificato. Con
 la frase che lo riassume: "tre asserzioni su quattro erano sbagliate; dove c'era lo strumento,
 esatto".
@@ -330,7 +330,7 @@ Nella tappa 8 (commit `5926b3f`, `10ada00`) ogni percorso dell'applicazione è r
 budget di query al database misurato e protetto da un test, e il cambio di motore di database è
 rimasto come un interruttore per ambiente. Nella tappa 9 (`0730082`, `7f5f1af`) il tetto è stato
 stretto sul misurato più un margine piccolo: 63 su 60. Il budget non è un numero inventato. Gradino
-9.
+7.
 
 ### Ref. 38 — Conservazione per tabella, e un rapporto di integrità fatto da un'altra sessione (14 ottobre)
 
@@ -338,7 +338,7 @@ Nelle tappe 10 e 12 (commit `f72b15a`, `b266f11`) il pacchetto reale ha comincia
 script di migrazione, la conservazione dei dati è stata dichiarata per tabella e limitata in
 produzione, e un rapporto di integrità fatto da una sessione diversa di Claude Code, che non aveva
 costruito il sistema, è stato assorbito come voci in sospeso. È l'auditor diverso dal costruttore
-del gradino 11.
+del gradino 13.
 
 ### Ref. 39 — Il deployment solo impacchetta, e la quota che si è bruciata (14 ottobre)
 
@@ -346,14 +346,14 @@ I test giravano tre volte per ogni commit, tra 16 e 27 minuti ogni volta; in 16 
 consumati 2.000 minuti di quota di GitHub Actions, e un giorno da 23 push l'ha finita di bruciare.
 Il 14 ottobre (commit `39497b0`) ho spezzato il circuito: i test girano UNA sola volta,
 nell'integrazione continua; il deployment aspetta quel risultato e solo impacchetta. Da 16-27
-minuti per commit, a 11. Gradino 13.
+minuti per commit, a 11. Gradino 15.
 
 ### Ref. 40 — Due porte di amministratore in ventiquattro ore (15 ottobre)
 
 Il 15 ottobre si sono create due porte di amministratore in un solo giorno (voci 223 e 257). Una
 revisione esterna l'ha rilevato; ne ho ritirata una (commit `69bdab2`, `20fdbe7`, `1558ee4`) ed è
 rimasta un'unica via. Lo racconto come prova che il metodo regge il "disfare in fretta" senza
-drammi, e del perché l'audit lo deve fare qualcuno che non ha costruito. Gradini 11 e 12.
+drammi, e del perché l'audit lo deve fare qualcuno che non ha costruito. Gradini 13 e 14.
 
 ### Ref. 41 — L'audit di qualità: una vulnerabilità, un componente enorme, un file di progetto di 9.661 righe (15 ottobre)
 
@@ -361,18 +361,18 @@ L'audit di qualità del 15 ottobre ha trovato una vulnerabilità nota in una dip
 componente di schermata di 2.679 righe, otto moduli duplicati tra la versione web e quella mobile,
 e un `CLAUDE.md` che era cresciuto fino a 9.661 righe e 789 kilobyte, un file che a quel punto non
 legge nessuno, nemmeno il modello. Da lì la regola del gradino 2: il file di progetto è il
-programma, non lo storico, e il libro dei casi va a parte. Gradini 2, 8 e 11.
+programma, non lo storico, e il libro dei casi va a parte. Gradini 2, 11 e 13.
 
 ### Ref. 42 — Segreti incollati nella chat (14 e 16 ottobre)
 
 Il 14 ottobre una chiave del database è rimasta stampata in una trascrizione, e il 16 alcune
 chiavi API sono comparse incollate nella chat. Nessuna delle due è stata "vista da nessuno", ed
 entrambe vanno ruotate lo stesso, perché un segreto che è stato in una chat, in un log o in un
-commit non è più un segreto. Gradino 13.
+commit non è più un segreto. Gradino 15.
 
 ### Ref. 43 — Tre rapporti che non erano ciò che dicevano (dal 14 al 16 ottobre)
 
-Tre casi piccoli e molto illustrativi del gradino 10. Il 14 ottobre un errore di autenticazione è
+Tre casi piccoli e molto illustrativi del gradino 12. Il 14 ottobre un errore di autenticazione è
 stato riportato dallo strumento con la dicitura "success". Il 16 il CORS del server è stato
 derivato solo dal primo nome di dominio, e l'assistente di configurazione dell'ambiente di test
 dava un errore 500 che il rapporto non menzionava. E l'applicazione mobile perdeva le schede in
@@ -383,7 +383,7 @@ separare il verificato dal creduto e dichiarare i punti ciechi.
 
 Un'intera batteria di test è "morta" per mancanza di memoria (commit `1d7a20b`), e il rapporto
 l'ha letta come un test che falliva. Finché non si è guardato l'output completo non si è capito che
-non era fallito nessun test: era caduto il processo. È il motivo per cui il gradino 7 chiede i
+non era fallito nessun test: era caduto il processo. È il motivo per cui il gradino 8 chiede i
 numeri del rosso e del verde, non solo il verdetto.
 
 ---
@@ -401,8 +401,8 @@ io porto una causa in forma di impressione, bisogna misurarla prima di costruire
 ho ragione sul sintomo e la causa di solito sta lì accanto. "Valida i limiti con il log, non con la
 prosa": un rifiuto del modello non prova che il limite sia applicato; bisogna forzare l'invocazione
 e leggere il registro. E "confronta prima la versione pubblicata": davanti a un "è ancora rotto",
-guardare quale versione gira dove io vedo il problema prima di tornare a diagnosticare. Gradini 9
-e 10.
+guardare quale versione gira dove io vedo il problema prima di tornare a diagnosticare. Gradini 7
+e 12.
 
 ### Ref. 46 — I progetti che ho rifiutato, e da dove vengono i criteri escludenti (17 ottobre)
 
@@ -488,21 +488,21 @@ gradino. Se ne comparisse uno che non ricade in nessuno, mancherebbe un gradino.
 
 | Fallimento | Referenza | Gradino che lo copre | Stato |
 |---|---|---|---|
-| La squadra multi-agente che spendeva il doppio e consegnava la metà | Ref. 6 | 15, retrospettiva con i numeri | chiuso |
+| La squadra multi-agente che spendeva il doppio e consegnava la metà | Ref. 6 | 23, retrospettiva con i numeri | chiuso |
 | Lavoro buttato per non aver letto la mappa | Ref. 9 | 2, lettura obbligatoria | chiuso |
-| PND-300: tre correzioni che non erano alla radice | Ref. 22 | 1, zero debito; 9, misurare | chiuso |
-| Contatori 1.355 contro 1.234 | Ref. 26 | 9, strumento; 8, simmetria | chiuso |
+| PND-300: tre correzioni che non erano alla radice | Ref. 22 | 1, zero debito; 7, misurare | chiuso |
+| Contatori 1.355 contro 1.234 | Ref. 26 | 7, strumento; 11, simmetria | chiuso |
 | 3,4 milioni di righe all'anno su file JSON | Ref. 15 | 3, dimensionare | chiuso |
-| Misuratori che mentivano; cricchetto a zero | Ref. 35 e 36 | 9, verificare lo strumento | chiuso |
-| Turno orfano di 1 h 43 | Ref. 16 | 10 e 12 | chiuso |
-| Test tre volte per commit; quota bruciata | Ref. 39 | 13 | chiuso; la quota va ampliata |
-| Due porte di amministratore in 24 ore | Ref. 40 | 11 e 12 | chiuso |
-| Segreti incollati nella chat | Ref. 42 | 13 | rotazione in sospeso |
-| Errore di autenticazione riportato come successo | Ref. 43 | 10 | in sospeso, una riga |
+| Misuratori che mentivano; cricchetto a zero | Ref. 35 e 36 | 7, verificare lo strumento | chiuso |
+| Turno orfano di 1 h 43 | Ref. 16 | 12 e 14 | chiuso |
+| Test tre volte per commit; quota bruciata | Ref. 39 | 15 | chiuso; la quota va ampliata |
+| Due porte di amministratore in 24 ore | Ref. 40 | 13 e 14 | chiuso |
+| Segreti incollati nella chat | Ref. 42 | 15 | rotazione in sospeso |
+| Errore di autenticazione riportato come successo | Ref. 43 | 12 | in sospeso, una riga |
 | File di progetto di 9.661 righe | Ref. 41 | 2 | in sospeso |
-| CORS del primo dominio; assistente di configurazione con errore 500 | Ref. 43 | 13 e 8 | applicazione in sospeso |
-| L'applicazione mobile perde le schede | Ref. 43 | 10 e 12 | diagnosi fatta; correzione in sospeso |
-| Query senza indice su un sistema vivo | Ref. 18 | 11 e 17 | chiuso |
-| Audit di sicurezza fatto una volta, non come routine | Ref. 23 | 11 e 18 | chiuso; il calendario è nuovo |
-| Tetto stretto a ciò che era stato misurato; quota bruciata senza che nessuno guardasse | Refs. 37 e 39 | 9, 13 e 20 | chiuso |
-| Il turno orfano si è trovato dal log, non dal codice | Ref. 16 | 16 e 21 | chiuso |
+| CORS del primo dominio; assistente di configurazione con errore 500 | Ref. 43 | 15 e 11 | applicazione in sospeso |
+| L'applicazione mobile perde le schede | Ref. 43 | 12 e 14 | diagnosi fatta; correzione in sospeso |
+| Query senza indice su un sistema vivo | Ref. 18 | 13 e 17 | chiuso |
+| Audit di sicurezza fatto una volta, non come routine | Ref. 23 | 13 e 18 | chiuso; il calendario è nuovo |
+| Tetto stretto a ciò che era stato misurato; quota bruciata senza che nessuno guardasse | Refs. 37 e 39 | 7, 15 e 21 | chiuso |
+| Il turno orfano si è trovato dal log, non dal codice | Ref. 16 | 16 e 22 | chiuso |

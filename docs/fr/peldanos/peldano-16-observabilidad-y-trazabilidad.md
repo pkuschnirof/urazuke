@@ -1,6 +1,6 @@
 # Étape 16 — Observabilité et traçabilité totales, avec un niveau configurable (contrat de l'échelon)
 
-**Tronçon :** qualité opérationnelle, avant le premier déploiement en production.
+**Tronçon :** mise en production.
 **Quand :** dans la phase de mise en production, après le 13 (il y a déjà une chaîne de déploiement
 et une configuration par environnement) et avant les tests de performance (19), parce que sans
 observabilité les tests de performance ne disent pas ce qui a cassé. Dans un système hérité, le
@@ -21,8 +21,8 @@ détail des journaux en production, en une minute, sans redéployer, et le redes
 c'est l'observabilité : voir ce que le système fait. Et la seconde chose, c'est la traçabilité :
 que toute action à conséquence (a facturé, a envoyé, a effacé, a approuvé) laisse une trace de qui,
 quand, quoi, d'où et avec quel résultat, dans un enregistrement que l'application ne peut pas
-modifier. Sans cela, l'agent résident de l'échelon 15 travaille en aveugle, la supervision des
-échelons 20 et 21 n'a rien dont se nourrir, et chaque incident se diagnostique avec des hypothèses
+modifier. Sans cela, l'agent résident de l'échelon 23 travaille en aveugle, la supervision des
+échelons 21 et 22 n'a rien dont se nourrir, et chaque incident se diagnostique avec des hypothèses
 au lieu de preuves. Le tour orphelin qui a continué de vivre une heure quarante-trois s'est trouvé
 par le journal, pas par le code [Ref. 16](../REFERENCIAS.md#ref-16) ; et l'agent résident a démarré,
 justement, en lisant des journaux [Ref. 13](../REFERENCIAS.md#ref-13).
@@ -48,9 +48,9 @@ Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir
 prompt, avec leur contenu et leur état minimum, sont dans la section 2, dans le bloc « Avant
 d'envoyer le prompt » qui précède chacun d'eux.
 
-- La chaîne de déploiement et la configuration par environnement (échelon 13) : le niveau se
+- La chaîne de déploiement et la configuration par environnement (échelon 15) : le niveau se
   configure là.
-- La table des verrous (échelon 12) : chaque action à conséquence est une entrée de l'audit.
+- La table des verrous (échelon 14) : chaque action à conséquence est une entrée de l'audit.
 - Le relevé initial avec les données personnelles marquées : les journaux ne peuvent pas en
   contenir.
 - Où vont vivre les journaux et les métriques (un fichier roulé, un service) : c'est vous qui le
@@ -63,9 +63,9 @@ d'envoyer le prompt » qui précède chacun d'eux.
 **Avant d'envoyer le prompt**, ceci doit exister, et c'est vous (ou le métier avec vous) qui le
 faites, pas l'agent :
 
-- `docs/DEPLOYMENT.md` (échelon 13) avec la façon dont se lit la configuration par environnement :
+- `docs/DEPLOYMENT.md` (échelon 15) avec la façon dont se lit la configuration par environnement :
   le niveau de journalisation va être une variable de plus de cette configuration.
-- `docs/LOCKS.md` (échelon 12) : la liste des actions à conséquence est la liste de ce qui doit
+- `docs/LOCKS.md` (échelon 14) : la liste des actions à conséquence est la liste de ce qui doit
   rester dans l'audit.
 - Dans `docs/INITIAL_SURVEY.md`, la liste des données qui sont personnelles (noms, téléphones,
   courriels, pièces d'identité, diagnostics), écrite par vous avec le propriétaire : c'est ce que
@@ -88,7 +88,7 @@ faites, pas l'agent :
 > backend, to the database and to every external call; (3) traceability of every consequential
 > action in `docs/LOCKS.md`: who, when, what, from where, with which input and which outcome, in
 > an audit record the application cannot edit; (4) health and metrics endpoints or files
-> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 20 and 21
+> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 21 and 22
 > will read; (5) masking of every personal field listed in `docs/INITIAL_SURVEY.md`, so that no
 > log record contains personal data. Show me one real request followed by its id through every
 > layer, and show me the level changing in the test environment without a redeploy. Document the
@@ -110,7 +110,7 @@ faites, pas l'agent :
 > traçabilité de toute action à conséquence de `docs/LOCKS.md` : qui, quand, quoi, d'où, avec quelle
 > entrée et avec quel résultat, dans un enregistrement d'audit que l'application ne peut pas
 > modifier ; (4) des points d'entrée ou des fichiers de santé et de métriques (requêtes, latence,
-> erreurs, taille des files, usage des ressources) que la supervision des échelons 20 et 21 va lire ;
+> erreurs, taille des files, usage des ressources) que la supervision des échelons 21 et 22 va lire ;
 > (5) le masquage de tout champ personnel listé dans `docs/INITIAL_SURVEY.md`, de sorte qu'aucun
 > enregistrement de journal ne contienne de données personnelles. Montre-moi une requête réelle
 > suivie par son identifiant à travers chaque couche, et montre-moi le niveau qui change dans

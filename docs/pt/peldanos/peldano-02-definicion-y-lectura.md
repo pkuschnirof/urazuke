@@ -1,7 +1,7 @@
 # Passo 2 — A definição do projeto, a árvore semântica e a leitura obrigatória (contrato do degrau)
 
 **Fase:** arranque.
-**Quando:** escreve-se uma vez, na primeira semana, depois do contrato; a árvore semântica e o
+**Quando:** escreve-se uma vez, depois do contrato; a árvore semântica e o
 estado vivo se mantêm em dia durante todo o projeto, com cada bloco e cada decisão nova.
 **Forma:** conversa: o agente redige, pergunta o que falta, você corrige.
 **Tamanho:** obrigatório em todo projeto. Num pequeno, o arquivo de projeto pode ter cinquenta

@@ -1,7 +1,7 @@
 # Step 16 — Total observability and traceability, with a configurable level (step contract)
 
-**Stretch:** operational quality, before the first deployment to production.
-**When:** in the go-live phase, after step 13 (there is already a deployment chain and
+**Stretch:** going live.
+**When:** in the go-live phase, after step 15 (there is already a deployment chain and
 configuration per environment) and before the performance tests (19), because without
 observability the performance tests do not say what broke. In a legacy system, the minimum level
 (structured log records with a configurable level and a correlation id) goes into the safety belt
@@ -20,7 +20,7 @@ detail of the log records in production, in a minute, without redeploying, and l
 afterwards. That is observability: seeing what the system does. And the second thing is
 traceability: that every consequential action (charged, sent, deleted, approved) leaves a trace of
 who, when, what, from where and with which outcome, in a record the application cannot edit.
-Without this, the resident agent of step 15 operates blind, the monitoring of steps 20 and 21 has
+Without this, the resident agent of step 23 operates blind, the monitoring of steps 21 and 22 has
 nothing to feed on, and every incident is diagnosed with hypotheses instead of with evidence. The
 orphan turn that stayed alive for an hour and forty-three minutes was found through the log, not
 through the code [Ref. 16](../REFERENCIAS.md#ref-16); and the resident agent started, precisely, by
@@ -47,9 +47,9 @@ What follows is the generic list. The concrete files you have to have made befor
 with their content and their minimum state, are in section 2, in the "Before sending the prompt"
 block that precedes each one.
 
-- The deployment chain and the configuration per environment (step 13): the level is configured
+- The deployment chain and the configuration per environment (step 15): the level is configured
   there.
-- The table of locks (step 12): every consequential action is an entry of the audit trail.
+- The table of locks (step 14): every consequential action is an entry of the audit trail.
 - The initial survey with the personal data marked: the log records cannot contain them.
 - Where the log records and the metrics are going to live (a rotated file, a service): you decide.
 
@@ -60,9 +60,9 @@ block that precedes each one.
 **Before sending the prompt**, this has to exist, and you (or the business with you) make it, not
 the agent:
 
-- `docs/DEPLOYMENT.md` (step 13) with the way the configuration per environment is read: the log
+- `docs/DEPLOYMENT.md` (step 15) with the way the configuration per environment is read: the log
   level is going to be one more variable of that configuration.
-- `docs/LOCKS.md` (step 12): the list of consequential actions is the list of what has to end up
+- `docs/LOCKS.md` (step 14): the list of consequential actions is the list of what has to end up
   in the audit trail.
 - In `docs/INITIAL_SURVEY.md`, the list of which data are personal (names, phone numbers, emails,
   identity documents, diagnoses), written by you with the owner: it is what the log records have
@@ -85,7 +85,7 @@ the agent:
 > backend, to the database and to every external call; (3) traceability of every consequential
 > action in `docs/LOCKS.md`: who, when, what, from where, with which input and which outcome, in
 > an audit record the application cannot edit; (4) health and metrics endpoints or files
-> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 20 and 21
+> (requests, latency, errors, queue sizes, resource usage) that the monitoring of steps 21 and 22
 > will read; (5) masking of every personal field listed in `docs/INITIAL_SURVEY.md`, so that no
 > log record contains personal data. Show me one real request followed by its id through every
 > layer, and show me the level changing in the test environment without a redeploy. Document the
