@@ -1172,6 +1172,8 @@ os três fluxos que existem (ver o dia, registrar, cancelar), e a encarregada re
 consultas de teste e descobre que a hora se escolhe com um menu suspenso incômodo. Pendência nova.
 Quando você vir esse relatório pela primeira vez, vai entender para que serve todo o método.
 
+**O que mudou em 19 de outubro de 2026 (D-037).** No primeiro bloco de um projeto novo não há código anterior: o teste novo falha porque o módulo não existe, e esse vermelho não prova nada. Desde esse dia, quando a versão anterior não tem o módulo, o vermelho se prova **por mutação**: o agente planta um defeito de propósito na função recém-escrita, mostra o teste em vermelho contra esse defeito (o recibo leva o diff), reverte-o e mostra o verde. No Forge, um vermelho que só diz "o arquivo não carrega" já não fecha o pendente. Um mutante por pendente; os testes de mutação sobre toda a base continuam sendo o reforço opcional da lição 9.
+
 ### Lição 9 — Qualidade do código verificada por máquina
 
 **O que você tem que entender.** Você não lê o código, e está bem; mas o código existe e alguém
@@ -2124,6 +2126,8 @@ agenda do dia em 320 milissegundos de mediana (linha base), a busca de pacientes
 avisar aos 80 %). Um desvio: o relatório mensal da encarregada demorou 11 segundos no dia 1
 (proposta: pré-calculá-lo de noite; pendência).
 
+**O que mudou em 19 de outubro de 2026 (D-039).** A medição que revalida o dimensionamento leva a sua janela verificável: o primeiro e o último registro lidos da base, não um número digitado à mão. Na prática, 30.000 linhas de três anos passadas como se fossem de um abriram um alarme falso. Uma janela digitada à mão é marcada como tal no relatório e só avisa.
+
 ### Lição 22 — Monitoramento de erros e relatório cíclico
 
 **O que você tem que entender.** Um sistema em produção produz erros que ninguém reporta: a
@@ -2174,6 +2178,8 @@ na tarefa noturna (o provedor de mensagens devolveu um erro numa noite; 1 vez; p
 retentar com registro), e um "conhecido" do sobrinho na planilha mensal (pendência com data:
 substitui-se pelo relatório da lição R2 na parte 2). Taxa de erro: 0,3 % em "cadastrar turno",
 0 % nos demais.
+
+**O que mudou em 19 de outubro de 2026 (D-038).** A captura de erros separa por fonte: os erros do sistema e os das ferramentas que o observam (o painel, o agente residente, o próprio monitoramento) vão em seções distintas do relatório, e só os do sistema abrem pendentes. Na prática, o primeiro relatório cíclico abriu seis "bugs" que eram a ferramenta falando com um servidor desligado.
 
 ### Lição 23 — O agente dentro do sistema, e a retrospectiva com número
 

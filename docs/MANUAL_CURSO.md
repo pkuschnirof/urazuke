@@ -1171,6 +1171,8 @@ existen (ver el día, cargar, cancelar), y la encargada carga diez turnos de pru
 la hora se elige con un menú desplegable incómodo. Pendiente nuevo. Cuando veas ese reporte por
 primera vez, vas a entender para qué es todo el método.
 
+**Lo que cambió el 19 de octubre de 2026 (D-037).** En el primer bloque de un proyecto nuevo no hay código anterior: el test nuevo falla porque el módulo no existe, y ese rojo no demuestra nada. Desde ese día, cuando la versión anterior no tiene el módulo, el rojo se prueba **por mutación**: el agente planta un defecto a propósito en la función recién escrita, muestra el test en rojo contra ese defecto (el recibo lleva el diff), lo revierte y muestra el verde. En Forge, un rojo que solo dice "el archivo no carga" ya no cierra el pendiente. Es un mutante por pendiente; las pruebas de mutación sobre toda la base siguen siendo el refuerzo opcional de la lección 9.
+
 ### Lección 9 — Calidad del código verificada por máquina
 
 **Qué tenés que entender.** Vos no leés el código, y está bien; pero el código existe y alguien lo
@@ -2128,6 +2130,8 @@ subió de 4 a 9 milisegundos (crece la tabla; dentro de rango), y la cuota de me
 (propuesta: avisar al 80 %). Un desvío: el reporte mensual de la encargada tardó 11 segundos el
 día 1 (propuesta: precalcularlo de noche; pendiente).
 
+**Lo que cambió el 19 de octubre de 2026 (D-039).** La medición que revalida el dimensionamiento lleva su ventana verificable: el primer y el último registro leídos de la base, no un número escrito a mano. En la práctica, 30.000 filas de tres años pasadas como si fueran de uno abrieron una alarma falsa. Una ventana escrita a mano se marca como tal en el reporte y solo avisa.
+
 ### Lección 22 — Monitoreo de errores y reporte cíclico
 
 **Qué tenés que entender.** Un sistema en producción produce errores que nadie reporta: la
@@ -2179,6 +2183,8 @@ rojo), uno en la tarea nocturna (el proveedor de mensajes devolvió un error una
 pendiente para reintentar con registro), y uno "conocido" del sobrino en la planilla mensual
 (pendiente con fecha: se reemplaza por el reporte de la lección R2 en la parte 2). Tasa de error:
 0,3 % en "cargar turno", 0 % en los demás.
+
+**Lo que cambió el 19 de octubre de 2026 (D-038).** La captura de errores separa por fuente: los errores del sistema y los de las herramientas que lo observan (el panel, el agente residente, el propio monitoreo) van en secciones distintas del reporte, y solo los del sistema abren pendientes. En la práctica, el primer reporte cíclico abrió seis "bugs" que eran la herramienta hablando con un servidor apagado.
 
 ### Lección 23 — El agente adentro del sistema, y la retrospectiva con número
 

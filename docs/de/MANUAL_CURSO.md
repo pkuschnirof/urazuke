@@ -1262,6 +1262,8 @@ ein und entdeckt, dass die Uhrzeit mit einem unbequemen Dropdown-Menü gewählt 
 Posten. Wenn du diesen Bericht zum ersten Mal siehst, wirst du verstehen, wofür die ganze Methode
 da ist.
 
+**Was sich am 19. Oktober 2026 geändert hat (D-037).** Im ersten Block eines neuen Projekts gibt es keinen vorherigen Code: der neue Test schlägt fehl, weil das Modul nicht existiert, und dieses Rot beweist nichts. Seit diesem Tag wird, wenn die vorherige Version das Modul nicht hat, das Rot **durch Mutation** bewiesen: der Agent pflanzt absichtlich einen Fehler in die gerade geschriebene Funktion, zeigt den Test rot gegen diesen Fehler (der Beleg trägt den Diff), macht ihn rückgängig und zeigt das Grün. In Forge schließt ein Rot, das nur "die Datei lädt nicht" sagt, den offenen Punkt nicht mehr. Ein Mutant pro Punkt; Mutationstests über die ganze Codebasis bleiben die optionale Verstärkung der Lektion 9.
+
 ### Lektion 9 — Maschinell verifizierte Code-Qualität
 
 **Was du verstehen musst.** Du liest den Code nicht, und das ist in Ordnung; aber der Code
@@ -2286,6 +2288,8 @@ Millisekunden gestiegen (die Tabelle wächst; im Bereich), und das Nachrichtenko
 (Vorschlag: bei 80 % melden). Eine Abweichung: die monatliche Auswertung der Leiterin brauchte am
 Ersten 11 Sekunden (Vorschlag: sie nachts vorberechnen; offener Posten).
 
+**Was sich am 19. Oktober 2026 geändert hat (D-039).** Die Messung, die die Dimensionierung neu bestätigt, trägt ihr überprüfbares Fenster: den ersten und den letzten aus der Datenbank gelesenen Datensatz, keine von Hand getippte Zahl. In der Praxis lösten 30.000 Zeilen aus drei Jahren, als ein Jahr übergeben, einen Fehlalarm aus. Ein von Hand getipptes Fenster wird im Bericht als solches markiert und warnt nur.
+
 ### Lektion 22 — Fehler-Monitoring und zyklischer Bericht
 
 **Was du verstehen musst.** Ein System in Produktion erzeugt Fehler, die niemand meldet: die
@@ -2342,6 +2346,8 @@ Rot), einen in der nächtlichen Aufgabe (der Nachrichtenanbieter gab eine Nacht 
 zurück; 1 Mal; offener Posten, um mit Protokollierung erneut zu versuchen), und einen „bekannten“
 des Neffen in der monatlichen Tabelle (offener Posten mit Datum: er wird durch den Bericht aus
 Lektion R2 in Teil 2 ersetzt). Fehlerrate: 0,3 % bei „Termin eintragen“, 0 % bei den übrigen.
+
+**Was sich am 19. Oktober 2026 geändert hat (D-038).** Die Fehlererfassung trennt nach Quelle: die Fehler des Systems und die der Werkzeuge, die es beobachten (das Panel, der residente Agent, das Monitoring selbst), stehen in getrennten Abschnitten des Berichts, und nur die Fehler des Systems öffnen offene Punkte. In der Praxis öffnete der erste zyklische Bericht sechs "Bugs", die das Werkzeug im Gespräch mit einem abgeschalteten Server waren.
 
 ### Lektion 23 — Der Agent im System, und die Retrospektive mit Zahlen
 

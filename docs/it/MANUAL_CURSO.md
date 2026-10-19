@@ -1192,6 +1192,8 @@ responsabile carica dieci appuntamenti di prova e scopre che l'ora si sceglie co
 tendina scomodo. Voce in sospeso nuova. Quando vedrai quel rapporto per la prima volta, capirai a
 cosa serve tutto il metodo.
 
+**Cosa è cambiato il 19 ottobre 2026 (D-037).** Nel primo blocco di un progetto nuovo non c'è codice precedente: il test nuovo fallisce perché il modulo non esiste, e quel rosso non prova nulla. Da quel giorno, quando la versione precedente non ha il modulo, il rosso si prova **per mutazione**: l'agente pianta di proposito un difetto nella funzione appena scritta, mostra il test in rosso contro quel difetto (la ricevuta porta il diff), lo annulla e mostra il verde. In Forge, un rosso che dice solo "il file non si carica" non chiude più l'elemento in sospeso. Un mutante per elemento; i test di mutazione su tutta la base restano il rinforzo opzionale della lezione 9.
+
 ### Lezione 9 — Qualità del codice verificata dalla macchina
 
 **Cosa devi capire.** Tu non leggi il codice, e va bene; ma il codice esiste e qualcuno lo
@@ -2171,6 +2173,8 @@ salita da 4 a 9 millisecondi (la tabella cresce; dentro il range), e la quota di
 (proposta: avvisare all'80 %). Uno scostamento: il rapporto mensile della responsabile ci ha
 messo 11 secondi il giorno 1 (proposta: precalcolarlo di notte; voce in sospeso).
 
+**Cosa è cambiato il 19 ottobre 2026 (D-039).** La misurazione che riconvalida il dimensionamento porta la sua finestra verificabile: il primo e l'ultimo record letti dal database, non un numero scritto a mano. Nella pratica, 30.000 righe di tre anni passate come se fossero di uno hanno aperto un falso allarme. Una finestra scritta a mano è segnata come tale nel report e si limita ad avvisare.
+
 ### Lezione 22 — Monitoraggio degli errori e rapporto ciclico
 
 **Cosa devi capire.** Un sistema in produzione produce errori che nessuno segnala: la
@@ -2225,6 +2229,8 @@ rosso), uno nel processo notturno (il provider di messaggi ha restituito un erro
 volta; voce in sospeso per riprovare con registro), e uno "noto" del nipote nel foglio mensile
 (voce in sospeso con data: si sostituisce con il rapporto della lezione R2 nella parte 2). Tasso
 di errore: 0,3 % in "caricare appuntamento", 0 % negli altri.
+
+**Cosa è cambiato il 19 ottobre 2026 (D-038).** La cattura degli errori separa per fonte: gli errori del sistema e quelli degli strumenti che lo osservano (il pannello, l'agente residente, il monitoraggio stesso) vanno in sezioni distinte del report, e solo quelli del sistema aprono elementi in sospeso. Nella pratica, il primo report ciclico ha aperto sei "bug" che erano lo strumento che parlava con un server spento.
 
 ### Lezione 23 — L'agente dentro il sistema, e la retrospettiva con i numeri
 

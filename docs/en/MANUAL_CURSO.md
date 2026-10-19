@@ -1032,6 +1032,8 @@ manager enters ten test appointments and discovers that the time is chosen with 
 drop-down menu. New pending item. When you see that report for the first time, you are going to
 understand what the whole method is for.
 
+**What changed on 19 October 2026 (D-037).** In the first block of a new project there is no previous code: the new test fails because the module does not exist, and that red proves nothing. Since that day, when the previous version does not have the module, the red is proven **by mutation**: the agent plants a deliberate defect in the function it just wrote, shows the test red against that defect (the receipt carries the diff), reverts it and shows the green. In Forge, a red that only says "the file does not load" no longer closes the pending item. One mutant per item; mutation testing over the whole codebase stays the optional reinforcement of lesson 9.
+
 ### Lesson 9 — Code quality verified by machine
 
 **What you need to understand.** You do not read the code, and that is fine; but the code exists
@@ -1918,6 +1920,8 @@ milliseconds (the table is growing; within range), and the message quota at 60 %
 at 80 %). One deviation: the receptionist's monthly report took 11 seconds on the 1st (proposal:
 precompute it at night; pending item).
 
+**What changed on 19 October 2026 (D-039).** The measurement that revalidates the sizing carries its verifiable window: the first and the last record read from the database, not a number typed by hand. In practice, 30,000 rows of three years passed as one year raised a false alarm. A window typed by hand is marked as such in the report and only warns.
+
 ### Lesson 22 — Error monitoring and cyclic report
 
 **What you need to understand.** A system in production produces errors nobody reports: the
@@ -1971,6 +1975,8 @@ one in the nightly job (the message provider returned an error one night; 1 time
 retry with a log record), and a "known" one from the nephew in the monthly spreadsheet (pending
 item with a date: it is replaced by the report of lesson R2 in part 2). Error rate: 0.3 % in "book
 appointment", 0 % in the rest.
+
+**What changed on 19 October 2026 (D-038).** Error capture separates by source: the errors of the system and those of the tools that watch it (the panel, the resident agent, the monitoring itself) go in different sections of the report, and only the system's errors open pending items. In practice, the first cyclic report opened six "bugs" that were the tool talking to a server that was off.
 
 ### Lesson 23 — The agent inside the system, and the retrospective with numbers
 

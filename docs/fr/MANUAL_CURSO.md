@@ -1244,6 +1244,8 @@ enregistrer, annuler), et la responsable enregistre dix rendez-vous de test et d
 se choisit avec un menu déroulant peu pratique. Nouvel élément en attente. Quand vous verrez ce
 rapport pour la première fois, vous comprendrez à quoi sert toute la méthode.
 
+**Ce qui a changé le 19 octobre 2026 (D-037).** Dans le premier bloc d'un nouveau projet il n'y a pas de code précédent : le nouveau test échoue parce que le module n'existe pas, et ce rouge ne prouve rien. Depuis ce jour, quand la version précédente n'a pas le module, le rouge se prouve **par mutation** : l'agent plante volontairement un défaut dans la fonction qu'il vient d'écrire, montre le test en rouge contre ce défaut (le reçu porte le diff), l'annule et montre le vert. Dans Forge, un rouge qui dit seulement « le fichier ne se charge pas » ne ferme plus l'élément en attente. Un mutant par élément ; les tests de mutation sur toute la base restent le renfort optionnel de la leçon 9.
+
 ### Leçon 9 — Qualité du code vérifiée par machine
 
 **Ce que vous devez comprendre.** Vous, vous ne lisez pas le code, et c'est très bien ; mais le
@@ -2256,6 +2258,8 @@ est passée de 4 à 9 millisecondes (la table grandit ; dans la plage), et le qu
 60 % (proposition : prévenir à 80 %). Un écart : le rapport mensuel de la responsable a mis 11
 secondes le jour 1 (proposition : le précalculer la nuit ; élément en attente).
 
+**Ce qui a changé le 19 octobre 2026 (D-039).** La mesure qui revalide le dimensionnement porte sa fenêtre vérifiable : le premier et le dernier enregistrement lus dans la base, pas un nombre saisi à la main. En pratique, 30 000 lignes de trois ans passées comme une seule année ont déclenché une fausse alerte. Une fenêtre saisie à la main est marquée comme telle dans le rapport et ne fait qu'avertir.
+
 ### Leçon 22 — Supervision des erreurs et rapport cyclique
 
 **Ce que vous devez comprendre.** Un système en production produit des erreurs que personne ne
@@ -2313,6 +2317,8 @@ rouge), une dans la tâche nocturne (le prestataire de messages a renvoyé une e
 fois ; élément en attente pour réessayer avec journalisation), et une « connue » du neveu dans le
 tableau mensuel (élément en attente avec date : il se remplace par le rapport de la leçon R2 de la
 partie 2). Taux d'erreur : 0,3 % dans « enregistrer un rendez-vous », 0 % dans les autres.
+
+**Ce qui a changé le 19 octobre 2026 (D-038).** La capture des erreurs sépare par source : les erreurs du système et celles des outils qui l'observent (le panneau, l'agent résident, la surveillance elle-même) vont dans des sections distinctes du rapport, et seules les erreurs du système ouvrent des éléments en attente. En pratique, le premier rapport cyclique a ouvert six « bugs » qui étaient l'outil parlant à un serveur éteint.
 
 ### Leçon 23 — L'agent dans le système, et la rétrospective chiffrée
 
