@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Manual de ejecución: un proyecto existente con Urazuke en Yujin Forge</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+h3.refh{font-size:1.02rem;margin-top:1.6em;color:#3a2f00;border-bottom:1px dashed var(--line);padding-bottom:.2em}
+h3.refh:target{background:var(--gold-soft);border-radius:6px;padding:.4em .6em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+a{color:#7a5600}
+a.ref{font:700 .78em/1.4 Segoe UI,Arial,sans-serif;background:#f1ece0;border:1px solid var(--line);border-radius:999px;padding:0 .5em;text-decoration:none;color:#5a3f00;white-space:nowrap;vertical-align:middle}
+a.ref:hover{background:var(--gold-soft)}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+.pbox{margin:.8em 0 1.2em}
+.prompt{margin:0;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.prompt.tr{background:#f3f7f0;border-color:#cfdcc6;border-left-color:#5c8a4a}
+.prompt.tr::before{content:'Prompt (traducción)';color:#3f6b2e}
+.trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
+.trbtn:hover{background:#efe0b8}
+.antes{margin:1em 0 .8em;padding:.7em 1.1em .45em;background:#eef2f7;border:1px solid #c9d3e3;border-left:5px solid #3f5a8a;border-radius:6px;font-size:.95em}
+.antes>p:first-child{margin:.15em 0 .45em}
+.antes>p:first-child strong{display:inline-block;color:#2c4470;text-transform:uppercase;letter-spacing:.5px;font:700 .82em/1.5 Segoe UI,Arial,sans-serif;margin-right:.2em}
+.antes ul{margin:.3em 0 .45em;padding-left:1.4em}
+.antes li{margin:.4em 0}
+.antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;margin:.6em 0;display:block}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+.pie{margin-top:3em;padding-top:1em;border-top:1px dashed var(--line);font:.85em/1.5 Segoe UI,Arial,sans-serif;color:var(--mute)}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="manual-de-ejecucion-un-proyecto-existente-con-urazuke-en-yujin-forge">Manual de ejecución: un proyecto existente con Urazuke en Yujin Forge</h1><nav class="toc"><div class="toc-t">Contenido</div><ul><li class="l2"><a href="#que-cambia-cuando-el-sistema-ya-existe">Qué cambia cuando el sistema ya existe</a></li><li class="l2"><a href="#0-arrancar-sobre-una-carpeta-que-ya-tiene-codigo">0. Arrancar sobre una carpeta que ya tiene código</a></li><li class="l3"><a href="#un-tropiezo-que-vale-como-leccion">Un tropiezo que vale como lección</a></li><li class="l2"><a href="#1-las-estaciones-n0-a-n7">1. Las estaciones N0 a N7</a></li><li class="l3"><a href="#n0-elegibilidad-verificada-haciendo">N0: elegibilidad verificada haciendo</a></li><li class="l3"><a href="#n1-el-contrato-para-un-legado">N1: el contrato para un legado</a></li><li class="l3"><a href="#n2-el-mapa-recuperado-y-las-discrepancias">N2: el mapa recuperado y las discrepancias</a></li><li class="l3"><a href="#n3-la-auditoria-como-inventario-de-la-deuda">N3: la auditoría como inventario de la deuda</a></li><li class="l3"><a href="#n4-el-cinturon-de-seguridad">N4: el cinturón de seguridad</a></li><li class="l3"><a href="#n5-candados-y-mapa-productor-consumidor-desde-el-codigo">N5: candados y mapa productor-consumidor desde el código</a></li><li class="l3"><a href="#n6-dimensionar-con-numeros-reales">N6: dimensionar con números reales</a></li><li class="l3"><a href="#n7-el-backlog-emparejado-con-el-pedido">N7: el backlog, emparejado con el pedido</a></li><li class="l2"><a href="#2-el-bucle-el-bloque-correctivo">2. El bucle: el bloque correctivo</a></li><li class="l3"><a href="#el-rojo-de-verdad">El rojo de verdad</a></li><li class="l3"><a href="#el-cambio-minimo">El cambio, mínimo</a></li><li class="l3"><a href="#los-tests-de-caracterizacion-que-describian-el-defecto">Los tests de caracterización que describían el defecto</a></li><li class="l3"><a href="#el-cierre">El cierre</a></li><li class="l2"><a href="#3-salida-a-produccion-y-operacion">3. Salida a producción y operación</a></li><li class="l2"><a href="#4-lo-que-forge-verifico-lo-que-creimos-y-lo-que-no-vimos">4. Lo que Forge verificó, lo que creímos y lo que no vimos</a></li><li class="l2"><a href="#apendice-todos-los-comandos-en-orden">Apéndice: todos los comandos, en orden</a></li></ul></nav>
+<p>Paso a paso para principiantes, con capturas. Es la segunda práctica del 19 de octubre de 2026: <strong>Turnera heredada</strong>, una copia "de un conocido" de la agenda de turnos del consultorio, sin tests, sin cadena, sin documentación, con un defecto que la dueña sufre todos los días (a los pacientes que reprogramaron les llega el recordatorio cada día hasta el turno) y con un par de olores que nadie había mirado. El código no lo escribió el método; el método lo <strong>hereda</strong>.</p>
+<p>Este manual da por leído el de <a href="MANUAL_FORGE_PROYECTO_NUEVO.html">proyecto nuevo</a>: el panel, las pestañas, los recibos y el reporte honesto son los mismos. Acá se cuenta lo que cambia cuando el sistema ya existe: el camino <strong>N0 a N7</strong> del método (el <a href="../EVOLUTIVO_CORRECTIVO.html">evolutivo-correctivo</a>), cómo Forge lo elige solo, y cómo se corrige un defecto real con un rojo de verdad.</p>
+</section><section>
+<h2 id="que-cambia-cuando-el-sistema-ya-existe">Qué cambia cuando el sistema ya existe</h2>
+<p>Tres cosas, y las tres las hace cumplir Forge:</p>
+<ol><li><strong>No se reescribe nada.</strong> El contrato suma cinco reglas (7 a 11): nada se refactoriza sin pedido; el código que no se entiende se lee antes de tocarlo; lo raro se anota como pendiente, nunca se arregla de paso; <strong>el comportamiento actual es la especificación</strong> hasta que la dueña diga otra cosa; y nada llega al entorno de prueba sin la batería de caracterización en verde.</li><li><strong>Primero se lee, después se toca.</strong> Los peldaños N0 a N7 recuperan el mapa del sistema desde el código (qué hace, con marcas de fuente), inventarían la deuda con una marca de velocidad (BLOQUEA, SE PAGA AL TOCAR, PUEDE ESPERAR) y ponen el cinturón de seguridad antes de cambiar una línea.</li><li><strong>El pedido del cliente y la deuda van en un solo plan.</strong> En N7, cada pedido se empareja con la deuda del módulo que toca, y lo que bloquea va primero.</li></ol>
+<p>Después de N7 el proyecto entra en el bucle normal, en el peldaño 5.</p>
+</section><section>
+<h2 id="0-arrancar-sobre-una-carpeta-que-ya-tiene-codigo">0. Arrancar sobre una carpeta que ya tiene código</h2>
+<pre class="code"><code>yf start --existing C:\urazuke-practica\turnera-heredada --no-launch</code></pre>
+<p>(O el botón <strong>proyecto existente</strong> del arranque en un clic, y elegir la carpeta.) Forge mira la carpeta: tiene código y <strong>no tiene</strong> <code>docs/WORKING_AGREEMENT.md</code>, <code>docs/SEMANTIC_TREE.md</code> ni <code>docs/GATES.md</code>, así que le asigna el flujo <strong>WFL-001 (urazuke-legacy):</strong> las ocho estaciones N0 a N7 y después los peldaños 5 a 23, una tarea por cada uno, en orden.</p>
+<p><img src="img/existente-02-escalera.png" alt="La escalera del camino heredado: N0 a N7 y después el bucle" loading="lazy"></p>
+<p>En la práctica, la carpeta era una copia de Turnera con dos commits ("versión 1 del sistema de turnos", "arreglos varios y recordatorio a los reprogramados"), un <code>README.md</code> de tres líneas y un <code>package.json</code> sin tests. Nada más.</p>
+<h3 id="un-tropiezo-que-vale-como-leccion">Un tropiezo que vale como lección</h3>
+<p>Al abrir el panel sobre esta copia, Forge le dio el <strong>mismo identificador</strong> que al proyecto original ("turnera", porque los dos <code>package.json</code> se llaman igual), y como "una carpeta = una entrada", movió el registro del original a la carpeta heredada y borró la entrada de la heredada. Los dos proyectos quedaron mezclados: la escalera de uno aparecía en el otro. Se corrigió en Forge el mismo día (el registro manda sobre el <code>package.json</code>), pero la regla queda: <strong>si tenés dos copias de un sistema, dales nombres distintos</strong> o un <code>project_slug</code> explícito en <code>yujin.forge.json</code>.</p>
+</section><section>
+<h2 id="1-las-estaciones-n0-a-n7">1. Las estaciones N0 a N7</h2>
+<p>Cada estación tiene, como los peldaños, lo que verifica Forge y el prompt para pegar. En esta práctica las estaciones N0 a N6 las produjo <strong>una sesión del agente con el prompt de cada una</strong>, leyendo el código, sin tocarlo; N3 (la auditoría) la hizo la misma sesión, y el informe lo declara: el método prefiere un auditor aparte, y en el proyecto nuevo se hizo así.</p>
+<h3 id="n0-elegibilidad-verificada-haciendo" class="peldano">N0: elegibilidad verificada haciendo</h3>
+<p>El agente no pregunta si el sistema se puede levantar: <strong>lo levanta</strong>. Puso el servidor en un puerto libre con una base temporal, pidió <code>GET /api/profesionales</code> y pegó la respuesta (200, con su <code>X-Request-Id</code>), dio de alta un turno por la API (201) y cerró el proceso. Escribió <code>docs/ELIGIBILITY.md</code> con los siete prerrequisitos en verde o rojo y su evidencia, y <code>docs/FUNCTIONALITY_RECOVERED.md</code>: qué hace el sistema, pantalla por pantalla, <strong>desde el código</strong>, con marcas <code>[código: archivo:línea]</code> y <code>[supuesto]</code>.</p>
+<p>Forge verifica los dos archivos. Los rojos de N0 (no había tests ni cadena ni respaldo) se convierten en proyectos previos: acá, el cinturón de N4 y el respaldo del bloque 1.</p>
+<h3 id="n1-el-contrato-para-un-legado" class="peldano">N1: el contrato para un legado</h3>
+<p><code>docs/WORKING_AGREEMENT.md</code> con las seis reglas más las cinco del legado. Forge busca, además, la rutina del rojo y la del reporte honesto: las va a exigir igual que en un proyecto nuevo.</p>
+<h3 id="n2-el-mapa-recuperado-y-las-discrepancias" class="peldano">N2: el mapa recuperado y las discrepancias</h3>
+<p><code>PROJECT.md</code>, <code>docs/SEMANTIC_TREE.md</code>, <code>docs/STATUS.md</code> y, lo más valioso, <code>docs/DISCREPANCIES.md</code>: <strong>19 discrepancias</strong> entre lo que el código hace y lo que el negocio presumiblemente quiere, cada una como "el código hace X [archivo:línea]; el negocio dice Y; decisión: pendiente de la dueña". Entre ellas:</p>
+<ul class="ficha"><li>D-01: a los reprogramados se les vuelve a avisar en cada corrida (<code>src/rules.js</code>, con un comentario "los reprogramados tienen que recibir el aviso sí o sí, pedido de la dueña, mayo" que nadie podía confirmar).</li><li>D-02: el marcado del recordatorio pisa el aviso anterior en la base (no es idempotente).</li><li>D-03: un contador global en memoria que se imprime con <code>console.log</code> y nadie lee.</li><li>D-13: el commit que decía "recordatorio a los reprogramados" solo tocaba un CSS.</li><li>D-14: "Enviar recordatorios" no envía nada: escribe un archivo. ¿Quién lo lee?</li></ul>
+<p>Ninguna se arregla acá. Se escriben, y la dueña decide una por una.</p>
+<h3 id="n3-la-auditoria-como-inventario-de-la-deuda" class="peldano">N3: la auditoría como inventario de la deuda</h3>
+<p><code>docs/AUDIT_2026-10-19.md</code>: 20 hallazgos, cada uno con archivo y línea, riesgo, evidencia, prioridad <strong>y la marca de velocidad:</strong></p>
+<div class="tw"><table><thead><tr><th>Marca</th><th>Ejemplo en Turnera heredada</th></tr></thead><tbody><tr><td><strong>BLOQUEA</strong></td><td>A-01: meses en producción sin una copia de seguridad, con la base abierta en modo WAL.</td></tr><tr><td><strong>SE PAGA AL TOCAR</strong></td><td>A-02/A-04: el marcado del recordatorio no es idempotente en la base. Se paga junto con R1, porque es el mismo módulo.</td></tr><tr><td><strong>PUEDE ESPERAR</strong></td><td>A-10: <code>GET /api/turnos</code> sin filtro devuelve la tabla entera (81 MB a 300.000 filas).</td></tr></tbody></table></div>
+<h3 id="n4-el-cinturon-de-seguridad" class="peldano">N4: el cinturón de seguridad</h3>
+<p>Antes de cambiar una línea, <strong>30 tests de caracterización</strong> (<code>tests/caracterizacion.test.js</code>) que capturan lo que el sistema hace hoy, <strong>defectos incluidos:</strong> hay un test que se llama "comportamiento actual: el reprogramado vuelve a recibir el aviso en cada corrida" y pasa en verde, porque eso es lo que el sistema hace. El rojo del cinturón se prueba <strong>por mutación:</strong> el agente plantó un defecto en <code>src/rules.js</code> (sacó la cláusula del reprogramado) y la batería lo atrapó con 2 tests en rojo; otro en <code>src/store.js</code> (sacó el sobreturno) y 1 en rojo; después lo revirtió. Más la cadena (<code>.github/workflows/ci.yml</code>), <code>docs/GATES.md</code>, <code>docs/DEPLOYMENT.md</code> y <code>docs/ENVIRONMENTS_SURVEY.md</code>. Forge verifica los documentos y que exista una definición de integración continua.</p>
+<h3 id="n5-candados-y-mapa-productor-consumidor-desde-el-codigo" class="peldano">N5: candados y mapa productor-consumidor desde el código</h3>
+<p><code>docs/CONSEQUENTIAL_ACTIONS_SURVEY.md</code> (qué envía, borra o corre solo: acá solo el envío de recordatorios a un archivo), <code>docs/LOCKS.md</code> con un candado propuesto por acción y cuáles van <strong>ahora</strong> (restaurar el respaldo, preguntar quién lee el archivo de salida) y cuáles <strong>al tocar</strong> (modo de prueba, idempotencia en la base, límite diario), y <code>docs/PRODUCER_CONSUMER_MAP.md</code>.</p>
+<h3 id="n6-dimensionar-con-numeros-reales" class="peldano">N6: dimensionar con números reales</h3>
+<p>No había base de producción: el agente lo dice, mide sobre una base de prueba sembrada con un <strong>medidor con test</strong> (<code>scripts/meter-volumen.mjs</code>: filas por tabla, filas por mes, las consultas más lentas con su plan) y marca todo como <code>[base de prueba]</code>. A 30.000 filas (el volumen de la dueña) las consultas usan índice y tardan menos de 0,2 ms; a 300.000 (el por diez), la única que se rompe es el <code>GET</code> sin filtro: 81 MB y 7,9 segundos bloqueado. <code>docs/SIZING.md</code> dice qué aguanta el por diez (SQLite) y qué no (ese endpoint, el contador en memoria, la falta de respaldo). El registro G9 se tomó en Forge con las cuatro opciones admisibles.</p>
+<h3 id="n7-el-backlog-emparejado-con-el-pedido" class="peldano">N7: el backlog, emparejado con el pedido</h3>
+<p>La dueña escribe su pedido en <code>docs/blocks/BLOCK_01_REQUEST.md</code>, con sus palabras ("a los pacientes que reprogramaron les llega el recordatorio todos los días hasta el turno"; "que no se reescriba el sistema"; "que no se toque la pantalla"). El agente arma la cola:</p>
+<div class="tw"><table><thead><tr><th>Pendiente</th><th>Marca</th><th>Qué</th></tr></thead><tbody><tr><td>PND-028</td><td>BLOQUEA</td><td>Respaldo diario con <code>VACUUM INTO</code> y una restauración probada</td></tr><tr><td>PND-029</td><td>CORRECTIVO</td><td>R1: al reprogramado le llega <strong>un</strong> solo recordatorio</td></tr><tr><td>PND-030</td><td>SE PAGA AL TOCAR</td><td>El marcado es idempotente en la base (mismo módulo que R1)</td></tr><tr><td>PND-031</td><td>CLARIFY</td><td>D-14: ¿quién lee el archivo de salida? (si alguien manda WhatsApp a mano desde ahí, pausar)</td></tr></tbody></table></div>
+<p>Cada uno con criterios de aceptación, cómo se verifica y qué flujo toca. Forge verifica el pedido y que todos los pendientes abiertos tengan especificación. Desde acá, el bucle del peldaño 5 en adelante.</p>
+</section><section>
+<h2 id="2-el-bucle-el-bloque-correctivo">2. El bucle: el bloque correctivo</h2>
+<h3 id="el-rojo-de-verdad">El rojo de verdad</h3>
+<p>Acá está la diferencia con el primer bloque de un proyecto nuevo. El test nuevo (<code>tests/recordatorio-reprogramado.test.js</code>) dice lo que la dueña quiere: tres corridas seguidas, un solo aviso. Contra el código heredado, <strong>falla:</strong></p>
+<pre class="code"><code>yf urazuke evidence run red_proof --pending PND-029 --step 8 --base-ref HEAD \
+  --test-file tests/recordatorio-reprogramado.test.js \
+  --command "npx vitest run tests/recordatorio-reprogramado.test.js -t PND-029"
+recibo OK   exit: 1   counts: 2 failed, 1 files failed</code></pre>
+<p>Dos tests en rojo contra la versión <code>90d53bb</code>, la que tiene el defecto. Eso es un recibo: el comando, la versión, la cuenta y el código de salida, para que la dueña lo vuelva a correr. Lo mismo para la idempotencia (1 fallando) y para el respaldo (el script no existía).</p>
+<h3 id="el-cambio-minimo">El cambio, mínimo</h3>
+<p>Dos líneas en <code>src/rules.js</code> (la cláusula del reprogramado y su comentario) y una en <code>src/store.js</code> (<code>WHERE reminder_sent_at IS NULL</code>). El contador global se queda como está: no es parte del pedido (regla 7) y está anotado como deuda "se paga al tocar". Más <code>scripts/backup.mjs</code> con su test, que <strong>restaura</strong> la copia y cuenta los turnos: un respaldo que no se probó no es un respaldo.</p>
+<h3 id="los-tests-de-caracterizacion-que-describian-el-defecto">Los tests de caracterización que describían el defecto</h3>
+<p>Al corregir, dos tests del cinturón se pusieron en rojo: los que decían "comportamiento actual" para el aviso repetido y para el marcado no idempotente. Se cambiaron <strong>a la vista, en el mismo commit</strong>, con el nombre nuevo ("corregido en R1 (PND-029)") y el motivo en el comentario. El commit lo dice, el reporte honesto lo dice, y <code>docs/GOTCHAS.md</code> lo convierte en regla.</p>
+<pre class="code"><code>yf urazuke evidence run green      --pending PND-029 --command "npx vitest run tests/recordatorio-reprogramado.test.js -t PND-029"
+yf urazuke evidence run regression --pending PND-029 --command "npm test"              # 41 tests
+yf urazuke evidence run e2e        --pending PND-029 --command "npx vitest run tests/recordatorio-reprogramado.test.js"</code></pre>
+<p>El e2e, acá, es por la API real hasta el archivo de salida: el pedido no toca la pantalla (D-007), y el recibo lo anota.</p>
+<h3 id="el-cierre">El cierre</h3>
+<p><code>yf pending close PND-029 --reason shipped --resolution "..."</code>: Forge arma el reporte honesto con los cuatro recibos. PND-031 (la aclaración) se cerró con <code>--force-gate</code> y su razón: solo documentación, no hay test que la ponga en rojo; la respuesta de la dueña quedó escrita en D-14 con fecha.</p>
+<p><img src="img/existente-04-hecho.png" alt="Un pendiente del legado, con su expediente" loading="lazy"></p>
+<p>Después, los peldaños 9 a 12 como en el proyecto nuevo: <code>yf urazuke quality init</code> y <code>check</code> (8 archivos, 0 violaciones, trinquete), <code>docs/MANUAL_TESTS.md</code> con diez casos para la recepcionista, <code>docs/GOTCHAS.md</code> con cinco golpes, y los tres cierres con reporte honesto.</p>
+</section><section>
+<h2 id="3-salida-a-produccion-y-operacion">3. Salida a producción y operación</h2>
+<p>Los peldaños 13 a 23 son los mismos que en el proyecto nuevo, y los documentos se escriben igual; la diferencia es que acá describen un sistema que ya corre. La auditoría de N3 vale como la del peldaño 13 (Forge busca <code>docs/AUDIT_*.md</code>), y los hallazgos ya están en el plan. Lo que se midió, con su comando, está en <code>docs/PERSISTENCE.md</code>, <code>docs/SECURITY_2026-10-19.md</code> y <code>docs/PERFORMANCE_2026-10-19.md</code> del proyecto; el reporte cíclico y la retrospectiva se corren con <code>yf urazuke cycle</code> y <code>yf urazuke retro</code>. Los números finales están en la evidencia.</p>
+</section><section>
+<h2 id="4-lo-que-forge-verifico-lo-que-creimos-y-lo-que-no-vimos">4. Lo que Forge verificó, lo que creímos y lo que no vimos</h2>
+<p><strong>Verificado:</strong> las ocho estaciones y los peldaños cerrados con sus artefactos en disco; tres rojos de comportamiento contra <code>90d53bb</code> (2, 1 y 1 archivo); 41 tests en verde después del cambio; el respaldo restaurado por test; 0 violaciones de calidad.</p>
+<p><strong>Creído:</strong> que la cadena corre en GitHub (no hubo push); que <code>listen</code> sin host expone a la red local (es la semántica, no se probó desde otra máquina).</p>
+<p><strong>Puntos ciegos:</strong> la base y el archivo de salida reales, la máquina del consultorio, y quién leía el archivo antes (la dueña contestó: nadie; quedó en D-14). N3 la hizo la misma sesión que N2.</p>
+</section><section>
+<h2 id="apendice-todos-los-comandos-en-orden">Apéndice: todos los comandos, en orden</h2>
+<pre class="code"><code>yf start --existing C:\urazuke-practica\turnera-heredada --no-launch   # -&gt; urazuke-legacy
+yf urazuke status                                                     # N0..N7, 5..23
+(N0..N6: una sesion del agente con el prompt de cada estacion; el codigo no cambia)
+yf pending close PND-001 ... PND-007 --reason shipped --resolution "..."
+yf pending add "[BLOQUEA] A-01: respaldo ..." --category infra --priority 5 --acceptance ... --how-verified ... --flow ...
+yf pending add "[CORRECTIVO] R1: ..." --category bug ...
+yf pending add "[SE PAGA AL TOCAR] A-02 y A-04: ..." --category bug ...
+yf pending add "[CLARIFY] D-14: ..." --category clarify ...
+yf pending close PND-008 PND-009 PND-010                              # N7, 5, 6
+yf urazuke evidence run red_proof --pending PND-029 --base-ref HEAD --test-file tests/recordatorio-reprogramado.test.js --command "..."
+(idem PND-030, PND-028; cambio minimo; green, regression, e2e)
+yf pending close PND-028 PND-029 PND-030 --reason shipped --resolution "..."
+yf pending close PND-031 --reason shipped --force-gate "solo documentacion ..."
+yf pending close PND-011 PND-012                                      # 7, 8
+yf urazuke quality init &amp;&amp; yf urazuke quality check                   # 9
+yf pending close PND-013 ... PND-016                                  # 9, 10, 11, 12
+(13 a 23: documentos, yf urazuke cycle, yf urazuke retro, cierres)</code></pre>
+<p>La evidencia completa está en <code>docs/practica/evidencia/turnera-heredada/</code> del repositorio del método.</p></section>
+<footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">Repositorio público del método: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
+</div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>
