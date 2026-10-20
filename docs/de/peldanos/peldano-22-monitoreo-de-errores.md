@@ -105,9 +105,11 @@ machst es, nicht der Agent:
 > eröffnet, geschlossen mit dem Test, der ihn rot reproduziert, und dass es keinen „bekannten
 > Fehler“ ohne einen offenen Posten gibt, der sagt, warum er toleriert wird und bis wann. Zeig mir
 > einen absichtlich in der Testumgebung provozierten Fehler, im Browser, dem seine ID bis zum
-> Backend-Eintrag, zum Alarm und zum Bericht folgt. Dokumentiere es in `docs/MONITORING.md`.
-> Antworte in meiner Sprache.
-> Kennzeichne jeden erfassten Fehler mit seiner Quelle und halte die Fehler der Werkzeuge, die das System beobachten (das Panel, der residente Agent, das Monitoring selbst), von den Fehlern des Systems getrennt: der Bericht führt sie in einem eigenen Abschnitt auf, und nur die Fehler des Systems öffnen offene Punkte.
+> Backend-Eintrag, zum Alarm und zum Bericht folgt. Kennzeichne jeden erfassten Fehler mit seiner
+> Quelle und halte die Fehler der Werkzeuge, die das System beobachten (das Panel, der residente
+> Agent, das Monitoring selbst), von den Fehlern des Systems getrennt: der Bericht führt sie in
+> einem eigenen Abschnitt auf, und nur die Fehler des Systems öffnen offene Punkte. Dokumentiere es
+> in `docs/MONITORING.md`. Antworte in meiner Sprache.
 
 **Die Fehler des Werkzeugs sind nicht die Fehler des Systems.** Die zentrale Erfassung trennt nach Quelle: die Fehler des Systems und die der Werkzeuge, die es beobachten (das Panel, der residente Agent, das Monitoring selbst), werden unter verschiedenen Quellen gespeichert, der Bericht führt sie in getrennten Abschnitten auf, und nur die Fehler des Systems öffnen offene Punkte. In der Übung Turnera öffnete der erste zyklische Bericht sechs "Bugs", die das Forge-Panel im Gespräch mit einem abgeschalteten Server waren. (Entscheidung D-038.)
 

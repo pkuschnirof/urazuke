@@ -97,9 +97,10 @@ o agente:
 > corretiva, fechada com o teste que o reproduz em vermelho, e de que não existe o "erro
 > conhecido" sem uma pendência que diga por que se tolera e até quando. Mostre-me um erro
 > provocado de propósito no ambiente de teste, no navegador, seguido pelo seu identificador até o
-> registro do backend, o alerta e o relatório. Documente-o em `docs/MONITORING.md`. Responda no
-> meu idioma.
-> Marque cada erro capturado com a sua fonte, e mantenha separados os erros das ferramentas que observam o sistema (o painel, o agente residente, o próprio monitoramento) dos erros do sistema: o relatório os lista numa seção à parte, e só os erros do sistema abrem pendentes.
+> registro do backend, o alerta e o relatório. Marque cada erro capturado com a sua fonte, e
+> mantenha separados os erros das ferramentas que observam o sistema (o painel, o agente residente,
+> o próprio monitoramento) dos erros do sistema: o relatório os lista numa seção à parte, e só os
+> erros do sistema abrem pendentes. Documente-o em `docs/MONITORING.md`. Responda no meu idioma.
 
 **Os erros da ferramenta não são erros do sistema.** A captura centralizada separa por fonte: os erros do sistema e os das ferramentas que o observam (o painel, o agente residente, o próprio monitoramento) são guardados com fonte distinta, o relatório os lista em seções separadas, e só os do sistema abrem pendentes. Na prática Turnera, o primeiro relatório cíclico abriu seis "bugs" que eram o painel do Forge falando com um servidor desligado. (Decisão D-038.)
 

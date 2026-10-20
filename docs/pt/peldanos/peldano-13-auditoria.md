@@ -25,6 +25,12 @@ módulo "sabe" que a senha hardcoded era provisória; um modelo que o vê pela p
 como o que é. Assim se detectaram duas portas de administrador que o construtor tinha deixado num
 dia [Ref. 40](../REFERENCIAS.md#ref-40).
 
+Se puder escolher, que seja também **um modelo diferente** do que construiu, não só outra sessão
+do mesmo: um estudo de 2026 mediu que uma sessão limpa com um modelo diferente encontra mais erros
+que duas sessões do mesmo modelo ([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)). Não é uma
+comporta dura, porque às vezes o modelo do construtor é o único disponível; é uma preferência que
+vale a pena exercer quando se pode, e quanto mais crítico o sistema, mais vale exercê-la.
+
 ## 1. Contexto necessário
 
 O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
@@ -35,6 +41,8 @@ prompt" que precede cada um.
 - A produção ou o ambiente de teste, em somente leitura (banco de dados, logs).
 - A auditoria anterior, se houve, para medir o que mudou.
 - O escopo: integridade, segurança, desempenho, qualidade de código, ou tudo.
+- `docs/PENDING.md` com as pendências fechadas no último ciclo e seus recibos, para que o
+  auditor escolha quais reproduzir.
 
 ## 2. Prompts
 
@@ -57,7 +65,10 @@ o agente:
 > Audit this system for [scope]. Read-only: change nothing except writing your report to
 > `docs/AUDIT_[date].md`. If auditing some part requires access you lack (the database, the
 > log, an environment), tell me and mark that part as not audited; do not pass it as fine. Go
-> through all of the code, not a sample. For every finding: where it is (file and line), what
+> through all of the code, not a sample. Pick two or three pending items closed in the last cycle
+> and reproduce their receipts literally: rerun the exact red-then-green commands they cite
+> against the commits they name, and say for each one whether it reproduces or not. A receipt you
+> only read is not a receipt you audited. For every finding: where it is (file and line), what
 > the risk is, what evidence proves it (the command, the query, the number), and its priority:
 > P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited.
 > End with the list of P0 findings turned into proposed pending items. Reply in my language.
@@ -66,17 +77,23 @@ o agente:
 > Audite este sistema em [escopo]. Somente leitura: não mude nada salvo escrever seu relatório
 > em `docs/AUDIT_[data].md`. Se auditar alguma parte exige um acesso que você não tem (o banco
 > de dados, o log, um ambiente), diga-me e marque essa parte como não auditada; não a dê por
-> boa. Percorra todo o código, não uma amostra. Para cada achado: onde está (arquivo e linha),
-> qual é o risco, que evidência o prova (o comando, a consulta, o número), e sua prioridade: P0
-> tem que ser corrigido já, P1 em breve, P2 quando der. Dê uma nota a cada dimensão que auditou.
-> Termine com a lista de achados P0 convertidos em pendências propostas. Responda no meu idioma.
+> boa. Percorra todo o código, não uma amostra. Escolha duas ou três pendências fechadas no
+> último ciclo e reproduza seus recibos tal qual: rode de novo os comandos exatos de vermelho e
+> depois verde que citam, contra os commits que nomeiam, e diga para cada um se reproduz ou não.
+> Um recibo que você só leu não é um recibo que você auditou. Para cada achado: onde está
+> (arquivo e linha), qual é o risco, que evidência o prova (o comando, a consulta, o número), e
+> sua prioridade: P0 tem que ser corrigido já, P1 em breve, P2 quando der. Dê uma nota a cada
+> dimensão que auditou. Termine com a lista de achados P0 convertidos em pendências propostas.
+> Responda no meu idioma.
 
 O que estou pedindo, cláusula por cláusula: somente leitura (o auditor não corrige; propõe); a
 cláusula de completude na sua forma para auditar: **o que não se pôde verificar se declara, não
 se aprova por omissão**; todo o código e não uma amostra, porque os achados graves costumam estar
-onde ninguém olha; cada achado com localização, risco, evidência e prioridade, para que seja
-acionável sem reler o relatório; notas por dimensão, para comparar com a auditoria anterior; e os
-P0 já convertidos em pendências propostas.
+onde ninguém olha; **a reprodução literal de duas ou três recibos**, para que a auditoria verifique
+evidência em vez de só a ler (esta é a cláusula que fecha o buraco de D-033: um vermelho contado
+não é um vermelho auditado); cada achado com localização, risco, evidência e prioridade, para que
+seja acionável sem reler o relatório; notas por dimensão, para comparar com a auditoria anterior; e
+os P0 já convertidos em pendências propostas.
 
 **De fechamento (ao construtor):**
 
@@ -102,14 +119,15 @@ arquiva), e que a discordância seja explícita e com evidência, não silencios
 ## 3. Resultado esperado
 
 - `docs/AUDIT_[data].md` com: escopo, o que se pôde verificar e o que não (e por quê), os
-  achados com localização, risco, evidência e prioridade, uma nota por dimensão, e a lista de
-  pendências propostas.
+  achados com localização, risco, evidência e prioridade, uma nota por dimensão, o resultado de
+  reproduzir duas ou três recibos do último ciclo, e a lista de pendências propostas.
 - Em `docs/PENDING.md`: uma pendência para cada P0 e P1, citando o achado.
 
 ## 4. Verificação de completude
 
 - O relatório diz o que NÃO pôde verificar? Se diz que verificou tudo, desconfie.
 - Escolha dois achados: têm arquivo e linha, e uma evidência que você consegue reproduzir?
+- O relatório diz quais recibos reproduziu, com o comando e o resultado, ou só diz que os leu?
 - Cada P0 tem sua pendência aberta antes de dar a auditoria por fechada?
 - As notas por dimensão vão poder ser comparadas com a auditoria anterior?
 - Auditou o mesmo agente que construiu? Se sim, peça um segundo olhar sobre os P0.
@@ -120,4 +138,7 @@ arquiva), e que a discordância seja explícita e com evidência, não silencios
   mais provável é que o escopo tenha sido pequeno ou que o auditor compartilhasse os
   pressupostos.
 - Os achados não têm linha de arquivo. São opiniões, não achados.
+- O relatório diz que os recibos "foram revisados" sem mostrar o comando que rodou nem a sua
+  saída. Um recibo lido e um reproduzido não são a mesma coisa, e só o segundo fecha a objeção
+  de D-033.
 - Passaram-se duas semanas e os P0 continuam sem pendência. A auditoria foi arquivada.

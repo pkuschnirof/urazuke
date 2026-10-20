@@ -103,8 +103,11 @@ l'agente:
 > lo riproduce in rosso, e che non esiste nessun "errore noto" senza una voce in sospeso che dica
 > perché si tollera e fino a quando. Mostrami un errore provocato apposta nell'ambiente di test,
 > nel browser, seguito dal suo identificatore fino al record del backend, all'allerta e al
-> rapporto. Documentalo in `docs/MONITORING.md`. Rispondi nella mia lingua.
-> Etichetta ogni errore catturato con la sua fonte, e tieni separati gli errori degli strumenti che osservano il sistema (il pannello, l'agente residente, il monitoraggio stesso) dagli errori del sistema: il report li elenca in una sezione a parte, e solo gli errori del sistema aprono elementi in sospeso.
+> rapporto. Etichetta ogni errore catturato con la sua fonte, e tieni separati gli errori degli
+> strumenti che osservano il sistema (il pannello, l'agente residente, il monitoraggio stesso)
+> dagli errori del sistema: il report li elenca in una sezione a parte, e solo gli errori del
+> sistema aprono elementi in sospeso. Documentalo in `docs/MONITORING.md`. Rispondi nella mia
+> lingua.
 
 **Gli errori dello strumento non sono errori del sistema.** La cattura centralizzata separa per fonte: gli errori del sistema e quelli degli strumenti che lo osservano (il pannello, l'agente residente, il monitoraggio stesso) si conservano con fonte distinta, il report li elenca in sezioni separate, e solo quelli del sistema aprono elementi in sospeso. Nella pratica Turnera, il primo report ciclico aprì sei "bug" che erano il pannello di Forge che parlava con un server spento. (Decisione D-038.)
 

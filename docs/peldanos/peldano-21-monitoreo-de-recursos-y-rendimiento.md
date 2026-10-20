@@ -101,10 +101,12 @@ el agente:
 > (4) la regla de que cada evento fuera de rango se convierte en un pendiente correctivo con el
 > número medido como criterio de aceptación, cerrado con la rutina completa. Nada de esto puede
 > leer ni guardar datos personales. Mostrame el primer reporte generado con datos reales del
-> entorno de prueba, y una alerta disparada a propósito superando un umbral. Documentá los
-> umbrales, el canal, el ciclo y cómo silenciar una alerta con una razón escrita en
+> entorno de prueba, y una alerta disparada a propósito superando un umbral. Los conteos de filas
+> que revalidan el dimensionamiento llevan su propia ventana verificable: la primera y la última
+> fecha leídas de la base o del registro, nunca un número escrito a mano; una ventana escrita a
+> mano se marca como tal en el reporte y solo avisa, nunca abre un pendiente por sí sola. Documentá
+> los umbrales, el canal, el ciclo y cómo silenciar una alerta con una razón escrita en
 > `docs/MONITORING.md`. Respondé en mi idioma.
-> Los conteos de filas que revalidan el dimensionamiento llevan su propia ventana verificable: la primera y la última fecha leídas de la base o del registro, nunca un número escrito a mano; una ventana escrita a mano se marca como tal en el reporte y solo avisa, nunca abre un pendiente por sí sola.
 
 **La ventana de la medición.** El reporte cíclico compara las filas observadas por año contra lo declarado en el peldaño 3. Un número correcto con una ventana equivocada abre un pendiente falso: en la práctica Turnera heredada, 30.000 filas de tres años pasadas como si fueran de uno. Por eso la medición lleva su ventana **verificable**: el primer y el último registro leídos de la base o del registro, no un número escrito a mano. Si la herramienta no puede leer la base, lo declara como punto ciego; una ventana ingresada a mano se marca como tal en el reporte y solo avisa, nunca abre un pendiente por sí sola. (Decisión D-039.)
 

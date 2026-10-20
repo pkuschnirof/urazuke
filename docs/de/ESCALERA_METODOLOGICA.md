@@ -1,6 +1,9 @@
 # Urazuke, die Nachweis-Methode — die methodische Leiter (Version 4)
 
-Autor: Pablo Kuschniroff, unterstützt von Claude Code. Version 4, 18. Oktober 2026. Dies ist ein
+Autor: Pablo Kuschniroff, unterstützt von Claude Code. Version 4, begonnen am 18. Oktober 2026 und
+mit jeder späteren Entscheidung des Protokolls aktualisiert gehalten (`docs/DECISIONES.md`); das
+Startdatum bleibt absichtlich fest, damit die Versionsgeschichte nicht jedes Mal umgeschrieben
+wird, wenn eine neue Entscheidung dieses Dokument berührt. Dies ist ein
 Arbeitsdokument, das ich mit jedem Projekt, das es benutzt, weiter polieren werde; nichts von dem,
 was es sagt, ist schon abgeschlossene Doktrin, auch wenn es, soweit ich weiß, das erste ehrliche
 Destillat einer Methode ist, die bereits drei Systeme in Produktion hinter sich hat.
@@ -50,6 +53,33 @@ ohne dass irgendjemand auch nur ein Bit ihres Codes verstehen muss, denn den Cod
 pflegt der agentische Rahmen, der ihn schreibt. Die Geschwindigkeit ist, wenn sie auftaucht, eine
 Folge, und deshalb gibt es in diesem Dokument keine Fristen: die setzen die Größe und die
 Komplexität jedes Systems, und die Methode setzt nur die Reihenfolge.
+
+Eine Klarstellung, um die ich gebeten wurde, weil der vorige Satz eine Lesart nahelegt, die nicht
+meine ist: "verlangt nicht, dass der Eigentümer auch nur eine Zeile Code durchsieht" ist nicht
+dasselbe wie "dafür gedacht, dass Menschen ohne Systemkenntnisse programmieren können". Das ist
+es nicht. Das primäre Ziel dieser Methode ist nicht, die technische Hürde so weit zu senken, dass
+jeder Software bauen kann, ohne irgendetwas darüber zu wissen, wie Software gebaut wird: Es geht
+darum, demjenigen, der für ein System geradestehen muss, einen methodischen Anker zu geben, damit
+das, was ein Modell baut, mit der Solidität der üblichen Systemtechnik herauskommt, indem den
+Schwächen entgegengewirkt wird, mit denen Modelle dieselben Prinzipien anwenden, wenn sie niemand
+schriftlich einfordert. Dass der Eigentümer keinen Code liest, ist eine Folge davon, wo ich die
+Schranken gesetzt habe und was ein Mensch verifizieren kann, ohne eine Implementierung zu lesen,
+nicht das Versprechen, dass irgendwer, egal was er weiß, ein Softwareprojekt leiten kann, ohne
+irgendetwas davon zu verstehen, was er leitet. Das Profil, das die Verträge tatsächlich verlangen,
+liegt dazwischen: jemand, der einen Befehl ausführen, Zugangsdaten verwalten, ein Backup
+wiederherstellen, verstehen kann, was das CI-Kontingent ihm sagt, und erkennen kann, wann das, was
+das Modell geliefert hat, nicht reicht — kein reiner Laie, aber auch nicht jemand, der schon
+programmieren kann.
+
+Und eine weitere Klarstellung, zu den Kosten. Dieser Leiter zu folgen kostet mehr Token, als das
+Modell zu bitten, alles in einem Durchgang zu lösen: Jede Stufe fügt einen Prompt hinzu, eine
+eigene Prüfung, ein Artefakt, das das Modell ebenfalls erhalten muss. Was man auf den ersten Blick
+nicht sieht, ist, was es spart. Ein System, das ohne diese Schranken gebaut wird, braucht früher
+oder später Reengineering: eine Dimensionierung nachholen, die nie gemacht wurde, einen Fehler
+jagen, den ein roter Test auf Stufe 8 abgefangen hätte, etwas neu schreiben, das niemand
+rechtzeitig auditiert hat. Dieses Reengineering kostet, in Token, in Zeit und in Geld, bei weitem
+mehr als der zusätzliche Prompt, den jede Stufe kostet. Ich gebe es im Voraus aus, mit klarem
+Kopf, um es nicht hinterher doppelt auszugeben, blind.
 
 Das klingt ehrgeizig, und das ist es. Aber ich habe etwas, das fast niemand hat: drei reale
 Systeme, die ich genau so gebaut habe, die heute mit echten Kunden laufen, und aus denen ich jede
@@ -252,7 +282,12 @@ die Schleife ein; sie **speist in die Bewertungsschritte zurück**, denn sie kan
 ändern, mit denen die Architektur entschieden wurde (hält sie das „mal zehn“ noch aus?), und von
 da an weiter. Drittens: der Prozess **endet in der manuellen Ausführung der Testfälle** durch
 Menschen (Schritt 10), und was diese Ausführung findet, kehrt als Anforderung in die Schleife
-zurück. Der Kreis schließt sich mit Menschen, nicht mit Maschinen.
+zurück. Der Kreis schließt sich mit Menschen, nicht mit Maschinen. Viertens, und die Zeichnung
+zeigte das vor dieser Korrektur nicht: Wenn das, was das System baut, eine Konsequenz für die Welt
+hat (abrechnen, versenden), **öffnet sich die Schleife nach Schritt 14 wieder**, mit den Schlössern
+schon an Ort und Stelle, um diesen Teil im Probelauf-Modus zu bauen, bevor es weiter zur
+Produktionskette (15) geht. Das ist keine Rückkehr zum Anfang: Es ist dasselbe Tor wie immer
+(Block abgeschlossen?), noch einmal durchlaufen, jetzt mit dem Sicherheitsnetz bereit.
 
 ```mermaid
 flowchart TB
@@ -291,6 +326,7 @@ flowchart TB
   G2 -- ja --> H1
   H1 -- "Befunde = Anforderungen" --> RE2
   H1 --> P13
+  P14 -. "was Konsequenzen hat, wird jetzt gebaut, mit den Schlössern an Ort und Stelle" .-> P5
   P20 --> D --> P21
   P21 -. "Abweichungen = offene Posten" .-> P5
   P22 -. "Fehler = offene Posten" .-> P5
@@ -379,11 +415,11 @@ Monatsbericht“. So sieht er von innen aus:
    Benutzerhandbuch wird mit den neuen Bildschirmen aktualisiert (20, im selben Commit). Erst dann
    wird der nächste Block geöffnet.
 
-An einem typischen Tag der Schleife investiert der Eigentümer zwischen fünfzehn und dreißig
-Minuten: zwei oder drei Fragen zu Geschäftsregeln beantworten, zwei oder drei Berichte lesen, zwei
-oder drei Screenshots ansehen. Das ist alles, was die Methode von ihm verlangt. Wenn er mehr
-investiert, fragt entweder der Agent, was er allein lösen könnte (Schritt 1), oder der Eigentümer
-liest Code (und dann funktioniert etwas an Schritt 8 oder 12 nicht).
+An einem typischen Tag der Schleife ist das, was die Methode vom Eigentümer verlangt, klein und
+begrenzt: zwei oder drei Fragen zu Geschäftsregeln beantworten, zwei oder drei Berichte lesen, zwei
+oder drei Screenshots ansehen. Das ist alles. Wenn mehr als das verlangt wird, fragt entweder der
+Agent, was er allein lösen könnte (Schritt 1), oder der Eigentümer liest Code (und dann
+funktioniert etwas an Schritt 8 oder 12 nicht).
 
 ### B.4 Die menschlichen Meilensteine
 
@@ -803,8 +839,9 @@ es in all meinen Projekten gemacht, ohne es Schritt zu nennen.
 - **Artefakt**: Linter und Formatierer mit einer einzigen Konfiguration; Grenzen für Größe und
   Komplexität; Erkennung von Duplizierung und totem Code; Abdeckung mit Ratsche; Typen, wenn die
   Sprache es erlaubt; `docs/CODE_QUALITY.md` mit jeder Grenze und ihrem gemessenen Wert; das Tor
-  in `docs/GATES.md`. Als optionale Verstärkung die Mutationstests (absichtlich eingepflanzte
-  Fehler, gezählt danach, wie viele die Tests fangen), mit ihrer Punktzahl pro Block neben der
+  in `docs/GATES.md`. Verpflichtend in jedem Projekt mit Nutzern, optional nur ohne echte Nutzer,
+  die Mutationstests (absichtlich eingepflanzte Fehler, gezählt danach, wie viele die Tests
+  fangen), mit ihrer Punktzahl pro Block neben der
   Abdeckung.
 - **Tor**: nichts wird mit roter Qualität zusammengeführt; keine Linter-Ausnahme ohne
   geschriebene Begründung; keine Grenze angehoben, um durchzukommen.
@@ -1305,19 +1342,26 @@ die Praxis des Kurses.
    abgelehnte Projekte als Gegenbeispiele. Ich habe X1 und X2; der Rest fehlt.
 2. **Ein einprägsamer Name für jeden Schritt**, in einem Satz, für die Handbücher und die
    Veröffentlichungen.
-3. **Der Export nach Forge**: welche Schritte schon Tore oder Befehle sind und welche fehlen, um
-   die Leiter als Ausführungsablauf laufen lassen zu können.
-4. **Die Verträge in einem realen Projekt von Anfang bis Ende testen.** Die Prompts der
-   vierundzwanzig Verträge sind aus dem geschrieben, was ich getan habe, nicht eins zu eins
-   ausgeführt. Das erste Projekt, das
-   sie vollständig benutzt, wird mehrere korrigieren; das ist Teil von Schritt 23.
+3. **Der Export nach Forge, weitgehend gelöst.** Die Methode läuft vollständig als Projektablauf in
+   Forge, mit mechanischen Toren und dem Prompt des aktuellen Schritts, der in den Chat
+   eingefügt wird (D-035, D-036). Was fehlt, ist die explizite Matrix, Vertrag für Vertrag, gegen
+   das, was Forge heute ausführt, damit eine Abweichung zwischen dem, was dieses Dokument sagt, und
+   dem, was das Werkzeug tut, auffällt, sobald sie auftaucht, statt sich aufzuhäufen.
+4. **Die Verträge von Anfang bis Ende testen, bereits im Gange.** Das Leitprojekt des Kurses
+   (Turnera) hat die vierundzwanzig Verträge so durchlaufen, wie sie geschrieben sind, und 24 von
+   24 abgeschlossen; was dabei gefunden wurde, hat die Methode bereits korrigiert (D-037 bis
+   D-040). Was fehlt, ist nicht der erste vollständige Durchlauf, der schon stattgefunden hat: es
+   ist, dass ein fremdes Projekt ihn durchläuft, ohne dass ich daneben stehe und löse, was der
+   Vertrag nicht vorhergesehen hat.
 5. **Die erste Kohorte des Kurses**, die die Reihenfolge der Zeitlinie dort korrigieren wird, wo
    es nötig ist, und die typischen Fehler, die heute aus meinen Projekten und nicht aus
    Teilnehmern geschrieben sind.
-6. **Der evolutiv-korrektive Weg, an einem echten Altsystem von Anfang bis Ende erprobt.** Die
-   acht Stationen sind aus dem geschrieben, was ich in fremden Systemen im Diagnosemodus getan
-   habe, und aus den umgeordneten Schritten, nicht aus einer vollständigen Normalisierung, die mit
-   diesen Prompts ausgeführt wurde.
+6. **Der evolutiv-korrektive Weg, an einem eigenen Altsystem erprobt, nicht an einem fremden.** Das
+   geerbte Leitprojekt des Kurses (geerbte Turnera) hat die acht Stationen und den Rest der Leiter
+   so durchlaufen, wie geschrieben, 27 von 27 abgeschlossen, und drei Entscheidungen der Methode
+   angestoßen (D-038, D-039, D-040). Was fehlt, ist derselbe Weg an einem echten Altsystem eines
+   Dritten, mit seiner eigenen Geschichte und seinen eigenen Abkürzungen, nicht an dem System, das
+   ich für den Kurs gebaut habe.
 7. **Was NICHT in der Leiter ist und sein sollte** `[Hypothese]`: das Management der Token- und
    Kontingentkosten als explizites Budget (heute ist es reaktiv); die Rotation von Geheimnissen als
    Routine und nicht als Vorfall; und ein Kriterium dafür, wann der Mensch den Code DOCH ansehen
@@ -1419,8 +1463,8 @@ In Schritt 8 ist das Rot ein **Beleg**, keine Erzählung: der exakte Befehl, die
 er lief, die Zahl der Fehlschläge und der Exit-Code, so eingefügt, wie sie sind, damit der
 Eigentümer es mit einem Befehl noch einmal laufen lassen kann und das auch tut, einmal pro Block,
 mit einem zufällig gewählten offenen Posten. In Schritt 13 lässt das Audit durch eine andere
-Sitzung eine Stichprobe dieser Belege noch einmal laufen. Und in Schritt 9 kommen die
-Mutationstests als optionale Verstärkung hinein, empfohlen in jedem Projekt mit Nutzern, mit ihrer
+Sitzung eine Stichprobe dieser Belege noch einmal laufen. Und in Schritt 9 sind die Mutationstests
+in jedem Projekt mit Nutzern verpflichtend (sie bleiben nur ohne echte Nutzer optional), mit ihrer
 Punktzahl beim Abschluss jedes Blocks neben der Abdeckung. Keiner der drei Teile verlangt, dass
 der Eigentümer Code liest. Alle drei sorgen dafür, dass das Rot vorzutäuschen mehr kostet, als es
 laufen zu lassen.
@@ -1693,7 +1737,10 @@ pflegt, um Zeilen zu finden, ohne die ganze Tabelle zu lesen. Ohne Index macht d
 **Injektion** — Eine Schwachstelle, bei der das, was ein Nutzer in ein Formular schreibt, vom
 System am Ende als Befehl aufgefasst wird (zum Beispiel als Abfrage an die Datenbank). Die
 statische Analyse von Schritt 18 sucht sie; der rote Test der Reparatur beweist, dass sie nicht
-mehr durchgeht.
+mehr durchgeht. Dieselbe Idee gilt für den Agenten, der Produktion liest (Schritt 23) oder fremden
+Code und fremde Dokumentation (Station N2 des evolutiv-korrektiven Wegs): ein Log, ein Ticket oder
+ein Kommentar, der etwas enthält, das wie eine Anweisung klingt, sind Daten, kein Befehl, und der
+Agent muss es als solche behandeln.
 
 **IPC (Leine zwischen Prozessen)** — Ein Kanal zwischen zwei Prozessen. In Forge wurde er als
 „Leine“ verwendet: stirbt der Elternprozess, erfährt es das Kind und schaltet sich ab.
@@ -1777,9 +1824,10 @@ Test, der besteht, weil er nichts ansieht.
 **Mutationstests** — Ein Programm, das den Code absichtlich kaputt macht, mit je einer kleinen
 Änderung auf einmal (kehrt eine Bedingung um, löscht eine Zeile, ändert einen Operator), die Tests
 laufen lässt und zählt, wie viele dieser Fehler sie fangen. Jeder Fehler, den kein Test fängt, ist
-ein „überlebender Mutant“; der Anteil der gefangenen ist die Punktzahl. Es ist die optionale
-Verstärkung von Schritt 9 und die Antwort auf den Einwand, dass der Agent das Rot vortäuschen kann.
-Nicht zu verwechseln mit dem „Rot durch Mutation“ der Charakterisierung, das dieselbe Idee ist, von
+ein „überlebender Mutant“; der Anteil der gefangenen ist die Punktzahl. Es ist in Schritt 9 in jedem
+Projekt mit Nutzern verpflichtend (optional nur ohne echte Nutzer), und es ist die Antwort auf den
+Einwand, dass der Agent das Rot vortäuschen kann. Nicht zu verwechseln mit dem „Rot durch Mutation“
+der Charakterisierung, das dieselbe Idee ist, von
 Hand auf einen einzigen Fluss angewendet.
 
 **N+1-Schleife** — Ein sehr häufiger Persistenzfehler: um hundert Elemente anzuzeigen, macht das
@@ -1853,7 +1901,10 @@ weiter funktioniert.
 **Retention (Aufbewahrung)** — Wie lange die Daten jeder Tabelle aufbewahrt werden, bevor sie
 gelöscht werden.
 
-**Rollback (Rückweg)** — Zur vorherigen Version zurückkehren, wenn ein Deployment schiefgeht.
+**Rollback (Rückweg)** — Zur vorherigen Version zurückkehren, wenn ein Deployment schiefgeht. Wenn
+das Deployment eine Schema- oder Datenmigration enthielt, macht das Zurücksetzen des Codes die
+Migration nicht rückgängig: dafür braucht es zusätzlich einen schriftlichen Plan, sie rückgängig zu
+machen oder auszugleichen (Schritt 15).
 
 **Rot bewiesen** — Ein Test, von dem gezeigt wurde, dass er gegen den alten Code FEHLSCHLÄGT, bevor
 die Behebung ihn grün macht.

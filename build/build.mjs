@@ -6,6 +6,7 @@
 // - EVOLUTIVO_CORRECTIVO.html   <- EVOLUTIVO_CORRECTIVO.md (el camino para sistemas heredados)
 // - MANUAL_CURSO_EVOLUTIVO.html <- MANUAL_CURSO_EVOLUTIVO.md (parte 2 del curso)
 // - CONTRATOS_DE_PELDANO.html   <- peldanos/README.md + los 16 contratos, en orden
+// - EVALUACIONES_DE_IA.html     <- EVALUACIONES_DE_IA.md (solo castellano: cita textual de cada IA)
 // Antes verifica que los prompts en inglés sean idénticos en todas las versiones.
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, unlinkSync, cpSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -20,7 +21,7 @@ const conv = join(raiz, 'build', 'md2html.mjs');
 
 function armar(dirMd, dirHtml, idioma) {
   mkdirSync(dirHtml, { recursive: true });
-  for (const nombre of ['ESCALERA_METODOLOGICA', 'REFERENCIAS', 'EVOLUTIVO_CORRECTIVO', 'MANUAL_CURSO', 'MANUAL_CURSO_EVOLUTIVO', 'CAPACITACION_JUNIOR', 'TRABAJO_COLABORATIVO']) {
+  for (const nombre of ['ESCALERA_METODOLOGICA', 'REFERENCIAS', 'EVOLUTIVO_CORRECTIVO', 'MANUAL_CURSO', 'MANUAL_CURSO_EVOLUTIVO', 'CAPACITACION_JUNIOR', 'TRABAJO_COLABORATIVO', 'EVALUACIONES_DE_IA']) {
     const src = join(dirMd, nombre + '.md');
     if (existsSync(src)) execFileSync(process.execPath, [conv, src, join(dirHtml, nombre + '.html'), idioma], { stdio: 'inherit' });
   }

@@ -24,7 +24,7 @@ eso la evidencia tiene que probarse a sí misma.
 
 | Archivo | Qué es |
 |---|---|
-| `docs/ESCALERA_METODOLOGICA.md` | El documento principal: la tesis, de dónde sale el método, la línea de tiempo (cuándo se sube cada peldaño y qué pasa entre medio: infraestructura, CI/CD, ingesta de requerimientos, desarrollo, pruebas de punta a punta, vista humana, pruebas humanas), los veinticuatro peldaños con su ficha (los seis últimos, de calidad operativa: observabilidad, persistencia, vulnerabilidades, rendimiento, y los dos monitoreos), lo que falta, los trabajos relacionados (qué existe parecido en el mundo y en qué se distingue este método), y el glosario. |
+| `docs/ESCALERA_METODOLOGICA.md` | El documento principal: la tesis, de dónde sale el método, la línea de tiempo (cuándo se sube cada peldaño y qué pasa entre medio: infraestructura, CI/CD, ingesta de requerimientos, desarrollo, pruebas de punta a punta, vista humana, pruebas humanas), los veinticuatro peldaños con su ficha (los seis de calidad operativa —16 a 19, 21 y 22— antes y después del primer despliegue: observabilidad, persistencia, vulnerabilidades, rendimiento, y los dos monitoreos), lo que falta, los trabajos relacionados (qué existe parecido en el mundo y en qué se distingue este método), y el glosario. |
 | `docs/EVOLUTIVO_CORRECTIVO.md` | El camino para un sistema que ya existe y no nació con el método: los tres casos de uso del método, el principio de normalizar sin reescribir, las ocho estaciones de normalización (N0 a N7) con sus contratos y prompts, el bucle en modo correctivo y evolutivo, y la lista de salida del tramo. |
 | `docs/REFERENCIAS.md` | Los casos reales detrás del método, numerados ("Ref. N"), con fecha y evidencia, para que los procedimientos queden limpios y el detalle siga a un clic. Incluye las cronologías de los tres sistemas y la tabla de fallos por peldaño. |
 | `docs/peldanos/peldano-NN-*.md` | El contrato de cada peldaño: cuándo, contexto requerido, prompts en inglés con su traducción y, antes de cada uno, el bloque "Antes de enviar el prompt" con los archivos que tenés que construir vos y su contenido; resultado esperado, verificación de completitud sin leer código, señales de alarma. |
@@ -32,6 +32,7 @@ eso la evidencia tiene que probarse a sí misma.
 | `docs/MANUAL_CURSO.md` | El curso: calendario, veinticuatro lecciones con tareas prácticas y prompts, proyecto guía ("Turnera"), lista de salida a producción. |
 | `docs/MANUAL_CURSO_EVOLUTIVO.md` | La parte 2 del curso: el proyecto guía heredado ("Turnera heredada"), diez lecciones (N0 a N7, R1 y R2) para normalizar un legado y después corregirlo y evolucionarlo. |
 | `docs/DECISIONES.md` | Las decisiones del proyecto, con fecha y palabras textuales. El método se aplica a sí mismo. |
+| `docs/EVALUACIONES_DE_IA.md` | Cuatro IAs evaluaron el método por su cuenta, con la regla de citar textual o no afirmar; esto cuenta qué dijeron, dónde se equivocaron y por qué, y qué de lo que encontraron era real. |
 | `docs/TRABAJO_COLABORATIVO.md` | Cómo se aplica el método cuando varios desarrolladores, cada uno con su agente, trabajan sobre la misma rama: las siete reglas de la rama compartida, cómo se reparten los peldaños, y los prompts. |
 | `docs/CAPACITACION_JUNIOR.md` | El impacto del método en la formación de los desarrolladores junior: qué focos pierden peso, cuáles ganan, con qué objetivo y cómo capacitar a un junior en la era posterior a la programación a mano. |
 | `docs/PLAN_CURSO_MENTORING.md` | El borrador del plan comercial del curso y el mentoring. |
@@ -71,8 +72,8 @@ traducción los alteró. El nombre no se traduce; el subtítulo sí: *the eviden
 da evidência*, *la méthode de la preuve*, *die Nachweis-Methode*, *il metodo del riscontro*,
 裏付けの方法, 验证方法.
 
-Las decisiones (`docs/DECISIONES.md`) y el plan del curso quedan solo en castellano porque citan
-palabras textuales.
+Las decisiones (`docs/DECISIONES.md`), el plan del curso y `docs/EVALUACIONES_DE_IA.md` quedan
+solo en castellano porque citan palabras textuales.
 
 ## Licencia y cómo contribuir
 

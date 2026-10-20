@@ -104,10 +104,12 @@ l'agente:
 > ogni evento fuori range diventa una voce in sospeso correttiva con il numero misurato come suo
 > criterio di accettazione, chiusa con la routine completa. Niente di tutto questo può leggere o
 > conservare dati personali. Mostrami il primo rapporto generato su dati reali dell'ambiente di
-> test, e un'allerta fatta scattare apposta superando una soglia. Documenta le soglie, il canale,
-> il ciclo e come silenziare un'allerta con una ragione scritta in `docs/MONITORING.md`. Rispondi
-> nella mia lingua.
-> I conteggi di righe che riconvalidano il dimensionamento portano la propria finestra verificabile: la prima e l'ultima data lette dal database o dal log, mai un numero scritto a mano; una finestra scritta a mano è segnata come tale nel report e si limita ad avvisare, non apre mai da sola un elemento in sospeso.
+> test, e un'allerta fatta scattare apposta superando una soglia. I conteggi di righe che
+> riconvalidano il dimensionamento portano la propria finestra verificabile: la prima e l'ultima
+> data lette dal database o dal log, mai un numero scritto a mano; una finestra scritta a mano è
+> segnata come tale nel report e si limita ad avvisare, non apre mai da sola un elemento in
+> sospeso. Documenta le soglie, il canale, il ciclo e come silenziare un'allerta con una ragione
+> scritta in `docs/MONITORING.md`. Rispondi nella mia lingua.
 
 **La finestra della misurazione.** Il report ciclico confronta le righe osservate per anno con quanto dichiarato al gradino 3. Un numero corretto con una finestra sbagliata apre un elemento in sospeso falso: nella pratica Turnera ereditata, 30.000 righe di tre anni passate come se fossero di uno. Per questo la misurazione porta la sua finestra **verificabile**: il primo e l'ultimo record letti dal database o dal log, non un numero scritto a mano. Se lo strumento non può leggere il database, lo dichiara come punto cieco; una finestra scritta a mano è segnata come tale nel report e si limita ad avvisare, non apre mai da sola un elemento in sospeso. (Decisione D-039.)
 

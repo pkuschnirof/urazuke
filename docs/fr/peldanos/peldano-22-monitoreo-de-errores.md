@@ -107,9 +107,11 @@ faites, pas l'agent :
 > attente correctif, clos avec le test qui le reproduit en rouge, et qu'il n'existe pas d'« erreur
 > connue » sans un élément en attente qui dise pourquoi elle est tolérée et jusqu'à quand.
 > Montre-moi une erreur provoquée exprès dans l'environnement de test, dans le navigateur, suivie
-> par son identifiant jusqu'à l'enregistrement du backend, l'alerte et le rapport. Documente-le dans
-> `docs/MONITORING.md`. Réponds dans ma langue.
-> Étiquetez chaque erreur capturée avec sa source, et gardez les erreurs des outils qui observent le système (le panneau, l'agent résident, la surveillance elle-même) à l'écart des erreurs du système : le rapport les liste dans une section séparée, et seules les erreurs du système ouvrent des éléments en attente.
+> par son identifiant jusqu'à l'enregistrement du backend, l'alerte et le rapport. Étiquette chaque
+> erreur capturée avec sa source, et garde les erreurs des outils qui observent le système (le
+> panneau, l'agent résident, la surveillance elle-même) à l'écart des erreurs du système : le
+> rapport les liste dans une section séparée, et seules les erreurs du système ouvrent des éléments
+> en attente. Documente-le dans `docs/MONITORING.md`. Réponds dans ma langue.
 
 **Les erreurs de l'outil ne sont pas les erreurs du système.** La capture centralisée sépare par source : les erreurs du système et celles des outils qui l'observent (le panneau, l'agent résident, la surveillance elle-même) sont conservées sous des sources différentes, le rapport les liste dans des sections séparées, et seules les erreurs du système ouvrent des éléments en attente. Dans la pratique Turnera, le premier rapport cyclique a ouvert six « bugs » qui étaient le panneau de Forge parlant à un serveur éteint. (Décision D-038.)
 

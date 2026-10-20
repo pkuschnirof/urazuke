@@ -9,8 +9,9 @@ lee con el dueño. En un legado, la primera corrida es la línea base y los hall
 backlog con su marca de velocidad.
 **Forma:** un solo tiro para montar; después, rutina de cada cambio y lectura por bloque.
 **Tamaño:** obligatorio en su nivel mínimo en todo proyecto (un linter y un límite de tamaño en
-la cadena); completo en cualquier proyecto con usuarios. Las pruebas de mutación son un refuerzo
-opcional, recomendado en todo proyecto con usuarios.
+la cadena); completo, con pruebas de mutación incluidas, en cualquier proyecto con usuarios. Las
+pruebas de mutación quedan como refuerzo opcional solo cuando no hay usuarios reales (una
+herramienta interna, un prototipo que nadie más corre).
 
 ## Para qué sirve
 
@@ -32,8 +33,13 @@ nunca (el trinquete); y, si el lenguaje lo permite, que los tipos cierren. Nada 
 el test en rojo: un código impecable puede estar equivocado. Lo que evita es el código correcto
 que nadie puede volver a tocar.
 
-Y un refuerzo opcional que vale la pena en cualquier proyecto con usuarios: las **pruebas de
-mutación**. Una herramienta planta errores a propósito en el código (cambia un "mayor" por "mayor
+Y la pieza que dejo de tratar como refuerzo opcional en cualquier proyecto con usuarios: las
+**pruebas de mutación**. Las dejé como "opcional, recomendado" en una versión anterior de este
+documento, y una evaluación externa del método me hizo notar la contradicción: si la Parte F dice
+que la mutación es, hasta donde sé, la única medida que distinguió en los estudios de 2026 los
+tests que vigilan de los que decoran, no tiene sentido dejarla afuera de "completo" justo en los
+proyectos donde un test decorativo más le hace daño a alguien. Una herramienta planta errores a
+propósito en el código (cambia un "mayor" por "mayor
 o igual", borra una línea, invierte una condición) y corre los tests; cada error que los tests no
 atrapan es un *mutante que sobrevive*, y la proporción de atrapados es el puntaje. Es la medida
 que complementa al rojo demostrado del peldaño 8: el rojo prueba que un test vigila el cambio de
@@ -151,7 +157,8 @@ aparte; la prohibición de silenciar (un modelo frente a un linter en rojo tiend
 excepción en vez de arreglar, porque es más rápido) y de subir el límite; y la lectura por bloque,
 que es el único momento en que vos mirás los números.
 
-**Refuerzo (opcional; recomendado en todo proyecto con usuarios): pruebas de mutación.**
+**Obligatorio en cualquier proyecto con usuarios (opcional solo sin usuarios reales): pruebas de
+mutación.**
 
 **Antes de enviar el prompt**, tenés que tener esto a mano:
 
@@ -194,8 +201,9 @@ con una baja tratada como rojo.
 - `docs/CODE_QUALITY.md` con herramientas, configuración, límites con valor medido, y la lista de
   lo que falla con su pendiente o su fecha.
 - La compuerta en `docs/GATES.md` y la rutina en el contrato.
-- Si se montó el refuerzo: el puntaje de mutación en `docs/CODE_QUALITY.md`, por bloque, junto a
-  la cobertura, y un pendiente por cada mutante que sobrevive en código que importa.
+- En cualquier proyecto con usuarios: el puntaje de mutación en `docs/CODE_QUALITY.md`, por
+  bloque, junto a la cobertura, y un pendiente por cada mutante que sobrevive en código que
+  importa.
 
 ## 4. Verificación de completitud (la hacés vos, sin leer código)
 
@@ -207,6 +215,8 @@ con una baja tratada como rojo.
 - ¿Hay alguna excepción al linter en el código? Pedile la lista; cada una tiene que tener razón
   escrita.
 - ¿Subió algún límite desde la primera corrida? ¿Con qué razón y quién lo decidió?
+- Si el proyecto tiene usuarios reales: ¿están corriendo las pruebas de mutación? Si no, ¿qué razón
+  escrita justifica no tenerlas?
 - Si hay pruebas de mutación: ¿cuántos mutantes sobrevivieron en el último bloque, y cada uno
   tiene pendiente o razón escrita?
 
@@ -222,3 +232,5 @@ con una baja tratada como rojo.
   duplicación disfrazada de cumplimiento.
 - La cobertura es alta y el puntaje de mutación es bajo. Son tests que ejecutan el código sin
   verificar nada: el caso exacto que el rojo demostrado del peldaño 8 intenta evitar.
+- El proyecto tiene usuarios reales y nadie corrió las pruebas de mutación ni escribió por qué no.
+  "Es opcional" dejó de ser una razón válida para un proyecto con usuarios.

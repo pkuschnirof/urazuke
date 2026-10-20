@@ -60,9 +60,11 @@
 > waits for that run's result and only packages and uploads, without running tests again; (3)
 > each environment's configuration lives on the server (environment file or vault), never in the
 > repository; (4) a written procedure to promote from the test environment to production, which
-> can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check
-> that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
-> can do it by hand without you. Reply in my language.
+> can be run twice without breaking anything; (5) the rollback, tested — and if any change
+> migrates schema or data, a written plan for undoing or compensating it, since reverting the code
+> alone does not undo a migration that already ran; (6) an automatic check that prevents
+> committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by
+> hand without you. Reply in my language.
 
 > [ja]
 > 本番への道を締めます。環境とアクセスの調査を読んでください。本番へ安全にデプロイするのに
@@ -71,15 +73,17 @@
 > グレーションは完全なテスト群をコミットごとに正確に一度実行する。(2) デプロイはその実行の
 > 結果を待ち、テストを再実行せずにパッケージしてアップロードするだけ。(3) 各環境の設定は
 > サーバー上（環境ファイルまたは金庫）に住み、決してリポジトリにはない。(4) テスト環境から
-> 本番へ昇格する書かれた手順、何も壊さず二度実行できるもの。(5) ロールバック、試されたもの。
+> 本番へ昇格する書かれた手順、何も壊さず二度実行できるもの。(5) ロールバック、試されたもの
+> ——そしてもし何らかの変更がスキーマやデータを移行するなら、それを元に戻すか埋め合わせるか
+> の書かれた計画。コードだけを元に戻しても、すでに実行された移行は元に戻らないからだ。
 > (6) 秘密のコミットを防ぐ自動チェック。すべてを `docs/DEPLOYMENT.md` に、人があなたなしで
 > 手でできるように文書化してください。私の言語で答えてください。
 
 何を求めているか、条項ごとに：始める前のアクセス。コミットごとに**一度だけ**のテスト（三度
 走らせたのがクォータを燃やした）。パッケージするだけのデプロイ。リポジトリ外の設定。繰り
-返し可能な手順としての昇格。**試された**ロールバック（一度も試されていないロールバックは
-存在しない）。コミットの秘密に対する錠。そして人のための文書化、インフラに適用された第20段
-だ。
+返し可能な手順としての昇格。**試された**ロールバックと**そのデータ計画**（一度も試されてい
+ないロールバックは存在せず、スキーマやデータの移行はコミットを元に戻しても元に戻らない）。
+コミットの秘密に対する錠。そして人のための文書化、インフラに適用された第20段だ。
 
 **各デプロイのルーチン：**
 
@@ -146,6 +150,8 @@
 - エージェントなしで、あなた一人で `docs/DEPLOYMENT.md` を追えるか？ その問いを持って読む
   こと。
 - ロールバックは試されたか？ いつ？ どんな証拠があるか？
+- スキーマやデータの移行があったなら：コードのロールバックに加えて、それを元に戻すか埋め
+  合わせる書かれた計画があるか？
 - プロジェクト中にチャットに秘密が貼られたか？ そうなら、ローテーションされたか？
 - 今月の継続的インテグレーションのクォータがどれだけ残っているか知っているか？
 
@@ -155,3 +161,5 @@
   誰もテストしないからだ。
 - 設定の例ファイルに本物に見える値がある。おそらく本物だ。
 - ロールバックを最後に試したのがいつか誰も言えない。
+- ある移行がデータやスキーマを変えたのに、話題になっている「ロールバック」はコードのものだけ
+  だ。その移行にロールバックはない。あるとしてもせいぜい埋め合わせの計画だけだ。

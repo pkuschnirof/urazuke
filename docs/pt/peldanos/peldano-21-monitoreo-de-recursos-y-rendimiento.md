@@ -102,9 +102,11 @@ o agente:
 > se converte numa pendência corretiva com o número medido como critério de aceitação, fechada
 > com a rotina completa. Nada disto pode ler nem guardar dados pessoais. Mostre-me o primeiro
 > relatório gerado com dados reais do ambiente de teste, e um alerta disparado de propósito
-> ultrapassando um limiar. Documente os limiares, o canal, o ciclo e como silenciar um alerta com
-> uma razão escrita em `docs/MONITORING.md`. Responda no meu idioma.
-> As contagens de linhas que revalidam o dimensionamento carregam a sua própria janela verificável: a primeira e a última data lidas da base ou do registro, nunca um número digitado à mão; uma janela digitada à mão é marcada como tal no relatório e só avisa, nunca abre um pendente por si só.
+> ultrapassando um limiar. As contagens de linhas que revalidam o dimensionamento carregam a sua
+> própria janela verificável: a primeira e a última data lidas da base ou do registro, nunca um
+> número digitado à mão; uma janela digitada à mão é marcada como tal no relatório e só avisa,
+> nunca abre um pendente por si só. Documente os limiares, o canal, o ciclo e como silenciar um
+> alerta com uma razão escrita em `docs/MONITORING.md`. Responda no meu idioma.
 
 **A janela da medição.** O relatório cíclico compara as linhas observadas por ano contra o declarado no degrau 3. Um número correto com uma janela errada abre um pendente falso: na prática Turnera herdada, 30.000 linhas de três anos foram passadas como se fossem de um. Por isso a medição leva a sua janela **verificável**: o primeiro e o último registro lidos da base ou do registro, não um número digitado à mão. Se a ferramenta não consegue ler a base, declara isso como ponto cego; uma janela digitada à mão é marcada como tal no relatório e só avisa, nunca abre um pendente por si só. (Decisão D-039.)
 

@@ -109,9 +109,12 @@ machst es, nicht der Agent:
 > Posten berührt, vom Bildschirm bis zum Backend, und zeig mir die Wirkung im Backend. (6) Ersetze
 > nicht ausgerechnet den Teil durch Mocks, den du prüfen willst. Wenn das Ende-zu-Ende-Testen
 > etwas erfordert, das dir fehlt (Daten, Zugang, eine Umgebung), bitte mich darum; simuliere
-> nicht, was du nicht hast. Zum Schluss sagt die Commit-Nachricht „rot bewiesen gegen [was]“ und
-> die Testzahlen.
-> Wenn die vorherige Version das Modul gar nicht hat (der erste Block eines neuen Projekts), ist eine Datei, die nicht lädt, kein Rot: beweise das Rot, indem du absichtlich einen Fehler in die gerade geschriebene Funktion pflanzt (eine umgekehrte Bedingung, eine gelöschte Zeile), zeige mir den Test, der gegen diesen Fehler fehlschlägt, als dieselbe Art von Beleg, mit dem Diff des Fehlers, und mache ihn dann rückgängig.
+> nicht, was du nicht hast. Wenn die vorherige Version das Modul gar nicht hat (der erste Block
+> eines neuen Projekts), ist eine Datei, die nicht lädt, kein Rot: beweise das Rot, indem du
+> absichtlich einen Fehler in die gerade geschriebene Funktion pflanzt (eine umgekehrte Bedingung,
+> eine gelöschte Zeile), zeige mir den Test, der gegen diesen Fehler fehlschlägt, als dieselbe Art
+> von Beleg, mit dem Diff des Fehlers, und mache ihn dann rückgängig. Zum Schluss sagt die
+> Commit-Nachricht „rot bewiesen gegen [was]“ und die Testzahlen.
 
 **Das Rot des ersten Blocks.** Im ersten Block eines neuen Projekts gibt es keinen vorherigen Code: der neue Test schlägt fehl, weil das Modul nicht existiert, und dieser Fehlschlag beweist nicht, dass der Test Verhalten unterscheidet. Deshalb wird, wenn die vorherige Version das Modul nicht hat, das Rot **durch Mutation** bewiesen: der Agent pflanzt absichtlich einen Fehler in die gerade geschriebene Funktion, zeigt den Test rot gegen diesen Fehler (der Beleg trägt den Diff des Fehlers, damit du siehst, dass er nicht trivial war), macht ihn rückgängig und zeigt das Grün. Ein Mutant pro offenem Punkt, ausgeführt und aufgezeichnet wie jeder andere Beleg; Mutationstests über die ganze Codebasis bleiben die optionale Verstärkung der Stufe 9. (Entscheidung D-037, aus der Übung Turnera: sechs rote Belege, die nur "die Datei lädt nicht" sagten.)
 

@@ -104,9 +104,12 @@ faites, pas l'agent :
 > backend, et montre-moi l'effet dans le backend. (6) Ne remplace pas par des simulations
 > précisément la partie que tu es en train de tester. Si tester de bout en bout requiert quelque
 > chose que tu n'as pas (des données, un accès, un environnement), demande-le-moi ; ne simule pas
-> ce que tu n'as pas. Enfin, le message du commit dit « prouvé en rouge contre [quoi] » et les
-> chiffres des tests.
-> Si la version précédente n'a pas du tout le module (le premier bloc d'un nouveau projet), un fichier qui ne se charge pas n'est pas un rouge : prouvez le rouge en plantant volontairement un défaut dans la fonction que vous venez d'écrire (une condition inversée, une ligne supprimée), montrez-moi le test qui échoue contre ce défaut sous la même forme de reçu, avec le diff du défaut, puis annulez-le.
+> ce que tu n'as pas. Si la version précédente n'a pas du tout le module (le premier bloc d'un
+> nouveau projet), un fichier qui ne se charge pas n'est pas un rouge : prouve le rouge en plantant
+> volontairement un défaut dans la fonction que tu viens d'écrire (une condition inversée, une
+> ligne supprimée), montre-moi le test qui échoue contre ce défaut sous la même forme de reçu, avec
+> le diff du défaut, puis annule-le. Enfin, le message du commit dit « prouvé en rouge contre
+> [quoi] » et les chiffres des tests.
 
 **Le rouge du premier bloc.** Dans le premier bloc d'un nouveau projet il n'y a pas de code précédent : le nouveau test échoue parce que le module n'existe pas, et cet échec ne prouve pas que le test distingue un comportement. C'est pourquoi, quand la version précédente n'a pas le module, le rouge se prouve **par mutation** : l'agent plante volontairement un défaut dans la fonction qu'il vient d'écrire, montre le test en rouge contre ce défaut (le reçu porte le diff du défaut, pour que vous voyiez qu'il n'était pas trivial), l'annule et montre le vert. Un seul mutant par élément en attente, exécuté et enregistré comme n'importe quel autre reçu ; les tests de mutation sur toute la base restent le renfort optionnel de l'échelon 9. (Décision D-037, issue de la pratique Turnera : six reçus de rouge qui disaient seulement « le fichier ne se charge pas ».)
 

@@ -1,6 +1,9 @@
 # Urazuke, o método da evidência — a escada metodológica (versão 4)
 
-Autor: Pablo Kuschniroff, assistido por Claude Code. Versão 4, 18 de outubro de 2026. Este é um
+Autor: Pablo Kuschniroff, assistido por Claude Code. Versão 4, iniciada em 18 de outubro de 2026 e
+mantida atualizada com cada decisão posterior do registro (`docs/DECISIONES.md`); a data de início
+fica fixa de propósito, para não reescrever o histórico de versões cada vez que uma decisão nova
+toca este documento. Este é um
 documento de trabalho que vou continuar polindo com cada projeto que o usar; nada do que diz é
 doutrina fechada ainda, embora seja, até onde eu sei, o primeiro destilado honesto de um método
 que já tem três sistemas em produção nas costas.
@@ -50,6 +53,30 @@ para fazer sistemas operáveis e manteníveis sem que ninguém precise compreend
 seu código, porque o código quem o compreende e o mantém é o marco agêntico que o escreve. A
 velocidade, quando aparece, é uma consequência, e por isso neste documento não há prazos: o
 tamanho e a complexidade de cada sistema os põem, e o método só põe a ordem.
+
+Um esclarecimento que me pediram para deixar por escrito, porque a frase anterior se presta a uma
+leitura que não é a minha: "não exige que o dono revise uma única linha de código" não é o mesmo
+que "pensado para que programe gente sem conhecimentos de sistemas". Não está. O objetivo
+primário deste método não é baixar a régua técnica para que qualquer um possa construir software
+sem saber nada sobre como se constrói software: é dar a quem tem que responder por um sistema uma
+âncora metodológica para que o que um modelo constrói saia com a solvência da engenharia de
+sistemas de sempre, contrapondo as fragilidades com que os modelos aplicam esses mesmos
+princípios quando ninguém os exige por escrito. Que o dono não leia código é uma consequência de
+onde pus as comportas e do que um humano pode verificar sem ler uma implementação, não a promessa
+de que qualquer um, saiba o que souber, pode dirigir um projeto de software sem entender nada do
+que está dirigindo. O perfil que os contratos realmente pedem está no meio: alguém que roda um
+comando, maneja uma credencial, restaura um backup, entende o que a cota de CI está dizendo, e
+sabe reconhecer quando o que o modelo entregou não basta — não um leigo puro, e também não alguém
+que já sabe programar.
+
+E outro esclarecimento, sobre o custo. Seguir esta escada gasta mais tokens do que pedir ao
+modelo que resolva tudo de uma só vez: cada degrau soma um prompt, uma verificação própria, um
+artefato que o modelo também tem que sustentar. O que não se vê à primeira vista é o que isso
+economiza. Um sistema construído sem essas comportas tende, mais cedo ou mais tarde, a precisar de
+reengenharia: voltar atrás num dimensionamento que não foi feito, perseguir um erro que um teste
+em vermelho teria pego no degrau 8, reescrever o que ninguém auditou a tempo. Essa reengenharia,
+em tokens, em tempo e em dinheiro, sai muitíssimo mais cara do que o prompt a mais que custa cada
+degrau. Gasto isso adiante, com cabeça, para não gastar o dobro depois, às cegas.
 
 Soa ambicioso, e é. Mas tenho algo que quase ninguém tem: três sistemas reais que construí
 exatamente assim, que hoje funcionam com clientes de verdade, e dos quais extraí cada regra que
@@ -235,7 +262,12 @@ a entrar. Segunda: um requisito novo não entra sozinho no ciclo; **reinjeta nos
 avaliação**, porque pode mudar os números com os quais se decidiu a arquitetura (continua
 aguentando o "vezes dez"?), e daí para a frente. Terceira: o processo **termina na execução
 manual dos casos de teste** por pessoas (degrau 10), e o que essa execução encontra volta ao ciclo
-como requisito. O circuito se fecha com gente, não com máquinas.
+como requisito. O circuito se fecha com gente, não com máquinas. Quarta, e o desenho não mostrava
+isso antes desta correção: quando o que o sistema constrói tem consequência sobre o mundo (cobrar,
+enviar), o ciclo **se reabre depois do degrau 14**, já com as travas colocadas, para construir essa
+parte em modo de ensaio antes de seguir para a cadeia de produção (15). Não é uma volta ao início:
+é a mesma comporta de sempre (fechamento de bloco?) rodada mais uma vez, agora com a rede de
+segurança pronta.
 
 ```mermaid
 flowchart TB
@@ -274,6 +306,7 @@ flowchart TB
   G2 -- sim --> H1
   H1 -- "achados = requisitos" --> RE2
   H1 --> P13
+  P14 -. "o que tem consequência se constrói agora, com as travas colocadas" .-> P5
   P20 --> D --> P21
   P21 -. "desvios = pendências" .-> P5
   P22 -. "erros = pendências" .-> P5
@@ -355,11 +388,11 @@ vê por dentro:
    relatório de qualidade do bloco (9). Atualiza-se o manual de usuário com as telas novas (20, no
    mesmo commit). Só então se abre o bloco seguinte.
 
-Num dia típico do ciclo, o dono investe entre quinze e trinta minutos: responder duas ou três
+Num dia típico do ciclo, o que o método pede ao dono é pouco e pontual: responder duas ou três
 perguntas de regras de negócio, ler dois ou três relatórios, olhar duas ou três capturas. Isso é
-tudo o que o método lhe pede. Se está investindo mais, ou o agente está perguntando o que poderia
-resolver sozinho (degrau 1), ou o dono está lendo código (e então algo do degrau 8 ou do 12 não
-está funcionando).
+tudo. Se está pedindo mais do que isso, ou o agente está perguntando o que poderia resolver
+sozinho (degrau 1), ou o dono está lendo código (e então algo do degrau 8 ou do 12 não está
+funcionando).
 
 ### B.4 Os marcos humanos
 
@@ -736,8 +769,9 @@ com um limite. Fiz isso em todos os meus projetos sem nomeá-lo como degrau.
 - **Artefato**: linter e formatador com uma só configuração; limites de tamanho e complexidade;
   detecção de duplicação e código morto; cobertura com catraca; tipos se a linguagem permitir;
   `docs/CODE_QUALITY.md` com cada limite e o seu valor medido; a comporta em `docs/GATES.md`.
-  Como reforço opcional, os testes de mutação (erros plantados de propósito, contados por quantos
-  os testes capturam), com a sua pontuação por bloco junto à cobertura.
+  Obrigatórios em qualquer projeto com usuários, opcionais só sem usuários reais, os testes de
+  mutação (erros plantados de propósito, contados por quantos os testes capturam), com a sua
+  pontuação por bloco junto à cobertura.
 - **Comporta**: nada se funde com a qualidade em vermelho; nenhuma exceção ao linter sem razão
   escrita; nenhum limite subido para passar.
 - **Quem decide**: o dono fixa os limites e decide o que se conserta agora e o que se tolera com
@@ -1200,16 +1234,23 @@ completude antes de passar ao seguinte. Essa é, de fato, a prática do curso.
 1. **O degrau 0 completo**: os pesos dos critérios que ponderam, o limiar, e mais projetos
    recusados como contraexemplos. Tenho X1 e X2; falta o resto.
 2. **Um nome memorável para cada degrau**, numa frase, para os manuais e as publicações.
-3. **A exportação ao Forge**: que degraus já são comportas ou comandos e quais faltam para poder
-   rodar a escada como fluxo de execução.
-4. **Provar os contratos num projeto real de ponta a ponta.** Os prompts dos vinte e quatro
-   contratos estão escritos a partir do que fiz, não executados tal como estão. O primeiro
-   projeto que os usar completos vai corrigir vários; faz parte do degrau 23.
+3. **A exportação ao Forge, em grande parte resolvida.** O método roda completo como fluxo de
+   projeto no Forge, com comportas mecânicas e o prompt do degrau em curso injetado no chat
+   (D-035, D-036). O que falta é a matriz explícita, contrato por contrato, contra o que o Forge
+   executa hoje, para que uma divergência entre o que este documento diz e o que a ferramenta faz
+   seja notada assim que aparece, em vez de se acumular.
+4. **Provar os contratos de ponta a ponta, já em andamento.** O projeto guia do curso (Turnera)
+   rodou os vinte e quatro contratos tal como estão escritos e fechou 24 de 24; o que encontrou no
+   caminho já corrigiu o método (D-037 a D-040). O que falta não é a primeira rodada completa, que
+   já aconteceu: é que um projeto alheio a rode, sem que eu esteja do lado resolvendo o que o
+   contrato não previu.
 5. **A primeira turma do curso**, que vai corrigir a ordem da linha do tempo onde fizer falta e
    os erros típicos, que hoje estão escritos a partir dos meus projetos e não de alunos.
-6. **O caminho evolutivo-corretivo provado num legado real de ponta a ponta.** As oito estações
-   estão escritas a partir do que fiz em sistemas alheios em modo diagnóstico e a partir dos
-   degraus reordenados, não a partir de uma normalização completa executada com esses prompts.
+6. **O caminho evolutivo-corretivo, provado num legado próprio, não num alheio.** O projeto guia
+   herdado do curso (Turnera herdada) rodou as oito estações e o resto da escada tal como está
+   escrito, fechou 27 de 27, e motivou três decisões do método (D-038, D-039, D-040). O que falta
+   é o mesmo caminho sobre um legado real de um terceiro, com a sua própria história e os seus
+   próprios atalhos, não sobre o sistema que montei para o curso.
 7. **O que NÃO está na escada e deveria estar** `[hipótese]`: a gestão do custo de tokens e cotas
    como orçamento explícito (hoje é reativa); a rotação de segredos como rotina e não como
    incidente; e um critério para quando o humano SIM tem que olhar o código, porque hoje a
@@ -1302,8 +1343,9 @@ vermelho é um **recibo**, não um relato: o comando exato, a versão contra a q
 quantidade de falhas e o código de saída, colados tal qual, para que o dono volte a rodá-lo com
 um comando e o faça, uma vez por bloco, com uma pendência escolhida ao acaso. No degrau 13, a
 auditoria por outra sessão volta a rodar uma amostra desses recibos. E no degrau 9, os testes de
-mutação entram como reforço opcional, recomendado em todo projeto com usuários, com a sua
-pontuação no fechamento de cada bloco junto à cobertura. Nenhuma das três peças exige que o dono
+mutação são obrigatórios em qualquer projeto com usuários (ficam opcionais só sem usuários reais),
+com a sua pontuação no fechamento de cada bloco junto à cobertura. Nenhuma das três peças exige
+que o dono
 leia código. As três fazem com que fingir o vermelho custe mais do que rodá-lo.
 
 Um referencial útil para situar este método no mapa é a taxonomia de Macedo, de junho de 2026
@@ -1573,7 +1615,10 @@ falta.
 
 **Injeção** — Uma vulnerabilidade na qual o que um usuário escreve num formulário acaba
 interpretado pelo sistema como uma ordem (por exemplo, uma consulta ao banco). A análise estática
-do degrau 18 a busca; o teste em vermelho da correção demonstra que já não passa.
+do degrau 18 a busca; o teste em vermelho da correção demonstra que já não passa. A mesma ideia se
+aplica ao agente que lê produção (degrau 23) ou código e documentação alheios (estação N2 do
+caminho evolutivo-corretivo): um log, um ticket ou um comentário que contém algo que soa como uma
+instrução é dado, não uma ordem, e o agente tem que tratá-lo como tal.
 
 **IPC (correia entre processos)** — Um canal entre dois processos. No Forge foi usado como
 "correia": se o processo pai morre, o filho fica sabendo e se desliga.
@@ -1761,7 +1806,9 @@ dizer um manejado com Git e com uma estrutura reconhecível.
 
 **Retenção (retention)** — Quanto tempo se guardam os dados de cada tabela antes de apagá-los.
 
-**Rollback (caminho de volta)** — Voltar à versão anterior quando uma implantação sai mal.
+**Rollback (caminho de volta)** — Voltar à versão anterior quando uma implantação sai mal. Se a
+implantação incluiu uma migração de esquema ou de dados, reverter o código não reverte a
+migração: também é preciso um plano escrito para desfazê-la ou compensá-la (degrau 15).
 
 **RPAForce** — A minha marca, sob a qual se entregam estes sistemas.
 
@@ -1798,8 +1845,9 @@ como o usaria de verdade, antes de aceitá-lo para produção. São humanos; o a
 **Testes de mutação** — Um programa que quebra o código de propósito, uma mudança pequena por
 vez (inverte uma condição, apaga uma linha, troca um operador), roda os testes e conta quantos
 desses erros são capturados. Cada erro que nenhum teste captura é um "mutante que sobrevive"; a
-proporção de capturados é a pontuação. É o reforço opcional do degrau 9 e a resposta à objeção de
-que o agente pode fingir o vermelho. Não confundir com o "vermelho por mutação" da
+proporção de capturados é a pontuação. É obrigatória em qualquer projeto com usuários no degrau 9
+(opcional só sem usuários reais), e é a resposta à objeção de que o agente pode fingir o vermelho.
+Não confundir com o "vermelho por mutação" da
 caracterização, que é a mesma ideia aplicada à mão a um único fluxo.
 
 **Token** — Dois sentidos. Em IA: a unidade com que se mede (e se cobra) o texto que o modelo

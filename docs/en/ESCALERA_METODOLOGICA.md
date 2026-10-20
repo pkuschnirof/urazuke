@@ -1,6 +1,9 @@
 # Urazuke, the evidence method — the methodological ladder (version 4)
 
-Author: Pablo Kuschniroff, assisted by Claude Code. Version 4, 18 October 2026. This is a working
+Author: Pablo Kuschniroff, assisted by Claude Code. Version 4, started on 18 October 2026 and kept
+updated with every later decision of the record (`docs/DECISIONES.md`); the start date stays fixed
+on purpose, so the version history does not get rewritten every time a new decision touches this
+document. This is a working
 document that I am going to keep polishing with every project that uses it; nothing it says is
 closed doctrine yet, although it is, as far as I know, the first honest distillation of a method
 that already has three systems in production behind it.
@@ -48,6 +51,30 @@ code, because the code is understood and maintained by the agentic framework tha
 Speed, when it appears, is a consequence, and that is why there are no deadlines in this
 document: the size and the complexity of each system set those, and the method only sets the
 order.
+
+A clarification I was asked to put in writing, because the sentence above lends itself to a
+reading that is not mine: "does not require the owner to review a single line of code" is not
+the same as "designed for people with no systems knowledge to program." It is not. The primary
+goal of this method is not to lower the technical bar so that anyone can build software without
+knowing anything about how software gets built: it is to give whoever has to answer for a system
+a methodological anchor so that what a model builds comes out with the solvency of ordinary
+systems engineering, countering the weaknesses with which models apply those same principles
+when nobody demands them in writing. That the owner does not read code is a consequence of where
+I placed the gates and of what a human can verify without reading an implementation, not a
+promise that anyone, whatever they know, can direct a software project without understanding
+anything about what they are directing. The profile the contracts actually ask for sits in the
+middle: someone who can run a command, handle a credential, restore a backup, understand what the
+CI quota is telling them, and recognize when what the model delivered falls short — not a pure
+layperson, and not someone who already knows how to program.
+
+And another clarification, about cost. Following this ladder spends more tokens than asking the
+model to solve everything in a single pass: every step adds a prompt, its own check, an artifact
+the model also has to maintain. What is not obvious at a glance is what it saves. A system built
+without these gates tends, sooner or later, to need re-engineering: going back over sizing that
+was never done, chasing a bug a red test would have caught at step 8, rewriting what nobody
+audited in time. That re-engineering, in tokens, in time and in money, costs vastly more than the
+extra prompt each step costs. I spend it up front, with my eyes open, so I don't spend it twice
+over later, blind.
 
 It sounds ambitious, and it is. But I have something almost nobody has: three real systems that I
 built exactly this way, that work today with real clients, and from which I extracted every rule
@@ -234,7 +261,12 @@ Second: a new requirement does not enter the loop on its own; **it reinjects int
 steps**, because it can change the numbers the architecture was decided with (does it still hold
 the "times ten"?), and from there onwards. Third: the process **ends in the manual execution of
 the test cases** by people (step 10), and what that execution finds comes back into the loop as a
-requirement. The circuit closes with people, not with machines.
+requirement. The circuit closes with people, not with machines. Fourth, and the diagram did not
+show this before this correction: when what the system builds has a consequence on the world
+(charging, sending), the loop **reopens after step 14**, with the locks already in place, to build
+that part in rehearsal mode before moving on to the production chain (15). It is not a return to
+the start: it is the same gate as always (block closed?) run once more, now with the safety net
+ready.
 
 ```mermaid
 flowchart TB
@@ -273,6 +305,7 @@ flowchart TB
   G2 -- yes --> H1
   H1 -- "findings = requirements" --> RE2
   H1 --> P13
+  P14 -. "what has consequence gets built now, with the locks in place" .-> P5
   P20 --> D --> P21
   P21 -. "deviations = pending items" .-> P5
   P22 -. "errors = pending items" .-> P5
@@ -357,11 +390,11 @@ is what it looks like from the inside:
    The quality report of the block is read (9). The user manual is updated with the new screens
    (20, in the same commit). Only then is the next block opened.
 
-On a typical day of the loop, the owner invests between fifteen and thirty minutes: answering two
-or three business-rule questions, reading two or three reports, looking at two or three
-screenshots. That is all the method asks of them. If they are investing more, either the agent is
-asking what it could resolve on its own (step 1), or the owner is reading code (and then something
-in step 8 or step 12 is not working).
+On a typical day of the loop, what the method asks of the owner is small and bounded: answering
+two or three business-rule questions, reading two or three reports, looking at two or three
+screenshots. That is all. If it is asking for more than that, either the agent is asking what it
+could resolve on its own (step 1), or the owner is reading code (and then something in step 8 or
+step 12 is not working).
 
 ### B.4 The human milestones
 
@@ -748,8 +781,9 @@ as a step.
 - **Artefact**: a linter and a formatter with a single configuration; size and complexity limits;
   detection of duplication and dead code; coverage with a ratchet; types if the language allows
   it; `docs/CODE_QUALITY.md` with every limit and its measured value; the gate in
-  `docs/GATES.md`. As an optional reinforcement, mutation testing (bugs planted on purpose,
-  counted by how many the tests catch), with its score per block next to the coverage.
+  `docs/GATES.md`. Mandatory in any project with users, optional only without real users, mutation
+  testing (bugs planted on purpose, counted by how many the tests catch), with its score per block
+  next to the coverage.
 - **Gate**: nothing is merged with quality red; no linter exception without a written reason; no
   limit raised in order to pass.
 - **Who decides**: the owner sets the limits and decides what gets fixed now and what gets
@@ -1221,17 +1255,24 @@ course.
 1. **Step 0 complete**: the weights of the weighted criteria, the threshold, and more rejected
    projects as counterexamples. I have X1 and X2; the rest is missing.
 2. **A memorable name for each step**, in one sentence, for the manuals and the publications.
-3. **The export to Forge**: which steps are already gates or commands and which are missing to be
-   able to run the ladder as an execution workflow.
-4. **Test the contracts in a real project end to end.** The prompts of the twenty-four
-   contracts are written from what I did, not executed as-is. The first project that uses them
-   in full is going to correct several; it is part of step 23.
+3. **The export to Forge, largely resolved.** The method runs in full as a project workflow in
+   Forge, with mechanical gates and the current step's prompt injected into the chat (D-035,
+   D-036). What is missing is the explicit contract-by-contract matrix against what Forge runs
+   today, so that a divergence between what this document says and what the tool does is noticed
+   as soon as it appears, instead of piling up.
+4. **Test the contracts end to end, already under way.** The course's guided project (Turnera) ran
+   the twenty-four contracts as written and closed 24 of 24; what it found along the way already
+   corrected the method (D-037 to D-040). What is missing is not the first full run, which already
+   happened: it is having someone else's project run it, with me not standing next to it solving
+   what the contract did not foresee.
 5. **The first cohort of the course**, which is going to correct the order of the timeline where
    it is needed and the typical mistakes, which today are written from my projects and not from
    students.
-6. **The evolutive-corrective path proved on a real legacy system end to end.** The eight
-   stations are written from what I did on other people's systems in diagnostic mode and from the
-   steps reordered, not from a complete normalization executed with those prompts.
+6. **The evolutive-corrective path, proved on a project of my own, not on someone else's.** The
+   course's guided legacy project (inherited Turnera) ran the eight stations and the rest of the
+   ladder as written, closed 27 of 27, and motivated three decisions of the method (D-038, D-039,
+   D-040). What is missing is the same path on a real legacy system belonging to a third party,
+   with its own history and its own shortcuts, not on the system I built for the course.
 7. **What is NOT on the ladder and should be** `[hypothesis]`: the management of token cost and
    quotas as an explicit budget (today it is reactive); secret rotation as a routine and not as an
    incident; and a criterion for when the human DOES have to look at the code, because today the
@@ -1325,9 +1366,9 @@ It is a serious objection, and I take it. The method's answer has three pieces (
 the red is a **receipt**, not a story: the exact command, the version it ran against, the count of
 failures and the exit code, pasted as they came out, so that the owner can run it again with one
 command and does so, once per block, with a pending item chosen at random. In step 13, the audit
-by another session reruns a sample of those receipts. And in step 9, mutation testing comes in as
-an optional reinforcement, recommended in every project with users, with its score at the close of
-every block next to the coverage. None of the three pieces requires the owner to read code. All
+by another session reruns a sample of those receipts. And in step 9, mutation testing is mandatory
+in any project with users (it stays optional only without real users), with its score at the close
+of every block next to the coverage. None of the three pieces requires the owner to read code. All
 three make faking the red cost more than running it.
 
 A useful frame for placing this method on the map is Macedo's taxonomy, from June 2026
@@ -1583,7 +1624,10 @@ are derived from the real queries, they are not guessed (step 17).
 
 **Injection** — A vulnerability in which what a user writes into a form ends up interpreted by the
 system as an order (for example, a query to the database). The static analysis of step 18 looks
-for it; the test proved red of the fix demonstrates that it no longer passes.
+for it; the test proved red of the fix demonstrates that it no longer passes. The same idea applies
+to the agent that reads production (step 23) or someone else's code and documentation (station N2
+of the evolutive-corrective path): a log, a ticket or a comment that contains something that reads
+like an instruction is data, not an order, and the agent has to treat it as such.
 
 **IPC (inter-process leash)** — A channel between two processes. In Forge it was used as a
 "leash": if the parent process dies, the child finds out and shuts down.
@@ -1645,8 +1689,9 @@ nothing.
 **Mutation testing** — A program that breaks the code on purpose, one small change at a time
 (flips a condition, deletes a line, changes an operator), runs the tests and counts how many of
 those bugs they catch. Every bug no test catches is a "surviving mutant"; the proportion caught is
-the score. It is the optional reinforcement of step 9 and the answer to the objection that the
-agent can fake the red. Not to be confused with the "red by mutation" of characterization, which
+the score. It is mandatory in any project with users in step 9 (optional only without real users),
+and it is the answer to the objection that the agent can fake the red. Not to be confused with the
+"red by mutation" of characterization, which
 is the same idea applied by hand to a single flow.
 
 **N+1 loop** — A very common persistence mistake: to show a hundred items, the system makes one
@@ -1745,7 +1790,9 @@ system. See B.5.
 
 **Retention** — How long the data of each table is kept before deleting it.
 
-**Rollback** — Going back to the previous version when a deployment goes wrong.
+**Rollback** — Going back to the previous version when a deployment goes wrong. If the deployment
+included a schema or data migration, reverting the code does not revert the migration: a written
+plan to undo or compensate it is also needed (step 15).
 
 **Root cause** — The real reason for a problem, as opposed to the symptom. Fixing the symptom makes
 the problem come back; fixing the root cause does not.

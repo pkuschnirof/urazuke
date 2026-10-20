@@ -9,8 +9,9 @@ report is read with the owner. In a legacy system, the first run is the baseline
 enter the backlog with their speed mark.
 **Form:** one shot to set it up; afterwards, a routine of every change and a reading per block.
 **Size:** mandatory at its minimum level in every project (a linter and a size limit in the
-chain); complete in any project with users. Mutation testing is an optional reinforcement,
-recommended in every project with users.
+chain); complete, mutation testing included, in any project with users. Mutation testing stays an
+optional reinforcement only when there are no real users (an internal tool, a prototype nobody
+else runs).
 
 ## What it is for
 
@@ -32,8 +33,12 @@ code; that the dependencies are declared and used; that the *coverage* of the te
 test: impeccable code can be wrong. What it prevents is correct code that nobody can ever touch
 again.
 
-And an optional reinforcement that is worth it in any project with users: **mutation testing**.
-A tool plants bugs on purpose in the code (changes a "greater than" into a "greater than or
+And the piece I stop treating as an optional reinforcement in any project with users: **mutation
+testing**. I left it as "optional, recommended" in an earlier version of this document, and an
+outside evaluation of the method pointed out the contradiction: if Part F says mutation is, as far
+as I know, the only measure that in the 2026 studies told the tests that prove apart from the tests
+that decorate, it makes no sense to leave it out of "complete" exactly in the projects where one
+more decorative test hurts someone. A tool plants bugs on purpose in the code (changes a "greater than" into a "greater than or
 equal", deletes a line, flips a condition) and runs the tests; every bug the tests do not catch is
 a *surviving mutant*, and the proportion caught is the score. It is the measure that complements
 the demonstrated red of step 8: the red proves that one test watches today's change; mutation
@@ -129,7 +134,7 @@ task; the ban on silencing (a model facing a red linter tends to add the excepti
 fixing, because it is faster) and on raising the limit; and the reading per block, which is the
 only moment when you look at the numbers.
 
-**Reinforcement (optional; recommended in every project with users): mutation testing.**
+**Mandatory in any project with users (optional only without real users): mutation testing.**
 
 **Before sending the prompt**, you have to have this at hand:
 
@@ -161,7 +166,7 @@ coverage, with a drop treated as red.
 - `docs/CODE_QUALITY.md` with tools, configuration, limits with their measured value, and the list
   of what fails with its pending item or its date.
 - The gate in `docs/GATES.md` and the routine in the agreement.
-- If the reinforcement was set up: the mutation score in `docs/CODE_QUALITY.md`, per block, next
+- In any project with users: the mutation score in `docs/CODE_QUALITY.md`, per block, next
   to the coverage, and a pending item for every surviving mutant in code that matters.
 
 ## 4. Completeness check (you do it, without reading code)
@@ -174,6 +179,8 @@ coverage, with a drop treated as red.
 - Are there any linter exceptions in the code? Ask for the list; each one has to have a written
   reason.
 - Did any limit go up since the first run? With what reason and who decided it?
+- If the project has real users: is mutation testing running? If not, what written reason
+  justifies not having it?
 - If there is mutation testing: how many mutants survived in the last block, and does each one
   have a pending item or a written reason?
 
@@ -189,3 +196,5 @@ coverage, with a drop treated as red.
   duplication disguised as compliance.
 - Coverage is high and the mutation score is low. Those are tests that execute the code without
   verifying anything: the exact case the demonstrated red of step 8 tries to prevent.
+- The project has real users and nobody ran mutation testing or wrote down why not. "It is
+  optional" stopped being a valid reason for a project with users.

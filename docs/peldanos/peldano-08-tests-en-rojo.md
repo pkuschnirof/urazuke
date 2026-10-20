@@ -102,9 +102,12 @@ el agente:
 > vecinos y mostrame que sigue en verde. (5) Corré la prueba de punta a punta del flujo que este
 > pendiente toca, desde la pantalla hasta el backend, y mostrame el efecto en el backend. (6) No
 > reemplaces con simulaciones justamente la parte que estás probando. Si probar de punta a punta
-> requiere algo que no tenés (datos, acceso, un entorno), pedímelo; no simules lo que no tenés. Por
-> último, el mensaje del commit dice "probado en rojo contra [qué]" y los números de los tests.
-> Si la versión anterior no tiene el módulo (el primer bloque de un proyecto nuevo), un archivo que no carga no es un rojo: probá el rojo plantando un defecto a propósito en la función que acabás de escribir (una condición invertida, una línea borrada), mostrame el test fallando contra ese defecto como el mismo tipo de recibo, con el diff del defecto, y después revertilo.
+> requiere algo que no tenés (datos, acceso, un entorno), pedímelo; no simules lo que no tenés. Si
+> la versión anterior no tiene el módulo (el primer bloque de un proyecto nuevo), un archivo que no
+> carga no es un rojo: probá el rojo plantando un defecto a propósito en la función que acabás de
+> escribir (una condición invertida, una línea borrada), mostrame el test fallando contra ese
+> defecto como el mismo tipo de recibo, con el diff del defecto, y después revertilo. Por último,
+> el mensaje del commit dice "probado en rojo contra [qué]" y los números de los tests.
 
 **El rojo del primer bloque.** En el primer bloque de un proyecto nuevo no hay código anterior: el test nuevo falla porque el módulo no existe, y ese fallo no demuestra que el test distinga comportamiento. Por eso, cuando la versión anterior no tiene el módulo, el rojo se prueba **por mutación**: el agente planta un defecto a propósito en la función que acaba de escribir, muestra el test en rojo contra ese defecto (el recibo lleva el diff del defecto, para que vos veas que no fue trivial), lo revierte y muestra el verde. Es un solo mutante por pendiente, ejecutado y registrado como cualquier otro recibo; las pruebas de mutación sobre toda la base siguen siendo el refuerzo opcional del peldaño 9. (Decisión D-037, a partir de la práctica Turnera: seis recibos de rojo que solo decían "el archivo no carga".)
 

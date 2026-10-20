@@ -9,8 +9,9 @@ lê com o dono. Num legado, a primeira corrida é a linha base e os achados entr
 pendências com a sua marca de velocidade.
 **Forma:** um único disparo para montar; depois, rotina de cada mudança e leitura por bloco.
 **Tamanho:** obrigatório no seu nível mínimo em todo projeto (um linter e um limite de tamanho na
-cadeia); completo em qualquer projeto com usuários. Os testes de mutação são um reforço
-opcional, recomendado em todo projeto com usuários.
+cadeia); completo, com testes de mutação incluídos, em qualquer projeto com usuários. Os testes de
+mutação ficam como reforço opcional só quando não há usuários reais (uma ferramenta interna, um
+protótipo que mais ninguém roda).
 
 ## Para que serve
 
@@ -32,8 +33,12 @@ morto; que as dependências estejam declaradas e usadas; que a *cobertura* dos t
 vermelho: um código impecável pode estar errado. O que evita é o código correto que ninguém pode
 voltar a tocar.
 
-E um reforço opcional que vale a pena em qualquer projeto com usuários: os **testes de
-mutação**. Uma ferramenta planta erros de propósito no código (troca um "maior" por "maior ou
+E a peça que deixo de tratar como reforço opcional em qualquer projeto com usuários: os **testes
+de mutação**. Deixei-os como "opcional, recomendado" numa versão anterior deste documento, e uma
+avaliação externa do método me fez notar a contradição: se a Parte F diz que a mutação é, até onde
+sei, a única medida que nos estudos de 2026 distinguiu os testes que provam dos que decoram, não
+faz sentido deixá-la fora de "completo" justamente nos projetos onde mais um teste decorativo
+prejudica alguém. Uma ferramenta planta erros de propósito no código (troca um "maior" por "maior ou
 igual", apaga uma linha, inverte uma condição) e roda os testes; cada erro que os testes não
 capturam é um *mutante que sobrevive*, e a proporção de capturados é a pontuação. É a medida que
 complementa o vermelho demonstrado do degrau 8: o vermelho prova que um teste vigia a mudança de
@@ -150,7 +155,8 @@ O que estou pedindo: que a qualidade seja parte do fechamento de cada pendência
 a exceção em vez de consertar, porque é mais rápido) e de subir o limite; e a leitura por bloco,
 que é o único momento em que você olha os números.
 
-**Reforço (opcional; recomendado em todo projeto com usuários): testes de mutação.**
+**Obrigatório em qualquer projeto com usuários (opcional só sem usuários reais): testes de
+mutação.**
 
 **Antes de enviar o prompt**, você tem que ter isto à mão:
 
@@ -193,8 +199,8 @@ como vermelho.
 - `docs/CODE_QUALITY.md` com ferramentas, configuração, limites com valor medido, e a lista do
   que falha com a sua pendência ou a sua data.
 - A comporta em `docs/GATES.md` e a rotina no contrato.
-- Se o reforço foi montado: a pontuação de mutação em `docs/CODE_QUALITY.md`, por bloco, junto à
-  cobertura, e uma pendência por cada mutante que sobrevive em código que importa.
+- Em qualquer projeto com usuários: a pontuação de mutação em `docs/CODE_QUALITY.md`, por bloco,
+  junto à cobertura, e uma pendência por cada mutante que sobrevive em código que importa.
 
 ## 4. Verificação de completude (você a faz, sem ler código)
 
@@ -204,6 +210,8 @@ como vermelho.
 - A cobertura de hoje é maior ou igual à do fechamento do bloco anterior? Peça os dois números.
 - Há alguma exceção ao linter no código? Peça a lista; cada uma tem que ter razão escrita.
 - Subiu algum limite desde a primeira corrida? Com que razão e quem o decidiu?
+- Se o projeto tem usuários reais: os testes de mutação estão rodando? Se não, que razão escrita
+  justifica não tê-los?
 - Se há testes de mutação: quantos mutantes sobreviveram no último bloco, e cada um tem pendência
   ou razão escrita?
 
@@ -220,3 +228,5 @@ como vermelho.
   duplicação disfarçada de cumprimento.
 - A cobertura é alta e a pontuação de mutação é baixa. São testes que executam o código sem
   verificar nada: o caso exato que o vermelho demonstrado do degrau 8 tenta evitar.
+- O projeto tem usuários reais e ninguém rodou os testes de mutação nem escreveu por quê não.
+  "É opcional" deixou de ser uma razão válida para um projeto com usuários.

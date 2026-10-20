@@ -64,9 +64,11 @@ o agente:
 > waits for that run's result and only packages and uploads, without running tests again; (3)
 > each environment's configuration lives on the server (environment file or vault), never in the
 > repository; (4) a written procedure to promote from the test environment to production, which
-> can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check
-> that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
-> can do it by hand without you. Reply in my language.
+> can be run twice without breaking anything; (5) the rollback, tested — and if any change
+> migrates schema or data, a written plan for undoing or compensating it, since reverting the code
+> alone does not undo a migration that already ran; (6) an automatic check that prevents
+> committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by
+> hand without you. Reply in my language.
 
 > [pt]
 > Vamos fechar o caminho para a produção. Leia o levantamento de ambientes e acessos. Avalie se
@@ -76,15 +78,18 @@ o agente:
 > resultado dessa execução e só empacota e sobe, sem voltar a rodar testes; (3) a configuração
 > de cada ambiente vive no servidor (arquivo de ambiente ou cofre), nunca no repositório; (4) um
 > procedimento escrito para promover do ambiente de teste para a produção, que possa ser rodado
-> duas vezes sem quebrar nada; (5) o caminho de volta, provado; (6) uma verificação automática
-> que impeça subir um segredo num commit. Documente tudo em `docs/DEPLOYMENT.md` de modo que uma
-> pessoa possa fazê-lo à mão sem você. Responda no meu idioma.
+> duas vezes sem quebrar nada; (5) o caminho de volta, provado —e se alguma mudança migrar esquema
+> ou dados, um plano escrito para desfazê-la ou compensá-la, já que reverter só o código não
+> desfaz uma migração que já rodou—; (6) uma verificação automática que impeça subir um segredo
+> num commit. Documente tudo em `docs/DEPLOYMENT.md` de modo que uma pessoa possa fazê-lo à mão
+> sem você. Responda no meu idioma.
 
 O que estou pedindo, cláusula por cláusula: os acessos antes de começar; os testes **uma única
 vez** por commit (rodá-los três vezes é o que queimou a cota); a implantação que só empacota; a
 configuração fora do repositório; a promoção como procedimento repetível; o caminho de volta
-**provado** (um caminho de volta que nunca foi provado não existe); o cadeado contra segredos nos
-commits; e a documentação para uma pessoa, que é o degrau 20 aplicado à infraestrutura.
+**provado**, **com o seu plano de dados** (um caminho de volta que nunca foi provado não existe, e
+uma migração de esquema ou de dados não se desfaz revertendo o commit); o cadeado contra segredos
+nos commits; e a documentação para uma pessoa, que é o degrau 20 aplicado à infraestrutura.
 
 **Rotina de cada implantação:**
 
@@ -151,6 +156,8 @@ teria detectado, para que da próxima vez não chegue ao chat.
   Peça ao agente que busque e lhe mostre a busca vazia.
 - Você conseguiria seguir `docs/DEPLOYMENT.md` sozinho, sem o agente? Leia-o com essa pergunta.
 - O caminho de volta foi provado? Quando? Que evidência há?
+- Se houve uma migração de esquema ou de dados: há um plano escrito para desfazê-la ou
+  compensá-la, além do caminho de volta do código?
 - Algum segredo foi colado no chat durante o projeto? Se sim, foi rotacionado?
 - Você sabe quanta cota de integração contínua resta este mês?
 
@@ -160,3 +167,6 @@ teria detectado, para que da próxima vez não chegue ao chat.
   pequenas são as que quebram a produção, porque ninguém as testa.
 - O arquivo de exemplo da configuração tem valores que parecem reais. Provavelmente são.
 - Ninguém sabe dizer quando foi a última vez que o caminho de volta foi provado.
+- Uma migração mudou dados ou esquema e "o caminho de volta" do qual se fala é só o do código.
+  Para essa migração não há caminho de volta: há, na melhor das hipóteses, um plano para
+  compensá-la.

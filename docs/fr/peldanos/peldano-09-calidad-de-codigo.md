@@ -10,8 +10,9 @@ la ligne de base et les constats entrent dans le backlog avec leur marque de vit
 **Forme :** un seul envoi pour le monter ; ensuite, routine de chaque changement et lecture par
 bloc.
 **Taille :** obligatoire à son niveau minimum dans tout projet (un linter et une limite de taille
-dans la chaîne) ; complet dans tout projet qui aura des utilisateurs. Les tests de mutation sont un
-renfort optionnel, recommandé dans tout projet qui aura des utilisateurs.
+dans la chaîne) ; complet, tests de mutation inclus, dans tout projet qui aura des utilisateurs.
+Les tests de mutation restent un renfort optionnel seulement quand il n'y a pas d'utilisateurs
+réels (un outil interne, un prototype que personne d'autre ne fait tourner).
 
 ## À quoi il sert
 
@@ -34,8 +35,13 @@ baisse jamais (le cliquet) ; et, si le langage le permet, que les types soient c
 tout cela ne remplace le test en rouge : un code impeccable peut être faux. Ce que cela évite,
 c'est le code correct que plus personne ne peut toucher.
 
-Et un renfort optionnel qui vaut la peine dans tout projet qui aura des utilisateurs : les **tests
-de mutation**. Un outil plante des erreurs exprès dans le code (il change un « supérieur » en
+Et ce que j'arrête de traiter comme un renfort optionnel dans tout projet qui aura des
+utilisateurs : les **tests de mutation**. Je les avais laissés comme « optionnels, recommandés »
+dans une version antérieure de ce document, et une évaluation externe de la méthode m'a fait
+remarquer la contradiction : si la Partie F dit que la mutation est, pour autant que je sache, la
+seule mesure qui, dans les études de 2026, a distingué les tests qui prouvent de ceux qui décorent,
+cela n'a pas de sens de la laisser hors du « complet » justement dans les projets où un test
+décoratif de plus fait du tort à quelqu'un. Un outil plante des erreurs exprès dans le code (il change un « supérieur » en
 « supérieur ou égal », efface une ligne, inverse une condition) et lance les tests ; chaque erreur
 que les tests n'attrapent pas est un *mutant qui survit*, et la proportion d'attrapés est le score.
 C'est la mesure qui complète le rouge démontré de l'échelon 8 : le rouge prouve qu'un test
@@ -158,7 +164,8 @@ ne soit pas une tâche à part ; l'interdiction de faire taire (un modèle face 
 a tendance à ajouter l'exception au lieu de corriger, parce que c'est plus rapide) et de relever
 la limite ; et la lecture par bloc, qui est le seul moment où vous, vous regardez les chiffres.
 
-**Renfort (optionnel ; recommandé dans tout projet qui aura des utilisateurs) : tests de mutation.**
+**Obligatoire dans tout projet qui aura des utilisateurs (optionnel seulement sans utilisateurs
+réels) : tests de mutation.**
 
 **Avant d'envoyer le prompt**, vous devez avoir ceci sous la main :
 
@@ -203,8 +210,9 @@ couverture, avec une baisse traitée comme du rouge.
 - `docs/CODE_QUALITY.md` avec les outils, la configuration, les limites avec leur valeur mesurée,
   et la liste de ce qui échoue avec son élément en attente ou sa date.
 - La porte dans `docs/GATES.md` et la routine dans le contrat.
-- Si le renfort a été monté : le score de mutation dans `docs/CODE_QUALITY.md`, par bloc, à côté
-  de la couverture, et un élément en attente pour chaque mutant qui survit dans du code qui compte.
+- Dans tout projet qui a des utilisateurs : le score de mutation dans `docs/CODE_QUALITY.md`, par
+  bloc, à côté de la couverture, et un élément en attente pour chaque mutant qui survit dans du
+  code qui compte.
 
 ## 4. Vérification de complétude (vous la faites vous-même, sans lire de code)
 
@@ -217,6 +225,8 @@ couverture, avec une baisse traitée comme du rouge.
   raison écrite.
 - Une limite a-t-elle été relevée depuis la première exécution ? Avec quelle raison et qui l'a
   décidé ?
+- Si le projet a des utilisateurs réels : les tests de mutation tournent-ils ? Sinon, quelle raison
+  écrite justifie de ne pas les avoir ?
 - S'il y a des tests de mutation : combien de mutants ont survécu dans le dernier bloc, et chacun
   a-t-il son élément en attente ou sa raison écrite ?
 
@@ -233,3 +243,6 @@ couverture, avec une baisse traitée comme du rouge.
   duplication déguisée en conformité.
 - La couverture est haute et le score de mutation est bas. Ce sont des tests qui exécutent le code
   sans rien vérifier : le cas exact que le rouge démontré de l'échelon 8 cherche à éviter.
+- Le projet a des utilisateurs réels et personne n'a lancé les tests de mutation ni écrit
+  pourquoi. « C'est optionnel » a cessé d'être une raison valable pour un projet qui a des
+  utilisateurs.

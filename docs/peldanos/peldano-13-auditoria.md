@@ -24,6 +24,12 @@ que la contraseña hardcodeada era provisoria; un modelo que lo ve por primera v
 lo que es. Así se detectaron dos puertas de administrador que el constructor había dejado en un
 día [Ref. 40](../REFERENCIAS.md#ref-40).
 
+Si podés elegir, que además sea **un modelo distinto** del que construyó, no solo otra sesión del
+mismo: un estudio de 2026 midió que una sesión limpia con un modelo distinto encuentra más errores
+que dos sesiones del mismo modelo ([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)). No es una
+compuerta dura, porque a veces el modelo del constructor es el único disponible; es una preferencia
+que vale la pena ejercer cuando se puede, y cuanto más crítico el sistema, más vale ejercerla.
+
 ## 1. Contexto requerido
 
 Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
@@ -34,6 +40,8 @@ el prompt" que precede a cada uno.
 - La producción o el entorno de prueba, en solo lectura (base de datos, logs).
 - La auditoría anterior, si hubo, para medir qué cambió.
 - El alcance: integridad, seguridad, rendimiento, calidad de código, o todo.
+- `docs/PENDING.md` con los pendientes cerrados del último ciclo y sus recibos, para que el
+  auditor elija cuáles reproducir.
 
 ## 2. Prompts
 
@@ -58,7 +66,10 @@ el agente:
 > Audit this system for [scope]. Read-only: change nothing except writing your report to
 > `docs/AUDIT_[date].md`. If auditing some part requires access you lack (the database, the
 > log, an environment), tell me and mark that part as not audited; do not pass it as fine. Go
-> through all of the code, not a sample. For every finding: where it is (file and line), what
+> through all of the code, not a sample. Pick two or three pending items closed in the last cycle
+> and reproduce their receipts literally: rerun the exact red-then-green commands they cite
+> against the commits they name, and say for each one whether it reproduces or not. A receipt you
+> only read is not a receipt you audited. For every finding: where it is (file and line), what
 > the risk is, what evidence proves it (the command, the query, the number), and its priority:
 > P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited.
 > End with the list of P0 findings turned into proposed pending items. Reply in my language.
@@ -67,16 +78,21 @@ el agente:
 > Auditá este sistema en [alcance]. Solo lectura: no cambies nada salvo escribir tu informe en
 > `docs/AUDIT_[fecha].md`. Si auditar alguna parte requiere un acceso que no tenés (la base de
 > datos, el log, un entorno), decímelo y marcá esa parte como no auditada; no la des por buena.
-> Recorré todo el código, no una muestra. Para cada hallazgo: dónde está (archivo y línea), cuál
-> es el riesgo, qué evidencia lo prueba (el comando, la consulta, el número), y su prioridad: P0
-> hay que arreglarlo ya, P1 pronto, P2 cuando se pueda. Poné una nota a cada dimensión que
+> Recorré todo el código, no una muestra. Elegí dos o tres pendientes cerrados en el último ciclo
+> y reproducí sus recibos tal cual: volvé a correr los comandos exactos de rojo y después verde
+> que citan, contra los commits que nombran, y decime para cada uno si reproduce o no. Un recibo
+> que solo leíste no es un recibo que auditaste. Para cada hallazgo: dónde está (archivo y línea),
+> cuál es el riesgo, qué evidencia lo prueba (el comando, la consulta, el número), y su prioridad:
+> P0 hay que arreglarlo ya, P1 pronto, P2 cuando se pueda. Poné una nota a cada dimensión que
 > auditaste. Terminá con la lista de hallazgos P0 convertidos en pendientes propuestos. Respondé
 > en mi idioma.
 
 Qué le estoy pidiendo, cláusula por cláusula: solo lectura (el auditor no arregla; propone); la
 cláusula de completitud en su forma para auditar: **lo que no se pudo verificar se declara, no se
 aprueba por omisión**; todo el código y no una muestra, porque los hallazgos graves suelen estar
-donde nadie mira; cada hallazgo con ubicación, riesgo, evidencia y prioridad, para que sea
+donde nadie mira; **la reproducción literal de dos o tres recibos**, para que la auditoría verifique
+evidencia, no solo la lea (esta es la cláusula que cierra el hueco de D-033: un rojo contado no es
+un rojo auditado); cada hallazgo con ubicación, riesgo, evidencia y prioridad, para que sea
 accionable sin releer el informe; notas por dimensión, para comparar con la auditoría anterior; y
 los P0 ya convertidos en pendientes propuestos.
 
@@ -104,14 +120,15 @@ archiva), y que el desacuerdo sea explícito y con evidencia, no silencioso.
 ## 3. Resultado esperado
 
 - `docs/AUDIT_[fecha].md` con: alcance, qué se pudo verificar y qué no (y por qué), los
-  hallazgos con ubicación, riesgo, evidencia y prioridad, una nota por dimensión, y la lista de
-  pendientes propuestos.
+  hallazgos con ubicación, riesgo, evidencia y prioridad, una nota por dimensión, el resultado de
+  reproducir dos o tres recibos del último ciclo, y la lista de pendientes propuestos.
 - En `docs/PENDING.md`: un pendiente por cada P0 y P1, citando el hallazgo.
 
 ## 4. Verificación de completitud
 
 - ¿El informe dice qué NO pudo verificar? Si dice que verificó todo, desconfiá.
 - Elegí dos hallazgos: ¿tienen archivo y línea, y una evidencia que podés reproducir?
+- ¿El informe dice qué recibos reprodujo, con el comando y el resultado, o solo dice que los leyó?
 - ¿Cada P0 tiene su pendiente abierto antes de dar la auditoría por cerrada?
 - ¿Las notas por dimensión se van a poder comparar con la auditoría anterior?
 - ¿Auditó el mismo agente que construyó? Si es así, pedí una segunda mirada sobre los P0.
@@ -121,4 +138,6 @@ archiva), y que el desacuerdo sea explícito y con evidencia, no silencioso.
 - La auditoría no encontró ningún P0. En un sistema de más de tres meses, casi nunca es verdad;
   más probable es que el alcance fue chico o que el auditor compartía los supuestos.
 - Los hallazgos no tienen línea de archivo. Son opiniones, no hallazgos.
+- El informe dice que los recibos "se revisaron" sin mostrar el comando que corrió ni su salida.
+  Un recibo leído y uno reproducido no son lo mismo, y solo el segundo cierra la objeción de D-033.
 - Pasaron dos semanas y los P0 siguen sin pendiente. La auditoría se archivó.

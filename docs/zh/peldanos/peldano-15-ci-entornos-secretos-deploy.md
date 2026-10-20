@@ -52,22 +52,26 @@
 > waits for that run's result and only packages and uploads, without running tests again; (3)
 > each environment's configuration lives on the server (environment file or vault), never in the
 > repository; (4) a written procedure to promote from the test environment to production, which
-> can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check
-> that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
-> can do it by hand without you. Reply in my language.
+> can be run twice without breaking anything; (5) the rollback, tested — and if any change
+> migrates schema or data, a written plan for undoing or compensating it, since reverting the code
+> alone does not undo a migration that already ran; (6) an automatic check that prevents
+> committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by
+> hand without you. Reply in my language.
 
 > [zh]
 > 我们要收尾通往生产的路。读环境与访问调研。评估你是否具备安全部署到生产所需的东西（访问
 > 权、域名、密钥住在哪里、如何回滚）；如果缺什么，问我。然后搭建：(1) 持续集成每次提交恰
 > 好运行一次完整测试套件；(2) 部署等待那次运行的结果，只打包和上传，不再运行测试；(3) 每
 > 个环境的配置活在服务器上（环境文件或保险库），绝不在仓库里；(4) 一份从测试环境提升到生
-> 产的书面流程，可以运行两次而不弄坏任何东西；(5) 回滚，经过测试；(6) 一个阻止提交密钥的
-> 自动检查。把这一切写进 `docs/DEPLOYMENT.md`，让一个人不靠你也能手工完成。用我的语言
-> 回复。
+> 产的书面流程，可以运行两次而不弄坏任何东西；(5) 回滚，经过测试——如果有任何改动迁移了
+> 模式或数据，还要有一份书面计划来撤销或补偿它，因为只回滚代码并不会撤销一次已经跑过的
+> 迁移；(6) 一个阻止提交密钥的自动检查。把这一切写进 `docs/DEPLOYMENT.md`，让一个人不靠你
+> 也能手工完成。用我的语言回复。
 
 我在要求什么，逐条：开始前的访问权；测试每次提交**只跑一次**（跑三遍就是烧光配额的原因）；
-只打包的部署；仓库之外的配置；作为可重复流程的提升；**经过测试**的回滚（从没测过的回滚不存
-在）；提交里防密钥的锁；以及给一个人看的文档，那是第 20 级台阶应用于基础设施。
+只打包的部署；仓库之外的配置；作为可重复流程的提升；**经过测试**的回滚，**附带它的数据计划**
+（从没测过的回滚不存在，而一次模式或数据迁移不会因为回滚提交就被撤销）；提交里防密钥的锁；
+以及给一个人看的文档，那是第 20 级台阶应用于基础设施。
 
 **每次部署的例行：**
 
@@ -125,6 +129,7 @@
 - 仓库里有没有任何真实的配置值（密钥、密码、内部 URL）？让代理搜索并给你看空的搜索结果。
 - 你一个人、没有代理，能照着 `docs/DEPLOYMENT.md` 做吗？带着这个问题读它。
 - 回滚测过了吗？什么时候？有什么证据？
+- 如果有过模式或数据迁移：除了代码的回滚之外，有没有一份书面计划来撤销或补偿它？
 - 项目期间有没有密钥贴进过聊天？有的话，轮换了吗？
 - 你知道这个月还剩多少持续集成配额吗？
 
@@ -133,3 +138,5 @@
 - 部署到生产是"手工、快速，因为是个小改动"。小改动才是弄坏生产的，因为没人测它们。
 - 配置示例文件里有看起来像真的值。很可能就是真的。
 - 没人说得出上一次测试回滚是什么时候。
+- 一次迁移改动了数据或模式，而大家说的"回滚"只是代码的回滚。对那次迁移来说没有回滚：顶多
+  有一份补偿它的计划。

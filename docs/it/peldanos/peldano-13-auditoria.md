@@ -25,6 +25,13 @@ che l'auditor non condivida i presupposti del costruttore. Un modello che ha cos
 la riporta per quello che è. Così sono state rilevate due porte di amministratore che il costruttore
 aveva lasciato in un giorno [Ref. 40](../REFERENCIAS.md#ref-40).
 
+Se puoi scegliere, che sia anche **un modello diverso** da quello che ha costruito, non solo
+un'altra sessione dello stesso: uno studio del 2026 ha misurato che una sessione pulita con un
+modello diverso trova più errori di due sessioni dello stesso modello
+([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)). Non è un cancello duro, perché a volte il
+modello del costruttore è l'unico disponibile; è una preferenza che vale la pena esercitare quando
+si può, e più il sistema è critico, più vale la pena esercitarla.
+
 ## 1. Contesto richiesto
 
 Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
@@ -35,6 +42,8 @@ inviare il prompt" che precede ciascuno.
 - La produzione o l'ambiente di test, in sola lettura (database, log).
 - L'audit precedente, se c'è stato, per misurare cosa è cambiato.
 - Il perimetro: integrità, sicurezza, prestazioni, qualità del codice, o tutto.
+- `docs/PENDING.md` con le voci in sospeso chiuse nell'ultimo ciclo e le loro ricevute, perché
+  l'auditor scelga quali riprodurre.
 
 ## 2. Prompt
 
@@ -60,7 +69,10 @@ l'agente:
 > Audit this system for [scope]. Read-only: change nothing except writing your report to
 > `docs/AUDIT_[date].md`. If auditing some part requires access you lack (the database, the
 > log, an environment), tell me and mark that part as not audited; do not pass it as fine. Go
-> through all of the code, not a sample. For every finding: where it is (file and line), what
+> through all of the code, not a sample. Pick two or three pending items closed in the last cycle
+> and reproduce their receipts literally: rerun the exact red-then-green commands they cite
+> against the commits they name, and say for each one whether it reproduces or not. A receipt you
+> only read is not a receipt you audited. For every finding: where it is (file and line), what
 > the risk is, what evidence proves it (the command, the query, the number), and its priority:
 > P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited.
 > End with the list of P0 findings turned into proposed pending items. Reply in my language.
@@ -69,18 +81,23 @@ l'agente:
 > Fai l'audit di questo sistema su [perimetro]. Sola lettura: non cambiare nulla tranne scrivere
 > il tuo rapporto in `docs/AUDIT_[data].md`. Se fare l'audit di qualche parte richiede un accesso
 > che non hai (il database, il log, un ambiente), dimmelo e marca quella parte come non sottoposta
-> ad audit; non darla per buona. Percorri tutto il codice, non un campione. Per ogni rilievo: dove
-> sta (file e riga), qual è il rischio, quale prova lo dimostra (il comando, la query, il numero),
-> e la sua priorità: P0 va corretto subito, P1 presto, P2 quando si può. Dai un voto a ogni
-> dimensione di cui hai fatto l'audit. Termina con la lista dei rilievi P0 convertiti in voci in
-> sospeso proposte. Rispondi nella mia lingua.
+> ad audit; non darla per buona. Percorri tutto il codice, non un campione. Scegli due o tre voci
+> in sospeso chiuse nell'ultimo ciclo e riproduci le loro ricevute alla lettera: rilancia i comandi
+> esatti di rosso e poi verde che citano, contro i commit che nominano, e dimmi per ciascuna se si
+> riproduce o no. Una ricevuta che hai solo letto non è una ricevuta che hai sottoposto ad audit.
+> Per ogni rilievo: dove sta (file e riga), qual è il rischio, quale prova lo dimostra (il comando,
+> la query, il numero), e la sua priorità: P0 va corretto subito, P1 presto, P2 quando si può. Dai
+> un voto a ogni dimensione di cui hai fatto l'audit. Termina con la lista dei rilievi P0 convertiti
+> in voci in sospeso proposte. Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo, clausola per clausola: sola lettura (l'auditor non corregge; propone); la
 clausola di completezza nella sua forma per l'audit: **ciò che non si è potuto verificare si
 dichiara, non si approva per omissione**; tutto il codice e non un campione, perché i rilievi gravi
-di solito stanno dove nessuno guarda; ogni rilievo con posizione, rischio, prova e priorità, perché
-sia azionabile senza rileggere il rapporto; voti per dimensione, per confrontare con l'audit
-precedente; e i P0 già convertiti in voci in sospeso proposte.
+di solito stanno dove nessuno guarda; **la riproduzione letterale di due o tre ricevute**, perché
+l'audit verifichi prove invece di limitarsi a leggerle (è la clausola che chiude il buco di D-033:
+un rosso raccontato non è un rosso sottoposto ad audit); ogni rilievo con posizione, rischio, prova
+e priorità, perché sia azionabile senza rileggere il rapporto; voti per dimensione, per confrontare
+con l'audit precedente; e i P0 già convertiti in voci in sospeso proposte.
 
 **Di chiusura (al costruttore):**
 
@@ -106,14 +123,16 @@ archivia), e che il disaccordo sia esplicito e con prove, non silenzioso.
 ## 3. Risultato atteso
 
 - `docs/AUDIT_[data].md` con: perimetro, cosa si è potuto verificare e cosa no (e perché), i
-  rilievi con posizione, rischio, prova e priorità, un voto per dimensione, e la lista delle voci
-  in sospeso proposte.
+  rilievi con posizione, rischio, prova e priorità, un voto per dimensione, il risultato della
+  riproduzione di due o tre ricevute dell'ultimo ciclo, e la lista delle voci in sospeso proposte.
 - In `docs/PENDING.md`: una voce in sospeso per ogni P0 e P1, citando il rilievo.
 
 ## 4. Verifica di completezza
 
 - Il rapporto dice cosa NON ha potuto verificare? Se dice di aver verificato tutto, diffida.
 - Scegli due rilievi: hanno file e riga, e una prova che puoi riprodurre?
+- Il rapporto dice quali ricevute ha riprodotto, con il comando e il risultato, o dice solo di
+  averle lette?
 - Ogni P0 ha la sua voce in sospeso aperta prima di dare l'audit per chiuso?
 - I voti per dimensione si potranno confrontare con l'audit precedente?
 - Ha fatto l'audit lo stesso agente che ha costruito? Se è così, chiedi un secondo sguardo sui P0.
@@ -123,4 +142,7 @@ archivia), e che il disaccordo sia esplicito e con prove, non silenzioso.
 - L'audit non ha trovato nessun P0. In un sistema di più di tre mesi, non è quasi mai vero; più
   probabile è che il perimetro fosse piccolo o che l'auditor condividesse i presupposti.
 - I rilievi non hanno la riga del file. Sono opinioni, non rilievi.
+- Il rapporto dice che le ricevute "sono state riviste" senza mostrare il comando eseguito né il
+  suo output. Una ricevuta letta e una riprodotta non sono la stessa cosa, e solo la seconda chiude
+  l'obiezione di D-033.
 - Sono passate due settimane e i P0 sono ancora senza voce in sospeso. L'audit è stato archiviato.

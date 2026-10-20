@@ -65,14 +65,17 @@ the agent:
 > waits for that run's result and only packages and uploads, without running tests again; (3)
 > each environment's configuration lives on the server (environment file or vault), never in the
 > repository; (4) a written procedure to promote from the test environment to production, which
-> can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check
-> that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
-> can do it by hand without you. Reply in my language.
+> can be run twice without breaking anything; (5) the rollback, tested — and if any change
+> migrates schema or data, a written plan for undoing or compensating it, since reverting the code
+> alone does not undo a migration that already ran; (6) an automatic check that prevents
+> committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by
+> hand without you. Reply in my language.
 
 What I am asking for, clause by clause: the access before starting; the tests **a single time**
 per commit (running them three times is what burned the quota); the deployment that only
 packages; the configuration outside the repository; promotion as a repeatable procedure; the
-rollback **tested** (a rollback that was never tested does not exist); the lock against secrets in
+rollback **tested**, **with its data plan** (a rollback that was never tested does not exist, and a
+schema or data migration does not get undone by reverting the commit); the lock against secrets in
 commits; and the documentation for a person, which is step 20 applied to infrastructure.
 
 **Routine of every deployment:**
@@ -131,6 +134,8 @@ that would have detected it, so that next time it does not reach the chat.
 - Could you follow `docs/DEPLOYMENT.md` on your own, without the agent? Read it with that question
   in mind.
 - Was the rollback tested? When? What evidence is there?
+- If there was a schema or data migration: is there a written plan to undo or compensate it,
+  besides the code rollback?
 - Was any secret pasted into the chat during the project? If so, was it rotated?
 - Do you know how much continuous integration quota is left this month?
 
@@ -140,3 +145,5 @@ that would have detected it, so that next time it does not reach the chat.
   changes are the ones that break production, because nobody tests them.
 - The configuration example file has values that look real. They probably are.
 - Nobody can say when the rollback was last tested.
+- A migration changed data or schema and "the rollback" being talked about is only the code's. For
+  that migration there is no rollback: there is, at best, a plan to compensate it.

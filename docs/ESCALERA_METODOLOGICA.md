@@ -1,6 +1,9 @@
 # Urazuke, el método de la evidencia — la escalera metodológica (versión 4)
 
-Autor: Pablo Kuschniroff, asistido por Claude Code. Versión 4, 18 de octubre de 2026. Este es un
+Autor: Pablo Kuschniroff, asistido por Claude Code. Versión 4, iniciada el 18 de octubre de 2026 y
+actualizada con cada decisión posterior del registro (`docs/DECISIONES.md`); la fecha de arranque
+queda fija a propósito, para no reescribir la historia de versiones cada vez que una decisión nueva
+toca este documento. Este es un
 documento de trabajo que voy a seguir puliendo con cada proyecto que lo use; nada de lo que dice
 es doctrina cerrada todavía, aunque sí es, hasta donde yo sé, el primer destilado honesto de un
 método que ya tiene tres sistemas en producción a sus espaldas.
@@ -47,6 +50,30 @@ hacer sistemas operables y mantenibles sin que nadie necesite comprender un solo
 código, porque el código lo comprende y lo mantiene el marco agéntico que lo escribe. La
 velocidad, cuando aparece, es una consecuencia, y por eso en este documento no hay plazos: el
 tamaño y la complejidad de cada sistema los pone, y el método solo pone el orden.
+
+Una aclaración que me pidieron que deje por escrito, porque la frase anterior se presta a una
+lectura que no es la mía: "no requiere que el dueño revise una sola línea de código" no es lo
+mismo que "está pensado para que programe gente sin conocimientos de sistemas". No lo está. El
+objetivo primario de este método no es bajar la vara técnica para que cualquiera pueda construir
+software sin saber nada de cómo se construye software: es darle a quien tiene que responder por un
+sistema un anclaje metodológico para que lo que un modelo construye salga con la solvencia de la
+ingeniería de sistemas de siempre, contrarrestando las debilidades con las que los modelos aplican
+esos mismos principios cuando nadie se los exige por escrito. Que el dueño no lea código es una
+consecuencia de dónde puse las compuertas y de qué puede verificar un humano sin leer una
+implementación, no la promesa de que cualquiera, sepa lo que sepa, puede dirigir un proyecto de
+software sin entender nada de lo que está dirigiendo. El perfil que en realidad piden los
+contratos está en el medio: alguien que corre un comando, maneja una credencial, restaura un
+respaldo, entiende lo que le dice la cuota de CI, y sabe reconocer cuándo lo que el modelo le
+entregó no alcanza — no un lego puro, y tampoco alguien que ya sabe programar.
+
+Y otra aclaración, sobre el costo. Seguir esta escalera gasta más tokens que pedirle al modelo que
+resuelva todo de una sola pasada: cada peldaño agrega un prompt, una verificación propia, un
+artefacto que el modelo también tiene que sostener. Lo que no se ve a simple vista es lo que
+ahorra. Un sistema construido sin estas compuertas tiende, antes o después, a necesitar
+reingeniería: volver atrás sobre un dimensionamiento que no se hizo, perseguir un error que un
+test en rojo hubiera atrapado en el peldaño 8, reescribir lo que nadie auditó a tiempo. Esa
+reingeniería, en tokens, en tiempo y en plata, sale sobradamente más cara que el prompt de más que
+cuesta cada peldaño. Lo gasto adelante, con cabeza, para no gastarlo el doble atrás, a ciegas.
 
 Suena ambicioso, y lo es. Pero tengo algo que casi nadie tiene: tres sistemas reales que construí
 exactamente así, que hoy funcionan con clientes de verdad, y de los que extraje cada regla que
@@ -235,7 +262,11 @@ requerimiento nuevo vuelve a entrar. Segunda: un requerimiento nuevo no entra so
 decidió la arquitectura (¿sigue aguantando el "por diez"?), y de ahí para adelante. Tercera: el
 proceso **termina en la ejecución manual de los casos de prueba** por personas (peldaño 10), y lo
 que esa ejecución encuentra vuelve al bucle como requerimiento. El circuito se cierra con gente,
-no con máquinas.
+no con máquinas. Cuarta, y el dibujo anterior a esta corrección no la mostraba: cuando lo que el
+sistema construye tiene consecuencia sobre el mundo (cobrar, enviar), el bucle **se reabre después
+del peldaño 14**, ya con los candados puestos, para construir esa parte en modo de ensayo antes de
+seguir hacia la cadena de producción (15). No es una vuelta al principio: es la misma compuerta de
+siempre (¿cierre de bloque?) corrida una vez más, ahora con la red de seguridad lista.
 
 ```mermaid
 flowchart TB
@@ -274,6 +305,7 @@ flowchart TB
   G2 -- sí --> H1
   H1 -- "hallazgos = requerimientos" --> RE2
   H1 --> P13
+  P14 -. "lo que tiene consecuencia se construye ahora, con los candados puestos" .-> P5
   P20 --> D --> P21
   P21 -. "desvíos = pendientes" .-> P5
   P22 -. "errores = pendientes" .-> P5
@@ -358,11 +390,11 @@ mensual". Así se ve por dentro:
    calidad del bloque (9). Se actualiza el manual de usuario con las pantallas nuevas (20, en el
    mismo commit). Recién entonces se abre el bloque siguiente.
 
-En un día típico del bucle, el dueño invierte entre quince y treinta minutos: contestar dos o
+En un día típico del bucle, lo que el método le pide al dueño es poco y puntual: contestar dos o
 tres preguntas de reglas de negocio, leer dos o tres reportes, mirar dos o tres capturas. Eso es
-todo lo que el método le pide. Si está invirtiendo más, o el agente está preguntando lo que
-podría resolver solo (peldaño 1), o el dueño está leyendo código (y entonces algo del peldaño 8 o
-del 12 no está funcionando).
+todo. Si le está pidiendo más que eso, o el agente está preguntando lo que podría resolver solo
+(peldaño 1), o el dueño está leyendo código (y entonces algo del peldaño 8 o del 12 no está
+funcionando).
 
 ### B.4 Los hitos humanos
 
@@ -745,8 +777,9 @@ número con un límite. Lo hice en todos mis proyectos sin nombrarlo como pelda�
 - **Artefacto**: linter y formateador con una sola configuración; límites de tamaño y complejidad;
   detección de duplicación y código muerto; cobertura con trinquete; tipos si el lenguaje lo
   permite; `docs/CODE_QUALITY.md` con cada límite y su valor medido; la compuerta en
-  `docs/GATES.md`. Como refuerzo opcional, las pruebas de mutación (errores plantados a propósito,
-  contados por cuántos atrapan los tests), con su puntaje por bloque junto a la cobertura.
+  `docs/GATES.md`. Obligatorias en cualquier proyecto con usuarios, opcionales solo sin usuarios
+  reales, las pruebas de mutación (errores plantados a propósito, contados por cuántos atrapan los
+  tests), con su puntaje por bloque junto a la cobertura.
 - **Compuerta**: nada se fusiona con la calidad en rojo; ninguna excepción al linter sin razón
   escrita; ningún límite subido para pasar.
 - **Quién decide**: el dueño fija los límites y decide qué se arregla ahora y qué se tolera con
@@ -1215,16 +1248,23 @@ verificación de completitud antes de pasar al siguiente. Esa es, de hecho, la p
 1. **El peldaño 0 completo**: los pesos de los criterios que ponderan, el umbral, y más proyectos
    rechazados como contraejemplos. Tengo X1 y X2; falta lo demás.
 2. **Un nombre memorable para cada peldaño**, en una frase, para los manuales y las publicaciones.
-3. **La exportación a Forge**: qué peldaños ya son compuertas o comandos y cuáles faltan para poder
-   correr la escalera como flujo de ejecución.
-4. **Probar los contratos en un proyecto real de punta a punta.** Los prompts de los veinticuatro contratos están
-   escritos a partir de lo que hice, no ejecutados tal cual. El primer proyecto que los use completo
-   va a corregir varios; es parte del peldaño 23.
+3. **La exportación a Forge, en gran parte resuelta.** El método corre completo como flujo de
+   proyecto en Forge, con compuertas mecánicas y el prompt del peldaño en curso inyectado en el
+   chat (D-035, D-036). Lo que falta es la matriz explícita, contrato por contrato, contra lo que
+   Forge ejecuta hoy, para que una divergencia entre lo que este documento dice y lo que la
+   herramienta hace se note apenas aparece, en vez de acumularse.
+4. **Probar los contratos en un proyecto de punta a punta, ya en marcha.** El proyecto guía del
+   curso (Turnera) corrió los veinticuatro contratos tal cual están escritos y cerró 24 de 24; lo
+   que encontró en el camino ya corrigió el método (D-037 a D-040). Lo que falta no es la primera
+   corrida completa, que ya pasó: es que lo corra un proyecto ajeno, sin que yo esté al lado
+   resolviendo lo que el contrato no previó.
 5. **La primera cohorte del curso**, que va a corregir el orden de la línea de tiempo donde haga
    falta y los errores típicos, que hoy están escritos desde mis proyectos y no desde alumnos.
-6. **El camino evolutivo-correctivo probado en un legado real de punta a punta.** Las ocho
-   estaciones están escritas desde lo que hice en sistemas ajenos en modo diagnóstico y desde
-   los peldaños reordenados, no desde una normalización completa ejecutada con esos prompts.
+6. **El camino evolutivo-correctivo, probado en un legado propio, no en uno ajeno.** El proyecto
+   guía heredado del curso (Turnera heredada) corrió las ocho estaciones y el resto de la escalera
+   tal cual, cerró 27 de 27, y motivó tres decisiones del método (D-038, D-039, D-040). Lo que
+   falta es el mismo camino sobre un legado real de un tercero, con su propia historia y sus
+   propios atajos, no sobre el sistema que yo armé para el curso.
 7. **Lo que NO está en la escalera y debería estar** `[hipótesis]`: la gestión del costo de tokens y
    cuotas como presupuesto explícito (hoy es reactiva); la rotación de secretos como rutina y no
    como incidente; y un criterio para cuándo el humano SÍ tiene que mirar el código, porque hoy la
@@ -1320,8 +1360,9 @@ peldaño 8, el rojo es un **recibo**, no un relato: el comando exacto, la versi�
 corrió, la cantidad de fallos y el código de salida, pegados tal cual, para que el dueño lo vuelva
 a correr con un comando y lo haga, una vez por bloque, con un pendiente elegido al azar. En el
 peldaño 13, la auditoría por otra sesión vuelve a correr una muestra de esos recibos. Y en el
-peldaño 9, las pruebas de mutación entran como refuerzo opcional, recomendado en todo proyecto
-con usuarios, con su puntaje al cierre de cada bloque junto a la cobertura. Ninguna de las tres
+peldaño 9, las pruebas de mutación son obligatorias en cualquier proyecto con usuarios (quedan
+opcionales solo sin usuarios reales), con su puntaje al cierre de cada bloque junto a la cobertura.
+Ninguna de las tres
 piezas exige que el dueño lea código. Las tres hacen que fingir el rojo cueste más que correrlo.
 
 Un marco útil para ubicar este método en el mapa es la taxonomía de Macedo, de junio de 2026
@@ -1610,7 +1651,10 @@ pregunta lo que falta.
 
 **Inyección** — Una vulnerabilidad en la que lo que un usuario escribe en un formulario termina
 interpretado por el sistema como una orden (por ejemplo, una consulta a la base). El análisis
-estático del peldaño 18 la busca; el test en rojo del arreglo demuestra que ya no pasa.
+estático del peldaño 18 la busca; el test en rojo del arreglo demuestra que ya no pasa. La misma
+idea aplica al agente que lee producción (peldaño 23) o código y documentación ajenos (estación N2
+del camino evolutivo-correctivo): un log, un ticket o un comentario que contiene algo que suena a
+instrucción es dato, no una orden, y el agente tiene que tratarlo como tal.
 
 **IPC (correa entre procesos)** — Un canal entre dos procesos. En Forge se usó como "correa": si
 el proceso padre muere, el hijo se entera y se apaga.
@@ -1735,8 +1779,9 @@ el punto de ruptura. Peldaño 19.
 **Pruebas de mutación** — Un programa que rompe el código a propósito, de a un cambio chico por
 vez (invierte una condición, borra una línea, cambia un operador), corre los tests y cuenta cuántos
 de esos errores atrapan. Cada error que ningún test atrapa es un "mutante que sobrevive"; la
-proporción de atrapados es el puntaje. Es el refuerzo opcional del peldaño 9 y la respuesta a la
-objeción de que el agente puede fingir el rojo. No confundir con el "rojo por mutación" de la
+proporción de atrapados es el puntaje. Es obligatoria en cualquier proyecto con usuarios en el
+peldaño 9 (opcional solo sin usuarios reales), y es la respuesta a la objeción de que el agente
+puede fingir el rojo. No confundir con el "rojo por mutación" de la
 caracterización, que es la misma idea aplicada a mano a un solo flujo.
 
 **Pruebas de aceptación** — Las pruebas que hace el dueño, o un usuario de confianza, usando el
@@ -1783,7 +1828,9 @@ decir uno manejado con Git y con una estructura reconocible.
 
 **Rojo por mutación** — La forma de probar que un test distingue comportamiento cuando no hay versión anterior contra la cual correrlo: se planta un defecto a propósito en la función nueva, el test falla contra ese defecto, y el recibo lleva el diff del defecto. Un solo mutante por pendiente (peldaño 8); distinto de las pruebas de mutación sobre toda la base (peldaño 9).
 
-**Rollback (vuelta atrás)** — Volver a la versión anterior cuando un despliegue sale mal.
+**Rollback (vuelta atrás)** — Volver a la versión anterior cuando un despliegue sale mal. Si el
+despliegue incluyó una migración de esquema o de datos, revertir el código no revierte la
+migración: hace falta, además, un plan escrito para deshacerla o compensarla (peldaño 15).
 
 **RPAForce** — Mi marca, bajo la que se entregan estos sistemas.
 

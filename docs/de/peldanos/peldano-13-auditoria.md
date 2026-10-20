@@ -26,6 +26,13 @@ gebaut hat, „weiß“, dass das hartkodierte Passwort provisorisch war; ein Mo
 Mal sieht, meldet es als das, was es ist. So wurden zwei Administrator-Türen entdeckt, die der
 Bauende an einem Tag hinterlassen hatte [Ref. 40](../REFERENCIAS.md#ref-40).
 
+Wenn du wählen kannst, soll es außerdem **ein anderes Modell** als das des Bauenden sein, nicht nur
+eine andere Sitzung desselben: eine Studie von 2026 hat gemessen, dass eine saubere Sitzung mit
+einem anderen Modell mehr Fehler findet als zwei Sitzungen desselben Modells
+([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)). Es ist kein hartes Tor, weil manchmal das
+Modell des Bauenden das einzig verfügbare ist; es ist eine Präferenz, die es wert ist, ausgeübt zu
+werden, wenn man kann, und je kritischer das System, desto mehr lohnt es sich.
+
 ## 1. Benötigter Kontext
 
 Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
@@ -36,6 +43,8 @@ den Prompt schickst“, der jedem einzelnen vorangeht.
 - Die Produktion oder die Testumgebung, nur lesend (Datenbank, Logs).
 - Das vorherige Audit, falls es eines gab, um zu messen, was sich geändert hat.
 - Der Umfang: Integrität, Sicherheit, Leistung, Codequalität, oder alles.
+- `docs/PENDING.md` mit den im letzten Zyklus abgeschlossenen offenen Posten und ihren Belegen,
+  damit der Auditor auswählen kann, welche er reproduziert.
 
 ## 2. Prompts
 
@@ -60,7 +69,10 @@ machst es, nicht der Agent:
 > Audit this system for [scope]. Read-only: change nothing except writing your report to
 > `docs/AUDIT_[date].md`. If auditing some part requires access you lack (the database, the
 > log, an environment), tell me and mark that part as not audited; do not pass it as fine. Go
-> through all of the code, not a sample. For every finding: where it is (file and line), what
+> through all of the code, not a sample. Pick two or three pending items closed in the last cycle
+> and reproduce their receipts literally: rerun the exact red-then-green commands they cite
+> against the commits they name, and say for each one whether it reproduces or not. A receipt you
+> only read is not a receipt you audited. For every finding: where it is (file and line), what
 > the risk is, what evidence proves it (the command, the query, the number), and its priority:
 > P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited.
 > End with the list of P0 findings turned into proposed pending items. Reply in my language.
@@ -70,7 +82,11 @@ machst es, nicht der Agent:
 > `docs/AUDIT_[Datum].md` zu schreiben. Wenn das Auditieren eines Teils einen Zugang erfordert,
 > den du nicht hast (die Datenbank, das Log, eine Umgebung), sag es mir und markiere diesen Teil
 > als nicht auditiert; lass ihn nicht als in Ordnung durchgehen. Geh den ganzen Code durch, nicht
-> eine Stichprobe. Für jeden Befund: wo er ist (Datei und Zeile), was das Risiko ist, welcher
+> eine Stichprobe. Wähl zwei oder drei offene Posten, die im letzten Zyklus abgeschlossen wurden,
+> und reproduziere ihre Belege wortwörtlich: lass die genauen Rot-dann-Grün-Befehle, die sie
+> zitieren, erneut gegen die Commits laufen, die sie nennen, und sag für jeden, ob er sich
+> reproduzieren lässt oder nicht. Ein Beleg, den du nur gelesen hast, ist kein Beleg, den du
+> auditiert hast. Für jeden Befund: wo er ist (Datei und Zeile), was das Risiko ist, welcher
 > Beleg ihn beweist (der Befehl, die Abfrage, die Zahl), und seine Priorität: P0 muss jetzt
 > behoben werden, P1 bald, P2 wenn möglich. Gib jeder auditierten Dimension eine Note. Schließe
 > mit der Liste der P0-Befunde, umgewandelt in vorgeschlagene offene Posten. Antworte in meiner
@@ -79,10 +95,12 @@ machst es, nicht der Agent:
 Was ich hier verlange, Klausel für Klausel: nur lesend (der Auditor behebt nicht; er schlägt
 vor); die Vollständigkeitsklausel in ihrer Form fürs Auditieren: **was nicht verifiziert werden
 konnte, wird erklärt, nicht durch Unterlassung freigegeben**; den ganzen Code und nicht eine
-Stichprobe, denn die schweren Befunde liegen meist dort, wo niemand hinschaut; jeden Befund mit
-Ort, Risiko, Beleg und Priorität, damit er umsetzbar ist, ohne den Bericht erneut zu lesen; Noten
-pro Dimension, zum Vergleich mit dem vorherigen Audit; und die P0 schon in vorgeschlagene offene
-Posten umgewandelt.
+Stichprobe, denn die schweren Befunde liegen meist dort, wo niemand hinschaut; **die wortwörtliche
+Reproduktion von zwei oder drei Belegen**, damit das Audit Beweise verifiziert statt sie nur zu
+lesen (das ist die Klausel, die die D-033-Lücke schließt: ein erzähltes Rot ist kein auditiertes
+Rot); jeden Befund mit Ort, Risiko, Beleg und Priorität, damit er umsetzbar ist, ohne den Bericht
+erneut zu lesen; Noten pro Dimension, zum Vergleich mit dem vorherigen Audit; und die P0 schon in
+vorgeschlagene offene Posten umgewandelt.
 
 **Zum Abschluss (an den Bauenden):**
 
@@ -109,8 +127,9 @@ abgelegt wird), und dass der Widerspruch explizit und mit Beleg erfolgt, nicht s
 ## 3. Erwartetes Ergebnis
 
 - `docs/AUDIT_[Datum].md` mit: Umfang, was verifiziert werden konnte und was nicht (und warum),
-  den Befunden mit Ort, Risiko, Beleg und Priorität, einer Note pro Dimension, und der Liste der
-  vorgeschlagenen offenen Posten.
+  den Befunden mit Ort, Risiko, Beleg und Priorität, einer Note pro Dimension, dem Ergebnis der
+  Reproduktion von zwei oder drei Belegen aus dem letzten Zyklus, und der Liste der vorgeschlagenen
+  offenen Posten.
 - In `docs/PENDING.md`: ein offener Posten für jeden P0 und P1, mit Verweis auf den Befund.
 
 ## 4. Vollständigkeitsprüfung
@@ -118,6 +137,8 @@ abgelegt wird), und dass der Widerspruch explizit und mit Beleg erfolgt, nicht s
 - Sagt der Bericht, was er NICHT verifizieren konnte? Wenn er sagt, er habe alles verifiziert, sei
   misstrauisch.
 - Wähl zwei Befunde: haben sie Datei und Zeile, und einen Beleg, den du reproduzieren kannst?
+- Sagt der Bericht, welche Belege er reproduziert hat, mit dem Befehl und dem Ergebnis, oder sagt
+  er nur, er habe sie gelesen?
 - Hat jeder P0 seinen offenen Posten, bevor das Audit als abgeschlossen gilt?
 - Werden sich die Noten pro Dimension mit dem vorherigen Audit vergleichen lassen?
 - Hat derselbe Agent auditiert, der gebaut hat? Wenn ja, verlang einen zweiten Blick auf die P0.
@@ -128,5 +149,8 @@ abgelegt wird), und dass der Widerspruch explizit und mit Beleg erfolgt, nicht s
   das fast nie wahr; wahrscheinlicher ist, dass der Umfang klein war oder der Auditor die Annahmen
   teilte.
 - Die Befunde haben keine Dateizeile. Das sind Meinungen, keine Befunde.
+- Der Bericht sagt, die Belege „wurden überprüft“, ohne den ausgeführten Befehl oder seine
+  Ausgabe zu zeigen. Ein gelesener Beleg und ein reproduzierter Beleg sind nicht dasselbe, und nur
+  der zweite schließt den D-033-Einwand.
 - Zwei Wochen sind vergangen und die P0 haben immer noch keinen offenen Posten. Das Audit wurde
   abgelegt.

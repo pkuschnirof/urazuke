@@ -10,8 +10,9 @@ und die Funde kommen mit ihrer Geschwindigkeitsmarke ins Backlog.
 **Form:** ein einziger Durchgang zum Aufbauen; danach Routine bei jeder Änderung und Lektüre pro
 Block.
 **Größe:** verpflichtend in seinem Mindestniveau in jedem Projekt (ein Linter und eine
-Größenbeschränkung in der Kette); vollständig in jedem Projekt mit Nutzern. Die Mutationstests
-sind eine optionale Verstärkung, empfohlen in jedem Projekt mit Nutzern.
+Größenbeschränkung in der Kette); vollständig, Mutationstests eingeschlossen, in jedem Projekt mit
+Nutzern. Die Mutationstests bleiben nur dann eine optionale Verstärkung, wenn es keine echten
+Nutzer gibt (ein internes Werkzeug, ein Prototyp, den sonst niemand ausführt).
 
 ## Wozu er dient
 
@@ -34,8 +35,13 @@ der Tests nie sinkt (die Ratsche); und, wenn die Sprache es erlaubt, dass die Ty
 Nichts davon ersetzt den roten Test: ein makelloser Code kann falsch sein. Was es verhindert, ist
 der korrekte Code, den niemand mehr anfassen kann.
 
-Und eine optionale Verstärkung, die sich in jedem Projekt mit Nutzern lohnt: die
-**Mutationstests**. Ein Werkzeug pflanzt absichtlich Fehler in den Code (ändert ein „größer“ in
+Und das, was ich in jedem Projekt mit Nutzern nicht mehr als optionale Verstärkung behandle: die
+**Mutationstests**. Ich hatte sie in einer früheren Version dieses Dokuments als „optional,
+empfohlen“ belassen, und eine externe Bewertung der Methode machte mich auf den Widerspruch
+aufmerksam: Wenn Teil F sagt, dass die Mutation, soweit ich weiß, das einzige Maß ist, das in den
+Studien von 2026 die Tests, die beweisen, von denen unterschied, die nur dekorieren, ergibt es
+keinen Sinn, sie ausgerechnet in den Projekten aus dem „Vollständig“ auszulassen, in denen ein
+dekorativer Test mehr jemandem schadet. Ein Werkzeug pflanzt absichtlich Fehler in den Code (ändert ein „größer“ in
 „größer oder gleich“, löscht eine Zeile, kehrt eine Bedingung um) und lässt die Tests laufen; jeder
 Fehler, den die Tests nicht fangen, ist ein *überlebender Mutant*, und der Anteil der gefangenen
 ist die Punktzahl. Es ist das Maß, das das bewiesene Rot aus Schritt 8 ergänzt: das Rot beweist,
@@ -159,7 +165,7 @@ neigt dazu, die Ausnahme hinzuzufügen, statt zu reparieren, weil das schneller 
 Grenze anzuheben; und die Lektüre pro Block, die der einzige Moment ist, in dem du die Zahlen
 ansiehst.
 
-**Verstärkung (optional; empfohlen in jedem Projekt mit Nutzern): Mutationstests.**
+**Verpflichtend in jedem Projekt mit Nutzern (optional nur ohne echte Nutzer): Mutationstests.**
 
 **Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
 
@@ -206,9 +212,8 @@ behandelt wird.
 - `docs/CODE_QUALITY.md` mit Werkzeugen, Konfiguration, Grenzen mit gemessenem Wert, und der Liste
   dessen, was fehlschlägt, mit seinem offenen Posten oder seinem Datum.
 - Das Tor in `docs/GATES.md` und die Routine in der Vereinbarung.
-- Wenn die Verstärkung aufgebaut wurde: die Mutationspunktzahl in `docs/CODE_QUALITY.md`, pro
-  Block, neben der Abdeckung, und ein offener Posten für jeden überlebenden Mutanten in Code, der
-  zählt.
+- In jedem Projekt mit Nutzern: die Mutationspunktzahl in `docs/CODE_QUALITY.md`, pro Block, neben
+  der Abdeckung, und ein offener Posten für jeden überlebenden Mutanten in Code, der zählt.
 
 ## 4. Vollständigkeitsprüfung (die machst du, ohne Code zu lesen)
 
@@ -221,6 +226,8 @@ behandelt wird.
   Begründung haben.
 - Ist seit dem ersten Lauf irgendeine Grenze angehoben worden? Mit welcher Begründung und wer hat
   das entschieden?
+- Wenn das Projekt echte Nutzer hat: laufen die Mutationstests? Wenn nicht, welche geschriebene
+  Begründung rechtfertigt, sie nicht zu haben?
 - Wenn es Mutationstests gibt: wie viele Mutanten haben im letzten Block überlebt, und hat jeder
   einen offenen Posten oder eine geschriebene Begründung?
 
@@ -238,3 +245,6 @@ behandelt wird.
 - Die Abdeckung ist hoch und die Mutationspunktzahl niedrig. Das sind Tests, die den Code
   ausführen, ohne etwas zu prüfen: genau der Fall, den das bewiesene Rot aus Schritt 8 verhindern
   will.
+- Das Projekt hat echte Nutzer, und niemand hat die Mutationstests laufen lassen oder
+  aufgeschrieben, warum nicht. „Es ist optional“ ist für ein Projekt mit Nutzern keine gültige
+  Begründung mehr.

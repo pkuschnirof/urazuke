@@ -109,9 +109,12 @@ faites, pas l'agent :
 > avec le chiffre mesuré comme critère d'acceptation, clos avec la routine complète. Rien de tout
 > cela ne peut lire ni enregistrer de données personnelles. Montre-moi le premier rapport généré sur
 > des données réelles de l'environnement de test, et une alerte déclenchée exprès en dépassant un
-> seuil. Documente les seuils, le canal, le cycle et comment faire taire une alerte avec une raison
-> écrite dans `docs/MONITORING.md`. Réponds dans ma langue.
-> Les comptages de lignes qui revalident le dimensionnement portent leur propre fenêtre vérifiable : la première et la dernière date lues dans la base ou dans le journal, jamais un nombre saisi à la main ; une fenêtre saisie à la main est marquée comme telle dans le rapport et ne fait qu'avertir, elle n'ouvre jamais d'élément en attente à elle seule.
+> seuil. Les comptages de lignes qui revalident le dimensionnement portent leur propre fenêtre
+> vérifiable : la première et la dernière date lues dans la base ou dans le journal, jamais un
+> nombre saisi à la main ; une fenêtre saisie à la main est marquée comme telle dans le rapport et
+> ne fait qu'avertir, elle n'ouvre jamais d'élément en attente à elle seule. Documente les seuils,
+> le canal, le cycle et comment faire taire une alerte avec une raison écrite dans
+> `docs/MONITORING.md`. Réponds dans ma langue.
 
 **La fenêtre de la mesure.** Le rapport cyclique compare les lignes observées par an à ce que l'échelon 3 a déclaré. Un nombre correct avec une mauvaise fenêtre ouvre un faux élément en attente : dans la pratique Turnera héritée, 30 000 lignes de trois ans ont été passées comme si elles étaient d'une seule année. C'est pourquoi la mesure porte sa fenêtre **vérifiable** : le premier et le dernier enregistrement lus dans la base ou dans le journal, pas un nombre saisi à la main. Si l'outil ne peut pas lire la base, il le déclare comme angle mort ; une fenêtre saisie à la main est marquée comme telle dans le rapport et ne fait qu'avertir, elle n'ouvre jamais d'élément en attente à elle seule. (Décision D-039.)
 

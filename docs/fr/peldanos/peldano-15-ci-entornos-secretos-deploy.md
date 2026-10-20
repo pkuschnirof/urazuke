@@ -65,9 +65,11 @@ faites, pas l'agent :
 > waits for that run's result and only packages and uploads, without running tests again; (3)
 > each environment's configuration lives on the server (environment file or vault), never in the
 > repository; (4) a written procedure to promote from the test environment to production, which
-> can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check
-> that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
-> can do it by hand without you. Reply in my language.
+> can be run twice without breaking anything; (5) the rollback, tested — and if any change
+> migrates schema or data, a written plan for undoing or compensating it, since reverting the code
+> alone does not undo a migration that already ran; (6) an automatic check that prevents
+> committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by
+> hand without you. Reply in my language.
 
 > [fr]
 > Nous allons fermer le chemin vers la production. Lis le relevé des environnements et des accès.
@@ -78,15 +80,19 @@ faites, pas l'agent :
 > téléverser, sans relancer les tests ; (3) la configuration de chaque environnement vit sur le
 > serveur (fichier d'environnement ou coffre), jamais dans le dépôt ; (4) une procédure écrite
 > pour promouvoir de l'environnement de test vers la production, qui puisse être lancée deux fois
-> sans rien casser ; (5) le retour arrière, prouvé ; (6) une vérification automatique qui empêche
+> sans rien casser ; (5) le retour arrière, prouvé — et si un changement migre un schéma ou des
+> données, un plan écrit pour le défaire ou le compenser, puisque revenir en arrière sur le code
+> seul ne défait pas une migration déjà exécutée ; (6) une vérification automatique qui empêche
 > de committer un secret. Documente tout cela dans `docs/DEPLOYMENT.md` de façon qu'une personne
 > puisse le faire à la main sans toi. Réponds dans ma langue.
 
 Ce que je lui demande, clause par clause : les accès avant de commencer ; les tests **une seule
 fois** par commit (les lancer trois fois est ce qui a brûlé le quota) ; le déploiement qui ne fait
 qu'empaqueter ; la configuration hors du dépôt ; la promotion comme procédure répétable ; le
-retour arrière **prouvé** (un retour arrière qui n'a jamais été prouvé n'existe pas) ; le verrou
-contre les secrets dans les commits ; et la documentation pour une personne, qui est l'échelon 20
+retour arrière **prouvé**, **avec son plan de données** (un retour arrière qui n'a jamais été
+prouvé n'existe pas, et une migration de schéma ou de données ne se défait pas en annulant le
+commit) ; le verrou contre les secrets dans les commits ; et la documentation pour une personne,
+qui est l'échelon 20
 appliqué à l'infrastructure.
 
 **Routine de chaque déploiement :**
@@ -155,6 +161,8 @@ la vérification qui l'aurait détecté, pour que la prochaine fois il n'arrive 
   dépôt ? Demandez à l'agent de chercher et de vous montrer la recherche vide.
 - Pourriez-vous suivre `docs/DEPLOYMENT.md` tout seul, sans l'agent ? Lisez-le avec cette question.
 - Le retour arrière a-t-il été prouvé ? Quand ? Quelle preuve y a-t-il ?
+- S'il y a eu une migration de schéma ou de données : y a-t-il un plan écrit pour la défaire ou la
+  compenser, en plus du retour arrière du code ?
 - Un secret a-t-il été collé dans le chat pendant le projet ? Si oui, a-t-il été tourné ?
 - Savez-vous combien de quota d'intégration continue il reste ce mois-ci ?
 
@@ -165,3 +173,6 @@ la vérification qui l'aurait détecté, pour que la prochaine fois il n'arrive 
 - Le fichier d'exemple de la configuration a des valeurs qui ont l'air réelles. Elles le sont
   probablement.
 - Personne ne sait dire quand le retour arrière a été prouvé pour la dernière fois.
+- Une migration a changé des données ou un schéma et « le retour arrière » dont on parle n'est que
+  celui du code. Pour cette migration, il n'y a pas de retour arrière : il y a, au mieux, un plan
+  pour la compenser.

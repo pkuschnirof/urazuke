@@ -26,6 +26,13 @@ voit pour la première fois le rapporte pour ce qu'il est. C'est ainsi qu'ont é
 portes d'administrateur que le constructeur avait laissées en une journée
 [Ref. 40](../REFERENCIAS.md#ref-40).
 
+Si vous pouvez choisir, que ce soit en plus **un modèle différent** de celui qui a construit, pas
+seulement une autre session du même : une étude de 2026 a mesuré qu'une session propre avec un
+modèle différent trouve plus d'erreurs que deux sessions du même modèle
+([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)). Ce n'est pas une porte dure, parce que
+parfois le modèle du constructeur est le seul disponible ; c'est une préférence qui vaut la peine
+d'être exercée quand c'est possible, et plus le système est critique, plus ça vaut la peine.
+
 ## 1. Contexte requis
 
 Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
@@ -35,6 +42,8 @@ d'envoyer le prompt » qui précède chacun d'eux.
 - La production ou l'environnement de test, en lecture seule (base de données, journaux).
 - L'audit précédent, s'il y en a eu un, pour mesurer ce qui a changé.
 - Le périmètre : intégrité, sécurité, performance, qualité du code, ou tout.
+- `docs/PENDING.md` avec les éléments en attente clos au dernier cycle et leurs reçus, pour que
+  l'auditeur choisisse lesquels reproduire.
 
 ## 2. Prompts
 
@@ -59,7 +68,10 @@ faites, pas l'agent :
 > Audit this system for [scope]. Read-only: change nothing except writing your report to
 > `docs/AUDIT_[date].md`. If auditing some part requires access you lack (the database, the
 > log, an environment), tell me and mark that part as not audited; do not pass it as fine. Go
-> through all of the code, not a sample. For every finding: where it is (file and line), what
+> through all of the code, not a sample. Pick two or three pending items closed in the last cycle
+> and reproduce their receipts literally: rerun the exact red-then-green commands they cite
+> against the commits they name, and say for each one whether it reproduces or not. A receipt you
+> only read is not a receipt you audited. For every finding: where it is (file and line), what
 > the risk is, what evidence proves it (the command, the query, the number), and its priority:
 > P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited.
 > End with the list of P0 findings turned into proposed pending items. Reply in my language.
@@ -68,18 +80,24 @@ faites, pas l'agent :
 > Audite ce système sur [périmètre]. Lecture seule : ne change rien sauf écrire ton rapport dans
 > `docs/AUDIT_[date].md`. Si auditer une partie requiert un accès que tu n'as pas (la base de
 > données, le journal, un environnement), dis-le-moi et marque cette partie comme non auditée ; ne
-> la fais pas passer pour bonne. Parcours tout le code, pas un échantillon. Pour chaque constat :
-> où il est (fichier et ligne), quel est le risque, quelle preuve le démontre (la commande, la
-> requête, le chiffre), et sa priorité : P0 doit être corrigé maintenant, P1 bientôt, P2 quand on
-> pourra. Donne une note à chaque dimension que tu as auditée. Termine par la liste des constats
-> P0 convertis en éléments en attente proposés. Réponds dans ma langue.
+> la fais pas passer pour bonne. Parcours tout le code, pas un échantillon. Choisis deux ou trois
+> éléments en attente clos au dernier cycle et reproduis leurs reçus tels quels : relance les
+> commandes exactes de rouge puis vert qu'ils citent, contre les commits qu'ils nomment, et dis
+> pour chacun s'il se reproduit ou non. Un reçu que tu as seulement lu n'est pas un reçu que tu as
+> audité. Pour chaque constat : où il est (fichier et ligne), quel est le risque, quelle preuve le
+> démontre (la commande, la requête, le chiffre), et sa priorité : P0 doit être corrigé maintenant,
+> P1 bientôt, P2 quand on pourra. Donne une note à chaque dimension que tu as auditée. Termine par
+> la liste des constats P0 convertis en éléments en attente proposés. Réponds dans ma langue.
 
 Ce que je lui demande, clause par clause : lecture seule (l'auditeur ne corrige pas ; il
 propose) ; la clause de complétude sous sa forme pour auditer : **ce qui n'a pas pu être vérifié se
 déclare, on ne l'approuve pas par omission** ; tout le code et non un échantillon, parce que les
-constats graves sont souvent là où personne ne regarde ; chaque constat avec emplacement, risque,
-preuve et priorité, pour qu'il soit actionnable sans relire le rapport ; des notes par dimension,
-pour comparer avec l'audit précédent ; et les P0 déjà convertis en éléments en attente proposés.
+constats graves sont souvent là où personne ne regarde ; **la reproduction littérale de deux ou
+trois reçus**, pour que l'audit vérifie des preuves au lieu de se contenter de les lire (c'est la
+clause qui ferme le trou de D-033 : un rouge raconté n'est pas un rouge audité) ; chaque constat
+avec emplacement, risque, preuve et priorité, pour qu'il soit actionnable sans relire le rapport ;
+des notes par dimension, pour comparer avec l'audit précédent ; et les P0 déjà convertis en
+éléments en attente proposés.
 
 **De clôture (au constructeur) :**
 
@@ -105,8 +123,9 @@ qu'on archive), et que le désaccord soit explicite et avec preuve, pas silencie
 ## 3. Résultat attendu
 
 - `docs/AUDIT_[date].md` avec : le périmètre, ce qui a pu être vérifié et ce qui ne l'a pas été (et
-  pourquoi), les constats avec emplacement, risque, preuve et priorité, une note par dimension, et
-  la liste des éléments en attente proposés.
+  pourquoi), les constats avec emplacement, risque, preuve et priorité, une note par dimension, le
+  résultat de la reproduction de deux ou trois reçus du dernier cycle, et la liste des éléments en
+  attente proposés.
 - Dans `docs/PENDING.md` : un élément en attente pour chaque P0 et P1, citant le constat.
 
 ## 4. Vérification de complétude
@@ -114,6 +133,8 @@ qu'on archive), et que le désaccord soit explicite et avec preuve, pas silencie
 - Le rapport dit-il ce qu'il N'A PAS pu vérifier ? S'il dit avoir tout vérifié, méfiez-vous.
 - Choisissez deux constats : ont-ils un fichier et une ligne, et une preuve que vous pouvez
   reproduire ?
+- Le rapport dit-il quels reçus il a reproduits, avec la commande et le résultat, ou dit-il
+  seulement qu'il les a lus ?
 - Chaque P0 a-t-il son élément en attente ouvert avant de déclarer l'audit clos ?
 - Les notes par dimension pourront-elles être comparées avec l'audit précédent ?
 - Est-ce le même agent qui a construit qui a audité ? Si oui, demandez un second regard sur les P0.
@@ -124,4 +145,7 @@ qu'on archive), et que le désaccord soit explicite et avec preuve, pas silencie
   vrai ; il est plus probable que le périmètre était petit ou que l'auditeur partageait les
   présupposés.
 - Les constats n'ont pas de ligne de fichier. Ce sont des opinions, pas des constats.
+- Le rapport dit que les reçus « ont été vérifiés » sans montrer la commande exécutée ni sa
+  sortie. Un reçu lu et un reçu reproduit ne sont pas la même chose, et seul le second ferme
+  l'objection de D-033.
 - Deux semaines ont passé et les P0 n'ont toujours pas d'élément en attente. L'audit a été archivé.

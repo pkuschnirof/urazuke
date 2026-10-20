@@ -64,9 +64,11 @@ el agente:
 > waits for that run's result and only packages and uploads, without running tests again; (3)
 > each environment's configuration lives on the server (environment file or vault), never in the
 > repository; (4) a written procedure to promote from the test environment to production, which
-> can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check
-> that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
-> can do it by hand without you. Reply in my language.
+> can be run twice without breaking anything; (5) the rollback, tested — and if any change
+> migrates schema or data, a written plan for undoing or compensating it, since reverting the code
+> alone does not undo a migration that already ran; (6) an automatic check that prevents
+> committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by
+> hand without you. Reply in my language.
 
 > [es]
 > Vamos a cerrar el camino a producción. Leé el relevamiento de entornos y accesos. Evaluá si
@@ -76,14 +78,17 @@ el agente:
 > de esa corrida y solo empaqueta y sube, sin volver a correr tests; (3) la configuración de cada
 > entorno vive en el servidor (archivo de entorno o bóveda), nunca en el repositorio; (4) un
 > procedimiento escrito para promover del entorno de prueba a producción, que se pueda correr dos
-> veces sin romper nada; (5) la vuelta atrás, probada; (6) una verificación automática que impida
-> subir un secreto en un commit. Documentá todo en `docs/DEPLOYMENT.md` de modo que una persona lo
-> pueda hacer a mano sin vos. Respondé en mi idioma.
+> veces sin romper nada; (5) la vuelta atrás, probada —y si algún cambio migra esquema o datos, un
+> plan escrito para deshacerlo o compensarlo, porque revertir el código solo no deshace una
+> migración que ya corrió—; (6) una verificación automática que impida subir un secreto en un
+> commit. Documentá todo en `docs/DEPLOYMENT.md` de modo que una persona lo pueda hacer a mano sin
+> vos. Respondé en mi idioma.
 
 Qué le estoy pidiendo, cláusula por cláusula: los accesos antes de empezar; los tests **una sola
 vez** por commit (correrlos tres veces es lo que fundió la cuota); el despliegue que solo
 empaqueta; la configuración fuera del repositorio; la promoción como procedimiento repetible; la
-vuelta atrás **probada** (una vuelta atrás que nunca se probó no existe); el candado contra
+vuelta atrás **probada** (una vuelta atrás que nunca se probó no existe) **con su plan de datos**,
+porque una migración de esquema o de datos no se deshace revirtiendo el commit; el candado contra
 secretos en los commits; y la documentación para una persona, que es el peldaño 20 aplicado a la
 infraestructura.
 
@@ -152,6 +157,8 @@ lo habría detectado, para que la próxima vez no llegue al chat.
   repositorio? Pedile al agente que busque y te muestre la búsqueda vacía.
 - ¿Podrías seguir `docs/DEPLOYMENT.md` vos solo, sin el agente? Leelo con esa pregunta.
 - ¿La vuelta atrás se probó? ¿Cuándo? ¿Qué evidencia hay?
+- Si hubo una migración de esquema o de datos: ¿hay un plan escrito para deshacerla o compensarla,
+  además de la vuelta atrás del código?
 - ¿Se pegó algún secreto en el chat durante el proyecto? Si sí, ¿se rotó?
 - ¿Sabés cuánta cuota de integración continua queda este mes?
 
@@ -162,3 +169,6 @@ lo habría detectado, para que la próxima vez no llegue al chat.
 - El archivo de ejemplo de la configuración tiene valores que parecen reales. Probablemente lo
   sean.
 - Nadie sabe decir cuándo fue la última vez que se probó la vuelta atrás.
+- Una migración cambió datos o esquema y "la vuelta atrás" de la que se habla es solo la del
+  código. Para esa migración, no hay vuelta atrás: hay, en el mejor de los casos, un plan para
+  compensarla.

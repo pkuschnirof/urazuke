@@ -68,9 +68,11 @@ machst es, nicht der Agent:
 > waits for that run's result and only packages and uploads, without running tests again; (3)
 > each environment's configuration lives on the server (environment file or vault), never in the
 > repository; (4) a written procedure to promote from the test environment to production, which
-> can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check
-> that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
-> can do it by hand without you. Reply in my language.
+> can be run twice without breaking anything; (5) the rollback, tested — and if any change
+> migrates schema or data, a written plan for undoing or compensating it, since reverting the code
+> alone does not undo a migration that already ran; (6) an automatic check that prevents
+> committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by
+> hand without you. Reply in my language.
 
 > [de]
 > Wir werden den Weg in die Produktion abschließen. Lies die Erhebung der Umgebungen und Zugänge.
@@ -81,15 +83,19 @@ machst es, nicht der Agent:
 > Tests erneut auszuführen; (3) die Konfiguration jeder Umgebung lebt auf dem Server
 > (Umgebungsdatei oder Tresor), nie im Repository; (4) ein schriftliches Verfahren, um von der
 > Testumgebung in die Produktion zu befördern, das zweimal laufen kann, ohne etwas zu brechen; (5)
-> das Rollback, getestet; (6) eine automatische Prüfung, die verhindert, dass ein Geheimnis
-> committet wird. Dokumentiere alles in `docs/DEPLOYMENT.md`, so dass eine Person es von Hand
-> ohne dich tun kann. Antworte in meiner Sprache.
+> das Rollback, getestet — und wenn eine Änderung Schema oder Daten migriert, ein schriftlicher
+> Plan, um es rückgängig zu machen oder auszugleichen, da das Zurücksetzen des Codes allein eine
+> bereits gelaufene Migration nicht rückgängig macht; (6) eine automatische Prüfung, die
+> verhindert, dass ein Geheimnis committet wird. Dokumentiere alles in `docs/DEPLOYMENT.md`, so
+> dass eine Person es von Hand ohne dich tun kann. Antworte in meiner Sprache.
 
 Was ich hier verlange, Klausel für Klausel: die Zugänge, bevor begonnen wird; die Tests **ein
 einziges Mal** pro Commit (sie dreimal laufen zu lassen ist das, was das Kontingent verbrannt
 hat); das Deployment, das nur verpackt; die Konfiguration außerhalb des Repositorys; die Beförderung
-als wiederholbares Verfahren; das **getestete** Rollback (ein Rollback, das nie getestet wurde,
-existiert nicht); die Sperre gegen Geheimnisse in den Commits; und die Dokumentation für eine
+als wiederholbares Verfahren; das **getestete** Rollback **mit seinem Datenplan** (ein Rollback,
+das nie getestet wurde, existiert nicht, und eine Schema- oder Datenmigration wird nicht rückgängig
+gemacht, indem man den Commit zurücksetzt); die Sperre gegen Geheimnisse in den Commits; und die
+Dokumentation für eine
 Person, die Schritt 20 angewandt auf die Infrastruktur ist.
 
 **Routine jedes Deployments:**
@@ -159,6 +165,8 @@ erkannt hätte, damit es nächstes Mal nicht in den Chat gelangt.
   Repository? Bitte den Agenten zu suchen und dir die leere Suche zu zeigen.
 - Könntest du `docs/DEPLOYMENT.md` allein befolgen, ohne den Agenten? Lies es mit dieser Frage.
 - Wurde das Rollback getestet? Wann? Welchen Beleg gibt es?
+- Falls es eine Schema- oder Datenmigration gab: gibt es einen schriftlichen Plan, sie rückgängig
+  zu machen oder auszugleichen, zusätzlich zum Code-Rollback?
 - Wurde während des Projekts ein Geheimnis in den Chat eingefügt? Wenn ja, wurde es rotiert?
 - Weißt du, wie viel Kontingent an Continuous Integration diesen Monat noch übrig ist?
 
@@ -168,3 +176,6 @@ erkannt hätte, damit es nächstes Mal nicht in den Chat gelangt.
   gemacht. Die kleinen Änderungen sind die, die die Produktion brechen, weil niemand sie testet.
 - Die Beispieldatei der Konfiguration hat Werte, die echt aussehen. Wahrscheinlich sind sie es.
 - Niemand kann sagen, wann das Rollback zuletzt getestet wurde.
+- Eine Migration hat Daten oder Schema geändert, und „das Rollback“, von dem die Rede ist, ist nur
+  das des Codes. Für diese Migration gibt es kein Rollback: es gibt, bestenfalls, einen Plan, sie
+  auszugleichen.

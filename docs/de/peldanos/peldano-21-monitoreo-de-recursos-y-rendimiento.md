@@ -112,10 +112,13 @@ machst es, nicht der Agent:
 > offenen Posten mit der gemessenen Zahl als Abnahmekriterium wird, geschlossen mit der
 > vollständigen Routine. Nichts davon darf personenbezogene Daten lesen oder speichern. Zeig mir
 > den ersten Bericht, erzeugt mit echten Daten aus der Testumgebung, und einen Alarm, der
-> absichtlich durch das Überschreiten eines Schwellenwerts ausgelöst wurde. Dokumentiere die
-> Schwellenwerte, den Kanal, den Zyklus und wie man einen Alarm mit einer geschriebenen Begründung
-> stummschaltet, in `docs/MONITORING.md`. Antworte in meiner Sprache.
-> Die Zeilenzahlen, die die Dimensionierung neu bestätigen, tragen ihr eigenes überprüfbares Fenster: den ersten und den letzten Zeitstempel, aus der Datenbank oder dem Protokoll gelesen, nie eine von Hand getippte Zahl; ein von Hand getipptes Fenster wird im Bericht als solches markiert und warnt nur, es öffnet nie von allein einen offenen Punkt.
+> absichtlich durch das Überschreiten eines Schwellenwerts ausgelöst wurde. Die Zeilenzahlen, die
+> die Dimensionierung neu bestätigen, tragen ihr eigenes überprüfbares Fenster: den ersten und den
+> letzten Zeitstempel, aus der Datenbank oder dem Protokoll gelesen, nie eine von Hand getippte
+> Zahl; ein von Hand getipptes Fenster wird im Bericht als solches markiert und warnt nur, es
+> öffnet nie von allein einen offenen Punkt. Dokumentiere die Schwellenwerte, den Kanal, den Zyklus
+> und wie man einen Alarm mit einer geschriebenen Begründung stummschaltet, in
+> `docs/MONITORING.md`. Antworte in meiner Sprache.
 
 **Das Fenster der Messung.** Der zyklische Bericht vergleicht die beobachteten Zeilen pro Jahr mit dem, was Stufe 3 erklärt hat. Eine richtige Zahl mit einem falschen Fenster öffnet einen falschen offenen Punkt: in der Übung mit dem geerbten Turnera wurden 30.000 Zeilen aus drei Jahren übergeben, als wären sie aus einem. Deshalb trägt die Messung ihr **überprüfbares** Fenster: den ersten und den letzten Datensatz, aus der Datenbank oder dem Protokoll gelesen, keine von Hand getippte Zahl. Kann das Werkzeug die Datenbank nicht lesen, erklärt es das als blinden Fleck; ein von Hand getipptes Fenster wird im Bericht als solches markiert und warnt nur, es öffnet nie von allein einen offenen Punkt. (Entscheidung D-039.)
 

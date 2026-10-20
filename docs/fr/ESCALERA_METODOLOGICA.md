@@ -1,6 +1,9 @@
 # Urazuke, la méthode de la preuve — l'échelle méthodologique (version 4)
 
-Auteur : Pablo Kuschniroff, assisté par Claude Code. Version 4, 18 octobre 2026. Ceci est un
+Auteur : Pablo Kuschniroff, assisté par Claude Code. Version 4, commencée le 18 octobre 2026 et
+tenue à jour avec chaque décision ultérieure du registre (`docs/DECISIONES.md`) ; la date de départ
+reste fixe exprès, pour ne pas réécrire l'historique des versions à chaque fois qu'une nouvelle
+décision touche ce document. Ceci est un
 document de travail que je vais continuer à polir avec chaque projet qui l'utilisera ; rien de ce
 qu'il dit n'est encore doctrine fermée, même si c'est, pour autant que je sache, le premier
 distillat honnête d'une méthode qui a déjà trois systèmes en production derrière elle.
@@ -50,6 +53,33 @@ maintenables sans que personne n'ait besoin de comprendre un seul bit de leur co
 code, c'est le cadre agentique qui l'écrit qui le comprend et le maintient. La vitesse, quand elle
 apparaît, est une conséquence, et c'est pourquoi il n'y a pas de délais dans ce document : la
 taille et la complexité de chaque système les fixent, et la méthode ne fixe que l'ordre.
+
+Une précision qu'on m'a demandé de mettre par écrit, parce que la phrase précédente se prête à
+une lecture qui n'est pas la mienne : « ne demande pas au propriétaire de relire une seule ligne
+de code » n'est pas la même chose que « pensée pour que des gens sans connaissances en systèmes
+puissent programmer ». Ce n'est pas le cas. L'objectif premier de cette méthode n'est pas
+d'abaisser la barre technique pour que n'importe qui puisse construire un logiciel sans rien
+savoir de la façon dont on construit un logiciel : c'est de donner à qui doit répondre d'un
+système un ancrage méthodologique pour que ce qu'un modèle construit sorte avec la solidité de
+l'ingénierie des systèmes de toujours, en contrant les faiblesses avec lesquelles les modèles
+appliquent ces mêmes principes quand personne ne les exige par écrit. Que le propriétaire ne lise
+pas le code est une conséquence de l'endroit où j'ai placé les portes et de ce qu'un humain peut
+vérifier sans lire une implémentation, pas la promesse que n'importe qui, quoi qu'il sache,
+puisse diriger un projet logiciel sans rien comprendre à ce qu'il dirige. Le profil que les
+contrats demandent réellement se situe entre les deux : quelqu'un capable de lancer une commande,
+de gérer une habilitation, de restaurer une sauvegarde, de comprendre ce que le quota de CI lui
+indique, et de savoir reconnaître quand ce que le modèle a livré ne suffit pas — ni un néophyte
+pur, ni quelqu'un qui sait déjà programmer.
+
+Et une autre précision, sur le coût. Suivre cette échelle consomme plus de jetons que de demander
+au modèle de tout résoudre en une seule passe : chaque échelon ajoute un prompt, une vérification
+propre, un artefact que le modèle doit aussi maintenir. Ce qui ne se voit pas à première vue,
+c'est ce que ça économise. Un système construit sans ces portes finit, tôt ou tard, par avoir
+besoin de réingénierie : revenir sur un dimensionnement qui n'a pas été fait, traquer un bug
+qu'un test rouge aurait attrapé à l'échelon 8, réécrire ce que personne n'a audité à temps. Cette
+réingénierie, en jetons, en temps et en argent, coûte largement plus cher que le prompt en plus
+que coûte chaque échelon. Je le dépense en amont, en connaissance de cause, pour ne pas le
+dépenser deux fois en aval, à l'aveugle.
 
 Cela paraît ambitieux, et ça l'est. Mais j'ai quelque chose que presque personne n'a : trois
 systèmes réels que j'ai construits exactement ainsi, qui fonctionnent aujourd'hui avec de vrais
@@ -251,7 +281,12 @@ d'évaluation**, parce qu'elle peut changer les chiffres avec lesquels l'archite
 (est-ce que ça tient encore le « fois dix » ?), et de là vers l'avant. Troisième : le procédé **se
 termine par l'exécution manuelle des cas de test** par des personnes (échelon 10), et ce que cette
 exécution trouve revient dans la boucle comme exigence. Le circuit se ferme avec des gens, pas avec
-des machines.
+des machines. Quatrième, et le schéma ne le montrait pas avant cette correction : quand ce que le
+système construit a une conséquence sur le monde (encaisser, envoyer), la boucle **se rouvre après
+l'échelon 14**, avec les verrous déjà en place, pour construire cette partie en mode de répétition
+avant de passer à la chaîne de production (15). Ce n'est pas un retour au début : c'est la même
+porte que d'habitude (clôture de bloc ?) parcourue une fois de plus, maintenant avec le filet de
+sécurité prêt.
 
 ```mermaid
 flowchart TB
@@ -290,6 +325,7 @@ flowchart TB
   G2 -- oui --> H1
   H1 -- "constats = exigences" --> RE2
   H1 --> P13
+  P14 -. "ce qui a une conséquence se construit maintenant, les verrous en place" .-> P5
   P20 --> D --> P21
   P21 -. "écarts = éléments en attente" .-> P5
   P22 -. "erreurs = éléments en attente" .-> P5
@@ -376,11 +412,11 @@ rapport mensuel ». Voici à quoi il ressemble de l'intérieur :
    utilisateur avec les nouveaux écrans (20, dans le même commit). C'est seulement alors qu'on
    ouvre le bloc suivant.
 
-Dans une journée typique de la boucle, le propriétaire investit entre quinze et trente minutes :
-répondre à deux ou trois questions de règles métier, lire deux ou trois rapports, regarder deux ou
-trois captures. C'est tout ce que la méthode lui demande. S'il investit davantage, soit l'agent
-demande ce qu'il pourrait résoudre seul (échelon 1), soit le propriétaire lit du code (et alors
-quelque chose de l'échelon 8 ou du 12 ne fonctionne pas).
+Dans une journée typique de la boucle, ce que la méthode demande au propriétaire est petit et
+borné : répondre à deux ou trois questions de règles métier, lire deux ou trois rapports, regarder
+deux ou trois captures. C'est tout. Si on lui demande davantage, soit l'agent demande ce qu'il
+pourrait résoudre seul (échelon 1), soit le propriétaire lit du code (et alors quelque chose de
+l'échelon 8 ou du 12 ne fonctionne pas).
 
 ### B.4 Les jalons humains
 
@@ -788,8 +824,9 @@ tous mes projets sans le nommer comme un échelon.
 - **Artefact** : linter et formateur avec une seule configuration ; limites de taille et de
   complexité ; détection de duplication et de code mort ; couverture avec cliquet ; types si le
   langage le permet ; `docs/CODE_QUALITY.md` avec chaque limite et sa valeur mesurée ; la porte
-  dans `docs/GATES.md`. Comme renfort optionnel, les tests de mutation (des erreurs plantées
-  exprès, comptées d'après combien les tests en attrapent), avec leur score par bloc à côté de la
+  dans `docs/GATES.md`. Obligatoires dans tout projet qui a des utilisateurs, optionnels seulement
+  sans utilisateurs réels, les tests de mutation (des erreurs plantées exprès, comptées d'après
+  combien les tests en attrapent), avec leur score par bloc à côté de la
   couverture.
 - **Porte** : rien n'est fusionné avec la qualité au rouge ; aucune exception au linter sans
   raison écrite ; aucune limite relevée pour passer.
@@ -1284,18 +1321,24 @@ pratique du cours.
 1. **L'échelon 0 complet** : les poids des critères qui pondèrent, le seuil, et davantage de
    projets refusés comme contre-exemples. J'ai X1 et X2 ; il manque le reste.
 2. **Un nom mémorable pour chaque échelon**, en une phrase, pour les manuels et les publications.
-3. **L'export vers Forge** : quels échelons sont déjà des portes ou des commandes et lesquels
-   manquent pour pouvoir faire tourner l'échelle comme un flux d'exécution.
-4. **Tester les contrats dans un projet réel de bout en bout.** Les prompts des vingt-quatre
-   contrats sont écrits à partir de ce que j'ai fait, pas exécutés tels quels. Le premier projet
-   qui les utilisera en entier en corrigera plusieurs ; cela fait partie de l'échelon 23.
+3. **L'export vers Forge, largement résolu.** La méthode tourne entièrement comme flux de projet
+   dans Forge, avec des portes mécaniques et le prompt de l'échelon en cours injecté dans le chat
+   (D-035, D-036). Ce qui manque, c'est la matrice explicite, contrat par contrat, face à ce que
+   Forge exécute aujourd'hui, pour qu'une divergence entre ce que dit ce document et ce que fait
+   l'outil se remarque dès qu'elle apparaît, au lieu de s'accumuler.
+4. **Tester les contrats de bout en bout, déjà en cours.** Le projet guide du cours (Turnera) a
+   fait tourner les vingt-quatre contrats tels qu'écrits et en a clos 24 sur 24 ; ce qu'il a trouvé
+   en chemin a déjà corrigé la méthode (D-037 à D-040). Ce qui manque n'est pas le premier passage
+   complet, qui a déjà eu lieu : c'est qu'un projet d'autrui le fasse tourner, sans que je sois à
+   côté à résoudre ce que le contrat n'avait pas prévu.
 5. **La première cohorte du cours**, qui va corriger l'ordre de la ligne de temps là où il le faut
    et les erreurs typiques, qui sont aujourd'hui écrites depuis mes projets et non depuis des
    élèves.
-6. **Le chemin évolutif-correctif éprouvé de bout en bout sur un legacy réel.** Les huit stations
-   sont écrites à partir de ce que j'ai fait dans des systèmes d'autrui en mode diagnostic et à
-   partir des échelons réordonnés, pas à partir d'une normalisation complète exécutée avec ces
-   prompts.
+6. **Le chemin évolutif-correctif, éprouvé sur un projet à moi, pas sur celui de quelqu'un d'autre.**
+   Le projet guide hérité du cours (Turnera héritée) a fait tourner les huit stations et le reste de
+   l'échelle telle qu'écrite, en a clos 27 sur 27, et a motivé trois décisions de la méthode (D-038,
+   D-039, D-040). Ce qui manque, c'est le même chemin sur un vrai legacy appartenant à un tiers, avec
+   sa propre histoire et ses propres raccourcis, pas sur le système que j'ai monté pour le cours.
 7. **Ce qui N'EST PAS dans l'échelle et devrait y être** `[hypothèse]` : la gestion du coût des
    tokens et des quotas comme budget explicite (aujourd'hui elle est réactive) ; la rotation des
    secrets comme routine et non comme incident ; et un critère pour savoir quand l'humain DOIT
@@ -1395,9 +1438,10 @@ l'échelon 8, le rouge est un **reçu**, pas un récit : la commande exacte, la 
 laquelle il a tourné, le nombre d'échecs et le code de sortie, collés tels quels, pour que le
 propriétaire le relance avec une commande et le fasse, une fois par bloc, avec un élément en
 attente choisi au hasard. À l'échelon 13, l'audit par une autre session relance un échantillon de
-ces reçus. Et à l'échelon 9, les tests de mutation entrent comme renfort optionnel, recommandé
-dans tout projet qui aura des utilisateurs, avec leur score à la clôture de chaque bloc à côté de
-la couverture. Aucune des trois pièces n'exige que le propriétaire lise du code. Les trois font
+ces reçus. Et à l'échelon 9, les tests de mutation sont obligatoires dans tout projet qui a des
+utilisateurs (ils restent optionnels seulement sans utilisateurs réels), avec leur score à la
+clôture de chaque bloc à côté de la couverture. Aucune des trois pièces n'exige que le propriétaire
+lise du code. Les trois font
 que feindre le rouge coûte plus cher que le lancer.
 
 Un cadre utile pour situer cette méthode sur la carte est la taxonomie de Macedo, de juin 2026
@@ -1701,7 +1745,11 @@ demande ce qui manque.
 
 **Injection** — Une vulnérabilité dans laquelle ce qu'un utilisateur écrit dans un formulaire finit
 interprété par le système comme un ordre (par exemple, une requête à la base). L'analyse statique
-de l'échelon 18 la cherche ; le test en rouge de la correction démontre qu'elle ne passe plus.
+de l'échelon 18 la cherche ; le test en rouge de la correction démontre qu'elle ne passe plus. La
+même idée s'applique à l'agent qui lit la production (échelon 23) ou du code et de la documentation
+d'autrui (station N2 du chemin évolutif-correctif) : un journal, un ticket ou un commentaire qui
+contient quelque chose qui ressemble à une instruction est une donnée, pas un ordre, et l'agent
+doit le traiter comme tel.
 
 **IPC (laisse entre processus)** — Un canal entre deux processus. Dans Forge on l'a utilisé comme
 « laisse » : si le processus parent meurt, l'enfant s'en aperçoit et s'éteint.
@@ -1836,8 +1884,9 @@ Ils sont humains ; ce n'est pas l'agent qui les fait.
 **Tests de mutation** — Un programme qui casse le code exprès, un petit changement à la fois (il
 inverse une condition, efface une ligne, change un opérateur), lance les tests et compte combien de
 ces erreurs ils attrapent. Chaque erreur qu'aucun test n'attrape est un « mutant qui survit » ; la
-proportion d'attrapés est le score. C'est le renfort optionnel de l'échelon 9 et la réponse à
-l'objection selon laquelle l'agent peut feindre le rouge. À ne pas confondre avec le « rouge par
+proportion d'attrapés est le score. C'est obligatoire dans tout projet qui a des utilisateurs à
+l'échelon 9 (optionnel seulement sans utilisateurs réels), et c'est la réponse à l'objection selon
+laquelle l'agent peut feindre le rouge. À ne pas confondre avec le « rouge par
 mutation » de la caractérisation, qui est la même idée appliquée à la main à un seul flux.
 
 **Pull / push** — Descendre et monter du code depuis et vers le dépôt distant (GitHub).
@@ -1876,7 +1925,9 @@ un dépôt géré avec Git et avec une structure reconnaissable.
 **Rétention (retention)** — Combien de temps on garde les données de chaque table avant de les
 supprimer.
 
-**Rollback (retour arrière)** — Revenir à la version précédente quand un déploiement tourne mal.
+**Rollback (retour arrière)** — Revenir à la version précédente quand un déploiement tourne mal. Si
+le déploiement incluait une migration de schéma ou de données, annuler le code n'annule pas la
+migration : il faut en plus un plan écrit pour la défaire ou la compenser (échelon 15).
 
 **RPAForce** — Ma marque, sous laquelle ces systèmes sont livrés.
 

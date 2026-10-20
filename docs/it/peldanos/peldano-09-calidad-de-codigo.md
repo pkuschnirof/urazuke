@@ -9,8 +9,9 @@ legge con il proprietario. In un legacy, la prima esecuzione è la linea base e 
 nel backlog con la loro marca di velocità.
 **Forma:** un solo invio per montarlo; poi, routine di ogni modifica e lettura per blocco.
 **Dimensione:** obbligatorio nel suo livello minimo in ogni progetto (un linter e un limite di
-dimensione nella catena); completo in qualunque progetto con utenti. I test di mutazione sono un
-rinforzo opzionale, raccomandato in ogni progetto con utenti.
+dimensione nella catena); completo, test di mutazione inclusi, in qualunque progetto con utenti. I
+test di mutazione restano un rinforzo opzionale solo senza utenti reali (uno strumento interno, un
+prototipo che nessun altro esegue).
 
 ## A cosa serve
 
@@ -32,8 +33,13 @@ cricchetto); e, se il linguaggio lo permette, che i tipi tornino. Niente di tutt
 il test in rosso: un codice impeccabile può essere sbagliato. Ciò che evita è il codice corretto
 che nessuno può più toccare.
 
-E un rinforzo opzionale che vale la pena in qualunque progetto con utenti: i **test di
-mutazione**. Uno strumento pianta errori di proposito nel codice (cambia un "maggiore" in
+E ciò che smetto di trattare come rinforzo opzionale in qualunque progetto con utenti: i **test di
+mutazione**. Li avevo lasciati come "opzionali, raccomandati" in una versione precedente di questo
+documento, e una valutazione esterna del metodo mi ha fatto notare la contraddizione: se la Parte F
+dice che la mutazione è, per quanto ne so, l'unica misura che negli studi del 2026 ha distinto i
+test che provano da quelli che decorano, non ha senso lasciarla fuori dal "completo" proprio nei
+progetti dove un test decorativo in più fa danno a qualcuno. Uno strumento pianta errori di
+proposito nel codice (cambia un "maggiore" in
 "maggiore o uguale", cancella una riga, inverte una condizione) ed esegue i test; ogni errore che
 i test non catturano è un *mutante che sopravvive*, e la proporzione di quelli catturati è il
 punteggio. È la misura che completa il rosso dimostrato del gradino 8: il rosso prova che un test
@@ -154,7 +160,8 @@ compito a parte; il divieto di zittire (un modello davanti a un linter in rosso 
 l'eccezione invece di sistemare, perché è più veloce) e di alzare il limite; e la lettura per
 blocco, che è l'unico momento in cui i numeri li guardi tu.
 
-**Rinforzo (opzionale; raccomandato in ogni progetto con utenti): test di mutazione.**
+**Obbligatorio in qualunque progetto con utenti (opzionale solo senza utenti reali): test di
+mutazione.**
 
 **Prima di inviare il prompt**, devi avere questo sottomano:
 
@@ -197,9 +204,9 @@ accanto alla copertura, con un calo trattato come rosso.
 - `docs/CODE_QUALITY.md` con strumenti, configurazione, limiti con valore misurato, e la lista di
   ciò che fallisce con la sua voce in sospeso o la sua data.
 - Il cancello in `docs/GATES.md` e la routine nel patto.
-- Se il rinforzo è stato montato: il punteggio di mutazione in `docs/CODE_QUALITY.md`, per blocco,
-  accanto alla copertura, e una voce in sospeso per ogni mutante che sopravvive in codice che
-  conta.
+- In qualunque progetto con utenti: il punteggio di mutazione in `docs/CODE_QUALITY.md`, per
+  blocco, accanto alla copertura, e una voce in sospeso per ogni mutante che sopravvive in codice
+  che conta.
 
 ## 4. Verifica di completezza (la fai tu, senza leggere codice)
 
@@ -211,6 +218,8 @@ accanto alla copertura, con un calo trattato come rosso.
 - C'è qualche eccezione al linter nel codice? Chiedigli la lista; ciascuna deve avere la sua
   ragione scritta.
 - È salito qualche limite dalla prima esecuzione? Con quale ragione e chi l'ha deciso?
+- Se il progetto ha utenti reali: i test di mutazione stanno girando? Se no, quale ragione scritta
+  giustifica non averli?
 - Se ci sono test di mutazione: quanti mutanti sono sopravvissuti nell'ultimo blocco, e ciascuno
   ha la sua voce in sospeso o la sua ragione scritta?
 
@@ -227,3 +236,5 @@ accanto alla copertura, con un calo trattato come rosso.
   duplicazione travestita da adempimento.
 - La copertura è alta e il punteggio di mutazione è basso. Sono test che eseguono il codice senza
   verificare niente: il caso esatto che il rosso dimostrato del gradino 8 cerca di evitare.
+- Il progetto ha utenti reali e nessuno ha eseguito i test di mutazione né ha scritto perché no.
+  "È opzionale" ha smesso di essere una ragione valida per un progetto con utenti.

@@ -63,9 +63,11 @@ l'agente:
 > waits for that run's result and only packages and uploads, without running tests again; (3)
 > each environment's configuration lives on the server (environment file or vault), never in the
 > repository; (4) a written procedure to promote from the test environment to production, which
-> can be run twice without breaking anything; (5) the rollback, tested; (6) an automatic check
-> that prevents committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person
-> can do it by hand without you. Reply in my language.
+> can be run twice without breaking anything; (5) the rollback, tested — and if any change
+> migrates schema or data, a written plan for undoing or compensating it, since reverting the code
+> alone does not undo a migration that already ran; (6) an automatic check that prevents
+> committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by
+> hand without you. Reply in my language.
 
 > [it]
 > Chiudiamo il percorso verso la produzione. Leggi la rilevazione di ambienti e accessi. Valuta se
@@ -75,15 +77,17 @@ l'agente:
 > deployment aspetta il risultato di quell'esecuzione e si limita a impacchettare e caricare, senza
 > rieseguire i test; (3) la configurazione di ogni ambiente vive sul server (file di ambiente o
 > cassaforte), mai nel repository; (4) una procedura scritta per promuovere dall'ambiente di test
-> alla produzione, che si possa eseguire due volte senza rompere nulla; (5) il rollback, provato;
-> (6) una verifica automatica che impedisca di committare un segreto. Documenta tutto in
-> `docs/DEPLOYMENT.md` in modo che una persona possa farlo a mano senza di te. Rispondi nella mia
-> lingua.
+> alla produzione, che si possa eseguire due volte senza rompere nulla; (5) il rollback, provato
+> —e se qualche modifica migra schema o dati, un piano scritto per disfarla o compensarla, dato che
+> ripristinare solo il codice non disfa una migrazione già eseguita—; (6) una verifica automatica
+> che impedisca di committare un segreto. Documenta tutto in `docs/DEPLOYMENT.md` in modo che una
+> persona possa farlo a mano senza di te. Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo, clausola per clausola: gli accessi prima di cominciare; i test **una sola
 volta** per commit (eseguirli tre volte è ciò che ha bruciato la quota); il deployment che si
 limita a impacchettare; la configurazione fuori dal repository; la promozione come procedura
-ripetibile; il rollback **provato** (un rollback che non è mai stato provato non esiste); il
+ripetibile; il rollback **provato**, **con il suo piano dei dati** (un rollback che non è mai stato
+provato non esiste, e una migrazione di schema o di dati non si disfa ripristinando il commit); il
 lucchetto contro i segreti nei commit; e la documentazione per una persona, che è il gradino 20
 applicato all'infrastruttura.
 
@@ -154,6 +158,8 @@ avrebbe rilevato, perché la prossima volta non arrivi alla chat.
   repository? Chiedi all'agente di cercare e di mostrarti la ricerca vuota.
 - Potresti seguire `docs/DEPLOYMENT.md` da solo, senza l'agente? Leggilo con quella domanda.
 - Il rollback è stato provato? Quando? Che prova c'è?
+- Se c'è stata una migrazione di schema o di dati: c'è un piano scritto per disfarla o compensarla,
+  oltre al rollback del codice?
 - È stato incollato qualche segreto nella chat durante il progetto? Se sì, è stato ruotato?
 - Sai quanta quota di integrazione continua resta questo mese?
 
@@ -163,3 +169,6 @@ avrebbe rilevato, perché la prossima volta non arrivi alla chat.
   piccole sono quelle che rompono la produzione, perché nessuno le prova.
 - Il file di esempio della configurazione ha valori che sembrano reali. Probabilmente lo sono.
 - Nessuno sa dire quando è stata l'ultima volta che si è provato il rollback.
+- Una migrazione ha cambiato dati o schema e "il rollback" di cui si parla è solo quello del
+  codice. Per quella migrazione non c'è rollback: c'è, nella migliore delle ipotesi, un piano per
+  compensarla.

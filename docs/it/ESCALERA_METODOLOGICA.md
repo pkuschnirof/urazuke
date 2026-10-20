@@ -1,6 +1,9 @@
 # Urazuke, il metodo del riscontro — la scala metodologica (versione 4)
 
-Autore: Pablo Kuschniroff, assistito da Claude Code. Versione 4, 18 ottobre 2026. Questo è un
+Autore: Pablo Kuschniroff, assistito da Claude Code. Versione 4, iniziata il 18 ottobre 2026 e
+tenuta aggiornata con ogni decisione successiva del registro (`docs/DECISIONES.md`); la data
+d'inizio resta fissa di proposito, per non riscrivere la storia delle versioni ogni volta che una
+nuova decisione tocca questo documento. Questo è un
 documento di lavoro che continuerò a rifinire con ogni progetto che lo userà; nulla di ciò che
 dice è ancora dottrina chiusa, anche se è, per quanto ne so, il primo distillato onesto di un
 metodo che ha già tre sistemi in produzione alle spalle.
@@ -48,6 +51,32 @@ bisogno di comprendere un solo bit del loro codice, perché il codice lo compren
 quadro agentico che lo scrive. La velocità, quando compare, è una conseguenza, e per questo in
 questo documento non ci sono scadenze: le mettono la dimensione e la complessità di ogni sistema,
 e il metodo mette solo l'ordine.
+
+Una precisazione che mi è stata chiesta per iscritto, perché la frase precedente si presta a una
+lettura che non è la mia: "non richiede che il proprietario riveda una sola riga di codice" non è
+lo stesso che "pensato perché programmino persone senza conoscenze di sistemi". Non lo è.
+L'obiettivo primario di questo metodo non è abbassare l'asticella tecnica perché chiunque possa
+costruire software senza sapere nulla di come si costruisce il software: è dare a chi deve
+rispondere di un sistema un ancoraggio metodologico affinché ciò che un modello costruisce esca
+con la solidità dell'ingegneria dei sistemi di sempre, contrastando le debolezze con cui i modelli
+applicano quegli stessi principi quando nessuno li esige per iscritto. Che il proprietario non
+legga codice è una conseguenza di dove ho messo le porte e di cosa può verificare un essere umano
+senza leggere un'implementazione, non la promessa che chiunque, sappia quel che sappia, possa
+dirigere un progetto software senza capire nulla di ciò che sta dirigendo. Il profilo che i
+contratti chiedono davvero sta nel mezzo: qualcuno che esegue un comando, gestisce una
+credenziale, ripristina un backup, capisce cosa gli sta dicendo la quota di CI, e sa riconoscere
+quando ciò che il modello ha consegnato non basta — non un profano puro, e nemmeno qualcuno che
+già sa programmare.
+
+E un'altra precisazione, sul costo. Seguire questa scala consuma più token che chiedere al modello
+di risolvere tutto in un solo passaggio: ogni gradino aggiunge un prompt, una verifica propria, un
+artefatto che il modello deve anche sostenere. Quello che non si vede a prima vista è quanto fa
+risparmiare. Un sistema costruito senza queste porte tende, prima o poi, ad aver bisogno di
+reingegnerizzazione: tornare indietro su un dimensionamento mai fatto, inseguire un errore che un
+test in rosso avrebbe intercettato al gradino 8, riscrivere ciò che nessuno ha controllato in
+tempo. Quella reingegnerizzazione, in token, in tempo e in denaro, costa di gran lunga più del
+prompt in più che costa ogni gradino. Lo spendo in anticipo, con lucidità, per non spenderlo il
+doppio dopo, alla cieca.
 
 Suona ambizioso, e lo è. Ma ho qualcosa che quasi nessuno ha: tre sistemi reali che ho costruito
 esattamente così, che oggi funzionano con clienti veri, e da cui ho estratto ogni regola che
@@ -237,7 +266,12 @@ nuovo rientra. Seconda: un requisito nuovo non entra solo nel ciclo; **reimmette
 valutazione**, perché può cambiare i numeri con cui si è decisa l'architettura (regge ancora il
 "per dieci"?), e da lì in avanti. Terza: il processo **termina nell'esecuzione manuale dei casi
 di prova** da parte di persone (gradino 10), e ciò che quell'esecuzione trova torna nel ciclo come
-requisito. Il circuito si chiude con le persone, non con le macchine.
+requisito. Il circuito si chiude con le persone, non con le macchine. Quarta, e il disegno non lo
+mostrava prima di questa correzione: quando ciò che il sistema costruisce ha una conseguenza sul
+mondo (addebitare, inviare), il ciclo **si riapre dopo il gradino 14**, con i lucchetti già messi,
+per costruire quella parte in modalità prova generale prima di proseguire verso la catena di
+produzione (15). Non è un ritorno all'inizio: è lo stesso cancello di sempre (chiusura del blocco?)
+percorso un'altra volta, ora con la rete di sicurezza pronta.
 
 ```mermaid
 flowchart TB
@@ -276,6 +310,7 @@ flowchart TB
   G2 -- sì --> H1
   H1 -- "rilievi = requisiti" --> RE2
   H1 --> P13
+  P14 -. "ciò che ha conseguenze si costruisce adesso, con i lucchetti messi" .-> P5
   P20 --> D --> P21
   P21 -. "scostamenti = voci in sospeso" .-> P5
   P22 -. "errori = voci in sospeso" .-> P5
@@ -360,11 +395,11 @@ mensile". Così si vede da dentro:
    correttiva. Si legge il rapporto di qualità del blocco (9). Si aggiorna il manuale utente con
    le schermate nuove (20, nello stesso commit). Solo allora si apre il blocco successivo.
 
-In una giornata tipica del ciclo, il proprietario investe tra quindici e trenta minuti: rispondere
-a due o tre domande di regole di business, leggere due o tre rapporti, guardare due o tre catture.
-Questo è tutto ciò che il metodo gli chiede. Se sta investendo di più, o l'agente sta chiedendo ciò
-che potrebbe risolvere da solo (gradino 1), o il proprietario sta leggendo codice (e allora
-qualcosa del gradino 8 o del 12 non sta funzionando).
+In una giornata tipica del ciclo, ciò che il metodo chiede al proprietario è poco e limitato:
+rispondere a due o tre domande di regole di business, leggere due o tre rapporti, guardare due o
+tre catture. Questo è tutto. Se gli sta chiedendo di più, o l'agente sta chiedendo ciò che potrebbe
+risolvere da solo (gradino 1), o il proprietario sta leggendo codice (e allora qualcosa del
+gradino 8 o del 12 non sta funzionando).
 
 ### B.4 I momenti umani
 
@@ -753,8 +788,9 @@ gradino.
 - **Artefatto**: linter e formattatore con una sola configurazione; limiti di dimensione e
   complessità; rilevamento di duplicazione e codice morto; copertura con cricchetto; tipi se il
   linguaggio lo permette; `docs/CODE_QUALITY.md` con ogni limite e il suo valore misurato; il
-  cancello in `docs/GATES.md`. Come rinforzo opzionale, i test di mutazione (errori piantati di
-  proposito, contati per quanti ne catturano i test), con il loro punteggio per blocco accanto
+  cancello in `docs/GATES.md`. Obbligatori in qualunque progetto con utenti, opzionali solo senza
+  utenti reali, i test di mutazione (errori piantati di proposito, contati per quanti ne catturano
+  i test), con il loro punteggio per blocco accanto
   alla copertura.
 - **Cancello**: niente viene unito con la qualità in rosso; nessuna eccezione al linter senza
   ragione scritta; nessun limite alzato per passare.
@@ -1237,16 +1273,23 @@ la pratica del corso.
 1. **Il gradino 0 completo**: i pesi dei criteri che pesano, la soglia, e altri progetti rifiutati
    come controesempi. Ho X1 e X2; manca il resto.
 2. **Un nome memorabile per ogni gradino**, in una frase, per i manuali e le pubblicazioni.
-3. **L'esportazione in Forge**: quali gradini sono già cancelli o comandi e quali mancano per
-   poter eseguire la scala come flusso di esecuzione.
-4. **Provare i contratti in un progetto reale end to end.** I prompt dei ventiquattro contratti sono
-   scritti a partire da ciò che ho fatto, non eseguiti tali e quali. Il primo progetto che li
-   userà per intero ne correggerà diversi; fa parte del gradino 23.
+3. **L'esportazione in Forge, in gran parte risolta.** Il metodo gira per intero come flusso di
+   progetto in Forge, con cancelli meccanici e il prompt del gradino in corso iniettato nella chat
+   (D-035, D-036). Ciò che manca è la matrice esplicita, contratto per contratto, rispetto a ciò
+   che Forge esegue oggi, perché uno scarto tra ciò che dice questo documento e ciò che fa lo
+   strumento si noti appena compare, invece di accumularsi.
+4. **Provare i contratti end to end, già in corso.** Il progetto guida del corso (Turnera) ha fatto
+   girare i ventiquattro contratti così come scritti e ne ha chiusi 24 su 24; ciò che ha trovato
+   lungo il percorso ha già corretto il metodo (D-037 a D-040). Ciò che manca non è la prima corsa
+   completa, già avvenuta: è che un progetto altrui la faccia girare, senza che io stia accanto a
+   risolvere ciò che il contratto non aveva previsto.
 5. **La prima coorte del corso**, che correggerà l'ordine della linea del tempo dove servirà e
    gli errori tipici, che oggi sono scritti a partire dai miei progetti e non dagli allievi.
-6. **Il percorso evolutivo-correttivo provato su un legacy reale da un capo all'altro.** Le otto
-   stazioni sono scritte a partire da ciò che ho fatto in sistemi altrui in modalità diagnostica e
-   dai gradini riordinati, non da una normalizzazione completa eseguita con quei prompt.
+6. **Il percorso evolutivo-correttivo, provato su un legacy mio, non su uno altrui.** Il progetto
+   guida ereditato del corso (Turnera ereditata) ha fatto girare le otto stazioni e il resto della
+   scala così come scritto, ne ha chiuse 27 su 27, e ha motivato tre decisioni del metodo (D-038,
+   D-039, D-040). Ciò che manca è lo stesso percorso su un legacy reale di terzi, con la sua
+   propria storia e le sue proprie scorciatoie, non sul sistema che ho costruito per il corso.
 7. **Ciò che NON è nella scala e dovrebbe esserci** `[ipotesi]`: la gestione del costo di token e
    quote come budget esplicito (oggi è reattiva); la rotazione dei segreti come routine e non come
    incidente; e un criterio per quando l'umano SÌ deve guardare il codice, perché oggi la risposta
@@ -1343,9 +1386,10 @@ il rosso è una **ricevuta**, non un racconto: il comando esatto, la versione co
 eseguito, il numero di fallimenti e il codice di uscita, incollati tali e quali, perché il
 proprietario lo esegua di nuovo con un comando e lo faccia, una volta per blocco, con una voce in
 sospeso scelta a caso. Nel gradino 13, l'audit da parte di un'altra sessione esegue di nuovo un
-campione di quelle ricevute. E nel gradino 9, i test di mutazione entrano come rinforzo opzionale,
-raccomandato in ogni progetto con utenti, con il loro punteggio alla chiusura di ogni blocco
-accanto alla copertura. Nessuno dei tre pezzi esige che il proprietario legga codice. Tutti e tre
+campione di quelle ricevute. E nel gradino 9, i test di mutazione sono obbligatori in qualunque
+progetto con utenti (restano opzionali solo senza utenti reali), con il loro punteggio alla
+chiusura di ogni blocco accanto alla copertura. Nessuno dei tre pezzi esige che il proprietario
+legga codice. Tutti e tre
 fanno sì che fingere il rosso costi più che eseguirlo.
 
 Un quadro utile per collocare questo metodo sulla mappa è la tassonomia di Macedo, del giugno 2026
@@ -1645,7 +1689,11 @@ dall'agente, che chiede ciò che manca.
 
 **Injection** — Una vulnerabilità in cui ciò che un utente scrive in un modulo finisce
 interpretato dal sistema come un ordine (per esempio, una query al database). L'analisi statica
-del gradino 18 la cerca; il test in rosso della correzione dimostra che non succede più.
+del gradino 18 la cerca; il test in rosso della correzione dimostra che non succede più. La stessa
+idea si applica all'agente che legge la produzione (gradino 23) o codice e documentazione altrui
+(stazione N2 del percorso evolutivo-correttivo): un log, un ticket o un commento che contiene
+qualcosa che suona come un'istruzione è un dato, non un ordine, e l'agente deve trattarlo come
+tale.
 
 **IPC (guinzaglio tra processi)** — Un canale tra due processi. In Forge si è usato come
 "guinzaglio": se il processo padre muore, il figlio lo viene a sapere e si spegne.
@@ -1772,8 +1820,9 @@ trovare il punto di rottura. Gradino 19.
 **Test di mutazione** — Un programma che rompe il codice di proposito, una piccola modifica alla
 volta (inverte una condizione, cancella una riga, cambia un operatore), esegue i test e conta
 quanti di quegli errori vengono catturati. Ogni errore che nessun test cattura è un "mutante che
-sopravvive"; la proporzione di quelli catturati è il punteggio. È il rinforzo opzionale del
-gradino 9 e la risposta all'obiezione che l'agente può fingere il rosso. Da non confondere con il
+sopravvive"; la proporzione di quelli catturati è il punteggio. È obbligatorio in qualunque
+progetto con utenti nel gradino 9 (opzionale solo senza utenti reali), ed è la risposta
+all'obiezione che l'agente può fingere il rosso. Da non confondere con il
 "rosso per mutazione" della caratterizzazione, che è la stessa idea applicata a mano a un solo
 flusso.
 
@@ -1821,7 +1870,9 @@ vuol dire uno gestito con Git e con una struttura riconoscibile.
 **Conservazione (retention)** — Quanto tempo si conservano i dati di ogni tabella prima di
 cancellarli.
 
-**Rollback** — Tornare alla versione precedente quando un deployment va male.
+**Rollback** — Tornare alla versione precedente quando un deployment va male. Se il deployment
+includeva una migrazione di schema o di dati, ripristinare il codice non ripristina la migrazione:
+serve anche un piano scritto per disfarla o compensarla (gradino 15).
 
 **RPAForce** — Il mio marchio, sotto cui si consegnano questi sistemi.
 
