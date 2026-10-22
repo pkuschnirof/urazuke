@@ -1,6 +1,6 @@
 # Anexo H - Heuristicas de qualidade de codigo e de usabilidade
 
-**Estado: APROVADO - FORMA, SEVERIDADES INICIAIS E TRADUCAO.** Nao fica nenhuma decisao aberta. A forma (D-043 e D-044), os interruptores (D-045 e D-046), o painel (D-047) e as severidades iniciais com o peso da acessibilidade (D-048, secao 10) estao decididos. O texto esta traduzido em seis dos oito idiomas (alemao, espanhol, frances, ingles, italiano e portugues); faltam japones e chines, e so quando existirem ele entra na API de prompts, onde `build/prompts.mjs` o exige byte a byte. Data: 2026-10-22.
+**Estado: APROVADO E EM PRODUCAO.** Nao fica nenhuma decisao aberta: a forma (D-043 e D-044), os interruptores (D-045 e D-046), o painel (D-047) e as severidades iniciais com o peso da acessibilidade (D-048, secao 10) estao decididas. O documento esta publicado nos oito idiomas do metodo e os seus dois prompts fazem parte da API de prompts: a partir dali, `build/prompts.mjs` exige o texto ingles identico byte a byte nos oito ou a construcao falha. Data: 2026-10-22.
 
 Registro das decisoes deste anexo: `docs/DECISIONES.md`, D-043 a D-048. O painel de cumprimento (secao 12) foi decidido com duas cifras em D-047. O trabalho de implementacao vive em PND-002; a traducao e a indexacao, em PND-003.
 
@@ -172,7 +172,7 @@ O anexo nao inventa passos novos: pendura-se nos que existem. Isso evita duplica
 | Manual do usuario | Se organiza pelos grupos de B1 e declara, por grupo, que perfis entram. | O manual e o menu se nomeiam com as mesmas palavras ou o glossario se rompe. |
 | Fechamento de cada bloco | Teste do primeiro clique (UX-07), captura do ambiente real (UX-27) e os dois testes ponta a ponta da matriz. | Sao as tres verificacoes que nao se podem automatizar. |
 
-**Estado (D-049).** As cinco ancoras ja estao enganchadas: o prompt inicial dos passos 5, 8, 9, 10 e 12 cita este anexo nos oito idiomas, com uma unica redacao inglesa identica em todos e a sua traducao local ao lado. O documento se publica no site com o resto do metodo, em espanhol; a traducao existe hoje em seis dos oito idiomas e a sua entrada na API de prompts espera os dois ultimos (D-043). Quando entrar, `build/prompts.mjs` compara o texto em ingles byte a byte entre as oito versoes e a construcao falha se alguma diferir.
+**Estado (D-049).** As cinco ancoras estao ligadas: o prompt inicial dos peldanos 5, 8, 9, 10 e 12 cita este anexo nos oito idiomas, com uma unica redacao inglesa identica em todos e a sua traducao local ao lado. O documento e publicado no site com o resto do metodo nos oito idiomas, e os seus dois prompts entraram em `docs/html/api/prompts.json` como contrato `anexo-h`: a partir dali `build/prompts.mjs` compara-os byte a byte nos oito ou a construcao falha.
 
 Os passos 6, 7 e 11 recebem no maximo uma linha: o 6 ja registra limiares e excecoes como decisoes (e o lugar natural da excecao declarada), e o 11 e onde entra a golpes o caso da matriz escrita em quatro lugares. Nao se lhes agrega texto proprio para nao dilui-los.
 

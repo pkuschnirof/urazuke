@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>付録 H — コード品質とユーザビリティのヒューリスティクス</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+h3.refh{font-size:1.02rem;margin-top:1.6em;color:#3a2f00;border-bottom:1px dashed var(--line);padding-bottom:.2em}
+h3.refh:target{background:var(--gold-soft);border-radius:6px;padding:.4em .6em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+a{color:#7a5600}
+a.ref{font:700 .78em/1.4 Segoe UI,Arial,sans-serif;background:#f1ece0;border:1px solid var(--line);border-radius:999px;padding:0 .5em;text-decoration:none;color:#5a3f00;white-space:nowrap;vertical-align:middle}
+a.ref:hover{background:var(--gold-soft)}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+.pbox{margin:.8em 0 1.2em}
+.prompt{margin:0;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.prompt.tr{background:#f3f7f0;border-color:#cfdcc6;border-left-color:#5c8a4a}
+.prompt.tr::before{content:'プロンプト（翻訳）';color:#3f6b2e}
+.trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
+.trbtn:hover{background:#efe0b8}
+.antes{margin:1em 0 .8em;padding:.7em 1.1em .45em;background:#eef2f7;border:1px solid #c9d3e3;border-left:5px solid #3f5a8a;border-radius:6px;font-size:.95em}
+.antes>p:first-child{margin:.15em 0 .45em}
+.antes>p:first-child strong{display:inline-block;color:#2c4470;text-transform:uppercase;letter-spacing:.5px;font:700 .82em/1.5 Segoe UI,Arial,sans-serif;margin-right:.2em}
+.antes ul{margin:.3em 0 .45em;padding-left:1.4em}
+.antes li{margin:.4em 0}
+.antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;margin:.6em 0;display:block}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+.pie{margin-top:3em;padding-top:1em;border-top:1px dashed var(--line);font:.85em/1.5 Segoe UI,Arial,sans-serif;color:var(--mute)}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="付録-h-コード品質とユーザビリティのヒューリスティクス">付録 H — コード品質とユーザビリティのヒューリスティクス</h1><nav class="toc"><div class="toc-t">目次</div><ul><li class="l2"><a href="#1-今日なにが欠けているのか-そしてなぜか">1. 今日なにが欠けているのか、そしてなぜか</a></li><li class="l2"><a href="#2-モデル-三つの層-規則の単一の形態">2. モデル：三つの層、規則の単一の形態</a></li><li class="l2"><a href="#3-四つの計器">3. 四つの計器</a></li><li class="l2"><a href="#4-パート-a-コード品質">4. パート A — コード品質</a></li><li class="l2"><a href="#5-パート-b-ユーザビリティ">5. パート B — ユーザビリティ</a></li><li class="l3"><a href="#b1-機能的収束によるグルーピング">B1 — 機能的収束によるグルーピング</a></li><li class="l3"><a href="#b2-プロファイルと-プロファイルごとに有効化される機能">B2 — プロファイルと、プロファイルごとに有効化される機能</a></li><li class="l3"><a href="#b3-状態-そして何かがないときに人が見るもの">B3 — 状態、そして何かがないときに人が見るもの</a></li><li class="l3"><a href="#b4-操作とエラー">B4 — 操作とエラー</a></li><li class="l3"><a href="#b5-言語とアクセシビリティ">B5 — 言語とアクセシビリティ</a></li><li class="l2"><a href="#6-どこに掛かるか-そしてどんな成果物を生むか">6. どこに掛かるか、そしてどんな成果物を生むか</a></li><li class="l2"><a href="#7-設定">7. 設定</a></li><li class="l2"><a href="#8-二つの部品-本方法が使う形態で">8. 二つの部品、本方法が使う形態で</a></li><li class="l2"><a href="#9-この提案がしないこと">9. この提案がしないこと</a></li><li class="l2"><a href="#10-決定-何が解決し-何が残っているか">10. 決定：何が解決し、何が残っているか</a></li><li class="l3"><a href="#解決済み">解決済み</a></li><li class="l3"><a href="#d-048-で閉じたもの-そしてそれが引きずる二つの訂正">D-048 で閉じたもの、そしてそれが引きずる二つの訂正</a></li><li class="l3"><a href="#決定ではなく暦のペンディング">決定ではなく暦のペンディング</a></li><li class="l2"><a href="#11-ゲートが見張っていることをどう確かめるか">11. ゲートが見張っていることをどう確かめるか</a></li><li class="l2"><a href="#12-コンプライアンス・ダッシュボード-決定済み-二つの数値-d-047">12. コンプライアンス・ダッシュボード（決定済み：二つの数値、D-047）</a></li><li class="l2"><a href="#13-記録">13. 記録</a></li></ul></nav>
+<p><strong>状態：承認済み・本番稼働中。</strong> 未決の判断は残っていない。形態（D-043 と D-044）、スイッチ（D-045 と D-046）、ダッシュボード（D-047）、アクセシビリティの重みを含む初期重大度（D-048、第 10 節）は決定済みである。本書は本メソッドの八言語すべてで公開され、その二つのプロンプトはプロンプト API の一部になっている。そこから <code>build/prompts.mjs</code> が八言語すべてで英語本文のバイト一致を要求し、一致しなければビルドは失敗する。日付：2026-10-22。</p>
+<p>本付録の決定の記録：<code>docs/DECISIONES.md</code>、D-043 から D-048。コンプライアンス・ダッシュボード（第 12 節）は D-047 で二つの数値をもって確定した。実装作業は PND-002 に住む。</p>
+</section><section>
+<h2 id="1-今日なにが欠けているのか-そしてなぜか">1. 今日なにが欠けているのか、そしてなぜか</h2>
+<p>ステップ 9 はすでにコードを測っており、それを通過させないゲートで行っている。単一のフォーマッタ、サイズの上限（ファイル当たり三百行、関数当たり四十行）、関数ごとの複雑度、重複コード、デッドコード、宣言され使用されている依存関係、ラチェット付きのカバレッジ、そして実際のユーザーがいるところでのミューテーションテストである。その数値は <code>docs/CODE_QUALITY.md</code> に書かれる。これは解決済みである。</p>
+<p>解決していないのは製品のもう半分である。ステップ群のコーパスを検証した。ユーザビリティへの、人物やプロファイルへの、機能的グルーピングへの言及は一つもない。今日のインターフェースは二つのものに支えられている。所有者が十秒だけ見るスクリーンショットと、手動のテストケースである。どちらも良いものであり、どちらも人間的で、高価で、忘れっぽい。システムは品質ゲートを立派に通過しながら、使えないままでいられる。すべてが緑で、それでもその人はどこで請求するのかを見つけられない。</p>
+<p>さらに、技術的ではあるがインターフェースに現れる第二層の問題がある。同じ製品を複数のプロファイル（管理、運用、照会、顧客）が使うとき、機能は三つの異なる場所——データベース、メニュー、ルートのガード——で有効化され、それらは別々の時点で書かれ、ひとりでに同期を失う。症状はいつも同じである。誰かが自分に属さないボタンを見る。あるいはもっと悪いことに、権限を持っている人がその画面を見つけられない。</p>
+<p>続く二つのヒューリスティクスは、同じ形態でその二つの問題に取り組む。検証可能な言明の短いカタログ、それらを自動で測る少数の計器、そしてプロジェクトが外に出る必要があるときのための、宣言された例外の道である。</p>
+</section><section>
+<h2 id="2-モデル-三つの層-規則の単一の形態">2. モデル：三つの層、規則の単一の形態</h2>
+<p>誘惑は、規則の一覧を作り、それを最初のプロジェクトのスタックに縛り付けることである。それは悪く老化する。React の規則は Angular には適用されず、Angular の規則はテンプレート付きサーバには適用されず、二年後には一覧の半分が死んでいる。提案は三つの層を分ける。</p>
+<p><strong>第 1 層 — 非依存の中核（交渉不能）。</strong> 道具についての言明ではなく、結果についての言明である。「フォーマッタは一つしかなく、誰もそれと議論しない」は、TypeScript でも PHP でも Go でも同じように適用される。中核は安定した識別子で列挙され、プロジェクトごとに変わらない。</p>
+<p><strong>第 2 層 — スタックごとのアダプタ（設定可能）。</strong> 中核の各規則について、フロントエンドの各ファミリが*何で*測り*どのしきい値で*測るかを宣言する。Vite を使う React のプロジェクト、Next のプロジェクト、Angular のプロジェクト、テンプレート付きサーバのプロジェクト、モバイルのプロジェクト、コマンドラインのプロジェクトは、同じ中核の六つの異なるアダプタである。ここに、ユーザーが「フロントエンドごとに設定可能」として求めたもののすべてが住む。</p>
+<p><strong>第 3 層 — プロジェクトの決定（宣言されたもの）。</strong> 具体的なしきい値と免除である。発明されるのではなく、所有者に求められて書かれる。アーキテクチャのステップのサイジングと同じである。しきい値が宣言されていなければアダプタのものが走り、そのように記録される。</p>
+<p>各規則は常に、六つの欄からなる同じカードで書かれる。</p>
+<div class="tw"><table><thead><tr><th>欄</th><th>内容</th></tr></thead><tbody><tr><td><code>id</code></td><td>安定した識別子（<code>CQ-07</code>、<code>UX-12</code>）。決して再利用しない。</td></tr><tr><td>言明</td><td>観察可能な結果についての、命令形の一文。</td></tr><tr><td>なぜか</td><td>それが避ける具体的な損害。損害がなければ、その規則は不要である。</td></tr><tr><td>検証の方法</td><td>計器：自動ゲート、マトリクスへの問い合わせ、エンドツーエンドのテスト、または手動のケース。</td></tr><tr><td>重大度</td><td><code>BLOQUEA</code>（ゲートが赤を出し、ブロックは閉じない）、<code>AVISA</code>（ペンディングを開く）、<code>REGISTRA</code>（文書に残るだけ）。</td></tr><tr><td>適用対象</td><td>それが支配するプロファイル。その外では走らず、それは例外ではない。適用範囲である。</td></tr></tbody></table></div>
+<p><strong>例外は宣言される。決して省略されない。</strong> 規則は四つの欄からなる登録で消す。識別子、一行の理由、誰が認可するか（所有者であり、エージェントではない）、再検討日である。登録なしで消された規則は、決定ではなくゲートの故障である。これは、「通すために」引き上げられた上限を受け入れないために本方法がすでに使っているのと同じ基準である。</p>
+</section><section>
+<h2 id="3-四つの計器">3. 四つの計器</h2>
+<p>どのヒューリスティクスも、その検証が意見であれば役に立たない。計器は四つであり、各規則はどれに属するかを宣言する。</p>
+<ol><li><strong>自動ゲート。</strong> 毎回のプッシュとブロックの閉鎖で走る。緑か赤を返す。安価で、反復可能で、議論しない。数えられるもののすべてを測る。</li><li><strong>マトリクスへの問い合わせ。</strong> プロファイルごとの機能マトリクス（B2 を参照）は宣言的な成果物であり、メニュー、ルーティング、権限はそこから導出される。マトリクスを点検することはインターフェースを点検することである。ユーザビリティの一部を機械で検証できるものに変える部品がこれである。</li><li><strong>プロファイルごとのエンドツーエンド・テスト。</strong> 宣言された各プロファイルについて、そのプロファイルとして入り、到達可能な機能の集合をマトリクスの行と比較するスクリプト。*少なすぎても多すぎてもならない*。典型的な二つの同期ずれ（余分なボタンと欠けた画面）を捕まえるテストである。</li><li><strong>手動のケース。</strong> どの機械も判断しないもの。グルーピングが理解できるか、作業が助けなしに完了するか、テキストがユーザーの言語にあるか。人とともに実行し、ステップ 10 がすでに命じているとおりに記録する。</li></ol>
+</section><section>
+<h2 id="4-パート-a-コード品質">4. パート A — コード品質</h2>
+<p>中核はステップ 9 を拡張する。それを置き換えも矛盾もしない。すでに測られているもののそれぞれに名前、重大度、アダプタを与え、今日欠けているもの、すなわちコードとして見たインターフェースを加える。</p>
+<div class="tw"><table><thead><tr><th>id</th><th>ファミリ</th><th>言明</th><th>検証</th><th>重大度</th></tr></thead><tbody><tr><td>CQ-01</td><td>形態</td><td>フォーマッタは一つしかなく、介入なしに走り、議論を許さない。</td><td>ゲート</td><td>BLOQUEA</td></tr><tr><td>CQ-02</td><td>形態</td><td>リポジトリごとにリンタは一つしかなく、その規則は全員にとって同じである。規則は書かれた理由とともに切るのであり、野放しのファイルの中で切るのではない。</td><td>ゲート</td><td>BLOQUEA</td></tr><tr><td>CQ-03</td><td>サイズ</td><td>宣言された上限を超えるファイルはなく（三百行から始まる）、自分の上限を超える関数もない（四十行から始まる）。</td><td>ゲート</td><td>BLOQUEA</td></tr><tr><td>CQ-04</td><td>複雑度</td><td>宣言された経路の上限を超える関数はない。</td><td>ゲート</td><td>BLOQUEA</td></tr><tr><td>CQ-05</td><td>重複</td><td>新しい重複は入らない。コピーされたブロックは抽出されるか、正当化される。</td><td>ゲート</td><td>BLOQUEA</td></tr><tr><td>CQ-06</td><td>デッド</td><td>デッドコードはない。使われていない関数、変数、インポート、分岐、依存関係である。</td><td>ゲート</td><td>BLOQUEA</td></tr><tr><td>CQ-07</td><td>型</td><td>言語が型を許すなら、プロジェクトは型を本気で使う。「どれでも」の型は宣言された例外であり、習慣ではない。</td><td>ゲート</td><td>AVISA</td></tr><tr><td>CQ-08</td><td>テスト</td><td>カバレッジは下がらない。今日の数値が明日の床である。</td><td>ゲート</td><td>BLOQUEA</td></tr><tr><td>CQ-09</td><td>テスト</td><td>実際のユーザーがいるところでは、ミューテーションのスコアをブロックごとに測り、新しいコードの中で生き残ったミューテートはそれぞれペンディングを開く。</td><td>ゲート＋記録</td><td>BLOQUEA</td></tr><tr><td>CQ-10</td><td>依存関係</td><td>すべての依存関係は宣言され、使われ、そしてそれが提供するものに対して不釣り合いな第三者ツリーを持ち込まない。</td><td>ゲート</td><td>AVISA</td></tr><tr><td>CQ-11</td><td>シークレット</td><td>認証情報、鍵、接続文字列がリポジトリに、また新しい履歴にもない。</td><td>ゲート</td><td>BLOQUEA</td></tr><tr><td>CQ-12</td><td>インターフェース</td><td>インターフェースは決定しない。どの画面もコンポーネントも業務規則（何ができるか、いくらになるか、どの状態が続くか）を含まない。ドメインに住み、ビューがそれを問い合わせる。</td><td>閉鎖時のレビュー＋手動のケース</td><td>BLOQUEA</td></tr><tr><td>CQ-13</td><td>インターフェース</td><td>サーバへの呼び出しはすべて単一の型付きクライアントを通る。画面が自分で手作業のリクエストを組むことはない。</td><td>ゲート（検索）</td><td>BLOQUEA</td></tr><tr><td>CQ-14</td><td>インターフェース</td><td>共有状態が住む場所は一つだけである。画面間の状態の重複は近道ではなく故障である。</td><td>閉鎖時のレビュー</td><td>BLOQUEA</td></tr><tr><td>CQ-15</td><td>インターフェース</td><td>見えるテキストはすべて翻訳カタログから出る。ユーザー向けの文字列がコンポーネントの中に書かれたままになることはない。</td><td>ゲート（検索）</td><td>BLOQUEA</td></tr><tr><td>CQ-16</td><td>インターフェース</td><td>すべてのインタラクティブな要素は安定した識別子とロールを持ち、自動テストが位置ではなく名前でそれを見つけられるようにする。</td><td>ゲート（検索）</td><td>BLOQUEA</td></tr><tr><td>CQ-17</td><td>インターフェース</td><td>色、間隔、タイポグラフィはすべてトークンから出る。スタイルシートに野放しのマジック値はない。</td><td>ゲート（検索）</td><td>BLOQUEA</td></tr><tr><td>CQ-18</td><td>インターフェース</td><td>基本的なアクセシビリティは自動で検証される。コントラスト、欄のラベル、可視のフォーカス、主要なフローでのキーボードナビゲーション、代替テキストを持つ画像である。</td><td>ゲート</td><td>AVISA</td></tr></tbody></table></div>
+<p>CQ-12 から CQ-18 の規則こそが、「コード品質」をフロントエンドにおいて意味のあるものにする。それらがなければ、プロジェクトはミューテーション九十パーセントを持ちながら、コンポーネントの中で自前の算術で合計を計算する画面を持つことができる。両方の世界の最悪である。複製された計算はバックエンドのテストをすべて通過してしまうからである。</p>
+<p><strong>初期重大度（D-048）。</strong> 初日からブロックするのは、検証器を持ち、議論を要するしきい値に依存しない十四の規則である。CQ-01 から CQ-06、CQ-08、そして CQ-11 から CQ-17。CQ-09 は実際のユーザーがいるところでブロックし、そこが測られる場所である。警告するのは三つ、しかも三つだけである。CQ-07（型）、CQ-10（依存関係）、CQ-18（アクセシビリティ）。これらはプロジェクトがまず較正する必要があるものだからである。フォーマッタ、リンタ、サイズ、複雑度は<strong>緩めない</strong>。ステップ 9 がすでに今日それらをブロックしており、これはそれを拡張するのであって置き換えるのではない。継承された負債は、宣言された例外かラチェットのベースラインで解決するのであり、重大度を下げて解決するのではない。そして CQ-12 と CQ-14 は、この表で唯一、機械ではなく人間の赤でブロックする二つの規則である。ペンディングの閉鎖時に、手動のケースを前にして検証され、UX-22 と UX-27 と同じ基準に従う。毎回のコミットではない。プロジェクトがその閉鎖を支えられないなら、その規則は忘れられたのではなく記録された決定によって AVISA に下がる。</p>
+<p><strong>フロントエンドのファミリごとのアダプタ。</strong> 第 2 層がどのようにインスタンス化されるかの一例である（名前は例示であり、プロジェクトが選んで書く）。</p>
+<div class="tw"><table><thead><tr><th>概念</th><th>シングルページアプリケーション（React、Vue、Angular）</th><th>テンプレート付きサーバ</th><th>ネイティブ・モバイル</th><th>コマンドライン</th></tr></thead><tbody><tr><td>CQ-12 ビューの中のドメイン</td><td>コンポーネントのサイズと依存関係に関する lint 規則＋レビュー</td><td>コントローラのレビュー</td><td>ビューモデルのレビュー</td><td>コマンド層のレビュー</td></tr><tr><td>CQ-13 単一クライアント</td><td>API 契約からの生成</td><td>サーバの単一サービス</td><td>生成されたクライアント</td><td>SDK の単一クライアント</td></tr><tr><td>CQ-15 テキスト</td><td>カタログ＋可視のリテラルを禁じる規則</td><td>テンプレートエンジンのカタログ</td><td>リソースカタログ</td><td>カタログ</td></tr><tr><td>CQ-16 識別子</td><td>要素ごとの宣言的属性</td><td>マークアップ内の識別子</td><td>アクセシビリティ識別子</td><td>安定した出力</td></tr><tr><td>CQ-17 トークン</td><td>スタイルシート内のトークン、野放しの値なし</td><td>同じ</td><td>同じ</td><td>適用外</td></tr><tr><td>CQ-18 アクセシビリティ</td><td>ゲート内の自動アナライザ</td><td>生成された HTML 上のアナライザ</td><td>アクセシビリティ・アナライザ</td><td>適用外</td></tr></tbody></table></div>
+<p>列の間で変わるのは道具としきい値である。変わらないのは言明である。それこそが、ヒューリスティクスを装飾にせずに非依存にするものである。</p>
+</section><section>
+<h2 id="5-パート-b-ユーザビリティ">5. パート B — ユーザビリティ</h2>
+<p>五つのファミリ。第一と第二は所有者が明示的に求めたものであり、他の三つは、それらがなければグルーピングとプロファイルが同じように、ただより遅く劣化するから存在する。</p>
+<h3 id="b1-機能的収束によるグルーピング">B1 — 機能的収束によるグルーピング</h3>
+<p>母なる規則：<strong>機能は、その人がしに来たことによってグループ化され、それが生まれたモジュールによってではない。</strong> コードはエンティティ（「請求書」「顧客」「支払」）で組織される。人はそうではない。誰も「エンティティを管理する」ためにシステムに入らない。入るのは請求するため、出荷するため、月末を締めるためである。メニューがエンティティを見せるなら、その人が翻訳者の役をする。メニュー*が*仕事である。</p>
+<div class="tw"><table><thead><tr><th>id</th><th>言明</th><th>検証</th><th>重大度</th></tr></thead><tbody><tr><td>UX-01</td><td>メニューの各グループはユーザーの仕事で名付けられる（その人の語彙で、プロジェクトの用語集を用いて）。技術的なモジュールでもデータのエンティティでも決してない。</td><td>手動のケース＋マトリクスのレビュー</td><td>AVISA</td></tr><tr><td>UX-02</td><td>各機能はちょうど一つの正規の家を持つ。二つのグループに役立つなら、一つの家を選び、もう一方からはリンクする。入口は複製しない。</td><td>マトリクスへの問い合わせ</td><td>BLOQUEA</td></tr><tr><td>UX-03</td><td>孤児はない。宣言されたすべての機能は入口画面から三ステップ以内で到達可能である。</td><td>ルートの自動巡回</td><td>BLOQUEA</td></tr><tr><td>UX-04</td><td>グループのサイズは妥当である。三つ未満の機能はグループでなかったものを示し、七つを超えるものは引き出しを示す。</td><td>マトリクスへの問い合わせ</td><td>AVISA</td></tr><tr><td>UX-05</td><td>すべてのグループは、そこで何をするのか、主な操作は何かを言う入口画面を持つ。空の表で直接開くグループはない。</td><td>手動のケース</td><td>AVISA</td></tr><tr><td>UX-06</td><td>人が頻繁に行うフローは一緒に住む。「支払を登録する」と「顧客の口座を見る」が同じセッションで使われるなら、同じグループを共有する。</td><td>手動のケース（タスクテスト）</td><td>REGISTRA</td></tr><tr><td>UX-07</td><td>最初のクリックのテスト：所有者は具体的な作業（「支払はどこで請求しますか」）の前に一つの場所を名指す。二つを名指すなら重複があり、一つも名指さないなら孤児がある。各ブロックの閉鎖時に走らせる。</td><td>手動のケース</td><td>AVISA</td></tr></tbody></table></div>
+<h3 id="b2-プロファイルと-プロファイルごとに有効化される機能">B2 — プロファイルと、プロファイルごとに有効化される機能</h3>
+<p>ここに最も実り多い部品がある。その理由は設計ではなく工学である。<strong>有効化は一度、マトリクスの中で宣言され、それ以外のすべてはそこから導出される。</strong> 今日の典型的な誤りは、権限を三度（メニューで、ルートのガードで、データのフィルタで）書き、その三つが離れることである。マトリクスを唯一の生産者とすれば、メニュー、ルーティング、サーバの権限、テストのスクリプトは消費者であり、本方法がすでに要求する生産者／消費者の対称性がひとりでに検証可能になる。</p>
+<p>マトリクスは四つの列と機能ごとに一行を持つ。*機能*、*家*（B1 のグループ）、*それを持つプロファイル*、*入口のルート*。それだけである。</p>
+<div class="tw"><table><thead><tr><th>id</th><th>言明</th><th>検証</th><th>重大度</th></tr></thead><tbody><tr><td>UX-08</td><td>すべての機能はマトリクスの中で、どのプロファイルがそれを持つかを宣言する。プロファイルのない機能は存在しない。プロファイルを割り当てるか、削除するかである。</td><td>マトリクスへの問い合わせ</td><td>BLOQUEA</td></tr><tr><td>UX-09</td><td>宣言されたすべてのプロファイルは少なくとも一つの機能と独自の入口点を持つ。空のプロファイルは、設計時に誰も使わなかったプロファイルである。</td><td>マトリクスへの問い合わせ</td><td>BLOQUEA</td></tr><tr><td>UX-10</td><td>ナビゲーションはマトリクスから生成される。手書きのメニューは近道ではなく故障である。</td><td>ゲート（検索）</td><td>BLOQUEA</td></tr><tr><td>UX-11</td><td>隠すことは保護することではない。すべてのルートは入口を隠すことに加えてサーバ側で権限を検証する。アドレスを手で書いても入るには足りない。</td><td>エンドツーエンド・テスト</td><td>BLOQUEA</td></tr><tr><td>UX-12</td><td>少なすぎても多すぎてもならない。プロファイルごとに、到達可能な機能の集合はマトリクスのその行の集合とちょうど同じである。</td><td>プロファイルごとのエンドツーエンド・テスト</td><td>BLOQUEA</td></tr><tr><td>UX-13</td><td>拒否は説明される。人が自分に属さない機能に入ったとき、なぜか、誰にアクセスを求めるべきかと言うメッセージを見る。空白の画面でも、理由のない灰色のボタンでも決してない。</td><td>手動のケース</td><td>AVISA</td></tr><tr><td>UX-14</td><td>同じボタンは全員にとって同じことを意味する。二つのプロファイルがラベルを共有するなら、効果も共有する。効果がプロファイルによって変わるなら、ラベルが変わるか、機能が二つに分かれる。</td><td>手動のケース</td><td>AVISA</td></tr><tr><td>UX-15</td><td>データもプロファイルでフィルタされる。一覧を見る人は自分に対応する行を見るのであり、完全な一覧から行をブラウザで隠したものを見るのではない。</td><td>エンドツーエンド・テスト＋サーバのレビュー</td><td>BLOQUEA</td></tr><tr><td>UX-16</td><td>マトリクスとユーザーマニュアルは機能と同じペンディングで更新される。マトリクスに行のない新しい機能は閉じられない。</td><td>ペンディングの閉鎖</td><td>BLOQUEA</td></tr></tbody></table></div>
+<h3 id="b3-状態-そして何かがないときに人が見るもの">B3 — 状態、そして何かがないときに人が見るもの</h3>
+<p>「動かない」という苦情のほとんどは、「何もない」「読み込み中」「失敗した」と言えなかった画面である。四つの状態を、常に、すべての一覧とすべての詳細画面で。</p>
+<div class="tw"><table><thead><tr><th>id</th><th>言明</th><th>検証</th><th>重大度</th></tr></thead><tbody><tr><td>UX-17</td><td>すべての一覧は四つの解決された状態を持つ。データあり、空、読み込み中、エラーである。空は「まだ何もない」と「あなたの検索が見つけなかった」を区別する。</td><td>手動のケース＋レビュー</td><td>AVISA</td></tr><tr><td>UX-18</td><td>何かが遅れている間は、動いていることが見え、長ければキャンセルできる。何も応答しないボタンが第一の苦情である。</td><td>手動のケース</td><td>AVISA</td></tr><tr><td>UX-19</td><td>エラーは何が起きたか、何ができるかを言い、入力済みのものを消さない。技術的なコードだけでも、「エラーが発生しました」でもない。</td><td>手動のケース</td><td>AVISA</td></tr></tbody></table></div>
+<h3 id="b4-操作とエラー">B4 — 操作とエラー</h3>
+<div class="tw"><table><thead><tr><th>id</th><th>言明</th><th>検証</th><th>重大度</th></tr></thead><tbody><tr><td>UX-20</td><td>画面には明らかな主操作が一つあり、残りは副次的であり、そう見える。</td><td>手動のケース</td><td>AVISA</td></tr><tr><td>UX-21</td><td>すべての破壊的な操作は影響を受ける対象を名指して確認を求め、できるときは確認する代わりに取り消す。</td><td>手動のケース</td><td>AVISA</td></tr><tr><td>UX-22</td><td>失敗したフォームは入力済みのものを保ち、問題のある欄をその欄の場所で示す。</td><td>手動のケース</td><td>BLOQUEA</td></tr><tr><td>UX-23</td><td>どの操作も画面を出口のないままにしない。保存、削除、キャンセルの後、その人はどこにいるのか、どう続けるのかを知る。</td><td>手動のケース</td><td>AVISA</td></tr></tbody></table></div>
+<h3 id="b5-言語とアクセシビリティ">B5 — 言語とアクセシビリティ</h3>
+<div class="tw"><table><thead><tr><th>id</th><th>言明</th><th>検証</th><th>重大度</th></tr></thead><tbody><tr><td>UX-24</td><td>インターフェースはプロジェクトの用語集の言語を話す。同じ対象は画面でも、マニュアルでも、メールでも同じように呼ばれる。同義語は欠陥である。</td><td>手動のケース＋レビュー</td><td>AVISA</td></tr><tr><td>UX-25</td><td>主要なフローでは、マウスなしで、スクリーンリーダーで、すべてを行える。フォーカスは常に見え、閉じ込められない。</td><td>ゲート（CQ-18）＋手動のケース</td><td>AVISA</td></tr><tr><td>UX-26</td><td>状態は色だけで伝わらない。情報を持つ画像はすべて代替テキストを持ち、テキストはズームなしで通常のサイズで読める。</td><td>ゲート（CQ-18）</td><td>AVISA</td></tr><tr><td>UX-27</td><td>画面に触れる各ペンディングはテスト環境の実際のスクリーンショットを提出し、所有者は閉じる前にそれを見る。スクリーンショットは任意でもなく、モックアップでもない。</td><td>ペンディングの閉鎖</td><td>BLOQUEA</td></tr></tbody></table></div>
+</section><section>
+<h2 id="6-どこに掛かるか-そしてどんな成果物を生むか">6. どこに掛かるか、そしてどんな成果物を生むか</h2>
+<p>本付録は新しいステップを発明しない。存在するものに掛かる。それによってゲートの複製を避け、ユーザビリティの一覧の通常の行き先、すなわち一度読まれて終わることを避ける。</p>
+<p><strong>どこに置くか（D-043）。</strong> 四つの区間に横断的であり、主な重みは建設ループ（ステップ 5 から 12）にあり、そこが決定され建設される場所である。独自のステップではない。番号付きのステップはラダーの再番号付けを強制し、ステップの数え方を変え、付録を八言語への契約の義務的翻訳に従わせることになり、建設が緑で通る前にそれを要求することになる。しかもループがすでに持たないゲートを一つも加えない。</p>
+<p><strong>どう掛かるか（D-044）。</strong> 一つの正典の出所、五つのアンカー、二つの事前入口。規則のテキストはここにだけ住み、プロンプトはそれを引用する。決してコピーしない。四十五の規則をループの八つのプロンプトの中で繰り返すと、それらを薄める（各ステップ自身の仕事と競合し、エージェントは毎回違う仕方で従う）。それらを派生させる（同じテキストの二つのコピーはひとりでに同期を失う。ステップ 11 が追うアンチパターンである）。そしてそれらをより横断的にするわけではない。規則を横断的にするのは、各ブロックが同じゲートを通ることなのであり、規則がどこにでも書かれていることではない。</p>
+<div class="tw"><table><thead><tr><th>時点</th><th>何が加わるか</th><th>なぜそこか</th></tr></thead><tbody><tr><td><strong>事前入口 1</strong> — 適用範囲の定義</td><td>ユーザーの用語集</td><td>用語集がなければ、UX-01 と UX-24 は比較する相手を持たない。</td></tr><tr><td><strong>事前入口 2</strong> — 適用範囲の定義</td><td>プロファイルの一覧</td><td>一覧がなければ、B2 のマトリクスはステップ 5 で発明され、そこから導出されるすべてが根拠なしに生まれる。</td></tr><tr><td><strong>アンカー 1</strong> — ステップ 5（計画）</td><td>画面に触れるすべてのペンディングは三つのことを宣言する。どの収束グループに属するか（B1）、どのプロファイルがそれを持つか、どの受け入れ基準がプロファイルごとか（「プロファイル X において、人は Y ができ、Z はできない」）。その宣言がなければペンディングはステップを通らない。</td><td>ここでグルーピングとプロファイルが*生まれる*。それらは計画の決定であり、コードの決定ではない。最も生産性の高いアンカーであり、今日存在しないものである。</td></tr><tr><td><strong>アンカー 2</strong> — ステップ 8（赤いテスト）</td><td>マトリクスは、まず失敗するのが見えるテストになる。プロファイルごとに、到達可能なものをその行と比較する（UX-11、UX-12、UX-15）。</td><td>これがなければマトリクスは誰も見ない文書である。</td></tr><tr><td><strong>アンカー 3</strong> — ステップ 9（品質）</td><td>完全な CQ カタログと、そのアダプタおよび宣言されたしきい値。<code>docs/CODE_QUALITY.md</code> は単一の数値ではなく規則ごとに報告する。そしてマトリクスをゲートとして（UX-02、UX-03、UX-08、UX-09、UX-10、UX-16）。</td><td>テキストが指令として文字通りに入る唯一の場所であり、ラチェット付きで毎ブロック走るゲートである。</td></tr><tr><td><strong>アンカー 4</strong> — ステップ 10（手動のケース）</td><td>各ケースは<strong>影響を受けるプロファイルごとに一度</strong>実行され、マトリクスから導出され、手書きされない。一つのプロファイルで走らせたケースは実行済みとして数えない。</td><td>手動のケースは本方法の唯一の人間による検証である。プロファイルごとに開かれなければ、B2 の半分は決して見られない。</td></tr><tr><td><strong>アンカー 5</strong> — ステップ 12（検証と正直な報告）</td><td>報告は何を測ったか、何が avisa に残ったか、どの規則が消されているかを、その理由、認可者、再検討日とともに言う。</td><td>沈黙の損害ゼロ。消されたグループは充足として読まれてはならない。</td></tr><tr><td>ユーザーマニュアル</td><td>B1 のグループで組織され、グループごとにどのプロファイルが入るかを宣言する。</td><td>マニュアルとメニューが同じ言葉で名付けられなければ、用語集は壊れる。</td></tr><tr><td>各ブロックの閉鎖</td><td>最初のクリックのテスト（UX-07）、実環境のスクリーンショット（UX-27）、そしてマトリクスの二つのエンドツーエンド・テスト。</td><td>自動化できない三つの検証である。</td></tr></tbody></table></div>
+<p><strong>状態（D-049）。</strong> 五つのアンカーは接続済みである。ステップ 5、8、9、10、12 の冒頭プロンプトが本書を八言語で引用し、英語の一文はすべてで同一、その隣に各国語の翻訳が置かれている。本書は残りのメソッドとともに八言語でサイトに公開され、その二つのプロンプトは契約 <code>anexo-h</code> として <code>docs/html/api/prompts.json</code> に入った。そこから <code>build/prompts.mjs</code> が八言語でバイト比較し、一致しなければビルドは失敗する。</p>
+<p>ステップ 6、7、11 はせいぜい一行を受け取る。6 はすでにしきい値と例外を決定として記録しており（宣言された例外の自然な場所である）、11 は四つの場所に書かれたマトリクスのケースが打撃とともに現れる場所である。薄めないために、独自のテキストは加えない。</p>
+<p>三つの成果物、すべて <code>docs/</code> の中にある。<code>CODE_QUALITY.md</code>（拡張）、<code>USABILITY.md</code>（新規、規則ごとの結果と宣言された例外を含む）、<code>PROFILE_MATRIX.md</code>（マトリクス。文書であると同時にメニューの源である）。</p>
+</section><section>
+<h2 id="7-設定">7. 設定</h2>
+<p>プロジェクトごとに一つのファイルが第 2 層と第 3 層を宣言する。提案された形態での例であり、最終的な値ではない。</p>
+<pre class="code"><code>{
+  "version": 1,
+  "frontend": "react-vite",
+  "medido_por": {
+    "formato": "prettier",
+    "lint": "eslint",
+    "tipos": "tsc",
+    "complejidad": "eslint-complexity",
+    "duplicacion": "jscpd",
+    "muertos": "knip",
+    "cobertura": "vitest-coverage",
+    "mutacion": "stryker",
+    "accesibilidad": "axe-core"
+  },
+  "umbrales": {
+    "lineas_por_archivo": 300,
+    "lineas_por_funcion": 40,
+    "caminos_por_funcion": 10,
+    "cobertura_minima": 0,
+    "mutacion_objetivo": 0
+  },
+  "excepciones": [
+    {
+      "regla": "CQ-17",
+      "motivo": "トークンを持たない継承された印刷用レポート",
+      "autoriza": "所有者",
+      "revisar": "2027-01-31"
+    }
+  ]
+}</code></pre>
+<p>二つのゼロは意図的であり、それこそが重要な部分である。最低カバレッジはラチェットが実測値で決め、ミューテーションの目標はプロジェクトにユーザーがいるときに所有者が決める。それらがゼロで誰も宣言していないなら、ゲートはそれを発明する代わりに未宣言のしきい値として報告する。</p>
+</section><section>
+<h2 id="8-二つの部品-本方法が使う形態で">8. 二つの部品、本方法が使う形態で</h2>
+<p><strong>コード品質。</strong></p>
+<div class="pbox"><blockquote class="prompt"><p>Set up and maintain the code-quality gate for this project, configured for its frontend family. The core rules are the same in every project; what changes is how each one is measured and at which threshold. Install one formatter and one linter with a single shared configuration; enforce size limits per file and per function, complexity per function, duplication, dead code, declared-and-used dependencies, type checking where the language allows it, coverage with a ratchet, and secret scanning. Where the project has real users, add mutation testing scoped to the changed lines and record the score per block. Then extend the gate to the frontend itself: no business rule inside a screen, one typed client for every server call, one home for shared state, no user-visible string outside the translation catalogue, a stable identifier and role on every interactive element, styling only through tokens, and automatic basic accessibility checks. Every rule has a stable id, a severity (blocks, warns, records) and a named verifier. Thresholds and exceptions are declared by the owner in one configuration file; a rule switched off without a written exception is a gate failure, not a decision. Report the result per rule in <code>docs/CODE_QUALITY.md</code>, not as a single number.</p></blockquote><blockquote class="prompt tr" lang="ja" hidden><p>このプロジェクトのコード品質ゲートを、そのフロントエンドのファミリに合わせて設定し、構築して維持せよ。中核の規則はどのプロジェクトでも同じである。変わるのは、各規則を何で測り、どのしきい値で測るかである。フォーマッタを一つ、リンタを一つ、単一の共通設定でインストールせよ。ファイルごとおよび関数ごとのサイズ上限、関数ごとの複雑度、重複、デッドコード、宣言され使用されている依存関係、言語が許すところでの型検査、ラチェット付きのカバレッジ、シークレットの走査を強制せよ。プロジェクトに実際のユーザーがいるところでは、変更された行に限定したミューテーションテストを加え、スコアをブロックごとに記録せよ。次にゲートをフロントエンド自体へ広げよ。画面の中に業務規則を置かないこと、サーバへのすべての呼び出しに対して一つの型付きクライアント、共有状態のための一つの置き場所、翻訳カタログの外にユーザーに見える文字列がないこと、すべてのインタラクティブな要素に安定した識別子とロール、スタイルはトークンのみを通すこと、そして基本的なアクセシビリティの自動検査である。すべての規則は安定した識別子、重大度（ブロックする、警告する、記録する）、そして名前のある検証器を持つ。しきい値と例外は所有者が一つの設定ファイルで宣言する。書かれた例外なしに切られた規則は、決定ではなくゲートの故障である。結果は単一の数値ではなく、<code>docs/CODE_QUALITY.md</code> に規則ごとに報告せよ。</p></blockquote><button type="button" class="trbtn" data-a="日本語に翻訳" data-b="英語の原文を見る">日本語に翻訳</button></div>
+<p><strong>ユーザビリティ。</strong></p>
+<div class="pbox"><blockquote class="prompt"><p>Build the usability criteria for this project before writing the first screen, and enforce them where the method already has hooks. Group functionality by what the person came to do, never by the internal module or the data entity: every menu group is named with a user job in the project glossary, every functionality has exactly one canonical home, no functionality is orphaned, and every group is reachable in no more than three steps from the entry screen. Then declare accessibility in one matrix and derive everything from it: each functionality lists the profiles that have it, each functionality has at least one profile, each profile has at least one functionality and its own entry point, the navigation is generated from the matrix instead of written by hand, and every route checks the permission on the server because hiding an entry is not protecting it. Verify the matrix per profile with an end-to-end check that compares what is reachable with the matrix row: neither less nor more. Require the four states on every list (with data, empty, loading, error), a visible working indicator with the option to cancel long operations, an error message that says what happened and what to do without losing entered data, a primary action per screen, confirmation or undo for destructive actions, and a form that keeps what was typed. Run each manual test case once per affected profile, run the first-click check at the close of every block, and require a real screenshot of the test environment on every item that touches a screen. Record the result per rule, with owner-declared exceptions, in <code>docs/USABILITY.md</code>, and keep the matrix in <code>docs/PROFILE_MATRIX.md</code> as the single source of truth.</p></blockquote><blockquote class="prompt tr" lang="ja" hidden><p>最初の画面を書く前に、このプロジェクトのユーザビリティ基準を組み立て、本方法がすでに掛かり所を持っている場所でそれらを強制せよ。機能はその人がしに来たことによってグループ化し、内部のモジュールによってもデータのエンティティによっても決してグループ化するな。メニューの各グループはプロジェクトの用語集にあるユーザーの仕事で名付け、各機能はちょうど一つの正規の家を持ち、どの機能も孤児にならず、すべてのグループは入口画面から三ステップ以内で到達可能でなければならない。次にアクセシビリティを一つのマトリクスで宣言し、そこからすべてを導出せよ。各機能はそれを持つプロファイルを列挙し、各機能は少なくとも一つのプロファイルを持ち、各プロファイルは少なくとも一つの機能と独自の入口点を持ち、ナビゲーションは手書きではなくマトリクスから生成され、すべてのルートはサーバ側で権限を検証する。入口を隠すことは保護することではないからである。マトリクスをプロファイルごとに、到達可能なものをマトリクスの行と比較するエンドツーエンドの検査で検証せよ。少なすぎても多すぎてもならない。すべての一覧に四つの状態（データあり、空、読み込み中、エラー）を要求せよ。長い操作をキャンセルする選択肢を伴う可視の進行中指示、入力済みのデータを失わずに何が起きたかと何をすべきかを言うエラー・メッセージ、画面ごとに一つの主操作、破壊的な操作に対する確認または取り消し、そして入力されたものを保つフォームを要求せよ。各手動テストケースを影響を受けるプロファイルごとに一度実行し、各ブロックの閉鎖時に最初のクリックのテストを実行し、画面に触れるすべてのペンディングにテスト環境の実際のスクリーンショットを要求せよ。結果を規則ごとに、所有者が宣言した例外とともに <code>docs/USABILITY.md</code> に記録し、マトリクスを唯一の真実の源として <code>docs/PROFILE_MATRIX.md</code> に保て。</p></blockquote><button type="button" class="trbtn" data-a="日本語に翻訳" data-b="英語の原文を見る">日本語に翻訳</button></div>
+</section><section>
+<h2 id="9-この提案がしないこと">9. この提案がしないこと</h2>
+<ul><li><strong>ステップを加えない。</strong> 四十五の横断的な規則（18 の品質と 27 のユーザビリティ）であり、新しい段階ではない。存在するステップに掛かる。</li><li><strong>スコアを発明しない。</strong> 「ユーザビリティ 78」という数値は何を直すべきかを言わず、間違った方向に最適化される。規則ごとに報告する。第 12 節は二つの派生した数値を提案するが、それらは規則とその座席の数え直しであり——品質やユーザビリティの評点ではなく——何も閉じる権限を与えない。</li><li><strong>所有者を置き換えない。</strong> 最初のクリックのテスト、スクリーンショット、タスクテストは人間のものであり続ける。「動く」と「役に立つ」を区別する唯一の計器だからである。</li><li><strong>工場出荷のしきい値を持たない。</strong> アダプタのものは宣言された出発点である。自分のものを宣言しないプロジェクトはそれを継承し、そのように記録される。</li><li><strong>ゲートが悪いグルーピングを検出するとは約束しない。</strong> 機械は重複も孤児もないことを検証できる。グループが「管理」と名付けられていれば、それを見るのは人間でなければならない。</li></ul>
+</section><section>
+<h2 id="10-決定-何が解決し-何が残っているか">10. 決定：何が解決し、何が残っているか</h2>
+<h3 id="解決済み">解決済み</h3>
+<div class="tw"><table><thead><tr><th>#</th><th>決定</th><th>記録</th></tr></thead><tbody><tr><td>1</td><td><strong>建設ループに横断的であり、独自のステップではない。</strong> ラダーは再番号付けされず、ステップの数え方も変わらず、付録はステップの契約を翻訳する義務を継承しない。</td><td>D-043</td></tr><tr><td>2</td><td><strong>五つのアンカーと二つの事前入口を持つ一つの正典の出所。</strong> 四十五の規則をループの八つのプロンプトの中にコピーする代わりに。</td><td>D-044</td></tr><tr><td>3</td><td><strong>二つの独立したスイッチ</strong>（品質とユーザビリティ）、規則ごとに三つの状態（ブロックする、警告する、消えている）、フロントエンドのファミリごとのアダプタ、所有者が宣言するしきい値と例外。</td><td>D-045</td></tr><tr><td>4</td><td><strong>スイッチの規律：</strong> プロジェクトの設定に住み、プロンプトには住まない。消すことは、理由、認可者、再検討日を伴う記録された決定としてのみ有効である。消えていることは報告で観測可能である。そしてスイッチは入れて切って試される。</td><td>D-046</td></tr><tr><td>5</td><td><strong>規則ごとに定められた初期重大度：</strong> 品質では十四がブロックし（CQ-01 から CQ-06、CQ-08、CQ-11 から CQ-17）、CQ-09 は実際のユーザーがいるところでブロックし、三つが警告する（CQ-07、CQ-10、CQ-18）。ユーザビリティでは十一がブロックし（UX-02、UX-03、UX-08 から UX-12、UX-15、UX-16、UX-22、UX-27）、UX-06 は記録するだけで、残りは警告する。「すべてがブロックする」——プロジェクトが動き出さない——のでも、「すべてが警告する」——ヒューリスティクスが飾りになる——のでもない。</td><td>D-048</td></tr><tr><td>6</td><td><strong>アクセシビリティは警告で始まり、製品に組織外の最終ユーザーがいるときに所有者の宣言によってブロックへ昇格する。</strong> 既定値は発明されない。昇格は他のどのしきい値とも同じ仕組みで宣言される（D-045）。</td><td>D-048</td></tr></tbody></table></div>
+<h3 id="d-048-で閉じたもの-そしてそれが引きずる二つの訂正">D-048 で閉じたもの、そしてそれが引きずる二つの訂正</h3>
+<p>プロンプトの執筆を妨げていた二つの問いはすでに回答済みである。一つ目は五行目に、二つ目は六行目に残った。しかし承認された勧告には二つの事実の誤りがあり、それらが戻らないようにここに書いておく。</p>
+<ol><li><strong>数え方の欠陥。</strong> 本付録が「二十七の規則」と言っていたところ、正しい数は<strong>四十五</strong>である。品質が 18（CQ-01 から CQ-18）、ユーザビリティが 27（UX-01 から UX-27）。古い数字は、半分だけを数えていた草稿から来ていた。第 6 節と第 9 節で訂正し、D-048 に注記した。D-044 のテキストは書かれたまま保持される。決定は記録であり、書き直されないからである。</li><li><strong>フォーマッタ、リンタ、サイズ、複雑度は緩めない。</strong> この勧告の以前の版は、継承された負債を抱えるプロジェクトを妨げないために、それらを「警告する」に送っていた。そうはできない。ステップ 9 がすでに今日それらをブロックしており、この拡張はそれを拡張するのであって置き換えるのではない。継承された負債は、宣言された例外——理由と再検討日を伴う——かラチェットのベースラインで解決するのであり、規則の重大度を下げて解決するのではない。</li></ol>
+<p>そして宣言された限界が一つある。その類で唯一だからである。<strong>CQ-12 と CQ-14 は人間の赤でブロックする。</strong> 画面が業務規則を決定していないことを証明する道具はない。それらはペンディングの閉鎖時に、手動のケースを前にし、UX-22 と UX-27 と同じ基準で検証される。プロジェクトがその閉鎖を支えられないなら、記録された決定によって AVISA に下がる。ブロックするのに誰も検証しない規則は、警告する規則より悪い。</p>
+<h3 id="決定ではなく暦のペンディング">決定ではなく暦のペンディング</h3>
+<p><strong>翻訳。</strong> 完了した。付属文書は八言語で存在し、その二つのプロンプトはプロンプト API の一部であり、八版すべてで英語本文がバイト一致している（D-043 が要求し、<code>build/prompts.mjs</code> がビルドのたびに検証する）。カスティーリャ語が正典であり続ける。翻訳とカスティーリャ語が食い違えばカスティーリャ語が勝ち、同じ変更の中で翻訳を直す。</p>
+</section><section>
+<h2 id="11-ゲートが見張っていることをどう確かめるか">11. ゲートが見張っていることをどう確かめるか</h2>
+<p>入れて切って何も変わらないヒューリスティクスは、ゲートではなく装飾である。実装（PND-002）の受け入れテストは、各ファミリの違反を意図的に仕込んだフィクスチャ・プロジェクトである。</p>
+<div class="tw"><table><thead><tr><th>シナリオ</th><th>要求される結果</th></tr></thead><tbody><tr><td>品質オン、違反あり</td><td>赤。規則と、違反があるファイルを名指す。</td></tr><tr><td>品質オフ、<strong>記録あり</strong></td><td>緑。そして報告が、消えていること、いつからか、誰が認可したかを<strong>言う</strong>。</td></tr><tr><td>品質オフ、<strong>記録なし</strong></td><td>赤。書かれた理由なしに消すことは、規則の不在ではなく故障である。</td></tr><tr><td>ユーザビリティ・オン、行き過ぎて到達するプロファイルあり</td><td>UX-12 で赤。プロファイルと機能を名指す。</td></tr><tr><td>ユーザビリティ・オン、マトリクスに行のない機能あり</td><td>ペンディングの閉鎖時に UX-08 で赤（UX-16）。</td></tr><tr><td>両方のグループがオフ</td><td>両方で緑。報告に二行の停止が載る。</td></tr><tr><td><strong>警告する</strong>規則の違反を仕込む</td><td>緑。そして規則とファイルを名指すペンディングが開く。警告することは承認することではない。</td></tr><tr><td><strong>ブロックする</strong>規則の違反を仕込む</td><td>赤。規則、ファイル、対処を名指す。そしてダッシュボードはない。平均はブロックを閉じない。</td></tr><tr><td>ダッシュボード：<strong>記録あり</strong>で規則を消す</td><td>コンプライアンスは上がりうるが、<strong>ゲートのカバレッジは下がり</strong>、数値はそれを説明する座席とともに公表される。単一の数値ではこのシナリオは見過ごされてしまう。二つの数値が理由をもって存在することの証明である（D-047）。</td></tr><tr><td>ダッシュボード：異なるレギュレーションでの二回の実行</td><td>二つの数値はその指紋（カタログの版、有効な規則と消えた規則、アダプタ、道具の版）とともに示され、<strong>連続した系列としてグラフ化されない</strong>。二つの異なる物差しであり、そう言うことが結果の一部である。</td></tr><tr><td>ダッシュボード：無効なレギュレーション（記録なしで消えた規則）</td><td>数値を出さない。出力は赤であり、アスタリスク付きのダッシュボードではない。</td></tr><tr><td>ダッシュボード：ブロックする規則が赤のままコンプライアンスが高い</td><td>ブロックは<strong>閉じない</strong>。ダッシュボードは平均する。緑は各規則が一つずつ決める。</td></tr><tr><td>ダッシュボード：自動のものだけを触って割合が改善する</td><td>割合は上がり、人間による検証の行は動かない。別に報告され、報告は二つを単一の数値に足し合わせない。</td></tr></tbody></table></div>
+<p>見られるのは色だけではない。二行の停止が報告に<strong>存在する</strong>ことが見られる。その行のない緑の結果は、このテストが色だけで単独では検出できない唯一の故障であり、だからこそ出力を読んで検証する。</p>
+</section><section>
+<h2 id="12-コンプライアンス・ダッシュボード-決定済み-二つの数値-d-047">12. コンプライアンス・ダッシュボード（決定済み：二つの数値、D-047）</h2>
+<p><strong>状態。</strong> 2026-10-22 に D-047 で決定された。ダッシュボードは二つの数値で行き、レギュレーションの指紋を伴い、ラチェットを伴い、人間のものを割合の外に置き、座席を必須とする。ブロックを閉じる権限は与えない。以下は実装（PND-002）が満たさなければならない仕様である。</p>
+<p><strong>何であるか。</strong> ゲートがすでに出した規則ごとの結果からの決定論的な派生物である。新しいものを測らず、新しいものを判断しない。数える。もしダッシュボードが規則の評決を変えられたなら、同じものに対して二つの真実の源があることになり、それはまさに本付録が UX-10（ナビゲーションはマトリクスから導出される）と CQ-14（共有状態の単一の場所）で戦っているものである。</p>
+<p><strong>何でないか。</strong> 受け入れ基準ではない。どの数値もブロックを閉じる権限を与えない。緑か赤かは、ブロックする各規則が一つずつ決める。ダッシュボードは傾向を記述し、何を見るべきかを指す。閉鎖のしきい値として使われ始めたら、役に立つのをやめる。数値を上げる最短の道は規則を消すことだからである。</p>
+<p><strong>二つの数値、決して一つではない。</strong></p>
+<div class="tw"><table><thead><tr><th>数値</th><th>式</th><th>何を測るか</th><th>どう動くか</th></tr></thead><tbody><tr><td><strong>コンプライアンス</strong></td><td>通る規則 ÷ 有効な規則</td><td>見ているものがどれだけきれいか</td><td>直すと上がる</td></tr><tr><td><strong>ゲートのカバレッジ</strong></td><td>有効な規則 ÷ カタログに宣言された規則</td><td>付録のどれだけが実際に見ているか</td><td>規則を消すと下がる</td></tr></tbody></table></div>
+<p>二つである理由：規則を消すとコンプライアンスは<strong>上がり</strong>、カバレッジは<strong>下がる</strong>。単一の数値では消すことは無料であり、ダッシュボードは盲目を報いる。反対の方向に動く二つの数値では、近道は消える。より良いダッシュボードを見せるには、規則を消すのではなくコードを直さなければならない。そしてカバレッジは測ることなしには上げられない。</p>
+<p><strong>レギュレーションの指紋。</strong> 各記録は、どの物差しで計算されたかを保存する。カタログの版、有効な規則と消えた規則、フロントエンドのアダプタ、道具の版である。それがなければ、昨日の 82 と今日の 91 は同じように書かれても同じ測定ではない。二つの異なるレギュレーションであり、系列は偽である。指紋のない二つの数値は進歩の幻想を生み、それはダッシュボードを持たないより悪い。指紋が変われば、記録は<strong>比較不能</strong>と印され、そうでなければ履歴は現行の物差しで再計算される。決してそれを言わずに並べてグラフ化しない。</p>
+<p><strong>ラチェット。</strong> コンプライアンスは、それを説明する記録された決定なしにブロックから次へ下がらない。CQ-08 でテストのカバレッジがすでに持っているのと同じ仕組みである。今日の数値が明日の床である。下げることは禁じられていない。記録なしで下げることは禁じられている。</p>
+<p><strong>勘定に入らないもの。</strong> 人だけが判断できるもの——最初のクリックのテスト（UX-07）、タスクテスト（UX-06）、スクリーンショット（UX-27）、そしてすべての手動のケース——は、ブロックごとに名前と日付とともに合格または不合格として記録され、人間による検証のカバレッジとして別に報告される。コンプライアンスの割合には入らない。混ぜれば、結果は六十パーセントが測定で四十パーセントが意見の数値になり、どれがどちらか誰にも言えない。だから第 9 節はなお有効である。ダッシュボードはユーザビリティの評点を発明せず、規則を数える。</p>
+<p><strong>どう反証するか。</strong> 第 11 節の受け入れテストを拡張する。</p>
+<div class="tw"><table><thead><tr><th>シナリオ</th><th>要求される結果</th></tr></thead><tbody><tr><td>ブロックする規則の違反を仕込む</td><td>コンプライアンスが有効な規則のうちちょうど一つ分下がり、規則を名指す赤が現れる。</td></tr><tr><td>記録ありで規則を消す</td><td>コンプライアンスは上がりうる。カバレッジが宣言された規則のうち一つ分下がる。報告は規則、理由、再検討日を名指す。</td></tr><tr><td>記録なしで消す</td><td>赤。そしてダッシュボードは出さない。無効なレギュレーションは数値を生まない。</td></tr><tr><td>同じツリーと同じ設定、二回の実行</td><td>同じ数値、同一。</td></tr><tr><td>二つのブロックの間で設定が変わる</td><td>二つの記録は比較不能と印され、さもなければ履歴は現行の物差しで再計算される。</td></tr><tr><td>ダッシュボードが閉鎖の基準として使われる</td><td>誤用であり、有効なシナリオではない。緑は規則が決め、平均が決めるのではない。</td></tr></tbody></table></div>
+<p><strong>どこに現れるか。</strong> ステップ 12 の正直な報告（アンカー 5）に、この順で。まずゲートの二値の評決、次に二つの数値、次に何がいつまで消えているか、次に前のブロックに対する動きと、その名指された原因である。常に座席を伴う。*四ポイント下がった：CQ-15、請求画面のカタログ外の三つの文字列*。座席のない数値はノイズである。座席こそが、コードを読まない所有者にとってそれを実行可能なものにする。</p>
+<p><strong>宣言されたリスク。</strong> ダッシュボードを読むのはコードを読まない所有者であり、だからこそ彼はそれが上がることを望む。数値が目的になり、目的が狙いを押しのける。防御は上にあり、五つある。消すときに互いに矛盾する二つの数値、異なる物差しの比較を妨げる指紋、記録なしの下降を許さないラチェット、割合の外にある人間のもの、そして平均によって交渉されないゲートを伴う必須の座席である。五つのうちどれかが崩れれば、ダッシュボードは消える。誤って使われたダッシュボードは、持たないより多くの損害を与える。</p>
+</section><section>
+<h2 id="13-記録">13. 記録</h2>
+<p>本付録のすべての決定は、日付、認可者、逐語の引用、影響を受けるファイルとともに <code>docs/DECISIONES.md</code> に残る。D-043（形態）、D-044（仕組み）、D-045（スイッチ）、D-046（スイッチの規律）、D-047（二つの数値を持つダッシュボード）。実装とその受け入れ基準は PND-002 に住む。</p>
+<p>未決の判断は残っていない。形態（D-043 と D-044）、スイッチ（D-045 と D-046）、ダッシュボード（D-047）、アクセシビリティの重みを含む初期重大度（D-048）は決定済みである。本文は八言語で流通し、プロンプト API の一部になっている。これで日程に残っていた唯一の項目が閉じた。</p></section>
+<footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">方法の公開リポジトリ: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
+</div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>

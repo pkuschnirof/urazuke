@@ -1,6 +1,6 @@
 # Anhang H — Heuristiken für Codequalität und Benutzbarkeit
 
-**Status: GENEHMIGT — FORM UND ANFANGSSEVERITÄTEN.** Es bleibt keine Entscheidung offen. Die Form (D-043 und D-044), die Schalter (D-045 und D-046), das Dashboard (D-047) und die Anfangsschweregrade mit dem Gewicht der Barrierefreiheit (D-048, Abschnitt 10) sind entschieden. Offen ist nur noch der Kalender: die Übersetzung liegt auf Deutsch, Englisch, Portugiesisch, Französisch und Italienisch vor; Japanisch und Chinesisch fehlen noch, und erst mit ihnen tritt der Text in die Prompts-API ein. Datum: 2026-10-22.
+**Status: GENEHMIGT UND IN PRODUKTION.** Es bleibt keine Entscheidung offen: die Form (D-043 und D-044), die Schalter (D-045 und D-046), das Dashboard (D-047) und die Anfangsschweregrade mit dem Gewicht der Barrierefreiheit (D-048, Abschnitt 10) sind entschieden. Das Dokument ist in allen acht Sprachen der Methode veröffentlicht und seine beiden Prompts sind Teil der Prompts-API: von dort verlangt `build/prompts.mjs` den englischen Text in allen acht byte-identisch, sonst schlägt der Build fehl. Datum: 2026-10-22.
 
 Register der Entscheidungen dieses Anhangs: `docs/DECISIONES.md`, D-043 bis D-048. Das Compliance-Dashboard (Abschnitt 12) wurde in D-047 mit zwei Kennzahlen entschieden. Die Implementierungsarbeit lebt in PND-002.
 
@@ -172,7 +172,7 @@ Der Anhang erfindet keine neuen Stufen: er hängt sich an die, die es gibt. Das 
 | Benutzerhandbuch | Wird nach den Gruppen von B1 gegliedert und erklärt pro Gruppe, welche Profile hineingehen. | Handbuch und Menü werden mit denselben Worten benannt, sonst bricht das Glossar. |
 | Abschluss jedes Blocks | Test des ersten Klicks (UX-07), Screenshot der echten Umgebung (UX-27) und die beiden End-to-End-Tests der Matrix. | Es sind die drei Prüfungen, die sich nicht automatisieren lassen. |
 
-**Status (D-049).** Die fünf Anker sind bereits eingehakt: der Anfangsprompt der Stufen 5, 8, 9, 10 und 12 zitiert diesen Anhang in acht Sprachen, mit einer einzigen englischen Formulierung, die in allen identisch ist, und ihrer lokalen Übersetzung daneben. Das Dokument wird mit dem Rest der Methode auf der Seite veröffentlicht, auf Spanisch; sein Eintritt in die Prompts-API wartet auf die Übersetzung in die acht Sprachen (D-043).
+**Stand (D-049).** Die fünf Anker sind eingehängt: der Eröffnungs-Prompt der Stufen 5, 8, 9, 10 und 12 zitiert diesen Anhang in den acht Sprachen, mit einer einzigen englischen Formulierung, die in allen identisch ist, und ihrer lokalen Übersetzung daneben. Das Dokument wird auf der Website mit dem Rest der Methode in den acht Sprachen veröffentlicht, und seine beiden Prompts sind als Vertrag `anexo-h` in `docs/html/api/prompts.json` eingetreten: von dort vergleicht `build/prompts.mjs` sie byte-identisch in allen acht, sonst schlägt der Build fehl.
 
 Die Stufen 6, 7 und 11 erhalten höchstens eine Zeile: die 6 registriert bereits Schwellenwerte und Ausnahmen als Entscheidungen (es ist der natürliche Ort der erklärten Ausnahme), und die 11 ist die, in der der Fall der viermal geschriebenen Matrix mit voller Wucht eintritt. Ihnen wird kein eigener Text hinzugefügt, um sie nicht zu verwässern.
 
@@ -265,7 +265,7 @@ Und eine erklärte Einschränkung, weil sie die einzige ihrer Art ist: **CQ-12 u
 
 ### Kalender, keine Entscheidung
 
-**Die Übersetzung.** Der Anhang tritt auf Spanisch ein und wird als Referenz gelesen; an dem Tag, an dem sein Prompt in `docs/html/api/prompts.json` eintritt, verlangt `build/prompts.mjs`, dass der Text in den acht Sprachen Byte für Byte identisch ist, sonst schlägt die Konstruktion fehl. Zu entscheiden gibt es nichts mehr: der Text wurde mit den Schweregraden in D-048 festgeschrieben. Was bleibt, ist Kalender: übersetzen und in der API veröffentlichen.
+**Die Übersetzung.** Erledigt: der Anhang existiert in den acht Sprachen und seine beiden Prompts sind Teil der Prompts-API, mit byte-identischem englischem Text in allen acht Fassungen (D-043 verlangt es und `build/prompts.mjs` prüft es bei jedem Build). Das Spanische bleibt das Kanonische: wenn je eine Übersetzung und das Spanische auseinandergehen, gewinnt das Spanische und die Übersetzung wird in derselben Änderung korrigiert.
 
 ## 11. Wie geprüft wird, dass das Gate wirklich wacht
 
@@ -331,4 +331,4 @@ Der Grund, dass es zwei sind: eine Regel abzuschalten **hebt** die Erfüllung un
 
 Jede Entscheidung dieses Anhangs steht in `docs/DECISIONES.md` mit Datum, Autor, wörtlichem Zitat und betroffenen Dateien: D-043 (Form), D-044 (Mechanismus), D-045 (Schalter), D-046 (Disziplin des Schalters), D-047 (das Dashboard mit zwei Kennzahlen). Die Implementierung und ihre Abnahmekriterien leben in PND-002.
 
-Es bleibt keine Entscheidung offen: die Form (D-043 und D-044), die Schalter (D-045 und D-046), das Dashboard (D-047) und die Anfangsschweregrade mit dem Gewicht der Barrierefreiheit (D-048) sind entschieden. Was überlebt, ist Kalender: die Übersetzung in die acht Sprachen, wenn dieser Text in die Prompts-API eintritt.
+Es bleibt keine Entscheidung offen: die Form (D-043 und D-044), die Schalter (D-045 und D-046), das Dashboard (D-047) und die Anfangsschweregrade mit dem Gewicht der Barrierefreiheit (D-048) sind entschieden. Der Text reist in den acht Sprachen und ist Teil der Prompts-API, was den einzigen Punkt schließt, der im Kalender stand.

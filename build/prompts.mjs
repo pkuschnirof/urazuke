@@ -70,13 +70,13 @@ for (const f of archivos) {
   }
 }
 // Las páginas con prompts propios (camino evolutivo-correctivo, trabajo colaborativo): misma regla.
-for (const [nombre, salida, titulo] of [['EVOLUTIVO_CORRECTIVO.md', 'evolutivo-correctivo.en.md', 'evolutive-corrective path'], ['TRABAJO_COLABORATIVO.md', 'trabajo-colaborativo.en.md', 'teamwork on a shared branch']]) {
+for (const [nombre, salida, titulo] of [['EVOLUTIVO_CORRECTIVO.md', 'evolutivo-correctivo.en.md', 'evolutive-corrective path'], ['TRABAJO_COLABORATIVO.md', 'trabajo-colaborativo.en.md', 'teamwork on a shared branch'], ['ANEXO_HEURISTICAS.md', 'anexo-h.en.md', 'Annex H: code-quality and usability heuristics']]) {
   const src = join(raiz, 'docs', nombre);
   if (existsSync(src)) {
     const texto = readFileSync(src, 'utf8');
     const prompts = extraerPrompts(texto);
     if (!soloVerificar) {
-      const cuerpo = `# Urazuke — evolutive-corrective path prompts (English, single source)\n\n` +
+      const cuerpo = `# Urazuke — ${titulo} prompts (English, single source)\n\n` +
         `Generated from \`docs/${nombre}\` by \`build/prompts.mjs\`. Do not edit by hand.\n\n` +
         prompts.map((p, i) => `## Prompt ${i + 1}\n\n${p}\n`).join('\n');
       writeFileSync(join(destino, salida), cuerpo, 'utf8');

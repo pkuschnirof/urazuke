@@ -1,6 +1,6 @@
 # Anexo H — Heurísticas de calidad de código y de usabilidad
 
-**Estado: APROBADO — FORMA Y SEVERIDADES INICIALES.** No queda ninguna decisión abierta. La forma (D-043 y D-044), los interruptores (D-045 y D-046), el tablero (D-047) y las severidades iniciales con el peso de la accesibilidad (D-048, sección 10) están decididos. De los ocho idiomas hay seis hechos (alemán, español, francés, inglés, italiano y portugués); faltan japonés y chino, y cuando estén el texto entra en la API de prompts, que lo exige byte a byte. Fecha: 2026-10-22.
+**Estado: APROBADO Y EN PRODUCCIÓN.** No queda ninguna decisión abierta: la forma (D-043 y D-044), los interruptores (D-045 y D-046), el tablero (D-047) y las severidades iniciales con el peso de la accesibilidad (D-048, sección 10) están decididos. El documento está publicado en los ocho idiomas del método y sus dos prompts forman parte de la API de prompts: desde ahí, `build/prompts.mjs` exige el texto inglés idéntico byte a byte en los ocho o la construcción falla. Fecha: 2026-10-22.
 
 Registro de las decisiones de este anexo: `docs/DECISIONES.md`, D-043 a D-048. El tablero de cumplimiento (sección 12) quedó decidido con dos cifras en D-047. El trabajo de implementación vive en PND-002.
 
@@ -172,7 +172,7 @@ El anexo no inventa peldaños nuevos: se cuelga de los que existen. Eso evita du
 | Manual de usuario | Se organiza por los grupos de B1 y declara, por grupo, qué perfiles entran. | El manual y el menú se nombran con las mismas palabras o el glosario se rompe. |
 | Cierre de cada bloque | Prueba del primer clic (UX-07), captura del entorno real (UX-27) y las dos pruebas de extremo a extremo de la matriz. | Son las tres verificaciones que no se pueden automatizar. |
 
-**Estado (D-049).** Las cinco anclas ya están enganchadas: el prompt inicial de los peldaños 5, 8, 9, 10 y 12 cita este anexo en los ocho idiomas, con una sola redacción inglesa idéntica en todos y su traducción local al lado. El documento se publica en el sitio con el resto del método, en castellano; la traducción está en seis de los ocho idiomas y su entrada a la API de prompts espera los dos últimos (D-043).
+**Estado (D-049).** Las cinco anclas están enganchadas: el prompt inicial de los peldaños 5, 8, 9, 10 y 12 cita este anexo en los ocho idiomas, con una sola redacción inglesa idéntica en todos y su traducción local al lado. El documento se publica en el sitio con el resto del método en los ocho idiomas, y sus dos prompts entraron en `docs/html/api/prompts.json` como contrato `anexo-h`: desde ahí `build/prompts.mjs` los compara byte a byte en los ocho o la construcción falla.
 
 Los peldaños 6, 7 y 11 reciben a lo sumo una línea: el 6 ya registra umbrales y excepciones como decisiones (es el lugar natural de la excepción declarada), y el 11 es donde entra a los golpes el caso de la matriz escrita en cuatro lugares. No se les agrega texto propio para no diluirlos.
 
@@ -265,7 +265,7 @@ Y una limitación declarada, porque es la única de su clase: **CQ-12 y CQ-14 bl
 
 ### Pendiente de calendario, no de decisión
 
-**La traducción.** El anexo entra en castellano y se lee como referencia; el día que su prompt entre en `docs/html/api/prompts.json`, `build/prompts.mjs` exige que el texto sea idéntico byte a byte en los ocho idiomas o la construcción falla. Ya no hay nada que decidir: el texto quedó fijado con las severidades en D-048. Lo que resta es de calendario: traducir y publicar en la API.
+**La traducción.** Hecha: el anexo existe en los ocho idiomas y sus dos prompts forman parte de la API de prompts, con el texto inglés idéntico byte a byte en las ocho versiones (lo exige D-043 y lo verifica `build/prompts.mjs` en cada construcción). El castellano sigue siendo el canónico: si alguna vez una traducción y el castellano discrepan, gana el castellano y la traducción se corrige en el mismo cambio.
 
 ## 11. Cómo se comprueba que la compuerta vigila
 
@@ -331,4 +331,4 @@ La razón de que sean dos: apagar una regla **sube** el cumplimiento y **baja** 
 
 Toda decisión de este anexo queda en `docs/DECISIONES.md` con fecha, autor, cita textual y archivos de impacto: D-043 (forma), D-044 (mecanismo), D-045 (interruptores), D-046 (disciplina del interruptor), D-047 (el tablero con dos cifras). La implementación y sus criterios de aceptación viven en PND-002.
 
-No queda ninguna decisión abierta: la forma (D-043 y D-044), los interruptores (D-045 y D-046), el tablero (D-047) y las severidades iniciales con el peso de la accesibilidad (D-048) están decididas. Lo que sobrevive es de calendario: la traducción a los ocho idiomas cuando este texto entre en la API de prompts.
+No queda ninguna decisión abierta: la forma (D-043 y D-044), los interruptores (D-045 y D-046), el tablero (D-047) y las severidades iniciales con el peso de la accesibilidad (D-048) están decididas. El texto viaja en los ocho idiomas y forma parte de la API de prompts, que cierra el único punto que quedaba en el calendario.

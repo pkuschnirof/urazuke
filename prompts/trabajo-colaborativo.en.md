@@ -1,4 +1,4 @@
-# Urazuke — evolutive-corrective path prompts (English, single source)
+# Urazuke — teamwork on a shared branch prompts (English, single source)
 
 Generated from `docs/TRABAJO_COLABORATIVO.md` by `build/prompts.mjs`. Do not edit by hand.
 

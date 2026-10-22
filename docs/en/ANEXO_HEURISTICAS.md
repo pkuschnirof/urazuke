@@ -1,6 +1,6 @@
 # Annex H - Code quality and usability heuristics
 
-**Status: APPROVED - FORM, INITIAL SEVERITIES AND TRANSLATION.** No decision is left open. The form (D-043 and D-044), the switches (D-045 and D-046), the dashboard (D-047) and the initial severities with the weight of accessibility (D-048, section 10) are decided. The text is translated into six of the eight languages (German, English, Spanish, French, Italian and Portuguese); Japanese and Chinese are missing, and only when they exist does it enter the prompts API, where `build/prompts.mjs` enforces it byte for byte. Date: 2026-10-22.
+**Status: APPROVED AND IN PRODUCTION.** No decision is left open: the form (D-043 and D-044), the switches (D-045 and D-046), the dashboard (D-047) and the initial severities with the weight of accessibility (D-048, section 10) are decided. The document is published in all eight languages of the method and its two prompts are part of the prompts API: from there, `build/prompts.mjs` requires the English text identical byte for byte in all eight or the build fails. Date: 2026-10-22.
 
 Record of the decisions of this annex: `docs/DECISIONES.md`, D-043 to D-048. The compliance dashboard (section 12) was decided with two figures in D-047. The implementation work lives in PND-002; the translation and the indexing, in PND-003.
 
@@ -172,7 +172,7 @@ The annex does not invent new steps: it hangs from the ones that exist. That avo
 | User manual | It is organised by the groups of B1 and declares, per group, which profiles enter. | The manual and the menu are named with the same words or the glossary breaks. |
 | Close of every block | First-click test (UX-07), screenshot of the real environment (UX-27) and the two end-to-end tests of the matrix. | They are the three verifications that cannot be automated. |
 
-**Status (D-049).** The five anchors are already hooked: the initial prompt of steps 5, 8, 9, 10 and 12 cites this annex in the eight languages, with a single identical English wording in all of them and its local translation next to it. The document is published on the site with the rest of the method, in Spanish; the translation exists today in six of the eight languages, and its entry into the prompts API waits for the last two (D-043). WHEN it enters, `build/prompts.mjs` compares the English text byte for byte across the eight versions and the construction fails if one of them differs.
+**Status (D-049).** The five anchors are wired: the opening prompt of steps 5, 8, 9, 10 and 12 cites this annex in the eight languages, with a single English wording identical in all of them and its local translation alongside. The document is published on the site with the rest of the method in the eight languages, and its two prompts entered `docs/html/api/prompts.json` as contract `anexo-h`: from there `build/prompts.mjs` compares them byte for byte in all eight or the build fails.
 
 Steps 6, 7 and 11 receive at most one line: step 6 already records thresholds and exceptions as decisions (it is the natural place of the declared exception), and step 11 is where the case of the matrix written in four places comes in with blows. They are not given text of their own so as not to dilute them.
 
@@ -325,4 +325,4 @@ The reason there are two: switching a rule off **raises** compliance and **lower
 
 Every decision of this annex stays in `docs/DECISIONES.md` with date, author, textual quote and impact files: D-043 (form), D-044 (mechanism), D-045 (switches), D-046 (switch discipline), D-047 (the dashboard with two figures) and D-048 (initial severities and the weight of accessibility). The implementation and its acceptance criteria live in PND-002; the translation and the indexing, in PND-003.
 
-No decision is left open: the form (D-043 and D-044), the switches (D-045 and D-046), the dashboard (D-047) and the initial severities with the weight of accessibility (D-048) are decided. The text travels in the eight languages and it is part of the prompts API, which closes the only item that was left on the calendar.
+No decision is left open: the form (D-043 and D-044), the switches (D-045 and D-046), the dashboard (D-047) and the initial severities with the weight of accessibility (D-048) are decided. The text travels in the eight languages and is part of the prompts API, which closes the only item that was left on the calendar.

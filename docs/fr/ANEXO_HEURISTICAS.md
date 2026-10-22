@@ -1,6 +1,6 @@
 # Annexe H - Heuristiques de qualite de code et d'utilisabilite
 
-**Etat : APPROUVE - FORME, SEVERITES INITIALES ET TRADUCTION.** Aucune decision ne reste ouverte. La forme (D-043 et D-044), les interrupteurs (D-045 et D-046), le tableau (D-047) et les severites initiales avec le poids de l'accessibilite (D-048, section 10) sont decidees. Le texte est traduit dans six des huit langues (allemand, anglais, espagnol, francais, italien et portugais) ; il manque le japonais et le chinois, et c'est seulement quand ils existeront qu'il entrera dans l'API de prompts, ou `build/prompts.mjs` l'exige octet par octet. Date : 2026-10-22.
+**Etat : APPROUVE ET EN PRODUCTION.** Aucune decision ne reste ouverte : la forme (D-043 et D-044), les interrupteurs (D-045 et D-046), le tableau (D-047) et les severites initiales avec le poids de l'accessibilite (D-048, section 10) sont decidees. Le document est publie dans les huit langues de la methode et ses deux prompts font partie de l'API de prompts : a partir de la, `build/prompts.mjs` exige le texte anglais identique octet par octet dans les huit, sinon la construction echoue. Date : 2026-10-22.
 
 Registre des decisions de cette annexe : `docs/DECISIONES.md`, D-043 a D-048. Le tableau de conformite (section 12) a ete decide avec deux chiffres dans D-047. Le travail d'implementation vit dans PND-002 ; la traduction et l'indexation, dans PND-003.
 
@@ -172,7 +172,7 @@ L'annexe n'invente pas d'etapes nouvelles : elle s'accroche a celles qui existen
 | Manuel utilisateur | Il s'organise par les groupes de B1 et declare, par groupe, quels profils entrent. | Le manuel et le menu se nomment avec les memes mots ou le glossaire se casse. |
 | Fermeture de chaque bloc | Test du premier clic (UX-07), capture de l'environnement reel (UX-27) et les deux tests de bout en bout de la matrice. | Ce sont les trois verifications qui ne peuvent pas etre automatisees. |
 
-**Etat (D-049).** Les cinq ancres sont deja accrochees : le prompt initial des etapes 5, 8, 9, 10 et 12 cite cette annexe dans les huit langues, avec une seule redaction anglaise identique dans toutes et sa traduction locale a cote. Le document est publie sur le site avec le reste de la methode, en espagnol ; la traduction existe aujourd'hui dans six des huit langues et son entree dans l'API de prompts attend les deux dernieres (D-043). Quand il entrera, `build/prompts.mjs` comparera le texte anglais octet par octet entre les huit versions et la construction echouera si l'une differe.
+**Etat (D-049).** Les cinq ancrages sont en place : le prompt initial des peldans 5, 8, 9, 10 et 12 cite cette annexe dans les huit langues, avec une seule redaction anglaise identique dans toutes et sa traduction locale a cote. Le document est publie sur le site avec le reste de la methode dans les huit langues, et ses deux prompts sont entres dans `docs/html/api/prompts.json` comme contrat `anexo-h` : a partir de la `build/prompts.mjs` les compare octet par octet dans les huit, sinon la construction echoue.
 
 Les etapes 6, 7 et 11 recoivent au plus une ligne : la 6 enregistre deja les seuils et les exceptions comme decisions (c'est l'endroit naturel de l'exception declaree), et la 11 est la ou entre a coups le cas de la matrice ecrite a quatre endroits. On ne leur ajoute pas de texte propre pour ne pas les diluer.
 
