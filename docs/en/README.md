@@ -36,6 +36,7 @@ the evidence, and that is why the evidence has to prove itself.
 | `../DECISIONES.md` | The project's decisions, with date and exact words. The method applies to itself. Spanish only. |
 | `TRABAJO_COLABORATIVO.md` | How the method is applied when several developers, each with their own agent, work on the same branch: the seven rules of the shared branch, how the steps are shared out, and the prompts. |
 | `CAPACITACION_JUNIOR.md` | The impact of the method on the training of junior developers: which focuses lose weight, which gain weight, with what objective and how to train a junior in the era after hand-written programming. |
+| `ANEXO_HEURISTICAS.md` | Annex H, transversal to the Build Loop: eighteen code-quality rules and twenty-seven usability rules, each with a stable id, a severity, a named verifier and thresholds declared by the owner; grouping by functional convergence, profiles and the matrix from which the menu, the routing and the permissions are derived; two switches and the acceptance tests that prove the gate actually watches. |
 | `../PLAN_CURSO_MENTORING.md` | The draft of the commercial plan for the course and the mentoring. Spanish only. |
 | `../html/en/` | The HTML versions for comfortable reading, with the button that translates each prompt. Not edited by hand. |
 | `../../build/` | The markdown-to-HTML converter, the prompt extractor and checker, and the script that builds everything. |

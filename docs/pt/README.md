@@ -35,6 +35,7 @@ por isso a evidência precisa provar a si mesma.
 | `../DECISIONES.md` | As decisões do projeto, com data e palavras textuais. O método se aplica a si mesmo. Fica apenas em espanhol. |
 | `TRABAJO_COLABORATIVO.md` | Como se aplica o método quando vários desenvolvedores, cada um com o seu agente, trabalham sobre o mesmo ramo: as sete regras do ramo compartilhado, como se repartem os degraus, e os prompts. |
 | `CAPACITACION_JUNIOR.md` | O impacto do método na formação dos desenvolvedores júnior: que focos perdem peso, quais ganham, com que objetivo e como capacitar um júnior na era posterior à programação à mão. |
+| `ANEXO_HEURISTICAS.md` | Anexo H, transversal ao Ciclo de Construção: dezoito regras de qualidade do código e vinte e sete de usabilidade, cada uma com identificador estável, severidade, verificador nomeado e limites declarados pelo proprietário; agrupamento por convergência funcional, perfis e a matriz de onde derivam o menu, o roteamento e as permissões; dois interruptores e as provas de aceitação que demonstram que a comporta vigia de verdade. |
 | `../PLAN_CURSO_MENTORING.md` | O rascunho do plano comercial do curso e do mentoring. Fica apenas em espanhol. |
 | `../html/pt/` | As versões HTML para leitura confortável, com o botão que traduz cada prompt. Não se editam à mão. |
 | `../../build/` | O conversor de markdown para HTML, o extrator e verificador de prompts, e o script que monta tudo. |

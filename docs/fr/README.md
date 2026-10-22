@@ -39,6 +39,7 @@ fabrique aussi la preuve, et c'est pourquoi la preuve doit se prouver elle-même
 | `docs/DECISIONES.md` | Les décisions du projet, avec date et mots textuels. La méthode s'applique à elle-même. |
 | `docs/TRABAJO_COLABORATIVO.md` | Comment s'applique la méthode quand plusieurs développeurs, chacun avec son agent, travaillent sur la même branche : les sept règles de la branche partagée, comment se répartissent les échelons, et les prompts. |
 | `docs/CAPACITACION_JUNIOR.md` | L'impact de la méthode sur la formation des développeurs juniors : quels axes perdent du poids, lesquels en gagnent, avec quel objectif et comment former un junior à l'ère de l'après-programmation à la main. |
+| `docs/ANEXO_HEURISTICAS.md` | Annexe H, transversale à la Boucle de Construction : dix-huit règles de qualité du code et vingt-sept d'utilisabilité, chacune avec un identifiant stable, une sévérité, un vérificateur nommé et des seuils déclarés par le propriétaire ; regroupement par convergence fonctionnelle, profils et la matrice d'où dérivent le menu, le routage et les permissions ; deux interrupteurs et les tests d'acceptation qui prouvent que la barrière veille réellement. |
 | `docs/PLAN_CURSO_MENTORING.md` | Le brouillon du plan commercial du cours et du mentoring. |
 | `docs/html/` | Les versions HTML pour une lecture confortable, avec le bouton qui traduit chaque prompt. Elles ne s'éditent pas à la main. |
 | `build/` | Le convertisseur de markdown en HTML, l'extracteur et vérificateur de prompts, et le script qui assemble le tout. |
