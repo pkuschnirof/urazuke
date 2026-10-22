@@ -78,6 +78,14 @@ the agent:
 > passed or failed, observation). Write them for a person who does not know how the system is
 > built. Keep the cases of closed items up to date: when a flow changes, its cases change in the
 > same commit. Never mark a case as executed yourself: execution is human.
+>
+> Every manual case also runs once per affected profile, and it is derived
+> from `docs/PROFILE_MATRIX.md` instead of being written by hand: a case run
+> with a single profile is not an executed case (Annex H, anchor 4). At the
+> close of each block add the two human checks no machine replaces: the
+> first-click check, where I name the place I would look for a task and you
+> compare that with the menu, and the real screenshot of the test
+> environment.
 
 What I am asking for: that the case come out of the acceptance criteria (so that it tests what was
 asked for, not what the model understood); that it be written for somebody who does not know how

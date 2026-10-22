@@ -49,7 +49,18 @@ faites, pas l'agent :
 > you cannot see from where you are: another environment, real data, the user's browser). Cover
 > every item I asked for, one by one, even when the answer is "I did not do it". No claim
 > without its proof next to it. Do not say "done": say what is done and how you know it. If
-> something went wrong, say it first. Reply in my language.
+> something went wrong, say it first.
+>
+> When you report, also report the Annex H groups: what was measured, what
+> only warns and why, and which rule is switched off with its reason, who
+> authorised it and its review date. Report the two dashboard figures with
+> the fingerprint they were computed with (catalogue version, active and
+> switched-off rules, frontend adapter, tool versions) and with the account
+> of any movement. No figure closes a block: the green is decided rule by
+> rule, and a switched-off rule with no written exception turns the whole
+> report red.
+>
+> Reply in my language.
 
 > [fr]
 > Quand tu rapportes, sépare trois blocs : VÉRIFIÉ (ce que tu as testé, avec la commande et sa
@@ -58,7 +69,19 @@ faites, pas l'agent :
 > réelles, le navigateur de l'utilisateur). Couvre chaque point que je t'ai demandé, un par un,
 > même quand la réponse est « je ne l'ai pas fait ». Aucune affirmation sans sa preuve à côté. Ne
 > dis pas « c'est fait » : dis ce qui est fait et comment tu le sais. Si quelque chose a mal
-> tourné, dis-le en premier. Réponds dans ma langue.
+> tourné, dis-le en premier.
+>
+> Quand vous rendez compte, rendez compte aussi des groupes de l'Annexe H :
+> ce qui a été mesuré, ce qui ne fait qu'avertir et pourquoi, et quelle
+> règle est éteinte, avec son motif, qui l'a autorisée et sa date de
+> révision. Rendez compte des deux chiffres du tableau avec l'empreinte avec
+> laquelle ils ont été calculés (version du catalogue, règles actives et
+> éteintes, adaptateur de frontend, versions des outils) et avec le relevé
+> de tout mouvement. Aucun chiffre ne clôt un bloc : le vert se décide règle
+> par règle, et une règle éteinte sans exception écrite rend tout le rapport
+> rouge.
+>
+> Réponds dans ma langue.
 
 Ce que je lui demande, clause par clause : les trois blocs, qui sont la structure qui rend un
 rapport honnête (le vérifié avec sa preuve, le cru avec la raison pour laquelle on ne l'a pas

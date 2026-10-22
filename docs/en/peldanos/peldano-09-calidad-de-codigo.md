@@ -101,8 +101,21 @@ the agent:
 > `docs/CODE_QUALITY.md` with: the tools, the configuration, every limit with its current measured
 > value, and the list of what fails today with where it is. Do not fix anything yet: what fails
 > today becomes pending items, and I decide which limits apply now and which are raised with a
-> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red. Reply in
-> my language.
+> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red.
+>
+> Extend this gate to the screen frontier, as Annex H section 4 declares: no
+> business rule inside a screen, one typed client for every server call, one
+> home for shared state, no user-visible string outside the translation
+> catalogue, a stable identifier and role on every interactive element,
+> styling only through tokens, and automatic basic accessibility checks.
+> Every rule carries its stable id, its severity and its named verifier; the
+> thresholds and the exceptions are declared by me in the project
+> configuration file, and a rule switched off with no written exception is a
+> failure of the gate, not a decision. `docs/CODE_QUALITY.md` and
+> `docs/USABILITY.md` report result by result, never as a single number. The
+> catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
+>
+> Reply in my language.
 
 What I am asking for: the five checks a human reviewer would do, done by machine and with the
 build in red as the consequence, because a check that does not block is a piece of advice; the

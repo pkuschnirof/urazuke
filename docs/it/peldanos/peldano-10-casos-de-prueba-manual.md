@@ -79,6 +79,14 @@ l'agente:
 > passed or failed, observation). Write them for a person who does not know how the system is
 > built. Keep the cases of closed items up to date: when a flow changes, its cases change in the
 > same commit. Never mark a case as executed yourself: execution is human.
+>
+> Every manual case also runs once per affected profile, and it is derived
+> from `docs/PROFILE_MATRIX.md` instead of being written by hand: a case run
+> with a single profile is not an executed case (Annex H, anchor 4). At the
+> close of each block add the two human checks no machine replaces: the
+> first-click check, where I name the place I would look for a task and you
+> compare that with the menu, and the real screenshot of the test
+> environment.
 
 > [it]
 > Ogni voce in sospeso che cambia ciò che un utente vede o fa si chiude con i suoi casi di prova
@@ -90,6 +98,14 @@ l'agente:
 > sa com'è fatto il sistema. Tieni aggiornati i casi delle voci chiuse: quando un flusso cambia, i
 > suoi casi cambiano nello stesso commit. Non marcare mai un caso come eseguito da te: l'esecuzione
 > è umana.
+>
+> Ogni caso manuale viene inoltre eseguito una volta per profilo
+> interessato, ed è derivato da `docs/PROFILE_MATRIX.md` invece di essere
+> scritto a mano: un caso eseguito con un solo profilo non è un caso
+> eseguito (Allegato H, ancora 4). Alla chiusura di ogni blocco aggiungi le
+> due verifiche umane che nessuna macchina sostituisce: quella del primo
+> clic, in cui io nomino il luogo dove cercherei un compito e tu confronti
+> questo con il menu, e la cattura reale dell'ambiente di test.
 
 Cosa gli sto chiedendo: che il caso esca dai criteri di accettazione (così prova ciò che è stato
 chiesto, non ciò che il modello ha capito); che sia scritto per qualcuno che non sa come funziona

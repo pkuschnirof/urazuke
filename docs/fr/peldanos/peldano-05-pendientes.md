@@ -84,7 +84,20 @@ faites, pas l'agent :
 > exceptions; the acceptance criteria in the form "given, when, then"; how it will be verified
 > as done; and status. If a node the item needs does not exist in the tree, propose it and mark
 > it. Order the items by the priority I gave you; if I gave none, propose an order and tell me
-> why. Reply in my language.
+> why.
+>
+> This block also carries the hooks of Annex H. Every pending item that
+> touches a screen declares, in `docs/PENDING.md`: the group of convergence
+> it belongs to (Annex H, B1), the profiles that have it, and one acceptance
+> criterion per affected profile, written as "given profile X, this person
+> can do Y and cannot do Z". It also adds or updates its row in
+> `docs/PROFILE_MATRIX.md`: the functionality, its group, its profiles and
+> its entry route. A pending item that touches a screen without that row is
+> not planned: the row is written here, not invented later in the code. The
+> catalogue lives in `docs/ANEXO_HEURISTICAS.md`: cite it, do not restate
+> it.
+>
+> Reply in my language.
 
 > [fr]
 > Nous allons convertir tout ce qu'il y a à faire dans ce bloc en éléments en attente numérotés,
@@ -100,7 +113,20 @@ faites, pas l'agent :
 > sous la forme « étant donné, quand, alors » ; comment on vérifiera que c'est fait ; et l'état. Si
 > un nœud dont l'élément a besoin n'existe pas dans l'arbre, propose-le et marque-le. Ordonne les
 > éléments selon la priorité que je t'ai donnée ; si je n'en ai donné aucune, propose un ordre et
-> dis-moi pourquoi. Réponds dans ma langue.
+> dis-moi pourquoi.
+>
+> Ce bloc porte aussi les crochets de l'Annexe H. Chaque élément en attente
+> qui touche un écran déclare, dans `docs/PENDING.md` : le groupe de
+> convergence auquel il appartient (Annexe H, B1), les profils qui le
+> possèdent et un critère d'acceptation par profil concerné, rédigé ainsi :
+> « étant donné le profil X, cette personne peut faire Y et ne peut pas
+> faire Z ». Il ajoute ou met à jour sa ligne dans `docs/PROFILE_MATRIX.md`
+> : la fonctionnalité, son groupe, ses profils et sa route d'entrée. Un
+> élément qui touche un écran sans cette ligne n'est pas planifié : la ligne
+> s'écrit ici et ne s'invente pas plus tard dans le code. Le catalogue se
+> trouve dans `docs/ANEXO_HEURISTICAS.md` : citez-le, ne le répétez pas.
+>
+> Réponds dans ma langue.
 
 Ce que je lui demande : qu'il convertisse la demande en éléments vérifiables et qu'il **pose la
 question quand la demande ne permet pas d'en écrire un vérifiable** (l'ambiguïté se résout en

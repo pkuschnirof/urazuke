@@ -48,7 +48,18 @@
 > you cannot see from where you are: another environment, real data, the user's browser). Cover
 > every item I asked for, one by one, even when the answer is "I did not do it". No claim
 > without its proof next to it. Do not say "done": say what is done and how you know it. If
-> something went wrong, say it first. Reply in my language.
+> something went wrong, say it first.
+>
+> When you report, also report the Annex H groups: what was measured, what
+> only warns and why, and which rule is switched off with its reason, who
+> authorised it and its review date. Report the two dashboard figures with
+> the fingerprint they were computed with (catalogue version, active and
+> switched-off rules, frontend adapter, tool versions) and with the account
+> of any movement. No figure closes a block: the green is decided rule by
+> rule, and a switched-off rule with no written exception turns the whole
+> report red.
+>
+> Reply in my language.
 
 > [ja]
 > 報告するときは三つのブロックに分けてください：検証済み（テストしたこと、コマンドとその
@@ -56,7 +67,16 @@
 > いる場所から見えないもの：別の環境、実データ、ユーザーのブラウザ）。私が頼んだ各項目を
 > 一つずつ網羅してください。答えが「やらなかった」でも。隣に証拠のない主張はなし。「完了」
 > と言わないでください。何が完了し、どうしてそれを知っているかを言ってください。何かが
-> うまくいかなかったなら、最初に言ってください。私の言語で答えてください。
+> うまくいかなかったなら、最初に言ってください。
+>
+> 報告するときは、付録Hのグループも報告してください：何を測ったか、何が警告だけかとそ
+> の理由、どのルールが切られているか、その理由・承認した人・見直し日。ダッシュボードの
+> 二つの数値は、それを計算した指紋（カタログ版、有効なルールと切られたルール、フロント
+> エンドのアダプタ、ツールの版）と、あらゆる動きの根拠とともに報告してください。どの数
+> 値もブロックを閉じません。緑はルールごとに決まり、書面の例外なしに切られたルールは報
+> 告全体を赤にします。
+>
+> 私の言語で答えてください。
 
 何を求めているか、条項ごとに：三つのブロック、報告を誠実にする構造（証拠付きの検証済み、
 なぜテストしなかったかの理由付きの信じている、見えないもの）。項目ごとの網羅、何も

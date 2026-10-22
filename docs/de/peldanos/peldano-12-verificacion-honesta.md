@@ -53,7 +53,18 @@ machst es, nicht der Agent:
 > you cannot see from where you are: another environment, real data, the user's browser). Cover
 > every item I asked for, one by one, even when the answer is "I did not do it". No claim
 > without its proof next to it. Do not say "done": say what is done and how you know it. If
-> something went wrong, say it first. Reply in my language.
+> something went wrong, say it first.
+>
+> When you report, also report the Annex H groups: what was measured, what
+> only warns and why, and which rule is switched off with its reason, who
+> authorised it and its review date. Report the two dashboard figures with
+> the fingerprint they were computed with (catalogue version, active and
+> switched-off rules, frontend adapter, tool versions) and with the account
+> of any movement. No figure closes a block: the green is decided rule by
+> rule, and a switched-off rule with no written exception turns the whole
+> report red.
+>
+> Reply in my language.
 
 > [de]
 > Wenn du berichtest, trenne drei Blöcke: VERIFIZIERT (was du getestet hast, mit dem Befehl und
@@ -62,7 +73,19 @@ machst es, nicht der Agent:
 > Umgebung, echte Daten, der Browser des Nutzers). Decke jeden Punkt ab, den ich verlangt habe,
 > einen nach dem anderen, auch wenn die Antwort „ich habe es nicht getan“ lautet. Keine
 > Behauptung ohne ihren Beweis daneben. Sag nicht „erledigt“: sag, was erledigt ist und woher du
-> es weißt. Wenn etwas schiefgegangen ist, sag es zuerst. Antworte in meiner Sprache.
+> es weißt. Wenn etwas schiefgegangen ist, sag es zuerst.
+>
+> Wenn du berichtest, berichte auch die Gruppen von Anhang H: was gemessen
+> wurde, was nur warnt und warum, und welche Regel abgeschaltet ist, mit
+> ihrem Grund, wer sie autorisiert hat und ihrem Überprüfungsdatum. Berichte
+> die zwei Kennzahlen des Bords mit dem Fingerabdruck, mit dem sie berechnet
+> wurden (Katalogversion, aktive und abgeschaltete Regeln, Frontend-Adapter,
+> Werkzeugversionen) und mit dem Eintrag jeder Bewegung. Keine Kennzahl
+> schließt einen Block: das Grün entscheidet sich Regel für Regel, und eine
+> abgeschaltete Regel ohne schriftliche Ausnahme macht den ganzen Bericht
+> rot.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange, Klausel für Klausel: die drei Blöcke, die die Struktur sind, die einen
 Bericht ehrlich macht (das Verifizierte mit seinem Beweis, das Geglaubte mit dem Grund, warum es

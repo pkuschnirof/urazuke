@@ -82,7 +82,20 @@ o agente:
 > exceptions; the acceptance criteria in the form "given, when, then"; how it will be verified
 > as done; and status. If a node the item needs does not exist in the tree, propose it and mark
 > it. Order the items by the priority I gave you; if I gave none, propose an order and tell me
-> why. Reply in my language.
+> why.
+>
+> This block also carries the hooks of Annex H. Every pending item that
+> touches a screen declares, in `docs/PENDING.md`: the group of convergence
+> it belongs to (Annex H, B1), the profiles that have it, and one acceptance
+> criterion per affected profile, written as "given profile X, this person
+> can do Y and cannot do Z". It also adds or updates its row in
+> `docs/PROFILE_MATRIX.md`: the functionality, its group, its profiles and
+> its entry route. A pending item that touches a screen without that row is
+> not planned: the row is written here, not invented later in the code. The
+> catalogue lives in `docs/ANEXO_HEURISTICAS.md`: cite it, do not restate
+> it.
+>
+> Reply in my language.
 
 > [pt]
 > Vamos converter tudo o que há para fazer neste bloco em pendências numeradas, cada uma com sua
@@ -97,7 +110,19 @@ o agente:
 > exceções; os critérios de aceitação na forma "dado, quando, então"; como se vai verificar que
 > está feito; e o estado. Se um nó de que o item precisa não existe na árvore, proponha-o e
 > marque-o. Ordene os itens pela prioridade que eu lhe dei; se não dei nenhuma, proponha uma
-> ordem e diga-me por quê. Responda no meu idioma.
+> ordem e diga-me por quê.
+>
+> Este bloco também carrega os ganchos do Anexo H. Toda pendência que toca
+> uma tela declara, em `docs/PENDING.md`: o grupo de convergência ao qual
+> pertence (Anexo H, B1), os perfis que a têm e um critério de aceitação por
+> perfil afetado, escrito como «dado o perfil X, esta pessoa pode fazer Y e
+> não pode fazer Z». Além disso, adiciona ou atualiza a sua linha em
+> `docs/PROFILE_MATRIX.md`: a funcionalidade, o seu grupo, os seus perfis e
+> a sua rota de entrada. Uma pendência que toca uma tela sem essa linha não
+> está planejada: a linha se escreve aqui e não se inventa depois no código.
+> O catálogo está em `docs/ANEXO_HEURISTICAS.md`: cite-o, não o repita.
+>
+> Responda no meu idioma.
 
 O que estou pedindo: que converta o pedido em itens verificáveis e que **pergunte quando o pedido
 não dá para escrever um verificável** (a ambiguidade se resolve perguntando, não escolhendo); a

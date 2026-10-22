@@ -90,6 +90,13 @@ faites, pas l'agent :
 > the function you just wrote (an inverted condition, a deleted line), show me the test failing
 > against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
 > Finally, the commit message says "proved red against [what]" and the test counts.
+>
+> The same pending item also carries the Annex H test. Write it, and see it
+> fail first: for every declared profile, what that profile can reach is
+> exactly its row in `docs/PROFILE_MATRIX.md`, neither less nor more, and
+> every route checks the permission on the server, because hiding the entry
+> point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
+> nothing exercises is a document nobody reads.
 
 > [fr]
 > Pour clore cet élément en attente, j'ai besoin d'une preuve, pas de ta parole. (1) Écris le test
@@ -110,6 +117,13 @@ faites, pas l'agent :
 > ligne supprimée), montre-moi le test qui échoue contre ce défaut sous la même forme de reçu, avec
 > le diff du défaut, puis annule-le. Enfin, le message du commit dit « prouvé en rouge contre
 > [quoi] » et les chiffres des tests.
+>
+> Le même élément porte aussi le test de l'Annexe H. Écrivez-le et voyez-le
+> échouer d'abord : pour chaque profil déclaré, ce que ce profil peut
+> atteindre est exactement sa ligne dans `docs/PROFILE_MATRIX.md`, ni moins
+> ni plus, et chaque route vérifie la permission côté serveur, car masquer
+> le point d'entrée ne protège rien (Annexe H, UX-11, UX-12, UX-15). Une
+> matrice que rien n'exerce est un document que personne ne lit.
 
 **Le rouge du premier bloc.** Dans le premier bloc d'un nouveau projet il n'y a pas de code précédent : le nouveau test échoue parce que le module n'existe pas, et cet échec ne prouve pas que le test distingue un comportement. C'est pourquoi, quand la version précédente n'a pas le module, le rouge se prouve **par mutation** : l'agent plante volontairement un défaut dans la fonction qu'il vient d'écrire, montre le test en rouge contre ce défaut (le reçu porte le diff du défaut, pour que vous voyiez qu'il n'était pas trivial), l'annule et montre le vert. Un seul mutant par élément en attente, exécuté et enregistré comme n'importe quel autre reçu ; les tests de mutation sur toute la base restent le renfort optionnel de l'échelon 9. (Décision D-037, issue de la pratique Turnera : six reçus de rouge qui disaient seulement « le fichier ne se charge pas ».)
 

@@ -101,8 +101,21 @@ el agente:
 > `docs/CODE_QUALITY.md` with: the tools, the configuration, every limit with its current measured
 > value, and the list of what fails today with where it is. Do not fix anything yet: what fails
 > today becomes pending items, and I decide which limits apply now and which are raised with a
-> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red. Reply in
-> my language.
+> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red.
+>
+> Extend this gate to the screen frontier, as Annex H section 4 declares: no
+> business rule inside a screen, one typed client for every server call, one
+> home for shared state, no user-visible string outside the translation
+> catalogue, a stable identifier and role on every interactive element,
+> styling only through tokens, and automatic basic accessibility checks.
+> Every rule carries its stable id, its severity and its named verifier; the
+> thresholds and the exceptions are declared by me in the project
+> configuration file, and a rule switched off with no written exception is a
+> failure of the gate, not a decision. `docs/CODE_QUALITY.md` and
+> `docs/USABILITY.md` report result by result, never as a single number. The
+> catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
+>
+> Reply in my language.
 
 > [es]
 > Vamos a hacer que la calidad del código se verifique por máquina, porque nadie va a leer el
@@ -117,8 +130,22 @@ el agente:
 > `docs/CODE_QUALITY.md` con: las herramientas, la configuración, cada límite con su valor medido
 > actual, y la lista de lo que hoy falla con dónde está. No arregles nada todavía: lo que hoy falla
 > se convierte en pendientes, y yo decido qué límites aplican ya y cuáles se suben con fecha. Hacé
-> del conjunto una compuerta en `docs/GATES.md`: nada se fusiona con la calidad en rojo. Respondé
-> en mi idioma.
+> del conjunto una compuerta en `docs/GATES.md`: nada se fusiona con la calidad en rojo.
+>
+> Extendé esta compuerta al frente de pantalla, como declara el Anexo H en
+> su sección 4: ninguna regla de negocio dentro de una pantalla, un solo
+> cliente tipado para cada llamada al servidor, un solo lugar para el estado
+> compartido, ningún texto visible fuera del catálogo de traducciones,
+> identificador y rol estables en todo elemento interactivo, estilos solo
+> por tokens y controles automáticos básicos de accesibilidad. Cada regla
+> lleva su identificador estable, su severidad y su verificador con nombre;
+> los umbrales y las excepciones los declaro yo en el archivo de
+> configuración del proyecto, y una regla apagada sin excepción escrita es
+> un fallo de la compuerta, no una decisión. `docs/CODE_QUALITY.md` y
+> `docs/USABILITY.md` informan resultado por resultado, nunca como un solo
+> número. El catálogo es `docs/ANEXO_HEURISTICAS.md`: citalo, no lo copies.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo: las cinco verificaciones que un revisor humano haría, hechas por máquina y
 con la construcción en rojo como consecuencia, porque una verificación que no bloquea es un

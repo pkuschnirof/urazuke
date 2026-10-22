@@ -49,7 +49,18 @@ el agente:
 > you cannot see from where you are: another environment, real data, the user's browser). Cover
 > every item I asked for, one by one, even when the answer is "I did not do it". No claim
 > without its proof next to it. Do not say "done": say what is done and how you know it. If
-> something went wrong, say it first. Reply in my language.
+> something went wrong, say it first.
+>
+> When you report, also report the Annex H groups: what was measured, what
+> only warns and why, and which rule is switched off with its reason, who
+> authorised it and its review date. Report the two dashboard figures with
+> the fingerprint they were computed with (catalogue version, active and
+> switched-off rules, frontend adapter, tool versions) and with the account
+> of any movement. No figure closes a block: the green is decided rule by
+> rule, and a switched-off rule with no written exception turns the whole
+> report red.
+>
+> Reply in my language.
 
 > [es]
 > Cuando reportes, separá tres bloques: VERIFICADO (lo que probaste, con el comando y su salida),
@@ -57,7 +68,18 @@ el agente:
 > podés ver desde donde estás: otro entorno, datos reales, el navegador del usuario). Cubrí cada
 > ítem que te pedí, uno por uno, incluso cuando la respuesta sea "no lo hice". Ninguna afirmación
 > sin su prueba al lado. No digas "listo": decí qué está hecho y cómo lo sabés. Si algo salió mal,
-> decilo primero. Respondé en mi idioma.
+> decilo primero.
+>
+> Cuando informes, informá también los grupos del Anexo H: qué se midió, qué
+> solo advierte y por qué, y qué regla está apagada, con su motivo, quién la
+> autorizó y su fecha de revisión. Informá las dos cifras del tablero con la
+> huella con la que se calcularon (versión del catálogo, reglas activas y
+> apagadas, adaptador de frontend, versiones de las herramientas) y con el
+> asiento de todo movimiento. Ninguna cifra cierra un bloque: el verde se
+> decide regla por regla, y una regla apagada sin excepción escrita vuelve
+> rojo el informe entero.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo, cláusula por cláusula: los tres bloques, que son la estructura que vuelve
 honesto un reporte (lo verificado con su prueba, lo creído con la razón de por qué no se probó, lo

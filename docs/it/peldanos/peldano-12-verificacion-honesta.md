@@ -51,7 +51,18 @@ l'agente:
 > you cannot see from where you are: another environment, real data, the user's browser). Cover
 > every item I asked for, one by one, even when the answer is "I did not do it". No claim
 > without its proof next to it. Do not say "done": say what is done and how you know it. If
-> something went wrong, say it first. Reply in my language.
+> something went wrong, say it first.
+>
+> When you report, also report the Annex H groups: what was measured, what
+> only warns and why, and which rule is switched off with its reason, who
+> authorised it and its review date. Report the two dashboard figures with
+> the fingerprint they were computed with (catalogue version, active and
+> switched-off rules, frontend adapter, tool versions) and with the account
+> of any movement. No figure closes a block: the green is decided rule by
+> rule, and a switched-off rule with no written exception turns the whole
+> report red.
+>
+> Reply in my language.
 
 > [it]
 > Quando riferisci, separa tre blocchi: VERIFICATO (ciò che hai provato, con il comando e il suo
@@ -59,7 +70,18 @@ l'agente:
 > che non puoi vedere da dove sei: un altro ambiente, dati reali, il browser dell'utente). Copri
 > ogni punto che ti ho chiesto, uno per uno, anche quando la risposta è "non l'ho fatto". Nessuna
 > affermazione senza la sua prova accanto. Non dire "fatto": di' cosa è fatto e come lo sai. Se
-> qualcosa è andato storto, dillo per primo. Rispondi nella mia lingua.
+> qualcosa è andato storto, dillo per primo.
+>
+> Quando riferisci, riferisci anche i gruppi dell'Allegato H: cosa è stato
+> misurato, cosa solo avverte e perché, e quale regola è spenta, con il suo
+> motivo, chi l'ha autorizzata e la sua data di revisione. Riferisci le due
+> cifre del cruscotto con l'impronta con cui sono state calcolate (versione
+> del catalogo, regole attive e spente, adattatore di frontend, versioni
+> degli strumenti) e con il resoconto di ogni movimento. Nessuna cifra
+> chiude un blocco: il verde si decide regola per regola, e una regola
+> spenta senza eccezione scritta rende rosso l'intero rapporto.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo, clausola per clausola: i tre blocchi, che sono la struttura che rende
 onesto un rapporto (il verificato con la sua prova, il creduto con la ragione per cui non è stato

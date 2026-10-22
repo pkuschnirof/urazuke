@@ -1,8 +1,8 @@
 # Anexo H — Heurísticas de calidad de código y de usabilidad
 
-**Estado: FORMA APROBADA, CONTENIDO EN REVISIÓN.** La forma ya está decidida y no se discute más: el anexo es transversal al Bucle de Construcción y se engancha en cinco anclas (D-043 y D-044). Lo que todavía no obliga es el contenido: faltan las severidades iniciales y el peso de la accesibilidad (sección 10). Fecha: 2026-10-22.
+**Estado: APROBADO — FORMA Y SEVERIDADES INICIALES.** No queda ninguna decisión abierta. La forma (D-043 y D-044), los interruptores (D-045 y D-046), el tablero (D-047) y las severidades iniciales con el peso de la accesibilidad (D-048, sección 10) están decididos. Lo único pendiente es de calendario: la traducción a los ocho idiomas cuando el texto entre en la API de prompts. Fecha: 2026-10-22.
 
-Registro de las decisiones de este anexo: `docs/DECISIONES.md`, D-043 a D-046. El trabajo de implementación vive en PND-002.
+Registro de las decisiones de este anexo: `docs/DECISIONES.md`, D-043 a D-048. El tablero de cumplimiento (sección 12) quedó decidido con dos cifras en D-047. El trabajo de implementación vive en PND-002.
 
 ## 1. Qué falta hoy, y por qué
 
@@ -63,15 +63,17 @@ El núcleo extiende el peldaño 9: no lo reemplaza ni lo contradice, le pone nom
 | CQ-09 | Pruebas | Con usuarios reales, el puntaje de mutación se mide por bloque y cada mutante que sobrevive en código nuevo abre un pendiente. | Compuerta + registro | BLOQUEA |
 | CQ-10 | Dependencias | Toda dependencia está declarada, se usa y no trae un árbol de terceros desproporcionado a lo que aporta. | Compuerta | AVISA |
 | CQ-11 | Secretos | No hay credenciales, claves ni cadenas de conexión en el repositorio, ni en el historial nuevo. | Compuerta | BLOQUEA |
-| CQ-12 | Interfaz | La interfaz no decide: ninguna pantalla ni componente contiene reglas de negocio (qué se puede, cuánto sale, qué estado sigue). Vive en el dominio y la vista lo consulta. | Revisión + caso manual | AVISA |
-| CQ-13 | Interfaz | Cada llamada al servidor pasa por un cliente único y tipado; ninguna pantalla arma su propia petición a mano. | Compuerta (búsqueda) | AVISA |
-| CQ-14 | Interfaz | Hay un solo lugar donde vive el estado compartido; la duplicación de estado entre pantallas es un fallo, no un atajo. | Revisión | AVISA |
+| CQ-12 | Interfaz | La interfaz no decide: ninguna pantalla ni componente contiene reglas de negocio (qué se puede, cuánto sale, qué estado sigue). Vive en el dominio y la vista lo consulta. | Revisión al cierre + caso manual | BLOQUEA |
+| CQ-13 | Interfaz | Cada llamada al servidor pasa por un cliente único y tipado; ninguna pantalla arma su propia petición a mano. | Compuerta (búsqueda) | BLOQUEA |
+| CQ-14 | Interfaz | Hay un solo lugar donde vive el estado compartido; la duplicación de estado entre pantallas es un fallo, no un atajo. | Revisión al cierre | BLOQUEA |
 | CQ-15 | Interfaz | Todo texto visible sale de un catálogo de traducciones; ninguna cadena de usuario queda escrita dentro del componente. | Compuerta (búsqueda) | BLOQUEA |
-| CQ-16 | Interfaz | Todo elemento interactivo lleva identificador estable y rol, para que la prueba automática lo encuentre por nombre y no por posición. | Compuerta (búsqueda) | AVISA |
-| CQ-17 | Interfaz | Todos los colores, espaciados y tipografías salen de tokens; ningún valor mágico suelto en la hoja de estilos. | Compuerta (búsqueda) | AVISA |
+| CQ-16 | Interfaz | Todo elemento interactivo lleva identificador estable y rol, para que la prueba automática lo encuentre por nombre y no por posición. | Compuerta (búsqueda) | BLOQUEA |
+| CQ-17 | Interfaz | Todos los colores, espaciados y tipografías salen de tokens; ningún valor mágico suelto en la hoja de estilos. | Compuerta (búsqueda) | BLOQUEA |
 | CQ-18 | Interfaz | La accesibilidad básica se verifica sola: contraste, etiquetas en los campos, foco visible, navegación por teclado en los flujos principales, imágenes con texto alternativo. | Compuerta | AVISA |
 
 Las reglas CQ-12 a CQ-18 son las que hacen que "calidad de código" signifique algo en el frente. Sin ellas, el proyecto puede tener mutación al noventa por ciento y una pantalla que calcula el total con su propia aritmética en un componente: el peor de los dos mundos, porque el cálculo duplicado pasa todas las pruebas del backend.
+
+**Severidades iniciales (D-048).** Bloquean desde el día uno las catorce reglas que tienen verificador y que no dependen de un umbral que haya que discutir: CQ-01 a CQ-06, CQ-08 y CQ-11 a CQ-17. CQ-09 bloquea donde hay usuarios reales, que es donde se mide. Avisan tres, y sólo tres: CQ-07 (tipos), CQ-10 (dependencias) y CQ-18 (accesibilidad), porque son las que necesitan que el proyecto calibre primero. El formateador, el linter, el tamaño y la complejidad **no se aflojan**: el peldaño 9 ya los bloquea hoy, y esto lo extiende, no lo reemplaza; la deuda heredada se resuelve con una excepción declarada o con la línea base del trinquete, nunca bajando la severidad. Y CQ-12 y CQ-14 son las dos únicas reglas de esta tabla que bloquean con rojo humano y no de máquina: se verifican al cierre del pendiente y con el caso manual delante, igual que UX-22 y UX-27, no en cada commit. Si el proyecto no puede sostener ese cierre, la regla baja a AVISA por decisión registrada, no por olvido.
 
 **Adaptador por familia de frontend.** Un ejemplo de cómo se instancia la capa 2 (los nombres son ilustrativos; el proyecto elige y lo escribe):
 
@@ -156,7 +158,7 @@ El anexo no inventa peldaños nuevos: se cuelga de los que existen. Eso evita du
 
 **Dónde va (D-043).** Es transversal a los cuatro tramos, con el peso principal en el Bucle de Construcción (peldaños 5 a 12), que es donde se decide y se construye. No es un peldaño propio: un peldaño numerado obligaría a renumerar la escalera, alteraría el conteo de pasos y sometería el anexo a la traducción obligatoria de los contratos a los ocho idiomas antes de que la construcción pueda pasar en verde, sin agregar ninguna compuerta que el bucle no tenga ya.
 
-**Cómo se engancha (D-044).** Una fuente canónica, cinco anclas y dos entradas previas. El texto de las reglas vive solo acá y los prompts lo citan; nunca lo copian. Repetir las veintisiete reglas dentro de los ocho prompts del bucle las diluye (compiten con el trabajo propio de cada peldaño y el agente las obedece distinto cada vez), las deriva (dos copias del mismo texto se desincronizan solas, que es el antipatrón que persigue el peldaño 11) y no las vuelve más transversales: lo que vuelve transversal a una regla es que cada bloque pase por la misma compuerta, no que la regla esté escrita en todas partes.
+**Cómo se engancha (D-044).** Una fuente canónica, cinco anclas y dos entradas previas. El texto de las reglas vive solo acá y los prompts lo citan; nunca lo copian. Repetir las cuarenta y cinco reglas dentro de los ocho prompts del bucle las diluye (compiten con el trabajo propio de cada peldaño y el agente las obedece distinto cada vez), las deriva (dos copias del mismo texto se desincronizan solas, que es el antipatrón que persigue el peldaño 11) y no las vuelve más transversales: lo que vuelve transversal a una regla es que cada bloque pase por la misma compuerta, no que la regla esté escrita en todas partes.
 
 | Momento | Qué se agrega | Por qué ahí |
 |---|---|---|
@@ -229,8 +231,8 @@ Los dos ceros son deliberados y son la parte que importa: la cobertura mínima l
 
 ## 9. Lo que esta propuesta no hace
 
-- **No agrega un peldaño.** Son veintisiete reglas transversales, no una etapa nueva. Cuelgan de los peldaños que ya existen.
-- **No inventa un puntaje.** Un número de "usabilidad 78" no dice qué arreglar y se optimiza en la dirección equivocada. Se reporta por regla.
+- **No agrega un peldaño.** Son cuarenta y cinco reglas transversales (18 de calidad y 27 de usabilidad), no una etapa nueva. Cuelgan de los peldaños que ya existen.
+- **No inventa un puntaje.** Un número de "usabilidad 78" no dice qué arreglar y se optimiza en la dirección equivocada. Se reporta por regla. La sección 12 propone dos cifras derivadas, pero son un recuento de reglas con su asiento —no una nota de calidad ni de usabilidad— y no autorizan a cerrar nada.
 - **No reemplaza al dueño.** La prueba del primer clic, la captura y la prueba de tarea siguen siendo humanas: son el único instrumento que distingue "funciona" de "sirve".
 - **No trae umbrales de fábrica.** Los del adaptador son un punto de partida declarado; el proyecto que no declare los suyos los hereda y queda registrado como tal.
 - **No promete que la compuerta detecte la mala agrupación.** Una máquina puede verificar que no haya duplicación ni huérfanas; si el grupo se llama "Gestión", lo tiene que ver una persona.
@@ -242,18 +244,24 @@ Los dos ceros son deliberados y son la parte que importa: la cobertura mínima l
 | # | Decisión | Registro |
 |---|---|---|
 | 1 | **Transversal al Bucle de Construcción, no peldaño propio.** No se renumera la escalera, no se altera el conteo de pasos y el anexo no hereda la obligación de traducir un contrato de peldaño. | D-043 |
-| 2 | **Una fuente canónica con cinco anclas y dos entradas previas,** en lugar de copiar las veintisiete reglas dentro de los ocho prompts del bucle. | D-044 |
+| 2 | **Una fuente canónica con cinco anclas y dos entradas previas,** en lugar de copiar las cuarenta y cinco reglas dentro de los ocho prompts del bucle. | D-044 |
 | 3 | **Dos interruptores independientes** (calidad y usabilidad), tres estados por regla (bloquea, avisa, apagada), adaptador por familia de frontend, umbrales y excepciones declarados por el dueño. | D-045 |
 | 4 | **Disciplina del interruptor:** vive en la configuración del proyecto y no en el prompt; apagar solo vale como decisión registrada con motivo, autor y fecha de revisión; el apagado es observable en el reporte; y el interruptor se prueba prendiendo y apagando. | D-046 |
+| 5 | **Severidades iniciales, fijadas regla por regla:** en calidad bloquean catorce (CQ-01 a CQ-06, CQ-08, CQ-11 a CQ-17), CQ-09 bloquea donde hay usuarios reales, y avisan tres (CQ-07, CQ-10, CQ-18). En usabilidad bloquean once (UX-02, UX-03, UX-08 a UX-12, UX-15, UX-16, UX-22, UX-27), UX-06 solo registra y el resto avisa. Ni "todo bloquea" —el proyecto no arranca— ni "todo avisa" —la heurística es un adorno—. | D-048 |
+| 6 | **La accesibilidad arranca avisando y escala a bloqueante por declaración del dueño** cuando el producto tiene usuarios finales fuera de la organización. El default no se inventa: la escalada se declara, con el mismo mecanismo que cualquier umbral (D-045). | D-048 |
 
-### Faltan, y traban la escritura de los prompts directivos
+### Cerrado en D-048, y las dos correcciones que arrastra
 
-1. **¿Qué severidades se vuelven rojas de entrada?** Mi recomendación: bloquean las que son de máquina y de permiso (CQ-01 a CQ-06, CQ-08, CQ-11, CQ-15, UX-02, UX-03, UX-08 a UX-12, UX-15, UX-16, UX-22, UX-27). Avisan las que necesitan juicio. Si todo bloquea desde el día uno, el proyecto no arranca; si nada bloquea, la heurística es un adorno.
-2. **¿La accesibilidad se vuelve compuerta obligatoria?** Hoy queda en AVISA. Es la regla con mejor relación entre lo que cuesta y lo que evita, y también la que más se posterga. Si el producto tiene usuarios finales fuera de la organización, mi recomendación es que bloquee.
+Las dos preguntas que trababan la escritura de los prompts ya están respondidas: la 1 quedó en la fila 5 y la 2 en la fila 6. Pero la recomendación que se aprobó tenía dos errores de hecho, y quedan escritos acá para que no vuelvan:
+
+1. **El defecto del conteo.** Donde este anexo decía "veintisiete reglas" el número correcto es **cuarenta y cinco**: 18 de calidad (CQ-01 a CQ-18) y 27 de usabilidad (UX-01 a UX-27). La cifra vieja venía de un borrador que solo contaba la mitad. Corregido en las secciones 6 y 9 y anotado en D-048; el texto de D-044 se conserva tal como se escribió, porque una decisión es un registro y no se reescribe.
+2. **El formateador, el linter, el tamaño y la complejidad no se aflojan.** Una versión anterior de esta recomendación los mandaba a "avisa" para no trabar proyectos con deuda heredada. No puede ser: el peldaño 9 ya los bloquea hoy, y esta extensión lo extiende, no lo reemplaza. La deuda heredada se resuelve con una excepción declarada —con motivo y fecha de revisión— o con la línea base del trinquete, no bajando la severidad de la regla.
+
+Y una limitación declarada, porque es la única de su clase: **CQ-12 y CQ-14 bloquean con rojo humano.** Ninguna herramienta prueba que una pantalla no decide reglas de negocio. Se verifican al cierre del pendiente, con el caso manual delante y el mismo criterio que UX-22 y UX-27; si el proyecto no puede sostener ese cierre, bajan a AVISA por decisión registrada. Una regla que bloquea y que nadie verifica es peor que una regla que avisa.
 
 ### Pendiente de calendario, no de decisión
 
-**La traducción.** El anexo entra en castellano y se lee como referencia; el día que su prompt entre en `docs/html/api/prompts.json`, `build/prompts.mjs` exige que el texto sea idéntico byte a byte en los ocho idiomas o la construcción falla. Por eso el orden es: cerrar las dos decisiones de arriba, fijar el texto, recién entonces traducir y publicar en la API.
+**La traducción.** El anexo entra en castellano y se lee como referencia; el día que su prompt entre en `docs/html/api/prompts.json`, `build/prompts.mjs` exige que el texto sea idéntico byte a byte en los ocho idiomas o la construcción falla. Ya no hay nada que decidir: el texto quedó fijado con las severidades en D-048. Lo que resta es de calendario: traducir y publicar en la API.
 
 ## 11. Cómo se comprueba que la compuerta vigila
 
@@ -267,9 +275,56 @@ Una heurística que no cambia nada cuando se la prende o se la apaga no es una c
 | Usabilidad encendida, con perfil que alcanza de más | Rojo en UX-12, con el perfil y la funcionalidad nombrados. |
 | Usabilidad encendida, con funcionalidad sin fila en la matriz | Rojo en UX-08 al cerrar el pendiente (UX-16). |
 | Ambos grupos apagados | Verde en ambos, con las dos líneas de apagado en el reporte. |
+| Se planta una violación de una regla que **avisa** | Verde, y se abre un pendiente que nombra la regla y el archivo: avisar no es aprobar. |
+| Se planta una violación de una regla que **bloquea** | Rojo, con regla, archivo y remedio nombrados. Y no hay tablero: el promedio no cierra bloques. |
+| Tablero: se apaga una regla **con registro** | El cumplimiento puede subir, pero la **cobertura de la compuerta baja** y la cifra se publica con el asiento que lo explica. Con una sola cifra este escenario pasaría inadvertido; es la prueba de que las dos cifras existen por un motivo (D-047). |
+| Tablero: dos corridas con reglamentos distintos | Las dos cifras se muestran con su huella (versión del catálogo, reglas activas y apagadas, adaptador, versiones de herramientas) y **no se grafican como una serie continua**: son dos varas distintas y decirlo es parte del resultado. |
+| Tablero: reglamento inválido (regla apagada sin registro) | No emite cifras. La salida es rojo, no un tablero con un asterisco. |
+| Tablero: cumplimiento alto con una regla que bloquea en rojo | El bloque **no cierra**. El tablero promedia; el verde lo decide cada regla, una por una. |
+| Tablero: mejora el porcentaje por tocar solo lo automático | El porcentaje sube y la línea de verificación humana no se mueve; se reporta aparte y el reporte no suma las dos cosas en un número único. |
 
 Lo que se mira no es solo el color: se mira que las dos líneas de apagado **existan** en el reporte. Un resultado verde sin esa línea es el único fallo que esta prueba no puede detectar sola por color, y por eso se verifica leyendo la salida.
 
-## 12. Registro
+## 12. El tablero de cumplimiento (DECIDIDO: dos cifras, D-047)
 
-Toda decisión de este anexo queda en `docs/DECISIONES.md` con fecha, autor, cita textual y archivos de impacto: D-043 (forma), D-044 (mecanismo), D-045 (interruptores), D-046 (disciplina del interruptor). La implementación y sus criterios de aceptación viven en PND-002.
+**Estado.** Decidido el 2026-10-22 en D-047: el tablero va con dos cifras, con la huella del reglamento, con trinquete, con lo humano fuera del porcentaje y con el asiento obligatorio. No autoriza a cerrar bloques. Lo que sigue es la especificación que la implementación (PND-002) tiene que cumplir.
+
+**Qué es.** Un derivado determinista del resultado por regla que la compuerta ya emitió. No mide nada nuevo ni juzga nada nuevo: cuenta. Si el tablero pudiera cambiar el veredicto de una regla habría dos fuentes de verdad para lo mismo, que es exactamente lo que el anexo combate en UX-10 (la navegación se deriva de la matriz) y en CQ-14 (un solo lugar para el estado).
+
+**Qué no es.** No es un criterio de aceptación. Ninguna cifra autoriza a cerrar un bloque: el verde o el rojo lo decide cada regla que bloquea, una por una. El tablero describe la tendencia y señala qué mirar. Si empieza a usarse como umbral de cierre, dejó de servir, porque el camino más corto para subir un número es apagar reglas.
+
+**Dos cifras, nunca una.**
+
+| Cifra | Fórmula | Qué mide | Cómo se mueve |
+|---|---|---|---|
+| **Cumplimiento** | reglas que pasan ÷ reglas activas | qué tan limpio está lo que se está mirando | sube cuando se arregla |
+| **Cobertura de la compuerta** | reglas activas ÷ reglas declaradas en el catálogo | cuánto del anexo está realmente mirando | baja cuando se apaga una regla |
+
+La razón de que sean dos: apagar una regla **sube** el cumplimiento y **baja** la cobertura. Con una sola cifra apagar es gratis y el tablero premia la ceguera. Con dos cifras que se mueven en direcciones opuestas, el atajo desaparece: para mostrar un tablero mejor hay que arreglar código, no apagar reglas. Y la cobertura no se puede subir sin medir.
+
+**La huella del reglamento.** Cada registro guarda con qué vara se calculó: versión del catálogo, reglas activas y apagadas, adaptador de frontend y versiones de las herramientas. Sin eso, un 82 de ayer y un 91 de hoy no son la misma medida aunque se escriban igual: son dos reglamentos distintos y la serie es falsa. Dos cifras sin huella producen una ilusión de progreso, que es peor que no tener tablero. Si la huella cambia, el registro se marca como **no comparable** o el histórico se recalcula con la vara vigente; nunca se grafica junto sin decirlo.
+
+**Trinquete.** El cumplimiento no baja de un bloque al siguiente sin una decisión registrada que lo explique. Es el mismo mecanismo que ya tiene la cobertura de pruebas en CQ-08: el número de hoy es el piso de mañana. Bajar no está prohibido; bajar sin registro, sí.
+
+**Lo que no entra en la cuenta.** Lo que sólo puede juzgar una persona —la prueba del primer clic (UX-07), la prueba de tarea (UX-06), la captura (UX-27) y todos los casos manuales— se registra como pasado o fallado, por bloque, con nombre y fecha, y se reporta aparte como cobertura de verificación humana. No entra en el porcentaje de cumplimiento. Si se mezclan, el resultado es un número que es sesenta por ciento medición y cuarenta por ciento opinión, y nadie puede decir cuál es cuál. Por eso la sección 9 sigue valiendo: el tablero no inventa una nota de usabilidad, cuenta reglas.
+
+**Cómo se falsifica.** Amplía la prueba de aceptación de la sección 11:
+
+| Escenario | Resultado exigido |
+|---|---|
+| Se planta una violación de una regla que bloquea | El cumplimiento baja en exactamente una regla sobre las activas, y aparece el rojo con la regla nombrada. |
+| Se apaga una regla con registro | El cumplimiento puede subir; la cobertura baja en una regla sobre las declaradas; el reporte nombra la regla, el motivo y la fecha de revisión. |
+| Se apaga sin registro | Rojo, y no se emite tablero: un reglamento inválido no produce cifras. |
+| Mismo árbol y misma configuración, dos corridas | La misma cifra, idéntica. |
+| Cambia la configuración entre dos bloques | Los dos registros quedan marcados como no comparables, o el histórico se recalcula con la vara vigente. |
+| El tablero se usa como criterio de cierre | Uso indebido, no escenario válido: el verde lo decide la regla, no el promedio. |
+
+**Dónde aparece.** En el reporte honesto del peldaño 12 (ancla 5), y en este orden: primero el veredicto binario de la compuerta, después las dos cifras, después qué está apagado y hasta cuándo, después el movimiento contra el bloque anterior con su causa nombrada. Siempre con el asiento: *bajó cuatro puntos: CQ-15, tres cadenas fuera del catálogo en la pantalla de cobro*. Una cifra sin asiento es ruido; el asiento es lo que la vuelve accionable para un dueño que no lee código.
+
+**Riesgo declarado.** El tablero lo va a leer el dueño, que no lee código, y por eso va a querer que suba. El número se convierte en el objetivo, y el objetivo desplaza al propósito. Las defensas son las de arriba, y son cinco: dos cifras que se contradicen al apagarse, la huella que impide comparar varas distintas, el trinquete que no deja bajar sin registro, lo humano fuera del porcentaje y el asiento obligatorio, con la compuerta que no se negocia por promedio. Si alguna de las cinco se cae, el tablero se apaga: un tablero mal usado hace más daño que no tenerlo.
+
+## 13. Registro
+
+Toda decisión de este anexo queda en `docs/DECISIONES.md` con fecha, autor, cita textual y archivos de impacto: D-043 (forma), D-044 (mecanismo), D-045 (interruptores), D-046 (disciplina del interruptor), D-047 (el tablero con dos cifras). La implementación y sus criterios de aceptación viven en PND-002.
+
+No queda ninguna decisión abierta: la forma (D-043 y D-044), los interruptores (D-045 y D-046), el tablero (D-047) y las severidades iniciales con el peso de la accesibilidad (D-048) están decididas. Lo que sobrevive es de calendario: la traducción a los ocho idiomas cuando este texto entre en la API de prompts.

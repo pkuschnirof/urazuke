@@ -103,8 +103,21 @@ l'agente:
 > `docs/CODE_QUALITY.md` with: the tools, the configuration, every limit with its current measured
 > value, and the list of what fails today with where it is. Do not fix anything yet: what fails
 > today becomes pending items, and I decide which limits apply now and which are raised with a
-> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red. Reply in
-> my language.
+> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red.
+>
+> Extend this gate to the screen frontier, as Annex H section 4 declares: no
+> business rule inside a screen, one typed client for every server call, one
+> home for shared state, no user-visible string outside the translation
+> catalogue, a stable identifier and role on every interactive element,
+> styling only through tokens, and automatic basic accessibility checks.
+> Every rule carries its stable id, its severity and its named verifier; the
+> thresholds and the exceptions are declared by me in the project
+> configuration file, and a rule switched off with no written exception is a
+> failure of the gate, not a decision. `docs/CODE_QUALITY.md` and
+> `docs/USABILITY.md` report result by result, never as a single number. The
+> catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
+>
+> Reply in my language.
 
 > [it]
 > Faremo in modo che la qualità del codice si verifichi a macchina, perché nessuno leggerà il
@@ -120,7 +133,23 @@ l'agente:
 > suo valore misurato attuale, e la lista di ciò che oggi fallisce con dove si trova. Non
 > sistemare ancora niente: ciò che oggi fallisce diventa voci in sospeso, e decido io quali limiti
 > valgono subito e quali si alzano con una data. Fa' dell'insieme un cancello in `docs/GATES.md`:
-> niente viene unito con la qualità in rosso. Rispondi nella mia lingua.
+> niente viene unito con la qualità in rosso.
+>
+> Estendi questo cancello al confine della schermata, come dichiara la
+> sezione 4 dell'Allegato H: nessuna regola di business dentro una
+> schermata, un solo client tipizzato per ogni chiamata al server, un solo
+> posto per lo stato condiviso, nessun testo visibile fuori dal catalogo
+> delle traduzioni, identificatore e ruolo stabili su ogni elemento
+> interattivo, stili solo tramite token e controlli automatici di
+> accessibilità di base. Ogni regola porta il suo identificatore stabile, la
+> sua severità e il suo verificatore con nome; le soglie e le eccezioni le
+> dichiaro io nel file di configurazione del progetto, e una regola spenta
+> senza eccezione scritta è un guasto del cancello, non una decisione.
+> `docs/CODE_QUALITY.md` e `docs/USABILITY.md` rendicontano risultato per
+> risultato, mai come un unico numero. Il catalogo è
+> `docs/ANEXO_HEURISTICAS.md`: citalo, non copiarlo.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: le cinque verifiche che farebbe un revisore umano, fatte a macchina e con
 la costruzione in rosso come conseguenza, perché una verifica che non blocca è un consiglio; i

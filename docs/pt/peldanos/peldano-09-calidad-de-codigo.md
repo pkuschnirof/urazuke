@@ -99,8 +99,21 @@ agente:
 > `docs/CODE_QUALITY.md` with: the tools, the configuration, every limit with its current measured
 > value, and the list of what fails today with where it is. Do not fix anything yet: what fails
 > today becomes pending items, and I decide which limits apply now and which are raised with a
-> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red. Reply in
-> my language.
+> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red.
+>
+> Extend this gate to the screen frontier, as Annex H section 4 declares: no
+> business rule inside a screen, one typed client for every server call, one
+> home for shared state, no user-visible string outside the translation
+> catalogue, a stable identifier and role on every interactive element,
+> styling only through tokens, and automatic basic accessibility checks.
+> Every rule carries its stable id, its severity and its named verifier; the
+> thresholds and the exceptions are declared by me in the project
+> configuration file, and a rule switched off with no written exception is a
+> failure of the gate, not a decision. `docs/CODE_QUALITY.md` and
+> `docs/USABILITY.md` report result by result, never as a single number. The
+> catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
+>
+> Reply in my language.
 
 > [pt]
 > Vamos fazer com que a qualidade do código seja verificada por máquina, porque ninguém vai ler o
@@ -115,8 +128,22 @@ agente:
 > `docs/CODE_QUALITY.md` com: as ferramentas, a configuração, cada limite com o seu valor medido
 > atual, e a lista do que hoje falha com onde está. Não conserte nada ainda: o que hoje falha se
 > converte em pendências, e eu decido que limites se aplicam já e quais se sobem com data. Faça do
-> conjunto uma comporta em `docs/GATES.md`: nada se funde com a qualidade em vermelho. Responda no
-> meu idioma.
+> conjunto uma comporta em `docs/GATES.md`: nada se funde com a qualidade em vermelho.
+>
+> Estenda esta comporta até a fronteira da tela, como o Anexo H declara na
+> sua seção 4: nenhuma regra de negócio dentro de uma tela, um único cliente
+> tipado para cada chamada ao servidor, um único lugar para o estado
+> compartilhado, nenhum texto visível fora do catálogo de traduções,
+> identificador e papel estáveis em todo elemento interativo, estilos apenas
+> por tokens e verificações automáticas básicas de acessibilidade. Cada
+> regra leva o seu identificador estável, a sua severidade e o seu
+> verificador com nome; os limites e as exceções são declarados por mim no
+> arquivo de configuração do projeto, e uma regra desligada sem exceção
+> escrita é uma falha da comporta, não uma decisão. `docs/CODE_QUALITY.md` e
+> `docs/USABILITY.md` informam resultado por resultado, nunca como um único
+> número. O catálogo é `docs/ANEXO_HEURISTICAS.md`: cite-o, não o copie.
+>
+> Responda no meu idioma.
 
 O que estou pedindo: as cinco verificações que um revisor humano faria, feitas por máquina e com
 a construção em vermelho como consequência, porque uma verificação que não bloqueia é um

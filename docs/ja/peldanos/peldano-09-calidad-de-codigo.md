@@ -97,8 +97,21 @@
 > `docs/CODE_QUALITY.md` with: the tools, the configuration, every limit with its current measured
 > value, and the list of what fails today with where it is. Do not fix anything yet: what fails
 > today becomes pending items, and I decide which limits apply now and which are raised with a
-> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red. Reply in
-> my language.
+> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red.
+>
+> Extend this gate to the screen frontier, as Annex H section 4 declares: no
+> business rule inside a screen, one typed client for every server call, one
+> home for shared state, no user-visible string outside the translation
+> catalogue, a stable identifier and role on every interactive element,
+> styling only through tokens, and automatic basic accessibility checks.
+> Every rule carries its stable id, its severity and its named verifier; the
+> thresholds and the exceptions are declared by me in the project
+> configuration file, and a rule switched off with no written exception is a
+> failure of the gate, not a decision. `docs/CODE_QUALITY.md` and
+> `docs/USABILITY.md` report result by result, never as a single number. The
+> catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
+>
+> Reply in my language.
 
 > [ja]
 > コードの品質を機械で検証されるようにします。誰もコードを読まないからです。継続的インテグ
@@ -112,7 +125,20 @@
 > 設定、各上限とその現在の計測値、そして今日失敗しているもののリストとその場所。まだ何も直
 > さないでください。今日失敗しているものは保留項目になり、どの上限を今すぐ適用し、どれを日
 > 付付きで引き上げるかは私が決めます。この一式全体を `docs/GATES.md` のゲートにしてくださ
-> い：品質が赤のものは何もマージされません。私の言語で答えてください。
+> い：品質が赤のものは何もマージされません。
+>
+> この掛け金を画面の境界まで広げてください。付録Hの第4節が宣言しているとおりです：画
+> 面の中に業務ルールを置かない、サーバー呼び出しごとに型付きの単一クライアント、共有状
+> 態の置き場所は一つ、翻訳カタログの外に利用者に見える文字を置かない、すべての操作要素
+> に安定した識別子とロール、スタイルはトークン経由のみ、基本的なアクセシビリティの自動
+> 検査。各ルールは安定したID、重大度、名前のある検証者を持ちます。しきい値と例外は私
+> がプロジェクトの設定ファイルで宣言し、書面の例外なしに切られたルールは掛け金の故障で
+> あり、判断ではありません。`docs/CODE_QUALITY.md` と
+> `docs/USABILITY.md` は結果ごとに報告し、決して一つの数値にはしま
+> せん。カタログは `docs/ANEXO_HEURISTICAS.md` です：引用
+> し、コピーしないでください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：人間のレビュアーが行うであろう五つの検証を、機械が行い、ビルドの赤を帰結と
 して持つこと。止めない検証は助言にすぎないからだ。計測値付きの上限。上限が意見ではなく数字か

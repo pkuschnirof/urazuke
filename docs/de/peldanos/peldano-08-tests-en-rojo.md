@@ -95,6 +95,13 @@ machst es, nicht der Agent:
 > the function you just wrote (an inverted condition, a deleted line), show me the test failing
 > against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
 > Finally, the commit message says "proved red against [what]" and the test counts.
+>
+> The same pending item also carries the Annex H test. Write it, and see it
+> fail first: for every declared profile, what that profile can reach is
+> exactly its row in `docs/PROFILE_MATRIX.md`, neither less nor more, and
+> every route checks the permission on the server, because hiding the entry
+> point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
+> nothing exercises is a document nobody reads.
 
 > [de]
 > Um diesen offenen Posten zu schließen, brauche ich Belege, nicht dein Wort. (1) Schreib den
@@ -115,6 +122,14 @@ machst es, nicht der Agent:
 > eine gelöschte Zeile), zeige mir den Test, der gegen diesen Fehler fehlschlägt, als dieselbe Art
 > von Beleg, mit dem Diff des Fehlers, und mache ihn dann rückgängig. Zum Schluss sagt die
 > Commit-Nachricht „rot bewiesen gegen [was]“ und die Testzahlen.
+>
+> Derselbe offene Posten trägt auch den Test von Anhang H. Schreibe ihn und
+> sieh ihn zuerst scheitern: Für jedes deklarierte Profil ist das, was
+> dieses Profil erreichen kann, genau seine Zeile in
+> `docs/PROFILE_MATRIX.md`, nicht weniger und nicht mehr, und jede Route
+> prüft die Berechtigung auf dem Server, denn den Einstiegspunkt zu
+> verstecken schützt nichts (Anhang H, UX-11, UX-12, UX-15). Eine Matrix,
+> die nichts ausübt, ist ein Dokument, das niemand liest.
 
 **Das Rot des ersten Blocks.** Im ersten Block eines neuen Projekts gibt es keinen vorherigen Code: der neue Test schlägt fehl, weil das Modul nicht existiert, und dieser Fehlschlag beweist nicht, dass der Test Verhalten unterscheidet. Deshalb wird, wenn die vorherige Version das Modul nicht hat, das Rot **durch Mutation** bewiesen: der Agent pflanzt absichtlich einen Fehler in die gerade geschriebene Funktion, zeigt den Test rot gegen diesen Fehler (der Beleg trägt den Diff des Fehlers, damit du siehst, dass er nicht trivial war), macht ihn rückgängig und zeigt das Grün. Ein Mutant pro offenem Punkt, ausgeführt und aufgezeichnet wie jeder andere Beleg; Mutationstests über die ganze Codebasis bleiben die optionale Verstärkung der Stufe 9. (Entscheidung D-037, aus der Übung Turnera: sechs rote Belege, die nur "die Datei lädt nicht" sagten.)
 

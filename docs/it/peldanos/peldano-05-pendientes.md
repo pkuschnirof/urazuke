@@ -83,7 +83,20 @@ l'agente:
 > exceptions; the acceptance criteria in the form "given, when, then"; how it will be verified
 > as done; and status. If a node the item needs does not exist in the tree, propose it and mark
 > it. Order the items by the priority I gave you; if I gave none, propose an order and tell me
-> why. Reply in my language.
+> why.
+>
+> This block also carries the hooks of Annex H. Every pending item that
+> touches a screen declares, in `docs/PENDING.md`: the group of convergence
+> it belongs to (Annex H, B1), the profiles that have it, and one acceptance
+> criterion per affected profile, written as "given profile X, this person
+> can do Y and cannot do Z". It also adds or updates its row in
+> `docs/PROFILE_MATRIX.md`: the functionality, its group, its profiles and
+> its entry route. A pending item that touches a screen without that row is
+> not planned: the row is written here, not invented later in the code. The
+> catalogue lives in `docs/ANEXO_HEURISTICAS.md`: cite it, do not restate
+> it.
+>
+> Reply in my language.
 
 > [it]
 > Convertiremo tutto ciò che c'è da fare in questo blocco in voci in sospeso numerate, ciascuna
@@ -98,7 +111,20 @@ l'agente:
 > interessate; i casi limite e le eccezioni; i criteri di accettazione nella forma "dato, quando,
 > allora"; come si verificherà che è fatta; e lo stato. Se un nodo di cui la voce ha bisogno non
 > esiste nell'albero, proponilo e marcalo. Ordinale per la priorità che ti ho dato; se non te ne
-> ho data nessuna, proponi un ordine e dimmi perché. Rispondi nella mia lingua.
+> ho data nessuna, proponi un ordine e dimmi perché.
+>
+> Questo blocco porta anche gli agganci dell'Allegato H. Ogni voce in
+> sospeso che tocca una schermata dichiara, in `docs/PENDING.md`: il gruppo
+> di convergenza a cui appartiene (Allegato H, B1), i profili che la hanno e
+> un criterio di accettazione per profilo interessato, scritto come «dato il
+> profilo X, questa persona può fare Y e non può fare Z». Inoltre aggiunge o
+> aggiorna la sua riga in `docs/PROFILE_MATRIX.md`: la funzionalità, il suo
+> gruppo, i suoi profili e la sua rotta di ingresso. Una voce che tocca una
+> schermata senza quella riga non è pianificata: la riga si scrive qui e non
+> si inventa dopo nel codice. Il catalogo è in `docs/ANEXO_HEURISTICAS.md`:
+> citalo, non ripeterlo.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: che converta la richiesta in voci verificabili e che **chieda quando la
 richiesta non permette di scriverne una verificabile** (l'ambiguità si risolve chiedendo, non

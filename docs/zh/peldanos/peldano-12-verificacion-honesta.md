@@ -41,13 +41,29 @@
 > you cannot see from where you are: another environment, real data, the user's browser). Cover
 > every item I asked for, one by one, even when the answer is "I did not do it". No claim
 > without its proof next to it. Do not say "done": say what is done and how you know it. If
-> something went wrong, say it first. Reply in my language.
+> something went wrong, say it first.
+>
+> When you report, also report the Annex H groups: what was measured, what
+> only warns and why, and which rule is switched off with its reason, who
+> authorised it and its review date. Report the two dashboard figures with
+> the fingerprint they were computed with (catalogue version, active and
+> switched-off rules, frontend adapter, tool versions) and with the account
+> of any movement. No figure closes a block: the green is decided rule by
+> rule, and a switched-off rule with no written exception turns the whole
+> report red.
+>
+> Reply in my language.
 
 > [zh]
 > 报告时，分成三块：已验证（你测过的，附命令和它的输出）、相信（你认为能用但没测的，以及
 > 为什么没测）和盲点（你从你所在的位置看不到的：另一个环境、真实数据、用户的浏览器）。逐
 > 一覆盖我要求的每一项，即使答案是"我没做"。没有一条断言旁边没有它的证据。不要说"搞定"：
 > 说做了什么、你怎么知道的。如果有什么出了错，先说它。用我的语言回复。
+>
+> 汇报时也要汇报附录H的分组：测了什么，什么只是警告以及为什么，哪条规则被关掉、理由、
+> 谁批准的、复查日期。两个看板数字要带着计算它们时用的指纹（目录版本、启用与关掉的规则、
+> 前端适配器、工具版本）以及任何变动的记录来汇报。任何数字都不关闭一个块：绿是逐条规则
+> 决定的，一条被关掉却没有书面例外的规则会让整份汇报变红。
 
 我在要求什么，逐条：三块，那是让报告诚实的结构（已验证的附证据，相信的附为什么没测的理由，
 它看不到的）；逐项覆盖，让没有什么"被忘掉"；每条断言旁边的证据；禁止光秃秃的"搞定"；以及坏

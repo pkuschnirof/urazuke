@@ -63,6 +63,14 @@
 > passed or failed, observation). Write them for a person who does not know how the system is
 > built. Keep the cases of closed items up to date: when a flow changes, its cases change in the
 > same commit. Never mark a case as executed yourself: execution is human.
+>
+> Every manual case also runs once per affected profile, and it is derived
+> from `docs/PROFILE_MATRIX.md` instead of being written by hand: a case run
+> with a single profile is not an executed case (Annex H, anchor 4). At the
+> close of each block add the two human checks no machine replaces: the
+> first-click check, where I name the place I would look for a task and you
+> compare that with the menu, and the real screenshot of the test
+> environment.
 
 > [zh]
 > 每个会改变用户所见或所做之事的待办项，都要在它的人工测试用例写进 `docs/MANUAL_TESTS.md`
@@ -71,6 +79,11 @@
 > 具就能验证的后端效果）、要用的测试数据，以及一张空的执行表（日期、谁、通过还是失败、备
 > 注）。写给一个不知道系统是怎么造的人看。把已关闭待办项的用例保持更新：当一条流程变了，它
 > 的用例在同一次提交中跟着变。绝不要自己把一个用例标为已执行：执行是人做的。
+>
+> 每个手工用例还要对每个受影响角色各跑一次，而且它是从
+> `docs/PROFILE_MATRIX.md` 推导出来的，不是手写的：只用一个角
+> 色跑过的用例不算执行过（附录H，锚点4）。每个块收尾时加上两项没有任何机器能替代的确
+> 认：第一次点击，我说出我会去哪里找这件事，你把它和菜单对照；以及对测试环境的真实截图。
 
 我在要求什么：用例出自验收标准（这样它检验的是被要求的东西，而不是模型理解到的东西）；它写给
 一个不知道系统怎么运转的人看，那正是一个测试用例和一份技术笔记之间的差别；它包含一个人能验证

@@ -90,6 +90,13 @@ el agente:
 > the function you just wrote (an inverted condition, a deleted line), show me the test failing
 > against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
 > Finally, the commit message says "proved red against [what]" and the test counts.
+>
+> The same pending item also carries the Annex H test. Write it, and see it
+> fail first: for every declared profile, what that profile can reach is
+> exactly its row in `docs/PROFILE_MATRIX.md`, neither less nor more, and
+> every route checks the permission on the server, because hiding the entry
+> point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
+> nothing exercises is a document nobody reads.
 
 > [es]
 > Para cerrar este pendiente necesito evidencia, no tu palabra. (1) Escribí el test que prueba lo
@@ -108,6 +115,13 @@ el agente:
 > escribir (una condición invertida, una línea borrada), mostrame el test fallando contra ese
 > defecto como el mismo tipo de recibo, con el diff del defecto, y después revertilo. Por último,
 > el mensaje del commit dice "probado en rojo contra [qué]" y los números de los tests.
+>
+> El mismo pendiente también carga el test del Anexo H. Escribilo y vello
+> fallar primero: para cada perfil declarado, lo que ese perfil puede
+> alcanzar es exactamente su fila en `docs/PROFILE_MATRIX.md`, ni menos ni
+> más, y cada ruta verifica el permiso en el servidor, porque esconder el
+> botón no protege nada (Anexo H, UX-11, UX-12, UX-15). Una matriz que nada
+> ejercita es un documento que nadie lee.
 
 **El rojo del primer bloque.** En el primer bloque de un proyecto nuevo no hay código anterior: el test nuevo falla porque el módulo no existe, y ese fallo no demuestra que el test distinga comportamiento. Por eso, cuando la versión anterior no tiene el módulo, el rojo se prueba **por mutación**: el agente planta un defecto a propósito en la función que acaba de escribir, muestra el test en rojo contra ese defecto (el recibo lleva el diff del defecto, para que vos veas que no fue trivial), lo revierte y muestra el verde. Es un solo mutante por pendiente, ejecutado y registrado como cualquier otro recibo; las pruebas de mutación sobre toda la base siguen siendo el refuerzo opcional del peldaño 9. (Decisión D-037, a partir de la práctica Turnera: seis recibos de rojo que solo decían "el archivo no carga".)
 

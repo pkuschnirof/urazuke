@@ -83,7 +83,20 @@ el agente:
 > exceptions; the acceptance criteria in the form "given, when, then"; how it will be verified
 > as done; and status. If a node the item needs does not exist in the tree, propose it and mark
 > it. Order the items by the priority I gave you; if I gave none, propose an order and tell me
-> why. Reply in my language.
+> why.
+>
+> This block also carries the hooks of Annex H. Every pending item that
+> touches a screen declares, in `docs/PENDING.md`: the group of convergence
+> it belongs to (Annex H, B1), the profiles that have it, and one acceptance
+> criterion per affected profile, written as "given profile X, this person
+> can do Y and cannot do Z". It also adds or updates its row in
+> `docs/PROFILE_MATRIX.md`: the functionality, its group, its profiles and
+> its entry route. A pending item that touches a screen without that row is
+> not planned: the row is written here, not invented later in the code. The
+> catalogue lives in `docs/ANEXO_HEURISTICAS.md`: cite it, do not restate
+> it.
+>
+> Reply in my language.
 
 > [es]
 > Vamos a convertir todo lo que hay que hacer en este bloque en pendientes numerados, cada uno
@@ -98,7 +111,20 @@ el agente:
 > afectadas; los casos borde y las excepciones; los criterios de aceptación en la forma "dado,
 > cuando, entonces"; cómo se va a verificar que está hecho; y el estado. Si un nodo que el ítem
 > necesita no existe en el árbol, proponelo y marcalo. Ordenalos por la prioridad que te di; si
-> no te di ninguna, proponé un orden y decime por qué. Respondé en mi idioma.
+> no te di ninguna, proponé un orden y decime por qué.
+>
+> Este bloque también carga los ganchos del Anexo H. Todo pendiente que toca
+> una pantalla declara, en `docs/PENDING.md`: el grupo de convergencia al
+> que pertenece (Anexo H, B1), los perfiles que la tienen y un criterio de
+> aceptación por perfil afectado, escrito como «dado el perfil X, esta
+> persona puede hacer Y y no puede hacer Z». Además agrega o actualiza su
+> fila en `docs/PROFILE_MATRIX.md`: la funcionalidad, su grupo, sus perfiles
+> y su ruta de entrada. Un pendiente que toca una pantalla sin esa fila no
+> está planificado: la fila se escribe acá y no se inventa después en el
+> código. El catálogo vive en `docs/ANEXO_HEURISTICAS.md`: citalo, no lo
+> repitas.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo: que convierta el pedido en ítems verificables y que **pregunte cuando el
 pedido no da para escribir uno verificable** (la ambigüedad se resuelve preguntando, no

@@ -89,6 +89,13 @@ o agente:
 > the function you just wrote (an inverted condition, a deleted line), show me the test failing
 > against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
 > Finally, the commit message says "proved red against [what]" and the test counts.
+>
+> The same pending item also carries the Annex H test. Write it, and see it
+> fail first: for every declared profile, what that profile can reach is
+> exactly its row in `docs/PROFILE_MATRIX.md`, neither less nor more, and
+> every route checks the permission on the server, because hiding the entry
+> point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
+> nothing exercises is a document nobody reads.
 
 > [pt]
 > Para fechar esta pendência preciso de evidência, não da sua palavra. (1) Escreva o teste que
@@ -107,6 +114,13 @@ o agente:
 > acabou de escrever (uma condição invertida, uma linha apagada), mostre-me o teste falhando contra
 > esse defeito como o mesmo tipo de recibo, com o diff do defeito, e depois reverta-o. Por último, a
 > mensagem do commit diz "provado em vermelho contra [o quê]" e os números dos testes.
+>
+> A mesma pendência também carrega o teste do Anexo H. Escreva-o e veja-o
+> falhar primeiro: para cada perfil declarado, o que esse perfil pode
+> alcançar é exatamente a sua linha em `docs/PROFILE_MATRIX.md`, nem menos
+> nem mais, e cada rota verifica a permissão no servidor, porque esconder o
+> ponto de entrada não protege nada (Anexo H, UX-11, UX-12, UX-15). Uma
+> matriz que nada exercita é um documento que ninguém lê.
 
 **O vermelho do primeiro bloco.** No primeiro bloco de um projeto novo não há código anterior: o teste novo falha porque o módulo não existe, e essa falha não prova que o teste distingue comportamento. Por isso, quando a versão anterior não tem o módulo, o vermelho se prova **por mutação**: o agente planta um defeito de propósito na função que acabou de escrever, mostra o teste em vermelho contra esse defeito (o recibo leva o diff do defeito, para você ver que não foi trivial), reverte-o e mostra o verde. É um só mutante por pendente, executado e registrado como qualquer outro recibo; os testes de mutação sobre toda a base continuam sendo o reforço opcional do degrau 9. (Decisão D-037, a partir da prática Turnera: seis recibos de vermelho que só diziam "o arquivo não carrega".)
 

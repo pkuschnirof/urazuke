@@ -81,6 +81,14 @@ machst es, nicht der Agent:
 > passed or failed, observation). Write them for a person who does not know how the system is
 > built. Keep the cases of closed items up to date: when a flow changes, its cases change in the
 > same commit. Never mark a case as executed yourself: execution is human.
+>
+> Every manual case also runs once per affected profile, and it is derived
+> from `docs/PROFILE_MATRIX.md` instead of being written by hand: a case run
+> with a single profile is not an executed case (Annex H, anchor 4). At the
+> close of each block add the two human checks no machine replaces: the
+> first-click check, where I name the place I would look for a task and you
+> compare that with the menu, and the real screenshot of the test
+> environment.
 
 > [de]
 > Jeder offene Posten, der ändert, was ein Nutzer sieht oder tut, wird mit seinen manuellen
@@ -93,6 +101,15 @@ machst es, nicht der Agent:
 > ist. Halt die Fälle der geschlossenen Posten aktuell: wenn sich ein Fluss ändert, ändern sich
 > seine Fälle im selben Commit. Markiere nie selbst einen Fall als ausgeführt: die Ausführung ist
 > menschlich.
+>
+> Jeder manuelle Fall läuft außerdem einmal pro betroffenem Profil, und er
+> wird aus `docs/PROFILE_MATRIX.md` abgeleitet statt von Hand geschrieben:
+> ein Fall, der mit einem einzigen Profil gelaufen ist, ist kein
+> ausgeführter Fall (Anhang H, Anker 4). Beim Abschluss jedes Blocks füge
+> die zwei menschlichen Prüfungen hinzu, die keine Maschine ersetzt: die
+> Prüfung des ersten Klicks, bei der ich den Ort nenne, an dem ich eine
+> Aufgabe suchen würde, und du das mit dem Menü vergleichst, und den echten
+> Screenshot der Testumgebung.
 
 Was ich hier verlange: dass der Fall aus den Abnahmekriterien kommt (so prüft er, was verlangt
 wurde, und nicht, was das Modell verstanden hat); dass er für jemanden geschrieben ist, der nicht

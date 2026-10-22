@@ -92,6 +92,13 @@ l'agente:
 > the function you just wrote (an inverted condition, a deleted line), show me the test failing
 > against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
 > Finally, the commit message says "proved red against [what]" and the test counts.
+>
+> The same pending item also carries the Annex H test. Write it, and see it
+> fail first: for every declared profile, what that profile can reach is
+> exactly its row in `docs/PROFILE_MATRIX.md`, neither less nor more, and
+> every route checks the permission on the server, because hiding the entry
+> point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
+> nothing exercises is a document nobody reads.
 
 > [it]
 > Per chiudere questa voce in sospeso ho bisogno di prove, non della tua parola. (1) Scrivi il
@@ -111,6 +118,13 @@ l'agente:
 > invertita, una riga cancellata), mostrami il test che fallisce contro quel difetto come lo stesso
 > tipo di ricevuta, con il diff del difetto, e poi annullalo. Infine, il messaggio del commit dice
 > "provato in rosso contro [cosa]" e i numeri dei test.
+>
+> La stessa voce porta anche il test dell'Allegato H. Scrivilo e vedilo
+> fallire prima: per ogni profilo dichiarato, ciò che quel profilo può
+> raggiungere è esattamente la sua riga in `docs/PROFILE_MATRIX.md`, né meno
+> né più, e ogni rotta verifica il permesso sul server, perché nascondere il
+> punto di ingresso non protegge nulla (Allegato H, UX-11, UX-12, UX-15).
+> Una matrice che nulla esercita è un documento che nessuno legge.
 
 **Il rosso del primo blocco.** Nel primo blocco di un progetto nuovo non c'è codice precedente: il test nuovo fallisce perché il modulo non esiste, e quel fallimento non prova che il test distingua un comportamento. Per questo, quando la versione precedente non ha il modulo, il rosso si prova **per mutazione**: l'agente pianta di proposito un difetto nella funzione appena scritta, mostra il test in rosso contro quel difetto (la ricevuta porta il diff del difetto, così vedi che non era banale), lo annulla e mostra il verde. Un solo mutante per elemento in sospeso, eseguito e registrato come qualsiasi altra ricevuta; i test di mutazione su tutta la base restano il rinforzo opzionale del gradino 9. (Decisione D-037, dalla pratica Turnera: sei ricevute di rosso che dicevano solo "il file non si carica".)
 

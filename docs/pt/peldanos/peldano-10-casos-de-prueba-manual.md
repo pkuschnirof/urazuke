@@ -77,6 +77,14 @@ agente:
 > passed or failed, observation). Write them for a person who does not know how the system is
 > built. Keep the cases of closed items up to date: when a flow changes, its cases change in the
 > same commit. Never mark a case as executed yourself: execution is human.
+>
+> Every manual case also runs once per affected profile, and it is derived
+> from `docs/PROFILE_MATRIX.md` instead of being written by hand: a case run
+> with a single profile is not an executed case (Annex H, anchor 4). At the
+> close of each block add the two human checks no machine replaces: the
+> first-click check, where I name the place I would look for a task and you
+> compare that with the menu, and the real screenshot of the test
+> environment.
 
 > [pt]
 > Toda pendência que mude o que um usuário vê ou faz se fecha com os seus casos de teste manual
@@ -88,6 +96,14 @@ agente:
 > não sabe como o sistema está feito. Mantenha em dia os casos das pendências fechadas: quando um
 > fluxo muda, os seus casos mudam no mesmo commit. Nunca marque um caso como executado você
 > mesmo: a execução é humana.
+>
+> Todo caso manual também é executado uma vez por perfil afetado, e é
+> derivado de `docs/PROFILE_MATRIX.md` em vez de ser escrito à mão: um caso
+> rodado com um único perfil não é um caso executado (Anexo H, âncora 4). No
+> fecho de cada bloco, acrescente as duas verificações humanas que nenhuma
+> máquina substitui: a do primeiro clique, em que eu nomeio o lugar onde
+> procuraria uma tarefa e você compara isso com o menu, e a captura real do
+> ambiente de teste.
 
 O que estou pedindo: que o caso saia dos critérios de aceitação (assim prova o que se pediu, não
 o que o modelo entendeu); que esteja escrito para alguém que não sabe como o sistema funciona,

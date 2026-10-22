@@ -89,7 +89,20 @@ machst es, nicht der Agent:
 > exceptions; the acceptance criteria in the form "given, when, then"; how it will be verified
 > as done; and status. If a node the item needs does not exist in the tree, propose it and mark
 > it. Order the items by the priority I gave you; if I gave none, propose an order and tell me
-> why. Reply in my language.
+> why.
+>
+> This block also carries the hooks of Annex H. Every pending item that
+> touches a screen declares, in `docs/PENDING.md`: the group of convergence
+> it belongs to (Annex H, B1), the profiles that have it, and one acceptance
+> criterion per affected profile, written as "given profile X, this person
+> can do Y and cannot do Z". It also adds or updates its row in
+> `docs/PROFILE_MATRIX.md`: the functionality, its group, its profiles and
+> its entry route. A pending item that touches a screen without that row is
+> not planned: the row is written here, not invented later in the code. The
+> catalogue lives in `docs/ANEXO_HEURISTICAS.md`: cite it, do not restate
+> it.
+>
+> Reply in my language.
 
 > [de]
 > Wir werden alles, was in diesem Block zu tun ist, in nummerierte offene Posten verwandeln,
@@ -106,7 +119,21 @@ machst es, nicht der Agent:
 > dann“; wie geprüft wird, dass er erledigt ist; und dem Status. Wenn ein Knoten, den der Eintrag
 > braucht, im Baum nicht existiert, schlag ihn vor und markiere ihn. Ordne die Einträge nach der
 > Priorität, die ich dir gegeben habe; wenn ich keine gegeben habe, schlag eine Reihenfolge vor
-> und sag mir, warum. Antworte in meiner Sprache.
+> und sag mir, warum.
+>
+> Dieser Block trägt auch die Haken von Anhang H. Jeder offene Posten, der
+> einen Bildschirm berührt, deklariert in `docs/PENDING.md`: die
+> Konvergenzgruppe, zu der er gehört (Anhang H, B1), die Profile, die ihn
+> haben, und ein Abnahmekriterium pro betroffenem Profil, formuliert als
+> „gegeben Profil X, diese Person kann Y tun und kann Z nicht tun“. Außerdem
+> fügt er seine Zeile in `docs/PROFILE_MATRIX.md` hinzu oder aktualisiert
+> sie: die Funktionalität, ihre Gruppe, ihre Profile und ihren
+> Einstiegspfad. Ein offener Posten, der einen Bildschirm berührt und diese
+> Zeile nicht hat, ist nicht geplant: die Zeile wird hier geschrieben und
+> nicht später im Code erfunden. Der Katalog steht in
+> `docs/ANEXO_HEURISTICAS.md`: zitiere ihn, wiederhole ihn nicht.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange: dass er die Anfrage in prüfbare Einträge verwandelt und **fragt, wenn die
 Anfrage nicht ausreicht, um einen prüfbaren zu schreiben** (Mehrdeutigkeit wird durch Fragen

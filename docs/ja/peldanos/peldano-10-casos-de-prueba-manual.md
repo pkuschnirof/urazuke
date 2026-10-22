@@ -75,6 +75,14 @@
 > passed or failed, observation). Write them for a person who does not know how the system is
 > built. Keep the cases of closed items up to date: when a flow changes, its cases change in the
 > same commit. Never mark a case as executed yourself: execution is human.
+>
+> Every manual case also runs once per affected profile, and it is derived
+> from `docs/PROFILE_MATRIX.md` instead of being written by hand: a case run
+> with a single profile is not an executed case (Annex H, anchor 4). At the
+> close of each block add the two human checks no machine replaces: the
+> first-click check, where I name the place I would look for a task and you
+> compare that with the menu, and the real screenshot of the test
+> environment.
 
 > [ja]
 > 利用者が見るものや行うことを変えるすべての保留項目は、その受け入れ基準から導いた手動テス
@@ -85,6 +93,13 @@
 > う作られているかを知らない人に向けて書いてください。閉じた保留項目のケースは最新に保って
 > ください：フローが変わったら、そのケースも同じコミットで変わります。ケースを実行済みと自
 > 分で印すことは決してしないでください：実行は人のものです。
+>
+> 各手動ケースは、影響を受けるプロファイルごとに一度ずつ実行します。手で書くのではなく
+>  `docs/PROFILE_MATRIX.md` から導出してください。一つのプロ
+> ファイルだけで実行したケースは、実行済みのケースではありません（付録H、アンカー4）。
+> 各ブロックの締めくくりに、機械が置き換えられない二つの人による確認を加えてください：
+> 最初のクリックの確認（私がその作業を探す場所を一つ挙げ、あなたがそれをメニューと照ら
+> す）と、テスト環境の実際のスクリーンショットです。
 
 何を求めているか：ケースが受け入れ基準から出ること（そうすればモデルが理解したことではなく、
 依頼されたことを検証する）。システムがどう動くかを知らない誰かに向けて書かれていること。それ

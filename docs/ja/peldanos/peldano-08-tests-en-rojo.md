@@ -84,6 +84,13 @@
 > the function you just wrote (an inverted condition, a deleted line), show me the test failing
 > against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
 > Finally, the commit message says "proved red against [what]" and the test counts.
+>
+> The same pending item also carries the Annex H test. Write it, and see it
+> fail first: for every declared profile, what that profile can reach is
+> exactly its row in `docs/PROFILE_MATRIX.md`, neither less nor more, and
+> every route checks the permission on the server, because hiding the entry
+> point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
+> nothing exercises is a document nobody reads.
 
 > [ja]
 > この保留項目を閉じるには、あなたの言葉ではなく証拠が必要です。(1) 項目が求めることを
@@ -102,6 +109,13 @@
 > 関数に意図的な欠陥（条件の反転、行の削除）をひとつ植え、その欠陥に対してテストが失敗する
 > ところを、欠陥の diff を含む同じ種類のレシートとして見せてから、元に戻してください。最後に、
 > コミットメッセージは「[何]に対して赤で証明」とテストの数を述べます。
+>
+> 同じ項目は付録Hのテストも担います。それを書き、まず失敗するのを見てください。宣言さ
+> れた各プロファイルについて、そのプロファイルが到達できるものは
+> `docs/PROFILE_MATRIX.md` のその行と正確に一致し、少なくても
+> 多くてもいけません。そして各ルートはサーバー側で権限を検査します。入り口を隠すことは
+> 何も守らないからです（付録H、UX-11、UX-12、UX-15）。何も実行しないマ
+> トリクスは、誰も読まない文書です。
 
 **最初のブロックの赤。** 新規プロジェクトの最初のブロックには以前のコードがありません。新しいテストはモジュールが存在しないから失敗するのであって、その失敗はテストが振る舞いを見分けることを証明しません。そのため、以前のバージョンにモジュールがないときは、赤を**ミューテーションで**証明します。エージェントは書いたばかりの関数に意図的な欠陥を植え、その欠陥に対してテストが赤になるところを見せ（レシートには欠陥の diff が付くので、些細なものでなかったことが分かります）、元に戻して緑を見せます。保留項目ごとにミュータントひとつ、他のレシートと同じように実行して記録します。コードベース全体のミューテーションテストは、引き続き段 9 の任意の補強です。（決定 D-037。練習 Turnera から：「ファイルが読み込めない」としか言わない赤のレシートが六つ。）
 

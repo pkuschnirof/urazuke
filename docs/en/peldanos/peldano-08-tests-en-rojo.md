@@ -91,6 +91,13 @@ the agent:
 > the function you just wrote (an inverted condition, a deleted line), show me the test failing
 > against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
 > Finally, the commit message says "proved red against [what]" and the test counts.
+>
+> The same pending item also carries the Annex H test. Write it, and see it
+> fail first: for every declared profile, what that profile can reach is
+> exactly its row in `docs/PROFILE_MATRIX.md`, neither less nor more, and
+> every route checks the permission on the server, because hiding the entry
+> point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
+> nothing exercises is a document nobody reads.
 
 **The red of the first block.** In the first block of a new project there is no previous code: the new test fails because the module does not exist, and that failure does not prove the test tells behaviour apart. So, when the previous version does not have the module, the red is proven **by mutation**: the agent plants a deliberate defect in the function it just wrote, shows the test red against that defect (the receipt carries the diff of the defect, so you can see it was not trivial), reverts it and shows the green. One mutant per pending item, run and recorded like any other receipt; mutation testing over the whole codebase stays the optional reinforcement of step 9. (Decision D-037, from the Turnera practice: six red receipts that only said "the file does not load".)
 

@@ -105,8 +105,21 @@ machst es, nicht der Agent:
 > `docs/CODE_QUALITY.md` with: the tools, the configuration, every limit with its current measured
 > value, and the list of what fails today with where it is. Do not fix anything yet: what fails
 > today becomes pending items, and I decide which limits apply now and which are raised with a
-> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red. Reply in
-> my language.
+> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red.
+>
+> Extend this gate to the screen frontier, as Annex H section 4 declares: no
+> business rule inside a screen, one typed client for every server call, one
+> home for shared state, no user-visible string outside the translation
+> catalogue, a stable identifier and role on every interactive element,
+> styling only through tokens, and automatic basic accessibility checks.
+> Every rule carries its stable id, its severity and its named verifier; the
+> thresholds and the exceptions are declared by me in the project
+> configuration file, and a rule switched off with no written exception is a
+> failure of the gate, not a decision. `docs/CODE_QUALITY.md` and
+> `docs/USABILITY.md` report result by result, never as a single number. The
+> catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
+>
+> Reply in my language.
 
 > [de]
 > Wir werden die Code-Qualität maschinell verifizieren lassen, denn niemand wird den Code lesen.
@@ -122,8 +135,23 @@ machst es, nicht der Agent:
 > jeder Grenze mit ihrem aktuell gemessenen Wert, und der Liste dessen, was heute fehlschlägt, mit
 > dem Ort. Repariere noch nichts: was heute fehlschlägt, wird zu offenen Posten, und ich
 > entscheide, welche Grenzen jetzt gelten und welche mit einem Datum angehoben werden. Mach aus
-> dem Ganzen ein Tor in `docs/GATES.md`: nichts wird mit roter Qualität zusammengeführt. Antworte
-> in meiner Sprache.
+> dem Ganzen ein Tor in `docs/GATES.md`: nichts wird mit roter Qualität zusammengeführt.
+>
+> Erweitere dieses Tor bis an die Bildschirmgrenze, wie Abschnitt 4 von
+> Anhang H es erklärt: keine Geschäftsregel in einem Bildschirm, ein
+> einziger typisierter Client für jeden Serveraufruf, ein einziger Ort für
+> geteilten Zustand, kein sichtbarer Text außerhalb des
+> Übersetzungskatalogs, stabile Kennung und Rolle an jedem interaktiven
+> Element, Stile nur über Tokens und automatische grundlegende
+> Barrierefreiheitsprüfungen. Jede Regel trägt ihre stabile Kennung, ihre
+> Schwere und ihren benannten Prüfer; Schwellen und Ausnahmen erkläre ich in
+> der Konfigurationsdatei des Projekts, und eine abgeschaltete Regel ohne
+> schriftliche Ausnahme ist ein Ausfall des Tors, keine Entscheidung.
+> `docs/CODE_QUALITY.md` und `docs/USABILITY.md` berichten Ergebnis für
+> Ergebnis, nie als eine einzige Zahl. Der Katalog ist
+> `docs/ANEXO_HEURISTICAS.md`: zitiere ihn, kopiere ihn nicht.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange: die fünf Prüfungen, die ein menschlicher Prüfer machen würde, maschinell
 gemacht und mit dem roten Build als Konsequenz, denn eine Prüfung, die nicht blockiert, ist ein

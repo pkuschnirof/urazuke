@@ -81,8 +81,21 @@
 > `docs/CODE_QUALITY.md` with: the tools, the configuration, every limit with its current measured
 > value, and the list of what fails today with where it is. Do not fix anything yet: what fails
 > today becomes pending items, and I decide which limits apply now and which are raised with a
-> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red. Reply in
-> my language.
+> date. Make the whole set a gate in `docs/GATES.md`: nothing is merged with quality red.
+>
+> Extend this gate to the screen frontier, as Annex H section 4 declares: no
+> business rule inside a screen, one typed client for every server call, one
+> home for shared state, no user-visible string outside the translation
+> catalogue, a stable identifier and role on every interactive element,
+> styling only through tokens, and automatic basic accessibility checks.
+> Every rule carries its stable id, its severity and its named verifier; the
+> thresholds and the exceptions are declared by me in the project
+> configuration file, and a rule switched off with no written exception is a
+> failure of the gate, not a decision. `docs/CODE_QUALITY.md` and
+> `docs/USABILITY.md` report result by result, never as a single number. The
+> catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要让代码质量由机器来验证，因为没有人会去读代码。请在持续集成里、在每次 push 时搭起：
@@ -93,7 +106,18 @@
 > 查。现在就把这一切在当前代码上跑一遍，并写出 `docs/CODE_QUALITY.md`，内容包括：工具、配
 > 置、每条限制及其当前实测值，以及今天哪些没通过、它们在哪里的清单。先什么都不要修：今天没
 > 通过的东西会变成待办项，而哪些限制现在就生效、哪些带日期再提高，由我来决定。把这一整套做
-> 成 `docs/GATES.md` 里的一道闸门：质量为红时什么都不合并。用我的语言回答。
+> 成 `docs/GATES.md` 里的一道闸门：质量为红时什么都不合并。
+>
+> 把这道理延伸到界面边界，如附录H第4节所声明：界面里不放业务规则；每次调用服务端只有
+> 一个带类型的客户端；共享状态只有一个存放处；翻译目录之外不出现任何用户可见的文字；每
+> 个可交互元素都有稳定的标识和角色；样式只通过令牌；基本的无障碍自动检查。每条规则都带
+> 稳定的编号、严重级别和有名字的验证者；阈值和例外由我在项目配置文件中声明，一条被关掉
+> 却没有书面例外的规则属于这道门槛的故障，不是决定。
+> `docs/CODE_QUALITY.md` 和
+> `docs/USABILITY.md` 逐条报结果，绝不汇成一个数字。目录在
+> `docs/ANEXO_HEURISTICAS.md`：引用它，不要复制它。
+>
+> 用我的语言回答。
 
 我在要求什么：一个人类评审会做的那五项检查，由机器来做，并且以构建变红作为后果，因为一项不拦
 路的检查只是一条建议；限制带着它的实测值，这样限制出自数字而不是出自一种看法；覆盖率的棘轮，

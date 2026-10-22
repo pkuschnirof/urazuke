@@ -71,6 +71,13 @@
 > the function you just wrote (an inverted condition, a deleted line), show me the test failing
 > against that defect as the same kind of receipt, with the diff of the defect, and then revert it.
 > Finally, the commit message says "proved red against [what]" and the test counts.
+>
+> The same pending item also carries the Annex H test. Write it, and see it
+> fail first: for every declared profile, what that profile can reach is
+> exactly its row in `docs/PROFILE_MATRIX.md`, neither less nor more, and
+> every route checks the permission on the server, because hiding the entry
+> point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
+> nothing exercises is a document nobody reads.
 
 > [zh]
 > 要关闭这个待办项，我需要证据，不是你的口头保证。(1) 写出证明该项所要求之事的测试，遵循
@@ -83,6 +90,11 @@
 > 如果上一版本根本没有这个模块（新项目的第一个块），文件无法加载并不是红色：请在你刚写的函数
 > 里故意植入一个缺陷（反转一个条件、删除一行）来证明红色，把测试针对该缺陷失败的输出作为同类
 > 凭据给我看，附上缺陷的 diff，然后把它还原。最后，提交信息写"对 [什么] 先证红"以及测试的数字。
+>
+> 同一个待办项还承担附录H的测试。先把它写出来，并看着它失败：对每个声明的角色，这个角
+> 色能到达的内容正好是它在 `docs/PROFILE_MATRIX.md` 中那一行，
+> 不多不少；每条路由都在服务端校验权限，因为把入口藏起来保护不了任何东西（附录H，UX
+> -11、UX-12、UX-15）。没有任何东西去执行的矩阵，是没人读的文件。
 
 **第一个块的红色。** 新项目的第一个块没有先前代码：新测试失败只是因为模块不存在，这种失败并不能证明测试能分辨行为。因此，当上一版本没有这个模块时，红色要**通过变异**来证明：代理在刚写好的函数里故意植入一个缺陷，展示测试针对该缺陷变红（凭据附带缺陷的 diff，让你看到它不是微不足道的），再还原并展示绿色。每个待办项一个变异体，像其他凭据一样执行并记录；对整个代码库的变异测试仍然是台阶 9 的可选加固。（决定 D-037，来自练习 Turnera：六张红色凭据只说"文件无法加载"。）
 

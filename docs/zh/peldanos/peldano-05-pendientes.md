@@ -69,7 +69,20 @@
 > exceptions; the acceptance criteria in the form "given, when, then"; how it will be verified
 > as done; and status. If a node the item needs does not exist in the tree, propose it and mark
 > it. Order the items by the priority I gave you; if I gave none, propose an order and tell me
-> why. Reply in my language.
+> why.
+>
+> This block also carries the hooks of Annex H. Every pending item that
+> touches a screen declares, in `docs/PENDING.md`: the group of convergence
+> it belongs to (Annex H, B1), the profiles that have it, and one acceptance
+> criterion per affected profile, written as "given profile X, this person
+> can do Y and cannot do Z". It also adds or updates its row in
+> `docs/PROFILE_MATRIX.md`: the functionality, its group, its profiles and
+> its entry route. A pending item that touches a screen without that row is
+> not planned: the row is written here, not invented later in the code. The
+> catalogue lives in `docs/ANEXO_HEURISTICAS.md`: cite it, do not restate
+> it.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要把这个功能块里必须做的一切转成编号的待办项，每一项都带有它的完整规格。读
@@ -81,6 +94,14 @@
 > 和例外；"给定、当、那么"形式的验收标准；如何验证它已完成；以及状态。如果某项需要的节点
 > 在树里不存在，提议它并标出来。按我给你的优先级排序；如果我没给，提议一个顺序并告诉我为
 > 什么。用我的语言回复。
+>
+> 这个块也承担附录H的挂钩。每个涉及界面的待办项都要在
+> `docs/PENDING.md` 中声明：它所属的收敛分组（附录H，B1）、拥有它
+> 的角色、以及每个受影响角色的一条验收标准，写成「给定角色X，这个人能做Y，不能做Z」。
+> 同时，在 `docs/PROFILE_MATRIX.md` 中新增或更新它那一行：功
+> 能、它的分组、它的角色、它的进入路径。涉及界面却没有这一行的待办项不算已规划：这一行
+> 在这里写，不在以后的代码里发明。目录在
+> `docs/ANEXO_HEURISTICAS.md`：引用它，不要重复它。
 
 我在要求什么：把请求转成可验证的条目，并且**当请求不足以写出可验证的条目时提问**（含糊靠提
 问解决，不靠选择）；每个待办项的完整规格，逐字段，那是经典需求工程分解成小单位；它挂的树节
