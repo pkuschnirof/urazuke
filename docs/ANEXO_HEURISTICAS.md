@@ -172,6 +172,8 @@ El anexo no inventa peldaños nuevos: se cuelga de los que existen. Eso evita du
 | Manual de usuario | Se organiza por los grupos de B1 y declara, por grupo, qué perfiles entran. | El manual y el menú se nombran con las mismas palabras o el glosario se rompe. |
 | Cierre de cada bloque | Prueba del primer clic (UX-07), captura del entorno real (UX-27) y las dos pruebas de extremo a extremo de la matriz. | Son las tres verificaciones que no se pueden automatizar. |
 
+**Estado (D-049).** Las cinco anclas ya están enganchadas: el prompt inicial de los peldaños 5, 8, 9, 10 y 12 cita este anexo en los ocho idiomas, con una sola redacción inglesa idéntica en todos y su traducción local al lado. El documento se publica en el sitio con el resto del método, en castellano; su entrada a la API de prompts espera la traducción a los ocho idiomas (D-043).
+
 Los peldaños 6, 7 y 11 reciben a lo sumo una línea: el 6 ya registra umbrales y excepciones como decisiones (es el lugar natural de la excepción declarada), y el 11 es donde entra a los golpes el caso de la matriz escrita en cuatro lugares. No se les agrega texto propio para no diluirlos.
 
 Tres artefactos, todos en `docs/`: `CODE_QUALITY.md` (extendido), `USABILITY.md` (nuevo, con el resultado por regla y las excepciones declaradas) y `PROFILE_MATRIX.md` (la matriz, que es a la vez documento y fuente del menú).
