@@ -47,7 +47,7 @@ test('la huella cambia si cambia un artefacto de un peldano', () => {
 });
 
 test('la huella cambia si cambia la version declarada del catalogo', () => {
-  assert.notEqual(huellaDeContenido({ ...contenido, catalog_version: '2026.10.2' }, cubre), huellaDeContenido(contenido, cubre));
+  assert.notEqual(huellaDeContenido({ ...contenido, catalog_version: '2029.01.1' }, cubre), huellaDeContenido(contenido, cubre));
 });
 
 test('la canonicalizacion ordena por punto de codigo, recursivamente, y no toca los arreglos', () => {

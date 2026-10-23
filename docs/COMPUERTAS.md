@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.1** - schema **2**
-- content fingerprint `8f9aa195001e2a00...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.2** - schema **2**
+- content fingerprint `3bd03ac3bf79a600...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -24,7 +24,7 @@ it already publishes the prompts, and the tool consumes it.
 A project starts and ends on the same version of the method, unless somebody applies the double
 lock. For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.1`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.2`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -36,6 +36,25 @@ lock. For that to be possible, what is published has to be identifiable and stab
 Covered by the fingerprint: `schema_version`, `catalog_version`, `languages`, `evaluators`, `evaluator_semantics`, `compatibility`, `tramos`, `steps`, `stations`, `loop_entry`, `heuristics`, `adapters`, `project_config`.
 Left out: `generated_at`, `git_commit`, `git_commit_note`, `source`, `license`, `content_hash`, `what`, `counts`.
 Nothing in between: Every key of the published payload is either covered or excluded, and the validator checks it. A requirement-bearing key left out of both would travel without protection: a frozen copy could be altered there and the recomputed hash would still match.
+
+When the version moves: Any change to a key listed in hash_covers raises catalog_version, even when no requirement changed: the content hash moves with it, and two different contents published under one declared version would make a freeze unreadable. A regeneration that only rewrites generated_at or git_commit changes nothing covered, so it leaves the version alone.
+
+The ledger: gates/catalog.json#changelog records, for each catalog_version, the content hash it produced. The build refuses to publish when the hash of the current content is not the one recorded for the current version: that is what forces the bump instead of trusting it. The ledger is append-only and a hash already recorded is never edited, for the same reason the base is not edited. It is not part of the published payload, so recording a new entry cannot change the hash it records.
+
+- **2026.10.1** (2026-10-23, D-050) -- `8f9aa195001e2a00...`
+- **2026.10.2** (2026-10-23, D-053) -- `3bd03ac3bf79a600...`
+
+## The language of each text
+
+Which language each human-readable text of this file is in. It is declared mechanically because the file is bilingual: reading `data` as a single language would make a consumer show Spanish to an English reader.
+
+- Declared: `languages.data` = `mixed`, default `en`.
+- Spanish scope: `tramos`, `steps`, `stations`, `loop_entry`, told apart by `since_schema`.
+- Rule: Inside the keys listed in `spanish_scope`, a text is Spanish when neither its own node nor any enclosing node declares `since_schema` >= 2: it comes from the frozen base, and the base is not edited. A node with `since_schema` >= 2 is new, and its text is English. Every text outside `spanish_scope` is English.
+- Readable text fields: `title`, `summary`, `verify`, `label`, `text`, `note`.
+- Ids, step and station keys, evaluator names, enum values, file paths and the regular expressions of must_contain / should_contain are not prose and carry no language. The regular expressions are deliberately bilingual, so that a gate matches a document written in either language.
+- The method checks this declaration on every build: every text the rule calls Spanish has to appear literally in gates/baseline_forge.json, and no text the rule calls English may read as Spanish. If the declaration stops being true, nothing is published.
+- **For a consumer:** Do not print these texts to an end user. Read the stable `id` -- an opaque key that is never translated -- and take the text from your own catalogue. That holds for the English texts too: this file is the definition of the gates, not a translated user interface.
 
 ## What an installation cannot measure
 

@@ -96,7 +96,69 @@ test('la excepcion declarada: el texto de la base viaja en el publicado tal como
   assert.equal(paso.title, base.title);
   assert.equal(paso.summary, base.summary);
   assert.ok(paso.verify.includes(base.verify[0]), 'la pregunta de completitud de la base sigue literal');
-  assert.equal(contenido.languages.data, 'en');
+  assert.equal(contenido.languages.data, 'mixed', 'el publicado es bilingue y lo dice: la base no se traduce');
   assert.equal(contenido.languages.prose, 'es');
   assert.match(contenido.languages.exception, /baseline_forge\.json/);
+});
+
+/* ------------------------------------------------------------------ *
+ * La declaracion de idioma de cada texto (pedido del consumidor, 2026-10-23)
+ * ------------------------------------------------------------------ *
+ * Decir languages.data = "en" en un archivo bilingue no es un detalle de forma:
+ * un consumidor que lo lee y confia le muestra castellano a un lector ingles. La
+ * declaracion tiene que ser VERDAD y tiene que poder aplicarse sin leer el texto.
+ */
+
+const tl = fuentes.catalog.languages.text_language;
+
+/** El idioma que la regla declarada le asigna a cada texto del publicado. */
+function porIdioma() {
+  const salida = { es: [], en: [] };
+  const caminar = (v, donde, campo, nuevo) => {
+    if (typeof v === 'string') {
+      if (tl.text_fields.includes(campo)) salida[nuevo ? 'en' : 'es'].push([donde, v]);
+      return;
+    }
+    if (Array.isArray(v)) return v.forEach((x, i) => caminar(x, donde + '[' + i + ']', campo, nuevo));
+    if (v && typeof v === 'object') {
+      const n = nuevo || (typeof v.since_schema === 'number' && v.since_schema > 1);
+      for (const [k, x] of Object.entries(v)) caminar(x, donde + '.' + k, k, n);
+    }
+  };
+  for (const clave of tl.spanish_scope) caminar(contenido[clave], clave, clave, false);
+  for (const clave of Object.keys(contenido)) {
+    if (!tl.spanish_scope.includes(clave)) caminar(contenido[clave], clave, clave, true);
+  }
+  return salida;
+}
+
+test('la regla de idioma se puede aplicar: cada texto del publicado queda clasificado', () => {
+  const { es, en } = porIdioma();
+  assert.ok(es.length > 0 && en.length > 0, 'el archivo es bilingue: tiene que haber textos de los dos lados');
+  assert.equal(tl.default, 'en');
+  assert.deepEqual(tl.spanish_scope, ['tramos', 'steps', 'stations', 'loop_entry']);
+});
+
+test('todo texto que la regla llama castellano esta LITERAL en la base congelada', () => {
+  const deLaBase = new Set();
+  (function recorrer(v) {
+    if (typeof v === 'string') return deLaBase.add(v);
+    if (Array.isArray(v)) return v.forEach(recorrer);
+    if (v && typeof v === 'object') return Object.values(v).forEach(recorrer);
+  })(fuentes.baseline);
+  const inventados = porIdioma().es.filter(([, texto]) => !deLaBase.has(texto)).map(([donde]) => donde);
+  assert.deepEqual(inventados, [], 'o el texto es nuevo y le falta su since_schema, o se edito la base');
+});
+
+test('ningun texto que la regla llama ingles se lee como castellano', () => {
+  const sospechosos = porIdioma().en
+    .filter(([donde, texto]) => !/\.(must_contain|should_contain)\[/.test(donde) && CASTELLANO.test(texto))
+    .map(([donde, texto]) => donde + ' = ' + JSON.stringify(texto.slice(0, 60)));
+  assert.deepEqual(sospechosos, [], 'la mitad inglesa de la declaracion tambien tiene que ser verdad');
+});
+
+test('la declaracion le dice al consumidor que no imprima estos textos', () => {
+  assert.match(tl.consumer, /\bid\b/, 'el consumidor lee el id opaco');
+  assert.match(tl.consumer, /own catalogue/, 'y saca el texto de su propio catalogo');
+  assert.ok(tl.rule.includes('since_schema'), 'la regla nombra la marca que la hace aplicable');
 });

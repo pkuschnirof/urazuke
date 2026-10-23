@@ -3,12 +3,14 @@
 // edito un generado a mano o se olvido de regenerar, y la construccion falla.
 //
 // Dos campos quedan FUERA de la comparacion a proposito, y conviene saber por que:
-//   - prompts.json `version` y gates.json `git_commit`: los calcula el build con
+//   - prompts.json `version` y gates.json `git_commit` (el mismo campo con dos nombres,
+//     por compatibilidad con los consumidores que ya lo imprimen): los calcula el build con
 //     `git rev-parse HEAD`, o sea ANTES de guardar, asi que nombran siempre al cambio
 //     anterior al que los contiene. Compararlos dejaria esta verificacion en rojo
 //     permanente por un campo que ninguna decision mira. La identidad de lo publicado
-//     es `catalog_version` (declarada a mano) + `content_hash` (calculada), y esa SI
-//     se verifica: se recalcula la huella sobre el archivo commiteado.
+//     es la version declarada a mano (`catalog_version` en gates.json, `corpus_version`
+//     en prompts.json) + `content_hash` (calculada), y esa SI se verifica: se recalcula
+//     la huella de los DOS archivos sobre lo commiteado.
 //   - `generated_at`: cambia en cada corrida por definicion.
 // Uso: node build/api_check.mjs
 //      node build/api_check.mjs --huella   <- solo recalcula la huella de lo commiteado
@@ -39,26 +41,28 @@ let fallas = 0;
 
 // La huella del archivo commiteado tiene que recalcularse igual: es lo que hace un
 // consumidor para saber que su copia congelada no fue alterada.
-function verificarHuella(publicado) {
-  if (!publicado) { console.error('falta docs/html/api/gates.json'); return false; }
+function verificarHuella(nombre, publicado) {
+  if (!publicado) { console.error('falta docs/html/api/' + nombre); return false; }
   const recalculada = huellaDeContenido(publicado, publicado.content_hash.covers);
   if (recalculada !== publicado.content_hash.value) {
-    console.error('la huella de gates.json no coincide con su contenido:');
+    console.error('la huella de ' + nombre + ' no coincide con su contenido:');
     console.error('  publicada:   ' + publicado.content_hash.value);
     console.error('  recalculada: ' + recalculada);
-    console.error('  arreglo: alguien edito el generado a mano. Corre: node build/gates_api.mjs');
+    console.error('  arreglo: alguien edito el generado a mano. Corre: node build/build.mjs');
     return false;
   }
-  console.log('gates.json: la huella recalculada coincide (catalogo ' + publicado.catalog_version
-    + ', ' + publicado.content_hash.value.slice(0, 12) + ')');
+  const version = publicado.catalog_version ?? publicado.corpus_version;
+  console.log(nombre + ': la huella recalculada coincide (version ' + version + ', ' + publicado.content_hash.value.slice(0, 12) + ')');
   return true;
 }
 
+const huellas = () => ['gates.json', 'prompts.json'].map((n) => verificarHuella(n, antes[n])).every(Boolean);
+
 if (process.argv.includes('--huella')) {
-  process.exit(verificarHuella(antes['gates.json']) ? 0 : 1);
+  process.exit(huellas() ? 0 : 1);
 }
 
-if (!verificarHuella(antes['gates.json'])) fallas++;
+if (!huellas()) fallas++;
 
 for (const script of ['prompts_api.mjs', 'gates_api.mjs']) {
   execFileSync(process.execPath, [join(raiz, 'build', script)], { stdio: 'inherit' });

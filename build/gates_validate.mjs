@@ -7,7 +7,7 @@
 // Cada error sale con codigo estable, que paso, donde y como se arregla. Devuelve
 // codigo de salida 1 si hay al menos un error.
 import { readFileSync } from 'node:fs';
-import { cargarFuentes, extraerAnexo, proyectarPasoABase, idFamilia, armarContenido, ANEXOS } from './gates_lib.mjs';
+import { cargarFuentes, extraerAnexo, proyectarPasoABase, idFamilia, armarContenido, huellaDeContenido, ANEXOS } from './gates_lib.mjs';
 
 const esObjeto = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
 
@@ -344,7 +344,101 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
     }
   }
 
-  /* ---------- 10. la configuracion de un proyecto (opcional) ---------- */
+  /* ---------- 10. la version declarada y la huella que produjo ---------- */
+
+  const changelog = fuentes.catalog.changelog;
+  if (!Array.isArray(changelog) || !changelog.length) {
+    err('E_VERSION', 'gates/catalog.json no tiene changelog', 'gates/catalog.json',
+      'cada version publicada deja su entrada con la huella que produjo: es el registro que permite distinguir dos contenidos');
+  } else {
+    const versiones = changelog.map((c) => c.catalog_version);
+    if (new Set(versiones).size !== versiones.length) {
+      err('E_VERSION', 'hay dos entradas del changelog con la misma catalog_version', 'gates/catalog.json',
+        'una version es un contenido, y uno solo: si el contenido cambio, la version sube');
+    }
+    const ultima = changelog[changelog.length - 1];
+    if (ultima.catalog_version !== fuentes.catalog.catalog_version) {
+      err('E_VERSION', 'la version declarada es ' + fuentes.catalog.catalog_version + ' y la ultima entrada del changelog dice ' + ultima.catalog_version, 'gates/catalog.json',
+        'la ultima entrada del changelog es la version que se publica: agrega la entrada que falta, o corregi catalog_version');
+    }
+    for (const c of changelog) {
+      if (!/^[0-9a-f]{64}$/.test(c.content_hash ?? '')) {
+        err('E_VERSION', 'la entrada ' + c.catalog_version + ' del changelog no registra una huella sha256', 'gates/catalog.json',
+          'cada version viaja con la huella que produjo; sin eso, una copia congelada no se puede contrastar contra el registro del metodo');
+      }
+    }
+    const entrada = changelog.find((c) => c.catalog_version === fuentes.catalog.catalog_version);
+    if (!entrada) {
+      err('E_VERSION', 'la version declarada ' + fuentes.catalog.catalog_version + ' no tiene entrada en el changelog', 'gates/catalog.json',
+        'agregala, con la fecha, la decision que la motiva y la huella que produce');
+    } else if (publicado) {
+      let calculada = null;
+      try { calculada = huellaDeContenido(publicado, esquema.hash_covers); } catch { /* lo que falte ya salio en la seccion 9 */ }
+      if (calculada && entrada.content_hash !== calculada) {
+        err('E_VERSION', 'el contenido no es el que la version ' + entrada.catalog_version + ' tiene registrado: registrada ' + String(entrada.content_hash).slice(0, 12) + ', calculada ' + calculada.slice(0, 12), 'gates/catalog.json',
+          'cambio una clave cubierta por la huella. Subi catalog_version y agrega la entrada nueva con la huella ' + calculada + ', o volve atras el cambio. Dos contenidos distintos bajo una misma version declarada dejan ilegible lo que un proyecto congelo, que es justo lo que la version existe para evitar.');
+      }
+    }
+  }
+
+  /* ---------- 11. la declaracion de idioma dice la verdad ---------- */
+
+  const idiomas = fuentes.catalog.languages;
+  const tl = idiomas && idiomas.text_language;
+  if (!tl) {
+    err('E_IDIOMA_DECLARADO', 'gates/catalog.json no declara el idioma de cada texto', 'gates/catalog.json',
+      'el publicado es bilingue (la base congelada no se traduce): declara languages.text_language, o un consumidor que confie le muestra castellano a un lector ingles');
+  } else if (publicado) {
+    if (tl.default !== 'en') {
+      err('E_IDIOMA_DECLARADO', 'el idioma por defecto del nivel de datos dice "' + tl.default + '"', 'gates/catalog.json',
+        'D-051: lo que no esta traducido se publica en ingles. La unica excepcion es la base congelada, y esa va por spanish_scope.');
+    }
+    if (!Array.isArray(tl.text_fields) || !tl.text_fields.length) {
+      err('E_IDIOMA_DECLARADO', 'la declaracion de idioma no dice que campos son texto legible', 'gates/catalog.json',
+        'nombralos en text_fields: sin eso la regla no se puede verificar ni aplicar');
+    } else {
+      const deLaBase = new Set();
+      (function recorrer(v) {
+        if (typeof v === 'string') return deLaBase.add(v);
+        if (Array.isArray(v)) return v.forEach(recorrer);
+        if (esObjeto(v)) return Object.values(v).forEach(recorrer);
+      })(baseline);
+      const textos = { es: 0, en: 0 };
+      const mentiras = [];
+      const caminar = (v, donde, campo, nuevo) => {
+        if (typeof v === 'string') {
+          if (!tl.text_fields.includes(campo)) return;
+          if (nuevo) { textos.en++; return; }
+          textos.es++;
+          if (!deLaBase.has(v)) mentiras.push(donde + ' = ' + JSON.stringify(v.slice(0, 60)));
+          return;
+        }
+        if (Array.isArray(v)) return v.forEach((x, i) => caminar(x, donde + '[' + i + ']', campo, nuevo));
+        if (esObjeto(v)) {
+          const n = nuevo || (typeof v.since_schema === 'number' && v.since_schema > 1);
+          for (const [k, x] of Object.entries(v)) caminar(x, donde + '.' + k, k, n);
+        }
+      };
+      for (const clave of tl.spanish_scope ?? []) {
+        if (!(clave in publicado)) {
+          err('E_IDIOMA_DECLARADO', 'el alcance del castellano nombra la clave ' + clave + ', que el publicado no tiene', 'gates/catalog.json', 'corregi el nombre en spanish_scope');
+          continue;
+        }
+        caminar(publicado[clave], clave, clave, false);
+      }
+      for (const m of mentiras) {
+        err('E_IDIOMA_DECLARADO', 'la regla declara castellano un texto que no esta en la base congelada: ' + m, 'gates/catalog.json',
+          'o el texto es nuevo y le falta su since_schema, o se edito la base. La declaracion de idioma solo sirve si es verdad: un consumidor la aplica sin leer el texto.');
+      }
+      const esperado = textos.es && textos.en ? 'mixed' : textos.es ? 'es' : 'en';
+      if (idiomas.data !== esperado) {
+        err('E_IDIOMA_DECLARADO', 'languages.data dice "' + idiomas.data + '" y el publicado lleva ' + textos.es + ' texto(s) en castellano y ' + textos.en + ' en ingles', 'gates/catalog.json',
+          'declara "' + esperado + '". Un consumidor que lee un solo idioma y confia le muestra castellano a un lector ingles.');
+      }
+    }
+  }
+
+  /* ---------- 12. la configuracion de un proyecto (opcional) ---------- */
 
   if (config) {
     const idsRegla = new Set(heuristics.rules.map((r) => r.id));

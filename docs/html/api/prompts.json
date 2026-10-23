@@ -1,9 +1,43 @@
 {
-  "version": "1c29109",
-  "generated_at": "2026-10-22T16:51:34.452Z",
-  "language": "en",
+  "what": "The prompts of the Urazuke method, published as data. The method owns them; a tool consumes them. They are one English piece, identical in the eight versions of the method, and a tool does not rewrite them.",
+  "corpus_version": "2026.10.1",
+  "content_hash": {
+    "algo": "sha256",
+    "encoding": "hex_lower",
+    "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
+    "covers": [
+      "corpus_version",
+      "language",
+      "languages",
+      "contracts",
+      "steps",
+      "count"
+    ],
+    "excludes": [
+      "what",
+      "version",
+      "version_note",
+      "generated_at",
+      "source",
+      "license",
+      "content_hash"
+    ],
+    "value": "3459750db1d7eb746e4f2b45f8e677585df7f269c0f083903b8a07db535fe15d",
+    "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
+  },
+  "version": "64c6952",
+  "version_note": "Informative, and kept for the consumers that already print it. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: the identity of what is published is corpus_version + content_hash, and no comparison looks at this.",
+  "generated_at": "2026-10-23T12:16:22.418Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
+  "language": "en",
+  "languages": {
+    "prompts": "en",
+    "step_titles": "en",
+    "decision": "D-051",
+    "note": "The prompts are ONE English piece, identical in the eight versions of the method (D-013): that is what makes them comparable. The step titles come from the English contracts (docs/en/peldanos/), because this file is tool data and the data layer is published in English. The file is UTF-8 and NOT pure ASCII: the prompt text travels verbatim, typographic punctuation included.",
+    "consumer": "Do not print `title` to an end user. Read the opaque `key` and `num` -- they are never translated -- and take your display text from your own catalogue, in the language of your reader."
+  },
   "contracts": {
     "anexo-h": [
       "Set up and maintain the code-quality gate for this project, configured for its frontend family. The core rules are the same in every project; what changes is how each one is measured and at which threshold. Install one formatter and one linter with a single shared configuration; enforce size limits per file and per function, complexity per function, duplication, dead code, declared-and-used dependencies, type checking where the language allows it, coverage with a ratchet, and secret scanning. Where the project has real users, add mutation testing scoped to the changed lines and record the score per block. Then extend the gate to the frontend itself: no business rule inside a screen, one typed client for every server call, one home for shared state, no user-visible string outside the translation catalogue, a stable identifier and role on every interactive element, styling only through tokens, and automatic basic accessibility checks. Every rule has a stable id, a severity (blocks, warns, records) and a named verifier. Thresholds and exceptions are declared by the owner in one configuration file; a rule switched off without a written exception is a gate failure, not a decision. Report the result per rule in `docs/CODE_QUALITY.md`, not as a single number.",
@@ -136,122 +170,122 @@
     {
       "num": 0,
       "key": "peldano-00",
-      "title": "¿Este proyecto se puede encarar así?"
+      "title": "Can this project be run this way?"
     },
     {
       "num": 1,
       "key": "peldano-01",
-      "title": "El contrato de convivencia"
+      "title": "The working agreement"
     },
     {
       "num": 2,
       "key": "peldano-02",
-      "title": "La definición del proyecto, el árbol semántico y la lectura obligatoria"
+      "title": "The project definition, the semantic tree and mandatory reading"
     },
     {
       "num": 3,
       "key": "peldano-03",
-      "title": "Dimensionar antes de diseñar la arquitectura"
+      "title": "Size before designing the architecture"
     },
     {
       "num": 4,
       "key": "peldano-04",
-      "title": "El esqueleto con sus compuertas"
+      "title": "The skeleton with its gates"
     },
     {
       "num": 5,
       "key": "peldano-05",
-      "title": "El plan son los pendientes: la especificación detallada vive en cada uno"
+      "title": "The plan is the pending items: the detailed specification lives in each one"
     },
     {
       "num": 6,
       "key": "peldano-06",
-      "title": "Las decisiones se escriben junto al código"
+      "title": "Decisions are written next to the code"
     },
     {
       "num": 7,
       "key": "peldano-07",
-      "title": "Medir antes de construir, con un instrumento que también se verifica"
+      "title": "Measure before building, with an instrument that is itself verified"
     },
     {
       "num": 8,
       "key": "peldano-08",
-      "title": "Tests como candados, probados en rojo"
+      "title": "Tests as locks, proved red"
     },
     {
       "num": 9,
       "key": "peldano-09",
-      "title": "Calidad del código verificada por máquina, con compuerta"
+      "title": "Code quality verified by machine, with a gate"
     },
     {
       "num": 10,
       "key": "peldano-10",
-      "title": "Los casos de prueba manual se escriben junto con la funcionalidad, y los ejecutan personas"
+      "title": "Manual test cases are written together with the functionality, and people execute them"
     },
     {
       "num": 11,
       "key": "peldano-11",
-      "title": "Simetría entre productor y consumidor, y el registro de anti-patrones"
+      "title": "Producer/consumer symmetry, and the anti-pattern register"
     },
     {
       "num": 12,
       "key": "peldano-12",
-      "title": "Verificación honesta y reporte proporcional"
+      "title": "Honest verification and proportional reporting"
     },
     {
       "num": 13,
       "key": "peldano-13",
-      "title": "La auditoría periódica como insumo del plan"
+      "title": "The periodic audit as input to the plan"
     },
     {
       "num": 14,
       "key": "peldano-14",
-      "title": "Fail-closed, candados y cero daño silencioso"
+      "title": "Fail-closed, locks and zero silent harm"
     },
     {
       "num": 15,
       "key": "peldano-15",
-      "title": "Integración continua, entornos, secretos y despliegue como parte del producto"
+      "title": "Continuous integration, environments, secrets and deployment as part of the product"
     },
     {
       "num": 16,
       "key": "peldano-16",
-      "title": "Observabilidad y trazabilidad totales, con nivel configurable"
+      "title": "Total observability and traceability, with a configurable level"
     },
     {
       "num": 17,
       "key": "peldano-17",
-      "title": "Optimización de la capa de persistencia, medida antes y después"
+      "title": "Optimization of the persistence layer, measured before and after"
     },
     {
       "num": 18,
       "key": "peldano-18",
-      "title": "Escaneo y solución de vulnerabilidades, en la cadena y con calendario"
+      "title": "Scanning and fixing vulnerabilities, in the chain and on a schedule"
     },
     {
       "num": 19,
       "key": "peldano-19",
-      "title": "Pruebas de rendimiento en volumen y punto de ruptura"
+      "title": "Performance tests at volume and the breaking point"
     },
     {
       "num": 20,
       "key": "peldano-20",
-      "title": "Documentación viva y manuales que una persona puede seguir sin IA"
+      "title": "Living documentation and manuals a person can follow without AI"
     },
     {
       "num": 21,
       "key": "peldano-21",
-      "title": "Monitoreo de recursos, funciones y consultas fuera de rango, con reporte cíclico"
+      "title": "Monitoring of resources, functions and queries out of range, with a cyclic report"
     },
     {
       "num": 22,
       "key": "peldano-22",
-      "title": "Monitoreo de errores y reporte cíclico: ningún error sin pendiente"
+      "title": "Error monitoring and cyclic report: no error without a pending item"
     },
     {
       "num": 23,
       "key": "peldano-23",
-      "title": "El agente adentro del sistema, y la retrospectiva con número"
+      "title": "The agent inside the system, and the retrospective with numbers"
     }
   ],
   "count": 72

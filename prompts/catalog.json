@@ -1,0 +1,21 @@
+{
+  "what": "The header of the prompt corpus published as an API: the version a project freezes. Declared BY HAND, for the same reason as the gate catalogue (gates/catalog.json): a project starts and finishes with the same version of the method, so what it froze has to read back the same two years from now.",
+  "corpus_version": "2026.10.1",
+  "declared_at": "2026-10-23",
+  "published_as": "docs/html/api/prompts.json",
+  "version_scheme": {
+    "recipe": "gates/schema.json#version_scheme",
+    "note": "The recipe -- canonical form, algorithm, encoding, and the rule that raises the version -- is declared once, there, and the build uses the same implementation. This file only says which keys the hash covers here, because the payload is a different one. One copy of each text.",
+    "hash_covers": ["corpus_version", "language", "languages", "contracts", "steps", "count"],
+    "hash_excludes": ["what", "version", "version_note", "generated_at", "source", "license", "content_hash"]
+  },
+  "changelog": [
+    {
+      "corpus_version": "2026.10.1",
+      "date": "2026-10-23",
+      "decision": "D-053",
+      "content_hash": "3459750db1d7eb746e4f2b45f8e677585df7f269c0f083903b8a07db535fe15d",
+      "changed": "First DECLARED version of the corpus. The prompts themselves did not change: not one character of prompt text is touched here (D-049). What changes is the identity of what is published and the truth of what it declares. Identity: until now the only identifier was a git sha, which a build computes before saving and which therefore always names the change BEFORE the one that contains it -- useless as something to freeze. From here the version is declared by hand and the file carries a content hash the consumer RECOMPUTES, exactly like the gate catalogue. Truth: the file said language `en` while steps[].title carried the Spanish titles of the contracts; the titles now come from the English contracts (docs/en/peldanos/), which is where tool data belongs (D-051), so the declaration is true instead of approximately true. The file stays UTF-8 and is not ASCII: the prompt text is published verbatim, typographic punctuation included."
+    }
+  ]
+}

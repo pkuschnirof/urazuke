@@ -1,6 +1,6 @@
 {
   "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.",
-  "catalog_version": "2026.10.1",
+  "catalog_version": "2026.10.2",
   "schema_version": 2,
   "content_hash": {
     "algo": "sha256",
@@ -31,12 +31,12 @@
       "what",
       "counts"
     ],
-    "value": "8f9aa195001e2a00ab4dd67acbda6c3ec56b64199935a25120de132c9982905c",
+    "value": "3bd03ac3bf79a60081eeebbcfc8bb28bf448f69709c0d12f76a99fa89ebe30be",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "7a28af0",
+  "git_commit": "64c6952",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-10-23T11:33:29.415Z",
+  "generated_at": "2026-10-23T12:16:22.521Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
@@ -47,10 +47,33 @@
   },
   "languages": {
     "prose": "es",
-    "data": "en",
+    "data": "mixed",
     "decision": "D-051",
     "note": "The prose of the method (docs/) is written in Spanish and translated into seven more languages. The data layer (gates/ and the published file) is written in English, which is the canonical language of the profession, because it is not part of the translated corpus. Translating for the comprehension of an end user is the job of the consumer tool, not of this catalogue.",
-    "exception": "The frozen base (gates/baseline_forge.json) keeps the Spanish text and the `tramo` field name it had when the method took ownership. The base is not edited: changing it is a change of the method, with its own decision."
+    "exception": "The frozen base (gates/baseline_forge.json) keeps the Spanish text and the `tramo` field name it had when the method took ownership. The base is not edited: changing it is a change of the method, with its own decision.",
+    "text_language": {
+      "what": "Which language each human-readable text of this file is in. It is declared mechanically because the file is bilingual: reading `data` as a single language would make a consumer show Spanish to an English reader.",
+      "default": "en",
+      "spanish_scope": [
+        "tramos",
+        "steps",
+        "stations",
+        "loop_entry"
+      ],
+      "marker": "since_schema",
+      "rule": "Inside the keys listed in `spanish_scope`, a text is Spanish when neither its own node nor any enclosing node declares `since_schema` >= 2: it comes from the frozen base, and the base is not edited. A node with `since_schema` >= 2 is new, and its text is English. Every text outside `spanish_scope` is English.",
+      "text_fields": [
+        "title",
+        "summary",
+        "verify",
+        "label",
+        "text",
+        "note"
+      ],
+      "language_neutral": "Ids, step and station keys, evaluator names, enum values, file paths and the regular expressions of must_contain / should_contain are not prose and carry no language. The regular expressions are deliberately bilingual, so that a gate matches a document written in either language.",
+      "verified": "The method checks this declaration on every build: every text the rule calls Spanish has to appear literally in gates/baseline_forge.json, and no text the rule calls English may read as Spanish. If the declaration stops being true, nothing is published.",
+      "consumer": "Do not print these texts to an end user. Read the stable `id` -- an opaque key that is never translated -- and take the text from your own catalogue. That holds for the English texts too: this file is the definition of the gates, not a translated user interface."
+    }
   },
   "evaluators": [
     {
