@@ -40,9 +40,9 @@ jobs:
   verificar:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
 
@@ -95,9 +95,9 @@ jobs:
       DESTINO_API: yujin.app/urazuke/api
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
 
@@ -134,9 +134,11 @@ jobs:
           chmod 600 ~/.ssh/portal
           ssh-keyscan -t rsa,ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
           # Clon completo y no superficial: desde un clon superficial GitHub rechaza el push.
-          GIT_SSH_COMMAND="ssh -i ~/.ssh/portal -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
-            git clone "git@github.com:${PORTAL}.git" portal
-          echo 'GIT_SSH_COMMAND=ssh -i /home/runner/.ssh/portal -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes' >> "$GITHUB_ENV"
+          # La ruta se deja resuelta acá y no escrita a mano: el push de más abajo corre en
+          # otro paso, con otro intérprete, y ahí ~ no se expande dentro de la variable.
+          SSH_CMD="ssh -i ${HOME}/.ssh/portal -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes"
+          GIT_SSH_COMMAND="$SSH_CMD" git clone "git@github.com:${PORTAL}.git" portal
+          echo "GIT_SSH_COMMAND=${SSH_CMD}" >> "$GITHUB_ENV"
 
       # Espejo completo: se vacían los dos directorios y se vuelven a llenar, así lo que
       # el método dejó de generar desaparece del sitio en vez de quedar ahí para siempre.
