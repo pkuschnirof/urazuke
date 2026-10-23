@@ -1,0 +1,268 @@
+{
+  "what": "The eight stations of the normalisation stretch for a system built without the method (N0 to N7). They are not called steps. Same editing rules as gates/steps.json.",
+  "loop_entry": {
+    "step": 5,
+    "inherits_anchors": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "since_schema": 2,
+    "note": "A legacy system enters the Construction Loop at step 5, so from there the five anchors of Annex H rule exactly as they do in a new project (D-023 + D-043). The two prior inputs are recovered by self-discovery with a source mark, like every input of an earlier stage on this path."
+  },
+  "stations": [
+    {
+      "num": 0,
+      "id": "n0-elegibilidad-legado",
+      "title": "Elegibilidad de un sistema existente: los prerrequisitos que un modelo puede verificar haciendo",
+      "summary": "Siete prerrequisitos verificados haciendo; cada rojo es un proyecto previo.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        0,
+        1
+      ],
+      "artifacts": [
+        {
+          "path": "docs/ELIGIBILITY.md",
+          "must_contain": [
+            "eligib|elegib"
+          ]
+        },
+        {
+          "path": "docs/FUNCTIONALITY_RECOVERED.md",
+          "label": "la funcionalidad descrita desde el codigo"
+        }
+      ],
+      "verify": [
+        "Cada prerrequisito tiene su verde o su proyecto previo?",
+        "La funcionalidad recuperada la entenderia un usuario final?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 1,
+      "id": "n1-contrato-legado",
+      "title": "El contrato de convivencia para un legado",
+      "summary": "Las reglas del metodo mas la regla de no reescribir.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        2
+      ],
+      "artifacts": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "evidence|evidencia"
+          ]
+        }
+      ],
+      "verify": [
+        "El contrato dice que no se reescribe?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 2,
+      "id": "n2-lectura-del-sistema",
+      "title": "La lectura del sistema: el mapa recuperado y las discrepancias",
+      "summary": "Relevamiento, proyecto y arbol desde el codigo con marcas de fuente; la lista de discrepancias.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        3,
+        4
+      ],
+      "artifacts": [
+        {
+          "path": "PROJECT.md"
+        },
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        },
+        {
+          "path": "docs/STATUS.md",
+          "min_bytes": 80
+        },
+        {
+          "path": "docs/DISCREPANCIES.md",
+          "min_bytes": 50
+        }
+      ],
+      "verify": [
+        "Lo inferido esta marcado como inferido?",
+        "Decidiste cada discrepancia?",
+        {
+          "text": "Were the user glossary and the list of profiles recovered, with their source mark where nobody had written them?",
+          "since_schema": 2,
+          "anchor": "prior_inputs"
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 3,
+      "id": "n3-auditoria-inventario",
+      "title": "La auditoria como inventario de la deuda",
+      "summary": "Toda la deuda, con su marca: bloquea, se paga al tocar, puede esperar.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        5
+      ],
+      "artifacts": [
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 120,
+          "should_contain": [
+            "^\\s*\\**\\s*auditor\\s*\\**\\s*:"
+          ]
+        }
+      ],
+      "verify": [
+        "Cada hallazgo tiene su marca de velocidad?",
+        "La hizo otra sesion que la que leyo el sistema (N2)?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 4,
+      "id": "n4-cinturon-de-seguridad",
+      "title": "El cinturon de seguridad",
+      "summary": "Tests de caracterizacion con su rojo por mutacion, la cadena y los entornos. Compuerta dura.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        6,
+        7
+      ],
+      "artifacts": [
+        {
+          "path": "docs/GATES.md"
+        },
+        {
+          "path": "docs/STATUS.md",
+          "must_contain": [
+            "test"
+          ]
+        },
+        {
+          "path": "docs/DEPLOYMENT.md"
+        }
+      ],
+      "verify": [
+        "Cada flujo tiene su caracterizacion con el rojo por mutacion visto?",
+        "La cadena corre sola?"
+      ],
+      "evaluators": [
+        {
+          "name": "ci",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 5,
+      "id": "n5-candados-y-mapa",
+      "title": "Candados y mapa productor-consumidor desde el codigo",
+      "summary": "Las acciones con consecuencia y las estructuras compartidas, leidas del sistema.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        8
+      ],
+      "artifacts": [
+        {
+          "path": "docs/LOCKS.md"
+        },
+        {
+          "path": "docs/PRODUCER_CONSUMER_MAP.md"
+        }
+      ],
+      "verify": [
+        "Cada accion con consecuencia tiene su candado?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 6,
+      "id": "n6-dimensionar-real",
+      "title": "Dimensionar con numeros reales",
+      "summary": "La volumetria medida en la base real, y la persistencia contrastada con su envoltura.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        9
+      ],
+      "artifacts": [
+        {
+          "path": "docs/SIZING.md"
+        }
+      ],
+      "verify": [
+        "Los numeros salen de la base, no de una estimacion?"
+      ],
+      "evaluators": [
+        {
+          "name": "sizing",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 7,
+      "id": "n7-backlog-de-normalizacion",
+      "title": "El backlog de normalizacion, emparejado con el pedido del cliente",
+      "summary": "La deuda que bloquea y el pedido del cliente, en un solo plan ordenado.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        10
+      ],
+      "artifacts": [
+        {
+          "path": "docs/blocks/*.md",
+          "min_bytes": 50,
+          "label": "el pedido de la etapa"
+        }
+      ],
+      "verify": [
+        "Cada pendiente de deuda esta emparejado con el modulo que el pedido toca?"
+      ],
+      "evaluators": [
+        {
+          "name": "pendings_spec",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    }
+  ]
+}

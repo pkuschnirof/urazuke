@@ -7,6 +7,8 @@
 // - MANUAL_CURSO_EVOLUTIVO.html <- MANUAL_CURSO_EVOLUTIVO.md (parte 2 del curso)
 // - CONTRATOS_DE_PELDANO.html   <- peldanos/README.md + los 16 contratos, en orden
 // - EVALUACIONES_DE_IA.html     <- EVALUACIONES_DE_IA.md (solo castellano: cita textual de cada IA)
+// - COMPUERTAS.html             <- COMPUERTAS.md (generado desde gates/; en INGLES, D-051: es
+//                                  documentacion de herramienta y queda fuera del corpus traducido)
 // Antes verifica que los prompts en inglés sean idénticos en todas las versiones.
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, unlinkSync, cpSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -17,13 +19,21 @@ const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
 execFileSync(process.execPath, [join(raiz, 'build', 'prompts.mjs')], { stdio: 'inherit' });
 // La API estatica de prompts (docs/html/api/prompts.json), para Forge y cualquier herramienta.
 execFileSync(process.execPath, [join(raiz, 'build', 'prompts_api.mjs')], { stdio: 'inherit' });
+// Las compuertas como datos (docs/html/api/gates.json): valida gates/ contra su esquema
+// y contra el Anexo H, y no publica nada si hay un solo error. Despues verifica que
+// docs/COMPUERTAS.md siga coincidiendo con los datos de los que sale.
+execFileSync(process.execPath, [join(raiz, 'build', 'gates_api.mjs')], { stdio: 'inherit' });
+execFileSync(process.execPath, [join(raiz, 'build', 'gates_doc.mjs'), '--check'], { stdio: 'inherit' });
 const conv = join(raiz, 'build', 'md2html.mjs');
 
 function armar(dirMd, dirHtml, idioma) {
   mkdirSync(dirHtml, { recursive: true });
-  for (const nombre of ['ESCALERA_METODOLOGICA', 'REFERENCIAS', 'EVOLUTIVO_CORRECTIVO', 'MANUAL_CURSO', 'MANUAL_CURSO_EVOLUTIVO', 'CAPACITACION_JUNIOR', 'TRABAJO_COLABORATIVO', 'EVALUACIONES_DE_IA', 'ANEXO_HEURISTICAS']) {
+  for (const nombre of ['ESCALERA_METODOLOGICA', 'REFERENCIAS', 'EVOLUTIVO_CORRECTIVO', 'MANUAL_CURSO', 'MANUAL_CURSO_EVOLUTIVO', 'CAPACITACION_JUNIOR', 'TRABAJO_COLABORATIVO', 'EVALUACIONES_DE_IA', 'ANEXO_HEURISTICAS', 'COMPUERTAS']) {
     const src = join(dirMd, nombre + '.md');
-    if (existsSync(src)) execFileSync(process.execPath, [conv, src, join(dirHtml, nombre + '.html'), idioma], { stdio: 'inherit' });
+    // COMPUERTAS es documentacion de herramienta y se genera en ingles (D-051), asi que
+    // el HTML se marca en ingles aunque viva en el arbol del castellano.
+    const idiomaDoc = nombre === 'COMPUERTAS' ? 'en' : idioma;
+    if (existsSync(src)) execFileSync(process.execPath, [conv, src, join(dirHtml, nombre + '.html'), idiomaDoc], { stdio: 'inherit' });
   }
   const dirP = join(dirMd, 'peldanos');
   if (!existsSync(dirP)) return 0;

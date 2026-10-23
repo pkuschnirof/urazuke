@@ -1,0 +1,120 @@
+{
+  "what": "Layer 2 of Annex H: per frontend family, with what each rule is measured and with which default threshold. Whatever the annex declares is here; whatever the annex leaves to the project is published as UNDECLARED, never with an invented value. The tool names in the example of the annex (section 7) are illustrative and are therefore NOT copied here: a tool named in this data would read as a default, and it is not one.",
+  "layers": {
+    "1": "agnostic core: the statement of the rule, the same in every project, not negotiable",
+    "2": "adapter per frontend family: with what it is measured and with which starting threshold",
+    "3": "project decisions: the concrete thresholds and the exceptions, declared by the owner and never by the agent"
+  },
+  "families": [
+    {
+      "id": "react-vite",
+      "annex_column": "spa",
+      "not_applicable": []
+    },
+    {
+      "id": "next",
+      "annex_column": "spa",
+      "not_applicable": []
+    },
+    {
+      "id": "angular",
+      "annex_column": "spa",
+      "not_applicable": []
+    },
+    {
+      "id": "server-templates",
+      "annex_column": "server-templates",
+      "not_applicable": []
+    },
+    {
+      "id": "mobile-native",
+      "annex_column": "mobile-native",
+      "not_applicable": []
+    },
+    {
+      "id": "cli",
+      "annex_column": "cli",
+      "not_applicable": [
+        "CQ-17",
+        "CQ-18"
+      ]
+    }
+  ],
+  "annex_columns": {
+    "document": "docs/en/ANEXO_HEURISTICAS.md",
+    "section": "4",
+    "table": "Adapter per frontend family",
+    "covers": [
+      "CQ-12",
+      "CQ-13",
+      "CQ-15",
+      "CQ-16",
+      "CQ-17",
+      "CQ-18"
+    ],
+    "note": "The table says with what each of those six is measured in each family. The text of every cell lives only in the annex: what goes here is the pointer."
+  },
+  "measured_by": {
+    "declared_by": "project",
+    "in": "a single configuration file per project",
+    "example_shape": {
+      "document": "docs/en/ANEXO_HEURISTICAS.md",
+      "section": "7"
+    },
+    "illustrative": true,
+    "note": "The annex shows the SHAPE of the file, not final values. An installation that takes those names as defaults is inventing layer 2."
+  },
+  "thresholds": [
+    {
+      "id": "lines_per_file",
+      "rule": "CQ-03",
+      "value": 300,
+      "declared": true,
+      "source": "annex",
+      "note": "starting value of the core; the project may declare its own"
+    },
+    {
+      "id": "lines_per_function",
+      "rule": "CQ-03",
+      "value": 40,
+      "declared": true,
+      "source": "annex",
+      "note": "starting value of the core; the project may declare its own"
+    },
+    {
+      "id": "paths_per_function",
+      "rule": "CQ-04",
+      "value": null,
+      "declared": false,
+      "declared_by": "the owner",
+      "note": "the annex requires the limit to be declared and does not fix the number: with no declaration it is reported as an undeclared threshold"
+    },
+    {
+      "id": "minimum_coverage",
+      "rule": "CQ-08",
+      "value": null,
+      "declared": false,
+      "declared_by": "the ratchet, over what is measured",
+      "note": "the zero in the example is deliberate: the floor is the number of today, not a factory value"
+    },
+    {
+      "id": "mutation_target",
+      "rule": "CQ-09",
+      "value": null,
+      "declared": false,
+      "declared_by": "the owner, once the project has real users",
+      "note": "the zero in the example is deliberate"
+    }
+  ],
+  "undeclared_threshold": "it is reported as an undeclared threshold. No approximating, no silent inheriting and no inventing: the same rule as the sizing of the architecture step.",
+  "exception": {
+    "requires": [
+      "rule",
+      "reason",
+      "authorized_by",
+      "review_date"
+    ],
+    "authorized_by": "the owner, never the agent",
+    "without_record": "red"
+  }
+}

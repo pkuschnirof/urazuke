@@ -1,0 +1,1410 @@
+{
+  "what": "The forty-five rules of Annex H as data: 18 of code quality (CQ-01 to CQ-18) and 27 of usability (UX-01 to UX-27). The mechanical fields live here. The STATEMENT of every rule lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
+  "counts": {
+    "code_quality": 18,
+    "usability": 27,
+    "total": 45
+  },
+  "decisions": [
+    "D-043",
+    "D-044",
+    "D-045",
+    "D-046",
+    "D-047",
+    "D-048",
+    "D-049"
+  ],
+  "groups": [
+    {
+      "id": "code_quality",
+      "range": "CQ-01..CQ-18",
+      "switch": {
+        "lives_in": "the project configuration",
+        "read_by": "the gate",
+        "never_in": "the prompt"
+      },
+      "result_document": "docs/CODE_QUALITY.md"
+    },
+    {
+      "id": "usability",
+      "range": "UX-01..UX-27",
+      "switch": {
+        "lives_in": "the project configuration",
+        "read_by": "the gate",
+        "never_in": "the prompt"
+      },
+      "result_document": "docs/USABILITY.md"
+    }
+  ],
+  "severities": {
+    "blocks": "the gate goes red and the block does not close",
+    "warns": "it opens a pending item naming the rule and the file; warning is not approving",
+    "records": "it only stays in the document"
+  },
+  "switch_off": {
+    "is_not_a_severity": true,
+    "requires": [
+      "rule",
+      "reason",
+      "authorized_by",
+      "review_date"
+    ],
+    "without_record": "red: switching a rule off without a written reason is a failure of the gate, not the absence of a rule",
+    "with_record": "green, and the report says it is switched off, since when and who authorised it",
+    "group_switched_off": "is never read as fulfilled",
+    "decision": "D-046"
+  },
+  "instruments": [
+    {
+      "id": "auto_gate",
+      "default_timing": "push_and_block_close",
+      "returns": "green or red",
+      "section": "3"
+    },
+    {
+      "id": "matrix_query",
+      "default_timing": "push_and_block_close",
+      "returns": "green or red",
+      "section": "3"
+    },
+    {
+      "id": "e2e_per_profile",
+      "default_timing": "push_and_block_close",
+      "returns": "green or red",
+      "section": "3"
+    },
+    {
+      "id": "manual_case",
+      "default_timing": "block_close",
+      "returns": "passed or failed, with a name and a date",
+      "judged_by": "a person",
+      "section": "3"
+    }
+  ],
+  "timings": [
+    "push_and_block_close",
+    "block_close",
+    "pending_close"
+  ],
+  "prior_inputs": [
+    {
+      "id": "prior_input_1",
+      "what": "the user glossary",
+      "without_it": "UX-01 and UX-24 have nothing to compare against",
+      "step": 2,
+      "path": null,
+      "declared": false,
+      "note": "The annex requires it when scope is defined and declares no file for it; the step 2 contract does not ask for it yet. Until the method declares a path, it is not machine-measurable: it is published as declared and not measured."
+    },
+    {
+      "id": "prior_input_2",
+      "what": "the list of profiles",
+      "without_it": "the B2 matrix gets invented at step 5",
+      "step": 2,
+      "path": null,
+      "declared": false,
+      "note": "Same status as prior input 1."
+    }
+  ],
+  "anchors": [
+    {
+      "id": 1,
+      "step": 5,
+      "what": "every pending item that touches a screen declares its convergence group, its profiles and acceptance criteria per profile",
+      "evaluator": "pendings_profiles"
+    },
+    {
+      "id": 2,
+      "step": 8,
+      "what": "the matrix as a test that is seen failing first",
+      "evaluator": "profile_matrix"
+    },
+    {
+      "id": 3,
+      "step": 9,
+      "what": "the full CQ catalogue with its adapter and declared thresholds, and the matrix as a gate",
+      "evaluator": "heuristics"
+    },
+    {
+      "id": 4,
+      "step": 10,
+      "what": "one manual case per affected profile, derived from the matrix",
+      "evaluator": "manual_cases_per_profile"
+    },
+    {
+      "id": 5,
+      "step": 12,
+      "what": "the report says what was measured, what was left warning and which rule is switched off, with reason, author and review date",
+      "evaluator": "heuristics"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/CODE_QUALITY.md",
+      "status": "extended",
+      "what": "the result per code-quality rule, not a single number"
+    },
+    {
+      "path": "docs/USABILITY.md",
+      "status": "new",
+      "what": "the result per usability rule and the declared exceptions"
+    },
+    {
+      "path": "docs/PROFILE_MATRIX.md",
+      "status": "new",
+      "what": "the matrix: a document and the source of the menu at the same time"
+    }
+  ],
+  "scoreboard": {
+    "decision": "D-047",
+    "figures": [
+      {
+        "id": "compliance",
+        "formula": "rules_passing / rules_active",
+        "moves": "goes up when something is fixed"
+      },
+      {
+        "id": "gate_coverage",
+        "formula": "rules_active / rules_declared",
+        "moves": "goes down when a rule is switched off"
+      }
+    ],
+    "ruleset_fingerprint": [
+      "catalog_version",
+      "rules_active",
+      "rules_switched_off",
+      "adapter",
+      "tool_versions"
+    ],
+    "ratchet": {
+      "on": "compliance",
+      "lowers_only_with": "a recorded decision"
+    },
+    "human_outside_the_percentage": [
+      "UX-06",
+      "UX-07",
+      "UX-27",
+      "every manual case"
+    ],
+    "closes_blocks": false,
+    "invalid_ruleset_emits_no_figures": true,
+    "report_order": [
+      "binary_verdict",
+      "the_two_figures",
+      "what_is_switched_off_and_until_when",
+      "movement_against_the_previous_block_with_its_cause"
+    ]
+  },
+  "statement_source": {
+    "published_language": "en",
+    "extracted": true,
+    "documents": {
+      "en": "docs/en/ANEXO_HEURISTICAS.md",
+      "es": "docs/ANEXO_HEURISTICAS.md"
+    },
+    "single_copy": "The statement of every rule lives only in Annex H (D-044). The build extracts it from the English version, which is the one published; the Spanish version is the source of truth of the method and the build checks both carry the same rules with the same severities.",
+    "not_measured": "Whether the English wording still says what the Spanish one says is not checked by machine: only the set of rules and their severities are."
+  },
+  "rules": [
+    {
+      "id": "CQ-01",
+      "group": "code_quality",
+      "family": "form",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-01"
+      }
+    },
+    {
+      "id": "CQ-02",
+      "group": "code_quality",
+      "family": "form",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-02"
+      }
+    },
+    {
+      "id": "CQ-03",
+      "group": "code_quality",
+      "family": "size",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-03"
+      }
+    },
+    {
+      "id": "CQ-04",
+      "group": "code_quality",
+      "family": "complexity",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-04"
+      }
+    },
+    {
+      "id": "CQ-05",
+      "group": "code_quality",
+      "family": "duplication",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-05"
+      }
+    },
+    {
+      "id": "CQ-06",
+      "group": "code_quality",
+      "family": "dead_things",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-06"
+      }
+    },
+    {
+      "id": "CQ-07",
+      "group": "code_quality",
+      "family": "types",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-07"
+      }
+    },
+    {
+      "id": "CQ-08",
+      "group": "code_quality",
+      "family": "tests",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-08"
+      }
+    },
+    {
+      "id": "CQ-09",
+      "group": "code_quality",
+      "family": "tests",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-09"
+      },
+      "applies_if": "real_users",
+      "requires_record": "a score per block, and every surviving mutant in new code opens a pending item"
+    },
+    {
+      "id": "CQ-10",
+      "group": "code_quality",
+      "family": "dependencies",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-10"
+      }
+    },
+    {
+      "id": "CQ-11",
+      "group": "code_quality",
+      "family": "secrets",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-11"
+      }
+    },
+    {
+      "id": "CQ-12",
+      "group": "code_quality",
+      "family": "interface",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "blocks",
+      "timing": {
+        "value": "pending_close",
+        "source": "rule"
+      },
+      "human_red": true,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-12"
+      }
+    },
+    {
+      "id": "CQ-13",
+      "group": "code_quality",
+      "family": "interface",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-13"
+      }
+    },
+    {
+      "id": "CQ-14",
+      "group": "code_quality",
+      "family": "interface",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "blocks",
+      "timing": {
+        "value": "pending_close",
+        "source": "rule"
+      },
+      "human_red": true,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-14"
+      }
+    },
+    {
+      "id": "CQ-15",
+      "group": "code_quality",
+      "family": "interface",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-15"
+      }
+    },
+    {
+      "id": "CQ-16",
+      "group": "code_quality",
+      "family": "interface",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-16"
+      }
+    },
+    {
+      "id": "CQ-17",
+      "group": "code_quality",
+      "family": "interface",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-17"
+      }
+    },
+    {
+      "id": "CQ-18",
+      "group": "code_quality",
+      "family": "interface",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-18"
+      },
+      "escalates_to": {
+        "severity": "blocks",
+        "when": "the product has end users outside the organisation",
+        "requires": "a declaration by the owner, through the same mechanism as any threshold",
+        "decision": "D-048"
+      }
+    },
+    {
+      "id": "UX-01",
+      "group": "usability",
+      "family": "B1",
+      "instrument": [
+        "manual_case",
+        "matrix_query"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-01"
+      }
+    },
+    {
+      "id": "UX-02",
+      "group": "usability",
+      "family": "B1",
+      "instrument": [
+        "matrix_query"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-02"
+      }
+    },
+    {
+      "id": "UX-03",
+      "group": "usability",
+      "family": "B1",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-03"
+      }
+    },
+    {
+      "id": "UX-04",
+      "group": "usability",
+      "family": "B1",
+      "instrument": [
+        "matrix_query"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-04"
+      }
+    },
+    {
+      "id": "UX-05",
+      "group": "usability",
+      "family": "B1",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-05"
+      }
+    },
+    {
+      "id": "UX-06",
+      "group": "usability",
+      "family": "B1",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "records",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-06"
+      }
+    },
+    {
+      "id": "UX-07",
+      "group": "usability",
+      "family": "B1",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": {
+        "value": "block_close",
+        "source": "rule"
+      },
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-07"
+      }
+    },
+    {
+      "id": "UX-08",
+      "group": "usability",
+      "family": "B2",
+      "instrument": [
+        "matrix_query"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-08"
+      }
+    },
+    {
+      "id": "UX-09",
+      "group": "usability",
+      "family": "B2",
+      "instrument": [
+        "matrix_query"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-09"
+      }
+    },
+    {
+      "id": "UX-10",
+      "group": "usability",
+      "family": "B2",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-10"
+      }
+    },
+    {
+      "id": "UX-11",
+      "group": "usability",
+      "family": "B2",
+      "instrument": [
+        "e2e_per_profile"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          8
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-11"
+      }
+    },
+    {
+      "id": "UX-12",
+      "group": "usability",
+      "family": "B2",
+      "instrument": [
+        "e2e_per_profile"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          8
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-12"
+      }
+    },
+    {
+      "id": "UX-13",
+      "group": "usability",
+      "family": "B2",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-13"
+      }
+    },
+    {
+      "id": "UX-14",
+      "group": "usability",
+      "family": "B2",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-14"
+      }
+    },
+    {
+      "id": "UX-15",
+      "group": "usability",
+      "family": "B2",
+      "instrument": [
+        "e2e_per_profile",
+        "manual_case"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          8
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-15"
+      }
+    },
+    {
+      "id": "UX-16",
+      "group": "usability",
+      "family": "B2",
+      "instrument": [
+        "matrix_query"
+      ],
+      "initial_severity": "blocks",
+      "timing": {
+        "value": "pending_close",
+        "source": "rule"
+      },
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-16"
+      }
+    },
+    {
+      "id": "UX-17",
+      "group": "usability",
+      "family": "B3",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-17"
+      }
+    },
+    {
+      "id": "UX-18",
+      "group": "usability",
+      "family": "B3",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-18"
+      }
+    },
+    {
+      "id": "UX-19",
+      "group": "usability",
+      "family": "B3",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-19"
+      }
+    },
+    {
+      "id": "UX-20",
+      "group": "usability",
+      "family": "B4",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-20"
+      }
+    },
+    {
+      "id": "UX-21",
+      "group": "usability",
+      "family": "B4",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-21"
+      }
+    },
+    {
+      "id": "UX-22",
+      "group": "usability",
+      "family": "B4",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "blocks",
+      "timing": {
+        "value": "pending_close",
+        "source": "rule"
+      },
+      "human_red": true,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-22"
+      }
+    },
+    {
+      "id": "UX-23",
+      "group": "usability",
+      "family": "B4",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-23"
+      }
+    },
+    {
+      "id": "UX-24",
+      "group": "usability",
+      "family": "B5",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-24"
+      }
+    },
+    {
+      "id": "UX-25",
+      "group": "usability",
+      "family": "B5",
+      "instrument": [
+        "auto_gate",
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9,
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-25"
+      }
+    },
+    {
+      "id": "UX-26",
+      "group": "usability",
+      "family": "B5",
+      "instrument": [
+        "auto_gate"
+      ],
+      "initial_severity": "warns",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-26"
+      }
+    },
+    {
+      "id": "UX-27",
+      "group": "usability",
+      "family": "B5",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "blocks",
+      "timing": {
+        "value": "pending_close",
+        "source": "rule"
+      },
+      "human_red": true,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          10
+        ],
+        "source": "derived_from_instrument"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-27"
+      }
+    }
+  ]
+}
