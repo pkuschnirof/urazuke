@@ -180,6 +180,10 @@ jobs:
           set -e
           CATALOGO=$(node -e "process.stdout.write(require('./docs/html/api/gates.json').catalog_version)")
           HUELLA=$(node -e "process.stdout.write(require('./docs/html/api/gates.json').content_hash.value.slice(0,12))")
+          # Los dos archivos tienen identidad propia (D-053): el mensaje nombra las dos, para
+          # que el commit del portal diga que version del metodo quedo servida.
+          CORPUS=$(node -e "process.stdout.write(require('./docs/html/api/prompts.json').corpus_version)")
+          HUELLAP=$(node -e "process.stdout.write(require('./docs/html/api/prompts.json').content_hash.value.slice(0,12))")
           cd portal
           if git diff --cached --quiet -- "${DESTINO_DOCS}" "${DESTINO_API}"; then
             echo "El portal ya tiene exactamente esto: no hay nada que publicar."
@@ -187,7 +191,7 @@ jobs:
           fi
           git config user.name 'publicacion de urazuke'
           git config user.email 'actions@github.com'
-          git commit -m "urazuke: publica docs y api del metodo (${GITHUB_SHA:0:7}, catalogo ${CATALOGO}, huella ${HUELLA})"
+          git commit -m "urazuke: publica docs y api del metodo (${GITHUB_SHA:0:7}, compuertas ${CATALOGO}/${HUELLA}, prompts ${CORPUS}/${HUELLAP})"
           git push origin HEAD:main
           echo "Empujado al portal. Su propio despliegue lo lleva a produccion."
 
@@ -196,19 +200,23 @@ jobs:
       # canónico. Si no llegó a tiempo queda un aviso con lo último que vio, no un rojo:
       # un rojo acá diría que el método publicó mal, y lo que pasó es que el otro
       # despliegue todavía estaba corriendo.
-      - name: Verificar que produccion sirve esta huella
+      - name: Verificar que produccion sirve estas huellas
         run: |
-          ESPERADA=$(node -e "process.stdout.write(require('./docs/html/api/gates.json').content_hash.value)")
-          URL=https://yujin.app/urazuke/api/gates.json
-          echo "esperada: ${ESPERADA:0:12}"
-          VISTA=""
-          for i in $(seq 1 20); do
-            VISTA=$(curl -sS --max-time 30 "$URL" 2>/dev/null | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{process.stdout.write(JSON.parse(s).content_hash.value)}catch{process.stdout.write('(sin respuesta)')}})" || echo '(sin respuesta)')
-            echo "intento $i: ${VISTA:0:12}"
+          # Los dos archivos publicados llevan huella (D-053), asi que los dos se
+          # comprueban: que uno llegue no dice nada del otro.
+          for ARCHIVO in gates.json prompts.json; do
+            ESPERADA=$(node -e "process.stdout.write(require('./docs/html/api/${ARCHIVO}').content_hash.value)")
+            echo "${ARCHIVO} esperada: ${ESPERADA:0:12}"
+            VISTA=""
+            for i in $(seq 1 20); do
+              VISTA=$(curl -sS --max-time 30 "https://yujin.app/urazuke/api/${ARCHIVO}" 2>/dev/null | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{process.stdout.write(JSON.parse(s).content_hash.value)}catch{process.stdout.write('(sin respuesta)')}})" || echo '(sin respuesta)')
+              echo "  intento $i: ${VISTA:0:12}"
+              if [ "$VISTA" = "$ESPERADA" ]; then break; fi
+              sleep 20
+            done
             if [ "$VISTA" = "$ESPERADA" ]; then
-              echo "Produccion sirve esta huella: publicado y verificado."
-              exit 0
+              echo "Produccion sirve la huella de ${ARCHIVO}: publicado y verificado."
+            else
+              echo "::warning::Produccion todavia no sirve la huella de ${ARCHIVO} (lo ultimo que vio: ${VISTA:0:12}). El despliegue del portal es otro flujo y puede estar corriendo; revisalo si en unos minutos sigue asi."
             fi
-            sleep 20
           done
-          echo "::warning::Produccion todavia no sirve esta huella (lo ultimo que vio: ${VISTA:0:12}). El despliegue del portal es otro flujo y puede estar corriendo; revisalo si en unos minutos sigue asi."

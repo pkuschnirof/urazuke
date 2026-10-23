@@ -61,6 +61,21 @@ const CASOS = [
   ['un peldano agregado al final', (f) => { f.steps.steps.push({ ...structuredClone(paso(f, 23)), num: 24, id: 'u24-nuevo' }); }, 'E_CUENTA'],
   ['una regla con rojo humano y compuerta automatica a la vez', (f) => { regla(f, 'CQ-12').instrument = ['auto_gate']; }, 'E_ROJO_HUMANO'],
   ['una fuente con caracteres fuera de ASCII', (f) => { f.catalog.parts.doc = 'docs/ESCALERA_METODOLOGICA.md'; }, 'E_ASCII'],
+  // La version declarada tiene que corresponder a UN contenido: si no, lo que un
+  // proyecto congelo no se puede volver a leer con certeza.
+  ['una version declarada sin entrada en el registro', (f) => { f.catalog.catalog_version = '2026.11.1'; }, 'E_VERSION'],
+  ['una huella registrada que no es la del contenido', (f) => { f.catalog.changelog.at(-1).content_hash = 'a'.repeat(64); }, 'E_VERSION'],
+  ['dos entradas del registro con la misma version', (f) => { f.catalog.changelog.push(structuredClone(f.catalog.changelog[0])); }, 'E_VERSION'],
+  ['una entrada del registro sin su huella', (f) => { delete f.catalog.changelog[0].content_hash; }, 'E_VERSION'],
+  ['el registro sin la entrada de la version que se publica', (f) => { f.catalog.changelog.pop(); }, 'E_VERSION'],
+  // La declaracion de idioma solo sirve si es verdad: un consumidor la aplica sin leer
+  // el texto, asi que una declaracion aproximada le hace mostrar castellano a un lector
+  // ingles. Es el pedido del consumidor del 2026-10-23.
+  ['el publicado declarado en un idioma cuando es bilingue', (f) => { f.catalog.languages.data = 'en'; }, 'E_IDIOMA_DECLARADO'],
+  ['la declaracion de idioma sin su regla', (f) => { delete f.catalog.languages.text_language; }, 'E_IDIOMA_DECLARADO'],
+  ['un texto nuevo sin su marca, que la regla daria por castellano', (f) => { paso(f, 9).verify.push('A question nobody marked as new'); }, 'E_IDIOMA_DECLARADO'],
+  ['el alcance del castellano nombrando una clave que no existe', (f) => { f.catalog.languages.text_language.spanish_scope.push('pasos'); }, 'E_IDIOMA_DECLARADO'],
+  ['el nivel de datos declarado en un idioma que no es el ingles', (f) => { f.catalog.languages.text_language.default = 'es'; }, 'E_IDIOMA_DECLARADO'],
 ];
 
 test('el catalogo limpio no devuelve ni un error (si no, los rojos de abajo no prueban nada)', () => {

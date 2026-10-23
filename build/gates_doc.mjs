@@ -75,6 +75,27 @@ export function generar() {
   p('Left out: `' + esquema.hash_excludes.join('`, `') + '`.');
   p('Nothing in between: ' + esquema.hash_completeness);
   p();
+  p('When the version moves: ' + esquema.version_bump);
+  p();
+  p('The ledger: ' + esquema.version_ledger);
+  p();
+  for (const c of fuentes.catalog.changelog) {
+    p('- **' + c.catalog_version + '** (' + c.date + ', ' + c.decision + ') -- `' + c.content_hash.slice(0, 16) + '...`');
+  }
+  p();
+  p('## The language of each text');
+  p();
+  const tl = contenido.languages.text_language;
+  p(tl.what);
+  p();
+  p('- Declared: `languages.data` = `' + contenido.languages.data + '`, default `' + tl.default + '`.');
+  p('- Spanish scope: ' + tl.spanish_scope.map((k) => '`' + k + '`').join(', ') + ', told apart by `' + tl.marker + '`.');
+  p('- Rule: ' + tl.rule);
+  p('- Readable text fields: ' + tl.text_fields.map((k) => '`' + k + '`').join(', ') + '.');
+  p('- ' + tl.language_neutral);
+  p('- ' + tl.verified);
+  p('- **For a consumer:** ' + tl.consumer);
+  p();
   p('## What an installation cannot measure');
   p();
   p('- Unknown evaluator, **required**: ' + contenido.compatibility.unknown_evaluator_required);

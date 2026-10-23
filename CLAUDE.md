@@ -159,10 +159,27 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
 - **Nada inventado.** Un umbral que el dueño no declaró se publica con valor nulo y
   `declarado: false`. Los únicos dos que el anexo declara son 300 líneas por archivo y 40 por
   función.
-- **La versión.** `catalog_version` la declara el método a mano (`2026.10.1`); el archivo publicado
-  viaja con una huella `sha256` del contenido canonicalizado que el consumidor **recalcula**. El
-  identificador de git es informativo: se calcula antes de guardar, así que siempre nombra al
-  cambio anterior al que lo contiene.
+- **La versión.** `catalog_version` la declara el método a mano (hoy `2026.10.2`); el archivo
+  publicado viaja con una huella `sha256` del contenido canonicalizado que el consumidor
+  **recalcula**. El identificador de git es informativo: se calcula antes de guardar, así que
+  siempre nombra al cambio anterior al que lo contiene.
+- **Una versión es un contenido, y uno solo** (D-053). Cualquier cambio en una clave cubierta por
+  la huella **sube la versión**, aunque no cambie ningún requisito; una regeneración que sólo
+  reescribe `generated_at` no cambia nada cubierto y la deja quieta. Cada versión registra en
+  `catalog.json#changelog` la huella que produjo; el registro es append-only y **una huella ya
+  publicada no se edita** (hay un test que congela la de `2026.10.1`). La publicación se niega
+  (`E_VERSION`) cuando la huella del contenido no es la que la versión tiene registrada: es lo que
+  obliga a subirla en vez de confiar en que alguien se acuerde. El registro no viaja en el
+  publicado, así que anotar una entrada no cambia la huella que esa entrada anota.
+- **El idioma de cada texto se declara, y la declaración es verdad** (D-053). El publicado es
+  **bilingüe**, porque la base congelada no se traduce: decir `languages.data: "en"` hacía que un
+  consumidor que confiara le mostrara castellano a un lector inglés. `languages.data` dice `mixed`
+  y `languages.text_language` lleva la regla **aplicable sin leer el texto**: dentro de `tramos`,
+  `steps`, `stations` y `loop_entry` un texto es castellano salvo que su nodo o alguno que lo
+  contenga declare `since_schema >= 2`; todo el resto es inglés. La construcción exige que **todo**
+  texto que la regla llama castellano esté literal en el congelado y que ninguno de los que llama
+  inglés se lea como castellano (`E_IDIOMA_DECLARADO`). La declaración también dice lo que el
+  consumidor tiene que hacer: leer el `id` opaco y sacar el texto de su propio catálogo.
 - **El nivel de datos está en inglés y en ASCII puro** (D-051): nombres de campo, enumeraciones y
   prosa explicativa de `gates/`, el publicado `gates.json` y el documento generado. Es lo que no
   está traducido, y lo que no está traducido va en el idioma canónico de la profesión; traducir
@@ -183,6 +200,18 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
 - `build/gates_reference.mjs` es el evaluador de referencia del grupo de heurísticas: la semántica
   del veredicto, ejecutable, con el fixture de violaciones deliberadas en `tests/fixture/`.
 
+## Los prompts publicados (`prompts/`)
+
+`prompts/*.en.md` **se genera** desde los contratos castellanos (`build/prompts.mjs`) y no se edita
+a mano; `prompts/catalog.json` se mantiene **a mano**, porque es la identidad de lo publicado y la
+declara el método: `corpus_version` (hoy `2026.10.1`) y el registro de huellas, con las mismas
+reglas que el catálogo de compuertas (D-053). `docs/html/api/prompts.json` viaja entonces con
+versión declarada **y** huella recalculable, y conserva el campo `version` con el sha de git, ahora
+explícitamente informativo, para no romper al consumidor que ya lo imprime: el cambio es aditivo y
+hay un test que lo exige. Los títulos de peldaño salen de los contratos **ingleses**
+(`docs/en/peldanos/`), porque esto es dato de herramienta (D-051); el archivo sigue siendo UTF-8 y
+no ASCII puro, porque el texto de los prompts viaja tal cual, con su puntuación tipográfica.
+
 ## Build
 
 `node build/build.mjs`: verifica los prompts, valida y publica las compuertas, verifica que
@@ -195,9 +224,10 @@ archivo con marcas `<!-- file: … -->` en contratos individuales.
 (sin dependencias, node pelado). **No se usa el patrón entre comillas**: medido que en un intérprete
 que no lo expande corre CERO pruebas y devuelve éxito, y un verde con cero pruebas no es un verde.
 Incluyen el test de diferencia cero contra el congelado, los rojos deliberados del validador, el
-fixture que prende y apaga el interruptor y el test de idioma del nivel de datos (D-051). `node build/api_check.mjs` regenera lo publicado y falla
-si no coincide con lo commiteado, y `node build/api_check.mjs --huella` recalcula sólo la huella de
-lo commiteado sin regenerar nada (es lo que usa el paso de publicación, porque regenerar reescribe
+fixture que prende y apaga el interruptor, el test de idioma del nivel de datos (D-051) y el de la
+versión declarada contra su huella, en los dos archivos publicados (D-053). `node build/api_check.mjs` regenera lo publicado y falla
+si no coincide con lo commiteado, y `node build/api_check.mjs --huella` recalcula la huella de los
+**dos** archivos commiteados sin regenerar nada (es lo que usa el paso de publicación, porque regenerar reescribe
 `generated_at` y publicaría algo distinto de lo que quedó en `main`).
 `.github/workflows/compuertas.yml` corre todo eso en cada cambio y, en `main` y sólo con todo en
 verde, publica en el repositorio del portal (D-052).

@@ -10,7 +10,9 @@
     "base_is_frozen": "An entry without since_schema comes from the freeze in gates/baseline_forge.json and has to stay identical to it. A new requirement is added as a NEW entry with its since_schema; the old one is not edited. That is what makes zero difference demonstrable.",
     "ids_append_only": "Steps, stations, rules (CQ-*, UX-*) and evaluator names are added: never recycled, never renamed, never changed in meaning.",
     "single_copy_of_each_text": "The statement of every rule lives ONLY in Annex H. gates/heuristics.json carries the pointer and the build extracts the text from the English version of the annex. Transcribing it here would be the second copy that step 11 hunts down.",
-    "nothing_invented": "A threshold the owner did not declare is published with value null and declared:false. Never with a factory value disguised as a default."
+    "nothing_invented": "A threshold the owner did not declare is published with value null and declared:false. Never with a factory value disguised as a default.",
+    "version_is_declared": "The version is declared by hand and bound to its content. Changing a covered key without raising catalog_version is rejected (E_VERSION), and so is recording a hash that is not the one the content produces.",
+    "language_is_declared": "The language of each text is declared in catalog.json#languages.text_language and checked on every build: every text the rule calls Spanish has to be literally in the frozen base. The file is bilingual because the base is not edited, and saying so is the difference between a consumer that can translate for its reader and one that shows Spanish to an English reader."
   },
   "version_scheme": {
     "catalog_version": "Declared BY HAND by the method in gates/catalog.json, in the 2026.10.1 style. It is what a project freezes, and what has to read back the same two years from now.",
@@ -44,7 +46,9 @@
       "what",
       "counts"
     ],
-    "hash_completeness": "Every key of the published payload is either covered or excluded, and the validator checks it. A requirement-bearing key left out of both would travel without protection: a frozen copy could be altered there and the recomputed hash would still match."
+    "hash_completeness": "Every key of the published payload is either covered or excluded, and the validator checks it. A requirement-bearing key left out of both would travel without protection: a frozen copy could be altered there and the recomputed hash would still match.",
+    "version_bump": "Any change to a key listed in hash_covers raises catalog_version, even when no requirement changed: the content hash moves with it, and two different contents published under one declared version would make a freeze unreadable. A regeneration that only rewrites generated_at or git_commit changes nothing covered, so it leaves the version alone.",
+    "version_ledger": "gates/catalog.json#changelog records, for each catalog_version, the content hash it produced. The build refuses to publish when the hash of the current content is not the one recorded for the current version: that is what forces the bump instead of trusting it. The ledger is append-only and a hash already recorded is never edited, for the same reason the base is not edited. It is not part of the published payload, so recording a new entry cannot change the hash it records."
   },
   "compatibility": {
     "unknown_evaluator_required": "The installation does NOT report green. It reports \"declared, not measured by this installation\", naming the evaluator, and the step does not advance.",
