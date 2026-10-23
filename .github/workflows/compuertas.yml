@@ -195,28 +195,34 @@ jobs:
           git push origin HEAD:main
           echo "Empujado al portal. Su propio despliegue lo lleva a produccion."
 
-      # Evidencia de que la publicación llegó, no de que se intentó. El despliegue del
-      # portal es otro flujo en otro repositorio y tarda: esto espera y mira el extremo
-      # canónico. Si no llegó a tiempo queda un aviso con lo último que vio, no un rojo:
-      # un rojo acá diría que el método publicó mal, y lo que pasó es que el otro
-      # despliegue todavía estaba corriendo.
+      # Evidencia de que la publicación llegó, no de que se intentó, y -- desde el
+      # 2026-10-23 -- evidencia que dice QUÉ vio. La corrida 39952871636 publicó bien
+      # (el portal commiteó 161e74d y su despliegue cerró verde 35 segundos después) y
+      # este paso dio 40 intentos con «(sin respuesta)» durante 13m17s y cerró avisando
+      # que producción todavía no las servía. Era falso. El defecto no era la red: era
+      # que tres situaciones muy distintas se colapsaban en una sola cadena y la única
+      # señal que las separaba -- el código HTTP, el error de red -- se tiraba a
+      # /dev/null. Ahora las separa `build/portal_verify.mjs`, que corre con node pelado
+      # y sin curl, se puede correr igual desde una máquina cualquiera, y distingue:
+      #   coincide     -> verde;
+      #   otra_huella  -> aviso, y dice qué huella sirve producción (eso SÍ es el
+      #                   despliegue del portal, que es otro flujo y puede estar corriendo);
+      #   ilegible     -> ROJO, con el código HTTP o el error de red a la vista.
+      # El rojo dice lo que pasó: la publicación ocurrió y la evidencia falta. No dice
+      # que el método publicó mal, y por eso no se lee como un rojo de publicación.
+      # Conviene saber, para leer ese rojo: el host del portal (cPanel de GoDaddy) ya
+      # tiene documentado en su propio flujo de despliegue que rechaza conexiones del
+      # runner de GitHub, así que una lectura imposible desde CI puede ser del host y no
+      # del método. Lo que se comprueba a mano en dos segundos es
+      # `node build/portal_verify.mjs --rondas 1`.
       - name: Verificar que produccion sirve estas huellas
         run: |
-          # Los dos archivos publicados llevan huella (D-053), asi que los dos se
-          # comprueban: que uno llegue no dice nada del otro.
-          for ARCHIVO in gates.json prompts.json; do
-            ESPERADA=$(node -e "process.stdout.write(require('./docs/html/api/${ARCHIVO}').content_hash.value)")
-            echo "${ARCHIVO} esperada: ${ESPERADA:0:12}"
-            VISTA=""
-            for i in $(seq 1 20); do
-              VISTA=$(curl -sS --max-time 30 "https://yujin.app/urazuke/api/${ARCHIVO}" 2>/dev/null | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{process.stdout.write(JSON.parse(s).content_hash.value)}catch{process.stdout.write('(sin respuesta)')}})" || echo '(sin respuesta)')
-              echo "  intento $i: ${VISTA:0:12}"
-              if [ "$VISTA" = "$ESPERADA" ]; then break; fi
-              sleep 20
-            done
-            if [ "$VISTA" = "$ESPERADA" ]; then
-              echo "Produccion sirve la huella de ${ARCHIVO}: publicado y verificado."
-            else
-              echo "::warning::Produccion todavia no sirve la huella de ${ARCHIVO} (lo ultimo que vio: ${VISTA:0:12}). El despliegue del portal es otro flujo y puede estar corriendo; revisalo si en unos minutos sigue asi."
-            fi
-          done
+          set +e
+          node build/portal_verify.mjs
+          CODIGO=$?
+          set -e
+          case "$CODIGO" in
+            0) echo "Publicado y verificado: produccion sirve las dos huellas." ;;
+            2) echo "::warning::Produccion contesta y todavia sirve otra huella (el detalle, arriba). El despliegue del portal es otro flujo y puede estar corriendo; revisalo si en unos minutos sigue asi." ;;
+            *) echo "::error::Se publico y NO se pudo verificar: no se pudo leer produccion (el motivo exacto, arriba). La publicacion ocurrio; lo que falta es la evidencia de que llego. Comprobalo a mano con: node build/portal_verify.mjs --rondas 1"; exit 1 ;;
+          esac
