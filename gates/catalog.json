@@ -1,0 +1,37 @@
+{
+  "what": "The header of the gate catalogue: the version a project freezes. Declared BY HAND. A change that adds, removes or hardens a requirement raises the version; regenerating the published file without touching a single rule leaves it alone.",
+  "catalog_version": "2026.10.1",
+  "schema_version": 2,
+  "declared_at": "2026-10-23",
+  "method": {
+    "name": "Urazuke",
+    "repo": "https://github.com/pkuschnirof/urazuke",
+    "license": "CC BY-SA 4.0"
+  },
+  "parts": {
+    "catalog": "gates/catalog.json",
+    "schema": "gates/schema.json",
+    "evaluators": "gates/evaluators.json",
+    "steps": "gates/steps.json",
+    "stations": "gates/stations.json",
+    "heuristics": "gates/heuristics.json",
+    "adapters": "gates/adapters.json",
+    "baseline": "gates/baseline_forge.json"
+  },
+  "published_as": "docs/html/api/gates.json",
+  "changelog": [
+    {
+      "catalog_version": "2026.10.1",
+      "date": "2026-10-23",
+      "decision": "D-050",
+      "changed": "First published version. The base is identical to what the tool had compiled (gates/baseline_forge.json). Coming in, declared with since_schema 2: the forty-five rules of Annex H with their switches, severities, instruments and scoreboard (D-043 to D-049); the five anchors at steps 5, 8, 9, 10 and 12 with their four new evaluators; the inheritance of the five anchors by the legacy path when it enters the loop at step 5; and the D-042 additions to steps 13, 15 and 23, plus the mandatory mutation testing of step 9. The data layer is published in English (D-051)."
+    }
+  ],
+  "languages": {
+    "prose": "es",
+    "data": "en",
+    "decision": "D-051",
+    "note": "The prose of the method (docs/) is written in Spanish and translated into seven more languages. The data layer (gates/ and the published file) is written in English, which is the canonical language of the profession, because it is not part of the translated corpus. Translating for the comprehension of an end user is the job of the consumer tool, not of this catalogue.",
+    "exception": "The frozen base (gates/baseline_forge.json) keeps the Spanish text and the `tramo` field name it had when the method took ownership. The base is not edited: changing it is a change of the method, with its own decision."
+  }
+}

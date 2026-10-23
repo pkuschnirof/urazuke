@@ -1,0 +1,23 @@
+{
+  "what": "El proyecto fixture de la seccion 11 del Anexo H: violaciones deliberadas de cada familia, para probar el interruptor prendiendolo y apagandolo. Si el resultado observable no cambia, no era una compuerta, era decoracion (D-046 (4)). Los nombres de campo son los del contrato de configuracion de proyecto (gates/schema.json, project_config).",
+  "config": {
+    "frontend": "react-vite",
+    "real_users": true,
+    "switches": { "code_quality": true, "usability": true },
+    "switched_off": [],
+    "thresholds": { "lines_per_file": 300, "lines_per_function": 40, "paths_per_function": 10 },
+    "tools": { "format": "prettier-3.3.0", "lint": "eslint-9.9.0" }
+  },
+  "violations": [
+    { "rule": "CQ-03", "family": "size", "file": "src/screens/payment.tsx", "detail": "420 lines, the declared limit is 300" },
+    { "rule": "CQ-15", "family": "interface", "file": "src/screens/payment.tsx", "detail": "three visible strings outside the translation catalogue" },
+    { "rule": "CQ-07", "family": "types", "file": "src/domain/payment.ts", "detail": "four uses of the any type with no declared exception" },
+    { "rule": "UX-02", "family": "B1", "file": "docs/PROFILE_MATRIX.md", "detail": "collect a payment appears in two groups: Collections and Clients" },
+    { "rule": "UX-06", "family": "B1", "file": "docs/USABILITY.md", "detail": "record a payment and view the client account are used in the same session and sit in different groups" },
+    { "rule": "UX-08", "family": "B2", "file": "docs/PROFILE_MATRIX.md", "detail": "export collections declares no profile at all" },
+    { "rule": "UX-12", "family": "B2", "file": "tests/e2e/profiles.spec.ts", "detail": "the enquiry profile reaches collect a payment, which is not in its row" },
+    { "rule": "UX-17", "family": "B3", "file": "src/screens/clients.tsx", "detail": "the list does not tell nothing here yet apart from your search found nothing" },
+    { "rule": "UX-20", "family": "B4", "file": "src/screens/payment.tsx", "detail": "three buttons with the same visual weight" },
+    { "rule": "UX-24", "family": "B5", "file": "src/screens/clients.tsx", "detail": "the screen says member and the manual says client" }
+  ]
+}

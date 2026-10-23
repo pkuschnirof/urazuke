@@ -1,0 +1,405 @@
+{
+  "schema_version": 2,
+  "what": "The schema of the published file (docs/html/api/gates.json) and of the sources in gates/. It is not decoration: build/gates_validate.mjs interprets it, and it is what rejects an extra field, a wrong type or a value outside its enum. A new field is declared here first.",
+  "history": {
+    "1": "The definition the tool carried compiled in src/urazuke/catalog.ts until 2026-10-23. One evaluator per step, in a field named `evaluator`.",
+    "2": "The method takes ownership (D-050). Each step declares a LIST of evaluators with their since_schema; the forty-five rules of Annex H, the adapters and the D-042 additions the tool did not measure come in."
+  },
+  "editing_rules": {
+    "ascii_only": "The data layer is English and pure ASCII (no character above 0x7F), sources and published file alike, and the validator enforces it (D-051). English is the canonical language of the profession, and whatever is not translated is published in it; translating for the comprehension of an end user is the consumer tool job, not this file job. The single exception is the frozen base: its text comes from gates/baseline_forge.json, is in the Spanish of the method, and is not edited here.",
+    "base_is_frozen": "An entry without since_schema comes from the freeze in gates/baseline_forge.json and has to stay identical to it. A new requirement is added as a NEW entry with its since_schema; the old one is not edited. That is what makes zero difference demonstrable.",
+    "ids_append_only": "Steps, stations, rules (CQ-*, UX-*) and evaluator names are added: never recycled, never renamed, never changed in meaning.",
+    "single_copy_of_each_text": "The statement of every rule lives ONLY in Annex H. gates/heuristics.json carries the pointer and the build extracts the text from the English version of the annex. Transcribing it here would be the second copy that step 11 hunts down.",
+    "nothing_invented": "A threshold the owner did not declare is published with value null and declared:false. Never with a factory value disguised as a default."
+  },
+  "version_scheme": {
+    "catalog_version": "Declared BY HAND by the method in gates/catalog.json, in the 2026.10.1 style. It is what a project freezes, and what has to read back the same two years from now.",
+    "content_hash": "Computed by the build over the canonicalised payload and published. The consumer RECOMPUTES it and compares: that way a frozen copy edited by hand or truncated by a merge is detected without a network.",
+    "git_commit": "Informative. No comparison looks at it. The sha a build can know about itself is always the one of the change BEFORE the change that contains it, so it is useless as the identity of what is published.",
+    "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
+    "hash_algo": "sha256",
+    "hash_encoding": "hex_lower",
+    "hash_covers": [
+      "schema_version",
+      "catalog_version",
+      "languages",
+      "evaluators",
+      "evaluator_semantics",
+      "compatibility",
+      "tramos",
+      "steps",
+      "stations",
+      "loop_entry",
+      "heuristics",
+      "adapters",
+      "project_config"
+    ],
+    "hash_excludes": [
+      "generated_at",
+      "git_commit",
+      "git_commit_note",
+      "source",
+      "license",
+      "content_hash",
+      "what",
+      "counts"
+    ],
+    "hash_completeness": "Every key of the published payload is either covered or excluded, and the validator checks it. A requirement-bearing key left out of both would travel without protection: a frozen copy could be altered there and the recomputed hash would still match."
+  },
+  "compatibility": {
+    "unknown_evaluator_required": "The installation does NOT report green. It reports \"declared, not measured by this installation\", naming the evaluator, and the step does not advance.",
+    "unknown_evaluator_not_required": "A warning: it names it and the step may advance.",
+    "forbidden": "Approximating with the closest evaluator, or ignoring the block. Zero silent damage."
+  },
+  "enums": {
+    "tramo": [
+      "arranque",
+      "bucle",
+      "salida",
+      "operacion"
+    ],
+    "form": [
+      "conversation",
+      "one_shot",
+      "routine"
+    ],
+    "mandatory": [
+      "always",
+      "minimum",
+      "proportional"
+    ],
+    "group": [
+      "code_quality",
+      "usability"
+    ],
+    "severity": [
+      "blocks",
+      "warns",
+      "records"
+    ],
+    "annex_severity_tokens": {
+      "en": {
+        "BLOCKS": "blocks",
+        "WARNS": "warns",
+        "RECORDS": "records"
+      },
+      "es": {
+        "BLOQUEA": "blocks",
+        "AVISA": "warns",
+        "REGISTRA": "records"
+      }
+    },
+    "instrument": [
+      "auto_gate",
+      "matrix_query",
+      "e2e_per_profile",
+      "manual_case"
+    ],
+    "timing": [
+      "push_and_block_close",
+      "block_close",
+      "pending_close"
+    ],
+    "checker_declared_by": [
+      "adapter",
+      "owner"
+    ],
+    "anchor_source": [
+      "annex",
+      "derived_from_instrument"
+    ],
+    "since_schema": [
+      1,
+      2
+    ],
+    "verdict": [
+      "green",
+      "red",
+      "not_measured",
+      "invalid_ruleset"
+    ],
+    "rule_situation": [
+      "pass",
+      "fail",
+      "switched_off",
+      "group_switched_off",
+      "out_of_scope",
+      "declared_not_measured"
+    ],
+    "timing_source": [
+      "rule",
+      "instrument_default"
+    ]
+  },
+  "types": {
+    "artifact": {
+      "additional": false,
+      "fields": {
+        "path": {
+          "type": "string",
+          "required": true
+        },
+        "must_contain": {
+          "type": "array",
+          "items": "regex"
+        },
+        "should_contain": {
+          "type": "array",
+          "items": "regex"
+        },
+        "min_bytes": {
+          "type": "integer"
+        },
+        "fresh_days": {
+          "type": "integer"
+        },
+        "label": {
+          "type": "string"
+        },
+        "since_schema": {
+          "type": "integer",
+          "enum": "since_schema"
+        }
+      }
+    },
+    "evaluator_use": {
+      "additional": false,
+      "fields": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "in": "gates/evaluators.json"
+        },
+        "since_schema": {
+          "type": "integer",
+          "required": true,
+          "enum": "since_schema"
+        },
+        "required": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "verify_entry": {
+      "either": [
+        {
+          "type": "string",
+          "note": "base entry (schema 1)"
+        },
+        {
+          "additional": false,
+          "fields": {
+            "text": {
+              "type": "string",
+              "required": true
+            },
+            "since_schema": {
+              "type": "integer",
+              "required": true,
+              "enum": "since_schema"
+            },
+            "anchor": {
+              "type": "any"
+            },
+            "decision": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "step": {
+      "additional": false,
+      "fields": {
+        "num": {
+          "type": "integer",
+          "required": true
+        },
+        "id": {
+          "type": "string",
+          "required": true
+        },
+        "tramo": {
+          "type": "string",
+          "required": true,
+          "enum": "tramo"
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "summary": {
+          "type": "string",
+          "required": true
+        },
+        "form": {
+          "type": "string",
+          "required": true,
+          "enum": "form"
+        },
+        "mandatory": {
+          "type": "string",
+          "required": true,
+          "enum": "mandatory"
+        },
+        "prompt_key": {
+          "type": "string",
+          "required": true
+        },
+        "inputs": {
+          "type": "array",
+          "items": "artifact",
+          "required": true
+        },
+        "artifacts": {
+          "type": "array",
+          "items": "artifact",
+          "required": true
+        },
+        "verify": {
+          "type": "array",
+          "items": "verify_entry",
+          "required": true,
+          "min_items": 1
+        },
+        "evaluators": {
+          "type": "array",
+          "items": "evaluator_use",
+          "required": true,
+          "min_items": 1
+        }
+      }
+    },
+    "station": {
+      "additional": false,
+      "fields": {
+        "num": {
+          "type": "integer",
+          "required": true
+        },
+        "id": {
+          "type": "string",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "summary": {
+          "type": "string",
+          "required": true
+        },
+        "prompt_key": {
+          "type": "string",
+          "required": true
+        },
+        "prompt_indexes": {
+          "type": "array",
+          "items": "integer",
+          "required": true
+        },
+        "artifacts": {
+          "type": "array",
+          "items": "artifact",
+          "required": true
+        },
+        "verify": {
+          "type": "array",
+          "items": "verify_entry",
+          "required": true,
+          "min_items": 1
+        },
+        "evaluators": {
+          "type": "array",
+          "items": "evaluator_use",
+          "required": true,
+          "min_items": 1
+        }
+      }
+    },
+    "rule": {
+      "additional": false,
+      "fields": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "pattern": "^(CQ|UX)-\\d\\d$"
+        },
+        "group": {
+          "type": "string",
+          "required": true,
+          "enum": "group"
+        },
+        "family": {
+          "type": "string",
+          "required": true
+        },
+        "instrument": {
+          "type": "array",
+          "items": "string",
+          "required": true,
+          "min_items": 1,
+          "enum_items": "instrument"
+        },
+        "initial_severity": {
+          "type": "string",
+          "required": true,
+          "enum": "severity"
+        },
+        "timing": {
+          "type": "object_or_null",
+          "required": true
+        },
+        "human_red": {
+          "type": "boolean",
+          "required": true
+        },
+        "checker_declared_by": {
+          "type": "string",
+          "required": true,
+          "enum": "checker_declared_by"
+        },
+        "applies_to": {
+          "type": "object",
+          "required": true
+        },
+        "anchor": {
+          "type": "object",
+          "required": true
+        },
+        "statement": {
+          "type": "object",
+          "required": true
+        },
+        "applies_if": {
+          "type": "string"
+        },
+        "requires_record": {
+          "type": "string"
+        },
+        "escalates_to": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "project_config": {
+    "what": "The shape of the per-project configuration that the gate reads (layer 3 of Annex H). It lives in the project, never inside a prompt (D-046), and these are the field names a consumer tool has to write and read. Declared here so no tool has to guess them.",
+    "fields": {
+      "frontend": "Id of the adapter family (see gates/adapters.json families).",
+      "real_users": "Boolean. Rules with applies_if real_users only run where it is true, and that is scope, not an exception.",
+      "switches": "One entry per rule group: true, or an object { on: false, reason, authorized_by, review_date }.",
+      "switched_off": "List of individual rules switched off, each with the full record.",
+      "thresholds": "Declared values, by threshold id. Whatever is not here is reported as undeclared, never invented.",
+      "tools": "Tool names and versions actually used, for the ruleset fingerprint."
+    },
+    "switch_off_record": [
+      "rule",
+      "reason",
+      "authorized_by",
+      "review_date"
+    ],
+    "without_record": "red, and the ruleset is invalid: the scoreboard emits no figures at all (D-046, D-047)."
+  }
+}

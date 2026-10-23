@@ -1,0 +1,86 @@
+{
+  "what": "The closed vocabulary of evaluators. An evaluator is the strategy a tool uses to decide whether a step is fulfilled. APPEND-ONLY: none is removed, none is renamed and none changes meaning, exactly like a stable error code. If another semantics is needed, a new name is added.",
+  "append_only": true,
+  "semantics": {
+    "required_true": "A step that declares this evaluator needs the installation to know how to measure it. An installation that does not know it does NOT report green: it reports \"declared, not measured by this installation\" and the step does not advance. No approximating with the closest evaluator, and no ignoring.",
+    "required_false": "A warning, not a gate: an installation that does not know it says so and the step may advance anyway.",
+    "unknown_name": "A name that is not in this list is a catalogue error, not an extension: the validator rejects it."
+  },
+  "evaluators": [
+    {
+      "name": "artifacts",
+      "since_schema": 1,
+      "checks": "Every declared artifact exists, passes its min_bytes, satisfies each must_contain and, if it is a glob, the newest one is within its fresh_days. A should_contain that does not appear leaves a warning, not a red."
+    },
+    {
+      "name": "sizing",
+      "since_schema": 1,
+      "checks": "The artifacts, plus an admissible sizing record (gate G9: volumetry, retention per data class and hardware envelope, all declared by the owner)."
+    },
+    {
+      "name": "ci",
+      "since_schema": 1,
+      "checks": "The artifacts, plus a continuous integration definition that exists in the repository."
+    },
+    {
+      "name": "pendings_spec",
+      "since_schema": 1,
+      "checks": "The artifacts, plus every open pending item carrying its full specification (acceptance criteria and how it is verified). An empty plan is red, not green."
+    },
+    {
+      "name": "receipts",
+      "since_schema": 1,
+      "checks": "The artifacts, plus evidence receipts including at least one proven red and one green. No receipt, no step."
+    },
+    {
+      "name": "reports",
+      "since_schema": 1,
+      "checks": "The artifacts, plus every closed pending item having its honest report (verified / believed / blind spot). No closure yet is red, not green."
+    },
+    {
+      "name": "meters",
+      "since_schema": 1,
+      "checks": "A meter exists in the repository and the meter has a test of its own."
+    },
+    {
+      "name": "owner",
+      "since_schema": 1,
+      "checks": "Nothing mechanical: the owner verifies it and signs it. No step of the catalogue chooses it today; the state exists for a step that leaves no machine check at all, and that is why the name is published anyway."
+    },
+    {
+      "name": "heuristics",
+      "since_schema": 2,
+      "checks": "The Annex H rule catalogue is declared and active per group; every active rule has an instrument, a severity and a checker; every switched-off rule has its record with reason, author and review date (switched off without a record is red, not the absence of a rule); every undeclared threshold is reported as undeclared instead of invented; and the report emits the two figures with the ruleset fingerprint. A switched-off group is never read as fulfilled.",
+      "declares": [
+        "D-045",
+        "D-046",
+        "D-047",
+        "D-048"
+      ]
+    },
+    {
+      "name": "profile_matrix",
+      "since_schema": 2,
+      "checks": "The functionality-by-profile matrix exists and is consistent: every functionality has at least one profile, every profile has at least one functionality and its entry point, and navigation is derived from the matrix rather than hand-written. And for every profile, the end-to-end test compares what is reachable against its row: neither less nor more.",
+      "declares": [
+        "D-044"
+      ]
+    },
+    {
+      "name": "manual_cases_per_profile",
+      "since_schema": 2,
+      "checks": "Every manual test case was run once per affected profile, derived from the matrix. A case run with a single profile does not count as executed.",
+      "declares": [
+        "D-044"
+      ]
+    },
+    {
+      "name": "pendings_profiles",
+      "since_schema": 2,
+      "checks": "Every pending item that touches a screen declares its functional convergence group, the profiles that have it and one acceptance criterion per profile. Without that declaration the pending item does not pass the step.",
+      "declares": [
+        "D-044"
+      ]
+    }
+  ]
+}

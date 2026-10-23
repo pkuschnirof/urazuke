@@ -1,0 +1,1127 @@
+{
+  "what": "The twenty-four steps of the ladder, as data. Maintained by hand. An entry without since_schema belongs to the base frozen in gates/baseline_forge.json and is not edited; whatever was added later carries its since_schema. The base keeps its original Spanish text and its `tramo` field name, because the base is not edited (D-051).",
+  "tramos": {
+    "arranque": {
+      "title": "I. Arranque",
+      "steps": [
+        0,
+        4
+      ]
+    },
+    "bucle": {
+      "title": "II. Bucle de construccion",
+      "steps": [
+        5,
+        12
+      ]
+    },
+    "salida": {
+      "title": "III. Salida a produccion",
+      "steps": [
+        13,
+        20
+      ]
+    },
+    "operacion": {
+      "title": "IV. Operacion",
+      "steps": [
+        21,
+        23
+      ]
+    }
+  },
+  "steps": [
+    {
+      "num": 0,
+      "id": "u00-elegibilidad",
+      "tramo": "arranque",
+      "title": "Este proyecto se puede encarar asi? (elegibilidad)",
+      "summary": "Decidir, con criterios excluyentes y ponderados, si el proyecto se puede construir con el metodo.",
+      "form": "conversation",
+      "mandatory": "always",
+      "prompt_key": "peldano-00",
+      "inputs": [
+        {
+          "path": "docs/INITIAL_SURVEY.md",
+          "label": "relevamiento inicial escrito por el dueno"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/ELIGIBILITY.md",
+          "must_contain": [
+            "eligib|elegib"
+          ],
+          "label": "veredicto de elegibilidad"
+        }
+      ],
+      "verify": [
+        "Hay un veredicto escrito (elegible / no elegible / elegible con proyectos previos)?",
+        "Cada criterio excluyente tiene su verificacion, no una opinion?",
+        "Lo que falta quedo como pendiente, no como suposicion?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 1,
+      "id": "u01-contrato-de-convivencia",
+      "tramo": "arranque",
+      "title": "El contrato de convivencia",
+      "summary": "Las reglas que el agente cumple en cada sesion, escritas antes del codigo.",
+      "form": "one_shot",
+      "mandatory": "always",
+      "prompt_key": "peldano-01",
+      "inputs": [
+        {
+          "path": "docs/ELIGIBILITY.md"
+        },
+        {
+          "path": "docs/MY_PREFERENCES.md",
+          "min_bytes": 50,
+          "label": "tus preferencias, en una pagina"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "evidence|evidencia"
+          ],
+          "label": "contrato de convivencia"
+        }
+      ],
+      "verify": [
+        "El contrato dice que ninguna afirmacion de \"hecho\" vale sin evidencia?",
+        "Dice que el agente pide lo que falta en vez de estimar?",
+        "Esta cargado donde la herramienta lo lee en cada sesion?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 2,
+      "id": "u02-definicion-y-lectura",
+      "tramo": "arranque",
+      "title": "La definicion del proyecto, el arbol semantico y la lectura obligatoria",
+      "summary": "Que es el sistema, para quien, con que casos de uso, y que se lee en cada sesion.",
+      "form": "conversation",
+      "mandatory": "always",
+      "prompt_key": "peldano-02",
+      "inputs": [
+        {
+          "path": "docs/INITIAL_SURVEY.md"
+        },
+        {
+          "path": "docs/WORKING_AGREEMENT.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "PROJECT.md",
+          "label": "definicion del proyecto"
+        },
+        {
+          "path": "docs/SEMANTIC_TREE.md",
+          "label": "arbol semantico"
+        },
+        {
+          "path": "docs/STATUS.md",
+          "min_bytes": 80,
+          "label": "estado del proyecto"
+        }
+      ],
+      "verify": [
+        "PROJECT.md explica el sistema a alguien que no lo conoce?",
+        "El arbol semantico tiene cada caso de uso que vos nombraste?",
+        "Lo inferido esta marcado como inferido?",
+        {
+          "text": "Is the user glossary written, with the words people actually use for things?",
+          "since_schema": 2,
+          "anchor": "prior_input_1"
+        },
+        {
+          "text": "Is the list of profiles written, saying who each one is and what they come to do?",
+          "since_schema": 2,
+          "anchor": "prior_input_2"
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 3,
+      "id": "u03-dimensionar",
+      "tramo": "arranque",
+      "title": "Dimensionar antes de disenar la arquitectura",
+      "summary": "Volumetria, retencion, concurrencia y envoltura de hardware antes de elegir la persistencia.",
+      "form": "conversation",
+      "mandatory": "always",
+      "prompt_key": "peldano-03",
+      "inputs": [
+        {
+          "path": "docs/VOLUME_SURVEY.md",
+          "min_bytes": 80,
+          "label": "relevamiento de volumen"
+        },
+        {
+          "path": "PROJECT.md"
+        },
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/SIZING.md",
+          "label": "dimensionamiento escrito"
+        }
+      ],
+      "verify": [
+        "Cada numero tiene su fuente (vos, el negocio, medido), no una estimacion del agente?",
+        "La persistencia elegida tiene su envoltura de validez escrita?",
+        "El registro de dimensionamiento de Forge esta admisible (G9)?"
+      ],
+      "evaluators": [
+        {
+          "name": "sizing",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 4,
+      "id": "u04-esqueleto",
+      "tramo": "arranque",
+      "title": "El esqueleto con sus compuertas",
+      "summary": "Repositorio, integracion continua, entornos y las compuertas que nadie puede saltar.",
+      "form": "one_shot",
+      "mandatory": "always",
+      "prompt_key": "peldano-04",
+      "inputs": [
+        {
+          "path": "docs/ENVIRONMENTS_SURVEY.md",
+          "min_bytes": 80,
+          "label": "relevamiento de entornos"
+        },
+        {
+          "path": "docs/SIZING.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/GATES.md",
+          "label": "las compuertas escritas"
+        },
+        {
+          "path": "docs/STATUS.md",
+          "must_contain": [
+            "test"
+          ],
+          "label": "STATUS con el comando de la bateria"
+        }
+      ],
+      "verify": [
+        "La cadena corre sola en cada push y se pone en rojo cuando corresponde?",
+        "Hay un comando conocido para correr la bateria, anotado en STATUS?",
+        "Las compuertas estan escritas en GATES.md?"
+      ],
+      "evaluators": [
+        {
+          "name": "ci",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 5,
+      "id": "u05-pendientes",
+      "tramo": "bucle",
+      "title": "El plan son los pendientes",
+      "summary": "Cada pendiente lleva su especificacion completa: criterios de aceptacion y como se verifica.",
+      "form": "routine",
+      "mandatory": "always",
+      "prompt_key": "peldano-05",
+      "inputs": [
+        {
+          "path": "docs/blocks/*.md",
+          "label": "el pedido del bloque, escrito por vos"
+        },
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/PROFILE_MATRIX.md",
+          "must_contain": [
+            "perfil|profile"
+          ],
+          "label": "the functionality-by-profile matrix",
+          "since_schema": 2
+        }
+      ],
+      "verify": [
+        "Cada pendiente abierto tiene criterios de aceptacion \"dado, cuando, entonces\"?",
+        "Cada pendiente dice como se verifica sin leer codigo?",
+        "Los pendientes cerrados conservan su especificacion (documentacion del hecho)?",
+        {
+          "text": "Does every pending item that touches a screen declare its convergence group, its profiles and one acceptance criterion per profile?",
+          "since_schema": 2,
+          "anchor": 1
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "pendings_spec",
+          "since_schema": 1,
+          "required": true
+        },
+        {
+          "name": "pendings_profiles",
+          "since_schema": 2,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 6,
+      "id": "u06-decisiones",
+      "tramo": "bucle",
+      "title": "Las decisiones se escriben junto al codigo",
+      "summary": "Cada decision con dueno, fecha, la frase textual de origen y donde se aplica.",
+      "form": "conversation",
+      "mandatory": "always",
+      "prompt_key": "peldano-06",
+      "inputs": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/DECISIONS.md",
+          "label": "registro de decisiones"
+        }
+      ],
+      "verify": [
+        "Cada decision tiene quien, cuando y la frase textual?",
+        "El agente pregunta antes de decidir lo que es tuyo?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 7,
+      "id": "u07-medir",
+      "tramo": "bucle",
+      "title": "Medir antes de construir, con un instrumento que tambien se verifica",
+      "summary": "Un numero que alimenta una decision se mide con un programa que tiene su propio test.",
+      "form": "one_shot",
+      "mandatory": "proportional",
+      "prompt_key": "peldano-07",
+      "inputs": [],
+      "artifacts": [],
+      "verify": [
+        "El medidor esta en el repositorio y tiene su test?",
+        "El numero viene con el comando que lo produce y la fecha?",
+        "Lo aproximado esta marcado como aproximado, con su margen?"
+      ],
+      "evaluators": [
+        {
+          "name": "meters",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 8,
+      "id": "u08-tests-en-rojo",
+      "tramo": "bucle",
+      "title": "Tests como candados, probados en rojo",
+      "summary": "El rojo contra el codigo anterior como recibo, el verde, la regresion y la prueba de punta a punta.",
+      "form": "routine",
+      "mandatory": "always",
+      "prompt_key": "peldano-08",
+      "inputs": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md"
+        },
+        {
+          "path": "docs/STATUS.md",
+          "must_contain": [
+            "test"
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "red|rojo"
+          ],
+          "label": "la rutina del rojo en el contrato"
+        }
+      ],
+      "verify": [
+        "El rojo es un recibo (comando, version, numeros, codigo de salida) y no un relato?",
+        "La regresion corrio en la misma sesion, con numeros?",
+        "La prueba de pantalla verifica tambien el efecto en el backend?",
+        {
+          "text": "Was the matrix seen failing first: for each profile, what is reachable against its row, neither less nor more?",
+          "since_schema": 2,
+          "anchor": 2
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "receipts",
+          "since_schema": 1,
+          "required": true
+        },
+        {
+          "name": "profile_matrix",
+          "since_schema": 2,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 9,
+      "id": "u09-calidad-de-codigo",
+      "tramo": "bucle",
+      "title": "Calidad del codigo verificada por maquina, con compuerta",
+      "summary": "Linter, formateador, limites de tamano y complejidad, duplicacion, codigo muerto, cobertura con trinquete.",
+      "form": "routine",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-09",
+      "inputs": [
+        {
+          "path": "docs/GATES.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/CODE_QUALITY.md",
+          "label": "herramientas, limites y valores medidos"
+        },
+        {
+          "path": "docs/GATES.md",
+          "must_contain": [
+            "quality|calidad|lint"
+          ],
+          "label": "la calidad como compuerta"
+        },
+        {
+          "path": "docs/CODE_QUALITY.md",
+          "must_contain": [
+            "CQ-\\d\\d"
+          ],
+          "label": "the result per rule, not as a single number",
+          "since_schema": 2
+        },
+        {
+          "path": "docs/USABILITY.md",
+          "must_contain": [
+            "UX-\\d\\d"
+          ],
+          "label": "the result per usability rule, with its declared exceptions",
+          "since_schema": 2
+        }
+      ],
+      "verify": [
+        "La ultima corrida de la cadena tiene la calidad en verde?",
+        "Una funcion de cien lineas en una rama pone la cadena en rojo?",
+        "La cobertura de hoy es mayor o igual que la del bloque anterior?",
+        {
+          "text": "Is the rule catalogue complete, with its frontend adapter and its declared thresholds (and does whatever is undeclared say so)?",
+          "since_schema": 2,
+          "anchor": 3
+        },
+        {
+          "text": "Does every switched-off rule have its record with reason, author and review date?",
+          "since_schema": 2,
+          "anchor": 3
+        },
+        {
+          "text": "With real users, is the mutation score measured per block, and did every surviving mutant in new code open a pending item?",
+          "since_schema": 2,
+          "anchor": 3
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "ci",
+          "since_schema": 1,
+          "required": true
+        },
+        {
+          "name": "heuristics",
+          "since_schema": 2,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 10,
+      "id": "u10-casos-de-prueba-manual",
+      "tramo": "bucle",
+      "title": "Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas",
+      "summary": "Cada pendiente deja su caso de prueba manual; cada fallo humano vuelve como pendiente.",
+      "form": "routine",
+      "mandatory": "always",
+      "prompt_key": "peldano-10",
+      "inputs": [
+        {
+          "path": "PROJECT.md"
+        },
+        {
+          "path": "docs/WORKING_AGREEMENT.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/MANUAL_TESTS.md",
+          "label": "casos de prueba manual"
+        }
+      ],
+      "verify": [
+        "Cada pendiente cerrado tiene su caso de prueba manual, con pasos y resultado esperado?",
+        "Los casos se ejecutaron al cierre del bloque, con fecha y quien?",
+        "Cada fallo abrio un pendiente?",
+        {
+          "text": "Was each case run once per affected profile, derived from the matrix? A case run with a single profile does not count.",
+          "since_schema": 2,
+          "anchor": 4
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        },
+        {
+          "name": "manual_cases_per_profile",
+          "since_schema": 2,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 11,
+      "id": "u11-simetria-y-antipatrones",
+      "tramo": "bucle",
+      "title": "Simetria entre productor y consumidor, y el registro de anti-patrones",
+      "summary": "Nadie cambia una estructura compartida sin tocar a todos sus consumidores; cada golpe queda escrito.",
+      "form": "routine",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-11",
+      "inputs": [
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/PRODUCER_CONSUMER_MAP.md",
+          "label": "mapa productor-consumidor"
+        },
+        {
+          "path": "docs/GOTCHAS.md",
+          "min_bytes": 50,
+          "label": "registro de anti-patrones"
+        }
+      ],
+      "verify": [
+        "El mapa nombra cada estructura compartida con sus lectores y escritores?",
+        "Cada golpe de los ultimos bloques esta en GOTCHAS.md con su regla?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 12,
+      "id": "u12-verificacion-honesta",
+      "tramo": "bucle",
+      "title": "Verificacion honesta y reporte proporcional",
+      "summary": "Cada reporte separa lo verificado, lo creido y el punto ciego, y ocupa lo que la evidencia da.",
+      "form": "routine",
+      "mandatory": "always",
+      "prompt_key": "peldano-12",
+      "inputs": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "verif",
+            "blind|ciego"
+          ],
+          "label": "la rutina del reporte honesto"
+        }
+      ],
+      "verify": [
+        "El ultimo reporte separa verificado / creido / punto ciego?",
+        "Lo verificado tiene su recibo?",
+        {
+          "text": "Does the report say what was measured, what was left warning and which rule is switched off, with reason, author and review date?",
+          "since_schema": 2,
+          "anchor": 5
+        },
+        {
+          "text": "Do the two figures travel with their ruleset fingerprint, and does neither of them close a block?",
+          "since_schema": 2,
+          "anchor": 5
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "reports",
+          "since_schema": 1,
+          "required": true
+        },
+        {
+          "name": "heuristics",
+          "since_schema": 2,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 13,
+      "id": "u13-auditoria",
+      "tramo": "salida",
+      "title": "La auditoria periodica como insumo del plan",
+      "summary": "Otra sesion, idealmente otro modelo, revisa todo y sus hallazgos entran al plan como pendientes.",
+      "form": "one_shot",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-13",
+      "inputs": [
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        },
+        {
+          "path": "docs/STATUS.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "label": "auditoria reciente",
+          "should_contain": [
+            "^\\s*\\**\\s*auditor\\s*\\**\\s*:"
+          ]
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "recibo|receipt"
+          ],
+          "should_contain": [
+            "modelo|model"
+          ],
+          "label": "the audit reproduces receipts and declares which model performed it",
+          "since_schema": 2
+        }
+      ],
+      "verify": [
+        "La auditoria la hizo una sesion distinta de la que construye?",
+        "Cada hallazgo P0 y P1 tiene pendiente?",
+        "Vuelve a correr una muestra de los recibos de rojo?",
+        {
+          "text": "Did you literally reproduce two or three receipts of closed pending items (same command, same numbers), rather than just reading them?",
+          "since_schema": 2,
+          "decision": "D-042"
+        },
+        {
+          "text": "Was the audit done, where possible, by a model other than the one that builds?",
+          "since_schema": 2,
+          "decision": "D-042"
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 14,
+      "id": "u14-fail-closed",
+      "tramo": "salida",
+      "title": "Fail-closed, candados y cero dano silencioso",
+      "summary": "Cada accion con consecuencia real tiene su candado; ante la duda, el sistema se detiene.",
+      "form": "conversation",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-14",
+      "inputs": [
+        {
+          "path": "docs/CONSEQUENTIAL_ACTIONS_SURVEY.md",
+          "min_bytes": 50,
+          "label": "tu lista de acciones con consecuencia"
+        },
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/LOCKS.md",
+          "label": "registro de candados"
+        }
+      ],
+      "verify": [
+        "Cada accion de tu lista tiene su candado en LOCKS.md, con el test que lo prueba?",
+        "Ante un dato que falta, el sistema se detiene en vez de inventar?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 15,
+      "id": "u15-ci-entornos-secretos-deploy",
+      "tramo": "salida",
+      "title": "Integracion continua, entornos, secretos y despliegue como parte del producto",
+      "summary": "Despliegue repetible, configuracion afuera del codigo, secretos en su lugar y vuelta atras probada.",
+      "form": "one_shot",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-15",
+      "inputs": [
+        {
+          "path": "docs/ENVIRONMENTS_SURVEY.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/DEPLOYMENT.md",
+          "must_contain": [
+            "rollback|vuelta atras"
+          ],
+          "label": "procedimiento de despliegue y vuelta atras"
+        },
+        {
+          "path": "docs/DEPLOYMENT.md",
+          "must_contain": [
+            "migrac|migration",
+            "deshacer|compensar|undo|compensat"
+          ],
+          "label": "the migration with an undo or compensation plan of its own",
+          "since_schema": 2
+        }
+      ],
+      "verify": [
+        "El despliegue es un comando, no una lista de pasos a mano?",
+        "La vuelta atras se probo al menos una vez?",
+        "Ningun secreto vive en el repositorio?",
+        {
+          "text": "Does every schema or data migration have its own undo or compensation plan? Rolling the code back is not enough.",
+          "since_schema": 2,
+          "decision": "D-042"
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "ci",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 16,
+      "id": "u16-observabilidad-y-trazabilidad",
+      "tramo": "salida",
+      "title": "Observabilidad y trazabilidad totales, con nivel configurable",
+      "summary": "Cada accion deja un registro estructurado con su identificador; el nivel se configura sin tocar codigo.",
+      "form": "one_shot",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-16",
+      "inputs": [
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        },
+        {
+          "path": "docs/DEPLOYMENT.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/OBSERVABILITY.md",
+          "label": "que se registra, donde y con que nivel"
+        }
+      ],
+      "verify": [
+        "Pediste una traza real de una accion y la leiste de punta a punta?",
+        "El nivel de registro se cambia por configuracion?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 17,
+      "id": "u17-persistencia",
+      "tramo": "salida",
+      "title": "Optimizacion de la capa de persistencia, medida antes y despues",
+      "summary": "Indices, fin de los bucles N+1, presupuestos de consultas por camino; todo con numero antes y despues.",
+      "form": "one_shot",
+      "mandatory": "proportional",
+      "prompt_key": "peldano-17",
+      "inputs": [
+        {
+          "path": "docs/SIZING.md"
+        },
+        {
+          "path": "docs/VOLUME_SURVEY.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/PERSISTENCE.md",
+          "label": "medicion antes y despues"
+        }
+      ],
+      "verify": [
+        "Cada cambio tiene su numero de antes y de despues?",
+        "Hay un presupuesto de consultas por camino, con test?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 18,
+      "id": "u18-vulnerabilidades",
+      "tramo": "salida",
+      "title": "Escaneo y solucion de vulnerabilidades, en la cadena y con calendario",
+      "summary": "Dependencias, secretos, codigo e infraestructura escaneados en cada push y con fecha de repaso.",
+      "form": "one_shot",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-18",
+      "inputs": [
+        {
+          "path": "docs/ENVIRONMENTS_SURVEY.md"
+        },
+        {
+          "path": "docs/GATES.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/SECURITY.md",
+          "label": "que se escanea y con que calendario"
+        },
+        {
+          "path": "docs/SECURITY_*.md",
+          "fresh_days": 45,
+          "label": "ultimo reporte de escaneo"
+        }
+      ],
+      "verify": [
+        "La cadena se pone en rojo con una dependencia vulnerable conocida?",
+        "Cada hallazgo tiene pendiente o excepcion con razon y fecha?"
+      ],
+      "evaluators": [
+        {
+          "name": "ci",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 19,
+      "id": "u19-rendimiento-y-punto-de-ruptura",
+      "tramo": "salida",
+      "title": "Pruebas de rendimiento en volumen y punto de ruptura",
+      "summary": "Cargar al volumen esperado y al por diez, y encontrar que se rompe primero.",
+      "form": "one_shot",
+      "mandatory": "proportional",
+      "prompt_key": "peldano-19",
+      "inputs": [
+        {
+          "path": "docs/SIZING.md"
+        },
+        {
+          "path": "docs/ENVIRONMENTS_SURVEY.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/PERFORMANCE.md",
+          "label": "umbrales y como se corre la prueba"
+        },
+        {
+          "path": "docs/PERFORMANCE_*.md",
+          "fresh_days": 90,
+          "label": "ultimo resultado"
+        }
+      ],
+      "verify": [
+        "Hay un punto de ruptura escrito, con la pieza que se rompe?",
+        "Los umbrales estan en la cadena o en el monitoreo?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 20,
+      "id": "u20-documentacion-viva",
+      "tramo": "salida",
+      "title": "Documentacion viva y manuales que una persona puede seguir sin IA",
+      "summary": "Manual de usuario, de mantenimiento y de infraestructura y recuperacion; el registro de cambios al dia.",
+      "form": "routine",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-20",
+      "inputs": [
+        {
+          "path": "PROJECT.md"
+        },
+        {
+          "path": "docs/DEPLOYMENT.md"
+        },
+        {
+          "path": "docs/LOCKS.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/USER_MANUAL.md",
+          "label": "manual de usuario"
+        },
+        {
+          "path": "docs/MAINTENANCE_MANUAL.md",
+          "label": "manual de mantenimiento"
+        },
+        {
+          "path": "docs/INFRASTRUCTURE_AND_RECOVERY_MANUAL.md",
+          "label": "manual de infraestructura y recuperacion"
+        },
+        {
+          "path": "docs/CHANGELOG.md",
+          "min_bytes": 50,
+          "label": "registro de cambios"
+        }
+      ],
+      "verify": [
+        "Una persona sin IA puede recuperar el sistema siguiendo el manual?",
+        "Alguien que no sos vos siguio el manual de usuario y llego?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 21,
+      "id": "u21-monitoreo-de-recursos",
+      "tramo": "operacion",
+      "title": "Monitoreo de recursos, funciones y consultas fuera de rango, con reporte ciclico",
+      "summary": "Umbrales por recurso y por funcion, alertas, y un reporte que llega solo cada ciclo.",
+      "form": "routine",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-21",
+      "inputs": [
+        {
+          "path": "docs/OBSERVABILITY.md"
+        },
+        {
+          "path": "docs/PERFORMANCE.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/MONITORING.md",
+          "label": "umbrales, alertas y ciclo del reporte"
+        },
+        {
+          "path": "docs/MONITORING_REPORT_*.md",
+          "fresh_days": 35,
+          "min_bytes": 100,
+          "label": "ultimo reporte ciclico (yf urazuke cycle)"
+        }
+      ],
+      "verify": [
+        "Recibiste el primer reporte ciclico sin pedirlo?",
+        "Cada umbral tiene una accion escrita para cuando se supera?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 22,
+      "id": "u22-monitoreo-de-errores",
+      "tramo": "operacion",
+      "title": "Monitoreo de errores y reporte ciclico: ningun error sin pendiente",
+      "summary": "Captura centralizada de errores, alerta cuando importa, y cada error nuevo con su pendiente.",
+      "form": "routine",
+      "mandatory": "always",
+      "prompt_key": "peldano-22",
+      "inputs": [
+        {
+          "path": "docs/OBSERVABILITY.md"
+        },
+        {
+          "path": "docs/LOCKS.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/MONITORING.md",
+          "must_contain": [
+            "error"
+          ],
+          "label": "el monitoreo de errores en MONITORING.md"
+        },
+        {
+          "path": "docs/MONITORING_REPORT_*.md",
+          "fresh_days": 35,
+          "min_bytes": 100,
+          "label": "ultimo reporte ciclico con los errores"
+        }
+      ],
+      "verify": [
+        "Cada error nuevo del ultimo ciclo tiene su pendiente?",
+        "El reporte ciclico de errores llega solo?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 23,
+      "id": "u23-agente-residente-y-retrospectiva",
+      "tramo": "operacion",
+      "title": "El agente adentro del sistema, y la retrospectiva con numero",
+      "summary": "Un agente residente con alcance escrito, y una retrospectiva que termina en una propuesta al metodo.",
+      "form": "conversation",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-23",
+      "inputs": [
+        {
+          "path": "docs/RETROSPECTIVE_INPUTS.md",
+          "min_bytes": 50,
+          "label": "tus insumos para la retrospectiva"
+        },
+        {
+          "path": "docs/LOCKS.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/RESIDENT_AGENT.md",
+          "label": "alcance del agente residente"
+        },
+        {
+          "path": "docs/RETROSPECTIVE_*.md",
+          "fresh_days": 120,
+          "label": "retrospectiva reciente"
+        },
+        {
+          "path": "docs/RESIDENT_AGENT.md",
+          "must_contain": [
+            "inyecc|injection"
+          ],
+          "label": "the injection clause inside the scope of the resident agent",
+          "since_schema": 2
+        },
+        {
+          "path": "docs/RETROSPECTIVE_*.md",
+          "fresh_days": 120,
+          "should_contain": [
+            "modelo|model"
+          ],
+          "label": "the retrospective names the model the system was built with",
+          "since_schema": 2
+        }
+      ],
+      "verify": [
+        "La retrospectiva tiene numeros, no impresiones?",
+        "Termina en una propuesta concreta de cambio al metodo, con el incidente que la justifica?",
+        {
+          "text": "Does the scope of the resident agent say that whatever it reads in production is data and never an instruction?",
+          "since_schema": 2,
+          "decision": "D-042"
+        },
+        {
+          "text": "Was there a short retrospective when the building model changed?",
+          "since_schema": 2,
+          "decision": "D-042"
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    }
+  ]
+}

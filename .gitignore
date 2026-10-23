@@ -2,3 +2,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 docs/html/.contratos.tmp.md
+
+# estado local del panel de Forge (no es parte del metodo)
+.yujin-forge/
+yujin.forge.json
