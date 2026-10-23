@@ -124,7 +124,17 @@ de estas tres piezas se replica en las otras dos.
   `PORTAL_DEPLOY_KEY` de este repositorio: alcanza a ese repositorio y a ningún otro, y se revoca
   desde sus ajustes. Si el secreto falta, el trabajo falla diciéndolo; no se saltea en silencio.
   La compuerta humana es la de siempre: `main` protegida, con pull request y aprobación de un
-  propietario. **Lo que el disparador no hace**: tocar la landing. Un documento nuevo se publica y
+  propietario.
+- **La publicación se verifica contra producción, y el chequeo dice qué vio** (D-054): después de
+  empujar, `node build/portal_verify.mjs` pide los dos archivos al extremo canónico y separa tres
+  situaciones que antes salían con el mismo texto: la huella coincide (verde), producción contesta y
+  sirve **otra** huella (aviso, y dice cuál: eso sí es el despliegue del portal, que es otro flujo y
+  puede estar corriendo), o no se pudo leer producción (**rojo**, con el código HTTP o el error de
+  red a la vista). El rojo dice que la publicación ocurrió y falta la evidencia, no que el método
+  publicó mal; y conviene saber, para leerlo, que el host del portal tiene documentado en su propio
+  flujo que rechaza conexiones del runner de GitHub. A mano, en dos segundos:
+  `node build/portal_verify.mjs --rondas 1`.
+- **Lo que el disparador no hace**: tocar la landing. Un documento nuevo se publica y
   queda accesible por su URL, pero no aparece enlazado hasta que alguien lo agregue al índice y al
   i18n de la landing, que viven en el repositorio del portal.
 
@@ -229,5 +239,9 @@ versión declarada contra su huella, en los dos archivos publicados (D-053). `no
 si no coincide con lo commiteado, y `node build/api_check.mjs --huella` recalcula la huella de los
 **dos** archivos commiteados sin regenerar nada (es lo que usa el paso de publicación, porque regenerar reescribe
 `generated_at` y publicaría algo distinto de lo que quedó en `main`).
+`node build/portal_verify.mjs` pregunta a producción si sirve las dos huellas commiteadas y
+distingue el verde del aviso (sirve otra huella) y del rojo (no se pudo leer); corre con node pelado
+y sin `curl`, así que el mismo chequeo del flujo se corre a mano (`--rondas 1` para una sola vuelta).
+Queda **fuera** de `build/build.mjs` a propósito: la construcción tiene que correr sin red.
 `.github/workflows/compuertas.yml` corre todo eso en cada cambio y, en `main` y sólo con todo en
-verde, publica en el repositorio del portal (D-052).
+verde, publica en el repositorio del portal (D-052) y verifica que producción lo sirva (D-054).
