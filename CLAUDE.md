@@ -31,6 +31,19 @@ yujin.app/urazuke.
   entra al glosario; los contratos de los peldaños de calidad operativa (16 a 22) llevan un
   párrafo "Si sos principiante" después de "Para qué sirve", y los nuevos tienen que llevarlo.
 
+## El registro de pendientes (`docs/PENDING.md`)
+
+El método se aplica a sí mismo: `docs/PENDING.md` es el registro del peldaño 5 de este proyecto, y
+es **la verdad del plan**. Se inauguró el 2026-10-24 con el primer hallazgo de la normalización y
+los veintidós de la auditoría externa de la publicación. Reglas: cada entrada lleva su
+especificación completa (no de una línea), su grupo de convergencia y sus perfiles con un criterio
+de aceptación por perfil (Anexo H, ancla 1), la evidencia **medida** y la reproducción propia con
+fecha; un pendiente se cierra con evidencia escrita y **se queda** en el registro con su
+documentación de cierre, porque los cerrados son la documentación de lo que se construyó; cada
+commit cita su pendiente. Va en castellano, es voz del autor y **no** se traduce ni se genera. La
+numeración `PND-nnn` es la de este registro y no se corresponde con la de ninguna herramienta.
+Mientras el árbol semántico del peldaño 2 no exista, los nodos se escriben `[nodo propuesto]`.
+
 ## Estructura de los contratos (`docs/peldanos/`)
 
 Encabezado con tramo, **cuándo**, forma y tamaño; "Para qué sirve"; y cinco secciones: (1)
@@ -103,8 +116,8 @@ de estas tres piezas se replica en las otras dos.
   profesión, y traducir para que un usuario final entienda mejor es responsabilidad de quien
   consume. Hoy eso aplica al nivel de datos de las compuertas (`gates/`, `docs/html/api/gates.json`)
   y a `docs/COMPUERTAS.md`. Los documentos que siguen en castellano por ser voz del autor o fuente
-  primaria —`DECISIONES.md`, `EVALUACIONES_DE_IA.md`, `PLAN_CURSO_MENTORING.md`, `docs/practica/`—
-  quedan explícitamente fuera de esa regla hasta que el dueño decida otra cosa.
+  primaria —`DECISIONES.md`, `EVALUACIONES_DE_IA.md`, `PLAN_CURSO_MENTORING.md`, `docs/PENDING.md`,
+  `docs/practica/`— quedan explícitamente fuera de esa regla hasta que el dueño decida otra cosa.
 - Los clientes están anonimizados: "la Obra Social" (con "el Autorizador") y "la Asociación"; sus
   sistemas, "Autorizaciones" y "Kikan". **Los nombres reales no se escriben en este repositorio**,
   ni en los documentos ni en los mensajes de commit. Las rutas locales de los repositorios de
