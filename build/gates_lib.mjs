@@ -193,3 +193,32 @@ export function gitCommitCorto() {
   try { return execFileSync('git', ['rev-parse', '--short', 'HEAD'], { cwd: raiz, encoding: 'utf8' }).trim(); }
   catch { return null; }
 }
+
+/**
+ * ?Se llamo a este modulo desde la linea de comandos?
+ *
+ * Existe porque el idiom que habia antes en los tres programas que tienen modo de
+ * linea de comandos -- comparar import.meta.url contra 'file:///' pegado adelante de
+ * argv[1] con las barras invertidas dadas vuelta -- SOLO acierta en Windows. En POSIX
+ * argv[1] ya empieza con una barra, asi que la concatenacion da 'file:////home/...'
+ * (cuatro barras) contra 'file:///home/...' y nunca es igual: el bloque no entra, el
+ * programa define sus exports y sale con exito. Medido en la corrida 39956832685 de
+ * ubuntu-latest: dos pasos de la cadena imprimieron CERO lineas y devolvieron verde.
+ * Un verde vacuo, en el mismo repositorio que ya tiene escrito que un verde con cero
+ * pruebas no es un verde.
+ *
+ * `ruta` se recibe por argumento, y no se lee process.argv adentro, para que la prueba
+ * pueda ejercitar las dos plataformas corriendo en cualquiera de las dos: un verde en
+ * Windows no vuelve a tapar un no-op en Linux.
+ */
+export function esLineaDeComandos(urlDelModulo, ruta = process.argv[1] ?? '') {
+  if (!ruta) return false;
+  const cola = (s) => s.replace(/^file:[/]+/, '').replace(/\\/g, '/').replace(/^[/]+/, '');
+  const url = cola(urlDelModulo);
+  // La ruta viene como la escribio el sistema operativo; import.meta.url viene con los
+  // caracteres raros escapados (un espacio es %20). Se compara contra las dos formas.
+  let suelta = url;
+  try { suelta = decodeURIComponent(url); } catch { /* un '%' literal: queda como esta */ }
+  const suya = cola(ruta);
+  return suya === url || suya === suelta;
+}

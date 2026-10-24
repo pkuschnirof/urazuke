@@ -27,7 +27,7 @@
 // Uso: node build/prompts_api.mjs
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { raiz, huellaDeContenido, gitCommitCorto } from './gates_lib.mjs';
+import { raiz, huellaDeContenido, gitCommitCorto, esLineaDeComandos } from './gates_lib.mjs';
 
 const dirPrompts = join(raiz, 'prompts');
 const dirContratos = join(raiz, 'docs', 'en', 'peldanos');
@@ -134,7 +134,7 @@ export function armarPublicado() {
   return { salida, catalogo, valor };
 }
 
-if (import.meta.url === 'file:///' + (process.argv[1] ?? '').replace(/\\/g, '/')) {
+if (esLineaDeComandos(import.meta.url)) {
   const { salida, catalogo, valor } = armarPublicado();
   if (salida.steps.length !== 24) {
     console.error('E_CUENTA: se leyeron ' + salida.steps.length + ' titulos de peldano en docs/en/peldanos/, y el metodo declara 24.');

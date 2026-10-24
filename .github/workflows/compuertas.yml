@@ -48,8 +48,18 @@ jobs:
 
       # El repositorio no tiene dependencias: todo corre con node pelado.
 
+      # Mismo criterio que las pruebas, y por el mismo motivo medido: un paso que no
+      # imprime nada no demostro nada. En la corrida 39956832685 este paso y el de
+      # COMPUERTAS.md corrieron EN VACIO sobre ubuntu-latest -- el guardian de linea de
+      # comandos de los dos programas solo acertaba en Windows -- y cerraron en verde.
+      # Ahora, ademas de exigir codigo de salida cero, se exige la linea que el programa
+      # imprime cuando de verdad corrio.
       - name: Validar las compuertas contra su esquema y contra el Anexo H
-        run: node build/gates_validate.mjs
+        run: |
+          set -o pipefail
+          node build/gates_validate.mjs | tee validacion.txt
+          grep -q 'compuertas: validado' validacion.txt || { echo "::error::el validador no dijo nada: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          rm validacion.txt
 
       # Sin el patron entre comillas: medido que en otro interprete node no lo expande,
       # corre CERO pruebas y devuelve exito. Un verde con cero pruebas no es un verde,
@@ -69,7 +79,11 @@ jobs:
         run: node build/api_check.mjs
 
       - name: Exigir que docs/COMPUERTAS.md coincida con los datos
-        run: node build/gates_doc.mjs --check
+        run: |
+          set -o pipefail
+          node build/gates_doc.mjs --check | tee documento.txt
+          grep -q 'coincide con los datos' documento.txt || { echo "::error::la comprobacion del documento no dijo nada: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          rm documento.txt
 
       - name: Dejar el arbol limpio (ningun generado sin commitear)
         run: |
