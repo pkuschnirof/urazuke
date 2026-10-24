@@ -126,7 +126,7 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
 
   const comparar = (a, b, donde) => {
     if (JSON.stringify(ordenar(a)) !== JSON.stringify(ordenar(b))) {
-      err('E_BASE_ALTERADA', 'lo que corresponde a la base no coincide con gates/baseline_forge.json', donde,
+      err('E_BASE_ALTERADA', 'lo que corresponde a la base no coincide con gates/baseline.json', donde,
         'un requisito nuevo entra como entrada NUEVA con su since_schema; una entrada de la base no se edita. Si el cambio es a proposito, es una decision del metodo y va escrita.');
     }
   };

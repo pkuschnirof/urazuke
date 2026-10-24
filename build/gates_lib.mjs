@@ -30,7 +30,7 @@ export function cargarFuentes() {
     stations: leer('gates/stations.json'),
     heuristics: leer('gates/heuristics.json'),
     adapters: leer('gates/adapters.json'),
-    baseline: leer('gates/baseline_forge.json'),
+    baseline: leer('gates/baseline.json'),
   };
 }
 

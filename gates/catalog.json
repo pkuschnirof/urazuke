@@ -1,6 +1,6 @@
 {
   "what": "The header of the gate catalogue: the version a project freezes. Declared BY HAND. Any change to a key covered by the content hash raises the version and is recorded in the changelog with the hash it produced; regenerating the published file without touching a covered key leaves it alone.",
-  "catalog_version": "2026.10.2",
+  "catalog_version": "2026.10.3",
   "schema_version": 2,
   "declared_at": "2026-10-23",
   "method": {
@@ -16,7 +16,7 @@
     "stations": "gates/stations.json",
     "heuristics": "gates/heuristics.json",
     "adapters": "gates/adapters.json",
-    "baseline": "gates/baseline_forge.json"
+    "baseline": "gates/baseline.json"
   },
   "published_as": "docs/html/api/gates.json",
   "changelog": [
@@ -25,7 +25,7 @@
       "date": "2026-10-23",
       "decision": "D-050",
       "content_hash": "8f9aa195001e2a00ab4dd67acbda6c3ec56b64199935a25120de132c9982905c",
-      "changed": "First published version. The base is identical to what the tool had compiled (gates/baseline_forge.json). Coming in, declared with since_schema 2: the forty-five rules of Annex H with their switches, severities, instruments and scoreboard (D-043 to D-049); the five anchors at steps 5, 8, 9, 10 and 12 with their four new evaluators; the inheritance of the five anchors by the legacy path when it enters the loop at step 5; and the D-042 additions to steps 13, 15 and 23, plus the mandatory mutation testing of step 9. The data layer is published in English (D-051)."
+      "changed": "First published version. The base is identical to what the tool had compiled (gates/baseline.json). Coming in, declared with since_schema 2: the forty-five rules of Annex H with their switches, severities, instruments and scoreboard (D-043 to D-049); the five anchors at steps 5, 8, 9, 10 and 12 with their four new evaluators; the inheritance of the five anchors by the legacy path when it enters the loop at step 5; and the D-042 additions to steps 13, 15 and 23, plus the mandatory mutation testing of step 9. The data layer is published in English (D-051)."
     },
     {
       "catalog_version": "2026.10.2",
@@ -33,6 +33,13 @@
       "decision": "D-053",
       "content_hash": "3bd03ac3bf79a60081eeebbcfc8bb28bf448f69709c0d12f76a99fa89ebe30be",
       "changed": "No requirement changed. The language declaration now tells the truth: the published file is bilingual, because the frozen base keeps the Spanish it was frozen in (the exception declared in D-051) while everything new is in English. `languages.data` said `en`, so a consumer that trusted it would show Spanish to an English reader. It now says `mixed` and carries `text_language`, a mechanical rule that says which language each text is in, plus the instruction a consumer needs: read the opaque `id` and take the text from your own catalogue. Raising the version is not decoration: a key covered by the hash changed, so the content of 2026.10.1 and the content of this version are different, and a project that froze one has to be able to tell them apart."
+    },
+    {
+      "catalog_version": "2026.10.3",
+      "date": "2026-10-24",
+      "decision": "D-055",
+      "content_hash": "0f3c1b472f92242840aa4cd7c2cc590b62c30c48466af3a588ea803fee880367",
+      "changed": "No requirement changed: the data layer stops naming tools. The published file carried five references to the tool that had this definition compiled before the method took ownership of it (D-050): two inside the frozen base -- the sizing verification of step 3, which named that tool and its gate id, and the label of the cyclic report artifact of step 22, which named one of its commands -- one in the description of the sizing evaluator, which cited that gate id again, and two in the language declaration, which named the frozen base by a file name that carried the tool name. The method owns this definition and publishes it for any consumer, so a tool named in the data reads as a dependency, and there is none. The owner authorised editing the two frozen texts as an explicit exception to base_is_frozen, written down in D-055: nothing else of the base moved, and the provenance of the freeze stays inside gates/baseline.json, which is not published. The frozen base was renamed from its previous file name to gates/baseline.json so that not even the path names a tool. A test now turns red if a tool or protocol name enters the published level again."
     }
   ],
   "languages": {
@@ -40,7 +47,7 @@
     "data": "mixed",
     "decision": "D-051",
     "note": "The prose of the method (docs/) is written in Spanish and translated into seven more languages. The data layer (gates/ and the published file) is written in English, which is the canonical language of the profession, because it is not part of the translated corpus. Translating for the comprehension of an end user is the job of the consumer tool, not of this catalogue.",
-    "exception": "The frozen base (gates/baseline_forge.json) keeps the Spanish text and the `tramo` field name it had when the method took ownership. The base is not edited: changing it is a change of the method, with its own decision.",
+    "exception": "The frozen base (gates/baseline.json) keeps the Spanish text and the `tramo` field name it had when the method took ownership. The base is not edited: changing it is a change of the method, with its own decision.",
     "text_language": {
       "what": "Which language each human-readable text of this file is in. It is declared mechanically because the file is bilingual: reading `data` as a single language would make a consumer show Spanish to an English reader.",
       "default": "en",
@@ -49,7 +56,7 @@
       "rule": "Inside the keys listed in `spanish_scope`, a text is Spanish when neither its own node nor any enclosing node declares `since_schema` >= 2: it comes from the frozen base, and the base is not edited. A node with `since_schema` >= 2 is new, and its text is English. Every text outside `spanish_scope` is English.",
       "text_fields": ["title", "summary", "verify", "label", "text", "note"],
       "language_neutral": "Ids, step and station keys, evaluator names, enum values, file paths and the regular expressions of must_contain / should_contain are not prose and carry no language. The regular expressions are deliberately bilingual, so that a gate matches a document written in either language.",
-      "verified": "The method checks this declaration on every build: every text the rule calls Spanish has to appear literally in gates/baseline_forge.json, and no text the rule calls English may read as Spanish. If the declaration stops being true, nothing is published.",
+      "verified": "The method checks this declaration on every build: every text the rule calls Spanish has to appear literally in gates/baseline.json, and no text the rule calls English may read as Spanish. If the declaration stops being true, nothing is published.",
       "consumer": "Do not print these texts to an end user. Read the stable `id` -- an opaque key that is never translated -- and take the text from your own catalogue. That holds for the English texts too: this file is the definition of the gates, not a translated user interface."
     }
   }

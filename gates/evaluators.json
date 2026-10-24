@@ -15,7 +15,7 @@
     {
       "name": "sizing",
       "since_schema": 1,
-      "checks": "The artifacts, plus an admissible sizing record (gate G9: volumetry, retention per data class and hardware envelope, all declared by the owner)."
+      "checks": "The artifacts, plus an admissible sizing record: volumetry, retention per data class and hardware envelope, all declared by the owner."
     },
     {
       "name": "ci",

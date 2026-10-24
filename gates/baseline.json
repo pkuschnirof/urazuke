@@ -180,7 +180,7 @@
       "verify": [
         "Cada numero tiene su fuente (vos, el negocio, medido), no una estimacion del agente?",
         "La persistencia elegida tiene su envoltura de validez escrita?",
-        "El registro de dimensionamiento de Forge esta admisible (G9)?"
+        "El registro de dimensionamiento esta admisible?"
       ],
       "evaluator": "sizing"
     },
@@ -746,7 +746,7 @@
           "path": "docs/MONITORING_REPORT_*.md",
           "fresh_days": 35,
           "min_bytes": 100,
-          "label": "ultimo reporte ciclico (yf urazuke cycle)"
+          "label": "ultimo reporte ciclico"
         }
       ],
       "verify": [

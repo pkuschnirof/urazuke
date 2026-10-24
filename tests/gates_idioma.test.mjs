@@ -12,7 +12,7 @@ import { raiz, cargarFuentes, extraerAnexo, armarContenido, leerAnexo, ANEXOS } 
 const fuentes = cargarFuentes();
 const anexo = extraerAnexo();
 const contenido = armarContenido(fuentes, anexo);
-const PARTES = Object.values(fuentes.catalog.parts).filter((p) => p !== 'gates/baseline_forge.json');
+const PARTES = Object.values(fuentes.catalog.parts).filter((p) => p !== 'gates/baseline.json');
 
 /** Las cadenas exactas de la base congelada: es lo que NO se traduce (no se edita). */
 const DE_LA_BASE = new Set();
@@ -98,7 +98,7 @@ test('la excepcion declarada: el texto de la base viaja en el publicado tal como
   assert.ok(paso.verify.includes(base.verify[0]), 'la pregunta de completitud de la base sigue literal');
   assert.equal(contenido.languages.data, 'mixed', 'el publicado es bilingue y lo dice: la base no se traduce');
   assert.equal(contenido.languages.prose, 'es');
-  assert.match(contenido.languages.exception, /baseline_forge\.json/);
+  assert.match(contenido.languages.exception, /baseline\.json/);
 });
 
 /* ------------------------------------------------------------------ *

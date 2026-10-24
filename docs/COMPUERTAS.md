@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.2** - schema **2**
-- content fingerprint `3bd03ac3bf79a600...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.3** - schema **2**
+- content fingerprint `0f3c1b472f922428...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -24,7 +24,7 @@ it already publishes the prompts, and the tool consumes it.
 A project starts and ends on the same version of the method, unless somebody applies the double
 lock. For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.2`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.3`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -43,6 +43,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 
 - **2026.10.1** (2026-10-23, D-050) -- `8f9aa195001e2a00...`
 - **2026.10.2** (2026-10-23, D-053) -- `3bd03ac3bf79a600...`
+- **2026.10.3** (2026-10-24, D-055) -- `0f3c1b472f922428...`
 
 ## The language of each text
 
@@ -53,7 +54,7 @@ Which language each human-readable text of this file is in. It is declared mecha
 - Rule: Inside the keys listed in `spanish_scope`, a text is Spanish when neither its own node nor any enclosing node declares `since_schema` >= 2: it comes from the frozen base, and the base is not edited. A node with `since_schema` >= 2 is new, and its text is English. Every text outside `spanish_scope` is English.
 - Readable text fields: `title`, `summary`, `verify`, `label`, `text`, `note`.
 - Ids, step and station keys, evaluator names, enum values, file paths and the regular expressions of must_contain / should_contain are not prose and carry no language. The regular expressions are deliberately bilingual, so that a gate matches a document written in either language.
-- The method checks this declaration on every build: every text the rule calls Spanish has to appear literally in gates/baseline_forge.json, and no text the rule calls English may read as Spanish. If the declaration stops being true, nothing is published.
+- The method checks this declaration on every build: every text the rule calls Spanish has to appear literally in gates/baseline.json, and no text the rule calls English may read as Spanish. If the declaration stops being true, nothing is published.
 - **For a consumer:** Do not print these texts to an end user. Read the stable `id` -- an opaque key that is never translated -- and take the text from your own catalogue. That holds for the English texts too: this file is the definition of the gates, not a translated user interface.
 
 ## What an installation cannot measure
@@ -71,7 +72,7 @@ a stable error code.
 | evaluator | since schema | what it checks |
 |---|---|---|
 | `artifacts` | 1 | Every declared artifact exists, passes its min_bytes, satisfies each must_contain and, if it is a glob, the newest one is within its fresh_days. A should_contain that does not appear leaves a warning, not a red. |
-| `sizing` | 1 | The artifacts, plus an admissible sizing record (gate G9: volumetry, retention per data class and hardware envelope, all declared by the owner). |
+| `sizing` | 1 | The artifacts, plus an admissible sizing record: volumetry, retention per data class and hardware envelope, all declared by the owner. |
 | `ci` | 1 | The artifacts, plus a continuous integration definition that exists in the repository. |
 | `pendings_spec` | 1 | The artifacts, plus every open pending item carrying its full specification (acceptance criteria and how it is verified). An empty plan is red, not green. |
 | `receipts` | 1 | The artifacts, plus evidence receipts including at least one proven red and one green. No receipt, no step. |
@@ -201,7 +202,7 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 Completeness check, without reading code:
 - Cada numero tiene su fuente (vos, el negocio, medido), no una estimacion del agente?
 - La persistencia elegida tiene su envoltura de validez escrita?
-- El registro de dimensionamiento de Forge esta admisible (G9)?
+- El registro de dimensionamiento esta admisible?
 
 **4 - El esqueleto con sus compuertas** (`u04-esqueleto`, prompt `peldano-04`)
 
@@ -488,7 +489,7 @@ Inputs the owner has ready before the first prompt:
 
 Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/MONITORING.md` -- umbrales, alertas y ciclo del reporte
-- `docs/MONITORING_REPORT_*.md` -- ultimo reporte ciclico (yf urazuke cycle); at least 100 bytes, so that a sketch does not count; the newest one, less than 35 days old
+- `docs/MONITORING_REPORT_*.md` -- ultimo reporte ciclico; at least 100 bytes, so that a sketch does not count; the newest one, less than 35 days old
 
 Completeness check, without reading code:
 - Recibiste el primer reporte ciclico sin pedirlo?

@@ -147,14 +147,18 @@ existir en cada peldaño, qué tiene que decir, con qué estrategia se verifica)
 `schema.json` (el esquema, que el validador interpreta), `evaluators.json` (el vocabulario cerrado
 y append-only), `steps.json` (24 peldaños), `stations.json` (N0 a N7), `heuristics.json` (las 45
 reglas del Anexo H) y `adapters.json` (las familias de frontend y los umbrales).
-`baseline_forge.json` es el congelado de lo que la herramienta tenía compilado el día del cambio:
-es la referencia del test de diferencia cero y **no se edita nunca**.
+`baseline.json` es el congelado de lo que la herramienta tenía compilado el día del cambio: es la
+referencia del test de diferencia cero y **no se edita** (la única excepción escrita es D-055, y
+fue del dueño). Su cabecera guarda la procedencia —repositorio y commit de origen— y por eso el
+archivo **no se publica**: es el recibo de la diferencia cero, no parte de la API.
 
 Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_validate.mjs`):
 
 - **La base no se edita.** Una entrada sin `since_schema` viene del congelado y tiene que seguir
   siendo idéntica. Un requisito nuevo entra como entrada **nueva** con su `since_schema`. Si de
   verdad hay que cambiar un requisito existente, es un cambio del método y va con su decisión.
+  Pasó una sola vez (D-055, autorizada por el dueño y acotada a dos textos): cuando se edita, se
+  edita **en sincronía** con el congelado, para que la diferencia cero siga siendo demostrable.
 - **Una sola copia de cada texto.** El enunciado de las 45 reglas vive sólo en el Anexo H;
   `heuristics.json` lleva el puntero (`statement_source` para la ruta, una vez, y `section` +
   `row` por regla) y el build **extrae** el texto de `docs/en/ANEXO_HEURISTICAS.md`, que es la
@@ -169,7 +173,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
 - **Nada inventado.** Un umbral que el dueño no declaró se publica con valor nulo y
   `declarado: false`. Los únicos dos que el anexo declara son 300 líneas por archivo y 40 por
   función.
-- **La versión.** `catalog_version` la declara el método a mano (hoy `2026.10.2`); el archivo
+- **La versión.** `catalog_version` la declara el método a mano (hoy `2026.10.3`); el archivo
   publicado viaja con una huella `sha256` del contenido canonicalizado que el consumidor
   **recalcula**. El identificador de git es informativo: se calcula antes de guardar, así que
   siempre nombra al cambio anterior al que lo contiene.
@@ -197,6 +201,16 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   sigue en el castellano en que quedó congelado y el campo `tramo` conserva su nombre, porque la
   base no se edita. Hay un test que lo exige, para que nadie «termine de traducir» por encima de
   la diferencia cero.
+- **El nivel de datos no nombra ninguna herramienta ni ningún protocolo** (D-055). Ni los propios
+  (la herramienta, el protocolo de navegación) ni los de terceros, ni por su nombre, ni por un
+  comando, ni por un identificador de compuerta `G<n>`, ni por una ruta de archivo. El motivo no es
+  pudor: el método publica esta definición para cualquier consumidor, y una herramienta nombrada
+  adentro del dato se lee como una dependencia que no existe. `tests/gates_neutralidad.test.mjs`
+  recorre el payload de las fuentes, los dos archivos publicados y el documento generado contra una
+  lista cerrada, y verifica que cada patrón detecte su propio caso. La **prosa** del método sigue
+  comparando herramientas por su nombre a propósito (Parte E, manuales de práctica): ahí es
+  información para el lector. Las familias de frontend de `adapters.json` también siguen, porque
+  son el alcance de una regla y no el endoso de una herramienta.
 - **El contrato con el consumidor se declara, no se adivina**: `schema.json` lleva los nombres de
   campo de la configuración de proyecto (`project_config`), el vocabulario de veredicto
   (`enums.verdict`) y las situaciones de una regla, y el validador exige que el registro de
