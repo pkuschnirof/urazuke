@@ -148,13 +148,37 @@ test('el registro de pendientes es coherente con su resumen', () => {
  * Rojos deliberados: cada mutacion tiene que caer, y nombrar lo suyo
  * ------------------------------------------------------------------ */
 
+// Las dos primeras mutaciones se CALCULAN de la tabla que hay, no se escriben a mano.
+// Una fila pegada a mano en el test queda vieja en el primer cierre que la cambie: la
+// mutacion deja de mutar, el rojo pasa a probar nada y el unico aviso es la asercion
+// "la mutacion no cambio nada". Medido el 2026-10-24: al cerrar cuatro entradas, las dos
+// filas ancladas a mano quedaron obsoletas en el mismo commit que las cambio. Es el mismo
+// defecto que este archivo vigila --un resumen que no se vuelve a contar--, una capa mas
+// arriba. Asi que mueve una unidad de "cerrados" a "abiertos" en la fila que encuentre,
+// sin nombrar ningun numero.
+function desincronizarFila(texto, patron) {
+  const fila = texto.match(patron);
+  if (!fila) return texto;
+  let columna = 0;
+  const mutada = fila[0].replace(/\d+/g, (n) => {
+    columna += 1;
+    if (columna === 2) return String(Number(n) + 1); // abiertos
+    if (columna === 3) return String(Number(n) - 1); // cerrados
+    return n;
+  });
+  return texto.replace(fila[0], mutada);
+}
+
+const FILA_GRUPO = /^\| G-[A-Z]+ \| \d+ \| \d+ \| \d+ \| \d+ \|$/m;
+const FILA_TOTAL = /^\| \*\*total\*\* \| \*\*\d+\*\* \| \*\*\d+\*\* \| \*\*\d+\*\* \| \*\*\d+\*\* \|$/m;
+
 const MUTACIONES = [
   // El defecto que de verdad paso: se cierra una entrada y la tabla no se vuelve a contar.
   ['un cierre que el resumen no registro', /cerradas/,
-    (t) => t.replace('| G-API | 14 | 11 | 3 | 6 |', '| G-API | 14 | 12 | 2 | 6 |')],
+    (t) => desincronizarFila(t, FILA_GRUPO)],
   // El total escrito a mano que no suma lo que dicen las filas.
   ['el total no coincide', /el total del resumen/,
-    (t) => t.replace('| **total** | **35** | **27** | **8** | **11** |', '| **total** | **35** | **26** | **9** | **11** |')],
+    (t) => desincronizarFila(t, FILA_TOTAL)],
   // Una entrada nueva sin tocar el rango declarado.
   ['una entrada mas alla del rango declarado', /declara hasta PND-/,
     (t) => t.replace('# Resumen del estado', '## PND-099 — entrada de prueba\n\n- **Grupo:** G-API · **Severidad:** avisa · **Estado: abierto**\n\n# Resumen del estado')],
