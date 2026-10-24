@@ -1,7 +1,7 @@
 // El guardian de linea de comandos de los programas de la cadena, y por que tiene una
 // prueba propia.
 //
-// Los tres programas que se pueden invocar desde la linea de comandos detectaban eso
+// Los programas que se pueden invocar desde la linea de comandos (hoy cuatro) detectaban eso
 // con un idiom que solo acierta en Windows: pegaban 'file:///' adelante de argv[1] y lo
 // comparaban contra import.meta.url. En POSIX argv[1] ya empieza con una barra, asi que
 // la comparacion era 'file:////home/...' contra 'file:///home/...' y nunca daba. El
@@ -69,10 +69,33 @@ test('ningun programa de build/ vuelve a comparar a mano contra "file:///"', () 
   assert.deepEqual(culpables, [], 'usa esLineaDeComandos(import.meta.url) de gates_lib.mjs: pegar "file:///" adelante de argv[1] no acierta en POSIX');
 });
 
-test('los tres programas con modo de linea de comandos usan el guardian compartido', () => {
-  for (const nombre of ['gates_validate.mjs', 'gates_doc.mjs', 'prompts_api.mjs']) {
+test('los cuatro programas con modo de linea de comandos usan el guardian compartido', () => {
+  for (const nombre of ['gates_validate.mjs', 'gates_doc.mjs', 'prompts_api.mjs', 'index_api.mjs']) {
     const texto = readFileSync(join(raiz, 'build', nombre), 'utf8');
     assert.ok(texto.includes('esLineaDeComandos(import.meta.url)'),
       'build/' + nombre + ' tiene modo de linea de comandos y no usa el guardian compartido');
   }
+});
+
+test('un programa nuevo no puede inventarse su propio guardian', () => {
+  // La lista de arriba se escribe a mano y por eso se puede quedar atras. Esto cubre el
+  // caso que la deja atras: un archivo nuevo que mira argv[1] por su cuenta. El
+  // repositorio acepta DOS guardianes y los dos estan medidos como portables: el
+  // compartido, y el endsWith de portal_verify.mjs, que fue el contraejemplo que mostro
+  // que el idiom de 'file:///' era el roto.
+  const propios = {
+    // gates_lib.mjs ES el guardian compartido: es el unico que tiene derecho a mirar
+    // argv[1] de frente.
+    'gates_lib.mjs': 'export function esLineaDeComandos(',
+    'portal_verify.mjs': "endsWith('portal_verify.mjs')",
+  };
+  const sospechosos = [];
+  for (const nombre of readdirSync(join(raiz, 'build')).filter((n) => n.endsWith('.mjs'))) {
+    const texto = readFileSync(join(raiz, 'build', nombre), 'utf8');
+    if (!texto.includes('process.argv[1]')) continue;
+    if (texto.includes('esLineaDeComandos(import.meta.url)')) continue;
+    if (propios[nombre] && texto.includes(propios[nombre])) continue;
+    sospechosos.push('build/' + nombre);
+  }
+  assert.deepEqual(sospechosos, [], 'usa esLineaDeComandos(import.meta.url): un guardian propio es como volvieron a correr en vacio dos pasos de la cadena');
 });
