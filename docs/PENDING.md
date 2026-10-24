@@ -1050,11 +1050,45 @@ verificador dejaba pasar una página que llevara al lector al documento **del id
 porque ese archivo existe. Se cerró con una comprobación nueva que importa el mapa de idiomas
 **del generador** en vez de copiarlo, para que no puedan separarse con el tiempo.
 
-**El verde se vio caer primero.** Cinco mutaciones deliberadas del árbol — idioma equivocado en el
-atributo, estructura perdida, archivo equivocado, página sin hornear y enlace al idioma equivocado
-— y las cinco veces el verificador se cayó nombrando el problema. Árbol restaurado después.
-Idempotencia comprobada: dos corridas seguidas del generador dan el mismo árbol, así que lo
-publicado es lo que el generador produce hoy y no material rancio.
+**El verde se vio caer primero, y la prueba en rojo encontró un sexto problema que nadie había
+visto.** Al dejar la prueba escrita como pieza repetible — `build/redproof-urazuke-homes.mjs`, que
+copia el árbol a un temporal, lo mutila de cinco maneras y exige que el verificador caiga cada vez
+— **una de las cinco pasó en verde**: borrarle el `<main>` entero a una página, **48.904 bytes de
+las 67.616 que tiene**, y el verificador decía PASS.
+
+```
+ROJO  idioma equivocado en el atributo   exit=1
+VERDE estructura perdida                 exit=0   <-- el agujero
+ROJO  enlace al idioma equivocado        exit=1
+ROJO  pagina sin hornear                 exit=1
+ROJO  archivo equivocado                 exit=1
+```
+
+No era un falso positivo de la prueba: el verificador comprobaba que **lo que estaba** estuviera
+bien horneado, enlazado, canónico y recíproco, y nunca que **estuviera todo**. Una página con el
+cuerpo vaciado conserva sus cabeceras, su `canonical`, sus diez `hreflang` y un puñado de cadenas
+correctamente horneadas, así que pasaba las siete comprobaciones. Y es exactamente el fallo que
+esta pieza existe para impedir, porque la página horneada es **lo único** que lee un rastreador sin
+JavaScript.
+
+Se cerró con la comprobación **2b**: cada página tiene que llevar las **241** claves del catálogo
+castellano, no un subconjunto bien traducido. Verificado antes de escribirla que las diez páginas
+llevan hoy exactamente esas 241, así que la comprobación no inventa un requisito nuevo: declara el
+que ya se cumplía sin estar escrito. Con ella, la mutación cae diciendo qué pasó:
+
+```
+[/urazuke/pt/] the page lost 223 of the 241 catalogue keys -- content is missing,
+not mistranslated (first: hero.eyebrow, hero.h1, hero.lede, hero.author, hero.cta1)
+```
+
+Las cinco mutaciones caen ahora, y el árbol queda restaurado: la prueba trabaja sobre copias
+temporales y no toca lo publicado. Idempotencia comprobada: dos corridas seguidas del generador dan
+el mismo árbol, así que lo publicado es lo que el generador produce hoy y no material rancio.
+
+**Una corrección, porque se dijo antes de medirlo.** Al reportar la publicación se afirmó que las
+cinco mutaciones caían. Eran **cuatro**. La afirmación se hizo sin la prueba escrita, y la prueba
+escrita la desmintió — que es precisamente para lo que el método exige que el rojo sea un recibo y
+no un relato. Queda acá y no como nota al pie.
 
 **Por qué nunca se había publicado, en una línea:** el contrato de esa pieza le prohíbe
 explícitamente a quien la ejecuta hacer commit o publicar, porque la rama principal de ese
@@ -1065,6 +1099,17 @@ la compuerta humana.
 **Commit:** `pkuschnirof/rpaforce` `5d29f79`, 16 archivos, empujado a `main` por el dueño el
 2026-10-24. Verificado además que la publicación automática del método **no** borra estas
 portadas: sólo vacía `urazuke/docs/` y `urazuke/api/`.
+
+**Lo que queda por empujar en el portal, y por qué no se empujó solo:** la comprobación 2b y la
+prueba en rojo son posteriores al commit publicado y están sin commitear en el árbol del portal.
+No cambian ninguna página — el verificador sigue dando PASS sobre lo que ya está en producción —
+así que lo publicado no está en riesgo; lo que falta es el guardián, no el contenido. Y el mismo
+contrato que detuvo la publicación anterior lo detiene: en ese repositorio la rama principal no
+está protegida y un empujón despliega en caliente, así que el commit es del dueño.
+
+**Recibos:** RCP-026 (verde: verificador PASS 10/10), RCP-027 (mutación: 5 de 5 en rojo con la
+comprobación 2b; 4 de 5 sin ella), RCP-028 (regresión: la cadena del método, 169 pruebas, 0
+fallos).
 
 ---
 
