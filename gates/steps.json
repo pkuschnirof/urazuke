@@ -1,5 +1,5 @@
 {
-  "what": "The twenty-four steps of the ladder, as data. Maintained by hand. An entry without since_schema belongs to the base frozen in gates/baseline_forge.json and is not edited; whatever was added later carries its since_schema. The base keeps its original Spanish text and its `tramo` field name, because the base is not edited (D-051).",
+  "what": "The twenty-four steps of the ladder, as data. Maintained by hand. An entry without since_schema belongs to the base frozen in gates/baseline.json and is not edited; whatever was added later carries its since_schema. The base keeps its original Spanish text and its `tramo` field name, because the base is not edited (D-051).",
   "tramos": {
     "arranque": {
       "title": "I. Arranque",
@@ -195,7 +195,7 @@
       "verify": [
         "Cada numero tiene su fuente (vos, el negocio, medido), no una estimacion del agente?",
         "La persistencia elegida tiene su envoltura de validez escrita?",
-        "El registro de dimensionamiento de Forge esta admisible (G9)?"
+        "El registro de dimensionamiento esta admisible?"
       ],
       "evaluators": [
         {
@@ -995,7 +995,7 @@
           "path": "docs/MONITORING_REPORT_*.md",
           "fresh_days": 35,
           "min_bytes": 100,
-          "label": "ultimo reporte ciclico (yf urazuke cycle)"
+          "label": "ultimo reporte ciclico"
         }
       ],
       "verify": [

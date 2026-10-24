@@ -1,6 +1,6 @@
 {
   "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.",
-  "catalog_version": "2026.10.2",
+  "catalog_version": "2026.10.3",
   "schema_version": 2,
   "content_hash": {
     "algo": "sha256",
@@ -31,12 +31,12 @@
       "what",
       "counts"
     ],
-    "value": "3bd03ac3bf79a60081eeebbcfc8bb28bf448f69709c0d12f76a99fa89ebe30be",
+    "value": "0f3c1b472f92242840aa4cd7c2cc590b62c30c48466af3a588ea803fee880367",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "64c6952",
+  "git_commit": "f49b267",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-10-23T12:16:22.521Z",
+  "generated_at": "2026-10-24T16:44:07.442Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
@@ -50,7 +50,7 @@
     "data": "mixed",
     "decision": "D-051",
     "note": "The prose of the method (docs/) is written in Spanish and translated into seven more languages. The data layer (gates/ and the published file) is written in English, which is the canonical language of the profession, because it is not part of the translated corpus. Translating for the comprehension of an end user is the job of the consumer tool, not of this catalogue.",
-    "exception": "The frozen base (gates/baseline_forge.json) keeps the Spanish text and the `tramo` field name it had when the method took ownership. The base is not edited: changing it is a change of the method, with its own decision.",
+    "exception": "The frozen base (gates/baseline.json) keeps the Spanish text and the `tramo` field name it had when the method took ownership. The base is not edited: changing it is a change of the method, with its own decision.",
     "text_language": {
       "what": "Which language each human-readable text of this file is in. It is declared mechanically because the file is bilingual: reading `data` as a single language would make a consumer show Spanish to an English reader.",
       "default": "en",
@@ -71,7 +71,7 @@
         "note"
       ],
       "language_neutral": "Ids, step and station keys, evaluator names, enum values, file paths and the regular expressions of must_contain / should_contain are not prose and carry no language. The regular expressions are deliberately bilingual, so that a gate matches a document written in either language.",
-      "verified": "The method checks this declaration on every build: every text the rule calls Spanish has to appear literally in gates/baseline_forge.json, and no text the rule calls English may read as Spanish. If the declaration stops being true, nothing is published.",
+      "verified": "The method checks this declaration on every build: every text the rule calls Spanish has to appear literally in gates/baseline.json, and no text the rule calls English may read as Spanish. If the declaration stops being true, nothing is published.",
       "consumer": "Do not print these texts to an end user. Read the stable `id` -- an opaque key that is never translated -- and take the text from your own catalogue. That holds for the English texts too: this file is the definition of the gates, not a translated user interface."
     }
   },
@@ -84,7 +84,7 @@
     {
       "name": "sizing",
       "since_schema": 1,
-      "checks": "The artifacts, plus an admissible sizing record (gate G9: volumetry, retention per data class and hardware envelope, all declared by the owner)."
+      "checks": "The artifacts, plus an admissible sizing record: volumetry, retention per data class and hardware envelope, all declared by the owner."
     },
     {
       "name": "ci",
@@ -357,7 +357,7 @@
       "verify": [
         "Cada numero tiene su fuente (vos, el negocio, medido), no una estimacion del agente?",
         "La persistencia elegida tiene su envoltura de validez escrita?",
-        "El registro de dimensionamiento de Forge esta admisible (G9)?"
+        "El registro de dimensionamiento esta admisible?"
       ],
       "evaluators": [
         {
@@ -1157,7 +1157,7 @@
           "path": "docs/MONITORING_REPORT_*.md",
           "fresh_days": 35,
           "min_bytes": 100,
-          "label": "ultimo reporte ciclico (yf urazuke cycle)"
+          "label": "ultimo reporte ciclico"
         }
       ],
       "verify": [
