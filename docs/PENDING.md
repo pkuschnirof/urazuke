@@ -408,7 +408,7 @@ versión vieja).
 
 - **Nodo:** `interfaz-publica/api` [nodo propuesto]
 - **Grupo:** G-API · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal (configuración del servidor) · **Estado: abierto**
+- **Repositorio:** portal (configuración del servidor) · **Estado: CERRADO** el 2026-10-24.
 
 **Qué está mal.** La API no devuelve ninguna cabecera de acceso entre orígenes, así que el
 navegador le niega la lectura a cualquier herramienta que corra ahí, aunque la encuentre.
@@ -444,9 +444,38 @@ curl -s -D - -o /dev/null -H "Origin: https://example.com" \
 ```
 
 **Depende de:** **PND-013** sin excepción. La configuración tiene que vivir un nivel arriba de los
+directorios que el espejo vacía, o se borra en la próxima publicación.
 
 **Avance (2026-10-24, decisión D-056).** Escrito en el repositorio del portal: `yujin.app/urazuke/.htaccess` sirve `Access-Control-Allow-Origin: *`, los métodos y las cabeceras permitidas, `Access-Control-Expose-Headers` con `ETag`, `Last-Modified` y `Content-Length`, y `Access-Control-Max-Age`, acotado a los `.json`. Falta que el dueño lo commitee y lo empuje: en ese repositorio `main` no está protegida y un empujón despliega en caliente, así que el commit es suyo. Medición de hoy, **antes**: seis comprobaciones en rojo con `node build/api_headers.mjs`.
-directorios que el espejo vacía, o se borra en la próxima publicación.
+
+**Iteración (2026-10-24, tarde).** El dueño commiteó y empujó (`fd1270e`), el despliegue del portal cerró **en verde** y la cabecera **no apareció**: medido con `node build/api_headers.mjs` después de ese despliegue, `access-control-allow-origin` sigue sin volver en ninguno de los tres recursos. La causa no estaba en el archivo sino en el transporte del portal, y es **PND-035**. Este pendiente no se cierra hasta que las siete comprobaciones queden en verde contra producción.
+
+**CIERRE (2026-10-24), medido contra producción.** El arreglo del transporte (PND-035) se empujó al
+portal (`75a2e64`); el despliegue cerró en verde en 21 segundos (corrida `40132538551`) y esta vez
+la configuración **llegó** al servidor. Medición propia después de ese despliegue, con
+`node build/api_headers.mjs`:
+
+```
+OK    index.json: un navegador de otro origen puede leerla -- access-control-allow-origin: *
+OK    gates.json: un navegador de otro origen puede leerla -- access-control-allow-origin: *
+OK    prompts.json: un navegador de otro origen puede leerla -- access-control-allow-origin: *
+```
+
+Las cabeceras completas que vuelven hoy en los tres recursos, pedidas con un `Origin` ajeno:
+
+```
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+Access-Control-Allow-Headers: Accept, Content-Type, If-None-Match, If-Modified-Since
+Access-Control-Expose-Headers: ETag, Last-Modified, Content-Length
+Access-Control-Max-Age: 86400
+```
+
+**Criterio por perfil, verificado.** *P2:* una herramienta que corre en un navegador puede pedir los
+tres archivos desde cualquier origen y leer la respuesta. Y puede hacer la petición condicional, que
+es lo que `Access-Control-Expose-Headers` agrega y nadie pidió: sin esa cabecera el navegador le
+entrega el cuerpo y le esconde el `ETag`, así que la herramienta tendría que bajar el archivo
+entero cada vez para saber si cambió.
 
 ---
 
@@ -454,7 +483,7 @@ directorios que el espejo vacía, o se borra en la próxima publicación.
 
 - **Nodo:** `interfaz-publica/api` [nodo propuesto]
 - **Grupo:** G-API · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal (configuración del servidor) · **Estado: abierto**
+- **Repositorio:** portal (configuración del servidor) · **Estado: CERRADO** el 2026-10-24.
 
 **Qué está mal.** Vuelven `ETag` y `Last-Modified`, que sirven para la petición condicional, y
 nada dice cuánto tiempo una copia sigue siendo buena.
@@ -476,6 +505,26 @@ nada dice cuánto tiempo una copia sigue siendo buena.
 **Depende de:** PND-013.
 
 **Avance (2026-10-24, decisión D-056).** Escrito en el mismo archivo: `Cache-Control: public, max-age=300, must-revalidate` para los `.json`. Los cinco minutos son decisión de la publicación y no declaración del método, y están escritos como tal: la copia vieja es **detectable** por la huella, así que una de cinco minutos es inofensiva. Falta el empujón del dueño.
+
+**Iteración (2026-10-24, tarde).** Igual que PND-004: el archivo se empujó, el despliegue cerró en verde y `cache-control` sigue sin volver en ninguno de los tres recursos. Causa común en **PND-035**.
+
+**CIERRE (2026-10-24), medido contra producción.** Mismo despliegue (`75a2e64`, corrida
+`40132538551`). `node build/api_headers.mjs`:
+
+```
+OK    index.json: dice cuanto vale la copia -- cache-control: public, max-age=300, must-revalidate
+OK    gates.json: dice cuanto vale la copia -- cache-control: public, max-age=300, must-revalidate
+OK    prompts.json: dice cuanto vale la copia -- cache-control: public, max-age=300, must-revalidate
+```
+
+**Criterio por perfil, verificado.** *P1:* la respuesta dice cuánto tiempo vale la copia —cinco
+minutos— así que la herramienta sabe cuándo volver a preguntar sin adivinar y sin preguntar
+siempre. *P2:* ídem, y el navegador deja de revalidar en cada carga; `must-revalidate` impide que
+una copia vencida se sirva sin preguntar, que es el único riesgo real de poner un plazo.
+
+Los cinco minutos siguen siendo decisión de la publicación y no declaración del método, y están
+escritos como tal en el archivo: una copia vieja es **detectable** por la huella, así que el costo
+de equivocarse en el plazo es una revalidación, no un dato incorrecto que nadie puede notar.
 
 ---
 
@@ -829,6 +878,151 @@ sola".
 **Es precondición de:** PND-004 y PND-005. Ninguno de los dos se da por hecho sin esto.
 
 **Avance (2026-10-24, decisión D-056).** Resuelto en las dos puntas. En el portal, la configuración se escribió en `yujin.app/urazuke/.htaccess`, un nivel arriba de los dos directorios que el espejo vacía, con el motivo escrito adentro del archivo para que nadie la mueva por prolijidad. En el método, el trabajo de publicación ahora **se niega** si aparece un `.htaccess` adentro de lo que vacía y **avisa** si falta el de arriba: avisa y no frena, porque ese archivo es del portal y no del método. Falta el empujón del dueño en el portal.
+
+**Iteración (2026-10-24, tarde) — el arreglo estaba bien y no alcanzaba.** El archivo quedó donde el vaciado no llega, se empujó, y **nunca llegó al servidor**: el transporte del portal lo excluía junto con el de la raíz (**PND-035**). Queda dicho porque es el aprendizaje que vale: poner la configuración fuera del alcance del vaciado era condición necesaria y no suficiente, y la única forma de saberlo fue **preguntarle a producción**, no releer el flujo. Por eso la guarda del método ya no dice "la configuración está donde el vaciado no llega" por el solo hecho de que el archivo exista en el repositorio del portal: ahora dice que el **archivo** está, y hay un paso aparte que le pregunta al servidor si la interfaz se puede consumir.
+
+**Iteración (2026-10-24, noche) — la mitad que este pendiente guarda ya está verde.** Con el
+transporte anclado (PND-035, `75a2e64`), el documento del directorio llegó al servidor y se mide:
+
+```
+OK    https://yujin.app/urazuke/api/ contesta con el indice -- HTTP 200, 2 recursos listados
+```
+
+Lo que **todavía no se midió**, y es exactamente el criterio de aceptación de esta entrada, es que
+la configuración **sobreviva a una publicación del método**. Ninguna corrió después de que el
+archivo estuviera puesto: el último espejado fue `f89d273`, de antes. Que el vaciado no la alcance
+está verificado **leyendo** el flujo —el borrado apunta a `api/` y a `docs/`, un nivel abajo— y la
+guarda del método lo exige, pero leer no es haber ocurrido. Este pendiente se cierra con la
+medición de después de la próxima fusión a `main`, no antes.
+
+---
+
+## PND-035 — El despliegue del portal excluía **todos** los `.htaccess`, no sólo el de la raíz *(hallazgo del método, no de la auditoría)*
+
+- **Nodo:** `cadena/publicacion` [nodo propuesto]
+- **Grupo:** G-API · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
+- **Repositorio:** portal (su flujo de despliegue) · **Estado: CERRADO** el 2026-10-24.
+
+**Qué está mal.** El paso de `rsync` del despliegue del portal excluía `--exclude='.htaccess'`, sin barra
+inicial. Un patrón de `rsync` sin barra se compara contra el **último componente** del nombre a
+**cualquier** profundidad, así que descartaba los tres `.htaccess` del repositorio y no sólo el de
+la raíz, que es el único que se quería preservar —ése es del servidor y el repositorio no tiene que
+pisarlo—. La forma correcta es `--exclude='/.htaccess'`: la barra inicial ancla el patrón a la raíz de la
+transferencia, que es exactamente lo que se quería y nada más.
+
+**Cómo apareció, que es la parte que importa.** No lo trajo la auditoría. Apareció al **medir el
+resultado** de PND-013: el archivo de configuración estaba commiteado (`fd1270e`), el despliegue del
+portal cerró **en verde** en 21 segundos (corrida `40130433403`) y producción seguía con las siete
+comprobaciones en rojo. El verde de un flujo no es prueba de que la configuración haya llegado; la
+prueba es preguntarle al servidor.
+
+**Mi medición (2026-10-24), después de ese despliegue verde.** `node build/api_headers.mjs`:
+
+```
+FALLA https://yujin.app/urazuke/api/ contesta con el indice -- HTTP 403, el cuerpo no es un indice
+FALLA index.json: un navegador de otro origen puede leerla -- access-control-allow-origin: (no vuelve)
+FALLA index.json: dice cuanto vale la copia -- cache-control: (no vuelve)
+FALLA gates.json: un navegador de otro origen puede leerla -- access-control-allow-origin: (no vuelve)
+FALLA gates.json: dice cuanto vale la copia -- cache-control: (no vuelve)
+FALLA prompts.json: un navegador de otro origen puede leerla -- access-control-allow-origin: (no vuelve)
+FALLA prompts.json: dice cuanto vale la copia -- cache-control: (no vuelve)
+
+7 comprobacion(es) en rojo.
+```
+
+**La semántica, medida y no recordada.** `rsync` 3.4.1, árbol de prueba con los mismos tres caminos
+del repositorio (la raíz, `yujin.app/urazuke/` y `dl/mcp_local/`):
+
+```
+--exclude='.htaccess'   -> llegaron 0: (ninguno)
+--exclude='/.htaccess'  -> llegaron 2: dl/mcp_local/.htaccess yujin.app/urazuke/.htaccess
+```
+
+**Segunda víctima, preexistente y ajena al método.** `dl/mcp_local/.htaccess` reescribe
+`/dl/mcp_local/latest.json` a `latest.json.php` para que la dirección que consulta el actualizador
+automático quede limpia. Está commiteado desde abril de 2026 y nunca estuvo en el servidor. Medido
+el mismo día: `latest.json` da **404** y `latest.json.php` da **200**. Anclar el exclude lo publica
+también, lo cual queda fuera del alcance de este trabajo y es deseable: esa dirección empieza a
+funcionar. Vale, sobre todo, como confirmación independiente de que el patrón suelto era un defecto
+y no una decisión.
+
+**Criterio de aceptación por perfil.**
+
+- *P2 (navegador):* dado el perfil herramienta en navegador, esta persona puede leer los tres
+  archivos **después** de un despliegue del portal, y no sólo el día que alguien tocó el servidor a
+  mano.
+- *P5 (auditor):* dado el perfil auditor, esta persona puede comprobar —leyendo el flujo del portal
+  y corriendo una prueba repetible— que el transporte lleva la configuración anidada.
+
+**Es precondición de:** PND-004, PND-005 y el cierre de PND-013. Ninguno de los tres se cierra sin
+esto.
+
+**Avance (2026-10-24, tarde).** Arreglado en las dos puntas; falta el empujón del dueño en el
+portal. En el portal: el exclude quedó anclado, con el motivo y la medición escritos al lado, y se
+agregó `build/verify-deploy-htaccess.mjs`, que corre **en el flujo, antes de desplegar**, y verifica
+en dos niveles —estático, que la lista de excludes tenga la forma anclada y no la suelta; y de
+comportamiento, corriendo `rsync` de verdad sobre el árbol de prueba cuando hay `rsync` en el
+camino, como lo hay en el corredor—. Si no hay `rsync`, lo dice en voz alta en vez de saltearse en
+silencio. Tiene su prueba en rojo propia (`--rojo`), **y esa prueba encontró dos defectos del
+verificador antes de entregarlo**: leía sus propios comentarios como si fueran la orden (falso rojo)
+y la mutación caía en un comentario en vez de en la línea de orden (falso verde). Los dos quedaron
+dichos en el código, donde se cometieron. En el método: la guarda del `.htaccess` ya no afirma que
+la configuración esté puesta por el solo hecho de que el archivo exista en el repositorio del
+portal, y se agregó un paso que **le pregunta a producción** si la interfaz de datos se puede
+consumir —avisa y no frena, porque esa configuración es del portal, pero no deja una publicación
+diciendo que todo está bien cuando la interfaz no se puede leer—.
+
+**Lo que este hallazgo le deja al método, más allá del arreglo.** Es la misma lección que PND-001 en
+otra escala: ahí dos pasos de la cadena corrían en vacío y cerraban en verde; acá un despliegue
+entero cerró en verde sin transportar lo que tenía que transportar. En los dos casos el verde era de
+un paso que no hizo nada, y en los dos lo que lo descubrió fue exigir **la salida medida** en lugar
+del código de salida. Es material directo para el peldaño 8 y para el argumento de que el rojo tiene
+que ser un recibo.
+
+**CIERRE (2026-10-24), medido en las tres puntas.** El dueño commiteó y empujó `75a2e64` en el
+repositorio del portal.
+
+*Uno — el guardián corrió donde importa, y la mitad de comportamiento también.* El paso previo al
+despliegue, en la corrida `40132538551`, con `rsync` de verdad:
+
+```
+OK    el exclude del .htaccess esta anclado a la raiz ('/.htaccess') -- patron: '/.htaccess'
+OK    ningun otro exclude de .htaccess sin anclar -- patrones con .htaccess: /.htaccess
+OK    sigue existiendo el .htaccess anidado yujin.app/urazuke/.htaccess -- presente
+OK    sigue existiendo el .htaccess anidado dl/mcp_local/.htaccess -- presente
+      rsync: rsync  version 3.2.7  protocol version 31
+OK    con '.htaccess' (suelto) no llega ninguno -- llegaron 0: (ninguno)
+OK    con '/.htaccess' (anclado) llegan los anidados y no el de la raiz -- llegaron 2: dl/mcp_local/.htaccess yujin.app/urazuke/.htaccess
+PASS -- el exclude esta anclado a la raiz y los .htaccess anidados viajan.
+```
+
+En la máquina del dueño la mitad de comportamiento **avisa que no corrió**, por falta de `rsync`, en
+vez de saltearse en silencio; en el corredor corrió, y queda a la vista con la versión con que
+corrió. Es la misma exigencia que PND-001 dejó en la cadena del método: un paso que no imprime su
+salida no corrió.
+
+*Dos — la configuración llegó.* Las siete comprobaciones de `node build/api_headers.mjs` pasaron de
+siete en rojo a siete en verde con ese único cambio, sin tocar el `.htaccess` ni el contenido
+publicado. El archivo era el mismo de `fd1270e`; lo que cambió fue el transporte.
+
+*Tres — la segunda víctima, que es la confirmación independiente.* `dl/mcp_local/.htaccess` está
+commiteado desde abril de 2026 y nunca había llegado al servidor. Medido antes y después:
+
+```
+antes:    https://rpaforce.com/dl/mcp_local/latest.json      404
+          https://rpaforce.com/dl/mcp_local/latest.json.php  200
+despues:  https://rpaforce.com/dl/mcp_local/latest.json      200, y el cuerpo es el manifiesto
+          https://rpaforce.com/dl/mcp_local/latest.json.php  200
+```
+
+La dirección limpia que consulta el actualizador automático volvió a funcionar sin que nadie la
+toque. Es trabajo ajeno al método, y por eso vale como prueba: el patrón suelto era un defecto y no
+una decisión, y un defecto de transporte no distingue de quién es el archivo que descarta.
+
+**Criterio por perfil, verificado.** *P2:* la lectura desde un navegador sobrevive a un despliegue
+del portal, porque lo que la habilita viaja en el despliegue. *P5:* el auditor puede comprobarlo sin
+credenciales, corriendo `node build/verify-deploy-htaccess.mjs` —que mide en vez de afirmar— y
+leyendo el flujo del portal.
 
 ---
 
@@ -1550,25 +1744,38 @@ si se revisa todo o sólo lo que cambió.
 
 # Resumen del estado
 
-| grupo | abiertos | cerrados | bloqueantes abiertos |
-|---|---:|---:|---:|
-| G-API | 13 | 0 | 7 |
-| G-ALCANCE | 3 | 0 | 1 |
-| G-IDIOMA | 13 | 0 | 4 |
-| G-PUBLICACION | 1 | 2 | 1 |
-| G-ECOSISTEMA | 1 | 1 | 1 |
-| **total** | **31** | **3** | **14** |
+*Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
+archivo y exige que esta tabla sea exactamente eso, sin huecos ni repetidos. Nació de un defecto
+medido el 2026-10-24 —con cinco cierres en un día la tabla seguía diciendo tres cerrados cuando ya
+eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de rehacerla.*
 
-Treinta y cuatro entradas, `PND-001` a `PND-034`. Veintidós vienen de la auditoría externa
-(`U-01` a `U-22`), una de la normalización, y las once restantes son trabajo derivado: la propuesta
-de firma, el chequeo de huérfanas y las nueve revisiones semánticas.
+| grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
+|---|---:|---:|---:|---:|
+| G-API | 14 | 8 | 6 | 4 |
+| G-ALCANCE | 3 | 3 | 0 | 1 |
+| G-IDIOMA | 13 | 12 | 1 | 3 |
+| G-PUBLICACION | 3 | 0 | 3 | 0 |
+| G-ECOSISTEMA | 2 | 1 | 1 | 1 |
+| **total** | **35** | **24** | **11** | **9** |
 
-**Lo que está primero, y por qué.** PND-021 está cerrado y era la precondición de todo el trabajo
-en el portal. **PND-020** es la precondición del resto de ese trabajo: hasta que la portada
-publicada deje de estar atrasada, cualquier cambio de portada se escribe sobre una versión vieja.
-**PND-013** es la precondición de PND-004 y PND-005: sin eso, la configuración que se ponga se
-borra sola en la publicación siguiente. Y **PND-002** es la raíz del grupo de la API: siete
-entradas se apoyan en el índice.
+Treinta y cinco entradas, `PND-001` a `PND-035`. Veintidós vienen de la auditoría externa
+(`U-01` a `U-22`), dos del propio método midiendo su cadena y su publicación (PND-001 y PND-035),
+y las once restantes son trabajo derivado: la propuesta de firma, el chequeo de huérfanas y las
+nueve revisiones semánticas.
+
+**Lo que está primero, y por qué.** Las precondiciones del grupo de la API están cerradas, y en
+este orden: PND-021 (cuál es el árbol del portal realmente desplegado), PND-020 y PND-018 (la
+publicación atrasada), PND-002 con PND-006 y PND-007 (el índice, que es la raíz de siete entradas),
+y PND-035 (el transporte del portal, que descartaba la configuración), con el que cierran PND-004 y
+PND-005. **PND-013 queda abierto a propósito con su mitad verde**: su criterio de aceptación no es
+que la configuración esté puesta hoy, sino que **sobreviva a una publicación del método**, y ninguna
+corrió todavía después de ponerla. Se cierra midiendo después de la próxima fusión a `main`, no
+antes.
+
+Lo que sigue, en el orden que el dueño autorizó: **PND-014** y **PND-015** —el mapa del sitio y los
+documentos publicados a los que no lleva ningún enlace, que son el mismo trabajo sobre la misma
+portada— y **PND-003**, nombrar la interfaz de datos desde la portada, que ya tiene un índice al
+que apuntar. Los tres viven en el repositorio del portal.
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar
