@@ -16,8 +16,11 @@ en sí, el dato que más conviene no olvidar.
 construyera **antes** de tocar una línea y que el dueño lo apruebe. Ese es el estado: de los
 hallazgos U-01 a U-22 **no se tocó ninguno** salvo los que figuran cerrados con su evidencia
 medida. El dueño aprobó este archivo el 2026-10-24 y autorizó, en ese orden, el nivel de datos sin
-herramientas (PND-023) y la publicación atrasada del portal (PND-018 y PND-020, que son el mismo
-evento). El resto de la lista sigue esperando su turno; nada se arregla fuera del orden acordado.
+herramientas (PND-023), la publicación atrasada del portal (PND-018 y PND-020, que son el mismo
+evento) y, con un "adelante con lo que sigue", el orden que este registro fijó: la configuración
+del servidor que el espejo borraba sola (PND-013) y el índice de la interfaz de datos (PND-002,
+con PND-006 y PND-007, que se cierran con él). El resto de la lista sigue esperando su turno; nada
+se arregla fuera del orden acordado.
 
 **Dónde vive, y por qué acá.** La auditoría pidió un archivo satélite,
 `docs/PENDIENTES_AUDITORIA_2026-10.md`. El dueño decidió lo contrario (2026-10-24): va **en el
@@ -235,7 +238,7 @@ decisión, y es grande: más de sesenta archivos en ocho idiomas.
 
 - **Nodo:** `interfaz-publica/api` [nodo propuesto]
 - **Grupo:** G-API · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** método (el generador) · **Estado: abierto**
+- **Repositorio:** método (el generador) · **Estado: CERRADO** el 2026-10-24.
 
 **Qué está mal.** Los dos archivos de la API se sirven bien y no hay ningún recurso que los liste,
 así que un consumidor que no leyó el repositorio no tiene por dónde empezar.
@@ -328,6 +331,35 @@ verde restaurado:                          api_check --huella -> exit 0, nombran
 Falta, y es lo único: que la fusión lo publique y que producción lo sirva. Medido hoy antes de
 fusionar: `https://yujin.app/urazuke/api/index.json` sigue en 404, y los dos recursos en
 `coincide`. **Se cierra con esa medición, no antes.**
+
+
+**CIERRE (2026-10-24), medido contra producción.** Publicado en `e286902` (este repositorio) y
+espejado por la publicación automática en `pkuschnirof/rpaforce` `f89d273`. Medición propia después
+de que produccion lo sirviera:
+
+```
+GET https://yujin.app/urazuke/api/index.json   200, 4818 bytes
+   recursos: gates.json 2026.10.3 100112B | prompts.json 2026.10.1 64161B
+   canonica: https://yujin.app/urazuke/api/
+   registro: https://github.com/pkuschnirof/urazuke/blob/main/gates/catalog.json
+node build/api_check.mjs                       verde, nombrando los TRES archivos
+node build/api_check.mjs --huella              verde: el indice cita las huellas vivas
+node build/portal_verify.mjs --rondas 1        los tres en "coincide"
+node --test                                    192 pruebas, 0 fallos
+```
+
+**Criterio por perfil, verificado.** *P1:* una sola dirección devuelve la lista completa con versión
+y huella, sin leer el repositorio — comprobado bajando sólo esa dirección. *P5:* antes de bajar nada
+se sabe qué se va a recalcular y sobre qué forma canónica (`sha256`, `hex_lower`,
+`json_sorted_keys_codepoint_no_whitespace_utf8`) y a qué registro contrastar la versión.
+
+**Un dato del paso de verificación que vale guardar:** produccion contestó 404 en las dos primeras
+vueltas y `coincide` en la tercera, un minuto después de empujar. Eso es el despliegue del portal
+—otro flujo— y es exactamente la situación que D-054 separó del rojo: antes habría salido con el
+mismo texto que una lectura imposible.
+
+**Lo que NO cierra con esto, y es de otra entrada:** `https://yujin.app/urazuke/api/` sigue
+contestando 403. El documento del directorio es configuración del servidor y va en PND-013.
 
 ---
 
@@ -451,7 +483,7 @@ nada dice cuánto tiempo una copia sigue siendo buena.
 
 - **Nodo:** `interfaz-publica/api` [nodo propuesto]
 - **Grupo:** G-API · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** método (el índice) · **Estado: abierto**
+- **Repositorio:** método (el índice) · **Estado: CERRADO** el 2026-10-24.
 
 **Qué está mal.** El mismo recurso se sirve en dos direcciones y ninguna de las dos dice cuál es
 la canónica.
@@ -483,13 +515,24 @@ consumidor no puede saber eso desde afuera.
 
 **Avance (2026-10-24, decisión D-056).** El índice declara `canonical_base` = `https://yujin.app/urazuke/api/` y, aparte, `mirrors[0]` con el espejo que arrastra el sitio legible, con la nota de por qué no pueden desincronizarse mientras la publicación sea el único que escribe ahí. Cada recurso lleva su dirección absoluta bajo la canónica, y hay una prueba que lo exige. Se cierra con PND-002, contra producción.
 
+
+**CIERRE (2026-10-24).** El índice publicado declara `canonical_base` =
+`https://yujin.app/urazuke/api/` y, aparte, `mirrors[0].base` = `https://yujin.app/urazuke/docs/api/`
+con la nota de por qué no pueden desincronizarse mientras la publicación sea el único que escribe
+ahí. Cada recurso lleva su dirección absoluta bajo la canónica, y hay una prueba que lo exige
+(`tests/api_indice.test.mjs`). Verificado en producción: la respuesta de
+`https://yujin.app/urazuke/api/index.json` trae las dos bases y las dos direcciones absolutas.
+
+**Criterio por perfil, verificado.** *P5:* el auditor sabe cuál de las dos citar sin comparar las
+copias. **Commit:** `e286902`, publicado en `pkuschnirof/rpaforce` `f89d273`. Decisión D-056.
+
 ---
 
 ## PND-007 — El archivo publicado no apunta a su registro de versiones *(era U-06)*
 
 - **Nodo:** `interfaz-publica/api` [nodo propuesto]
 - **Grupo:** G-API · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** método · **Estado: abierto**
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-24.
 
 **Qué está mal.** El par *(versión → huella)*, que es el único ancla de confianza que vive fuera
 del archivo, no está referenciado desde lo publicado.
@@ -523,6 +566,23 @@ el índice, no adentro de los dos archivos.
 
 
 **Avance (2026-10-24, decisión D-056).** Cada recurso del índice lleva `version_ledger` con la dirección del registro en el repositorio del método, la ruta, el nombre del campo (`changelog`) y la nota de que es append-only y que una huella publicada no se edita. La prueba no se conforma con que el puntero exista: lee el registro y exige que la entrada de la versión que el índice cita registre la huella que el índice cita. Se cierra con PND-002, contra producción.
+
+**CIERRE (2026-10-24).** Cada recurso del índice lleva `version_ledger`: la dirección del
+registro en el repositorio del método, la ruta, el nombre del campo (`changelog`) y la nota de que
+es append-only, que una huella publicada no se edita y que el registro no viaja en el payload, así
+que anotar una entrada no cambia la huella que esa entrada anota. El puntero **no** se metió adentro
+de `gates.json` ni de `prompts.json`, por el razonamiento del auditor, que se adoptó tal cual: bajo
+`hash_covers` obligaría a subir versión por agregar un enlace, y fuera del hash sería una clave que
+puede mentir.
+
+La prueba no se conforma con que el puntero exista: lee el registro que el índice nombra y exige que
+la entrada de la versión citada registre **la misma huella** que el índice cita. Verificado hoy para
+los dos recursos (`2026.10.3` → `0f3c1b47…`, `2026.10.1` → `3459750d…`).
+
+**Criterio por perfil, verificado.** *P5:* desde el archivo publicado se llega al registro que vive
+en otro alojamiento, y la huella se contrasta contra una fuente que no es el portal que sirvió el
+archivo. **Commit:** `e286902`, publicado en `pkuschnirof/rpaforce` `f89d273`. Decisión D-056.
+
 ---
 
 ## PND-008 — No hay dirección versionada e inmutable *(era U-07)*
