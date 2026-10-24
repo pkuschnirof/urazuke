@@ -43,6 +43,11 @@ documentación de cierre, porque los cerrados son la documentación de lo que se
 commit cita su pendiente. Va en castellano, es voz del autor y **no** se traduce ni se genera. La
 numeración `PND-nnn` es la de este registro y no se corresponde con la de ninguna herramienta.
 Mientras el árbol semántico del peldaño 2 no exista, los nodos se escriben `[nodo propuesto]`.
+No se genera, pero **su resumen no puede contradecir sus entradas**: `tests/pending_resumen.test.mjs`
+cuenta las entradas y exige que la tabla del resumen y el rango de ids declarado sean exactamente
+eso, sin huecos ni repetidos, y trae sus propios rojos deliberados. Nació de un defecto medido el
+2026-10-24: con cinco cierres en un día, la tabla seguía diciendo tres cerrados cuando ya eran ocho.
+Un registro que es la verdad del plan y lleva un resumen viejo es dos planes.
 
 ## Estructura de los contratos (`docs/peldanos/`)
 
@@ -156,6 +161,18 @@ de estas tres piezas se replica en las otras dos.
   copia (`Cache-Control`). El trabajo de publicación **se niega** si aparece un `.htaccess` dentro
   de lo que vacía y **avisa** si falta el de arriba. Comprobación repetible, a mano:
   `node build/api_headers.mjs`.
+- **Poner la configuración ahí era necesario y no suficiente, y la guarda sólo afirma lo que
+  verificó** (D-057). Medido el 2026-10-24: el archivo quedó donde el vaciado no llega, se commiteó
+  en el portal, el despliegue del portal cerró **en verde** y producción seguía con las siete
+  comprobaciones de `api_headers.mjs` en rojo, porque el paso de copia de ese despliegue excluía
+  `.htaccess` **sin anclarlo a la raíz** y descartaba también los anidados. De ahí dos reglas. La
+  guarda de arriba dice que el **archivo** está en el repositorio del portal —que es lo único que
+  mira—, y no que el servidor lo tenga puesto. Y la publicación, después de empujar, **le pregunta a
+  producción** si la interfaz se puede consumir, con ese mismo `api_headers.mjs`: avisa y no frena,
+  porque la configuración es del portal, pero una publicación ya no cierra diciendo que todo está
+  bien cuando la interfaz publicada no se puede leer. Es la misma lección que el guardián de línea
+  de comandos, en otra escala: un verde de un paso que no hizo nada no es un verde, y la forma de
+  saberlo es exigir la salida medida, no el código de salida.
 - **La publicación se verifica contra producción, y el chequeo dice qué vio** (D-054): después de
   empujar, `node build/portal_verify.mjs` pide los tres archivos al extremo canónico y separa tres
   situaciones que antes salían con el mismo texto: la huella coincide (verde), producción contesta y
@@ -283,7 +300,8 @@ que no lo expande corre CERO pruebas y devuelve éxito, y un verde con cero prue
 Incluyen el test de diferencia cero contra el congelado, los rojos deliberados del validador, el
 fixture que prende y apaga el interruptor, el test de idioma del nivel de datos (D-051) y el de la
 versión declarada contra su huella, en los dos archivos publicados (D-053), y las del índice de la
-interfaz de datos, que son casi todas rojos deliberados (D-056). Los cuatro
+interfaz de datos, que son casi todas rojos deliberados (D-056), y la del registro de pendientes
+contra su propio resumen (D-057). Los cuatro
 programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
 `index_api`)
 detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
@@ -301,5 +319,10 @@ ni un recurso listado que no exista.
 distingue el verde del aviso (sirve otra huella) y del rojo (no se pudo leer); corre con node pelado
 y sin `curl`, así que el mismo chequeo del flujo se corre a mano (`--rondas 1` para una sola vuelta).
 Queda **fuera** de `build/build.mjs` a propósito: la construcción tiene que correr sin red.
+`node build/api_headers.mjs` es el otro chequeo contra producción y pregunta otra cosa: no si el
+**contenido** es el commiteado, sino si la interfaz se puede **consumir** —el directorio contesta
+con el índice, vuelve la cabecera de origen cruzado, algo dice cuánto vale la copia—. También corre
+con node pelado y sin `curl`, y también está fuera de la construcción.
 `.github/workflows/compuertas.yml` corre todo eso en cada cambio y, en `main` y sólo con todo en
-verde, publica en el repositorio del portal (D-052) y verifica que producción lo sirva (D-054).
+verde, publica en el repositorio del portal (D-052), verifica que producción lo sirva (D-054) y le
+pregunta si se puede consumir (D-057, que avisa y no frena).

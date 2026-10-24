@@ -192,7 +192,8 @@ jobs:
             exit 1
           fi
           if [ -f "portal/yujin.app/urazuke/.htaccess" ]; then
-            echo "la configuracion del servidor esta donde el vaciado no llega: portal/yujin.app/urazuke/.htaccess"
+            echo "el archivo esta commiteado en el portal y fuera del alcance del vaciado: portal/yujin.app/urazuke/.htaccess"
+            echo "OJO: esto dice que el ARCHIVO esta, no que el servidor lo tenga puesto. Medido el 2026-10-24: estuvo commiteado y desplegado en verde sin llegar nunca al servidor, porque el rsync del portal lo excluia. Quien contesta de verdad es el paso 'Preguntar a produccion...', mas abajo"
           else
             echo "::warning::falta portal/yujin.app/urazuke/.htaccess (CORS y Cache-Control de la interfaz de datos, y el indice como DirectoryIndex). Es del repositorio del portal: ponela ahi, no adentro de api/"
           fi
@@ -259,3 +260,23 @@ jobs:
             2) echo "::warning::Produccion contesta y todavia sirve otra huella (el detalle, arriba). El despliegue del portal es otro flujo y puede estar corriendo; revisalo si en unos minutos sigue asi." ;;
             *) echo "::error::Se publico y NO se pudo verificar: no se pudo leer produccion (el motivo exacto, arriba). La publicacion ocurrio; lo que falta es la evidencia de que llego. Comprobalo a mano con: node build/portal_verify.mjs --rondas 1"; exit 1 ;;
           esac
+
+      # La guarda del .htaccess de arriba mira el REPOSITORIO del portal; esto mira el
+      # SERVIDOR, que es donde la configuracion surte efecto o no. Se separaron porque
+      # el 2026-10-24 el archivo estuvo commiteado, el despliegue del portal corrio en
+      # verde y produccion seguia contestando 403 en el directorio y sin CORS ni
+      # Cache-Control en los tres recursos: el transporte del portal excluia el archivo.
+      # Avisa y no frena, por lo mismo que la guarda: esa configuracion es del portal y
+      # no del metodo. Lo que no hace es dejar la publicacion diciendo que todo esta
+      # bien cuando la interfaz de datos no se puede consumir.
+      - name: Preguntar a produccion si la interfaz de datos se puede consumir
+        run: |
+          set +e
+          node build/api_headers.mjs
+          CODIGO=$?
+          set -e
+          if [ "$CODIGO" = "0" ]; then
+            echo "La interfaz de datos se puede consumir: directorio, CORS y Cache-Control."
+          else
+            echo "::warning::La interfaz de datos esta publicada pero NO se puede consumir del todo (el detalle, arriba). Es configuracion del repositorio del portal (yujin.app/urazuke/.htaccess) y de su transporte, no del metodo. Repetilo a mano con: node build/api_headers.mjs"
+          fi
