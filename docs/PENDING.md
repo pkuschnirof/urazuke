@@ -13,9 +13,11 @@ auditoría externa de la publicación. Que el método haya trabajado un año sin
 en sí, el dato que más conviene no olvidar.
 
 **La compuerta que está abierta ahora mismo.** La auditoría externa pidió que el backlog se
-construyera **antes** de tocar una línea y que el dueño lo apruebe. Ese es el estado: ninguno de
-los hallazgos U-01 a U-22 está arreglado, salvo los dos que ya se cerraron con evidencia y están
-marcados como tales. Hasta que el dueño apruebe este archivo no se arregla nada más de esta lista.
+construyera **antes** de tocar una línea y que el dueño lo apruebe. Ese es el estado: de los
+hallazgos U-01 a U-22 **no se tocó ninguno** salvo los que figuran cerrados con su evidencia
+medida. El dueño aprobó este archivo el 2026-10-24 y autorizó, en ese orden, el nivel de datos sin
+herramientas (PND-023) y la publicación atrasada del portal (PND-018 y PND-020, que son el mismo
+evento). El resto de la lista sigue esperando su turno; nada se arregla fuera del orden acordado.
 
 **Dónde vive, y por qué acá.** La auditoría pidió un archivo satélite,
 `docs/PENDIENTES_AUDITORIA_2026-10.md`. El dueño decidió lo contrario (2026-10-24): va **en el
@@ -956,7 +958,20 @@ Los otros nueve dicen cuatro, cada uno en su idioma (verificado en los diez arch
 **Cómo se verifica.**
 `node -e "const d=require('./i18n/it.json');console.log(d['what.is.li2'])"` → *quattro fasi*.
 
-**Depende de:** PND-020.
+**Actualización del 2026-10-24: al cerrar PND-020 este hallazgo empeoró, y conviene decirlo.**
+Hasta hoy el error vivía sólo en el catálogo y lo leía quien ejecutara JavaScript. Desde la
+publicación de las portadas por idioma está **horneado en una página estática**, que es
+precisamente la que leen los rastreadores que no ejecutan nada:
+
+```
+curl -s https://yujin.app/urazuke/it/ | grep tramonti
+  Ventiquattro gradini in tre tramonti, ciascuno con un contratto: ...
+```
+
+El arreglo sigue siendo de una línea en el catálogo, pero ahora exige además **volver a hornear**
+la portada italiana y publicarla. Quedó primero en la fila del grupo de idiomas.
+
+**Depende de:** PND-020 *(cerrado)*.
 
 ---
 
@@ -964,9 +979,9 @@ Los otros nueve dicen cuatro, cada uno en su idioma (verificado en los diez arch
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
 - **Grupo:** G-IDIOMA · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: abierto**
+- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-24.
 
-**Qué está mal.** Hay un conjunto entero de páginas estáticas terminadas que nadie puede ver.
+**Qué estaba mal.** Había un conjunto entero de páginas estáticas terminadas que nadie podía ver.
 
 **Evidencia del auditor.**
 
@@ -1005,6 +1020,51 @@ método.
 **Cómo se verifica.** `curl -s -o /dev/null -w "%{http_code}" https://yujin.app/urazuke/ar/` → 200.
 
 **Depende de:** PND-020. Es el mismo evento: una publicación que no se hizo.
+
+**Evidencia de cierre (2026-10-24), medida contra producción después de publicar.** Las diez
+direcciones responden, y cada página declara su idioma y su dirección de escritura:
+
+```
+200  https://yujin.app/urazuke/        200  https://yujin.app/urazuke/it/
+200  https://yujin.app/urazuke/ar/     200  https://yujin.app/urazuke/ja/
+200  https://yujin.app/urazuke/de/     200  https://yujin.app/urazuke/pt/
+200  https://yujin.app/urazuke/en/     200  https://yujin.app/urazuke/zh/
+200  https://yujin.app/urazuke/fr/
+200  https://yujin.app/urazuke/hi/
+
+https://yujin.app/urazuke/ar/  ->  <html lang="ar" dir="rtl">
+https://yujin.app/urazuke/en/  ->  <html lang="en" dir="ltr">
+```
+
+El mapa del sitio de producción lista **16** direcciones, **10** de ellas del método: las nueve
+portadas por idioma más la castellana. Antes listaba siete, una sola del método.
+
+**Lo que hubo que arreglar antes de publicar, y no estaba en el hallazgo.** El verificador de esa
+pieza estaba en **rojo con 98 problemas**, y fallaban las mismas diez comprobaciones en los diez
+idiomas, el castellano incluido — que es la fuente de su propio catálogo. Lo que estaba mal era la
+comparación, no las páginas: castigaba al generador por obedecer su contrato, en las flechas (el
+catálogo las escribe como entidad y la página sirve el carácter) y en las direcciones de los
+enlaces (el contrato le exige reescribirlas en las páginas por idioma). Se corrigió comparando
+sentido en lugar de letra. Al relajar la comparación de enlaces apareció un agujero real: el
+verificador dejaba pasar una página que llevara al lector al documento **del idioma equivocado**,
+porque ese archivo existe. Se cerró con una comprobación nueva que importa el mapa de idiomas
+**del generador** en vez de copiarlo, para que no puedan separarse con el tiempo.
+
+**El verde se vio caer primero.** Cinco mutaciones deliberadas del árbol — idioma equivocado en el
+atributo, estructura perdida, archivo equivocado, página sin hornear y enlace al idioma equivocado
+— y las cinco veces el verificador se cayó nombrando el problema. Árbol restaurado después.
+Idempotencia comprobada: dos corridas seguidas del generador dan el mismo árbol, así que lo
+publicado es lo que el generador produce hoy y no material rancio.
+
+**Por qué nunca se había publicado, en una línea:** el contrato de esa pieza le prohíbe
+explícitamente a quien la ejecuta hacer commit o publicar, porque la rama principal de ese
+repositorio **no está protegida** (verificado) y un empujón despliega en caliente. El trabajo se
+detuvo exactamente donde el contrato dice que se detenga. No hubo olvido ni tubería rota: faltaba
+la compuerta humana.
+
+**Commit:** `pkuschnirof/rpaforce` `5d29f79`, 16 archivos, empujado a `main` por el dueño el
+2026-10-24. Verificado además que la publicación automática del método **no** borra estas
+portadas: sólo vacía `urazuke/docs/` y `urazuke/api/`.
 
 ---
 
@@ -1083,9 +1143,9 @@ PND-010 en el mismo cambio de versión.
 
 - **Nodo:** `cadena/publicacion` [nodo propuesto]
 - **Grupo:** G-PUBLICACION · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: abierto**
+- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-24.
 
-**Qué está mal.** La página servida dice "tres tramos" sin JavaScript y "cuatro tramos" con
+**Qué estaba mal.** La página servida decía "tres tramos" sin JavaScript y "cuatro tramos" con
 JavaScript, y la copia local no tiene el error. No hay contenido que arreglar: hay una publicación
 que destrabar.
 
@@ -1131,6 +1191,37 @@ método: le llegó la única portada que existe publicada, la vieja.
 **Es precondición de:** PND-003, PND-014, PND-015, PND-017, PND-018 y la parte de portada de
 PND-022. Todo el trabajo de portada se apoya en destrabar esto primero, porque si no se publica
 sobre una versión vieja.
+
+**Evidencia de cierre (2026-10-24), medida contra producción después de publicar.**
+
+```
+producción index.html: 68.904 bytes
+  "tres tramos"    0
+  "cuatro tramos"  2
+
+copia local:           68.450 bytes
+diferencia:            una sola línea, el script de medición que inyecta el hosting
+                       (secureserver.net / tccl.min.js). Contenido idéntico.
+```
+
+Los dos lugares donde la portada nombra la cantidad dicen ahora lo mismo, y lo dicen **sin
+JavaScript**: el texto de respaldo horneado dentro del elemento ya no se contradice con el que
+pinta el conmutador. Es lo que lee un rastreador de los que el `robots.txt` de la raíz invita por
+nombre.
+
+**La publicación no movió nada de la interfaz pública**, comprobado en la misma vuelta:
+
+```
+node build/portal_verify.mjs --rondas 1
+  gates.json:   coincide -- HTTP 200, 100112 bytes, version 2026.10.3, huella 0f3c1b472f92
+  prompts.json: coincide -- HTTP 200,  64161 bytes, version 2026.10.1, huella 3459750db1d7
+  Produccion sirve las dos huellas: publicado y verificado.
+```
+
+**Antes de publicar, el árbol del portal estaba tres commits atrasado** respecto del remoto — eran
+publicaciones automáticas del método — y se puso al día sin tocar el trabajo pendiente.
+
+**Commit:** `pkuschnirof/rpaforce` `5d29f79`, el mismo que PND-018: son el mismo evento.
 
 ---
 
