@@ -132,7 +132,9 @@ idiom en `build/`). En verde con el arreglo, árbol limpio: `node --test` = **16
 fallos** (eran 158). Los cinco pasos de la cadena, cada uno diciendo su línea. Los dos pasos del
 flujo exigen además la línea que el programa imprime: un paso que no imprimió nada no corrió.
 
-**Commit / pull request:** rama `guardian-de-linea-de-comandos`, pull request **#5**.
+**Commit / pull request:** pull request **#5**, fusionado en `main` el 2026-10-24 como `0c7d79a`.
+Rebasado sobre la fusion de PND-023 antes de entrar: la cadena, con los dos cambios juntos,
+imprimio sus cinco lineas y dio **169 pruebas, 0 fallos** (corrida 40115555290, `ubuntu-latest`).
 
 **Decisión tomada en el camino:** el guardián se centraliza en `esLineaDeComandos()` de
 `build/gates_lib.mjs` y recibe la ruta por argumento, para que la prueba pueda ejercitar la
@@ -216,7 +218,7 @@ diferencia cero siga siendo demostrable; es la primera excepción autorizada a l
 la base, acotada a dos textos, y está escrita como tal. La versión declarada subió a `2026.10.3`
 con su huella anotada en el registro, sin tocar las anteriores.
 
-**Pull request:** **#4** (rama `d055-nivel-de-datos-sin-herramientas`), pendiente de fusión.
+**Pull request:** **#4**, fusionado en `main` el 2026-10-24 como `fd8561c`.
 
 **Lo que no se tocó, a propósito, y está dicho en la decisión:** la prosa del método sigue
 comparando herramientas por su nombre (la Parte E, los manuales de práctica), porque ahí nombrarlas
@@ -1187,7 +1189,9 @@ No se publica el argumento absoluto antes de que lo publicado lo sostenga.
 - *P4 (rastreador):* dado el perfil rastreador, el párrafo está en el HTML servido, no detrás del
   conmutador.
 
-**Depende de:** PND-020 y la fusión del pull request #4.
+**Depende de:** PND-020. La fusión del pull request #4 ya ocurrió (`fd8561c`, 2026-10-24); lo que
+falta para poder publicar el argumento absoluto es que producción sirva ese contenido, y eso es
+exactamente PND-020.
 
 ---
 
