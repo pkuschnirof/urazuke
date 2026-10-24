@@ -7,7 +7,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { raiz, cargarFuentes, extraerAnexo, armarContenido, leerAnexo, ANEXOS } from '../build/gates_lib.mjs';
+import { raiz, cargarFuentes, extraerAnexo, armarContenido, leerAnexo, ANEXOS, CASTELLANO } from '../build/gates_lib.mjs';
 
 const fuentes = cargarFuentes();
 const anexo = extraerAnexo();
@@ -22,9 +22,8 @@ const DE_LA_BASE = new Set();
   if (v && typeof v === 'object') return Object.values(v).forEach(recorrer);
 })(fuentes.baseline);
 
-// Heuristica deliberada, y por eso escrita: palabras castellanas frecuentes como
-// palabra entera. No detecta idioma, detecta descuido, que es lo que hace falta aca.
-const CASTELLANO = /\b(que|el|la|los|las|del|para|con|una|por|como|cada|sin|esta|tiene|hay|nunca|siempre|todo|toda|su|al|lo|ni|mas|pero|donde|cuando|porque|regla|reglas|motivo|autoriza|revisar|dueno|anexo|peldano|peldanos|compuerta|rojo|verde|archivo|perfil)\b/i;
+// La heuristica de castellano vive en build/gates_lib.mjs: una sola copia, compartida
+// con el verificador del indice de la API.
 
 function cadenasPropias(valor, archivo) {
   const salida = [];

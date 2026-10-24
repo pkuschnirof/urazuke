@@ -309,6 +309,26 @@ node build/api_check.mjs --huella                             -> verde, y dice q
 
 **Depende de:** nada. Es el primero de este grupo: casi todo lo demás del grupo se apoya en él.
 
+**Avance (2026-10-24, decisión D-056).** Construido: `build/index_api.mjs` genera
+`docs/html/api/index.json` con los dos recursos, su dirección canónica absoluta, su tipo de medio,
+su tamaño, el nombre y el valor de su campo de versión, la huella que declaran con algoritmo y forma
+canónica, y el puntero a su registro de versiones. No lleva versión ni huella propias y lo dice en
+`identity` (la confirmación que la auditoría pidió). `build/api_check.mjs` lo cubre en sus dos
+modos, `build/portal_verify.mjs` lo pregunta a producción con el mismo vocabulario de tres estados
+y el paso *Sanidad de lo generado* del flujo lo nombra. Veintiuna pruebas nuevas, nueve de ellas
+rojos deliberados. Recibo de los rojos de punta a punta, corrido hoy:
+
+```
+ROJO 1 (el indice cita una huella vieja):  api_check --huella -> exit 1, [E_INDICE_HUELLA]
+ROJO 2 (no hay indice):                    api_check --huella -> exit 1, "falta docs/html/api/index.json"
+ROJO 3 (un recurso publicado sin listar):  index_api -> exit 1, [E_INDICE_NO_LISTA], no publica nada
+verde restaurado:                          api_check --huella -> exit 0, nombrando los TRES archivos
+```
+
+Falta, y es lo único: que la fusión lo publique y que producción lo sirva. Medido hoy antes de
+fusionar: `https://yujin.app/urazuke/api/index.json` sigue en 404, y los dos recursos en
+`coincide`. **Se cierra con esa medición, no antes.**
+
 ---
 
 ## PND-003 — La portada no nombra la API *(era U-02)*
@@ -392,6 +412,8 @@ curl -s -D - -o /dev/null -H "Origin: https://example.com" \
 ```
 
 **Depende de:** **PND-013** sin excepción. La configuración tiene que vivir un nivel arriba de los
+
+**Avance (2026-10-24, decisión D-056).** Escrito en el repositorio del portal: `yujin.app/urazuke/.htaccess` sirve `Access-Control-Allow-Origin: *`, los métodos y las cabeceras permitidas, `Access-Control-Expose-Headers` con `ETag`, `Last-Modified` y `Content-Length`, y `Access-Control-Max-Age`, acotado a los `.json`. Falta que el dueño lo commitee y lo empuje: en ese repositorio `main` no está protegida y un empujón despliega en caliente, así que el commit es suyo. Medición de hoy, **antes**: seis comprobaciones en rojo con `node build/api_headers.mjs`.
 directorios que el espejo vacía, o se borra en la próxima publicación.
 
 ---
@@ -420,6 +442,8 @@ nada dice cuánto tiempo una copia sigue siendo buena.
 - *P2:* ídem, y el navegador no revalida en cada carga.
 
 **Depende de:** PND-013.
+
+**Avance (2026-10-24, decisión D-056).** Escrito en el mismo archivo: `Cache-Control: public, max-age=300, must-revalidate` para los `.json`. Los cinco minutos son decisión de la publicación y no declaración del método, y están escritos como tal: la copia vieja es **detectable** por la huella, así que una de cinco minutos es inofensiva. Falta el empujón del dueño.
 
 ---
 
@@ -456,6 +480,8 @@ consumidor no puede saber eso desde afuera.
   canónica y puede citarla, sin tener que comparar las dos copias para adivinarlo.
 
 **Depende de:** PND-002. Se cierra con él.
+
+**Avance (2026-10-24, decisión D-056).** El índice declara `canonical_base` = `https://yujin.app/urazuke/api/` y, aparte, `mirrors[0]` con el espejo que arrastra el sitio legible, con la nota de por qué no pueden desincronizarse mientras la publicación sea el único que escribe ahí. Cada recurso lleva su dirección absoluta bajo la canónica, y hay una prueba que lo exige. Se cierra con PND-002, contra producción.
 
 ---
 
@@ -495,6 +521,8 @@ el índice, no adentro de los dos archivos.
 
 **Depende de:** PND-002.
 
+
+**Avance (2026-10-24, decisión D-056).** Cada recurso del índice lleva `version_ledger` con la dirección del registro en el repositorio del método, la ruta, el nombre del campo (`changelog`) y la nota de que es append-only y que una huella publicada no se edita. La prueba no se conforma con que el puntero exista: lee el registro y exige que la entrada de la versión que el índice cita registre la huella que el índice cita. Se cierra con PND-002, contra producción.
 ---
 
 ## PND-008 — No hay dirección versionada e inmutable *(era U-07)*
@@ -572,6 +600,8 @@ frase vive en `what`, y `what` está **fuera** de la huella, es una declaración
 atacante puede editar para que diga lo contrario.
 
 **Depende de:** PND-010 (cubrir `what` con la huella) y PND-002.
+
+**Avance (2026-10-24, decisión D-056).** La frase está escrita, y sin maquillaje, en el campo `what` del índice: la huella es auto-consistente, detecta el truncado, la fusión mal hecha y la edición a mano, y **no** protege contra un adversario que controle el portal; las anclas que no viven ahí son el registro de versiones y el cifrado de la conexión. Hay una prueba que la exige. Lo que falta para cerrar es lo que este pendiente ya anticipaba, y es de PND-010: esa frase, en el índice, viaja sin huella que la proteja **por definición** (el índice no tiene), así que la misma declaración tiene que quedar también en el `what` de los dos recursos, una vez que `what` esté cubierto.
 
 ---
 
@@ -737,6 +767,8 @@ sola".
   alcance del vaciado, leyendo el flujo.
 
 **Es precondición de:** PND-004 y PND-005. Ninguno de los dos se da por hecho sin esto.
+
+**Avance (2026-10-24, decisión D-056).** Resuelto en las dos puntas. En el portal, la configuración se escribió en `yujin.app/urazuke/.htaccess`, un nivel arriba de los dos directorios que el espejo vacía, con el motivo escrito adentro del archivo para que nadie la mueva por prolijidad. En el método, el trabajo de publicación ahora **se niega** si aparece un `.htaccess` adentro de lo que vacía y **avisa** si falta el de arriba: avisa y no frena, porque ese archivo es del portal y no del método. Falta el empujón del dueño en el portal.
 
 ---
 

@@ -44,6 +44,12 @@ export const idFamilia = (etiqueta) => sinTildes(etiqueta).trim().toLowerCase().
 /** Las dos versiones del anexo: la publicada (en) y la fuente de verdad (es). */
 export const ANEXOS = { en: 'docs/en/ANEXO_HEURISTICAS.md', es: 'docs/ANEXO_HEURISTICAS.md' };
 
+// Heuristica deliberada, y por eso escrita: palabras castellanas frecuentes como palabra
+// entera. No detecta idioma, detecta descuido, que es lo que hace falta en el nivel de
+// datos (D-051). Una sola copia, usada por la prueba de idioma y por el verificador del
+// indice de la API.
+export const CASTELLANO = /\b(que|el|la|los|las|del|para|con|una|por|como|cada|sin|esta|tiene|hay|nunca|siempre|todo|toda|su|al|lo|ni|mas|pero|donde|cuando|porque|regla|reglas|motivo|autoriza|revisar|dueno|anexo|peldano|peldanos|compuerta|rojo|verde|archivo|perfil)\b/i;
+
 /**
  * Lee UNA version del anexo y devuelve, por id de regla, lo que declara: el enunciado,
  * la familia, el instrumento tal como lo escribe la tabla y el token de severidad. Es la

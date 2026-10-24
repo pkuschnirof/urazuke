@@ -23,6 +23,9 @@ execFileSync(process.execPath, [join(raiz, 'build', 'prompts_api.mjs')], { stdio
 // y contra el Anexo H, y no publica nada si hay un solo error. Despues verifica que
 // docs/COMPUERTAS.md siga coincidiendo con los datos de los que sale.
 execFileSync(process.execPath, [join(raiz, 'build', 'gates_api.mjs')], { stdio: 'inherit' });
+// El indice de la API (docs/html/api/index.json): va DESPUES de los dos recursos, porque
+// cita la version y la huella que cada uno declara. Si citara una vieja no se publica.
+execFileSync(process.execPath, [join(raiz, 'build', 'index_api.mjs')], { stdio: 'inherit' });
 execFileSync(process.execPath, [join(raiz, 'build', 'gates_doc.mjs'), '--check'], { stdio: 'inherit' });
 const conv = join(raiz, 'build', 'md2html.mjs');
 

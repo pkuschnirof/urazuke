@@ -134,7 +134,7 @@ jobs:
 
       - name: Sanidad de lo generado (que haya sitio para publicar)
         run: |
-          for f in docs/html/ESCALERA_METODOLOGICA.html docs/html/COMPUERTAS.html docs/html/api/gates.json docs/html/api/prompts.json; do
+          for f in docs/html/ESCALERA_METODOLOGICA.html docs/html/COMPUERTAS.html docs/html/api/gates.json docs/html/api/prompts.json docs/html/api/index.json; do
             [ -s "$f" ] || { echo "::error::falta o esta vacio $f -- no se publica un sitio a medias"; exit 1; }
           done
           echo "archivos a publicar: $(find docs/html -type f | wc -l)"
@@ -177,6 +177,25 @@ jobs:
           mkdir -p "portal/${DESTINO_DOCS}" "portal/${DESTINO_API}"
           cp -a docs/html/. "portal/${DESTINO_DOCS}/"
           cp -a docs/html/api/. "portal/${DESTINO_API}/"
+          # La trampa que este vaciado es: cualquier configuracion de servidor puesta
+          # ADENTRO de estos dos directorios se evapora en la publicacion siguiente, y el
+          # que la puso se entera semanas despues preguntandose por que se "desconfiguro
+          # sola". De ahi las dos guardas:
+          #   1. si aparece un .htaccess adentro de lo que se vacia, se para. No se
+          #      publica una configuracion que se va a borrar sola.
+          #   2. la que de verdad tiene que existir vive un nivel ARRIBA
+          #      (yujin.app/urazuke/.htaccess) y se hereda hacia abajo: si falta, se avisa,
+          #      porque sin ella la interfaz de datos no es legible desde un navegador.
+          #      Es del portal y no del metodo, asi que avisa y no frena.
+          if find "portal/${DESTINO_DOCS}" "portal/${DESTINO_API}" -name '.htaccess' | grep -q .; then
+            echo "::error::hay un .htaccess adentro de un directorio que esta publicacion vacia: se borraria en la proxima. La configuracion va en portal/yujin.app/urazuke/.htaccess, un nivel arriba"
+            exit 1
+          fi
+          if [ -f "portal/yujin.app/urazuke/.htaccess" ]; then
+            echo "la configuracion del servidor esta donde el vaciado no llega: portal/yujin.app/urazuke/.htaccess"
+          else
+            echo "::warning::falta portal/yujin.app/urazuke/.htaccess (CORS y Cache-Control de la interfaz de datos, y el indice como DirectoryIndex). Es del repositorio del portal: ponela ahi, no adentro de api/"
+          fi
           # Se prepara el cambio y se mira LO PREPARADO, no el estado del directorio.
           # Medido en el ensayo: una copia deja los archivos con fecha nueva y `git
           # status` los llama modificados aunque el contenido sea idéntico. Si la

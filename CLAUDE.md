@@ -114,8 +114,8 @@ de estas tres piezas se replica en las otras dos.
   siete traducciones en el mismo commit.
 - **Lo que queda fuera del corpus traducido va en inglés** (D-051), que es el idioma canónico de la
   profesión, y traducir para que un usuario final entienda mejor es responsabilidad de quien
-  consume. Hoy eso aplica al nivel de datos de las compuertas (`gates/`, `docs/html/api/gates.json`)
-  y a `docs/COMPUERTAS.md`. Los documentos que siguen en castellano por ser voz del autor o fuente
+  consume. Hoy eso aplica al nivel de datos de las compuertas (`gates/`, `docs/html/api/gates.json`),
+  al índice de la interfaz (`docs/html/api/index.json`) y a `docs/COMPUERTAS.md`. Los documentos que siguen en castellano por ser voz del autor o fuente
   primaria —`DECISIONES.md`, `EVALUACIONES_DE_IA.md`, `PLAN_CURSO_MENTORING.md`, `docs/PENDING.md`,
   `docs/practica/`— quedan explícitamente fuera de esa regla hasta que el dueño decida otra cosa.
 - Los clientes están anonimizados: "la Obra Social" (con "el Autorizador") y "la Asociación"; sus
@@ -138,12 +138,32 @@ de estas tres piezas se replica en las otras dos.
   desde sus ajustes. Si el secreto falta, el trabajo falla diciéndolo; no se saltea en silencio.
   La compuerta humana es la de siempre: `main` protegida, con pull request y aprobación de un
   propietario.
+- **La interfaz de datos publica TRES archivos y uno es su índice** (D-056): `gates.json`,
+  `prompts.json` y `index.json`, que es **generado** (`node build/index_api.mjs`) y no se edita a
+  mano. El índice declara, por recurso, la dirección canónica absoluta, el tipo de medio, el tamaño,
+  el nombre del campo de versión con su valor, la huella que ese recurso declara con su algoritmo y
+  su forma canónica, y el puntero al registro de versiones que vive en este repositorio. **No lleva
+  versión ni huella propias**, a propósito: es un directorio, no un catálogo, y una huella propia
+  obligaría a subir una tercera línea de versión que nadie declara (D-053). Lo que lo hace confiable
+  no es su identidad sino que sea **comprobable**: cita la huella de cada recurso, y un consumidor
+  que baja el recurso y la recalcula descubre solo que el índice está viejo. La cadena lo exige en
+  las dos puntas, porque un índice que cita una huella vieja es peor que no tener índice.
+- **La configuración del servidor de la interfaz vive un nivel arriba del espejo** (D-056):
+  `yujin.app/urazuke/.htaccess` en el repositorio del portal, no adentro de `api/`, porque la
+  publicación **vacía** `docs/` y `api/` en cada fusión y se llevaría la configuración puesta
+  adentro. Es la que hace que `/urazuke/api/` conteste con el índice en vez de 403, que una
+  herramienta de navegador pueda leer la interfaz (CORS) y que la respuesta diga cuánto vale la
+  copia (`Cache-Control`). El trabajo de publicación **se niega** si aparece un `.htaccess` dentro
+  de lo que vacía y **avisa** si falta el de arriba. Comprobación repetible, a mano:
+  `node build/api_headers.mjs`.
 - **La publicación se verifica contra producción, y el chequeo dice qué vio** (D-054): después de
-  empujar, `node build/portal_verify.mjs` pide los dos archivos al extremo canónico y separa tres
+  empujar, `node build/portal_verify.mjs` pide los tres archivos al extremo canónico y separa tres
   situaciones que antes salían con el mismo texto: la huella coincide (verde), producción contesta y
   sirve **otra** huella (aviso, y dice cuál: eso sí es el despliegue del portal, que es otro flujo y
   puede estar corriendo), o no se pudo leer producción (**rojo**, con el código HTTP o el error de
-  red a la vista). El rojo dice que la publicación ocurrió y falta la evidencia, no que el método
+  red a la vista). Al índice, que no tiene huella propia, se le exige otra cosa con el mismo
+  vocabulario de tres estados: que cite las huellas vivas. El rojo dice que la publicación ocurrió y
+  falta la evidencia, no que el método
   publicó mal; y conviene saber, para leerlo, que el host del portal tiene documentado en su propio
   flujo que rechaza conexiones del runner de GitHub. A mano, en dos segundos:
   `node build/portal_verify.mjs --rondas 1`.
@@ -262,16 +282,21 @@ archivo con marcas `<!-- file: … -->` en contratos individuales.
 que no lo expande corre CERO pruebas y devuelve éxito, y un verde con cero pruebas no es un verde.
 Incluyen el test de diferencia cero contra el congelado, los rojos deliberados del validador, el
 fixture que prende y apaga el interruptor, el test de idioma del nivel de datos (D-051) y el de la
-versión declarada contra su huella, en los dos archivos publicados (D-053). Los tres
-programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`)
+versión declarada contra su huella, en los dos archivos publicados (D-053), y las del índice de la
+interfaz de datos, que son casi todas rojos deliberados (D-056). Los cuatro
+programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
+`index_api`)
 detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
 el idiom de pegar `file:///` adelante de `argv[1]` sólo acierta en Windows y dejaba dos pasos
 de la cadena corriendo en vacío sobre Linux, en verde. Hay una prueba que lo exige en las dos
 formas de ruta, y los dos pasos del flujo exigen además la línea que el programa imprime: un
 paso que no imprimió nada no corrió, y no es un verde. `node build/api_check.mjs` regenera lo publicado y falla
 si no coincide con lo commiteado, y `node build/api_check.mjs --huella` recalcula la huella de los
-**dos** archivos commiteados sin regenerar nada (es lo que usa el paso de publicación, porque regenerar reescribe
-`generated_at` y publicaría algo distinto de lo que quedó en `main`).
+**dos** recursos commiteados sin regenerar nada (es lo que usa el paso de publicación, porque regenerar reescribe
+`generated_at` y publicaría algo distinto de lo que quedó en `main`); en los dos modos exige además
+que el **índice** (`docs/html/api/index.json`, generado por `build/index_api.mjs`) cite las
+versiones, las huellas y los tamaños vivos, y que no haya un recurso publicado que el índice esconda
+ni un recurso listado que no exista.
 `node build/portal_verify.mjs` pregunta a producción si sirve las dos huellas commiteadas y
 distingue el verde del aviso (sirve otra huella) y del rojo (no se pudo leer); corre con node pelado
 y sin `curl`, así que el mismo chequeo del flujo se corre a mano (`--rondas 1` para una sola vuelta).
