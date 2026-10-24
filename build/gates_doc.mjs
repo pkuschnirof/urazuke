@@ -11,7 +11,7 @@
 //      node build/gates_doc.mjs --check   (falla si lo escrito en disco no coincide)
 import { writeFileSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { raiz, cargarFuentes, extraerAnexo, armarContenido, huellaDeContenido, ANEXOS } from './gates_lib.mjs';
+import { raiz, cargarFuentes, extraerAnexo, armarContenido, huellaDeContenido, esLineaDeComandos, ANEXOS } from './gates_lib.mjs';
 
 const SEVERITY = { blocks: 'BLOCKS', warns: 'WARNS', records: 'RECORDS' };
 const INSTRUMENT = {
@@ -302,7 +302,7 @@ function detalleArtefacto(a) {
 const marcaNueva = (v) => ' **(new in schema ' + v.since_schema + (v.anchor ? ', anchor ' + v.anchor : '') + (v.decision ? ', ' + v.decision : '') + ')**';
 
 const destino = join(raiz, 'docs', 'COMPUERTAS.md');
-if (import.meta.url === 'file:///' + (process.argv[1] ?? '').replace(/\\/g, '/')) {
+if (esLineaDeComandos(import.meta.url)) {
   const texto = generar();
   if (process.argv.includes('--check')) {
     let enDisco = null;

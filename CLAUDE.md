@@ -249,7 +249,13 @@ archivo con marcas `<!-- file: … -->` en contratos individuales.
 que no lo expande corre CERO pruebas y devuelve éxito, y un verde con cero pruebas no es un verde.
 Incluyen el test de diferencia cero contra el congelado, los rojos deliberados del validador, el
 fixture que prende y apaga el interruptor, el test de idioma del nivel de datos (D-051) y el de la
-versión declarada contra su huella, en los dos archivos publicados (D-053). `node build/api_check.mjs` regenera lo publicado y falla
+versión declarada contra su huella, en los dos archivos publicados (D-053). Los tres
+programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`)
+detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
+el idiom de pegar `file:///` adelante de `argv[1]` sólo acierta en Windows y dejaba dos pasos
+de la cadena corriendo en vacío sobre Linux, en verde. Hay una prueba que lo exige en las dos
+formas de ruta, y los dos pasos del flujo exigen además la línea que el programa imprime: un
+paso que no imprimió nada no corrió, y no es un verde. `node build/api_check.mjs` regenera lo publicado y falla
 si no coincide con lo commiteado, y `node build/api_check.mjs --huella` recalcula la huella de los
 **dos** archivos commiteados sin regenerar nada (es lo que usa el paso de publicación, porque regenerar reescribe
 `generated_at` y publicaría algo distinto de lo que quedó en `main`).

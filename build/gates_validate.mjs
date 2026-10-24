@@ -7,7 +7,7 @@
 // Cada error sale con codigo estable, que paso, donde y como se arregla. Devuelve
 // codigo de salida 1 si hay al menos un error.
 import { readFileSync } from 'node:fs';
-import { cargarFuentes, extraerAnexo, proyectarPasoABase, idFamilia, armarContenido, huellaDeContenido, ANEXOS } from './gates_lib.mjs';
+import { cargarFuentes, extraerAnexo, proyectarPasoABase, idFamilia, armarContenido, huellaDeContenido, esLineaDeComandos, ANEXOS } from './gates_lib.mjs';
 
 const esObjeto = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
 
@@ -466,7 +466,7 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
 
 /* ---------- la linea de comandos ---------- */
 
-if (import.meta.url === 'file:///' + (process.argv[1] ?? '').replace(/\\/g, '/')) {
+if (esLineaDeComandos(import.meta.url)) {
   const i = process.argv.indexOf('--config');
   const config = i > 0 ? JSON.parse(readFileSync(process.argv[i + 1], 'utf8')) : null;
   const errores = validar(cargarFuentes(), extraerAnexo(), config);
