@@ -1,0 +1,65 @@
+{
+  "what": "A directory of the data interface of the Urazuke method: the one resource you can ask for without knowing anything else beforehand. For every published resource it declares the canonical URL, the media type, the size in bytes, the name and the value of the version field that resource declares, and the content hash it declares with its algorithm and its canonical form, so a consumer knows what it is going to recompute before downloading anything. This file carries no version and no content hash of its own, on purpose (see identity): do not use it as a trust anchor, verify it against the resources it lists. And about those hashes, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls this host. The anchors that do not live here are the version ledger of each resource, in the method repository, and the transport security of this connection.",
+  "identity": {
+    "has_own_version": false,
+    "has_own_content_hash": false,
+    "why": "A directory, not a catalogue: its identity is the identity of what it points at. A hash of its own would force a third declared version line, that nobody declares, every time one of the listed resources changes.",
+    "staleness_check": "Fetch a listed resource, recompute its hash over the canonical form declared here for that resource, and compare it with the hash quoted here. If the two differ, this index is stale, and you know that without having to trust it."
+  },
+  "generated_at": "2026-10-24T18:44:51.232Z",
+  "source": "https://github.com/pkuschnirof/urazuke",
+  "license": "CC BY-SA 4.0",
+  "canonical_base": "https://yujin.app/urazuke/api/",
+  "mirrors": [
+    {
+      "base": "https://yujin.app/urazuke/docs/api/",
+      "note": "The readable site carries its own copy of this directory, written by the same publication run, so the two cannot drift while that run is the only writer. Cite the canonical base."
+    }
+  ],
+  "resources": [
+    {
+      "name": "gates.json",
+      "url": "https://yujin.app/urazuke/api/gates.json",
+      "media_type": "application/json",
+      "bytes": 100112,
+      "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.",
+      "version_field": "catalog_version",
+      "version": "2026.10.3",
+      "content_hash": {
+        "field": "content_hash.value",
+        "algo": "sha256",
+        "encoding": "hex_lower",
+        "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
+        "value": "0f3c1b472f92242840aa4cd7c2cc590b62c30c48466af3a588ea803fee880367"
+      },
+      "version_ledger": {
+        "url": "https://github.com/pkuschnirof/urazuke/blob/main/gates/catalog.json",
+        "path": "gates/catalog.json",
+        "field": "changelog",
+        "note": "Append-only: one entry per declared version with the content hash it produced, and a hash already recorded is never edited. It lives in the method repository, not on this host, so the pair (version -> hash) can be checked against a source other than the server that handed you the file. It is not part of any published payload, so recording an entry cannot change the hash that entry records."
+      }
+    },
+    {
+      "name": "prompts.json",
+      "url": "https://yujin.app/urazuke/api/prompts.json",
+      "media_type": "application/json",
+      "bytes": 64161,
+      "what": "The prompts of the Urazuke method, published as data. The method owns them; a tool consumes them. They are one English piece, identical in the eight versions of the method, and a tool does not rewrite them.",
+      "version_field": "corpus_version",
+      "version": "2026.10.1",
+      "content_hash": {
+        "field": "content_hash.value",
+        "algo": "sha256",
+        "encoding": "hex_lower",
+        "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
+        "value": "3459750db1d7eb746e4f2b45f8e677585df7f269c0f083903b8a07db535fe15d"
+      },
+      "version_ledger": {
+        "url": "https://github.com/pkuschnirof/urazuke/blob/main/prompts/catalog.json",
+        "path": "prompts/catalog.json",
+        "field": "changelog",
+        "note": "Append-only: one entry per declared version with the content hash it produced, and a hash already recorded is never edited. It lives in the method repository, not on this host, so the pair (version -> hash) can be checked against a source other than the server that handed you the file. It is not part of any published payload, so recording an entry cannot change the hash that entry records."
+      }
+    }
+  ]
+}

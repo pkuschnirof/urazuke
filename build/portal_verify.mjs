@@ -1,4 +1,5 @@
-// Verifica que produccion sirva los dos archivos publicados, y DICE QUE VIO.
+// Verifica que produccion sirva los TRES archivos publicados -- los dos recursos y el
+// indice que los lista -- y DICE QUE VIO.
 //
 // Por que existe este archivo y no un curl dentro del workflow: el 2026-10-23 la
 // publicacion de 9a31494 salio bien (el portal commiteo 161e74d a las 12:23:17 y su
@@ -31,6 +32,12 @@ import { join } from 'node:path';
 import { raiz } from './gates_lib.mjs';
 
 export const ARCHIVOS = ['gates.json', 'prompts.json'];
+export const INDICE = 'index.json';
+// El indice se pregunta igual que los dos recursos, con el mismo vocabulario de tres
+// estados, pero NO pasa por clasificar(): esa funcion se apoya en content_hash.value y
+// el indice no tiene huella propia a proposito (D-056). Lo que se le exige es otra cosa:
+// que las huellas que CITA sean las que declara lo commiteado.
+export const TODOS = [...ARCHIVOS, INDICE];
 export const BASE = 'https://yujin.app/urazuke/api';
 export const PREFIJO_MAX = 120;
 
@@ -80,6 +87,51 @@ export function clasificar(sonda, esperada) {
   };
 }
 
+/**
+ * Clasifica UNA sonda del indice, con el mismo vocabulario de tres estados. Tambien es
+ * pura, por el mismo motivo: los casos que importan (un indice anterior que todavia no
+ * conoce un recurso, un indice que cita la huella vieja) no se pueden pedir por red.
+ *
+ * Un indice que cita una huella vieja no es un rojo del metodo: el despliegue del portal
+ * es otro flujo y puede estar corriendo, y es exactamente el caso que `otra_huella`
+ * nombra. Lo que si es rojo es no poder leerlo.
+ */
+export function clasificarIndice(sonda, esperadas) {
+  if (sonda.error) {
+    return { estado: 'ilegible', detalle: 'sin respuesta: ' + prefijo(sonda.error) };
+  }
+  const bytes = Buffer.byteLength(sonda.cuerpo ?? '', 'utf8');
+  const cabeza = 'HTTP ' + sonda.status + ', ' + bytes + ' bytes';
+  if (sonda.status !== 200) {
+    return { estado: 'ilegible', detalle: cabeza + ': ' + prefijo(sonda.cuerpo) };
+  }
+  let json;
+  try {
+    json = JSON.parse(sonda.cuerpo);
+  } catch {
+    return { estado: 'ilegible', detalle: cabeza + ', la respuesta no es JSON: ' + prefijo(sonda.cuerpo) };
+  }
+  if (!Array.isArray(json?.resources) || json.resources.length === 0) {
+    return { estado: 'ilegible', detalle: cabeza + ', la respuesta es JSON y no lista ningun recurso: ' + prefijo(sonda.cuerpo) };
+  }
+  const citadas = {};
+  for (const r of json.resources) citadas[r?.name] = r?.content_hash?.value;
+  const sinCitar = [];
+  const distintas = [];
+  for (const [nombre, esperada] of Object.entries(esperadas)) {
+    const citada = citadas[nombre];
+    if (typeof citada !== 'string' || !citada) sinCitar.push(nombre);
+    else if (citada !== esperada) distintas.push(nombre + ' con huella ' + citada.slice(0, 12) + ', esperabamos ' + esperada.slice(0, 12));
+  }
+  if (sinCitar.length) {
+    return { estado: 'otra_huella', detalle: cabeza + ', el indice servido no cita la huella de ' + sinCitar.join(', ') + ': puede ser un indice anterior, y el despliegue del portal es otro flujo' };
+  }
+  if (distintas.length) {
+    return { estado: 'otra_huella', detalle: cabeza + ', el indice servido cita ' + distintas.join('; ') };
+  }
+  return { estado: 'coincide', detalle: cabeza + ', cita las ' + Object.keys(esperadas).length + ' huellas que declara lo commiteado' };
+}
+
 /** El veredicto de la corrida completa. Ilegible gana: si no se pudo mirar, no se sabe. */
 export function codigoDeSalida(estados) {
   const valores = Object.values(estados);
@@ -127,16 +179,18 @@ async function principal() {
 
   const quiero = esperadas();
   for (const nombre of ARCHIVOS) console.log(nombre + ': esperamos la huella ' + quiero[nombre].slice(0, 12));
+  console.log(INDICE + ': esperamos que cite esas ' + ARCHIVOS.length + ' huellas (no tiene huella propia, D-056)');
 
   const estados = {};
   const ultimo = {};
-  let pendientes = [...ARCHIVOS];
+  let pendientes = [...TODOS];
 
   for (let ronda = 1; ronda <= rondas && pendientes.length; ronda++) {
-    // Las dos en la misma vuelta: asi una demora no duplica el reloj de pared, que es
+    // Los tres en la misma vuelta: asi una demora no duplica el reloj de pared, que es
     // lo que convirtio 20 intentos en 13 minutos.
     for (const nombre of pendientes) {
-      const r = clasificar(await sondear(base + '/' + nombre, timeout), quiero[nombre]);
+      const sonda = await sondear(base + '/' + nombre, timeout);
+      const r = nombre === INDICE ? clasificarIndice(sonda, quiero) : clasificar(sonda, quiero[nombre]);
       estados[nombre] = r.estado;
       ultimo[nombre] = r.detalle;
       console.log('  ' + nombre + ' vuelta ' + ronda + ': ' + r.estado + ' -- ' + r.detalle);
@@ -146,9 +200,9 @@ async function principal() {
   }
 
   console.log('--- veredicto ---');
-  for (const nombre of ARCHIVOS) console.log(nombre + ': ' + estados[nombre] + ' -- ' + ultimo[nombre]);
+  for (const nombre of TODOS) console.log(nombre + ': ' + estados[nombre] + ' -- ' + ultimo[nombre]);
   const codigo = codigoDeSalida(estados);
-  if (codigo === 0) console.log('Produccion sirve las dos huellas: publicado y verificado.');
+  if (codigo === 0) console.log('Produccion sirve las dos huellas y un indice que las cita: publicado y verificado.');
   if (codigo === 2) console.log('Produccion contesta y todavia sirve otra huella: el despliegue del portal es otro flujo y puede estar corriendo.');
   if (codigo === 1) console.log('No se pudo leer produccion. La publicacion ocurrio; lo que falta es la evidencia de que llego.');
   process.exit(codigo);

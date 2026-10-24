@@ -68,6 +68,34 @@ test('los dos archivos publicados tampoco: es lo que el consumidor baja', () => 
   }
 });
 
+test('el indice publicado tampoco, y su unica excepcion es una direccion -- probada', () => {
+  // El indice tiene que declarar la direccion ABSOLUTA de cada recurso, porque un
+  // consumidor que solo tiene el indice no puede resolver una relativa. Esa direccion
+  // lleva el nombre del alojamiento, y una direccion es una direccion: no es una
+  // dependencia declarada (D-056). La excepcion es estrecha y se verifica aca -- el
+  // nombre puede aparecer SOLO como una de las direcciones que el propio archivo
+  // declara, nunca en prosa y nunca en un nombre de campo.
+  const indice = JSON.parse(readFileSync(join(raiz, 'docs', 'html', 'api', 'index.json'), 'utf8'));
+  const direcciones = new Set([
+    indice.canonical_base,
+    ...(indice.mirrors ?? []).map((m) => m.base),
+    ...indice.resources.map((r) => r.url),
+  ]);
+  const hallazgos = hallazgosEnPayload(indice);
+  const sobrantes = hallazgos.filter((h) => {
+    const m = /^yujin @ [^=]+= (.*)$/.exec(h);
+    if (!m) return true;
+    let valor;
+    try { valor = JSON.parse(m[1]); } catch { return true; }
+    return !direcciones.has(valor);
+  });
+  assert.deepEqual(sobrantes, [], 'el nivel de datos no nombra herramientas, y el alojamiento solo puede aparecer como direccion');
+  // Y la excepcion existe de verdad: si el indice dejara de declarar sus direcciones,
+  // esta prueba quedaria verde sin estar probando nada.
+  assert.ok(direcciones.size >= 3, 'el indice declara la canonica, el espejo y la direccion de cada recurso');
+  assert.ok(hallazgos.length >= direcciones.size, 'y esas direcciones son las que la lista cerrada detecta');
+});
+
 test('el documento generado desde los datos tampoco', () => {
   const texto = readFileSync(join(raiz, 'docs', 'COMPUERTAS.md'), 'utf8');
   assert.deepEqual(nombra(texto), [], 'docs/COMPUERTAS.md nombra una herramienta (D-055)');

@@ -25,17 +25,23 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { raiz, huellaDeContenido } from './gates_lib.mjs';
+import { verificarIndice, leerDisco } from './index_api.mjs';
 
 const VOLATILES = {
   'prompts.json': ['version', 'generated_at'],
   'gates.json': ['generated_at', 'git_commit', 'git_commit_note'],
+  // El indice no tiene mas metadata de corrida que su fecha: no lleva version ni huella
+  // propias (D-056), asi que todo lo demas tiene que coincidir clavado.
+  'index.json': ['generated_at'],
 };
+
+const ARCHIVOS = ['prompts.json', 'gates.json', 'index.json'];
 
 const ruta = (n) => join(raiz, 'docs', 'html', 'api', n);
 const leer = (n) => { try { return JSON.parse(readFileSync(ruta(n), 'utf8')); } catch { return null; } };
 const sinVolatiles = (o, n) => { const c = { ...o }; for (const k of VOLATILES[n]) delete c[k]; return c; };
 
-const antes = { 'prompts.json': leer('prompts.json'), 'gates.json': leer('gates.json') };
+const antes = Object.fromEntries(ARCHIVOS.map((n) => [n, leer(n)]));
 
 let fallas = 0;
 
@@ -56,7 +62,33 @@ function verificarHuella(nombre, publicado) {
   return true;
 }
 
-const huellas = () => ['gates.json', 'prompts.json'].map((n) => verificarHuella(n, antes[n])).every(Boolean);
+// El indice no tiene huella propia que recalcular: lo que se le exige es que las
+// versiones y las huellas que CITA sean las que los recursos declaran de verdad. Un
+// indice que cita una huella vieja es peor que no tener indice, porque le miente al
+// consumidor con cara de dato verificado.
+function verificarCitasDelIndice() {
+  const indice = antes['index.json'];
+  if (!indice) {
+    console.error('falta docs/html/api/index.json');
+    console.error('  arreglo: corre node build/index_api.mjs');
+    return false;
+  }
+  const errores = verificarIndice(indice, leerDisco());
+  if (errores.length) {
+    for (const e of errores) console.error('[' + e.codigo + '] ' + e.que + ' -- arreglo: ' + e.arreglo);
+    return false;
+  }
+  console.log('index.json: cita las versiones y huellas vivas de '
+    + indice.resources.map((r) => r.name + ' ' + r.version + '/' + r.content_hash.value.slice(0, 12)).join(', ')
+    + ' (y no lleva version ni huella propias, D-056)');
+  return true;
+}
+
+const huellas = () => {
+  const recursos = ['gates.json', 'prompts.json'].map((n) => verificarHuella(n, antes[n])).every(Boolean);
+  const indice = verificarCitasDelIndice();
+  return recursos && indice;
+};
 
 if (process.argv.includes('--huella')) {
   process.exit(huellas() ? 0 : 1);
@@ -64,11 +96,11 @@ if (process.argv.includes('--huella')) {
 
 if (!huellas()) fallas++;
 
-for (const script of ['prompts_api.mjs', 'gates_api.mjs']) {
+for (const script of ['prompts_api.mjs', 'gates_api.mjs', 'index_api.mjs']) {
   execFileSync(process.execPath, [join(raiz, 'build', script)], { stdio: 'inherit' });
 }
 
-for (const nombre of ['prompts.json', 'gates.json']) {
+for (const nombre of ARCHIVOS) {
   const a = antes[nombre], b = leer(nombre);
   if (!a) { console.error('no habia ' + nombre + ' commiteado'); fallas++; continue; }
   const ja = JSON.stringify(sinVolatiles(a, nombre)), jb = JSON.stringify(sinVolatiles(b, nombre));
