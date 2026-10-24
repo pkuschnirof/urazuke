@@ -846,7 +846,7 @@ auditoría, y no correspondía.
 
 - **Nodo:** `cadena/publicacion` [nodo propuesto]
 - **Grupo:** G-API · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: abierto**
+- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-24.
 
 **Qué está mal.** El trabajo de publicación **vacía** los dos directorios antes de llenarlos, así
 que cualquier configuración de servidor puesta adentro se evapora en la publicación siguiente.
@@ -894,6 +894,54 @@ archivo estuviera puesto: el último espejado fue `f89d273`, de antes. Que el va
 está verificado **leyendo** el flujo —el borrado apunta a `api/` y a `docs/`, un nivel abajo— y la
 guarda del método lo exige, pero leer no es haber ocurrido. Este pendiente se cierra con la
 medición de después de la próxima fusión a `main`, no antes.
+
+**CIERRE (2026-10-24), medido después de una publicación del método.** La fusión de `3079fe6` a
+`main` disparó la publicación (corrida `40133210429`), que es exactamente lo que este pendiente
+esperaba para cerrarse. Lo que se midió, en ese orden:
+
+*Uno — la publicación vació los dos directorios y la configuración no desapareció.* El paso que
+copia imprime lo que cambia y lo que se va del portal después del vaciado y el rellenado:
+
+```
+el archivo esta commiteado en el portal y fuera del alcance del vaciado: portal/yujin.app/urazuke/.htaccess
+OJO: esto dice que el ARCHIVO esta, no que el servidor lo tenga puesto. [...] Quien contesta de
+verdad es el paso 'Preguntar a produccion...', mas abajo
+--- lo que cambia en el portal ---
+--- archivos que desaparecen del portal ---
+El portal ya tiene exactamente esto: no hay nada que publicar.
+```
+
+Las dos listas vacías son la medición, y no dependen de que hubiera algo que publicar: si el
+borrado hubiera alcanzado al archivo, habría aparecido en *archivos que desaparecen del portal*,
+que se calcula del estado del clon **después** del vaciado.
+
+*Dos — producción sigue sirviendo la interfaz, preguntado desde dentro de la propia publicación.*
+El paso que D-057 agregó:
+
+```
+OK    https://yujin.app/urazuke/api/ contesta con el indice -- HTTP 200, 2 recursos listados
+OK    index.json: un navegador de otro origen puede leerla -- access-control-allow-origin: *
+OK    index.json: dice cuanto vale la copia -- cache-control: public, max-age=300, must-revalidate
+OK    gates.json: un navegador de otro origen puede leerla -- access-control-allow-origin: *
+OK    gates.json: dice cuanto vale la copia -- cache-control: public, max-age=300, must-revalidate
+OK    prompts.json: un navegador de otro origen puede leerla -- access-control-allow-origin: *
+OK    prompts.json: dice cuanto vale la copia -- cache-control: public, max-age=300, must-revalidate
+
+La interfaz de datos se puede consumir: directorio, CORS y Cache-Control.
+```
+
+**Criterio por perfil, verificado.** *P2:* la lectura desde un navegador sigue funcionando después
+de una publicación del método, que es lo que este pendiente pedía y no "el día que se configuró".
+*P5:* el auditor lo comprueba leyendo el flujo —el borrado nombra `docs/` y `api/`, y la
+configuración vive un nivel arriba— **y** corriendo `node build/api_headers.mjs`, que mide en vez de
+afirmar.
+
+**Lo que queda dicho, porque es el aprendizaje y no el arreglo.** Poner la configuración fuera del
+alcance del vaciado era condición **necesaria y no suficiente**: el archivo quedó bien ubicado y
+commiteado el 2026-10-24 a la tarde, el despliegue del portal cerró en verde, y producción siguió en
+rojo porque el transporte la descartaba (PND-035). Por eso la guarda del método ya no afirma que la
+configuración esté puesta: dice que el **archivo** está, que es lo único que mira, y lo dice con esa
+advertencia escrita al lado. Quien contesta de verdad es el paso que le pregunta al servidor.
 
 ---
 
@@ -1751,12 +1799,12 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 14 | 8 | 6 | 4 |
+| G-API | 14 | 7 | 7 | 3 |
 | G-ALCANCE | 3 | 3 | 0 | 1 |
 | G-IDIOMA | 13 | 12 | 1 | 3 |
 | G-PUBLICACION | 3 | 0 | 3 | 0 |
 | G-ECOSISTEMA | 2 | 1 | 1 | 1 |
-| **total** | **35** | **24** | **11** | **9** |
+| **total** | **35** | **23** | **12** | **8** |
 
 Treinta y cinco entradas, `PND-001` a `PND-035`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), dos del propio método midiendo su cadena y su publicación (PND-001 y PND-035),
@@ -1766,11 +1814,10 @@ nueve revisiones semánticas.
 **Lo que está primero, y por qué.** Las precondiciones del grupo de la API están cerradas, y en
 este orden: PND-021 (cuál es el árbol del portal realmente desplegado), PND-020 y PND-018 (la
 publicación atrasada), PND-002 con PND-006 y PND-007 (el índice, que es la raíz de siete entradas),
-y PND-035 (el transporte del portal, que descartaba la configuración), con el que cierran PND-004 y
-PND-005. **PND-013 queda abierto a propósito con su mitad verde**: su criterio de aceptación no es
-que la configuración esté puesta hoy, sino que **sobreviva a una publicación del método**, y ninguna
-corrió todavía después de ponerla. Se cierra midiendo después de la próxima fusión a `main`, no
-antes.
+y PND-035 (el transporte del portal, que descartaba la configuración), con el que cierran PND-004,
+PND-005 y PND-013 —este último recién cuando una publicación del método corrió **encima** de la
+configuración sin borrarla, que es lo que su criterio pedía y no "está puesta hoy"—. El grupo de la
+API queda sin ninguna precondición abierta.
 
 Lo que sigue, en el orden que el dueño autorizó: **PND-014** y **PND-015** —el mapa del sitio y los
 documentos publicados a los que no lleva ningún enlace, que son el mismo trabajo sobre la misma
