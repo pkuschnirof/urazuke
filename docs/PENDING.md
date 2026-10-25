@@ -19,8 +19,9 @@ medida. El dueño aprobó este archivo el 2026-10-24 y autorizó, en ese orden, 
 herramientas (PND-023), la publicación atrasada del portal (PND-018 y PND-020, que son el mismo
 evento) y, con un "adelante con lo que sigue", el orden que este registro fijó: la configuración
 del servidor que el espejo borraba sola (PND-013) y el índice de la interfaz de datos (PND-002,
-con PND-006 y PND-007, que se cierran con él). El resto de la lista sigue esperando su turno; nada
-se arregla fuera del orden acordado.
+con PND-006 y PND-007, que se cierran con él) y, con otro "adelante con lo que sigue", el grupo del
+alcance (PND-014, PND-015 y PND-003, más PND-017, que había que corregir antes de hornear). El
+resto de la lista sigue esperando su turno; nada se arregla fuera del orden acordado.
 
 **Dónde vive, y por qué acá.** La auditoría pidió un archivo satélite,
 `docs/PENDIENTES_AUDITORIA_2026-10.md`. El dueño decidió lo contrario (2026-10-24): va **en el
@@ -367,7 +368,7 @@ contestando 403. El documento del directorio es configuración del servidor y va
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
 - **Grupo:** G-API (el arreglo vive en G-ALCANCE) · **Severidad:** bloquea
-- **Quién decide:** se hace y se reporta · **Repositorio:** portal · **Estado: abierto**
+- **Quién decide:** se hace y se reporta · **Repositorio:** portal · **Estado: CERRADO** el 2026-10-24.
 
 **Qué está mal.** La portada no menciona la API en ninguna parte, así que un consumidor que llega
 por el sitio no se entera de que existe.
@@ -401,6 +402,42 @@ urazuke/api            0
 **Depende de:** PND-002 (el índice es lo que conviene enlazar, no los dos archivos sueltos) y
 PND-020 (hoy la portada publicada está atrasada: tocarla antes de destrabar eso publica sobre una
 versión vieja).
+
+**Cómo se cerró (2026-10-24).** La portada horneada nombra la interfaz de datos en los diez
+idiomas, y lo que se enlaza es el **directorio** —que desde PND-013 y PND-035 contesta con el
+índice— más los dos recursos por su nombre. Medido sobre los 70.395 bytes que sirve producción
+después del commit `63682dd` del portal:
+
+```
+gates.json             2
+prompts.json           2
+urazuke/api/           1   href="api/"
+```
+
+y el párrafo, tal como lo lee quien no ejecuta nada:
+
+```
+...falta leer el repositorio: la interfaz de datos está en <a href="api/">yujin.app/urazuke/api/</a>.
+Su índice lista cada recurso con su dirección canónica, su versión y su huella:
+<a href="api/gates.json">gates.json</a> ... <a href="api/prompts.json">prompts.json</a>
+```
+
+**Criterio por perfil, verificado.** *P1 y P2:* partiendo sólo de la portada se llega al directorio,
+y de ahí al índice, que es lo que dice qué bajar y qué huella recalcular; es la razón por la que
+este pendiente esperaba a PND-002 en vez de enlazar los dos archivos sueltos. *P3:* el enlace está
+en el bloque que explica que las compuertas se publican como dato, no escondido en el pie. *P4:* el
+enlace viaja **horneado** en el HTML servido, y en las nueve portadas por idioma es absoluto, no
+relativo:
+
+```
+/urazuke/en/   href="/urazuke/api/"  href="/urazuke/api/gates.json"  href="/urazuke/api/prompts.json"
+/urazuke/ar/   idem
+/urazuke/ja/   idem
+```
+
+Esas tres rutas absolutas son, además, un defecto propio cazado en el camino: la primera versión
+apuntaba un nivel demasiado abajo desde las páginas por idioma y lo detuvo el verificador del
+portal. La lista de rutas que hay que absolutizar quedó en un solo lugar del generador.
 
 ---
 
@@ -1080,7 +1117,7 @@ leyendo el flujo del portal.
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
 - **Grupo:** G-ALCANCE · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: abierto**
+- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-24.
 
 **Qué está mal.** El mapa del sitio lista la portada y nada más; ni un documento ni la API.
 
@@ -1115,13 +1152,39 @@ hallazgo y deja afuera los 76 documentos y la API.
 
 **Depende de:** PND-020 y PND-018 (el mapa modificado viaja con ese trabajo sin commitear).
 
+**Cómo se cerró (2026-10-24).** El mapa del sitio dejó de escribirse a mano: el generador descubre
+en el disco lo que hay, así que un documento entra al mapa **por existir**. Medido en producción
+después del commit `63682dd`:
+
+```
+https://yujin.app/sitemap.xml   HTTP 200, 17708 bytes
+direcciones totales:     96   (eran 7)
+de urazuke:              90
+de urazuke/docs:         76
+de la interfaz de datos:  4   /api/  /api/index.json  /api/gates.json  /api/prompts.json
+```
+
+Y la cuenta de los documentos no es una coincidencia: `find docs/html -name '*.html' | wc -l` en
+este repositorio da **76**, exactamente las 76 direcciones de `/urazuke/docs/` que el mapa lista.
+Ni falta una ni sobra una.
+
+**Criterio por perfil, verificado.** *P4:* desde el mapa se llega a cada documento publicado y a
+los tres recursos de la interfaz, sin depender de que algún enlace los nombre.
+
+**Lo que queda guardado, porque este defecto vuelve solo.** La publicación del método no toca la
+portada ni el mapa, así que el próximo documento nuevo nacería huérfano otra vez. El verificador del
+portal tiene ahora dos comprobaciones nuevas: que al mapa no le **falte** ninguna dirección
+publicada y que no le **sobre** una que el método dejó de publicar —las dos con su rojo deliberado,
+y cada rojo exigiendo el texto que el verificador tiene que decir, no sólo que se caiga—. La otra
+mitad, el aviso del lado del método, es PND-025 y sigue abierta.
+
 ---
 
 ## PND-015 — Diez documentos publicados que no se pueden alcanzar *(era U-14)*
 
 - **Nodo:** `interfaz-publica/portada`, `corpus/anexo-h` [nodos propuestos]
 - **Grupo:** G-ALCANCE · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: abierto**
+- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-24.
 
 **Qué está mal.** El anexo de las 45 heurísticas en ocho idiomas, el documento de compuertas y el
 de evaluaciones se sirven con éxito y no tienen un solo enlace que lleve a ellos.
@@ -1167,6 +1230,43 @@ que 0.
 
 **Depende de:** PND-020 (la portada publicada está atrasada) y arrastra PND-025 (el chequeo que
 evita que vuelva a pasar).
+
+**Cómo se cerró (2026-10-24).** El anexo de las 45 reglas es ahora una **columna más** de la tabla
+de material, en los ocho idiomas en que el método lo publica, y los otros dos documentos tienen su
+párrafo explicando por qué están fuera del corpus traducido (D-051: son documentación de
+herramienta y van en inglés). Medido en producción después del commit `63682dd`:
+
+```
+en la portada servida (70.395 bytes), los enlaces, no la prosa:
+  docs/ANEXO_HEURISTICAS.html      1      docs/it/ANEXO_HEURISTICAS.html   1
+  docs/en/ANEXO_HEURISTICAS.html   1      docs/ja/ANEXO_HEURISTICAS.html   1
+  docs/de/ANEXO_HEURISTICAS.html   1      docs/pt/ANEXO_HEURISTICAS.html   1
+  docs/fr/ANEXO_HEURISTICAS.html   1      docs/zh/ANEXO_HEURISTICAS.html   1
+  href="docs/COMPUERTAS.html"          1
+  href="docs/EVALUACIONES_DE_IA.html"  1
+
+y los documentos que estaban huérfanos siguen sirviéndose, ahora con quien los nombre:
+  docs/ANEXO_HEURISTICAS.html      200
+  docs/ja/ANEXO_HEURISTICAS.html   200
+  docs/COMPUERTAS.html             200
+  docs/EVALUACIONES_DE_IA.html     200
+```
+
+**Criterio por perfil, verificado.** *P3:* se llega al anexo y al documento de compuertas en **un**
+paso desde la portada —la tabla de material y el párrafo de abajo—, bastante por debajo de los tres
+que pedía UX-03. *P4:* los tres están enlazados en el HTML **servido** (horneado, no después del
+conmutador) y en el mapa del sitio, que ahora los lista con los otros 73.
+
+**Lo que queda guardado.** El verificador del portal exige ahora que **todo** documento del disco
+esté enlazado desde alguna de las diez páginas, y **falla**, no avisa: un documento al que nadie
+puede llegar no está publicado, está servido. Tiene su rojo deliberado —*un documento publicado que
+nadie enlaza*— que cae nombrando el archivo huérfano. Las mutaciones del portal pasaron de cinco a
+nueve con este trabajo, y las nueve caen:
+
+```
+mutaciones: 9  rojos: 9
+PRUEBA EN ROJO OK: las 9 mutaciones caen y el verificador nombra el problema.
+```
 
 ---
 
@@ -1261,7 +1361,7 @@ idioma).
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
 - **Grupo:** G-IDIOMA · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: abierto**
+- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-24.
 
 **Qué está mal.** Dos errores en cuatro palabras, en la única traducción errónea que apareció en
 2.410 cadenas.
@@ -1306,6 +1406,35 @@ El arreglo sigue siendo de una línea en el catálogo, pero ahora exige además 
 la portada italiana y publicarla. Quedó primero en la fila del grupo de idiomas.
 
 **Depende de:** PND-020 *(cerrado)*.
+
+**Cómo se cerró (2026-10-24).** Se corrigió el catálogo y se volvió a hornear la portada italiana,
+que es lo que el agravamiento de arriba exigía: una línea en el catálogo no alcanzaba desde que el
+texto viaja dentro de una página estática. Medido en producción después del commit `63682dd`:
+
+```
+https://yujin.app/urazuke/it/        HTTP 200, 70771 bytes
+  tramonti        0
+  quattro fasi    2
+
+horneado en la página:
+  Ventiquattro gradini in quattro fasi, ciascuno con un contratto: contesto, prompt,
+  risultato atteso, verifica, segnali d'allarme.
+
+https://yujin.app/urazuke/i18n/it.json
+  what.is.li2 = Ventiquattro gradini in quattro fasi, ciascuno con un contratto: ...
+  ladder.h2   = Ventiquattro gradini, quattro fasi, nell'ordine in cui si salgono.
+```
+
+**Criterio por perfil, verificado.** *P3 (lector italiano):* los dos lugares de la portada donde se
+nombra la cantidad dicen **cuatro**, y la palabra que se lee es *fasi*, que significa tramo, no
+*tramonti*, que son atardeceres. El archivo ya no se contradice consigo mismo.
+
+**Lo que no cierra con esto.** Esta entrada era la primera parte de U-17. La segunda —la revisión
+**semántica** de los nueve idiomas, buscando más falsos amigos y más números que no coincidan— son
+PND-026 a PND-034 y siguen abiertas. Y se agrandaron un poco: las tres cadenas nuevas que este
+trabajo agregó a los diez catálogos (el anexo, el documento de compuertas, la interfaz de datos)
+las escribió el agente y nadie las revisó. El castellano, el inglés y las latinas se sostienen; el
+japonés, el chino, el árabe y el hindi entran en esa revisión.
 
 ---
 
@@ -1799,12 +1928,12 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 14 | 7 | 7 | 3 |
-| G-ALCANCE | 3 | 3 | 0 | 1 |
-| G-IDIOMA | 13 | 12 | 1 | 3 |
+| G-API | 14 | 6 | 8 | 2 |
+| G-ALCANCE | 3 | 1 | 2 | 0 |
+| G-IDIOMA | 13 | 11 | 2 | 2 |
 | G-PUBLICACION | 3 | 0 | 3 | 0 |
 | G-ECOSISTEMA | 2 | 1 | 1 | 1 |
-| **total** | **35** | **23** | **12** | **8** |
+| **total** | **35** | **19** | **16** | **5** |
 
 Treinta y cinco entradas, `PND-001` a `PND-035`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), dos del propio método midiendo su cadena y su publicación (PND-001 y PND-035),
@@ -1819,10 +1948,21 @@ PND-005 y PND-013 —este último recién cuando una publicación del método co
 configuración sin borrarla, que es lo que su criterio pedía y no "está puesta hoy"—. El grupo de la
 API queda sin ninguna precondición abierta.
 
-Lo que sigue, en el orden que el dueño autorizó: **PND-014** y **PND-015** —el mapa del sitio y los
-documentos publicados a los que no lleva ningún enlace, que son el mismo trabajo sobre la misma
-portada— y **PND-003**, nombrar la interfaz de datos desde la portada, que ya tiene un índice al
-que apuntar. Los tres viven en el repositorio del portal.
+**El grupo del alcance quedó cerrado el 2026-10-24**, en el orden que el dueño autorizó y en un
+solo movimiento sobre la misma portada: **PND-014** (el mapa, que pasó de 7 direcciones a 96 y ya
+no se escribe a mano), **PND-015** (los documentos que se servían sin que nadie los enlazara, entre
+ellos el anexo de las 45 reglas en ocho idiomas) y **PND-003** (nombrar la interfaz de datos, que
+recién tenía sentido con el índice de PND-002 al que apuntar). De paso cerró **PND-017**, el error
+italiano, que había que corregir antes de hornear o se publicaba dentro de una página estática.
+Del grupo queda **PND-025**: la mitad del guardián que vive en el método. La del portal ya está
+—falla si un documento del disco no está enlazado, y si al mapa le falta o le sobra una dirección—;
+la que tiene que avisar cuando **el método** publica algo nuevo todavía no existe, y sólo se la
+puede ver en verde con el mapa nuevo ya en producción, que es desde hoy.
+
+Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-010,
+PND-011, PND-012, PND-016, PND-024), la revisión semántica de los nueve idiomas (PND-026 a
+PND-034) y el párrafo que separa método, protocolo y herramienta (PND-022), que es el único
+bloqueante abierto fuera del grupo de idiomas.
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar

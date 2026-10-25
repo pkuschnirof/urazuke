@@ -186,7 +186,13 @@ de estas tres piezas se replica en las otras dos.
   `node build/portal_verify.mjs --rondas 1`.
 - **Lo que el disparador no hace**: tocar la landing. Un documento nuevo se publica y
   queda accesible por su URL, pero no aparece enlazado hasta que alguien lo agregue al índice y al
-  i18n de la landing, que viven en el repositorio del portal.
+  i18n de la landing, que viven en el repositorio del portal. Desde el 2026-10-24 eso no pasa en
+  silencio **del lado del portal**: su verificador (`build/verify-urazuke-homes.mjs`, con su prueba
+  en rojo en `build/redproof-urazuke-homes.mjs`) **falla** si un documento del disco no está
+  enlazado desde ninguna de las diez portadas —servido no es publicado— y si al mapa del sitio le
+  falta o le sobra una dirección; el mapa ya no se escribe a mano, se descubre del disco. La mitad
+  que falta es la de acá: el aviso cuando **el método** genera algo que la portada no enlaza
+  (`docs/PENDING.md`, PND-025).
 
 ## Las compuertas como datos (`gates/`)
 
