@@ -1829,7 +1829,7 @@ de evaluar la firma).
 
 - **Nodo:** `cadena/publicacion` [nodo propuesto]
 - **Grupo:** G-ALCANCE · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** los dos · **Estado: abierto**
+- **Repositorio:** método, y lee el del portal · **Estado: CERRADO** el 2026-10-26.
 
 **Qué está mal.** La causa de PND-015 es estructural y está escrita en `CLAUDE.md`: el disparador
 de publicación **no toca la portada**, así que un documento nuevo queda accesible por su URL y no
@@ -1859,6 +1859,52 @@ en que los dos árboles están juntos. Se propone y se reporta.
   adelante no puede quedar huérfano sin que la corrida lo diga.
 
 **Depende de:** PND-015.
+
+**La pregunta de diseño, respondida (2026-10-26).** Corre en **este** repositorio, dentro del
+trabajo de publicación, justo después de clonar el portal y **antes** de la copia: es el único
+momento en que los dos árboles están juntos, y antes de la copia las portadas se leen como están
+commiteadas en el portal y no como las dejó el espejo. El programa es `build/portal_orphans.mjs`,
+corre con node pelado y se puede repetir a mano desde cualquier máquina que tenga los dos árboles:
+`node build/portal_orphans.mjs --portal <árbol del portal>`. Queda **fuera** de
+`build/build.mjs`, por el mismo motivo que los dos chequeos contra producción: la construcción
+corre sobre un solo árbol.
+
+**Y una razón más fuerte de la que estaba escrita, medida al implementarlo.** La mitad del portal
+—`build/verify-urazuke-homes.mjs`, que falla si un documento del disco no está enlazado desde
+ninguna portada— **no la corre nadie automáticamente**: medido el 2026-10-26, el flujo de
+despliegue del portal corre `build/verify-deploy-htaccess.mjs` y no corre el de las portadas. O
+sea que hasta hoy, cuando el método publicaba algo nuevo, lo único que podía descubrir el huérfano
+era que alguien se acordara de correr un programa en el otro repositorio. Era la misma clase de
+guarda dormida que PND-001 y que D-057: existe, está bien escrita y no la invoca nadie.
+
+**Qué separa, y por qué tres estados y no dos.** Por documento: *enlazado* (alguna portada lo
+enlaza y el mapa del sitio lo lleva), *fuera_del_mapa* (una portada lo enlaza y el mapa no: una
+persona llega y un rastreador que no ejecuta JavaScript no) y *sin_enlace* (está servido y
+ninguna portada lo enlaza). Y una cuarta situación que no es de un documento sino del chequeo
+entero: *no se pudo mirar* —el árbol del portal no está donde se dijo, no hay portada principal,
+no hay mapa del sitio, o no hay un solo documento generado que contrastar—. Esa última es **roja y
+no verde**, y es la lección de D-057 aplicada de entrada: decir «cero huérfanos» cuando no se miró
+nada es el defecto, no la ausencia de defecto. El paso de la cadena, además, exige la línea
+`huerfanas: comprobado` que el programa imprime: un paso que no imprimió nada no corrió.
+
+**Severidad, respetada.** Los huérfanos **avisan y no frenan** —es lo que UX-03 declara, y el
+índice de la landing vive en el repositorio del portal—. Lo que sí frena la corrida es no haber
+podido mirar.
+
+**Evidencia de cierre.** Medido el 2026-10-26 contra el árbol real del portal: 10 portadas
+descubiertas del disco, **76 documentos generados, 76 enlazados desde una portada, 76 en el mapa
+del sitio, 0 huérfanos y 0 fuera del mapa**, código de salida 0. Probado en rojo antes de darlo
+por bueno, que es lo que vale: (a) con un documento de más colgado en `docs/html/`, el programa lo
+nombró —`PROBE_HUERFANA.html: sin_enlace`— y salió 2; (b) **cuatro mutaciones del propio programa,
+cuatro rojos** de la prueba nueva: leer sólo el enlace relativo (deja nueve portadas sin mirar),
+reportar «cero huérfanos» cuando no hay nada generado, dejar de considerar rojo que falte el mapa
+del sitio y dejar de considerarlo que falte la portada principal; (c) el fragmento del paso de la
+cadena corrido tal cual en sus tres caminos: verde, aviso con el huérfano nombrado, y rojo con
+`huerfanas: NO se pudo comprobar` y sin la línea de comprobado. Suite completa en verde y árbol
+limpio: `node --test` = **220 pruebas, 0 fallos** (eran 197; las 23 nuevas están en
+`tests/portada_huerfanas.test.mjs`, y cinco de ellas son rojos deliberados).
+
+**Commit / pull request:** pull request **#12**. **Decisión:** D-058.
 
 ---
 
@@ -1929,11 +1975,11 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
 | G-API | 14 | 6 | 8 | 2 |
-| G-ALCANCE | 3 | 1 | 2 | 0 |
+| G-ALCANCE | 3 | 0 | 3 | 0 |
 | G-IDIOMA | 13 | 11 | 2 | 2 |
 | G-PUBLICACION | 3 | 0 | 3 | 0 |
 | G-ECOSISTEMA | 2 | 1 | 1 | 1 |
-| **total** | **35** | **19** | **16** | **5** |
+| **total** | **35** | **18** | **17** | **5** |
 
 Treinta y cinco entradas, `PND-001` a `PND-035`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), dos del propio método midiendo su cadena y su publicación (PND-001 y PND-035),
@@ -1948,16 +1994,19 @@ PND-005 y PND-013 —este último recién cuando una publicación del método co
 configuración sin borrarla, que es lo que su criterio pedía y no "está puesta hoy"—. El grupo de la
 API queda sin ninguna precondición abierta.
 
-**El grupo del alcance quedó cerrado el 2026-10-24**, en el orden que el dueño autorizó y en un
-solo movimiento sobre la misma portada: **PND-014** (el mapa, que pasó de 7 direcciones a 96 y ya
+**El grueso del grupo del alcance se cerró el 2026-10-24**, en el orden que el dueño autorizó y en
+un solo movimiento sobre la misma portada: **PND-014** (el mapa, que pasó de 7 direcciones a 96 y ya
 no se escribe a mano), **PND-015** (los documentos que se servían sin que nadie los enlazara, entre
 ellos el anexo de las 45 reglas en ocho idiomas) y **PND-003** (nombrar la interfaz de datos, que
 recién tenía sentido con el índice de PND-002 al que apuntar). De paso cerró **PND-017**, el error
 italiano, que había que corregir antes de hornear o se publicaba dentro de una página estática.
-Del grupo queda **PND-025**: la mitad del guardián que vive en el método. La del portal ya está
-—falla si un documento del disco no está enlazado, y si al mapa le falta o le sobra una dirección—;
-la que tiene que avisar cuando **el método** publica algo nuevo todavía no existe, y sólo se la
-puede ver en verde con el mapa nuevo ya en producción, que es desde hoy.
+Y el 2026-10-26 cerró el que faltaba, **PND-025**: la mitad del guardián que vive en el método.
+Ahora la publicación, en el único momento en que los dos árboles están juntos, contrasta los
+documentos que el método publica contra los que la portada enlaza y los que el mapa del sitio
+lleva, y avisa nombrando a cada huérfano. Al implementarlo apareció algo peor que lo registrado:
+la mitad del portal existía y **no la corría nadie** —su flujo de despliegue no la invoca—, así
+que hasta ese día la única defensa era que alguien se acordara. Con eso **el grupo del alcance
+queda cerrado entero**.
 
 Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-010,
 PND-011, PND-012, PND-016, PND-024), la revisión semántica de los nueve idiomas (PND-026 a

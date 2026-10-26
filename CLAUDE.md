@@ -190,9 +190,19 @@ de estas tres piezas se replica en las otras dos.
   silencio **del lado del portal**: su verificador (`build/verify-urazuke-homes.mjs`, con su prueba
   en rojo en `build/redproof-urazuke-homes.mjs`) **falla** si un documento del disco no está
   enlazado desde ninguna de las diez portadas —servido no es publicado— y si al mapa del sitio le
-  falta o le sobra una dirección; el mapa ya no se escribe a mano, se descubre del disco. La mitad
-  que falta es la de acá: el aviso cuando **el método** genera algo que la portada no enlaza
-  (`docs/PENDING.md`, PND-025).
+  falta o le sobra una dirección; el mapa ya no se escribe a mano, se descubre del disco.
+- **Y desde el 2026-10-26 tampoco pasa en silencio del lado del método** (D-058, PND-025). El
+  trabajo de publicación, después de clonar el portal y **antes** de la copia —el único momento en
+  que los dos árboles están juntos—, contrasta los documentos que el método publica contra los que
+  la portada enlaza y los que el mapa del sitio lleva, y **avisa** nombrando a cada huérfano:
+  `node build/portal_orphans.mjs --portal <árbol del portal>`. Separa tres situaciones por
+  documento (enlazado / enlazado pero fuera del mapa / servido y sin ningún enlace) y una cuarta
+  que es del chequeo entero: no haber podido mirar —falta el árbol del portal, la portada
+  principal, el mapa, o no hay nada generado— es **rojo y no verde**, porque decir «cero
+  huérfanos» sin haber mirado es el defecto de D-057. Los huérfanos avisan y no frenan (es la
+  severidad de UX-03, y el índice de la landing es del otro repositorio); lo que frena es no haber
+  podido mirar. Hizo falta por algo que se midió al escribirlo: la mitad del portal existía y **no
+  la corría nadie**, porque su flujo de despliegue no la invoca.
 
 ## Las compuertas como datos (`gates/`)
 
@@ -307,14 +317,15 @@ Incluyen el test de diferencia cero contra el congelado, los rojos deliberados d
 fixture que prende y apaga el interruptor, el test de idioma del nivel de datos (D-051) y el de la
 versión declarada contra su huella, en los dos archivos publicados (D-053), y las del índice de la
 interfaz de datos, que son casi todas rojos deliberados (D-056), y la del registro de pendientes
-contra su propio resumen (D-057). Los cuatro
+contra su propio resumen (D-057), y las del aviso de huérfanas, donde cinco de las veintitrés son
+rojos deliberados y tres corren el programa aparte para exigir su salida medida (D-058). Los cinco
 programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
-`index_api`)
+`index_api`, `portal_orphans`)
 detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
 el idiom de pegar `file:///` adelante de `argv[1]` sólo acierta en Windows y dejaba dos pasos
 de la cadena corriendo en vacío sobre Linux, en verde. Hay una prueba que lo exige en las dos
-formas de ruta, y los dos pasos del flujo exigen además la línea que el programa imprime: un
-paso que no imprimió nada no corrió, y no es un verde. `node build/api_check.mjs` regenera lo publicado y falla
+formas de ruta, y los pasos del flujo que los corren exigen además la línea que el programa
+imprime: un paso que no imprimió nada no corrió, y no es un verde. `node build/api_check.mjs` regenera lo publicado y falla
 si no coincide con lo commiteado, y `node build/api_check.mjs --huella` recalcula la huella de los
 **dos** recursos commiteados sin regenerar nada (es lo que usa el paso de publicación, porque regenerar reescribe
 `generated_at` y publicaría algo distinto de lo que quedó en `main`); en los dos modos exige además
@@ -329,6 +340,12 @@ Queda **fuera** de `build/build.mjs` a propósito: la construcción tiene que co
 **contenido** es el commiteado, sino si la interfaz se puede **consumir** —el directorio contesta
 con el índice, vuelve la cabecera de origen cruzado, algo dice cuánto vale la copia—. También corre
 con node pelado y sin `curl`, y también está fuera de la construcción.
+`node build/portal_orphans.mjs --portal <árbol del portal>` es el tercero de esta familia y no
+pregunta nada por red: contrasta los documentos que el método publica contra los que la portada
+enlaza y los que el mapa del sitio lleva, y avisa nombrando a cada huérfano (D-058). Necesita los
+**dos** árboles, así que también queda fuera de `build/build.mjs`; en el flujo corre dentro del
+trabajo de publicación, que es el único momento en que están juntos.
 `.github/workflows/compuertas.yml` corre todo eso en cada cambio y, en `main` y sólo con todo en
-verde, publica en el repositorio del portal (D-052), verifica que producción lo sirva (D-054) y le
-pregunta si se puede consumir (D-057, que avisa y no frena).
+verde, publica en el repositorio del portal (D-052), avisa si algo quedó huérfano (D-058),
+verifica que producción lo sirva (D-054) y le pregunta si se puede consumir (D-057, que avisa y no
+frena).
