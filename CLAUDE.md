@@ -154,18 +154,31 @@ de estas tres piezas se replica en las otras dos.
 
 ## Publicación
 
-- **La distinción entre el método, el protocolo y la herramienta se escribe arriba, en las dos
-  portadas** (D-059, PND-022). El método es qué hacer en qué orden, qué exigirle a quien construye
-  y cómo saber que entregó completo, y se sigue con cualquier asistente o con lápiz y papel; el
+- **La distinción entre el método, el protocolo y la herramienta se escribe arriba, en el README**
+  (D-059, D-063, PND-022). El método es qué hacer en qué orden, qué exigirle a quien construye y
+  cómo saber que entregó completo, y se sigue con cualquier asistente o con lápiz y papel; el
   protocolo es un contrato para que una interfaz sea navegable por un agente y por una persona con
-  la misma dignidad; la herramienta implementa el método y habla el protocolo. Va en la sección
-  `id="tres-cosas"` de la portada del portal, horneada en los diez idiomas de la interfaz y **no**
-  detrás del conmutador, y repetida en `README.md` y en los ocho `docs/<idioma>/README.md`. El
+  la misma dignidad; la herramienta implementa el método y habla el protocolo. Va en una sección
+  propia arriba de `README.md` y de los ocho `docs/<idioma>/README.md`, antes de la tesis. El
   argumento de neutralidad **se publica medido**, con el comando que el lector corre contra el
   archivo servido, nunca como declaración del autor; si algún día el dato dejara de sostenerlo, se
-  corrige el dato y no el párrafo. Lo que todavía no está es el enlace de vuelta desde la portada
-  del protocolo, porque esa página está servida y su fuente no está en ningún repositorio
-  (PND-036).
+  corrige el dato y no el párrafo.
+- **En la portada del portal ese párrafo NO va, y la razón está medida** (D-063, PND-051). El
+  2026-10-26 se escribió, se horneó en los diez idiomas de la interfaz y **se descartó sin
+  publicar**, porque la portada ya contesta la pregunta práctica donde el lector aterriza: dice
+  «Neutral respecto de la herramienta» tres veces —una en la tira del encabezado, sobre el
+  pliegue—, tiene la pregunta frecuente «¿Necesito Forge o NAC3?» y la frase «el peldaño existe sin
+  Forge». La entrada que lo pedía afirmaba que la distinción «no está escrita en ninguna parte» y
+  era falsa, comprobable con una orden de dos segundos. **Antes de escribir un párrafo para una
+  portada se le pregunta a la portada**, y el criterio es ése: un documento se puede permitir un
+  párrafo cuidadoso arriba, porque el lector llega dispuesto a leer con cuidado; una portada
+  contesta la pregunta donde la pregunta se hace. Lo único que faltaba era la **taxonomía** —nombrar
+  las tres naturalezas como tres—, y eso vive en el README.
+- **El enlace de vuelta desde la portada del protocolo apareció solo, y eso confirma su pendiente**
+  (PND-036). El 2026-10-26, a las 19:10 UTC, `yujin.app/nac-spec/` pasó a 103.651 bytes, nombra
+  Urazuke veintisiete veces y enlaza `https://yujin.app/urazuke/`, **sin ningún commit que lo
+  produzca**: esa página está servida y su fuente no está en ningún repositorio. El pendiente nunca
+  fue el enlace; es que la página no tiene fuente versionada y cambia sin dejar rastro.
 - Nombre: Urazuke (D-014). No se traduce; el subtítulo sí.
 - Idiomas (D-013): castellano como fuente de verdad (`docs/`); las otras siete versiones de NAC3
   en `docs/<idioma>/` (en, pt, fr, de, it, ja, zh), cada una con README, documento principal,
@@ -246,11 +259,14 @@ de estas tres piezas se replica en las otras dos.
   en rojo en `build/redproof-urazuke-homes.mjs`) **falla** si un documento del disco no está
   enlazado desde ninguna de las diez portadas —servido no es publicado— y si al mapa del sitio le
   falta o le sobra una dirección; el mapa ya no se escribe a mano, se descubre del disco.
-  **Y desde el 2026-10-26 ese verificador está invocado** (D-060, PND-038): hasta ese día existía,
-  estaba bien escrito y **no lo corría nadie** —el despliegue del portal corría la guarda del
-  `.htaccess` y nunca éste—, así que la única defensa contra un huérfano era que alguien se
-  acordara de correr un programa a mano. Ahora el despliegue corre el verificador y las tres
-  pruebas en rojo, y **exige la línea que cada programa imprime**. Consecuencia, dicha donde se
+  **Y desde el 2026-10-26 ese verificador tiene quien lo invoque, en un commit del portal que
+  todavía no se empujó** (D-060, D-063, PND-038, que por eso está *en curso* y no cerrado): hasta
+  ese día existía, estaba bien escrito y **no lo corría nadie** —el despliegue del portal corría la
+  guarda del `.htaccess` y nunca éste—, así que la única defensa contra un huérfano era que alguien
+  se acordara de correr un programa a mano. El paso nuevo hace que el despliegue corra el
+  verificador y las tres pruebas en rojo, y **exija la línea que cada programa imprime**. Mientras
+  ese commit no esté empujado, en producción sigue sin correr: un arreglo en la máquina no es un
+  efecto, que es lo que D-057 dejó escrito. Consecuencia, dicha donde se
   lee: una portada que deje de pasar frena ese despliegue, que es el sitio entero; es lo que la
   regla 4.11 de su contrato pide y el arreglo es siempre un enlace en la portada. Las dos pruebas
   nuevas son las que hacen que el arreglo se quede: `redproof-arbol-propio.mjs` exige que la prueba

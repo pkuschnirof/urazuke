@@ -1309,7 +1309,8 @@ PRUEBA EN ROJO OK: las 9 mutaciones caen y el verificador nombra el problema.
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
 - **Grupo:** G-ALCANCE · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: abierto**
+- **Repositorio:** portal · **Estado: en curso** desde el 2026-10-26: el trabajo está hecho y
+  medido en el clon del portal, sin empujar, y empujar ahí **es** publicar.
 - **Origen:** nació el 2026-10-26 al cerrar `PND-043`, y no es una sorpresa: es la consecuencia
   escrita de D-052, anotada en el mismo momento en que se creó la causa.
 
@@ -1364,6 +1365,53 @@ disco. Con eso, su verificador de portadas vuelve a quedar en verde por sí solo
 
 **Cómo se verifica.** `node build/portal_orphans.mjs --portal <árbol del portal>` deja de nombrarlos,
 y el verificador de portadas del portal (`build/verify-urazuke-homes.mjs`) pasa sin excepciones.
+
+**Qué se hizo (2026-10-26), medido antes y después.** En el repositorio del portal, una columna
+nueva en la tabla del material: una celda por cada uno de los ocho idiomas del corpus, con el
+título en el idioma de su fila —`Las 25 preguntas`, `The 25 questions`, `25の質問`, y así—, la
+cabecera `material.col11` en los **diez** catálogos de la interfaz (hindi y árabe incluidos, que no
+tienen corpus traducido y sin eso le mostrarían castellano a un lector árabe), las diez portadas
+horneadas de nuevo y el mapa del sitio, que se descubre del disco.
+
+```
+node build/verify-urazuke-homes.mjs            (antes)
+  FAIL -- 2 problem(s):
+    - [sitemap.xml] missing 8 of the 98 urazuke url(s)
+    - [index.html] 8 published document(s) that no page links to -- served but
+      unreachable: docs/PREGUNTAS_AL_PROVEEDOR.html, docs/en/..., y los ocho
+
+node build/verify-urazuke-homes.mjs            (despues)
+  PASS -- every page is baked, linked, canonical and reciprocal.
+
+node build/prerender-urazuke.mjs
+  sitemap.xml -> 98 urazuke urls (10 homes, 4 data interface, 84 documents)
+  Every key was present in every catalogue -- no fallbacks used.
+
+node build/redproof-urazuke-homes.mjs
+  mutaciones: 9  rojos: 9        (claves del arbol vivo: 245)
+  PRUEBA EN ROJO OK: las 9 mutaciones caen y el verificador nombra el problema.
+
+node build/portal_orphans.mjs --portal <arbol del portal>     (desde el metodo)
+  documentos generados: 84 | enlazados desde una portada: 84 | en el mapa: 84
+  huerfanas: comprobado -- 84 documentos, 0 huerfanos, 0 fuera del mapa
+```
+
+De 76 enlazados sobre 84 generados a 84 sobre 84. **Commit** en el repositorio del portal,
+`7adbd4b`, **sin empujar**: ahí no hay pull request ni compuerta, y empujar publica.
+
+**Por qué esto va antes que el otro commit del portal.** El commit anterior de esa rama conecta la
+compuerta de las portadas al despliegue (`PND-038`). Con los ocho huérfanos puestos, esa compuerta
+**frena el despliegue, que es el sitio entero** —comprobado: corrida sobre el árbol con los ocho
+sin enlazar, `FAIL -- 2 problem(s)`—. Es la compuerta funcionando, y el arreglo es siempre un
+enlace en la portada; el orden es primero el enlace y después la guarda.
+
+**Lo que NO se tocó y queda dicho.** El texto de entrada de la sección del material sigue diciendo
+«tres documentos por idioma» y «dos documentos más», y ya estaba viejo antes de esta columna. Es
+prosa de la portada en diez idiomas y no es el alcance de esta entrada.
+
+**Cuándo cierra.** Cuando ese commit se empuje y la hoja esté alcanzable desde la portada en
+producción, que es lo que piden P3 y P4. No se cierra con el commit en la máquina: esa es la
+diferencia que D-057 dejó escrita.
 
 **Depende de:** nada. `PND-043` ya está cerrado; esto es la mitad que vive en el otro repositorio.
 
@@ -1836,7 +1884,12 @@ publicaciones automáticas del método — y se puso al día sin tocar el trabaj
 
 - **Nodo:** `cadena/verificacion` [nodo propuesto]
 - **Grupo:** G-PUBLICACION · **Severidad:** registra · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-26.
+- **Repositorio:** portal · **Estado: en curso.** Se cerró el 2026-10-26 y **se reabrió el mismo
+  día**: su evidencia es un commit en el clon del portal, sin empujar, y lo que sus criterios piden
+  —que el despliegue del portal corra la compuerta y deje su línea en el registro— no pasa hasta que
+  ese commit esté empujado. Es la distinción que D-057 dejó escrita y que `PND-049` aplica en la
+  entrada de al lado: un commit en la máquina no es un efecto en producción. El trabajo está hecho y
+  medido; lo que falta es el empujón, que es decisión del dueño.
 - **Origen:** apareció al cerrar PND-022, cuando la prueba en rojo pasó en verde sin haber visto
   el cambio que estaba al lado.
 
@@ -1962,15 +2015,27 @@ contenido de verdad y el control de versiones no las normalizaba. No se tocó, a
 alcance de este pendiente es el mapa, y achicar o agrandar el alcance no es decisión de quien
 ejecuta. Si molesta, es un pendiente nuevo de una línea.
 
-**Commit.** En el repositorio del portal, `19662f1`, **sin empujar**: ahí empujar es publicar y la
-decisión es del dueño. **Decisión:** D-060.
+**Commit.** En el repositorio del portal, `f72406a`, **sin empujar**: ahí empujar es publicar y la
+decisión es del dueño. **Decisión:** D-060. *(Era `19662f1` cuando se escribió esta entrada. El
+2026-10-26 se descartó el commit del párrafo de la portada que tenía debajo —`PND-051`, D-063—, el
+enlace de la hoja nueva (`PND-049`) pasó a ir primero para que **cada** commit deje el árbol
+desplegable, y este se reescribió encima: mismo contenido, identificador nuevo. Se corrige acá
+porque un registro que cita un identificador que ya no resuelve no se puede auditar, que es la razón
+de ser del grupo G-TRAZABILIDAD. **Y queda dicho que un identificador de un commit que todavía no se
+empujó no es firme**: el que vale para auditar es el que quede en `main` del portal, y hasta
+entonces éste nombra una pila local.)*
 ---
 
 ## PND-038 — La compuerta de las portadas existía, estaba bien escrita y no la corría nadie *(hallazgo del método, no de la auditoría)*
 
 - **Nodo:** `cadena/verificacion` [nodo propuesto]
 - **Grupo:** G-PUBLICACION · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal (su flujo de despliegue) · **Estado: CERRADO** el 2026-10-26.
+- **Repositorio:** portal (su flujo de despliegue) · **Estado: en curso.** Se cerró el 2026-10-26 y **se reabrió el mismo
+  día**: su evidencia es un commit en el clon del portal, sin empujar, y lo que sus criterios piden
+  —que el despliegue del portal corra la compuerta y deje su línea en el registro— no pasa hasta que
+  ese commit esté empujado. Es la distinción que D-057 dejó escrita y que `PND-049` aplica en la
+  entrada de al lado: un commit en la máquina no es un efecto en producción. El trabajo está hecho y
+  medido; lo que falta es el empujón, que es decisión del dueño.
 - **Origen:** apareció el 2026-10-26 al implementar PND-025, y quedó escrito ahí y en D-058 sin
   entrada propia. Se registra ahora, porque un hallazgo que vive sólo en el cierre de otro no es
   parte del plan: es una nota al pie.
@@ -2058,7 +2123,8 @@ commitear:
 El camino (3) es el que importa de verdad: es el que hace que este arreglo no repita el defecto que
 vino a arreglar.
 
-**Commit.** En el repositorio del portal, `19662f1`, **sin empujar**. **Decisión:** D-060.
+**Commit.** En el repositorio del portal, `f72406a`, **sin empujar**. **Decisión:** D-060.
+*(Era `19662f1`; se reescribió el 2026-10-26 al descartar el commit que tenía debajo, `PND-051`.)*
 ---
 
 # Abiertos — G-ECOSISTEMA: entender qué es cada cosa
@@ -2070,9 +2136,11 @@ vino a arreglar.
 - **Repositorio:** los dos (portada del portal y README del método) · **Estado: CERRADO** el
   2026-10-26.
 
-**Qué estaba mal.** En ninguna de las dos portadas estaba escrita la distinción: el método es un
-método, el protocolo es un protocolo, la herramienta es una herramienta. Tres naturalezas
-distintas, y un lector superficial las mete en una sola bolsa.
+**Qué estaba mal.** En ninguna de las dos portadas estaba escrita la distinción **como tal**: el
+método es un método, el protocolo es un protocolo, la herramienta es una herramienta. Tres
+naturalezas distintas, y un lector superficial las mete en una sola bolsa. Lo que sí estaba, y la
+reproducción de abajo no vio, es la pregunta práctica contestada en la portada —«¿necesito la
+herramienta?», tres veces y una sobre el pliegue—; la corrección del 2026-10-26 lo mide.
 
 **Evidencia del auditor.**
 
@@ -2092,6 +2160,33 @@ relacionados con interfaces impulsadas por IA, contratos de navegación para age
 accesibilidad, voz y automatización de interfaces", dejando al método flotando ahí adentro, y
 ofreció "análisis del código de GitHub" como si hubiera un sistema que auditar. Las dos cosas son
 el mismo malentendido: **le pidió código a un método.**
+
+**Corrección de esa reproducción (2026-10-26), y el defecto es del lado del método.** La frase
+«la distinción no está escrita en ninguna parte» era **falsa**, y era comprobable con una orden de
+dos segundos el día que se escribió. Medido contra la portada servida:
+
+```
+curl -s https://yujin.app/urazuke/                      -> HTTP 200, 70395 bytes
+grep -o -i "Neutral respecto de la herramienta" | wc -l -> 3   (una en la tira del encabezado,
+                                                                sobre el pliegue)
+grep -o -i "¿Necesito Forge o NAC3?"            | wc -l -> 1
+grep -o -i "el peldaño existe sin Forge"        | wc -l -> 1
+grep -c  -i "Tres cosas distintas"                      -> 0
+```
+
+La pregunta **práctica** —«¿necesito la herramienta?»— está contestada en la portada, por su nombre,
+y una de las tres menciones está arriba del pliegue. Lo que de verdad no estaba escrito es la
+**taxonomía** —nombrar las tres naturalezas como tres— y qué *es* el protocolo en sus propios
+términos: la pregunta frecuente dice que no es una condición, no dice qué es. Es bastante menos de
+lo que esta entrada afirmaba, y la diferencia cambia la decisión.
+
+**Y la contraprueba estaba en la mano y no se pesó.** El autor de «El Arte de Forjar Sistemas»
+adaptó el método en 191 páginas **sin tocar la herramienta** (`PND-039` a `PND-048`): un lector
+real, con esta misma portada delante, que lo entendió perfecto. Una lectura descuidada de un
+asistente ajeno contra una adaptación demostrada no es un defecto de la página; generalizar de una
+muestra de uno es justo lo que el método prohíbe. Queda en `PND-051`, porque un cierre que afirma
+una medición que producción desmiente es el defecto que este método persigue, y estaba en el archivo
+que es la verdad del plan.
 
 **Especificación.** El párrafo que lo desarma, arriba en la portada y repetido en el README: el
 método es qué hacer en qué orden, qué exigirle al que construye y cómo saber que entregó completo,
@@ -2147,50 +2242,60 @@ curl -s https://yujin.app/urazuke/api/gates.json | grep -o -i -E "forge|nac-?3|y
   -> 0        (y el mismo comando sobre prompts.json -> 0)
 ```
 
-**Lo que se escribió, en los dos repositorios.** En el método, una sección nueva arriba del README
-—antes de la tesis—, replicada en los ocho idiomas del corpus en el mismo commit: las tres
-naturalezas, una por párrafo, y el argumento medido con su comando al final. En el portal, una
-sección nueva de la portada (`id="tres-cosas"`) debajo del encabezado y **arriba** de la tesis, con
-el párrafo del malentendido medido, tres tarjetas (el método, el protocolo, la herramienta) y el
-recuadro del argumento comprobable. Las trece cadenas nuevas entraron a los diez catálogos de la
-interfaz, con hindi y árabe incluidos, que no tienen corpus traducido y hasta hoy habrían caído al
-castellano.
+**Lo que se escribió, y lo que se descartó (corregido el 2026-10-26).** En el método, una sección
+nueva arriba del README —antes de la tesis—, replicada en los ocho idiomas del corpus en el mismo
+commit: las tres naturalezas, una por párrafo, y el argumento medido con su comando al final. Eso
+está escrito, fusionado y publicado. **En la portada del portal no va.** El párrafo estaba escrito y
+horneado en los diez idiomas de la interfaz, commiteado en el repositorio del portal y sin empujar;
+el dueño lo leyó, contrastó el criterio contra lo que la portada ya dice y decidió descartarlo. El
+commit se descartó el 2026-10-26 —era `63e4a2c` en el clon de trabajo del portal, y sigue
+recuperable de su registro de referencias mientras ese clon no recoja la basura— y nunca llegó a producción: medido ese día,
+`id="tres-cosas"` no aparece ni en la portada servida ni en el árbol del portal.
 
-**La evidencia, que es lo que el criterio pedía y no la promesa de que está puesto.**
+**El criterio que queda escrito, que vale más que el párrafo.** Un documento se puede permitir un
+párrafo cuidadoso arriba, porque el lector llega dispuesto a leer con cuidado; una portada contesta
+la pregunta donde la pregunta se hace, y la de la portada ya estaba contestada tres veces. Está en
+**D-063**, con la medición y con la contraprueba.
+
+**La evidencia del lado del método, que es lo que el criterio pedía y no la promesa de que está
+puesto.** Los ocho README del corpus llevan la sección, cada uno con su encabezado en su idioma:
 
 ```
-node build/prerender-urazuke.mjs
-  10 portadas horneadas -- "Every key was present in every catalogue -- no fallbacks used"
-
-node build/verify-urazuke-homes.mjs
-  PASS -- every page is baked, linked, canonical and reciprocal
-
-la seccion, horneada e identica a su catalogo, pagina por pagina:
-  es OK 13/13   en OK 13/13   pt OK 13/13   fr OK 13/13   de OK 13/13
-  it OK 13/13   ja OK 13/13   zh OK 13/13   hi OK 13/13   ar OK 13/13
+es  ## Tres cosas distintas: un método, un protocolo, una herramienta
+en  ## Three different things: a method, a protocol, a tool
+pt  ## Três coisas distintas: um método, um protocolo, uma ferramenta
+fr  ## Trois choses distinctes : une méthode, un protocole, un outil
+de  ## Drei verschiedene Dinge: eine Methode, ein Protokoll, ein Werkzeug
+it  ## Tre cose distinte: un metodo, un protocollo, uno strumento
+ja  ## 三つの別のもの：方法、プロトコル、ツール
+zh  ## 三件不同的东西：一个方法、一个协议、一个工具
 ```
 
-Eso es el criterio de P4 medido y no supuesto: el párrafo está en el HTML que se sirve, en el
-idioma de cada dirección, no detrás del conmutador. El de P1 está en el recuadro, con su comando.
-El de P3 es juicio del dueño y se lee en la portada.
+El criterio de P1 está en el párrafo del argumento, con su comando. Y los de P3 y P4 **ya los
+cumplía la portada antes de esta entrada**: eso es lo que la reproducción no vio, y la medición de
+arriba es su evidencia.
 
-**Y el verificador sigue vigilando, comprobado sobre este árbol.** La prueba en rojo del
-verificador de las diez portadas (`build/redproof-urazuke-homes.mjs`, en el repositorio del portal)
-tiene su árbol de origen **clavado a una ruta local** de una máquina, así que corrida tal cual no
-mira el repositorio en el que vive: la primera corrida dijo "244 claves" cuando este árbol ya tenía
-257. Se volvió a correr apuntada a este árbol y las nueve mutaciones caen nombrando su problema,
-con la cuenta viva: *"the page lost 239 of the 257 catalogue keys"*. Queda registrado aparte, en
-PND-037, porque es un guardián que afirma más de lo que mira, y eso es el defecto de D-057 otra
-vez, en otra escala.
+**Lo que se midió sobre el árbol del portal y quedó registrado aparte.** La prueba en rojo del
+verificador de las diez portadas tenía su árbol de origen **clavado a una ruta local** de una
+máquina, así que corrida tal cual no miraba el repositorio en el que vive: decía «244 claves»
+cuando el árbol que tenía al lado tenía otras. Es `PND-037`, y está arreglado: el recibo de dos
+segundos ahora imprime el árbol que ejercita —`arbol: C:portal-trabajo`, `claves (es): 245`— y las
+nueve mutaciones caen con la cuenta viva.
 
-**Lo que este pendiente NO cerró, dicho por su nombre.** El enlace de vuelta de la especificación.
-La portada del protocolo es `yujin.app/nac-spec/`, contesta HTTP 200 y **su fuente no está en
-ningún repositorio**: no está en el del método, ni en el del portal, ni en el de la herramienta de
-voz, ni en el del propio protocolo. Buscada por el texto de su propio título en los cuatro
-árboles: cero coincidencias. No se escribe un archivo nuevo encima de una página viva que alguien
-mantiene en otra parte, así que queda en PND-036 con la evidencia de dónde se buscó. Los tres
-criterios de aceptación de esta entrada son del párrafo y están verdes; el enlace de vuelta no era
-ninguno de ellos.
+**El enlace de vuelta, que esta entrada no cerró, y lo que pasó con él.** La portada del protocolo es
+`yujin.app/nac-spec/`. El 2026-10-24 no enlazaba a Urazuke y su fuente no estaba en ningún
+repositorio, así que no se escribió: no se toca una página viva que alguien mantiene en otra parte.
+El 2026-10-26 **el enlace apareció solo**. Medido a las 20:24 UTC:
+
+```
+curl -s  https://yujin.app/nac-spec/   -> HTTP 200, 103651 bytes  (eran 88826 el 24)
+grep -o -i "urazuke" | wc -l           -> 27                      (eran 0)
+href="https://yujin.app/urazuke/"      -> presente
+curl -sI https://yujin.app/nac-spec/   -> Last-Modified: Mon, 26 Oct 2026 19:10:25 GMT
+```
+
+Y **sin ningún commit que lo produzca**. Eso no cierra `PND-036`: lo confirma. El pendiente nunca
+fue el enlace; es que esa página no tiene fuente versionada, y acaba de cambiar sin dejar rastro.
 
 ---
 
@@ -3606,6 +3711,86 @@ parte que impide la próxima vez, no.
 
 ---
 
+## PND-051 — Un cierre afirmó una medición que producción desmentía *(desvío propio, el mismo día)*
+
+- **Nodo:** `proyecto/registro` [nodo propuesto]
+- **Grupo:** G-TRAZABILIDAD · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-26, con la corrección escrita en la
+  propia entrada que falló.
+- **Origen:** lo encontró el dueño leyendo la portada que la entrada decía que no existía. No lo
+  encontró una compuerta, no lo encontró una auditoría: lo encontró la persona a la que el registro
+  le estaba diciendo algo falso.
+
+**Qué estaba mal.** `PND-022` se cerró el 2026-10-26 y su reproducción decía, con esas palabras,
+que la distinción entre el método, el protocolo y la herramienta **«no está escrita en ninguna
+parte»**. La portada servida la contestaba —`Neutral respecto de la herramienta` tres veces, una
+sobre el pliegue; la pregunta frecuente `¿Necesito Forge o NAC3?`; la frase `el peldaño existe sin
+Forge`— y era comprobable con una orden de dos segundos el día que se escribió. Sobre esa
+reproducción falsa se escribió un párrafo nuevo para la portada en diez idiomas, se horneó y se
+commiteó. El trabajo no era urgente: era innecesario.
+
+**Y hay una segunda mitad, peor que la primera.** La contraprueba estaba en el mismo registro, diez
+entradas más arriba: el autor de «El Arte de Forjar Sistemas» adaptó el método en 191 páginas sin
+tocar la herramienta (`PND-039` a `PND-048`). Un lector real, con esa misma portada delante, que lo
+entendió perfecto. El cierre generalizó de **una** lectura descuidada de un asistente ajeno y pasó
+por encima de una adaptación demostrada. Es la misma falla de método que el propio Anexo H persigue
+en un proyecto ajeno: una muestra de uno no es una medición.
+
+**Mi reproducción (2026-10-26, 20:24 UTC).** Contra producción, que es lo único que decide:
+
+```
+curl -s https://yujin.app/urazuke/                      -> HTTP 200, 70395 bytes
+grep -o -i "Neutral respecto de la herramienta" | wc -l -> 3
+grep -o -i "¿Necesito Forge o NAC3?"            | wc -l -> 1
+grep -o -i "el peldaño existe sin Forge"        | wc -l -> 1
+grep -c  -i "Tres cosas distintas"                      -> 0   (el parrafo nunca se publico)
+```
+
+Lo único que de verdad faltaba era la **taxonomía** —nombrar las tres naturalezas como tres— y qué
+*es* el protocolo en sus propios términos. Eso es una línea en un documento, no veintinueve líneas
+arriba de la portada en diez idiomas.
+
+**Qué se hizo.** Tres cosas, y ninguna es el párrafo. Se corrigió `PND-022` con la medición pegada
+y con la contraprueba, diciendo por su nombre qué afirmó de más. Se descartó el commit del párrafo
+de la portada (`63e4a2c` en el clon de trabajo del portal, recuperable de su registro de
+referencias mientras ese clon no recoja la basura), así que no llegó ni va a llegar a producción. Y quedó escrito el criterio en
+`CLAUDE.md` y en **D-063**: un documento se puede permitir un párrafo cuidadoso arriba; una portada
+contesta la pregunta donde la pregunta se hace, y antes de escribir el párrafo se le pregunta a la
+portada.
+
+**La regla, dicha para que sirva la próxima vez.** Una reproducción que afirma una **ausencia** en
+algo servido lleva el comando y la cuenta, no la frase. «No está escrito en ninguna parte» no es una
+medición: es un recuerdo. Y cuando el registro ya tiene un lector real que hizo lo contrario de lo
+que la hipótesis predice, ese lector pesa más que el anécdota.
+
+**Lo que NO se mecanizó, y por qué se dice en vez de prometerlo.** No hay comprobación decidible que
+atrape «la prosa afirma una ausencia»: el texto de una reproducción no es un dato con forma. Lo que
+sí es decidible —que cada identificador de commit que el registro cita exista— se midió hoy sobre
+las dieciséis citas del archivo: las dieciséis resuelven, siete en el método y nueve entre los dos
+clones del portal, y una de ellas (`19662f1`) obligó a corregir dos entradas porque el commit se
+reescribió al descartar el que tenía debajo. Pero esa comprobación **no la puede correr la suite del
+método**: nueve de las dieciséis viven en un árbol que este repositorio no tiene, y el clon de
+trabajo del portal es superficial, así que ni siquiera resuelve sus propios ancestros. Una
+comprobación que sólo puede correr quien tenga las dos máquinas no es una compuerta. La defensa que queda
+es una regla escrita donde un agente la lee como instrucción, y eso es exactamente la clase de
+defensa que este proyecto viene llamando **guarda dormida** cuando la encuentra en otro lado. Queda
+dicho así, sin disfrazarlo de arreglo.
+
+**Criterio de aceptación por perfil.**
+
+- *P5 (auditor):* dado ese perfil, esta persona puede tomar la entrada `PND-022` y correr ella misma
+  cada medición que afirma, y cada una le da lo que la entrada dice.
+- *P8 (dueño de proyecto):* dado ese perfil, esta persona no se encuentra con que el registro le
+  afirma algo que su propio sitio desmiente.
+
+**Cómo se verifica.** Correr las cinco órdenes del bloque de arriba contra producción y contrastarlas
+con lo que `PND-022` afirma hoy. Y buscar `tres-cosas` en la portada servida: cero, que es lo que la
+entrada corregida dice.
+
+**Depende de:** nada.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -3618,13 +3803,13 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-API | 14 | 6 | 8 | 2 |
 | G-ALCANCE | 4 | 1 | 3 | 0 |
 | G-IDIOMA | 13 | 11 | 2 | 2 |
-| G-PUBLICACION | 5 | 0 | 5 | 0 |
+| G-PUBLICACION | 5 | 2 | 3 | 1 |
 | G-ECOSISTEMA | 3 | 1 | 2 | 0 |
 | G-METODO | 10 | 1 | 9 | 0 |
-| G-TRAZABILIDAD | 1 | 1 | 0 | 0 |
-| **total** | **50** | **21** | **29** | **4** |
+| G-TRAZABILIDAD | 2 | 1 | 1 | 0 |
+| **total** | **51** | **23** | **28** | **5** |
 
-Cincuenta entradas, `PND-001` a `PND-050`. Veintidós vienen de la auditoría externa
+Cincuenta y una entradas, `PND-001` a `PND-051`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la
 portada del protocolo que está servida y no tiene fuente, la hoja nueva que nace sin enlace en la
@@ -3632,9 +3817,10 @@ portada, y las nueve revisiones semánticas— y **diez son de una fuente nueva*
 del peldaño 23 sobre «El Arte de Forjar Sistemas», la novela de Oscar Schmitz que adapta el método,
 validada aseveración por aseveración contra la letra (`PND-039` a `PND-048`, grupo G-METODO). No las
 trajo una auditoría encargada ni una medición propia: las trajo **un lector que aplicó el método a
-fondo y lo que le pasó al aplicarlo**, que es exactamente la entrada que el peldaño 23 espera. Y la
-última, `PND-050`, no la trajo nadie de afuera: salió de leer el árbol después de fusionar, y es un
-desvío propio.
+fondo y lo que le pasó al aplicarlo**, que es exactamente la entrada que el peldaño 23 espera. Y las
+dos últimas no las trajo nadie de afuera: `PND-050` salió de leer el árbol después de fusionar, y
+`PND-051` de que el dueño leyera la portada que una entrada cerrada decía que no existía. Las dos
+son desvíos propios, y las dos del mismo día.
 
 **Lo que está primero, y por qué.** Las precondiciones del grupo de la API están cerradas, y en
 este orden: PND-021 (cuál es el árbol del portal realmente desplegado), PND-020 y PND-018 (la
@@ -3656,29 +3842,37 @@ documentos que el método publica contra los que la portada enlaza y los que el 
 lleva, y avisa nombrando a cada huérfano. Al implementarlo apareció algo peor que lo registrado:
 la mitad del portal existía y **no la corría nadie** —su flujo de despliegue no la invocaba—, así
 que hasta ese día la única defensa era que alguien se acordara. Eso quedó registrado como
-**PND-038** y cerrado el mismo 2026-10-26: el despliegue del portal ahora corre la compuerta y las
-pruebas en rojo, y exige la línea que cada una imprime. Con eso **el grupo del alcance queda
-cerrado entero**.
+**PND-038**, con su arreglo escrito y medido —el despliegue del portal corre la compuerta y las
+pruebas en rojo, y exige la línea que cada una imprime—, y **en curso** hasta que ese commit se
+empuje. El grupo del alcance queda con una sola entrada abierta, `PND-049`, que es la hoja nueva
+esperando su enlace en la portada y el mismo empujón.
 
-**Y el 2026-10-26 cerró el grupo del ecosistema.** **PND-022**: la distinción entre el método, el
-protocolo y la herramienta está escrita arriba en las dos portadas —la del portal, horneada en los
-diez idiomas de la interfaz, y el README del método en los ocho del corpus—, y el argumento de
-neutralidad se publica en la única forma que se sostiene: medido, con el comando que cualquiera
-corre contra el archivo servido. Antes de escribirlo se le preguntó a producción, que es lo que la
-propia entrada exigía: cero menciones de la herramienta y del protocolo en los dos archivos
-publicados, y en el índice sólo las direcciones que él mismo declara. Al hacerlo aparecieron dos
-cosas que no estaban registradas y que son mejores que el pendiente: la portada del protocolo está
-servida y **no tiene fuente en ningún repositorio** (**PND-036**, que es por qué el enlace de
-vuelta no se escribió), y la prueba en rojo del verificador de portadas mira **un árbol clavado a
-una ruta local** y pasa en verde sin ver el cambio que tiene al lado (**PND-037**).
+**Y el 2026-10-26 el grupo del ecosistema cerró a medias, y la mitad que no cerró es la lección.**
+**PND-022**: la distinción entre el método, el protocolo y la herramienta está escrita arriba en el
+**README del método**, en los ocho idiomas del corpus, con el argumento de neutralidad en la única
+forma que se sostiene —medido, con el comando que cualquiera corre contra el archivo servido, y no
+como declaración del autor—. Antes de escribirlo se le preguntó a producción, que es lo que la propia
+entrada exigía: cero menciones de la herramienta y del protocolo en los dos archivos publicados, y
+en el índice sólo las direcciones que él mismo declara. **En la portada del portal no va**, y eso es
+una corrección del mismo día: la reproducción de esa entrada decía que la distinción «no está escrita
+en ninguna parte» y era falsa —la portada contesta la pregunta práctica tres veces, una sobre el
+pliegue—, así que el párrafo que se había escrito y horneado en diez idiomas se descartó sin publicar
+(`PND-051`, D-063). Al trabajarlo aparecieron dos cosas que no estaban registradas y que son mejores
+que el pendiente: la portada del protocolo está servida y **no tiene fuente en ningún repositorio**
+—el 2026-10-26, a las 19:10 UTC, el enlace de vuelta apareció solo, sin ningún commit que lo
+produzca, que es la confirmación del pendiente y no su cierre (**PND-036**)— y la prueba en rojo del
+verificador de portadas mira **un árbol clavado a una ruta local** y pasa en verde sin ver el cambio
+que tiene al lado (**PND-037**).
 
 **Y las cuatro guardas dormidas, contadas juntas, porque es el patrón del proyecto y no cuatro
 anécdotas.** El guardián de línea de comandos que acertaba sólo en un sistema operativo y dejaba
 dos pasos de la cadena corriendo en vacío (PND-001). La guarda que afirmaba un efecto que no había
 verificado, con el despliegue cerrando en verde y producción en rojo (D-057, PND-035). La compuerta
 de las portadas, escrita y correcta, que **no la invocaba nadie** (PND-038). Y la prueba en rojo
-que mutilaba un árbol que no era el suyo y decía OK (PND-037). Las cuatro están cerradas, y las
-cuatro son la misma frase: **un verde que no midió lo que uno cree que midió no es un verde**. Lo
+que mutilaba un árbol que no era el suyo y decía OK (PND-037). Dos están cerradas y dos —las del portal— están **en curso**: su
+arreglo está escrito y medido en un commit que todavía no se empujó, y cerrarlas con eso sería
+repetir el defecto de D-057 en la contabilidad del propio registro. Las cuatro son la misma frase:
+**un verde que no midió lo que uno cree que midió no es un verde**. Lo
 que las descubrió, las cuatro veces, no fue leer el código: fue exigirle a cada guarda la salida
 medida en vez de su código de salida.
 
