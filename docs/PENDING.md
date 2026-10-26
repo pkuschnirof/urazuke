@@ -1315,18 +1315,28 @@ publicación, en el único momento en que los dos árboles están juntos, y va a
 huérfanos por su nombre. Avisa y no frena, que es la severidad de UX-03 y lo que corresponde cuando
 el arreglo vive en el otro repositorio.
 
-**Mi reproducción (2026-10-26).** Antes de abrir la entrada, medido sobre el árbol del método:
+**Mi reproducción (2026-10-26), y es la primera vez que el guardián de huérfanas se gana el
+sueldo con un caso real y no con una prueba.** Corrido contra el árbol del portal, con los dos
+árboles juntos, que es el único momento en que se puede:
 
 ```
-$ node build/build.mjs | grep PREGUNTAS
-  docs/html/PREGUNTAS_AL_PROVEEDOR.html      (es)
-  docs/html/en/PREGUNTAS_AL_PROVEEDOR.html   ... y los seis idiomas restantes
-  -> ocho archivos generados, uno por idioma del corpus.
-
-el arreglo literal de build/build.mjs ya los incluye (si no, existirian y no se publicarian).
-la portada del portal no los enlaza: su indice y su i18n viven en el otro repositorio, y este
-cambio no los toca.
+$ node build/portal_orphans.mjs --portal <arbol del portal>
+portadas del portal: 10 (index.html, ar/, de/, en/, fr/, hi/, it/, ja/, pt/, zh/)
+documentos generados: 84 | enlazados desde una portada: 76 | en el mapa del sitio: 76
+--- veredicto ---
+  PREGUNTAS_AL_PROVEEDOR.html:    sin_enlace -- ninguna portada lo enlaza, y el mapa
+                                  del sitio tampoco lo lleva
+  en/PREGUNTAS_AL_PROVEEDOR.html: sin_enlace ...   (y asi los ocho idiomas)
+Hay 8 documento(s) que el metodo publica y ninguna portada enlaza. Servido no es publicado:
+agregalos al indice y al i18n de la landing, que viven en el repositorio del portal.
+huerfanas: comprobado -- 84 documentos, 8 huerfanos, 0 fuera del mapa
 ```
+
+Los ocho archivos existen porque el documento está en el arreglo literal de `build/build.mjs`
+(si no estuviera, existiría y no se publicaría); los ocho quedan sin enlace porque la portada y su
+i18n viven en el otro repositorio y este cambio no los toca. **Lo que importa del recibo de arriba
+no es el ocho: es que lo dijo un programa, nombrando cada archivo, en vez de que alguien se
+acordara.** De 76 enlazados a 84 generados: la cuenta cierra.
 
 **Qué hay que producir.** En el repositorio del portal: la fila de la hoja en el índice de la
 portada y su texto en el i18n de los diez idiomas de la interfaz —diez, no ocho, que es la cuenta de
