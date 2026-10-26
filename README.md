@@ -13,6 +13,45 @@ Autor: Pablo Kuschniroff, asistido por Claude Code. Publicado bajo Creative Comm
 Repositorio público: [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke).
 Presentación pública: [yujin.app/urazuke](https://yujin.app/urazuke/).
 
+## Tres cosas distintas: un método, un protocolo, una herramienta
+
+Lo pongo arriba porque es el malentendido más caro que tiene este proyecto, y lo medí: le pasé el
+sitio publicado a un asistente ajeno y metió las tres cosas en una sola bolsa, concluyó que todo
+junto era la narrativa de un producto y se ofreció a analizarme el código. Le pidió código a un
+método. Son tres naturalezas distintas y conviene separarlas de entrada.
+
+**El método es Urazuke, y es esto que estás leyendo.** Dice qué hacer y en qué orden, qué exigirle
+a quien construye —sea una persona o un modelo— y cómo saber, sin leer una línea de código, que
+entregó completo y no a medias. Es procedimiento y es criterio, nada más. Se aplica con el
+asistente que tengas a mano, con el que salga el año que viene, o con lápiz, papel y un equipo de
+personas. Está acá entero y bajo licencia libre: los veinticuatro peldaños, sus contratos y sus
+prompts.
+
+**El protocolo es NAC3, y es otra cosa.** Es un contrato para que las pantallas de una aplicación
+se puedan operar por programa —cada elemento de la interfaz con su identificador y sus métodos— y,
+por el mismo precio, las pueda operar una persona que usa un lector de pantalla o la voz: un
+agente y una persona navegando la misma interfaz con la misma dignidad. El método lo usa como
+**medio** para una cosa puntual: que las pruebas de punta a punta recorran la pantalla solas. No es
+una condición del método. El criterio del método es neutral y está escrito así en el peldaño 0:
+que la interfaz se pueda ejecutar por programa, con cualquier tecnología que lo permita.
+
+**La herramienta es Yujin-Forge, y es una implementación.** Automatiza el método —las compuertas,
+la inyección de los prompts— y habla el protocolo. Es *una* manera de aplicar Urazuke, no *la*
+manera. Si no te sirve, o no la querés, el método te queda igual de completo.
+
+Y esto no es una declaración de buena voluntad: **está en el dato y se puede medir.** La definición
+mecánica de las compuertas que el método publica para cualquier consumidor no nombra ninguna
+herramienta ni ningún protocolo, ni los míos. Hay una prueba automática que lo exige sobre cada
+superficie donde podría colarse —las fuentes, los dos archivos publicados, su índice y el
+documento generado—, y cualquiera lo comprueba hoy, en un segundo, sobre el archivo servido:
+
+```
+curl -s https://yujin.app/urazuke/api/gates.json | grep -o -i -E "forge|nac-?3|yujin" | wc -l
+```
+
+Devuelve **0** (medido el 2026-10-26). Una herramienta cualquiera puede implementar las compuertas
+del método sin adoptar ningún protocolo y sin adoptar ninguna otra herramienta.
+
 ## La tesis en una frase
 
 La IA no interrumpe el método: lo continúa. La industria dejó de confiar en el autor del código

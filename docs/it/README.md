@@ -17,6 +17,47 @@ Autore: Pablo Kuschniroff, assistito da Claude Code. Pubblicato con licenza Crea
 Questa cartella contiene la versione italiana del metodo. Lo spagnolo è la fonte della verità; se
 le due versioni divergono, prevale quella spagnola e quella italiana viene corretta.
 
+## Tre cose distinte: un metodo, un protocollo, uno strumento
+
+Lo metto in alto perché è il fraintendimento più costoso che questo progetto abbia, e l'ho
+misurato: ho passato il sito pubblicato a un assistente estraneo, e lui ha messo le tre cose nello
+stesso sacco, ha concluso che tutto insieme era la narrazione di un prodotto e si è offerto di
+analizzarmi il codice. Ha chiesto codice a un metodo. Sono tre nature distinte, e conviene
+separarle da subito.
+
+**Il metodo è Urazuke, ed è questo che stai leggendo.** Dice cosa fare e in che ordine, cosa
+esigere da chi costruisce (una persona o un modello) e come sapere, senza leggere una sola riga di
+codice, che ha consegnato completo e non a metà. È procedura ed è criterio, nient'altro. Si applica
+con l'assistente che hai a portata di mano, con quello che uscirà l'anno prossimo, o con matita,
+carta e una squadra di persone. È qui per intero e sotto licenza libera: i ventiquattro gradini, i
+loro contratti e i loro prompt.
+
+**Il protocollo è NAC3, ed è un'altra cosa.** È un contratto perché le schermate di
+un'applicazione si possano pilotare da programma (ogni elemento dell'interfaccia con il suo
+identificatore e i suoi metodi) e, allo stesso prezzo, le possa pilotare una persona che usa un
+lettore di schermo o la voce: un agente e una persona che navigano la stessa interfaccia con la
+stessa dignità. Il metodo lo usa come **mezzo** per una cosa precisa: che i test da punta a punta
+percorrano la schermata da soli. Non è una condizione del metodo. Il criterio del metodo è neutro
+ed è scritto così nel gradino 0: che l'interfaccia si possa eseguire da programma, con qualunque
+tecnologia lo permetta.
+
+**Lo strumento è Yujin-Forge, ed è un'implementazione.** Automatizza il metodo (le comporte,
+l'iniezione dei prompt) e parla il protocollo. È *un* modo di applicare Urazuke, non *il* modo. Se
+non ti serve, o non lo vuoi, il metodo ti resta altrettanto completo.
+
+E questa non è una dichiarazione di buona volontà: **sta nel dato e si può misurare.** La
+definizione meccanica delle comporte che il metodo pubblica per qualunque consumatore non nomina
+nessuno strumento né nessun protocollo, nemmeno i miei. C'è un test automatico che lo esige su ogni
+superficie dove un nome potrebbe infilarsi (le fonti, i due file pubblicati, il loro indice e il
+documento generato), e chiunque può verificarlo oggi, in un secondo, sul file servito:
+
+```
+curl -s https://yujin.app/urazuke/api/gates.json | grep -o -i -E "forge|nac-?3|yujin" | wc -l
+```
+
+Restituisce **0** (misurato il 2026-10-26). Qualunque strumento può implementare le comporte del
+metodo senza adottare nessun protocollo e senza adottare nessun altro strumento.
+
 ## La tesi in una frase
 
 L'IA non interrompe il metodo: lo continua. L'industria ha smesso di fidarsi dell'autore del codice

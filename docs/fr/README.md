@@ -18,6 +18,48 @@ source de vérité et le français est une traduction ; si les deux versions div
 espagnole prévaut et la française est corrigée. Le dépôt public de la méthode est
 [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke).
 
+## Trois choses distinctes : une méthode, un protocole, un outil
+
+Je le mets en haut parce que c'est le malentendu le plus coûteux de ce projet, et je l'ai mesuré :
+j'ai donné le site publié à un assistant extérieur, il a mis les trois choses dans le même sac, a
+conclu que tout cela était le récit d'un produit et a proposé d'analyser mon code. Il a demandé du
+code à une méthode. Ce sont trois natures distinctes, et il vaut mieux les séparer d'entrée.
+
+**La méthode, c'est Urazuke, et c'est ce que vous lisez.** Elle dit quoi faire et dans quel ordre,
+quoi exiger de celui qui construit (une personne ou un modèle) et comment savoir, sans lire une
+seule ligne de code, qu'il a livré complet et non à moitié. C'est de la procédure et du critère,
+rien d'autre. Elle s'applique avec l'assistant que vous avez sous la main, avec celui qui sortira
+l'an prochain, ou avec un crayon, du papier et une équipe de personnes. Elle est ici en entier et
+sous licence libre : les vingt-quatre échelons, leurs contrats et leurs prompts.
+
+**Le protocole, c'est NAC3, et c'est autre chose.** C'est un contrat pour que les écrans d'une
+application puissent être pilotés par un programme (chaque élément de l'interface avec son
+identifiant et ses méthodes) et, pour le même prix, puissent être pilotés par une personne qui
+utilise un lecteur d'écran ou la voix : un agent et une personne naviguant la même interface avec
+la même dignité. La méthode s'en sert comme **moyen** pour une chose précise : que les tests de
+bout en bout parcourent l'écran tout seuls. Ce n'est pas une condition de la méthode. Le critère de
+la méthode est neutre et il est écrit ainsi à l'échelon 0 : que l'interface puisse être exécutée
+par un programme, avec n'importe quelle technologie qui le permette.
+
+**L'outil, c'est Yujin-Forge, et c'est une implémentation.** Il automatise la méthode (les verrous,
+l'injection des prompts) et il parle le protocole. C'est *une* manière d'appliquer Urazuke, pas *la*
+manière. S'il ne vous convient pas, ou si vous n'en voulez pas, la méthode reste tout aussi
+complète.
+
+Et ce n'est pas une déclaration de bonne volonté : **c'est dans la donnée et cela se mesure.** La
+définition mécanique des verrous que la méthode publie pour n'importe quel consommateur ne nomme
+aucun outil ni aucun protocole, pas même les miens. Il y a un test automatique qui l'exige sur
+chaque surface où un nom pourrait se glisser (les sources, les deux fichiers publiés, leur index et
+le document généré), et n'importe qui peut le vérifier aujourd'hui, en une seconde, sur le fichier
+servi :
+
+```
+curl -s https://yujin.app/urazuke/api/gates.json | grep -o -i -E "forge|nac-?3|yujin" | wc -l
+```
+
+Il renvoie **0** (mesuré le 2026-10-26). N'importe quel outil peut implémenter les verrous de la
+méthode sans adopter aucun protocole et sans adopter aucun autre outil.
+
 ## La thèse en une phrase
 
 L'IA n'interrompt pas la méthode : elle la continue. L'industrie a cessé de faire confiance à

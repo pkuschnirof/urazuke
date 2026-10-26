@@ -112,6 +112,18 @@ de estas tres piezas se replica en las otras dos.
 
 ## Publicación
 
+- **La distinción entre el método, el protocolo y la herramienta se escribe arriba, en las dos
+  portadas** (D-059, PND-022). El método es qué hacer en qué orden, qué exigirle a quien construye
+  y cómo saber que entregó completo, y se sigue con cualquier asistente o con lápiz y papel; el
+  protocolo es un contrato para que una interfaz sea navegable por un agente y por una persona con
+  la misma dignidad; la herramienta implementa el método y habla el protocolo. Va en la sección
+  `id="tres-cosas"` de la portada del portal, horneada en los diez idiomas de la interfaz y **no**
+  detrás del conmutador, y repetida en `README.md` y en los ocho `docs/<idioma>/README.md`. El
+  argumento de neutralidad **se publica medido**, con el comando que el lector corre contra el
+  archivo servido, nunca como declaración del autor; si algún día el dato dejara de sostenerlo, se
+  corrige el dato y no el párrafo. Lo que todavía no está es el enlace de vuelta desde la portada
+  del protocolo, porque esa página está servida y su fuente no está en ningún repositorio
+  (PND-036).
 - Nombre: Urazuke (D-014). No se traduce; el subtítulo sí.
 - Idiomas (D-013): castellano como fuente de verdad (`docs/`); las otras siete versiones de NAC3
   en `docs/<idioma>/` (en, pt, fr, de, it, ja, zh), cada una con README, documento principal,

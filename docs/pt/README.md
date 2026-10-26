@@ -14,6 +14,45 @@ Apresentação pública: [yujin.app/urazuke](https://yujin.app/urazuke/).
 Esta pasta contém a versão em português do método. O espanhol é a fonte da verdade; se as duas
 versões discordarem, a espanhola vale e a portuguesa é corrigida.
 
+## Três coisas distintas: um método, um protocolo, uma ferramenta
+
+Coloco isto no começo porque é o mal-entendido mais caro que este projeto tem, e eu o medi: passei
+o site publicado a um assistente alheio, e ele jogou as três coisas no mesmo saco, concluiu que
+tudo junto era a narrativa de um produto e se ofereceu para analisar o meu código. Pediu código a
+um método. São três naturezas distintas, e vale a pena separá-las desde o início.
+
+**O método é Urazuke, e é isto que você está lendo.** Diz o que fazer e em que ordem, o que exigir
+de quem constrói (uma pessoa ou um modelo) e como saber, sem ler uma única linha de código, que
+entregou completo e não pela metade. É procedimento e é critério, nada mais. Aplica-se com o
+assistente que você tiver à mão, com o que sair no ano que vem, ou com lápis, papel e uma equipe de
+pessoas. Está aqui inteiro e sob licença livre: os vinte e quatro degraus, seus contratos e seus
+prompts.
+
+**O protocolo é NAC3, e é outra coisa.** É um contrato para que as telas de uma aplicação possam
+ser operadas por programa (cada elemento da interface com seu identificador e seus métodos) e,
+pelo mesmo preço, possam ser operadas por uma pessoa que usa um leitor de tela ou a voz: um agente
+e uma pessoa navegando a mesma interface com a mesma dignidade. O método o usa como **meio** para
+uma coisa pontual: que os testes de ponta a ponta percorram a tela sozinhos. Não é uma condição do
+método. O critério do método é neutro e está escrito assim no degrau 0: que a interface possa ser
+executada por programa, com qualquer tecnologia que o permita.
+
+**A ferramenta é Yujin-Forge, e é uma implementação.** Automatiza o método (as comportas, a injeção
+dos prompts) e fala o protocolo. É *uma* maneira de aplicar Urazuke, não *a* maneira. Se não serve
+para você, ou se você não a quer, o método continua igualmente completo.
+
+E isto não é uma declaração de boa vontade: **está no dado e pode ser medido.** A definição
+mecânica das comportas que o método publica para qualquer consumidor não nomeia nenhuma ferramenta
+nem nenhum protocolo, nem os meus. Há um teste automático que o exige em cada superfície onde
+poderia se infiltrar (as fontes, os dois arquivos publicados, seu índice e o documento gerado), e
+qualquer pessoa pode comprovar hoje, em um segundo, sobre o arquivo servido:
+
+```
+curl -s https://yujin.app/urazuke/api/gates.json | grep -o -i -E "forge|nac-?3|yujin" | wc -l
+```
+
+Devolve **0** (medido em 2026-10-26). Qualquer ferramenta pode implementar as comportas do método
+sem adotar nenhum protocolo e sem adotar nenhuma outra ferramenta.
+
 ## A tese em uma frase
 
 A IA não interrompe o método: ela o continua. A indústria deixou de confiar no autor do código há

@@ -1733,15 +1733,84 @@ publicaciones automáticas del método — y se puso al día sin tocar el trabaj
 
 ---
 
+## PND-037 — La prueba en rojo del verificador de portadas mira un árbol clavado a una ruta local *(hallazgo del método, no de la auditoría)*
+
+- **Nodo:** `cadena/verificacion` [nodo propuesto]
+- **Grupo:** G-PUBLICACION · **Severidad:** registra · **Quién decide:** se hace y se reporta
+- **Repositorio:** portal · **Estado: abierto**
+- **Origen:** apareció al cerrar PND-022, cuando la prueba en rojo pasó en verde sin haber visto
+  el cambio que estaba al lado.
+
+**Qué está mal.** `build/redproof-urazuke-homes.mjs` es la prueba en rojo del verificador de las
+diez portadas: copia el árbol del portal a un temporal, lo mutila de nueve maneras y exige que el
+verificador caiga nombrando cada problema. El árbol que copia está escrito a mano como una **ruta
+absoluta de una máquina** (`const SRC = 'C:/RPAForce/web'`), que no es la copia de trabajo donde
+el programa vive. Así que la prueba puede dar las nueve en rojo —y decir "PRUEBA EN ROJO OK"— sin
+haber mirado ni una vez el árbol que alguien está por publicar.
+
+**Mi reproducción (2026-10-26).** Medido mientras se cerraba PND-022, con trece cadenas nuevas ya
+puestas en los diez catálogos de este árbol:
+
+```
+node build/redproof-urazuke-homes.mjs             (tal cual esta)
+  ROJO estructura perdida ... the page lost 226 of the 244 catalogue keys
+  mutaciones: 9  rojos: 9   PRUEBA EN ROJO OK
+
+el mismo programa, con SRC apuntado a este arbol
+  ROJO estructura perdida ... the page lost 239 of the 257 catalogue keys
+  mutaciones: 9  rojos: 9   PRUEBA EN ROJO OK
+```
+
+Las dos corridas dicen OK. La primera cuenta 244 claves, que es lo que tenía la **otra** copia; la
+segunda cuenta 257, que es lo que tiene esta. El verde no distingue entre "el verificador guarda
+este árbol" y "el verificador guarda un árbol cualquiera que había en el disco". Es el defecto de
+D-057 en otra escala —un verde que no midió lo que uno cree que midió— y el primo de PND-001, donde
+el guardián de línea de comandos acertaba sólo en un sistema operativo y dos pasos de la cadena
+corrían en vacío, en verde.
+
+**Hay un segundo síntoma de la misma familia, y conviene arreglarlos juntos.** El generador de las
+portadas reescribe `yujin.app/sitemap.xml`, y su barrido de las direcciones viejas sólo entiende
+finales de línea de Unix. Medido el mismo día, sobre la misma copia:
+
+```
+sitemap.xml en disco con CRLF (lo que da una copia de trabajo en Windows con core.autocrlf=true):
+  node build/prerender-urazuke.mjs  ->  91 lineas vacias; el commiteado tiene 1
+el mismo archivo convertido a LF:
+  node build/prerender-urazuke.mjs  ->   1 linea vacia  (identico al commiteado)
+```
+
+No cambia ninguna dirección —las noventa siguen, y el verificador pasa igual—, pero deja noventa
+líneas de basura en cada regeneración hecha desde Windows, y rompe la promesa del contrato de que
+el generador es idempotente y la **única** fuente de esas páginas. Mientras esté así, el sitemap
+se restaura a mano después de regenerar, que es exactamente lo que el contrato prohíbe.
+
+**Qué hay que producir.** Que el árbol de la prueba en rojo salga de la ubicación del propio
+programa, como ya lo hace el verificador (`resolve(__dirname, '..')`), y no de una ruta escrita a
+mano; que el barrido del sitemap entienda los dos finales de línea; y una comprobación que lo
+exija, porque un guardián arreglado sin prueba vuelve a romperse en seis meses.
+
+**Criterio de aceptación por perfil.**
+
+- *P5 (auditor):* dado el perfil auditor, la prueba en rojo corrida en cualquier copia del
+  repositorio ejercita **esa** copia, y se puede demostrar: cambiar una cadena del árbol y ver que
+  la cuenta de la prueba cambia con ella.
+- *P4 (rastreador):* dado el perfil rastreador, el mapa del sitio regenerado desde cualquier
+  sistema operativo es el mismo archivo.
+
+**Cómo se verifica.** Clonar el repositorio en un directorio nuevo y correr la prueba en rojo sin
+tocar nada: tiene que pasar, y la cuenta de claves que imprime tiene que ser la del clon.
+---
+
 # Abiertos — G-ECOSISTEMA: entender qué es cada cosa
 
 ## PND-022 — El ecosistema se lee como un solo producto *(era U-21)*
 
 - **Nodo:** `identidad/ecosistema` [nodo propuesto]
 - **Grupo:** G-ECOSISTEMA · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** los dos (portada del portal y README del método) · **Estado: abierto**
+- **Repositorio:** los dos (portada del portal y README del método) · **Estado: CERRADO** el
+  2026-10-26.
 
-**Qué está mal.** En ninguna de las dos portadas está escrita la distinción: el método es un
+**Qué estaba mal.** En ninguna de las dos portadas estaba escrita la distinción: el método es un
 método, el protocolo es un protocolo, la herramienta es una herramienta. Tres naturalezas
 distintas, y un lector superficial las mete en una sola bolsa.
 
@@ -1790,8 +1859,138 @@ No se publica el argumento absoluto antes de que lo publicado lo sostenga.
 
 **Depende de:** PND-020. La fusión del pull request #4 ya ocurrió (`fd8561c`, 2026-10-24); lo que
 falta para poder publicar el argumento absoluto es que producción sirva ese contenido, y eso es
-exactamente PND-020.
+exactamente PND-020. **Cerrado el 2026-10-24**, así que la precondición estaba.
 
+**Primero lo que autorizaba el argumento, y medido contra producción, no contra la copia local.**
+La entrada decía que el argumento absoluto no se publica antes de que lo publicado lo sostenga. El
+2026-10-26, con D-055 ya fusionado y publicado, se le preguntó a producción:
+
+```
+gates.json:   HTTP 200, 100112 bytes -> cero menciones
+prompts.json: HTTP 200,  64151 bytes -> cero menciones
+index.json:   HTTP 200,   4818 bytes -> "yujin" x4
+
+las cuatro, y son direcciones que el propio archivo declara:
+  .canonical_base    https://yujin.app/urazuke/api/
+  .mirrors[0].base   https://yujin.app/urazuke/docs/api/
+  .resources[0].url  https://yujin.app/urazuke/api/gates.json
+  .resources[1].url  https://yujin.app/urazuke/api/prompts.json
+```
+
+Es la excepción estrecha de D-056, la que `tests/gates_neutralidad.test.mjs` ya verifica: el nombre
+del alojamiento puede aparecer **sólo** como una de las direcciones que el archivo declara, nunca
+en prosa y nunca en un nombre de campo. Así que el argumento se publica entero, y con el comando
+que cualquiera corre, que es lo que lo vuelve comprobable en vez de afirmado:
+
+```
+curl -s https://yujin.app/urazuke/api/gates.json | grep -o -i -E "forge|nac-?3|yujin" | wc -l
+  -> 0        (y el mismo comando sobre prompts.json -> 0)
+```
+
+**Lo que se escribió, en los dos repositorios.** En el método, una sección nueva arriba del README
+—antes de la tesis—, replicada en los ocho idiomas del corpus en el mismo commit: las tres
+naturalezas, una por párrafo, y el argumento medido con su comando al final. En el portal, una
+sección nueva de la portada (`id="tres-cosas"`) debajo del encabezado y **arriba** de la tesis, con
+el párrafo del malentendido medido, tres tarjetas (el método, el protocolo, la herramienta) y el
+recuadro del argumento comprobable. Las trece cadenas nuevas entraron a los diez catálogos de la
+interfaz, con hindi y árabe incluidos, que no tienen corpus traducido y hasta hoy habrían caído al
+castellano.
+
+**La evidencia, que es lo que el criterio pedía y no la promesa de que está puesto.**
+
+```
+node build/prerender-urazuke.mjs
+  10 portadas horneadas -- "Every key was present in every catalogue -- no fallbacks used"
+
+node build/verify-urazuke-homes.mjs
+  PASS -- every page is baked, linked, canonical and reciprocal
+
+la seccion, horneada e identica a su catalogo, pagina por pagina:
+  es OK 13/13   en OK 13/13   pt OK 13/13   fr OK 13/13   de OK 13/13
+  it OK 13/13   ja OK 13/13   zh OK 13/13   hi OK 13/13   ar OK 13/13
+```
+
+Eso es el criterio de P4 medido y no supuesto: el párrafo está en el HTML que se sirve, en el
+idioma de cada dirección, no detrás del conmutador. El de P1 está en el recuadro, con su comando.
+El de P3 es juicio del dueño y se lee en la portada.
+
+**Y el verificador sigue vigilando, comprobado sobre este árbol.** La prueba en rojo del
+verificador de las diez portadas (`build/redproof-urazuke-homes.mjs`, en el repositorio del portal)
+tiene su árbol de origen **clavado a una ruta local** de una máquina, así que corrida tal cual no
+mira el repositorio en el que vive: la primera corrida dijo "244 claves" cuando este árbol ya tenía
+257. Se volvió a correr apuntada a este árbol y las nueve mutaciones caen nombrando su problema,
+con la cuenta viva: *"the page lost 239 of the 257 catalogue keys"*. Queda registrado aparte, en
+PND-037, porque es un guardián que afirma más de lo que mira, y eso es el defecto de D-057 otra
+vez, en otra escala.
+
+**Lo que este pendiente NO cerró, dicho por su nombre.** El enlace de vuelta de la especificación.
+La portada del protocolo es `yujin.app/nac-spec/`, contesta HTTP 200 y **su fuente no está en
+ningún repositorio**: no está en el del método, ni en el del portal, ni en el de la herramienta de
+voz, ni en el del propio protocolo. Buscada por el texto de su propio título en los cuatro
+árboles: cero coincidencias. No se escribe un archivo nuevo encima de una página viva que alguien
+mantiene en otra parte, así que queda en PND-036 con la evidencia de dónde se buscó. Los tres
+criterios de aceptación de esta entrada son del párrafo y están verdes; el enlace de vuelta no era
+ninguno de ellos.
+
+---
+
+## PND-036 — La portada del protocolo está servida y no tiene fuente en ningún repositorio *(deriva de U-21)*
+
+- **Nodo:** `identidad/ecosistema` [nodo propuesto]
+- **Grupo:** G-ECOSISTEMA · **Severidad:** avisa · **Quién decide:** el dueño, porque hay que
+  decir dónde vive esa página antes de tocarla
+- **Repositorio:** ninguno de los conocidos, que es justamente el hallazgo · **Estado: abierto**
+- **Origen:** apareció al cerrar PND-022. La especificación de esa entrada pedía, además del
+  párrafo, **el enlace de vuelta**: la portada de Urazuke enlaza al protocolo en el pie y la del
+  protocolo no enlaza a Urazuke. Al ir a escribirlo, la página no estaba en ninguna parte.
+
+**Qué está mal.** `https://yujin.app/nac-spec/` existe, contesta HTTP 200 y sirve 88.826 bytes con
+el título *"NAC -- Native Agent Contract"*. Es la portada del protocolo, la que el método enlaza.
+Su código fuente **no está en ningún repositorio al que se pueda llegar**, así que nadie puede
+cambiarle una línea por la vía normal: no hay commit que la produzca, no hay despliegue que la
+publique, y un cambio en ella sería una subida a mano encima de algo que no se puede revisar.
+
+**Mi reproducción (2026-10-26).** Buscada por el texto de su propio título en los cuatro árboles
+donde podía estar:
+
+```
+produccion:
+  https://yujin.app/nac-spec/   HTTP 200, 88826 bytes, <title>NAC -- Native Agent Contract</title>
+  menciones de "urazuke" en esa pagina: 0
+
+grep -rl "Native Agent Contract" (por arbol):
+  metodo      (pkuschnirof/urazuke)        -> 0 coincidencias
+  portal      (pkuschnirof/rpaforce)       -> index.html y yujin-forge/funcionalidad.html,
+                                              que la NOMBRAN y la enlazan; la pagina no esta
+  protocolo   (pkuschnirof/nac-spec)       -> 0 coincidencias, y 0 archivos .html en todo el arbol
+  voz         (pkuschnirof/nac3-kikoe, servido en el portal) -> 0 coincidencias
+
+el arbol del portal, que es el que despliega yujin.app, no tiene un directorio nac-spec/
+```
+
+Es el mismo defecto que el método ya tiene nombrado dos veces, en su tercera forma. **Servido no
+es publicado** (PND-015): una página que nadie enlaza no está publicada. **Un verde que no midió
+nada no es un verde** (D-057). Y ahora: **una página servida sin fuente no es mantenible** —está
+viva, la gente la lee, el método la enlaza, y no hay forma de cambiarla ni de saber quién la
+produjo.
+
+**Qué hay que producir.** No el enlace: primero la respuesta a dónde vive esa página. Tres salidas
+posibles, y la decisión es del dueño. Que su fuente aparezca y se registre dónde está. Que se
+adopte en el repositorio del portal, que es el que despliega el dominio, y entonces el enlace de
+vuelta es un cambio de una línea con su verificación. O que se decida que la portada del protocolo
+se vuelve a escribir, y eso es un trabajo con su propio alcance y no un enlace.
+
+**Criterio de aceptación por perfil.**
+
+- *P3 (lector humano):* dado el perfil lector, esta persona que llega a la portada del protocolo
+  puede volver al método desde ahí, y no se queda en una rama sin vuelta.
+- *P5 (auditor):* dado el perfil auditor, existe un repositorio y un commit que producen la página
+  que produccion sirve, de modo que se pueda saber qué dice y por qué.
+
+**Cómo se verifica.** `curl -s https://yujin.app/nac-spec/ | grep -c urazuke` → mayor que 0, y la
+página que lo dice sale de un árbol versionado.
+
+**Depende de:** nada técnico. Depende de que el dueño diga dónde vive esa página.
 ---
 
 # Abiertos — trabajo derivado de las decisiones y de la revisión semántica
@@ -1977,14 +2176,15 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-API | 14 | 6 | 8 | 2 |
 | G-ALCANCE | 3 | 0 | 3 | 0 |
 | G-IDIOMA | 13 | 11 | 2 | 2 |
-| G-PUBLICACION | 3 | 0 | 3 | 0 |
-| G-ECOSISTEMA | 2 | 1 | 1 | 1 |
-| **total** | **35** | **18** | **17** | **5** |
+| G-PUBLICACION | 4 | 1 | 3 | 0 |
+| G-ECOSISTEMA | 3 | 1 | 2 | 0 |
+| **total** | **37** | **19** | **18** | **4** |
 
-Treinta y cinco entradas, `PND-001` a `PND-035`. Veintidós vienen de la auditoría externa
-(`U-01` a `U-22`), dos del propio método midiendo su cadena y su publicación (PND-001 y PND-035),
-y las once restantes son trabajo derivado: la propuesta de firma, el chequeo de huérfanas y las
-nueve revisiones semánticas.
+Treinta y siete entradas, `PND-001` a `PND-037`. Veintidós vienen de la auditoría externa
+(`U-01` a `U-22`), tres del propio método midiendo su cadena y su publicación (PND-001, PND-035 y
+PND-037), y las doce restantes son trabajo derivado: la propuesta de firma, el chequeo de
+huérfanas, la portada del protocolo que está servida y no tiene fuente, y las nueve revisiones
+semánticas.
 
 **Lo que está primero, y por qué.** Las precondiciones del grupo de la API están cerradas, y en
 este orden: PND-021 (cuál es el árbol del portal realmente desplegado), PND-020 y PND-018 (la
@@ -2008,10 +2208,26 @@ la mitad del portal existía y **no la corría nadie** —su flujo de despliegue
 que hasta ese día la única defensa era que alguien se acordara. Con eso **el grupo del alcance
 queda cerrado entero**.
 
+**Y el 2026-10-26 cerró el grupo del ecosistema.** **PND-022**: la distinción entre el método, el
+protocolo y la herramienta está escrita arriba en las dos portadas —la del portal, horneada en los
+diez idiomas de la interfaz, y el README del método en los ocho del corpus—, y el argumento de
+neutralidad se publica en la única forma que se sostiene: medido, con el comando que cualquiera
+corre contra el archivo servido. Antes de escribirlo se le preguntó a producción, que es lo que la
+propia entrada exigía: cero menciones de la herramienta y del protocolo en los dos archivos
+publicados, y en el índice sólo las direcciones que él mismo declara. Al hacerlo aparecieron dos
+cosas que no estaban registradas y que son mejores que el pendiente: la portada del protocolo está
+servida y **no tiene fuente en ningún repositorio** (**PND-036**, que es por qué el enlace de
+vuelta no se escribió), y la prueba en rojo del verificador de portadas mira **un árbol clavado a
+una ruta local** y pasa en verde sin ver el cambio que tiene al lado (**PND-037**). Las tres
+guardias dormidas de este proyecto —el guardián de línea de comandos, la guarda que afirmaba un
+efecto sin verificarlo, y la mitad del portal que no corría nadie— tienen ahora una cuarta de la
+misma familia.
+
 Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-010,
-PND-011, PND-012, PND-016, PND-024), la revisión semántica de los nueve idiomas (PND-026 a
-PND-034) y el párrafo que separa método, protocolo y herramienta (PND-022), que es el único
-bloqueante abierto fuera del grupo de idiomas.
+PND-011, PND-012, PND-016, PND-024), la revisión semántica de los nueve idiomas de la interfaz
+(PND-026 a PND-034) y los dos hallazgos nuevos (PND-036 y PND-037). Los cuatro bloqueantes
+abiertos que quedan son dos del grupo de la API (PND-010 y PND-011, las dos esperando decisión del
+dueño) y dos del de idiomas (PND-016 y PND-019).
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar
