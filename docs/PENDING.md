@@ -1737,7 +1737,7 @@ publicaciones automáticas del método — y se puso al día sin tocar el trabaj
 
 - **Nodo:** `cadena/verificacion` [nodo propuesto]
 - **Grupo:** G-PUBLICACION · **Severidad:** registra · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: abierto**
+- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-26.
 - **Origen:** apareció al cerrar PND-022, cuando la prueba en rojo pasó en verde sin haber visto
   el cambio que estaba al lado.
 
@@ -1799,6 +1799,167 @@ exija, porque un guardián arreglado sin prueba vuelve a romperse en seis meses.
 
 **Cómo se verifica.** Clonar el repositorio en un directorio nuevo y correr la prueba en rojo sin
 tocar nada: tiene que pasar, y la cuenta de claves que imprime tiene que ser la del clon.
+
+**Qué se hizo (2026-10-26).** Las dos cosas que pedía, y una comprobación por cada una, porque un
+guardián arreglado sin una prueba que vaya al rojo contra la regresión real vuelve a romperse en
+seis meses y nadie se entera.
+
+El árbol de la prueba en rojo ahora sale de la ubicación del propio programa, igual que en el
+verificador, y no de una ruta escrita a mano. De paso, la prueba aprendió a decir en voz alta qué
+árbol va a mutilar: `node build/redproof-urazuke-homes.mjs --arbol` imprime el árbol y el tamaño de
+su catálogo en dos segundos, sin correr las nueve mutaciones, y es el recibo que un auditor puede
+leer sin esperar un minuto.
+
+El barrido del mapa del sitio normaliza los finales de línea al leer. No se le agregó una variante
+más al patrón: se normaliza una vez, en la lectura, que es lo que hace que el mapa regenerado sea
+el mismo archivo desde cualquier sistema operativo —que es la propiedad que el contrato promete— y
+no sólo que el barrido no deje basura.
+
+**Evidencia de cierre.** Medido en un clon nuevo del repositorio del portal, sin tocar nada, que es
+exactamente lo que este pendiente pedía como verificación:
+
+```
+node build/redproof-urazuke-homes.mjs --arbol
+  arbol: <el clon>
+  catalogos: 10  claves (es): 257          <- las de ESTE arbol, no 244
+
+el mismo clon con una cadena de mas en su catalogo castellano
+  catalogos: 10  claves (es): 258          <- la cuenta sigue al arbol, que es el criterio P5
+
+la corrida completa en el clon, sin tocar nada
+  ROJO estructura perdida ... the page lost 239 of the 257 catalogue keys
+  mutaciones: 9  rojos: 9   PRUEBA EN ROJO OK
+
+node build/prerender-urazuke.mjs en ese mismo clon (sitemap.xml con CRLF, 575 de 575 lineas)
+  sitemap.xml already lists all 90 urazuke urls
+  y el mapa queda QUIETO: antes se reescribia con 90 lineas vacias de mas
+```
+
+Y probado en rojo antes de darlo por bueno, que es lo que vale. Las dos comprobaciones nuevas son
+`build/redproof-arbol-propio.mjs` (dos segundos, sin dependencias: copia el árbol a un temporal, le
+agrega una clave centinela, y exige que la prueba conteste el temporal con la centinela; después le
+vuelve a clavar la ruta a mano y exige que la comprobación lo note) y
+`build/redproof-sitemap-eol.mjs` (ocho segundos: regenera el mapa desde un árbol con CRLF y desde
+uno con LF y exige el mismo archivo; después le saca la normalización al generador y exige que la
+comprobación caiga). Las dos corridas en rojo cayeron:
+
+```
+redproof-arbol-propio.mjs
+  VERDE ejercita su propio arbol      la copia temporal, 258 claves (con la centinela)
+  ROJO  con la ruta clavada a mano    contesto otro arbol con 257 claves, sin la centinela
+
+redproof-sitemap-eol.mjs
+  VERDE con CRLF y con LF             identicos: 576 lineas, 2 vacia(s)
+  ROJO  sin la normalizacion          666 lineas, 92 vacia(s): 90 lineas de basura
+```
+
+**Una cosa que apareció midiendo esto y queda dicha, porque no es lo mismo.** En un clon de
+Windows, regenerar deja las diez portadas marcadas como modificadas en el estado del repositorio,
+y sin embargo `git diff` no muestra **ninguna** diferencia: lo único que cambió son los finales de
+línea, que el control de versiones normaliza al comparar y al guardar. O sea que lo publicado no
+cambia —el despliegue baja el árbol commiteado, no la copia de trabajo— y el ruido es sólo del
+estado local. Es distinto del caso del mapa del sitio, donde las noventa líneas vacías eran
+contenido de verdad y el control de versiones no las normalizaba. No se tocó, a propósito: el
+alcance de este pendiente es el mapa, y achicar o agrandar el alcance no es decisión de quien
+ejecuta. Si molesta, es un pendiente nuevo de una línea.
+
+**Commit.** En el repositorio del portal, `19662f1`, **sin empujar**: ahí empujar es publicar y la
+decisión es del dueño. **Decisión:** D-060.
+---
+
+## PND-038 — La compuerta de las portadas existía, estaba bien escrita y no la corría nadie *(hallazgo del método, no de la auditoría)*
+
+- **Nodo:** `cadena/verificacion` [nodo propuesto]
+- **Grupo:** G-PUBLICACION · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
+- **Repositorio:** portal (su flujo de despliegue) · **Estado: CERRADO** el 2026-10-26.
+- **Origen:** apareció el 2026-10-26 al implementar PND-025, y quedó escrito ahí y en D-058 sin
+  entrada propia. Se registra ahora, porque un hallazgo que vive sólo en el cierre de otro no es
+  parte del plan: es una nota al pie.
+
+**Qué está mal.** `build/verify-urazuke-homes.mjs` es la compuerta que dice si las diez portadas
+se pueden publicar, y la regla 4.11 de su contrato no deja lugar a dudas: todo documento que esté
+en el disco tiene que estar enlazado desde alguna portada, y *"el verificador falla si no. No
+avisa: falla"*. **Nadie la corría.** El flujo de despliegue del portal corría la guarda del
+`.htaccess` y nunca ésta, así que la única defensa contra un documento publicado al que nadie
+puede llegar era que alguien se acordara de correr un programa a mano, en el otro repositorio.
+
+Y no es un camino raro: es el normal. El trabajo de publicación del método espeja `docs/html/`
+dentro de `yujin.app/urazuke/` en **cada** fusión a `main` y **no toca la portada**. O sea que el
+método tiene un camino automático para dejar un documento servido y ningún camino automático para
+descubrir que quedó sin enlace. Es la misma clase de guarda dormida que PND-001 —donde el guardián
+de línea de comandos acertaba sólo en un sistema operativo y dos pasos de la cadena corrían en
+vacío— y que D-057, donde una guarda afirmaba un efecto que no había verificado: escrita,
+correcta, y sin nadie que la invoque.
+
+**Mi reproducción (2026-10-26).** Leído el flujo de despliegue del portal, paso por paso:
+
+```
+.github/workflows/deploy.yml  (push a main)
+  Guard -- required secrets present
+  Guard -- the deploy still carries the nested .htaccess files   -> verify-deploy-htaccess.mjs
+  Pull repo zip + rsync overlay into public_html
+  Verify rpaforce.com responds
+
+menciones de verify-urazuke-homes en todo el flujo: 0
+menciones de redproof-urazuke-homes  en todo el flujo: 0
+```
+
+**Qué hay que producir.** Que el despliegue del portal corra la compuerta, y que corra también la
+prueba en rojo que demuestra que la compuerta todavía muerde —porque una compuerta que corre y ya
+no distingue nada es el defecto de PND-037 en otra forma—. Y que el paso **exija la línea** que
+cada programa imprime: un paso que no imprimió nada no corrió, y su código de salida no prueba
+nada (D-057).
+
+**Criterio de aceptación por perfil.**
+
+- *P4 (rastreador):* dado el perfil rastreador, un documento que el método publique y que ninguna
+  portada enlace no llega a producción sin que algo lo diga, y no depende de que alguien se
+  acuerde.
+- *P5 (auditor):* dado el perfil auditor, cada despliegue del portal deja en su registro la línea
+  del verificador y la de las pruebas en rojo, así que se puede saber que corrieron y qué vieron.
+
+**Cómo se verifica.** Leer el registro de un despliegue del portal y encontrar las cuatro líneas.
+Y colgar un documento sin enlace en una rama de prueba: el despliegue tiene que frenar nombrándolo.
+
+**Qué se hizo (2026-10-26).** Un paso nuevo en el flujo de despliegue del portal, antes de la
+copia, que instala las dependencias declaradas y corre la compuerta más las tres pruebas en rojo,
+exigiendo de cada una el texto que imprime. Lo que no se hizo, y se dice: no se tocó la guarda del
+`.htaccess`, que todavía confía en su código de salida; está fuera del alcance de esta entrada.
+
+**La consecuencia, dicha en voz alta en el propio paso.** Una portada de Urazuke que deje de pasar
+ahora **frena ese despliegue, que es el sitio entero**. Es lo que el contrato pide, y lo que frena
+—publicar un documento al que nadie puede llegar— es peor que un despliegue demorado; el arreglo es
+siempre un enlace en la portada. Queda escrito acá porque es el tipo de acoplamiento que conviene
+haber leído **antes** de que frene un despliegue y no después.
+
+**Evidencia de cierre.** El fragmento del paso corrido tal cual, en sus tres caminos, antes de
+commitear:
+
+```
+(1) todo verde
+    PASS -- every page is baked, linked, canonical and reciprocal.
+    PRUEBA EN ROJO OK: las 9 mutaciones caen y el verificador nombra el problema.
+    arbol propio: comprobado ...
+    eol: comprobado ...
+    exit=0
+
+(2) un documento huerfano colgado en docs/
+    - [index.html] 1 published document(s) that no page links to -- served but
+      unreachable: docs/PROBE_HUERFANA.html
+    ::error::node build/verify-urazuke-homes.mjs salio en rojo
+    exit=1
+
+(3) un programa que sale 0 y NO imprime su recibo
+    corri, te lo juro
+    ::error::... no imprimio 'PASS -- every page is baked' -- un paso que no
+      imprimio nada no corrio
+    exit=1
+```
+
+El camino (3) es el que importa de verdad: es el que hace que este arreglo no repita el defecto que
+vino a arreglar.
+
+**Commit.** En el repositorio del portal, `19662f1`, **sin empujar**. **Decisión:** D-060.
 ---
 
 # Abiertos — G-ECOSISTEMA: entender qué es cada cosa
@@ -2176,13 +2337,13 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-API | 14 | 6 | 8 | 2 |
 | G-ALCANCE | 3 | 0 | 3 | 0 |
 | G-IDIOMA | 13 | 11 | 2 | 2 |
-| G-PUBLICACION | 4 | 1 | 3 | 0 |
+| G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 1 | 2 | 0 |
-| **total** | **37** | **19** | **18** | **4** |
+| **total** | **38** | **18** | **20** | **4** |
 
-Treinta y siete entradas, `PND-001` a `PND-037`. Veintidós vienen de la auditoría externa
-(`U-01` a `U-22`), tres del propio método midiendo su cadena y su publicación (PND-001, PND-035 y
-PND-037), y las doce restantes son trabajo derivado: la propuesta de firma, el chequeo de
+Treinta y ocho entradas, `PND-001` a `PND-038`. Veintidós vienen de la auditoría externa
+(`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
+PND-037 y PND-038), y las doce restantes son trabajo derivado: la propuesta de firma, el chequeo de
 huérfanas, la portada del protocolo que está servida y no tiene fuente, y las nueve revisiones
 semánticas.
 
@@ -2204,9 +2365,11 @@ Y el 2026-10-26 cerró el que faltaba, **PND-025**: la mitad del guardián que v
 Ahora la publicación, en el único momento en que los dos árboles están juntos, contrasta los
 documentos que el método publica contra los que la portada enlaza y los que el mapa del sitio
 lleva, y avisa nombrando a cada huérfano. Al implementarlo apareció algo peor que lo registrado:
-la mitad del portal existía y **no la corría nadie** —su flujo de despliegue no la invoca—, así
-que hasta ese día la única defensa era que alguien se acordara. Con eso **el grupo del alcance
-queda cerrado entero**.
+la mitad del portal existía y **no la corría nadie** —su flujo de despliegue no la invocaba—, así
+que hasta ese día la única defensa era que alguien se acordara. Eso quedó registrado como
+**PND-038** y cerrado el mismo 2026-10-26: el despliegue del portal ahora corre la compuerta y las
+pruebas en rojo, y exige la línea que cada una imprime. Con eso **el grupo del alcance queda
+cerrado entero**.
 
 **Y el 2026-10-26 cerró el grupo del ecosistema.** **PND-022**: la distinción entre el método, el
 protocolo y la herramienta está escrita arriba en las dos portadas —la del portal, horneada en los
@@ -2218,16 +2381,24 @@ publicados, y en el índice sólo las direcciones que él mismo declara. Al hace
 cosas que no estaban registradas y que son mejores que el pendiente: la portada del protocolo está
 servida y **no tiene fuente en ningún repositorio** (**PND-036**, que es por qué el enlace de
 vuelta no se escribió), y la prueba en rojo del verificador de portadas mira **un árbol clavado a
-una ruta local** y pasa en verde sin ver el cambio que tiene al lado (**PND-037**). Las tres
-guardias dormidas de este proyecto —el guardián de línea de comandos, la guarda que afirmaba un
-efecto sin verificarlo, y la mitad del portal que no corría nadie— tienen ahora una cuarta de la
-misma familia.
+una ruta local** y pasa en verde sin ver el cambio que tiene al lado (**PND-037**).
+
+**Y las cuatro guardas dormidas, contadas juntas, porque es el patrón del proyecto y no cuatro
+anécdotas.** El guardián de línea de comandos que acertaba sólo en un sistema operativo y dejaba
+dos pasos de la cadena corriendo en vacío (PND-001). La guarda que afirmaba un efecto que no había
+verificado, con el despliegue cerrando en verde y producción en rojo (D-057, PND-035). La compuerta
+de las portadas, escrita y correcta, que **no la invocaba nadie** (PND-038). Y la prueba en rojo
+que mutilaba un árbol que no era el suyo y decía OK (PND-037). Las cuatro están cerradas, y las
+cuatro son la misma frase: **un verde que no midió lo que uno cree que midió no es un verde**. Lo
+que las descubrió, las cuatro veces, no fue leer el código: fue exigirle a cada guarda la salida
+medida en vez de su código de salida.
 
 Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-010,
 PND-011, PND-012, PND-016, PND-024), la revisión semántica de los nueve idiomas de la interfaz
-(PND-026 a PND-034) y los dos hallazgos nuevos (PND-036 y PND-037). Los cuatro bloqueantes
-abiertos que quedan son dos del grupo de la API (PND-010 y PND-011, las dos esperando decisión del
-dueño) y dos del de idiomas (PND-016 y PND-019).
+(PND-026 a PND-034) y el hallazgo que depende de una decisión suya (**PND-036**: dónde vive la
+portada del protocolo). Los cuatro bloqueantes abiertos que quedan son dos del grupo de la API
+(PND-010 y PND-011, las dos esperando decisión del dueño) y dos del de idiomas (PND-016 y
+PND-019).
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar

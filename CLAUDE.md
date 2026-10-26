@@ -203,6 +203,17 @@ de estas tres piezas se replica en las otras dos.
   en rojo en `build/redproof-urazuke-homes.mjs`) **falla** si un documento del disco no está
   enlazado desde ninguna de las diez portadas —servido no es publicado— y si al mapa del sitio le
   falta o le sobra una dirección; el mapa ya no se escribe a mano, se descubre del disco.
+  **Y desde el 2026-10-26 ese verificador está invocado** (D-060, PND-038): hasta ese día existía,
+  estaba bien escrito y **no lo corría nadie** —el despliegue del portal corría la guarda del
+  `.htaccess` y nunca éste—, así que la única defensa contra un huérfano era que alguien se
+  acordara de correr un programa a mano. Ahora el despliegue corre el verificador y las tres
+  pruebas en rojo, y **exige la línea que cada programa imprime**. Consecuencia, dicha donde se
+  lee: una portada que deje de pasar frena ese despliegue, que es el sitio entero; es lo que la
+  regla 4.11 de su contrato pide y el arreglo es siempre un enlace en la portada. Las dos pruebas
+  nuevas son las que hacen que el arreglo se quede: `redproof-arbol-propio.mjs` exige que la prueba
+  en rojo mutile **el árbol donde vive** (estaba clavado a una ruta de una máquina y contaba las
+  claves de otra copia, PND-037) y `redproof-sitemap-eol.mjs` exige que el mapa regenerado sea el
+  mismo archivo con los dos finales de línea.
 - **Y desde el 2026-10-26 tampoco pasa en silencio del lado del método** (D-058, PND-025). El
   trabajo de publicación, después de clonar el portal y **antes** de la copia —el único momento en
   que los dos árboles están juntos—, contrasta los documentos que el método publica contra los que
