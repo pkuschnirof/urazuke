@@ -1904,6 +1904,8 @@ cadena corrido tal cual en sus tres caminos: verde, aviso con el huérfano nombr
 limpio: `node --test` = **220 pruebas, 0 fallos** (eran 197; las 23 nuevas están en
 `tests/portada_huerfanas.test.mjs`, y cinco de ellas son rojos deliberados).
 
+**Commit / pull request:** pull request **#12**. **Decisión:** D-058.
+
 ---
 
 ## PND-026 a PND-034 — Revisión semántica de los nueve idiomas de la interfaz *(era U-17, segunda parte)*
