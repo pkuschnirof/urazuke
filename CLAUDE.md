@@ -40,7 +40,13 @@ especificación completa (no de una línea), su grupo de convergencia y sus perf
 de aceptación por perfil (Anexo H, ancla 1), la evidencia **medida** y la reproducción propia con
 fecha; un pendiente se cierra con evidencia escrita y **se queda** en el registro con su
 documentación de cierre, porque los cerrados son la documentación de lo que se construyó; cada
-commit cita su pendiente. Va en castellano, es voz del autor y **no** se traduce ni se genera. La
+commit cita su pendiente **y lleva sólo lo que su mensaje nombra**. Esto último hay que decirlo
+porque ya falló: el 2026-10-26 un commit que anunciaba un arreglo de una palabra se llevó ocho
+documentos que no menciona, mil sesenta y seis líneas de las mil ochenta y siete que insertó
+(`PND-050`). Los apuntes del panel de chat **no son corpus ni evidencia y no entran al
+repositorio**; un documento de trabajo entra con el pendiente que lo pide; y un archivo que el
+registro cita como evidencia se queda, con el nombre del resto de la carpeta y no con el del
+panel (D-062). Va en castellano, es voz del autor y **no** se traduce ni se genera. La
 numeración `PND-nnn` es la de este registro y no se corresponde con la de ninguna herramienta.
 Mientras el árbol semántico del peldaño 2 no exista, los nodos se escriben `[nodo propuesto]`.
 No se genera, pero **su resumen no puede contradecir sus entradas**: `tests/pending_resumen.test.mjs`

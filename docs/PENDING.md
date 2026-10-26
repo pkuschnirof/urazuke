@@ -63,8 +63,8 @@ Cada entrada lleva, además de los campos que pide el peldaño 5, los que pidió
 ## Los grupos de convergencia (Anexo H, B1)
 
 La regla madre de B1 es que una funcionalidad se agrupa por **lo que la persona vino a hacer**. El
-método tiene seis cosas que alguien viene a hacer: cinco en su interfaz pública y una en el
-contenido mismo del método.
+método tiene siete cosas que alguien viene a hacer: cinco en su interfaz pública, una en el
+contenido mismo del método y una en su registro de versiones.
 
 | grupo | lo que la persona vino a hacer |
 |---|---|
@@ -74,6 +74,7 @@ contenido mismo del método.
 | **G-PUBLICACION** | que lo que está servido sea lo último que el método produjo |
 | **G-ECOSISTEMA** | entender qué es cada cosa: el método, el protocolo, la herramienta |
 | **G-METODO** | aplicar el método completo, sin que falte una parte que el método exige |
+| **G-TRAZABILIDAD** | reconstruir, desde el registro, qué cambió, por qué y con qué pendiente |
 
 *Nota de lectura:* la auditoría dijo "hay cuatro grupos" y después presentó **cinco**. Se adopta
 el cinco: el quinto grupo es real y no es un sobrante de los otros cuatro.
@@ -84,6 +85,15 @@ material, si lo servido es lo último, si el dato se puede consumir, si se lee e
 uno, si se entiende qué es cada cosa—. El sexto es del **contenido del método**: si lo que el
 lector recibe está completo, es consistente y se puede aplicar. La fundamentación larga está al
 abrir su sección.
+
+*Y el séptimo nació el mismo 2026-10-26*, al final del día y de un desvío propio (`PND-050`): un
+commit llevó ocho documentos que su mensaje no nombra. Lo que alguien viene a hacer ahí no es
+consumir la API ni leer el método: es **reconstruir qué cambió y por qué**, que es lo único que
+hace auditable todo lo demás. Ninguno de los seis anteriores lo cubre —los cinco primeros son de la
+interfaz publicada y el sexto es del contenido del método—, y meterlo en G-METODO habría dejado la
+definición de ese grupo diciendo algo falso, con la lista cerrada de la prueba dando el visto bueno.
+El precio está dicho en el propio test: abrir un grupo toca tres lugares a la vez (esta tabla, la
+constante de `tests/pending_resumen.test.mjs` y la tabla del resumen).
 
 ## Los perfiles (Anexo H, B2)
 
@@ -127,6 +137,7 @@ parte del tramo de normalización en curso, no de este backlog.
 | `corpus/referencias` | los casos propios reales y la tabla de fallos |
 | `corpus/hoja-del-dueno` | lo que un dueño se lleva a una reunión con un proveedor |
 | `proyecto/instrucciones` | `CLAUDE.md`, que un agente lee como instrucción |
+| `proyecto/registro` | el registro de versiones y el de pendientes: qué cambió y por qué |
 
 ---
 
@@ -3392,7 +3403,7 @@ y eso es `PND-046`.
 
 **La forma exacta vuelve al dueño.** El 2026-10-26 eligió la fuerza —«la ficha **y** el contrato lo
 citan»— y pidió más contexto para la forma, que se le entregó medida en
-`docs/la-cuarta-decision-con-contexto-medido-pnd-048.md`. No es una lista de tres opciones sino
+`docs/DECISION_PND-048_CONTEXTO_MEDIDO.md`. No es una lista de tres opciones sino
 **tres diales independientes**: el **ancla** (el enlace o la palabra), los **idiomas** (los ocho o
 sólo el castellano) y la **dirección** (las dos o sólo del dato a la prosa). El costo recurrente,
 que es el único argumento honesto a favor de la variante corta, está dicho: de acá en adelante,
@@ -3474,6 +3485,127 @@ y no viaja a los ocho idiomas. Se quedaron sólo los dos candados decidibles (E 
 
 ---
 
+# Abiertos — G-TRAZABILIDAD: reconstruir, desde el registro, qué cambió y por qué
+
+## PND-050 — Un commit llevó ocho documentos que su mensaje no nombra
+
+- **Nodo:** `proyecto/registro` [nodo propuesto]
+- **Grupo:** G-TRAZABILIDAD · **Severidad:** registra · **Quién decide:** la limpieza se hizo y se
+  reporta; la prevención vuelve al dueño, que es quien fija el orden del backlog
+- **Repositorio:** método · **Estado: abierto**
+- **Origen:** nació el 2026-10-26, revisando qué se había movido después de fusionar el pedido
+  **#13**. No lo encontró el dueño y no lo encontró ninguna compuerta: apareció al leer el árbol.
+
+**Qué está mal.** El commit `08a429d` anuncia en su mensaje un arreglo de una palabra en los ocho
+idiomas —«la parte del anexo no es "la novena"»— y llevó además **siete** documentos que no tienen
+nada que ver con él: los dos insumos del tramo de normalización que está abierto
+(`docs/ELIGIBILITY_CRITERIA.md` y `docs/FUNCTIONALITY_RECOVERED.md`), los dos del paper
+(`docs/paper/`) y **tres apuntes de sesión del panel de chat**, con el nombre en minúsculas y
+guiones que delata de dónde salieron, tirados en la raíz de `docs/` donde todo lo demás se llama
+en mayúsculas. Un octavo, el apunte con el contexto medido de `PND-048`, entró en `4099d07`, que
+es el commit al que sí pertenece —el registro lo cita como la evidencia que se le entregó al dueño
+para decidir—, y ese mensaje tampoco lo nombra.
+
+Eso rompe dos reglas de este proyecto a la vez: **un commit hace una cosa** y **cada commit cita
+su pendiente**. Y lo que cuesta no es el desorden: el registro de versiones es la única fuente que
+dice por qué cambió cada archivo, así que quedaron ocho archivos en el árbol sin una línea que los
+explique. El método se pasa el día exigiendo que una afirmación venga con su evidencia; un commit
+cuyo mensaje describe el dos por ciento de lo que llevó es esa misma falla, puesta justo en el
+lugar desde donde se audita todo lo demás.
+
+**Mi reproducción (2026-10-26).**
+
+```
+$ git show --stat 08a429d | tail -1
+ 26 files changed, 1087 insertions(+), 21 deletions(-)
+
+$ git show --numstat 08a429d   (sólo lo que el mensaje no nombra)
+    67  docs/ELIGIBILITY_CRITERIA.md
+   298  docs/FUNCTIONALITY_RECOVERED.md
+    52  docs/paper/README.md
+   224  docs/paper/metodo-protocolo-herramienta.md
+   211  docs/auditoria-urazuke-el-arbol-del-portal-y-las-siete-decisiones.md
+    81  docs/backlog-de-la-auditoria-el-registro-inaugurado-y-lo-que-qued.md
+   133  docs/backlog-de-la-retrospectiva-las-4-decisiones-del-dueno.md
+ -----
+  1066  (de 1087 insertadas)
+
+$ git log -1 --format=%B 08a429d | grep -ci "eligibility\|functionality\|paper\|backlog\|auditoria-urazuke"
+0
+```
+
+Mil sesenta y seis de las mil ochenta y siete líneas que ese commit insertó —el **98 %**— están
+fuera del alcance que su mensaje declara, y el mensaje no las menciona **ni una vez**. Las otras
+veintiuna son el cambio real: dos líneas por archivo en los ocho idiomas y sus HTML.
+
+**Lo que esto NO rompió, medido y no supuesto.** Ninguno de los ocho se publica. No están en el
+arreglo literal de `build/build.mjs` —que es el que decide qué se genera por idioma, y lleva once
+nombres— así que no existe HTML de ninguno y el espejo del portal no los pudo llevar:
+
+```
+$ ls docs/html/*.html | wc -l
+12                      (los once del arreglo más CONTRATOS_DE_PELDANO; ninguno de los ocho)
+
+la corrida de publicación de la fusión de #13, que corre con los dos árboles juntos:
+  documentos generados: 84 | huerfanos: 8 -> los ocho son PREGUNTAS_AL_PROVEEDOR (PND-049)
+```
+
+Y ninguno de los cinco que se quedan nombra un cliente real ni lleva una ruta local: buscadas
+`C:\`, `/Users/` y el nombre de la cuenta de la máquina, cero coincidencias.
+
+**Lo que ya se hizo, en el mismo commit que registra esto.** Los tres apuntes de sesión salieron
+del repositorio: no son corpus, no son evidencia citada y no son trabajo del método, son la pizarra
+de una conversación. El cuarto **se queda y se renombra** a
+`docs/DECISION_PND-048_CONTEXTO_MEDIDO.md`, porque el registro lo cita como la evidencia con la que
+el dueño tomó una decisión —y una entrada que cita un archivo que no existe es exactamente lo que
+el método persigue—; con el nombre del resto de la carpeta deja de parecer un resto y pasa a ser lo
+que es, un expediente. Los cuatro que sí son material de trabajo en curso (los dos insumos de la
+normalización y los dos del paper) **se quedan donde están**: pertenecen a pendientes abiertos y su
+lugar es ése de todos modos.
+
+**Decisión del dueño (2026-10-26).** Se le presentaron tres caminos —dejar los ocho y asumir que un
+commit del registro quedó diciendo algo distinto de lo que hizo; sacarlos todos y volver a traerlos
+cuando cada uno entrara con su pendiente; o sacar sólo los apuntes de sesión— con la recomendación
+del tercero. Eligió la recomendación: *"Tu recomendación"*. Reescribir la historia de lo publicado
+no estaba sobre la mesa y no se propuso.
+
+**Lo que no se puede arreglar, y por eso esto queda escrito.** El mensaje de `08a429d` ya está en
+`main` y `main` está publicada: en este repositorio fusionar es publicar, y lo publicado se corrige
+hacia adelante. Reescribir la historia costaría más que el defecto. Así que la reparación de la
+parte vieja **es esta entrada**: desde acá se puede reconstruir qué llevó ese commit de más, por
+qué, y qué se hizo con cada archivo.
+
+**Lo que queda abierto, y es la decisión del dueño.** La prevención. Hoy la única defensa contra
+que esto vuelva es que alguien se acuerde de mirar el árbol antes de commitear, que es la forma
+exacta de las cuatro guardas dormidas de este proyecto vista del otro lado: no hay guarda. La
+propuesta, con la forma que el proyecto ya usa en el aviso de huérfanas y en el interruptor del
+Anexo H —**un inventario con razón escrita**—: una prueba que lea los documentos que el árbol
+tiene bajo `docs/` y exija que cada uno esté **en el arreglo literal de la construcción** (es
+corpus y se publica) **o nombrado en una lista de la propia prueba con su razón** (es trabajo,
+evidencia o expediente, y se dice de qué pendiente). Un archivo que no esté en ninguna de las dos
+es rojo, y el mensaje dice el nombre. Cuesta una línea por cada documento de trabajo nuevo, que es
+el mismo precio que ya se paga por agregar un documento al corpus, y atrapa el caso exacto de
+arriba: los tres apuntes no habrían podido entrar en silencio. La alternativa honesta es **no
+hacerla** y dejar que esto lo atrape la lectura del árbol antes de cada commit; el costo de esa
+opción es que ya falló una vez, y no por descuido de nadie en particular.
+
+**Criterio de aceptación por perfil.**
+
+- *P5 (auditor que quiere probar que su copia es la buena):* dado ese perfil, esta persona puede
+  tomar cualquier commit del método y saber, leyendo su mensaje, todo lo que ese commit llevó; y si
+  encuentra en el árbol un archivo que ningún mensaje explica, el registro lo explica.
+- *P8 (dueño de proyecto que aplica el método):* dado ese perfil, esta persona no tiene que leer el
+  árbol a mano para saber si un commit se llevó algo de más: algo se lo dice, nombrando el archivo.
+
+**Cómo se verifica.** Cuando la prevención esté hecha: la prueba cae en rojo contra el árbol de
+`1a02cd3` nombrando los tres apuntes, y queda en verde contra el árbol de ahora. Mientras no esté,
+esta entrada se queda abierta, que es lo que corresponde: la parte vieja está documentada y la
+parte que impide la próxima vez, no.
+
+**Depende de:** nada.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -3489,9 +3621,10 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 1 | 2 | 0 |
 | G-METODO | 10 | 1 | 9 | 0 |
-| **total** | **49** | **20** | **29** | **4** |
+| G-TRAZABILIDAD | 1 | 1 | 0 | 0 |
+| **total** | **50** | **21** | **29** | **4** |
 
-Cuarenta y nueve entradas, `PND-001` a `PND-049`. Veintidós vienen de la auditoría externa
+Cincuenta entradas, `PND-001` a `PND-050`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la
 portada del protocolo que está servida y no tiene fuente, la hoja nueva que nace sin enlace en la
@@ -3499,7 +3632,9 @@ portada, y las nueve revisiones semánticas— y **diez son de una fuente nueva*
 del peldaño 23 sobre «El Arte de Forjar Sistemas», la novela de Oscar Schmitz que adapta el método,
 validada aseveración por aseveración contra la letra (`PND-039` a `PND-048`, grupo G-METODO). No las
 trajo una auditoría encargada ni una medición propia: las trajo **un lector que aplicó el método a
-fondo y lo que le pasó al aplicarlo**, que es exactamente la entrada que el peldaño 23 espera.
+fondo y lo que le pasó al aplicarlo**, que es exactamente la entrada que el peldaño 23 espera. Y la
+última, `PND-050`, no la trajo nadie de afuera: salió de leer el árbol después de fusionar, y es un
+desvío propio.
 
 **Lo que está primero, y por qué.** Las precondiciones del grupo de la API están cerradas, y en
 este orden: PND-021 (cuál es el árbol del portal realmente desplegado), PND-020 y PND-018 (la
@@ -3568,10 +3703,24 @@ elección entre escribir la referencia o quitar la mención es del dueño y la e
 De paso quedó abierta `PND-049` en el grupo del alcance, que es la consecuencia conocida de haber
 publicado un documento nuevo: la portada del portal todavía no lo enlaza.
 
+**Y el séptimo grupo nació de un desvío propio, el mismo día.** `PND-050`: el commit que cerraba el
+trabajo de arriba —el que anuncia un arreglo de una palabra en los ocho idiomas— llevó además ocho
+documentos que su mensaje no nombra, y mil sesenta y seis de las mil ochenta y siete líneas que
+insertó están fuera del alcance que declara. No lo encontró el dueño ni lo encontró una compuerta:
+apareció al leer el árbol después de fusionar. Ninguno de los ocho se publica —ninguno está en el
+arreglo literal de la construcción, y la corrida de publicación lo confirma: los ocho huérfanos que
+nombró son otros—, así que lo que se rompió no es lo servido: es la única fuente que dice por qué
+cambió cada archivo. Los tres apuntes de sesión salieron del repositorio, el cuarto se quedó
+renombrado porque el registro lo cita como evidencia de una decisión, y los cuatro que son material
+de trabajo en curso se quedaron donde estaban. **Lo que queda abierto es la prevención**, que vuelve
+al dueño: hoy la única defensa contra que vuelva a pasar es que alguien se acuerde de mirar el
+árbol, que es la forma de una guarda dormida vista del otro lado —no hay guarda—.
+
 Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-010,
-PND-011, PND-012, PND-016, PND-024 y PND-046), la revisión semántica de los nueve idiomas de la
-interfaz (PND-026 a PND-034), el enlace de la hoja nueva en la portada (PND-049) y el hallazgo que
-depende de una decisión suya (**PND-036**: dónde vive la portada del protocolo). Los cuatro
+PND-011, PND-012, PND-016, PND-024, PND-046 y la prevención de PND-050), la revisión semántica de
+los nueve idiomas de la interfaz (PND-026 a PND-034), el enlace de la hoja nueva en la portada
+(PND-049) y el hallazgo que depende de una decisión suya (**PND-036**: dónde vive la portada del
+protocolo). Los cuatro
 bloqueantes abiertos que quedan son dos del grupo de la API (PND-010 y PND-011, las dos esperando
 decisión del dueño) y dos del de idiomas (PND-016 y PND-019): el del método se cerró.
 
