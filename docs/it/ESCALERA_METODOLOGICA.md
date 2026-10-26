@@ -232,7 +232,7 @@ Ogni gradino ha otto parti, sempre le stesse, perché si possano confrontare:
 - **Contratto**: il file in cui c'è come si esegue: contesto, prompt, risultato, verifica, segnali
   d'allarme.
 
-E c'è una nona parte che compare **solo in sei gradini**, perché è un pezzo trasversale che cambia
+E c'è una parte in più, che compare **solo in sei gradini** ed è un pezzo trasversale che cambia
 cosa bisogna leggere: l'**Allegato H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)).
 Quarantacinque regole verificabili — diciotto di qualità del codice e ventisette di usabilità —,
 ciascuna con il suo identificatore stabile, la sua severità e lo strumento che la misura. Non è

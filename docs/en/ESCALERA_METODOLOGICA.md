@@ -227,7 +227,7 @@ Each step has eight parts, always the same, so that they can be compared:
 - **Contract**: the file where how it is executed lives: context, prompts, result, check, warning
   signs.
 
-And there is a ninth part that shows up in **six steps only**, because it is a transversal piece
+And there is one more part, which shows up in **six steps only** and is a transversal piece
 that changes what has to be read: **Annex H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)).
 Forty-five verifiable rules -- eighteen on code quality and twenty-seven on usability -- each one
 with its stable id, its severity and the instrument that measures it. It is not an optional

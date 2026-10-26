@@ -227,7 +227,7 @@ Cada degrau tem oito partes, sempre as mesmas, para que se possam comparar:
 - **Contrato**: o arquivo onde está como se executa: contexto, prompts, resultado, verificação,
   sinais de alerta.
 
-E há uma nona parte que aparece **apenas em seis degraus**, porque é uma peça transversal que muda
+E há uma parte mais, que aparece **apenas em seis degraus** e é uma peça transversal que muda
 o que tem de ser lido: o **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). São
 quarenta e cinco regras verificáveis — dezoito de qualidade de código e vinte e sete de
 usabilidade —, cada uma com seu identificador estável, sua severidade e o instrumento que a mede.

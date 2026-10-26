@@ -242,7 +242,7 @@ Chaque échelon a huit parties, toujours les mêmes, pour qu'on puisse les compa
 - **Contrat** : le fichier où se trouve comment on l'exécute : contexte, prompts, résultat,
   vérification, signaux d'alarme.
 
-Et il y a une neuvième partie qui n'apparaît que dans **six échelons**, parce que c'est une pièce
+Et il y a une partie de plus, qui n'apparaît que dans **six échelons** et qui est une pièce
 transversale qui change ce qu'il faut lire : l'**Annexe H**
 ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Quarante-cinq règles vérifiables — dix-huit de
 qualité du code et vingt-sept d'utilisabilité —, chacune avec son identifiant stable, sa sévérité

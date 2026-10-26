@@ -243,7 +243,7 @@ Jeder Schritt hat acht Teile, immer dieselben, damit sie sich vergleichen lassen
 - **Vertrag**: die Datei, in der steht, wie er ausgeführt wird: Kontext, Prompts, Ergebnis,
   Prüfung, Warnsignale.
 
-Und es gibt einen neunten Teil, der **nur in sechs Schritten** auftaucht, weil er ein querliegendes
+Und es gibt noch einen Teil, der **nur in sechs Schritten** auftaucht und ein querliegendes
 Stück ist, das ändert, was gelesen werden muss: **Anhang H**
 ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Fünfundvierzig überprüfbare Regeln — achtzehn zur
 Codequalität und siebenundzwanzig zur Benutzbarkeit —, jede mit ihrer stabilen Kennung, ihrer

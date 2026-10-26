@@ -226,7 +226,7 @@ Cada peldaño tiene ocho partes, siempre las mismas, para que se puedan comparar
 - **Contrato**: el archivo donde está cómo se ejecuta: contexto, prompts, resultado, verificación,
   señales de alarma.
 
-Y hay una novena parte que aparece **sólo en seis peldaños**, porque es una pieza transversal que
+Y hay una parte más, que aparece **sólo en seis peldaños** y es una pieza transversal que
 cambia qué hay que leer: el **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Son
 cuarenta y cinco reglas verificables —dieciocho de calidad del código y veintisiete de
 usabilidad—, cada una con su identificador estable, su severidad y el instrumento que la mide. No
