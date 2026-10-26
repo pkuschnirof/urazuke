@@ -259,14 +259,18 @@ de estas tres piezas se replica en las otras dos.
   en rojo en `build/redproof-urazuke-homes.mjs`) **falla** si un documento del disco no está
   enlazado desde ninguna de las diez portadas —servido no es publicado— y si al mapa del sitio le
   falta o le sobra una dirección; el mapa ya no se escribe a mano, se descubre del disco.
-  **Y desde el 2026-10-26 ese verificador tiene quien lo invoque, en un commit del portal que
-  todavía no se empujó** (D-060, D-063, PND-038, que por eso está *en curso* y no cerrado): hasta
-  ese día existía, estaba bien escrito y **no lo corría nadie** —el despliegue del portal corría la
-  guarda del `.htaccess` y nunca éste—, así que la única defensa contra un huérfano era que alguien
-  se acordara de correr un programa a mano. El paso nuevo hace que el despliegue corra el
-  verificador y las tres pruebas en rojo, y **exija la línea que cada programa imprime**. Mientras
-  ese commit no esté empujado, en producción sigue sin correr: un arreglo en la máquina no es un
-  efecto, que es lo que D-057 dejó escrito. Consecuencia, dicha donde se
+  **Y desde el 2026-10-26 ese verificador tiene quien lo invoque, en cada despliegue del portal**
+  (D-060, PND-038, cerrado): hasta ese día existía, estaba bien escrito y **no lo corría nadie**
+  —el despliegue del portal corría la guarda del `.htaccess` y nunca éste—, así que la única defensa
+  contra un huérfano era que alguien se acordara de correr un programa a mano. El paso nuevo hace
+  que el despliegue corra el verificador y las tres pruebas en rojo, y **exija la línea que cada
+  programa imprime**. El pendiente se cerró por el **efecto y no por el commit**: se había cerrado
+  con el arreglo en la máquina, se reabrió el mismo día porque eso no es un efecto en producción
+  (D-057), y cerró cuando la corrida `40400804428` dejó las cuatro líneas en el registro de un
+  despliegue real. El paso instala **sólo `cheerio`**, que es la única dependencia que esos cuatro
+  programas usan: `sharp` está en el manifiesto de `build/` y no lo toca ninguno, y un módulo nativo
+  en el camino crítico del despliegue del sitio entero, para algo que no se usa, es superficie de
+  falla regalada. Consecuencia, dicha donde se
   lee: una portada que deje de pasar frena ese despliegue, que es el sitio entero; es lo que la
   regla 4.11 de su contrato pide y el arreglo es siempre un enlace en la portada. Las dos pruebas
   nuevas son las que hacen que el arreglo se quede: `redproof-arbol-propio.mjs` exige que la prueba

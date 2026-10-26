@@ -1211,7 +1211,9 @@ portada ni el mapa, así que el próximo documento nuevo nacería huérfano otra
 portal tiene ahora dos comprobaciones nuevas: que al mapa no le **falte** ninguna dirección
 publicada y que no le **sobre** una que el método dejó de publicar —las dos con su rojo deliberado,
 y cada rojo exigiendo el texto que el verificador tiene que decir, no sólo que se caiga—. La otra
-mitad, el aviso del lado del método, es PND-025 y sigue abierta.
+mitad, el aviso del lado del método, es PND-025, que **cerró el 2026-10-26** (decía «sigue abierta»
+hasta este commit: una entrada del registro no puede afirmar en presente un estado que otra entrada
+desmiente, que es `PND-051` en chico).
 
 ---
 
@@ -1309,8 +1311,10 @@ PRUEBA EN ROJO OK: las 9 mutaciones caen y el verificador nombra el problema.
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
 - **Grupo:** G-ALCANCE · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: en curso** desde el 2026-10-26: el trabajo está hecho y
-  medido en el clon del portal, sin empujar, y empujar ahí **es** publicar.
+- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-26, y cerrado por el **efecto** y no
+  por el commit: el empujón se hizo y producción sirve la hoja enlazada desde las diez portadas.
+  Estuvo *en curso* unas horas, con el trabajo hecho y medido en el clon y sin empujar, porque ahí
+  empujar **es** publicar y la decisión era del dueño.
 - **Origen:** nació el 2026-10-26 al cerrar `PND-043`, y no es una sorpresa: es la consecuencia
   escrita de D-052, anotada en el mismo momento en que se creó la causa.
 
@@ -1397,7 +1401,8 @@ node build/portal_orphans.mjs --portal <arbol del portal>     (desde el metodo)
 ```
 
 De 76 enlazados sobre 84 generados a 84 sobre 84. **Commit** en el repositorio del portal,
-`7adbd4b`, **sin empujar**: ahí no hay pull request ni compuerta, y empujar publica.
+`7adbd4b`, **empujado el 2026-10-26** con el permiso del dueño, dentro de la misma pila que
+`f72406a` y `6ea7f38`: ahí no hay pull request ni compuerta, y empujar publica.
 
 **Por qué esto va antes que el otro commit del portal.** El commit anterior de esa rama conecta la
 compuerta de las portadas al despliegue (`PND-038`). Con los ocho huérfanos puestos, esa compuerta
@@ -1412,6 +1417,34 @@ prosa de la portada en diez idiomas y no es el alcance de esta entrada.
 **Cuándo cierra.** Cuando ese commit se empuje y la hoja esté alcanzable desde la portada en
 producción, que es lo que piden P3 y P4. No se cierra con el commit en la máquina: esa es la
 diferencia que D-057 dejó escrita.
+
+**Evidencia de cierre (2026-10-26), medida contra producción y no contra el clon.** El empujón
+disparó el despliegue del portal, que cerró en verde, y después se le preguntó al servidor:
+
+```
+$ node -e "fetch de las portadas y de la hoja, contando enlaces"
+  200    70223  enlaces a la hoja: 8   https://yujin.app/urazuke/
+  200    70338  enlaces a la hoja: 8   https://yujin.app/urazuke/en/
+  200    56025  enlaces a la hoja: 8   https://yujin.app/urazuke/ja/
+  200    23126                         https://yujin.app/urazuke/docs/PREGUNTAS_AL_PROVEEDOR.html
+  200    15146                         https://yujin.app/urazuke/docs/ja/PREGUNTAS_AL_PROVEEDOR.html
+
+$ el mapa del sitio servido
+  https://yujin.app/sitemap.xml -> 200, 98 urls de urazuke, 8 de la hoja
+```
+
+Las ocho celdas están en cada una de las diez portadas servidas, los ocho documentos contestan 200
+y el mapa del sitio en producción lleva las ocho direcciones. Eso es P3 (se llega desde la portada
+en el idioma de cada uno), P4 (enlazado y en el mapa) y P8 (está antes de la reunión, no después).
+
+Y la vuelta del método lo confirmó desde el otro lado, en la corrida de publicación `40401061974`,
+que es la primera vez que el guardián de huérfanas dice cero con contenido real y no con un
+fixture:
+
+```
+documentos generados: 84 | enlazados desde una portada: 84 | en el mapa del sitio: 84
+huerfanas: comprobado -- 84 documentos, 0 huerfanos, 0 fuera del mapa
+```
 
 **Depende de:** nada. `PND-043` ya está cerrado; esto es la mitad que vive en el otro repositorio.
 
@@ -1884,12 +1917,12 @@ publicaciones automáticas del método — y se puso al día sin tocar el trabaj
 
 - **Nodo:** `cadena/verificacion` [nodo propuesto]
 - **Grupo:** G-PUBLICACION · **Severidad:** registra · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: en curso.** Se cerró el 2026-10-26 y **se reabrió el mismo
-  día**: su evidencia es un commit en el clon del portal, sin empujar, y lo que sus criterios piden
-  —que el despliegue del portal corra la compuerta y deje su línea en el registro— no pasa hasta que
-  ese commit esté empujado. Es la distinción que D-057 dejó escrita y que `PND-049` aplica en la
-  entrada de al lado: un commit en la máquina no es un efecto en producción. El trabajo está hecho y
-  medido; lo que falta es el empujón, que es decisión del dueño.
+- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-26, a la tercera. Se
+  cerró, **se reabrió el mismo día** —su evidencia era un commit en el clon del portal, sin empujar,
+  y lo que sus criterios piden no pasa hasta que ese commit esté empujado— y cerró de verdad cuando
+  el empujón ocurrió y el despliegue del portal corrió dejando sus líneas en el registro de la
+  corrida. Esa vuelta de más es la distinción que D-057 dejó escrita, aplicada a la contabilidad del
+  propio registro: un commit en la máquina no es un efecto en producción.
 - **Origen:** apareció al cerrar PND-022, cuando la prueba en rojo pasó en verde sin haber visto
   el cambio que estaba al lado.
 
@@ -2015,8 +2048,25 @@ contenido de verdad y el control de versiones no las normalizaba. No se tocó, a
 alcance de este pendiente es el mapa, y achicar o agrandar el alcance no es decisión de quien
 ejecuta. Si molesta, es un pendiente nuevo de una línea.
 
-**Commit.** En el repositorio del portal, `f72406a`, **sin empujar**: ahí empujar es publicar y la
-decisión es del dueño. **Decisión:** D-060. *(Era `19662f1` cuando se escribió esta entrada. El
+**El efecto, medido en la corrida real y no en la máquina (2026-10-26).** El empujón se hizo con
+el permiso del dueño y el despliegue del portal (`40400804428`, ubuntu-latest, 34 s, verde) corrió
+las tres pruebas en rojo sobre el árbol del runner, que es un clon limpio y no la máquina de nadie,
+y cada una dejó su línea exigida en el registro de la corrida:
+
+```
+PRUEBA EN ROJO OK: las 9 mutaciones caen y el verificador nombra el problema.
+arbol propio: comprobado -- la prueba en rojo mutila el arbol donde vive, y con una ruta
+              clavada a mano no lo hace.
+eol: comprobado -- el mapa del sitio regenerado es el mismo archivo con CRLF y con LF, y sin
+     la normalizacion no lo es.
+```
+
+Que esto corra en un clon del runner es la prueba de que el arreglo es el arreglo: con la ruta
+clavada a mano, en una máquina donde `C:/RPAForce/web` no existe, la prueba no habría tenido árbol
+que mutilar.
+
+**Commit.** En el repositorio del portal, `f72406a`, **empujado el 2026-10-26** dentro de la pila
+`7adbd4b..6ea7f38`. **Decisión:** D-060. *(Era `19662f1` cuando se escribió esta entrada. El
 2026-10-26 se descartó el commit del párrafo de la portada que tenía debajo —`PND-051`, D-063—, el
 enlace de la hoja nueva (`PND-049`) pasó a ir primero para que **cada** commit deje el árbol
 desplegable, y este se reescribió encima: mismo contenido, identificador nuevo. Se corrige acá
@@ -2030,12 +2080,12 @@ entonces éste nombra una pila local.)*
 
 - **Nodo:** `cadena/verificacion` [nodo propuesto]
 - **Grupo:** G-PUBLICACION · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal (su flujo de despliegue) · **Estado: en curso.** Se cerró el 2026-10-26 y **se reabrió el mismo
-  día**: su evidencia es un commit en el clon del portal, sin empujar, y lo que sus criterios piden
-  —que el despliegue del portal corra la compuerta y deje su línea en el registro— no pasa hasta que
-  ese commit esté empujado. Es la distinción que D-057 dejó escrita y que `PND-049` aplica en la
-  entrada de al lado: un commit en la máquina no es un efecto en producción. El trabajo está hecho y
-  medido; lo que falta es el empujón, que es decisión del dueño.
+- **Repositorio:** portal (su flujo de despliegue) · **Estado: CERRADO** el 2026-10-26, a la tercera. Se
+  cerró, **se reabrió el mismo día** —su evidencia era un commit en el clon del portal, sin empujar,
+  y lo que sus criterios piden no pasa hasta que ese commit esté empujado— y cerró de verdad cuando
+  el empujón ocurrió y el despliegue del portal corrió dejando sus líneas en el registro de la
+  corrida. Esa vuelta de más es la distinción que D-057 dejó escrita, aplicada a la contabilidad del
+  propio registro: un commit en la máquina no es un efecto en producción.
 - **Origen:** apareció el 2026-10-26 al implementar PND-025, y quedó escrito ahí y en D-058 sin
   entrada propia. Se registra ahora, porque un hallazgo que vive sólo en el cierre de otro no es
   parte del plan: es una nota al pie.
@@ -2086,8 +2136,9 @@ nada (D-057).
 Y colgar un documento sin enlace en una rama de prueba: el despliegue tiene que frenar nombrándolo.
 
 **Qué se hizo (2026-10-26).** Un paso nuevo en el flujo de despliegue del portal, antes de la
-copia, que instala las dependencias declaradas y corre la compuerta más las tres pruebas en rojo,
-exigiendo de cada una el texto que imprime. Lo que no se hizo, y se dice: no se tocó la guarda del
+copia, que instala **la única dependencia que esos programas usan** (`cheerio`; ver la corrección de
+más abajo) y corre la compuerta más las tres pruebas en rojo, exigiendo de cada una el texto que
+imprime. Lo que no se hizo, y se dice: no se tocó la guarda del
 `.htaccess`, que todavía confía en su código de salida; está fuera del alcance de esta entrada.
 
 **La consecuencia, dicha en voz alta en el propio paso.** Una portada de Urazuke que deje de pasar
@@ -2123,8 +2174,47 @@ commitear:
 El camino (3) es el que importa de verdad: es el que hace que este arreglo no repita el defecto que
 vino a arreglar.
 
-**Commit.** En el repositorio del portal, `f72406a`, **sin empujar**. **Decisión:** D-060.
-*(Era `19662f1`; se reescribió el 2026-10-26 al descartar el commit que tenía debajo, `PND-051`.)*
+**El efecto, medido en la primera corrida real (2026-10-26).** El empujón se hizo con el permiso
+del dueño y el despliegue del portal `40400804428` corrió el paso nuevo, en verde, 34 segundos. Las
+cuatro líneas que este pendiente pedía encontrar en el registro de un despliegue del portal están
+ahí, y no es el relato de que corrió: es lo que imprimió:
+
+```
+Guard -- the Urazuke per-language homes pass, and the gate still bites
+  added 32 packages in 4s
+  Urazuke per-language homes: 10/10 pages on disk (ar, de, en, es, fr, hi, it, ja, pt, zh)
+  PRUEBA EN ROJO OK: las 9 mutaciones caen y el verificador nombra el problema.
+  arbol propio: comprobado -- la prueba en rojo mutila el arbol donde vive ...
+  eol: comprobado -- el mapa del sitio regenerado es el mismo archivo con CRLF y con LF ...
+```
+
+Desde esta corrida, la compuerta de las portadas tiene quien la invoque en cada despliegue del
+sitio. La defensa contra un documento publicado al que nadie puede llegar dejó de ser que alguien
+se acuerde.
+
+**Una corrección al propio arreglo, hecha antes de empujar y medida.** El paso instalaba las **dos**
+dependencias del manifiesto de `build/` (`cheerio` y `sharp`) y los cuatro programas que corre usan
+**una**: `cheerio`, que `prerender-urazuke.mjs` importa y los otros tres importan a través de él.
+`sharp` no lo toca ninguno, es un módulo nativo, y éste es el **único** `npm install` de cualquier
+flujo de ese repositorio, así que nada probaba que funcionara: dejar un binario compilado en el
+camino crítico del despliegue del sitio entero, para algo que no se usa, es agrandar la superficie
+de falla de una guarda sin ninguna razón. Comprobado apartando `build/node_modules/sharp` y
+corriendo los cuatro: los cuatro en `exit=0` y los cuatro imprimiendo su línea exigida. En el runner
+el install quedó en **32 paquetes, 4 segundos**. Lo que el paso sigue haciendo en rojo es *no haber
+podido mirar*, que es rojo y no verde (D-058).
+
+**Y un desvío propio en ese mismo commit, dicho acá porque no tiene dónde esconderse.** `6ea7f38`
+**no cita su pendiente en el mensaje**, y es de esta entrada. La regla se había escrito el mismo día
+—`PND-050`, D-062: un commit lleva sólo lo que su mensaje nombra y cita su pendiente— y se incumplió
+en el commit siguiente, en el otro repositorio, que es donde no hay compuerta que lo mire. Está
+empujado y lo publicado se corrige hacia adelante, así que la corrección es ésta: queda nombrado
+acá y anotado como segunda ocurrencia en `PND-050`, que es donde la prevención mecánica espera
+decisión del dueño. Dos veces en un día es el argumento de que la regla sola no alcanza.
+
+**Commit.** En el repositorio del portal, `f72406a` (el paso) y `6ea7f38` (la corrección del
+install), **empujados el 2026-10-26** dentro de la pila `7adbd4b..6ea7f38`. **Decisión:** D-060.
+*(`f72406a` era `19662f1`; se reescribió el 2026-10-26 al descartar el commit que tenía debajo,
+`PND-051`.)*
 ---
 
 # Abiertos — G-ECOSISTEMA: entender qué es cada cosa
@@ -3707,6 +3797,18 @@ opción es que ya falló una vez, y no por descuido de nadie en particular.
 esta entrada se queda abierta, que es lo que corresponde: la parte vieja está documentada y la
 parte que impide la próxima vez, no.
 
+**Segunda ocurrencia, el mismo día, y es el argumento de que la regla sola no alcanza.** Horas
+después de escribir esta entrada y D-062, el commit `6ea7f38` del repositorio del portal —la
+corrección del `npm install` de la guarda nueva, documentada en `PND-038`— se empujó **sin citar su
+pendiente en el mensaje**. No llevó nada de más: es un archivo, y es el que su mensaje nombra. Lo
+que incumplió es la otra mitad de la regla, la cita. Y es significativo *dónde* pasó: en el
+repositorio del portal, que no tiene pull request, no tiene compuerta y no tiene ninguna
+comprobación que mire el mensaje de un commit, así que la única defensa ahí es la memoria —la misma
+forma que esta entrada ya describe—. Dos veces en un día, la segunda a horas de haber escrito la
+regla, dice que escribir la regla donde un agente la lee es necesario y **no** suficiente. La
+prevención que esta entrada propone cubre el árbol del método; el caso del portal pide además algo
+que mire el mensaje, y eso agranda el alcance, que es decisión del dueño y no de quien ejecuta.
+
 **Depende de:** nada.
 
 ---
@@ -3801,13 +3903,13 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
 | G-API | 14 | 6 | 8 | 2 |
-| G-ALCANCE | 4 | 1 | 3 | 0 |
+| G-ALCANCE | 4 | 0 | 4 | 0 |
 | G-IDIOMA | 13 | 11 | 2 | 2 |
-| G-PUBLICACION | 5 | 2 | 3 | 1 |
+| G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 1 | 2 | 0 |
 | G-METODO | 10 | 1 | 9 | 0 |
 | G-TRAZABILIDAD | 2 | 1 | 1 | 0 |
-| **total** | **51** | **23** | **28** | **5** |
+| **total** | **51** | **20** | **31** | **4** |
 
 Cincuenta y una entradas, `PND-001` a `PND-051`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
@@ -3843,9 +3945,11 @@ lleva, y avisa nombrando a cada huérfano. Al implementarlo apareció algo peor 
 la mitad del portal existía y **no la corría nadie** —su flujo de despliegue no la invocaba—, así
 que hasta ese día la única defensa era que alguien se acordara. Eso quedó registrado como
 **PND-038**, con su arreglo escrito y medido —el despliegue del portal corre la compuerta y las
-pruebas en rojo, y exige la línea que cada una imprime—, y **en curso** hasta que ese commit se
-empuje. El grupo del alcance queda con una sola entrada abierta, `PND-049`, que es la hoja nueva
-esperando su enlace en la portada y el mismo empujón.
+pruebas en rojo, y exige la línea que cada una imprime—, y **cerró el mismo día**, cuando el
+empujón ocurrió y la primera corrida real del paso dejó sus cuatro líneas en el registro de un
+despliegue del portal. Con eso el grupo del alcance y el de la publicación quedan **completos**:
+`PND-049`, la hoja nueva, está enlazada desde las diez portadas servidas y los ochenta y cuatro
+documentos del método están enlazados y en el mapa del sitio.
 
 **Y el 2026-10-26 el grupo del ecosistema cerró a medias, y la mitad que no cerró es la lección.**
 **PND-022**: la distinción entre el método, el protocolo y la herramienta está escrita arriba en el
@@ -3869,9 +3973,11 @@ anécdotas.** El guardián de línea de comandos que acertaba sólo en un sistem
 dos pasos de la cadena corriendo en vacío (PND-001). La guarda que afirmaba un efecto que no había
 verificado, con el despliegue cerrando en verde y producción en rojo (D-057, PND-035). La compuerta
 de las portadas, escrita y correcta, que **no la invocaba nadie** (PND-038). Y la prueba en rojo
-que mutilaba un árbol que no era el suyo y decía OK (PND-037). Dos están cerradas y dos —las del portal— están **en curso**: su
-arreglo está escrito y medido en un commit que todavía no se empujó, y cerrarlas con eso sería
-repetir el defecto de D-057 en la contabilidad del propio registro. Las cuatro son la misma frase:
+que mutilaba un árbol que no era el suyo y decía OK (PND-037). Las cuatro están cerradas, y las dos del portal
+tardaron una vuelta de más a propósito: se habían cerrado con un commit en la máquina, se
+**reabrieron el mismo día** porque eso no es un efecto en producción, y cerraron cuando el despliegue
+del portal corrió de verdad y dejó cada línea exigida en el registro de su corrida. Esa vuelta es
+D-057 aplicado a la contabilidad del propio registro. Las cuatro son la misma frase:
 **un verde que no midió lo que uno cree que midió no es un verde**. Lo
 que las descubrió, las cuatro veces, no fue leer el código: fue exigirle a cada guarda la salida
 medida en vez de su código de salida.
@@ -3895,7 +4001,9 @@ del manual de recuperación tiene que dejar, la aritmética de la Ref. 22, la fr
 alineada, y la guarda con sus diez rojos deliberados. **Queda abierta una**: `PND-046`, porque la
 elección entre escribir la referencia o quitar la mención es del dueño y la evidencia la tiene él.
 De paso quedó abierta `PND-049` en el grupo del alcance, que es la consecuencia conocida de haber
-publicado un documento nuevo: la portada del portal todavía no lo enlaza.
+publicado un documento nuevo —la portada del portal no lo enlazaba—, y **cerró el mismo día** con
+el empujón: las ocho celdas están en las diez portadas servidas y el mapa del sitio en producción
+lleva las ocho direcciones.
 
 **Y el séptimo grupo nació de un desvío propio, el mismo día.** `PND-050`: el commit que cerraba el
 trabajo de arriba —el que anuncia un arreglo de una palabra en los ocho idiomas— llevó además ocho
@@ -3911,12 +4019,12 @@ al dueño: hoy la única defensa contra que vuelva a pasar es que alguien se acu
 árbol, que es la forma de una guarda dormida vista del otro lado —no hay guarda—.
 
 Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-010,
-PND-011, PND-012, PND-016, PND-024, PND-046 y la prevención de PND-050), la revisión semántica de
-los nueve idiomas de la interfaz (PND-026 a PND-034), el enlace de la hoja nueva en la portada
-(PND-049) y el hallazgo que depende de una decisión suya (**PND-036**: dónde vive la portada del
-protocolo). Los cuatro
-bloqueantes abiertos que quedan son dos del grupo de la API (PND-010 y PND-011, las dos esperando
-decisión del dueño) y dos del de idiomas (PND-016 y PND-019): el del método se cerró.
+PND-011, PND-012, PND-016, PND-024, PND-046 y la prevención de PND-050, que ya tiene **dos**
+ocurrencias medidas), la revisión semántica de los nueve idiomas de la interfaz (PND-026 a PND-034)
+y el hallazgo que depende de una decisión suya (**PND-036**: dónde vive la portada del protocolo).
+Los cuatro bloqueantes abiertos que quedan son dos del grupo de la API (PND-010 y PND-011, las dos
+esperando decisión del dueño) y dos del de idiomas (PND-016 y PND-019): el del método y el de la
+publicación se cerraron.
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar
