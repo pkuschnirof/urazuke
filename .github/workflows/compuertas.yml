@@ -16,6 +16,8 @@ name: compuertas y prompts
 # de este repositorio, y todo lo que pase estas verificaciones sale publicado sin que
 # nadie lo mire de nuevo. La compuerta humana que queda es la de antes: main está
 # protegida y una fusión necesita el pull request y la aprobación de un propietario.
+# Ese trabajo, además, avisa si el método publica un documento que ninguna portada
+# enlaza (PND-025): el disparador no toca la landing, así que servido no es publicado.
 #
 # La credencial es una CLAVE DE DESPLIEGUE (deploy key) del repositorio del portal, no
 # un token de la cuenta: alcanza exactamente a ese repositorio y a ningún otro, y se
@@ -153,6 +155,41 @@ jobs:
           SSH_CMD="ssh -i ${HOME}/.ssh/portal -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes"
           GIT_SSH_COMMAND="$SSH_CMD" git clone "git@github.com:${PORTAL}.git" portal
           echo "GIT_SSH_COMMAND=${SSH_CMD}" >> "$GITHUB_ENV"
+
+      # La otra mitad de «que no vuelva a pasar» (PND-025, deriva de PND-015). Esta
+      # publicación espeja docs/html/ y NO toca la portada, así que un documento nuevo
+      # queda servido por su URL y sin un enlace que lleve a él hasta que alguien se
+      # acuerde de agregarlo al índice y al i18n de la landing, que viven en el
+      # repositorio del portal. Medido el 2026-10-24: diez de los setenta y seis
+      # documentos publicados no estaban enlazados desde ninguna de las diez portadas, y
+      # el mapa del sitio no llevaba ninguno. La mitad del lado del portal ya existía
+      # (build/verify-urazuke-homes.mjs), pero contesta cuando alguien la corre ahí:
+      # medido el 2026-10-26, el despliegue del portal no la corre. Ésta es la de acá.
+      #
+      # Corre en este paso porque es el único momento en que los dos árboles están
+      # juntos, y ANTES de la copia para leer las portadas como están commiteadas en el
+      # portal, no como las dejó el espejo.
+      #
+      # Avisa y no frena: es la severidad que UX-03 («no hay huérfanas») declara, y el
+      # índice de la landing es del repositorio del portal. Lo que sí frena es no haber
+      # podido mirar -- código 1, sin la línea «huerfanas: comprobado» --, porque decir
+      # «cero huérfanos» cuando no se miró nada es el defecto que D-057 dejó escrito.
+      - name: Avisar si el metodo publica un documento que la portada no enlaza
+        run: |
+          set +e
+          node build/portal_orphans.mjs --portal portal | tee huerfanas.txt
+          CODIGO=${PIPESTATUS[0]}
+          set -e
+          if ! grep -q '^huerfanas: comprobado' huerfanas.txt; then
+            echo "::error::el chequeo de huerfanas no dijo que comprobo: no corrio, o no pudo mirar los dos arboles. Un paso que no miro nada no es un verde"
+            exit 1
+          fi
+          case "$CODIGO" in
+            0) echo "Ningun documento publicado quedo huerfano, y el mapa del sitio los lleva." ;;
+            2) echo "::warning::El metodo publica documentos que ninguna portada enlaza, o que el mapa del sitio no lleva (el detalle, arriba). Servido no es publicado: agregalos al indice y al i18n de la landing, que viven en el repositorio del portal. Repetilo a mano con: node build/portal_orphans.mjs --portal <arbol del portal>" ;;
+            *) echo "::error::No se pudo comprobar si hay huerfanas (el motivo exacto, arriba), y eso no se reporta como cero huerfanos"; exit 1 ;;
+          esac
+          rm -f huerfanas.txt
 
       # Espejo completo: se vacían los dos directorios y se vuelven a llenar, así lo que
       # el método dejó de generar desaparece del sitio en vez de quedar ahí para siempre.
