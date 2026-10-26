@@ -71,6 +71,7 @@ the evidence, and that is why the evidence has to prove itself.
 | `REFERENCIAS.md` | The real cases behind the method, numbered ("Ref. N"), with date and evidence, so that the procedures stay clean and the detail is one click away. Includes the chronologies of the three systems and the table of failures by step. |
 | `peldanos/peldano-NN-*.md` | The contract of each step: when, required context, the prompts in English with their explanation and, before each one, the "Before sending the prompt" block with the files you have to build yourself and their content; the expected result, the completeness check without reading code, the warning signs. |
 | `peldanos/README.md` | The index of the contracts. |
+| `PREGUNTAS_AL_PROVEEDOR.md` | The twenty-five questions for the provider: the completeness check of the contracts, gathered into one sheet an owner who has never contracted software takes to a meeting. Grouped by what they are being promised, each one with the answer that can be **seen** and the step it comes from. |
 | `MANUAL_CURSO.md` | The course: calendar, twenty-four lessons with hands-on tasks and prompts, the guide project ("Turnera"), the go-live checklist. |
 | `MANUAL_CURSO_EVOLUTIVO.md` | Part 2 of the course: the inherited guide project ("Turnera inherited"), ten lessons (N0 to N7, R1 and R2) to normalize a legacy system and then correct it and evolve it. |
 | `../DECISIONES.md` | The project's decisions, with date and exact words. The method applies to itself. Spanish only. |

@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>提供者への二十五の質問</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+h3.refh{font-size:1.02rem;margin-top:1.6em;color:#3a2f00;border-bottom:1px dashed var(--line);padding-bottom:.2em}
+h3.refh:target{background:var(--gold-soft);border-radius:6px;padding:.4em .6em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+a{color:#7a5600}
+a.ref{font:700 .78em/1.4 Segoe UI,Arial,sans-serif;background:#f1ece0;border:1px solid var(--line);border-radius:999px;padding:0 .5em;text-decoration:none;color:#5a3f00;white-space:nowrap;vertical-align:middle}
+a.ref:hover{background:var(--gold-soft)}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+.pbox{margin:.8em 0 1.2em}
+.prompt{margin:0;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.prompt.tr{background:#f3f7f0;border-color:#cfdcc6;border-left-color:#5c8a4a}
+.prompt.tr::before{content:'プロンプト（翻訳）';color:#3f6b2e}
+.trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
+.trbtn:hover{background:#efe0b8}
+.antes{margin:1em 0 .8em;padding:.7em 1.1em .45em;background:#eef2f7;border:1px solid #c9d3e3;border-left:5px solid #3f5a8a;border-radius:6px;font-size:.95em}
+.antes>p:first-child{margin:.15em 0 .45em}
+.antes>p:first-child strong{display:inline-block;color:#2c4470;text-transform:uppercase;letter-spacing:.5px;font:700 .82em/1.5 Segoe UI,Arial,sans-serif;margin-right:.2em}
+.antes ul{margin:.3em 0 .45em;padding-left:1.4em}
+.antes li{margin:.4em 0}
+.antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;margin:.6em 0;display:block}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+.pie{margin-top:3em;padding-top:1em;border-top:1px dashed var(--line);font:.85em/1.5 Segoe UI,Arial,sans-serif;color:var(--mute)}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="提供者への二十五の質問">提供者への二十五の質問</h1><nav class="toc"><div class="toc-t">目次</div><ul><li class="l2"><a href="#覚えておくべき唯一のルール">覚えておくべき唯一のルール</a></li><li class="l2"><a href="#十分しかないなら">十分しかないなら</a></li><li class="l2"><a href="#約束されること-動く状態で引き渡します">約束されること：「動く状態で引き渡します」</a></li><li class="l2"><a href="#約束されること-何が残っているか-どの順かを把握しています">約束されること：「何が残っているか、どの順かを把握しています」</a></li><li class="l2"><a href="#約束されること-ちゃんと作ってあります">約束されること：「ちゃんと作ってあります」</a></li><li class="l2"><a href="#約束されること-あなたに害は与えません">約束されること：「あなたに害は与えません」</a></li><li class="l2"><a href="#約束されること-耐えます">約束されること：「耐えます」</a></li><li class="l2"><a href="#約束されること-本当のことを言います">約束されること：「本当のことを言います」</a></li><li class="l2"><a href="#答えをどうするか">答えをどうするか</a></li><li class="l2"><a href="#この紙の出どころ">この紙の出どころ</a></li></ul></nav>
+<p>この紙はとても具体的な一つの場面のためのものだ：誰かがあなたにシステムを作りましょうと申し出ている、あるいは引き渡そうとしている。そしてあなたはプログラミングをしない。この会合のためにプログラミングを学ぶ必要はない。必要なのは、<strong>何を見せてくれと求めるか</strong>を知ることだ。</p>
+<p>方法の全体は二十四段の契約の中にあり、各契約は自分の「コードを読まない完全性の検証」を持っている：引き渡されたものについて持ち主が行う確認の一覧だ。それはプロジェクトが進行中なら役に立つが、三十二のファイルに分かれていて、誰もそれを持って会合に入らない。この紙は同じものを、<strong>何を約束されているか</strong>で並べてまとめたものだ。印刷して持っていく。</p>
+</section><section>
+<h2 id="覚えておくべき唯一のルール">覚えておくべき唯一のルール</h2>
+<p><strong>値のある答えは、見られる答えだ。</strong> ファイル、それを生むコマンド付きの数字、失敗するのを見たテスト、マニュアル、日付入りの署名。見られないものは約束であり、約束は答えではない：会合を閉じたい誰かが言った意図だ。</p>
+<p>見せられたものを理解する必要はない。<strong>存在すること</strong>と、その人が目の前で開いてくれることで足りる。答えるためにまだない理由を説明しなければならないなら、日付を書き留めて次の会合でまた聞くこと：見せずに二度繰り返されるものは現れない。</p>
+<p>見分けておくとよい三つの言い回し。「それは持っていない」という意味だからだ：</p>
+<ul><li>「信じてください、それはいつもこうやっています。」</li><li>「それは最後に、全部できたときに見えます。」</li><li>「頭の中にあります／リポジトリにあります、あとで送ります。」</li></ul>
+<p>そして逆方向の正直な注記：<strong>理由つきの「ない」は良い答えだ</strong>。「利用者は三十人で、そう合意したので負荷試験はありません」は理由つきの「ない」であり、方法が釣り合いと呼ぶものそのものだ。役に立たないのは、見られない「あります」だ。</p>
+</section><section>
+<h2 id="十分しかないなら">十分しかないなら</h2>
+<p>会合が短いなら、この五つが二十五よりも多くを教える：<strong>4</strong>（赤を見たテスト）、<strong>7</strong>（計画は保留項目だということ）、<strong>13</strong>（構築を止める限界値）、<strong>20</strong>（人が試した復旧マニュアル）、 <strong>24</strong>（検証できなかったものを言う報告）。この五つが見られるなら、残りはほぼ常にある。どれも見られないなら、残りはほぼ常にない。</p>
+<hr>
+</section><section>
+<h2 id="約束されること-動く状態で引き渡します">約束されること：「動く状態で引き渡します」</h2>
+<p><strong>1. あなたのコンピューターではない環境で動いているシステムを見せてもらえますか？</strong> 見られるもの：あなた自身が自分の電話で開くアドレスと、試験用のデータ。作った人のマシンでしか動かないなら、まだシステムとしては存在していない。 <em>（第15段。）</em></p>
+<p><strong>2. 私の依頼が終わったとあなたが見なすには、何が真でなければなりませんか？</strong> 見られるもの：始める前に、依頼ごとに書かれたもの。「テストが通った」と「人が使った」を含んでいるべきだ。答えが「動いたとき」なら、基準はない：意見があるだけだ。 <em>（第5段、受け入れ基準。）</em></p>
+<p><strong>3. 私が大事にすることの一つ一つに自動テストはありますか？</strong> 見られるもの：テスト一式の実行結果が、数字つきで画面に。中身は問題ではない：出力があり、何件通ったかを言っていることが問題だ。 <em>（第8段。）</em></p>
+<p><strong>4. そのテストの一つが</strong>失敗している<strong>ところを見せてもらえますか？</strong> 見られるもの：直しの入っていないシステムに対してテストが赤くなった画面の一部と、それを走らせたコマンドと日付。この紙で最も重要な質問だ：誰も失敗するのを見ていないテストは、何かを証明しているかどうかわからない。システムは通るテストを千持ちながら、何も見張っていないことがありうる。 <em>（第8段。方法では「赤で試した」と言う。）</em></p>
+<p><strong>5. あなたでもプログラムでもない誰かが、システムを使って最後まで到達しましたか？</strong> 見られるもの：人のために書かれたテストケースの一覧と、日付、実行した人の名前、何が起きたか。作った人が試した唯一の人であってはならない。そしてモデルは自分が理解したことを試すのであり、それはあなたが求めたことと常に同じではない。 <em>（第10段。）</em></p>
+<p><strong>6. 私が画面で間違えたら——二度入力したら、急いでボタンを押したら——どうなりますか？</strong> 見られるもの：取り消せない操作の一覧と、それぞれの錠、そして途中で失敗したらどうなるか。正しい答えは決して「それは起きないはずです」ではない。 <em>（第14段。）</em></p>
+</section><section>
+<h2 id="約束されること-何が残っているか-どの順かを把握しています">約束されること：「何が残っているか、どの順かを把握しています」</h2>
+<p><strong>7. 残っているものの一覧はどこにあり、今日見られますか？</strong> 見られるもの：番号の付いた保留項目の登録簿。一つ一つが詳細に書かれ、閉じた日付が付いている。 <strong>その一覧が計画だ</strong>：別のところに計画があってこちらに一覧があるなら、計画は二つあり、価値があるのは誰も見ていない方だ。 <em>（第5段。）</em></p>
+<p><strong>8. 私に作るもの一つ一つは、作る前に、私の言葉で書かれていますか？</strong> 見られるもの：開いている保留項目。依頼がどこから出たかの経緯があなたの言ったとおりに書かれ、適用される規則、画面、変わった場合も書かれている。一行で書かれているなら、足りない部分は誰かがでっち上げる。 <em>（第5段。）</em></p>
+<p><strong>9. 事業のことで何かがはっきりしないとき、あなたはどうしますか？</strong> 見られるもの：決定のファイル。日付と、それぞれを誰が決めたか付きで。求めている答えは「あなたに尋ねて書き留めます」だ。事業の規則に穴を見つけたモデルは自分でそれを埋めて先に進み、六週間後には誰もシステムがなぜそうするのかを知らない。 <em>（第1段と第6段。）</em></p>
+<p><strong>10. システムが</strong>しない<strong>ことは書かれていますか？</strong> 見られるもの：プロジェクトの文書の中の独立した節で、少なくとも二項目。言われていないことこそが、別のやり方で作られて現れるものだ。 <em>（第2段。）</em></p>
+<p><strong>11. これを使うことになる人の種類はそれぞれ誰で、それぞれが何をできるかは書かれていますか？</strong> 見られるもの：プロフィール一覧——それぞれが誰で何をしに来るのか——と、どのプロフィールが何をできるかを言う表。「ユーザー」という一つのプロフィールしかないなら、ほぼ必ず半分が足りない：自分のものでないボタンが誰かに見えている、あるいは権限があるのに画面が見つからない、その最もよくある原因だ。 <em>（第2段、附属書Hの前提入力。第8段、行列。）</em></p>
+</section><section>
+<h2 id="約束されること-ちゃんと作ってあります">約束されること：「ちゃんと作ってあります」</h2>
+<p><strong>12. 誰かが見るのを覚えていなくても、変更ごとに機械が測るものは何ですか？</strong> 見られるもの：リポジトリの中の検証の連鎖の設定と、直近の実行の記録。「私たちの間で見直しています」は答えではない：習慣であり、習慣は急ぎの週に崩れる。 <em>（第4段と第9段。）</em></p>
+<p><strong>13. 超えたら構築を</strong>止める<strong>限界値はありますか？</strong> 見られるもの：限界値とその今日の測定値が書かれたファイルと、そのどれかで止まった実行。そのまま尋ねるとよい統制の質問：*先に進むために限界値を上げたことはありますか？* 答えが「ある」で、なぜかが書かれていなければ、その限界値は飾りだ。 <em>（第9段。）</em></p>
+<p><strong>14. そのコードを別の人が保守できると、どうしてわかりますか？</strong> 見られるもの：単一の数字ではなく、ルールごとの報告：ファイルの大きさ、関数の大きさ、重複したコード、死んだコード。「品質九十五パーセント」は何を直すべきかを言わない。 <em>（第9段と附属書H。）</em></p>
+<p><strong>15. 画面は誰かが考えたものですか、それともプログラムが必要としたものから出てきたものですか？</strong> 見られるもの：使いやすさのルールの結果の記録と、消された例外の記録——書かれた理由、誰が承認したか、いつ見直すか。システムは技術的な検証をすべて通りながら使えないことがありうる：すべて緑で、人はどこで代金を受け取るのか見つけられない。 <em>（附属書H、使いやすさの二十七のルール。）</em></p>
+<p><strong>16. 見せてもらったテストは本当に見張っていますか、それとも飾りですか？</strong> 見られるもの：ミューテーションのスコア。わざと誤りを入れて、テストが何個捕まえるかを数えるプログラムで、数字はそのコマンドとともに出る。あなたのシステムに実際の利用者がいるなら、方法ではこれは任意ではない。 <em>（第9段。）</em></p>
+</section><section>
+<h2 id="約束されること-あなたに害は与えません">約束されること：「あなたに害は与えません」</h2>
+<p><strong>17. 操作の途中で何かが壊れたら、私のデータはどうなりますか？</strong> 見られるもの：操作とその取り消し可能性の表、そして疑わしいときはシステムが先に進む代わりに <strong>止まる</strong>という書かれた規則。二重の課金や、誰も見ていない自動承認が典型的な場合だ。 <em>（第14段。）</em></p>
+<p><strong>18. バックアップはありますか、そして一度でも復元を試したことはありますか？</strong> 見られるもの：最後に<strong>試した</strong>復元の日付。一度も復元していないコピーはバックアップではない：誰も何も知らないファイルだ。 <em>（第20段、復旧マニュアル。）</em></p>
+<p><strong>19. システムに既知の穴がないことを誰が、どのくらいの頻度で確認しますか？</strong> 見られるもの：連鎖の中で走っている走査と日付、そして見つかったものが保留項目に変わっていること。加えて、短くてとてもよく効く質問：*システムの鍵やパスワードはどこに保管されていますか？* コードの中にあるなら、もう問題を抱えている。 <em>（第18段と第15段。）</em></p>
+<p><strong>20. プログラミングをしない誰かが、マニュアルに従ってゼロからシステムを復旧しましたか？</strong> 見られるもの：マニュアルと、その試行の記録の三つ：端から端まで何分かかったか、その人がどの手順で正確につまずいたか、どの語を理解できなかったか。マニュアルが「エージェントとのセッションを開く」で始まるなら、それは人のためのマニュアルではない。そしてそれが存在しない間は、遠回しにせず言う：<strong>持ち主は持ち主ではなく、借主だ</strong>。システムを持ち、代金を払い、作った人に許可を求めずには入れない。 <em>（第20段。）</em></p>
+</section><section>
+<h2 id="約束されること-耐えます">約束されること：「耐えます」</h2>
+<p><strong>21. これはどんな数字で寸法を決めましたか、そしてその数字はどこから出ましたか？</strong> 見られるもの：同時に何人の利用者か、一日に何件の操作か、年にどれだけ増えるか、どれだけの期間保管しなければならないか。そして大事な部分：その数字を持っているのは<strong>あなたの事業</strong>であり、作る人ではない。作る人がでっち上げたなら、それは間違っている。 <em>（第3段。）</em></p>
+<p><strong>22. 私が与える負荷で試しましたか、そしてその十倍でも試しましたか？</strong> 見られるもの：実行の報告と、システムが倒れた正確な地点。どこで壊れるかを知ることが、どれだけ余裕があるかを知る唯一の方法だ。 <em>（第19段。）</em></p>
+<p><strong>23. 六か月後にシステムが遅くなったとき、理由をどうやって知るのですか？</strong> 見られるもの：操作ごとの識別子を持つ構造化された記録、最も遅い問い合わせの報告、そして設定された警報。答えが「起きたときに見ます」なら、最初に見るのはあなたで、怒った利用者を通してだ。 <em>（第16、17、21、22段。）</em></p>
+</section><section>
+<h2 id="約束されること-本当のことを言います">約束されること：「本当のことを言います」</h2>
+<p><strong>24. 何かができたと報告するとき、試したことと推測していることを私はどう区別しますか？</strong> 見られるもの：三つの区画に分かれた報告：<strong>検証済み</strong>（証拠を隣に）、<strong>信じている</strong>（そしてなぜ試さなかったか）、<strong>盲点</strong>（今いる場所から見えないもの）。素っ気ない「できました」は報告ではない。そして質問の後半は前半より価値がある：*この引き渡しのうち、<strong>検証できなかった</strong>ものは何ですか？* 答えが「ありません、すべて検証しました」なら疑うこと：すべてを検証する人はいない。 <em>（第12段。）</em></p>
+<p><strong>25. あなた自身のほかに、誰が仕事を見直しますか？</strong> 見られるもの：作った人とは別の誰か——あるいは何か——が行った監査と、その発見が保留項目に変わっていること、そして日付。モデルは自分の誤りのかなりの部分を是認するし、人もそうだ。作る人が検証する唯一の人であってはならない。 <em>（第13段。）</em></p>
+<hr>
+</section><section>
+<h2 id="答えをどうするか">答えをどうするか</h2>
+<p>各質問の横に三つのうち一つを書き留めること：<strong>見た</strong>、<strong>まだ見ていない</strong>（約束された日付付き）、 <strong>存在しないが理由を言われた</strong>（理由付き）。二十五すべてが「見た」になる必要はない：小さなプロジェクトは負荷試験も週次の監視も必要とせず、方法もそう言っている。必要なのは、<strong>どの「ない」にも理由が書かれていること</strong>だ。理由つきの「ない」はあなたの決定であり、理由のない「ない」は、選んでもいないのに払うことになる負債だ。</p>
+<p>そして最後に一つ、提供者向けではないので番号を付けない：見せてくれと求めることで誰かが気を悪くするなら、それも情報だ。</p>
+<hr>
+</section><section>
+<h2 id="この紙の出どころ">この紙の出どころ</h2>
+<p>二十五の質問は、この方法の契約の「コードを読まない完全性の検証」をまとめたものだ。それぞれが出どころの段を挙げているので、誰でも契約に行って完全版を読める。この紙のためにゼロから書いた。</p>
+<p><strong>これが一枚の紙として存在しなければならないという考えは私のものではない。</strong> 方法を別の形式に翻案した最初のもの——オスカル・シュミッツの小説『El Arte de Forjar Sistemas』、2026年、主文書のパートFで出典を示している——から来た。私よりうまく言ってくれた：方法は検証を契約に分けて持っていて、持ち主が会合に持っていく部品が欠けていた。この紙の冒頭の基準——値のある答えは見られる答えだということ——もそこから来ている。彼の版の質問は彼の作品であり権利は留保されている。ここにあるのは別のもので、私の契約から書いたものだ。だからこのリポジトリのライセンスで公開する。</p></section>
+<footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">方法の公開リポジトリ: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
+</div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>

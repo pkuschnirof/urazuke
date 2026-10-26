@@ -76,6 +76,7 @@ fabrique aussi la preuve, et c'est pourquoi la preuve doit se prouver elle-même
 | `docs/REFERENCIAS.md` | Les cas réels derrière la méthode, numérotés (« Ref. N »), avec date et preuve, pour que les procédures restent propres et que le détail reste à un clic. Comprend les chronologies des trois systèmes et la table des échecs par échelon. |
 | `docs/peldanos/peldano-NN-*.md` | Le contrat de chaque échelon : quand, contexte requis, prompts en anglais avec leur traduction et, avant chacun d'eux, le bloc « Avant d'envoyer le prompt » avec les fichiers que vous devez construire vous-même et leur contenu ; résultat attendu, vérification de complétude sans lire de code, signaux d'alarme. |
 | `docs/peldanos/README.md` | L'index des contrats. |
+| `PREGUNTAS_AL_PROVEEDOR.md` | Les vingt-cinq questions pour le prestataire : la vérification de complétude des contrats, réunie dans une feuille qu'un propriétaire qui n'a jamais commandé de logiciel emporte à une réunion. Groupées par ce qu'on lui promet, chacune avec la réponse qui peut se **voir** et l'échelon dont elle sort. |
 | `docs/MANUAL_CURSO.md` | Le cours : calendrier, vingt-quatre leçons avec tâches pratiques et prompts, projet-guide (« Turnera »), liste de mise en production. |
 | `docs/MANUAL_CURSO_EVOLUTIVO.md` | La partie 2 du cours : le projet-guide hérité (« Turnera héritée »), dix leçons (N0 à N7, R1 et R2) pour normaliser un legacy puis le corriger et le faire évoluer. |
 | `docs/DECISIONES.md` | Les décisions du projet, avec date et mots textuels. La méthode s'applique à elle-même. |

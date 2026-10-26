@@ -25,6 +25,18 @@ Un criterio de calidad para el manual de recuperación, que sirve para juzgarlo 
 el sistema caído y el agente sin conexión**. Si en algún paso dice "consultar con el desarrollador"
 o "según el caso", ese paso está incompleto.
 
+Y esa prueba **deja tres cosas escritas**, porque si no deja nada, la compuerta se cumple sin medir
+nada —que es la forma más barata de tener una compuerta decorativa—. Las tres son: el **tiempo
+medido** de punta a punta (cuándo empezó la persona, cuándo el sistema volvió a funcionar), el
+**punto exacto donde se trabó** (el paso del manual, con sus palabras, no con las tuyas), y **cada
+palabra que no entendió**. Las tres van con fecha y con el nombre de quien hizo la prueba. Y cada
+palabra que no entendió **abre un pendiente**: o se explica en el manual, o se le cambia el nombre a
+la cosa en todo el sistema. Esa lista de palabras es, además, el mejor insumo del glosario del
+usuario del peldaño 2, y la retrospectiva del peldaño 23 la usa como propuesta de cambio.
+
+Sin estos manuales, dicho en una palabra que no necesita explicación: **el dueño no es dueño, es
+inquilino**. Tiene el sistema, lo paga, y no puede entrar sin pedirle permiso a quien lo construyó.
+
 Y una fuente que no hay que desaprovechar: los pendientes cerrados. Cada uno trae su
 especificación, su decisión, su evidencia y su fecha. El manual de usuario no se escribe de cero
 al final: se arma, bloque a bloque, a partir de los pendientes que cerraron, y el diario de cambios
@@ -122,6 +134,11 @@ sistema corresponde cada manual.
 - `docs/CHANGELOG.md`, alimentado por los pendientes cerrados.
 - Cada uno con fecha y la versión del sistema que documenta.
 - En los commits que cambian pantallas, operación o despliegue: el manual actualizado.
+- **El registro de la prueba del manual de recuperación**, con cuatro cosas: la fecha y el nombre
+  de quien la hizo; el tiempo medido de punta a punta; el paso exacto donde se trabó, con sus
+  palabras; y la lista de palabras que no entendió. Más un pendiente abierto por cada una de esas
+  palabras. Dónde se escribe es tu elección —al final del propio manual de recuperación alcanza—;
+  lo que no es opcional es que exista.
 
 ## 4. Verificación de completitud
 
@@ -129,6 +146,10 @@ sistema corresponde cada manual.
   entorno de prueba?
 - ¿El manual de recuperación lo podrías seguir vos, o alguien de confianza que no programe? Leé
   la sección "se cayó": ¿dice qué hacer, en orden, con los comandos?
+- ¿La prueba del manual de recuperación dejó su registro: cuánto tardó, dónde se trabó la persona
+  y qué palabras no entendió, con fecha y nombre? Y de esas palabras, ¿cada una abrió un pendiente?
+  Si el registro dice "la prueba se hizo" y nada más, la prueba no se puede repetir ni comparar: la
+  compuerta está cumplida en el papel.
 - Elegí un commit reciente que cambió una pantalla: ¿tocó el manual?
 - ¿El diario de cambios tiene una entrada por cada pendiente cerrado del último bloque?
 - ¿Hay un hueco tipo "[completar]" o "consultar con el responsable"? Ahí el agente tenía que
@@ -143,3 +164,7 @@ sistema corresponde cada manual.
   prerrequisito, no es un manual para una persona.
 - Nadie fuera del constructor leyó nunca el manual de recuperación. Pedile a alguien que lo siga
   en el entorno de prueba; lo que lo trabe es lo que hay que arreglar.
+- La prueba se hizo y no quedó registrada, o quedó registrada como "salió bien". Entonces nadie
+  puede decir cuánto tardó ni dónde estuvo cerca de no salir, y la próxima vez se empieza de cero.
+- El registro no tiene ni una palabra en la lista de las que no se entendieron. Pasa de vez en
+  cuando y es cierto; pasa siempre y significa que nadie preguntó.

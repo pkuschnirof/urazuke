@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Die fünfundzwanzig Fragen an den Anbieter</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+h3.refh{font-size:1.02rem;margin-top:1.6em;color:#3a2f00;border-bottom:1px dashed var(--line);padding-bottom:.2em}
+h3.refh:target{background:var(--gold-soft);border-radius:6px;padding:.4em .6em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+a{color:#7a5600}
+a.ref{font:700 .78em/1.4 Segoe UI,Arial,sans-serif;background:#f1ece0;border:1px solid var(--line);border-radius:999px;padding:0 .5em;text-decoration:none;color:#5a3f00;white-space:nowrap;vertical-align:middle}
+a.ref:hover{background:var(--gold-soft)}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+.pbox{margin:.8em 0 1.2em}
+.prompt{margin:0;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.prompt.tr{background:#f3f7f0;border-color:#cfdcc6;border-left-color:#5c8a4a}
+.prompt.tr::before{content:'Prompt (Übersetzung)';color:#3f6b2e}
+.trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
+.trbtn:hover{background:#efe0b8}
+.antes{margin:1em 0 .8em;padding:.7em 1.1em .45em;background:#eef2f7;border:1px solid #c9d3e3;border-left:5px solid #3f5a8a;border-radius:6px;font-size:.95em}
+.antes>p:first-child{margin:.15em 0 .45em}
+.antes>p:first-child strong{display:inline-block;color:#2c4470;text-transform:uppercase;letter-spacing:.5px;font:700 .82em/1.5 Segoe UI,Arial,sans-serif;margin-right:.2em}
+.antes ul{margin:.3em 0 .45em;padding-left:1.4em}
+.antes li{margin:.4em 0}
+.antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;margin:.6em 0;display:block}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+.pie{margin-top:3em;padding-top:1em;border-top:1px dashed var(--line);font:.85em/1.5 Segoe UI,Arial,sans-serif;color:var(--mute)}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="die-funfundzwanzig-fragen-an-den-anbieter">Die fünfundzwanzig Fragen an den Anbieter</h1><nav class="toc"><div class="toc-t">Inhalt</div><ul><li class="l2"><a href="#die-einzige-regel-die-du-dir-merken-musst">Die einzige Regel, die du dir merken musst</a></li><li class="l2"><a href="#wenn-du-nur-zehn-minuten-hast">Wenn du nur zehn Minuten hast</a></li><li class="l2"><a href="#was-man-dir-versprochen-hat-ich-liefere-es-funktionierend">Was man dir versprochen hat: „ich liefere es funktionierend"</a></li><li class="l2"><a href="#was-man-dir-verspricht-ich-wei-was-fehlt-und-in-welcher-reihenfolge">Was man dir verspricht: „ich weiß, was fehlt und in welcher Reihenfolge"</a></li><li class="l2"><a href="#was-man-dir-verspricht-es-ist-gut-gemacht">Was man dir verspricht: „es ist gut gemacht"</a></li><li class="l2"><a href="#was-man-dir-verspricht-es-wird-dir-nicht-schaden">Was man dir verspricht: „es wird dir nicht schaden"</a></li><li class="l2"><a href="#was-man-dir-verspricht-es-wird-halten">Was man dir verspricht: „es wird halten"</a></li><li class="l2"><a href="#was-man-dir-verspricht-ich-sage-dir-die-wahrheit">Was man dir verspricht: „ich sage dir die Wahrheit"</a></li><li class="l2"><a href="#was-mit-den-antworten-zu-tun-ist">Was mit den Antworten zu tun ist</a></li><li class="l2"><a href="#woher-dieses-blatt-kommt">Woher dieses Blatt kommt</a></li></ul></nav>
+<p>Dieses Blatt ist für einen sehr konkreten Moment: jemand bietet dir an, dir ein System zu bauen, oder übergibt es dir, und du programmierst nicht. Du musst für dieses Treffen nicht programmieren lernen. Du musst wissen, <strong>was du dir zeigen lassen sollst</strong>.</p>
+<p>Die vollständige Methode lebt in den Verträgen der vierundzwanzig Schritte, und jeder Vertrag bringt seine „Vollständigkeitsprüfung ohne Code zu lesen" mit: die Liste der Kontrollen, die der Eigentümer an dem Gelieferten vornimmt. Das taugt, solange das Projekt läuft, aber es ist auf zweiunddreißig Dateien verteilt, und niemand geht damit in ein Treffen. Dieses Blatt ist dasselbe, zusammengefasst und geordnet nach <strong>dem, was dir versprochen wird</strong>. Man druckt es aus und nimmt es mit.</p>
+</section><section>
+<h2 id="die-einzige-regel-die-du-dir-merken-musst">Die einzige Regel, die du dir merken musst</h2>
+<p><strong>Die Antworten, die zählen, sind die, die man sehen kann.</strong> Eine Datei, eine Zahl mit dem Befehl, der sie erzeugt, ein Test, den man scheitern gesehen hat, ein Handbuch, eine Unterschrift mit Datum. Die, die man nicht sehen kann, sind Versprechen, und ein Versprechen ist keine Antwort: es ist eine Absicht, gesagt von jemandem, der das Treffen abschließen will.</p>
+<p>Du musst nicht verstehen, was man dir zeigt. Es reicht, dass es <strong>existiert</strong> und dass die Person es vor dir öffnet. Wenn sie dir, um zu antworten, erklären muss, warum noch nicht, notiere das Datum und frag beim nächsten Treffen wieder: was zweimal wiederholt und nicht gezeigt wird, wird nicht auftauchen.</p>
+<p>Drei Sätze, die man erkennen sollte, weil sie „das habe ich nicht" bedeuten:</p>
+<ul><li>„Vertrau mir, das machen wir immer so."</li><li>„Das sieht man am Ende, wenn alles fertig ist."</li><li>„Das habe ich im Kopf / das liegt im Repository, ich schicke es dir nachher."</li></ul>
+<p>Und eine ehrliche Klarstellung in der anderen Richtung: <strong>ein „Nein" mit seinem Grund ist eine gute Antwort.</strong> „Wir haben keine Lasttests, weil es dreißig Benutzer sind und wir das so abgesprochen haben" ist ein Nein mit Grund, und es ist genau das, was die Methode Angemessenheit nennt. Was nichts taugt, ist das „Ja", das man nicht sehen kann.</p>
+</section><section>
+<h2 id="wenn-du-nur-zehn-minuten-hast">Wenn du nur zehn Minuten hast</h2>
+<p>Wenn das Treffen kurz ist, bringen diese fünf mehr Information als die fünfundzwanzig: die <strong>4</strong> (ein rot gesehener Test), die <strong>7</strong> (der Plan sind die offenen Posten), die <strong>13</strong> (der Grenzwert, der die Konstruktion anhält), die <strong>20</strong> (das Wiederherstellungshandbuch, von einer Person erprobt) und die <strong>24</strong> (der Bericht, der sagt, was nicht verifiziert werden konnte). Wenn diese fünf zu sehen sind, ist der Rest fast immer da. Wenn keine davon zu sehen ist, ist der Rest fast nie da.</p>
+<hr>
+</section><section>
+<h2 id="was-man-dir-versprochen-hat-ich-liefere-es-funktionierend">Was man dir versprochen hat: „ich liefere es funktionierend"</h2>
+<p><strong>1. Kannst du mir das System laufend zeigen, in einer Umgebung, die nicht dein Computer ist?</strong> Was man sehen kann: eine Adresse, die du selbst öffnest, auf deinem Telefon, mit Testdaten. Wenn es nur auf der Maschine dessen läuft, der es gebaut hat, existiert es als System noch nicht. <em>(Schritt 15.)</em></p>
+<p><strong>2. Was muss wahr sein, damit du eine Anforderung von mir als fertig betrachtest?</strong> Was man sehen kann: geschrieben, vor dem Anfang, für jede Anforderung. Sie sollte „der Test ist durchgelaufen" und „eine Person hat es benutzt" enthalten. Wenn die Antwort „wenn es funktioniert" lautet, gibt es kein Kriterium: es gibt eine Meinung. <em>(Schritt 5, Abnahmekriterien.)</em></p>
+<p><strong>3. Gibt es einen automatischen Test für jede Sache, die mir wichtig ist?</strong> Was man sehen kann: ein Durchlauf der Testbatterie, mit Zahlen, auf dem Bildschirm. Der Inhalt ist dir egal: dir ist wichtig, dass es eine Ausgabe gibt und dass sie sagt, wie viele durchgelaufen sind. <em>(Schritt 8.)</em></p>
+<p><strong>4. Kannst du mir einen dieser Tests </strong>scheitern<strong> zeigen?</strong> Was man sehen kann: das Stück Bildschirm, auf dem der Test gegen das System ohne die Reparatur rot wurde, mit dem Befehl, der ihn gefahren hat, und dem Datum. Es ist die wichtigste Frage des Blatts: von einem Test, den niemand scheitern gesehen hat, weiß man nicht, ob er etwas beweist. Ein System kann tausend Tests haben, die durchlaufen, und nichts bewachen. <em>(Schritt 8. In der Methode heißt das „rot erprobt".)</em></p>
+<p><strong>5. Wer, außer dir und einem Programm, hat das System benutzt und ist bis zum Ende gekommen?</strong> Was man sehen kann: eine Liste von Testfällen, die für eine Person geschrieben sind, mit Datum, mit dem Namen dessen, der sie ausgeführt hat, und was passiert ist. Der, der gebaut hat, kann nicht der Einzige sein, der getestet hat, und das Modell testet, was es verstanden hat, was nicht immer das ist, was du verlangt hast. <em>(Schritt 10.)</em></p>
+<p><strong>6. Wenn ich auf dem Bildschirm etwas falsch mache — zweimal eingebe, den Knopf hastig drücke —, was passiert?</strong> Was man sehen kann: die Liste der Aktionen, die man nicht rückgängig machen kann, jede mit ihrem Schloss und was passiert, wenn sie auf halbem Weg scheitert. Die richtige Antwort ist niemals „das sollte nicht passieren". <em>(Schritt 14.)</em></p>
+</section><section>
+<h2 id="was-man-dir-verspricht-ich-wei-was-fehlt-und-in-welcher-reihenfolge">Was man dir verspricht: „ich weiß, was fehlt und in welcher Reihenfolge"</h2>
+<p><strong>7. Wo ist die Liste von dem, was fehlt, und kann ich sie heute sehen?</strong> Was man sehen kann: ein Register numerierter offener Posten, jeder im Detail geschrieben und mit dem Datum, an dem er geschlossen wurde. <strong>Diese Liste ist der Plan:</strong> wenn es woanders einen Plan und hier eine Liste gibt, gibt es zwei Pläne, und der, der zählt, ist der, den niemand anschaut. <em>(Schritt 5.)</em></p>
+<p><strong>8. Ist jede Sache, die du mir bauen wirst, vor dem Bauen geschrieben, mit meinen Worten?</strong> Was man sehen kann: der offene Posten, mit der Geschichte, woher die Anforderung kam, so gesagt, wie du sie gesagt hast, den Regeln, die gelten, den Bildschirmen und den seltsamen Fällen. Wenn er in einer Zeile steht, wird jemand das Fehlende erfinden. <em>(Schritt 5.)</em></p>
+<p><strong>9. Wenn etwas am Geschäft nicht klar ist, was machst du?</strong> Was man sehen kann: die Entscheidungsdatei, mit Datum und mit wem jede entschieden hat. Die Antwort, die du suchst, ist „ich frage dich und notiere es". Ein Modell, das eine Lücke in den Geschäftsregeln findet, füllt sie allein und macht weiter, und sechs Wochen später weiß niemand, warum das System das tut. <em>(Schritte 1 und 6.)</em></p>
+<p><strong>10. Ist geschrieben, welche Dinge das System </strong>nicht<strong> tun wird?</strong> Was man sehen kann: ein eigener Abschnitt, mit mindestens zwei Punkten, im Projektdokument. Was nicht gesagt ist, ist genau das, was anders gebaut auftauchen wird. <em>(Schritt 2.)</em></p>
+<p><strong>11. Wer sind die verschiedenen Arten von Person, die das benutzen werden, und ist geschrieben, was jede tun kann?</strong> Was man sehen kann: die Profilliste — wer jeder ist und was er zu tun kommt — und eine Tabelle, die sagt, was jedes Profil tun kann. Wenn es ein einziges Profil namens „Benutzer" gibt, fehlt fast immer die Hälfte: es ist die häufigste Ursache dafür, dass jemand einen Knopf sieht, der ihm nicht zusteht, oder dass jemand, der die Berechtigung hat, den Bildschirm nicht findet. <em>(Schritt 2, die Voreingaben von Anhang H; Schritt 8, die Matrix.)</em></p>
+</section><section>
+<h2 id="was-man-dir-verspricht-es-ist-gut-gemacht">Was man dir verspricht: „es ist gut gemacht"</h2>
+<p><strong>12. Was misst eine Maschine bei jeder Änderung, ohne dass sich jemand daran erinnern muss hinzuschauen?</strong> Was man sehen kann: die Konfiguration der Prüfkette im Repository und das Protokoll des letzten Durchlaufs. „Wir schauen es uns untereinander an" ist keine Antwort: es ist eine Gewohnheit, und Gewohnheiten fallen in der Woche, in der es eilig ist. <em>(Schritte 4 und 9.)</em></p>
+<p><strong>13. Gibt es einen Grenzwert, der, wenn er überschritten wird, die Konstruktion </strong>anhält<strong>?</strong> Was man sehen kann: eine Datei mit den Grenzwerten und ihrem heute gemessenen Wert, und ein Durchlauf, der von einem davon angehalten wurde. Die Kontrollfrage, die man wörtlich stellen sollte: <em>habt ihr jemals einen Grenzwert angehoben, um weitermachen zu können?</em> Wenn die Antwort ja ist und nicht geschrieben steht, warum, ist der Grenzwert Dekoration. <em>(Schritt 9.)</em></p>
+<p><strong>14. Woher weißt du, dass eine andere Person den Code pflegen können wird?</strong> Was man sehen kann: der Bericht pro Regel, keine einzige Zahl: Dateigröße, Funktionsgröße, wiederholter Code, toter Code. Eine „Qualität von fünfundneunzig Prozent" sagt nicht, was zu reparieren ist. <em>(Schritt 9 und Anhang H.)</em></p>
+<p><strong>15. Hat über die Bildschirme jemand nachgedacht, oder sind sie aus dem herausgekommen, was das Programm brauchte?</strong> Was man sehen kann: das Protokoll der Benutzbarkeitsregeln mit ihrem Ergebnis, und die abgeschalteten Ausnahmen mit dem geschriebenen Grund, wer es genehmigt hat und wann es überprüft wird. Ein System kann alle technischen Prüfungen bestehen und unbenutzbar sein: alles grün, und die Person findet nicht, wo sie abrechnen soll. <em>(Anhang H, die siebenundzwanzig Benutzbarkeitsregeln.)</em></p>
+<p><strong>16. Bewachen die Tests, die du mir gezeigt hast, wirklich, oder dekorieren sie?</strong> Was man sehen kann: der Mutationswert. Es ist ein Programm, das absichtlich Fehler einbaut und zählt, wie viele die Tests erwischen; die Zahl kommt mit ihrem Befehl heraus. Wenn dein System echte Nutzer hat, ist das in der Methode nicht optional. <em>(Schritt 9.)</em></p>
+</section><section>
+<h2 id="was-man-dir-verspricht-es-wird-dir-nicht-schaden">Was man dir verspricht: „es wird dir nicht schaden"</h2>
+<p><strong>17. Was passiert mit meinen Daten, wenn mitten in einem Vorgang etwas kaputtgeht?</strong> Was man sehen kann: die Tabelle der Aktionen mit ihrer Umkehrbarkeit, und die geschriebene Regel, dass das System im Zweifel <strong>anhält</strong>, statt weiterzumachen. Eine doppelte Abbuchung oder eine automatische Genehmigung, die niemand angeschaut hat, sind der typische Fall. <em>(Schritt 14.)</em></p>
+<p><strong>18. Gibt es Sicherungskopien, und habt ihr jemals erprobt, eine wiederherzustellen?</strong> Was man sehen kann: das Datum der letzten <strong>erprobten</strong> Wiederherstellung. Eine Kopie, die nie wiederhergestellt wurde, ist keine Sicherungskopie: sie ist eine Datei, von der niemand etwas weiß. <em>(Schritt 20, Wiederherstellungshandbuch.)</em></p>
+<p><strong>19. Wer prüft, dass das System keine bekannten Löcher hat, und wie oft?</strong> Was man sehen kann: der Scan, der in der Kette läuft, mit Datum, und die Befunde in offene Posten verwandelt. Plus eine kurze und sehr aufschlussreiche Frage: <em>wo sind die Schlüssel und die Passwörter des Systems gespeichert?</em> Wenn sie im Code sind, hast du schon ein Problem. <em>(Schritte 18 und 15.)</em></p>
+<p><strong>20. Hat jemand, der nicht programmiert, das System von null aus nach einem Handbuch wiederhergestellt?</strong> Was man sehen kann: das Handbuch, und das Protokoll dieser Probe mit drei Dingen: wie lange sie von Ende zu Ende dauerte, an welchem genauen Schritt die Person hängen blieb, und welche Wörter sie nicht verstanden hat. Wenn das Handbuch mit „öffne eine Sitzung mit dem Agenten" anfängt, ist es kein Handbuch für eine Person. Und solange das nicht existiert, ohne Umschweife gesagt: <strong>der Eigentümer ist kein Eigentümer, er ist Mieter</strong>. Er hat das System, er bezahlt es, und er kommt nicht hinein, ohne den um Erlaubnis zu bitten, der es gebaut hat. <em>(Schritt 20.)</em></p>
+</section><section>
+<h2 id="was-man-dir-verspricht-es-wird-halten">Was man dir verspricht: „es wird halten"</h2>
+<p><strong>21. Mit welchen Zahlen habt ihr das dimensioniert, und woher kommen sie?</strong> Was man sehen kann: wie viele Benutzer gleichzeitig, wie viele Vorgänge pro Tag, wie viel es pro Jahr wächst, wie lange es gespeichert bleiben muss. Und der Teil, der wichtig ist: diese Zahlen hat <strong>dein Geschäft</strong>, nicht der, der baut. Wenn er sie erfunden hat, sind sie falsch. <em>(Schritt 3.)</em></p>
+<p><strong>22. Habt ihr es mit der Last erprobt, die ich ihm geben werde, und mit zehnmal mehr?</strong> Was man sehen kann: der Bericht des Durchlaufs, mit der genauen Stelle, an der das System umgefallen ist. Zu wissen, wo es bricht, ist die einzige Art zu wissen, wie viel Spielraum du hast. <em>(Schritt 19.)</em></p>
+<p><strong>23. Wenn das System in sechs Monaten langsam ist, wie werdet ihr wissen, warum?</strong> Was man sehen kann: die strukturierten Protokolle mit einer Kennung pro Aktion, der Bericht der langsamsten Abfragen, und die konfigurierten Alarme. Wenn die Antwort „wir schauen, wenn es passiert" lautet, wirst du es zuerst sehen, durch einen wütenden Benutzer. <em>(Schritte 16, 17, 21 und 22.)</em></p>
+</section><section>
+<h2 id="was-man-dir-verspricht-ich-sage-dir-die-wahrheit">Was man dir verspricht: „ich sage dir die Wahrheit"</h2>
+<p><strong>24. Wenn du mir mitteilst, dass etwas fertig ist, wie unterscheide ich, was du erprobt hast, von dem, was du annimmst?</strong> Was man sehen kann: der Bericht in drei Blöcken: <strong>verifiziert</strong> (mit dem Beweis daneben), <strong>geglaubt</strong> (und warum es nicht erprobt wurde) und <strong>blinde Flecken</strong> (was man von dort, wo er steht, nicht sehen kann). Ein bloßes „fertig" ist kein Bericht. Und der zweite Teil der Frage ist mehr wert als der erste: <em>welche Dinge dieser Lieferung konntest du <strong>nicht</strong> verifizieren?</em> Wenn die Antwort „keine, alles verifiziert" lautet, sei misstrauisch: niemand verifiziert alles. <em>(Schritt 12.)</em></p>
+<p><strong>25. Wer prüft die Arbeit, außer dir selbst?</strong> Was man sehen kann: eine Prüfung, die von jemandem — oder etwas — anderem als dem gemacht wurde, der gebaut hat, mit ihren Befunden in offene Posten verwandelt und mit Datum. Ein Modell bestätigt einen erheblichen Teil seiner eigenen Fehler, und eine Person auch. Der, der baut, kann nicht der Einzige sein, der verifiziert. <em>(Schritt 13.)</em></p>
+<hr>
+</section><section>
+<h2 id="was-mit-den-antworten-zu-tun-ist">Was mit den Antworten zu tun ist</h2>
+<p>Notiere neben jeder Frage eines von drei Dingen: <strong>gesehen</strong>, <strong>noch nicht gesehen</strong> (mit dem Datum, an dem es dir versprochen wurde) oder <strong>existiert nicht und man hat mir gesagt, warum</strong> (mit dem Grund). Es müssen nicht alle fünfundzwanzig „gesehen" ergeben: ein kleines Projekt braucht keine Lasttests und keine wöchentliche Überwachung, und die Methode sagt das. Was aber passieren muss, ist, dass <strong>jedes „Nein" seinen geschriebenen Grund hat</strong>, denn ein Nein mit Grund ist eine Entscheidung von dir und ein Nein ohne Grund ist eine Schuld, die du bezahlen wirst, ohne sie gewählt zu haben.</p>
+<p>Und eine letzte, die nicht numeriert ist, weil sie nicht für den Anbieter ist: wenn es jemandem unangenehm wird, weil du darum bittest, die Dinge zu sehen, ist das auch Information.</p>
+<hr>
+</section><section>
+<h2 id="woher-dieses-blatt-kommt">Woher dieses Blatt kommt</h2>
+<p>Die fünfundzwanzig Fragen sind die „Vollständigkeitsprüfung ohne Code zu lesen" der Verträge dieser Methode, zusammengefasst: jede nennt den Schritt, aus dem sie kommt, sodass jeder zum Vertrag gehen und die vollständige Version lesen kann. Sie sind für dieses Blatt von null geschrieben.</p>
+<p><strong>Die Idee, dass das als Blatt existieren musste, ist nicht meine.</strong> Sie kam von der ersten Übertragung der Methode in ein anderes Format — dem Roman von Oscar Schmitz „El Arte de Forjar Sistemas", 2026, in Teil F des Hauptdokuments mit Quellenangabe —, der es besser gesagt hat als ich: die Methode hat die Prüfung auf ihre Verträge verteilt, und ihr fehlte das Stück, das ein Eigentümer zu einem Treffen mitnimmt. Das Kriterium am Kopf dieses Blatts — dass die Antworten, die zählen, die sind, die man sehen kann — ist auch von dort. Seine Version der Fragen ist sein Werk und seine Rechte sind vorbehalten; diese sind andere, aus meinen Verträgen geschrieben, und darum werden sie unter der Lizenz dieses Repositorys veröffentlicht.</p></section>
+<footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">Öffentliches Repository der Methode: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
+</div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>

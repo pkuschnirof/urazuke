@@ -62,8 +62,9 @@ Cada entrada lleva, además de los campos que pide el peldaño 5, los que pidió
 
 ## Los grupos de convergencia (Anexo H, B1)
 
-La regla madre de B1 es que una funcionalidad se agrupa por **lo que la persona vino a hacer**. La
-interfaz pública del método tiene cinco cosas que alguien viene a hacer:
+La regla madre de B1 es que una funcionalidad se agrupa por **lo que la persona vino a hacer**. El
+método tiene seis cosas que alguien viene a hacer: cinco en su interfaz pública y una en el
+contenido mismo del método.
 
 | grupo | lo que la persona vino a hacer |
 |---|---|
@@ -72,9 +73,17 @@ interfaz pública del método tiene cinco cosas que alguien viene a hacer:
 | **G-IDIOMA** | leer el método en su idioma |
 | **G-PUBLICACION** | que lo que está servido sea lo último que el método produjo |
 | **G-ECOSISTEMA** | entender qué es cada cosa: el método, el protocolo, la herramienta |
+| **G-METODO** | aplicar el método completo, sin que falte una parte que el método exige |
 
 *Nota de lectura:* la auditoría dijo "hay cuatro grupos" y después presentó **cinco**. Se adopta
 el cinco: el quinto grupo es real y no es un sobrante de los otros cuatro.
+
+*El sexto nació el 2026-10-26*, con la retrospectiva del peldaño 23 sobre la validación del libro
+(`PND-039` a `PND-048`). Los cinco primeros son de la **interfaz publicada** —cómo se llega al
+material, si lo servido es lo último, si el dato se puede consumir, si se lee en el idioma de cada
+uno, si se entiende qué es cada cosa—. El sexto es del **contenido del método**: si lo que el
+lector recibe está completo, es consistente y se puede aplicar. La fundamentación larga está al
+abrir su sección.
 
 ## Los perfiles (Anexo H, B2)
 
@@ -85,6 +94,16 @@ el cinco: el quinto grupo es real y no es un sobrante de los otros cuatro.
 | **P3** | lector humano que llega por la portada | `https://yujin.app/urazuke/` |
 | **P4** | rastreador que no ejecuta JavaScript | la portada, el mapa del sitio, el archivo de permisos |
 | **P5** | auditor que quiere probar que su copia es la buena | la API, más el registro de versiones del repositorio |
+| **P6** | lector humano que entra por el documento principal | `ESCALERA_METODOLOGICA.md` y su HTML |
+| **P7** | lector que adapta el método a otro formato | el corpus entero, para producir otra obra |
+| **P8** | dueño de proyecto que aplica el método | las fichas, los contratos y las compuertas |
+
+*P6, P7 y P8 nacieron el 2026-10-26*, con el grupo G-METODO. Los cinco primeros entran por la
+**interfaz publicada**; estos tres entran por el **contenido**, y por eso ninguno de los cinco los
+cubría: P3 es «lector humano que llega por la portada», y el que no encuentra el Anexo H llega por
+el documento principal, que es otra puerta y otro recorrido. P7 es, literalmente, el caso que
+originó esas entradas: alguien que leyó el corpus para producir otra obra. Y P1 se reusa tal cual
+para la herramienta que compila las compuertas, porque es la misma que pide los archivos por red.
 
 ## El árbol semántico: no existe todavía
 
@@ -103,6 +122,11 @@ parte del tramo de normalización en curso, no de este backlog.
 | `cadena/verificacion` | las verificaciones del flujo y sus guardianes |
 | `cadena/publicacion` | el trabajo que publica y lo que verifica después |
 | `identidad/ecosistema` | la distinción entre método, protocolo y herramienta |
+| `corpus/escalera` | el documento principal, sus partes y las veinticuatro fichas |
+| `corpus/contratos` | los contratos de peldaño y de estación |
+| `corpus/referencias` | los casos propios reales y la tabla de fallos |
+| `corpus/hoja-del-dueno` | lo que un dueño se lleva a una reunión con un proveedor |
+| `proyecto/instrucciones` | `CLAUDE.md`, que un agente lee como instrucción |
 
 ---
 
@@ -1270,6 +1294,60 @@ PRUEBA EN ROJO OK: las 9 mutaciones caen y el verificador nombra el problema.
 
 ---
 
+## PND-049 — La hoja de las veinticinco preguntas nace huérfana *(deriva de PND-043)*
+
+- **Nodo:** `interfaz-publica/portada` [nodo propuesto]
+- **Grupo:** G-ALCANCE · **Severidad:** avisa · **Quién decide:** se hace y se reporta
+- **Repositorio:** portal · **Estado: abierto**
+- **Origen:** nació el 2026-10-26 al cerrar `PND-043`, y no es una sorpresa: es la consecuencia
+  escrita de D-052, anotada en el mismo momento en que se creó la causa.
+
+**Qué está mal.** El método publica un documento nuevo del corpus en los ocho idiomas
+—`docs/PREGUNTAS_AL_PROVEEDOR.md`, la hoja que un dueño se lleva a una reunión con un proveedor— y
+la publicación **no toca la portada** (D-052): espeja `docs/html/` y nada más. Así que los ocho
+archivos van a quedar **servidos y sin que ninguna portada los enlace**, que es exactamente la
+situación que `PND-015` cerró para los diez documentos anteriores. Servido no es publicado.
+
+**Lo que esto NO es.** No es un hallazgo: es la mitad conocida del trabajo. Lo que hace que valga la
+pena registrarlo en vez de confiar en la memoria es que ahora **algo lo dice solo**: el chequeo de
+`PND-025` (`node build/portal_orphans.mjs --portal <árbol del portal>`) corre dentro del trabajo de
+publicación, en el único momento en que los dos árboles están juntos, y va a nombrar los ocho
+huérfanos por su nombre. Avisa y no frena, que es la severidad de UX-03 y lo que corresponde cuando
+el arreglo vive en el otro repositorio.
+
+**Mi reproducción (2026-10-26).** Antes de abrir la entrada, medido sobre el árbol del método:
+
+```
+$ node build/build.mjs | grep PREGUNTAS
+  docs/html/PREGUNTAS_AL_PROVEEDOR.html      (es)
+  docs/html/en/PREGUNTAS_AL_PROVEEDOR.html   ... y los seis idiomas restantes
+  -> ocho archivos generados, uno por idioma del corpus.
+
+el arreglo literal de build/build.mjs ya los incluye (si no, existirian y no se publicarian).
+la portada del portal no los enlaza: su indice y su i18n viven en el otro repositorio, y este
+cambio no los toca.
+```
+
+**Qué hay que producir.** En el repositorio del portal: la fila de la hoja en el índice de la
+portada y su texto en el i18n de los diez idiomas de la interfaz —diez, no ocho, que es la cuenta de
+la portada—, más la dirección en el mapa del sitio, que ya no se escribe a mano y se descubre del
+disco. Con eso, su verificador de portadas vuelve a quedar en verde por sí solo.
+
+**Criterio de aceptación por perfil.**
+
+- *P3 (lector humano que llega por la portada):* dada esa persona, puede llegar a la hoja desde la
+  portada en su idioma, sin que nadie le pase la dirección.
+- *P4 (rastreador):* dado el perfil rastreador, los ocho documentos están enlazados desde alguna
+  portada y están en el mapa del sitio.
+- *P8 (dueño de proyecto):* dada esa persona, encuentra la hoja antes de la reunión y no después.
+
+**Cómo se verifica.** `node build/portal_orphans.mjs --portal <árbol del portal>` deja de nombrarlos,
+y el verificador de portadas del portal (`build/verify-urazuke-homes.mjs`) pasa sin excepciones.
+
+**Depende de:** nada. `PND-043` ya está cerrado; esto es la mitad que vive en el otro repositorio.
+
+---
+
 # Abiertos — G-IDIOMA: leer el método en mi idioma
 
 ## PND-016 — La interfaz está en diez idiomas y el corpus en ocho *(era U-15)*
@@ -2325,6 +2403,1067 @@ si se revisa todo o sólo lo que cambió.
 
 ---
 
+# Abiertos — G-METODO: aplicar el método completo, sin que falte una parte que el método exige
+
+*De dónde salen las diez entradas de este grupo.* Un tercero —Oscar Schmitz— escribió una novela
+que adapta el método, «El Arte de Forjar Sistemas» (191 páginas, 189.115 caracteres, 2026), y se
+validó aseveración por aseveración contra la letra: 195 aseveraciones, 154 con veredicto, 108
+exactas. El informe completo está en `docs/VALIDACION_LIBRO_EL_ARTE_DE_FORJAR_SISTEMAS.html`. De
+ahí salen seis mejoras al método (su § 11, «Lo que el libro hace mejor que el método», `C+01` a
+`C+05`, más la lectura que el dueño hizo de las omisiones del § 9) y tres defectos del método (su
+§ 12, `C-01` a `C-03`). Esto es, literalmente, lo que el peldaño 23 pide: una propuesta concreta
+de cambio a la escalera con el incidente que la justifica. La diferencia con las otras treinta y
+ocho entradas es la fuente: no es una auditoría encargada ni una medición propia, es **un lector
+que aplicó el método a fondo y lo que le pasó al aplicarlo**. Las etiquetas `M-01` a `M-06` y
+`C-01` a `C-03` son las que el dueño usó al pedir el trabajo; las `C+nn` y `O-nn` son las del
+informe. Se citan las dos para que se pueda ir de una a la otra.
+
+*Por qué un grupo nuevo y no uno de los cinco que ya hay.* Los cinco grupos existentes son todos
+de la **interfaz publicada**: cómo se llega al material (G-ALCANCE), si lo servido es lo último
+(G-PUBLICACION), si se puede consumir el dato (G-API), si se lee en el idioma de cada uno
+(G-IDIOMA) y si se entiende qué es cada cosa (G-ECOSISTEMA). Estas diez entradas son del
+**contenido del método**: si lo que el lector recibe está completo, es consistente y se puede
+aplicar. La tentación es meter `PND-039` en G-ALCANCE, porque el síntoma se parece, y conviene no
+hacerlo: `PND-015` era «el archivo no está enlazado» —un defecto de transporte, cerrado— y
+`PND-039` es «el archivo está enlazado y el documento que la gente lee no lo nombra». Mismo
+síntoma para el lector, trabajo distinto y dueño distinto. Lo que la persona vino a hacer, que es
+la regla madre de B1, acá es **aplicar el método completo**, y eso no está en ninguno de los cinco.
+
+*Lo que costó mecánicamente abrirlo, dicho porque es el tipo de cosa que este registro guarda.*
+El grupo nuevo no es sólo una fila: `tests/pending_resumen.test.mjs` lleva la lista cerrada de
+grupos en una constante, y una entrada con un grupo que no esté ahí se reporta como «grupo no
+reconocido». Así que el grupo entra en tres lugares a la vez —la tabla de los grupos, la constante
+de la prueba y la tabla del resumen— o el registro se contradice solo.
+
+---
+
+## PND-039 — El Anexo H no se puede encontrar desde el documento principal *(M-01; informe § 9, O-01 a O-06)*
+
+- **Nodo:** `corpus/anexo-h` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Quién decide:** el trabajo se hace y se
+  reporta; vuelve al dueño **una** decisión acotada, la del punto (c)
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-26.
+- **Origen:** retrospectiva del peldaño 23 sobre la validación del libro. Es la más importante de
+  las diez y la única estructural.
+
+**Qué está mal.** El Anexo H existe, es obligatorio y es mecánicamente exigible, y un lector del
+documento principal no se entera de que existe. Son 45 reglas —18 de calidad de código y 27 de
+usabilidad—, transversales a los cuatro tramos, enganchadas con dos entradas previas en el peldaño
+2 y con cinco anclas en los peldaños 5, 8, 9, 10 y 12, y esas cinco anclas son evaluadores
+`required: true` en el dato que el método publica. El documento principal no lo nombra ni una vez.
+
+**Evidencia que me dio el dueño, pegada tal cual.**
+
+> Medido hoy, 2026-10-26:
+>   grep -c -i "anexo" docs/ESCALERA_METODOLOGICA.md   -> 0
+>   grep -c -i "anexo" README.md                       -> 0
+> Cero menciones en 143.274 caracteres del documento principal y cero en el README. Ninguna de las
+> veinticuatro fichas lo nombra. Las palabras "usabilidad" y "matriz de perfiles" no aparecen en el
+> documento principal en el sentido del anexo.
+>
+> La evidencia de que esto daña de verdad, y es lo que la hace distinta de una corazonada: el autor
+> del libro leyó el documento principal y las 46 referencias con cuidado demostrable --reprodujo
+> exactamente las seis cifras de la cuota fundida, las cuatro de los contadores 1.355/1.234 y los
+> cinco arreglos del despliegue-- y omitió 27 de las 45 reglas, la lista de perfiles, la matriz y
+> las cinco anclas completas. No se le pasaron: nunca supo que estaban. Su proyecto guía quedaría
+> detenido en los peldaños 2, 5, 8, 10 y 12 de tus propias compuertas publicadas.
+
+**Mi reproducción (2026-10-26).** Las dos cifras del dueño dan exactamente eso, y la medición
+agrega tres cosas que no estaban en el pedido.
+
+```
+$ grep -c -i "anexo" docs/ESCALERA_METODOLOGICA.md
+0
+$ wc -c docs/ESCALERA_METODOLOGICA.md
+143274 docs/ESCALERA_METODOLOGICA.md
+$ grep -c -i "anexo" README.md
+0
+$ grep -c -i -E "annex|appendix|heuristic" README.md
+0
+$ grep -c -i -E "heuristic|matriz de perfiles|45 reglas" docs/ESCALERA_METODOLOGICA.md
+0
+$ grep -c -i "perfil" docs/ESCALERA_METODOLOGICA.md
+1
+  ... y la unica mencion es de otra cosa, linea 64: "El perfil que en realidad piden los..."
+    (el perfil profesional que pide el mercado, no el perfil de usuario del anexo)
+
+las cinco anclas, leidas del dato y no de la prosa (gates/steps.json):
+  peldano  5  u05-pendientes             pendings_profiles         required=true  since_schema=2
+  peldano  8  u08-tests-en-rojo          profile_matrix            required=true  since_schema=2
+  peldano  9  u09-calidad-de-codigo      heuristics                required=true  since_schema=2
+  peldano 10  u10-casos-de-prueba-manual manual_cases_per_profile  required=true  since_schema=2
+  peldano 12  u12-verificacion-honesta   heuristics                required=true  since_schema=2
+  (en gates/stations.json: ninguna; el camino del legado las hereda al entrar por el 5)
+
+quien cita el anexo, contrato por contrato (castellano):
+  docs/peldanos/peldano-05-pendientes.md              4 menciones
+  docs/peldanos/peldano-08-tests-en-rojo.md           2
+  docs/peldanos/peldano-09-calidad-de-codigo.md       3
+  docs/peldanos/peldano-10-casos-de-prueba-manual.md  1
+  docs/peldanos/peldano-12-verificacion-honesta.md    1
+  -> los CONTRATOS lo citan, 5 de 5. Las FICHAS del documento principal, 0 de 5.
+
+el peldano 2, que es donde nacen las dos entradas previas:
+  gates/steps.json, verify[], since_schema 2:
+    "Is the user glossary written, with the words people actually use for things?"
+    "Is the list of profiles written, saying who each one is and what they come to do?"
+  docs/peldanos/peldano-02-definicion-y-lectura.md:
+    menciones de "perfil"   -> 0
+    menciones de "glosario" -> 0
+  -> el dato publicado las exige y ni la ficha ni el contrato las mencionan.
+```
+
+**Lo que la medición agrega al pedido, y que cambia el trabajo.** Tres hallazgos.
+
+El primero: **los contratos sí citan el anexo, 5 de 5; lo que no lo cita es el documento
+principal**. Eso recorta el trabajo y, sobre todo, condiciona la comprobación del punto (d) de
+abajo —ver `PND-048`—.
+
+El segundo: el README **castellano** es el único de los ocho que no tiene la fila del anexo en su
+tabla de «Qué hay acá». Las siete traducciones la tienen.
+
+```
+README.md              anexo/annex = 0     <- la fuente de verdad
+docs/en/README.md      anexo/annex = 1
+docs/pt/README.md      anexo/annex = 1
+docs/fr/README.md      anexo/annex = 1
+docs/de/README.md      anexo/annex = 1
+docs/it/README.md      anexo/annex = 1
+docs/ja/README.md      anexo/annex = 1
+docs/zh/README.md      anexo/annex = 1
+(las dos tablas tienen 15 filas; la inglesa tiene ANEXO_HEURISTICAS.md y la castellana, en su
+ lugar, EVALUACIONES_DE_IA.md, que es castellano-only)
+```
+
+Es D-013 al revés, y vale anotarlo tal cual: la regla dice que un cambio en el castellano se
+replica en las siete traducciones, y acá **las siete llevan una fila que la fuente de verdad no
+tiene**. Nadie lo hizo mal a propósito; la fila se agregó del lado traducido y nunca volvió.
+
+El tercero es la consecuencia del segundo: el punto (b) del pedido no es «agregar una fila», es
+**alinear la fuente con sus traducciones**, y el texto que se escriba tiene que decir lo que las
+siete ya dicen o quedan nueve versiones con dos redacciones.
+
+**Qué hay que producir.**
+
+- (a) Que el documento principal nombre el Anexo H donde corresponde: en la Parte A, en el lugar
+  donde se explica cómo se lee un peldaño —porque el anexo cambia qué hay que leer—; en la Parte C,
+  al abrir los peldaños 5, 8, 9, 10 y 12; y en la ficha de cada uno de esos cinco, con el enlace.
+- (b) Que el README castellano lo liste en la tabla de «Qué hay acá», con el texto alineado al que
+  ya tienen las siete traducciones.
+- (c) **[DECISIÓN DEL DUEÑO]** Si las dos entradas previas —el glosario del usuario y la lista de
+  perfiles— se nombran en la ficha del peldaño 2, que es donde la verificación publicada ya las
+  comprueba y la ficha no las menciona. Las opciones y su costo van en el informe al dueño, no acá.
+- (d) La comprobación que impida que vuelva a pasar. Va en su propia entrada, `PND-048`, porque la
+  medición mostró que la forma en que se pidió ya está en verde hoy y no habría atrapado esto.
+- Y la réplica en los siete idiomas en el mismo commit (D-013), que no es negociable.
+
+**Criterio de aceptación por perfil.**
+
+- *P6 (lector humano que entra por el documento principal):* dada esa persona, al leer el documento
+  principal de punta a punta se entera de que el Anexo H existe, de que es obligatorio y de dónde
+  está, sin haber abierto ningún contrato.
+- *P7 (lector que adapta el método a otro formato):* dado ese perfil —que es el caso que originó
+  esta entrada—, esa persona puede producir su adaptación sin omitir las 45 reglas, porque el
+  documento del que parte las nombra.
+- *P8 (dueño de proyecto que aplica el método):* dado ese perfil, esa persona sabe antes de empezar
+  que cinco peldaños no avanzan sin las piezas del anexo, y no lo descubre cuando la compuerta la
+  detiene.
+- *P1 (herramienta consumidora que compila las compuertas):* dada una herramienta, lo que el dato
+  declara exigible tiene su correlato en la prosa que el usuario de esa herramienta lee, de modo que
+  un `required: true` no aparezca como una exigencia de la herramienta sin origen en el método.
+
+**Cómo se verifica.** `grep -c -i "anexo" docs/ESCALERA_METODOLOGICA.md` → mayor que 0, y lo mismo
+en `README.md`; cada uno de los cinco peldaños ancla cita el anexo **en su ficha**; `node --test`
+en verde; y la comprobación de `PND-048` cayendo en rojo contra el estado de hoy.
+
+**Depende de:** nada. Es la primera del grupo y la que el dueño marcó como la más importante.
+
+**Qué se hizo (2026-10-26).** (a) El documento principal nombra el Anexo H en la Parte A —como
+novena parte que aparece sólo en seis peldaños, con la explicación de qué quiere decir "ancla"—, en
+la apertura de la Parte C con la advertencia de leerlo antes de abrir el peldaño 5, y en la **ficha**
+de los seis peldaños que lo cargan, cada una con una línea que empieza con `**Anexo H**` y con el
+enlace al anexo. (b) `README.md` tiene la fila del anexo en su tabla de «Qué hay acá», con el texto
+alineado al que ya tenían las siete traducciones. (c) **Decisión del dueño, 2026-10-26:** las dos
+entradas previas se nombran en la **ficha y en el contrato** del peldaño 2 —no en una sola—, que es
+la forma fuerte; el contrato las pide dentro del prompt y la sección 4 las comprueba. Y lo que la
+decisión arrastró: el prompt del peldaño 2 cambió, así que `prompts/catalog.json` sube a
+`corpus_version` 2026.10.2 con su huella, y la nota del dato que decía que «el contrato del peldaño
+2 todavía no las pide» dejó de ser verdad, así que `gates/heuristics.json` se corrigió y
+`catalog_version` subió a 2026.10.4. El camino **no** declara una ruta de archivo para las dos
+entradas previas: el dueño nunca la declaró y un nombre inventado ahí se publica como si fuera un
+valor de fábrica. Y la réplica en los siete idiomas, en el mismo commit (D-013). (d) La comprobación
+está en `PND-048`.
+
+**Evidencia de cierre.** Medido contra el árbol de ayer y contra el de hoy con el mismo programa:
+
+```
+$ node build/anexo_simetria.mjs contra HEAD (antes de este cambio)
+  regla A (la ficha enlaza el anexo):   48 hallazgos de 48 fichas revisadas
+  regla B (el contrato nombra el token): 8 hallazgos (el peldano 2 en los ocho idiomas)
+
+$ node --test   (despues)
+  # tests 239 | # pass 239 | # fail 0
+
+$ grep -c -i "anexo" docs/ESCALERA_METODOLOGICA.md   -> 22   (era 0)
+$ grep -c -i "anexo" README.md                       -> 1    (era 0)
+$ node build/prompts.mjs    -> 54 prompts, traducciones verificadas en los siete, errores: 0
+$ node build/api_check.mjs  -> los tres recursos publicados coinciden con las fuentes
+```
+
+**Commit.** El que trae este cierre; una entrada no puede citar su propio sha, y el identificador de
+git que un build conoce de sí mismo siempre nombra al cambio anterior (es la misma razón por la que
+`gates/catalog.json` lo declara informativo). **Decisión:** D-061.
+
+---
+
+## PND-040 — «La cobertura cuenta pruebas. El rojo dice si sirven» *(M-02; informe § 11, C+01)*
+
+- **Nodo:** `corpus/escalera` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** registra · **Quién decide:** se hace y se reporta
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-26.
+
+**Qué está mal.** Nada está mal: hay algo mejor escrito afuera. El método explica la relación
+entre los peldaños 8 y 9 en varios párrafos de prosa y la ficha del 9 ya dice «la cobertura,
+conviene recordarlo, cuenta pruebas». El libro la cierra en nueve palabras y resuelve una de las
+confusiones más caras del oficio.
+
+**Evidencia que me dio el dueño, pegada tal cual.**
+
+> Es una máxima del capítulo 7 del libro. El método explica la relación entre los peldaños 8 y 9 en
+> varios párrafos y la ficha del 9 dice "la cobertura cuenta pruebas". El libro la cierra en nueve
+> palabras y resuelve una de las confusiones más caras del oficio. Entra como una línea en la ficha
+> del peldaño 9 y en sus siete traducciones en el mismo commit.
+
+**Mi reproducción (2026-10-26).** La frase del método está donde el dueño dice, y el informe la
+registra como máxima `M-057` del libro.
+
+```
+informe de validacion, § 11 C+01:
+  "Maxima M-057. El metodo explica la relacion entre los peldanos 8 y 9 en varios parrafos de
+   prosa. El libro la resuelve en nueve palabras, y es una de las confusiones mas caras del
+   oficio."
+  "Propuesta: entra como una linea en la ficha del peldano 9, junto a <<la cobertura, conviene
+   recordarlo, cuenta pruebas>>."
+-> la frase de anclaje existe en la ficha del 9; la cita exacta se pega al escribir el cambio.
+```
+
+**Qué hay que producir.** Una línea en la ficha del peldaño 9 del documento principal, con el
+crédito al libro en la forma que el método usa para los trabajos ajenos —enlace en la Parte F,
+nunca como `Ref. N`—, replicada en los siete idiomas en el mismo commit.
+
+**Criterio de aceptación por perfil.**
+
+- *P6 (lector del documento principal):* dada esa persona, al leer la ficha del peldaño 9 entiende
+  en una línea por qué la cobertura no alcanza, sin tener que reconstruirlo de varios párrafos.
+- *P8 (dueño de proyecto):* dado ese perfil, esa persona puede repetir la distinción con sus propias
+  palabras después de leerla una vez.
+
+**Cómo se verifica.** La línea está en la ficha del 9 en los ocho idiomas; `node build/prompts.mjs`
+en verde (la ficha no es un prompt, así que no debería moverse: si se mueve, se tocó lo que no era).
+
+**Depende de:** nada.
+
+**Qué se hizo (2026-10-26).** La máxima entró en la prosa de apertura de la ficha del peldaño 9,
+donde la cobertura y el rojo se tocan: «la cobertura cuenta pruebas; el rojo dice si sirven», con el
+párrafo que explica por qué un noventa por ciento de cobertura no dice nada sobre si un test se
+pondría en rojo. El crédito va en la Parte F.5 y **no** como `Ref. N`. En los ocho idiomas, en el
+mismo commit.
+
+**Y una corrección a la evidencia que me dio el dueño, dicha en vez de tapada.** La frase de anclaje
+que el pedido citaba —«la cobertura, conviene recordarlo, cuenta pruebas»— **no existe literal** en
+la ficha del 9: `grep` de «cuenta pruebas» y de «conviene recordarlo» en `docs/` devuelve sólo las
+líneas del propio registro. Era una paráfrasis del informe, no una cita del método. Así que la línea
+no se puso «junto a» nada: se puso donde la distinción vive, que es la apertura de la ficha.
+
+**Evidencia de cierre.** La línea está en la ficha del 9 en los ocho idiomas; `node build/prompts.mjs`
+en verde (la ficha no es un prompt, y no se movió ninguno). **Decisión:** D-061.
+
+---
+
+## PND-041 — «El dueño no es dueño: es inquilino» *(M-03; informe § 11, C+03)*
+
+- **Nodo:** `corpus/escalera` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** registra · **Quién decide:** se hace y se reporta
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-26.
+
+**Qué está mal.** Lo mismo que la anterior: el método dice lo correcto y plano, y el libro lo dice
+mejor. El método dice «el sistema tiene que poder usarse, mantenerse y recuperarse sin el agente y
+sin vos». La formulación del libro nombra el costo en una palabra que cualquier dueño de negocio
+entiende antes de terminar de leerla.
+
+**Evidencia que me dio el dueño, pegada tal cual.**
+
+> Capítulo 12. El método dice "el sistema tiene que poder usarse, mantenerse y recuperarse sin el
+> agente y sin vos", que es correcto y plano. La formulación del libro nombra el costo en una
+> palabra que cualquier dueño de negocio entiende antes de terminar de leerla. Entra como una línea
+> en la ficha del peldaño 20.
+
+**Mi reproducción (2026-10-26).** La frase del método está en la ficha del peldaño 20 y en el
+contrato del 20; el informe la registra en su § 11 `C+03`.
+
+```
+$ grep -rn "sin el agente y sin vos" docs/ESCALERA_METODOLOGICA.md docs/peldanos/peldano-20-*.md
+  (presente en los dos; la cita exacta se pega al escribir el cambio)
+```
+
+**Qué hay que producir.** Una línea en la ficha del peldaño 20, con el crédito al libro en la
+Parte F, replicada en los siete idiomas en el mismo commit. La formulación se escribe propia o se
+cita entre comillas con atribución: la idea es del libro y la frase de cuatro palabras es suya. Las
+dos salidas son legítimas; la segunda es cita breve con atribución, que es lo que el método ya hace
+con los trabajos ajenos de la Parte F.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto):* dada esa persona, al leer la ficha del peldaño 20 entiende qué le pasa
+  si el manual de recuperación no existe, sin que nadie se lo explique.
+
+**Cómo se verifica.** La línea está en la ficha del 20 en los ocho idiomas.
+
+**Depende de:** nada.
+
+**Qué se hizo (2026-10-26).** Entró en la prosa de apertura de la ficha del peldaño 20 y, además, en
+el contrato del 20 y en la hoja de las veinticinco preguntas (pregunta 20), porque es el lugar donde
+un dueño lee la consecuencia antes de firmar: «el dueño no es dueño, es inquilino», con la
+explicación de qué significa —tener el sistema, pagarlo, y no poder entrar sin pedirle permiso a
+quien lo construyó—. Crédito en la Parte F.5. En los ocho idiomas, en el mismo commit.
+
+**Evidencia de cierre.** La formulación está en la ficha del 20 en los ocho idiomas y el crédito está
+en F.5. **Decisión:** D-061.
+
+---
+
+## PND-042 — La proporcionalidad explicada, en vez de una tabla de veinticuatro filas *(M-04; informe § 11, C+04)*
+
+- **Nodo:** `corpus/escalera` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** registra · **Quién decide:** **el dueño** (adoptar la idea,
+  la idea con el vocabulario, o nada)
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-26.
+
+**Qué está mal.** La Parte D tiene una tabla de veinticuatro filas marcada `[hipótesis]` para
+contestar «¿todo esto para un sistema chico?». El epílogo del libro contesta la misma pregunta con
+el marco shu-ha-ri —primero se hace todo como está escrito aunque no se entienda; después se
+adapta a lo que uno tiene enfrente; al final se mejora para los que vienen— y lo ancla en la
+escena correcta: la dueña decidiendo qué peldaños se achicaban y cuáles no se negociaban.
+
+**Evidencia que me dio el dueño, pegada tal cual.**
+
+> La Parte D tiene una tabla de veinticuatro filas marcada [hipótesis] para contestar "¿todo esto
+> para un sistema chico?". El epílogo del libro contesta la misma pregunta con el marco shu-ha-ri:
+> primero se hace todo como está escrito aunque no se entienda; después se adapta a lo que uno tiene
+> enfrente; al final se mejora para los que vienen. Y lo ancla en la escena correcta: la dueña
+> decidiendo qué peldaños se achicaban y cuáles no se negociaban.
+> Mi recomendación es adoptar la IDEA y no el vocabulario, porque el método no usa vocabulario de
+> budō en ninguna parte y atarlo al aparato de una novela lo vuelve dependiente de ella. Pero es tu
+> decisión, y si querés el vocabulario entra con atribución: tres nociones, un párrafo cada una,
+> antes de la tabla de la Parte D.
+
+**Mi reproducción (2026-10-26).** La tabla de la Parte D existe, tiene veinticuatro filas y está
+marcada `[hipótesis]`; el método no usa vocabulario de budō en ninguna parte.
+
+```
+$ grep -c -i -E "shu-ha-ri|shuhari|budo|kata|zanshin|kamae|metsuke" docs/ESCALERA_METODOLOGICA.md
+0
+nota: "Urazuke" si es japones, y es el nombre del metodo (D-014); eso no hace al metodo un
+      documento de vocabulario de budo. El informe de validacion es el unico documento del
+      repositorio que usa ese vocabulario, y es porque cita los titulos de los capitulos del
+      libro, que es otra cosa.
+```
+
+**Qué hay que producir.** Primero la decisión del dueño, con sus opciones y su costo en el informe
+que acompaña a este backlog. Después, según lo que decida: la idea escrita con palabras del método
+antes de la tabla de la Parte D, o la idea con el vocabulario y su atribución, o nada. En los ocho
+idiomas, en el mismo commit.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto con un sistema chico):* dada esa persona, al preguntarse «¿todo esto para
+  esto?» encuentra la respuesta antes de la tabla y no tiene que deducirla de veinticuatro filas.
+- *P6 (lector del documento principal):* dada esa persona, lo que lee no depende de haber leído una
+  novela para entenderse.
+
+**Cómo se verifica.** El párrafo está antes de la tabla de la Parte D en los ocho idiomas, y si se
+adoptó el vocabulario, su atribución está en la Parte F.
+
+**Depende de:** la decisión del dueño.
+
+**Decisión del dueño (2026-10-26):** se adopta **la idea y no el vocabulario**, que es lo que el
+propio dueño recomendó. El método no usa vocabulario de budō en ninguna parte y atarlo al aparato de
+una novela lo volvería dependiente de ella.
+
+**Qué se hizo.** Tres párrafos antes de la tabla de la Parte D, con palabras del método y en orden:
+primero se hace completo, incluso lo que no se entiende para qué —porque la primera vez no estás en
+condiciones de saber qué parte te sobra—; después se adapta a lo que tenés enfrente, y la decisión es
+del dueño, peldaño por peldaño y **escrita antes de empezar**, porque «un peldaño achicado por
+decisión escrita es proporcionalidad; achicado en silencio, es deuda»; y al final se mejora para los
+que vienen, que es el peldaño 23 devolviendo la retrospectiva como propuesta de cambio. En los ocho
+idiomas, en el mismo commit. La Parte F.5 acredita la idea.
+
+**Evidencia de cierre.** Los tres párrafos están antes de la tabla de la Parte D en los ocho idiomas,
+y el vocabulario de budō sigue en cero en el documento principal:
+`grep -c -i -E "shu-ha-ri|shuhari|budo|kata" docs/ESCALERA_METODOLOGICA.md` → 0. **Decisión:** D-061.
+
+---
+
+## PND-043 — Las veinticinco preguntas para el proveedor, y la cuestión de licencia *(M-05; informe § 11, C+02)*
+
+- **Nodo:** `corpus/hoja-del-dueno` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** avisa · **Quién decide:** **el dueño**, y hay una cuestión
+  de licencia que no la resuelve el agente
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-26.
+
+**Qué está mal.** El método tiene la «verificación de completitud sin leer código» dentro de cada
+contrato —una sección 4 por contrato, en los veinticuatro peldaños y las ocho estaciones— y no
+tiene la pieza que un dueño que nunca contrató software pueda llevar a una reunión: una hoja. El
+Anexo II del libro agrupa veinticinco preguntas por promesa, con este criterio al frente: «las
+respuestas que valen son las que se pueden ver: un archivo, un número con su comando, una prueba en
+rojo, un manual, una firma. Las que no se pueden ver son promesas». A juicio del dueño es el mejor
+aporte del libro y es material de la landing y del curso.
+
+**Evidencia que me dio el dueño, pegada tal cual.**
+
+> El Anexo II del libro agrupa veinticinco preguntas por promesa, con este criterio al frente: "las
+> respuestas que valen son las que se pueden ver: un archivo, un número con su comando, una prueba
+> en rojo, un manual, una firma. Las que no se pueden ver son promesas". El método tiene la
+> verificación de completitud dentro de cada contrato, pero no tiene esta pieza: una hoja que un
+> dueño que nunca contrató software pueda llevar a una reunión. Es, a mi juicio, el mejor aporte del
+> libro y material de la landing y del curso.
+>
+> La cuestión de licencia, y no la resuelvas vos: Urazuke se publica bajo CC BY-SA 4.0 y la página
+> de créditos del libro dice "© 2026 Oscar Schmitz" sin conceder licencia alguna sobre la
+> adaptación. Absorber su Anexo II textual sería tomar derechos reservados dentro de una obra BY-SA.
+> Las preguntas derivan en buena parte de tu método, pero la agrupación y la redacción son suyas.
+> Tres caminos:
+>   (a) pedirle permiso al autor y acreditarlo;
+>   (b) escribirlas de cero desde las verificaciones de completitud de los contratos, que es de
+>       donde salen, y acreditar al libro como origen de la idea;
+>   (c) no hacerlo.
+> Yo recomiendo (b): te queda una pieza propia, trazable a tus contratos, sin deuda de licencia, y
+> el crédito al libro es honesto porque la idea es suya.
+
+**Mi reproducción (2026-10-26).** Lo que se puede medir de este lado se midió; lo del libro es
+palabra del dueño y queda marcado como tal.
+
+```
+la licencia del metodo: CC BY-SA 4.0, declarada en LICENSE, en README.md y en CLAUDE.md.
+
+la pieza que falta, medida en el metodo:
+  "verificacion de completitud sin leer codigo" es la seccion 4 de cada contrato: esta en los
+  24 contratos de peldano y en las 8 estaciones del camino evolutivo-correctivo. NINGUN
+  documento del corpus las junta en una hoja: no hay ningun archivo cuyo contenido sea una
+  lista de preguntas para llevarle a un proveedor.
+
+[dato del dueno, NO reproducido por mi] la pagina de creditos del libro dice "(c) 2026 Oscar
+Schmitz" sin conceder licencia. No tengo el libro, asi que esto no lo verifique: entra como
+afirmacion del dueno, y la decision de licencia se toma sobre su lectura, no sobre la mia.
+
+el costo mecanico de un documento nuevo del corpus, medido:
+$ sed -n '34p' build/build.mjs
+  for (const nombre of ['ESCALERA_METODOLOGICA', 'REFERENCIAS', 'EVOLUTIVO_CORRECTIVO',
+    'MANUAL_CURSO', 'MANUAL_CURSO_EVOLUTIVO', 'CAPACITACION_JUNIOR', 'TRABAJO_COLABORATIVO',
+    'EVALUACIONES_DE_IA', 'ANEXO_HEURISTICAS', 'COMPUERTAS']) {
+  -> es un arreglo literal. Un documento que no este ahi EXISTE y NO SE PUBLICA.
+     Y D-052: la publicacion no toca la landing; enlazarlo desde la portada es un trabajo
+     aparte en el repositorio del portal, y hasta que se haga queda huerfano --que ahora el
+     chequeo de PND-025 avisa por su nombre, que es para lo que se escribio.
+```
+
+**Qué hay que producir.** Primero la decisión del dueño entre (a), (b) y (c), con la recomendación
+y los costos en el informe que acompaña a este backlog. Si sale (a) o (b): un documento nuevo del
+corpus, en los ocho idiomas en el mismo commit, agregado al arreglo literal de `build/build.mjs`,
+y un pendiente propio para enlazarlo desde la portada en el repositorio del portal.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que nunca contrató software):* dada esa persona, puede entrar a una reunión
+  con un proveedor con una hoja de preguntas cuyas respuestas se pueden ver, y reconocer una promesa
+  cuando la escucha.
+- *P6 (lector del documento principal):* dada esa persona, llega a esa hoja desde el documento que
+  está leyendo.
+- *P5 (auditor):* dado ese perfil, cada pregunta de la hoja es trazable a la verificación de
+  completitud del contrato de la que sale, de modo que la pieza sea del método y no un préstamo.
+
+**Cómo se verifica.** Si se produce: el documento existe en los ocho idiomas, está en el arreglo de
+`build/build.mjs`, `node build/build.mjs` lo genera, y `node build/portal_orphans.mjs` lo nombra
+como huérfano hasta que la portada lo enlace.
+
+**Depende de:** la decisión del dueño, y de la cuestión de licencia.
+
+**Decisión del dueño (2026-10-26):** camino **(b)**, que es el que el dueño recomendó: las preguntas
+se escriben **de cero** desde la verificación de completitud de los contratos, y el libro se acredita
+como origen de la idea. Sin deuda de licencia, y la pieza queda del método.
+
+**Qué se hizo.** `docs/PREGUNTAS_AL_PROVEEDOR.md`, en los ocho idiomas del corpus y en el mismo
+commit, agregado al arreglo literal de `build/build.mjs` (si no está ahí, el documento existe y no se
+publica). Veinticinco preguntas agrupadas por **lo que le están prometiendo** al dueño —se lo entrego
+funcionando, sé lo que falta y en qué orden, está bien hecho, no te va a hacer daño, va a aguantar, te
+voy a decir la verdad—, cada una con **qué respuesta se puede ver** y con el peldaño del que sale, así
+que cada pregunta es trazable a su contrato. Más el criterio al frente (las respuestas que valen son
+las que se pueden ver), las tres frases que significan «no tengo eso», las cinco que traen más
+información si la reunión es corta, y la aclaración honesta en la otra dirección: un «no» con su razón
+escrita es una buena respuesta, y es lo que el método llama proporcionalidad. El documento principal
+la enlaza desde la Parte D, donde explica la verificación de completitud, y `README.md` la lista.
+
+**Lo que NO se hizo, y por qué está dicho acá.** La portada del portal no la enlaza: la publicación
+espeja `docs/html/` y **no toca la landing** (D-052). Hasta que alguien la agregue al índice y al i18n
+de la portada, el documento va a quedar **huérfano**, y eso ahora lo avisa por su nombre el chequeo de
+PND-025. Queda como entrada propia: `PND-049`.
+
+**Evidencia de cierre.** Los ocho archivos existen, los ocho tienen las veinticinco preguntas
+(`grep -c "^\*\*[0-9]\{1,2\}\."` → 25 en los ocho), `node build/build.mjs` generó los ocho HTML, y
+`node --test` quedó en 239 de 239. **Decisión:** D-061.
+
+---
+
+## PND-044 — Lo que la prueba del manual de recuperación tiene que registrar *(M-06; informe § 11, C+05)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** avisa · **Quién decide:** se hace y se reporta
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-26.
+
+**Qué está mal.** El peldaño 20 ya exige que una persona que no programa siga el manual de
+recuperación antes del primer despliegue. Lo que falta es lo que esa prueba **produce** cuando se
+hace bien: el tiempo medido de punta a punta, el punto exacto donde la persona se trabó, y la
+palabra que no entendió, vuelta propuesta de cambio a la escalera con su nombre y su fecha.
+
+**Evidencia que me dio el dueño, pegada tal cual.**
+
+> El peldaño 20 ya exige que una persona que no programa siga el manual de recuperación antes del
+> primer despliegue. Lo que el libro muestra, y es lo que produce esa prueba cuando se hace bien: el
+> tiempo medido de punta a punta, el punto exacto donde la persona se trabó, y la palabra que no
+> entendió, vuelta propuesta de cambio a la escalera con su nombre y su fecha.
+> Propuesta: que la compuerta del 20 pida que la ejecución registre el tiempo, el punto donde se
+> trabó y las palabras que el lector no entendió, y que cada una de esas palabras abra un pendiente.
+> ANTES de escribirlo, averiguá si esto ya está en docs/practica, donde el proyecto guía del curso
+> (Turnera) corrió los veinticuatro contratos y puede estar documentado ahí con evidencia real. Si
+> está, esto no es una mejora nueva: es una cosa de la práctica que falta subir a la ficha, y el
+> pendiente lo dice así.
+> Y una regla que no se negocia: la escena del libro no es una "Ref. N". Las referencias son casos
+> propios reales con fecha y commit, y mezclar una novela ahí rompe lo único que hace útil a ese
+> archivo.
+
+**Mi reproducción (2026-10-26).** Lo averigüé antes de escribirlo, que es lo que el dueño pidió:
+**no está en la práctica**. Es una mejora nueva, no una cosa de la práctica que falte subir.
+
+```
+$ grep -rn -i -E "se trab|no entend|palabra que no|minutos de punta a punta|tiempo medido" docs/practica/
+  (ninguna coincidencia)
+
+lo que SI hay en la practica, peldano 20:
+$ sed -n '433,437p' docs/practica/MANUAL_FORGE_PROYECTO_NUEVO.md
+  ### Peldano 20: manuales que una persona puede seguir sin IA
+  docs/USER_MANUAL.md (para la recepcionista), docs/MAINTENANCE_MANUAL.md (arrancar, parar,
+  copia de seguridad, leer el registro), docs/INFRASTRUCTURE_AND_RECOVERY_MANUAL.md (que hay y
+  como se recupera desde cero en una tarde) y docs/CHANGELOG.md. Forge verifica los cuatro.
+
+$ ls docs/practica/evidencia/turnera/
+  AUDIT_2026-10-19.md  CODE_QUALITY.md  GOTCHAS.md  MEASUREMENTS.md
+  MONITORING_REPORT_2026-10-19.md  PERFORMANCE_2026-10-19.md  RETROSPECTIVE_2026-10-19.md
+  SIZING.md  git_log.txt  mutante_sobreturno.diff  pending.json  receipts.json  recibos.txt
+  sizing.json  urazuke_status.json  urazuke_status.txt  workflow_instances.json
+  -> hay evidencia de que la herramienta VERIFICA los cuatro manuales. No hay ni un registro
+     de una persona que no programa siguiendolo, con tiempo, traba y palabras.
+
+lo que el contrato del 20 ya pide, y donde entra el cambio:
+$ grep -n -i -E "no programa|recuperaci" docs/peldanos/peldano-20-documentacion-viva.md
+  130: - El manual de recuperacion lo podrias seguir vos, o alguien de confianza que no programe?
+  144: - Nadie fuera del constructor leyo nunca el manual de recuperacion. Pedile a alguien que
+       lo siga
+  -> la seccion 4 (verificacion) y la 5 (senales de alarma) piden la prueba; ninguna de las dos
+     pide el REGISTRO de su resultado.
+```
+
+**Y una cosa que la medición agrega.** Que la práctica no lo tenga **es, en sí, el dato**: el
+proyecto guía corrió los veinticuatro contratos y esta prueba no dejó registro de su resultado. O
+sea que el peldaño pide la prueba, la práctica la pasó, y nadie puede decir cuánto tardó la persona
+ni dónde se trabó. Es la misma familia que las cuatro guardas dormidas: la compuerta existe, se
+cumplió, y no produjo evidencia.
+
+**Qué hay que producir.** El cambio en el contrato del peldaño 20 —sección 3, resultado esperado, y
+sección 4, verificación— y en la ficha del 20: la ejecución registra el tiempo de punta a punta, el
+punto donde la persona se trabó y las palabras que no entendió, y **cada palabra abre un
+pendiente**. En los ocho idiomas, en el mismo commit. La escena del libro se acredita en la Parte
+F; **no** entra como `Ref. N`.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto):* dada esa persona, después de la prueba tiene tres cosas escritas —cuánto
+  tardó, dónde se trabó, qué palabras no entendió— y no «la prueba se hizo».
+- *P6 (lector del documento principal):* dada esa persona, al leer la ficha del 20 sabe qué tiene
+  que quedar escrito cuando la prueba termina.
+- *P1 (herramienta consumidora):* dada una herramienta que compila las compuertas, el requisito
+  nuevo es verificable sin leer código —hay un registro con tres campos, o no hay—.
+
+**Cómo se verifica.** El contrato y la ficha del 20 lo piden en los ocho idiomas;
+`node build/prompts.mjs` en verde (si el cambio toca un prompt, es una pieza en inglés idéntica en
+las ocho versiones y el verificador lo exige).
+
+**Depende de:** nada.
+
+**Qué se hizo (2026-10-26).** El contrato del peldaño 20 pide ahora el **registro** de la prueba: en
+«Para qué sirve» dice qué produce la prueba cuando se hace bien, la sección 3 lo exige como artefacto
+con sus cuatro campos —fecha y nombre de quien la hizo, tiempo medido de punta a punta, el paso exacto
+donde se trabó con sus palabras, y la lista de palabras que no entendió, más un pendiente por palabra—,
+la sección 4 lo comprueba sin leer código y la sección 5 agrega sus dos señales de alarma (la prueba
+que se hizo y no quedó registrada, y el registro sin ni una palabra en la lista). En la ficha del 20
+entró como una parte propia, antes de «Quién decide», y la compuerta ahora dice «y la ejecución dejó su
+registro». En los ocho idiomas, en el mismo commit. La escena del libro se acredita en F.5 y **no**
+entra como `Ref. N`.
+
+**Y el dato lo exige, que es lo que hace el requisito verificable sin leer código.** `gates/steps.json`
+lleva una entrada **nueva** de `verify` en el peldaño 20, con su `since_schema` y sin tocar la base, que
+pregunta por las tres cosas y por el pendiente de cada palabra. No declara una ruta de artefacto a
+propósito: el método no nombra un archivo para eso y un nombre inventado ahí se publicaría como un
+valor de fábrica. Por eso `catalog_version` subió a 2026.10.4 con su huella en el changelog.
+
+**Evidencia de cierre.** `node build/gates_validate.mjs` → validado (24 peldaños, 8 estaciones, 45
+reglas); `node build/api_check.mjs` → los tres recursos coinciden; `node build/gates_doc.mjs --check` →
+`docs/COMPUERTAS.md` coincide con los datos; `node --test` → 239 de 239. **Decisión:** D-061.
+
+---
+
+## PND-045 — La Ref. 22 se contradice a sí misma, y por eso un tercero se equivocó *(C-01; informe § 12)*
+
+- **Nodo:** `corpus/referencias` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** avisa · **Quién decide:** se hace y se reporta
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-26.
+
+**Qué está mal.** La misma referencia dice dos cosas distintas en cuatro lugares. Son compatibles
+—cuatro rondas producen tres retornos— y ninguna lo explicita. Es el único error del libro que el
+método le facilitó.
+
+**Evidencia que me dio el dueño, pegada tal cual.**
+
+> Título: "cuatro rondas hasta la causa raíz". Cuerpo: "un bug volvió TRES veces hasta que se
+> encontró la causa real". Tabla de fallos: "tres arreglos que no eran de raíz". Las tres son
+> compatibles --cuatro rondas producen tres retornos-- y ninguna lo explicita. El libro leyó el
+> título y escribió "volvió cuatro veces". Es el único error que el método le facilitó.
+> Arreglo: una aclaración en el cuerpo de la Ref. 22.
+
+**Mi reproducción (2026-10-26).** Las citas están donde el dueño dice, y son exactamente esas. La
+medición agrega que no son tres lugares sino cuatro, y que otros dos documentos propagan el título.
+
+```
+$ grep -n -i "tres arreglo\|cuatro ronda\|PND-300" docs/REFERENCIAS.md
+205: ### Ref. 22 - PND-300: cuatro rondas hasta la causa raiz (14 de julio)
+444: | 14 de julio | PND-300, cuatro rondas | Arreglo de raiz o no es arreglo | pendiente 300 |
+484: | PND-300: tres arreglos que no eran de raiz | Ref. 22 | 1, cero deuda; 7, medir | cerrado |
+
+$ sed -n '207,208p' docs/REFERENCIAS.md
+Un bug volvio tres veces hasta que se encontro la causa real, el 14 de julio. Cada "arreglo"
+anterior habia sido sobre el sintoma.
+
+-> cuatro lugares: el titulo (cuatro rondas), el cuerpo (volvio tres veces), la cronologia de
+   la linea 444 (cuatro rondas) y la tabla de fallos de la 484 (tres arreglos).
+
+y la Ref. 22 la citan dos documentos mas, los dos con la version del titulo:
+$ grep -rn "cuatro rondas hasta la causa raiz" docs/ESCALERA_METODOLOGICA.md docs/peldanos/
+  docs/ESCALERA_METODOLOGICA.md:1113
+  docs/peldanos/peldano-22-monitoreo-de-errores.md:25
+-> o sea que la version "cuatro" esta en cuatro lugares y la version "tres" en dos, y el unico
+   lugar donde las dos aparecen juntas es la propia Ref. 22. Por eso el arreglo va ahi.
+```
+
+**Qué hay que producir.** Una aclaración en el cuerpo de la Ref. 22 que diga la aritmética en voz
+alta —cuatro rondas de arreglo, tres retornos— de modo que el título, la cronología y la tabla de
+fallos se lean como lo que son: la misma cuenta desde dos lados. En los ocho idiomas, en el mismo
+commit.
+
+**Criterio de aceptación por perfil.**
+
+- *P7 (lector que adapta el método a otro formato):* dado ese perfil, esa persona que lee sólo el
+  título de la Ref. 22 no puede concluir un número distinto del que dice el cuerpo.
+- *P5 (auditor):* dado ese perfil, las cuatro menciones de la Ref. 22 se pueden conciliar sin tener
+  que suponer la aritmética.
+
+**Cómo se verifica.** El cuerpo de la Ref. 22 dice las dos cifras y su relación, en los ocho
+idiomas.
+
+**Depende de:** nada.
+
+**Qué se hizo (2026-10-26).** Un párrafo nuevo en el cuerpo de la Ref. 22 que dice la aritmética en
+voz alta: cuatro rondas de arreglo y tres retornos, con las cuatro rondas enumeradas una por una, y la
+razón de que quede escrito —«si una referencia deja que alguien que la lee con cuidado saque otro
+número, el defecto es de la referencia»—. El título, la cronología y la tabla de fallos no se tocaron:
+ahora se leen como lo que son, la misma cuenta desde dos lados. En los ocho idiomas, en el mismo
+commit.
+
+**Evidencia de cierre.** El cuerpo de la Ref. 22 dice las dos cifras y su relación en los ocho
+idiomas. **Decisión:** D-061.
+
+---
+
+## PND-046 — Un «fallo que evita» que cita un caso sin referencia, y no es uno solo *(C-02; informe § 12)*
+
+- **Nodo:** `corpus/referencias` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** registra · **Quién decide:** **el dueño** elige, caso por
+  caso, entre escribir la referencia o quitar la mención
+- **Repositorio:** método · **Estado: abierto**
+
+**Qué está mal.** Hay fichas que citan un caso concreto en su «fallo que evita» sin su `[Ref. N]`,
+así que nadie puede llegar a la evidencia. Es exactamente la clase de afirmación sin respaldo que
+el método persigue, y un tercero que la reproduce la propaga sin que nadie pueda auditarla.
+
+**Evidencia que me dio el dueño, pegada tal cual.**
+
+> Su "fallo que evita" dice "el documento desactualizado que provocó un commit en el repositorio
+> equivocado". Es el único "fallo que evita" de los veinticuatro sin su [Ref. N]: no tiene fecha ni
+> commit, así que nadie puede auditarlo. Y el libro, al reproducirla, propaga una afirmación sin
+> respaldo, que es exactamente lo que el método persigue.
+> Arreglo: o una referencia nueva con su evidencia, o se quita la mención.
+
+**Mi reproducción (2026-10-26), y acá la medición no coincide con el pedido.** El caso que el dueño
+nombra está sin referencia, sí. Pero no es «el único», y la ficha del 20 **no** está sin
+referencias: lleva dos.
+
+```
+contadas por maquina las 24 fichas mas la plantilla de la Parte A:
+  "fallo que evita" con al menos un [Ref. N]: 22
+  sin ningun [Ref. N]: 3, y una de las tres es la PLANTILLA de la Parte A (linea 224), que
+  explica como se lee una ficha y no es una ficha. Quedan dos fichas reales:
+
+  peldano  0 (linea 520): "meterse en un proyecto donde el agente no puede verificarse solo, o
+             donde no hay un dueno del dominio que decida, y terminar con el humano revisando
+             codigo linea por linea."
+             -> NO cita ningun caso concreto: es una categoria de problema. A mi juicio no
+                necesita referencia, y eso es una lectura mia, no una medicion.
+
+  peldano 10 (linea 817): "... el menu desplegable incomodo que ningun test vio y la encargada
+             si, en el proyecto guia del curso."
+             -> SI cita un caso concreto, con protagonista y lugar, y SIN [Ref. N]. Es el mismo
+                defecto que el dueno nombro, en una ficha que no estaba en el pedido.
+
+  peldano 20 (linea 1059), la que el dueno nombra:
+    "- **Fallo que evita**: el documento desactualizado que provoco un commit en el repositorio
+      equivocado; el archivo de proyecto convertido en historial [Ref. 41](...#ref-41). Los
+      manuales reproducibles a mano son los de la Obra Social [Ref. 24](...#ref-24)."
+    -> el parrafo tiene TRES clausulas y DOS referencias. La que esta sin respaldo es la
+       primera clausula, no la ficha.
+
+$ grep -c "^### Ref\. " docs/REFERENCIAS.md
+46        (Ref. 1 a Ref. 46, sin huecos: una referencia nueva seria Ref. 47)
+```
+
+**Lo que eso cambia.** El alcance. No es «la única ficha sin referencia»: son **dos clausulas sin
+respaldo en dos fichas** —la primera del peldaño 20 y la del peldaño 10—, y una tercera ficha (la
+del peldaño 0) que no cita ningún caso y por lo tanto no debería llevar referencia. Arreglar sólo
+la que el dueño vio dejaría la otra viva, y la próxima persona que la reproduzca propagará lo mismo.
+
+**Qué hay que producir.** Por cada una de las dos clausulas, una de dos: la referencia nueva con su
+fecha y su commit, o quitar la mención. Las dos salidas son legítimas y la elección es del dueño
+caso por caso, porque depende de si la evidencia existe —eso lo sabe él, no yo—. Si entra una
+referencia nueva es `Ref. 47` y siguiente, y la numeración es append-only como todo en este
+proyecto. En los ocho idiomas, en el mismo commit. Y queda dicho de paso: **la escena del libro no
+es candidata a `Ref. N`**; las referencias son casos propios reales.
+
+**Criterio de aceptación por perfil.**
+
+- *P5 (auditor):* dado ese perfil, toda afirmación de un caso concreto en un «fallo que evita»
+  tiene su `[Ref. N]` con fecha y commit, o no está.
+- *P7 (lector que adapta el método):* dado ese perfil, esa persona no puede reproducir un caso del
+  método sin poder llegar a su evidencia.
+
+**Cómo se verifica.** Por el dueño, caso por caso: cada una de las dos cláusulas queda con su
+`[Ref. N]` o no está. **Y lo que no se puede verificar por máquina queda dicho**, medido el
+2026-10-26 al preparar `PND-048`: «cita un caso concreto» no es decidible. La regla por viñeta
+—«cada fallo que evita lleva al menos una referencia»— deja **22 de 24 en verde y el peldaño 20
+pasa**, que es justo el que motivó esta entrada, porque su viñeta lleva dos referencias y la
+cláusula sin respaldo es la primera de tres. La regla por cláusula da **8 rojos de 50 cláusulas y 5
+de esos 8 son falsos** (son categorías de problema, no casos), y además no viaja: el japonés no
+separa con punto y coma y el chino parte una ficha distinto, así que «peldaño + número de cláusula»
+no es una llave independiente del idioma. De `PND-048` esta entrada se lleva entonces **sólo los
+dos candados decidibles**: que el conjunto de referencias de cada ficha sea idéntico en los ocho
+idiomas (24 de 24 en verde hoy) y que cada «fallo que evita» lleve al menos una referencia o esté
+registrado como genérico con su razón, como el anexo exige para un interruptor apagado.
+
+**Depende de:** del dueño, para saber si la evidencia de cada caso existe.
+
+**Lo que sí quedó cerrado de esta entrada (2026-10-26).** Los dos candados decidibles están en
+`tests/anexo_simetria.test.mjs` y en verde: el conjunto de `[Ref. N]` de cada ficha es idéntico en los
+ocho idiomas (24 de 24), y cada «fallo que evita» lleva su referencia **o está registrado con su
+razón**. Las dos cláusulas sin respaldo quedan registradas ahí, cada una por lo que es: la del peldaño
+0 como categoría de problema que no necesita referencia, y la del peldaño 10 como **deuda de este
+pendiente**, con su razón y nombrando `PND-046`. El registro se vacía solo: el día que la ficha
+consiga su `[Ref. N]`, la prueba cae pidiendo que se saque el registro. Lo que falta sigue siendo lo
+mismo y sigue siendo del dueño: decidir, para cada una de las dos cláusulas, entre escribir la
+referencia con su fecha y su commit o quitar la mención.
+
+---
+
+## PND-047 — La obligatoriedad de las pruebas de mutación se dice de dos maneras *(C-03; informe § 12)*
+
+- **Nodo:** `proyecto/instrucciones` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** avisa · **Quién decide:** se hace y se reporta
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-26.
+
+**Qué está mal.** El método dice en todas partes que con usuarios reales la mutación es
+obligatoria, y `CLAUDE.md` —que es lo que un agente lee **como instrucción**— dice que el prompt es
+opcional. La ambigüedad se resuelve del lado equivocado, y por el lector de peor consecuencia.
+
+**Evidencia que me dio el dueño, pegada tal cual.**
+
+> La ficha del peldaño 9 dice "obligatorias en cualquier proyecto con usuarios, opcionales sólo sin
+> usuarios reales", y la verificación publicada lo confirma: "con usuarios reales, ¿se mide el
+> puntaje de mutación por bloque?". CLAUDE.md dice "el peldaño 9 tiene un tercer prompt, OPCIONAL,
+> de pruebas de mutación" (D-033). CLAUDE.md se lee como instrucción, así que la ambigüedad se
+> resuelve del lado equivocado.
+> Arreglo: alinear la frase de CLAUDE.md. Opcional sin usuarios reales, obligatorio con ellos.
+
+**Mi reproducción (2026-10-26).** Las cinco fuentes, leídas una por una. Cuatro dicen lo mismo y la
+quinta es la que está mal.
+
+```
+1) el documento principal, ficha del peldano 9 (linea 1363):
+   "... las pruebas de mutacion son obligatorias en cualquier proyecto con usuarios (quedan ..."
+2) el contrato del 9 (lineas 12-13):
+   "... completo, con pruebas de mutacion incluidas, en cualquier proyecto con usuarios. Las
+    pruebas de mutacion quedan como refuerzo opcional solo cuando no hay usuarios reales"
+3) el dato publicado, gates/steps.json (linea 470):
+   "With real users, is the mutation score measured per block, and did every surviving mutant
+    in new code open a pending item?"
+4) el registro de versiones del catalogo, gates/catalog.json:
+   "... plus the mandatory mutation testing of step 9."
+5) CLAUDE.md (linea 99):
+   "... el peldano 9 tiene un tercer prompt, opcional, de pruebas de mutacion."
+   -> la unica de las cinco que dice "opcional" sin su condicion.
+```
+
+**Por qué importa más de lo que parece.** Las otras cuatro fuentes las lee una persona, que puede
+reconciliar; la quinta la lee un agente, que la toma como orden. Y el informe lo registra como causa
+parcial de la omisión `O-03` del libro: el proyecto guía tiene usuarios y dinero, así que ahí la
+mutación es obligatoria, y el libro la usó una sola vez como recurso puntual.
+
+**Qué hay que producir.** Alinear la frase de `CLAUDE.md`: el tercer prompt es opcional sin usuarios
+reales y obligatorio con ellos. `CLAUDE.md` no se traduce, así que esto es un archivo. Y revisar si
+la frase de D-033 en `docs/DECISIONES.md` tiene el mismo problema: si lo tiene, **no se edita la
+decisión** —las decisiones son append-only y llevan las palabras textuales de su día—, se aclara en
+la decisión nueva de esta retrospectiva.
+
+**Criterio de aceptación por perfil.**
+
+- *P1 (herramienta consumidora, o agente que lee `CLAUDE.md` como instrucción):* dado ese lector, lo
+  que concluye sobre la obligatoriedad de la mutación es lo mismo que concluye un lector de la ficha
+  del peldaño 9 y lo mismo que exige el dato publicado.
+- *P8 (dueño de proyecto con usuarios reales):* dada esa persona, nadie le dice que la mutación es
+  opcional en su proyecto.
+
+**Cómo se verifica.** Las cinco fuentes de arriba dicen lo mismo, leídas una por una. No requiere
+regenerar nada: `CLAUDE.md` no entra al corpus ni a la huella.
+
+**Depende de:** nada. Es la más barata de las diez y la de peor consecuencia por unidad de costo.
+
+**Qué se hizo (2026-10-26).** La frase de `CLAUDE.md` quedó alineada con las otras cuatro fuentes: el
+tercer prompt del peldaño 9 es **obligatorio en cualquier proyecto con usuarios y opcional sólo cuando
+no hay usuarios reales**, y queda dicho por qué es un prompt aparte —porque se agrega, no porque se
+pueda saltear—. D-033 **no se editó**: las decisiones llevan las palabras de su día, y la aclaración
+vive en D-061, que es lo que la propia entrada pedía.
+
+**Evidencia de cierre.** Las cinco fuentes leídas una por una dicen lo mismo:
+
+```
+1) ficha del peldano 9  -> "obligatorias en cualquier proyecto con usuarios (quedan opcionales solo
+                            sin usuarios reales)"
+2) contrato del 9       -> "con pruebas de mutacion incluidas, en cualquier proyecto con usuarios"
+3) gates/steps.json     -> "With real users, is the mutation score measured per block...?"
+4) gates/catalog.json   -> "plus the mandatory mutation testing of step 9"
+5) CLAUDE.md            -> "obligatorio en cualquier proyecto con usuarios y opcional solo cuando
+                            no hay usuarios reales"   <- era la unica que decia "opcional" a secas
+```
+
+No requirió regenerar nada: `CLAUDE.md` no entra al corpus ni a la huella. **Decisión:** D-061.
+
+---
+
+## PND-048 — La comprobación que exige que la prosa cite lo que el dato declara exigible *(deriva de M-01, punto d)*
+
+- **Nodo:** `cadena/verificacion` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** avisa · **Quién decide:** se hace y se reporta; vuelve al
+  dueño la elección de la forma, porque la que se pidió ya está en verde
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-26.
+
+**Qué está mal.** Nada todavía: esto es la guarda que impide que `PND-039` vuelva. Y existe como
+entrada propia por una razón medida: **la comprobación tal como se pidió ya está en verde hoy y no
+habría atrapado nada.**
+
+**Evidencia que me dio el dueño, pegada tal cual.**
+
+> Y proponeme además una comprobación que impida que vuelva a pasar: algo que falle si un peldaño
+> que tiene un evaluador del anexo en gates.json no lo cita en su ficha o en su contrato. Esa
+> asimetría entre el dato y la prosa es justo lo que el peldaño 11 persigue.
+
+**Mi reproducción (2026-10-26).** La forma pedida es una disyunción —ficha **o** contrato— y los
+contratos lo citan los cinco.
+
+```
+peldano  5  ancla pendings_profiles         contrato: 4 menciones   ficha: 0
+peldano  8  ancla profile_matrix            contrato: 2 menciones   ficha: 0
+peldano  9  ancla heuristics                contrato: 3 menciones   ficha: 0
+peldano 10  ancla manual_cases_per_profile  contrato: 1 mencion     ficha: 0
+peldano 12  ancla heuristics                contrato: 1 mencion     ficha: 0
+
+con la regla "ficha O contrato":  5 de 5 en VERDE, hoy, con el defecto de PND-039 puesto.
+con la regla "ficha Y contrato":  5 de 5 en ROJO, que es lo que corresponde.
+```
+
+Es la quinta guarda dormida del proyecto, y la primera que se detecta **antes** de escribirla: una
+disyunción donde una de las dos ramas siempre se cumple no es una compuerta, es un verde
+garantizado. Las cuatro anteriores se descubrieron después de haber confiado en ellas.
+
+**Segunda medición (2026-10-26, al preparar la decisión), y es la que fija la forma.** «Citar el
+anexo» se puede medir de tres maneras y las tres dan números distintos sobre el mismo árbol:
+
+```
+                                          fichas (5x8)   contratos (5x8)
+la palabra del idioma de cada version        0 de 40        40 de 40
+el token ingles "Annex H"                    0 de 40        40 de 40
+el enlace al archivo ANEXO_HEURISTICAS.md    0 de 40        16 de 40  (solo peldanos 5 y 9)
+```
+
+La fila del medio explica la de arriba: los contratos dan 40 de 40 **en los ocho idiomas** porque
+la cita vive dentro del **prompt en inglés**, y `build/prompts.mjs` exige que ese prompt sea la
+misma pieza byte a byte en las ocho versiones. La rama «el contrato lo cita» no está verde por
+casualidad: está verde **por construcción**, y lo va a seguir estando.
+
+De ahí sale la forma recomendada, que es una mezcla y no un compromiso: en la **ficha**, el
+**enlace** —cero vocabulario por idioma, falsable hoy (0 de 40) y además le sirve al lector, porque
+`build/md2html.mjs` lo convierte en el `.html` que la portada ya enlaza desde `PND-015`—; en el
+**contrato**, el **token inglés**, que cuesta cero ediciones y lo único que agrega es el candado de
+que nadie lo saque en silencio de las ocho a la vez. Una tabla de ocho palabras por idioma queda
+descartada por lo que es: una entrada que falte da verde en silencio en ese idioma, que es el modo
+de fallar que esta entrada existe para cerrar.
+
+**Y la deriva entre idiomas ya pasó, en la dirección que nadie espera**, así que la comprobación se
+exige en los ocho y no sólo en el castellano: los siete README traducidos **sí** listan el anexo en
+su tabla de «qué hay acá» y **el castellano, que es la fuente de verdad, no lo lista**. Siete de
+ocho.
+
+**Dos detalles de ingeniería, porque son los que hacen la prueba barata y a prueba de
+traducciones.** La ficha del peldaño *N* se encuentra por la línea que cita su contrato
+—`peldanos/peldano-NN-`—, que está byte a byte igual en los ocho idiomas (verificado en inglés,
+alemán, japonés y chino): la prueba no necesita saber cómo se dice «Peldaño» en ocho idiomas. Y se
+ancla en el **número** y no en el nombre del archivo, porque de los veinticuatro identificadores
+del dato hay **uno que no deriva** a su contrato (el del peldaño 21).
+
+**Qué hay que producir.** Una prueba en `tests/`, con node pelado y sin dependencias, que lea
+`gates/steps.json` y `gates/stations.json`, junte los peldaños con un evaluador del Anexo H
+—`heuristics`, `profile_matrix`, `manual_cases_per_profile`, `pendings_profiles`; la lista sale del
+dato, no se escribe a mano— y exija que **la ficha del documento principal** cite el anexo, además
+del contrato. Con sus rojos deliberados, que es la regla de este repositorio: la prueba se muta y
+tiene que caer, y cada mutación nombra lo suyo. Lo que propuse al abrir esta entrada —que la misma prueba
+cubriera lo de `PND-046`, ninguna ficha cita un caso concreto sin su `[Ref. N]`— **no sobrevive la
+medición en su forma fuerte, y queda dicho acá en vez de quedar como una promesa**:
+
+```
+por vineta ("cada fallo que evita lleva al menos un [Ref. N]"):
+  22 de 24 en verde; rojo en los peldanos 0 y 10.
+  EL PELDANO 20 PASA -- el que el dueno encontro -- porque su vineta lleva dos
+  referencias y la clausula sin respaldo es la primera de tres.
+
+por clausula:
+  50 clausulas en las 24 fichas: 42 con referencia, 8 sin.
+  5 de esas 8 son CATEGORIAS de problema y no casos ("el agente que ayuda
+  expandiendo el alcance", "el que deja deuda para despues"): no deben llevar
+  referencia. 62% de rojos falsos.
+
+y no viaja: la estructura de clausulas no sobrevive la traduccion. El japones no
+separa con punto y coma (las 24 fichas colapsan a una clausula) y el chino parte
+la del peldano 10 en tres. "peldano + numero de clausula" NO es una llave
+independiente del idioma.
+```
+
+Una guarda que da verde sobre el defecto que la motivó sería la sexta guarda dormida, y la primera
+que nacería dormida a propósito. Y una con 62% de rojos falsos no enseña a escribir la referencia:
+enseña a inventarla. Así que de `PND-046` esta prueba se lleva **sólo los dos candados que sí son
+decidibles**: que el **conjunto de referencias de cada ficha sea idéntico en los ocho idiomas** (24
+de 24 en verde hoy, candado libre, atrapa la traducción que se come un `[Ref. N]`) y que cada
+«fallo que evita» lleve al menos una referencia **o esté registrado como genérico con su razón**
+—que es la forma que el propio anexo exige para un interruptor apagado (`D-045`, `D-046`: apagado
+sin registro es rojo)—. Las dos cláusulas sin respaldo **las arregla una persona, no una guarda**,
+y eso es `PND-046`.
+
+**La forma exacta vuelve al dueño.** El 2026-10-26 eligió la fuerza —«la ficha **y** el contrato lo
+citan»— y pidió más contexto para la forma, que se le entregó medida en
+`docs/la-cuarta-decision-con-contexto-medido-pnd-048.md`. No es una lista de tres opciones sino
+**tres diales independientes**: el **ancla** (el enlace o la palabra), los **idiomas** (los ocho o
+sólo el castellano) y la **dirección** (las dos o sólo del dato a la prosa). El costo recurrente,
+que es el único argumento honesto a favor de la variante corta, está dicho: de acá en adelante,
+meter un evaluador del anexo en un peldaño nuevo cuesta ocho ediciones del documento principal.
+
+**La dirección inversa, que no estaba en el pedido y cuesta cero ediciones.** Una ficha que enlaza
+el anexo para un peldaño que **no** tiene evaluador del anexo es rojo: la prosa prometiéndole al
+lector una compuerta que el dato no exige. No es una invención: el validador ya tiene esa forma
+—`E_ANEXO_HUERFANA`, «el anexo declara la regla y la compuerta no la tiene»— y es el peldaño 11
+leído en los dos sentidos.
+
+**Y el agujero que se anuncia solo.** Hoy **ninguna de las ocho estaciones** `N0..N7` declara un
+evaluador del anexo. Si alguna lo declarara, la prueba tiene que ponerse **roja diciendo que no
+sabe revisar estaciones**, no verde: es la semántica que `gates/evaluators.json` declara para
+`required: true` —«una instalación que no lo sabe medir no reporta verde: reporta que no lo
+mide»— aplicada a nuestra propia guarda.
+
+**Criterio de aceptación por perfil.**
+
+- *P1 (herramienta consumidora que compila las compuertas):* dada una herramienta, todo evaluador
+  `required: true` que el dato declara tiene su correlato en la prosa que el usuario de esa
+  herramienta lee, y la cadena falla si alguien agrega una ancla al dato y no la escribe.
+- *P5 (auditor):* dado ese perfil, esa persona puede correr un comando y ver que no hay ninguna
+  exigencia publicada que la prosa no nombre, en lugar de creerle a este registro.
+- *P7 (lector que adapta el método):* dado ese perfil, lo que puede leer en el documento principal
+  es todo lo que el método le va a exigir.
+
+**Cómo se verifica.** La prueba cae en rojo contra el árbol de hoy —antes de `PND-039`— y queda en
+verde después; `node --test` en verde; y cada mutación deliberada de la prueba cae y nombra lo suyo.
+
+**Depende de:** `PND-039`, porque hasta que la prosa se escriba la prueba está en rojo a propósito.
+
+**Decisión del dueño (2026-10-26):** la **recomendación completa**. Las tres variantes de los diales
+quedaron como estaban recomendadas: el **ancla** es el enlace en la ficha y el token inglés en el
+contrato, los **idiomas** son los ocho, y la **dirección** es la doble —del dato a la prosa y de la
+prosa al dato—.
+
+**Qué se hizo.** `build/anexo_simetria.mjs`, con las seis comprobaciones escritas como funciones
+**puras** (reciben los textos y devuelven la lista de hallazgos, no leen el disco), y dos pruebas que
+las usan: `tests/anexo_simetria.test.mjs` contra el árbol real y `tests/anexo_simetria_en_rojo.test.mjs`
+con **diez rojos deliberados**, que alimentan las mismas funciones con un árbol mutilado y exigen que
+caigan nombrando lo suyo. Es la razón de que sea una biblioteca y no sólo una prueba: una comprobación
+que nadie vio caer no demuestra que guarde nada, y en este proyecto eso costó cuatro veces.
+
+Lo que exige, además de A y B: (C) una ficha que enlaza el anexo para un peldaño que el dato **no**
+ancla también es rojo —la prosa prometiéndole al lector una compuerta que el dato no exige, que es
+`E_ANEXO_HUERFANA` leída al revés—; (D) si alguna de las ocho estaciones declarara un evaluador del
+anexo, la prueba se pone **roja diciendo que no sabe revisar estaciones**, que es la semántica que
+`gates/evaluators.json` declara para `required: true`; (E) el conjunto de `[Ref. N]` de cada ficha es
+idéntico en los ocho idiomas; y (F) cada «fallo que evita» lleva su referencia **o está registrado con
+su razón**, con dos registros separados porque son dos cosas distintas —el peldaño 0, que nombra una
+categoría y no un caso, y el peldaño 10, que es la deuda del dueño de `PND-046` y nombra su pendiente—.
+Los dos registros **se vacían solos**: si la ficha consigue su referencia, el registro queda viejo y la
+prueba cae.
+
+Y el vocabulario de evaluadores del anexo **se deriva del dato**: sale de los peldaños que declaran un
+`anchor` en su `verify`, no de una lista escrita a mano, y hay un rojo deliberado que lo demuestra
+—sacarle el ancla al peldaño 9 lo saca del vocabulario y lo hace caer por la dirección inversa—.
+
+**Evidencia de cierre.** La prueba cae en rojo contra el árbol de HEAD y queda en verde después, con
+el mismo programa:
+
+```
+contra HEAD (antes de este cambio):
+  regla A (la ficha enlaza el anexo):    48 hallazgos de 48 fichas revisadas
+  regla B (el contrato nombra el token):  8 hallazgos -> el peldano 2 en los ocho idiomas
+
+despues:
+  node --test tests/anexo_simetria.test.mjs tests/anexo_simetria_en_rojo.test.mjs
+  # tests 19 | # pass 19 | # fail 0     (7 contra el arbol real + 10 rojos + 2 candados)
+
+y la suite entera: # tests 239 | # pass 239 | # fail 0
+```
+
+**Lo que se retiró, y queda dicho en vez de quedar como promesa.** Que esta misma prueba cubriera «ninguna
+ficha cita un caso concreto sin su `[Ref. N]`» no sobrevivió la medición: por viñeta deja 22 de 24 en
+verde y **el peldaño 20 pasa** —el que el dueño encontró—, y por cláusula da 8 rojos de 50 con 5 falsos,
+y no viaja a los ocho idiomas. Se quedaron sólo los dos candados decidibles (E y F). **Decisión:** D-061.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -2335,17 +3474,22 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
 | G-API | 14 | 6 | 8 | 2 |
-| G-ALCANCE | 3 | 0 | 3 | 0 |
+| G-ALCANCE | 4 | 1 | 3 | 0 |
 | G-IDIOMA | 13 | 11 | 2 | 2 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 1 | 2 | 0 |
-| **total** | **38** | **18** | **20** | **4** |
+| G-METODO | 10 | 1 | 9 | 0 |
+| **total** | **49** | **20** | **29** | **4** |
 
-Treinta y ocho entradas, `PND-001` a `PND-038`. Veintidós vienen de la auditoría externa
+Cuarenta y nueve entradas, `PND-001` a `PND-049`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
-PND-037 y PND-038), y las doce restantes son trabajo derivado: la propuesta de firma, el chequeo de
-huérfanas, la portada del protocolo que está servida y no tiene fuente, y las nueve revisiones
-semánticas.
+PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la
+portada del protocolo que está servida y no tiene fuente, la hoja nueva que nace sin enlace en la
+portada, y las nueve revisiones semánticas— y **diez son de una fuente nueva**: la retrospectiva
+del peldaño 23 sobre «El Arte de Forjar Sistemas», la novela de Oscar Schmitz que adapta el método,
+validada aseveración por aseveración contra la letra (`PND-039` a `PND-048`, grupo G-METODO). No las
+trajo una auditoría encargada ni una medición propia: las trajo **un lector que aplicó el método a
+fondo y lo que le pasó al aplicarlo**, que es exactamente la entrada que el peldaño 23 espera.
 
 **Lo que está primero, y por qué.** Las precondiciones del grupo de la API están cerradas, y en
 este orden: PND-021 (cuál es el árbol del portal realmente desplegado), PND-020 y PND-018 (la
@@ -2393,12 +3537,33 @@ cuatro son la misma frase: **un verde que no midió lo que uno cree que midió n
 que las descubrió, las cuatro veces, no fue leer el código: fue exigirle a cada guarda la salida
 medida en vez de su código de salida.
 
+**Y el 2026-10-26, al final del día, se abrió el grupo del método y se cerró casi entero.** Diez
+entradas que no vienen de mirar la publicación sino de mirar el método: seis mejoras y tres defectos
+que salieron de validar la novela que lo adapta, más la guarda que impide que la primera vuelva. La
+que importaba era **PND-039**: el Anexo H —45 reglas, obligatorias, con cinco anclas que son
+evaluadores `required: true` en el dato publicado— no se nombraba ni una vez en los 143.274
+caracteres del documento principal, y el autor del libro, que reprodujo seis cifras seguidas de las
+referencias sin un error, omitió veintisiete de esas reglas porque **nunca supo que estaban**. Eso no
+es una corazonada sobre la claridad del documento: es un lector real, medido, cuyo proyecto guía
+quedaría detenido en cinco peldaños de las compuertas del propio método.
+
+El dueño decidió las cuatro que volvían a él —la ficha **y** el contrato del peldaño 2, la
+proporcionalidad con palabras del método y sin vocabulario de budō, las veinticinco preguntas
+escritas de cero desde los contratos, y la forma fuerte de la comprobación— y con eso cerraron nueve
+de las diez en el mismo día: el anexo nombrado donde el dato lo exige, las cuatro formulaciones
+adoptadas con crédito en la Parte F.5, la hoja nueva en los ocho idiomas, el registro que la prueba
+del manual de recuperación tiene que dejar, la aritmética de la Ref. 22, la frase de `CLAUDE.md`
+alineada, y la guarda con sus diez rojos deliberados. **Queda abierta una**: `PND-046`, porque la
+elección entre escribir la referencia o quitar la mención es del dueño y la evidencia la tiene él.
+De paso quedó abierta `PND-049` en el grupo del alcance, que es la consecuencia conocida de haber
+publicado un documento nuevo: la portada del portal todavía no lo enlaza.
+
 Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-010,
-PND-011, PND-012, PND-016, PND-024), la revisión semántica de los nueve idiomas de la interfaz
-(PND-026 a PND-034) y el hallazgo que depende de una decisión suya (**PND-036**: dónde vive la
-portada del protocolo). Los cuatro bloqueantes abiertos que quedan son dos del grupo de la API
-(PND-010 y PND-011, las dos esperando decisión del dueño) y dos del de idiomas (PND-016 y
-PND-019).
+PND-011, PND-012, PND-016, PND-024 y PND-046), la revisión semántica de los nueve idiomas de la
+interfaz (PND-026 a PND-034), el enlace de la hoja nueva en la portada (PND-049) y el hallazgo que
+depende de una decisión suya (**PND-036**: dónde vive la portada del protocolo). Los cuatro
+bloqueantes abiertos que quedan son dos del grupo de la API (PND-010 y PND-011, las dos esperando
+decisión del dueño) y dos del de idiomas (PND-016 y PND-019): el del método se cerró.
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar

@@ -74,6 +74,7 @@ per questo la prova deve dimostrare se stessa.
 | `REFERENCIAS.md` | I casi reali dietro il metodo, numerati ("Ref. N"), con data e prova, perché le procedure restino pulite e il dettaglio sia a un clic. Include le cronologie dei tre sistemi e la tabella dei fallimenti per gradino. |
 | `peldanos/peldano-NN-*.md` | Il contratto di ogni gradino: quando, contesto richiesto, prompt in inglese con la loro traduzione e, prima di ciascuno, il blocco "Prima di inviare il prompt" con i file che devi costruire tu e il loro contenuto; risultato atteso, verifica di completezza senza leggere codice, segnali d'allarme. |
 | `peldanos/README.md` | L'indice dei contratti. |
+| `PREGUNTAS_AL_PROVEEDOR.md` | Le venticinque domande per il fornitore: la verifica di completezza dei contratti, riunita in un foglio che un proprietario che non ha mai commissionato software porta a una riunione. Raggruppate per quello che gli stanno promettendo, ciascuna con la risposta che si può **vedere** e il gradino da cui esce. |
 | `MANUAL_CURSO.md` | Il corso: calendario, ventiquattro lezioni con compiti pratici e prompt, progetto guida ("Turnera"), lista di uscita in produzione. |
 | `MANUAL_CURSO_EVOLUTIVO.md` | La parte 2 del corso: il progetto guida ereditato ("Turnera ereditata"), dieci lezioni (da N0 a N7, R1 e R2) per normalizzare un legacy e poi correggerlo e farlo evolvere. |
 | `../DECISIONES.md` | Le decisioni del progetto, con data e parole testuali. Il metodo si applica a se stesso. Solo in spagnolo. |

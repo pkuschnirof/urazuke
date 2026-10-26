@@ -25,6 +25,20 @@ Un criterio di qualità per il manuale di ripristino, che serve a giudicarlo sen
 sistema giù e l'agente senza connessione**. Se in qualche passo dice "consultare lo sviluppatore"
 o "a seconda del caso", quel passo è incompleto.
 
+E quella prova **lascia tre cose scritte**, perché se non lascia niente, la paratia è soddisfatta
+senza misurare niente — che è il modo più economico di avere una paratia decorativa. Le tre sono: il
+**tempo misurato** da punta a punta (quando la persona ha cominciato, quando il sistema è tornato a
+funzionare), il **punto esatto dove si è bloccata** (il passo del manuale, con le sue parole, non con
+le tue), e **ogni parola che non ha capito**. Le tre vanno con data e con il nome di chi ha fatto la
+prova. E ogni parola che non ha capito **apre una voce in sospeso**: o si spiega nel manuale, o si
+cambia il nome alla cosa in tutto il sistema. Quella lista di parole è, inoltre, il miglior ingresso
+del glossario dell'utente del gradino 2, e la retrospettiva del gradino 23 la usa come proposta di
+cambiamento.
+
+Senza questi manuali, detto in una parola che non ha bisogno di spiegazione: **il proprietario non è
+proprietario, è inquilino**. Ha il sistema, lo paga, e non può entrare senza chiedere il permesso a
+chi lo ha costruito.
+
 E una fonte da non sprecare: le voci in sospeso chiuse. Ognuna porta la sua specifica, la sua
 decisione, la sua prova e la sua data. Il manuale utente non si scrive da zero alla fine: si
 compone, blocco per blocco, a partire dalle voci in sospeso che si sono chiuse, e il diario delle
@@ -123,6 +137,11 @@ corrisponde ogni manuale.
 - `docs/CHANGELOG.md`, alimentato dalle voci in sospeso chiuse.
 - Ciascuno con la data e la versione del sistema che documenta.
 - Nei commit che cambiano schermate, esercizio o deployment: il manuale aggiornato.
+- **Il registro della prova del manuale di ripristino**, con quattro cose: la data e il nome di chi
+  l'ha fatta; il tempo misurato da punta a punta; il passo esatto dove si è bloccata, con le sue
+  parole; e la lista di parole che non ha capito. Più una voce in sospeso aperta per ciascuna di
+  quelle parole. Dove si scrive è una tua scelta — alla fine del manuale di ripristino stesso basta
+  —; quello che non è opzionale è che esista.
 
 ## 4. Verifica di completezza
 
@@ -134,6 +153,10 @@ corrisponde ogni manuale.
 - Il diario delle modifiche ha una voce per ogni voce in sospeso chiusa dell'ultimo blocco?
 - C'è un buco tipo "[completare]" o "consultare il responsabile"? Lì l'agente doveva chiedere.
 - Ogni manuale dice per quale versione del sistema vale?
+- La prova del manuale di ripristino ha lasciato il suo registro: quanto ha impiegato, dove si è
+  bloccata la persona e quali parole non ha capito, con data e nome? E di quelle parole, ognuna ha
+  aperto una voce in sospeso? Se il registro dice "la prova è stata fatta" e niente più, la prova non
+  si può ripetere né confrontare: la paratia è soddisfatta sulla carta.
 
 ## 5. Segnali d'allarme
 
@@ -143,3 +166,8 @@ corrisponde ogni manuale.
   prerequisito, non è un manuale per una persona.
 - Nessuno fuori dal costruttore ha mai letto il manuale di ripristino. Chiedi a qualcuno di
   seguirlo nell'ambiente di test; ciò che lo blocca è ciò che va corretto.
+- La prova è stata fatta e non è stata registrata, o è stata registrata come "è andata bene". Allora
+  nessuno può dire quanto ha impiegato né dove è stata vicina a non riuscire, e la prossima volta si
+  comincia da zero.
+- Il registro non ha neanche una parola nella lista di quelle che non si sono capite. Succede di
+  tanto in tanto ed è vero; succede sempre e significa che nessuno ha chiesto.

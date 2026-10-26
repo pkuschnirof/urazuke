@@ -232,6 +232,22 @@ Ogni gradino ha otto parti, sempre le stesse, perché si possano confrontare:
 - **Contratto**: il file in cui c'è come si esegue: contesto, prompt, risultato, verifica, segnali
   d'allarme.
 
+E c'è una nona parte che compare **solo in sei gradini**, perché è un pezzo trasversale che cambia
+cosa bisogna leggere: l'**Allegato H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)).
+Quarantacinque regole verificabili — diciotto di qualità del codice e ventisette di usabilità —,
+ciascuna con il suo identificatore stabile, la sua severità e lo strumento che la misura. Non è
+un'appendice opzionale: **è obbligatorio**, e si aggancia alla scala in sei punti. Al gradino 2
+entrano i suoi due **ingressi previi** (il glossario dell'utente e la lista dei profili: le parole
+che la gente usa davvero per ogni cosa, e chi è ciascuno e cosa viene a fare). E ai gradini 5, 8,
+9, 10 e 12 ci sono le sue cinque **ancore** — "ancora" vuol dire che la paratia di quel gradino non
+va al verde se il pezzo dell'allegato non c'è. Quelle cinque sono esigenze meccaniche nella
+definizione pubblicata delle paratie, non raccomandazioni: uno strumento che compila il metodo le
+chiederà. Ognuno di quei sei gradini lo dice nella sua scheda, con il link, e c'è una verifica nella
+catena del metodo stesso che va in rosso se qualcuna smette di dirlo. È nata dall'averlo scoperto
+tardi: l'allegato è stato obbligatorio e non nominato in questo documento, e il primo lettore che ha
+adattato il metodo a un altro formato ha saltato ventisette delle quarantacinque regole perché non
+ha mai saputo che esistevano.
+
 Due chiarimenti importanti. Primo: **la scala è neutrale rispetto allo strumento**. Ogni artefatto
 è un file, un test o uno script; nessuno esige il mio strumento né nessun altro. Forge li
 automatizza (i cancelli, i comandi, il registro delle voci in sospeso), ma il gradino esiste
@@ -500,6 +516,15 @@ in sospeso correttive. Se sei alle prime armi, ogni contratto di quei sei, e que
 e 10, comincia con un paragrafo che spiega le sue parole nel linguaggio di tutti i giorni, e il
 glossario le ha tutte.
 
+E un avvertimento prima di cominciare a leggerli, perché costa più caro dopo che adesso: sei dei
+ventiquattro non si salgono solo con quello che dice la loro scheda. Il gradino 2 porta i due
+ingressi previi dell'[Allegato H](ANEXO_HEURISTICAS.md) — il glossario dell'utente e la lista dei
+profili — e i gradini 5, 8, 9, 10 e 12 portano le sue cinque ancore. Ognuno dei sei lo dice nella
+sua scheda, alla fine, in una riga che comincia con **Allegato H**. Se hai intenzione di applicare
+il metodo, leggi l'allegato prima di aprire il gradino 5: cinque delle tue paratie non vanno al
+verde senza di esso, e accorgersene quando la paratia ti ha già fermato è il modo peggiore di
+accorgersene.
+
 ### Passo 0 — Questo progetto si può affrontare così? (l'idoneità)
 
 C'è qualcosa di previo a tutto, che non sta in nessun repository perché è sempre arrivato già
@@ -614,6 +639,13 @@ agisce, e una mappa lunga non la legge nessuno.
   [Ref. 9](REFERENCIAS.md#ref-9). E il file di progetto che cresce fino a diventare illeggibile
   [Ref. 41](REFERENCIAS.md#ref-41): il file operativo e il libro dei casi devono essere file
   distinti.
+- **Allegato H**: qui entrano i due **ingressi previi** dell'[Allegato H](ANEXO_HEURISTICAS.md), ed
+  entrano qui perché tutto quello che viene dopo li usa. Uno è il **glossario dell'utente**: le
+  parole che la gente usa davvero per ogni cosa, non quelle che usa il sistema. L'altro è la **lista
+  dei profili**: chi è ciascuno — amministrazione, esercizio, consultazione, cliente — e cosa viene
+  a fare. Da questi due escono la matrice del gradino 8, i casi per profilo del 10 e i criteri di
+  accettazione per profilo del 5. Se non ci sono, le cinque ancore dell'allegato non hanno da dove
+  uscire.
 - **Contratto**: `peldanos/peldano-02-definicion-y-lectura.md`.
 
 ### Passo 3 — Dimensionare prima di progettare l'architettura
@@ -689,6 +721,12 @@ come si verifica, perché è quello che tu guarderai invece di guardare il codic
 - **Fallimento che evita**: la specifica che "viene superata" e resta obsoleta in due settimane
   [Ref. 17](REFERENCIAS.md#ref-17); e il lavoro di cui sei mesi dopo nessuno sa perché è stato
   fatto [Ref. 7](REFERENCIAS.md#ref-7).
+- **Allegato H**: ancora 1 dell'[Allegato H](ANEXO_HEURISTICAS.md). Ogni voce in sospeso che tocca
+  una schermata dichiara, oltre a quanto sopra, tre cose in più: il **gruppo di convergenza
+  funzionale** a cui appartiene (quello che la persona è venuta a fare, che è il criterio con cui si
+  raggruppa la funzionalità), i **profili** che la hanno, e **un criterio di accettazione per
+  profilo**. Senza quella dichiarazione la voce non passa il gradino, e non è una raccomandazione: è
+  quello che la paratia misura.
 - **Contratto**: `peldanos/peldano-05-pendientes.md`.
 
 ### Passo 6 — Le decisioni si scrivono accanto al codice
@@ -768,6 +806,12 @@ sono quelle che sostituiscono la tua lettura del codice.
   un bug [Ref. 44](REFERENCIAS.md#ref-44). Il caso dei contatori è l'esempio completo di un test
   provato in rosso contro il criterio vecchio [Ref. 26](REFERENCIAS.md#ref-26).
 - **Rosso del primo blocco**: quando la versione precedente non ha il modulo, il rosso si prova per mutazione (un difetto piantato, il test in rosso, il diff nella ricevuta), non con un file che non si carica.
+- **Allegato H**: ancora 2 dell'[Allegato H](ANEXO_HEURISTICAS.md). La stessa voce in sospeso porta
+  il test della **matrice di funzionalità per profilo**: una tabella che dice cosa può fare ogni
+  profilo, dalla quale si derivano il menu, le rotte e i permessi invece di scriverli tre volte in
+  tre posti. Il test da punta a punta confronta, per ogni profilo, ciò che è raggiungibile con la sua
+  riga della matrice: né meno né più. È il modo di beccare chi vede un pulsante che non gli spetta,
+  e chi ha il permesso e non trova la schermata.
 - **Contratto**: `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Passo 9 — Qualità del codice verificata dalla macchina, con cancello
@@ -777,6 +821,15 @@ codice che oggi funziona e domani è illeggibile è debito che si paga al terzo 
 legge, lo deve guardare una macchina: a ogni commit, ciò che un revisore umano guarderebbe,
 convertito in un numero con un limite. L'ho fatto in tutti i miei progetti senza chiamarlo
 gradino.
+
+E qui conviene avere a portata di mano la frase che separa questo gradino dal precedente, perché è
+la confusione più cara del mestiere e si risolve in nove parole: **la copertura conta test; il rosso
+dice se servono**. Un numero di copertura del novanta per cento ti dice quanto codice i test
+eseguono, e non ti dice niente sul fatto che qualcuno di quei test andrebbe in rosso se il
+comportamento si rompesse. Quello lo dice il gradino 8, e lo dice nell'unico modo che non si può
+fingere: vedendo il rosso. La copertura è un numero di questo gradino; il rosso è la ricevuta del
+precedente. (La formulazione è del primo adattamento del metodo a un altro formato, accreditato
+nella Parte F.)
 
 - **Intenzione**: che la qualità del codice si verifichi a macchina a ogni commit, con la
   costruzione in rosso come conseguenza, e che non si degradi mai da sola.
@@ -799,6 +852,15 @@ gradino.
 - **Fallimento che evita**: il componente di più di duemila righe e il file di quasi diecimila che
   un audit ha trovato perché nessun limite li aveva fermati [Ref. 41](REFERENCIAS.md#ref-41); il
   numero di qualità che peggiora senza che nessuno lo veda [Ref. 35](REFERENCIAS.md#ref-35).
+- **Allegato H**: ancora 3 dell'[Allegato H](ANEXO_HEURISTICAS.md), e la più grande delle cinque:
+  qui la paratia si estende dalla qualità del codice all'**usabilità**. Il catalogo delle
+  quarantacinque regole è dichiarato e attivo per gruppo; ogni regola attiva ha il suo strumento, la
+  sua severità e il suo verificatore; ogni regola **spenta** ha il suo registro con il motivo, chi
+  lo autorizza e la data di revisione — spenta senza registro è rosso, che non è la stessa cosa
+  della regola assente —; ogni soglia che il proprietario non ha dichiarato si pubblica come non
+  dichiarata invece di inventarla; e il rapporto esce con le due cifre e l'impronta dell'insieme di
+  regole. Un sistema può passare la qualità del codice con lode ed essere inusabile; questa ancora è
+  ciò che lo impedisce.
 - **Contratto**: `peldanos/peldano-09-calidad-de-codigo.md`.
 
 ### Passo 10 — I casi di prova manuale si scrivono insieme alla funzionalità, e li eseguono le persone
@@ -830,6 +892,10 @@ grafico del processo mostra.
 - **Fallimento che evita**: la prova umana senza copione che trova cose diverse ogni volta, e il
   rilievo umano che si sistema sul momento e si perde; il menu a tendina scomodo che nessun test
   ha visto e la responsabile sì, nel progetto guida del corso.
+- **Allegato H**: ancora 4 dell'[Allegato H](ANEXO_HEURISTICAS.md). Ogni caso manuale si esegue
+  **una volta per ogni profilo interessato**, e i profili escono dalla matrice del gradino 8, non
+  dalla memoria di chi esegue. Un caso eseguito con un solo profilo non conta come eseguito: metà
+  dei problemi di permessi e di menu si vede solo dal profilo che non è quello di chi ha costruito.
 - **Contratto**: `peldanos/peldano-10-casos-de-prueba-manual.md`.
 
 ### Passo 11 — Simmetria tra produttore e consumatore, e il registro degli anti-pattern
@@ -878,6 +944,10 @@ esplicitamente le cattive notizie, i punti ciechi e ciò che non ha fatto.
   verificato ciò che non lo era [Ref. 43](REFERENCIAS.md#ref-43); il turno che ha lavorato
   invisibile per un'ora e quarantatré [Ref. 16](REFERENCIAS.md#ref-16). La regola di onestà di
   verifica l'ho scritta a giugno [Ref. 8](REFERENCIAS.md#ref-8).
+- **Allegato H**: ancora 5 dell'[Allegato H](ANEXO_HEURISTICAS.md). Il rapporto informa anche sui
+  gruppi dell'allegato: cosa si è misurato, cosa è rimasto senza misura e quale regola è spenta con
+  il suo registro. È la stessa regola di onestà applicata all'allegato: una regola che
+  l'installazione non sa misurare si riporta come non misurata, mai come verde.
 - **Contratto**: `peldanos/peldano-12-verificacion-honesta.md`.
 
 ### Passo 13 — L'audit periodico come input del piano
@@ -1065,6 +1135,14 @@ Il sistema deve potersi usare, mantenere e ripristinare senza l'agente e senza d
 giorno in cui non c'è l'agente non si può distribuire, non è finito. E siccome rigenerare
 documentazione con un modello è gratis, la regola diventa "nello stesso commit".
 
+Detto in una parola che chiunque capisce prima di finire di leggerla: senza questi manuali, **il
+proprietario non è proprietario, è inquilino**. Ha il sistema, lo paga, ci abita dentro, e non può
+entrare se perde la chiave: per avviarlo, per ripristinarlo o per capire perché ha smesso di
+funzionare dipende dal fatto che chi lo ha costruito — o il modello che lo ha costruito — resti
+disponibile e resti volenteroso. La proprietà di un sistema non è il codice: è poterlo far
+funzionare senza chiedere permesso. (La formulazione è del primo adattamento del metodo a un altro
+formato, accreditato nella Parte F.)
+
 - **Intenzione**: che il sistema si possa usare, mantenere e ripristinare senza l'agente e senza
   il costruttore.
 - **Quando**: il manuale utente cresce con ogni blocco funzionale, alla chiusura, con le schermate
@@ -1076,7 +1154,15 @@ documentazione con un modello è gratis, la regola diventa "nello stesso commit"
   infrastruttura e ripristino scritto per una persona che deve farlo a mano alle tre di notte;
   ciascuno con data e versione.
 - **Cancello**: la documentazione è aggiornata nello stesso commit; qualcuno che non programma ha
-  seguito il manuale di ripristino.
+  seguito il manuale di ripristino. **e l'esecuzione ha lasciato il suo registro** (qui sotto)
+- **La prova lascia tre cose scritte, non un "è stata fatta"**: il **tempo misurato** da punta a
+  punta (quando è cominciato, quando il sistema è tornato a funzionare), il **punto esatto dove la
+  persona si è bloccata** — il passo del manuale, con le sue parole —, e **ogni parola che non ha
+  capito**. Le tre si scrivono con la data e il nome di chi ha fatto la prova. E ogni parola che non
+  ha capito **apre una voce in sospeso**: o si spiega nel manuale, o si cambia il nome alla cosa.
+  Senza quel registro la paratia non è soddisfatta, anche se la persona ha ripristinato il sistema:
+  una prova che non produce evidenza è il modo più economico di avere una paratia che non misura
+  niente.
 - **Chi decide**: l'agente mantiene; il proprietario legge il manuale, non il codice.
 - **Fallimento che evita**: il documento non aggiornato che ha provocato un commit nel repository
   sbagliato; il file di progetto trasformato in storico [Ref. 41](REFERENCIAS.md#ref-41). I
@@ -1193,6 +1279,16 @@ proprio dentro `peldanos/`, sempre con le stesse cinque sezioni:
 5. **Segnali d'allarme**: due o tre sintomi che il gradino è stato salito male anche se sembra
    salito.
 
+Quella verifica di completezza è distribuita in trentadue contratti, uno per gradino e uno per
+stazione, e serve mentre il progetto è in corso. Ma c'è un momento precedente in cui non hai
+trentadue contratti a portata di mano: la riunione in cui qualcuno ti offre di costruirti il
+sistema. Per quel momento c'è un foglio: **[le venticinque domande per il
+fornitore](PREGUNTAS_AL_PROVEEDOR.md)**, che è la stessa verifica di completezza riunita, scritta
+per una persona che non ha mai commissionato software e ordinata per quello che le stanno
+promettendo. Ogni domanda dice quale risposta si può **vedere** — un file, un numero con il suo
+comando, un test visto in rosso, un manuale, una firma — e da quale gradino esce. Si stampa e si
+porta.
+
 E nell'intestazione di ogni contratto: la fase, il quando, la forma e la dimensione (se è
 obbligatorio in ogni progetto o proporzionale).
 
@@ -1214,6 +1310,27 @@ ventiquattro gradini non sono ventiquattro tappe lunghe; diversi si salgono in u
 quelli che sono proporzionali si rimpiccioliscono con il progetto. Ciò che non si rimpicciolisce
 è la lista di quelli che non si negoziano. Questa tabella è una proposta `[ipotesi]` da
 confermare con il primo progetto che userà il metodo end to end:
+
+Ma prima della tabella conviene dire **come si arriva a rimpicciolire un gradino**, perché la
+tabella da sola si legge come un permesso e non lo è. Sono tre momenti, e vanno in ordine.
+
+**Prima si fa completo, compreso quello di cui non si capisce lo scopo.** La prima volta che
+applichi il metodo non sei in condizione di sapere quale parte ti è di troppo: i gradini che
+sembrano burocrazia sono proprio quelli che prevengono i problemi che non ti sono ancora capitati, e
+la lista intera è uscita da problemi che sono capitati. Farlo completo una volta costa meno della
+discussione su cosa saltare, ed è l'unica cosa che ti dà il criterio per la tappa successiva.
+
+**Poi si adatta a quello che hai davanti.** Quando hai già salito i ventiquattro una volta, sai cosa
+produce ognuno e puoi dimensionarlo: mezza pagina invece di cinque, una corsa invece di un budget
+per cammino, un rapporto mensile invece di uno settimanale. Questo è ciò che questa tabella propone.
+E la decisione è del proprietario, gradino per gradino e a voce alta: quali si rimpiccioliscono e
+quali non si negoziano in questo progetto, scritto prima di cominciare e non dopo il primo problema.
+Un gradino rimpicciolito per decisione scritta è proporzionalità; rimpicciolito in silenzio, è
+debito.
+
+**E alla fine si migliora, per quelli che vengono.** Il gradino 23 chiude con una retrospettiva che
+torna qui come proposta di cambiamento alla scala. Quello che hai scoperto applicandolo non è il tuo
+aneddoto: è la prossima riga di questa tabella. Questo documento è alla sua versione 4 per questo.
 
 | Gradino | Progetto piccolo (un proprietario, pochi utenti, senza soldi in gioco) | Progetto con utenti e conseguenze |
 |---|---|---|
@@ -1392,6 +1509,39 @@ chiusura di ogni blocco accanto alla copertura. Nessuno dei tre pezzi esige che 
 legga codice. Tutti e tre
 fanno sì che fingere il rosso costi più che eseguirlo.
 
+### F.5 Un adattamento del metodo a un altro formato, e cosa mi ha insegnato
+
+Nel 2026 Oscar Schmitz ha pubblicato **"El Arte de Forjar Sistemas"** ("L'arte di forgiare
+sistemi", 191 pagine), un romanzo che adatta questo metodo: prende la scala e la racconta come
+finzione, con una proprietaria che decide e una squadra che costruisce. Non è un lavoro correlato
+nel senso di quelli sopra — non propone un altro metodo — ma qualcosa che non era mai accaduto
+prima: qualcuno ha letto il corpus intero per produrre un'altra opera. L'ho validato affermazione
+per affermazione contro la lettera del metodo, e il rapporto di quella validazione resta nel
+repository.
+
+Cosa ne è uscito, e perché sta in questa parte e non nei riferimenti: **i riferimenti sono casi
+miei, con data e commit; un romanzo non è un caso**. Quello che ha fatto, invece, sono due cose.
+
+Ha portato **quattro formulazioni migliori delle mie**, e sono adottate in questo documento con
+questo credito: "la copertura conta test; il rosso dice se servono" (gradino 9), "il proprietario
+non è proprietario: è inquilino" (gradino 20), l'idea che a rimpicciolire un gradino ci si arriva
+dopo averlo fatto completo (Parte D) e quella che la prova del manuale di ripristino deve
+**registrare** il tempo, il blocco e le parole che non si sono capite (gradino 20). La quinta è il
+foglio delle [venticinque domande per il fornitore](PREGUNTAS_AL_PROVEEDOR.md): l'idea di riunire
+la verifica di completezza in un foglio che un proprietario porta a una riunione è sua; le
+venticinque domande di questo repository sono scritte da zero dai contratti del metodo, perché la
+sua versione è opera sua e ha i suoi diritti riservati.
+
+E ha mostrato un **difetto strutturale del metodo** che nessun audit aveva visto, che è la cosa più
+preziosa di tutte: l'autore ha riprodotto senza un errore sei cifre di fila dei riferimenti, e ha
+salpato ventisette delle quarantacinque regole dell'Allegato H. Non gli sono sfuggite: **questo
+documento non lo nominava neanche una volta**, quindi non ha mai saputo che esistevano. Un lettore
+che legge tutto e applica il metodo resterebbe fermo a cinque paratie pubblicate senza capire
+perché. Questa è la ragione per cui l'allegato è nominato nella Parte A, nell'apertura della Parte C
+e nella scheda dei sei gradini che lo portano, e per cui c'è una verifica nella catena che va in
+rosso se qualche scheda smette di nominarlo. Il gradino 23 chiede che la retrospettiva torni come
+proposta di cambiamento alla scala; questa è la prima che è venuta da un lettore.
+
 Un quadro utile per collocare questo metodo sulla mappa è la tassonomia di Macedo, del giugno 2026
 ([arXiv 2606.04967](https://arxiv.org/abs/2606.04967)): sei dimensioni (specifica, contesto,
 ruoli, esecuzione, validazione, portabilità), e la constatazione che nessun framework tra quelli
@@ -1424,6 +1574,17 @@ difetto dell'allerta, e si aggiusta o si elimina.
 **Analisi statica** — Leggere il codice a macchina, senza eseguirlo, cercando schemi pericolosi
 noti (un'injection, una chiave scritta nel codice). È uno dei quattro strati della scansione
 delle vulnerabilità del gradino 18.
+
+**Allegato H** — L'allegato di euristiche del metodo
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): quarantacinque regole verificabili, diciotto di
+qualità del codice e ventisette di usabilità, ciascuna con il suo identificatore stabile, la sua
+severità e lo strumento che la misura. È obbligatorio e attraversa i quattro tratti: entra con due
+ingressi previi al gradino 2 e con cinque ancore ai gradini 5, 8, 9, 10 e 12. La "H" è di euristiche.
+
+**Ancora (dell'Allegato H)** — Il punto in cui un pezzo dell'Allegato H diventa condizione di un
+gradino: se il pezzo non c'è, la paratia di quel gradino non va al verde. Sono cinque, ai gradini 5,
+8, 9, 10 e 12, e la scheda di ciascuno le nomina. Non è una raccomandazione né una buona pratica: è
+parte di quello che si misura.
 
 **Anonimizzazione** — In questo documento i clienti reali si chiamano "la Mutua",
 "l'Autorizzatore" e "l'Associazione", e i loro sistemi "Autorizzazioni" e "Kikan". È apposta: i
@@ -1662,6 +1823,11 @@ parte da qualcosa di esistente (brownfield, "campo dismesso").
 **Grep** — Un comando che cerca testo nei file. "Misuratore, non grep" significa: un numero
 importante non si ottiene contando con una ricerca di testo, ma con un programma con test.
 
+**Gruppo di convergenza funzionale** — Il modo in cui l'Allegato H raggruppa la funzionalità: per
+**quello che la persona è venuta a fare**, non per la tabella del database né per il modulo del
+codice. "Incassare una consulenza" è un gruppo; "tabella dei pagamenti" non lo è. Ogni voce in
+sospeso che tocca una schermata dichiara il suo (ancora 1, gradino 5).
+
 **Heap** — La memoria che un programma usa. "La batteria moriva per heap" vuol dire che i test
 finivano la memoria e sembrava che fallissero.
 
@@ -1726,6 +1892,11 @@ fidarti di ciò che l'agente dice di aver fatto, guarda il registro.
 
 **MariaDB** — Il motore di database SQL che Kikan usa in produzione.
 
+**Matrice di funzionalità per profilo** — Una tabella con i profili nelle righe e le funzionalità
+nelle colonne, che dice chi può fare cosa. Il menu, le rotte e i permessi si **derivano** da essa
+invece di essere scritti tre volte in tre posti, che è il punto da cui si desincronizzano da soli. È
+lo strumento dell'ancora 2 (gradino 8) dell'Allegato H.
+
 **Misuratore con guardia** — Uno script che misura qualcosa (quante query, quanti cicli) e che ha
 un test proprio che verifica che il misuratore misuri bene. "Con guardia" vuol dire "protetto da
 un test".
@@ -1779,6 +1950,11 @@ facendo commit e push senza chiedere, e consegni un riassunto alla fine.
 
 **Lavagna (la bacheca)** — La bacheca condivisa di Forge in cui l'agente lascia rapporti perché io
 li legga.
+
+**Profilo (di utente)** — Un tipo di persona che usa il sistema, detto per quello che viene a fare:
+amministrazione, esercizio, consultazione, cliente. Non è un ruolo tecnico né un permesso: è
+qualcuno. La lista dei profili è uno dei due ingressi previi dell'Allegato H e si scrive al gradino
+2; tutto quello che l'allegato misura dopo si misura **per profilo**.
 
 **Playwright** — Uno strumento che controlla un browser da programma per provare schermate come
 farebbe una persona.

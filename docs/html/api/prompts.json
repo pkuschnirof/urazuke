@@ -1,6 +1,6 @@
 {
   "what": "The prompts of the Urazuke method, published as data. The method owns them; a tool consumes them. They are one English piece, identical in the eight versions of the method, and a tool does not rewrite them.",
-  "corpus_version": "2026.10.1",
+  "corpus_version": "2026.10.2",
   "content_hash": {
     "algo": "sha256",
     "encoding": "hex_lower",
@@ -22,12 +22,12 @@
       "license",
       "content_hash"
     ],
-    "value": "3459750db1d7eb746e4f2b45f8e677585df7f269c0f083903b8a07db535fe15d",
+    "value": "b751bf7a2467394a6d9cf26cd29894108f3e245b86d771706c5b6aebe7f19adc",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "version": "f49b267",
+  "version": "8b61dab",
   "version_note": "Informative, and kept for the consumers that already print it. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: the identity of what is published is corpus_version + content_hash, and no comparison looks at this.",
-  "generated_at": "2026-10-24T16:44:07.337Z",
+  "generated_at": "2026-10-26T18:01:06.602Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "language": "en",
@@ -67,7 +67,7 @@
       "I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the agreement with today's date and a version number. Then add to the project file the instruction to read this agreement at the start of every session."
     ],
     "peldano-02": [
-      "We are going to define the project in writing. Read the business survey in `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate whether the survey is sufficient to describe the system, its users, its domain and its boundaries; if it is not, ask me for what is missing before writing anything. Then write two things. First, `PROJECT.md`, three hundred lines at most, with: what the system is and for whom; what it is NOT; the main modules as a list; the decisions already made, each with its date; and the instruction to read this file and the semantic tree at the start of every session. Second, `docs/SEMANTIC_TREE.md`: the system as a tree, with the domains at the top level and, under each one, its actors, its processes (the use cases, each with actor, trigger, steps, outcome and exceptions), its entities with their attributes, states and transitions, its screens, and its external integrations. Mark every node you inferred rather than read in the survey, so that I can confirm or correct it. Separately, create `docs/STATUS.md` for the living state (what is being worked on, what is open): that file changes every day; the other two change only when the system changes. Reply in my language.",
+      "We are going to define the project in writing. Read the business survey in `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate whether the survey is sufficient to describe the system, its users, its domain and its boundaries; if it is not, ask me for what is missing before writing anything. Then write two things. First, `PROJECT.md`, three hundred lines at most, with: what the system is and for whom; what it is NOT; the main modules as a list; the decisions already made, each with its date; and the instruction to read this file and the semantic tree at the start of every session. Second, `docs/SEMANTIC_TREE.md`: the system as a tree, with the domains at the top level and, under each one, its actors, its processes (the use cases, each with actor, trigger, steps, outcome and exceptions), its entities with their attributes, states and transitions, its screens, and its external integrations. Mark every node you inferred rather than read in the survey, so that I can confirm or correct it. Third, the two prior inputs that Annex H needs before a single screen exists: the user glossary, with the words people actually use for each thing as the business says them and not as the system calls them; and the list of profiles, saying who each one is and what they come to do. Take both from the survey, ask me for whatever is not in it instead of inventing it, write them as files of the project, name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create `docs/STATUS.md` for the living state (what is being worked on, what is open): that file changes every day; the other two change only when the system changes. Reply in my language.",
       "Apply these corrections: [list]. Finalize `PROJECT.md` and `docs/SEMANTIC_TREE.md` with today's date. Add to the working agreement two rules: the change history never goes into `PROJECT.md` (it goes to `docs/STATUS.md` or to the pending-items register); and every pending item must hang from a node of the semantic tree, and the tree is updated in the same commit whenever a block adds or changes a node."
     ],
     "peldano-03": [

@@ -38,6 +38,10 @@ inviare il prompt" che precede ciascuno.
 - Il patto di convivenza (gradino 1).
 - Se esiste un sistema precedente: accesso in lettura al suo codice o alla sua documentazione.
 - Le decisioni già prese, se ce ne sono, anche solo a voce.
+- Le parole che il business usa davvero per ogni cosa, e chi sono i diversi tipi di persona che
+  useranno il sistema. Sono i due **ingressi previi** dell'[Allegato H](../ANEXO_HEURISTICAS.md), e
+  questo gradino è dove si scrivono: senza di essi, la matrice di profili del gradino 8 si inventa e
+  le regole di usabilità non hanno con cosa confrontarsi.
 
 ## 2. Prompt
 
@@ -62,6 +66,10 @@ l'agente:
 - Stato minimo accettabile: la rilevazione ha la sezione "cosa NON è" con almeno due voci, almeno
   un caso d'uso con le parole del proprietario, e almeno un'entità con i suoi stati. Senza questo,
   l'albero che ne uscirà sarà inventato, e tu non avrai con cosa confrontarlo.
+- E per i due ingressi previi dell'Allegato H: nella rilevazione, gli attori nominati **con la parola
+  che usa il business** (se la receptionist si chiama "la ragazza del banco", quello è il dato, non
+  "utente operativo"), e qualunque lista di tipi di utente che esista già, anche se è in una mail. Se
+  non hai né una cosa né l'altra, dillo: l'agente le deve **chiedere**, non inventare.
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -74,9 +82,14 @@ l'agente:
 > level and, under each one, its actors, its processes (the use cases, each with actor, trigger,
 > steps, outcome and exceptions), its entities with their attributes, states and transitions,
 > its screens, and its external integrations. Mark every node you inferred rather than read in
-> the survey, so that I can confirm or correct it. Separately, create `docs/STATUS.md` for the
-> living state (what is being worked on, what is open): that file changes every day; the other
-> two change only when the system changes. Reply in my language.
+> the survey, so that I can confirm or correct it. Third, the two prior inputs that Annex H
+> needs before a single screen exists: the user glossary, with the words people actually use
+> for each thing as the business says them and not as the system calls them; and the list of
+> profiles, saying who each one is and what they come to do. Take both from the survey, ask
+> me for whatever is not in it instead of inventing it, write them as files of the project,
+> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
+> changes every day; the other two change only when the system changes. Reply in my language.
 
 > [it]
 > Definiremo il progetto per iscritto. Leggi la rilevazione del business in
@@ -90,7 +103,13 @@ l'agente:
 > ciascuno, i suoi attori, i suoi processi (i casi d'uso, ciascuno con attore, innesco, passi,
 > risultato ed eccezioni), le sue entità con i loro attributi, stati e transizioni, le sue
 > schermate e le sue integrazioni esterne. Marca ogni nodo che hai inferito invece di averlo letto
-> nella rilevazione, perché io lo confermi o lo corregga. A parte, crea `docs/STATUS.md` per lo
+> nella rilevazione, perché io lo confermi o lo corregga. Terzo, i due ingressi previi di cui l'Allegato H ha
+> bisogno prima che esista una sola schermata: il glossario dell'utente, con le parole che la gente
+> usa davvero per ogni cosa, come le dice il business e non come le chiama il sistema; e la lista dei
+> profili, dicendo chi è ciascuno e cosa viene a fare. Prendi entrambi dalla rilevazione, chiedimi
+> quello che non c'è invece di inventarlo, scrivili come file del progetto, nomina quei file in
+> `PROJECT.md` e marca anche lì quello che hai inferito.
+> A parte, crea `docs/STATUS.md` per lo
 > stato vivo (su cosa si sta lavorando, cosa è aperto): quel file cambia tutti i giorni; gli altri
 > due cambiano solo quando cambia il sistema. Rispondi nella mia lingua.
 
@@ -102,6 +121,17 @@ struttura completa (domini, attori, casi d'uso con le loro parti, entità con st
 schermate, integrazioni), che è il modello di dominio dell'ingegneria dei requisiti messo in forma
 di albero; che **marchi ciò che ha inferito**, perché è lì che si nascondono le invenzioni; e che
 separi lo stato vivo in un altro file, perché la mappa non si trasformi in storico.
+
+E i due ingressi previi dell'Allegato H, che sono quelli che fanno sì che il gradino 2 non sia solo
+una mappa per il modello. Il **glossario dell'utente** è la lista di parole che la gente usa
+davvero: "appuntamento", non "prenotazione d'agenda"; "la ragazza del banco", non "utente
+operativo". Serve per due cose che vengono dopo: nominare i gruppi del menu con lavori dell'utente,
+e far sì che il testo delle schermate dica quello che la gente dice. La **lista dei profili** è chi
+è ciascuno e cosa viene a fare, ed è la colonna da cui esce la matrice del gradino 8; se non è
+scritta qui, al gradino 5 si inventa, e una matrice inventata è la causa del fatto che qualcuno veda
+un pulsante che non gli spetta. Gli chiedo esplicitamente di **chiederle** invece di dedurle, perché
+sono dati del business e non del sistema; e di marcare l'inferito, per lo stesso motivo che
+nell'albero.
 
 **Di chiusura:**
 
@@ -141,6 +171,11 @@ e ciò che ti permette di rilevare in dieci secondi una voce fuori perimetro.
 - `docs/SEMANTIC_TREE.md`: l'albero semantico, con i nodi inferiti marcati finché non li confermi,
   e, dal primo blocco, le voci in sospeso e le decisioni che pendono dai loro nodi.
 - `docs/STATUS.md`: stato vivo, separato dai precedenti.
+- I due ingressi previi dell'Allegato H, scritti e nominati in `PROJECT.md`: il **glossario
+  dell'utente** (le parole che la gente usa davvero per ogni cosa) e la **lista dei profili** (chi è
+  ciascuno e cosa viene a fare), con l'inferito marcato. Il metodo non ti impone il nome di quei due
+  file — metti quello che usa il tuo progetto —; quello che esige è che esistano, che si possano
+  trovare dal file di progetto e che ci siano prima del gradino 5.
 - In tutti e tre, una data di ultimo aggiornamento.
 - Nel patto, le due regole nuove.
 
@@ -160,6 +195,11 @@ e ciò che ti permette di rilevare in dieci secondi una voce fuori perimetro.
 - La prova di lettura: chiudi la sessione, aprine una nuova, e chiedigli cosa NON fa il sistema e
   da quale nodo dell'albero pende la tale schermata. Se risponde con la mappa, l'aggancio
   funziona.
+- È scritto il glossario dell'utente, con le parole che la gente usa davvero per ogni cosa? Leggilo
+  e cerca una parola che tu non diresti: se c'è, l'ha scritta il sistema e non il business.
+- È scritta la lista dei profili, dicendo chi è ciascuno e cosa viene a fare? Conta i profili con le
+  dita del tuo business: se manca uno, manca una riga della matrice del gradino 8 e una tornata di
+  casi di prova del 10.
 
 ## 5. Segnali d'allarme
 
@@ -173,3 +213,7 @@ e ciò che ti permette di rilevare in dieci secondi una voce fuori perimetro.
   o quelle voci sono fuori perimetro; entrambe le cose vanno guardate.
 - Un'entità dell'albero ha uno stato che il business non ha mai nominato. Il modello l'ha inventato
   perché gli è sembrato logico, e ci costruirà sopra.
+- Il glossario dell'utente ha le stesse parole dell'albero semantico. Non è un glossario dell'utente:
+  è il vocabolario del sistema copiato due volte. Chiedi al business come lo chiama.
+- La lista dei profili ha un solo profilo, "utente". Quasi mai è vero, ed è il modo più comune di
+  arrivare al gradino 8 con una matrice di una riga che non protegge niente.

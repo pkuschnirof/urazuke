@@ -26,6 +26,21 @@ beurteilen: **eine Vertrauensperson, die nicht programmiert, muss ihm folgen kö
 morgens, mit ausgefallenem System und dem Agenten ohne Verbindung**. Wenn in irgendeinem Schritt
 „mit dem Entwickler abklären“ oder „je nach Fall“ steht, ist dieser Schritt unvollständig.
 
+Und diese Probe **hinterlässt drei Dinge schriftlich**, denn wenn sie nichts hinterlässt, ist die
+Schranke erfüllt, ohne irgendetwas zu messen — was die billigste Art ist, eine dekorative Schranke zu
+haben. Die drei sind: die **gemessene Zeit** von Ende zu Ende (wann die Person anfing, wann das
+System wieder funktionierte), die **genaue Stelle, an der sie hängen blieb** (der Schritt des
+Handbuchs, mit ihren Worten, nicht mit deinen), und **jedes Wort, das sie nicht verstanden hat**. Die
+drei gehen mit Datum und mit dem Namen dessen, der die Probe gemacht hat. Und jedes Wort, das sie
+nicht verstanden hat, **eröffnet einen offenen Posten**: entweder wird es im Handbuch erklärt, oder
+die Sache wird im ganzen System umbenannt. Diese Liste von Wörtern ist außerdem der beste Zufluss für
+das Benutzerglossar von Schritt 2, und die Retrospektive von Schritt 23 benutzt sie als
+Änderungsvorschlag.
+
+Ohne diese Handbücher, in einem Wort gesagt, das keine Erklärung braucht: **der Eigentümer ist kein
+Eigentümer, er ist Mieter**. Er hat das System, er bezahlt es, und er kommt nicht hinein, ohne den um
+Erlaubnis zu bitten, der es gebaut hat.
+
 Und eine Quelle, die man nicht ungenutzt lassen darf: die geschlossenen Posten. Jeder bringt seine
 Spezifikation, seine Entscheidung, seinen Beleg und sein Datum mit. Das Benutzerhandbuch wird
 nicht am Ende von null geschrieben: es wird, Block für Block, aus den geschlossenen Posten
@@ -126,6 +141,11 @@ Datum und Version, damit man weiß, zu welchem System jedes Handbuch gehört.
 - `docs/CHANGELOG.md`, gespeist von den geschlossenen Posten.
 - Jedes mit Datum und der Version des Systems, das es dokumentiert.
 - In den Commits, die Bildschirme, Betrieb oder Deployment ändern: das aktualisierte Handbuch.
+- **Der Eintrag der Probe des Wiederherstellungshandbuchs**, mit vier Dingen: dem Datum und dem Namen
+  dessen, der sie gemacht hat; der gemessenen Zeit von Ende zu Ende; dem genauen Schritt, an dem sie
+  hängen blieb, mit ihren Worten; und der Liste der Wörter, die sie nicht verstanden hat. Plus ein
+  offener Posten für jedes dieser Wörter. Wo das geschrieben wird, ist deine Wahl — am Ende des
+  Wiederherstellungshandbuchs selbst reicht —; was nicht optional ist, ist, dass es existiert.
 
 ## 4. Vollständigkeitsprüfung
 
@@ -139,6 +159,11 @@ Datum und Version, damit man weiß, zu welchem System jedes Handbuch gehört.
 - Gibt es eine Lücke vom Typ „[ergänzen]“ oder „mit dem Verantwortlichen abklären“? Dort hätte
   der Agent fragen müssen.
 - Sagt jedes Handbuch, für welche Version des Systems es gilt?
+- Hat die Probe des Wiederherstellungshandbuchs ihren Eintrag hinterlassen: wie lange sie dauerte, wo
+  die Person hängen blieb und welche Wörter sie nicht verstanden hat, mit Datum und Namen? Und von
+  diesen Wörtern: hat jedes einen offenen Posten eröffnet? Wenn der Eintrag „die Probe wurde gemacht"
+  sagt und nichts weiter, kann die Probe nicht wiederholt oder verglichen werden: die Schranke ist
+  auf dem Papier erfüllt.
 
 ## 5. Warnsignale
 
@@ -149,3 +174,8 @@ Datum und Version, damit man weiß, zu welchem System jedes Handbuch gehört.
   Voraussetzung ist, ist es kein Handbuch für eine Person.
 - Niemand außer dem Bauenden hat je das Wiederherstellungshandbuch gelesen. Bitte jemanden, ihm in
   der Testumgebung zu folgen; woran er hängen bleibt, ist das, was zu reparieren ist.
+- Die Probe wurde gemacht und nicht festgehalten, oder festgehalten als „ging gut". Dann kann niemand
+  sagen, wie lange sie dauerte und wo sie nahe daran war, nicht zu klappen, und das nächste Mal fängt
+  man bei null an.
+- Der Eintrag hat kein einziges Wort auf der Liste der nicht verstandenen. Das passiert ab und zu und
+  ist wahr; es passiert immer und bedeutet, dass niemand gefragt hat.

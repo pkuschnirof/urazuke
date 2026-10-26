@@ -216,6 +216,18 @@ Un bug est revenu trois fois avant qu'on trouve la cause réelle, le 14 juillet.
 ou n'est pas une réparation », qui était déjà dans le contrat de collaboration, a cessé d'être une
 phrase pour devenir une pratique : il faut mesurer l'hypothèse avant de toucher. Échelons 1 et 7.
 
+**L'arithmétique, dite à voix haute, parce que les deux nombres sont le même cas compté de deux
+côtés.** Il y a eu **quatre tours de correction** et **trois retours** du bug : le tour 1 l'a
+« corrigé » et il est revenu (retour 1), le 2 l'a « corrigé » et il est revenu (retour 2), le 3 l'a
+« corrigé » et il est revenu (retour 3), et le 4 a été celui qui a trouvé la cause racine. D'où le
+titre de cette référence qui dit quatre tours, ce paragraphe qui dit qu'il est revenu trois fois et
+le tableau des échecs par échelon qui compte trois corrections qui n'étaient pas à la racine : ce
+n'est pas une contradiction, ce sont n tours et n−1 retours. C'est écrit ici parce que sans cette
+ligne les trois mentions se lisent comme trois chiffres différents du même fait, et le premier
+lecteur externe qui a reproduit le cas a écrit « il est revenu quatre fois ». Si une référence
+laisse quelqu'un qui la lit avec soin en sortir un autre nombre, le défaut est celui de la
+référence.
+
 ### Ref. 23 — Audit de sécurité (16 juillet)
 
 Le 16 juillet j'ai fait le premier audit de sécurité formel, avec des constats transformés en

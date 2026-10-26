@@ -96,11 +96,47 @@ tiene el proyecto guía heredado "Turnera heredada" y las lecciones N0 a N7, R1 
 
 D-033: en el peldaño 8 el rojo es un recibo (comando exacto, versión contra la que corrió,
 cantidad de fallos, código de salida, pegados tal cual) y no un relato; el peldaño 9 tiene un
-tercer prompt, opcional, de pruebas de mutación. Es la respuesta escrita a la objeción de que el
+tercer prompt de pruebas de mutación, **obligatorio en cualquier proyecto con usuarios y opcional
+sólo cuando no hay usuarios reales** — es un prompt aparte porque se agrega, no porque se pueda
+saltear, y la verificación publicada lo exige con esa misma condición ("con usuarios reales, ¿se
+mide el puntaje de mutación por bloque?"). Esta frase se alineó el 2026-10-26 (D-061, PND-047):
+decía "opcional" sin su condición, y era la única de las cinco fuentes del repositorio que lo decía
+así, justo en el archivo que un agente lee **como instrucción**. La decisión D-033 no se edita —las
+decisiones llevan las palabras de su día—; la aclaración vive en D-061.
+Es la respuesta escrita a la objeción de que el
 agente puede fingir el rojo. D-034: la Parte F del documento principal, "Trabajos relacionados",
 compara el método con lo publicado hasta octubre de 2026, con enlaces; se mantiene en los ocho
 idiomas y se amplía cuando aparece algo nuevo. Los trabajos ajenos se citan ahí con su enlace,
-no como "Ref. N" (las referencias son solo los casos propios).
+no como "Ref. N" (las referencias son solo los casos propios). Su sección **F.5** es la primera
+adaptación del método a otro formato y lo que la retrospectiva del peldaño 23 se trajo de ella
+(D-061): cuatro formulaciones adoptadas con crédito, la hoja de `docs/PREGUNTAS_AL_PROVEEDOR.md`
+escrita de cero desde los contratos —la idea es suya, la redacción es propia, y así se evita tomar
+derechos reservados dentro de una obra BY-SA— y el defecto estructural que ninguna auditoría había
+visto: el Anexo H era obligatorio y el documento principal no lo nombraba.
+
+## El Anexo H se nombra donde el dato lo exige
+
+D-061 (PND-039, PND-048). El Anexo H es obligatorio —45 reglas, con dos entradas previas en el
+peldaño 2 y cinco anclas en los peldaños 5, 8, 9, 10 y 12, y esas cinco son evaluadores
+`required: true` en el dato publicado— y hasta el 2026-10-26 el documento principal **no lo nombraba
+ni una vez**. Lo descubrió un lector: el autor de la adaptación reprodujo sin error seis cifras de
+las referencias y omitió veintisiete de las cuarenta y cinco reglas, porque nunca supo que estaban.
+Desde entonces: el anexo se nombra en la Parte A (cómo se lee un peldaño), en la apertura de la
+Parte C y en la **ficha** de cada uno de los seis peldaños que lo cargan, con el enlace, en los ocho
+idiomas; y `README.md` lo lista en su tabla, que es donde las siete traducciones ya lo listaban y la
+fuente de verdad no (D-013 al revés). La ficha lleva una línea que empieza con `**Anexo H**`.
+
+`tests/anexo_simetria.test.mjs` lo exige en las dos direcciones y **no se negocia por comodidad**: un
+peldaño que declara un ancla en `gates/steps.json` tiene que enlazar `ANEXO_HEURISTICAS.md` en su
+ficha (en los ocho) y nombrar el token inglés `Annex H` en su contrato; y una ficha que enlaza el
+anexo para un peldaño que el dato no ancla también es rojo. La forma se eligió medida: la ficha por
+el **enlace**, que era 0 de 40 y es falsable; el contrato por el **token inglés**, que viaja idéntico
+en las ocho versiones porque vive dentro del prompt. Si algún día una estación `N0..N7` declara un
+evaluador del anexo, la prueba se pone **roja diciendo que no sabe revisar estaciones** —no verde—,
+que es la semántica que `gates/evaluators.json` declara para `required: true`. La misma prueba trae
+los dos candados decidibles de las referencias: el conjunto de `[Ref. N]` de cada ficha idéntico en
+los ocho idiomas, y cada "fallo que evita" con su referencia o **registrado con su razón** en la
+propia prueba, como el anexo exige para una regla apagada.
 
 ## La línea de tiempo
 
@@ -127,8 +163,9 @@ de estas tres piezas se replica en las otras dos.
 - Nombre: Urazuke (D-014). No se traduce; el subtítulo sí.
 - Idiomas (D-013): castellano como fuente de verdad (`docs/`); las otras siete versiones de NAC3
   en `docs/<idioma>/` (en, pt, fr, de, it, ja, zh), cada una con README, documento principal,
-  referencias, veinticuatro contratos, camino evolutivo-correctivo, las dos partes del manual-curso y el documento sobre la capacitación del junior. Un cambio en el castellano se replica en las
-  siete traducciones en el mismo commit.
+  referencias, veinticuatro contratos, camino evolutivo-correctivo, las dos partes del manual-curso, el documento sobre la capacitación del junior, el Anexo H y la hoja de las veinticinco preguntas para el proveedor (`PREGUNTAS_AL_PROVEEDOR.md`, D-061). Un cambio en el castellano se replica en las
+  siete traducciones en el mismo commit. Un documento nuevo del corpus, además, entra al arreglo
+  literal de `build/build.mjs`: si no está ahí, existe y no se publica.
 - **Lo que queda fuera del corpus traducido va en inglés** (D-051), que es el idioma canónico de la
   profesión, y traducir para que un usuario final entienda mejor es responsabilidad de quien
   consume. Hoy eso aplica al nivel de datos de las compuertas (`gates/`, `docs/html/api/gates.json`),

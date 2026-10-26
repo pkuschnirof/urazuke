@@ -7,6 +7,8 @@
 // - MANUAL_CURSO_EVOLUTIVO.html <- MANUAL_CURSO_EVOLUTIVO.md (parte 2 del curso)
 // - CONTRATOS_DE_PELDANO.html   <- peldanos/README.md + los 16 contratos, en orden
 // - EVALUACIONES_DE_IA.html     <- EVALUACIONES_DE_IA.md (solo castellano: cita textual de cada IA)
+// - PREGUNTAS_AL_PROVEEDOR.html <- PREGUNTAS_AL_PROVEEDOR.md (la hoja que el dueno se lleva a una
+//                                  reunion con un proveedor; en los ocho idiomas del corpus)
 // - COMPUERTAS.html             <- COMPUERTAS.md (generado desde gates/; en INGLES, D-051: es
 //                                  documentacion de herramienta y queda fuera del corpus traducido)
 // Antes verifica que los prompts en inglés sean idénticos en todas las versiones.
@@ -31,7 +33,7 @@ const conv = join(raiz, 'build', 'md2html.mjs');
 
 function armar(dirMd, dirHtml, idioma) {
   mkdirSync(dirHtml, { recursive: true });
-  for (const nombre of ['ESCALERA_METODOLOGICA', 'REFERENCIAS', 'EVOLUTIVO_CORRECTIVO', 'MANUAL_CURSO', 'MANUAL_CURSO_EVOLUTIVO', 'CAPACITACION_JUNIOR', 'TRABAJO_COLABORATIVO', 'EVALUACIONES_DE_IA', 'ANEXO_HEURISTICAS', 'COMPUERTAS']) {
+  for (const nombre of ['ESCALERA_METODOLOGICA', 'REFERENCIAS', 'EVOLUTIVO_CORRECTIVO', 'MANUAL_CURSO', 'MANUAL_CURSO_EVOLUTIVO', 'CAPACITACION_JUNIOR', 'TRABAJO_COLABORATIVO', 'EVALUACIONES_DE_IA', 'ANEXO_HEURISTICAS', 'PREGUNTAS_AL_PROVEEDOR', 'COMPUERTAS']) {
     const src = join(dirMd, nombre + '.md');
     // COMPUERTAS es documentacion de herramienta y se genera en ingles (D-051), asi que
     // el HTML se marca en ingles aunque viva en el arbol del castellano.

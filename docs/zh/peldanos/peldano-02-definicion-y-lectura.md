@@ -32,6 +32,9 @@
 - 协作契约（第 1 级台阶）。
 - 如果存在旧系统：对其代码或文档的读访问权。
 - 已经做过的决定（如有），哪怕只是口头的。
+- 业务实际上怎么称呼每样东西，以及将要使用这个系统的不同类型的人分别是谁。这是
+  [附录H](../ANEXO_HEURISTICAS.md)的两项**前置输入**，而这一级就是写它们的地方：没有它们，
+  第8级的角色矩阵就会被编出来，而可用性规则没有可对照的东西。
 
 ## 2. 提示词
 
@@ -49,6 +52,9 @@
 - 如果存在旧系统：对它的代码或文档的读访问权，路径或链接记在调研里。
 - 最低可接受状态：调研里有"它不是什么"那一节，至少两条；至少一个用所有者的话写的用例；至少一
   个带状态的实体。没有这些，出来的树会是编的，而你没有东西可以和它对照。
+- 还有为了附录H的两项前置输入：在调研里，参与者要**用业务用的那个词**点名（如果前台被叫作
+  "柜台的姑娘"，那就是数据，而不是"运维用户"）；以及任何已经存在的用户类型清单，哪怕它在一
+  封邮件里。如果你两样都没有，就说出来：代理必须去**问**，而不是编。
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -61,9 +67,14 @@
 > level and, under each one, its actors, its processes (the use cases, each with actor, trigger,
 > steps, outcome and exceptions), its entities with their attributes, states and transitions,
 > its screens, and its external integrations. Mark every node you inferred rather than read in
-> the survey, so that I can confirm or correct it. Separately, create `docs/STATUS.md` for the
-> living state (what is being worked on, what is open): that file changes every day; the other
-> two change only when the system changes. Reply in my language.
+> the survey, so that I can confirm or correct it. Third, the two prior inputs that Annex H
+> needs before a single screen exists: the user glossary, with the words people actually use
+> for each thing as the business says them and not as the system calls them; and the list of
+> profiles, saying who each one is and what they come to do. Take both from the survey, ask
+> me for whatever is not in it instead of inventing it, write them as files of the project,
+> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
+> changes every day; the other two change only when the system changes. Reply in my language.
 
 > [zh]
 > 我们要把项目写下来。读 `docs/INITIAL_SURVEY.md` 中的业务调研和 `docs/WORKING_AGREEMENT.md`
@@ -73,7 +84,12 @@
 > 和语义树的指令。第二，`docs/SEMANTIC_TREE.md`：把系统写成一棵树，顶层是各个领域，每个领
 > 域下面是它的参与者、它的流程（用例，每个附参与者、触发器、步骤、结果和例外）、它的实体
 > 及其属性、状态和转换、它的界面，以及它的外部集成。把每个你推断出来而不是从调研中读到的
-> 节点标出来，以便我确认或纠正。另外，创建 `docs/STATUS.md` 用于活状态（正在做什么，什么
+> 节点标出来，以便我确认或纠正。第三，附录H在一个界面都还不存在之前就
+> 需要的两项前置输入：用户术语表，带上人们实际怎么称呼每样东西——按业务说的样子，而不是按
+> 系统叫的样子；以及角色清单，说明每个角色是谁、来做什么。两样都从调研里取，调研里没有的
+> 就向我要而不要编，把它们写成项目的文件，在 `PROJECT.md` 里点出这些文件的名字，并把你在
+> 那里推断出来的也标出来。
+> 另外，创建 `docs/STATUS.md` 用于活状态（正在做什么，什么
 > 还开着）：那个文件每天都变；另外两个只在系统变化时才变。用我的语言回复。
 
 我在要求什么：先评估调研、再提问、再起草；项目文件要**短**（三百行的上限是随意定的，但必
@@ -81,6 +97,13 @@
 日期；按完整结构构建**语义树**（领域、参与者、带各部分的用例、带状态和转换的实体、界面、
 集成），那是需求工程的领域模型以树的形式呈现；**标出它推断的东西**，因为发明就藏在那里；
 把活状态分到另一个文件，让地图不变成历史。
+
+还有附录H的两项前置输入，正是它们让第2级不只是给模型的一张地图。**用户术语表**是人们实际
+使用的词的清单："号"，不是"日程预约"；"柜台的姑娘"，不是"运维用户"。它对后面两件事有用：
+用用户的活儿来给菜单分组命名，以及让界面上的文字说人们说的话。**角色清单**是每个角色是
+谁、来做什么，它是第8级矩阵出来的那一列；如果这里没写下来，到第5级就会被编出来，而一个编
+出来的矩阵，正是"有人看见一个不属于自己的按钮"的原因。我明确要求它去**问**而不是去推断，
+因为这是业务的数据而不是系统的数据；也要求它把推断出来的标出来，理由和树一样。
 
 **收尾：**
 
@@ -117,6 +140,10 @@
 - `docs/SEMANTIC_TREE.md`：语义树，推断出的节点标记着，直到你确认；从第一个功能块起，待办
   项和决策挂在各自的节点下。
 - `docs/STATUS.md`：活状态，与前两者分开。
+- 附录H的两项前置输入，写出来并在 `PROJECT.md` 里点了名：**用户术语表**（人们实际上怎么称
+  呼每样东西）和**角色清单**（每个角色是谁、来做什么），推断出来的都标出来。本方法不强加这
+  两个文件的名字——用你的项目在用的名字——；它要求的是：它们存在、能从项目文件找到，并且在第
+  5级之前就在。
 - 三个文件都有最后更新日期。
 - 契约里有两条新规则。
 
@@ -130,6 +157,10 @@
 - 每条决定有日期和谁做的吗？
 - 代理在起草之前问了关于业务的问题吗？什么都没问的话，检查它假设了什么。
 - 活状态在另一个文件里吗？
+- 用户术语表写了吗，带着人们实际上怎么称呼每样东西？读一遍，找一个你自己不会说的词：如果有，
+  那是系统写的，不是业务写的。
+- 角色清单写了吗，说明每个角色是谁、来做什么？用你业务里的手指头数一数角色：少一个，就少第
+  8级矩阵里的一行，还少第10级的一批手工测试用例。
 - 阅读测试：关闭会话，打开一个新的，问它系统不做什么、某个界面挂在树的哪个节点下。如果它
   用地图回答，挂钩起作用了。
 
@@ -142,3 +173,7 @@
 - 有待办项不挂在树的任何节点下。要么树过时了，要么那些待办项超出了范围；两样都得看。
 - 树里的某个实体有一个业务从未叫过的状态。模型发明了它，因为它觉得合乎逻辑，而且会在它之
   上构建。
+- 用户术语表里的词和语义树里的词一样。那不是用户术语表：那是把系统的词汇抄了两遍。去问业务
+  他们怎么叫它。
+- 角色清单里只有一个角色，"用户"。这几乎从来不是真的，而且这是带着一张什么都不保护的单行矩
+  阵走到第8级的最常见方式。

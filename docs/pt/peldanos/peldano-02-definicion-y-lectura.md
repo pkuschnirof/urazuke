@@ -38,6 +38,10 @@ prompt" que precede cada um.
 - O contrato de convivência (degrau 1).
 - Se existe um sistema anterior: acesso de leitura ao seu código ou à sua documentação.
 - As decisões já tomadas, se houver, mesmo que de boca.
+- As palavras que o negócio de fato usa para cada coisa, e quem são os diferentes tipos de pessoa
+  que vão usar o sistema. São as duas **entradas prévias** do
+  [Anexo H](../ANEXO_HEURISTICAS.md), e este degrau é onde se escrevem: sem elas, a matriz de
+  perfis do degrau 8 se inventa e as regras de usabilidade não têm com que comparar.
 
 ## 2. Prompts
 
@@ -62,6 +66,10 @@ o agente:
 - Estado mínimo aceitável: o levantamento tem a seção "o que NÃO é" com pelo menos dois itens,
   pelo menos um caso de uso com as palavras do dono, e pelo menos uma entidade com seus estados.
   Sem isso, a árvore que sair vai ser inventada, e você não vai ter com que compará-la.
+- E para as duas entradas prévias do Anexo H: no levantamento, os atores nomeados **com a palavra
+  que o negócio usa** (se a recepcionista se chama "a moça do balcão", esse é o dado, não "usuário
+  operacional"), e qualquer lista de tipos de usuário que já exista, mesmo que esteja num e-mail. Se
+  você não tem nem uma coisa nem a outra, diga: o agente tem de **perguntar**, não inventar.
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -74,9 +82,14 @@ o agente:
 > level and, under each one, its actors, its processes (the use cases, each with actor, trigger,
 > steps, outcome and exceptions), its entities with their attributes, states and transitions,
 > its screens, and its external integrations. Mark every node you inferred rather than read in
-> the survey, so that I can confirm or correct it. Separately, create `docs/STATUS.md` for the
-> living state (what is being worked on, what is open): that file changes every day; the other
-> two change only when the system changes. Reply in my language.
+> the survey, so that I can confirm or correct it. Third, the two prior inputs that Annex H
+> needs before a single screen exists: the user glossary, with the words people actually use
+> for each thing as the business says them and not as the system calls them; and the list of
+> profiles, saying who each one is and what they come to do. Take both from the survey, ask
+> me for whatever is not in it instead of inventing it, write them as files of the project,
+> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
+> changes every day; the other two change only when the system changes. Reply in my language.
 
 > [pt]
 > Vamos definir o projeto por escrito. Leia o levantamento do negócio em
@@ -90,7 +103,13 @@ o agente:
 > de cada um, seus atores, seus processos (os casos de uso, cada um com ator, gatilho, passos,
 > resultado e exceções), suas entidades com seus atributos, estados e transições, suas telas e
 > suas integrações externas. Marque cada nó que você inferiu em vez de ler no levantamento, para
-> que eu o confirme ou corrija. À parte, crie `docs/STATUS.md` para o estado vivo (no que se está
+> que eu o confirme ou corrija. Terceiro, as duas entradas prévias que o Anexo H
+> precisa antes de existir uma só tela: o glossário do usuário, com as palavras que as pessoas de
+> fato usam para cada coisa, como o negócio as diz e não como o sistema as chama; e a lista de
+> perfis, dizendo quem é cada um e o que vem fazer. Tire as duas do levantamento, peça-me o que não
+> estiver nele em vez de inventá-lo, escreva-as como arquivos do projeto, nomeie esses arquivos em
+> `PROJECT.md` e marque também ali o que inferiu.
+> À parte, crie `docs/STATUS.md` para o estado vivo (no que se está
 > trabalhando, o que está aberto): esse arquivo muda todos os dias; os outros dois mudam só
 > quando o sistema muda. Responda no meu idioma.
 
@@ -102,6 +121,16 @@ estrutura completa (domínios, atores, casos de uso com suas partes, entidades c
 transições, telas, integrações), que é o modelo de domínio da engenharia de requisitos posto em
 forma de árvore; que **marque o que inferiu**, porque é ali que se escondem as invenções; e que
 separe o estado vivo em outro arquivo, para que o mapa não se converta em histórico.
+
+E as duas entradas prévias do Anexo H, que são as que fazem o degrau 2 não ser só um mapa para o
+modelo. O **glossário do usuário** é a lista de palavras que as pessoas de fato usam: "consulta",
+não "reserva de agenda"; "a moça do balcão", não "usuário operacional". Serve para duas coisas que
+vêm depois: nomear os grupos do menu com trabalhos do usuário, e que o texto das telas diga o que as
+pessoas dizem. A **lista de perfis** é quem é cada um e o que vem fazer, e é a coluna de que sai a
+matriz do degrau 8; se não estiver escrita aqui, no degrau 5 se inventa, e uma matriz inventada é a
+causa de alguém ver um botão que não lhe corresponde. Peço-lhe explicitamente que as **pergunte** em
+vez de deduzi-las, porque são dados do negócio e não do sistema; e que marque o inferido, pelo mesmo
+motivo que na árvore.
 
 **De fechamento:**
 
@@ -142,6 +171,11 @@ detectar em dez segundos uma pendência fora de escopo.
 - `docs/SEMANTIC_TREE.md`: a árvore semântica, com os nós inferidos marcados até que você os
   confirme, e, desde o primeiro bloco, as pendências e decisões pendendo de seus nós.
 - `docs/STATUS.md`: estado vivo, separado dos anteriores.
+- As duas entradas prévias do Anexo H, escritas e nomeadas em `PROJECT.md`: o **glossário do
+  usuário** (as palavras que as pessoas de fato usam para cada coisa) e a **lista de perfis** (quem
+  é cada um e o que vem fazer), com o inferido marcado. O método não te impõe o nome desses dois
+  arquivos — ponha o que seu projeto usa —; o que sim exige é que existam, que se possam encontrar
+  a partir do arquivo de projeto e que estejam antes do degrau 5.
 - Nos três, uma data de última atualização.
 - No contrato, as duas regras novas.
 
@@ -158,6 +192,12 @@ detectar em dez segundos uma pendência fora de escopo.
 - O agente perguntou algo sobre o negócio antes de redigir? Se não perguntou nada, revise o que
   ele supôs.
 - O estado vivo está em outro arquivo?
+- Está escrito o glossário do usuário, com as palavras que as pessoas de fato usam para cada coisa?
+  Leia-o e procure uma palavra que você não diria: se estiver, foi o sistema que a escreveu e não o
+  negócio.
+- Está escrita a lista de perfis, dizendo quem é cada um e o que vem fazer? Conte os perfis com os
+  dedos do seu negócio: se faltar um, falta uma linha da matriz do degrau 8 e uma leva de casos de
+  prova do 10.
 - A prova de leitura: feche a sessão, abra uma nova, e pergunte o que o sistema NÃO faz e de que
   nó da árvore pende tal tela. Se responde com o mapa, o engate funciona.
 
@@ -172,3 +212,7 @@ detectar em dez segundos uma pendência fora de escopo.
   pendências estão fora de escopo; as duas coisas há que olhar.
 - Uma entidade da árvore tem um estado que o negócio nunca nomeou. O modelo o inventou porque
   lhe pareceu lógico, e vai construir sobre ele.
+- O glossário do usuário tem as mesmas palavras que a árvore semântica. Não é um glossário do
+  usuário: é o vocabulário do sistema copiado duas vezes. Pergunte ao negócio como ele chama.
+- A lista de perfis tem um só perfil, "usuário". Quase nunca é verdade, e é a forma mais comum de
+  chegar ao degrau 8 com uma matriz de uma linha que não protege nada.

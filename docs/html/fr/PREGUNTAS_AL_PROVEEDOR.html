@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Les vingt-cinq questions pour le prestataire</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+h3.refh{font-size:1.02rem;margin-top:1.6em;color:#3a2f00;border-bottom:1px dashed var(--line);padding-bottom:.2em}
+h3.refh:target{background:var(--gold-soft);border-radius:6px;padding:.4em .6em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+a{color:#7a5600}
+a.ref{font:700 .78em/1.4 Segoe UI,Arial,sans-serif;background:#f1ece0;border:1px solid var(--line);border-radius:999px;padding:0 .5em;text-decoration:none;color:#5a3f00;white-space:nowrap;vertical-align:middle}
+a.ref:hover{background:var(--gold-soft)}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+.pbox{margin:.8em 0 1.2em}
+.prompt{margin:0;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.prompt.tr{background:#f3f7f0;border-color:#cfdcc6;border-left-color:#5c8a4a}
+.prompt.tr::before{content:'Prompt (traduction)';color:#3f6b2e}
+.trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
+.trbtn:hover{background:#efe0b8}
+.antes{margin:1em 0 .8em;padding:.7em 1.1em .45em;background:#eef2f7;border:1px solid #c9d3e3;border-left:5px solid #3f5a8a;border-radius:6px;font-size:.95em}
+.antes>p:first-child{margin:.15em 0 .45em}
+.antes>p:first-child strong{display:inline-block;color:#2c4470;text-transform:uppercase;letter-spacing:.5px;font:700 .82em/1.5 Segoe UI,Arial,sans-serif;margin-right:.2em}
+.antes ul{margin:.3em 0 .45em;padding-left:1.4em}
+.antes li{margin:.4em 0}
+.antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;margin:.6em 0;display:block}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+.pie{margin-top:3em;padding-top:1em;border-top:1px dashed var(--line);font:.85em/1.5 Segoe UI,Arial,sans-serif;color:var(--mute)}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="les-vingt-cinq-questions-pour-le-prestataire">Les vingt-cinq questions pour le prestataire</h1><nav class="toc"><div class="toc-t">Sommaire</div><ul><li class="l2"><a href="#la-seule-regle-que-vous-devez-retenir">La seule règle que vous devez retenir</a></li><li class="l2"><a href="#si-vous-n-avez-que-dix-minutes">Si vous n'avez que dix minutes</a></li><li class="l2"><a href="#ce-qu-on-vous-promet-je-vous-le-livre-fonctionnel">Ce qu'on vous promet : « je vous le livre fonctionnel »</a></li><li class="l2"><a href="#ce-qu-on-vous-promet-je-sais-ce-qui-reste-et-dans-quel-ordre">Ce qu'on vous promet : « je sais ce qui reste et dans quel ordre »</a></li><li class="l2"><a href="#ce-qu-on-vous-promet-c-est-bien-fait">Ce qu'on vous promet : « c'est bien fait »</a></li><li class="l2"><a href="#ce-qu-on-vous-promet-ca-ne-vous-fera-pas-de-mal">Ce qu'on vous promet : « ça ne vous fera pas de mal »</a></li><li class="l2"><a href="#ce-qu-on-vous-promet-ca-va-tenir">Ce qu'on vous promet : « ça va tenir »</a></li><li class="l2"><a href="#ce-qu-on-vous-promet-je-vais-vous-dire-la-verite">Ce qu'on vous promet : « je vais vous dire la vérité »</a></li><li class="l2"><a href="#que-faire-des-reponses">Que faire des réponses</a></li><li class="l2"><a href="#d-ou-sort-cette-feuille">D'où sort cette feuille</a></li></ul></nav>
+<p>Cette feuille est pour un moment très concret : quelqu'un vous propose de construire un système, ou vous le livre, et vous ne programmez pas. Vous n'avez pas à apprendre à programmer pour cette réunion. Vous avez à savoir <strong>quoi demander qu'on vous montre</strong>.</p>
+<p>La méthode complète vit dans les contrats des vingt-quatre échelons, et chaque contrat apporte sa « vérification de complétude sans lire de code » : la liste des contrôles que le propriétaire fait sur ce qui a été livré. Ça sert pendant que le projet est en marche, mais c'est réparti dans trente-deux fichiers et personne n'entre en réunion avec ça. Cette feuille est la même chose, réunie et ordonnée par <strong>ce qu'on vous promet</strong>. On l'imprime et on l'emporte.</p>
+</section><section>
+<h2 id="la-seule-regle-que-vous-devez-retenir">La seule règle que vous devez retenir</h2>
+<p><strong>Les réponses qui valent sont celles qui peuvent se voir.</strong> Un fichier, un chiffre avec la commande qui le produit, un test qu'on a vu échouer, un manuel, une signature avec une date. Celles qui ne peuvent pas se voir sont des promesses, et une promesse n'est pas une réponse : c'est une intention, dite par quelqu'un qui veut clore la réunion.</p>
+<p>Il n'est pas nécessaire que vous compreniez ce qu'on vous montre. Il suffit que ça <strong>existe</strong> et que la personne l'ouvre devant vous. Si pour vous répondre elle doit vous expliquer pourquoi pas encore, notez la date et redemandez à la réunion suivante : ce qui se répète deux fois sans se montrer ne va pas apparaître.</p>
+<p>Trois phrases qu'il vaut mieux reconnaître, parce qu'elles veulent dire « je n'ai pas ça » :</p>
+<ul><li>« Faites-moi confiance, ça on le fait toujours comme ça. »</li><li>« Ça se voit à la fin, quand tout sera prêt. »</li><li>« C'est dans ma tête / c'est dans le dépôt, je vous l'envoie après. »</li></ul>
+<p>Et une précision honnête dans l'autre sens : <strong>un « non » dit avec sa raison est une bonne réponse</strong>. « Nous n'avons pas de tests de charge parce que c'est trente utilisateurs et nous en étions convenus » est un non avec une raison, et c'est exactement ce que la méthode appelle proportionnalité. Ce qui ne sert à rien, c'est le « oui » qui ne peut pas se voir.</p>
+</section><section>
+<h2 id="si-vous-n-avez-que-dix-minutes">Si vous n'avez que dix minutes</h2>
+<p>Si la réunion est courte, ces cinq apportent plus d'information que les vingt-cinq : la <strong>4</strong> (un test vu en rouge), la <strong>7</strong> (le plan, ce sont les éléments en attente), la <strong>13</strong> (la limite qui freine la construction), la <strong>20</strong> (le manuel de reprise, éprouvé par une personne) et la <strong>24</strong> (le rapport qui dit ce qui n'a pas pu être vérifié). Si ces cinq-là peuvent se voir, le reste y est presque toujours. Si aucune ne peut se voir, le reste n'y est presque jamais.</p>
+<hr>
+</section><section>
+<h2 id="ce-qu-on-vous-promet-je-vous-le-livre-fonctionnel">Ce qu'on vous promet : « je vous le livre fonctionnel »</h2>
+<p><strong>1. Pouvez-vous me montrer le système qui tourne dans un environnement qui n'est pas votre ordinateur ?</strong> Ce qui peut se voir : une adresse que vous ouvrez vous-même, sur votre téléphone, avec des données de test. S'il ne marche que sur la machine de celui qui l'a construit, il n'existe pas encore comme système. <em>(Échelon 15.)</em></p>
+<p><strong>2. Qu'est-ce qui doit être vrai pour que vous considériez une de mes demandes comme terminée ?</strong> Ce qui peut se voir : écrit, avant de commencer, pour chaque demande. Ça devrait inclure « le test est passé » et « une personne l'a utilisé ». Si la réponse est « quand ça marchera », il n'y a pas de critère : il y a une opinion. <em>(Échelon 5, critères d'acceptation.)</em></p>
+<p><strong>3. Y a-t-il un test automatique de chaque chose qui m'importe ?</strong> Ce qui peut se voir : une exécution de la batterie de tests, avec des chiffres, à l'écran. Le contenu ne vous importe pas : ce qui vous importe, c'est qu'il y ait une sortie et qu'elle dise combien sont passés. <em>(Échelon 8.)</em></p>
+<p><strong>4. Pouvez-vous me montrer un de ces tests </strong>en échec<strong> ?</strong> Ce qui peut se voir : le morceau d'écran où le test est passé au rouge contre le système sans le correctif, avec la commande qui l'a lancé et la date. C'est la question la plus importante de la feuille : un test que personne n'a vu échouer, on ne sait pas s'il prouve quelque chose. Un système peut avoir mille tests qui passent et ne rien surveiller. <em>(Échelon 8. Dans la méthode, ça s'appelle « éprouvé en rouge ».)</em></p>
+<p><strong>5. Qui, à part vous et un programme, a utilisé le système et est allé jusqu'au bout ?</strong> Ce qui peut se voir : une liste de cas de test écrits pour une personne, avec une date, avec le nom de qui les a exécutés et ce qui s'est passé. Celui qui a construit ne peut pas être le seul qui a testé, et le modèle teste ce qu'il a compris, qui n'est pas toujours ce que vous avez demandé. <em>(Échelon 10.)</em></p>
+<p><strong>6. Si je fais quelque chose de travers à l'écran — je saisis deux fois, j'appuie sur le bouton dans la précipitation —, que se passe-t-il ?</strong> Ce qui peut se voir : la liste des actions qui ne peuvent pas se défaire, chacune avec son verrou et ce qui se passe si elle échoue à mi-chemin. La bonne réponse n'est jamais « ça ne devrait pas arriver ». <em>(Échelon 14.)</em></p>
+</section><section>
+<h2 id="ce-qu-on-vous-promet-je-sais-ce-qui-reste-et-dans-quel-ordre">Ce qu'on vous promet : « je sais ce qui reste et dans quel ordre »</h2>
+<p><strong>7. Où est la liste de ce qui reste, et puis-je la voir aujourd'hui ?</strong> Ce qui peut se voir : un registre d'éléments en attente numérotés, chacun écrit en détail et avec la date à laquelle il a été clos. <strong>Cette liste est le plan</strong> : s'il y a un plan ailleurs et une liste ici, il y a deux plans, et celui qui vaut est celui que personne ne regarde. <em>(Échelon 5.)</em></p>
+<p><strong>8. Chaque chose que vous allez me construire est-elle écrite avant de la construire, avec mes mots ?</strong> Ce qui peut se voir : l'élément en attente ouvert, avec l'histoire d'où vient la demande dite comme vous l'avez dite, les règles qui s'appliquent, les écrans et les cas bizarres. S'il tient en une ligne, ce qui manque, quelqu'un va l'inventer. <em>(Échelon 5.)</em></p>
+<p><strong>9. Quand quelque chose du métier n'est pas clair, que faites-vous ?</strong> Ce qui peut se voir : le fichier de décisions, avec la date et qui a décidé chacune. La réponse que vous cherchez est « je vous demande et je le note ». Un modèle qui trouve un trou dans les règles du métier le remplit tout seul et continue, et six semaines plus tard personne ne sait pourquoi le système fait ça. <em>(Échelons 1 et 6.)</em></p>
+<p><strong>10. Est-il écrit quelles choses le système </strong>ne<strong> va </strong>pas<strong> faire ?</strong> Ce qui peut se voir : une section à part, avec au moins deux entrées, dans le document du projet. Ce qui n'est pas dit est exactement ce qui va apparaître construit d'une autre manière. <em>(Échelon 2.)</em></p>
+<p><strong>11. Qui sont les différents types de personne qui vont utiliser ça, et est-il écrit ce que chacun peut faire ?</strong> Ce qui peut se voir : la liste des profils — qui est chacun et ce qu'il vient faire — et un tableau qui dit ce que chaque profil peut faire. S'il y a un seul profil appelé « utilisateur », il manque presque toujours la moitié : c'est la cause la plus fréquente de ce que quelqu'un voie un bouton qui ne lui revient pas, ou de ce que quelqu'un qui a la permission ne trouve pas l'écran. <em>(Échelon 2, les entrées préalables de l'Annexe H ; échelon 8, la matrice.)</em></p>
+</section><section>
+<h2 id="ce-qu-on-vous-promet-c-est-bien-fait">Ce qu'on vous promet : « c'est bien fait »</h2>
+<p><strong>12. Qu'est-ce qu'une machine mesure à chaque changement, sans que personne ait à y penser ?</strong> Ce qui peut se voir : la configuration de la chaîne de vérification dans le dépôt et le registre de la dernière exécution. « On se relit entre nous » n'est pas une réponse : c'est une habitude, et les habitudes tombent la semaine où il y a urgence. <em>(Échelons 4 et 9.)</em></p>
+<p><strong>13. Y a-t-il une limite qui, si elle est dépassée, </strong>freine<strong> la construction ?</strong> Ce qui peut se voir : un fichier avec les limites et leur valeur mesurée du jour, et une exécution freinée par l'une d'elles. La question de contrôle, qu'il vaut mieux poser telle quelle : <em>avez-vous déjà relevé une limite pour pouvoir continuer ?</em> Si la réponse est oui et qu'il n'est pas écrit pourquoi, la limite est décorative. <em>(Échelon 9.)</em></p>
+<p><strong>14. Comment savez-vous que le code pourra être maintenu par quelqu'un d'autre ?</strong> Ce qui peut se voir : le rapport par règle, pas un chiffre unique : taille de fichier, taille de fonction, code répété, code mort. Une « qualité de quatre-vingt-quinze pour cent » ne dit pas quoi réparer. <em>(Échelon 9 et Annexe H.)</em></p>
+<p><strong>15. Les écrans, quelqu'un les a-t-il pensés, ou sont-ils sortis de ce dont le programme avait besoin ?</strong> Ce qui peut se voir : le registre des règles d'utilisabilité avec leur résultat, et les exceptions éteintes avec le motif écrit, qui l'a autorisé et quand ça se révise. Un système peut passer toutes les vérifications techniques et être inutilisable : tout vert, et la personne ne trouve pas où encaisser. <em>(Annexe H, les vingt-sept règles d'utilisabilité.)</em></p>
+<p><strong>16. Les tests que vous m'avez montrés surveillent-ils vraiment, ou décorent-ils ?</strong> Ce qui peut se voir : le score de mutation. C'est un programme qui introduit des erreurs exprès et compte combien les tests en attrapent ; le chiffre sort avec sa commande. Si votre système a de vrais utilisateurs, ce n'est pas facultatif dans la méthode. <em>(Échelon 9.)</em></p>
+</section><section>
+<h2 id="ce-qu-on-vous-promet-ca-ne-vous-fera-pas-de-mal">Ce qu'on vous promet : « ça ne vous fera pas de mal »</h2>
+<p><strong>17. Qu'arrive-t-il à mes données si quelque chose casse au milieu d'une opération ?</strong> Ce qui peut se voir : le tableau des actions avec leur réversibilité, et la règle écrite selon laquelle, dans le doute, le système <strong>se freine</strong> au lieu de continuer. Un double encaissement ou une approbation automatique que personne n'a regardée sont le cas typique. <em>(Échelon 14.)</em></p>
+<p><strong>18. Y a-t-il des sauvegardes, et avez-vous déjà éprouvé d'en restaurer une ?</strong> Ce qui peut se voir : la date de la dernière restauration <strong>éprouvée</strong>. Une sauvegarde qu'on n'a jamais restaurée n'est pas une sauvegarde : c'est un fichier dont personne ne sait rien. <em>(Échelon 20, manuel de reprise.)</em></p>
+<p><strong>19. Qui vérifie que le système n'a pas de trous connus, et tous les combien ?</strong> Ce qui peut se voir : le scan qui tourne dans la chaîne, avec une date, et les constats convertis en éléments en attente. Plus une question courte et très révélatrice : <em>où sont gardées les clés et les mots de passe du système ?</em> S'ils sont dans le code, vous avez déjà un problème. <em>(Échelons 18 et 15.)</em></p>
+<p><strong>20. Quelqu'un qui ne programme pas a-t-il récupéré le système depuis zéro en suivant un manuel ?</strong> Ce qui peut se voir : le manuel, et le registre de cette épreuve avec trois choses : combien de temps elle a pris de bout en bout, à quelle étape exacte la personne s'est bloquée, et quels mots elle n'a pas compris. Si le manuel commence par « ouvre une session avec l'agent », ce n'est pas un manuel pour une personne. Et tant que ça n'existe pas, dit sans détour : <strong>le propriétaire n'est pas propriétaire, il est locataire</strong>. Il a le système, il le paie, et il ne peut pas entrer sans demander la permission à qui l'a construit. <em>(Échelon 20.)</em></p>
+</section><section>
+<h2 id="ce-qu-on-vous-promet-ca-va-tenir">Ce qu'on vous promet : « ça va tenir »</h2>
+<p><strong>21. Avec quels chiffres avez-vous dimensionné ça, et d'où sortent-ils ?</strong> Ce qui peut se voir : combien d'utilisateurs en même temps, combien d'opérations par jour, combien ça croît par an, combien de temps ça doit rester stocké. Et la partie qui importe : ces chiffres, c'est <strong>votre métier</strong> qui les a, pas celui qui construit. S'il les a inventés, ils sont faux. <em>(Échelon 3.)</em></p>
+<p><strong>22. L'avez-vous éprouvé avec la charge que je vais lui donner, et avec dix fois plus ?</strong> Ce qui peut se voir : le rapport de l'exécution, avec le point exact où le système est tombé. Savoir où il casse est la seule façon de savoir quelle marge vous avez. <em>(Échelon 19.)</em></p>
+<p><strong>23. Quand le système sera lent dans six mois, comment allez-vous savoir pourquoi ?</strong> Ce qui peut se voir : les journaux avec un identifiant par action, le rapport des requêtes les plus lentes, et les alertes configurées. Si la réponse est « on verra quand ça arrivera », c'est vous qui le verrez d'abord, par un utilisateur en colère. <em>(Échelons 16, 17, 21 et 22.)</em></p>
+</section><section>
+<h2 id="ce-qu-on-vous-promet-je-vais-vous-dire-la-verite">Ce qu'on vous promet : « je vais vous dire la vérité »</h2>
+<p><strong>24. Quand vous m'annoncez que quelque chose est prêt, comment distingue-je ce que vous avez éprouvé de ce que vous supposez ?</strong> Ce qui peut se voir : le rapport en trois blocs : <strong>vérifié</strong> (avec la preuve à côté), <strong>cru</strong> (et pourquoi ça n'a pas été éprouvé) et <strong>angles morts</strong> (ce qu'on ne peut pas voir d'où on est). « Prêt » tout court n'est pas un rapport. Et la deuxième partie de la question vaut plus que la première : <em>quelles choses de cette livraison n'avez-vous <strong>pas</strong> pu vérifier ?</em> Si la réponse est « aucune, tout vérifié », méfiez-vous : personne ne vérifie tout. <em>(Échelon 12.)</em></p>
+<p><strong>25. Qui relit le travail, en plus de vous-même ?</strong> Ce qui peut se voir : un audit fait par quelqu'un — ou quelque chose — de différent de celui qui a construit, avec ses constats convertis en éléments en attente et avec une date. Un modèle avalise une part considérable de ses propres erreurs, et une personne aussi. Celui qui construit ne peut pas être le seul qui vérifie. <em>(Échelon 13.)</em></p>
+<hr>
+</section><section>
+<h2 id="que-faire-des-reponses">Que faire des réponses</h2>
+<p>Notez, à côté de chaque question, une de trois choses : <strong>je l'ai vu</strong>, <strong>je ne l'ai pas encore vu</strong> (avec la date où on vous l'a promis) ou <strong>ça n'existe pas et on m'a dit pourquoi</strong> (avec la raison). Il n'est pas nécessaire que les vingt-cinq donnent « je l'ai vu » : un petit projet n'a pas besoin de tests de charge ni de supervision hebdomadaire, et la méthode le dit. Ce qui doit arriver, en revanche, c'est que <strong>chaque « non » ait sa raison écrite</strong>, parce qu'un non avec une raison est une décision de vous et un non sans raison est une dette que vous allez payer sans l'avoir choisie.</p>
+<p>Et une dernière, non numérotée parce qu'elle n'est pas pour le prestataire : si quelqu'un se met mal à l'aise parce que vous demandez à voir les choses, ça aussi c'est de l'information.</p>
+<hr>
+</section><section>
+<h2 id="d-ou-sort-cette-feuille">D'où sort cette feuille</h2>
+<p>Les vingt-cinq questions sont la « vérification de complétude sans lire de code » des contrats de cette méthode, réunie : chacune cite l'échelon dont elle sort, donc n'importe qui peut aller au contrat et lire la version complète. Elles sont écrites de zéro pour cette feuille.</p>
+<p><strong>L'idée que ça devait exister comme une feuille n'est pas la mienne.</strong> Elle vient de la première adaptation de la méthode à un autre format — le roman d'Oscar Schmitz « El Arte de Forjar Sistemas », 2026, crédité en Partie F du document principal —, qui l'a dit mieux que moi : la méthode a la vérification répartie dans ses contrats et il lui manquait la pièce qu'un propriétaire emporte à une réunion. Le critère en tête de cette feuille — que les réponses qui valent sont celles qui peuvent se voir — vient aussi de là. Sa version des questions est son œuvre et porte ses droits réservés ; celles-ci sont d'autres, écrites depuis mes contrats, et c'est pour ça qu'elles se publient sous la licence de ce dépôt.</p></section>
+<footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">Dépôt public de la méthode: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
+</div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>

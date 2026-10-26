@@ -25,6 +25,20 @@ trusted person who does not program has to be able to follow it, at three in the
 the system down and the agent offline**. If at any step it says "check with the developer" or
 "depending on the case", that step is incomplete.
 
+And that test **leaves three things written down**, because if it leaves nothing, the gate is
+fulfilled without measuring anything -- which is the cheapest way to have a decorative gate. The
+three are: the **measured time** end to end (when the person started, when the system was working
+again), the **exact point where they got stuck** (the step of the manual, in their words, not in
+yours), and **every word they did not understand**. The three go with a date and the name of
+whoever ran the test. And every word they did not understand **opens a pending item**: either the
+manual explains it, or the thing gets renamed across the whole system. That list of words is, on
+top of that, the best input for the user glossary of step 2, and the retrospective of step 23 uses
+it as a proposed change.
+
+Without these manuals, said in one word that needs no explanation: **the owner is not an owner,
+they are a tenant**. They have the system, they pay for it, and they cannot get in without asking
+permission from whoever built it.
+
 And a source you must not waste: the closed pending items. Each one carries its specification, its
 decision, its evidence and its date. The user manual is not written from scratch at the end: it is
 assembled, block by block, from the pending items that were closed, and the changelog comes
@@ -105,6 +119,11 @@ which system each manual corresponds to.
 - `docs/CHANGELOG.md`, fed by the closed pending items.
 - Each one with a date and the version of the system it documents.
 - In the commits that change screens, operation or deployment: the manual updated.
+- **The record of the recovery-manual test**, with four things: the date and the name of whoever
+  ran it; the measured end-to-end time; the exact step where they got stuck, in their words; and
+  the list of words they did not understand. Plus one pending item opened for each of those words.
+  Where it gets written is your choice -- at the end of the recovery manual itself is enough --;
+  what is not optional is that it exists.
 
 ## 4. Completeness check
 
@@ -112,6 +131,10 @@ which system each manual corresponds to.
   environment today?
 - Could you, or a trusted person who does not program, follow the recovery manual? Read the "it
   went down" section: does it say what to do, in order, with the commands?
+- Did the recovery-manual test leave its record: how long it took, where the person got stuck and
+  which words they did not understand, with a date and a name? And of those words, did every one
+  open a pending item? If the record says "the test was done" and nothing else, the test cannot be
+  repeated or compared: the gate is fulfilled on paper.
 - Pick a recent commit that changed a screen: did it touch the manual?
 - Does the changelog have one entry for every pending item closed in the last block?
 - Is there a gap of the kind "[to be completed]" or "check with the person responsible"? There the
@@ -126,3 +149,7 @@ which system each manual corresponds to.
   prerequisite, it is not a manual for a person.
 - Nobody outside the builder ever read the recovery manual. Ask somebody to follow it in the test
   environment; whatever gets them stuck is what has to be fixed.
+- The test was done and was not recorded, or was recorded as "it went fine". Then nobody can say
+  how long it took nor where it came close to not working, and next time you start from zero.
+- The record does not have a single word on the list of the ones that were not understood. It
+  happens now and then and it is true; it happens always and it means nobody asked.

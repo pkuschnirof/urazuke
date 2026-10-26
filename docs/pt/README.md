@@ -69,6 +69,7 @@ por isso a evidência precisa provar a si mesma.
 | `REFERENCIAS.md` | Os casos reais por trás do método, numerados ("Ref. N"), com data e evidência, para que os procedimentos fiquem limpos e o detalhe continue a um clique. Inclui as cronologias dos três sistemas e a tabela de falhas por degrau. |
 | `peldanos/peldano-NN-*.md` | O contrato de cada degrau: quando, contexto necessário, prompts em inglês com sua tradução e, antes de cada um, o bloco "Antes de enviar o prompt" com os arquivos que você tem que construir e o seu conteúdo; resultado esperado, verificação de completude sem ler código, sinais de alerta. |
 | `peldanos/README.md` | O índice dos contratos. |
+| `PREGUNTAS_AL_PROVEEDOR.md` | As vinte e cinco perguntas para o fornecedor: a verificação de completitude dos contratos, reunida numa folha que um dono que nunca contratou software leva a uma reunião. Agrupadas pelo que estão lhe prometendo, cada uma com a resposta que se pode **ver** e o degrau de que sai. |
 | `MANUAL_CURSO.md` | O curso: calendário, vinte e quatro lições com tarefas práticas e prompts, projeto-guia ("Turnera"), lista de saída para produção. |
 | `MANUAL_CURSO_EVOLUTIVO.md` | A parte 2 do curso: o projeto-guia herdado ("Turnera herdada"), dez lições (N0 a N7, R1 e R2) para normalizar um legado e depois corrigi-lo e evoluí-lo. |
 | `../DECISIONES.md` | As decisões do projeto, com data e palavras textuais. O método se aplica a si mesmo. Fica apenas em espanhol. |

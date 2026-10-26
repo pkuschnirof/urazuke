@@ -23,7 +23,11 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { raiz } from '../build/gates_lib.mjs';
 
-const GRUPOS = ['G-API', 'G-ALCANCE', 'G-IDIOMA', 'G-PUBLICACION', 'G-ECOSISTEMA'];
+// La lista es cerrada a proposito: una entrada con un grupo que no este aca se reporta como
+// "grupo no reconocido", que es lo que atrapa un grupo inventado al pasar. El precio es que
+// abrir un grupo de verdad toca tres lugares a la vez --la tabla de grupos del registro, esta
+// constante y la tabla del resumen--. G-METODO entro el 2026-10-26 con PND-039 a PND-048.
+const GRUPOS = ['G-API', 'G-ALCANCE', 'G-IDIOMA', 'G-PUBLICACION', 'G-ECOSISTEMA', 'G-METODO'];
 
 // Las entradas, leidas del documento. Un encabezado "## PND-026 a PND-034" es un rango y
 // cuenta por todas las entradas que nombra, no por una.
