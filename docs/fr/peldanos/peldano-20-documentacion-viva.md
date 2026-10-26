@@ -26,6 +26,20 @@ doit pouvoir être suivi par une personne de confiance qui ne programme pas, à 
 matin, avec le système tombé et l'agent hors ligne**. Si à une étape il dit « consulter le
 développeur » ou « selon le cas », cette étape est incomplète.
 
+Et cette épreuve **laisse trois choses écrites**, parce que si elle ne laisse rien, la barrière est
+remplie sans rien mesurer — ce qui est la façon la moins chère d'avoir une barrière décorative. Les
+trois sont : le **temps mesuré** de bout en bout (quand la personne a commencé, quand le système a
+refonctionné), le **point exact où elle s'est bloquée** (l'étape du manuel, avec ses mots, pas avec
+les vôtres), et **chaque mot qu'elle n'a pas compris**. Les trois vont avec la date et le nom de qui
+a fait l'épreuve. Et chaque mot qu'elle n'a pas compris **ouvre un élément en attente** : soit on
+l'explique dans le manuel, soit on change le nom de la chose dans tout le système. Cette liste de
+mots est, de plus, le meilleur intrant du glossaire de l'utilisateur de l'échelon 2, et la
+rétrospective de l'échelon 23 l'emploie comme proposition de changement.
+
+Sans ces manuels, dit en un mot qui n'a pas besoin d'explication : **le propriétaire n'est pas
+propriétaire, il est locataire**. Il a le système, il le paie, et il ne peut pas entrer sans demander
+la permission à qui l'a construit.
+
 Et une source qu'il ne faut pas gaspiller : les éléments en attente clos. Chacun apporte sa
 spécification, sa décision, sa preuve et sa date. Le manuel utilisateur ne s'écrit pas de zéro à
 la fin : il se monte, bloc par bloc, à partir des éléments qui ont été clos, et le journal des
@@ -124,6 +138,11 @@ version, pour qu'on sache à quel système correspond chaque manuel.
 - Chacun avec une date et la version du système qu'il documente.
 - Dans les commits qui changent des écrans, l'exploitation ou le déploiement : le manuel mis à
   jour.
+- **Le registre de l'épreuve du manuel de reprise**, avec quatre choses : la date et le nom de qui
+  l'a faite ; le temps mesuré de bout en bout ; l'étape exacte où elle s'est bloquée, avec ses mots ;
+  et la liste des mots qu'elle n'a pas compris. Plus un élément en attente ouvert pour chacun de ces
+  mots. Où ça s'écrit, c'est votre choix — à la fin du manuel de reprise lui-même, ça suffit — ; ce
+  qui n'est pas facultatif, c'est que ça existe.
 
 ## 4. Vérification de complétude
 
@@ -137,6 +156,10 @@ version, pour qu'on sache à quel système correspond chaque manuel.
 - Y a-t-il un trou du type « [à compléter] » ou « consulter le responsable » ? Là, l'agent devait
   poser la question.
 - Chaque manuel dit-il pour quelle version du système il vaut ?
+- L'épreuve du manuel de reprise a-t-elle laissé son registre : combien de temps elle a pris, où la
+  personne s'est bloquée et quels mots elle n'a pas compris, avec la date et le nom ? Et de ces mots,
+  chacun a-t-il ouvert un élément en attente ? Si le registre dit « l'épreuve a été faite » et rien
+  de plus, l'épreuve ne peut pas se répéter ni se comparer : la barrière est remplie sur le papier.
 
 ## 5. Signaux d'alarme
 
@@ -146,3 +169,8 @@ version, pour qu'on sache à quel système correspond chaque manuel.
   prérequis, ce n'est pas un manuel pour une personne.
 - Personne en dehors du constructeur n'a jamais lu le manuel de reprise. Demandez à quelqu'un de
   le suivre dans l'environnement de test ; ce qui le bloque est ce qu'il faut corriger.
+- L'épreuve a été faite et n'a pas été enregistrée, ou a été enregistrée comme « ça s'est bien
+  passé ». Alors personne ne peut dire combien de temps elle a pris ni où elle a été près de ne pas
+  marcher, et la prochaine fois on repart de zéro.
+- Le registre n'a pas un seul mot dans la liste de ceux qui n'ont pas été compris. Ça arrive de temps
+  en temps et c'est vrai ; ça arrive toujours et ça veut dire que personne n'a demandé.

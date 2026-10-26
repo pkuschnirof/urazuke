@@ -25,6 +25,18 @@ Um critério de qualidade para o manual de recuperação, que serve para julgá-
 sistema caído e o agente sem conexão**. Se em algum passo diz "consultar o desenvolvedor" ou
 "conforme o caso", esse passo está incompleto.
 
+E essa prova **deixa três coisas escritas**, porque se não deixa nada, a comporta se cumpre sem
+medir nada — que é a forma mais barata de ter uma comporta decorativa. As três são: o **tempo
+medido** de ponta a ponta (quando a pessoa começou, quando o sistema voltou a funcionar), o **ponto
+exato onde travou** (o passo do manual, com as palavras dela, não com as suas), e **cada palavra que
+não entendeu**. As três vão com data e com o nome de quem fez a prova. E cada palavra que não
+entendeu **abre uma pendência**: ou se explica no manual, ou se troca o nome da coisa em todo o
+sistema. Essa lista de palavras é, além disso, o melhor insumo do glossário do usuário do degrau 2,
+e a retrospectiva do degrau 23 a usa como proposta de mudança.
+
+Sem estes manuais, dito em uma palavra que não precisa de explicação: **o dono não é dono, é
+inquilino**. Tem o sistema, paga por ele, e não pode entrar sem pedir permissão a quem o construiu.
+
 E uma fonte que não se deve desperdiçar: as pendências fechadas. Cada uma traz sua
 especificação, sua decisão, sua evidência e sua data. O manual de usuário não se escreve do zero
 no final: monta-se, bloco a bloco, a partir das pendências que fecharam, e o diário de mudanças
@@ -120,6 +132,11 @@ manual.
 - `docs/CHANGELOG.md`, alimentado pelas pendências fechadas.
 - Cada um com data e a versão do sistema que documenta.
 - Nos commits que mudam telas, operação ou implantação: o manual atualizado.
+- **O registro da prova do manual de recuperação**, com quatro coisas: a data e o nome de quem a
+  fez; o tempo medido de ponta a ponta; o passo exato onde travou, com as palavras dela; e a lista
+  de palavras que não entendeu. Mais uma pendência aberta por cada uma dessas palavras. Onde se
+  escreve é sua escolha — no final do próprio manual de recuperação basta —; o que não é opcional é
+  que exista.
 
 ## 4. Verificação de completude
 
@@ -131,6 +148,10 @@ manual.
 - O diário de mudanças tem uma entrada para cada pendência fechada do último bloco?
 - Há um buraco tipo "[completar]" ou "consultar o responsável"? Aí o agente tinha que perguntar.
 - Cada manual diz para que versão do sistema vale?
+- A prova do manual de recuperação deixou seu registro: quanto tempo levou, onde a pessoa travou e
+  que palavras não entendeu, com data e nome? E dessas palavras, cada uma abriu uma pendência? Se o
+  registro diz "a prova foi feita" e nada mais, a prova não se pode repetir nem comparar: a comporta
+  está cumprida no papel.
 
 ## 5. Sinais de alerta
 
@@ -140,3 +161,7 @@ manual.
   pré-requisito, não é um manual para uma pessoa.
 - Ninguém fora do construtor leu nunca o manual de recuperação. Peça a alguém que o siga no
   ambiente de teste; o que travar é o que há que corrigir.
+- A prova foi feita e não ficou registrada, ou ficou registrada como "deu bem". Então ninguém pode
+  dizer quanto tempo levou nem onde esteve perto de não dar, e na próxima vez se começa de zero.
+- O registro não tem nem uma palavra na lista das que não se entenderam. Acontece de vez em quando
+  e é verdade; acontece sempre e significa que ninguém perguntou.

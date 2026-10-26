@@ -209,6 +209,17 @@ anterior había sido sobre el síntoma. Acá "el arreglo es de raíz o no es arr
 en el contrato de convivencia, dejó de ser una frase y se volvió práctica: hay que medir la
 hipótesis antes de tocar. Peldaños 1 y 7.
 
+**La aritmética, dicha en voz alta, porque los dos números son el mismo caso contado desde dos
+lados.** Hubo **cuatro rondas de arreglo** y **tres retornos** del bug: la ronda 1 lo "arregló" y
+volvió (retorno 1), la 2 lo "arregló" y volvió (retorno 2), la 3 lo "arregló" y volvió (retorno 3),
+y la 4 fue la que encontró la causa raíz. De ahí que el título de esta referencia diga cuatro
+rondas, que este párrafo diga que volvió tres veces y que la tabla de fallos por peldaño cuente
+tres arreglos que no eran de raíz: no es una contradicción, son n rondas y n−1 retornos. Queda
+escrito acá porque sin esta línea las tres menciones se leen como tres cifras distintas del mismo
+hecho, y el primer lector externo que reprodujo el caso escribió "volvió cuatro veces". Si una
+referencia deja que alguien que la lee con cuidado saque otro número, el defecto es de la
+referencia.
+
 ### Ref. 23 — Auditoría de seguridad (16 de julio)
 
 El 16 de julio hice la primera auditoría de seguridad formal, con hallazgos convertidos en

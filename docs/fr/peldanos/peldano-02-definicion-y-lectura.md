@@ -38,6 +38,16 @@ d'envoyer le prompt » qui précède chacun d'eux.
 - Le contrat de collaboration (échelon 1).
 - S'il existe un système antérieur : un accès en lecture à son code ou à sa documentation.
 - Les décisions déjà prises, s'il y en a, même à l'oral.
+- Les mots que le métier emploie vraiment pour chaque chose, et qui sont les différents types de
+  personne qui vont utiliser le système. Ce sont les deux **entrées préalables** de
+  l'[Annexe H](../ANEXO_HEURISTICAS.md), et cet échelon est là où elles s'écrivent : sans elles, la
+  matrice de profils de l'échelon 8 s'invente et les règles d'utilisabilité n'ont rien à quoi se
+  comparer.
+- Et pour les deux entrées préalables de l'Annexe H : dans le relevé, les acteurs nommés **avec le
+  mot qu'emploie le métier** (si la réceptionniste s'appelle « la fille du comptoir », c'est ça la
+  donnée, pas « utilisateur opérationnel »), et toute liste de types d'utilisateur qui existe déjà,
+  même si elle est dans un courriel. Si vous n'avez ni l'un ni l'autre, dites-le : l'agent doit les
+  **demander**, pas les inventer.
 
 ## 2. Prompts
 
@@ -75,9 +85,14 @@ faites, pas l'agent :
 > level and, under each one, its actors, its processes (the use cases, each with actor, trigger,
 > steps, outcome and exceptions), its entities with their attributes, states and transitions,
 > its screens, and its external integrations. Mark every node you inferred rather than read in
-> the survey, so that I can confirm or correct it. Separately, create `docs/STATUS.md` for the
-> living state (what is being worked on, what is open): that file changes every day; the other
-> two change only when the system changes. Reply in my language.
+> the survey, so that I can confirm or correct it. Third, the two prior inputs that Annex H
+> needs before a single screen exists: the user glossary, with the words people actually use
+> for each thing as the business says them and not as the system calls them; and the list of
+> profiles, saying who each one is and what they come to do. Take both from the survey, ask
+> me for whatever is not in it instead of inventing it, write them as files of the project,
+> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
+> changes every day; the other two change only when the system changes. Reply in my language.
 
 > [fr]
 > Nous allons définir le projet par écrit. Lis le relevé du métier dans
@@ -92,7 +107,13 @@ faites, pas l'agent :
 > d'utilisation, chacun avec acteur, déclencheur, étapes, résultat et exceptions), ses entités
 > avec leurs attributs, états et transitions, ses écrans et ses intégrations externes. Marque
 > chaque nœud que tu as inféré plutôt que lu dans le relevé, pour que je le confirme ou le
-> corrige. À part, crée `docs/STATUS.md` pour l'état vivant (ce sur quoi on travaille, ce qui est
+> corrige. Troisièmement, les deux entrées préalables dont
+> l'Annexe H a besoin avant qu'un seul écran existe : le glossaire de l'utilisateur, avec les mots
+> que les gens emploient vraiment pour chaque chose, comme le métier les dit et non comme le système
+> les appelle ; et la liste des profils, en disant qui est chacun et ce qu'il vient faire. Tire les
+> deux du relevé, demande-moi ce qui n'y est pas au lieu de l'inventer, écris-les comme des fichiers
+> du projet, nomme ces fichiers dans `PROJECT.md` et marque là aussi ce que tu as inféré.
+> À part, crée `docs/STATUS.md` pour l'état vivant (ce sur quoi on travaille, ce qui est
 > ouvert) : ce fichier change tous les jours ; les deux autres ne changent que quand le système
 > change. Réponds dans ma langue.
 
@@ -105,6 +126,17 @@ avec leurs parties, entités avec états et transitions, écrans, intégrations)
 domaine de l'ingénierie des exigences mis sous forme d'arbre ; qu'il **marque ce qu'il a inféré**,
 parce que c'est là que se cachent les inventions ; et qu'il sépare l'état vivant dans un autre
 fichier, pour que la carte ne se transforme pas en historique.
+
+Et les deux entrées préalables de l'Annexe H, qui sont celles qui font que l'échelon 2 ne soit pas
+seulement une carte pour le modèle. Le **glossaire de l'utilisateur** est la liste des mots que les
+gens emploient vraiment : « rendez-vous », pas « réservation d'agenda » ; « la fille du comptoir »,
+pas « utilisateur opérationnel ». Il sert à deux choses qui viennent après : nommer les groupes du
+menu avec des tâches de l'utilisateur, et que le texte des écrans dise ce que les gens disent. La
+**liste des profils**, c'est qui est chacun et ce qu'il vient faire, et c'est la colonne d'où sort
+la matrice de l'échelon 8 ; si elle n'est pas écrite ici, à l'échelon 5 elle s'invente, et une
+matrice inventée est la cause de ce que quelqu'un voie un bouton qui ne lui revient pas. Je lui
+demande explicitement de les **demander** au lieu de les déduire, parce que ce sont des données du
+métier et non du système ; et de marquer ce qu'il a inféré, pour la même raison que dans l'arbre.
 
 **De clôture :**
 
@@ -146,6 +178,12 @@ périmètre.
   les confirmiez, et, dès le premier bloc, les éléments en attente et les décisions pendus à leurs
   nœuds.
 - `docs/STATUS.md` : l'état vivant, séparé des précédents.
+- Les deux entrées préalables de l'Annexe H, écrites et nommées dans `PROJECT.md` : le **glossaire
+  de l'utilisateur** (les mots que les gens emploient vraiment pour chaque chose) et la **liste des
+  profils** (qui est chacun et ce qu'il vient faire), avec ce qui a été inféré marqué. La méthode ne
+  vous impose pas le nom de ces deux fichiers — mettez celui qu'emploie votre projet — ; ce qu'elle
+  exige, en revanche, c'est qu'ils existent, qu'on puisse les trouver depuis le fichier de projet et
+  qu'ils soient là avant l'échelon 5.
 - Dans les trois, une date de dernière mise à jour.
 - Dans le contrat, les deux règles nouvelles.
 
@@ -167,6 +205,12 @@ périmètre.
 - Le test de lecture : fermez la session, ouvrez-en une nouvelle, et demandez-lui ce que le
   système NE fait PAS et de quel nœud de l'arbre pend tel écran. S'il répond avec la carte,
   l'accrochage fonctionne.
+- Le glossaire de l'utilisateur est-il écrit, avec les mots que les gens emploient vraiment pour
+  chaque chose ? Lisez-le et cherchez un mot que vous ne diriez pas : s'il est là, c'est le système
+  qui l'a écrit et non le métier.
+- La liste des profils est-elle écrite, en disant qui est chacun et ce qu'il vient faire ? Comptez
+  les profils sur les doigts de votre métier : s'il en manque un, il manque une ligne de la matrice
+  de l'échelon 8 et une fournée de cas de test de l'échelon 10.
 
 ## 5. Signaux d'alarme
 
@@ -180,3 +224,8 @@ périmètre.
   soit ces éléments sont hors périmètre ; les deux choses sont à regarder.
 - Une entité de l'arbre a un état que le métier n'a jamais nommé. Le modèle l'a inventé parce que
   cela lui a paru logique, et il va construire dessus.
+- Le glossaire de l'utilisateur a les mêmes mots que l'arbre sémantique. Ce n'est pas un glossaire de
+  l'utilisateur : c'est le vocabulaire du système copié deux fois. Demandez au métier comment il
+  l'appelle.
+- La liste des profils n'a qu'un seul profil, « utilisateur ». C'est presque jamais vrai, et c'est la
+  façon la plus courante d'arriver à l'échelon 8 avec une matrice d'une ligne qui ne protège rien.

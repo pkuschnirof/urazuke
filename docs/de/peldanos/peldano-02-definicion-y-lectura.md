@@ -42,6 +42,11 @@ den Prompt schickst“, der jedem einzelnen vorangeht.
 - Die Arbeitsvereinbarung (Schritt 1).
 - Wenn es ein Vorgängersystem gibt: Lesezugang zu seinem Code oder seiner Dokumentation.
 - Die schon getroffenen Entscheidungen, falls es welche gibt, und sei es mündlich.
+- Die Wörter, die das Geschäft wirklich für jede Sache benutzt, und wer die verschiedenen Arten von
+  Person sind, die das System benutzen werden. Es sind die zwei **Voreingaben** von
+  [Anhang H](../ANEXO_HEURISTICAS.md), und dieser Schritt ist der, in dem sie geschrieben werden:
+  ohne sie wird die Profilmatrix von Schritt 8 erfunden und die Benutzbarkeitsregeln haben nichts,
+  womit sie vergleichen können.
 
 ## 2. Prompts
 
@@ -68,6 +73,11 @@ machst es, nicht der Agent:
   zwei Punkten, mindestens einen Anwendungsfall mit den Worten des Eigentümers, und mindestens
   eine Entität mit ihren Zuständen. Ohne das wird der Baum, der herauskommt, erfunden sein, und du
   wirst nichts haben, womit du ihn vergleichen kannst.
+- Und für die zwei Voreingaben von Anhang H: in der Erhebung die Akteure benannt **mit dem Wort, das
+  das Geschäft benutzt** (wenn die Empfangsdame „das Mädchen am Schalter" heißt, ist das das Datum,
+  nicht „operativer Benutzer"), und jede Liste von Benutzertypen, die es schon gibt, und sei es in
+  einer E-Mail. Wenn du weder das eine noch das andere hast, sag es: der Agent muss sie **erfragen**,
+  nicht erfinden.
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -80,9 +90,14 @@ machst es, nicht der Agent:
 > level and, under each one, its actors, its processes (the use cases, each with actor, trigger,
 > steps, outcome and exceptions), its entities with their attributes, states and transitions,
 > its screens, and its external integrations. Mark every node you inferred rather than read in
-> the survey, so that I can confirm or correct it. Separately, create `docs/STATUS.md` for the
-> living state (what is being worked on, what is open): that file changes every day; the other
-> two change only when the system changes. Reply in my language.
+> the survey, so that I can confirm or correct it. Third, the two prior inputs that Annex H
+> needs before a single screen exists: the user glossary, with the words people actually use
+> for each thing as the business says them and not as the system calls them; and the list of
+> profiles, saying who each one is and what they come to do. Take both from the survey, ask
+> me for whatever is not in it instead of inventing it, write them as files of the project,
+> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
+> changes every day; the other two change only when the system changes. Reply in my language.
 
 > [de]
 > Wir werden das Projekt schriftlich definieren. Lies die Geschäftserhebung in
@@ -97,7 +112,14 @@ machst es, nicht der Agent:
 > Anwendungsfälle, jeder mit Akteur, Auslöser, Schritten, Ergebnis und Ausnahmen), ihre Entitäten
 > mit ihren Attributen, Zuständen und Übergängen, ihre Bildschirme und ihre externen
 > Integrationen. Markiere jeden Knoten, den du erschlossen statt in der Erhebung gelesen hast,
-> damit ich ihn bestätigen oder korrigieren kann. Lege getrennt davon `docs/STATUS.md` für den
+> damit ich ihn bestätigen oder korrigieren kann. Drittens die zwei Voreingaben, die Anhang H
+> braucht, bevor ein einziger Bildschirm existiert: das Benutzerglossar, mit den Wörtern, die die
+> Leute wirklich für jede Sache benutzen, so wie das Geschäft sie sagt und nicht so, wie das System
+> sie nennt; und die Profilliste, die sagt, wer jeder ist und was er zu tun kommt. Nimm beide aus
+> der Erhebung, bitte mich um das, was nicht darin steht, statt es zu erfinden, schreib sie als
+> Dateien des Projekts, nenn diese Dateien in `PROJECT.md` und markiere auch dort, was du
+> erschlossen hast.
+> Lege getrennt davon `docs/STATUS.md` für den
 > lebenden Zustand an (woran gearbeitet wird, was offen ist): diese Datei ändert sich jeden Tag;
 > die anderen beiden ändern sich nur, wenn sich das System ändert. Antworte in meiner Sprache.
 
@@ -110,6 +132,17 @@ ihren Teilen, Entitäten mit Zuständen und Übergängen, Bildschirme, Integrati
 Domänenmodell der Anforderungstechnik in Baumform ist; dass er **markiert, was er erschlossen
 hat**, denn dort verstecken sich die Erfindungen; und dass er den lebenden Zustand in eine andere
 Datei trennt, damit die Karte nicht zur Historie wird.
+
+Und die zwei Voreingaben von Anhang H, die das sind, was Schritt 2 davor bewahrt, nur eine Karte für
+das Modell zu sein. Das **Benutzerglossar** ist die Liste der Wörter, die die Leute wirklich
+benutzen: „Termin", nicht „Kalenderreservierung"; „das Mädchen am Schalter", nicht „operativer
+Benutzer". Es taugt für zwei Dinge, die später kommen: die Menügruppen mit Aufgaben des Benutzers zu
+benennen, und dass der Text der Bildschirme sagt, was die Leute sagen. Die **Profilliste** ist, wer
+jeder ist und was er zu tun kommt, und sie ist die Spalte, aus der die Matrix von Schritt 8 kommt;
+wenn sie nicht hier geschrieben ist, wird sie in Schritt 5 erfunden, und eine erfundene Matrix ist
+die Ursache dafür, dass jemand einen Knopf sieht, der ihm nicht zusteht. Ich verlange ausdrücklich,
+dass er sie **erfragt**, statt sie abzuleiten, weil sie Daten des Geschäfts sind und nicht des
+Systems; und dass er markiert, was er erschlossen hat, aus demselben Grund wie beim Baum.
 
 **Zum Abschluss:**
 
@@ -152,6 +185,12 @@ des Umfangs zu erkennen.
 - `docs/SEMANTIC_TREE.md`: der semantische Baum, mit den erschlossenen Knoten markiert, bis du sie
   bestätigst, und, ab dem ersten Block, den offenen Posten und Entscheidungen an ihren Knoten.
 - `docs/STATUS.md`: lebender Zustand, getrennt von den vorigen.
+- Die zwei Voreingaben von Anhang H, geschrieben und in `PROJECT.md` benannt: das
+  **Benutzerglossar** (die Wörter, die die Leute wirklich für jede Sache benutzen) und die
+  **Profilliste** (wer jeder ist und was er zu tun kommt), mit markiertem Erschlossenen. Die Methode
+  schreibt dir den Namen dieser zwei Dateien nicht vor — nimm den, den dein Projekt benutzt —; was
+  sie verlangt, ist, dass sie existieren, dass man sie von der Projektdatei aus finden kann und dass
+  sie vor Schritt 5 da sind.
 - In allen dreien ein Datum der letzten Aktualisierung.
 - In der Vereinbarung die zwei neuen Regeln.
 
@@ -171,6 +210,12 @@ des Umfangs zu erkennen.
 - Die Leseprobe: schließ die Sitzung, öffne eine neue und frag ihn, was das System NICHT tut und
   an welchem Knoten des Baums ein bestimmter Bildschirm hängt. Wenn er mit der Karte antwortet,
   funktioniert das Einhängen.
+- Ist das Benutzerglossar geschrieben, mit den Wörtern, die die Leute wirklich für jede Sache
+  benutzen? Lies es und such ein Wort, das du nicht sagen würdest: wenn es da ist, hat das System es
+  geschrieben und nicht das Geschäft.
+- Ist die Profilliste geschrieben, die sagt, wer jeder ist und was er zu tun kommt? Zähl die Profile
+  an den Fingern deines Geschäfts: wenn eines fehlt, fehlt eine Zeile der Matrix von Schritt 8 und
+  eine Ladung manueller Testfälle von Schritt 10.
 
 ## 5. Warnsignale
 
@@ -185,3 +230,7 @@ des Umfangs zu erkennen.
   diese Posten liegen außerhalb des Umfangs; beides muss man sich ansehen.
 - Eine Entität des Baums hat einen Zustand, den das Geschäft nie benannt hat. Das Modell hat ihn
   erfunden, weil er ihm logisch erschien, und wird darauf bauen.
+- Das Benutzerglossar hat dieselben Wörter wie der semantische Baum. Das ist kein Benutzerglossar: es
+  ist das Vokabular des Systems zweimal kopiert. Frag das Geschäft, wie es dazu sagt.
+- Die Profilliste hat ein einziges Profil, „Benutzer". Das ist fast nie wahr, und es ist die
+  häufigste Art, mit einer Matrix aus einer Zeile, die nichts schützt, bei Schritt 8 anzukommen.

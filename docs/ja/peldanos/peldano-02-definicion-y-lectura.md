@@ -38,6 +38,10 @@
 - 共働の約束（第1段）。
 - 以前のシステムがあるなら：そのコードまたは文書への読み取りアクセス。
 - 既になされた決定、あれば、口頭のものでも。
+- 事業が実際に各々のものを呼ぶ言葉と、システムを使うことになる人の種類が誰なのか。
+  [附属書H](../ANEXO_HEURISTICAS.md)の二つの**前提入力**で、この段がそれらを書く場所だ：
+  それらがなければ第8段のプロフィール行列はでっち上げになり、使いやすさのルールは比べる
+  相手を持たない。
 
 ## 2. プロンプト
 
@@ -61,6 +65,11 @@
 - 最低限受け入れられる状態：調査に「何でないか」の節が少なくとも二項目あり、オーナーの言葉に
   よるユースケースが少なくとも一つあり、状態を伴うエンティティが少なくとも一つあること。それ
   がなければ、出てくる木は作り話になり、あなたには比べるものがありません。
+- そして附属書Hの二つの前提入力のために：調査では、アクターを**事業が使う言葉で**名前を
+  挙げること（受付の人が「カウンターの子」と呼ばれているなら、それがデータであって「運用
+  ユーザー」ではない）。そして既にあるユーザー種別の一覧があれば何でも、メールの中のもの
+  でも。どちらもないなら、そう言うこと：エージェントはそれを**尋ねる**べきで、でっち上げる
+  べきではない。
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -73,9 +82,14 @@
 > level and, under each one, its actors, its processes (the use cases, each with actor, trigger,
 > steps, outcome and exceptions), its entities with their attributes, states and transitions,
 > its screens, and its external integrations. Mark every node you inferred rather than read in
-> the survey, so that I can confirm or correct it. Separately, create `docs/STATUS.md` for the
-> living state (what is being worked on, what is open): that file changes every day; the other
-> two change only when the system changes. Reply in my language.
+> the survey, so that I can confirm or correct it. Third, the two prior inputs that Annex H
+> needs before a single screen exists: the user glossary, with the words people actually use
+> for each thing as the business says them and not as the system calls them; and the list of
+> profiles, saying who each one is and what they come to do. Take both from the survey, ask
+> me for whatever is not in it instead of inventing it, write them as files of the project,
+> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
+> changes every day; the other two change only when the system changes. Reply in my language.
 
 > [ja]
 > プロジェクトを書面で定義します。`docs/INITIAL_SURVEY.md` の事業調査と
@@ -88,7 +102,13 @@
 > ドメイン、各ドメインの下にそのアクター、プロセス（ユースケース、それぞれアクター、
 > トリガー、手順、結果、例外付き）、属性・状態・遷移を持つエンティティ、画面、外部インテ
 > グレーション。調査で読んだのではなく推論したノードはすべて印してください。私が確認または
-> 修正できるように。別途、生きた状態（取り組んでいること、開いていること）のために
+> 修正できるように。第三に、画面が一つも存在する前に
+> 附属書Hが必要とする二つの前提入力：ユーザー用語集——人々が実際に各々のものを呼ぶ言葉で、
+> 事業が言うとおりに、システムが呼ぶとおりにではなく——と、プロフィール一覧——それぞれが
+> 誰で何をしに来るのかを言うもの。二つとも調査から取り、調査にないものはでっち上げる代わり
+> に私に求め、プロジェクトのファイルとして書き、そのファイルを `PROJECT.md` で名前を挙げ、
+> そこでも推論したものに印を付けてください。
+> 別途、生きた状態（取り組んでいること、開いていること）のために
 > `docs/STATUS.md` を作成してください。そのファイルは毎日変わります。他の二つはシステムが
 > 変わるときだけ変わります。私の言語で答えてください。
 
@@ -99,6 +119,15 @@
 遷移を持つエンティティ、画面、インテグレーション）で構築すること。それは要件工学のドメイン
 モデルを木の形にしたものだ。**推論したものを印す**こと。発明が隠れるのはそこだから。そして
 生きた状態を別のファイルに分けること。地図が履歴にならないように。
+
+そして附属書Hの二つの前提入力。第2段をモデルのための地図だけに終わらせないものだ。
+**ユーザー用語集**は人々が実際に使う言葉の一覧だ：「予約枠」ではなく「順番」、「運用
+ユーザー」ではなく「カウンターの子」。あとに来る二つのことに役立つ：メニューのグループを
+ユーザーの仕事で名付けること、そして画面の文言が人々の言うことを言うこと。**プロフィール
+一覧**はそれぞれが誰で何をしに来るのかで、第8段の行列が出てくる列だ。ここに書かれていなけ
+れば第5段ででっち上げられ、でっち上げの行列は、自分のものでないボタンが誰かに見えている
+原因になる。推し量る代わりに**尋ねる**ことを明示的に求める。事業のデータでシステムのデータ
+ではないからだ。そして推論したものに印を付けることも、木と同じ理由で求める。
 
 **締め：**
 
@@ -139,6 +168,11 @@
 - `docs/SEMANTIC_TREE.md`：セマンティックツリー、あなたが確認するまで推論ノードは印され、
   最初のブロックから、保留項目と決定がそのノードからぶら下がる。
 - `docs/STATUS.md`：生きた状態、前の二つとは分離。
+- 附属書Hの二つの前提入力。書かれ、`PROJECT.md` で名前を挙げられていること：**ユーザー
+  用語集**（人々が実際に各々のものを呼ぶ言葉）と**プロフィール一覧**（それぞれが誰で何を
+  しに来るのか）。推論したものに印を付けて。方法はその二つのファイルの名前を押し付けない
+  ——あなたのプロジェクトが使う名前にすること——。求めるのは、存在すること、プロジェクト
+  ファイルから見つけられること、そして第5段より前にあることだ。
 - 三つすべてに最終更新日。
 - 約束に、二つの新ルール。
 
@@ -155,6 +189,11 @@
 - エージェントは起草する前に事業について何か質問したか？ 何も聞かなかったなら、何を推測
   したか見直すこと。
 - 生きた状態は別のファイルにあるか？
+- ユーザー用語集は書かれているか、人々が実際に各々のものを呼ぶ言葉で？ 読んで、自分では
+  言わない語を探すこと：あれば、それを書いたのは事業ではなくシステムだ。
+- プロフィール一覧は書かれているか、それぞれが誰で何をしに来るのかを言って？ 自分の事業の
+  指でプロフィールを数えること：一つ足りなければ、第8段の行列の一行と、第10段の手動テスト
+  ケースの一群が足りない。
 - 読み取りテスト：セッションを閉じ、新しいセッションを開き、システムが何をしないか、ある
   画面が木のどのノードからぶら下がるかを聞くこと。地図で答えるなら、結び付けは機能している。
 
@@ -169,3 +208,7 @@
   かだ。両方を見なければならない。
 - 木のエンティティに、事業が一度も名付けなかった状態がある。モデルが論理的に思えたから発明
   したもので、その上に構築してしまう。
+- ユーザー用語集がセマンティックツリーと同じ語を持っている。それはユーザー用語集ではない：
+  システムの語彙を二度書き写したものだ。事業にどう呼んでいるか尋ねること。
+- プロフィール一覧にプロフィールが「ユーザー」の一つしかない。それが本当であることはほぼ
+  なく、何も守らない一行の行列で第8段に着く最もよくある道だ。

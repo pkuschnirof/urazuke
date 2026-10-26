@@ -13,6 +13,45 @@ Autor: Pablo Kuschniroff, asistido por Claude Code. Publicado bajo Creative Comm
 Repositorio público: [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke).
 Presentación pública: [yujin.app/urazuke](https://yujin.app/urazuke/).
 
+## Tres cosas distintas: un método, un protocolo, una herramienta
+
+Lo pongo arriba porque es el malentendido más caro que tiene este proyecto, y lo medí: le pasé el
+sitio publicado a un asistente ajeno y metió las tres cosas en una sola bolsa, concluyó que todo
+junto era la narrativa de un producto y se ofreció a analizarme el código. Le pidió código a un
+método. Son tres naturalezas distintas y conviene separarlas de entrada.
+
+**El método es Urazuke, y es esto que estás leyendo.** Dice qué hacer y en qué orden, qué exigirle
+a quien construye —sea una persona o un modelo— y cómo saber, sin leer una línea de código, que
+entregó completo y no a medias. Es procedimiento y es criterio, nada más. Se aplica con el
+asistente que tengas a mano, con el que salga el año que viene, o con lápiz, papel y un equipo de
+personas. Está acá entero y bajo licencia libre: los veinticuatro peldaños, sus contratos y sus
+prompts.
+
+**El protocolo es NAC3, y es otra cosa.** Es un contrato para que las pantallas de una aplicación
+se puedan operar por programa —cada elemento de la interfaz con su identificador y sus métodos— y,
+por el mismo precio, las pueda operar una persona que usa un lector de pantalla o la voz: un
+agente y una persona navegando la misma interfaz con la misma dignidad. El método lo usa como
+**medio** para una cosa puntual: que las pruebas de punta a punta recorran la pantalla solas. No es
+una condición del método. El criterio del método es neutral y está escrito así en el peldaño 0:
+que la interfaz se pueda ejecutar por programa, con cualquier tecnología que lo permita.
+
+**La herramienta es Yujin-Forge, y es una implementación.** Automatiza el método —las compuertas,
+la inyección de los prompts— y habla el protocolo. Es *una* manera de aplicar Urazuke, no *la*
+manera. Si no te sirve, o no la querés, el método te queda igual de completo.
+
+Y esto no es una declaración de buena voluntad: **está en el dato y se puede medir.** La definición
+mecánica de las compuertas que el método publica para cualquier consumidor no nombra ninguna
+herramienta ni ningún protocolo, ni los míos. Hay una prueba automática que lo exige sobre cada
+superficie donde podría colarse —las fuentes, los dos archivos publicados, su índice y el
+documento generado—, y cualquiera lo comprueba hoy, en un segundo, sobre el archivo servido:
+
+```
+curl -s https://yujin.app/urazuke/api/gates.json | grep -o -i -E "forge|nac-?3|yujin" | wc -l
+```
+
+Devuelve **0** (medido el 2026-10-26). Una herramienta cualquiera puede implementar las compuertas
+del método sin adoptar ningún protocolo y sin adoptar ninguna otra herramienta.
+
 ## La tesis en una frase
 
 La IA no interrumpe el método: lo continúa. La industria dejó de confiar en el autor del código
@@ -29,12 +68,14 @@ eso la evidencia tiene que probarse a sí misma.
 | `docs/REFERENCIAS.md` | Los casos reales detrás del método, numerados ("Ref. N"), con fecha y evidencia, para que los procedimientos queden limpios y el detalle siga a un clic. Incluye las cronologías de los tres sistemas y la tabla de fallos por peldaño. |
 | `docs/peldanos/peldano-NN-*.md` | El contrato de cada peldaño: cuándo, contexto requerido, prompts en inglés con su traducción y, antes de cada uno, el bloque "Antes de enviar el prompt" con los archivos que tenés que construir vos y su contenido; resultado esperado, verificación de completitud sin leer código, señales de alarma. |
 | `docs/peldanos/README.md` | El índice de los contratos. |
+| `docs/PREGUNTAS_AL_PROVEEDOR.md` | Las veinticinco preguntas para el proveedor: la verificación de completitud de los contratos, juntada en una hoja que un dueño que nunca contrató software se lleva a una reunión. Agrupadas por lo que le están prometiendo, cada una con la respuesta que se puede **ver** y el peldaño del que sale. |
 | `docs/MANUAL_CURSO.md` | El curso: calendario, veinticuatro lecciones con tareas prácticas y prompts, proyecto guía ("Turnera"), lista de salida a producción. |
 | `docs/MANUAL_CURSO_EVOLUTIVO.md` | La parte 2 del curso: el proyecto guía heredado ("Turnera heredada"), diez lecciones (N0 a N7, R1 y R2) para normalizar un legado y después corregirlo y evolucionarlo. |
 | `docs/DECISIONES.md` | Las decisiones del proyecto, con fecha y palabras textuales. El método se aplica a sí mismo. |
 | `docs/EVALUACIONES_DE_IA.md` | Cuatro IAs evaluaron el método por su cuenta, con la regla de citar textual o no afirmar; esto cuenta qué dijeron, dónde se equivocaron y por qué, y qué de lo que encontraron era real. |
 | `docs/TRABAJO_COLABORATIVO.md` | Cómo se aplica el método cuando varios desarrolladores, cada uno con su agente, trabajan sobre la misma rama: las siete reglas de la rama compartida, cómo se reparten los peldaños, y los prompts. |
 | `docs/CAPACITACION_JUNIOR.md` | El impacto del método en la formación de los desarrolladores junior: qué focos pierden peso, cuáles ganan, con qué objetivo y cómo capacitar a un junior en la era posterior a la programación a mano. |
+| `docs/ANEXO_HEURISTICAS.md` | El Anexo H, transversal al bucle de construcción: dieciocho reglas de calidad de código y veintisiete de usabilidad, cada una con su identificador estable, su severidad, su verificador nombrado y los umbrales que declara el dueño; la agrupación por convergencia funcional, los perfiles y la matriz de la que se derivan el menú, el ruteo y los permisos; dos interruptores y las pruebas de aceptación que demuestran que la compuerta de verdad vigila. |
 | `docs/PLAN_CURSO_MENTORING.md` | El borrador del plan comercial del curso y el mentoring. |
 | `docs/html/` | Las versiones HTML para lectura cómoda, con el botón que traduce cada prompt. No se editan a mano. |
 | `build/` | El conversor de markdown a HTML, el extractor y verificador de prompts, y el script que arma todo. |

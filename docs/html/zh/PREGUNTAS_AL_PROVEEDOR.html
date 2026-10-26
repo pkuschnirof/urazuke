@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>给供应方的二十五个问题</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+h3.refh{font-size:1.02rem;margin-top:1.6em;color:#3a2f00;border-bottom:1px dashed var(--line);padding-bottom:.2em}
+h3.refh:target{background:var(--gold-soft);border-radius:6px;padding:.4em .6em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+a{color:#7a5600}
+a.ref{font:700 .78em/1.4 Segoe UI,Arial,sans-serif;background:#f1ece0;border:1px solid var(--line);border-radius:999px;padding:0 .5em;text-decoration:none;color:#5a3f00;white-space:nowrap;vertical-align:middle}
+a.ref:hover{background:var(--gold-soft)}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+.pbox{margin:.8em 0 1.2em}
+.prompt{margin:0;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.prompt.tr{background:#f3f7f0;border-color:#cfdcc6;border-left-color:#5c8a4a}
+.prompt.tr::before{content:'提示词（翻译）';color:#3f6b2e}
+.trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
+.trbtn:hover{background:#efe0b8}
+.antes{margin:1em 0 .8em;padding:.7em 1.1em .45em;background:#eef2f7;border:1px solid #c9d3e3;border-left:5px solid #3f5a8a;border-radius:6px;font-size:.95em}
+.antes>p:first-child{margin:.15em 0 .45em}
+.antes>p:first-child strong{display:inline-block;color:#2c4470;text-transform:uppercase;letter-spacing:.5px;font:700 .82em/1.5 Segoe UI,Arial,sans-serif;margin-right:.2em}
+.antes ul{margin:.3em 0 .45em;padding-left:1.4em}
+.antes li{margin:.4em 0}
+.antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;margin:.6em 0;display:block}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+.pie{margin-top:3em;padding-top:1em;border-top:1px dashed var(--line);font:.85em/1.5 Segoe UI,Arial,sans-serif;color:var(--mute)}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="给供应方的二十五个问题">给供应方的二十五个问题</h1><nav class="toc"><div class="toc-t">目录</div><ul><li class="l2"><a href="#你唯一需要记住的规则">你唯一需要记住的规则</a></li><li class="l2"><a href="#如果你只有十分钟">如果你只有十分钟</a></li><li class="l2"><a href="#他们向你承诺的-我交给你的是能跑的">他们向你承诺的："我交给你的是能跑的"</a></li><li class="l2"><a href="#他们向你承诺的-我知道还差什么-按什么顺序">他们向你承诺的："我知道还差什么、按什么顺序"</a></li><li class="l2"><a href="#他们向你承诺的-做得很好">他们向你承诺的："做得很好"</a></li><li class="l2"><a href="#他们向你承诺的-不会伤到你">他们向你承诺的："不会伤到你"</a></li><li class="l2"><a href="#他们向你承诺的-扛得住">他们向你承诺的："扛得住"</a></li><li class="l2"><a href="#他们向你承诺的-我会告诉你真话">他们向你承诺的："我会告诉你真话"</a></li><li class="l2"><a href="#拿到回答之后做什么">拿到回答之后做什么</a></li><li class="l2"><a href="#这张纸从哪里来">这张纸从哪里来</a></li></ul></nav>
+<p>这张纸是为一个很具体的时刻准备的：有人正在向你提出要给你造一个系统，或者正在把它交给你，而你不编程。你不需要为这场会面去学编程。你需要知道的是<strong>该要求他们给你看什么</strong>。</p>
+<p>完整的方法活在二十四级台阶的契约里，而每份契约都带着它的"不读代码即可完成的完整性检验"：主人对交付物要做的那串核对。项目在运行当中，这是有用的；可是它分散在三十二个文件里，没人会带着那个走进一场会面。这张纸就是同一套东西，被汇到一起，并按<strong>人家在向你承诺什么</strong>来排序。打印出来带着走。</p>
+</section><section>
+<h2 id="你唯一需要记住的规则">你唯一需要记住的规则</h2>
+<p><strong>算得上回答的，是那些能被看见的。</strong> 一个文件、一个带着产出它的命令的数字、一个被看见过失败的测试、一本手册、一个带日期的签名。看不见的那些是承诺，而承诺不是回答：它是一个意图，由一个想把会面结束掉的人说出来。</p>
+<p>你不需要听懂他们给你看的东西。只要它<strong>存在</strong>，并且那个人当着你的面把它打开，就够了。如果为了回答你，他得解释为什么还没有，那就记下日期，下一场会面再问一次：说了两遍却始终不拿出来的东西，不会出现。</p>
+<p>有三句话值得认出来，因为它们的意思是"我没有那个"：</p>
+<ul><li>"相信我，这个我们一直都是这么做的。"</li><li>"那个到最后、都做好了才看得到。"</li><li>"在我脑子里／在仓库里，回头发给你。"</li></ul>
+<p>还有一个反方向的诚实说明：<strong>带着理由说出来的"没有"是个好回答。</strong> "我们没有负载测试，因为只有三十个用户，而且这是我们商量好的"——这是一个带理由的"没有"，正是本方法所说的相称。没用的是那种看不见的"有"。</p>
+</section><section>
+<h2 id="如果你只有十分钟">如果你只有十分钟</h2>
+<p>如果会面很短，这五个比二十五个带来的信息更多：第<strong>4</strong>（一个被看见变红的测试）、第<strong>7</strong>（计划就是待办项清单）、第<strong>13</strong>（会刹住建造的那个限度）、第<strong>20</strong>（由一个人试过的恢复手册）和第<strong>24</strong>（会说出哪些没能核实的那份报告）。如果这五个能看见，其余的几乎总是在。如果一个都看不见，其余的几乎总是不在。</p>
+<hr>
+</section><section>
+<h2 id="他们向你承诺的-我交给你的是能跑的">他们向你承诺的："我交给你的是能跑的"</h2>
+<p><strong>1. 你能让我看看系统在一个不是你电脑的环境里跑着吗？</strong> 能看见的：一个你自己打开的地址，在你的手机上，带着测试数据。如果它只在建造它的人的机器上跑，那它作为一个系统还不存在。 <em>（第15级。）</em></p>
+<p><strong>2. 要让你认为我的一个请求算做完了，什么必须是真的？</strong> 能看见的：在开始之前、按每个请求写下来的东西。它应该包括"测试通过了"和"有一个人用过了"。如果回答是"等它能用的时候"，那就没有标准：只有意见。 <em>（第5级，验收标准。）</em></p>
+<p><strong>3. 我在意的每一样东西都有自动测试吗？</strong> 能看见的：测试套件跑一遍的结果，带着数字，显示在屏幕上。你不在意内容：你在意有输出，并且它说了有多少通过。 <em>（第8级。）</em></p>
+<p><strong>4. 你能让我看看那些测试里有一个</strong>失败<strong>的样子吗？</strong> 能看见的：那块屏幕——测试在没有修复的系统上变红的那一块，带着跑它的命令和日期。这是这张纸上最重要的问题：一个没人见过它失败的测试，没人知道它证明了什么。一个系统可以有一千个通过的测试，却什么都没看守。 <em>（第8级。在本方法里这叫"见过红"。）</em></p>
+<p><strong>5. 除了你和一个程序之外，还有谁用过这个系统并且一路走到了最后？</strong> 能看见的：一份为人写的测试用例清单，带日期、带执行人的名字和发生了什么。建造的人不能是唯一测过的人；而模型测的是它理解到的东西，那不总是你要的东西。 <em>（第10级。）</em></p>
+<p><strong>6. 如果我在界面上做错了——录了两遍、着急按了按钮——会发生什么？</strong> 能看见的：不能撤销的动作清单，每一个都带着它的锁，以及它在半路上失败了会怎样。正确的回答绝不是"那不应该发生"。 <em>（第14级。）</em></p>
+</section><section>
+<h2 id="他们向你承诺的-我知道还差什么-按什么顺序">他们向你承诺的："我知道还差什么、按什么顺序"</h2>
+<p><strong>7. 还差什么的清单在哪里，我今天就能看吗？</strong> 能看见的：一份编了号的待办项登记册，每一条都写得详细，并带着它关闭的日期。<strong>那份清单就是计划</strong>：如果别的地方有一份计划、这边有一份清单，那就是两份计划，而算数的是没人在看的那一份。 <em>（第5级。）</em></p>
+<p><strong>8. 你要给我造的每一样东西，在造之前都用我的话写下来了吗？</strong> 能看见的：那条打开的待办项，带着请求从哪来的来历——照你说的那样说——带着适用的规则、界面和稀奇的情形。如果它只有一行，缺的那部分会有人编出来。 <em>（第5级。）</em></p>
+<p><strong>9. 当业务上的某件事不清楚时，你会怎么做？</strong> 能看见的：决定的文件，带日期、带每条是谁决定的。你想要的回答是"我问你，然后记下来"。一个模型在业务规则里发现一个洞，会自己把它填上然后继续走，而六周以后没人知道系统为什么那么做。 <em>（第1级和第6级。）</em></p>
+<p><strong>10. 系统</strong>不会<strong>做哪些事，有写下来吗？</strong> 能看见的：项目文档里一个独立的小节，至少两条。没有说出来的，恰恰就是会以另一种样子被造出来的东西。 <em>（第2级。）</em></p>
+<p><strong>11. 将要使用这个的不同类型的人分别是谁，每个人能做什么有写下来吗？</strong> 能看见的：角色清单——每个角色是谁、来做什么——以及一张说明每个角色能做什么的表。如果只有一个叫"用户"的角色，那通常少了一半：这是"有人看见一个不属于自己的按钮"，或者"有权限的人找不到界面"最常见的原因。 <em>（第2级，附录H的前置输入；第8级，矩阵。）</em></p>
+</section><section>
+<h2 id="他们向你承诺的-做得很好">他们向你承诺的："做得很好"</h2>
+<p><strong>12. 每次改动，有什么是机器在度量的，而不靠谁记得去看？</strong> 能看见的：仓库里验证链条的配置，以及上一次运行的记录。"我们之间会互相看"不是回答：那是习惯，而习惯会在赶时间的那一周塌掉。 <em>（第4级和第9级。）</em></p>
+<p><strong>13. 有没有一个限度，一超过就</strong>刹住<strong>建造？</strong> 能看见的：一个写着各个限度和它们今天的实测值的文件，以及一次被其中某个限度刹住的运行。值得照原话问的那个对照问题：*你们有没有为了能继续走而把一个限度调高过？* 如果回答是有，而没写为什么，那这个限度是装饰。 <em>（第9级。）</em></p>
+<p><strong>14. 你怎么知道这代码别人将来维护得了？</strong> 能看见的：按规则给出的报告，而不是一个单一的数字：文件大小、函数大小、重复代码、死代码。一个"质量百分之九十五"不会告诉你要修什么。 <em>（第9级和附录H。）</em></p>
+<p><strong>15. 界面是有人想过的，还是从程序需要什么里出来的？</strong> 能看见的：可用性规则的结果记录，以及被关掉的例外——带着写下来的原因、谁批准的、什么时候复查。一个系统可以通过所有技术检验而难用：全是绿的，而那个人找不到在哪里收钱。 <em>（附录H，二十七条可用性规则。）</em></p>
+<p><strong>16. 你给我看的那些测试，是真的在看守，还是在装饰？</strong> 能看见的：变异得分。那是一个故意植入错误、再数测试抓住了多少的程序；数字会带着它的命令出来。如果你的系统有真实用户，这在本方法里不是可选的。 <em>（第9级。）</em></p>
+</section><section>
+<h2 id="他们向你承诺的-不会伤到你">他们向你承诺的："不会伤到你"</h2>
+<p><strong>17. 如果一个操作做到一半出了问题，我的数据会怎样？</strong> 能看见的：动作及其可逆性的表格，以及那条写下来的规则——有疑问时系统<strong>刹住</strong>，而不是继续走。一笔重复的扣款，或者一个没人看过的自动批准，是典型的例子。 <em>（第14级。）</em></p>
+<p><strong>18. 有备份吗？你们有没有试过恢复一次？</strong> 能看见的：最后一次<strong>试过</strong>的恢复的日期。一份从来没恢复过的备份不是备份：它是一个没人知道任何事情的文件。 <em>（第20级，恢复手册。）</em></p>
+<p><strong>19. 谁在检查系统没有已知的漏洞，多久一次？</strong> 能看见的：在链条里跑着的扫描，带日期，以及被转成待办项的发现。再加一个很短、也很说明问题的问题：*系统的密钥和密码存放在哪里？* 如果在代码里，你已经有一个问题了。 <em>（第18级和第15级。）</em></p>
+<p><strong>20. 有没有一个不编程的人，照着手册从零把系统恢复起来过？</strong> 能看见的：那本手册，以及那次试跑的记录，带三样东西：端到端花了多久、那个人在哪一步确切地卡住了、他有哪些词没看懂。如果手册以"打开一个和代理的会话"开头，那它不是给人用的手册。而在那个还不存在之前，直说：<strong>主人不是主人，是租客</strong>。他拥有系统、付了钱，而不向建造它的人请求许可就进不去。 <em>（第20级。）</em></p>
+</section><section>
+<h2 id="他们向你承诺的-扛得住">他们向你承诺的："扛得住"</h2>
+<p><strong>21. 你们是用什么数字给这个定尺寸的，这些数字从哪来？</strong> 能看见的：同时有多少用户、每天多少次操作、每年增长多少、要保存多久。还有要紧的那部分：这些数字在<strong>你的业务</strong>手里，不在建造的人手里。如果是他编的，那它们是错的。 <em>（第3级。）</em></p>
+<p><strong>22. 你们用我将要给它的负载试过吗，用十倍的负载试过吗？</strong> 能看见的：那次运行的报告，带着系统倒下的确切位置。知道它在哪里断，是知道你有多少余量的唯一办法。 <em>（第19级。）</em></p>
+<p><strong>23. 半年后系统变慢的时候，你们怎么知道为什么？</strong> 能看见的：带每个动作标识的结构化日志、最慢查询的报告，以及配置好的告警。如果回答是"等它发生了再看"，那第一个看到的会是你，通过一个发火的用户。 <em>（第16、17、21、22级。）</em></p>
+</section><section>
+<h2 id="他们向你承诺的-我会告诉你真话">他们向你承诺的："我会告诉你真话"</h2>
+<p><strong>24. 当你告诉我某件事做好了，我怎么分清哪些是你验过的、哪些是你假定的？</strong> 能看见的：分成三块的报告：<strong>已核实</strong>（证据就在旁边）、<strong>相信如此</strong>（以及为什么没去验）、 <strong>盲点</strong>（从他站的位置看不见的东西）。光一句"好了"不是报告。而这个问题的后半比前半更值钱： <em>这次交付里，有哪些是你<strong>没能</strong>核实的？</em> 如果回答是"没有，全都核实了"，那就要怀疑：没有人能核实全部。 <em>（第12级。）</em></p>
+<p><strong>25. 除了你自己，还有谁复查这份工作？</strong> 能看见的：由一个——或某个——不是建造者的人或东西做的审计，它的发现被转成了待办项，并且带日期。一个模型会认可自己相当一部分的错误，一个人也会。建造的人不能是唯一核实的人。 <em>（第13级。）</em></p>
+<hr>
+</section><section>
+<h2 id="拿到回答之后做什么">拿到回答之后做什么</h2>
+<p>在每个问题旁边记下三样里的一样：<strong>我看见了</strong>、<strong>我还没看见</strong>（带上他们承诺给你的日期），或者<strong>它不存在，而他告诉了我为什么</strong>（带上理由）。不需要二十五个全是"我看见了"：一个小项目不需要负载测试，也不需要每周监控，而本方法就是这么说的。必须发生的是：<strong>每一个"没有"都有写下来的理由</strong>，因为带理由的"没有"是你的一个决定，而没有理由的"没有"是一笔你没选过却要还的债。</p>
+<p>最后还有一个，没有编号，因为它不是给供应方的：如果有人因为你要求看东西而不自在，那也是信息。</p>
+<hr>
+</section><section>
+<h2 id="这张纸从哪里来">这张纸从哪里来</h2>
+<p>这二十五个问题是本方法各份契约里"不读代码即可完成的完整性检验"被汇到一起的结果：每一个都标出了它出自哪一级台阶，所以任何人都可以去那份契约读完整版。它们是为这张纸从零写出来的。</p>
+<p><strong>"这东西应该作为一张纸存在"这个想法不是我的。</strong> 它来自本方法向另一种形式的第一次改编—— Oscar Schmitz 的小说《El Arte de Forjar Sistemas》，2026年，在主文档F部分标注出处——它说得比我好：本方法把检验分散在它的各份契约里，缺的正是主人能带去一场会面的那一块。这张纸开头的那条标准——算得上回答的是那些能被看见的——也是从那里来的。他那一版的问题是他的作品，权利保留；这里这些是另外的，是从我的契约写出来的，所以用本仓库的许可协议发布。</p></section>
+<footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">方法的公开仓库: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
+</div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>

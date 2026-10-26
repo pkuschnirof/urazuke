@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Las veinticinco preguntas para el proveedor</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+h3.refh{font-size:1.02rem;margin-top:1.6em;color:#3a2f00;border-bottom:1px dashed var(--line);padding-bottom:.2em}
+h3.refh:target{background:var(--gold-soft);border-radius:6px;padding:.4em .6em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+a{color:#7a5600}
+a.ref{font:700 .78em/1.4 Segoe UI,Arial,sans-serif;background:#f1ece0;border:1px solid var(--line);border-radius:999px;padding:0 .5em;text-decoration:none;color:#5a3f00;white-space:nowrap;vertical-align:middle}
+a.ref:hover{background:var(--gold-soft)}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+.pbox{margin:.8em 0 1.2em}
+.prompt{margin:0;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.prompt.tr{background:#f3f7f0;border-color:#cfdcc6;border-left-color:#5c8a4a}
+.prompt.tr::before{content:'Prompt (traducción)';color:#3f6b2e}
+.trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
+.trbtn:hover{background:#efe0b8}
+.antes{margin:1em 0 .8em;padding:.7em 1.1em .45em;background:#eef2f7;border:1px solid #c9d3e3;border-left:5px solid #3f5a8a;border-radius:6px;font-size:.95em}
+.antes>p:first-child{margin:.15em 0 .45em}
+.antes>p:first-child strong{display:inline-block;color:#2c4470;text-transform:uppercase;letter-spacing:.5px;font:700 .82em/1.5 Segoe UI,Arial,sans-serif;margin-right:.2em}
+.antes ul{margin:.3em 0 .45em;padding-left:1.4em}
+.antes li{margin:.4em 0}
+.antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;margin:.6em 0;display:block}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+.pie{margin-top:3em;padding-top:1em;border-top:1px dashed var(--line);font:.85em/1.5 Segoe UI,Arial,sans-serif;color:var(--mute)}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="las-veinticinco-preguntas-para-el-proveedor">Las veinticinco preguntas para el proveedor</h1><nav class="toc"><div class="toc-t">Contenido</div><ul><li class="l2"><a href="#la-unica-regla-que-tenes-que-recordar">La única regla que tenés que recordar</a></li><li class="l2"><a href="#si-solo-tenes-diez-minutos">Si sólo tenés diez minutos</a></li><li class="l2"><a href="#lo-que-te-prometen-te-lo-entrego-funcionando">Lo que te prometen: "te lo entrego funcionando"</a></li><li class="l2"><a href="#lo-que-te-prometen-se-lo-que-falta-y-en-que-orden">Lo que te prometen: "sé lo que falta y en qué orden"</a></li><li class="l2"><a href="#lo-que-te-prometen-esta-bien-hecho">Lo que te prometen: "está bien hecho"</a></li><li class="l2"><a href="#lo-que-te-prometen-no-te-va-a-hacer-dano">Lo que te prometen: "no te va a hacer daño"</a></li><li class="l2"><a href="#lo-que-te-prometen-va-a-aguantar">Lo que te prometen: "va a aguantar"</a></li><li class="l2"><a href="#lo-que-te-prometen-te-voy-a-decir-la-verdad">Lo que te prometen: "te voy a decir la verdad"</a></li><li class="l2"><a href="#que-hacer-con-las-respuestas">Qué hacer con las respuestas</a></li><li class="l2"><a href="#de-donde-sale-esta-hoja">De dónde sale esta hoja</a></li></ul></nav>
+<p>Esta hoja es para un momento muy concreto: alguien te está ofreciendo construirte un sistema, o te lo está entregando, y vos no programás. No tenés que aprender a programar para esta reunión. Tenés que saber <strong>qué pedir que te muestren</strong>.</p>
+<p>El método completo vive en los contratos de los veinticuatro peldaños, y cada contrato trae su "verificación de completitud sin leer código": la lista de comprobaciones que hace el dueño sobre lo que se entregó. Eso sirve mientras el proyecto está en marcha, pero está repartido en treinta y dos archivos y nadie entra con eso a una reunión. Esta hoja es lo mismo, juntado y ordenado por <strong>lo que te están prometiendo</strong>. Se imprime y se lleva.</p>
+</section><section>
+<h2 id="la-unica-regla-que-tenes-que-recordar">La única regla que tenés que recordar</h2>
+<p><strong>Las respuestas que valen son las que se pueden ver.</strong> Un archivo, un número con el comando que lo produce, una prueba que se vio fallar, un manual, una firma con fecha. Las que no se pueden ver son promesas, y una promesa no es una respuesta: es una intención, dicha por alguien que quiere cerrar la reunión.</p>
+<p>No hace falta que entiendas lo que te muestran. Alcanza con que <strong>exista</strong> y con que la persona lo abra adelante tuyo. Si para contestarte tiene que explicarte por qué todavía no, tomá nota de la fecha y volvé a preguntar en la reunión siguiente: lo que se repite dos veces sin mostrarse no va a aparecer.</p>
+<p>Tres frases que conviene reconocer, porque significan "no tengo eso":</p>
+<ul><li>"Confiá en mí, eso siempre lo hacemos así."</li><li>"Eso se ve al final, cuando esté todo listo."</li><li>"Está en mi cabeza / lo tengo en el repositorio, después te lo mando."</li></ul>
+<p>Y una aclaración honesta en la otra dirección: <strong>un "no" dicho con su razón es una buena respuesta</strong>. "No tenemos pruebas de carga porque son treinta usuarios y lo acordamos así" es un no con razón, y es exactamente lo que el método llama proporcionalidad. Lo que no sirve es el "sí" que no se puede ver.</p>
+</section><section>
+<h2 id="si-solo-tenes-diez-minutos">Si sólo tenés diez minutos</h2>
+<p>Si la reunión es corta, estas cinco traen más información que las veinticinco: la <strong>4</strong> (una prueba vista en rojo), la <strong>7</strong> (el plan son los pendientes), la <strong>13</strong> (el límite que frena la construcción), la <strong>20</strong> (el manual de recuperación, probado por una persona) y la <strong>24</strong> (el reporte que dice lo que no se pudo verificar). Si esas cinco se pueden ver, lo demás casi siempre está. Si ninguna se puede ver, lo demás casi nunca está.</p>
+<hr>
+</section><section>
+<h2 id="lo-que-te-prometen-te-lo-entrego-funcionando">Lo que te prometen: "te lo entrego funcionando"</h2>
+<p><strong>1. ¿Me puede mostrar el sistema andando en un entorno que no es su computadora?</strong> Lo que se puede ver: una dirección que abrís vos, en tu teléfono, con datos de prueba. Si sólo funciona en la máquina del que lo construyó, todavía no existe como sistema. <em>(Peldaño 15.)</em></p>
+<p><strong>2. ¿Qué tiene que ser verdad para que usted considere terminado un pedido mío?</strong> Lo que se puede ver: escrito, antes de empezar, por cada pedido. Debería incluir "la prueba pasó" y "una persona lo usó". Si la respuesta es "cuando funcione", no hay criterio: hay opinión. <em>(Peldaño 5, criterios de aceptación.)</em></p>
+<p><strong>3. ¿Hay una prueba automática de cada cosa que me importa?</strong> Lo que se puede ver: una corrida de la batería de pruebas, con números, en pantalla. No te importa el contenido: te importa que haya salida y que diga cuántas pasaron. <em>(Peldaño 8.)</em></p>
+<p><strong>4. ¿Me puede mostrar una de esas pruebas </strong>fallando<strong>?</strong> Lo que se puede ver: el pedazo de pantalla donde la prueba se puso en rojo contra el sistema sin el arreglo, con el comando que la corrió y la fecha. Es la pregunta más importante de la hoja: una prueba que nadie vio fallar no se sabe si prueba algo. Un sistema puede tener mil pruebas que pasan y no vigilar nada. <em>(Peldaño 8. En el método se llama "probado en rojo".)</em></p>
+<p><strong>5. ¿Quién, que no sea usted ni un programa, usó el sistema y llegó hasta el final?</strong> Lo que se puede ver: una lista de casos de prueba escritos para una persona, con fecha, con el nombre de quien los ejecutó y qué pasó. El que construyó no puede ser el único que probó, y el modelo prueba lo que entendió, que no siempre es lo que pediste. <em>(Peldaño 10.)</em></p>
+<p><strong>6. Si yo hago algo mal en la pantalla —cargo dos veces, aprieto el botón apurado—, ¿qué pasa?</strong> Lo que se puede ver: la lista de las acciones que no se pueden deshacer, cada una con su candado y qué pasa si falla a mitad de camino. La respuesta correcta nunca es "no debería pasar". <em>(Peldaño 14.)</em></p>
+</section><section>
+<h2 id="lo-que-te-prometen-se-lo-que-falta-y-en-que-orden">Lo que te prometen: "sé lo que falta y en qué orden"</h2>
+<p><strong>7. ¿Dónde está la lista de lo que falta, y puedo verla hoy?</strong> Lo que se puede ver: un registro de pendientes numerados, con cada uno escrito en detalle y con la fecha en que se cerró. <strong>Esa lista es el plan:</strong> si hay un plan en otro lado y una lista por acá, hay dos planes, y el que vale es el que nadie está mirando. <em>(Peldaño 5.)</em></p>
+<p><strong>8. ¿Cada cosa que me va a construir está escrita antes de construirla, con mis palabras?</strong> Lo que se puede ver: el pendiente abierto, con la historia de dónde salió el pedido dicha como lo dijiste vos, las reglas que aplican, las pantallas y los casos raros. Si está en una línea, lo que falta lo va a inventar alguien. <em>(Peldaño 5.)</em></p>
+<p><strong>9. Cuando algo del negocio no está claro, ¿qué hace usted?</strong> Lo que se puede ver: el archivo de decisiones, con fecha y con quién decidió cada una. La respuesta que buscás es "te pregunto y lo anoto". Un modelo que encuentra un hueco en las reglas lo llena solo y sigue, y seis semanas después nadie sabe por qué el sistema hace eso. <em>(Peldaños 1 y 6.)</em></p>
+<p><strong>10. ¿Está escrito qué cosas el sistema </strong>no<strong> va a hacer?</strong> Lo que se puede ver: una sección propia, con al menos dos ítems, en el documento del proyecto. Lo que no está dicho es exactamente lo que va a aparecer construido de otra manera. <em>(Peldaño 2.)</em></p>
+<p><strong>11. ¿Quiénes son los distintos tipos de persona que van a usar esto, y está escrito qué puede hacer cada uno?</strong> Lo que se puede ver: la lista de perfiles —quién es cada uno y qué viene a hacer— y una tabla que dice qué puede hacer cada perfil. Si hay un solo perfil llamado "usuario", casi siempre falta la mitad: es la causa más común de que alguien vea un botón que no le corresponde, o de que alguien que sí tiene el permiso no encuentre la pantalla. <em>(Peldaño 2, entradas previas del Anexo H; peldaño 8, la matriz.)</em></p>
+</section><section>
+<h2 id="lo-que-te-prometen-esta-bien-hecho">Lo que te prometen: "está bien hecho"</h2>
+<p><strong>12. ¿Qué mide una máquina en cada cambio, sin que nadie se acuerde de mirarlo?</strong> Lo que se puede ver: la configuración de la cadena de verificación en el repositorio y el registro de la última corrida. "Lo revisamos entre nosotros" no es una respuesta: es una costumbre, y las costumbres se caen la semana que hay apuro. <em>(Peldaños 4 y 9.)</em></p>
+<p><strong>13. ¿Hay un límite que, si se pasa, </strong>frena<strong> la construcción?</strong> Lo que se puede ver: un archivo con los límites y su valor medido de hoy, y una corrida frenada por uno de ellos. La pregunta de control, que conviene hacer tal cual: <em>¿alguna vez subieron un límite para poder seguir?</em> Si la respuesta es sí y no está escrito por qué, el límite es decorativo. <em>(Peldaño 9.)</em></p>
+<p><strong>14. ¿Cómo sabe que el código lo va a poder mantener otra persona?</strong> Lo que se puede ver: el reporte por regla, no un número único: tamaño de archivo, tamaño de función, código repetido, código muerto. Un "noventa y cinco por ciento de calidad" no dice qué arreglar. <em>(Peldaño 9 y Anexo H.)</em></p>
+<p><strong>15. ¿Las pantallas las pensó alguien, o salieron de lo que el programa necesitaba?</strong> Lo que se puede ver: el registro de las reglas de usabilidad con su resultado, y las excepciones apagadas con el motivo escrito, quién lo autorizó y cuándo se revisa. Un sistema puede pasar todas las verificaciones técnicas y ser inusable: todo verde, y la persona no encuentra dónde cobrar. <em>(Anexo H, las veintisiete reglas de usabilidad.)</em></p>
+<p><strong>16. Las pruebas que me mostró, ¿vigilan de verdad o decoran?</strong> Lo que se puede ver: el puntaje de mutación. Es un programa que mete errores a propósito y cuenta cuántos atrapan las pruebas; el número sale con su comando. Si tu sistema tiene usuarios reales, esto no es opcional en el método. <em>(Peldaño 9.)</em></p>
+</section><section>
+<h2 id="lo-que-te-prometen-no-te-va-a-hacer-dano">Lo que te prometen: "no te va a hacer daño"</h2>
+<p><strong>17. ¿Qué pasa con mis datos si algo se rompe a mitad de una operación?</strong> Lo que se puede ver: la tabla de acciones con su reversibilidad, y la regla escrita de que ante la duda el sistema <strong>se frena</strong> en vez de seguir. Un cobro duplicado o una aprobación automática que nadie miró son el caso típico. <em>(Peldaño 14.)</em></p>
+<p><strong>18. ¿Hay copias de respaldo, y alguna vez probaron restaurar una?</strong> Lo que se puede ver: la fecha de la última restauración <strong>probada</strong>. Una copia que nunca se restauró no es una copia de respaldo: es un archivo del que nadie sabe nada. <em>(Peldaño 20, manual de recuperación.)</em></p>
+<p><strong>19. ¿Quién revisa que el sistema no tenga agujeros conocidos, y cada cuánto?</strong> Lo que se puede ver: el escaneo corriendo en la cadena, con fecha, y los hallazgos convertidos en pendientes. Más una pregunta corta y muy reveladora: <em>¿dónde están guardadas las claves y las contraseñas del sistema?</em> Si están en el código, ya tenés un problema. <em>(Peldaños 18 y 15.)</em></p>
+<p><strong>20. ¿Alguien que no programa recuperó el sistema desde cero siguiendo un manual?</strong> Lo que se puede ver: el manual, y el registro de esa prueba con tres cosas: cuánto tardó de punta a punta, en qué paso exacto se trabó la persona, y qué palabras no entendió. Si el manual arranca con "abrí una sesión con el agente", no es un manual para una persona. Y mientras eso no exista, dicho sin vueltas: <strong>el dueño no es dueño, es inquilino</strong>. Tiene el sistema, lo paga, y no puede entrar sin pedirle permiso a quien lo construyó. <em>(Peldaño 20.)</em></p>
+</section><section>
+<h2 id="lo-que-te-prometen-va-a-aguantar">Lo que te prometen: "va a aguantar"</h2>
+<p><strong>21. ¿Con qué números dimensionaron esto, y de dónde salieron?</strong> Lo que se puede ver: cuántos usuarios a la vez, cuántas operaciones por día, cuánto crece por año, cuánto tiene que durar guardado. Y la parte que importa: esos números los tiene <strong>tu negocio</strong>, no el que construye. Si los inventó él, están mal. <em>(Peldaño 3.)</em></p>
+<p><strong>22. ¿Lo probaron con la carga que yo le voy a dar, y con diez veces más?</strong> Lo que se puede ver: el reporte de la corrida, con el punto exacto donde el sistema se cayó. Saber dónde se rompe es la única forma de saber cuánto margen tenés. <em>(Peldaño 19.)</em></p>
+<p><strong>23. Cuando el sistema esté lento en seis meses, ¿cómo van a saber por qué?</strong> Lo que se puede ver: los registros con identificador por acción, el reporte de las consultas más lentas, y las alertas configuradas. Si la respuesta es "lo vemos cuando pase", lo vas a ver vos primero, por un usuario enojado. <em>(Peldaños 16, 17, 21 y 22.)</em></p>
+</section><section>
+<h2 id="lo-que-te-prometen-te-voy-a-decir-la-verdad">Lo que te prometen: "te voy a decir la verdad"</h2>
+<p><strong>24. Cuando me informa que algo está listo, ¿cómo distingo lo que probó de lo que supone?</strong> Lo que se puede ver: el reporte en tres bloques: <strong>verificado</strong> (con la prueba al lado), <strong>creído</strong> (y por qué no se probó) y <strong>puntos ciegos</strong> (lo que no se puede ver desde donde está). "Listo" a secas no es un reporte. Y la segunda parte de la pregunta vale más que la primera: <em>¿qué cosas de este entregable <strong>no</strong> pudo verificar?</em> Si la respuesta es "ninguna, todo verificado", desconfiá: nadie verifica todo. <em>(Peldaño 12.)</em></p>
+<p><strong>25. ¿Quién revisa el trabajo, además de usted mismo?</strong> Lo que se puede ver: una auditoría hecha por alguien —o algo— distinto del que construyó, con sus hallazgos convertidos en pendientes y con fecha. Un modelo avala una parte considerable de sus propios errores, y una persona también. El que construye no puede ser el único que verifica. <em>(Peldaño 13.)</em></p>
+<hr>
+</section><section>
+<h2 id="que-hacer-con-las-respuestas">Qué hacer con las respuestas</h2>
+<p>Anotá, al lado de cada pregunta, una de tres cosas: <strong>lo vi</strong>, <strong>no lo vi todavía</strong> (con la fecha en que te lo prometieron) o <strong>no existe y me dijo por qué</strong> (con la razón). No hace falta que las veinticinco den "lo vi": un proyecto chico no necesita pruebas de carga ni monitoreo semanal, y el método lo dice. Lo que sí tiene que pasar es que <strong>cada "no" tenga su razón escrita</strong>, porque un no con razón es una decisión tuya y un no sin razón es una deuda que vas a pagar sin haberla elegido.</p>
+<p>Y una última, que no está numerada porque no es para el proveedor: si alguien se incomoda porque le pedís ver las cosas, eso también es información.</p>
+<hr>
+</section><section>
+<h2 id="de-donde-sale-esta-hoja">De dónde sale esta hoja</h2>
+<p>Las veinticinco preguntas son la "verificación de completitud sin leer código" de los contratos de este método, juntada: cada una cita el peldaño del que sale, así que cualquiera puede ir al contrato y leer la versión completa. Están escritas de cero para esta hoja.</p>
+<p><strong>La idea de que esto tenía que existir como una hoja no es mía.</strong> Vino de la primera adaptación del método a otro formato —la novela de Oscar Schmitz "El Arte de Forjar Sistemas", 2026, acreditada en la Parte F del documento principal—, que lo dijo mejor que yo: el método tiene la verificación repartida en sus contratos y le faltaba la pieza que un dueño se lleva a una reunión. El criterio del frente de esta hoja —que las respuestas que valen son las que se pueden ver— es también de ahí. Su versión de las preguntas es su obra y tiene sus derechos reservados; estas son otras, escritas desde mis contratos, y por eso se publican con la licencia de este repositorio.</p></section>
+<footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">Repositorio público del método: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
+</div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>

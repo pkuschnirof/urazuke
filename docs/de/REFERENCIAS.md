@@ -219,6 +219,17 @@ Ein Bug kam dreimal zurück, bis am 14. Juli die wirkliche Ursache gefunden wurd
 keine Behebung“, was schon in der Arbeitsvereinbarung stand, auf, ein Satz zu sein, und wurde zur
 Praxis: man muss die Hypothese messen, bevor man anfasst. Schritte 1 und 7.
 
+**Die Arithmetik, laut ausgesprochen, weil die zwei Zahlen derselbe Fall sind, von zwei Seiten
+gezählt.** Es gab **vier Reparaturrunden** und **drei Rückkehrer** des Bugs: Runde 1 „reparierte" ihn
+und er kam zurück (Rückkehr 1), Runde 2 „reparierte" ihn und er kam zurück (Rückkehr 2), Runde 3
+„reparierte" ihn und er kam zurück (Rückkehr 3), und Runde 4 war die, die die Wurzelursache fand.
+Daher sagt der Titel dieser Referenz vier Runden, sagt dieser Absatz, dass er dreimal zurückkam, und
+zählt die Tabelle der Fehler pro Schritt drei Reparaturen, die nicht an der Wurzel waren: es ist kein
+Widerspruch, es sind n Runden und n−1 Rückkehrer. Es steht hier, weil ohne diese Zeile die drei
+Erwähnungen sich wie drei verschiedene Zahlen desselben Sachverhalts lesen, und der erste externe
+Leser, der den Fall reproduzierte, schrieb „er kam viermal zurück". Wenn eine Referenz zulässt, dass
+jemand, der sie aufmerksam liest, eine andere Zahl herausbekommt, ist der Mangel der der Referenz.
+
 ### Ref. 23 — Sicherheitsaudit (16. Juli)
 
 Am 16. Juli machte ich das erste formale Sicherheitsaudit, mit Befunden, die zu offenen Posten

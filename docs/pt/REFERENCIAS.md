@@ -207,6 +207,16 @@ anterior tinha sido sobre o sintoma. Aqui "a correção é na raiz ou não é co
 estava no contrato de convivência, deixou de ser uma frase e virou prática: há que medir a
 hipótese antes de tocar. Degraus 1 e 7.
 
+**A aritmética, dita em voz alta, porque os dois números são o mesmo caso contado de dois lados.**
+Houve **quatro rodadas de arrumação** e **três retornos** do bug: a rodada 1 o "arrumou" e ele
+voltou (retorno 1), a 2 o "arrumou" e voltou (retorno 2), a 3 o "arrumou" e voltou (retorno 3), e a
+4 foi a que encontrou a causa raiz. Daí que o título desta referência diga quatro rodadas, que este
+parágrafo diga que voltou três vezes e que a tabela de falhas por degrau conte três arrumações que
+não eram de raiz: não é uma contradição, são n rodadas e n−1 retornos. Fica escrito aqui porque sem
+esta linha as três menções se leem como três cifras distintas do mesmo fato, e o primeiro leitor
+externo que reproduziu o caso escreveu "voltou quatro vezes". Se uma referência deixa que alguém que
+a lê com cuidado tire outro número, o defeito é da referência.
+
 ### Ref. 23 — Auditoria de segurança (16 de julho)
 
 Em 16 de julho fiz a primeira auditoria de segurança formal, com achados convertidos em

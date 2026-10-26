@@ -15,6 +15,46 @@ Public presentation: [yujin.app/urazuke](https://yujin.app/urazuke/).
 This folder holds the English version of the method. Spanish is the source of truth and this is a
 translation; if the two ever disagree, the Spanish version wins and the English one gets fixed.
 
+## Three different things: a method, a protocol, a tool
+
+I put this up front because it is the most expensive misunderstanding this project has, and I
+measured it: I handed the published site to an outside assistant, and it threw the three of them
+into one bag, concluded that the whole thing was a product narrative, and offered to analyse my
+code for me. It asked a method for code. They are three different natures, and it is worth
+separating them from the start.
+
+**The method is Urazuke, and it is what you are reading.** It says what to do and in what order,
+what to demand from whoever builds (a person or a model), and how to know, without reading a single
+line of code, that they delivered complete work and not half of it. It is procedure and criteria,
+nothing else. You apply it with whatever assistant you have at hand, with the one that comes out
+next year, or with pencil, paper and a team of people. It is all here and under a free licence: the
+twenty-four steps, their contracts and their prompts.
+
+**The protocol is NAC3, and it is something else.** It is a contract so that an application's
+screens can be driven by a program (every interface element with its identifier and its methods)
+and, at the same price, can be driven by a person using a screen reader or their voice: an agent
+and a person navigating the same interface with the same dignity. The method uses it as a **means**
+for one specific thing: so that end-to-end tests can walk the screen on their own. It is not a
+condition of the method. The method's criterion is neutral and is written that way in step 0: the
+interface can be driven by a program, with any technology that allows it.
+
+**The tool is Yujin-Forge, and it is an implementation.** It automates the method (the gates, the
+prompt injection) and it speaks the protocol. It is *a* way of applying Urazuke, not *the* way. If
+it does not suit you, or you do not want it, the method is still just as complete.
+
+And this is not a statement of good intentions: **it is in the data, and it can be measured.** The
+mechanical definition of the gates that the method publishes for any consumer names no tool and no
+protocol, not even mine. There is an automated test that demands it on every surface where one
+could slip in (the sources, the two published files, their index and the generated document), and
+anyone can check it today, in one second, against the served file:
+
+```
+curl -s https://yujin.app/urazuke/api/gates.json | grep -o -i -E "forge|nac-?3|yujin" | wc -l
+```
+
+It returns **0** (measured on 2026-10-26). Any tool whatsoever can implement the method's gates
+without adopting any protocol and without adopting any other tool.
+
 ## The thesis in one sentence
 
 AI does not interrupt the method: it continues it. The industry stopped trusting the author of the
@@ -31,6 +71,7 @@ the evidence, and that is why the evidence has to prove itself.
 | `REFERENCIAS.md` | The real cases behind the method, numbered ("Ref. N"), with date and evidence, so that the procedures stay clean and the detail is one click away. Includes the chronologies of the three systems and the table of failures by step. |
 | `peldanos/peldano-NN-*.md` | The contract of each step: when, required context, the prompts in English with their explanation and, before each one, the "Before sending the prompt" block with the files you have to build yourself and their content; the expected result, the completeness check without reading code, the warning signs. |
 | `peldanos/README.md` | The index of the contracts. |
+| `PREGUNTAS_AL_PROVEEDOR.md` | The twenty-five questions for the provider: the completeness check of the contracts, gathered into one sheet an owner who has never contracted software takes to a meeting. Grouped by what they are being promised, each one with the answer that can be **seen** and the step it comes from. |
 | `MANUAL_CURSO.md` | The course: calendar, twenty-four lessons with hands-on tasks and prompts, the guide project ("Turnera"), the go-live checklist. |
 | `MANUAL_CURSO_EVOLUTIVO.md` | Part 2 of the course: the inherited guide project ("Turnera inherited"), ten lessons (N0 to N7, R1 and R2) to normalize a legacy system and then correct it and evolve it. |
 | `../DECISIONES.md` | The project's decisions, with date and exact words. The method applies to itself. Spanish only. |

@@ -226,6 +226,22 @@ Cada peldaño tiene ocho partes, siempre las mismas, para que se puedan comparar
 - **Contrato**: el archivo donde está cómo se ejecuta: contexto, prompts, resultado, verificación,
   señales de alarma.
 
+Y hay una parte más, que aparece **sólo en seis peldaños** y es una pieza transversal que
+cambia qué hay que leer: el **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Son
+cuarenta y cinco reglas verificables —dieciocho de calidad del código y veintisiete de
+usabilidad—, cada una con su identificador estable, su severidad y el instrumento que la mide. No
+es un apéndice opcional: **es obligatorio**, y se engancha a la escalera en seis puntos. En el
+peldaño 2 entran sus dos **entradas previas** (el glosario del usuario y la lista de perfiles: las
+palabras que la gente usa de verdad para cada cosa, y quién es cada uno y qué viene a hacer). Y en
+los peldaños 5, 8, 9, 10 y 12 están sus cinco **anclas** —"ancla" quiere decir que la compuerta de
+ese peldaño no da verde si la pieza del anexo no está—. Esas cinco son exigencias mecánicas en la
+definición publicada de las compuertas, no recomendaciones: una herramienta que compila el método
+las va a pedir. Cada uno de esos seis peldaños lo dice en su ficha, con el enlace, y hay una
+comprobación en la cadena del método que se pone en rojo si alguna deja de decirlo. Nació de
+haberlo descubierto tarde: el anexo estuvo obligatorio y sin nombrar en este documento, y el
+primer lector que adaptó el método a otro formato se salteó veintisiete de las cuarenta y cinco
+reglas porque nunca supo que existían.
+
 Dos aclaraciones importantes. Primero: **la escalera es neutral respecto de la herramienta**. Cada
 artefacto es un archivo, un test o un script; ninguno exige mi herramienta ni ninguna otra. Forge
 los automatiza (las compuertas, los comandos, el registro de pendientes), pero el peldaño existe
@@ -494,6 +510,14 @@ correctivos. Si sos principiante, cada contrato de esos seis, y los de los pelda
 empiezan con un párrafo que explica sus palabras en lenguaje de todos los días, y el glosario las
 tiene todas.
 
+Y una advertencia antes de empezar a leerlos, porque sale más cara después que ahora: seis de los
+veinticuatro no se suben sólo con lo que dice su ficha. El peldaño 2 carga las dos entradas previas
+del [Anexo H](ANEXO_HEURISTICAS.md) —el glosario del usuario y la lista de perfiles— y los peldaños
+5, 8, 9, 10 y 12 cargan sus cinco anclas. Cada uno de los seis lo dice en su ficha, al final, en una
+línea que empieza con **Anexo H**. Si vas a aplicar el método, leé el anexo antes de abrir el
+peldaño 5: cinco de tus compuertas no dan verde sin él, y enterarse cuando la compuerta ya te
+detuvo es la peor forma de enterarse.
+
 ### Peldaño 0 — ¿Este proyecto se puede encarar así? (la elegibilidad)
 
 Hay algo previo a todo, que no está en ningún repositorio porque siempre llegó decidido: la
@@ -607,6 +631,12 @@ lee nadie.
   [Ref. 9](REFERENCIAS.md#ref-9). Y el archivo de proyecto que crece hasta volverse ilegible
   [Ref. 41](REFERENCIAS.md#ref-41): el archivo operativo y el libro de casos tienen que ser archivos
   distintos.
+- **Anexo H**: acá entran las dos **entradas previas** del [Anexo H](ANEXO_HEURISTICAS.md), y entran
+  acá porque todo lo que viene después las usa. Una es el **glosario del usuario**: las palabras que
+  la gente usa de verdad para cada cosa, no las que usa el sistema. La otra es la **lista de
+  perfiles**: quién es cada uno —administración, operación, consulta, cliente— y qué viene a hacer.
+  De esas dos salen la matriz del peldaño 8, los casos por perfil del 10 y los criterios de
+  aceptación por perfil del 5. Si no están, las cinco anclas del anexo no tienen de dónde salir.
 - **Contrato**: `peldanos/peldano-02-definicion-y-lectura.md`.
 
 ### Peldaño 3 — Dimensionar antes de diseñar la arquitectura
@@ -683,6 +713,11 @@ porque eso es lo que vos vas a mirar en vez de mirar el código.
 - **Fallo que evita**: la especificación que "se supera" y queda obsoleta en dos semanas
   [Ref. 17](REFERENCIAS.md#ref-17); y el trabajo del que seis meses después nadie sabe por qué se
   hizo [Ref. 7](REFERENCIAS.md#ref-7).
+- **Anexo H**: ancla 1 del [Anexo H](ANEXO_HEURISTICAS.md). Todo pendiente que toca una pantalla
+  declara, además de lo de arriba, tres cosas más: el **grupo de convergencia funcional** al que
+  pertenece (lo que la persona vino a hacer, que es por donde se agrupa la funcionalidad), los
+  **perfiles** que la tienen, y **un criterio de aceptación por perfil**. Sin esa declaración el
+  pendiente no pasa el peldaño, y no es una recomendación: es lo que la compuerta mide.
 - **Contrato**: `peldanos/peldano-05-pendientes.md`.
 
 ### Peldaño 6 — Las decisiones se escriben junto al código
@@ -758,6 +793,12 @@ el backend, son las que reemplazan tu lectura del código.
   [Ref. 44](REFERENCIAS.md#ref-44). El caso de los contadores es el ejemplo completo de un test
   probado en rojo contra el criterio viejo [Ref. 26](REFERENCIAS.md#ref-26).
 - **Rojo del primer bloque**: cuando la versión anterior no tiene el módulo, el rojo se prueba por mutación (un defecto plantado, el test en rojo, el diff en el recibo), no con un archivo que no carga.
+- **Anexo H**: ancla 2 del [Anexo H](ANEXO_HEURISTICAS.md). El mismo pendiente carga el test de la
+  **matriz de funcionalidad por perfil**: una tabla que dice qué puede hacer cada perfil, de la que
+  se derivan el menú, las rutas y los permisos en vez de escribirlos tres veces en tres lugares. El
+  test de punta a punta compara, por cada perfil, lo que se puede alcanzar contra su fila de la
+  matriz: ni menos ni más. Es la forma de atrapar al que ve un botón que no le corresponde, y al
+  que tiene el permiso y no encuentra la pantalla.
 - **Contrato**: `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Peldaño 9 — Calidad del código verificada por máquina, con compuerta
@@ -766,6 +807,14 @@ El dueño no lee el código, y ese es el punto. Pero el código lo va a mantener
 que funciona hoy y es ilegible mañana es deuda que se cobra en el mes tres. Si nadie lo lee, lo
 tiene que mirar una máquina: en cada commit, lo que un revisor humano miraría, convertido en un
 número con un límite. Lo hice en todos mis proyectos sin nombrarlo como peldaño.
+
+Y acá conviene tener a mano la frase que separa este peldaño del anterior, porque es la confusión
+más cara del oficio y se resuelve en nueve palabras: **la cobertura cuenta pruebas; el rojo dice si
+sirven**. Un número de cobertura del noventa por ciento te dice cuánto código ejecutan los tests,
+y no te dice nada sobre si alguno de esos tests se pondría en rojo si el comportamiento se rompe.
+Eso lo dice el peldaño 8, y lo dice de la única forma que no se puede fingir: viendo el rojo. La
+cobertura es un número de este peldaño; el rojo es el recibo del anterior. (La formulación es de la
+primera adaptación del método a otro formato, acreditada en la Parte F.)
 
 - **Intención**: que la calidad del código se verifique por máquina en cada commit, con la
   construcción en rojo como consecuencia, y que nunca se degrade sola.
@@ -787,6 +836,14 @@ número con un límite. Lo hice en todos mis proyectos sin nombrarlo como pelda�
 - **Fallo que evita**: el componente de más de dos mil líneas y el archivo de casi diez mil que
   una auditoría encontró porque ningún límite los había frenado [Ref. 41](REFERENCIAS.md#ref-41);
   el número de calidad que empeora sin que nadie lo vea [Ref. 35](REFERENCIAS.md#ref-35).
+- **Anexo H**: ancla 3 del [Anexo H](ANEXO_HEURISTICAS.md), y es la más grande de las cinco: acá la
+  compuerta se extiende de la calidad del código a la **usabilidad**. El catálogo de las cuarenta y
+  cinco reglas está declarado y activo por grupo; cada regla activa tiene su instrumento, su
+  severidad y su verificador; cada regla **apagada** tiene su registro con motivo, quién lo autoriza
+  y fecha de revisión —apagada sin registro es rojo, que no es lo mismo que la regla ausente—; cada
+  umbral que el dueño no declaró se publica como no declarado en vez de inventarse; y el reporte sale
+  con las dos cifras y la huella del conjunto de reglas. Un sistema puede pasar la calidad del código
+  con honores y ser inusable; esta ancla es la que lo impide.
 - **Contrato**: `peldanos/peldano-09-calidad-de-codigo.md`.
 
 ### Peldaño 10 — Los casos de prueba manual se escriben junto con la funcionalidad, y los ejecutan personas
@@ -817,6 +874,10 @@ gráfico del proceso muestra.
 - **Fallo que evita**: la prueba humana sin guion que encuentra cosas distintas cada vez, y el
   hallazgo humano que se arregla en el momento y se pierde; el menú desplegable incómodo que
   ningún test vio y la encargada sí, en el proyecto guía del curso.
+- **Anexo H**: ancla 4 del [Anexo H](ANEXO_HEURISTICAS.md). Cada caso manual se corre **una vez por
+  cada perfil afectado**, y los perfiles salen de la matriz del peldaño 8, no de la memoria de
+  quien ejecuta. Un caso corrido con un solo perfil no cuenta como ejecutado: la mitad de los
+  problemas de permisos y de menú sólo se ven desde el perfil que no es el del que construyó.
 - **Contrato**: `peldanos/peldano-10-casos-de-prueba-manual.md`.
 
 ### Peldaño 11 — Simetría entre productor y consumidor, y el registro de anti-patrones
@@ -862,6 +923,10 @@ los puntos ciegos y lo que no hizo.
   que no lo estaba [Ref. 43](REFERENCIAS.md#ref-43); el turno que trabajó invisible una hora
   cuarenta y tres [Ref. 16](REFERENCIAS.md#ref-16). La regla de honestidad de verificación la
   escribí en junio [Ref. 8](REFERENCIAS.md#ref-8).
+- **Anexo H**: ancla 5 del [Anexo H](ANEXO_HEURISTICAS.md). El reporte informa también los grupos
+  del anexo: qué se midió, qué quedó sin medir y qué regla está apagada con su registro. Es la
+  misma regla de honestidad aplicada al anexo: una regla que la instalación no sabe medir se
+  reporta como no medida, nunca como verde.
 - **Contrato**: `peldanos/peldano-12-verificacion-honesta.md`.
 
 ### Peldaño 13 — La auditoría periódica como insumo del plan
@@ -1043,6 +1108,13 @@ El sistema tiene que poder usarse, mantenerse y recuperarse sin el agente y sin 
 no hay agente no se puede desplegar, no está terminado. Y como regenerar documentación con un
 modelo es gratis, la regla pasa a ser "en el mismo commit".
 
+Dicho en una palabra que cualquiera entiende antes de terminar de leerla: sin estos manuales,
+**el dueño no es dueño, es inquilino**. Tiene el sistema, lo paga, vive adentro, y no puede entrar
+si se le pierde la llave: para arrancarlo, para recuperarlo o para entender por qué dejó de
+funcionar depende de que el que lo construyó —o el modelo que lo construyó— siga disponible y siga
+teniendo ganas. La propiedad de un sistema no es el código: es poder operarlo sin pedir permiso.
+(La formulación es de la primera adaptación del método a otro formato, acreditada en la Parte F.)
+
 - **Intención**: que el sistema se pueda usar, mantener y recuperar sin el agente y sin el
   constructor.
 - **Cuándo**: el manual de usuario crece con cada bloque funcional, al cierre, con las pantallas
@@ -1054,7 +1126,14 @@ modelo es gratis, la regla pasa a ser "en el mismo commit".
   infraestructura y recuperación escrito para una persona que tiene que hacerlo a mano a las tres
   de la mañana; cada uno con fecha y versión.
 - **Compuerta**: la documentación está al día en el mismo commit; alguien que no programa siguió el
-  manual de recuperación.
+  manual de recuperación **y la ejecución dejó su registro** (lo de abajo).
+- **La prueba deja tres cosas escritas, no un "se hizo"**: el **tiempo medido** de punta a punta
+  (cuándo empezó, cuándo terminó el sistema de volver a funcionar), el **punto exacto donde la
+  persona se trabó** —el paso del manual, con sus palabras—, y **cada palabra que no entendió**. Las
+  tres se escriben con su fecha y el nombre de quien hizo la prueba. Y cada palabra que no entendió
+  **abre un pendiente**: o se explica en el manual, o se le cambia el nombre a la cosa. Sin ese
+  registro la compuerta no está cumplida, aunque la persona haya recuperado el sistema: una prueba
+  que no produce evidencia es la forma más barata de tener una compuerta que no mide nada.
 - **Quién decide**: el agente mantiene; el dueño lee el manual, no el código.
 - **Fallo que evita**: el documento desactualizado que provocó un commit en el repositorio
   equivocado; el archivo de proyecto convertido en historial [Ref. 41](REFERENCIAS.md#ref-41). Los
@@ -1169,6 +1248,15 @@ dentro de `peldanos/`, siempre con las mismas cinco secciones:
    artefacto, **sin leer código**. Si una da "no", el peldaño no está subido.
 5. **Señales de alarma**: dos o tres síntomas de que el peldaño se subió mal aunque parezca subido.
 
+Esa verificación de completitud está repartida en treinta y dos contratos, uno por peldaño y uno
+por estación, y eso sirve mientras el proyecto está en marcha. Pero hay un momento anterior en el
+que no tenés treinta y dos contratos a mano: la reunión en la que alguien te ofrece construirte el
+sistema. Para ese momento hay una hoja: **[las veinticinco preguntas para el
+proveedor](PREGUNTAS_AL_PROVEEDOR.md)**, que es la misma verificación de completitud juntada,
+escrita para una persona que nunca contrató software y ordenada por lo que le están prometiendo.
+Cada pregunta dice qué respuesta se puede **ver** —un archivo, un número con su comando, una prueba
+en rojo, un manual, una firma— y de qué peldaño sale. Se imprime y se lleva.
+
 Y en el encabezado de cada contrato: el tramo, el cuándo, la forma y el tamaño (si es obligatorio
 en todo proyecto o proporcional).
 
@@ -1188,8 +1276,30 @@ estarlo.
 Una pregunta que aparece enseguida: "¿todo esto para un sistema chico?". La respuesta es que
 veinticuatro peldaños no son veinticuatro etapas largas; varios se suben en una sesión, y los que
 son proporcionales se achican con el proyecto. Lo que no se achica es la lista de los que no se
-negocian. Esta tabla es una propuesta `[hipótesis]` para confirmar con el primer proyecto que use
-el método de punta a punta:
+negocian.
+
+Pero antes de la tabla conviene decir **cómo se llega a achicar un peldaño**, porque la tabla sola
+se lee como un permiso y no lo es. Son tres momentos, y van en orden.
+
+**Primero se hace completo, incluso lo que no se entiende para qué.** La primera vez que aplicás el
+método no estás en condiciones de saber qué parte te sobra: los peldaños que parecen burocracia son
+justo los que previenen los problemas que todavía no te pasaron, y la lista entera salió de
+problemas que ya pasaron. Hacerlo completo una vez es más barato que la discusión sobre qué saltear,
+y es lo único que te da el criterio para la etapa siguiente.
+
+**Después se adapta a lo que tenés enfrente.** Cuando ya subiste los veinticuatro una vez, sabés
+qué produce cada uno y podés dimensionarlo: media página en vez de cinco, una corrida en vez de un
+presupuesto por camino, un reporte mensual en vez de uno semanal. Eso es lo que esta tabla propone.
+Y la decisión es del dueño, peldaño por peldaño y en voz alta: cuáles se achican y cuáles no se
+negocian en este proyecto, escrito antes de empezar y no después del primer problema. Un peldaño
+achicado por decisión escrita es proporcionalidad; achicado en silencio, es deuda.
+
+**Y al final se mejora, para los que vienen.** El peldaño 23 cierra con una retrospectiva que
+vuelve acá como propuesta de cambio a la escalera. Lo que descubriste aplicándolo no es tu
+anécdota: es la próxima fila de esta tabla. Este documento está en su versión 4 por eso.
+
+Esta tabla es una propuesta `[hipótesis]` para confirmar con el primer proyecto que use el método
+de punta a punta:
 
 | Peldaño | Proyecto chico (un dueño, pocos usuarios, sin dinero en juego) | Proyecto con usuarios y consecuencias |
 |---|---|---|
@@ -1365,6 +1475,38 @@ opcionales solo sin usuarios reales), con su puntaje al cierre de cada bloque ju
 Ninguna de las tres
 piezas exige que el dueño lea código. Las tres hacen que fingir el rojo cueste más que correrlo.
 
+### F.5 Una adaptación del método a otro formato, y qué me enseñó
+
+En 2026, Oscar Schmitz publicó **"El Arte de Forjar Sistemas"** (191 páginas), una novela que
+adapta este método: toma la escalera y la cuenta como ficción, con una dueña que decide y un
+equipo que construye. No es un trabajo relacionado en el sentido de los de arriba —no propone otro
+método— sino algo que no había pasado antes: alguien leyó el corpus entero para producir otra obra.
+La validé aseveración por aseveración contra la letra del método, y el informe de esa validación
+queda en el repositorio.
+
+Lo que salió de ahí, y por qué está en esta parte y no en las referencias: **las referencias son
+casos propios, con fecha y commit; una novela no es un caso**. Lo que sí hizo fue dos cosas.
+
+Aportó **cuatro formulaciones mejores que las mías**, y están adoptadas en este documento con este
+crédito: "la cobertura cuenta pruebas; el rojo dice si sirven" (peldaño 9), "el dueño no es dueño:
+es inquilino" (peldaño 20), la idea de que a achicar un peldaño se llega después de haberlo hecho
+completo (Parte D) y la de que la prueba del manual de recuperación tiene que **registrar** el
+tiempo, la traba y las palabras que no se entendieron (peldaño 20). La quinta es la hoja de
+[las veinticinco preguntas para el proveedor](PREGUNTAS_AL_PROVEEDOR.md): la idea de juntar la
+verificación de completitud en una hoja que un dueño se lleva a una reunión es suya; las
+veinticinco preguntas de este repositorio están escritas de cero desde los contratos del método,
+porque su versión es su obra y tiene sus derechos reservados.
+
+Y mostró un **defecto estructural del método** que ninguna auditoría había visto, que es lo más
+valioso de todo: el autor reprodujo sin un error seis cifras seguidas de las referencias, y se
+salteó veintisiete de las cuarenta y cinco reglas del Anexo H. No se le pasaron: **este documento
+no lo nombraba ni una vez**, así que nunca supo que existían. Un lector que lee todo y aplica el
+método quedaría detenido en cinco compuertas publicadas sin entender por qué. Esa es la razón de
+que el anexo esté nombrado en la Parte A, en la apertura de la Parte C y en la ficha de los seis
+peldaños que lo cargan, y de que haya una comprobación en la cadena que se pone en rojo si alguna
+ficha deja de nombrarlo. El peldaño 23 pide que la retrospectiva vuelva como propuesta de cambio a
+la escalera; esta es la primera que vino de un lector.
+
 Un marco útil para ubicar este método en el mapa es la taxonomía de Macedo, de junio de 2026
 ([arXiv 2606.04967](https://arxiv.org/abs/2606.04967)): seis dimensiones (especificación, contexto,
 roles, ejecución, validación, portabilidad), y la constatación de que ningún framework de los que
@@ -1395,6 +1537,17 @@ la alerta, y se arregla o se elimina.
 **Análisis estático** — Leer el código por máquina, sin ejecutarlo, buscando patrones peligrosos
 conocidos (una inyección, una clave escrita en el código). Es una de las cuatro capas del
 escaneo de vulnerabilidades del peldaño 18.
+
+**Ancla (del Anexo H)** — El punto donde una pieza del Anexo H se vuelve condición de un peldaño:
+si la pieza no está, la compuerta de ese peldaño no da verde. Hay cinco, en los peldaños 5, 8, 9,
+10 y 12, y las nombra la ficha de cada uno. No es una recomendación ni una buena práctica: es parte
+de lo que se mide.
+
+**Anexo H** — El anexo de heurísticas del método ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)):
+cuarenta y cinco reglas verificables, dieciocho de calidad del código y veintisiete de usabilidad,
+cada una con su identificador estable, su severidad y el instrumento que la mide. Es obligatorio y
+atraviesa los cuatro tramos: entra con dos entradas previas en el peldaño 2 y con cinco anclas en
+los peldaños 5, 8, 9, 10 y 12. La "H" es de heurísticas.
 
 **Anonimización** — En este documento los clientes reales se llaman "la Obra Social", "el
 Autorizador" y "la Asociación", y sus sistemas "Autorizaciones" y "Kikan". Es a propósito: los
@@ -1624,6 +1777,11 @@ que parte de algo existente (brownfield, "campo usado").
 **Grep** — Un comando que busca texto en archivos. "Medidor, no grep" significa: un número
 importante no se saca contando con una búsqueda de texto, sino con un programa con test.
 
+**Grupo de convergencia funcional** — La forma en que el Anexo H agrupa la funcionalidad: por
+**lo que la persona vino a hacer**, no por la tabla de la base ni por el módulo del código. "Cobrar
+una consulta" es un grupo; "tabla de pagos" no lo es. Cada pendiente que toca una pantalla declara
+el suyo (ancla 1, peldaño 5).
+
 **Heap** — La memoria que usa un programa. "La batería moría por heap" quiere decir que los tests
 se quedaban sin memoria y parecía que fallaban.
 
@@ -1648,6 +1806,10 @@ para encontrar filas sin leer la tabla entera. Sin índice, la consulta hace un 
 **Ingesta de requerimientos** — El momento en que el pedido del negocio entra al método: primero
 en prosa, con el dueño, y después convertido en pendientes verificables por el agente, que
 pregunta lo que falta.
+
+**Inquilino (el dueño que no es dueño)** — Expresión que uso en el peldaño 20: tener el sistema,
+pagarlo y no poder entrar sin pedirle permiso a quien lo construyó. Es lo que pasa cuando faltan
+los manuales que una persona puede seguir sin agente.
 
 **Inyección** — Una vulnerabilidad en la que lo que un usuario escribe en un formulario termina
 interpretado por el sistema como una orden (por ejemplo, una consulta a la base). El análisis
@@ -1686,6 +1848,11 @@ escrito o es peligroso, como un corrector ortográfico; el formateador lo acomod
 en lo que el agente dice que hizo, mirá el registro.
 
 **MariaDB** — El motor de base de datos SQL que usa Kikan en producción.
+
+**Matriz de funcionalidad por perfil** — Una tabla con los perfiles en las filas y las
+funcionalidades en las columnas, que dice quién puede hacer qué. El menú, las rutas y los permisos
+se **derivan** de ella en vez de escribirse tres veces en tres lugares, que es por donde se
+desincronizan solos. Es el instrumento de la ancla 2 (peldaño 8) del Anexo H.
 
 **Medidor con guarda** — Un script que mide algo (cuántas consultas, cuántos bucles) y que tiene un
 test propio que verifica que el medidor mide bien. "Con guarda" quiere decir "protegido por un
@@ -1749,6 +1916,11 @@ son la documentación de lo hecho.
 
 **Paginación** — Mostrar o procesar los datos de a porciones (de a veinte, de a mil) en vez de
 todos juntos. Una de las correcciones típicas del peldaño 17.
+
+**Perfil (de usuario)** — Un tipo de persona que usa el sistema, dicho por lo que viene a hacer:
+administración, operación, consulta, cliente. No es un rol técnico ni un permiso: es alguien.
+La lista de perfiles es una de las dos entradas previas del Anexo H y se escribe en el peldaño 2;
+todo lo que el anexo mide después se mide **por perfil**.
 
 **Percentil 95** — El valor por debajo del cual queda el 95 % de las mediciones. En latencia: "el
 95 % de las acciones tardó menos que esto". Es el número que importa, porque el promedio esconde

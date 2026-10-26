@@ -227,6 +227,22 @@ Each step has eight parts, always the same, so that they can be compared:
 - **Contract**: the file where how it is executed lives: context, prompts, result, check, warning
   signs.
 
+And there is one more part, which shows up in **six steps only** and is a transversal piece
+that changes what has to be read: **Annex H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)).
+Forty-five verifiable rules -- eighteen on code quality and twenty-seven on usability -- each one
+with its stable id, its severity and the instrument that measures it. It is not an optional
+appendix: **it is mandatory**, and it hooks into the ladder at six points. At step 2 its two
+**prior inputs** come in (the user glossary and the list of profiles: the words people actually
+use for each thing, and who each one is and what they come to do). And at steps 5, 8, 9, 10 and 12
+are its five **anchors** -- "anchor" means that the gate of that step does not go green if the
+piece of the annex is not there. Those five are mechanical requirements in the published
+definition of the gates, not recommendations: a tool that compiles the method is going to ask for
+them. Each of those six steps says so in its card, with the link, and there is a check in the
+method's own chain that turns red if any of them stops saying it. It was born from finding out
+late: the annex was mandatory and unnamed in this document, and the first reader who adapted the
+method to another format skipped twenty-seven of the forty-five rules because he never knew they
+were there.
+
 Two important clarifications. First: **the ladder is neutral with respect to the tool**. Each
 artefact is a file, a test or a script; none requires my tool or any other. Forge automates them
 (the gates, the commands, the pending-items register), but the step exists without Forge. Second:
@@ -494,6 +510,14 @@ else: the loop, as corrective pending items. If you are a beginner, each of thos
 and the ones of steps 9 and 10, begins with a paragraph that explains its words in everyday
 language, and the glossary has them all.
 
+And a warning before you start reading them, because it costs more later than now: six of the
+twenty-four are not climbed with what their card alone says. Step 2 carries the two prior inputs
+of [Annex H](ANEXO_HEURISTICAS.md) -- the user glossary and the list of profiles -- and steps 5,
+8, 9, 10 and 12 carry its five anchors. Each of the six says so in its card, at the end, in a line
+that starts with **Annex H**. If you are going to apply the method, read the annex before opening
+step 5: five of your gates do not go green without it, and finding out when the gate has already
+stopped you is the worst way to find out.
+
 ### Step 0 — Can this project be run this way? (eligibility)
 
 There is something prior to everything, which is in no repository because it always arrived
@@ -609,6 +633,13 @@ nobody reads.
   [Ref. 9](REFERENCIAS.md#ref-9). And the project file that grows until it becomes unreadable
   [Ref. 41](REFERENCIAS.md#ref-41): the operational file and the casebook have to be different
   files.
+- **Annex H**: this is where the two **prior inputs** of [Annex H](ANEXO_HEURISTICAS.md) come in,
+  and they come in here because everything that follows uses them. One is the **user glossary**:
+  the words people actually use for each thing, not the ones the system uses. The other is the
+  **list of profiles**: who each one is -- administration, operations, consultation, customer --
+  and what they come to do. From those two come the matrix of step 8, the cases per profile of
+  step 10 and the acceptance criteria per profile of step 5. If they are not there, the five
+  anchors of the annex have nothing to come from.
 - **Contract**: `peldanos/peldano-02-definicion-y-lectura.md`.
 
 ### Step 3 — Size before designing the architecture
@@ -683,6 +714,12 @@ how it is verified, because that is what you are going to look at instead of loo
 - **Failure it prevents**: the specification that "gets overtaken" and is obsolete in two weeks
   [Ref. 17](REFERENCIAS.md#ref-17); and the work that six months later nobody knows why it was done
   [Ref. 7](REFERENCIAS.md#ref-7).
+- **Annex H**: anchor 1 of [Annex H](ANEXO_HEURISTICAS.md). Every pending item that touches a
+  screen declares, on top of the above, three more things: the **functional convergence group**
+  it belongs to (what the person came to do, which is how functionality is grouped), the
+  **profiles** that have it, and **one acceptance criterion per profile**. Without that
+  declaration the pending item does not pass the step, and this is not a recommendation: it is
+  what the gate measures.
 - **Contract**: `peldanos/peldano-05-pendientes.md`.
 
 ### Step 6 — Decisions are written next to the code
@@ -761,6 +798,12 @@ are what replace your reading of the code.
   bug [Ref. 44](REFERENCIAS.md#ref-44). The case of the counters is the complete example of a test
   proved red against the old criterion [Ref. 26](REFERENCIAS.md#ref-26).
 - **Red of the first block**: when the previous version does not have the module, the red is proven by mutation (a planted defect, the test red, the diff in the receipt), not with a file that does not load.
+- **Annex H**: anchor 2 of [Annex H](ANEXO_HEURISTICAS.md). The same pending item carries the
+  test of the **functionality-by-profile matrix**: a table saying what each profile can do, from
+  which the menu, the routes and the permissions are derived instead of being written three times
+  in three places. The end-to-end test compares, for each profile, what is reachable against its
+  row of the matrix: neither less nor more. It is how you catch the person who sees a button that
+  is not theirs, and the person who has the permission and cannot find the screen.
 - **Contract**: `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Step 9 — Code quality verified by machine, with a gate
@@ -770,6 +813,15 @@ code, and code that works today and is unreadable tomorrow is debt that gets cha
 three. If nobody reads it, a machine has to look at it: on every commit, what a human reviewer
 would look at, turned into a number with a limit. I did it in all my projects without naming it
 as a step.
+
+And this is the place to keep at hand the phrase that separates this step from the previous one,
+because it is the most expensive confusion of the trade and it resolves in nine words: **coverage
+counts tests; the red says whether they are any use**. A coverage number of ninety per cent tells
+you how much code the tests execute, and tells you nothing about whether any of those tests would
+turn red if the behaviour broke. That is what step 8 says, and it says it in the only way that
+cannot be faked: by seeing the red. Coverage is a number of this step; the red is the receipt of
+the previous one. (The formulation is from the first adaptation of the method to another format,
+credited in Part F.)
 
 - **Intention**: that the quality of the code be verified by machine on every commit, with the
   build in red as the consequence, and that it never degrade on its own.
@@ -792,6 +844,14 @@ as a step.
   ten thousand that an audit found because no limit had stopped them
   [Ref. 41](REFERENCIAS.md#ref-41); the quality number that gets worse without anyone seeing it
   [Ref. 35](REFERENCIAS.md#ref-35).
+- **Annex H**: anchor 3 of [Annex H](ANEXO_HEURISTICAS.md), and the biggest of the five: this is
+  where the gate extends from code quality to **usability**. The catalogue of the forty-five rules
+  is declared and active per group; every active rule has its instrument, its severity and its
+  checker; every **switched-off** rule has its record with the reason, who authorised it and a
+  review date -- switched off without a record is red, which is not the same as the rule being
+  absent --; every threshold the owner did not declare is published as undeclared instead of
+  invented; and the report comes out with the two figures and the fingerprint of the ruleset. A
+  system can pass code quality with honours and be unusable; this anchor is what prevents it.
 - **Contract**: `peldanos/peldano-09-calidad-de-codigo.md`.
 
 ### Step 10 — Manual test cases are written together with the functionality, and people execute them
@@ -822,6 +882,10 @@ the circuit the process diagram shows.
 - **Failure it prevents**: the human test without a script that finds different things every
   time, and the human finding that gets fixed on the spot and is lost; the awkward drop-down
   menu that no test saw and the manager did, in the course's guide project.
+- **Annex H**: anchor 4 of [Annex H](ANEXO_HEURISTICAS.md). Every manual case is run **once per
+  affected profile**, and the profiles come from the matrix of step 8, not from the memory of
+  whoever is running it. A case run with a single profile does not count as executed: half of the
+  permission and menu problems are only visible from the profile that is not the builder's.
 - **Contract**: `peldanos/peldano-10-casos-de-prueba-manual.md`.
 
 ### Step 11 — Producer/consumer symmetry, and the anti-pattern register
@@ -866,6 +930,10 @@ news, the blind spots and what it did not do.
   what was not [Ref. 43](REFERENCIAS.md#ref-43); the turn that worked invisible for an hour and
   forty-three minutes [Ref. 16](REFERENCIAS.md#ref-16). I wrote the verification-honesty rule in
   June [Ref. 8](REFERENCIAS.md#ref-8).
+- **Annex H**: anchor 5 of [Annex H](ANEXO_HEURISTICAS.md). The report also reports the groups of
+  the annex: what was measured, what was left unmeasured and which rule is switched off with its
+  record. It is the same honesty rule applied to the annex: a rule the installation does not know
+  how to measure is reported as not measured, never as green.
 - **Contract**: `peldanos/peldano-12-verificacion-honesta.md`.
 
 ### Step 13 — The periodic audit as input to the plan
@@ -1048,6 +1116,14 @@ The system has to be usable, maintainable and recoverable without the agent and 
 the day there is no agent it cannot be deployed, it is not finished. And since regenerating
 documentation with a model is free, the rule becomes "in the same commit".
 
+Said in one word that anyone understands before finishing reading it: without these manuals,
+**the owner is not an owner, they are a tenant**. They have the system, they pay for it, they live
+in it, and they cannot get in if they lose the key: to start it, to recover it or to understand
+why it stopped working they depend on whoever built it -- or on the model that built it -- still
+being available and still being willing. Owning a system is not the code: it is being able to
+operate it without asking permission. (The formulation is from the first adaptation of the method
+to another format, credited in Part F.)
+
 - **Intention**: that the system can be used, maintained and recovered without the agent and
   without the builder.
 - **When**: the user manual grows with every functional block, at the close, with the new screens.
@@ -1059,7 +1135,15 @@ documentation with a model is free, the rule becomes "in the same commit".
   infrastructure and recovery manual written for a person who has to do it by hand at three in the
   morning; each with date and version.
 - **Gate**: the documentation is up to date in the same commit; someone who does not program
-  followed the recovery manual.
+  followed the recovery manual. **and the run left its record** (below)
+- **The run leaves three things written down, not a "it was done"**: the **measured time**
+  end to end (when it started, when the system was working again), the **exact point where the
+  person got stuck** -- the step of the manual, in their words --, and **every word they did not
+  understand**. The three are written with the date and the name of whoever ran the test. And
+  every word they did not understand **opens a pending item**: either the manual explains it, or
+  the thing gets renamed. Without that record the gate is not fulfilled, even if the person did
+  recover the system: a test that produces no evidence is the cheapest way to have a gate that
+  measures nothing.
 - **Who decides**: the agent maintains; the owner reads the manual, not the code.
 - **Failure it prevents**: the outdated document that caused a commit in the wrong repository; the
   project file turned into history [Ref. 41](REFERENCIAS.md#ref-41). The manuals reproducible by
@@ -1176,6 +1260,16 @@ own inside `peldanos/`, always with the same five sections:
 5. **Warning signs**: two or three symptoms that the step was climbed badly even though it seems
    climbed.
 
+That completeness check is spread across thirty-two contracts, one per step and one per station,
+and that works while the project is running. But there is an earlier moment when you do not have
+thirty-two contracts at hand: the meeting where somebody offers to build you the system. For that
+moment there is a sheet: **[the twenty-five questions for the
+provider](PREGUNTAS_AL_PROVEEDOR.md)**, which is the same completeness check gathered together,
+written for a person who has never contracted software and ordered by what they are being
+promised. Each question says what answer can be **seen** -- a file, a number with its command, a
+test seen failing, a manual, a signature -- and which step it comes from. You print it and you
+take it with you.
+
 And in the header of each contract: the stretch, the when, the form and the size (whether it is
 mandatory in every project or proportional).
 
@@ -1197,6 +1291,27 @@ twenty-four steps are not twenty-four long stages; several are climbed in one se
 ones that are proportional shrink with the project. What does not shrink is the list of the ones
 that are not negotiable. This table is a `[hypothesis]` proposal to confirm with the first
 project that uses the method end to end:
+
+But before the table it is worth saying **how you get to shrink a step**, because the table on its
+own reads like a permission slip and it is not one. There are three moments, and they go in order.
+
+**First it is done in full, including the parts you do not understand the point of.** The first
+time you apply the method you are in no position to know which part is surplus: the steps that
+look like bureaucracy are exactly the ones that prevent the problems that have not happened to you
+yet, and the whole list came out of problems that did happen. Doing it in full once is cheaper than
+the argument about what to skip, and it is the only thing that gives you the judgement for the next
+stage.
+
+**Then it is adapted to what you have in front of you.** Once you have climbed the twenty-four
+once, you know what each one produces and you can size it: half a page instead of five, one run
+instead of a budget per path, a monthly report instead of a weekly one. That is what this table
+proposes. And the decision is the owner's, step by step and out loud: which ones shrink and which
+ones are not negotiable in this project, written down before starting and not after the first
+problem. A step shrunk by a written decision is proportionality; shrunk in silence, it is debt.
+
+**And at the end it is improved, for those who come next.** Step 23 closes with a retrospective
+that comes back here as a proposed change to the ladder. What you discovered by applying it is not
+your anecdote: it is the next row of this table. This document is on its version 4 because of that.
 
 | Step | Small project (one owner, few users, no money at stake) | Project with users and consequences |
 |---|---|---|
@@ -1371,6 +1486,38 @@ in any project with users (it stays optional only without real users), with its 
 of every block next to the coverage. None of the three pieces requires the owner to read code. All
 three make faking the red cost more than running it.
 
+### F.5 An adaptation of the method to another format, and what it taught me
+
+In 2026, Oscar Schmitz published **"El Arte de Forjar Sistemas"** ("The Art of Forging Systems",
+191 pages), a novel that adapts this method: it takes the ladder and tells it as fiction, with an
+owner who decides and a team that builds. It is not related work in the sense of the ones above
+-- it does not propose another method -- but something that had not happened before: somebody read
+the whole corpus in order to produce another work. I validated it assertion by assertion against
+the letter of the method, and the report of that validation stays in the repository.
+
+What came out of it, and why it is in this part and not in the references: **the references are my
+own cases, with a date and a commit; a novel is not a case**. What it did do was two things.
+
+It contributed **four formulations better than mine**, and they are adopted in this document with
+this credit: "coverage counts tests; the red says whether they are any use" (step 9), "the owner is
+not an owner: they are a tenant" (step 20), the idea that shrinking a step is something you get to
+after having done it in full (Part D) and the one that the recovery-manual test has to **record**
+the time, the sticking point and the words that were not understood (step 20). The fifth is the
+sheet of [the twenty-five questions for the provider](PREGUNTAS_AL_PROVEEDOR.md): the idea of
+gathering the completeness check into a sheet an owner takes to a meeting is his; the twenty-five
+questions in this repository are written from scratch from the contracts of the method, because his
+version is his work and carries his reserved rights.
+
+And it showed a **structural defect of the method** that no audit had seen, which is the most
+valuable part of all: the author reproduced six figures of the references in a row without a single
+error, and skipped twenty-seven of the forty-five rules of Annex H. They did not slip past him:
+**this document did not name it once**, so he never knew they existed. A reader who reads
+everything and applies the method would be stopped at five published gates without understanding
+why. That is the reason the annex is named in Part A, at the opening of Part C and in the card of
+the six steps that carry it, and the reason there is a check in the chain that turns red if any
+card stops naming it. Step 23 asks for the retrospective to come back as a proposed change to the
+ladder; this is the first one that came from a reader.
+
 A useful frame for placing this method on the map is Macedo's taxonomy, from June 2026
 ([arXiv 2606.04967](https://arxiv.org/abs/2606.04967)): six dimensions (specification, context,
 roles, execution, validation, portability), and the finding that none of the frameworks it
@@ -1400,6 +1547,17 @@ Claude Code or whichever tool you use.
 **Alert** — An automatic warning, at the moment, that a number has gone out of range (a
 threshold exceeded, a new error). Rule of the method: an alert that fires and nobody reads is a
 defect of the alert, and it gets fixed or removed.
+
+**Anchor (of Annex H)** — The point where a piece of Annex H becomes a condition of a step: if the
+piece is not there, the gate of that step does not go green. There are five, at steps 5, 8, 9, 10
+and 12, and the card of each one names them. It is not a recommendation nor a best practice: it is
+part of what gets measured.
+
+**Annex H** — The heuristics annex of the method
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): forty-five verifiable rules, eighteen on code
+quality and twenty-seven on usability, each one with its stable id, its severity and the instrument
+that measures it. It is mandatory and it cuts across the four stretches: it comes in with two prior
+inputs at step 2 and with five anchors at steps 5, 8, 9, 10 and 12. The "H" is for heuristics.
 
 **Anonymisation** — In this document the real clients are called "the Health Fund", "the
 Authorizer" and "the Association", and their systems "Autorizaciones" and "Kikan". It is on
@@ -1573,6 +1731,11 @@ With small tables it is not noticed; with millions of rows, it brings the system
 something the business can use. It is the unit of work of the loop; it lasts as long as its size
 demands.
 
+**Functional convergence group** — The way Annex H groups functionality: by **what the person came
+to do**, not by the table in the database nor by the module in the code. "Charging for a
+consultation" is a group; "payments table" is not. Every pending item that touches a screen
+declares its own (anchor 1, step 5).
+
 **G-DOC** — In Forge, the gate that demands that documentation be updated in the same commit as the
 change.
 
@@ -1673,6 +1836,11 @@ pending item.
 
 **MariaDB** — The SQL database engine Kikan uses in production.
 
+**Matrix of functionality by profile** — A table with the profiles in the rows and the
+functionalities in the columns, saying who can do what. The menu, the routes and the permissions
+are **derived** from it instead of being written three times in three places, which is where they
+go out of sync on their own. It is the instrument of anchor 2 (step 8) of Annex H.
+
 **Measurement window** — The first and the last record a row count spans, read from the database or the log. Without a verifiable window a correct number can raise a false alarm (step 21).
 
 **Mock** — Replacing a real part of the system with a simulation during a test. "Do not mock
@@ -1735,6 +1903,11 @@ time) instead of all at once. One of the typical corrections of step 17.
 **Percentile 95** — The value below which 95 % of the measurements fall. In latency: "95 % of the
 actions took less than this". It is the number that matters, because the average hides the ones
 who waited a long time.
+
+**Profile (user)** — A type of person who uses the system, said by what they come to do:
+administration, operations, consultation, customer. It is not a technical role nor a permission: it
+is somebody. The list of profiles is one of the two prior inputs of Annex H and is written at
+step 2; everything the annex measures afterwards is measured **per profile**.
 
 **Playwright** — A tool that controls a browser by program to test screens as a person would.
 

@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.3** - schema **2**
-- content fingerprint `0f3c1b472f922428...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.4** - schema **2**
+- content fingerprint `ad88adccfcbfff7d...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -24,7 +24,7 @@ it already publishes the prompts, and the tool consumes it.
 A project starts and ends on the same version of the method, unless somebody applies the double
 lock. For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.3`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.4`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -44,6 +44,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.1** (2026-10-23, D-050) -- `8f9aa195001e2a00...`
 - **2026.10.2** (2026-10-23, D-053) -- `3bd03ac3bf79a600...`
 - **2026.10.3** (2026-10-24, D-055) -- `0f3c1b472f922428...`
+- **2026.10.4** (2026-10-26, D-061) -- `ad88adccfcbfff7d...`
 
 ## The language of each text
 
@@ -124,7 +125,7 @@ method declares from now on is in English, and it is marked as new.
 | 17 | Optimizacion de la capa de persistencia, medida antes y despues | one_shot | proportional | `artifacts` | 2 | 1 | 2 |
 | 18 | Escaneo y solucion de vulnerabilidades, en la cadena y con calendario | one_shot | minimum | `ci` | 2 | 2 | 2 |
 | 19 | Pruebas de rendimiento en volumen y punto de ruptura | one_shot | proportional | `artifacts` | 2 | 2 | 2 |
-| 20 | Documentacion viva y manuales que una persona puede seguir sin IA | routine | minimum | `artifacts` | 3 | 4 | 2 |
+| 20 | Documentacion viva y manuales que una persona puede seguir sin IA | routine | minimum | `artifacts` | 3 | 4 | 3 |
 
 ### IV. Operacion
 
@@ -478,6 +479,7 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 Completeness check, without reading code:
 - Una persona sin IA puede recuperar el sistema siguiendo el manual?
 - Alguien que no sos vos siguio el manual de usuario y llego?
+- Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item? **(new in schema 2)**
 
 **21 - Monitoreo de recursos, funciones y consultas fuera de rango, con reporte ciclico** (`u21-monitoreo-de-recursos`, prompt `peldano-21`)
 
@@ -716,8 +718,8 @@ never on a commit.
 | 4 | 10 | one manual case per affected profile, derived from the matrix | `manual_cases_per_profile` |
 | 5 | 12 | the report says what was measured, what was left warning and which rule is switched off, with reason, author and review date | `heuristics` |
 
-- **the user glossary** (step 2): without it, UX-01 and UX-24 have nothing to compare against. Declared path: **none yet**. The annex requires it when scope is defined and declares no file for it; the step 2 contract does not ask for it yet. Until the method declares a path, it is not machine-measurable: it is published as declared and not measured.
-- **the list of profiles** (step 2): without it, the B2 matrix gets invented at step 5. Declared path: **none yet**. Same status as prior input 1.
+- **the user glossary** (step 2): without it, UX-01 and UX-24 have nothing to compare against. Declared path: **none yet**. The annex requires it when scope is defined and declares no file for it. Since 2026-10-26 the step 2 contract DOES ask for it, in writing and named from the project file, and the step 2 completeness check reads it; what the method still does not declare is a canonical path, on purpose, because the owner never declared one and a file name invented here would be published as a default. So it stays machine-measurable only through the step 2 checklist: declared, and not measured by path.
+- **the list of profiles** (step 2): without it, the B2 matrix gets invented at step 5. Declared path: **none yet**. Same status as prior input 1: asked for by the step 2 contract since 2026-10-26, with no canonical path declared.
 
 ### The three artifacts
 

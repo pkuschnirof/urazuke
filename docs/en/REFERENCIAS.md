@@ -210,6 +210,17 @@ been on the symptom. Here "the fix is at the root or it is not a fix", which was
 working agreement, stopped being a phrase and became practice: the hypothesis has to be measured
 before touching. Steps 1 and 7.
 
+**The arithmetic, said out loud, because the two numbers are the same case counted from two
+sides.** There were **four rounds of fixing** and **three returns** of the bug: round 1 "fixed" it
+and it came back (return 1), round 2 "fixed" it and it came back (return 2), round 3 "fixed" it and
+it came back (return 3), and round 4 was the one that found the root cause. Hence the title of this
+reference saying four rounds, this paragraph saying it came back three times, and the table of
+failures by step counting three fixes that were not at the root: it is not a contradiction, it is
+n rounds and n−1 returns. It is written down here because without this line the three mentions read
+like three different figures for the same fact, and the first external reader who reproduced the
+case wrote "it came back four times". If a reference lets somebody who reads it carefully come out
+with a different number, the defect is the reference's.
+
 ### Ref. 23 — Security audit (16 July)
 
 On 16 July I did the first formal security audit, with findings turned into pending items. It was

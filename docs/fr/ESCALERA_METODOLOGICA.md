@@ -242,6 +242,23 @@ Chaque échelon a huit parties, toujours les mêmes, pour qu'on puisse les compa
 - **Contrat** : le fichier où se trouve comment on l'exécute : contexte, prompts, résultat,
   vérification, signaux d'alarme.
 
+Et il y a une partie de plus, qui n'apparaît que dans **six échelons** et qui est une pièce
+transversale qui change ce qu'il faut lire : l'**Annexe H**
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Quarante-cinq règles vérifiables — dix-huit de
+qualité du code et vingt-sept d'utilisabilité —, chacune avec son identifiant stable, sa sévérité
+et l'instrument qui la mesure. Ce n'est pas une annexe facultative : **elle est obligatoire**, et
+elle s'accroche à l'échelle en six points. À l'échelon 2 entrent ses deux **entrées préalables**
+(le glossaire de l'utilisateur et la liste des profils : les mots que les gens emploient vraiment
+pour chaque chose, et qui est chacun et ce qu'il vient faire). Et aux échelons 5, 8, 9, 10 et 12 se
+trouvent ses cinq **ancrages** — « ancrage » veut dire que la barrière de cet échelon ne passe pas
+au vert si la pièce de l'annexe n'est pas là. Ces cinq-là sont des exigences mécaniques dans la
+définition publiée des barrières, pas des recommandations : un outil qui compile la méthode va les
+demander. Chacun de ces six échelons le dit dans sa fiche, avec le lien, et il y a une vérification
+dans la chaîne de la méthode elle-même qui passe au rouge si l'une d'elles cesse de le dire. Elle
+est née de l'avoir découvert tard : l'annexe a été obligatoire et jamais nommée dans ce document,
+et le premier lecteur qui a adapté la méthode à un autre format a sauté vingt-sept des
+quarante-cinq règles parce qu'il n'a jamais su qu'elles existaient.
+
 Deux précisions importantes. D'abord : **l'échelle est neutre vis-à-vis de l'outil**. Chaque
 artefact est un fichier, un test ou un script ; aucun n'exige mon outil ni aucun autre. Forge les
 automatise (les portes, les commandes, le registre des éléments en attente), mais l'échelon existe
@@ -523,6 +540,15 @@ boucle, comme éléments en attente correctifs. Si vous débutez, chacun de ces 
 des échelons 9 et 10, commencent par un paragraphe qui explique leurs mots dans le langage de tous
 les jours, et le glossaire les a tous.
 
+Et un avertissement avant de commencer à les lire, parce que ça coûte plus cher après que
+maintenant : six des vingt-quatre ne se gravissent pas avec ce que dit leur fiche seule. L'échelon
+2 porte les deux entrées préalables de l'[Annexe H](ANEXO_HEURISTICAS.md) — le glossaire de
+l'utilisateur et la liste des profils — et les échelons 5, 8, 9, 10 et 12 portent ses cinq
+ancrages. Chacun des six le dit dans sa fiche, à la fin, dans une ligne qui commence par
+**Annexe H**. Si vous allez appliquer la méthode, lisez l'annexe avant d'ouvrir l'échelon 5 : cinq
+de vos barrières ne passent pas au vert sans elle, et l'apprendre quand la barrière vous a déjà
+arrêté est la pire façon de l'apprendre.
+
 ### Étape 0 — Ce projet peut-il être abordé ainsi ? (l'éligibilité)
 
 Il y a quelque chose qui précède tout le reste, et qui n'est dans aucun dépôt parce que c'est
@@ -641,6 +667,13 @@ que personne ne lit n'agit pas, et une carte longue, personne ne la lit.
   [Ref. 9](REFERENCIAS.md#ref-9). Et le fichier de projet qui grossit jusqu'à devenir illisible
   [Ref. 41](REFERENCIAS.md#ref-41) : le fichier opérationnel et le livre de cas doivent être des
   fichiers distincts.
+- **Annexe H** : c'est ici qu'entrent les deux **entrées préalables** de
+  l'[Annexe H](ANEXO_HEURISTICAS.md), et elles entrent ici parce que tout ce qui vient après les
+  utilise. L'une est le **glossaire de l'utilisateur** : les mots que les gens emploient vraiment
+  pour chaque chose, pas ceux qu'emploie le système. L'autre est la **liste des profils** : qui est
+  chacun — administration, exploitation, consultation, client — et ce qu'il vient faire. De ces
+  deux sortent la matrice de l'échelon 8, les cas par profil du 10 et les critères d'acceptation
+  par profil du 5. Si elles ne sont pas là, les cinq ancrages de l'annexe n'ont rien d'où sortir.
 - **Contrat** : `peldanos/peldano-02-definicion-y-lectura.md`.
 
 ### Étape 3 — Dimensionner avant de concevoir l'architecture
@@ -721,6 +754,12 @@ regarder au lieu de regarder le code.
 - **Échec évité** : la spécification qui « se fait dépasser » et devient obsolète en deux semaines
   [Ref. 17](REFERENCIAS.md#ref-17) ; et le travail dont, six mois plus tard, personne ne sait
   pourquoi il a été fait [Ref. 7](REFERENCIAS.md#ref-7).
+- **Annexe H** : ancrage 1 de l'[Annexe H](ANEXO_HEURISTICAS.md). Tout élément en attente qui
+  touche un écran déclare, en plus de ce qui précède, trois choses de plus : le **groupe de
+  convergence fonctionnelle** auquel il appartient (ce que la personne est venue faire, qui est par
+  où se regroupe la fonctionnalité), les **profils** qui l'ont, et **un critère d'acceptation par
+  profil**. Sans cette déclaration l'élément ne passe pas l'échelon, et ce n'est pas une
+  recommandation : c'est ce que la barrière mesure.
 - **Contrat** : `peldanos/peldano-05-pendientes.md`.
 
 ### Étape 6 — Les décisions s'écrivent à côté du code
@@ -803,6 +842,12 @@ bout, de l'écran jusqu'au backend, sont ceux qui remplacent votre lecture du co
   bug [Ref. 44](REFERENCIAS.md#ref-44). Le cas des compteurs est l'exemple complet d'un test prouvé
   en rouge contre l'ancien critère [Ref. 26](REFERENCIAS.md#ref-26).
 - **Rouge du premier bloc** : quand la version précédente n'a pas le module, le rouge se prouve par mutation (un défaut planté, le test en rouge, le diff dans le reçu), pas avec un fichier qui ne se charge pas.
+- **Annexe H** : ancrage 2 de l'[Annexe H](ANEXO_HEURISTICAS.md). Le même élément en attente porte
+  le test de la **matrice de fonctionnalité par profil** : un tableau qui dit ce que chaque profil
+  peut faire, duquel se dérivent le menu, les routes et les permissions au lieu de les écrire trois
+  fois à trois endroits. Le test de bout en bout compare, pour chaque profil, ce qui est atteignable
+  avec sa ligne de la matrice : ni moins ni plus. C'est la façon d'attraper celui qui voit un bouton
+  qui ne lui revient pas, et celui qui a la permission et ne trouve pas l'écran.
 - **Contrat** : `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Étape 9 — Qualité du code vérifiée par machine, avec une porte
@@ -812,6 +857,15 @@ et un code qui marche aujourd'hui et qui sera illisible demain est une dette qui
 troisième mois. Si personne ne le lit, c'est une machine qui doit le regarder : à chaque commit,
 ce qu'un relecteur humain regarderait, converti en un chiffre avec une limite. Je l'ai fait dans
 tous mes projets sans le nommer comme un échelon.
+
+Et ici il vaut mieux avoir sous la main la phrase qui sépare cet échelon du précédent, parce que
+c'est la confusion la plus chère du métier et qu'elle se résout en neuf mots : **la couverture
+compte des tests ; le rouge dit s'ils servent**. Un chiffre de couverture de quatre-vingt-dix pour
+cent vous dit combien de code les tests exécutent, et ne vous dit rien sur le fait qu'un de ces
+tests passerait au rouge si le comportement se cassait. Ça, c'est l'échelon 8 qui le dit, et il le
+dit de la seule façon qu'on ne peut pas feindre : en voyant le rouge. La couverture est un chiffre
+de cet échelon ; le rouge est le reçu du précédent. (La formulation est de la première adaptation
+de la méthode à un autre format, créditée en Partie F.)
 
 - **Intention** : que la qualité du code se vérifie par machine à chaque commit, avec la
   construction au rouge comme conséquence, et qu'elle ne se dégrade jamais toute seule.
@@ -836,6 +890,15 @@ tous mes projets sans le nommer comme un échelon.
   qu'un audit a trouvés parce qu'aucune limite ne les avait arrêtés
   [Ref. 41](REFERENCIAS.md#ref-41) ; le chiffre de qualité qui empire sans que personne ne le voie
   [Ref. 35](REFERENCIAS.md#ref-35).
+- **Annexe H** : ancrage 3 de l'[Annexe H](ANEXO_HEURISTICAS.md), et le plus grand des cinq : ici
+  la barrière s'étend de la qualité du code à l'**utilisabilité**. Le catalogue des quarante-cinq
+  règles est déclaré et actif par groupe ; chaque règle active a son instrument, sa sévérité et son
+  vérificateur ; chaque règle **éteinte** a son registre avec le motif, qui l'autorise et une date
+  de révision — éteinte sans registre c'est rouge, ce qui n'est pas la même chose que la règle
+  absente — ; chaque seuil que le propriétaire n'a pas déclaré se publie comme non déclaré au lieu
+  d'être inventé ; et le rapport sort avec les deux chiffres et l'empreinte de l'ensemble de règles.
+  Un système peut passer la qualité du code avec les honneurs et être inutilisable ; cet ancrage est
+  ce qui l'empêche.
 - **Contrat** : `peldanos/peldano-09-calidad-de-codigo.md`.
 
 ### Étape 10 — Les cas de test manuel s'écrivent avec la fonctionnalité, et ce sont des personnes qui les exécutent
@@ -867,6 +930,11 @@ exigence. C'est la fermeture du circuit que montre le graphique du procédé.
 - **Échec évité** : le test humain sans scénario qui trouve des choses différentes à chaque fois,
   et la trouvaille humaine qui se corrige sur le moment et se perd ; le menu déroulant incommode
   qu'aucun test n'a vu et que la responsable, elle, a vu, dans le projet-guide du cours.
+- **Annexe H** : ancrage 4 de l'[Annexe H](ANEXO_HEURISTICAS.md). Chaque cas manuel se joue **une
+  fois par profil touché**, et les profils sortent de la matrice de l'échelon 8, pas de la mémoire
+  de celui qui exécute. Un cas joué avec un seul profil ne compte pas comme exécuté : la moitié des
+  problèmes de permissions et de menu ne se voient que depuis le profil qui n'est pas celui qui a
+  construit.
 - **Contrat** : `peldanos/peldano-10-casos-de-prueba-manual.md`.
 
 ### Étape 11 — Symétrie entre producteur et consommateur, et le registre des anti-patrons
@@ -918,6 +986,10 @@ explicitement les mauvaises nouvelles, les angles morts et ce qu'il n'a pas fait
   ne l'était pas [Ref. 43](REFERENCIAS.md#ref-43) ; le tour qui a travaillé invisible pendant une
   heure quarante-trois [Ref. 16](REFERENCIAS.md#ref-16). La règle d'honnêteté de vérification, je
   l'ai écrite en juin [Ref. 8](REFERENCIAS.md#ref-8).
+- **Annexe H** : ancrage 5 de l'[Annexe H](ANEXO_HEURISTICAS.md). Le rapport informe aussi des
+  groupes de l'annexe : ce qui a été mesuré, ce qui est resté sans mesure et quelle règle est
+  éteinte avec son registre. C'est la même règle d'honnêteté appliquée à l'annexe : une règle que
+  l'installation ne sait pas mesurer se rapporte comme non mesurée, jamais comme verte.
 - **Contrat** : `peldanos/peldano-12-verificacion-honesta.md`.
 
 ### Étape 13 — L'audit périodique comme intrant du plan
@@ -1110,6 +1182,14 @@ Le système doit pouvoir s'utiliser, se maintenir et se rétablir sans l'agent e
 jour où il n'y a pas d'agent on ne peut pas déployer, il n'est pas terminé. Et comme régénérer la
 documentation avec un modèle est gratuit, la règle devient « dans le même commit ».
 
+Dit en un mot que n'importe qui comprend avant de finir de le lire : sans ces manuels, **le
+propriétaire n'est pas propriétaire, il est locataire**. Il a le système, il le paie, il habite
+dedans, et il ne peut pas entrer s'il perd la clé : pour le démarrer, pour le récupérer ou pour
+comprendre pourquoi il a cessé de fonctionner, il dépend de ce que celui qui l'a construit — ou le
+modèle qui l'a construit — reste disponible et reste disposé. La propriété d'un système, ce n'est
+pas le code : c'est pouvoir l'exploiter sans demander la permission. (La formulation est de la
+première adaptation de la méthode à un autre format, créditée en Partie F.)
+
 - **Intention** : que le système puisse s'utiliser, se maintenir et se rétablir sans l'agent et
   sans le constructeur.
 - **Quand** : le manuel utilisateur grandit avec chaque bloc fonctionnel, à sa clôture, avec les
@@ -1121,7 +1201,15 @@ documentation avec un modèle est gratuit, la règle devient « dans le même co
   d'infrastructure et de reprise écrit pour une personne qui doit le faire à la main à trois heures
   du matin ; chacun avec date et version.
 - **Porte** : la documentation est à jour dans le même commit ; quelqu'un qui ne programme pas a
-  suivi le manuel de reprise.
+  suivi le manuel de reprise. **et l'exécution a laissé son registre** (ci-dessous)
+- **L'épreuve laisse trois choses écrites, pas un « ça a été fait »** : le **temps mesuré** de bout
+  en bout (quand ça a commencé, quand le système a refonctionné), le **point exact où la personne
+  s'est bloquée** — l'étape du manuel, avec ses mots —, et **chaque mot qu'elle n'a pas compris**.
+  Les trois s'écrivent avec la date et le nom de qui a fait l'épreuve. Et chaque mot qu'elle n'a pas
+  compris **ouvre un élément en attente** : soit on l'explique dans le manuel, soit on change le nom
+  de la chose. Sans ce registre la barrière n'est pas remplie, même si la personne a récupéré le
+  système : une épreuve qui ne produit pas de preuve est la façon la moins chère d'avoir une
+  barrière qui ne mesure rien.
 - **Qui décide** : l'agent maintient ; le propriétaire lit le manuel, pas le code.
 - **Échec évité** : le document périmé qui a provoqué un commit dans le mauvais dépôt ; le fichier
   de projet transformé en historique [Ref. 41](REFERENCIAS.md#ref-41). Les manuels reproductibles à
@@ -1241,6 +1329,16 @@ sections :
 5. **Signaux d'alarme** : deux ou trois symptômes que l'échelon a été mal gravi même s'il paraît
    l'être.
 
+Cette vérification de complétude est répartie dans trente-deux contrats, un par échelon et un par
+station, et ça sert pendant que le projet est en marche. Mais il y a un moment antérieur où vous
+n'avez pas trente-deux contrats sous la main : la réunion où quelqu'un vous propose de construire
+le système. Pour ce moment-là il y a une feuille : **[les vingt-cinq questions pour le
+prestataire](PREGUNTAS_AL_PROVEEDOR.md)**, qui est la même vérification de complétude réunie,
+écrite pour une personne qui n'a jamais commandé de logiciel et ordonnée par ce qu'on lui promet.
+Chaque question dit quelle réponse peut se **voir** — un fichier, un chiffre avec sa commande, un
+test vu en rouge, un manuel, une signature — et de quel échelon elle sort. On l'imprime et on
+l'emporte.
+
 Et dans l'en-tête de chaque contrat : le tronçon, le quand, la forme et la taille (s'il est
 obligatoire dans tout projet ou proportionnel).
 
@@ -1262,6 +1360,30 @@ vingt-quatre échelons ne font pas vingt-quatre longues étapes ; plusieurs se g
 seule session, et ceux qui sont proportionnels rétrécissent avec le projet. Ce qui ne rétrécit pas, c'est la liste de ceux qui ne
 se négocient pas. Cette table est une proposition `[hypothèse]` à confirmer avec le premier projet
 qui utilisera la méthode de bout en bout :
+
+Mais avant le tableau il vaut la peine de dire **comment on en arrive à rétrécir un échelon**,
+parce que le tableau seul se lit comme une permission et il n'en est pas une. Il y a trois moments,
+et ils vont dans l'ordre.
+
+**D'abord on le fait en entier, y compris ce dont on ne comprend pas l'intérêt.** La première fois
+que vous appliquez la méthode, vous n'êtes pas en état de savoir quelle partie est en trop : les
+échelons qui ont l'air de bureaucratie sont justement ceux qui préviennent les problèmes qui ne vous
+sont pas encore arrivés, et la liste entière est sortie de problèmes qui sont arrivés. Le faire en
+entier une fois coûte moins cher que la discussion sur ce qu'il faut sauter, et c'est la seule chose
+qui vous donne le jugement pour l'étape suivante.
+
+**Ensuite on l'adapte à ce qu'on a devant soi.** Quand vous avez gravi les vingt-quatre une fois,
+vous savez ce que chacun produit et vous pouvez le dimensionner : une demi-page au lieu de cinq, une
+exécution au lieu d'un budget par chemin, un rapport mensuel au lieu d'un hebdomadaire. C'est ce que
+ce tableau propose. Et la décision est celle du propriétaire, échelon par échelon et à voix haute :
+lesquels rétrécissent et lesquels ne se négocient pas dans ce projet, écrit avant de commencer et
+non après le premier problème. Un échelon rétréci par décision écrite, c'est de la
+proportionnalité ; rétréci en silence, c'est de la dette.
+
+**Et à la fin on l'améliore, pour ceux qui viennent.** L'échelon 23 se termine par une rétrospective
+qui revient ici comme proposition de changement à l'échelle. Ce que vous avez découvert en
+l'appliquant n'est pas votre anecdote : c'est la prochaine ligne de ce tableau. Ce document est à sa
+version 4 pour cette raison.
 
 | Échelon | Petit projet (un propriétaire, peu d'utilisateurs, pas d'argent en jeu) | Projet avec utilisateurs et conséquences |
 |---|---|---|
@@ -1444,6 +1566,42 @@ clôture de chaque bloc à côté de la couverture. Aucune des trois pièces n'e
 lise du code. Les trois font
 que feindre le rouge coûte plus cher que le lancer.
 
+### F.5 Une adaptation de la méthode à un autre format, et ce qu'elle m'a appris
+
+En 2026, Oscar Schmitz a publié **« El Arte de Forjar Sistemas »** (« L'art de forger des
+systèmes », 191 pages), un roman qui adapte cette méthode : il prend l'échelle et la raconte comme
+une fiction, avec une propriétaire qui décide et une équipe qui construit. Ce n'est pas un travail
+connexe au sens de ceux d'au-dessus — il ne propose pas une autre méthode — mais quelque chose qui
+n'était pas arrivé avant : quelqu'un a lu le corpus entier pour produire une autre œuvre. Je l'ai
+validé affirmation par affirmation contre la lettre de la méthode, et le rapport de cette validation
+reste dans le dépôt.
+
+Ce qui en est sorti, et pourquoi c'est dans cette partie et non dans les références : **les
+références sont des cas à moi, avec une date et un commit ; un roman n'est pas un cas**. Ce qu'il a
+fait, par contre, c'est deux choses.
+
+Il a apporté **quatre formulations meilleures que les miennes**, et elles sont adoptées dans ce
+document avec ce crédit : « la couverture compte des tests ; le rouge dit s'ils servent » (échelon
+9), « le propriétaire n'est pas propriétaire : il est locataire » (échelon 20), l'idée qu'à
+rétrécir un échelon on y arrive après l'avoir fait en entier (Partie D) et celle que l'épreuve du
+manuel de reprise doit **enregistrer** le temps, le blocage et les mots qui n'ont pas été compris
+(échelon 20). La cinquième est la feuille des
+[vingt-cinq questions pour le prestataire](PREGUNTAS_AL_PROVEEDOR.md) : l'idée de réunir la
+vérification de complétude dans une feuille qu'un propriétaire emporte à une réunion est la sienne ;
+les vingt-cinq questions de ce dépôt sont écrites de zéro depuis les contrats de la méthode, parce
+que sa version est son œuvre et porte ses droits réservés.
+
+Et il a montré un **défaut structurel de la méthode** qu'aucun audit n'avait vu, ce qui est le plus
+précieux de tout : l'auteur a reproduit sans une erreur six chiffres d'affilée des références, et a
+sauté vingt-sept des quarante-cinq règles de l'Annexe H. Elles ne lui ont pas échappé : **ce document
+ne la nommait pas une seule fois**, donc il n'a jamais su qu'elles existaient. Un lecteur qui lit
+tout et applique la méthode se retrouverait arrêté à cinq barrières publiées sans comprendre
+pourquoi. C'est la raison pour laquelle l'annexe est nommée en Partie A, à l'ouverture de la Partie
+C et dans la fiche des six échelons qui la portent, et pour laquelle il y a une vérification dans la
+chaîne qui passe au rouge si une fiche cesse de la nommer. L'échelon 23 demande que la rétrospective
+revienne comme proposition de changement à l'échelle ; celle-ci est la première qui est venue d'un
+lecteur.
+
 Un cadre utile pour situer cette méthode sur la carte est la taxonomie de Macedo, de juin 2026
 ([arXiv 2606.04967](https://arxiv.org/abs/2606.04967)) : six dimensions (spécification, contexte,
 rôles, exécution, validation, portabilité), et le constat qu'aucun des frameworks qu'elle compare
@@ -1476,6 +1634,18 @@ lit est un défaut de l'alerte, et on la corrige ou on la supprime.
 **Analyse statique** — Lire le code par machine, sans l'exécuter, en cherchant des motifs dangereux
 connus (une injection, une clé écrite en dur). C'est l'une des quatre couches du scan de
 vulnérabilités de l'échelon 18.
+
+**Ancrage (de l'Annexe H)** — Le point où une pièce de l'Annexe H devient condition d'un échelon :
+si la pièce n'est pas là, la barrière de cet échelon ne passe pas au vert. Il y en a cinq, aux
+échelons 5, 8, 9, 10 et 12, et la fiche de chacun les nomme. Ce n'est pas une recommandation ni une
+bonne pratique : ça fait partie de ce qui se mesure.
+
+**Annexe H** — L'annexe d'heuristiques de la méthode
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)) : quarante-cinq règles vérifiables, dix-huit de
+qualité du code et vingt-sept d'utilisabilité, chacune avec son identifiant stable, sa sévérité et
+l'instrument qui la mesure. Elle est obligatoire et traverse les quatre tronçons : elle entre avec
+deux entrées préalables à l'échelon 2 et avec cinq ancrages aux échelons 5, 8, 9, 10 et 12. Le « H »
+est pour heuristiques.
 
 **Anonymisation** — Dans ce document les clients réels s'appellent « la Mutuelle »,
 « l'Autorisateur » et « l'Association », et leurs systèmes « Autorizaciones » et « Kikan ». C'est
@@ -1718,6 +1888,11 @@ contre un projet qui part de quelque chose d'existant (brownfield, « champ usé
 un chiffre important ne s'obtient pas en comptant avec une recherche de texte, mais avec un
 programme qui a un test.
 
+**Groupe de convergence fonctionnelle** — La façon dont l'Annexe H regroupe la fonctionnalité : par
+**ce que la personne est venue faire**, pas par la table de la base ni par le module du code. «
+Encaisser une consultation » est un groupe ; « table des paiements » n'en est pas un. Chaque élément
+en attente qui touche un écran déclare le sien (ancrage 1, échelon 5).
+
 **Heap** — La mémoire qu'utilise un programme. « La batterie mourait par le heap » veut dire que les
 tests se retrouvaient sans mémoire et qu'on aurait dit qu'ils échouaient.
 
@@ -1787,6 +1962,11 @@ corrélation, acteur, message), pour qu'on puisse la chercher par machine. Éche
 
 **MariaDB** — Le moteur de base de données SQL qu'utilise Kikan en production.
 
+**Matrice de fonctionnalité par profil** — Un tableau avec les profils dans les lignes et les
+fonctionnalités dans les colonnes, qui dit qui peut faire quoi. Le menu, les routes et les
+permissions s'en **dérivent** au lieu d'être écrits trois fois à trois endroits, qui est par où ils
+se désynchronisent tout seuls. C'est l'instrument de l'ancrage 2 (échelon 8) de l'Annexe H.
+
 **Compteur gardé** — Un script qui mesure quelque chose (combien de requêtes, combien de boucles)
 et qui a son propre test qui vérifie que le compteur mesure bien. « Gardé » veut dire « protégé par
 un test ».
@@ -1845,6 +2025,11 @@ tout d'un coup. L'une des corrections typiques de l'échelon 17.
 
 **Tableau (le tableau partagé)** — Le tableau partagé de Forge où l'agent dépose des rapports pour
 que je les lise.
+
+**Profil (d'utilisateur)** — Un type de personne qui utilise le système, dit par ce qu'elle vient
+faire : administration, exploitation, consultation, client. Ce n'est pas un rôle technique ni une
+permission : c'est quelqu'un. La liste des profils est l'une des deux entrées préalables de l'Annexe
+H et s'écrit à l'échelon 2 ; tout ce que l'annexe mesure ensuite se mesure **par profil**.
 
 **Playwright** — Un outil qui pilote un navigateur par programme pour tester des écrans comme le
 ferait une personne.

@@ -227,6 +227,21 @@ Cada degrau tem oito partes, sempre as mesmas, para que se possam comparar:
 - **Contrato**: o arquivo onde está como se executa: contexto, prompts, resultado, verificação,
   sinais de alerta.
 
+E há uma parte mais, que aparece **apenas em seis degraus** e é uma peça transversal que muda
+o que tem de ser lido: o **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). São
+quarenta e cinco regras verificáveis — dezoito de qualidade de código e vinte e sete de
+usabilidade —, cada uma com seu identificador estável, sua severidade e o instrumento que a mede.
+Não é um apêndice opcional: **é obrigatório**, e se engata na escada em seis pontos. No degrau 2
+entram suas duas **entradas prévias** (o glossário do usuário e a lista de perfis: as palavras que
+as pessoas de fato usam para cada coisa, e quem é cada um e o que vem fazer). E nos degraus 5, 8,
+9, 10 e 12 estão suas cinco **âncoras** — "âncora" quer dizer que a comporta daquele degrau não
+fica verde se a peça do anexo não estiver lá. Essas cinco são exigências mecânicas na definição
+publicada das comportas, não recomendações: uma ferramenta que compila o método vai pedi-las. Cada
+um desses seis degraus diz isso em sua ficha, com o link, e há uma verificação na cadeia do próprio
+método que fica vermelha se alguma deixar de dizê-lo. Nasceu de ter descoberto tarde: o anexo
+esteve obrigatório e sem ser nomeado neste documento, e o primeiro leitor que adaptou o método a
+outro formato pulou vinte e sete das quarenta e cinco regras porque nunca soube que existiam.
+
 Dois esclarecimentos importantes. Primeiro: **a escada é neutra em relação à ferramenta**. Cada
 artefato é um arquivo, um teste ou um script; nenhum exige a minha ferramenta nem nenhuma outra.
 O Forge os automatiza (as comportas, os comandos, o registro de pendências), mas o degrau existe
@@ -488,6 +503,14 @@ pendências corretivas. Se você está começando, cada contrato desses seis, e 
 10, começam com um parágrafo que explica as suas palavras na linguagem de todos os dias, e o
 glossário as tem todas.
 
+E um aviso antes de começar a lê-los, porque sai mais caro depois do que agora: seis dos vinte e
+quatro não se sobem só com o que diz a ficha. O degrau 2 carrega as duas entradas prévias do
+[Anexo H](ANEXO_HEURISTICAS.md) — o glossário do usuário e a lista de perfis — e os degraus 5, 8,
+9, 10 e 12 carregam suas cinco âncoras. Cada um dos seis diz isso em sua ficha, no final, numa
+linha que começa com **Anexo H**. Se você vai aplicar o método, leia o anexo antes de abrir o
+degrau 5: cinco das suas comportas não ficam verdes sem ele, e descobrir quando a comporta já te
+deteve é a pior forma de descobrir.
+
 ### Passo 0 — Este projeto pode ser encarado assim? (a elegibilidade)
 
 Há algo prévio a tudo, que não está em nenhum repositório porque sempre chegou decidido: a
@@ -601,6 +624,13 @@ longo ninguém lê.
   [Ref. 9](REFERENCIAS.md#ref-9). E o arquivo de projeto que cresce até se tornar ilegível
   [Ref. 41](REFERENCIAS.md#ref-41): o arquivo operacional e o livro de casos têm que ser arquivos
   diferentes.
+- **Anexo H**: aqui entram as duas **entradas prévias** do
+  [Anexo H](ANEXO_HEURISTICAS.md), e entram aqui porque tudo o que vem depois as usa. Uma é o
+  **glossário do usuário**: as palavras que as pessoas de fato usam para cada coisa, não as que o
+  sistema usa. A outra é a **lista de perfis**: quem é cada um — administração, operação, consulta,
+  cliente — e o que vem fazer. Dessas duas saem a matriz do degrau 8, os casos por perfil do 10 e
+  os critérios de aceitação por perfil do 5. Se não estiverem lá, as cinco âncoras do anexo não
+  têm de onde sair.
 - **Contrato**: `peldanos/peldano-02-definicion-y-lectura.md`.
 
 ### Passo 3 — Dimensionar antes de desenhar a arquitetura
@@ -675,6 +705,11 @@ porque isso é o que você vai olhar em vez de olhar o código.
 - **Falha que evita**: a especificação que "é superada" e fica obsoleta em duas semanas
   [Ref. 17](REFERENCIAS.md#ref-17); e o trabalho do qual seis meses depois ninguém sabe por que
   foi feito [Ref. 7](REFERENCIAS.md#ref-7).
+- **Anexo H**: âncora 1 do [Anexo H](ANEXO_HEURISTICAS.md). Toda pendência que toca uma tela
+  declara, além do acima, três coisas mais: o **grupo de convergência funcional** a que pertence
+  (o que a pessoa veio fazer, que é por onde se agrupa a funcionalidade), os **perfis** que a têm,
+  e **um critério de aceitação por perfil**. Sem essa declaração a pendência não passa o degrau, e
+  isso não é uma recomendação: é o que a comporta mede.
 - **Contrato**: `peldanos/peldano-05-pendientes.md`.
 
 ### Passo 6 — As decisões se escrevem junto ao código
@@ -750,6 +785,12 @@ até o backend, são os que substituem a sua leitura do código.
   [Ref. 44](REFERENCIAS.md#ref-44). O caso dos contadores é o exemplo completo de um teste provado
   em vermelho contra o critério antigo [Ref. 26](REFERENCIAS.md#ref-26).
 - **Vermelho do primeiro bloco**: quando a versão anterior não tem o módulo, o vermelho se prova por mutação (um defeito plantado, o teste em vermelho, o diff no recibo), não com um arquivo que não carrega.
+- **Anexo H**: âncora 2 do [Anexo H](ANEXO_HEURISTICAS.md). A mesma pendência carrega o teste da
+  **matriz de funcionalidade por perfil**: uma tabela que diz o que cada perfil pode fazer, da qual
+  se derivam o menu, as rotas e as permissões em vez de escrevê-las três vezes em três lugares. O
+  teste de ponta a ponta compara, por cada perfil, o que é alcançável contra sua linha da matriz:
+  nem menos nem mais. É a forma de pegar quem vê um botão que não lhe corresponde, e quem tem a
+  permissão e não encontra a tela.
 - **Contrato**: `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Passo 9 — Qualidade do código verificada por máquina, com comporta
@@ -758,6 +799,14 @@ O dono não lê o código, e esse é o ponto. Mas o código alguém vai manter, 
 funciona hoje e é ilegível amanhã é dívida que se cobra no mês três. Se ninguém o lê, uma
 máquina tem que olhá-lo: em cada commit, o que um revisor humano olharia, convertido num número
 com um limite. Fiz isso em todos os meus projetos sem nomeá-lo como degrau.
+
+E aqui convém ter à mão a frase que separa este degrau do anterior, porque é a confusão mais cara
+do ofício e se resolve em nove palavras: **a cobertura conta testes; o vermelho diz se servem**. Um
+número de cobertura de noventa por cento te diz quanto código os testes executam, e não te diz nada
+sobre se algum desses testes ficaria vermelho se o comportamento se rompesse. Isso diz o degrau 8,
+e diz da única forma que não se pode fingir: vendo o vermelho. A cobertura é um número deste degrau;
+o vermelho é o recibo do anterior. (A formulação é da primeira adaptação do método a outro formato,
+creditada na Parte F.)
 
 - **Intenção**: que a qualidade do código se verifique por máquina em cada commit, com a
   construção em vermelho como consequência, e que nunca se degrade sozinha.
@@ -779,6 +828,14 @@ com um limite. Fiz isso em todos os meus projetos sem nomeá-lo como degrau.
 - **Falha que evita**: o componente de mais de duas mil linhas e o arquivo de quase dez mil que
   uma auditoria encontrou porque nenhum limite os tinha freado [Ref. 41](REFERENCIAS.md#ref-41);
   o número de qualidade que piora sem que ninguém o veja [Ref. 35](REFERENCIAS.md#ref-35).
+- **Anexo H**: âncora 3 do [Anexo H](ANEXO_HEURISTICAS.md), e a maior das cinco: aqui a comporta
+  se estende da qualidade do código à **usabilidade**. O catálogo das quarenta e cinco regras está
+  declarado e ativo por grupo; cada regra ativa tem seu instrumento, sua severidade e seu
+  verificador; cada regra **desligada** tem seu registro com motivo, quem autoriza e data de
+  revisão — desligada sem registro é vermelho, que não é o mesmo que a regra ausente —; cada limite
+  que o dono não declarou se publica como não declarado em vez de inventado; e o relatório sai com
+  as duas cifras e a impressão digital do conjunto de regras. Um sistema pode passar a qualidade do
+  código com honras e ser inutilizável; esta âncora é o que impede.
 - **Contrato**: `peldanos/peldano-09-calidad-de-codigo.md`.
 
 ### Passo 10 — Os casos de teste manual se escrevem junto com a funcionalidade, e quem os executa são pessoas
@@ -809,6 +866,10 @@ gráfico do processo mostra.
 - **Falha que evita**: o teste humano sem roteiro que encontra coisas diferentes a cada vez, e o
   achado humano que se conserta na hora e se perde; o menu suspenso incomodo que nenhum teste viu
   e a encarregada sim, no projeto-guia do curso.
+- **Anexo H**: âncora 4 do [Anexo H](ANEXO_HEURISTICAS.md). Cada caso manual se roda **uma vez por
+  cada perfil afetado**, e os perfis saem da matriz do degrau 8, não da memória de quem executa.
+  Um caso rodado com um só perfil não conta como executado: metade dos problemas de permissões e
+  de menu só se vê do perfil que não é o de quem construiu.
 - **Contrato**: `peldanos/peldano-10-casos-de-prueba-manual.md`.
 
 ### Passo 11 — Simetria entre produtor e consumidor, e o registro de antipadrões
@@ -853,6 +914,10 @@ notícias, os pontos cegos e o que ele não fez.
   que não estava [Ref. 43](REFERENCIAS.md#ref-43); o turno que trabalhou invisível uma hora e
   quarenta e três [Ref. 16](REFERENCIAS.md#ref-16). A regra de honestidade de verificação, eu a
   escrevi em junho [Ref. 8](REFERENCIAS.md#ref-8).
+- **Anexo H**: âncora 5 do [Anexo H](ANEXO_HEURISTICAS.md). O relatório informa também os grupos
+  do anexo: o que se mediu, o que ficou sem medir e qual regra está desligada com seu registro. É a
+  mesma regra de honestidade aplicada ao anexo: uma regra que a instalação não sabe medir se
+  reporta como não medida, nunca como verde.
 - **Contrato**: `peldanos/peldano-12-verificacion-honesta.md`.
 
 ### Passo 13 — A auditoria periódica como insumo do plano
@@ -1030,6 +1095,13 @@ O sistema tem que poder ser usado, mantido e recuperado sem o agente e sem você
 que não há agente não se pode implantar, não está terminado. E como regenerar documentação com um
 modelo é grátis, a regra passa a ser "no mesmo commit".
 
+Dito em uma palavra que qualquer um entende antes de terminar de lê-la: sem estes manuais, **o dono
+não é dono, é inquilino**. Tem o sistema, paga por ele, mora dentro, e não pode entrar se perder a
+chave: para ligá-lo, para recuperá-lo ou para entender por que parou de funcionar depende de que
+quem o construiu — ou o modelo que o construiu — continue disponível e continue com vontade. A
+propriedade de um sistema não é o código: é poder operá-lo sem pedir permissão. (A formulação é da
+primeira adaptação do método a outro formato, creditada na Parte F.)
+
 - **Intenção**: que o sistema possa ser usado, mantido e recuperado sem o agente e sem o
   construtor.
 - **Quando**: o manual de usuário cresce com cada bloco funcional, no fechamento, com as telas
@@ -1041,7 +1113,14 @@ modelo é grátis, a regra passa a ser "no mesmo commit".
   recuperação escrito para uma pessoa que tem que fazê-lo à mão às três da manhã; cada um com data
   e versão.
 - **Comporta**: a documentação está em dia no mesmo commit; alguém que não programa seguiu o
-  manual de recuperação.
+  manual de recuperação. **e a execução deixou seu registro** (o de baixo)
+- **A prova deixa três coisas escritas, não um "foi feito"**: o **tempo medido** de ponta a ponta
+  (quando começou, quando o sistema voltou a funcionar), o **ponto exato onde a pessoa travou** — o
+  passo do manual, com as palavras dela —, e **cada palavra que não entendeu**. As três se escrevem
+  com a data e o nome de quem fez a prova. E cada palavra que não entendeu **abre uma pendência**:
+  ou se explica no manual, ou se troca o nome da coisa. Sem esse registro a comporta não está
+  cumprida, mesmo que a pessoa tenha recuperado o sistema: uma prova que não produz evidência é a
+  forma mais barata de ter uma comporta que não mede nada.
 - **Quem decide**: o agente mantém; o dono lê o manual, não o código.
 - **Falha que evita**: o documento desatualizado que provocou um commit no repositório errado; o
   arquivo de projeto convertido em histórico [Ref. 41](REFERENCIAS.md#ref-41). Os manuais
@@ -1158,6 +1237,15 @@ completo**. Por isso cada degrau tem, além da ficha, um **contrato** num arquiv
 5. **Sinais de alerta**: dois ou três sintomas de que o degrau foi subido mal embora pareça
    subido.
 
+Essa verificação de completitude está repartida em trinta e dois contratos, um por degrau e um por
+estação, e isso serve enquanto o projeto está em marcha. Mas há um momento anterior em que você não
+tem trinta e dois contratos à mão: a reunião em que alguém oferece construir o seu sistema. Para
+esse momento há uma folha: **[as vinte e cinco perguntas para o
+fornecedor](PREGUNTAS_AL_PROVEEDOR.md)**, que é a mesma verificação de completitude reunida,
+escrita para uma pessoa que nunca contratou software e ordenada pelo que estão lhe prometendo. Cada
+pergunta diz que resposta se pode **ver** — um arquivo, um número com seu comando, um teste em
+vermelho, um manual, uma assinatura — e de que degrau sai. Imprime-se e leva-se.
+
 E no cabeçalho de cada contrato: a fase, o quando, a forma e o tamanho (se é obrigatório em todo
 projeto ou proporcional).
 
@@ -1177,6 +1265,26 @@ Uma pergunta que aparece logo: "tudo isso para um sistema pequeno?". A resposta 
 quatro degraus não são vinte e quatro etapas longas; vários se sobem numa sessão, e os que são
 proporcionais encolhem com o projeto. O que não encolhe é a lista dos que não se negociam. Esta tabela é uma proposta
 `[hipótese]` para confirmar com o primeiro projeto que usar o método de ponta a ponta:
+
+Mas antes da tabela convém dizer **como se chega a encolher um degrau**, porque a tabela sozinha se
+lê como uma permissão e não é. São três momentos, e vão em ordem.
+
+**Primeiro se faz completo, inclusive o que não se entende para quê.** A primeira vez que você
+aplica o método não está em condições de saber que parte lhe sobra: os degraus que parecem
+burocracia são justamente os que previnem os problemas que ainda não lhe aconteceram, e a lista
+inteira saiu de problemas que já aconteceram. Fazê-lo completo uma vez é mais barato que a discussão
+sobre o que pular, e é a única coisa que te dá o critério para a etapa seguinte.
+
+**Depois se adapta ao que você tem na frente.** Quando já subiu os vinte e quatro uma vez, sabe o
+que cada um produz e pode dimensioná-lo: meia página em vez de cinco, uma rodada em vez de um
+orçamento por caminho, um relatório mensal em vez de um semanal. Isso é o que esta tabela propõe. E
+a decisão é do dono, degrau por degrau e em voz alta: quais se encolhem e quais não se negociam
+neste projeto, escrito antes de começar e não depois do primeiro problema. Um degrau encolhido por
+decisão escrita é proporcionalidade; encolhido em silêncio, é dívida.
+
+**E no final se melhora, para os que vêm.** O degrau 23 fecha com uma retrospectiva que volta aqui
+como proposta de mudança à escada. O que você descobriu aplicando-o não é a sua anedota: é a próxima
+linha desta tabela. Este documento está na sua versão 4 por isso.
 
 | Degrau | Projeto pequeno (um dono, poucos usuários, sem dinheiro em jogo) | Projeto com usuários e consequências |
 |---|---|---|
@@ -1348,6 +1456,37 @@ com a sua pontuação no fechamento de cada bloco junto à cobertura. Nenhuma da
 que o dono
 leia código. As três fazem com que fingir o vermelho custe mais do que rodá-lo.
 
+### F.5 Uma adaptação do método a outro formato, e o que me ensinou
+
+Em 2026, Oscar Schmitz publicou **"El Arte de Forjar Sistemas"** ("A Arte de Forjar Sistemas", 191
+páginas), um romance que adapta este método: toma a escada e a conta como ficção, com uma dona que
+decide e uma equipe que constrói. Não é um trabalho relacionado no sentido dos de cima — não propõe
+outro método — e sim algo que não havia acontecido antes: alguém leu o corpus inteiro para produzir
+outra obra. Validei-a afirmação por afirmação contra a letra do método, e o relatório dessa
+validação fica no repositório.
+
+O que saiu daí, e por que está nesta parte e não nas referências: **as referências são casos
+próprios, com data e commit; um romance não é um caso**. O que ele fez foram duas coisas.
+
+Aportou **quatro formulações melhores que as minhas**, e estão adotadas neste documento com este
+crédito: "a cobertura conta testes; o vermelho diz se servem" (degrau 9), "o dono não é dono: é
+inquilino" (degrau 20), a ideia de que a encolher um degrau se chega depois de tê-lo feito completo
+(Parte D) e a de que a prova do manual de recuperação tem de **registrar** o tempo, o travamento e
+as palavras que não se entenderam (degrau 20). A quinta é a folha das
+[vinte e cinco perguntas para o fornecedor](PREGUNTAS_AL_PROVEEDOR.md): a ideia de reunir a
+verificação de completitude numa folha que um dono leva a uma reunião é dele; as vinte e cinco
+perguntas deste repositório estão escritas de zero a partir dos contratos do método, porque a versão
+dele é obra dele e tem seus direitos reservados.
+
+E mostrou um **defeito estrutural do método** que nenhuma auditoria havia visto, que é o mais
+valioso de tudo: o autor reproduziu sem um erro seis cifras seguidas das referências, e pulou vinte
+e sete das quarenta e cinco regras do Anexo H. Não passaram por ele: **este documento não o nomeava
+nem uma vez**, então nunca soube que existiam. Um leitor que lê tudo e aplica o método ficaria
+detido em cinco comportas publicadas sem entender por quê. Essa é a razão de o anexo estar nomeado
+na Parte A, na abertura da Parte C e na ficha dos seis degraus que o carregam, e de haver uma
+verificação na cadeia que fica vermelha se alguma ficha deixar de nomeá-lo. O degrau 23 pede que a
+retrospectiva volte como proposta de mudança à escada; esta é a primeira que veio de um leitor.
+
 Um referencial útil para situar este método no mapa é a taxonomia de Macedo, de junho de 2026
 ([arXiv 2606.04967](https://arxiv.org/abs/2606.04967)): seis dimensões (especificação, contexto,
 papéis, execução, validação, portabilidade), e a constatação de que nenhum framework dos que
@@ -1377,6 +1516,18 @@ programador), UAT (teste do cliente) e PROD (produção, o de verdade).
 **Análise estática** — Ler o código por máquina, sem executá-lo, buscando padrões perigosos
 conhecidos (uma injeção, uma chave escrita no código). É uma das quatro camadas da varredura de
 vulnerabilidades do degrau 18.
+
+**Âncora (do Anexo H)** — O ponto onde uma peça do Anexo H se torna condição de um degrau: se a
+peça não estiver, a comporta daquele degrau não fica verde. São cinco, nos degraus 5, 8, 9, 10 e
+12, e a ficha de cada um as nomeia. Não é uma recomendação nem uma boa prática: é parte do que se
+mede.
+
+**Anexo H** — O anexo de heurísticas do método
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): quarenta e cinco regras verificáveis, dezoito de
+qualidade de código e vinte e sete de usabilidade, cada uma com seu identificador estável, sua
+severidade e o instrumento que a mede. É obrigatório e atravessa os quatro trechos: entra com duas
+entradas prévias no degrau 2 e com cinco âncoras nos degraus 5, 8, 9, 10 e 12. O "H" é de
+heurísticas.
 
 **Anonimização** — Neste documento os clientes reais se chamam "o Plano de Saúde", "o
 Autorizador" e "a Associação", e seus sistemas "Autorizaciones" e "Kikan". É de propósito: os
@@ -1591,6 +1742,11 @@ parte de algo existente (brownfield, "campo usado").
 **Grep** — Um comando que busca texto em arquivos. "Medidor, não grep" significa: um número
 importante não se tira contando com uma busca de texto, mas com um programa com teste.
 
+**Grupo de convergência funcional** — A forma em que o Anexo H agrupa a funcionalidade: por **o que
+a pessoa veio fazer**, não pela tabela do banco nem pelo módulo do código. "Cobrar uma consulta" é
+um grupo; "tabela de pagamentos" não é. Cada pendência que toca uma tela declara o seu (âncora 1,
+degrau 5).
+
 **Heap** — A memória que um programa usa. "A bateria morria por heap" quer dizer que os testes
 ficavam sem memória e parecia que falhavam.
 
@@ -1661,6 +1817,11 @@ que o agente diz que fez, olhe o registro.
 
 **MariaDB** — O motor de banco de dados SQL que o Kikan usa em produção.
 
+**Matriz de funcionalidade por perfil** — Uma tabela com os perfis nas linhas e as funcionalidades
+nas colunas, que diz quem pode fazer o quê. O menu, as rotas e as permissões se **derivam** dela em
+vez de serem escritos três vezes em três lugares, que é por onde se dessincronizam sozinhos. É o
+instrumento da âncora 2 (degrau 8) do Anexo H.
+
 **Medidor com guarda** — Um script que mede algo (quantas consultas, quantos laços) e que tem um
 teste próprio que verifica que o medidor mede bem. "Com guarda" quer dizer "protegido por um
 teste".
@@ -1729,6 +1890,11 @@ ou 48) fazendo commits e pushes sem perguntar, e entregue um resumo no final.
 
 **Plano de Saúde (o)** — Assim chamo a entidade de saúde cliente do primeiro sistema em produção
 (seu nome real fica reservado).
+
+**Perfil (de usuário)** — Um tipo de pessoa que usa o sistema, dito pelo que vem fazer:
+administração, operação, consulta, cliente. Não é um papel técnico nem uma permissão: é alguém. A
+lista de perfis é uma das duas entradas prévias do Anexo H e se escreve no degrau 2; tudo o que o
+anexo mede depois se mede **por perfil**.
 
 **Playwright** — Uma ferramenta que controla um navegador por programa para testar telas como uma
 pessoa faria.

@@ -1,6 +1,6 @@
 {
   "what": "The header of the gate catalogue: the version a project freezes. Declared BY HAND. Any change to a key covered by the content hash raises the version and is recorded in the changelog with the hash it produced; regenerating the published file without touching a covered key leaves it alone.",
-  "catalog_version": "2026.10.3",
+  "catalog_version": "2026.10.4",
   "schema_version": 2,
   "declared_at": "2026-10-23",
   "method": {
@@ -40,6 +40,13 @@
       "decision": "D-055",
       "content_hash": "0f3c1b472f92242840aa4cd7c2cc590b62c30c48466af3a588ea803fee880367",
       "changed": "No requirement changed: the data layer stops naming tools. The published file carried five references to the tool that had this definition compiled before the method took ownership of it (D-050): two inside the frozen base -- the sizing verification of step 3, which named that tool and its gate id, and the label of the cyclic report artifact of step 22, which named one of its commands -- one in the description of the sizing evaluator, which cited that gate id again, and two in the language declaration, which named the frozen base by a file name that carried the tool name. The method owns this definition and publishes it for any consumer, so a tool named in the data reads as a dependency, and there is none. The owner authorised editing the two frozen texts as an explicit exception to base_is_frozen, written down in D-055: nothing else of the base moved, and the provenance of the freeze stays inside gates/baseline.json, which is not published. The frozen base was renamed from its previous file name to gates/baseline.json so that not even the path names a tool. A test now turns red if a tool or protocol name enters the published level again."
+    },
+    {
+      "catalog_version": "2026.10.4",
+      "date": "2026-10-26",
+      "decision": "D-061",
+      "content_hash": "ad88adccfcbfff7d70d54a14f0094a8d545cc369b50025449613f725efd4b401",
+      "changed": "Two changes, both from the step 23 retrospective on the first adaptation of the method to another format. One requirement comes in and one note stops being false. The new requirement is at step 20: the run of the recovery manual by a person who does not program now has to leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and a name -- and every one of those words opens a pending item. The gate already demanded the run; what it did not demand was its evidence, so a run that produced nothing counted as fulfilled, which is the same defect as a green step that measured nothing. It comes in as a NEW verify entry with its since_schema, and it is checked by a person reading the record, which is why it declares no artifact path: the method does not name a file for it and a name invented here would be published as a default. The note that stops being false belongs to the two prior inputs of Annex H (the user glossary and the list of profiles): it said the step 2 contract did not ask for them yet, and since 2026-10-26 it does, in writing and named from the project file, with its own completeness check. The path stays undeclared on purpose, for the same reason: the owner never declared one."
     }
   ],
   "languages": {

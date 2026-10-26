@@ -39,6 +39,10 @@ prompt" block that precedes each one.
 - The working agreement (step 1).
 - If there is a previous system: read access to its code or its documentation.
 - The decisions already made, if any, even if only spoken.
+- The words the business actually uses for each thing, and who the different types of person who
+  are going to use the system are. They are the two **prior inputs** of
+  [Annex H](../ANEXO_HEURISTICAS.md), and this step is where they get written: without them, the
+  profile matrix of step 8 gets invented and the usability rules have nothing to compare against.
 
 ## 2. Prompts
 
@@ -64,6 +68,11 @@ the agent:
   at least one use case in the owner's words, and at least one entity with its states. Without
   that, the tree that comes out is going to be invented, and you are going to have nothing to
   compare it against.
+- And for the two prior inputs of Annex H: in the survey, the actors named **with the word the
+  business uses** (if the receptionist is called "the front-desk girl", that is the data, not
+  "operational user"), and any list of user types that already exists, even if it is in an email.
+  If you have neither one nor the other, say so: the agent has to **ask** for them, not invent
+  them.
 
 > We are going to define the project in writing. Read the business survey in
 > `docs/INITIAL_SURVEY.md` and the working agreement in `docs/WORKING_AGREEMENT.md`. Evaluate
@@ -76,9 +85,14 @@ the agent:
 > level and, under each one, its actors, its processes (the use cases, each with actor, trigger,
 > steps, outcome and exceptions), its entities with their attributes, states and transitions,
 > its screens, and its external integrations. Mark every node you inferred rather than read in
-> the survey, so that I can confirm or correct it. Separately, create `docs/STATUS.md` for the
-> living state (what is being worked on, what is open): that file changes every day; the other
-> two change only when the system changes. Reply in my language.
+> the survey, so that I can confirm or correct it. Third, the two prior inputs that Annex H
+> needs before a single screen exists: the user glossary, with the words people actually use
+> for each thing as the business says them and not as the system calls them; and the list of
+> profiles, saying who each one is and what they come to do. Take both from the survey, ask
+> me for whatever is not in it instead of inventing it, write them as files of the project,
+> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
+> changes every day; the other two change only when the system changes. Reply in my language.
 
 What I am asking for: that it evaluate the survey and ask before drafting; that the project file
 be **short** (the three-hundred-line cap is arbitrary but necessary: without a cap, it grows);
@@ -89,6 +103,16 @@ transitions, screens, integrations), which is the domain model of requirements e
 the shape of a tree; that it **mark what it inferred**, because that is where the inventions hide;
 and that it separate the living state into another file, so that the map does not turn into
 history.
+
+And the two prior inputs of Annex H, which are what keeps step 2 from being only a map for the
+model. The **user glossary** is the list of words people actually use: "appointment", not "agenda
+booking"; "the front-desk girl", not "operational user". It is for two things that come later:
+naming the menu groups with user jobs, and making the text on the screens say what people say. The
+**list of profiles** is who each one is and what they come to do, and it is the column the matrix of
+step 8 comes from; if it is not written here, at step 5 it gets invented, and an invented matrix is
+the cause of somebody seeing a button that is not theirs. I explicitly ask it to **ask** for them
+rather than deduce them, because they are data of the business and not of the system; and to mark
+what it inferred, for the same reason as in the tree.
 
 **Closing:**
 
@@ -123,6 +147,11 @@ and what lets you spot an out-of-scope pending item in ten seconds.
   them, and, from the first block onwards, the pending items and decisions hanging from their
   nodes.
 - `docs/STATUS.md`: living state, separate from the previous two.
+- The two prior inputs of Annex H, written and named in `PROJECT.md`: the **user glossary** (the
+  words people actually use for each thing) and the **list of profiles** (who each one is and what
+  they come to do), with whatever was inferred marked. The method does not impose the names of
+  those two files on you -- use the ones your project uses --; what it does demand is that they
+  exist, that they can be found from the project file, and that they are there before step 5.
 - In all three, a date of last update.
 - In the agreement, the two new rules.
 
@@ -140,6 +169,11 @@ and what lets you spot an out-of-scope pending item in ten seconds.
 - Did the agent ask anything about the business before drafting? If it asked nothing, check what
   it assumed.
 - Is the living state in another file?
+- Is the user glossary written, with the words people actually use for each thing? Read it and look
+  for a word you would not say: if it is there, the system wrote it and not the business.
+- Is the list of profiles written, saying who each one is and what they come to do? Count the
+  profiles on the fingers of your business: if one is missing, a row of the matrix of step 8 is
+  missing, and a batch of manual test cases of step 10.
 - The reading test: close the session, open a new one, and ask it what the system does NOT do
   and which node of the tree a given screen hangs from. If it answers with the map, the hook
   works.
@@ -156,3 +190,7 @@ and what lets you spot an out-of-scope pending item in ten seconds.
   or those items are out of scope; both things have to be looked at.
 - An entity in the tree has a state the business never named. The model invented it because it
   seemed logical, and it is going to build on top of it.
+- The user glossary has the same words as the semantic tree. That is not a user glossary: it is the
+  vocabulary of the system copied twice. Ask the business what they call it.
+- The list of profiles has a single profile, "user". It almost never is true, and it is the most
+  common way to arrive at step 8 with a one-row matrix that protects nothing.

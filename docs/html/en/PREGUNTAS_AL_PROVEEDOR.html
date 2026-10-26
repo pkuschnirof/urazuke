@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The twenty-five questions for the provider</title><style>
+:root{--ink:#1d1d1b;--mute:#5d5a52;--gold:#b8860b;--gold-soft:#f4ead0;--line:#e4dcc6;--bg:#fbf9f3;--card:#ffffff;--hip:#8a5a00;--ok:#2e6b3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .4em;border-bottom:3px solid var(--gold);padding-bottom:.35em}
+h2{font-size:1.5rem;margin:2.2em 0 .6em;color:#3a2f00;border-left:6px solid var(--gold);padding-left:.6em}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h3.peldano{background:var(--gold-soft);border:1px solid var(--line);border-left:6px solid var(--gold);padding:.5em .8em;border-radius:6px;margin-top:2.2em}
+h3.refh{font-size:1.02rem;margin-top:1.6em;color:#3a2f00;border-bottom:1px dashed var(--line);padding-bottom:.2em}
+h3.refh:target{background:var(--gold-soft);border-radius:6px;padding:.4em .6em}
+p{margin:.6em 0}
+hr{border:0;border-top:1px dashed var(--line);margin:2.5em 0}
+code{font:.88em/1.4 Consolas,'Courier New',monospace;background:#f1ece0;border:1px solid var(--line);border-radius:4px;padding:0 .3em;white-space:nowrap}
+strong{color:#2b2000}
+a{color:#7a5600}
+a.ref{font:700 .78em/1.4 Segoe UI,Arial,sans-serif;background:#f1ece0;border:1px solid var(--line);border-radius:999px;padding:0 .5em;text-decoration:none;color:#5a3f00;white-space:nowrap;vertical-align:middle}
+a.ref:hover{background:var(--gold-soft)}
+ul,ol{padding-left:1.5em}
+li{margin:.3em 0}
+ul.ficha{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9em 1.2em .9em 2.4em;list-style:none}
+ul.ficha li{margin:.45em 0;padding-left:.2em;text-indent:-.2em}
+ul.ficha li strong{display:inline-block;min-width:8.5em;color:var(--gold);font-variant:small-caps;letter-spacing:.3px}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-family:Segoe UI,Arial,sans-serif;line-height:1.45}
+th{background:#efe6cc;color:#3a2f00;text-align:left;padding:.55em .7em;border-bottom:2px solid var(--gold);vertical-align:bottom}
+td{padding:.5em .7em;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fcfaf4}
+td:first-child{white-space:nowrap;color:var(--mute)}
+.tag{display:inline-block;font:700 .72em/1.5 Segoe UI,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:0 .55em;vertical-align:middle}
+.tag.hip{background:#fff1d6;color:var(--hip);border:1px solid #e3c78a}
+.tag.q{background:#eee;color:#555;border:1px solid #ccc;text-transform:none}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em 1.4em;margin:1.5em 0 2.5em;font-family:Segoe UI,Arial,sans-serif;font-size:.92em;columns:2;column-gap:2em}
+.toc-t{font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:.8em;column-span:all;margin-bottom:.5em}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{margin:.15em 0;break-inside:avoid}
+.toc li.l3{padding-left:1.2em;font-size:.95em}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--gold);text-decoration:underline}
+.pbox{margin:.8em 0 1.2em}
+.prompt{margin:0;padding:.8em 1.1em;background:#fff8e8;border:1px solid #ecd9a6;border-left:5px solid var(--gold);border-radius:6px;font-family:Segoe UI,Arial,sans-serif;font-size:.95em;line-height:1.55}
+.prompt p{margin:.4em 0}
+.prompt::before{content:'Prompt';display:block;font:700 .7em/1.4 Segoe UI,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin-bottom:.3em}
+.prompt.tr{background:#f3f7f0;border-color:#cfdcc6;border-left-color:#5c8a4a}
+.prompt.tr::before{content:'';color:#3f6b2e}
+.trbtn{margin-top:.4em;font:600 .78em/1.4 Segoe UI,Arial,sans-serif;color:#5a3f00;background:var(--gold-soft);border:1px solid #e3c78a;border-radius:999px;padding:.25em .9em;cursor:pointer}
+.trbtn:hover{background:#efe0b8}
+.antes{margin:1em 0 .8em;padding:.7em 1.1em .45em;background:#eef2f7;border:1px solid #c9d3e3;border-left:5px solid #3f5a8a;border-radius:6px;font-size:.95em}
+.antes>p:first-child{margin:.15em 0 .45em}
+.antes>p:first-child strong{display:inline-block;color:#2c4470;text-transform:uppercase;letter-spacing:.5px;font:700 .82em/1.5 Segoe UI,Arial,sans-serif;margin-right:.2em}
+.antes ul{margin:.3em 0 .45em;padding-left:1.4em}
+.antes li{margin:.4em 0}
+.antes code{background:#fff}
+pre.code{background:#f1ece0;border:1px solid var(--line);border-radius:6px;padding:.8em 1em;overflow-x:auto;font:.86em/1.5 Consolas,'Courier New',monospace}
+pre.code code{background:none;border:0;padding:0;white-space:pre}
+img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;margin:.6em 0;display:block}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1em;overflow-x:auto;text-align:center}
+.glos p{margin:.75em 0;padding-left:1.2em;text-indent:-1.2em}
+.glos p strong{color:#3a2f00}
+.meta{color:var(--mute);font-family:Segoe UI,Arial,sans-serif;font-size:.85em;margin-top:-.3em}
+.pie{margin-top:3em;padding-top:1em;border-top:1px dashed var(--line);font:.85em/1.5 Segoe UI,Arial,sans-serif;color:var(--mute)}
+@media (max-width:860px){.toc{columns:1}body{font-size:15px}.wrap{padding:20px 16px 60px}ul.ficha li strong{display:block;min-width:0}}
+@media print{body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}h2{break-before:page}h2:first-of-type{break-before:avoid}h3.peldano{break-after:avoid}.tw,ul.ficha{break-inside:avoid}a{color:inherit;text-decoration:none}.trbtn{display:none}.prompt.tr[hidden]{display:block}@page{size:A4;margin:16mm 14mm}}
+</style></head><body><div class="wrap">
+<section><h1 id="the-twenty-five-questions-for-the-provider">The twenty-five questions for the provider</h1><nav class="toc"><div class="toc-t">Contents</div><ul><li class="l2"><a href="#the-only-rule-you-have-to-remember">The only rule you have to remember</a></li><li class="l2"><a href="#if-you-only-have-ten-minutes">If you only have ten minutes</a></li><li class="l2"><a href="#what-they-promise-i-will-hand-it-over-working">What they promise: "I will hand it over working"</a></li><li class="l2"><a href="#what-they-promise-i-know-what-is-left-and-in-what-order">What they promise: "I know what is left and in what order"</a></li><li class="l2"><a href="#what-they-promise-it-is-well-made">What they promise: "it is well made"</a></li><li class="l2"><a href="#what-they-promise-it-will-not-harm-you">What they promise: "it will not harm you"</a></li><li class="l2"><a href="#what-they-promise-it-will-hold">What they promise: "it will hold"</a></li><li class="l2"><a href="#what-they-promise-i-will-tell-you-the-truth">What they promise: "I will tell you the truth"</a></li><li class="l2"><a href="#what-to-do-with-the-answers">What to do with the answers</a></li><li class="l2"><a href="#where-this-sheet-comes-from">Where this sheet comes from</a></li></ul></nav>
+<p>This sheet is for one very concrete moment: somebody is offering to build you a system, or is handing it over to you, and you do not program. You do not have to learn to program for this meeting. You have to know <strong>what to ask them to show you</strong>.</p>
+<p>The full method lives in the contracts of the twenty-four steps, and each contract carries its "completeness check without reading code": the list of checks the owner makes on what was handed over. That works while the project is running, but it is spread across thirty-two files and nobody walks into a meeting with that. This sheet is the same thing, gathered together and ordered by <strong>what they are promising you</strong>. You print it and you take it with you.</p>
+</section><section>
+<h2 id="the-only-rule-you-have-to-remember">The only rule you have to remember</h2>
+<p><strong>The answers that count are the ones that can be seen.</strong> A file, a number with the command that produces it, a test that was seen failing, a manual, a signature with a date. The ones that cannot be seen are promises, and a promise is not an answer: it is an intention, said by somebody who wants to close the meeting.</p>
+<p>You do not need to understand what they show you. It is enough that it <strong>exists</strong> and that the person opens it in front of you. If answering you requires explaining why not yet, write down the date and ask again at the next meeting: what gets repeated twice without being shown is not going to appear.</p>
+<p>Three sentences worth recognising, because they mean "I do not have that":</p>
+<ul><li>"Trust me, we always do it that way."</li><li>"That is seen at the end, when everything is ready."</li><li>"It is in my head / it is in the repository, I will send it to you later."</li></ul>
+<p>And one honest clarification in the other direction: <strong>a "no" said with its reason is a good answer.</strong> "We have no load tests because it is thirty users and we agreed on that" is a no with a reason, and it is exactly what the method calls proportionality. What is no use is the "yes" that cannot be seen.</p>
+</section><section>
+<h2 id="if-you-only-have-ten-minutes">If you only have ten minutes</h2>
+<p>If the meeting is short, these five carry more information than the twenty-five: number <strong>4</strong> (a test seen in red), <strong>7</strong> (the plan is the pending items), <strong>13</strong> (the limit that stops construction), <strong>20</strong> (the recovery manual, tested by a person) and <strong>24</strong> (the report that says what could not be verified). If those five can be seen, the rest almost always is there. If none of them can be seen, the rest almost never is.</p>
+<hr>
+</section><section>
+<h2 id="what-they-promise-i-will-hand-it-over-working">What they promise: "I will hand it over working"</h2>
+<p><strong>1. Can you show me the system running somewhere that is not your computer?</strong> What can be seen: an address you open yourself, on your phone, with test data. If it only works on the machine of whoever built it, it does not exist yet as a system. <em>(Step 15.)</em></p>
+<p><strong>2. What has to be true for you to consider a request of mine finished?</strong> What can be seen: written down, before starting, for each request. It should include "the test passed" and "a person used it". If the answer is "when it works", there is no criterion: there is an opinion. <em>(Step 5, acceptance criteria.)</em></p>
+<p><strong>3. Is there an automatic test for every thing that matters to me?</strong> What can be seen: a run of the test suite, with numbers, on screen. You do not care about the content: you care that there is output and that it says how many passed. <em>(Step 8.)</em></p>
+<p><strong>4. Can you show me one of those tests </strong>failing<strong>?</strong> What can be seen: the piece of screen where the test turned red against the system without the fix, with the command that ran it and the date. It is the most important question on the sheet: a test nobody saw fail is a test nobody knows proves anything. A system can have a thousand passing tests and watch nothing. <em>(Step 8. In the method it is called "proven in red".)</em></p>
+<p><strong>5. Who, other than you and a program, used the system and got all the way through?</strong> What can be seen: a list of test cases written for a person, with a date, with the name of whoever ran them and what happened. Whoever built it cannot be the only one who tested it, and the model tests what it understood, which is not always what you asked for. <em>(Step 10.)</em></p>
+<p><strong>6. If I do something wrong on the screen -- enter it twice, hit the button in a hurry -- what happens?</strong> What can be seen: the list of actions that cannot be undone, each with its lock and what happens if it fails halfway. The correct answer is never "that should not happen". <em>(Step 14.)</em></p>
+</section><section>
+<h2 id="what-they-promise-i-know-what-is-left-and-in-what-order">What they promise: "I know what is left and in what order"</h2>
+<p><strong>7. Where is the list of what is left, and can I see it today?</strong> What can be seen: a register of numbered pending items, each one written out in detail and with the date it was closed. <strong>That list is the plan:</strong> if there is a plan somewhere else and a list over here, there are two plans, and the one that counts is the one nobody is looking at. <em>(Step 5.)</em></p>
+<p><strong>8. Is every thing you are going to build for me written down before building it, in my words?</strong> What can be seen: the open pending item, with the story of where the request came from said the way you said it, the rules that apply, the screens and the odd cases. If it is one line, somebody is going to invent what is missing. <em>(Step 5.)</em></p>
+<p><strong>9. When something about the business is not clear, what do you do?</strong> What can be seen: the decisions file, with the date and who decided each one. The answer you are looking for is "I ask you and I write it down". A model that finds a gap in the business rules fills it in on its own and moves on, and six weeks later nobody knows why the system does that. <em>(Steps 1 and 6.)</em></p>
+<p><strong>10. Is it written down what the system is </strong>not<strong> going to do?</strong> What can be seen: a section of its own, with at least two items, in the project document. What is left unsaid is exactly what is going to turn up built some other way. <em>(Step 2.)</em></p>
+<p><strong>11. Who are the different types of person who are going to use this, and is it written down what each one can do?</strong> What can be seen: the list of profiles -- who each one is and what they come to do -- and a table saying what each profile can do. If there is a single profile called "user", half of it is usually missing: it is the most common cause of somebody seeing a button that is not theirs, or of somebody who does have the permission not finding the screen. <em>(Step 2, the prior inputs of Annex H; step 8, the matrix.)</em></p>
+</section><section>
+<h2 id="what-they-promise-it-is-well-made">What they promise: "it is well made"</h2>
+<p><strong>12. What does a machine measure on every change, without anybody having to remember to look?</strong> What can be seen: the configuration of the verification chain in the repository and the record of the last run. "We review it among ourselves" is not an answer: it is a habit, and habits fall over in the week there is a rush. <em>(Steps 4 and 9.)</em></p>
+<p><strong>13. Is there a limit that, if crossed, </strong>stops<strong> construction?</strong> What can be seen: a file with the limits and their measured value as of today, and a run stopped by one of them. The control question, worth asking verbatim: <em>did you ever raise a limit in order to keep going?</em> If the answer is yes and it is not written down why, the limit is decorative. <em>(Step 9.)</em></p>
+<p><strong>14. How do you know somebody else will be able to maintain the code?</strong> What can be seen: the result per rule, not a single number: file size, function size, duplicated code, dead code. A "ninety-five per cent quality" does not tell you what to fix. <em>(Step 9 and Annex H.)</em></p>
+<p><strong>15. Did somebody think about the screens, or did they come out of what the program needed?</strong> What can be seen: the record of the usability rules with their result, and the exceptions switched off with the reason written down, who authorised it and when it gets reviewed. A system can pass every technical check and be unusable: all green, and the person cannot find where to charge. <em>(Annex H, the twenty-seven usability rules.)</em></p>
+<p><strong>16. Do the tests you showed me actually watch, or do they decorate?</strong> What can be seen: the mutation score. It is a program that introduces errors on purpose and counts how many the tests catch; the number comes out with its command. If your system has real users, this is not optional in the method. <em>(Step 9.)</em></p>
+</section><section>
+<h2 id="what-they-promise-it-will-not-harm-you">What they promise: "it will not harm you"</h2>
+<p><strong>17. What happens to my data if something breaks halfway through an operation?</strong> What can be seen: the table of actions with their reversibility, and the written rule that when in doubt the system <strong>stops</strong> instead of carrying on. A duplicated charge or an automatic approval that nobody looked at are the typical case. <em>(Step 14.)</em></p>
+<p><strong>18. Are there backups, and did you ever test restoring one?</strong> What can be seen: the date of the last <strong>tested</strong> restore. A backup that was never restored is not a backup: it is a file nobody knows anything about. <em>(Step 20, recovery manual.)</em></p>
+<p><strong>19. Who checks that the system has no known holes, and how often?</strong> What can be seen: the scan running in the chain, with a date, and the findings turned into pending items. Plus a short and very revealing question: <em>where are the system's keys and passwords kept?</em> If they are in the code, you already have a problem. <em>(Steps 18 and 15.)</em></p>
+<p><strong>20. Did somebody who does not program recover the system from scratch following a manual?</strong> What can be seen: the manual, and the record of that test with three things: how long it took end to end, at which exact step the person got stuck, and which words they did not understand. If the manual starts with "open a session with the agent", it is not a manual for a person. And while that does not exist, said without hedging: <strong>the owner is not an owner, they are a tenant</strong>. They have the system, they pay for it, and they cannot get in without asking permission from whoever built it. <em>(Step 20.)</em></p>
+</section><section>
+<h2 id="what-they-promise-it-will-hold">What they promise: "it will hold"</h2>
+<p><strong>21. What numbers did you size this with, and where did they come from?</strong> What can be seen: how many simultaneous users, how many operations per day, how much it grows per year, how long it has to stay stored. And the part that matters: those numbers belong to <strong>your business</strong>, not to whoever builds. If they invented them, they are wrong. <em>(Step 3.)</em></p>
+<p><strong>22. Did you test it with the load I am going to give it, and with ten times more?</strong> What can be seen: the report of the run, with the exact point where the system fell over. Knowing where it breaks is the only way to know how much margin you have. <em>(Step 19.)</em></p>
+<p><strong>23. When the system is slow in six months, how are you going to know why?</strong> What can be seen: the logs with an identifier per action, the report of the slowest queries, and the alerts configured. If the answer is "we look into it when it happens", you are going to see it first, through an angry user. <em>(Steps 16, 17, 21 and 22.)</em></p>
+</section><section>
+<h2 id="what-they-promise-i-will-tell-you-the-truth">What they promise: "I will tell you the truth"</h2>
+<p><strong>24. When you tell me something is done, how do I tell apart what you tested from what you assume?</strong> What can be seen: the report in three blocks: <strong>verified</strong> (with the proof next to it), <strong>believed</strong> (and why it was not tested) and <strong>blind spots</strong> (what cannot be seen from where they are). A bare "done" is not a report. And the second half of the question is worth more than the first: <em>what things about this delivery could you <strong>not</strong> verify?</em> If the answer is "none, everything verified", be suspicious: nobody verifies everything. <em>(Step 12.)</em></p>
+<p><strong>25. Who reviews the work, besides you?</strong> What can be seen: an audit done by somebody -- or something -- other than whoever built it, with its findings turned into pending items and with a date. A model endorses a considerable share of its own errors, and so does a person. Whoever builds cannot be the only one who verifies. <em>(Step 13.)</em></p>
+<hr>
+</section><section>
+<h2 id="what-to-do-with-the-answers">What to do with the answers</h2>
+<p>Write down, next to each question, one of three things: <strong>I saw it</strong>, <strong>I have not seen it yet</strong> (with the date they promised it to you) or <strong>it does not exist and they told me why</strong> (with the reason). It does not have to be twenty-five times "I saw it": a small project does not need load tests or weekly monitoring, and the method says so. What does have to happen is that <strong>every "no" has its reason written down</strong>, because a no with a reason is a decision of yours and a no without a reason is a debt you are going to pay without having chosen it.</p>
+<p>And one last one, unnumbered because it is not for the provider: if somebody gets uncomfortable because you ask to see things, that is information too.</p>
+<hr>
+</section><section>
+<h2 id="where-this-sheet-comes-from">Where this sheet comes from</h2>
+<p>The twenty-five questions are the "completeness check without reading code" of the contracts of this method, gathered together: each one cites the step it comes from, so anybody can go to the contract and read the full version. They are written from scratch for this sheet.</p>
+<p><strong>The idea that this had to exist as a sheet is not mine.</strong> It came from the first adaptation of the method to another format -- Oscar Schmitz's novel "El Arte de Forjar Sistemas", 2026, credited in Part F of the main document -- which said it better than I did: the method has the check spread across its contracts and was missing the piece an owner takes to a meeting. The criterion at the top of this sheet -- that the answers that count are the ones that can be seen -- is also from there. His version of the questions is his work and carries his reserved rights; these are different ones, written from my contracts, and that is why they are published under the licence of this repository.</p></section>
+<footer class="pie"><a href="https://github.com/pkuschnirof/urazuke" target="_blank" rel="noopener">Public repository of the method: github.com/pkuschnirof/urazuke</a> &middot; CC BY-SA 4.0</footer>
+</div><script>document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});</script></body></html>

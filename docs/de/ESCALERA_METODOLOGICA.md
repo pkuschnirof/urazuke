@@ -243,6 +243,24 @@ Jeder Schritt hat acht Teile, immer dieselben, damit sie sich vergleichen lassen
 - **Vertrag**: die Datei, in der steht, wie er ausgeführt wird: Kontext, Prompts, Ergebnis,
   Prüfung, Warnsignale.
 
+Und es gibt noch einen Teil, der **nur in sechs Schritten** auftaucht und ein querliegendes
+Stück ist, das ändert, was gelesen werden muss: **Anhang H**
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Fünfundvierzig überprüfbare Regeln — achtzehn zur
+Codequalität und siebenundzwanzig zur Benutzbarkeit —, jede mit ihrer stabilen Kennung, ihrer
+Schwere und dem Instrument, das sie misst. Es ist kein optionaler Anhang: **er ist verpflichtend**,
+und er hängt sich an sechs Punkten in die Leiter ein. In Schritt 2 kommen seine zwei
+**Voreingaben** herein (das Benutzerglossar und die Profilliste: die Wörter, die die Leute
+wirklich für jede Sache benutzen, und wer jeder ist und was er zu tun kommt). Und in den Schritten
+5, 8, 9, 10 und 12 liegen seine fünf **Anker** — „Anker" heißt, dass die Schranke dieses Schritts
+nicht auf Grün geht, wenn das Stück des Anhangs nicht da ist. Diese fünf sind mechanische
+Anforderungen in der veröffentlichten Definition der Schranken, keine Empfehlungen: ein Werkzeug,
+das die Methode kompiliert, wird sie verlangen. Jeder dieser sechs Schritte sagt es in seiner
+Karte, mit dem Link, und es gibt eine Prüfung in der Kette der Methode selbst, die rot wird, wenn
+einer davon aufhört, es zu sagen. Sie ist daraus geboren, es spät entdeckt zu haben: der Anhang war
+verpflichtend und in diesem Dokument nicht genannt, und der erste Leser, der die Methode in ein
+anderes Format übertrug, übersprang siebenundzwanzig der fünfundvierzig Regeln, weil er nie wusste,
+dass sie da waren.
+
 Zwei wichtige Klarstellungen. Erstens: **die Leiter ist neutral gegenüber dem Werkzeug**. Jedes
 Artefakt ist eine Datei, ein Test oder ein Skript; keines verlangt mein Werkzeug oder irgendein
 anderes. Forge automatisiert sie (die Tore, die Befehle, das Register der offenen Posten), aber der
@@ -527,6 +545,14 @@ Monitorings enden am selben Ort wie alles andere: in der Schleife, als korrektiv
 Wenn du Anfänger bist: jeder Vertrag dieser sechs, und die der Schritte 9 und 10, beginnen mit
 einem Absatz, der seine Wörter in der Sprache des Alltags erklärt, und das Glossar hat sie alle.
 
+Und eine Warnung, bevor du anfängst, sie zu lesen, weil es später teurer ist als jetzt: sechs der
+vierundzwanzig werden nicht nur mit dem erklommen, was ihre Karte sagt. Schritt 2 trägt die zwei
+Voreingaben von [Anhang H](ANEXO_HEURISTICAS.md) — das Benutzerglossar und die Profilliste — und die
+Schritte 5, 8, 9, 10 und 12 tragen seine fünf Anker. Jeder der sechs sagt es in seiner Karte, am
+Ende, in einer Zeile, die mit **Anhang H** beginnt. Wenn du die Methode anwenden willst, lies den
+Anhang, bevor du Schritt 5 öffnest: fünf deiner Schranken gehen ohne ihn nicht auf Grün, und es zu
+erfahren, wenn die Schranke dich schon angehalten hat, ist die schlechteste Art, es zu erfahren.
+
 ### Schritt 0 — Lässt sich dieses Projekt so angehen? (die Eignung)
 
 Es gibt etwas, das allem vorausgeht und in keinem Repository steht, weil es immer schon entschieden
@@ -648,6 +674,14 @@ wirkt nicht, und eine lange Karte liest niemand.
   gelesen wurde [Ref. 9](REFERENCIAS.md#ref-9). Und die Projektdatei, die wächst, bis sie unlesbar
   wird [Ref. 41](REFERENCIAS.md#ref-41): die betriebliche Datei und das Fallbuch müssen
   verschiedene Dateien sein.
+- **Anhang H**: hier kommen die zwei **Voreingaben** von
+  [Anhang H](ANEXO_HEURISTICAS.md) herein, und sie kommen hier herein, weil alles, was danach
+  kommt, sie benutzt. Die eine ist das **Benutzerglossar**: die Wörter, die die Leute wirklich für
+  jede Sache benutzen, nicht die, die das System benutzt. Die andere ist die **Profilliste**: wer
+  jeder ist — Verwaltung, Betrieb, Abfrage, Kunde — und was er zu tun kommt. Aus diesen zwei kommen
+  die Matrix von Schritt 8, die Fälle pro Profil von Schritt 10 und die Abnahmekriterien pro Profil
+  von Schritt 5. Wenn sie nicht da sind, haben die fünf Anker des Anhangs nichts, woraus sie kommen
+  können.
 - **Vertrag**: `peldanos/peldano-02-definicion-y-lectura.md`.
 
 ### Schritt 3 — Dimensionieren, bevor die Architektur entworfen wird
@@ -732,6 +766,12 @@ was du ansehen wirst, statt den Code anzusehen.
 - **Fehler, den er verhindert**: die Spezifikation, die „überholt wird“ und in zwei Wochen veraltet
   ist [Ref. 17](REFERENCIAS.md#ref-17); und die Arbeit, von der sechs Monate später niemand weiß,
   warum sie gemacht wurde [Ref. 7](REFERENCIAS.md#ref-7).
+- **Anhang H**: Anker 1 von [Anhang H](ANEXO_HEURISTICAS.md). Jeder offene Posten, der einen
+  Bildschirm berührt, erklärt zusätzlich zum Obigen drei weitere Dinge: die **funktionale
+  Konvergenzgruppe**, zu der er gehört (was die Person zu tun kam, was die Art ist, wie
+  Funktionalität gruppiert wird), die **Profile**, die ihn haben, und **ein Abnahmekriterium pro
+  Profil**. Ohne diese Erklärung besteht der Posten den Schritt nicht, und das ist keine Empfehlung:
+  es ist, was die Schranke misst.
 - **Vertrag**: `peldanos/peldano-05-pendientes.md`.
 
 ### Schritt 6 — Entscheidungen werden neben dem Code festgehalten
@@ -817,6 +857,12 @@ Ende-zu-Ende-Tests, vom Bildschirm bis zum Backend, sind die, die deine Lektüre
   Beispiel eines Tests, der rot gegen das alte Kriterium bewiesen wurde
   [Ref. 26](REFERENCIAS.md#ref-26).
 - **Rot des ersten Blocks**: wenn die vorherige Version das Modul nicht hat, wird das Rot durch Mutation bewiesen (ein gepflanzter Fehler, der Test rot, der Diff im Beleg), nicht mit einer Datei, die nicht lädt.
+- **Anhang H**: Anker 2 von [Anhang H](ANEXO_HEURISTICAS.md). Derselbe offene Posten trägt den Test
+  der **Matrix der Funktionalität pro Profil**: eine Tabelle, die sagt, was jedes Profil tun kann,
+  aus der das Menü, die Routen und die Berechtigungen abgeleitet werden, statt sie dreimal an drei
+  Stellen zu schreiben. Der Ende-zu-Ende-Test vergleicht für jedes Profil, was erreichbar ist, mit
+  seiner Zeile der Matrix: nicht weniger und nicht mehr. So erwischt man den, der einen Knopf sieht,
+  der ihm nicht zusteht, und den, der die Berechtigung hat und den Bildschirm nicht findet.
 - **Vertrag**: `peldanos/peldano-08-tests-en-rojo.md`.
 
 ### Schritt 9 — Maschinell verifizierte Code-Qualität, mit Tor
@@ -826,6 +872,15 @@ pflegen, und ein Code, der heute funktioniert und morgen unlesbar ist, ist Schul
 Monat eingetrieben wird. Wenn ihn niemand liest, muss ihn eine Maschine ansehen: bei jedem Commit
 das, was ein menschlicher Prüfer ansehen würde, verwandelt in eine Zahl mit einer Grenze. Ich habe
 es in all meinen Projekten gemacht, ohne es Schritt zu nennen.
+
+Und hier lohnt es sich, den Satz zur Hand zu haben, der diesen Schritt vom vorigen trennt, weil er
+die teuerste Verwechslung des Handwerks ist und sich in neun Wörtern auflöst: **die Abdeckung zählt
+Tests; das Rot sagt, ob sie etwas taugen**. Eine Abdeckungszahl von neunzig Prozent sagt dir, wie
+viel Code die Tests ausführen, und sagt dir nichts darüber, ob einer dieser Tests rot würde, wenn
+das Verhalten kaputtgeht. Das sagt Schritt 8, und er sagt es auf die einzige Art, die man nicht
+vortäuschen kann: indem man das Rot sieht. Die Abdeckung ist eine Zahl dieses Schritts; das Rot ist
+der Beleg des vorigen. (Die Formulierung stammt von der ersten Übertragung der Methode in ein
+anderes Format, in Teil F mit Quellenangabe.)
 
 - **Absicht**: dass die Code-Qualität bei jedem Commit maschinell verifiziert wird, mit dem roten
   Build als Konsequenz, und dass sie nie von allein verfällt.
@@ -851,6 +906,15 @@ es in all meinen Projekten gemacht, ohne es Schritt zu nennen.
   fast zehntausend, die ein Audit fand, weil keine Grenze sie gestoppt hatte
   [Ref. 41](REFERENCIAS.md#ref-41); die Qualitätszahl, die schlechter wird, ohne dass es jemand
   sieht [Ref. 35](REFERENCIAS.md#ref-35).
+- **Anhang H**: Anker 3 von [Anhang H](ANEXO_HEURISTICAS.md), und der größte der fünf: hier
+  erweitert sich die Schranke von der Codequalität auf die **Benutzbarkeit**. Der Katalog der
+  fünfundvierzig Regeln ist erklärt und pro Gruppe aktiv; jede aktive Regel hat ihr Instrument,
+  ihre Schwere und ihren Prüfer; jede **abgeschaltete** Regel hat ihren Eintrag mit Grund, wer es
+  genehmigt und Revisionsdatum — abgeschaltet ohne Eintrag ist rot, was nicht dasselbe ist wie die
+  fehlende Regel —; jeder Grenzwert, den der Eigentümer nicht erklärt hat, wird als nicht erklärt
+  veröffentlicht statt erfunden; und der Bericht kommt mit den zwei Zahlen und dem Fingerabdruck des
+  Regelsatzes heraus. Ein System kann die Codequalität mit Auszeichnung bestehen und unbenutzbar
+  sein; dieser Anker ist, was das verhindert.
 - **Vertrag**: `peldanos/peldano-09-calidad-de-codigo.md`.
 
 ### Schritt 10 — Die manuellen Testfälle werden zusammen mit der Funktionalität geschrieben, und Menschen führen sie aus
@@ -882,6 +946,11 @@ zurück. Das ist der Schluss des Kreises, den das Prozessbild zeigt.
 - **Fehler, den er verhindert**: den menschlichen Test ohne Drehbuch, der jedes Mal etwas anderes
   findet, und den menschlichen Fund, der im Moment repariert wird und verloren geht; das
   unbequeme Auswahlmenü, das kein Test sah und die Leiterin sehr wohl, im Leitprojekt des Kurses.
+- **Anhang H**: Anker 4 von [Anhang H](ANEXO_HEURISTICAS.md). Jeder manuelle Fall wird **einmal pro
+  betroffenem Profil** gefahren, und die Profile kommen aus der Matrix von Schritt 8, nicht aus dem
+  Gedächtnis dessen, der ausführt. Ein Fall, der mit einem einzigen Profil gefahren wurde, zählt
+  nicht als ausgeführt: die Hälfte der Berechtigungs- und Menüprobleme sieht man nur aus dem Profil,
+  das nicht das des Erbauers ist.
 - **Vertrag**: `peldanos/peldano-10-casos-de-prueba-manual.md`.
 
 ### Schritt 11 — Symmetrie zwischen Produzent und Konsument, und das Register der Anti-Muster
@@ -934,6 +1003,10 @@ Flecken und das, was er nicht getan hat.
   verifiziert erklärten, was es nicht war [Ref. 43](REFERENCIAS.md#ref-43); den Zug, der eine
   Stunde dreiundvierzig unsichtbar arbeitete [Ref. 16](REFERENCIAS.md#ref-16). Die Regel der
   Verifikationsehrlichkeit habe ich im Juni geschrieben [Ref. 8](REFERENCIAS.md#ref-8).
+- **Anhang H**: Anker 5 von [Anhang H](ANEXO_HEURISTICAS.md). Der Bericht berichtet auch die
+  Gruppen des Anhangs: was gemessen wurde, was ungemessen blieb und welche Regel mit ihrem Eintrag
+  abgeschaltet ist. Es ist dieselbe Ehrlichkeitsregel, angewandt auf den Anhang: eine Regel, die die
+  Installation nicht zu messen weiß, wird als nicht gemessen berichtet, niemals als grün.
 - **Vertrag**: `peldanos/peldano-12-verificacion-honesta.md`.
 
 ### Schritt 13 — Das periodische Audit als Input für den Plan
@@ -1129,6 +1202,15 @@ Wenn es an dem Tag, an dem es keinen Agenten gibt, nicht deployt werden kann, is
 Und da Dokumentation mit einem Modell neu zu erzeugen gratis ist, wird die Regel zu „im selben
 Commit“.
 
+In einem Wort gesagt, das jeder versteht, bevor er es fertig gelesen hat: ohne diese Handbücher ist
+**der Eigentümer kein Eigentümer, er ist Mieter**. Er hat das System, er bezahlt es, er wohnt darin,
+und er kommt nicht hinein, wenn er den Schlüssel verliert: um es zu starten, um es
+wiederherzustellen oder um zu verstehen, warum es aufgehört hat zu funktionieren, hängt er davon ab,
+dass der, der es gebaut hat — oder das Modell, das es gebaut hat —, weiter verfügbar und weiter
+willig ist. Das Eigentum an einem System ist nicht der Code: es ist, es ohne Erlaubnis betreiben zu
+können. (Die Formulierung stammt von der ersten Übertragung der Methode in ein anderes Format, in
+Teil F mit Quellenangabe.)
+
 - **Absicht**: dass das System sich ohne den Agenten und ohne den Bauenden benutzen, warten und
   wiederherstellen lässt.
 - **Wann**: das Benutzerhandbuch wächst mit jedem Funktionsblock, beim Abschluss, mit den neuen
@@ -1140,7 +1222,16 @@ Commit“.
   Infrastruktur- und Wiederherstellungshandbuch, geschrieben für eine Person, die es um drei Uhr
   morgens von Hand tun muss; jedes mit Datum und Version.
 - **Tor**: die Dokumentation ist im selben Commit aktuell; jemand, der nicht programmiert, ist dem
-  Wiederherstellungshandbuch gefolgt.
+  Wiederherstellungshandbuch gefolgt. **und die Durchführung hat ihren Eintrag hinterlassen** (siehe unten)
+- **Die Probe hinterlässt drei Dinge schriftlich, nicht ein „wurde gemacht"**: die **gemessene
+  Zeit** von Ende zu Ende (wann es anfing, wann das System wieder funktionierte), die **genaue
+  Stelle, an der die Person hängen blieb** — der Schritt des Handbuchs, mit ihren Worten —, und
+  **jedes Wort, das sie nicht verstanden hat**. Die drei werden mit Datum und dem Namen dessen
+  geschrieben, der die Probe gemacht hat. Und jedes Wort, das sie nicht verstanden hat, **eröffnet
+  einen offenen Posten**: entweder wird es im Handbuch erklärt, oder die Sache wird umbenannt. Ohne
+  diesen Eintrag ist die Schranke nicht erfüllt, auch wenn die Person das System wiederhergestellt
+  hat: eine Probe, die keine Evidenz erzeugt, ist die billigste Art, eine Schranke zu haben, die
+  nichts misst.
 - **Wer entscheidet**: der Agent pflegt; der Eigentümer liest das Handbuch, nicht den Code.
 - **Fehler, den er verhindert**: das veraltete Dokument, das einen Commit im falschen Repository
   verursachte; die Projektdatei, die zur Historie wurde [Ref. 41](REFERENCIAS.md#ref-41). Die von
@@ -1261,6 +1352,16 @@ jeder Schritt, zusätzlich zur Karte, einen **Vertrag** in einer eigenen Datei i
 5. **Warnsignale**: zwei oder drei Symptome dafür, dass der Schritt schlecht erklommen wurde, auch
    wenn er erklommen aussieht.
 
+Diese Vollständigkeitsprüfung ist auf zweiunddreißig Verträge verteilt, einen pro Schritt und einen
+pro Station, und das taugt, solange das Projekt läuft. Aber es gibt einen früheren Moment, in dem du
+keine zweiunddreißig Verträge zur Hand hast: das Treffen, in dem dir jemand anbietet, dir das System
+zu bauen. Für diesen Moment gibt es ein Blatt: **[die fünfundzwanzig Fragen an den
+Anbieter](PREGUNTAS_AL_PROVEEDOR.md)**, das dieselbe Vollständigkeitsprüfung zusammengefasst ist,
+geschrieben für eine Person, die noch nie Software beauftragt hat, und geordnet nach dem, was ihr
+versprochen wird. Jede Frage sagt, welche Antwort man **sehen** kann — eine Datei, eine Zahl mit
+ihrem Befehl, ein rot gesehener Test, ein Handbuch, eine Unterschrift — und aus welchem Schritt sie
+kommt. Man druckt es aus und nimmt es mit.
+
 Und in der Kopfzeile jedes Vertrags: der Abschnitt, das Wann, die Form und die Größe (ob er in
 jedem Projekt verpflichtend oder proportional ist).
 
@@ -1282,6 +1383,30 @@ vierundzwanzig Schritte nicht vierundzwanzig lange Etappen sind; mehrere werden 
 erklommen, und die, die proportional sind, schrumpfen mit dem Projekt. Was nicht schrumpft, ist
 die Liste derer, die nicht verhandelbar sind. Diese Tabelle ist ein Vorschlag `[Hypothese]`, zu
 bestätigen mit dem ersten Projekt, das die Methode von Anfang bis Ende benutzt:
+
+Aber vor der Tabelle lohnt es sich zu sagen, **wie man dazu kommt, einen Schritt zu verkleinern**,
+denn die Tabelle allein liest sich wie eine Erlaubnis, und sie ist keine. Es sind drei Momente, und
+sie gehen in dieser Reihenfolge.
+
+**Zuerst wird es vollständig gemacht, auch das, wovon man nicht versteht, wozu es gut ist.** Das
+erste Mal, wenn du die Methode anwendest, bist du nicht in der Lage zu wissen, welcher Teil
+überflüssig ist: die Schritte, die wie Bürokratie aussehen, sind genau die, die den Problemen
+vorbeugen, die dir noch nicht passiert sind, und die ganze Liste kam aus Problemen, die passiert
+sind. Es einmal vollständig zu machen ist billiger als die Diskussion darüber, was man auslässt, und
+es ist das Einzige, was dir das Urteil für die nächste Etappe gibt.
+
+**Dann wird es an das angepasst, was du vor dir hast.** Wenn du die vierundzwanzig einmal erklommen
+hast, weißt du, was jeder produziert, und kannst ihn dimensionieren: eine halbe Seite statt fünf,
+ein Durchlauf statt eines Budgets pro Weg, ein Monatsbericht statt eines Wochenberichts. Das ist,
+was diese Tabelle vorschlägt. Und die Entscheidung gehört dem Eigentümer, Schritt für Schritt und
+laut ausgesprochen: welche verkleinert werden und welche in diesem Projekt nicht verhandelbar sind,
+geschrieben vor dem Anfang und nicht nach dem ersten Problem. Ein durch eine schriftliche
+Entscheidung verkleinerter Schritt ist Angemessenheit; im Stillen verkleinert, ist er Schuld.
+
+**Und am Ende wird es verbessert, für die, die nachkommen.** Schritt 23 schließt mit einer
+Retrospektive, die hierher als Änderungsvorschlag an der Leiter zurückkommt. Was du beim Anwenden
+entdeckt hast, ist nicht deine Anekdote: es ist die nächste Zeile dieser Tabelle. Dieses Dokument ist
+deswegen in seiner Version 4.
 
 | Schritt | Kleines Projekt (ein Eigentümer, wenige Nutzer, kein Geld auf dem Spiel) | Projekt mit Nutzern und Konsequenzen |
 |---|---|---|
@@ -1469,6 +1594,42 @@ Punktzahl beim Abschluss jedes Blocks neben der Abdeckung. Keiner der drei Teile
 der Eigentümer Code liest. Alle drei sorgen dafür, dass das Rot vorzutäuschen mehr kostet, als es
 laufen zu lassen.
 
+### F.5 Eine Übertragung der Methode in ein anderes Format, und was sie mich gelehrt hat
+
+2026 veröffentlichte Oscar Schmitz **„El Arte de Forjar Sistemas"** („Die Kunst, Systeme zu
+schmieden", 191 Seiten), einen Roman, der diese Methode überträgt: er nimmt die Leiter und erzählt
+sie als Fiktion, mit einer Eigentümerin, die entscheidet, und einem Team, das baut. Es ist keine
+verwandte Arbeit im Sinne der obigen — er schlägt keine andere Methode vor —, sondern etwas, das
+vorher nicht passiert war: jemand hat das ganze Korpus gelesen, um ein anderes Werk zu produzieren.
+Ich habe ihn Aussage für Aussage gegen den Wortlaut der Methode validiert, und der Bericht dieser
+Validierung bleibt im Repository.
+
+Was dabei herauskam, und warum es in diesem Teil steht und nicht in den Referenzen: **die Referenzen
+sind eigene Fälle, mit Datum und Commit; ein Roman ist kein Fall**. Was er aber getan hat, sind zwei
+Dinge.
+
+Er hat **vier Formulierungen beigetragen, die besser sind als meine**, und sie sind in diesem
+Dokument mit dieser Quellenangabe übernommen: „die Abdeckung zählt Tests; das Rot sagt, ob sie etwas
+taugen" (Schritt 9), „der Eigentümer ist kein Eigentümer: er ist Mieter" (Schritt 20), die Idee, dass
+man zum Verkleinern eines Schritts kommt, nachdem man ihn vollständig gemacht hat (Teil D), und die,
+dass die Probe des Wiederherstellungshandbuchs die Zeit, das Hängenbleiben und die nicht verstandenen
+Wörter **festhalten** muss (Schritt 20). Die fünfte ist das Blatt mit den
+[fünfundzwanzig Fragen an den Anbieter](PREGUNTAS_AL_PROVEEDOR.md): die Idee, die
+Vollständigkeitsprüfung in einem Blatt zusammenzufassen, das ein Eigentümer zu einem Treffen
+mitnimmt, ist seine; die fünfundzwanzig Fragen dieses Repositorys sind von null aus den Verträgen der
+Methode geschrieben, weil seine Version sein Werk ist und seine Rechte vorbehalten sind.
+
+Und er hat einen **strukturellen Mangel der Methode** gezeigt, den keine Prüfung gesehen hatte, und
+das ist das Wertvollste von allem: der Autor hat ohne einen einzigen Fehler sechs Zahlen der
+Referenzen hintereinander reproduziert und siebenundzwanzig der fünfundvierzig Regeln von Anhang H
+übersprungen. Sie sind ihm nicht durchgegangen: **dieses Dokument hat ihn nicht ein einziges Mal
+genannt**, also wusste er nie, dass sie existierten. Ein Leser, der alles liest und die Methode
+anwendet, würde an fünf veröffentlichten Schranken aufgehalten, ohne zu verstehen, warum. Das ist der
+Grund, warum der Anhang in Teil A, bei der Eröffnung von Teil C und in der Karte der sechs Schritte,
+die ihn tragen, genannt ist, und warum es eine Prüfung in der Kette gibt, die rot wird, wenn eine
+Karte aufhört, ihn zu nennen. Schritt 23 verlangt, dass die Retrospektive als Änderungsvorschlag an
+der Leiter zurückkommt; dies ist die erste, die von einem Leser kam.
+
 Ein nützlicher Rahmen, um diese Methode auf der Karte zu verorten, ist die Taxonomie von Macedo
 vom Juni 2026 ([arXiv 2606.04967](https://arxiv.org/abs/2606.04967)): sechs Dimensionen
 (Spezifikation, Kontext, Rollen, Ausführung, Validierung, Portabilität), und die Feststellung,
@@ -1523,6 +1684,18 @@ der nach dem fragt, was fehlt.
 beschrieb, was das System tun sollte. In dieser Methode wird es zerlegt: jeder offene Posten trägt
 seine vollständige detaillierte Spezifikation, und die Summe der offenen Posten ist die
 Spezifikation des Systems. Siehe B.5.
+
+**Anhang H** — Der Heuristik-Anhang der Methode
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): fünfundvierzig überprüfbare Regeln, achtzehn zur
+Codequalität und siebenundzwanzig zur Benutzbarkeit, jede mit ihrer stabilen Kennung, ihrer Schwere
+und dem Instrument, das sie misst. Er ist verpflichtend und läuft durch alle vier Abschnitte: er
+kommt mit zwei Voreingaben in Schritt 2 und mit fünf Ankern in den Schritten 5, 8, 9, 10 und 12
+herein. Das „H" steht für Heuristiken.
+
+**Anker (von Anhang H)** — Die Stelle, an der ein Stück von Anhang H zur Bedingung eines Schritts
+wird: wenn das Stück nicht da ist, geht die Schranke dieses Schritts nicht auf Grün. Es sind fünf,
+in den Schritten 5, 8, 9, 10 und 12, und die Karte jedes einzelnen nennt sie. Es ist keine Empfehlung
+und keine bewährte Praxis: es ist Teil dessen, was gemessen wird.
 
 **Anonymisierung** — In diesem Dokument heißen die realen Kunden „die Krankenkasse“, „der
 Autorisierer“ und „der Verein“, und ihre Systeme „Autorizaciones“ und „Kikan“. Das ist Absicht: die
@@ -1721,6 +1894,11 @@ Zahl erhält man nicht, indem man mit einer Textsuche zählt, sondern mit einem 
 **Grundursache** — Der wirkliche Grund eines Problems, im Gegensatz zum Symptom. Das Symptom zu
 beheben lässt das Problem zurückkehren; die Grundursache zu beheben nicht.
 
+**Gruppe der funktionalen Konvergenz** — Die Art, wie Anhang H Funktionalität gruppiert: nach
+**dem, was die Person zu tun kam**, nicht nach der Tabelle in der Datenbank und nicht nach dem Modul
+im Code. „Eine Beratung abrechnen" ist eine Gruppe; „Zahlungstabelle" ist keine. Jeder offene Posten,
+der einen Bildschirm berührt, erklärt seine (Anker 1, Schritt 5).
+
 **Heap** — Der Speicher, den ein Programm benutzt. „Die Batterie starb am Heap“ heißt, dass den
 Tests der Speicher ausging und es so aussah, als würden sie fehlschlagen.
 
@@ -1795,6 +1973,12 @@ Testdaten und die Ausführungstabelle. Der Agent schreibt ihn zusammen mit der F
 (Schritt 10); Menschen führen ihn aus; was fehlschlägt, speist einen offenen Posten zurück.
 
 **MariaDB** — Die SQL-Datenbank-Engine, die Kikan in Produktion verwendet.
+
+**Matrix der Funktionalität pro Profil** — Eine Tabelle mit den Profilen in den Zeilen und den
+Funktionalitäten in den Spalten, die sagt, wer was tun kann. Das Menü, die Routen und die
+Berechtigungen werden daraus **abgeleitet**, statt dreimal an drei Stellen geschrieben zu werden, was
+die Stelle ist, an der sie von selbst aus dem Takt geraten. Sie ist das Instrument von Anker 2
+(Schritt 8) von Anhang H.
 
 **Menge (Volumetrie)** — Wie viele Daten das System handhaben wird: Zeilen pro Jahr, Nutzer,
 Spitzen.
@@ -1873,6 +2057,11 @@ alle auf einmal. Eine der typischen Korrekturen von Schritt 17.
 **Perzentil 95** — Der Wert, unterhalb dessen 95 % der Messungen liegen. Bei der Latenz: „95 % der
 Aktionen brauchten weniger als das“. Es ist die Zahl, die zählt, denn der Durchschnitt verbirgt
 die, die lange gewartet haben.
+
+**Profil (von Benutzern)** — Eine Art von Person, die das System benutzt, benannt nach dem, was sie
+zu tun kommt: Verwaltung, Betrieb, Abfrage, Kunde. Es ist keine technische Rolle und keine
+Berechtigung: es ist jemand. Die Profilliste ist eine der zwei Voreingaben von Anhang H und wird in
+Schritt 2 geschrieben; alles, was der Anhang danach misst, wird **pro Profil** gemessen.
 
 **Playwright** — Ein Werkzeug, das einen Browser programmatisch steuert, um Bildschirme so zu
 testen, wie ein Mensch es tun würde.

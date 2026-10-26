@@ -1,13 +1,28 @@
 {
   "what": "The header of the prompt corpus published as an API: the version a project freezes. Declared BY HAND, for the same reason as the gate catalogue (gates/catalog.json): a project starts and finishes with the same version of the method, so what it froze has to read back the same two years from now.",
-  "corpus_version": "2026.10.1",
-  "declared_at": "2026-10-23",
+  "corpus_version": "2026.10.2",
+  "declared_at": "2026-10-26",
   "published_as": "docs/html/api/prompts.json",
   "version_scheme": {
     "recipe": "gates/schema.json#version_scheme",
     "note": "The recipe -- canonical form, algorithm, encoding, and the rule that raises the version -- is declared once, there, and the build uses the same implementation. This file only says which keys the hash covers here, because the payload is a different one. One copy of each text.",
-    "hash_covers": ["corpus_version", "language", "languages", "contracts", "steps", "count"],
-    "hash_excludes": ["what", "version", "version_note", "generated_at", "source", "license", "content_hash"]
+    "hash_covers": [
+      "corpus_version",
+      "language",
+      "languages",
+      "contracts",
+      "steps",
+      "count"
+    ],
+    "hash_excludes": [
+      "what",
+      "version",
+      "version_note",
+      "generated_at",
+      "source",
+      "license",
+      "content_hash"
+    ]
   },
   "changelog": [
     {
@@ -16,6 +31,13 @@
       "decision": "D-053",
       "content_hash": "3459750db1d7eb746e4f2b45f8e677585df7f269c0f083903b8a07db535fe15d",
       "changed": "First DECLARED version of the corpus. The prompts themselves did not change: not one character of prompt text is touched here (D-049). What changes is the identity of what is published and the truth of what it declares. Identity: until now the only identifier was a git sha, which a build computes before saving and which therefore always names the change BEFORE the one that contains it -- useless as something to freeze. From here the version is declared by hand and the file carries a content hash the consumer RECOMPUTES, exactly like the gate catalogue. Truth: the file said language `en` while steps[].title carried the Spanish titles of the contracts; the titles now come from the English contracts (docs/en/peldanos/), which is where tool data belongs (D-051), so the declaration is true instead of approximately true. The file stays UTF-8 and is not ASCII: the prompt text is published verbatim, typographic punctuation included."
+    },
+    {
+      "corpus_version": "2026.10.2",
+      "date": "2026-10-26",
+      "decision": "D-061",
+      "content_hash": "b751bf7a2467394a6d9cf26cd29894108f3e245b86d771706c5b6aebe7f19adc",
+      "changed": "One prompt changed, and it is the first time the published corpus changes a prompt instead of its identity. The step 2 prompt now also asks for the two prior inputs of Annex H -- the user glossary, with the words people actually use for each thing, and the list of profiles, saying who each one is and what they come to do -- taken from the survey, asked for rather than invented, written as files of the project and named from the project file. The gate data already demanded both at step 2 (the two prior-input anchors, since_schema 2) and the contract did not ask for them: the asymmetry between the published data and the prose is what the step 23 retrospective found, and it is what step 11 hunts. The English piece is one piece, identical byte for byte in the eight versions, and build/prompts.mjs enforces that; the translation of the prompt was written in each of the seven. No other prompt moved."
     }
   ]
 }

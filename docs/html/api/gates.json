@@ -1,6 +1,6 @@
 {
   "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.",
-  "catalog_version": "2026.10.3",
+  "catalog_version": "2026.10.4",
   "schema_version": 2,
   "content_hash": {
     "algo": "sha256",
@@ -31,12 +31,12 @@
       "what",
       "counts"
     ],
-    "value": "0f3c1b472f92242840aa4cd7c2cc590b62c30c48466af3a588ea803fee880367",
+    "value": "ad88adccfcbfff7d70d54a14f0094a8d545cc369b50025449613f725efd4b401",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "f49b267",
+  "git_commit": "6dc0373",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-10-24T16:44:07.442Z",
+  "generated_at": "2026-10-26T18:11:09.260Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
@@ -1121,7 +1121,11 @@
       ],
       "verify": [
         "Una persona sin IA puede recuperar el sistema siguiendo el manual?",
-        "Alguien que no sos vos siguio el manual de usuario y llego?"
+        "Alguien que no sos vos siguio el manual de usuario y llego?",
+        {
+          "text": "Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?",
+          "since_schema": 2
+        }
       ],
       "evaluators": [
         {
@@ -1647,7 +1651,7 @@
         "step": 2,
         "path": null,
         "declared": false,
-        "note": "The annex requires it when scope is defined and declares no file for it; the step 2 contract does not ask for it yet. Until the method declares a path, it is not machine-measurable: it is published as declared and not measured."
+        "note": "The annex requires it when scope is defined and declares no file for it. Since 2026-10-26 the step 2 contract DOES ask for it, in writing and named from the project file, and the step 2 completeness check reads it; what the method still does not declare is a canonical path, on purpose, because the owner never declared one and a file name invented here would be published as a default. So it stays machine-measurable only through the step 2 checklist: declared, and not measured by path."
       },
       {
         "id": "prior_input_2",
@@ -1656,7 +1660,7 @@
         "step": 2,
         "path": null,
         "declared": false,
-        "note": "Same status as prior input 1."
+        "note": "Same status as prior input 1: asked for by the step 2 contract since 2026-10-26, with no canonical path declared."
       }
     ],
     "anchors": [

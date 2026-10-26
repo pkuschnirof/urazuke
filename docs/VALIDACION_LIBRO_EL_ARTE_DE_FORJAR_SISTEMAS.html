@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Validación de «El Arte de Forjar Sistemas» contra el método Urazuke</title>
+<style>
+:root{
+  --bg:#faf9f7; --surface:#fff; --subtle:#f4f2ee; --ink:#1a1a1a; --ink2:#52504b; --ink3:#8a8780;
+  --line:#e4e1da; --accent:#8c6a2f; --accent-soft:#f6efe0;
+  --ok:#1f6b3a; --ok-bg:#e8f3eb; --fiel:#2a5f8f; --fiel-bg:#e8f0f7;
+  --warn:#8a5a10; --warn-bg:#fbf1dd; --bad:#9b2420; --bad-bg:#fbeae9;
+  --new:#5c3a86; --new-bg:#f1ebf8;
+  --mono:ui-monospace,"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#16151a; --surface:#1e1d23; --subtle:#26242c; --ink:#eceaf2; --ink2:#b4b0bd; --ink3:#857f91;
+    --line:#332f3b; --accent:#d2aa62; --accent-soft:#2b2518;
+    --ok:#7fd49c; --ok-bg:#16301f; --fiel:#8ebde8; --fiel-bg:#132436;
+    --warn:#e0b45f; --warn-bg:#332814; --bad:#f09a94; --bad-bg:#361817;
+    --new:#c4a4e8; --new-bg:#241a33;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.62}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:0}
+header.top{background:var(--surface);border-bottom:3px solid var(--accent);padding-block:38px 30px;margin-bottom:34px}
+.kicker{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+h1{font-family:var(--serif);font-size:clamp(1.65rem,3.6vw,2.5rem);line-height:1.2;margin:0 0 10px;font-weight:600;letter-spacing:-.01em}
+.sub{font-size:1.05rem;color:var(--ink2);margin:0 0 22px;max-width:62ch}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.meta div{background:var(--surface);padding:11px 14px}
+.meta dt{font-family:var(--mono);font-size:.67rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin:0 0 3px}
+.meta dd{margin:0;font-size:.9rem;font-weight:500}
+h2{font-family:var(--serif);font-size:1.52rem;margin:52px 0 6px;padding-top:22px;border-top:1px solid var(--line);font-weight:600;letter-spacing:-.01em}
+h2 .num{font-family:var(--mono);font-size:.78rem;color:var(--accent);display:block;letter-spacing:.12em;margin-bottom:7px;font-weight:400}
+h3{font-size:1.08rem;margin:32px 0 8px;font-weight:650;letter-spacing:-.005em}
+h4{font-size:.93rem;margin:24px 0 6px;font-weight:650;color:var(--ink2);font-family:var(--mono);letter-spacing:.02em}
+p{margin:0 0 14px;max-width:84ch}
+.lede{font-size:1.04rem;color:var(--ink2)}
+ul,ol{margin:0 0 16px;padding-left:22px;max-width:84ch}
+li{margin-bottom:7px}
+code{font-family:var(--mono);font-size:.855em;background:var(--subtle);padding:1px 5px;border-radius:3px;border:1px solid var(--line)}
+.tw{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--line);border-radius:7px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:.845rem;min-width:620px}
+th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--subtle);font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2);position:sticky;top:0;z-index:2;border-bottom:2px solid var(--line);font-weight:600}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--subtle)}
+td.id{font-family:var(--mono);font-size:.76rem;color:var(--ink3);white-space:nowrap}
+td.n{font-family:var(--mono);text-align:right;white-space:nowrap}
+.b{display:inline-block;font-family:var(--mono);font-size:.655rem;font-weight:700;letter-spacing:.05em;padding:2px 7px;border-radius:3px;white-space:nowrap;text-transform:uppercase}
+.b-ok{background:var(--ok-bg);color:var(--ok)}
+.b-fiel{background:var(--fiel-bg);color:var(--fiel)}
+.b-par{background:var(--warn-bg);color:var(--warn)}
+.b-div{background:var(--bad-bg);color:var(--bad)}
+.b-add{background:var(--new-bg);color:var(--new)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));gap:12px;margin:22px 0 28px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:15px 16px;border-top:3px solid var(--accent)}
+.card .k{font-family:var(--mono);font-size:1.78rem;font-weight:700;line-height:1;letter-spacing:-.02em}
+.card .l{font-size:.775rem;color:var(--ink2);margin-top:7px;line-height:1.38}
+.card.g{border-top-color:var(--ok)} .card.g .k{color:var(--ok)}
+.card.r{border-top-color:var(--bad)} .card.r .k{color:var(--bad)}
+.card.y{border-top-color:var(--warn)} .card.y .k{color:var(--warn)}
+.card.p{border-top-color:var(--new)} .card.p .k{color:var(--new)}
+.box{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 7px 7px 0;padding:16px 18px;margin:20px 0}
+.box.bad{border-left-color:var(--bad)}
+.box.good{border-left-color:var(--ok)}
+.box h4{margin-top:0;color:var(--ink);font-family:var(--sans);font-size:.98rem;letter-spacing:-.005em}
+.box p:last-child{margin-bottom:0}
+.f{background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:17px 19px;margin:16px 0;border-left:4px solid var(--bad)}
+.f.o{border-left-color:var(--warn)}
+.f.s{border-left-color:var(--new)}
+.f.m{border-left-color:var(--fiel)}
+.f .fh{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px;margin-bottom:9px}
+.f .fid{font-family:var(--mono);font-size:.74rem;font-weight:700;color:var(--bad);letter-spacing:.04em}
+.f.o .fid{color:var(--warn)} .f.s .fid{color:var(--new)} .f.m .fid{color:var(--fiel)}
+.f .ft{font-weight:650;font-size:1rem;letter-spacing:-.005em}
+.f dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:.875rem}
+.f dt{font-family:var(--mono);font-size:.655rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);padding-top:4px;white-space:nowrap}
+.f dd{margin:0}
+.sev{display:inline-block;font-family:var(--mono);font-size:.63rem;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.05em;background:var(--bad-bg);color:var(--bad)}
+.sev.med{background:var(--warn-bg);color:var(--warn)}
+.sev.low{background:var(--subtle);color:var(--ink2)}
+blockquote{margin:14px 0;padding:11px 16px;background:var(--subtle);border-left:3px solid var(--line);font-family:var(--serif);font-size:.96rem;color:var(--ink2);border-radius:0 5px 5px 0}
+blockquote p:last-child{margin-bottom:0}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:17px 20px;margin-bottom:10px}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:34px;font-size:.9rem}
+.toc li{margin-bottom:5px;break-inside:avoid}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.toc a:hover{border-bottom-color:var(--accent);color:var(--accent)}
+footer{margin-top:58px;padding:26px 0 46px;border-top:1px solid var(--line);font-size:.83rem;color:var(--ink3)}
+.leg{display:flex;flex-wrap:wrap;gap:8px 16px;margin:14px 0 24px;font-size:.8rem;color:var(--ink2);align-items:center}
+hr{border:none;border-top:1px solid var(--line);margin:30px 0}
+.small{font-size:.82rem;color:var(--ink3)}
+@media (max-width:640px){
+  .toc ol{columns:1}
+  table{font-size:.8rem}
+  .f dl{grid-template-columns:1fr;gap:2px}
+  .f dt{padding-top:8px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+<div class="wrap">
+<p class="kicker">Informe de validación · Urazuke</p>
+<h1>«El Arte de Forjar Sistemas» contra la letra y el espíritu del método</h1>
+<p class="sub">Validación aseveración por aseveración de la novela de Oscar Schmitz contra el método Urazuke de Pablo Kuschniroff: la escalera, los veinticuatro contratos, el Anexo H, las compuertas publicadas como datos y las cuarenta y seis referencias de casos reales.</p>
+<dl class="meta">
+<div><dt>Obra analizada</dt><dd>El Arte de Forjar Sistemas</dd></div>
+<div><dt>Autor</dt><dd>Oscar Schmitz, 1.ª ed. digital 2026</dd></div>
+<div><dt>Extensión</dt><dd>191 páginas · 189.115 caracteres</dd></div>
+<div><dt>Estructura</dt><dd>Prólogo + 13 capítulos + epílogo + 2 anexos</dd></div>
+<div><dt>Aseveraciones validadas</dt><dd>195</dd></div>
+<div><dt>Fecha del informe</dt><dd>26 de octubre de 2026</dd></div>
+</dl>
+</div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+<ol>
+<li><a href="#resumen">Resumen ejecutivo y marcador</a></li>
+<li><a href="#metodo">Qué se comparó contra qué</a></li>
+<li><a href="#mapa">Mapa capítulo → peldaño</a></li>
+<li><a href="#cobertura">Cobertura de los veinticuatro peldaños</a></li>
+<li><a href="#promesas">Las cinco promesas: el marco inventado</a></li>
+<li><a href="#maximas">Las 119 máximas, una por una</a></li>
+<li><a href="#numeros">Los treinta casos y números reales</a></li>
+<li><a href="#errores">Errores</a></li>
+<li><a href="#omisiones">Omisiones</a></li>
+<li><a href="#espiritu">Divergencias de espíritu</a></li>
+<li><a href="#mejor">Lo que el libro hace mejor que el método</a></li>
+<li><a href="#contra">Hallazgos contra el método</a></li>
+<li><a href="#veredicto">Veredicto</a></li>
+</ol>
+</nav>
+
+<div class="leg">
+<strong style="font-weight:650">Vocabulario de veredicto:</strong>
+<span><span class="b b-ok">exacta</span> dice lo que dice el método, casi literal</span>
+<span><span class="b b-fiel">fiel</span> correctamente derivado</span>
+<span><span class="b b-par">parcial</span> correcto pero incompleto</span>
+<span><span class="b b-div">diverge</span> contradice o desplaza el sentido</span>
+<span><span class="b b-add">añadida</span> no está en el método, no lo contradice</span>
+</div>
+
+<h2 id="resumen"><span class="num">§ 1</span>Resumen ejecutivo y marcador</h2>
+
+<p class="lede">El libro es una adaptación de fidelidad inusualmente alta. Validé 195 aseveraciones: 154 doctrinales con veredicto (las cinco promesas, las 119 máximas y los 30 casos y números reales), más la cobertura de los 24 peldaños y la correspondencia de las 17 piezas del libro. De las 154 con veredicto, <strong>126 coinciden con la letra del método y 108 de ellas son coincidencias casi literales</strong>, incluidas series de seis cifras seguidas que reproducen exactamente las referencias de casos reales. No encontré ninguna aseveración que contradiga el núcleo doctrinal.</p>
+
+<p>Pero hay cuatro problemas serios, y uno de ellos es estructural y no cosmético.</p>
+
+<div class="cards">
+<div class="card"><div class="k">195</div><div class="l">aseveraciones <strong>validadas</strong> una a una</div></div>
+<div class="card g"><div class="k">108</div><div class="l"><strong>exactas</strong>: dicen lo que dice el método, casi literal</div></div>
+<div class="card g"><div class="k">18</div><div class="l"><strong>fieles</strong>: correctamente derivadas</div></div>
+<div class="card p"><div class="k">20</div><div class="l"><strong>añadidas</strong> por el libro; no contradicen al método</div></div>
+<div class="card y"><div class="k">4</div><div class="l"><strong>parciales</strong>: pierden una condición o una excepción</div></div>
+<div class="card r"><div class="k">4</div><div class="l">que <strong>divergen</strong> de la letra</div></div>
+<div class="card r"><div class="k">8</div><div class="l"><strong>errores</strong> identificados, 3 de gravedad alta</div></div>
+<div class="card y"><div class="k">18</div><div class="l"><strong>omisiones</strong> relevantes de la letra</div></div>
+<div class="card r"><div class="k">5 / 5</div><div class="l"><strong>anclas del Anexo H</strong> ausentes del libro</div></div>
+<div class="card y"><div class="k">9 / 24</div><div class="l">peldaños con cobertura <strong>parcial</strong> o baja</div></div>
+</div>
+
+<p class="small">Distribución exacta de los 154 veredictos: 108 exactas, 18 fieles, 20 añadidas, 4 parciales, 4 divergentes. Cobertura de los 24 peldaños: 9 completas, 4 altas, 9 parciales, 2 bajas. Correspondencia de las 17 piezas del libro: 6 exactas, 4 fieles, 5 parciales, 2 añadidas.</p>
+
+<div class="box bad">
+<h4>El hallazgo que importa: el proyecto del libro no pasaría las compuertas publicadas del método</h4>
+<p>El método publica su definición mecánica de compuertas como datos en <code>yujin.app/urazuke/api/gates.json</code> (catálogo 2026.10.2). Ahí, cinco peldaños llevan evaluadores marcados <code>required: true</code> que vienen del Anexo H: <code>pendings_profiles</code> (peldaño 5), <code>profile_matrix</code> (8), <code>heuristics</code> (9 y 12) y <code>manual_cases_per_profile</code> (10). El propio catálogo declara que, ante un evaluador exigible que la instalación no puede medir, <em>«no se reporta verde: se reporta declarado y no medido, y el peldaño no avanza»</em>.</p>
+<p><strong>Turnera, tal como la narra el libro, no declara perfiles, no construye la matriz, no la ve fallar primero y ejecuta los casos manuales con un solo perfil.</strong> Medido contra el dato publicado del propio método, el proyecto guía del libro quedaría detenido en los peldaños 2, 5, 8, 10 y 12. Las veintisiete reglas de usabilidad del Anexo H —más de la mitad del catálogo de cuarenta y cinco— no aparecen en el libro ni una vez, como reglas.</p>
+</div>
+
+<p>Los otros tres problemas serios: una anécdota central <strong>inventada y presentada como documentada</strong> (el banco y los débitos duplicados, §8 E-02); el libro <strong>no tiene equivalente de la Parte E del método</strong>, «Lo que falta elaborar», de modo que presenta como cerrado lo que su autor marca con <code>[hipótesis]</code> (§10 S-01); y un <strong>umbral numérico apretado por tres</strong> en la señal de alarma de la auditoría (§8 E-03).</p>
+
+<h2 id="metodo"><span class="num">§ 2</span>Qué se comparó contra qué</h2>
+
+<p>Extraje el texto completo del PDF con <code>pdfjs-dist</code> (191 páginas, 189.115 caracteres de texto, cero páginas ilegibles) y lo leí entero. Del lado del método, las fuentes primarias fueron:</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Fuente del método</th><th>Qué aporta a la validación</th><th class="n">Tamaño</th></tr></thead>
+<tbody>
+<tr><td><code>docs/ESCALERA_METODOLOGICA.md</code> v4</td><td>La letra: tesis, origen, tres casos de uso, Parte A (cómo leer un peldaño), Parte B (línea de tiempo, cinco fases, hitos humanos), Parte C (las 24 fichas), Parte D (proporcionalidad, herramientas), Parte E (lo que falta)</td><td class="n">143.274 c</td></tr>
+<tr><td><code>docs/REFERENCIAS.md</code> v4</td><td>Las 46 referencias de casos reales con fecha, commit y números; las tres cronologías; la tabla «cada fallo y el peldaño que lo cubre»</td><td class="n">32.896 c</td></tr>
+<tr><td><code>docs/ANEXO_HEURISTICAS.md</code></td><td>Las 45 reglas (18 de calidad de código, 27 de usabilidad), las tres capas, los cuatro instrumentos, las cinco anclas y las dos entradas previas</td><td class="n">44.819 c</td></tr>
+<tr><td><code>docs/html/api/gates.json</code></td><td>La definición mecánica publicada: 24 peldaños, 8 estaciones, 45 reglas, 12 evaluadores, umbrales declarados, semántica de compatibilidad. Catálogo <code>2026.10.2</code>, huella <code>3bd03ac3bf79</code></td><td class="n">100.167 B</td></tr>
+<tr><td><code>docs/peldanos/*.md</code></td><td>Los contratos: contexto, prompts, resultado esperado, verificación de completitud y señales de alarma. Verificación puntual de los peldaños 12, 13 y 14</td><td class="n">263.606 c</td></tr>
+<tr><td><code>CLAUDE.md</code></td><td>Las reglas de estilo y de sustancia del proyecto: el origen de dos factores, los clientes anonimizados, el marcado <code>[hipótesis]</code></td><td class="n">19.771 c</td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="small">Criterio de severidad usado en §8: <strong>alta</strong> = un lector que actúe sobre el libro aplicaría el método mal o quedaría con una creencia falsa sobre su contenido; <strong>media</strong> = pierde una condición que el método declara; <strong>baja</strong> = inexactitud sin consecuencia práctica.</p>
+
+<h2 id="mapa"><span class="num">§ 3</span>Mapa capítulo → peldaño</h2>
+
+<p>El libro no numera peldaños ni los nombra como tales, y no trae ninguna tabla de correspondencia. Esta es la que reconstruí leyendo las dos obras en paralelo. Las cuatro partes del libro corresponden exactamente a los cuatro tramos de la escalera, y ese acierto estructural no es casual: el prólogo y el capítulo 1 cubren la <strong>fase 0</strong> del método, la ingesta, que la Parte B describe como prerrequisito externo y permanente.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th style="width:21%">Pieza del libro</th><th style="width:13%">Peldaños</th><th style="width:12%">Tramo</th><th>Observación</th><th style="width:9%">Fidelidad</th></tr></thead>
+<tbody>
+<tr><td>Prólogo — El cuaderno roto</td><td class="n">tesis</td><td>—</td><td>La tesis «la IA no interrumpe el método: lo continúa» y el nombre <em>urazuke</em>. Reproduce «hace veinte años» y el argumento del aparato de verificación ya construido</td><td><span class="b b-ok">exacta</span></td></tr>
+<tr><td>Cap. 1 — El terreno</td><td class="n">fase 0</td><td>Ingesta</td><td>Relevamiento con entrevistas, casos de uso, modelo de dominio, prototipos, trazabilidad y huecos marcados. El método lo ubica explícitamente <em>antes</em> del peldaño 0 (Parte B.2 y el gráfico: <code>RE1 → P0</code>), así que el orden del libro es correcto</td><td><span class="b b-ok">exacta</span></td></tr>
+<tr><td>Cap. 2 — No todo combate se acepta</td><td class="n">0</td><td>Arranque</td><td>Los dos criterios excluyentes, su origen en los proyectos rechazados, la ficha firmada, la migración fuera de alcance. Omite 4 de los 8 criterios que ponderan</td><td><span class="b b-par">parcial</span></td></tr>
+<tr><td>Cap. 3 — Las reglas del dojo</td><td class="n">1, 2</td><td>Arranque</td><td>Las seis reglas mínimas del contrato, una por una y en orden; el archivo corto; el «qué no es»; el árbol semántico con lo supuesto marcado; la prueba de lectura obligatoria</td><td><span class="b b-ok">exacta</span></td></tr>
+<tr><td>Cap. 4 — La postura vacía</td><td class="n">3, 4</td><td>Arranque</td><td>Números primarios y derivados, el «por diez», la decisión asimétrica, el esqueleto vacío desplegado dos veces, el dueño abre la URL. Omite «las compuertas del flujo declaradas por escrito» del artefacto del 4</td><td><span class="b b-fiel">fiel</span></td></tr>
+<tr><td>Cap. 5 — La forma</td><td class="n">5, 6</td><td>Bucle</td><td>La lista es el plan; la especificación en el pendiente; frenar y preguntar; la decisión por omisión reversible y marcada; los tres lugares; el pendiente cerrado como memoria. Falta el ancla 1 del Anexo H</td><td><span class="b b-par">parcial</span></td></tr>
+<tr><td>Cap. 6 — El que ataca y el que resiste</td><td class="n">7, 8</td><td>Bucle</td><td>El rojo como recibo con comando, versión, números y código de salida; la regresión en la misma sesión; punta a punta; «no simulé la parte que se prueba»; el rojo por mutación cuando no hay pasado; el medidor que miente. Falta el ancla 2</td><td><span class="b b-par">parcial</span></td></tr>
+<tr><td>Cap. 7 — La mirada</td><td class="n">9, 10, 11</td><td>Bucle</td><td>La compuerta de calidad, los límites 300/40, el trinquete de cobertura, los casos manuales ejecutados por personas con fecha y nombre, «toda lista tiene un solo dueño», el registro de anti-patrones. Falta la mitad usabilidad del Anexo H y las anclas 3 y 4</td><td><span class="b b-par">parcial</span></td></tr>
+<tr><td>Cap. 8 — La verdad del reporte</td><td class="n">12</td><td>Bucle</td><td>Los tres bloques con sus nombres, las malas noticias primero, «listo» no se dice a secas, el reporte largo como señal, la comparación de versión publicada. Falta el ancla 5</td><td><span class="b b-ok">exacta</span></td></tr>
+<tr><td>Cap. 9 — Ojos frescos</td><td class="n">13</td><td>Salida</td><td>El auditor que no construyó, otra sesión con otras instrucciones, solo lectura, todo el código, lo no auditado declarado, los hallazgos a la cola de pendientes, el desacuerdo con evidencia. Un umbral numérico mal (E-03)</td><td><span class="b b-fiel">fiel</span></td></tr>
+<tr><td>Cap. 10 — Ante la duda, no</td><td class="n">14, 15</td><td>Salida</td><td>La comparación de las dos listas de acciones, la tabla de candados con reversibilidad y camino de vuelta, el modo de ensayo, el secreto rotado, los tests una vez, la vuelta atrás probada. Omite el plan de deshacer de las migraciones de datos</td><td><span class="b b-fiel">fiel</span></td></tr>
+<tr><td>Cap. 11 — Forjar y pulir</td><td class="n">16, 17, 18, 19</td><td>Salida</td><td>Identificador de correlación, nivel por configuración, huella inmutable, cero datos personales, medir antes y después, escaneo en cuatro capas con calendario, punto de ruptura y la tolerancia del negocio. El capítulo de mayor densidad y mayor fidelidad del libro</td><td><span class="b b-ok">exacta</span></td></tr>
+<tr><td>Cap. 12 — El libro que queda</td><td class="n">20</td><td>Salida</td><td>Los tres manuales, el criterio de las tres de la mañana sin agente, «consultar con el desarrollador» como fallo del manual, la prueba con una persona que no programa y el hallazgo que vuelve como pendiente</td><td><span class="b b-ok">exacta</span></td></tr>
+<tr><td>Cap. 13 — La atención que permanece</td><td class="n">21, 22, 23</td><td>Operación</td><td>Las dos vigilancias montadas el día del primer despliegue, los tres lugares donde se esconden los errores, ningún error sin pendiente, el cerco del agente residente, la retrospectiva con números y la propuesta de cambio a la escalera</td><td><span class="b b-fiel">fiel</span></td></tr>
+<tr><td>Epílogo — El dojo heredado</td><td class="n">N0–N7</td><td>Normalización</td><td>El tercer caso de uso: ocho estaciones, no se reescribe, cinturón de seguridad, «todo camino termina en otro peldaño cero». No menciona el segundo caso de uso (entrada por el peldaño 5)</td><td><span class="b b-par">parcial</span></td></tr>
+<tr><td>Anexo I — Glosario del budō</td><td class="n">—</td><td>—</td><td>24 términos japoneses con escritura, significado y capítulo. Aparato propio del libro, sin equivalente en el método</td><td><span class="b b-add">añadida</span></td></tr>
+<tr><td>Anexo II — Preguntas para tu proveedor</td><td class="n">—</td><td>—</td><td>25 preguntas agrupadas por las cinco promesas. Pieza original del libro y, a mi juicio, su aporte más valioso (§11)</td><td><span class="b b-add">añadida</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="cobertura"><span class="num">§ 4</span>Cobertura de los veinticuatro peldaños</h2>
+
+<p>Los veinticuatro peldaños aparecen en el libro. Ninguno queda sin tratar, lo cual es notable para trece capítulos. Lo que varía es la completitud: la columna «qué falta» contrasta el contenido del libro con el artefacto y la compuerta que la ficha del peldaño declara.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:25%">Peldaño</th><th style="width:7%">Dónde</th><th style="width:10%">Cobertura</th><th>Qué falta contra la ficha y la compuerta</th></tr></thead>
+<tbody>
+<tr><td class="n">0</td><td>Elegibilidad</td><td>Cap. 2</td><td><span class="b b-par">parcial</span></td><td>4 de los 8 criterios que ponderan: oráculo de verdad verificable (D2), tecnología que el agente domina sin inventar (D4), alcance que cabe en un repositorio y un dueño (D9), secretos aislables (D10). También la versión para legados (estación N0, con cuatro criterios más y X2 pantalla por pantalla)</td></tr>
+<tr><td class="n">1</td><td>Contrato de convivencia</td><td>Cap. 3</td><td><span class="b b-ok">completa</span></td><td>Nada. Las seis reglas mínimas del artefacto están las seis, en el mismo orden conceptual</td></tr>
+<tr><td class="n">2</td><td>Definición, árbol y lectura obligatoria</td><td>Cap. 3</td><td><span class="b b-par">parcial</span></td><td>Las dos entradas previas del Anexo H que el peldaño 2 verifica: el glosario del usuario y la lista de perfiles («¿está escrita la lista de perfiles, diciendo quién es cada uno y qué viene a hacer?»). También el archivo de estado vivo con las dudas abiertas</td></tr>
+<tr><td class="n">3</td><td>Dimensionar</td><td>Cap. 4</td><td><span class="b b-ok">completa</span></td><td>Nada sustantivo. Tres opciones fijas con su costo de cambio, la elegida, la decisión asimétrica declarada, el dueño rehace una cuenta a mano</td></tr>
+<tr><td class="n">4</td><td>Esqueleto con sus compuertas</td><td>Cap. 4</td><td><span class="b b-par">parcial</span></td><td>«Las compuertas del flujo declaradas por escrito», que es la mitad del artefacto y la razón del título del peldaño. El libro monta repositorio, entorno, cadena y despliegue, y deja las compuertas sin declarar hasta el capítulo 7</td></tr>
+<tr><td class="n">5</td><td>El plan son los pendientes</td><td>Cap. 5</td><td><span class="b b-par">parcial</span></td><td><strong>Ancla 1:</strong> todo pendiente que toca una pantalla declara grupo de convergencia, perfiles y un criterio de aceptación por perfil. Evaluador <code>pendings_profiles</code>, <code>required: true</code></td></tr>
+<tr><td class="n">6</td><td>Decisiones junto al código</td><td>Cap. 5</td><td><span class="b b-ok">completa</span></td><td>Nada. Incluye la decisión por omisión reversible y marcada, y los tres lugares de registro</td></tr>
+<tr><td class="n">7</td><td>Medir con instrumento verificado</td><td>Cap. 6</td><td><span class="b b-fiel">alta</span></td><td>De las cinco reglas de la compuerta, el libro dramatiza cuatro. No nombra «el que ejecuta verifica los números del que planificó», que es la quinta</td></tr>
+<tr><td class="n">8</td><td>Tests como candados, probados en rojo</td><td>Cap. 6</td><td><span class="b b-par">parcial</span></td><td><strong>Ancla 2:</strong> la matriz de perfiles vista fallar primero. Evaluador <code>profile_matrix</code>, <code>required: true</code>. El recibo del libro trae rojo, verde, regresión y punta a punta, pero no la fila por perfil</td></tr>
+<tr><td class="n">9</td><td>Calidad por máquina, con compuerta</td><td>Cap. 7</td><td><span class="b b-div">baja</span></td><td><strong>Ancla 3</strong> completa: el catálogo CQ con su adaptador de familia de frontend y sus umbrales declarados; el registro de apagado con motivo, autor y fecha de revisión; el puntaje de mutación por bloque, que con usuarios reales es obligatorio; <code>CODE_QUALITY.md</code> reportando por regla y no por número único. Y la matriz como compuerta. Además: tipos, excepciones al linter con razón escrita</td></tr>
+<tr><td class="n">10</td><td>Casos manuales ejecutados por personas</td><td>Cap. 7</td><td><span class="b b-div">baja</span></td><td><strong>Ancla 4:</strong> «cada caso se ejecuta una vez por perfil afectado, derivado de la matriz. Un caso corrido con un solo perfil no cuenta como ejecutado». Marta cubre un solo perfil y el libro lo declara suficiente. Turnera tiene al menos tres perfiles: recepcionista, profesional y paciente</td></tr>
+<tr><td class="n">11</td><td>Simetría y anti-patrones</td><td>Cap. 7</td><td><span class="b b-fiel">alta</span></td><td>El mapa productor/consumidor como artefacto, que en un proyecto con usuarios es obligatorio. El libro tiene la regla y el registro de anti-patrones completo</td></tr>
+<tr><td class="n">12</td><td>Verificación honesta y reporte proporcional</td><td>Cap. 8</td><td><span class="b b-par">parcial</span></td><td><strong>Ancla 5:</strong> el reporte dice qué quedó en «avisa» y qué regla está apagada, con motivo, autor y fecha; y las dos cifras del tablero con su huella de conjunto de reglas, sin que ninguna cierre un bloque</td></tr>
+<tr><td class="n">13</td><td>Auditoría periódica</td><td>Cap. 9</td><td><span class="b b-fiel">alta</span></td><td>Reproducir literalmente dos o tres recibos de pendientes cerrados, con el mismo comando y los mismos números, en vez de solo leerlos. Y la preferencia por «un modelo distinto del que construye, donde sea posible», que el libro reduce a otra sesión del mismo</td></tr>
+<tr><td class="n">14</td><td>Fail-closed y candados</td><td>Cap. 10</td><td><span class="b b-ok">completa</span></td><td>Nada. Incluso la comparación de las dos listas, que está en el contrato y no en la ficha</td></tr>
+<tr><td class="n">15</td><td>Integración, entornos, secretos, despliegue</td><td>Cap. 10</td><td><span class="b b-par">parcial</span></td><td>«Toda migración de esquema o de datos tiene su propio plan de deshacer o de compensación; volver el código atrás no alcanza». Turnera tiene base de datos y el libro solo prueba la vuelta atrás del código</td></tr>
+<tr><td class="n">16</td><td>Observabilidad y trazabilidad</td><td>Cap. 11</td><td><span class="b b-ok">completa</span></td><td>Nada. Identificador de correlación seguido por las cuatro capas, nivel por configuración sin desplegar, auditoría inmutable, cero datos personales</td></tr>
+<tr><td class="n">17</td><td>Persistencia medida antes y después</td><td>Cap. 11</td><td><span class="b b-ok">completa</span></td><td>Nada. Carga al volumen dimensionado, medición con instrumento con test, 800 ms → 4 ms, retención por tabla decidida y firmada</td></tr>
+<tr><td class="n">18</td><td>Vulnerabilidades en la cadena y con calendario</td><td>Cap. 11</td><td><span class="b b-ok">completa</span></td><td>Nada. Las cuatro capas, el calendario semanal, la compuerta, «actualizar una pieza es un cambio y pasa por todas las pruebas»</td></tr>
+<tr><td class="n">19</td><td>Rendimiento y punto de ruptura</td><td>Cap. 11</td><td><span class="b b-ok">completa</span></td><td>Nada. Las tres corridas, la tolerancia del negocio pedida antes a quien usa el sistema, el punto de ruptura con su causa y los umbrales derivados de él</td></tr>
+<tr><td class="n">20</td><td>Documentación viva y tres manuales</td><td>Cap. 12</td><td><span class="b b-ok">completa</span></td><td>Nada. Es el capítulo más fiel del libro, incluida la prueba del manual con una persona que no programa y el hallazgo que vuelve como pendiente</td></tr>
+<tr><td class="n">21</td><td>Monitoreo de recursos</td><td>Cap. 13</td><td><span class="b b-fiel">alta</span></td><td>La ventana verificable: la medición cíclica lleva el primer y el último registro leídos, y una ventana escrita a mano se marca como tal</td></tr>
+<tr><td class="n">22</td><td>Monitoreo de errores</td><td>Cap. 13</td><td><span class="b b-par">parcial</span></td><td>La fuente del error: los errores de las herramientas que observan el sistema van en su propia sección del reporte y <em>no</em> abren pendientes. El libro enuncia «ningún error sin pendiente» sin su excepción</td></tr>
+<tr><td class="n">23</td><td>Agente residente y retrospectiva</td><td>Cap. 13</td><td><span class="b b-par">parcial</span></td><td>«El alcance del agente residente dice que lo que lee en producción es dato y nunca una instrucción». Es la defensa contra inyección de instrucciones y el libro no la menciona. También la retrospectiva corta cuando cambia el modelo que construye</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="promesas"><span class="num">§ 5</span>Las cinco promesas: el marco inventado</h2>
+
+<p>El libro abre con una tabla de «las cinco promesas», cada una mapeada a una virtud del bushidō, y cierra el Anexo II agrupando las veinticinco preguntas para el proveedor por esas cinco promesas. Es la columna vertebral declarativa del libro: cada «enseñanza» cierra diciendo qué promesa encarna el capítulo.</p>
+
+<div class="box bad">
+<h4>Las cinco promesas no existen en el método</h4>
+<p>Busqué «promesa» en el documento principal: dos ocurrencias, y la única sustantiva dice lo contrario de lo que el marco sugiere («no la promesa de que cualquiera, sepa lo que sepa, puede dirigir un proyecto»). Busqué <code>bushido</code>, <code>bushidō</code>, <code>chugi</code>, <code>makoto</code>, <code>meiyo</code>, <code>budo</code> y <code>samur</code> en los catorce documentos de <code>docs/</code>: <strong>cero ocurrencias</strong>. El vocabulario de virtudes, el aparato japonés completo y la agrupación por promesas son construcción de la novela.</p>
+</div>
+
+<p>Esto no es un error de hecho: una ficción puede inventar su propio aparato didáctico, y este es bueno. Es una divergencia de <em>letra</em> con consecuencia, porque el libro no dice que el marco es suyo. La «Nota sobre las fuentes» distingue con cuidado lo inventado (personajes, consultorio, dojo) de lo no inventado (el método) y atribuye las máximas a Sun Tzu, Musashi y Nitobe —pero no aclara que la arquitectura de cinco promesas es del libro y no de Urazuke. Un lector sale creyendo que el método está organizado alrededor de cinco promesas. No lo está: está organizado alrededor de veinticuatro peldaños en cuatro tramos, cada uno con una ficha de ocho partes y un contrato de cinco secciones.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:13%">Promesa</th><th style="width:15%">Virtud</th><th>Correlato real en el método</th><th style="width:9%">Veredicto</th></tr></thead>
+<tbody>
+<tr><td class="id">P-01</td><td>Control</td><td>忠義 Chūgi, lealtad</td><td>Sí hay sustancia detrás: «el humano hace dos cosas solamente: decide y verifica artefactos», «quién decide» en las 24 fichas, el peldaño 6 («el dueño. Siempre. Sin excepciones»). Pero el método nunca lo llama «promesa de control»</td><td><span class="b b-add">añadida</span></td></tr>
+<tr><td class="id">P-02</td><td>Confianza</td><td>誠 Makoto, sinceridad</td><td>Es el núcleo real del método: «la evidencia tiene que probarse a sí misma», peldaños 7, 8, 12 y 13. La promesa como etiqueta es del libro; el contenido es exacto</td><td><span class="b b-add">añadida</span></td></tr>
+<tr><td class="id">P-03</td><td>Calidad</td><td>名誉 Meiyo, honor</td><td>Peldaños 9, 10 y 19. «Lo que lleva tu nombre, se prueba» no tiene correlato textual</td><td><span class="b b-add">añadida</span></td></tr>
+<tr><td class="id">P-04</td><td>Seguridad</td><td>仁 Jin, benevolencia</td><td>Peldaños 14, 15 y 18. «Ante la duda, no dañar» es una buena compresión del fail-closed</td><td><span class="b b-add">añadida</span></td></tr>
+<tr><td class="id">P-05</td><td>Integridad</td><td>義 Gi, rectitud</td><td>«Lo que el sistema dice es lo que el sistema hace» comprime bien el peldaño 11 (toda lista tiene un solo dueño) y el 20 (el manual y el sistema cambian juntos)</td><td><span class="b b-add">añadida</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="maximas"><span class="num">§ 6</span>Las 119 máximas, una por una</h2>
+
+<p>Cada capítulo abre con una lista numerada de máximas en boca del sensei. Son el destilado doctrinal del libro y el lugar donde una divergencia se propaga más rápido, porque están escritas para memorizarse. Las validé todas.</p>
+
+<h3>Prólogo — 裏付け Urazuke</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-001</td><td>Ninguna afirmación vale más que lo que la sostiene por detrás</td><td><span class="b b-ok">exacta</span></td><td>Es la definición del nombre: «el forro de atrás de una tela… el respaldo de una afirmación»</td></tr>
+<tr><td class="id">M-002</td><td>La máquina no miente: completa. Y lo que completa sin preguntar, lo completa con tu negocio</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 6: «el modelo, cuando encuentra un hueco en las reglas de negocio, lo llena. No se detiene a preguntar»</td></tr>
+<tr><td class="id">M-003</td><td>Que algo funcione no es lo mismo que esté bien hecho. Lo primero se ve un martes; lo segundo, al tercer mes</td><td><span class="b b-fiel">fiel</span></td><td>Peldaño 9: «un código que funciona hoy y es ilegible mañana es deuda que se cobra en el mes tres»</td></tr>
+<tr><td class="id">M-004</td><td>Quien no exige respaldo compra promesas, y las promesas no tienen botón para volver atrás</td><td><span class="b b-add">añadida</span></td><td>Retórica propia. Coherente con el Anexo II del libro</td></tr>
+<tr><td class="id">M-005</td><td>La prisa construye dos veces</td><td><span class="b b-fiel">fiel</span></td><td>Compresión de «no es un proceso para hacer sistemas más rápido. Es un proceso para no tener que rehacerlos» (línea 48 del documento principal)</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 1 — 地 Chi, el terreno</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-006</td><td>Antes de construir, conocé el terreno. Quien construye sin conocerlo, construye para otro terreno</td><td><span class="b b-fiel">fiel</span></td><td>Parte B.5: «relevamiento antes de diseñar»; fase 0 como materia prima de los peldaños 0, 2, 3 y 5</td></tr>
+<tr><td class="id">M-007</td><td>El negocio habla en frases. El sistema se arma con esas frases, no con las del que programa</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 5: «la historia de origen con las palabras del cliente»; UX-24: «un sinónimo es un defecto»</td></tr>
+<tr><td class="id">M-008</td><td>Preguntá a quien hace el trabajo, no solo a quien lo paga</td><td><span class="b b-fiel">fiel</span></td><td>Parte B.5: «entrevistas con el dueño»; peldaño 10: el guion lo ejecuta «el dueño o un usuario de confianza»</td></tr>
+<tr><td class="id">M-009</td><td>Un requerimiento no es una frase en un chat: es esa frase pasada por alguien que sabe preguntar</td><td><span class="b b-ok">exacta</span></td><td>Parte B.5 textual: «Un requerimiento no es una frase del cliente en un chat. Es una frase del cliente procesada por métodos que existen desde hace décadas»</td></tr>
+<tr><td class="id">M-010</td><td>Todo lo que tiene nombre en tu negocio tiene estados. Si no los nombrás vos, los va a nombrar otro</td><td><span class="b b-ok">exacta</span></td><td>Parte B.5: el modelo de dominio «es lo que evita que el modelo invente estados que el negocio no tiene»</td></tr>
+<tr><td class="id">M-011</td><td>Hay números que solo el dueño sabe. Anotalos con su fuente; los demás son suposiciones con buena letra</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 3: «hay datos que solo el negocio tiene y el modelo no puede inferir»</td></tr>
+<tr><td class="id">M-012</td><td>Escribí incompleto a propósito. El hueco marcado es una pregunta; el hueco tapado es una mentira</td><td><span class="b b-ok">exacta</span></td><td>Parte B.1, fase 0: «Se escribe en prosa, incompleto a propósito; el agente lo completa preguntando». Parte D: «los relevamientos son por naturaleza incompletos; no intento hacerlos completos con un formulario»</td></tr>
+<tr><td class="id">M-013</td><td>Primero el mapa. Después el camino</td><td><span class="b b-fiel">fiel</span></td><td>Peldaño 2: el árbol semántico como mapa que el agente lee antes de tocar nada</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 2 — 見極め Mikiwame, no todo combate se acepta</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-014</td><td>Quien acepta todos los combates no elige ninguno</td><td><span class="b b-fiel">fiel</span></td><td>Peldaño 0 y Ref. 46. «Un método que sirve para todo no sirve para nada» es formulación del libro, correctamente derivada</td></tr>
+<tr><td class="id">M-015</td><td>Saber cuándo no pelear es la primera técnica, y la más difícil</td><td><span class="b b-fiel">fiel</span></td><td>Peldaño 0: «una sola vez, antes de cualquier otra cosa»</td></tr>
+<tr><td class="id">M-016</td><td>Los «no» dibujan la frontera mejor que los «sí»</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 0 textual: «los "no" definen la frontera mejor que los "sí"»</td></tr>
+<tr><td class="id">M-017</td><td>Si no hay dónde dejar la prueba, no hay prueba</td><td><span class="b b-ok">exacta</span></td><td>Criterio X1: «sin un repositorio estándar no hay dónde dejar la evidencia»</td></tr>
+<tr><td class="id">M-018</td><td>Si no se puede probar de punta a punta, alguien va a terminar leyendo código</td><td><span class="b b-ok">exacta</span></td><td>Criterio X2, textual: «entonces el dueño tendría que leer código, que es justamente lo que el método promete evitar»</td></tr>
+<tr><td class="id">M-019</td><td>Decir que no cuesta un cliente. Decir que sí a lo que no se puede cuesta el nombre</td><td><span class="b b-add">añadida</span></td><td>Sin correlato textual. Coherente con el peldaño 0</td></tr>
+<tr><td class="id">M-020</td><td>La decisión de pelear la toma el dueño, con la ficha delante</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 0: artefacto «una ficha de elegibilidad de una página, con los criterios puntuados y la decisión»; quién decide: «el dueño»</td></tr>
+<tr><td class="id">M-021</td><td>Hace falta coraje para no empezar</td><td><span class="b b-add">añadida</span></td><td>El <em>yū</em> es aparato del libro. La sustancia (rechazar proyectos) es del método</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 3 — 礼 Rei, las reglas del dojo</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-022</td><td>Antes del primer golpe, las reglas. Antes de la primera línea, el contrato</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 1: «antes de escribir una sola línea, poné por escrito cómo van a trabajar vos y el agente»</td></tr>
+<tr><td class="id">M-023</td><td>El alumno que llega sin memoria necesita las reglas escritas en la pared</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 1: «el agente llega cada mañana sin memoria de ayer»</td></tr>
+<tr><td class="id">M-024</td><td>Lo que no está escrito se repite cada día, y cada día un poco distinto</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 1: «lo que no esté escrito se lo vas a tener que repetir cada vez, y cada vez un poco distinto»</td></tr>
+<tr><td class="id">M-025</td><td>Pocas reglas se respetan. Muchas se recitan</td><td><span class="b b-add">añadida</span></td><td>No está en el método, que enumera seis reglas mínimas sin argumentar el número. Buena inferencia</td></tr>
+<tr><td class="id">M-026</td><td>El mapa que no se lee no actúa. El mapa largo no lo lee nadie</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 2 textual: «un mapa que nadie lee no actúa, y un mapa largo no lo lee nadie»</td></tr>
+<tr><td class="id">M-027</td><td>Decí lo que tu sistema no es. Lo que no está escrito, alguien lo va a inventar</td><td><span class="b b-fiel">fiel</span></td><td>Peldaño 2: el «qué NO es» es decisión del dueño (Parte B.2). El énfasis del libro en que es «la sección que casi todos dejan vacía» es suyo</td></tr>
+<tr><td class="id">M-028</td><td>Lo que la máquina supone, marcalo. Lo que el dueño confirma, firmalo</td><td><span class="b b-ok">exacta</span></td><td>Marcas de fuente del camino evolutivo (<code>[inferido]</code>); peldaño 6: la decisión con palabras textuales, nombre y fecha</td></tr>
+<tr><td class="id">M-029</td><td>No confíes en que leyó. Preguntá</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 2, compuerta: «el agente lee el archivo de proyecto y el árbol semántico antes de tocar código, <em>y se probó que los lee</em>»</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 4 — 構え Kamae, la postura vacía</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-030</td><td>La guardia se arma antes del golpe, no durante</td><td><span class="b b-fiel">fiel</span></td><td>Peldaños 3 y 4 como cierre del arranque</td></tr>
+<tr><td class="id">M-031</td><td>Las decisiones que sostienen todo se toman con números, no con gusto</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 3, intención: «que se tomen con números y no con gusto»</td></tr>
+<tr><td class="id">M-032</td><td>Los números del negocio los tiene el negocio. La máquina calcula; no adivina</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 3: «los números primarios los tiene el negocio, no el modelo»; la cláusula de completitud de todos los prompts</td></tr>
+<tr><td class="id">M-033</td><td>Preguntá siempre qué pasa si todo se multiplica por diez</td><td><span class="b b-ok">exacta</span></td><td>El «por diez» aparece en los peldaños 3 y 19 y en el gráfico de la Parte B («¿sigue aguantando el "por diez"?»)</td></tr>
+<tr><td class="id">M-034</td><td>Elegí lo que cuesta poco si sobra y mucho si falta</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 3: la decisión asimétrica, «si estás equivocado cuesta poco y si no lo hacés cuesta una fortuna» (Ref. 15)</td></tr>
+<tr><td class="id">M-035</td><td>El camino a producción es parte del producto. Recorrelo cuando todavía no hay nada que perder</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 4 textual: «el camino a producción es parte del producto, y la única forma de saber que funciona es recorrerlo cuando todavía no hay nada que perder»</td></tr>
+<tr><td class="id">M-036</td><td>Una página vacía en una dirección real vale más que cien pantallas en tu máquina</td><td><span class="b b-fiel">fiel</span></td><td>Peldaño 4, compuerta: «el dueño abrió la URL y vio la pantalla vacía»; Parte B.4, primer hito humano</td></tr>
+<tr><td class="id">M-037</td><td>Desplegá dos veces. La segunda dice la verdad sobre la primera</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 4, artefacto: «un despliegue a un entorno de prueba que funciona y <em>se corrió dos veces</em>»</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 5 — 型 Kata, la forma</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-038</td><td>No hay un plan por un lado y tareas por el otro. La lista es el plan</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 5 textual: «La lista de pendientes ES el plan»; Ref. 7</td></tr>
+<tr><td class="id">M-039</td><td>Cada pendiente dice cómo se va a verificar. Eso es lo que vas a mirar en lugar del código</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 5: «cada pendiente dice cómo se verifica, porque eso es lo que vos vas a mirar en vez de mirar el código»</td></tr>
+<tr><td class="id">M-040</td><td>La especificación vive en el pendiente, no en un documento que envejece en un cajón</td><td><span class="b b-ok">exacta</span></td><td>Parte B.5: «En el método clásico había un documento de especificación de requerimientos, largo, que envejecía. Acá ese documento se descompone»; Ref. 17</td></tr>
+<tr><td class="id">M-041</td><td>Leer la especificación es lo más cerca que vas a estar del código. Es la distancia justa</td><td><span class="b b-ok">exacta</span></td><td>Parte B.5: «es lo más cerca que vas a estar de leer código, y es exactamente la distancia correcta»</td></tr>
+<tr><td class="id">M-042</td><td>Cuando falta una regla, el aprendiz la inventa. Exigile que frene y pregunte</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 6: «este peldaño no es "escribí las decisiones" sino "exigile que frene y pregunte cuando falte una"»</td></tr>
+<tr><td class="id">M-043</td><td>La regla del negocio se escribe con las palabras del dueño, su nombre y la fecha</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 6, artefacto; Ref. 29</td></tr>
+<tr><td class="id">M-044</td><td>Si el dueño no contesta, se elige lo que se puede deshacer, y se marca</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 6: «si el dueño no contestó y el agente tuvo que elegir, queda marcada como "decisión por omisión" para revisarla»</td></tr>
+<tr><td class="id">M-045</td><td>El pendiente cerrado no se borra: es la memoria del sistema</td><td><span class="b b-ok">exacta</span></td><td>Parte B.5: «Los pendientes cerrados son documentación… es el historial funcional del sistema»</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 6 — 取り / 受け Tori y Uke</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-046</td><td>Una prueba que nunca viste fallar no sabe si prueba algo</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 8: «un test que nunca viste fallar no sabés si prueba algo»</td></tr>
+<tr><td class="id">M-047</td><td>Primero el rojo, después el verde. El orden es la prueba</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 8, compuerta: «rojo demostrado con recibo, verde, regresión en verde». <span class="small">Importante: el libro no lo confunde con TDD; el rojo es contra el código anterior, como manda Ref. 4</span></td></tr>
+<tr><td class="id">M-048</td><td>Sin compañero que resista, no hay técnica probada: hay baile</td><td><span class="b b-add">añadida</span></td><td>Metáfora del libro para el mismo contenido. Excelente pedagogía, sin correlato textual</td></tr>
+<tr><td class="id">M-049</td><td>El aprendiz que escribe el golpe, la defensa y el informe en la misma tarde necesita un uke que no sea él</td><td><span class="b b-ok">exacta</span></td><td>«Qué es viejo y qué es nuevo», punto 2: «el modelo produce el código <em>y</em> el test <em>y</em> el medidor <em>y</em> el reporte, en la misma sesión»</td></tr>
+<tr><td class="id">M-050</td><td>Ningún número que decide sale de una impresión. Sale de un instrumento</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 7: «ningún número que decide algo sale de una impresión; sale de un medidor que vive en el repositorio»</td></tr>
+<tr><td class="id">M-051</td><td>El instrumento también miente. Probalo contra algo que ya sabés</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 7: «el medidor también se verifica, porque los medidores mienten»; Refs. 35 y 36</td></tr>
+<tr><td class="id">M-052</td><td>No simules justo lo que querés probar</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 8, compuerta: «el agente no simula justamente la parte que quiere probar»</td></tr>
+<tr><td class="id">M-053</td><td>Probá de punta a punta: desde la pantalla hasta el fondo</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 8 y criterio X2</td></tr>
+<tr><td class="id">M-054</td><td>El recibo vale más que la palabra: el comando, los números, la hora</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 8, artefacto: «la salida en rojo como recibo (el comando, la versión contra la que corrió, los números, el código de salida)». <span class="small">El libro dice «la hora» donde el método dice «el código de salida»; el recibo narrado en la página 89 sí trae el código de salida</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 7 — 目付 Metsuke, la mirada</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-055</td><td>La máquina mira el código. Las personas miran el sistema. Hacen falta las dos miradas</td><td><span class="b b-ok">exacta</span></td><td>Peldaños 9 y 10, que son exactamente esas dos miradas</td></tr>
+<tr><td class="id">M-056</td><td>Si nadie lee el código, que lo lea una máquina, en cada cambio, con un límite que no se negocia</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 9: «Si nadie lo lee, lo tiene que mirar una máquina: en cada commit»; compuerta: «ningún límite subido para pasar»</td></tr>
+<tr><td class="id">M-057</td><td>La cobertura cuenta pruebas. El rojo dice si sirven</td><td><span class="b b-ok">exacta</span></td><td>Relación explícita entre los peldaños 9 y 8. Formulación felicísima de algo que el método dice en prosa</td></tr>
+<tr><td class="id">M-058</td><td>Lo que una persona ve en diez segundos, ninguna prueba lo ve en diez años</td><td><span class="b b-fiel">fiel</span></td><td>Parte B.2, vista humana: «Diez segundos. Es la forma más barata de encontrar lo que ningún test encuentra»</td></tr>
+<tr><td class="id">M-059</td><td>El guion lo escribe el que construye. Lo ejecuta una persona. Lo firma quien lo ejecutó</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 10: «el guion lo escribe el mismo que construyó la funcionalidad, en el mismo momento»; «ninguna ejecución sin fecha y nombre»; «el modelo nunca marca un caso como ejecutado»</td></tr>
+<tr><td class="id">M-060</td><td>Lo que la persona encuentra vuelve como pendiente, con sus palabras</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 10, compuerta: «ningún fallo sin pendiente con las palabras de la persona»</td></tr>
+<tr><td class="id">M-061</td><td>Toda lista tiene un solo dueño. Si hay dos copias, una ya está desactualizada</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 11 textual: «toda lista tiene un solo dueño»; Refs. 27 y 34</td></tr>
+<tr><td class="id">M-062</td><td>El error que pagaste dos veces se anota con su detector</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 11: el registro de anti-patrones «con olor, causa raíz, arreglo y detección temprana»; Ref. 2</td></tr>
+<tr><td class="id">M-063</td><td>No mires el puño. Mirá la montaña</td><td><span class="b b-add">añadida</span></td><td>Aparato del libro (<em>enzan no metsuke</em>)</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 8 — 誠 Makoto, la verdad del reporte</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-064</td><td>«Listo» no se dice a secas</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 12, compuerta: «"Listo" no se dice a secas»</td></tr>
+<tr><td class="id">M-065</td><td>Lo verificado, con su prueba al lado. Lo creído, con su porqué. Lo que no se ve, nombrado</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 12, artefacto: los tres bloques, con esos tres nombres</td></tr>
+<tr><td class="id">M-066</td><td>Las malas noticias, primero</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 12, artefacto: «Las malas noticias primero»</td></tr>
+<tr><td class="id">M-067</td><td>El aprendiz entrenado para agradar esconde sin querer. Pedile lo que no hizo</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 12: «el modelo fue entrenado para ser útil y completo»; artefacto: «Cubre cada ítem pedido»</td></tr>
+<tr><td class="id">M-068</td><td>Preguntale qué no puede ver desde donde está. Siempre hay algo</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 12: «puntos ciegos (lo que no puede ver desde donde está)»; Ref. 8</td></tr>
+<tr><td class="id">M-069</td><td>Ante un «sigue roto», antes de buscar el error, mirá qué versión corre donde mirás</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 12, compuerta: «Ante un "sigue roto", primero se compara la versión publicada con la que tiene el arreglo»; Ref. 45</td></tr>
+<tr><td class="id">M-070</td><td>Un reporte largo tapa algo con volumen</td><td><span class="b b-ok">exacta</span></td><td>Contrato del peldaño 12, señales de alarma: «El reporte es más largo que el cambio. Un reporte proporcional dice lo que hay que decir». <span class="small">Confirma que «proporcional» del título es proporcional al cambio</span></td></tr>
+<tr><td class="id">M-071</td><td>La sinceridad del aprendiz no se espera: se le da forma</td><td><span class="b b-fiel">fiel</span></td><td>Peldaño 12: «eso no pasa solo… exigile explícitamente las malas noticias»</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 9 — 初心 Shoshin, ojos frescos</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-072</td><td>El que construyó comparte sus propios supuestos. El que audita no debe compartirlos</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 13: «que audite alguien que no construyó, porque el que construyó comparte sus propios supuestos»</td></tr>
+<tr><td class="id">M-073</td><td>Mirá como si fuera la primera vez. La costumbre es la forma más cómoda de la ceguera</td><td><span class="b b-add">añadida</span></td><td>Aparato del libro. La escena del pie corregido después de cuarenta años es la mejor página del libro y no tiene correlato en el método</td></tr>
+<tr><td class="id">M-074</td><td>Lo que el constructor sabe que es provisorio, el auditor lo ve como lo que es</td><td><span class="b b-fiel">fiel</span></td><td>Derivación correcta de Ref. 40 (las dos puertas de administrador). <span class="small">Ironía: es justo el criterio que el libro no se aplica a sí mismo; ver S-01</span></td></tr>
+<tr><td class="id">M-075</td><td>La auditoría no termina en un informe: termina en pendientes</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 13: «lo que se vea no va a un informe que se archiva: va a la cola de pendientes»; Refs. 18, 23 y 30</td></tr>
+<tr><td class="id">M-076</td><td>Lo que no se pudo auditar se declara. No se aprueba por omisión</td><td><span class="b b-ok">exacta</span></td><td>Contrato del peldaño 13: «declara lo que no pudo auditar, no aprueba por omisión»</td></tr>
+<tr><td class="id">M-077</td><td>Todo el código, no una muestra</td><td><span class="b b-ok">exacta</span></td><td>Contrato del peldaño 13: «todo el código y no una muestra, porque los hallazgos graves suelen estar…»</td></tr>
+<tr><td class="id">M-078</td><td>Cada hallazgo con su lugar, su riesgo, su evidencia y su prioridad</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 13, artefacto: «cada uno con ubicación, riesgo, evidencia y prioridad»</td></tr>
+<tr><td class="id">M-079</td><td>Si el constructor no está de acuerdo, que traiga evidencia. No que ignore</td><td><span class="b b-fiel">fiel</span></td><td>No está en la ficha con esas palabras, pero es la práctica de Ref. 38 y 40. La escena del desacuerdo con evidencia es didácticamente excelente</td></tr>
+<tr><td class="id">M-080</td><td>Un informe sin nada grave sobre un sistema vivo casi nunca dice la verdad</td><td><span class="b b-div">diverge</span></td><td>El método dice «en un sistema de más de <strong>tres meses</strong>»; el libro, «de más de <strong>un mes</strong>». Ver E-03</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 10 — 不動心 Fudōshin, ante la duda, no</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-081</td><td>Ante la duda, no. Y avisá por qué</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 14, intención: «que el sistema, ante una duda o un fallo, no actúe, y avise»</td></tr>
+<tr><td class="id">M-082</td><td>El software, por defecto, sigue adelante. El método invierte el defecto</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 14: «es lo contrario de lo que el software hace por defecto, que ante la duda sigue adelante»</td></tr>
+<tr><td class="id">M-083</td><td>Lo que cobra, envía, aprueba o borra lleva candado antes de existir</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 14, cuándo: «antes de construir cualquier funcionalidad que cobre, envíe, apruebe o borre»</td></tr>
+<tr><td class="id">M-084</td><td>Toda acción irreversible tiene un camino de vuelta escrito, o una persona en el medio</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 14, compuerta: «toda acción irreversible tiene candado y camino de vuelta documentado»</td></tr>
+<tr><td class="id">M-085</td><td>Lo automático nace en ensayo: primero dice qué habría hecho</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 14: «las automatizaciones nuevas arrancan en modo de ensayo y se habilitan después de mirar su registro unos días»; Ref. 28</td></tr>
+<tr><td class="id">M-086</td><td>Un secreto que se vio ya no es secreto, aunque nadie lo haya mirado</td><td><span class="b b-ok">exacta</span></td><td>Ref. 42: «un secreto que estuvo en un chat, en un log o en un commit ya no es un secreto»</td></tr>
+<tr><td class="id">M-087</td><td>Las pruebas corren una vez. El despliegue solo empaqueta</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 15, artefacto; Ref. 39</td></tr>
+<tr><td class="id">M-088</td><td>Una vuelta atrás que nunca se probó no existe</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 15, compuerta: «vuelta atrás probada». <span class="small">Pero el método exige además plan de deshacer para las migraciones de datos; ver O-11</span></td></tr>
+<tr><td class="id">M-089</td><td>La mente inmóvil no es rígida: es la que no se deja arrastrar</td><td><span class="b b-add">añadida</span></td><td>Aparato del libro</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 11 — 鍛錬 Tanren, forjar y pulir</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-090</td><td>Mil días de práctica forjan. Diez mil pulen</td><td><span class="b b-add">añadida</span></td><td>Musashi. Aparato del libro, correctamente atribuido en la nota de fuentes</td></tr>
+<tr><td class="id">M-091</td><td>Un sistema que no se puede ver mientras corre es un sistema que se adivina</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 16, intención: «que el sistema se pueda ver mientras corre»</td></tr>
+<tr><td class="id">M-092</td><td>Cada acción deja un rastro que se sigue con un solo número, de la pantalla al fondo</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 16: «seguir una acción desde la pantalla hasta la base de datos con un solo identificador, sin abrir el código»</td></tr>
+<tr><td class="id">M-093</td><td>Lo que cobra o cancela deja una huella que nadie puede borrar</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 16, artefacto: «una auditoría inmutable de las acciones con consecuencia»</td></tr>
+<tr><td class="id">M-094</td><td>Los datos de las personas no viajan en los registros</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 16, compuerta: «ningún dato personal en los registros»</td></tr>
+<tr><td class="id">M-095</td><td>La base de datos muere despacio. Medila antes de que se note</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 17: «la base de datos es donde los sistemas se mueren despacio: bien con cien registros, mal con cien mil, y nadie sabe cuándo empezó»</td></tr>
+<tr><td class="id">M-096</td><td>La seguridad no es una lista que se tilda una vez: es una guardia que no se baja</td><td><span class="b b-ok">exacta</span></td><td>Ref. 23: «tratar la seguridad como una auditoría periódica y no como una lista que se tilda una vez al principio»; peldaño 18, calendario semanal</td></tr>
+<tr><td class="id">M-097</td><td>Conocé tu punto de ruptura antes de que te lo enseñe un usuario</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 19, intención: «dónde y por qué se rompe, antes de que entre el primer usuario»</td></tr>
+<tr><td class="id">M-098</td><td>Rompé la tabla a propósito, para saber cuánto aguanta la mano</td><td><span class="b b-add">añadida</span></td><td><em>Tameshiwari</em>. Aparato del libro para el punto de ruptura. La mejor metáfora del volumen</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 12 — 伝書 Densho, el libro que queda</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-099</td><td>Lo que no se puede operar sin su constructor no está terminado</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 20: «si el día que no hay agente no se puede desplegar, no está terminado»</td></tr>
+<tr><td class="id">M-100</td><td>Una escuela vive mientras sus rollos se puedan leer sin el maestro</td><td><span class="b b-add">añadida</span></td><td>Aparato del libro. Es la metáfora que mejor traduce el peldaño 20</td></tr>
+<tr><td class="id">M-101</td><td>El manual se escribe para quien lo va a leer a las tres de la mañana, con el sistema caído</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 20, artefacto: «escrito para una persona que tiene que hacerlo a mano a las tres de la mañana»</td></tr>
+<tr><td class="id">M-102</td><td>Si un paso dice «consultar con el desarrollador», el manual está incompleto</td><td><span class="b b-fiel">fiel</span></td><td>Derivación correcta del criterio «reproducible a mano, sin IA» (Ref. 24). La escena del paso nueve es didáctica de primer nivel</td></tr>
+<tr><td class="id">M-103</td><td>Tres libros: el del que usa, el del que mantiene, el del que recupera</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 20, artefacto: los tres manuales, con esos tres destinatarios</td></tr>
+<tr><td class="id">M-104</td><td>La documentación cambia en el mismo movimiento que el sistema. Después es tarde</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 20, compuerta: «la documentación está al día en el mismo commit»; Ref. 3 (compuerta G-DOC)</td></tr>
+<tr><td class="id">M-105</td><td>Probá el manual con alguien que no programa. Si se traba, el que falló es el manual</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 20, compuerta: «alguien que no programa siguió el manual de recuperación»; Parte B.4, hito humano</td></tr>
+<tr><td class="id">M-106</td><td>Ser dueño de un sistema es poder operarlo sin pedirle permiso a nadie</td><td><span class="b b-fiel">fiel</span></td><td>Peldaño 20, intención. La formulación «el dueño no es dueño: es inquilino» es del libro y es mejor que la del método</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Capítulo 13 — 残心 Zanshin, la atención que permanece</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-107</td><td>El despliegue no termina el movimiento</td><td><span class="b b-fiel">fiel</span></td><td>Tramo de operación: «cuando el sistema ya está vivo»</td></tr>
+<tr><td class="id">M-108</td><td>Después del golpe, la atención se queda</td><td><span class="b b-add">añadida</span></td><td>Aparato del libro</td></tr>
+<tr><td class="id">M-109</td><td>Lo que se mide todos los días se ve antes de que duela</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 21, intención: «ver un problema de recursos o de rendimiento antes de que lo vea el usuario»</td></tr>
+<tr><td class="id">M-110</td><td>Ningún error sin pendiente. Ningún «error conocido» sin fecha</td><td><span class="b b-par">parcial</span></td><td>Peldaño 22, exacto en su enunciado, pero el método declara una excepción que el libro omite: los errores de las herramientas que observan el sistema van aparte y no abren pendientes. Ver O-12</td></tr>
+<tr><td class="id">M-111</td><td>El reporte que se lee solo, se lee mal. Se lee con alguien al lado</td><td><span class="b b-ok">exacta</span></td><td>Parte B.4: «leer el reporte cíclico con el agente y decidir qué desvío y qué error se vuelven pendientes»</td></tr>
+<tr><td class="id">M-112</td><td>El agente que se queda adentro trabaja a nombre de una persona, y dentro de un cerco</td><td><span class="b b-par">parcial</span></td><td>Peldaño 23, artefacto: «su credencial a nombre de una persona y la prueba de que lo que está fuera del alcance se rechaza». Falta: lo que lee en producción es dato y nunca instrucción. Ver O-13</td></tr>
+<tr><td class="id">M-113</td><td>La retrospectiva se hace con números, no con impresiones</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 23: «la retrospectiva con números con fuente»; Ref. 6</td></tr>
+<tr><td class="id">M-114</td><td>Todo ciclo termina en una propuesta para mejorar el camino</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 23, compuerta: «la retrospectiva produce al menos un cambio a la escalera»</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Epílogo — 離 Ri, el dojo heredado</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:40%">Máxima</th><th style="width:9%">Veredicto</th><th>Anclaje en el método</th></tr></thead>
+<tbody>
+<tr><td class="id">M-115</td><td>Primero se protege la forma. Después se la rompe. Al final se la deja</td><td><span class="b b-add">añadida</span></td><td><em>Shu-Ha-Ri</em>. Aparato del libro, y el mejor marco que leí para explicar la proporcionalidad del método (Parte D) sin tablas</td></tr>
+<tr><td class="id">M-116</td><td>El que aprendió la forma termina mejorándola</td><td><span class="b b-ok">exacta</span></td><td>Peldaño 23 y la regla de contribución del método: cada retrospectiva termina en una propuesta concreta de cambio a la escalera</td></tr>
+<tr><td class="id">M-117</td><td>Un sistema heredado no se reescribe: primero se lo conoce, después se le pone un cinturón</td><td><span class="b b-ok">exacta</span></td><td>Camino evolutivo-correctivo: «no se reescribe» y el cinturón de seguridad (estación N4) como compuerta dura</td></tr>
+<tr><td class="id">M-118</td><td>Todo camino termina en otro peldaño cero</td><td><span class="b b-ok">exacta</span></td><td>Parte A: «El 23 cierra el ciclo y vuelve al 0 para el próximo proyecto»</td></tr>
+<tr><td class="id">M-119</td><td>El maestro que enseñó bien se vuelve innecesario</td><td><span class="b b-add">añadida</span></td><td>Aparato del libro. Coherente con el peldaño 20 (sin el agente y sin el constructor)</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="numeros"><span class="num">§ 7</span>Los treinta casos y números reales</h2>
+
+<p>La «Nota sobre las fuentes» promete que «las anécdotas técnicas que cuenta el sensei adaptan casos reales documentados por su autor». Contrasté cada una contra las 46 referencias y la tabla de fallos por peldaño. Esta es la parte más verificable del libro y, salvo tres excepciones, la más precisa.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:26%">Lo que dice el libro</th><th style="width:28%">Lo que dice el método</th><th style="width:8%">Fuente</th><th style="width:9%">Veredicto</th><th>Nota</th></tr></thead>
+<tbody>
+<tr><td class="id">N-01</td><td>El archivo del mapa creció «hasta tener más de nueve mil líneas»</td><td>9.661 líneas y 789 kilobytes</td><td>Ref. 41</td><td><span class="b b-ok">exacta</span></td><td>Redondeo correcto a la baja</td></tr>
+<tr><td class="id">N-02</td><td>«Una tarde entera de trabajo fue a la basura» por arrancar sin leer el mapa</td><td>12 de junio: el trabajo de toda una tarde fue descartable porque contradecía decisiones escritas</td><td>Ref. 9</td><td><span class="b b-ok">exacta</span></td><td>—</td></tr>
+<tr><td class="id">N-03</td><td>«Tres millones y medio de registros por año, guardados en archivos»</td><td>3,4 millones de filas por año sobre archivos JSON</td><td>Ref. 15 · tabla F</td><td><span class="b b-div">diverge</span></td><td>Redondeo al alza de ~100.000 filas. Ver E-05</td></tr>
+<tr><td class="id">N-04</td><td>«Nos costó una etapa entera de reingeniería. Semanas»</td><td>La etapa E6, con tres baterías de tests pasadas a asincrónico</td><td>Ref. 15</td><td><span class="b b-ok">exacta</span></td><td>—</td></tr>
+<tr><td class="id">N-05</td><td>«El camino a producción lo construimos un mes después de arrancar»</td><td>Arranque 21 de agosto, despliegue 23 de septiembre</td><td>Ref. 31</td><td><span class="b b-ok">exacta</span></td><td>—</td></tr>
+<tr><td class="id">N-06</td><td>«Cinco arreglos seguidos»: dirección mal configurada, reinicio en el orden equivocado, datos que se duplicaban, archivos del cliente que viajaban donde no debían, pruebas que ensuciaban la configuración</td><td>Cinco pendientes: URL pública en los dos entornos, recargar el servicio antes de reiniciar y de volver atrás, fixture que reconcilia en vez de duplicar, material del cliente fuera del árbol espejado, batería que ya no ensucia la configuración</td><td>Ref. 32</td><td><span class="b b-ok">exacta</span></td><td>Los cinco, uno a uno, en el mismo orden. El pasaje de mayor fidelidad del libro</td></tr>
+<tr><td class="id">N-07</td><td>«Regla Pablo: aprobada más saldo, vuelve»</td><td>Textual del commit: «regla Pablo: aprobada + saldo = vuelve», «decisión Pablo 2026-08-10»</td><td>Ref. 29</td><td><span class="b b-ok">exacta</span></td><td>—</td></tr>
+<tr><td class="id">N-08</td><td>En un banco, un cambio chico en el cálculo de comisiones; el sábado había «miles de cuentas con un débito duplicado»; fin de semana en el subsuelo revirtiendo movimiento por movimiento</td><td><strong>No existe.</strong> Cero ocurrencias de «banco», «comisión» o «débito» en los catorce documentos de <code>docs/</code></td><td>—</td><td><span class="b b-div">diverge</span></td><td>Anécdota inventada, presentada como documentada y colocada como el origen de la doctrina del rojo. Ver E-02</td></tr>
+<tr><td class="id">N-09</td><td>«Un contador dio cero dos veces seguidas mientras no veía setenta llamadas, y después ochenta y cuatro»</td><td>Se descubrió dos veces que el medidor no veía partes del código: primero 70 llamadas, después 84, con el contador en cero</td><td>Ref. 35</td><td><span class="b b-ok">exacta</span></td><td>Tres cifras, las tres</td></tr>
+<tr><td class="id">N-10</td><td>«Otro decía veintisiete y eran cuarenta y cuatro»</td><td>Textual del commit: «son 44, no 27»</td><td>Ref. 36</td><td><span class="b b-ok">exacta</span></td><td>—</td></tr>
+<tr><td class="id">N-11</td><td>«Un plan, uno solo, afirmaba cuatro números: tres estaban mal»</td><td>«Tres de cuatro aseveraciones estaban mal; donde había instrumento, exacto»</td><td>Ref. 36</td><td><span class="b b-ok">exacta</span></td><td>El libro reproduce incluso el cierre: «donde había instrumento, exacto. Donde había impresión, errado»</td></tr>
+<tr><td class="id">N-12</td><td>No lo menciona</td><td>Un plan afirmaba 121 bucles de cierto tipo y el que ejecutó midió 79</td><td>Ref. 36</td><td><span class="b b-par">omisión</span></td><td>Baja: el caso ya está ilustrado por N-09 a N-11</td></tr>
+<tr><td class="id">N-13</td><td>Una auditoría encontró «una pantalla de más de dos mil seiscientas líneas»</td><td>Un componente de pantalla de 2.679 líneas</td><td>Ref. 41</td><td><span class="b b-ok">exacta</span></td><td>—</td></tr>
+<tr><td class="id">N-14</td><td>«Una pantalla decía mil trescientas cincuenta y cinco aprobaciones y la base decía mil doscientas treinta y cuatro… ciento cuarenta y cinco de más, veinticuatro de menos»</td><td>1.355 contra 1.234; descompuesto número por número: 145 de más, 24 de menos</td><td>Ref. 26</td><td><span class="b b-ok">exacta</span></td><td>Cuatro cifras, las cuatro. El libro omite que la causa se verificó sobre producción en solo lectura</td></tr>
+<tr><td class="id">N-15</td><td>«Trescientas líneas por archivo, cuarenta por función»</td><td>Umbrales declarados del núcleo: <code>lines_per_file 300</code>, <code>lines_per_function 40</code>, los dos con <code>declarado: true</code></td><td>Anexo H</td><td><span class="b b-ok">exacta</span></td><td>Son los dos únicos umbrales que el anexo declara. Matiz en O-04</td></tr>
+<tr><td class="id">N-16</td><td>«El constructor había creado dos puertas de administrador distintas en veinticuatro horas… Se retiró una y quedó una sola vía»</td><td>15 de octubre: dos puertas de administrador en un solo día; una revisión externa lo detectó; se retiró una</td><td>Ref. 40</td><td><span class="b b-ok">exacta</span></td><td>—</td></tr>
+<tr><td class="id">N-17</td><td>«La primera auditoría que hizo sobre un sistema ya en uso, que encontró consultas que leían tablas enteras sin índice»</td><td>23 de junio: primera auditoría de <em>full scans</em> sobre un sistema vivo; los hallazgos se convirtieron en pendientes</td><td>Ref. 18</td><td><span class="b b-ok">exacta</span></td><td>—</td></tr>
+<tr><td class="id">N-18</td><td>«Pasaron dos cosas así en dos días»: una clave de base en una transcripción y claves de otro servicio pegadas en el chat</td><td>14 de octubre, clave de la base en una transcripción; 16 de octubre, claves de API en el chat</td><td>Ref. 42</td><td><span class="b b-fiel">fiel</span></td><td>Son dos días de diferencia, no dos días consecutivos. Sin consecuencia</td></tr>
+<tr><td class="id">N-19</td><td>«Las pruebas corrían tres veces por cada cambio, entre dieciséis y veintisiete minutos cada vez. En dieciséis días se consumieron dos mil minutos de cuota, y un día de veintitrés cambios la terminó de fundir… Pasamos a once minutos»</td><td>Tres veces por commit, 16 a 27 minutos, 16 días, 2.000 minutos de cuota, un día de 23 pushes, de 16-27 a 11 minutos</td><td>Ref. 39</td><td><span class="b b-ok">exacta</span></td><td><strong>Seis cifras, las seis.</strong> Es la cita más precisa del libro</td></tr>
+<tr><td class="id">N-20</td><td>«El agente trabajó una hora y cuarenta y tres minutos sin que yo lo viera. Hizo seis cambios en ese rato. Lo encontré por el registro, no por el código»</td><td>1 h 43 invisible, seis commits; la tabla F dice «se encontró por el log, no por el código»</td><td>Ref. 16</td><td><span class="b b-ok">exacta</span></td><td>El libro omite el arreglo de raíz: vigía de silencio, correa entre procesos y 28 tests</td></tr>
+<tr><td class="id">N-21</td><td>«Un error había vuelto cuatro veces antes de que alguien encontrara la causa real»</td><td>Título de la referencia: «cuatro rondas hasta la causa raíz». Cuerpo: «un bug volvió <strong>tres</strong> veces». Tabla F: «tres arreglos que no eran de raíz»</td><td>Ref. 22</td><td><span class="b b-div">diverge</span></td><td>Cuatro rondas son tres retornos. Ver E-04, y C-01 por la contradicción interna del método</td></tr>
+<tr><td class="id">N-22</td><td>«El manual de recuperación lo escribimos así desde el principio: reproducible a mano, sin inteligencia artificial»</td><td>26 y 29 de julio: «reproducible a mano, sin IA»</td><td>Ref. 24</td><td><span class="b b-ok">exacta</span></td><td>El libro lo atribuye a «un sistema mío de una obra social»; la referencia es de Autorizaciones, que es el sistema de la Obra Social</td></tr>
+<tr><td class="id">N-23</td><td>«Un documento viejo que nadie había actualizado hizo que un cambio se guardara en el repositorio equivocado»</td><td>Está en el peldaño 20, «fallo que evita», con esas palabras. <strong>Sin número de referencia</strong></td><td>Peldaño 20</td><td><span class="b b-ok">exacta</span></td><td>El libro cita bien algo que el método no documenta con evidencia. Ver C-02</td></tr>
+<tr><td class="id">N-24</td><td>«La cuota de un servicio se fundió sin que nadie mirara: los números estaban ahí, todos los días, y nadie los leía»</td><td>Tabla F: «cuota fundida sin que nadie mirara», peldaños 7, 15 y 21</td><td>Refs. 37 y 39</td><td><span class="b b-ok">exacta</span></td><td>—</td></tr>
+<tr><td class="id">N-25</td><td>«Un techo que habíamos puesto a ojo hubo que apretarlo a lo medido, porque el número real era otro»</td><td>El techo se apretó a lo medido más un margen chico: 63 sobre 60</td><td>Ref. 37</td><td><span class="b b-ok">exacta</span></td><td>El libro omite las dos cifras, que son el punto</td></tr>
+<tr><td class="id">N-26</td><td>El agente residente de la obra social tenía tres reglas: leer el mapa antes de operar, primero la solución operativa, poder abrir tickets</td><td>Tres reglas: mapa del sistema obligatorio antes de operar, «primero la solución operativa» cuando algo falla, capacidad de abrir tickets</td><td>Ref. 13</td><td><span class="b b-ok">exacta</span></td><td>Las tres, en el mismo orden</td></tr>
+<tr><td class="id">N-27</td><td>«Lo que estaba bien en julio no lo estaba en septiembre»</td><td>Ref. 23 fecha la auditoría de seguridad el 16 de julio y dice que lo convenció de tratarla como periódica. Las fechas julio/septiembre no están</td><td>Ref. 23</td><td><span class="b b-add">añadida</span></td><td>Interpretación plausible y sin consecuencia</td></tr>
+<tr><td class="id">N-28</td><td>«Agregamos una verificación que rechaza cualquier cambio que tenga algo con forma de clave»</td><td>Peldaño 15, artefacto: «la verificación que impide subir un secreto»</td><td>Peldaño 15</td><td><span class="b b-ok">exacta</span></td><td>—</td></tr>
+<tr><td class="id">N-29</td><td>No lo menciona</td><td>El equipo de cinco agentes gastó 60 dólares y 73 minutos y entregó algo a medias; una sola sesión tardó 90 minutos y entregó algo publicable. Es el origen de que el peldaño 23 exija números</td><td>Ref. 6</td><td><span class="b b-par">omisión</span></td><td>Media: es el caso fundacional de «números, no impresiones», y el libro lo enuncia sin su evidencia. Ver O-16</td></tr>
+<tr><td class="id">N-30</td><td>«La primera vez que escribí un contrato… fue después de dos semanas de repetirle lo mismo cada mañana»</td><td>«Lo escribí porque llevaba dos semanas repitiéndole al modelo las mismas cosas en cada sesión»</td><td>Ref. 1</td><td><span class="b b-ok">exacta</span></td><td>El libro reproduce incluso tres de las cuatro cosas repetidas</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="box good">
+<h4>Lectura del cuadro de números</h4>
+<p>De 30 aseveraciones verificables contra evidencia documentada: <strong>23 exactas</strong>, 1 fiel, 1 añadida, 2 omisiones y <strong>3 divergencias</strong>. Las series largas —las seis cifras de la cuota, las cuatro de los contadores, los cinco arreglos del despliegue enumerados uno a uno— están todas bien. Quien escribió esto leyó las referencias con cuidado, no de memoria.</p>
+</div>
+
+<h2 id="errores"><span class="num">§ 8</span>Errores</h2>
+
+<p>Ocho errores. Tres de gravedad alta: uno estructural, uno de atribución y uno numérico con consecuencia operativa.</p>
+
+<div class="f">
+<div class="fh"><span class="fid">E-01</span><span class="ft">El Anexo H y sus cinco anclas están ausentes: el libro omite 27 de las 45 reglas del método</span><span class="sev">alta</span></div>
+<dl>
+<dt>Qué dice el libro</dt><dd>El capítulo 7 presenta la compuerta de calidad como «un conjunto de revisores automáticos que miraban el código»: tamaño de archivo y de función, caminos por decisión, duplicación, código muerto y cobertura. Cinco dimensiones, todas de código. La mirada humana queda cubierta por los casos manuales que ejecuta Marta.</dd>
+<dt>Qué dice el método</dt><dd>El Anexo H define <strong>45 reglas en dos partes</strong>: 18 de calidad de código (Parte A) y <strong>27 de usabilidad</strong> (Parte B, familias B1 a B5: agrupación por convergencia funcional, perfiles y funcionalidades habilitadas por perfil, estados, acciones y errores, lenguaje y accesibilidad). Es «transversal a los cuatro tramos, con el peso principal en el Bucle de Construcción», y se engancha con <strong>dos entradas previas</strong> (glosario del usuario y lista de perfiles, verificadas en el peldaño 2) y <strong>cinco anclas</strong> en los peldaños 5, 8, 9, 10 y 12.</dd>
+<dt>Verificación mecánica</dt><dd>En <code>gates.json</code> (catálogo 2026.10.2), esas anclas son evaluadores <code>required: true</code>: <code>pendings_profiles</code> en el peldaño 5, <code>profile_matrix</code> en el 8, <code>heuristics</code> en el 9 y el 12, <code>manual_cases_per_profile</code> en el 10. El propio catálogo declara que un evaluador exigible que no se puede medir «no se reporta verde» y «el peldaño no avanza».</dd>
+<dt>Consecuencia</dt><dd>Turnera tiene al menos tres perfiles —recepcionista, profesional (con tableta) y paciente (reserva desde el celular)— y el libro nunca los declara, nunca construye la matriz, nunca la ve fallar primero y ejecuta los casos manuales con un solo perfil. El método es explícito: «un caso corrido con un solo perfil no cuenta como ejecutado». <strong>El proyecto guía del libro quedaría detenido en los peldaños 2, 5, 8, 10 y 12.</strong> Y UX-27, que exige la captura real por cada pendiente que toca una pantalla y está marcada BLOQUEA, aparece una sola vez en 191 páginas.</dd>
+<dt>Arreglo</dt><dd>No hace falta un capítulo nuevo. Hacen falta cuatro escenas injertadas: Laura escribiendo la lista de perfiles en el capítulo 3 (es material naturalmente narrativo: la recepcionista, el kinesiólogo, el paciente); un pendiente del capítulo 5 que declare su grupo y su criterio por perfil; la matriz vista fallar en el capítulo 6, al lado del rojo; y Marta corriendo su guion y después Nicolás corriendo el suyo en el capítulo 7. La última es, además, la mejor escena que el libro no escribió: el profesional descubriendo en su tableta lo que la recepcionista no podía ver.</dd>
+</dl>
+</div>
+
+<div class="f">
+<div class="fh"><span class="fid">E-02</span><span class="ft">La anécdota del banco está inventada y se presenta como documentada</span><span class="sev">alta</span></div>
+<dl>
+<dt>Qué dice el libro</dt><dd>Páginas 93-94. El sensei cuenta que en un banco hicieron un cambio chico en el cálculo de unas comisiones un viernes, con las pruebas en verde; el sábado había «miles de cuentas con un débito duplicado» y pasó el fin de semana en el subsuelo revirtiendo movimiento por movimiento; el lunes el gerente le preguntó «¿no estaba probado?». Y cierra: «Desde ese lunes, no confío en ninguna prueba que no haya visto en rojo».</dd>
+<dt>Qué dice el método</dt><dd>Nada. Busqué «banco», «comisión» y «débito» en los catorce documentos de <code>docs/</code>: cero ocurrencias. Los tres sistemas de origen son yujin-forge, Autorizaciones y Kikan. El origen documentado de la doctrina del rojo es la regla de honestidad de verificación del 10 de junio (Ref. 8), la batería que murió por memoria y se leyó como test fallido (Ref. 44) y los contadores 1.355/1.234 probados en rojo contra el criterio viejo (Ref. 26).</dd>
+<dt>Por qué es un error y no licencia poética</dt><dd>Porque el libro declara lo contrario en su propia página 6: «las anécdotas técnicas que cuenta el sensei adaptan casos reales documentados por su autor». Esta no adapta ninguna. Y no es una anécdota de adorno: es la escena que el libro elige como <em>origen emocional</em> de su doctrina central, contada en primera persona por un personaje que, según la dedicatoria, «lleva su nombre como homenaje». Un lector atribuirá ese fin de semana a Pablo Kuschniroff.</dd>
+<dt>Agravante</dt><dd>La biografía del sensei («treinta años de ingeniero de sistemas. Bancos, sobre todo») hace la atribución verosímil y por lo tanto más pegajosa. Y el método tenía un caso real disponible y mejor: la batería que «murió» por memoria y que el reporte leyó como un test que fallaba, que es exactamente la misma lección con evidencia y commit.</dd>
+<dt>Arreglo</dt><dd>Dos opciones honestas. Sustituir la escena por Ref. 44 o Ref. 26, que son del mismo tamaño dramático. O conservarla y marcarla: una línea en la nota de fuentes diciendo que el pasado bancario del sensei es invención novelesca y que las anécdotas documentadas son las de los tres sistemas. Lo que no se sostiene es la combinación actual.</dd>
+</dl>
+</div>
+
+<div class="f">
+<div class="fh"><span class="fid">E-03</span><span class="ft">La señal de alarma de la auditoría está apretada por tres</span><span class="sev">alta</span></div>
+<dl>
+<dt>Qué dice el libro</dt><dd>Máxima M-080 y la enseñanza del capítulo 9: «Un informe sin ningún hallazgo grave sobre un sistema de <strong>más de un mes</strong> casi nunca dice la verdad: lo más probable es que no haya mirado lo suficiente».</dd>
+<dt>Qué dice el método</dt><dd>Contrato del peldaño 13, señales de alarma: «La auditoría no encontró ningún P0. En un sistema de <strong>más de tres meses</strong>, casi nunca es verdad; más probable es que el alcance fue chico o que el auditor compartía los supuestos».</dd>
+<dt>Consecuencia</dt><dd>Es la única señal de alarma del método con un umbral temporal, y es accionable: un dueño que la aplique a un sistema de seis semanas desconfiará de una auditoría limpia que puede ser perfectamente legítima, y presionará para encontrar hallazgos. El método eligió tres meses con cuidado: es el plazo en que, según el peldaño 9, «la deuda se cobra».</dd>
+<dt>Arreglo</dt><dd>Cambiar «un mes» por «tres meses» en los dos lugares del capítulo 9.</dd>
+</dl>
+</div>
+
+<div class="f">
+<div class="fh"><span class="fid">E-04</span><span class="ft">El error que volvió: cuatro rondas no son cuatro retornos</span><span class="sev med">media</span></div>
+<dl>
+<dt>Qué dice el libro</dt><dd>Capítulo 13: «una vez, en una obra social, un error había vuelto <strong>cuatro veces</strong> antes de que alguien encontrara la causa real, porque cada arreglo se había hecho sobre el síntoma».</dd>
+<dt>Qué dice el método</dt><dd>Ref. 22 se titula «cuatro rondas hasta la causa raíz» y su cuerpo dice: «un bug volvió <strong>tres</strong> veces hasta que se encontró la causa real». La tabla de fallos lo registra como «tres arreglos que no eran de raíz».</dd>
+<dt>Lectura</dt><dd>Cuatro rondas de arreglo producen tres retornos. El libro leyó el título y no el cuerpo. El error es de uno, y el método se lo facilitó: ver C-01.</dd>
+</dl>
+</div>
+
+<div class="f">
+<div class="fh"><span class="fid">E-05</span><span class="ft">Tres millones y medio donde el método dice tres millones cuatrocientos mil</span><span class="sev low">baja</span></div>
+<dl>
+<dt>Qué dice el libro</dt><dd>Capítulo 4: «eran tres millones y medio de registros por año, guardados en archivos».</dd>
+<dt>Qué dice el método</dt><dd>La tabla de fallos por peldaño: «3,4 millones de filas por año sobre archivos JSON» (Ref. 15, criterio D6 del peldaño 0).</dd>
+<dt>Lectura</dt><dd>Redondeo al alza de unas cien mil filas en una cifra que el método escribe con un decimal. No cambia nada operativo, pero en un libro cuya tesis es que los números llevan su fuente, redondear hacia arriba el número de otro es el único lugar donde la forma contradice al contenido. «Tres millones cuatrocientos mil» no cuesta más tinta.</dd>
+</dl>
+</div>
+
+<div class="f">
+<div class="fh"><span class="fid">E-06</span><span class="ft">La compuerta de calidad se monta un bloque tarde</span><span class="sev med">media</span></div>
+<dl>
+<dt>Qué dice el libro</dt><dd>Capítulo 7, primera frase: «El segundo bloque, pacientes y búsqueda, empezó con una sorpresa… Kaji corrió por primera vez lo que Pablo llamaba la compuerta de calidad». El primer resultado es rojo en tres cosas, entre ellas una función de setenta líneas y dos copias del mismo código, construidas durante el primer bloque.</dd>
+<dt>Qué dice el método</dt><dd>Peldaño 9, cuándo: «se monta <strong>al abrir el primer bloque funcional</strong> y corre en cada push; cada pendiente se cierra con la calidad en verde». Y el peldaño 4 se llama «el esqueleto <strong>con sus compuertas</strong>», y su artefacto incluye «las compuertas del flujo declaradas por escrito».</dd>
+<dt>Consecuencia</dt><dd>El libro construye todo el primer bloque sin compuerta de calidad y después la monta y encuentra deuda. Narrativamente funciona —el rojo inicial es un buen golpe de efecto— pero enseña el orden equivocado: en el método esa función de setenta líneas nunca se habría fusionado. Es además la única inversión de orden que detecté en toda la escalera.</dd>
+<dt>Arreglo</dt><dd>Mover el montaje al capítulo 4, como parte del esqueleto («las compuertas declaradas por escrito»), y dejar en el capítulo 7 lo que el método sí ubica ahí: el mapa productor-consumidor, que se construye «al abrir el segundo bloque funcional». El golpe de efecto se conserva: la compuerta puede ponerse en rojo en el primer pendiente del primer bloque.</dd>
+</dl>
+</div>
+
+<div class="f">
+<div class="fh"><span class="fid">E-07</span><span class="ft">«Hace décadas» donde el método dice «hace veinte años»</span><span class="sev low">baja</span></div>
+<dl>
+<dt>Qué dice el libro</dt><dd>El prólogo dice bien «lo que hacemos los ingenieros desde hace veinte años». La enseñanza del capítulo 6 dice «la industria del software dejó de confiar en el autor del código hace décadas».</dd>
+<dt>Qué dice el método</dt><dd>«La industria ya dejó de confiar en el autor del código <strong>hace veinte años</strong>», en negrita, dos veces: en el documento principal y en el README.</dd>
+<dt>Lectura</dt><dd>Inconsistencia interna del libro antes que error contra el método. Veinte años es una cifra elegida: ancla el argumento en un momento identificable (la externalización y la rotación de equipos), y «décadas» lo diluye justo en el capítulo que el propio libro llama «el centro del método».</dd>
+</dl>
+</div>
+
+<div class="f">
+<div class="fh"><span class="fid">E-08</span><span class="ft">El recibo del rojo: «la hora» por «el código de salida»</span><span class="sev low">baja</span></div>
+<dl>
+<dt>Qué dice el libro</dt><dd>Máxima M-054: «El recibo vale más que la palabra: el comando, los números, la hora».</dd>
+<dt>Qué dice el método</dt><dd>Peldaño 8: el recibo es «el comando, la versión contra la que corrió, los números, el código de salida: lo que hace falta para volver a correrlo con un comando». La hora no está; la versión y el código de salida sí, y son los dos elementos que permiten reproducirlo.</dd>
+<dt>Lectura</dt><dd>La máxima pierde los dos datos que hacen al recibo reproducible y agrega uno decorativo. El recibo que el libro narra en la página 89 sí los trae («Código de salida 1. Comando y versión incluidos para repetirlo»), así que es un error de la máxima y no del cuerpo. Pero la máxima es lo que el lector memoriza.</dd>
+</dl>
+</div>
+
+<h2 id="omisiones"><span class="num">§ 9</span>Omisiones</h2>
+
+<p>Dieciocho omisiones relevantes. No son errores: son piezas de la letra que el libro no cuenta, y que cambian lo que un lector cree que el método exige. Las ordeno por lo que cuesta no saberlas.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th class="id">id</th><th style="width:27%">Qué falta</th><th style="width:11%">Dónde vive</th><th>Por qué importa</th><th style="width:8%">Grav.</th></tr></thead>
+<tbody>
+<tr><td class="id">O-01</td><td>La lista de perfiles y el glosario del usuario como entradas previas verificadas</td><td>Anexo H · peldaño 2</td><td>Son las dos entradas previas de las que se derivan la matriz, el menú, los permisos y los guiones. El peldaño 2 las verifica explícitamente. Sin ellas, «la matriz de B2 se inventa en el peldaño 5 y todo lo que se deriva de ella nace sin fundamento»</td><td><span class="sev">alta</span></td></tr>
+<tr><td class="id">O-02</td><td>La matriz de perfiles como productor único del menú, el ruteo, los permisos y las pruebas</td><td>Anexo H B2</td><td>Nueve reglas, cinco de ellas BLOQUEA. Es «la pieza que más rinde» del anexo y la que vuelve verificable sola la simetría productor/consumidor que el libro sí explica en el capítulo 7</td><td><span class="sev">alta</span></td></tr>
+<tr><td class="id">O-03</td><td>El puntaje de pruebas de mutación por bloque</td><td>Peldaño 9</td><td>Con usuarios reales es <strong>obligatorio</strong>, no opcional, y «todo mutante sobreviviente en código nuevo abre un pendiente». El libro usa mutación una sola vez, como recurso para el primer pendiente sin pasado, y nunca como medida recurrente junto a la cobertura. Turnera tiene usuarios reales y dinero</td><td><span class="sev">alta</span></td></tr>
+<tr><td class="id">O-04</td><td>El registro de apagado de una regla: motivo, autor y fecha de revisión</td><td>Anexo H · peldaños 9 y 12</td><td>«Apagar una regla sin razón escrita es un fallo de la compuerta, no la ausencia de una regla», y un conjunto de reglas inválido no emite ninguna cifra. El libro tiene «ningún límite se sube para pasar», que es la mitad, y no tiene la otra</td><td><span class="sev med">media</span></td></tr>
+<tr><td class="id">O-05</td><td>Las tres capas del Anexo H y el adaptador por familia de frontend</td><td>Anexo H</td><td>El enunciado de la regla es agnóstico; con qué se mide y con qué umbral depende de la familia (react-vite, next, angular, plantillas de servidor, móvil nativo, CLI). El libro presenta los límites como si fueran universales</td><td><span class="sev med">media</span></td></tr>
+<tr><td class="id">O-06</td><td>El tablero de dos cifras: cumplimiento y cobertura de compuerta</td><td>Anexo H §12</td><td>Es la contramedida al número que sube porque se apagaron reglas: apagar una sube el cumplimiento y baja la cobertura de compuerta. El libro tiene el trinquete de cobertura, que es otra cosa</td><td><span class="sev med">media</span></td></tr>
+<tr><td class="id">O-07</td><td>Cuatro de los ocho criterios que ponderan en el peldaño 0</td><td>Peldaño 0</td><td>Faltan el oráculo de verdad verificable (D2), la tecnología que el agente domina sin inventar (D4), el alcance que cabe en un repositorio y un dueño (D9) y los secretos aislables (D10). D2 es el más caro de ignorar: sin oráculo, el agente no tiene contra qué verificarse</td><td><span class="sev med">media</span></td></tr>
+<tr><td class="id">O-08</td><td>La captura real por cada pendiente que toca una pantalla, mirada por el dueño</td><td>UX-27 · Parte B.2 y B.4</td><td>Es uno de los ocho hitos humanos del método y está marcada BLOQUEA: «la captura no es opcional ni es una maqueta». El libro la usa una vez, y en el capítulo 4 Pablo dice «no mire la captura», que para ese hito es correcto pero deja al lector con la impresión contraria</td><td><span class="sev med">media</span></td></tr>
+<tr><td class="id">O-09</td><td>Las pruebas de aceptación del dueño sobre todos los flujos antes del primer despliegue</td><td>Parte B.1 y B.4</td><td>Hito humano explícito. El libro pasa del manual de recuperación al lunes con pacientes reales sin esa pasada</td><td><span class="sev med">media</span></td></tr>
+<tr><td class="id">O-10</td><td>La prueba del primer clic al cierre de cada bloque</td><td>UX-07</td><td>«El dueño, frente a una tarea concreta, nombra un lugar. Si nombra dos, hay duplicación; si no nombra ninguno, hay huérfana.» Es una de las tres verificaciones que el anexo declara no automatizables, y es gratis</td><td><span class="sev med">media</span></td></tr>
+<tr><td class="id">O-11</td><td>El plan de deshacer de las migraciones de esquema y de datos</td><td>Peldaño 15</td><td>«Volver el código atrás no alcanza.» Turnera tiene base de datos y el libro solo prueba la vuelta atrás del código, en dos minutos, y lo celebra</td><td><span class="sev med">media</span></td></tr>
+<tr><td class="id">O-12</td><td>La excepción de la fuente del error en el monitoreo</td><td>Peldaño 22</td><td>Los errores de las herramientas que observan el sistema van en su propia sección y <em>no</em> abren pendientes. El libro enuncia «ningún error sin pendiente» como absoluto, y un lector literal llenará la cola con errores del observador</td><td><span class="sev low">baja</span></td></tr>
+<tr><td class="id">O-13</td><td>Lo que el agente residente lee en producción es dato y nunca instrucción</td><td>Peldaño 23</td><td>Es la defensa contra inyección de instrucciones por los datos. El libro define bien el cerco de permisos y omite el cerco semántico, que es el que un atacante usa</td><td><span class="sev med">media</span></td></tr>
+<tr><td class="id">O-14</td><td>Reproducir dos o tres recibos de pendientes cerrados, con el mismo comando y los mismos números</td><td>Peldaño 13</td><td>«Un recibo leído y uno reproducido no son lo mismo, y solo el segundo cierra la objeción.» El libro hace que Laura pida la evidencia de dos hallazgos al azar, que es parecido pero no es esto</td><td><span class="sev med">media</span></td></tr>
+<tr><td class="id">O-15</td><td>La preferencia por un modelo distinto, no solo por otra sesión</td><td>Peldaño 13</td><td>La verificación publicada dice «¿la auditoría la hizo, donde fue posible, un modelo distinto del que construye?». El libro presenta «la misma máquina con otra mirada» como la norma y no como el piso aceptable</td><td><span class="sev low">baja</span></td></tr>
+<tr><td class="id">O-16</td><td>El experimento que mató al equipo multiagente</td><td>Ref. 6</td><td>60 dólares y 73 minutos contra 90 minutos de una sola sesión. Es el caso fundacional de «números, no impresiones» y el único del método que decide una cuestión de arquitectura de agentes con una medición</td><td><span class="sev low">baja</span></td></tr>
+<tr><td class="id">O-17</td><td>El segundo caso de uso: evolutivo sobre un sistema hecho con el método</td><td>Tres casos de uso</td><td>El epílogo presenta el primero (Laura) y el tercero (Bruno) y deja fuera el que más va a usar Laura el año que viene: entrar por el peldaño 5 sobre su propio sistema</td><td><span class="sev low">baja</span></td></tr>
+<tr><td class="id">O-18</td><td>Los números de la escalera: veinticuatro peldaños, cuatro tramos, trece que no se negocian</td><td>Parte A y D</td><td>El libro nunca dice cuántos peldaños hay ni cómo se llaman los tramos, y no trae tabla de correspondencia. Un lector que termine el libro y abra el método encuentra veinticuatro peldaños numerados y ningún puente. El epílogo roza la proporcionalidad en una sola línea</td><td><span class="sev med">media</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="espiritu"><span class="num">§ 10</span>Divergencias de espíritu</h2>
+
+<p>Acá está lo que no se arregla cambiando una cifra. Son cuatro desplazamientos de tono y uno de contenido, y el primero es, a mi juicio, más grave que cualquiera de los ocho errores.</p>
+
+<div class="f s">
+<div class="fh"><span class="fid">S-01</span><span class="ft">El libro no tiene puntos ciegos, y el método se los exige a todo el mundo</span><span class="sev">alta</span></div>
+<dl>
+<dt>Qué pasa</dt><dd>El método tiene una <strong>Parte E, «Lo que falta elaborar»</strong>, con siete puntos. Dice que el peldaño 0 está incompleto (faltan los pesos y el umbral); que la tabla de proporcionalidad es una propuesta marcada <code>[hipótesis]</code>; que los criterios que ponderan están sin calibrar; que falta que los contratos los corra un proyecto ajeno «sin que yo esté al lado resolviendo lo que el contrato no previó»; y —el más fuerte— que falta «un criterio para cuándo el humano SÍ tiene que mirar el código, porque hoy la respuesta es <em>nunca</em> y sospecho que hay momentos puntuales en que conviene».</dd>
+<dt>Qué hace el libro</dt><dd>Nada de eso aparece. El libro presenta la escalera como cerrada y probada. «Sin leer una sola línea de código» se repite como logro consumado en las catorce piezas, sin una sola línea que diga que el propio autor del método duda de ese absoluto. Y el aparato de marcado <code>[hipótesis]</code>, que CLAUDE.md impone como regla de estilo del proyecto —«lo que es interpretación y no hecho verificado se marca <code>[hipótesis]</code>»— no tiene ninguna traducción en el libro.</dd>
+<dt>Por qué es grave</dt><dd>Porque el libro viola exactamente el estándar que enseña. El capítulo 8 completo está dedicado a exigir los tres bloques del reporte: lo verificado, lo creído y los puntos ciegos. El capítulo 9 enseña que «lo que el constructor sabe que es provisorio, el auditor lo ve como lo que es». <strong>El libro es un reporte de dos bloques sobre el método: verificado y creído, sin puntos ciegos.</strong> Y lo provisorio estaba escrito, con su sección propia, en el documento que el libro adapta.</dd>
+<dt>Arreglo</dt><dd>Una página y media, y creo que mejoraría el libro en vez de debilitarlo. Una escena en la que Pablo le muestra a Laura qué parte de la escalera todavía no sabe: los pesos del peldaño 0, el umbral, la pregunta de cuándo mirar el código. Es la escena que el personaje merece —el sensei al que su maestro le corrigió el pie después de cuarenta años ya está construido para eso— y es la que convierte el libro en un ejemplo de su propia doctrina en vez de una excepción a ella.</dd>
+</dl>
+</div>
+
+<div class="f s">
+<div class="fh"><span class="fid">S-02</span><span class="ft">El origen de dos factores no se dice, y la estructura del libro empuja a la lectura que el método prohíbe</span><span class="sev">alta</span></div>
+<dl>
+<dt>Qué dice el método</dt><dd>Tiene una sección entera titulada <strong>«De dónde sale el método, y qué no quiero que se malinterprete»</strong>, que abre así: «Hay una lectura fácil de todo esto que quiero desarmar antes de que se instale: la de que el método es una colección de parches que fui poniendo después de cada golpe. No es así». Y nombra los dos factores: la ingeniería de sistemas clásica que el autor aplicaba desde antes, y los incidentes que mostraron dónde los modelos la aplican de manera frágil. Cierra: «Las cicatrices son la prueba de dónde hace falta la rigidez, no el origen de los principios». La misma advertencia se repite en la apertura de las referencias. CLAUDE.md la convierte en regla permanente del proyecto.</dd>
+<dt>Qué hace el libro</dt><dd>No reproduce esa advertencia en ninguna parte. Y su estructura narrativa hace lo contrario: cada regla llega anclada a una herida del sensei. «En uno de mis sistemas…», «desde ese lunes…», «lo aprendí haciendo…». Catorce capítulos, catorce cicatrices.</dd>
+<dt>Qué sí hace bien, para ser justo</dt><dd>El libro inocula parcialmente en dos lugares. La enseñanza del capítulo 1 dice: «Nada de esto es nuevo. Lo nuevo es que el modelo aplica muy bien estos métodos cuando se los piden, y muy mal cuando no», y enumera los métodos clásicos por su nombre: entrevistas, casos de uso, modelo de dominio, prototipos, trazabilidad. Y la enseñanza del capítulo 6 reproduce el argumento histórico completo. Son los dos pasajes que salvan al libro de la lectura prohibida.</dd>
+<dt>Por qué sigue siendo una divergencia</dt><dd>Porque esas dos inoculaciones están dentro de capítulos, al servicio de otro tema, y la advertencia del método es una sección propia colocada antes de la tesis, a propósito, «antes de que se instale». Un lector que atraviese trece capítulos de cicatrices y no encuentre nunca la frase «esto no es una colección de parches» llega sin ayuda a la conclusión que el autor del método quiso bloquear. Para un libro que es la puerta de entrada de un público no técnico, es la divergencia con más alcance.</dd>
+<dt>Arreglo</dt><dd>Un párrafo en la nota de fuentes o en el prólogo, con las palabras del método: dos factores, y las cicatrices como prueba de dónde hace falta la rigidez, no como origen de los principios.</dd>
+</dl>
+</div>
+
+<div class="f s">
+<div class="fh"><span class="fid">S-03</span><span class="ft">La neutralidad de herramienta es parte de la tesis y el libro no la enuncia</span><span class="sev med">media</span></div>
+<dl>
+<dt>Qué dice el método</dt><dd>Parte A, como una de las dos aclaraciones importantes: «<strong>la escalera es neutral respecto de la herramienta</strong>. Cada artefacto es un archivo, un test o un script; ninguno exige mi herramienta ni ninguna otra. Forge los automatiza, pero el peldaño existe sin Forge». La Parte D dedica una tabla completa a la correspondencia con Claude Code, Cursor, Codex, Gemini y Forge, y cierra: «las otras tres funcionan igual de bien… Esa es, de hecho, la práctica del curso». Hasta el criterio X2 lleva una precisión expresa para que NAC3 no se lea como condición.</dd>
+<dt>Qué hace el libro</dt><dd>Kaji es «la máquina», genérico y bien resuelto, y eso preserva la neutralidad en la práctica. Pero el libro nunca dice que el método funciona con cualquier herramienta, y en el capítulo 11 nombra Forge una vez, como «la herramienta de Kaji», en un juego con el kanji 鍛. Nombrarla no es el problema: el método la nombra también. El problema es que el libro enuncia la dependencia y no la independencia.</dd>
+<dt>Por qué importa</dt><dd>Es la objeción comercial que el ecosistema ya recibió: que todo esto sea la narrativa de un producto. El método la desarma explícitamente; el libro, que es la pieza que más gente va a leer, deja la defensa afuera. Y el libro tiene a mano el argumento más fuerte: los dos archivos que el método publica como datos no mencionan NAC3 ni una vez, y «forge» aparece solo dentro del nombre del archivo congelado.</dd>
+</dl>
+</div>
+
+<div class="f s">
+<div class="fh"><span class="fid">S-04</span><span class="ft">El marco de las cinco promesas se presenta como del método</span><span class="sev med">media</span></div>
+<dl>
+<dt>Qué pasa</dt><dd>Ver §5. El libro invita a leer todo Urazuke a través de cinco promesas y cinco virtudes del bushidō que el método no contiene. La nota de fuentes atribuye con cuidado las máximas a Sun Tzu, Musashi y Nitobe, y las virtudes a Nitobe, pero no aclara que el <em>mapeo</em> promesa-virtud-capítulo, que es la arquitectura del libro y la del Anexo II, es invención propia.</dd>
+<dt>Por qué no es un error</dt><dd>Porque el marco es bueno y porque una ficción puede aportar su propia didáctica. Las cinco promesas son una traducción honesta del método para quien contrata, y el Anexo II es la pieza más utilizable del libro.</dd>
+<dt>Arreglo</dt><dd>Media línea: decir que las cinco promesas son una lectura del autor del libro, no una estructura del método. Gana el libro, porque lo que hoy se lee como resumen pasa a leerse como aporte.</dd>
+</dl>
+</div>
+
+<div class="f s">
+<div class="fh"><span class="fid">S-05</span><span class="ft">El dueño como autor de los umbrales que el método ya declara</span><span class="sev low">baja</span></div>
+<dl>
+<dt>Qué dice el libro</dt><dd>«Laura fijó los límites, porque eran decisiones del dueño: trescientas líneas por archivo, cuarenta por función.»</dd>
+<dt>Qué dice el método</dt><dd>Los dos umbrales están declarados en el núcleo del Anexo H con <code>declarado: true</code>, como «valor de arranque del núcleo; el proyecto puede declarar el propio». La capa 3 es la que el dueño declara; la capa 1 viene dada. El catálogo publica con valor nulo todo umbral que el dueño no declaró, precisamente para que nadie invente.</dd>
+<dt>Lectura</dt><dd>El libro hace que Laura invente exactamente los dos números que el método ya traía. La idea de fondo —los umbrales son del dueño— es correcta; la escena sugiere que el dueño parte de cero, cuando el método le da un punto de partida y le pide que lo cambie si corresponde.</dd>
+</dl>
+</div>
+
+<h2 id="mejor"><span class="num">§ 11</span>Lo que el libro hace mejor que el método</h2>
+
+<p>Un informe que solo buscara divergencias sería deshonesto. Hay cinco lugares donde el libro es superior a su fuente, y dos de ellos deberían volver al método por la vía que el propio método define: una propuesta concreta de cambio a la escalera, con el incidente que la justifica.</p>
+
+<div class="f m">
+<div class="fh"><span class="fid">C+01</span><span class="ft">«La cobertura cuenta pruebas. El rojo dice si sirven»</span></div>
+<dl>
+<dt>Qué es</dt><dd>Máxima M-057. El método explica la relación entre los peldaños 8 y 9 en varios párrafos de prosa. El libro la resuelve en nueve palabras, y es una de las confusiones más caras del oficio.</dd>
+<dt>Propuesta</dt><dd>Entra como una línea en la ficha del peldaño 9, junto a «la cobertura, conviene recordarlo, cuenta pruebas».</dd>
+</dl>
+</div>
+
+<div class="f m">
+<div class="fh"><span class="fid">C+02</span><span class="ft">Las veinticinco preguntas para el proveedor, agrupadas y accionables</span></div>
+<dl>
+<dt>Qué es</dt><dd>El Anexo II, y el criterio que lo encabeza: «las respuestas que valen son las que se pueden ver: un archivo, un número con su comando, una prueba en rojo, un manual, una firma. Las que no se pueden ver son promesas». El método tiene la «verificación de completitud sin leer código» dentro de cada contrato, pero no tiene esta pieza: una hoja que un dueño que no contrató nunca software puede llevar a una reunión.</dd>
+<dt>Propuesta</dt><dd>Es material de la landing y del curso, no del libro solamente. Si el método la adopta, el crédito es del libro.</dd>
+</dl>
+</div>
+
+<div class="f m">
+<div class="fh"><span class="fid">C+03</span><span class="ft">«El dueño no es dueño: es inquilino»</span></div>
+<dl>
+<dt>Qué es</dt><dd>Capítulo 12. El método dice «el sistema tiene que poder usarse, mantenerse y recuperarse sin el agente y sin vos». Correcto y plano. La formulación del libro nombra el costo en una palabra que cualquier dueño de negocio entiende antes de terminar de leerla.</dd>
+</dl>
+</div>
+
+<div class="f m">
+<div class="fh"><span class="fid">C+04</span><span class="ft">Shu-Ha-Ri como explicación de la proporcionalidad</span></div>
+<dl>
+<dt>Qué es</dt><dd>El epílogo resuelve en tres palabras japonesas lo que la Parte D resuelve con una tabla de veinticuatro filas marcada <code>[hipótesis]</code>: primero se hace todo como está escrito aunque no se entienda; después se adapta; al final se mejora. Y lo ancla en la escena correcta: Laura decidiendo qué peldaños se achicaban para el consultorio de Lomas y cuáles no se negociaban.</dd>
+</dl>
+</div>
+
+<div class="f m">
+<div class="fh"><span class="fid">C+05</span><span class="ft">La escena de la prueba del manual de recuperación</span></div>
+<dl>
+<dt>Qué es</dt><dd>Capítulo 12. Marta, que no programa, restaura el sistema caído en cincuenta y dos minutos siguiendo el manual impreso, se traba seis minutos en la palabra «token», y escribe en el margen: «¿Qué es un token? Poner al lado qué es, con palabras». Y esa observación se convierte en la propuesta de cambio a la escalera de la retrospectiva, con el nombre de Marta y la fecha. El método pide esta prueba en una línea de compuerta. El libro muestra por qué funciona, qué encuentra, y cómo lo que encuentra vuelve a entrar. Es el mejor ejemplo del método aplicándose a sí mismo que leí, dentro o fuera del repositorio.</dd>
+</dl>
+</div>
+
+<h2 id="contra"><span class="num">§ 12</span>Hallazgos contra el método</h2>
+
+<p>Validar el libro obligó a leer el método con el cuidado con que se lee un contrato. Salieron tres defectos del método, y uno de ellos causó un error del libro.</p>
+
+<div class="f m">
+<div class="fh"><span class="fid">C-01</span><span class="ft">La Ref. 22 se contradice a sí misma, y el libro se equivocó por eso</span><span class="sev med">media</span></div>
+<dl>
+<dt>Qué pasa</dt><dd>El título de la referencia dice «cuatro rondas hasta la causa raíz». El cuerpo dice «un bug volvió tres veces hasta que se encontró la causa real». La tabla de fallos por peldaño dice «tres arreglos que no eran de raíz». Las tres son compatibles si se leen con cuidado —cuatro rondas producen tres retornos— y ninguna lo explicita.</dd>
+<dt>Consecuencia medida</dt><dd>El libro leyó el título y escribió «volvió cuatro veces» (E-04). Es el único error del libro que el método le facilitó.</dd>
+<dt>Arreglo</dt><dd>Una palabra en el cuerpo de la Ref. 22: «cuatro rondas de arreglo, tres retornos».</dd>
+</dl>
+</div>
+
+<div class="f m">
+<div class="fh"><span class="fid">C-02</span><span class="ft">El peldaño 20 cita un caso que no tiene referencia</span><span class="sev low">baja</span></div>
+<dl>
+<dt>Qué pasa</dt><dd>La ficha del peldaño 20 dice, en «fallo que evita»: «el documento desactualizado que provocó un commit en el repositorio equivocado». Es el único «fallo que evita» de los veinticuatro peldaños que no lleva su <code>[Ref. N]</code>. El caso existe —el libro lo cuenta bien— pero no está en las 46 referencias, no tiene fecha ni commit, y por lo tanto no se puede auditar.</dd>
+<dt>Por qué importa</dt><dd>Es exactamente la clase de afirmación sin respaldo que el método persigue. Y el libro, al reproducirla, la propaga sin que nadie pueda llegar a la evidencia.</dd>
+<dt>Arreglo</dt><dd>O una referencia nueva con su fecha y su commit, o quitar la mención de la ficha.</dd>
+</dl>
+</div>
+
+<div class="f m">
+<div class="fh"><span class="fid">C-03</span><span class="ft">La obligatoriedad de las pruebas de mutación se dice de dos maneras</span><span class="sev med">media</span></div>
+<dl>
+<dt>Qué pasa</dt><dd>La ficha del peldaño 9 dice que las pruebas de mutación son «obligatorias en cualquier proyecto con usuarios, opcionales solo sin usuarios reales». La verificación publicada del peldaño 9 lo confirma: «con usuarios reales, ¿se mide el puntaje de mutación por bloque?». Pero <code>CLAUDE.md</code>, que es la guía operativa del repositorio, dice que «el peldaño 9 tiene un tercer prompt, <strong>opcional</strong>, de pruebas de mutación» (D-033).</dd>
+<dt>Por qué importa</dt><dd>Un lector de CLAUDE.md —o un agente que lo lea como instrucción, que es para lo que existe— concluye que la mutación es opcional siempre. Turnera tiene usuarios y dinero: ahí es obligatoria. La ambigüedad es del método y explica parcialmente la omisión O-03 del libro.</dd>
+<dt>Arreglo</dt><dd>Alinear la frase de CLAUDE.md: el prompt es opcional sin usuarios reales y obligatorio con ellos.</dd>
+</dl>
+</div>
+
+<h2 id="veredicto"><span class="num">§ 13</span>Veredicto</h2>
+
+<p class="lede">El libro es una adaptación fiel, cuidadosa y, en su mitad final, extraordinariamente precisa. Quien lo escribió leyó el documento principal, las cuarenta y seis referencias y al menos algunos contratos, y los leyó con atención: las seis reglas del contrato de convivencia están las seis; los cinco arreglos del despliegue están los cinco, en orden; las seis cifras de la cuota fundida están las seis. En trece capítulos cubre los veinticuatro peldaños sin dejar ninguno afuera y sin invertir el orden de la escalera más que una vez.</p>
+
+<p>Y tiene cuatro problemas que conviene arreglar antes de que el libro circule como puerta de entrada al método.</p>
+
+<ol>
+<li><strong>La mitad del catálogo de reglas no está</strong> (E-01). Las veintisiete reglas de usabilidad, la lista de perfiles, la matriz y las cinco anclas que la enganchan en los peldaños 5, 8, 9, 10 y 12 no aparecen. Medido contra las compuertas que el propio método publica como datos, el proyecto del libro no pasaría cinco peldaños. Es el único hallazgo que yo llamaría estructural: no es una omisión de detalle, es una capa entera del método, y es además la capa que un dueño que no programa puede verificar <em>más</em> fácil, porque habla de menús, perfiles y pantallas y no de código.</li>
+<li><strong>El libro no declara sus puntos ciegos</strong> (S-01), y es el libro que dedica un capítulo entero a exigirlos. El método tiene una Parte E con siete cosas que no sabe, incluida la duda del propio autor sobre el absoluto «nunca leer código» que el libro celebra catorce veces. Una página y media lo arregla, y lo mejora.</li>
+<li><strong>Una anécdota central está inventada</strong> y se presenta como documentada (E-02), contra la promesa explícita de la página 6, en primera persona, y atribuida de hecho a una persona real por la vía de la dedicatoria.</li>
+<li><strong>El origen de dos factores no se dice</strong> (S-02), y la arquitectura narrativa —una herida por capítulo— empuja precisamente a la lectura que el método escribió una sección entera para bloquear.</li>
+</ol>
+
+<p>Nada de esto toca el núcleo. No encontré una sola aseveración que contradiga la doctrina: el rojo antes del verde, el instrumento que se verifica, los tres bloques del reporte, el auditor que no construyó, el fail-closed, los tres manuales, ningún error sin pendiente, la retrospectiva con números. Todo eso está, y en varios casos está mejor dicho que en el original.</p>
+
+<div class="box">
+<h4>Lo que yo haría, en orden</h4>
+<ol>
+<li>Las cuatro escenas del Anexo H (E-01). Es trabajo de escritura, no de reestructuración, y hay una escena regalada: Nicolás corriendo su guion en la tableta y encontrando lo que la recepcionista no podía ver.</li>
+<li>La página y media de puntos ciegos (S-01) y el párrafo del origen de dos factores (S-02). Las dos son de la nota de fuentes y del prólogo, y las dos alinean el libro con su propia doctrina.</li>
+<li>Decidir qué hacer con el banco (E-02): sustituirlo por Ref. 44, que cuenta lo mismo con evidencia, o marcarlo como invención en la nota de fuentes.</li>
+<li>Las tres cifras: tres meses y no uno (E-03), tres retornos y no cuatro (E-04), tres millones cuatrocientos mil y no tres y medio (E-05).</li>
+<li>Mover la compuerta de calidad al capítulo 4 (E-06) y dejar en el 7 el mapa productor-consumidor, que es lo que el método ubica ahí.</li>
+<li>Un anexo de tres páginas con la tabla capítulo → peldaño. El libro manda al lector «al curso y a los contratos del método» y no le da el puente. La tabla del §3 de este informe sirve de borrador.</li>
+</ol>
+</div>
+
+<p>Y dos cosas que el método debería tomar del libro, por la vía que él mismo define en el peldaño 23: la máxima de la cobertura y el rojo (C+01) y las veinticinco preguntas para el proveedor (C+02). Las dos vienen con su incidente que las justifica, que es el requisito.</p>
+
+<footer>
+<p><strong>Informe de validación</strong> · 26 de octubre de 2026 · 195 aseveraciones validadas (154 con veredicto, 24 de cobertura, 17 de correspondencia) · 8 errores, 18 omisiones, 5 divergencias de espíritu, 5 aportes del libro al método y 3 hallazgos contra el método.</p>
+<p>Obra analizada: <em>El Arte de Forjar Sistemas</em>, Oscar Schmitz, primera edición digital 2026, 191 páginas. Fuentes del método: <code>docs/ESCALERA_METODOLOGICA.md</code> v4, <code>docs/REFERENCIAS.md</code> v4, <code>docs/ANEXO_HEURISTICAS.md</code>, <code>docs/peldanos/</code>, <code>CLAUDE.md</code> y <code>docs/html/api/gates.json</code> (catálogo 2026.10.2, huella <code>3bd03ac3bf79</code>).</p>
+<p>Documento de análisis interno. No forma parte del corpus traducido del método ni del sitio que se publica: vive en <code>docs/</code> y la construcción no lo toca.</p>
+</footer>
+
+</div>
+</body>
+</html>

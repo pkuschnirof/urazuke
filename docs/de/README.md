@@ -15,6 +15,50 @@ BY-SA 4.0. Öffentliche Präsentation: [yujin.app/urazuke](https://yujin.app/ura
 Dieser Ordner enthält die deutsche Fassung der Methode. Spanisch ist die Quelle der Wahrheit; wenn
 beide Fassungen voneinander abweichen, gilt die spanische, und die deutsche wird korrigiert.
 
+## Drei verschiedene Dinge: eine Methode, ein Protokoll, ein Werkzeug
+
+Ich stelle das nach vorne, weil es das teuerste Missverständnis dieses Projekts ist, und ich habe
+es gemessen: Ich habe die veröffentlichte Website einem fremden Assistenten gegeben, und er hat
+die drei Dinge in einen Sack geworfen, geschlossen, dass das Ganze die Erzählung eines Produkts
+sei, und mir angeboten, meinen Code zu analysieren. Er hat eine Methode nach Code gefragt. Es sind
+drei verschiedene Naturen, und es lohnt sich, sie von Anfang an zu trennen.
+
+**Die Methode ist Urazuke, und sie ist das, was Sie hier lesen.** Sie sagt, was zu tun ist und in
+welcher Reihenfolge, was von demjenigen zu fordern ist, der baut (ein Mensch oder ein Modell), und
+wie man ohne eine einzige Zeile Code zu lesen erkennt, dass vollständig und nicht halb geliefert
+wurde. Sie ist Verfahren und Kriterium, nichts weiter. Sie wird mit dem Assistenten angewandt, den
+man zur Hand hat, mit dem, der nächstes Jahr erscheint, oder mit Bleistift, Papier und einem Team
+aus Menschen. Sie liegt hier vollständig und unter freier Lizenz: die vierundzwanzig Schritte, ihre
+Verträge und ihre Prompts.
+
+**Das Protokoll ist NAC3, und es ist etwas anderes.** Es ist ein Vertrag, damit die Bildschirme
+einer Anwendung von einem Programm gesteuert werden können (jedes Element der Oberfläche mit seiner
+Kennung und seinen Methoden) und, zum gleichen Preis, von einem Menschen gesteuert werden können,
+der einen Screenreader oder die Stimme benutzt: ein Agent und ein Mensch, die dieselbe Oberfläche
+mit derselben Würde bedienen. Die Methode benutzt es als **Mittel** für eine konkrete Sache: damit
+die Ende-zu-Ende-Tests den Bildschirm allein durchlaufen. Es ist keine Bedingung der Methode. Das
+Kriterium der Methode ist neutral und steht in Schritt 0 so geschrieben: dass die Oberfläche von
+einem Programm ausgeführt werden kann, mit jeder Technologie, die das erlaubt.
+
+**Das Werkzeug ist Yujin-Forge, und es ist eine Implementierung.** Es automatisiert die Methode
+(die Gates, das Einspielen der Prompts) und es spricht das Protokoll. Es ist *ein* Weg, Urazuke
+anzuwenden, nicht *der* Weg. Wenn es Ihnen nicht passt oder Sie es nicht wollen, bleibt die Methode
+genauso vollständig.
+
+Und das ist keine Absichtserklärung: **es steht im Datum und es ist messbar.** Die mechanische
+Definition der Gates, die die Methode für jeden Konsumenten veröffentlicht, nennt kein Werkzeug und
+kein Protokoll, auch nicht meine eigenen. Es gibt einen automatischen Test, der das auf jeder
+Fläche fordert, auf der sich ein Name einschleichen könnte (die Quellen, die zwei veröffentlichten
+Dateien, ihr Index und das erzeugte Dokument), und jeder kann es heute in einer Sekunde an der
+ausgelieferten Datei prüfen:
+
+```
+curl -s https://yujin.app/urazuke/api/gates.json | grep -o -i -E "forge|nac-?3|yujin" | wc -l
+```
+
+Es liefert **0** (gemessen am 2026-10-26). Irgendein Werkzeug kann die Gates der Methode
+implementieren, ohne irgendein Protokoll und ohne irgendein anderes Werkzeug zu übernehmen.
+
 ## Die These in einem Satz
 
 Die KI unterbricht die Methode nicht: sie setzt sie fort. Die Branche hat vor zwanzig Jahren
@@ -31,6 +75,7 @@ Autor auch die Belege herstellt, und deshalb muss der Beleg sich selbst beweisen
 | `REFERENCIAS.md` | Die realen Fälle hinter der Methode, nummeriert („Ref. N“), mit Datum und Beleg, damit die Verfahren sauber bleiben und das Detail einen Klick entfernt ist. Enthält die Chronologien der drei Systeme und die Tabelle der Fehlschläge pro Schritt. |
 | `peldanos/peldano-NN-*.md` | Der Vertrag jedes Schritts: wann, benötigter Kontext, Prompts auf Englisch mit ihrer Übersetzung und, vor jedem einzelnen, der Block „Bevor du den Prompt schickst“ mit den Dateien, die du selbst bauen musst, und ihrem Inhalt; erwartetes Ergebnis, Vollständigkeitsprüfung ohne Code zu lesen, Warnsignale. |
 | `peldanos/README.md` | Der Index der Verträge. |
+| `PREGUNTAS_AL_PROVEEDOR.md` | Die fünfundzwanzig Fragen an den Anbieter: die Vollständigkeitsprüfung der Verträge, zusammengefasst in einem Blatt, das ein Eigentümer, der noch nie Software beauftragt hat, zu einem Treffen mitnimmt. Gruppiert nach dem, was ihm versprochen wird, jede mit der Antwort, die man **sehen** kann, und dem Schritt, aus dem sie kommt. |
 | `MANUAL_CURSO.md` | Der Kurs: die Reihenfolge, vierundzwanzig Lektionen mit praktischen Aufgaben und Prompts, Leitprojekt („Turnera“), Produktionsreife-Liste. |
 | `MANUAL_CURSO_EVOLUTIVO.md` | Teil 2 des Kurses: das geerbte Leitprojekt („Geerbte Turnera“), zehn Lektionen (N0 bis N7, R1 und R2), um ein Altsystem zu normalisieren und es danach zu korrigieren und weiterzuentwickeln. |
 | `../DECISIONES.md` | Die Entscheidungen des Projekts, mit Datum und wörtlichen Worten. Die Methode wird auf sich selbst angewendet. Nur auf Spanisch. |

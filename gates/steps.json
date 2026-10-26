@@ -959,7 +959,11 @@
       ],
       "verify": [
         "Una persona sin IA puede recuperar el sistema siguiendo el manual?",
-        "Alguien que no sos vos siguio el manual de usuario y llego?"
+        "Alguien que no sos vos siguio el manual de usuario y llego?",
+        {
+          "text": "Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?",
+          "since_schema": 2
+        }
       ],
       "evaluators": [
         {

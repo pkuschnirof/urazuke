@@ -214,6 +214,17 @@ precedente era stata sul sintomo. Qui "la correzione è alla radice o non è cor
 già nel patto di convivenza, ha smesso di essere una frase ed è diventata pratica: bisogna misurare
 l'ipotesi prima di toccare. Gradini 1 e 7.
 
+**L'aritmetica, detta a voce alta, perché i due numeri sono lo stesso caso contato da due lati.** Ci
+sono stati **quattro giri di riparazione** e **tre ritorni** del bug: il giro 1 lo ha "riparato" ed è
+tornato (ritorno 1), il 2 lo ha "riparato" ed è tornato (ritorno 2), il 3 lo ha "riparato" ed è
+tornato (ritorno 3), e il 4 è stato quello che ha trovato la causa radice. Da qui il titolo di questo
+riferimento che dice quattro giri, questo paragrafo che dice che è tornato tre volte e la tabella
+dei guasti per gradino che conta tre riparazioni che non erano di radice: non è una contraddizione,
+sono n giri e n−1 ritorni. Sta scritto qui perché senza questa riga le tre menzioni si leggono come
+tre cifre diverse dello stesso fatto, e il primo lettore esterno che ha riprodotto il caso ha scritto
+"è tornato quattro volte". Se un riferimento permette a chi lo legge con attenzione di tirarne fuori
+un altro numero, il difetto è del riferimento.
+
 ### Ref. 23 — Audit di sicurezza (16 luglio)
 
 Il 16 luglio ho fatto il primo audit di sicurezza formale, con rilievi convertiti in voci in
