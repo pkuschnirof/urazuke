@@ -64,7 +64,16 @@
 > migrates schema or data, a written plan for undoing or compensating it, since reverting the code
 > alone does not undo a migration that already ran; (6) an automatic check that prevents
 > committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by
-> hand without you. Reply in my language.
+> hand without you.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > 本番への道を締めます。環境とアクセスの調査を読んでください。本番へ安全にデプロイするのに
@@ -77,7 +86,15 @@
 > ——そしてもし何らかの変更がスキーマやデータを移行するなら、それを元に戻すか埋め合わせるか
 > の書かれた計画。コードだけを元に戻しても、すでに実行された移行は元に戻らないからだ。
 > (6) 秘密のコミットを防ぐ自動チェック。すべてを `docs/DEPLOYMENT.md` に、人があなたなしで
-> 手でできるように文書化してください。私の言語で答えてください。
+> 手でできるように文書化してください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか、条項ごとに：始める前のアクセス。コミットごとに**一度だけ**のテスト（三度
 走らせたのがクォータを燃やした）。パッケージするだけのデプロイ。リポジトリ外の設定。繰り
@@ -100,11 +117,24 @@
 > Before touching production: the test environment is green with the same version; the
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 本番に触れる前に：テスト環境が同じバージョンで緑である。ロールバックの準備ができている。
 > そして設定で何が変わるかを私に教えてください。デプロイ後：本番で動いているバージョンと、
 > 本番に対する読み取り専用のエンドツーエンド検証を見せてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：三つの事前条件（同じバージョンでテストが緑、ロールバック準備済み、設定
 の変更が告知済み）と二つの事後の証明（動いているバージョンと、何も書かないエンドツーエンド
@@ -124,10 +154,23 @@
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > その秘密は漏洩しました：今すぐローテーションし、他にどこで使われていたか私に教え、それを
 > 捕まえたはずのチェックを追加してください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：即時のローテーション、他にどこにあったかの目録、そしてそれを検知した
 はずの検証、次回はチャットに届かないように。

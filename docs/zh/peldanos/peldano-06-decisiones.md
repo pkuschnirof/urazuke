@@ -47,12 +47,24 @@
 > item's specification and in `docs/DECISIONS.md`, with the exact words I used. If I do not
 > answer and you must move on, implement the most reversible option and mark it "decision by
 > omission, pending confirmation", so that I can review it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 每当实现某件事需要一条没写下的业务规则，或者你必须在两种会改变用户所见的做法之间选择
 > 时，停下来用散文问我，附你的建议和备选方案。不要实现你偏好的那个。当我决定后，把决定连
 > 同我的名字和日期写进提交信息、待办项的规格和 `docs/DECISIONS.md`，用我用的原话。如果我
 > 没回答而你必须继续，实现最可逆的选项，并标为"缺省决策，待确认"，以便我复查。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：面对没写下的规则或可见的分叉时**停下来**；提问时附建议和备选（让你十秒就能决
 定，而不是十分钟）；把决定用你的原话记录在三个地方（提交、待办项、记录），而不是"改进过"的
@@ -69,9 +81,21 @@
   就是另一条规则了。
 
 > Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 规则：[原话]。由我决定，[日期]。记下来，继续。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：一个决定的最小格式：规则原文、谁、何时。三样东西；缺任何一样都不是一条记录
 在案的决定。

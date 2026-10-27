@@ -83,6 +83,13 @@
 > first-click check, where I name the place I would look for a task and you
 > compare that with the menu, and the real screenshot of the test
 > environment.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 利用者が見るものや行うことを変えるすべての保留項目は、その受け入れ基準から導いた手動テス
@@ -100,6 +107,12 @@
 > 各ブロックの締めくくりに、機械が置き換えられない二つの人による確認を加えてください：
 > 最初のクリックの確認（私がその作業を探す場所を一つ挙げ、あなたがそれをメニューと照ら
 > す）と、テスト環境の実際のスクリーンショットです。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：ケースが受け入れ基準から出ること（そうすればモデルが理解したことではなく、
 依頼されたことを検証する）。システムがどう動くかを知らない誰かに向けて書かれていること。それ
@@ -126,7 +139,16 @@
 > the semantic tree it touches; do not fix anything now. For every case that passed, nothing. Then
 > tell me, flow by flow, how many cases passed and how many failed, compared with the previous
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
-> the case or the system is the problem. Reply in my language.
+> the case or the system is the problem.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > `docs/MANUAL_TESTS.md` の今日の実行を読んでください。失敗した各ケースと、ファイルの最後
@@ -135,7 +157,15 @@
 > 何も直さないでください。通った各ケースについては、何もしません。そのあと、フローごとに、
 > 前回の実行と比べて、いくつのケースが通りいくつが失敗したか、そしてどの失敗が繰り返されて
 > いるかを教えてください。あるケースが実行できなかったなら、なぜか、そして問題はケースなの
-> かシステムなのかを教えてください。私の言語で答えてください。
+> かシステムなのかを教えてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：再注入を運用可能にすること。人の各失敗が修正の保留項目になり、再現として
 （モデルの言葉ではなく）人の言葉を持ち、ツリーにぶら下がること。前回の実行との比較。ブロック

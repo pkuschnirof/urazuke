@@ -59,6 +59,13 @@
 > rule, and a switched-off rule with no written exception turns the whole
 > report red.
 >
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [ja]
@@ -75,6 +82,12 @@
 > エンドのアダプタ、ツールの版）と、あらゆる動きの根拠とともに報告してください。どの数
 > 値もブロックを閉じません。緑はルールごとに決まり、書面の例外なしに切られたルールは報
 > 告全体を赤にします。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 >
 > 私の言語で答えてください。
 
@@ -97,11 +110,24 @@
 
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 再び診断する前に、私が問題を見ている場所で動いているバージョンと、あなたの修正を含む
 > バージョンを比べてください。両方を教えてください。違うなら、問題はコードではなく公開
 > です。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：「まだ壊れている」に対してゼロから診断し直すのではなく、まずバージョン
 を比べること。「まだ壊れている」の半分は、リポジトリにはあるがあなたが見ている場所にない

@@ -77,7 +77,16 @@
 > information before going on; do not assume. Then fill in the sheet criterion by criterion:
 > the answer, where it comes from, and for each exclusionary criterion whether it is green or
 > red. Do not decide: present me the completed sheet with your reading and your doubts, and I
-> will decide. Reply in my language.
+> will decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > このプロジェクトがUrazukeの方法で進められるかを評価します。`docs/INITIAL_SURVEY.md` の
@@ -86,6 +95,13 @@
 > 進む前に足りない情報を私に求めてください。推測しないでください。次にシートを基準ごとに
 > 埋めてください：答え、その出所、そして各排除基準について緑か赤か。決定はしないでくだ
 > さい。完成したシートをあなたの読みと疑問とともに私に提示してください。私が決めます。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
 > 私の言語で答えてください。
 
 何を求めているか：二つの入力（調査と基準シート）を読むこと。**答える前に調査が十分か
@@ -111,11 +127,24 @@
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
 > source, and the conditions if any. Include the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 決定：[可 / 不可 / 次の条件で可：…]。最終シートを `docs/ELIGIBILITY.md` に書いてくだ
 > さい。日付、誰が決めたか、各基準への答えとその出所、条件があればその条件とともに。あなた
 > がした質問と私の答えを含めてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：決定を日付とオーナー付きで書き残すこと（第6段）、条件があればそれと
 ともに、そして質問と答えの痕跡とともに。それが何も推測しなかったことの証拠だ。

@@ -248,6 +248,22 @@ tardi: l'allegato è stato obbligatorio e non nominato in questo documento, e il
 adattato il metodo a un altro formato ha saltato ventisette delle quarantacinque regole perché non
 ha mai saputo che esistevano.
 
+E una di quelle quarantasei non riguarda il sistema che si costruisce ma **come ti si chiede**. È
+la **UX-28**, ed è entrata il 2026-10-27 perché mancava: il metodo ordina ai suoi prompt di
+chiederti — ventidue volte, in più della metà del corpus — e non diceva da nessuna parte come si
+chiede, così la forma restava all'improvvisazione e tu ricevevi la domanda sciolta. Da ora ogni
+domanda che l'agente ti fa arriva con quattro parti e in questo ordine: **i dati** che la rendono
+necessaria, elencati; **un paragrafo** di non più di cinque righe che li colleghi e lasci vedere
+l'interrogativo; **la domanda** con le sue possibili risposte numerate; e **la raccomandazione**
+dell'agente. E alla profondità tecnica che scegli tu, che sono tre e si dichiarano una volta nella
+configurazione del progetto: `beginner` (linguaggio di tutti i giorni, orientato al risultato),
+`decision_maker` (numeri misurati e conseguenze, senza percorsi di file — è il valore di default) e
+`technical` (file, riga e comando). Se non ne dichiari nessuna, l'agente usa `decision_maker` e te
+lo dice. La clausola sta nei settantadue prompt del corpus, in una sola redazione inglese identica
+negli otto idiomi, e c'è una verifica nella catena che va in rosso se cade da qualcuno. Quello che
+nessuna verifica può fare, e conviene saperlo, è verificare che una domanda concreta abbia le sue
+quattro parti: quello lo giudichi tu, ed è per questo che la regola avvisa invece di bloccare.
+
 E una cosa in più che cambia cosa bisogna leggere, perché decide **quale** di tutte queste esigenze
 ti si applica: **la versione del metodo che il progetto fissa.** La definizione meccanica dei
 varchi — quale file deve esistere a ogni gradino e cosa deve dire — si pubblica come dato, con una
@@ -1601,7 +1617,7 @@ noti (un'injection, una chiave scritta nel codice). È uno dei quattro strati de
 delle vulnerabilità del gradino 18.
 
 **Allegato H** — L'allegato di euristiche del metodo
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): quarantacinque regole verificabili, diciotto di
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): quarantasei regole verificabili, diciotto di
 qualità del codice e ventisette di usabilità, ciascuna con il suo identificatore stabile, la sua
 severità e lo strumento che la misura. È obbligatorio e attraversa i quattro tratti: entra con due
 ingressi previi al gradino 2 e con cinque ancore ai gradini 5, 8, 9, 10 e 12. La "H" è di euristiche.

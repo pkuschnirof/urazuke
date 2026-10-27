@@ -82,6 +82,14 @@ faites, pas l'agent :
 > change: indexes derived from the real queries, pagination, batching, the elimination of N+1
 > loops, retention and archiving per table, pool size; for each change, the expected gain, the
 > risk, and which consumers in the map it touches. Do not change anything yet: I approve the list.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [fr]
@@ -97,7 +105,16 @@ faites, pas l'agent :
 > réelles, la pagination, le traitement par lots, l'élimination des boucles N+1, la rétention et
 > l'archivage par table, la taille du pool ; pour chaque changement, le gain attendu, le risque, et
 > quels consommateurs de la carte il touche. Ne change rien encore : c'est moi qui approuve la
-> liste. Réponds dans ma langue.
+> liste.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
+> Réponds dans ma langue.
 
 Ce que je lui demande : mesurer avec la méthode de l'échelon 7 (compteur avec test, audité dans les
 deux sens, chiffre avec sa commande) avant de proposer ; proposer requête par requête, avec le gain
@@ -124,6 +141,13 @@ le plus ce que personne n'avait demandé.
 > test that fails if it is exceeded. Update every consumer in the map that a change touches, in
 > the same commit. Record the before and after table, the budgets and the retention per table in
 > `docs/PERSISTENCE.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Applique les changements approuvés [liste], un commit chacun. Pour chacun, montre-moi le compteur
@@ -132,6 +156,13 @@ le plus ce que personne n'avait demandé.
 > petite marge, protégé par un test qui échoue s'il est dépassé. Mets à jour chaque consommateur de
 > la carte qu'un changement touche, dans le même commit. Consigne la table de l'avant et de l'après,
 > les budgets et la rétention par table dans `docs/PERSISTENCE.md`.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : un commit par changement, pour que l'avant et l'après soient attribuables ;
 le même compteur sur les mêmes données (si les données changent, le chiffre ne dit rien) ; le budget

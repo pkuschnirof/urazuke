@@ -74,6 +74,13 @@ the agent:
 > functional block, add to the user manual the screens and flows of the pending items closed
 > in that block, with real screenshots from the test environment, and add their entries to the
 > changelog. If you do not know which manual, ask.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: the same-commit rule, which is the only one that keeps a manual up to date;
 the close of the block as the moment when the closed pending items become manual and changelog;
@@ -104,6 +111,13 @@ and the question when it is not clear which manual it goes to.
 > business knows (who is responsible for what, which phone number to call), ask me; do not leave
 > a gap and do not invent. Each manual carries a date and the system version. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: the three manuals with their readers; **real** screenshots from the test
 environment (not drawings or descriptions); the three-in-the-morning criterion for the recovery

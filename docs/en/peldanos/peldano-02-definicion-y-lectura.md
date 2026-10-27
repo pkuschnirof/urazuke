@@ -92,7 +92,16 @@ the agent:
 > me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
 > `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
-> changes every day; the other two change only when the system changes. Reply in my language.
+> changes every day; the other two change only when the system changes.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: that it evaluate the survey and ask before drafting; that the project file
 be **short** (the three-hundred-line cap is arbitrary but necessary: without a cap, it grows);
@@ -132,6 +141,13 @@ what it inferred, for the same reason as in the tree.
 > `PROJECT.md` (it goes to `docs/STATUS.md` or to the pending-items register); and every pending
 > item must hang from a node of the semantic tree, and the tree is updated in the same commit
 > whenever a block adds or changes a node.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: your corrections (above all to the nodes it marked as inferred), the date,
 and two new rules in the agreement: the one that protects the project file from becoming history,

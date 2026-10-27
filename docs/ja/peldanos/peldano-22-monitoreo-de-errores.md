@@ -76,7 +76,16 @@
 > the report. Tag every captured error with its source, and keep the errors of the tools that watch
 > the system (the panel, the resident agent, the monitoring itself) apart from the errors of the
 > system: the report lists them in a separate section, and only the system's errors open pending
-> items. Document it in `docs/MONITORING.md`. Reply in my language.
+> items. Document it in `docs/MONITORING.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > 本番のどんなエラーも見られないまま過ぎないようにします。第16段の記録を使って、次を組み立て
@@ -95,6 +104,13 @@
 > したすべてのエラーに発生源を付け、システムを観測する道具（パネル、常駐エージェント、監視そ
 > のもの）のエラーをシステムのエラーと分けて保管してください。レポートはそれらを別の節に列挙
 > し、保留項目を開くのはシステムのエラーだけです。`docs/MONITORING.md` に文書化してください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
 > 私の言語で答えてください。
 
 **道具のエラーはシステムのエラーではない。** 集中捕捉は発生源で分けます。システムのエラーと、それを観測する道具（パネル、常駐エージェント、監視そのもの）のエラーは別の発生源で保管し、レポートは別々の節に列挙し、保留項目を開くのはシステムのエラーだけです。練習 Turnera では、最初の周期レポートが六つの「バグ」を開きましたが、それは Forge のパネルが停止中のサーバーと話していただけでした。（決定 D-038。）
@@ -117,6 +133,13 @@
 > pending item or a written reason with a date; and tell me which errors disappeared and why,
 > with the commit that fixed each one. An error that disappeared without a fix is not solved: it
 > is hiding, and it stays in the report until its cause is known.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > エラーの周期報告のたびに：私と一緒に見ていってください。新しいエラーの修正の保留項目を、そ
@@ -124,6 +147,12 @@
 > があることを確認してください。そしてどのエラーが消えたか、なぜかを、それぞれを直したコミッ
 > トとともに言ってください。修正なしに消えたエラーは解決していません：隠れているのであり、そ
 > の原因がわかるまで報告に残ります。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：サイクルの規律と、消えるエラーのルール。最も直観に反し、最も価値のあるもの
 だ：独りで去ったエラーは独りで戻ってくる。

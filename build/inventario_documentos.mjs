@@ -79,6 +79,12 @@ export const TRABAJO_REGISTRADO = new Map([
     'artefacto de la estacion N0 que el dato declara por ruta en gates/stations.json; trabajo en ' +
       'curso, lo nombra PND-050',
   ],
+  [
+    'docs/REVISION_SEMANTICA_INTERFAZ.md',
+    'el entregable de las nueve revisiones semanticas de la interfaz: una lista de correcciones ' +
+      'por idioma, con lo medido separado del juicio de traduccion; el arreglo vive en el ' +
+      'repositorio del portal (PND-026 a PND-034)',
+  ],
   ['docs/paper/README.md', 'material de trabajo del paper, que es trabajo en curso; lo nombra PND-050'],
   ['docs/paper/metodo-protocolo-herramienta.md', 'la pieza comun del paper, trabajo en curso; lo nombra PND-050'],
   [

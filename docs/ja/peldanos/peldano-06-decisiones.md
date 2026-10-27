@@ -55,6 +55,13 @@
 > item's specification and in `docs/DECISIONS.md`, with the exact words I used. If I do not
 > answer and you must move on, implement the most reversible option and mark it "decision by
 > omission, pending confirmation", so that I can review it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 何かの実装に書かれていない事業ルールが必要なとき、またはユーザーが見るものを変える二つの
@@ -63,6 +70,12 @@
 > と日付とともにコミットメッセージ、保留項目の仕様、`docs/DECISIONS.md` に、私が使った言葉
 > そのままで書いてください。私が答えず、先へ進まなければならないなら、最も可逆な選択肢を
 > 実装し、「省略による決定、確認待ち」と印してください。私が見直せるように。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：書かれていないルールや見える分岐の前で**止まる**こと。推奨と代替案付きで
 質問すること（あなたが十分ではなく十秒で決められるように）。三つの場所（コミット、保留項目、
@@ -82,9 +95,22 @@
   ないこと。あとで言い換えられたルールは、別のルールです。
 
 > Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > ルール：[正確な文言]。私が決定、[日付]。書き留めて続けてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：決定の最小形式：ルールの原文、誰が、いつ。三つ。どれか一つでも欠けれ
 ば記録された決定ではない。

@@ -89,7 +89,16 @@
 > me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
 > `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
-> changes every day; the other two change only when the system changes. Reply in my language.
+> changes every day; the other two change only when the system changes.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > プロジェクトを書面で定義します。`docs/INITIAL_SURVEY.md` の事業調査と
@@ -110,7 +119,15 @@
 > それらの名前を挙げ、そこでも推論したものに印を付けてください。
 > 別途、生きた状態（取り組んでいること、開いていること）のために
 > `docs/STATUS.md` を作成してください。そのファイルは毎日変わります。他の二つはシステムが
-> 変わるときだけ変わります。私の言語で答えてください。
+> 変わるときだけ変わります。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：調査を評価し、起草する前に質問すること。プロジェクトファイルが**短い**
 こと（三百行の上限は恣意的だが必要だ。上限なしには育つ）。システムが何で**ない**かを明示
@@ -148,6 +165,13 @@
 > `PROJECT.md` (it goes to `docs/STATUS.md` or to the pending-items register); and every pending
 > item must hang from a node of the semantic tree, and the tree is updated in the same commit
 > whenever a block adds or changes a node.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > これらの修正を適用してください：[リスト]。`PROJECT.md` と `docs/SEMANTIC_TREE.md` を今日
@@ -155,6 +179,12 @@
 > `PROJECT.md` に入れない（`docs/STATUS.md` または保留項目の記録へ行く）。そしてすべての
 > 保留項目はセマンティックツリーのノードからぶら下がらなければならず、ブロックがノードを
 > 追加または変更するたびに木は同じコミットで更新される。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：あなたの修正（とりわけ推論と印されたノードへの）、日付、そして約束への
 二つの新ルール：プロジェクトファイルが履歴になるのを防ぐもの、そして各保留項目を木の

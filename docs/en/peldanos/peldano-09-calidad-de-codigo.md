@@ -115,6 +115,13 @@ the agent:
 > `docs/USABILITY.md` report result by result, never as a single number. The
 > catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
 >
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 What I am asking for: the five checks a human reviewer would do, done by machine and with the
@@ -141,6 +148,13 @@ date is mine.
 > raised to pass; if a limit must change, say so with the reason and I decide. At the close of
 > every block, show me `docs/CODE_QUALITY.md` with the numbers of the block against the previous
 > one.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: that quality be part of the close of every pending item and not a separate
 task; the ban on silencing (a model facing a red linter tends to add the exception instead of
@@ -164,7 +178,16 @@ only moment when you look at the numbers.
 > killed, how many survived and where. Do not fix anything yet: every surviving mutant in code
 > that matters becomes a pending item for a test that catches it, and I decide which ones matter.
 > From now on, report the mutation score at the close of every block next to the coverage, and
-> treat a drop as a quality failure. Reply in my language.
+> treat a drop as a quality failure.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: the measure that coverage does not give (coverage says which code was
 executed; mutation says which code is being watched); the scope narrowed to the lines changed,

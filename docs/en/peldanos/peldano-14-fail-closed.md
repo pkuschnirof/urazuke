@@ -66,7 +66,16 @@ the agent:
 > propose: whether it is reversible, which lock it gets (explicit confirmation, double safety,
 > dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong.
 > General rule: on any doubt or failure along the way, the action is NOT executed and the reason
-> is logged. Present me the table; I confirm lock by lock. Reply in my language.
+> is logged. Present me the table; I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: the cross-check between what the business said and what the code does (that
 is where the actions nobody remembered show up); the completeness clause in its form for this
@@ -87,6 +96,13 @@ that it ends up in the table and in the code.
 > that, under the doubt condition, the action does NOT happen (proved red against the version
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: the test per lock **proved red** (without the lock, the action happened;
 with the lock, it does not), which is step 8 applied to safety; the final table; and the dry-run

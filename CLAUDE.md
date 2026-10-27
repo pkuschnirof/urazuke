@@ -130,7 +130,7 @@ visto: el Anexo H era obligatorio y el documento principal no lo nombraba.
 
 ## El Anexo H se nombra donde el dato lo exige
 
-D-061 (PND-039, PND-048). El Anexo H es obligatorio —45 reglas, con dos entradas previas en el
+D-061 (PND-039, PND-048). El Anexo H es obligatorio —46 reglas desde D-070, 45 cuando se escribió esto—, con dos entradas previas en el
 peldaño 2 y cinco anclas en los peldaños 5, 8, 9, 10 y 12, y esas cinco son evaluadores
 `required: true` en el dato publicado— y hasta el 2026-10-26 el documento principal **no lo nombraba
 ni una vez**. Lo descubrió un lector: el autor de la adaptación reprodujo sin error seis cifras de
@@ -165,6 +165,32 @@ que es la semántica que `gates/evaluators.json` declara para `required: true`. 
 los dos candados decidibles de las referencias: el conjunto de `[Ref. N]` de cada ficha idéntico en
 los ocho idiomas, y cada "fallo que evita" con su referencia o **registrado con su razón** en la
 propia prueba, como el anexo exige para una regla apagada.
+
+## La forma de la pregunta (UX-28)
+
+D-070 (`PND-054`), y la pidió el dueño. El método les ordena a sus prompts **preguntar** —veintidós
+veces, en quince de los veintisiete archivos del corpus— y hasta el 2026-10-27 no decía en ninguna
+parte **cómo** se pregunta, así que la forma quedaba a la improvisación y el dueño la recibía
+suelta. Ahora es la regla **UX-28**, familia **B6** del Anexo H —la primera que no es sobre la
+pantalla que el sistema le muestra a una persona, sino sobre la conversación en la que el sistema se
+construye—: toda pregunta que necesita una decisión del dueño llega con sus cuatro partes y en este
+orden —los datos que la hacen necesaria, enumerados; un párrafo de no más de cinco líneas que los
+enlace y deje ver el interrogante; la pregunta con sus respuestas posibles enumeradas; y la
+recomendación—, y a la profundidad que el proyecto declaró en
+`project_config.communication_depth`: `beginner`, `decision_maker` o `technical`, y sin declarar
+significa `decision_maker` **diciendo cuál se usó**.
+
+Tres cosas de esta regla no se negocian. **Entra adentro de los prompts**, que es lo que D-044
+argumentó que no se hace, y es la excepción escrita: acotada —nombra las cuatro partes y el
+parámetro, nada más— porque las otras cuarenta y cinco son exigencias sobre el sistema, medidas
+sobre artefactos, y ésta es una exigencia sobre la conversación, cuyo único lugar de obediencia es
+lo que el modelo lee. La excepción **no autoriza** copiar ninguna otra regla al prompt. **Avisa y no
+bloquea**: una compuerta puede exigir que la cláusula esté en los setenta y dos prompts de los ocho
+idiomas —`build/forma_de_la_pregunta.mjs` lo hace, con sus siete rojos deliberados y su paso en el
+flujo— y ninguna prueba puede verificar que una pregunta concreta tenga sus cuatro partes; eso lo
+juzga el dueño y queda fuera del porcentaje del tablero. Y **la cláusula y el dato son un solo
+par**: los tres niveles que la cláusula nombra son exactamente los que declara
+`enums.communication_depth`, y la guarda cae si uno cambia sin el otro.
 
 ## La línea de tiempo
 
@@ -336,7 +362,7 @@ existir en cada peldaño, qué tiene que decir, con qué estrategia se verifica)
 `docs/html/api/gates.json`; Yujin-Forge es consumidor, igual que con los prompts. La fuente es
 `gates/`, mantenida **a mano** porque es datos y no prosa: `catalog.json` (la versión declarada),
 `schema.json` (el esquema, que el validador interpreta), `evaluators.json` (el vocabulario cerrado
-y append-only), `steps.json` (24 peldaños), `stations.json` (N0 a N7), `heuristics.json` (las 45
+y append-only), `steps.json` (24 peldaños), `stations.json` (N0 a N7), `heuristics.json` (las 46
 reglas del Anexo H) y `adapters.json` (las familias de frontend y los umbrales).
 `baseline.json` es el congelado de lo que la herramienta tenía compilado el día del cambio: es la
 referencia del test de diferencia cero y **no se edita** (la única excepción escrita es D-055, y
@@ -350,7 +376,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   verdad hay que cambiar un requisito existente, es un cambio del método y va con su decisión.
   Pasó una sola vez (D-055, autorizada por el dueño y acotada a dos textos): cuando se edita, se
   edita **en sincronía** con el congelado, para que la diferencia cero siga siendo demostrable.
-- **Una sola copia de cada texto.** El enunciado de las 45 reglas vive sólo en el Anexo H;
+- **Una sola copia de cada texto.** El enunciado de las 46 reglas vive sólo en el Anexo H;
   `heuristics.json` lleva el puntero (`statement_source` para la ruta, una vez, y `section` +
   `row` por regla) y el build **extrae** el texto de `docs/en/ANEXO_HEURISTICAS.md`, que es la
   versión que se publica. El validador rechaza un enunciado transcrito, una severidad que no

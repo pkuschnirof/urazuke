@@ -60,6 +60,13 @@ o agente:
 > as done something you have not verified; always separate what you verified from what you
 > believe. (6) Speak my language. Add any rules you think this project needs, marked as
 > proposals. If you need to know something about how I work in order to write this, ask me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Antes de escrever código, vamos fixar o contrato de convivência entre você e eu. Escreva
@@ -72,6 +79,13 @@ o agente:
 > separe sempre o que verificou do que acredita. (6) Fale o meu idioma. Acrescente as regras que
 > achar que este projeto precisa, marcadas como propostas. Se precisar saber algo sobre como eu
 > trabalho para escrever isto, pergunte-me.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: as seis regras mínimas, cada uma com a falha que evita (isso é o que as
 torna regras e não conselhos); que proponha regras próprias do projeto mas as marque como
@@ -93,11 +107,25 @@ vai trabalhar.
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Aceito as regras 1 a 6 e as suas propostas [X, Y]; rejeito [Z] porque [razão]. Feche o contrato
 > com a data de hoje e um número de versão. Depois acrescente ao arquivo de projeto a instrução
 > de ler este contrato ao começar cada sessão.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: que feche o contrato com data e versão, e que o engate ao arquivo de projeto
 para que seja lido em cada sessão. Sem esse engate o contrato existe mas não age.

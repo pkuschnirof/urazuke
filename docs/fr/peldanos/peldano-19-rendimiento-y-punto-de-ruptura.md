@@ -88,7 +88,16 @@ faites, pas l'agent :
 > the tolerance I gave you ([tolerance] for the most used screen) and with the sizing assumptions,
 > and tell me which assumption was wrong, if any. Do not optimize anything yet. Write
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
-> diagnosis of the first bottleneck. Reply in my language.
+> diagnosis of the first bottleneck.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [fr]
 > Nous allons découvrir comment ce système se comporte aux volumes de `docs/SIZING.md`, et où il
@@ -106,7 +115,16 @@ faites, pas l'agent :
 > ([tolérance] pour l'écran le plus utilisé) et avec les hypothèses du dimensionnement, et dis-moi
 > quelle hypothèse était fausse, s'il y en a une. N'optimise rien encore. Écris
 > `docs/PERFORMANCE_[date].md` avec les chiffres, les commandes, le point de rupture et ton
-> diagnostic du premier goulot d'étranglement. Réponds dans ma langue.
+> diagnostic du premier goulot d'étranglement.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
+> Réponds dans ma langue.
 
 Ce que je lui demande : un script de charge qui est un compteur de plus (il vit dans le dépôt et a
 un test, parce qu'un script de charge qui n'exerce pas le flux mesure du vent) ; trois passes
@@ -134,6 +152,13 @@ qu'optimiser sans lire le diagnostic, c'est changer ce qui n'était pas en cause
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
 > reruns before every deployment that changes the architecture, the persistence or a critical
 > flow, and its results are archived with date and version. Show me the first run archived.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Consigne dans `docs/PERFORMANCE.md` : le volume attendu, le volume fois dix, le point de rupture
@@ -144,6 +169,13 @@ qu'optimiser sans lire le diagnostic, c'est changer ce qui n'était pas en cause
 > `docs/GATES.md` : il se relance avant chaque déploiement qui change l'architecture, la persistance
 > ou un flux critique, et ses résultats sont archivés avec leur date et leur version. Montre-moi la
 > première passe archivée.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : les seuils d'alerte dérivés du point de rupture, qui est l'accroche avec
 l'échelon 21 ; les goulots d'étranglement comme éléments en attente avec le chiffre pour critère

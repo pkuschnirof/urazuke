@@ -67,6 +67,14 @@ o agente:
 > environment. Declare the gates of the workflow (what must be green to move from one stage to
 > the next) in `docs/GATES.md`. When done, take a screenshot of the empty UI running in the
 > test environment and show it to me. Do not add any functionality "while you are at it".
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [pt]
@@ -78,7 +86,16 @@ o agente:
 > bateria em cada push; e a implantação no ambiente de teste. Declare as comportas do fluxo (o
 > que tem que estar em verde para passar de uma etapa à seguinte) em `docs/GATES.md`. Quando
 > terminar, tire uma captura da interface vazia rodando no ambiente de teste e mostre-a para
-> mim. Não acrescente nenhuma funcionalidade "já que está aí". Responda no meu idioma.
+> mim. Não acrescente nenhuma funcionalidade "já que está aí".
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
+>
+> Responda no meu idioma.
 
 O que estou pedindo: que verifique que tem os acessos antes de começar (sem isso o esqueleto fica
 na máquina do agente); a lista exata do que é um esqueleto (estrutura, arranque, um teste,
@@ -101,11 +118,25 @@ exato.
 > Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a
 > second time and show me that the second run changed nothing.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Esqueleto aprovado. Registre em `docs/STATUS.md` a URL do ambiente de teste, o comando para
 > rodar os testes e o comando para implantar, e marque este passo como feito. Depois rode a
 > implantação uma segunda vez e mostre-me que a segunda execução não mudou nada.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: deixar os três comandos onde a próxima sessão os encontre, e provar que a
 implantação é repetível (rodá-la duas vezes sem quebrar nada). Essa segunda execução é a prova de

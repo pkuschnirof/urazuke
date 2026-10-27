@@ -58,6 +58,14 @@
 > environment. Declare the gates of the workflow (what must be green to move from one stage to
 > the next) in `docs/GATES.md`. When done, take a screenshot of the empty UI running in the
 > test environment and show it to me. Do not add any functionality "while you are at it".
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [zh]
@@ -66,7 +74,14 @@
 > 始之前问我。然后构建：文件夹结构；能启动的服务器和界面；带一个能通过的冒烟测试的测试结
 > 构；每次 push 都运行那个测试套件的持续集成；以及到测试环境的部署。在 `docs/GATES.md` 中
 > 声明工作流的闸门（从一个阶段进到下一个必须是绿色的东西）。完成后，对运行在测试环境中的
-> 空界面截图给我看。不要"顺手"加任何功能。用我的语言回复。
+> 空界面截图给我看。不要"顺手"加任何功能。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求什么：开始前先验证它有访问权（没有的话骨架就留在代理的机器上）；骨架是什么的精确
 清单（结构、启动、一个测试、持续集成、部署到测试环境）；写下来的闸门；一张来自测试环境的真
@@ -87,10 +102,22 @@
 > Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a
 > second time and show me that the second run changed nothing.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 骨架批准。在 `docs/STATUS.md` 中记录测试环境的 URL、运行测试的命令和部署的命令，并把这一
 > 步标为已完成。然后第二次运行部署，并向我展示第二次运行什么都没改变。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：把三条命令留在下次会话能找到的地方，并证明部署是可重复的（跑两次不弄坏任何东
 西）。那第二次运行是流程确实是流程而不是运气的证据。

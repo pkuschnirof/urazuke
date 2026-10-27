@@ -50,7 +50,7 @@ export const PELDANO_DE_LA_DEFINICION = 2;
  * la base no aparece aca: viene del congelado y esta en TODAS las versiones publicadas, asi
  * que su procedencia es no tener ninguna.
  */
-export function entradasAgregadas(pasos, estaciones, evaluadores) {
+export function entradasAgregadas(pasos, estaciones, evaluadores, reglas = []) {
   const salida = [];
   const mirar = (nodo, etiqueta, campo, lista) => {
     (lista ?? []).forEach((x, i) => {
@@ -73,6 +73,11 @@ export function entradasAgregadas(pasos, estaciones, evaluadores) {
     }
   }
   mirar(null, 'catalog', 'evaluators', evaluadores);
+  // Las reglas del Anexo H tambien son entradas: UX-28 fue la primera que el metodo agrego despues
+  // de que esta maquinaria existiera, y sin esto el diferencial de un upgrade la omitia en
+  // silencio --un proyecto que sube de version se encontraria con una regla nueva que el
+  // diferencial no conto (D-070). `que` sale del id, que es el nombre estable de una regla.
+  mirar(null, 'catalog', 'rules', (reglas ?? []).map((r) => ({ ...r, path: r.id })));
   return salida;
 }
 
@@ -145,7 +150,7 @@ export function leerArbol() {
   const fuentes = cargarFuentes();
   const pasos = fuentes.steps.steps;
   const estaciones = fuentes.stations.stations;
-  const entradas = entradasAgregadas(pasos, estaciones, fuentes.evaluators.evaluators);
+  const entradas = entradasAgregadas(pasos, estaciones, fuentes.evaluators.evaluators, fuentes.heuristics.rules);
   const versiones = fuentes.catalog.changelog.map((c) => c.catalog_version);
   const textosPorIdioma = {};
   for (const idioma of IDIOMAS) {

@@ -98,6 +98,13 @@ the agent:
 > every route checks the permission on the server, because hiding the entry
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 **The red of the first block.** In the first block of a new project there is no previous code: the new test fails because the module does not exist, and that failure does not prove the test tells behaviour apart. So, when the previous version does not have the module, the red is proven **by mutation**: the agent plants a deliberate defect in the function it just wrote, shows the test red against that defect (the receipt carries the diff of the defect, so you can see it was not trivial), reverts it and shows the green. One mutant per pending item, run and recorded like any other receipt; mutation testing over the whole codebase stays the optional reinforcement of step 9. (Decision D-037, from the Turnera practice: six red receipts that only said "the file does not load".)
 
@@ -129,6 +136,13 @@ evidence where the code lives.
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
 > item for it; do not pass it as covered.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: the second and third scales of the end-to-end tests, with the exact version
 (not "the latest"), with the backend effect per flow, and with the completeness clause: what is
@@ -148,6 +162,13 @@ not covered is declared and becomes a pending item, it is not passed off as cove
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: that "it cannot be tested" not be the end of the conversation but the
 beginning of a pending item. Non-testability is debt, and debt gets recorded.

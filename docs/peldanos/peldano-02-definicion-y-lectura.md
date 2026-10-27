@@ -91,7 +91,16 @@ el agente:
 > me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
 > `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
-> changes every day; the other two change only when the system changes. Reply in my language.
+> changes every day; the other two change only when the system changes.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [es]
 > Vamos a definir el proyecto por escrito. Leé el relevamiento del negocio en
@@ -113,7 +122,16 @@ el agente:
 > en `docs/GLOSSARY.md` y `docs/PROFILES.md`, nombralas en `PROJECT.md` y marcá también ahí
 > lo que hayas inferido. Aparte, creá `docs/STATUS.md` para el estado
 > vivo (en qué se está trabajando, qué está abierto): ese archivo cambia todos los días; los otros
-> dos cambian solo cuando cambia el sistema. Respondé en mi idioma.
+> dos cambian solo cuando cambia el sistema.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo: que evalúe el relevamiento y pregunte antes de redactar; que el archivo de
 proyecto sea **corto** (el tope de trescientas líneas es arbitrario pero necesario: sin tope,
@@ -153,6 +171,13 @@ negocio y no del sistema; y que marque lo inferido, por lo mismo que en el árbo
 > `PROJECT.md` (it goes to `docs/STATUS.md` or to the pending-items register); and every pending
 > item must hang from a node of the semantic tree, and the tree is updated in the same commit
 > whenever a block adds or changes a node.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [es]
 > Aplicá estas correcciones: [lista]. Cerrá `PROJECT.md` y `docs/SEMANTIC_TREE.md` con la fecha
@@ -160,6 +185,13 @@ negocio y no del sistema; y que marque lo inferido, por lo mismo que en el árbo
 > `PROJECT.md` (va a `docs/STATUS.md` o al registro de pendientes); y todo pendiente tiene que
 > colgar de un nodo del árbol semántico, y el árbol se actualiza en el mismo commit cada vez que
 > un bloque agrega o cambia un nodo.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
 
 Qué le estoy pidiendo: tus correcciones (sobre todo a los nodos que marcó como inferidos), la
 fecha, y dos reglas nuevas en el contrato: la que protege al archivo de proyecto de volverse

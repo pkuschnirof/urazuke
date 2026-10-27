@@ -83,7 +83,16 @@ the agent:
 > the report. Tag every captured error with its source, and keep the errors of the tools that watch
 > the system (the panel, the resident agent, the monitoring itself) apart from the errors of the
 > system: the report lists them in a separate section, and only the system's errors open pending
-> items. Document it in `docs/MONITORING.md`. Reply in my language.
+> items. Document it in `docs/MONITORING.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 **The tool's errors are not the system's errors.** Centralized capture separates by source: the errors of the system and those of the tools that watch it (the panel, the resident agent, the monitoring itself) are stored under different sources, the report lists them in separate sections, and only the system's errors open pending items. In the Turnera practice, the first cyclic report opened six "bugs" that were the Forge panel talking to a server that was off. (Decision D-038.)
 
@@ -106,6 +115,13 @@ the two rules; and the end-to-end demonstration, from the browser to the report.
 > pending item or a written reason with a date; and tell me which errors disappeared and why,
 > with the commit that fixed each one. An error that disappeared without a fix is not solved: it
 > is hiding, and it stays in the report until its cause is known.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: the discipline of the cycle, and the rule of the error that disappears,
 which is the most counter-intuitive and the most valuable: an error that went away on its own

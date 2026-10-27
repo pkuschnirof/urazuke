@@ -1,6 +1,6 @@
 {
   "what": "The header of the prompt corpus published as an API: the version a project freezes. Declared BY HAND, for the same reason as the gate catalogue (gates/catalog.json): a project starts and finishes with the same version of the method, so what it froze has to read back the same two years from now.",
-  "corpus_version": "2026.10.4",
+  "corpus_version": "2026.10.5",
   "declared_at": "2026-10-27",
   "published_as": "docs/html/api/prompts.json",
   "version_scheme": {
@@ -53,6 +53,13 @@
       "decision": "D-067",
       "content_hash": "8e69d1189be99e6e0eee2bb8b2f06c23ce58ac56a25e5edeab7a5122d5c1adb1",
       "changed": "No prompt moved. What moved is the identity of the file and two sentences about it. `what` is now COVERED by the fingerprint: it is the key where the file says what it is and what travels verbatim, so a frozen copy altered there would misdescribe itself while the recomputed hash still matched. And the two sentences that said the English piece is identical in `the eight versions` no longer carry a count: they point at the list the method declares once, in the gate catalogue under `languages.prose_versions`. The corpus is the same 54 prompts in the same 24 contracts."
+    },
+    {
+      "corpus_version": "2026.10.5",
+      "date": "2026-10-27",
+      "decision": "D-070",
+      "content_hash": "d388f6adb8c788631b4908ed57c0a599accf19c88dde069f4275c25a90845363",
+      "changed": "Every prompt of the corpus carries one clause more, and it is the same clause: the form of the question. The method ordered the model to ASK twenty-two times, in fifteen of the twenty-seven files, and never said HOW. Now each of the seventy-two prompts closes with the four parts of UX-28 -- the data that makes the question necessary, listed; one paragraph of no more than five lines that links it and lets the question be seen; the question with its possible answers numbered; the recommendation -- and with the depth parameter project_config.communication_depth (beginner, decision_maker, technical; undeclared means decision_maker). It is one single English wording, identical in the eight prose versions the method declares, which is the rule that already governed every prompt and is what build/prompts.mjs verifies byte by byte. Nothing else moved: no prompt lost a sentence and no prompt changed its order. This is the written exception to D-044 and it is narrow -- the clause names the four parts and the parameter and nothing else, the full statement lives once in Annex H -- because unlike the other forty-five rules this one is a demand on the conversation and not on the artifact, so the only place it can be obeyed from is what the model reads (D-070, PND-054)."
     }
   ]
 }

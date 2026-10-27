@@ -225,7 +225,16 @@ non l'agente:
 > and has ever been restored; (7) list every external integration and say whether it has a test
 > mode or can be isolated at the edge. For each prerequisite: green or red, the evidence (what you
 > did and what happened), and, if red, what project would make it green. Do not decide: present me
-> the sheet, and I decide. Reply in my language.
+> the sheet, and I decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Valuteremo se questo sistema esistente si può prendere in carico con il metodo Urazuke, con
@@ -246,7 +255,17 @@ non l'agente:
 > ripristinata; (7) elenca ogni integrazione esterna e di' se ha una modalità di prova o si può
 > isolare al bordo. Per ogni prerequisito: verde o rosso, la prova (cosa hai fatto e cosa è
 > successo) e, se è in rosso, quale progetto lo porterebbe in verde. Non decidere: presentami la
-> scheda, e decido io. Rispondi nella mia lingua.
+> scheda, e decido io.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: che i prerequisiti si verifichino **facendo** (montare, leggere, scrivere
 il documento, eseguire un test), perché un modello di frontiera può fare tutte e quattro le cose e
@@ -266,6 +285,13 @@ precedente si affronta adesso, dopo, o mai (e allora il sistema non è idoneo).
 > evidence, and, for every red one, the prerequisite project as a pending item in `docs/PENDING.md`
 > marked as blocking, with its own acceptance criterion: the prerequisite verified green. Include
 > the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Decisione: [va / va dopo questi progetti precedenti: … / non va]. Scrivi la scheda finale in
@@ -273,6 +299,14 @@ precedente si affronta adesso, dopo, o mai (e allora il sistema non è idoneo).
 > prova, e, per ciascuno in rosso, il progetto precedente come voce in sospeso in
 > `docs/PENDING.md` marcata come bloccante, con il suo criterio di accettazione: il prerequisito
 > verificato in verde. Includi le domande che hai fatto e le mie risposte.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Verifica di completezza: ogni prerequisito ha la prova di qualcosa che l'agente **ha fatto**, non
 una risposta tua? Esiste `docs/FUNCTIONALITY_RECOVERED.md`, e l'hai letto come il proprietario:
@@ -320,6 +354,13 @@ verde in un pomeriggio per un sistema che nessuno capisce. L'agente ha risposto 
 > (11) No change reaches the test environment without the characterization suite green. Add any
 > rules you think this system needs, marked as proposals. If you need to know something about how
 > I work in order to write this, ask me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Prima di toccare qualunque cosa, fisseremo il patto di convivenza fra te e me per un sistema che
@@ -336,6 +377,14 @@ verde in un pomeriggio per un sistema che nessuno capisce. L'agente ha risposto 
 > tu sistemi in silenzio. (11) Nessuna modifica arriva all'ambiente di test senza la batteria di
 > caratterizzazione in verde. Aggiungi le regole che credi servano a questo sistema, marcate come
 > proposte. Se ti serve sapere qualcosa su come lavoro per scrivere questo, chiedimelo.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: le sei regole di sempre, e cinque che esistono perché un modello di fronte
 a codice altrui fa tre cose per riflesso: lo riordina, lo "sistema" dove gli sembra sbagliato, e
@@ -406,7 +455,16 @@ non l'agente:
 > same way. Third, `docs/DISCREPANCIES.md`: everything where the code, the database, the
 > documentation and what the business says in the survey do not agree, with the evidence on each
 > side. Do not resolve any discrepancy and do not fix anything: list them. Create `docs/STATUS.md`
-> for the living state. Reply in my language.
+> for the living state.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Recupereremo la mappa di questo sistema a partire da ciò che esiste. Leggi il repository intero
@@ -424,7 +482,17 @@ non l'agente:
 > Terzo, `docs/DISCREPANCIES.md`: tutto ciò in cui il codice, il database, la documentazione e ciò
 > che il business dice nella rilevazione non concordano, con la prova di ciascun lato. Non
 > risolvere nessuna discrepanza e non sistemare nulla: elencale. Crea `docs/STATUS.md` per lo
-> stato vivo. Rispondi nella mia lingua.
+> stato vivo.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: che legga tutto e dichiari ciò che non ha potuto leggere (la clausola di
 completezza nella sua forma da legacy: la lacuna si marca, non si riempie); che la rilevazione e
@@ -450,6 +518,13 @@ dimenticato; il sistema è sbagliato e si cambia; oppure resta aperta con una da
 > where I decided the current behaviour stays, write it next to the node as a confirmed rule. Add
 > to `PROJECT.md` the instruction to read this file, the tree and the working agreement at the
 > start of every session.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Confermo questi nodi: [lista]. Correggi questi: [lista]. Le discrepanze si decidono così: [una
@@ -460,6 +535,14 @@ dimenticato; il sistema è sbagliato e si cambia; oppure resta aperta con una da
 > deve cambiare; per quelle in cui ho deciso che il comportamento attuale resta, scrivilo accanto
 > al nodo come regola confermata. Aggiungi a `PROJECT.md` l'istruzione di leggere questo file,
 > l'albero e il patto di convivenza all'inizio di ogni sessione.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: che la decisione su ogni discrepanza resti nei tre posti di sempre (il
 registro delle decisioni, la voce in sospeso se bisogna cambiare, l'albero se si conferma), e che
@@ -524,7 +607,16 @@ non l'agente:
 > field: whether it BLOCKS (must be fixed before any change, by my criteria: [criteria]), whether
 > it is PAID WHEN TOUCHED (fixed together with the first change that enters its module), or whether
 > it CAN WAIT. Grade every dimension you audited. End with every finding turned into a proposed
-> pending item, blocking ones first. Reply in my language.
+> pending item, blocking ones first.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Fai l'audit di questo sistema su integrità, sicurezza, prestazioni, qualità del codice e
@@ -539,7 +631,17 @@ non l'agente:
 > secondo il mio criterio: [criterio]), se SI PAGA QUANDO SI TOCCA (si risolve insieme alla prima
 > modifica che entra nel suo modulo), oppure se PUÒ ASPETTARE. Dai un voto a ogni dimensione di
 > cui hai fatto l'audit. Finisci con ogni rilievo trasformato in una voce in sospeso proposta,
-> prima quelle bloccanti. Rispondi nella mia lingua.
+> prima quelle bloccanti.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: l'audit del gradino 13 con la dimensione "distribuibilità" aggiunta
 (perché in un legacy il deployment è di solito il primo problema) e con il campo di velocità, che
@@ -619,6 +721,14 @@ non l'agente:
 > characterization suite green, and nothing reaches production without the full suite green with
 > the exact version. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by hand
 > without you. Take a screenshot of the system running in the test environment and show it to me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [it]
@@ -638,6 +748,15 @@ non l'agente:
 > caratterizzazione in verde, e nulla arriva in produzione senza la batteria completa in verde con
 > la versione esatta. Documenta tutto in `docs/DEPLOYMENT.md` in modo che una persona possa farlo
 > a mano senza di te. Fai uno screenshot del sistema che gira nell'ambiente di test e mostramelo.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
 > Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: lo scheletro del gradino 4 costruito attorno a qualcosa che esiste già,
@@ -663,7 +782,16 @@ operabili chiusa prima o come parte di questa batteria.
 > simulate it: say so and open a pending item marked as blocking. If while writing these tests you
 > find behaviour that looks wrong, do not fix it: add it to `docs/DISCREPANCIES.md` with the
 > evidence. Record the command to run the suite in `docs/STATUS.md`, and make the suite the gate
-> for the test environment as `docs/GATES.md` says. Reply in my language.
+> for the test environment as `docs/GATES.md` says.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Scriveremo i test di caratterizzazione di questi flussi critici: [lista]. Un test di
@@ -677,7 +805,17 @@ operabili chiusa prima o come parte di questa batteria.
 > scrivi questi test trovi un comportamento che sembra sbagliato, non sistemarlo: aggiungilo a
 > `docs/DISCREPANCIES.md` con la prova. Registra il comando per eseguire la batteria in
 > `docs/STATUS.md`, e fai in modo che la batteria sia il cancello dell'ambiente di test come dice
-> `docs/GATES.md`. Rispondi nella mia lingua.
+> `docs/GATES.md`.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: il gradino 8 al contrario. Nel progetto nuovo il test nasce in rosso e
 passa al verde con la modifica; qui il test nasce in verde, perché cattura ciò che c'è, e la prova
@@ -749,7 +887,16 @@ non l'agente:
 > parts you cannot see, say so instead of leaving them out. Present me the actions table with a
 > proposed lock for each (explicit confirmation, double safety, dry-run mode, daily limit, a human
 > in the loop) and a proposal of which locks go NOW, before any change, and which can go when the
-> module is touched. Do not implement anything yet: I confirm lock by lock. Reply in my language.
+> module is touched. Do not implement anything yet: I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Percorri il codice, i trigger del database e le attività pianificate del server cercando tutto
@@ -766,7 +913,17 @@ non l'agente:
 > (conferma esplicita, doppia sicurezza, modalità di prova, limite giornaliero, un umano nel
 > circuito) e una proposta su quali lucchetti vanno ADESSO, prima di qualunque modifica, e quali
 > possono andare quando si tocca il modulo. Non implementare ancora nulla: confermo io lucchetto
-> per lucchetto. Rispondi nella mia lingua.
+> per lucchetto.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: l'inventario dei gradini 14 e 11 in una passata sola, perché percorrono lo
 stesso codice; il confronto fra ciò che il business ricorda e ciò che il codice fa, che è dove
@@ -825,7 +982,16 @@ database.
 > expects and whether the system will serve more than one site. Then write `docs/SIZING.md`: what
 > breaks first if everything is multiplied by ten, which of the current architecture choices hold
 > and which do not, and which asymmetric decisions we take now, before evolving, because they are
-> cheap today and expensive later. Do not change any code. Reply in my language.
+> cheap today and expensive later. Do not change any code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Prima di cambiare qualunque cosa dimensioneremo questo sistema con i suoi numeri reali. Con
@@ -840,7 +1006,17 @@ database.
 > il business si aspetta e se il sistema servirà più di un sito. Poi scrivi `docs/SIZING.md`: cosa
 > si rompe per primo se tutto si moltiplica per dieci, quali delle scelte architetturali attuali
 > reggono e quali no, e quali decisioni asimmetriche prendiamo adesso, prima di evolvere, perché
-> oggi sono economiche e dopo costose. Non cambiare nessun codice. Rispondi nella mia lingua.
+> oggi sono economiche e dopo costose. Non cambiare nessun codice.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: misurare invece di chiedere, che è ciò che il legacy permette e il
 progetto nuovo no; il misuratore con test e la verifica nelle due direzioni del gradino 7, perché
@@ -905,7 +1081,16 @@ non l'agente:
 > same modules and should be paid together with it. If the request is ambiguous on any point such
 > that you cannot write a verifiable item, ask me; do not resolve it by assuming. Order: blocking
 > items first, then the client's items in the priority I gave you, each with its paired
-> normalization. Reply in my language.
+> normalization.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Trasformeremo la normalizzazione e la richiesta del cliente per questa tappa in una sola coda di
@@ -923,7 +1108,17 @@ non l'agente:
 > toccano gli stessi moduli e che conviene pagare insieme a lei. Se la richiesta è ambigua su
 > qualche punto al punto che non puoi scrivere una voce verificabile, chiedimelo; non risolverla
 > supponendo. Ordine: prima le voci bloccanti, poi quelle del cliente nella priorità che ti ho
-> dato, ciascuna con la sua normalizzazione abbinata. Rispondi nella mia lingua.
+> dato, ciascuna con la sua normalizzazione abbinata.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: il gradino 5 completo (la specifica dettagliata vive in ogni voce in
 sospeso, anche in quelle di normalizzazione), con le due marche che fanno questo percorso: la
@@ -991,7 +1186,16 @@ riproduzione scritta, ogni giro sistema un sintomo diverso.
 > fix changes a current behaviour that someone may depend on, say so explicitly: that is a decision
 > for me, not a side effect. Close the paired normalization items of this module in the same
 > block, each with its own evidence. The commit message says "proved red against [version]" and
-> the test counts. Reply in my language.
+> the test counts.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Questa voce in sospeso è una correzione: [cosa non funziona, nelle parole del cliente, e come
@@ -1007,6 +1211,15 @@ riproduzione scritta, ogni giro sistema un sintomo diverso.
 > dipendere, dillo esplicitamente: quella è una decisione mia, non un effetto collaterale. Chiudi
 > le voci di normalizzazione abbinate di questo modulo nello stesso blocco, ciascuna con la sua
 > prova. Il messaggio del commit dice "provato in rosso contro [versione]" e i numeri dei test.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
 > Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: la riproduzione **prima** della diagnosi, perché un modello diagnostica
@@ -1050,7 +1263,16 @@ modo di tornare indietro (il backup di N0 o la versione precedente) pronto.
 > what you did not verify. Do not touch anything else. Then, today, open the corrective pending
 > item in `docs/PENDING.md` with what happened, and we close it with the full routine: the test
 > that reproduces it in red, the root cause, the fix at the root, the characterization suite and
-> the regression green. Reply in my language.
+> the regression green.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Questa è una correzione urgente in produzione: [cosa sta succedendo]. Fai il minimo che fermi il
@@ -1058,7 +1280,17 @@ modo di tornare indietro (il backup di N0 o la versione precedente) pronto.
 > cambiato e cosa non hai verificato. Non toccare nient'altro. Poi, oggi stesso, apri la voce in
 > sospeso correttiva in `docs/PENDING.md` con ciò che è successo, e la chiudiamo con la routine
 > completa: il test che la riproduce in rosso, la causa radice, la correzione alla radice, la
-> batteria di caratterizzazione e la regressione in verde. Rispondi nella mia lingua.
+> batteria di caratterizzazione e la regressione in verde.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: il minimo, con il ritorno indietro prima e non dopo, e con il rapporto
 onesto di ciò che non è stato verificato (gradino 12); e l'obbligo di rientrare dal ciclo lo

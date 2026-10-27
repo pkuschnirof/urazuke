@@ -65,7 +65,16 @@ o agente:
 > propose: whether it is reversible, which lock it gets (explicit confirmation, double safety,
 > dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong.
 > General rule: on any doubt or failure along the way, the action is NOT executed and the reason
-> is logged. Present me the table; I confirm lock by lock. Reply in my language.
+> is logged. Present me the table; I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [pt]
 > Vamos decidir que ações do sistema precisam de cadeado. Leia o levantamento de ações com
@@ -75,7 +84,16 @@ o agente:
 > cadeado leva (confirmação explícita, dupla trava, modo de ensaio, limite diário, um humano no
 > circuito), e qual é o caminho de volta se der errado. Regra geral: diante de qualquer dúvida ou
 > falha no caminho, a ação NÃO se executa e o motivo se registra. Apresente-me a tabela; eu
-> confirmo cadeado por cadeado. Responda no meu idioma.
+> confirmo cadeado por cadeado.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
+>
+> Responda no meu idioma.
 
 O que estou pedindo: o cruzamento entre o que o negócio disse e o que o código faz (aí aparecem
 as ações de que ninguém se lembrava); a cláusula de completude na sua forma para este degrau: as
@@ -96,12 +114,26 @@ tabela e no código.
 > that, under the doubt condition, the action does NOT happen (proved red against the version
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Confirmo os cadeados [lista]; mude [X] por [Y]. Implemente-os com um teste por cadeado que
 > prove que, na condição de dúvida, a ação NÃO ocorre (provado em vermelho contra a versão sem o
 > cadeado). Registre a tabela final em `docs/LOCKS.md`. E para toda automação nova: modo de
 > ensaio primeiro, registrando o que teria feito, até que eu a habilite.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: o teste por cadeado **provado em vermelho** (sem o cadeado, a ação ocorria;
 com o cadeado, não), que é o degrau 8 aplicado à segurança; a tabela final; e a regra do modo de

@@ -118,7 +118,16 @@ non l'agente:
 > and update them in the same change, whoever owns them. (6) Every business decision goes to
 > `docs/DECISIONS.md` the moment it is taken, with the person's name and the date. (7) Update
 > `docs/STATUS.md` with what you are doing when you start and when you stop, so that the others'
-> agents see it. Reply in my language.
+> agents see it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Lavoriamo in squadra su un solo ramo condiviso, ogni persona con la propria sessione di agente,
@@ -135,7 +144,17 @@ non l'agente:
 > `docs/PRODUCER_CONSUMER_MAP.md` e aggiornali nella stessa modifica, di chiunque siano. (6) Ogni
 > decisione di business va in `docs/DECISIONS.md` nel momento in cui si prende, con il nome della
 > persona e la data. (7) Aggiorna `docs/STATUS.md` con ciò che stai facendo quando cominci e
-> quando smetti, perché gli agenti degli altri lo vedano. Rispondi nella mia lingua.
+> quando smetti, perché gli agenti degli altri lo vedano.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: le sette regole trasformate in routine dell'agente, perché l'agente non
 vede gli altri agenti e rispetterà solo ciò che legge; la lettura obbligatoria all'inizio della
@@ -158,7 +177,16 @@ conflitti; e lo stato vivo scritto sul momento.
 > field and by the producer-consumer map; if there is an overlap, stop and tell me, do not start.
 > If there is none, write my name in the "claimed by" field with today's date, write in
 > `docs/STATUS.md` what I am starting, re-read the item's specification, and tell me which
-> contracts of the map this item will touch and who consumes them. Reply in my language.
+> contracts of the map this item will touch and who consumes them.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Prendo la voce in sospeso [PND-NNN]. Prima di tutto: elenca le voci in sospeso reclamate da
@@ -166,7 +194,17 @@ conflitti; e lo stato vivo scritto sul momento.
 > e alla mappa produttore-consumatore; se c'è sovrapposizione, fermati e dimmelo, non cominciare.
 > Se non ce n'è, scrivi il mio nome nel campo "reclamata da" con la data di oggi, scrivi in
 > `docs/STATUS.md` cosa comincio, rileggi la specifica della voce, e dimmi quali contratti della
-> mappa toccherà questa voce e chi li consuma. Rispondi nella mia lingua.
+> mappa toccherà questa voce e chi li consuma.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: la verifica della sovrapposizione prima di cominciare, che è il momento
 economico per evitare un conflitto; il reclamo scritto; e la lista dei consumatori che toccherò,
@@ -190,7 +228,16 @@ per sapere fin dall'inizio a chi sto cambiando qualcosa.
 > show me the counts. If anything is red, stop: tell me what and whose change it comes from. If
 > this item is not finished, confirm the feature switch is off by default and say so in the
 > commit message. Then push, show me the pipeline green on the shared branch, and update
-> `docs/STATUS.md` and the pending item. Reply in my language.
+> `docs/STATUS.md` and the pending item.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Integriamo nel ramo condiviso. Porta prima le modifiche degli altri e dimmi cosa è entrato e se
@@ -200,7 +247,17 @@ per sapere fin dall'inizio a chi sto cambiando qualcosa.
 > e mostrami i numeri. Se qualcosa è in rosso, fermati: dimmi cosa e da quale modifica di chi
 > viene. Se questa voce in sospeso non è finita, conferma che l'interruttore è spento in modo
 > predefinito e dillo nel messaggio del commit. Poi carica, mostrami la catena in verde sul ramo
-> condiviso, e aggiorna `docs/STATUS.md` e la voce in sospeso. Rispondi nella mia lingua.
+> condiviso, e aggiorna `docs/STATUS.md` e la voce in sospeso.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: portare prima di caricare; risolvere i conflitti leggendo entrambi i lati
 e non "vincendo" (il riflesso del modello davanti a un conflitto è tenersi la sua versione); la

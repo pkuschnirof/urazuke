@@ -79,6 +79,14 @@ the agent:
 > for the three largest tables, peak concurrency, data size at five years, and what breaks first
 > if everything is multiplied by ten. Then present three options for persistence and concurrency,
 > each with the cost of migrating to the others later. Do not choose: I choose. Do not write code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 What I am asking for, clause by clause: distinguish primary from derived (it is the distinction
@@ -107,6 +115,13 @@ neither choose nor write code, because this step is about deciding, not building
 > taking "just in case" even though they are not needed today (for example: the persistence
 > interface is asynchronous from line one, even if the first engine is synchronous). Include the
 > questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: the complete record, with sources and arithmetic; the chosen option and the
 reason; and the asymmetric decisions written down, because if they stay implicit they are not

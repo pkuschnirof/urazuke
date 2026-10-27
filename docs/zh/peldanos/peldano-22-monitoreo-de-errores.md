@@ -68,7 +68,16 @@
 > the report. Tag every captured error with its source, and keep the errors of the tools that watch
 > the system (the panel, the resident agent, the monitoring itself) apart from the errors of the
 > system: the report lists them in a separate section, and only the system's errors open pending
-> items. Document it in `docs/MONITORING.md`. Reply in my language.
+> items. Document it in `docs/MONITORING.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要确保生产里没有任何错误不被看见。用第 16 级台阶的记录，搭建：(1) 对后端、任务和用
@@ -82,7 +91,14 @@
 > 个待办项说明为什么容忍它、容忍到什么时候。给我看一个在测试环境里、在浏览器里故意引发的
 > 错误，被它的标识符一路跟到后端记录、告警和报告。给每个捕获的错误标注来源，并把观测系统的工
 > 具（面板、常驻代理、监控本身）的错误与系统本身的错误分开：报告把它们列在单独一节，只有系统
-> 的错误才会打开待办项。把它记进 `docs/MONITORING.md`。用我的语言回复。
+> 的错误才会打开待办项。把它记进 `docs/MONITORING.md`。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 **工具的错误不是系统的错误。** 集中捕获按来源区分：系统的错误和观测它的工具（面板、常驻代理、监控本身）的错误以不同来源保存，报告把它们列在不同的节里，只有系统的错误才会打开待办项。在 Turnera 练习中，第一份周期报告打开了六个"bug"，其实是 Forge 面板在跟一个已关闭的服务器通信。（决定 D-038。）
 
@@ -103,12 +119,24 @@
 > pending item or a written reason with a date; and tell me which errors disappeared and why,
 > with the commit that fixed each one. An error that disappeared without a fix is not solved: it
 > is hiding, and it stays in the report until its cause is known.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 每一份错误周期报告：和我一起走一遍；为新错误开纠正型待办项，每个带上复现它的方式；确认
 > 每个复发错误都有一个待办项或者一条带日期的书面理由；并告诉我哪些错误消失了、为什么，附
 > 上修好每一个的那次提交。一个没有修复就消失的错误并没有被解决：它藏起来了，而且它会留在
 > 报告里，直到它的原因被弄清楚。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：周期的纪律，以及关于消失的错误的那条规则，它是最反直觉、也最有价值的一条：一个自
 己走掉的错误会自己回来。

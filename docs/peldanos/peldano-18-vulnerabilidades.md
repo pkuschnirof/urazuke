@@ -81,7 +81,16 @@ el agente:
 > P2 when possible), and whether a fix exists (an upgrade, a patch, a configuration change). If a
 > part cannot be scanned from where you are, say so and mark it as not scanned; do not pass it as
 > clean. Then propose the fixes for every P0 and P1, one pending item each. Do not apply any
-> upgrade yet: an upgrade is a change and goes through the full routine. Reply in my language.
+> upgrade yet: an upgrade is a change and goes through the full routine.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [es]
 > Vamos a escanear este sistema en busca de vulnerabilidades y a arreglar lo que importa antes de
@@ -98,7 +107,16 @@ el agente:
 > cambio de configuración). Si alguna parte no se puede escanear desde donde estás, decilo y
 > marcala como no escaneada; no la des por limpia. Después proponé los arreglos para cada P0 y
 > P1, un pendiente cada uno. No apliques ninguna actualización todavía: una actualización es un
-> cambio y pasa por la rutina completa. Respondé en mi idioma.
+> cambio y pasa por la rutina completa.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo: las cuatro capas de escaneo (dependencias, código, secretos en el
 historial, configuración), en la cadena **y con calendario**, porque las vulnerabilidades nuevas
@@ -121,6 +139,13 @@ pasar por el bucle, que es la que evita el viernes roto.
 > again and show me it is clean of P0 and P1. Make the scan a gate in `docs/GATES.md`: nothing is
 > promoted to production with an open P0, and a new P1 opens a pending item automatically. Record
 > the policy, the schedule and what is not covered in `docs/SECURITY.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [es]
 > Arreglá [lista], cada uno como pendiente propio, con su test probado en rojo donde un test
@@ -130,6 +155,13 @@ pasar por el bucle, que es la que evita el viernes roto.
 > una compuerta en `docs/GATES.md`: nada se promueve a producción con un P0 abierto, y un P1
 > nuevo abre un pendiente automáticamente. Registrá la política, el calendario y lo que no está
 > cubierto en `docs/SECURITY.md`.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
 
 Qué le estoy pidiendo: un pendiente por arreglo, con el rojo del peldaño 8 donde se puede (una
 vulnerabilidad arreglada sin test vuelve con el próximo refactor); el escaneo repetido como

@@ -65,6 +65,14 @@
 > environment. Declare the gates of the workflow (what must be green to move from one stage to
 > the next) in `docs/GATES.md`. When done, take a screenshot of the empty UI running in the
 > test environment and show it to me. Do not add any functionality "while you are at it".
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [ja]
@@ -77,6 +85,12 @@
 > `docs/GATES.md` に宣言してください。終わったら、テスト環境で動いている空のUIのスクリーン
 > ショットを撮って私に見せてください。「ついでに」機能を追加しないでください。私の言語で
 > 答えてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：始める前にアクセスがあることを確認すること（それなしには骨組みはエージェ
 ントのマシンに留まる）。骨組みとは何かの正確なリスト（構造、起動、一つのテスト、継続的
@@ -99,11 +113,24 @@
 > Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a
 > second time and show me that the second run changed nothing.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 骨組みを承認します。`docs/STATUS.md` にテスト環境のURL、テストを実行するコマンド、デプロイ
 > するコマンドを記録し、このステップを完了と印してください。その後デプロイを二度目に実行し、
 > 二度目の実行が何も変えなかったことを私に見せてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：次のセッションが見つけられる場所に三つのコマンドを残すこと、そしてデプ
 ロイが繰り返し可能であることを証明すること（何も壊さずに二度実行する）。その二度目の実行

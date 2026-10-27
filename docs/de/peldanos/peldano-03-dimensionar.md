@@ -84,6 +84,14 @@ machst es, nicht der Agent:
 > for the three largest tables, peak concurrency, data size at five years, and what breaks first
 > if everything is multiplied by ten. Then present three options for persistence and concurrency,
 > each with the cost of migrating to the others later. Do not choose: I choose. Do not write code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [de]
@@ -98,7 +106,17 @@ machst es, nicht der Agent:
 > Nebenläufigkeit in der Spitze, Datenvolumen nach fünf Jahren, und was zuerst bricht, wenn alles
 > mit zehn multipliziert wird. Lege dann drei Optionen für Persistenz und Nebenläufigkeit vor,
 > jede mit den Kosten, später zu den anderen zu migrieren. Wähle nicht: ich wähle. Schreibe
-> keinen Code. Antworte in meiner Sprache.
+> keinen Code.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange, Klausel für Klausel: Primärdaten von abgeleiteten unterscheiden (das ist
 die Unterscheidung, die die Erfindung verhindert); **die fehlenden Primärdaten erfragen und sie
@@ -130,6 +148,13 @@ nicht des Bauens.
 > taking "just in case" even though they are not needed today (for example: the persistence
 > interface is asynchronous from line one, even if the first engine is synchronous). Include the
 > questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Ich wähle Option [B]. Halte in `docs/SIZING.md` fest: die Primärdaten mit ihrer Quelle, die
@@ -137,6 +162,14 @@ nicht des Bauens.
 > Entscheidungen, die wir „vorsichtshalber“ treffen, obwohl sie heute nicht nötig sind (zum
 > Beispiel: die Persistenzschnittstelle ist ab der ersten Zeile asynchron, auch wenn die erste
 > Engine synchron ist). Nimm die Fragen auf, die du gestellt hast, und meine Antworten.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: die vollständige Aufzeichnung, mit Quellen und Rechnungen; die gewählte
 Option und den Grund; und die asymmetrischen Entscheidungen ausgeschrieben, denn wenn sie implizit

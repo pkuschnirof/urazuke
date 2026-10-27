@@ -87,6 +87,13 @@ l'agente:
 > first-click check, where I name the place I would look for a task and you
 > compare that with the menu, and the real screenshot of the test
 > environment.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Ogni voce in sospeso che cambia ciò che un utente vede o fa si chiude con i suoi casi di prova
@@ -106,6 +113,14 @@ l'agente:
 > due verifiche umane che nessuna macchina sostituisce: quella del primo
 > clic, in cui io nomino il luogo dove cercherei un compito e tu confronti
 > questo con il menu, e la cattura reale dell'ambiente di test.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: che il caso esca dai criteri di accettazione (così prova ciò che è stato
 chiesto, non ciò che il modello ha capito); che sia scritto per qualcuno che non sa come funziona
@@ -134,7 +149,16 @@ una persona.
 > the semantic tree it touches; do not fix anything now. For every case that passed, nothing. Then
 > tell me, flow by flow, how many cases passed and how many failed, compared with the previous
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
-> the case or the system is the problem. Reply in my language.
+> the case or the system is the problem.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Leggi le esecuzioni di oggi in `docs/MANUAL_TESTS.md`. Per ogni caso che è fallito, e per ogni
@@ -143,7 +167,17 @@ una persona.
 > tocca; non sistemare niente adesso. Per ogni caso che è passato, niente. Poi dimmi, flusso per
 > flusso, quanti casi sono passati e quanti sono falliti, confrontato con l'esecuzione precedente,
 > e quali fallimenti si ripetono. Se un caso non si è potuto eseguire, dimmi perché e se il
-> problema è il caso o il sistema. Rispondi nella mia lingua.
+> problema è il caso o il sistema.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: la reimmissione resa operativa: ogni fallimento umano è una voce in sospeso
 correttiva, con le parole della persona (non quelle del modello) come riproduzione, e appesa

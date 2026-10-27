@@ -68,7 +68,16 @@ o agente:
 > migrates schema or data, a written plan for undoing or compensating it, since reverting the code
 > alone does not undo a migration that already ran; (6) an automatic check that prevents
 > committing a secret. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by
-> hand without you. Reply in my language.
+> hand without you.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [pt]
 > Vamos fechar o caminho para a produção. Leia o levantamento de ambientes e acessos. Avalie se
@@ -82,7 +91,16 @@ o agente:
 > ou dados, um plano escrito para desfazê-la ou compensá-la, já que reverter só o código não
 > desfaz uma migração que já rodou—; (6) uma verificação automática que impeça subir um segredo
 > num commit. Documente tudo em `docs/DEPLOYMENT.md` de modo que uma pessoa possa fazê-lo à mão
-> sem você. Responda no meu idioma.
+> sem você.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
+>
+> Responda no meu idioma.
 
 O que estou pedindo, cláusula por cláusula: os acessos antes de começar; os testes **uma única
 vez** por commit (rodá-los três vezes é o que queimou a cota); a implantação que só empacota; a
@@ -107,12 +125,26 @@ nos commits; e a documentação para uma pessoa, que é o degrau 20 aplicado à 
 > Before touching production: the test environment is green with the same version; the
 > rollback is ready; and tell me what changes in the configuration. After deploying: show me
 > the version running in production and an end-to-end check on production, read-only.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Antes de tocar na produção: o ambiente de teste está em verde com a mesma versão; o caminho
 > de volta está pronto; e diga-me o que muda na configuração. Depois de implantar: mostre-me a
 > versão que roda em produção e uma verificação de ponta a ponta sobre a produção, em somente
 > leitura.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: as três condições prévias (teste em verde com a mesma versão, caminho de
 volta pronto, mudanças de configuração anunciadas) e as duas provas posteriores (a versão
@@ -131,10 +163,24 @@ rodando e uma verificação de ponta a ponta sem escrever nada).
 
 > That secret is compromised: rotate it now, tell me everywhere else it was used, and add the
 > check that would have caught it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Esse segredo está comprometido: rotacione-o agora, diga-me em que outros lugares foi usado, e
 > acrescente a verificação que o teria pego.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: rotação imediata, inventário de onde mais estava, e a verificação que o
 teria detectado, para que da próxima vez não chegue ao chat.

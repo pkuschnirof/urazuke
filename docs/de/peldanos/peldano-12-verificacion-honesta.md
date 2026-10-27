@@ -64,6 +64,13 @@ machst es, nicht der Agent:
 > rule, and a switched-off rule with no written exception turns the whole
 > report red.
 >
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [de]
@@ -84,6 +91,14 @@ machst es, nicht der Agent:
 > schließt einen Block: das Grün entscheidet sich Regel für Regel, und eine
 > abgeschaltete Regel ohne schriftliche Ausnahme macht den ganzen Bericht
 > rot.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 >
 > Antworte in meiner Sprache.
 
@@ -109,11 +124,26 @@ aufzuheben.
 
 > Before diagnosing again, compare the version running where I see the problem with the version
 > that contains your fix. Tell me both. If they differ, the problem is publication, not code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Bevor du erneut diagnostizierst, vergleiche die Version, die dort läuft, wo ich das Problem
 > sehe, mit der Version, die deine Behebung enthält. Nenn mir beide. Wenn sie sich unterscheiden,
 > ist das Problem die Veröffentlichung, nicht der Code.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: dass er bei einem „ist immer noch kaputt“ nicht von null neu diagnostiziert,
 sondern zuerst Versionen vergleicht. Die Hälfte der „ist immer noch kaputt“ sind Behebungen, die

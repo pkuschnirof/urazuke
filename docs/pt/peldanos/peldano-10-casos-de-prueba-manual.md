@@ -85,6 +85,13 @@ agente:
 > first-click check, where I name the place I would look for a task and you
 > compare that with the menu, and the real screenshot of the test
 > environment.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Toda pendência que mude o que um usuário vê ou faz se fecha com os seus casos de teste manual
@@ -104,6 +111,13 @@ agente:
 > máquina substitui: a do primeiro clique, em que eu nomeio o lugar onde
 > procuraria uma tarefa e você compara isso com o menu, e a captura real do
 > ambiente de teste.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: que o caso saia dos critérios de aceitação (assim prova o que se pediu, não
 o que o modelo entendeu); que esteja escrito para alguém que não sabe como o sistema funciona,
@@ -131,7 +145,16 @@ porque executados pelo modelo são mais um teste, e a graça é que os execute u
 > the semantic tree it touches; do not fix anything now. For every case that passed, nothing. Then
 > tell me, flow by flow, how many cases passed and how many failed, compared with the previous
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
-> the case or the system is the problem. Reply in my language.
+> the case or the system is the problem.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [pt]
 > Leia as execuções de hoje em `docs/MANUAL_TESTS.md`. Por cada caso que falhou, e por cada
@@ -140,7 +163,16 @@ porque executados pelo modelo são mais um teste, e a graça é que os execute u
 > não conserte nada agora. Por cada caso que passou, nada. Depois diga-me, fluxo por fluxo,
 > quantos casos passaram e quantos falharam, comparado com a execução anterior, e que falhas se
 > repetem. Se um caso não se pôde executar, diga-me por quê e se o problema é o caso ou o
-> sistema. Responda no meu idioma.
+> sistema.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
+>
+> Responda no meu idioma.
 
 O que estou pedindo: a reinjeção feita operativa: cada falha humana é uma pendência corretiva,
 com as palavras da pessoa (não as do modelo) como reprodução, e pendurada na árvore; a comparação

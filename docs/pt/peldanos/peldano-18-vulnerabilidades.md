@@ -80,7 +80,16 @@ o agente:
 > P2 when possible), and whether a fix exists (an upgrade, a patch, a configuration change). If a
 > part cannot be scanned from where you are, say so and mark it as not scanned; do not pass it as
 > clean. Then propose the fixes for every P0 and P1, one pending item each. Do not apply any
-> upgrade yet: an upgrade is a change and goes through the full routine. Reply in my language.
+> upgrade yet: an upgrade is a change and goes through the full routine.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [pt]
 > Vamos varrer este sistema em busca de vulnerabilidades e corrigir o que importa antes da
@@ -97,7 +106,16 @@ o agente:
 > configuração). Se alguma parte não puder ser varrida de onde você está, diga-o e marque-a como
 > não varrida; não a dê por limpa. Depois proponha as correções para cada P0 e P1, uma pendência
 > cada uma. Não aplique nenhuma atualização ainda: uma atualização é uma mudança e passa pela
-> rotina completa. Responda no meu idioma.
+> rotina completa.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
+>
+> Responda no meu idioma.
 
 O que estou pedindo: as quatro camadas de varredura (dependências, código, segredos no histórico,
 configuração), na cadeia **e com calendário**, porque as vulnerabilidades novas não esperam o seu
@@ -120,6 +138,13 @@ que evita a sexta-feira quebrada.
 > again and show me it is clean of P0 and P1. Make the scan a gate in `docs/GATES.md`: nothing is
 > promoted to production with an open P0, and a new P1 opens a pending item automatically. Record
 > the policy, the schedule and what is not covered in `docs/SECURITY.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Corrija [lista], cada um como pendência própria, com o seu teste provado em vermelho onde um
@@ -129,6 +154,13 @@ que evita a sexta-feira quebrada.
 > varredura uma comporta em `docs/GATES.md`: nada se promove para produção com um P0 aberto, e um
 > P1 novo abre uma pendência automaticamente. Registre a política, o calendário e o que não está
 > coberto em `docs/SECURITY.md`.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: uma pendência por correção, com o vermelho do degrau 8 onde é possível (uma
 vulnerabilidade corrigida sem teste volta com a próxima refatoração); a varredura repetida como

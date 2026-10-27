@@ -63,6 +63,13 @@ faites, pas l'agent :
 > as done something you have not verified; always separate what you verified from what you
 > believe. (6) Speak my language. Add any rules you think this project needs, marked as
 > proposals. If you need to know something about how I work in order to write this, ask me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Avant d'écrire du code, nous allons fixer le contrat de collaboration entre toi et moi. Écris
@@ -76,6 +83,13 @@ faites, pas l'agent :
 > toujours ce que tu as vérifié de ce que tu crois. (6) Parle ma langue. Ajoute les règles dont tu
 > penses que ce projet a besoin, marquées comme propositions. Si tu as besoin de savoir quelque
 > chose sur ma façon de travailler pour écrire ceci, demande-le-moi.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : les six règles minimales, chacune avec l'échec qu'elle évite (c'est ce
 qui en fait des règles et non des conseils) ; qu'il propose des règles propres au projet mais les
@@ -97,11 +111,25 @@ connaît pas la personne avec qui il va travailler.
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > J'accepte les règles 1 à 6 et tes propositions [X, Y] ; je refuse [Z] parce que [raison].
 > Finalise le contrat avec la date d'aujourd'hui et un numéro de version. Ensuite ajoute au
 > fichier de projet l'instruction de lire ce contrat au début de chaque session.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : qu'il clôture le contrat avec une date et une version, et qu'il l'accroche
 au fichier de projet pour qu'il soit lu à chaque session. Sans cet accrochage, le contrat existe

@@ -82,6 +82,14 @@ faites, pas l'agent :
 > for the three largest tables, peak concurrency, data size at five years, and what breaks first
 > if everything is multiplied by ten. Then present three options for persistence and concurrency,
 > each with the cost of migrating to the others later. Do not choose: I choose. Do not write code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [fr]
@@ -96,7 +104,16 @@ faites, pas l'agent :
 > tables, concurrence au pic, taille des données à cinq ans, et ce qui casse en premier si tout
 > est multiplié par dix. Ensuite présente trois options de persistance et de concurrence, chacune
 > avec le coût de migrer vers les autres plus tard. Ne choisis pas : c'est moi qui choisis.
-> N'écris pas de code. Réponds dans ma langue.
+> N'écris pas de code.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
+> Réponds dans ma langue.
 
 Ce que je lui demande, clause par clause : distinguer les primaires des dérivées (c'est la
 distinction qui évite l'invention) ; **demander les primaires qui manquent et ne jamais les
@@ -127,6 +144,13 @@ décision, pas de construction.
 > taking "just in case" even though they are not needed today (for example: the persistence
 > interface is asynchronous from line one, even if the first engine is synchronous). Include the
 > questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Je choisis l'option [B]. Enregistre dans `docs/SIZING.md` : les données primaires avec leur
@@ -134,6 +158,13 @@ décision, pas de construction.
 > les décisions que nous prenons « au cas où » même si elles ne sont pas nécessaires aujourd'hui
 > (par exemple : l'interface de persistance est asynchrone dès la première ligne, même si le
 > premier moteur est synchrone). Inclus les questions que tu as posées et mes réponses.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : le registre complet, avec les sources et les calculs ; l'option choisie et
 la raison ; et les décisions asymétriques écrites, parce que si elles restent implicites, elles ne

@@ -77,6 +77,14 @@
 > change: indexes derived from the real queries, pagination, batching, the elimination of N+1
 > loops, retention and archiving per table, pool size; for each change, the expected gain, the
 > risk, and which consumers in the map it touches. Do not change anything yet: I approve the list.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [ja]
@@ -90,7 +98,15 @@
 > るかを提案してください：実際のクエリから導かれるインデックス、ページング、バッチ処理、N+1
 > ループの除去、テーブルごとの保持と書庫入れ、プールの大きさ。各変更について、期待される利
 > 得、リスク、そして地図のどの消費者に触れるか。まだ何も変えないでください：リストは私が承認
-> します。私の言語で答えてください。
+> します。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：提案する前に第7段の方法で計測すること（テスト付きの計器、双方向で監査、コ
 マンド付きの数字）。クエリごとに、利得とリスクとともに、そして各変更が触れる地図の消費者とと
@@ -115,6 +131,13 @@
 > test that fails if it is exceeded. Update every consumer in the map that a change touches, in
 > the same commit. Record the before and after table, the budgets and the retention per table in
 > `docs/PERSISTENCE.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 承認された変更[リスト]を、一つにつき一コミットで適用してください。それぞれについて、同じ
@@ -122,6 +145,12 @@
 > な経路ごとに予算（クエリ数と時間）を、計測値に小さな余裕を足した値で定め、超えたら失敗する
 > テストで守ってください。変更が触れる地図の各消費者を、同じコミットで更新してください。前と
 > 後の表、予算、テーブルごとの保持を `docs/PERSISTENCE.md` に記録してください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：変更ごとに一つのコミット。前と後が帰属可能になるように。同じデータの上の同
 じ計器（データが変わるなら、数字は何も言わない）。テスト付きの予算。それがN+1ループが三か月

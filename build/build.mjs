@@ -19,6 +19,10 @@ import { execFileSync } from 'node:child_process';
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
 execFileSync(process.execPath, [join(raiz, 'build', 'prompts.mjs')], { stdio: 'inherit' });
+// La forma de la pregunta (UX-28, D-070): la clausula esta en los setenta y dos prompts de los
+// ocho idiomas, y los tres niveles que nombra son los que declara el dato. Va DESPUES de
+// prompts.mjs, que es el que ya exige que la pieza inglesa sea una sola.
+execFileSync(process.execPath, [join(raiz, 'build', 'forma_de_la_pregunta.mjs')], { stdio: 'inherit' });
 // La API estatica de prompts (docs/html/api/prompts.json), para Forge y cualquier herramienta.
 execFileSync(process.execPath, [join(raiz, 'build', 'prompts_api.mjs')], { stdio: 'inherit' });
 // Las compuertas como datos (docs/html/api/gates.json): valida gates/ contra su esquema

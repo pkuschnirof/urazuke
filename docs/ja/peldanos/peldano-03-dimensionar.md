@@ -74,6 +74,14 @@
 > for the three largest tables, peak concurrency, data size at five years, and what breaks first
 > if everything is multiplied by ten. Then present three options for persistence and concurrency,
 > each with the cost of migrating to the others later. Do not choose: I choose. Do not write code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [ja]
@@ -86,7 +94,15 @@
 > 一次データが完全になったら、計算を示しながら算出してください：最大の三テーブルの年間行数、
 > ピーク時の並行性、五年後のデータ量、そしてすべてが十倍になったとき最初に壊れるもの。次に
 > 永続化と並行性の三つの選択肢を、それぞれ後で他へ移行するコストとともに提示してください。
-> 選ばないでください。私が選びます。コードを書かないでください。私の言語で答えてください。
+> 選ばないでください。私が選びます。コードを書かないでください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか、条項ごとに：一次と派生を区別すること（発明を防ぐ区別だ）。**足りない
 一次データを求め、決して推定しないこと**。以前のシステムがあればその実数を出所とともに
@@ -113,12 +129,25 @@
 > taking "just in case" even though they are not needed today (for example: the persistence
 > interface is asynchronous from line one, even if the first engine is synchronous). Include the
 > questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 選択肢[B]を選びます。`docs/SIZING.md` に記録してください：出所付きの一次データ、計算付き
 > の派生データ、三つの選択肢、選んだものとその理由、そして今日は必要でなくても「念のため」
 > 取る決定（例えば：永続化インターフェースは最初のエンジンが同期でも一行目から非同期）。
 > あなたがした質問と私の答えを含めてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：出所と計算付きの完全な記録。選んだものと理由。そして書かれた非対称な
 決定。暗黙のままでは守られないから。

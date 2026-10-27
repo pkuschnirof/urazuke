@@ -80,7 +80,16 @@ l'agente:
 > information before going on; do not assume. Then fill in the sheet criterion by criterion:
 > the answer, where it comes from, and for each exclusionary criterion whether it is green or
 > red. Do not decide: present me the completed sheet with your reading and your doubts, and I
-> will decide. Reply in my language.
+> will decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Valuteremo se questo progetto si può affrontare con il metodo Urazuke. Leggi la rilevazione
@@ -89,7 +98,17 @@ l'agente:
 > si può rispondere con la rilevazione, chiedimi le informazioni che mancano prima di proseguire;
 > non supporre. Poi compila la scheda criterio per criterio: la risposta, da dove viene, e per
 > ogni criterio escludente se è in verde o in rosso. Non decidere: presentami la scheda completa
-> con la tua lettura e i tuoi dubbi, e decido io. Rispondi nella mia lingua.
+> con la tua lettura e i tuoi dubbi, e decido io.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: che legga i due input (la rilevazione e la scheda dei criteri); che
 **prima di rispondere valuti se la rilevazione basta** e, se non basta, chieda invece di supporre
@@ -114,11 +133,26 @@ mia lingua, perché il prompt è in inglese ma la conversazione non ha motivo di
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
 > source, and the conditions if any. Include the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Decisione: [va / non va / va con queste condizioni: …]. Scrivi la scheda finale in
 > `docs/ELIGIBILITY.md` con la data, chi ha deciso, la risposta a ogni criterio con la sua fonte,
 > e le condizioni se ci sono. Includi le domande che hai fatto e le mie risposte.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: che lasci la decisione scritta con data e proprietario (gradino 6), con le
 condizioni se ci sono, e con la traccia di domande e risposte, che è la prova che non ha supposto

@@ -65,7 +65,16 @@ P0 还开着的时候才提升。之后，在每次 push 时，以及按它自�
 > P2 when possible), and whether a fix exists (an upgrade, a patch, a configuration change). If a
 > part cannot be scanned from where you are, say so and mark it as not scanned; do not pass it as
 > clean. Then propose the fixes for every P0 and P1, one pending item each. Do not apply any
-> upgrade yet: an upgrade is a change and goes through the full routine. Reply in my language.
+> upgrade yet: an upgrade is a change and goes through the full routine.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要在这个系统里扫描漏洞，并在生产之前修掉要紧的那些。在持续集成里搭建，在每次 push
@@ -77,7 +86,14 @@ P0 还开着的时候才提升。之后，在每次 push 时，以及按它自�
 > 须马上修：[准则]；P1 在生产之前；P2 有条件就修），以及是否存在修复（一次升级、一个补
 > 丁、一处配置变更）。如果有一部分从你所在的位置扫描不到，说出来并标为未扫描；不要把它算
 > 作干净。然后为每个 P0 和 P1 提议修复，每个一个待办项。先不要应用任何升级：一次升级是一
-> 次变更，要走完整的例行。用我的语言回复。
+> 次变更，要走完整的例行。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求什么：四层扫描（依赖、代码、历史里的密钥、配置），放进链条**并带日程**，因为新漏洞不会
 等你下一次 push；一份有第 13 级台阶那种形状的报告，带着"未扫描"而不是"干净"的条款；由我给出的
@@ -97,6 +113,13 @@ P0 准则；以及不走循环就不许更新的禁令，那是避免星期五�
 > again and show me it is clean of P0 and P1. Make the scan a gate in `docs/GATES.md`: nothing is
 > promoted to production with an open P0, and a new P1 opens a pending item automatically. Record
 > the policy, the schedule and what is not covered in `docs/SECURITY.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 修复 [清单]，每项作为自己的待办项，在测试适用的地方带上它被证明为红的测试（一次不再通
@@ -104,6 +127,11 @@ P0 准则；以及不走循环就不许更新的禁令，那是避免星期五�
 > 端到端套件都是绿的。重新跑一遍扫描，给我看它在 P0 和 P1 上是干净的。把扫描做成
 > `docs/GATES.md` 里的一道闸门：有 P0 开着就不往生产提升，而且一个新的 P1 自动开一个待办
 > 项。把策略、日程和没有覆盖到的东西记进 `docs/SECURITY.md`。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：一项修复一个待办项，在能做到的地方带上第 8 级台阶的红（一个没有测试就修好的漏洞
 会在下一次重构时回来）；重跑一遍扫描作为证据；以及变成闸门，那是让这级台阶在没人看的时候仍然活

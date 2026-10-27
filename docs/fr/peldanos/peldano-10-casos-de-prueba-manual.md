@@ -89,6 +89,13 @@ faites, pas l'agent :
 > first-click check, where I name the place I would look for a task and you
 > compare that with the menu, and the real screenshot of the test
 > environment.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Tout élément en attente qui change ce qu'un utilisateur voit ou fait se clôt avec ses cas de
@@ -108,6 +115,13 @@ faites, pas l'agent :
 > qu'aucune machine ne remplace : celle du premier clic, où je nomme
 > l'endroit où je chercherais une tâche et vous comparez cela avec le menu,
 > et la capture réelle de l'environnement de test.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : que le cas sorte des critères d'acceptation (ainsi il teste ce qui a été
 demandé, pas ce que le modèle a compris) ; qu'il soit écrit pour quelqu'un qui ne sait pas comment
@@ -136,7 +150,16 @@ sont des tests de plus, et tout l'intérêt est qu'une personne les exécute.
 > the semantic tree it touches; do not fix anything now. For every case that passed, nothing. Then
 > tell me, flow by flow, how many cases passed and how many failed, compared with the previous
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
-> the case or the system is the problem. Reply in my language.
+> the case or the system is the problem.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [fr]
 > Lis les exécutions d'aujourd'hui dans `docs/MANUAL_TESTS.md`. Pour chaque cas qui a échoué, et
@@ -145,7 +168,16 @@ sont des tests de plus, et tout l'intérêt est qu'une personne les exécute.
 > l'arbre sémantique qu'il touche ; ne corrige rien maintenant. Pour chaque cas qui est passé,
 > rien. Dis-moi ensuite, flux par flux, combien de cas sont passés et combien ont échoué, comparé
 > à l'exécution précédente, et quels échecs se répètent. Si un cas n'a pas pu être exécuté,
-> dis-moi pourquoi et si le problème est le cas ou le système. Réponds dans ma langue.
+> dis-moi pourquoi et si le problème est le cas ou le système.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
+> Réponds dans ma langue.
 
 Ce que je lui demande : la réinjection rendue opérationnelle : chaque échec humain est un élément
 en attente correctif, avec les mots de la personne (pas ceux du modèle) comme reproduction, et

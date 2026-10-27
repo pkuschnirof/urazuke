@@ -91,7 +91,16 @@ machst es, nicht der Agent:
 > the tolerance I gave you ([tolerance] for the most used screen) and with the sizing assumptions,
 > and tell me which assumption was wrong, if any. Do not optimize anything yet. Write
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
-> diagnosis of the first bottleneck. Reply in my language.
+> diagnosis of the first bottleneck.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [de]
 > Wir werden herausfinden, wie sich dieses System bei den Volumina von `docs/SIZING.md` verhält,
@@ -110,7 +119,17 @@ machst es, nicht der Agent:
 > ([Toleranz] für den meistbenutzten Bildschirm) und mit den Annahmen der Dimensionierung, und sag
 > mir, welche Annahme falsch war, falls eine. Optimiere noch nichts. Schreib
 > `docs/PERFORMANCE_[Datum].md` mit den Zahlen, den Befehlen, dem Bruchpunkt und deiner Diagnose
-> des ersten Flaschenhalses. Antworte in meiner Sprache.
+> des ersten Flaschenhalses.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange: ein Lastskript, das ein weiteres Messgerät ist (es lebt im Repository und
 hat einen Test, denn ein Lastskript, das den Fluss nicht ausübt, misst die Luft); drei Durchläufe
@@ -138,6 +157,13 @@ gelesen zu haben, heißt das zu ändern, was es nicht war.
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
 > reruns before every deployment that changes the architecture, the persistence or a critical
 > flow, and its results are archived with date and version. Show me the first run archived.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Halt in `docs/PERFORMANCE.md` fest: das erwartete Volumen, das zehnfache Volumen, den Bruchpunkt
@@ -149,6 +175,14 @@ gelesen zu haben, heißt das zu ändern, was es nicht war.
 > Deployment erneut, das die Architektur, die Persistenz oder einen kritischen Fluss ändert, und
 > seine Ergebnisse werden mit Datum und Version archiviert. Zeig mir den ersten archivierten
 > Durchlauf.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: die Alarm-Schwellenwerte, abgeleitet aus dem Bruchpunkt, was die
 Verzahnung mit Schritt 21 ist; die Flaschenhälse als offene Posten mit der Zahl als Kriterium (so

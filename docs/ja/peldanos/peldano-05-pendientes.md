@@ -91,6 +91,13 @@
 > catalogue lives in `docs/ANEXO_HEURISTICAS.md`: cite it, do not restate
 > it.
 >
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [ja]
@@ -117,6 +124,12 @@
 > き、後でコードの中で発明しません。カタログは
 > `docs/ANEXO_HEURISTICAS.md` にあります：引用し、繰り返さ
 > ないでください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：依頼を検証可能な項目に変換し、**依頼が検証可能な項目を書けるほど十分で
 ないときは質問する**こと（曖昧さは選ぶのではなく質問して解決する）。各保留項目の完全な
@@ -143,6 +156,13 @@
 > add: the evidence, the commit, the date, and any decision that was taken along the way; that
 > record is the documentation of what was built. If along the way you see something that is not
 > on the list, add it as a new pending item with its specification; do not do it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > コードに触れる前に `docs/PENDING.md` を開き、どの項目をなぜ取るかを私に告げ、その仕様を
@@ -151,6 +171,12 @@
 > ません。閉じるときは、完全な仕様とともに記録に残し、追加してください：証拠、コミット、
 > 日付、そして途中で取られた決定。その記録が構築したものの文書です。途中でリストにない
 > ものを見つけたら、仕様付きの新しい保留項目として追加してください。やらないでください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：毎セッションの規律：何を取るかを告げて仕様を読み直す（エージェントは
 記憶なしに始まり、仕様が保留項目についての記憶だ）、各コミットで保留項目を引用する、証拠で

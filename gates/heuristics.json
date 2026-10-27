@@ -1,9 +1,9 @@
 {
-  "what": "The forty-five rules of Annex H as data: 18 of code quality (CQ-01 to CQ-18) and 27 of usability (UX-01 to UX-27). The mechanical fields live here. The STATEMENT of every rule lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
+  "what": "The forty-six rules of Annex H as data: 18 of code quality (CQ-01 to CQ-18) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
   "counts": {
     "code_quality": 18,
-    "usability": 27,
-    "total": 45
+    "usability": 28,
+    "total": 46
   },
   "decisions": [
     "D-043",
@@ -12,7 +12,8 @@
     "D-046",
     "D-047",
     "D-048",
-    "D-049"
+    "D-049",
+    "D-070"
   ],
   "groups": [
     {
@@ -27,7 +28,7 @@
     },
     {
       "id": "usability",
-      "range": "UX-01..UX-27",
+      "range": "UX-01..UX-28",
       "switch": {
         "lives_in": "the project configuration",
         "read_by": "the gate",
@@ -1404,6 +1405,37 @@
       "statement": {
         "section": "5",
         "row": "UX-27"
+      }
+    },
+    {
+      "id": "UX-28",
+      "since_schema": 2,
+      "since_version": "2026.10.8",
+      "group": "usability",
+      "family": "B6",
+      "instrument": [
+        "manual_case"
+      ],
+      "initial_severity": "warns",
+      "timing": {
+        "value": "pending_close",
+        "source": "rule"
+      },
+      "human_red": true,
+      "checker_declared_by": "owner",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          1
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "5",
+        "row": "UX-28"
       }
     }
   ]

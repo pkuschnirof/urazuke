@@ -75,7 +75,16 @@ l'agente:
 > only read is not a receipt you audited. For every finding: where it is (file and line), what
 > the risk is, what evidence proves it (the command, the query, the number), and its priority:
 > P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited.
-> End with the list of P0 findings turned into proposed pending items. Reply in my language.
+> End with the list of P0 findings turned into proposed pending items.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Fai l'audit di questo sistema su [perimetro]. Sola lettura: non cambiare nulla tranne scrivere
@@ -88,7 +97,17 @@ l'agente:
 > Per ogni rilievo: dove sta (file e riga), qual è il rischio, quale prova lo dimostra (il comando,
 > la query, il numero), e la sua priorità: P0 va corretto subito, P1 presto, P2 quando si può. Dai
 > un voto a ogni dimensione di cui hai fatto l'audit. Termina con la lista dei rilievi P0 convertiti
-> in voci in sospeso proposte. Rispondi nella mia lingua.
+> in voci in sospeso proposte.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo, clausola per clausola: sola lettura (l'auditor non corregge; propone); la
 clausola di completezza nella sua forma per l'audit: **ciò che non si è potuto verificare si
@@ -112,10 +131,25 @@ con l'audit precedente; e i P0 già convertiti in voci in sospeso proposte.
 
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Leggi `docs/AUDIT_[data].md`. Apri una voce in sospeso per ogni P0 e P1, citando il rilievo. Se
 > non sei d'accordo con qualcuno, dimmelo con la prova contraria; non ignorarlo.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: che l'audit si converta in voci in sospeso (altrimenti è un rapporto che si
 archivia), e che il disaccordo sia esplicito e con prove, non silenzioso.

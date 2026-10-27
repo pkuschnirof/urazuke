@@ -51,14 +51,30 @@
 > propose: whether it is reversible, which lock it gets (explicit confirmation, double safety,
 > dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong.
 > General rule: on any doubt or failure along the way, the action is NOT executed and the reason
-> is logged. Present me the table; I confirm lock by lock. Reply in my language.
+> is logged. Present me the table; I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要决定系统的哪些动作需要锁。读有后果动作的调研，并走遍代码，找出一切收费、发送、批
 > 准、删除或向外通知的东西。比较两张清单：如果代码里有调研没提到的动作，或者反过来，在继
 > 续之前问我。对每个动作提议：它是否可逆、它上什么锁（显式确认、双重保险、演练模式、每日
 > 上限、回路中的人），以及出错时的回退路径是什么。总规则：途中有任何疑问或故障，动作就不
-> 执行，并记录原因。把表呈给我；我逐个锁确认。用我的语言回复。
+> 执行，并记录原因。把表呈给我；我逐个锁确认。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求什么：业务说的和代码做的之间的交叉（没人记得的动作就在那里浮现）；适配这级台阶的完
 整性条款：两张清单之间的差异要问，不要自行解决；每个动作的可逆性、锁和回退路径；以及写进提
@@ -76,11 +92,23 @@
 > that, under the doubt condition, the action does NOT happen (proved red against the version
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 我确认锁 [清单]；把 [X] 改为 [Y]。实现它们，每个锁一个测试，证明在疑问条件下动作不发生
 > （对没有锁的版本先证红）。把最终的表记录到 `docs/LOCKS.md`。对任何新的自动化：先演练模
 > 式，记录它本会做什么，直到我启用它。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：每个锁的测试**先证红**（没有锁，动作发生；有锁，不发生），那是第 8 级台阶应用于
 安全；最终的表；以及所有新自动化的演练模式规则，那是让你在放手之前看到它本会做什么的东西。

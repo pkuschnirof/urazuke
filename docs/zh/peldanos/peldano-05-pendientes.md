@@ -82,6 +82,13 @@
 > catalogue lives in `docs/ANEXO_HEURISTICAS.md`: cite it, do not restate
 > it.
 >
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [zh]
@@ -102,6 +109,11 @@
 > 能、它的分组、它的角色、它的进入路径。涉及界面却没有这一行的待办项不算已规划：这一行
 > 在这里写，不在以后的代码里发明。目录在
 > `docs/ANEXO_HEURISTICAS.md`：引用它，不要重复它。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：把请求转成可验证的条目，并且**当请求不足以写出可验证的条目时提问**（含糊靠提
 问解决，不靠选择）；每个待办项的完整规格，逐字段，那是经典需求工程分解成小单位；它挂的树节
@@ -125,6 +137,13 @@
 > add: the evidence, the commit, the date, and any decision that was taken along the way; that
 > record is the documentation of what was built. If along the way you see something that is not
 > on the list, add it as a new pending item with its specification; do not do it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 在动任何代码之前，打开 `docs/PENDING.md`，告诉我你取哪一项、为什么，并重读它的规格。每次
@@ -132,6 +151,11 @@
 > 字），绝不用"搞定"。关闭时，把它连同完整规格留在登记册里，并加上：证据、提交、日期，以
 > 及途中做过的任何决定；那条记录就是所建之物的文档。如果途中你看到清单上没有的东西，把它
 > 作为新的待办项连同规格加进去；不要做它。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：每次会话的纪律：宣布取哪一项并重读规格（代理从无记忆起步，规格是它对待办项的
 记忆），每次提交引用待办项，用证据关闭，**在同一登记册里记录已完成的待办项**，以及对清单之

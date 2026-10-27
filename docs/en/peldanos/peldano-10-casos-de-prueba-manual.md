@@ -86,6 +86,13 @@ the agent:
 > first-click check, where I name the place I would look for a task and you
 > compare that with the menu, and the real screenshot of the test
 > environment.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: that the case come out of the acceptance criteria (so that it tests what was
 asked for, not what the model understood); that it be written for somebody who does not know how
@@ -114,7 +121,16 @@ and the whole point is that a person executes them.
 > the semantic tree it touches; do not fix anything now. For every case that passed, nothing. Then
 > tell me, flow by flow, how many cases passed and how many failed, compared with the previous
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
-> the case or the system is the problem. Reply in my language.
+> the case or the system is the problem.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: the reinjection made operative: every human failure is a corrective pending
 item, with the person's words (not the model's) as the reproduction, and hanging from the tree;

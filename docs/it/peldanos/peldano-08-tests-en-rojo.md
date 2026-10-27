@@ -99,6 +99,13 @@ l'agente:
 > every route checks the permission on the server, because hiding the entry
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Per chiudere questa voce in sospeso ho bisogno di prove, non della tua parola. (1) Scrivi il
@@ -125,6 +132,14 @@ l'agente:
 > né più, e ogni rotta verifica il permesso sul server, perché nascondere il
 > punto di ingresso non protegge nulla (Allegato H, UX-11, UX-12, UX-15).
 > Una matrice che nulla esercita è un documento che nessuno legge.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 **Il rosso del primo blocco.** Nel primo blocco di un progetto nuovo non c'è codice precedente: il test nuovo fallisce perché il modulo non esiste, e quel fallimento non prova che il test distingua un comportamento. Per questo, quando la versione precedente non ha il modulo, il rosso si prova **per mutazione**: l'agente pianta di proposito un difetto nella funzione appena scritta, mostra il test in rosso contro quel difetto (la ricevuta porta il diff del difetto, così vedi che non era banale), lo annulla e mostra il verde. Un solo mutante per elemento in sospeso, eseguito e registrato come qualsiasi altra ricevuta; i test di mutazione su tutta la base restano il rinforzo opzionale del gradino 9. (Decisione D-037, dalla pratica Turnera: sei ricevute di rosso che dicevano solo "il file non si carica".)
 
@@ -155,12 +170,27 @@ Il messaggio di commit con i numeri lascia la prova dove vive il codice.
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
 > item for it; do not pass it as covered.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Esegui la batteria completa end to end di tutti i flussi che esistono finora, nell'ambiente di
 > test, con la versione esatta che sarà promossa. Mostrami i numeri e, per ogni flusso, la
 > verifica nel backend che lo prova. Se qualche flusso non ha un test end to end, dillo e apri una
 > voce in sospeso; non farlo passare come coperto.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: la seconda e la terza scala dei test end to end, con la versione esatta
 (non "l'ultima"), con l'effetto nel backend per flusso, e con la clausola di completezza: ciò che
@@ -180,10 +210,25 @@ non è coperto si dichiara e diventa voce in sospeso, non si fa passare per cope
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Spiega perché non si può provare, cosa bisognerebbe aggiungere perché si possa, e apri una
 > voce in sospeso per questo. La modifica non è chiusa finché non si può provare.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: che "non si può provare" non sia la fine della conversazione ma l'inizio
 di una voce in sospeso. La non testabilità è debito, e il debito si registra.

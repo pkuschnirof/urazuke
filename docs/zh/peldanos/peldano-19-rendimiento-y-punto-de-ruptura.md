@@ -68,7 +68,16 @@
 > the tolerance I gave you ([tolerance] for the most used screen) and with the sizing assumptions,
 > and tell me which assumption was wrong, if any. Do not optimize anything yet. Write
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
-> diagnosis of the first bottleneck. Reply in my language.
+> diagnosis of the first bottleneck.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要搞清楚这个系统在 `docs/SIZING.md` 的量级下表现如何，以及它在哪里断裂。在测试环境
@@ -81,7 +90,14 @@
 > 载下：那就是断裂点；(5) 把每个数字和 `docs/PERSISTENCE.md` 的预算、和我给你的容忍度
 > （最常用界面 [容忍度]）、和容量估算的假设做比较，并告诉我哪个假设错了，如果有的话。先
 > 不要优化任何东西。写出 `docs/PERFORMANCE_[日期].md`，带上数字、命令、断裂点和你对第一
-> 个瓶颈的诊断。用我的语言回复。
+> 个瓶颈的诊断。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求什么：一个也是量具的负载脚本（它住在仓库里而且有测试，因为一个不演练流程的负载脚本测的
 是空气）；三次运行（预期、乘以十、直到压垮）；带命令的数字；和预算、业务容忍度以及容量估算假设
@@ -105,6 +121,13 @@
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
 > reruns before every deployment that changes the architecture, the persistence or a critical
 > flow, and its results are archived with date and version. Show me the first run archived.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 把这些记进 `docs/PERFORMANCE.md`：预期量级、十倍量级、断裂点连同是什么断了，以及监控
@@ -112,6 +135,11 @@
 > 在 [预期量级的十倍 / 我决定的量级] 之下的瓶颈开一个待办项，以测出来的数字作为验收标
 > 准。把负载测试做成 `docs/GATES.md` 里的一道闸门：在每次会改变架构、持久化或某条关键流
 > 程的部署之前重跑，而且它的结果带日期和版本归档。给我看归档的第一次运行。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：从断裂点推导出来的告警阈值，那是和第 21 级台阶的挂钩；瓶颈作为以数字为准则的待办
 项（这样它们是带着证据关闭的，而不是"现在跑得好多了"）；以及作为归档闸门的负载测试，好让六个月

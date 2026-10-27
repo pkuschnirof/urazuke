@@ -82,7 +82,16 @@
 > own verifiable window: the first and the last timestamp read from the database or the log, never a
 > number typed by hand; a window typed by hand is marked as such in the report and only warns, it
 > never opens a pending item on its own. Document the thresholds, the channel, the cycle and how to
-> silence an alert with a written reason in `docs/MONITORING.md`. Reply in my language.
+> silence an alert with a written reason in `docs/MONITORING.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > このシステムを本番で見張り続けます。第16段の指標と記録、`docs/PERSISTENCE.md` の予算、
@@ -102,6 +111,12 @@
 > 明記し、警告するだけで、それ自体では保留項目を開きません。閾値、経路、サイクル、そして書か
 > れた理由とともに警報を黙らせる方法を `docs/MONITORING.md` に文書化してください。私の言語で
 > 答えてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 **測定の期間。** 周期レポートは、年あたりの観測行数を段 3 で宣言した値と比べます。正しい数でも期間が間違っていれば、偽の保留項目を開きます。引き継いだ Turnera の練習では、3 年分の 30,000 行が 1 年分として渡されました。だから測定には**検証可能な**期間を添えます。データベースかログから読んだ最初と最後のレコードであって、手で入力した数字ではありません。道具がデータベースを読めなければ、それを盲点として宣言します。手入力の期間はレポートにそう明記し、警告するだけで、それ自体では保留項目を開きません。（決定 D-039。）
 
@@ -124,6 +139,13 @@
 > reason; write the decision with the date in the report itself; and tell me whether any threshold
 > must change and why, with the measurement that justifies it. Never raise a threshold to silence
 > an alert without a measured reason written down.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 資源と性能の周期報告のたびに：私と一緒に、イベントごとに見ていってください。どの範囲外のイ
@@ -131,6 +153,12 @@
 > とともに報告そのものに書いてください。そしてどれかの閾値を変えなければならないか、なぜか、
 > それを正当化する計測とともに言ってください。計測された理由を書かずに、警報を黙らせるために
 > 閾値を上げては決していけません。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：報告が読まれ、跡とともに決定されること。そして閾値のルール。それが監視が少
 しずつ沈黙していくのを防ぐものだ。

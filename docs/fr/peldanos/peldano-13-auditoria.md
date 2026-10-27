@@ -74,7 +74,16 @@ faites, pas l'agent :
 > only read is not a receipt you audited. For every finding: where it is (file and line), what
 > the risk is, what evidence proves it (the command, the query, the number), and its priority:
 > P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited.
-> End with the list of P0 findings turned into proposed pending items. Reply in my language.
+> End with the list of P0 findings turned into proposed pending items.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [fr]
 > Audite ce système sur [périmètre]. Lecture seule : ne change rien sauf écrire ton rapport dans
@@ -87,7 +96,16 @@ faites, pas l'agent :
 > audité. Pour chaque constat : où il est (fichier et ligne), quel est le risque, quelle preuve le
 > démontre (la commande, la requête, le chiffre), et sa priorité : P0 doit être corrigé maintenant,
 > P1 bientôt, P2 quand on pourra. Donne une note à chaque dimension que tu as auditée. Termine par
-> la liste des constats P0 convertis en éléments en attente proposés. Réponds dans ma langue.
+> la liste des constats P0 convertis en éléments en attente proposés.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
+> Réponds dans ma langue.
 
 Ce que je lui demande, clause par clause : lecture seule (l'auditeur ne corrige pas ; il
 propose) ; la clause de complétude sous sa forme pour auditer : **ce qui n'a pas pu être vérifié se
@@ -111,11 +129,25 @@ des notes par dimension, pour comparer avec l'audit précédent ; et les P0 déj
   vous allez compter les éléments en attente qu'il ouvre.
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Lis `docs/AUDIT_[date].md`. Ouvre un élément en attente pour chaque P0 et P1, en citant le
 > constat. Si tu n'es pas d'accord avec l'un d'eux, dis-le-moi avec la preuve contraire ; ne
 > l'ignore pas.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : que l'audit se convertisse en éléments en attente (sinon, c'est un rapport
 qu'on archive), et que le désaccord soit explicite et avec preuve, pas silencieux.

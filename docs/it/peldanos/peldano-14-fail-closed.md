@@ -66,7 +66,16 @@ l'agente:
 > propose: whether it is reversible, which lock it gets (explicit confirmation, double safety,
 > dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong.
 > General rule: on any doubt or failure along the way, the action is NOT executed and the reason
-> is logged. Present me the table; I confirm lock by lock. Reply in my language.
+> is logged. Present me the table; I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Decidiamo quali azioni del sistema hanno bisogno di un lucchetto. Leggi la rilevazione delle
@@ -78,6 +87,14 @@ l'agente:
 > generale: davanti a qualunque dubbio o guasto lungo il percorso, l'azione NON si esegue e si
 > registra il motivo. Presentami la tabella; io confermo lucchetto per lucchetto. Rispondi nella
 > mia lingua.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: l'incrocio tra ciò che il business ha detto e ciò che il codice fa (lì
 compaiono le azioni che nessuno ricordava); la clausola di completezza nella sua forma per questo
@@ -99,12 +116,27 @@ prompt, perché resti nella tabella e nel codice.
 > that, under the doubt condition, the action does NOT happen (proved red against the version
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Confermo i lucchetti [lista]; cambia [X] in [Y]. Implementali con un test per lucchetto che
 > provi che, nella condizione di dubbio, l'azione NON avviene (provato in rosso contro la versione
 > senza il lucchetto). Registra la tabella finale in `docs/LOCKS.md`. E per ogni automazione nuova:
 > prima la modalità di prova, registrando ciò che avrebbe fatto, finché non la abilito io.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: il test per lucchetto **provato in rosso** (senza il lucchetto, l'azione
 avveniva; con il lucchetto, no), che è il gradino 8 applicato alla sicurezza; la tabella finale; e

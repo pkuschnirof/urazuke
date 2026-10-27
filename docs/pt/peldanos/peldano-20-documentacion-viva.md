@@ -72,6 +72,13 @@ o agente:
 > functional block, add to the user manual the screens and flows of the pending items closed
 > in that block, with real screenshots from the test environment, and add their entries to the
 > changelog. If you do not know which manual, ask.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Toda mudança que modifique o que o usuário vê, o que o operador faz, ou como o sistema é
@@ -79,6 +86,13 @@ o agente:
 > funcional, acrescente ao manual de usuário as telas e os fluxos das pendências fechadas nesse
 > bloco, com capturas reais do ambiente de teste, e acrescente suas entradas ao diário de
 > mudanças. Se não souber a que manual vai, pergunte.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: a regra do mesmo commit, que é a única que mantém um manual em dia; o
 fechamento de bloco como momento em que as pendências fechadas viram manual e diário de mudanças;
@@ -107,6 +121,13 @@ e a pergunta quando não está claro a que manual vai.
 > business knows (who is responsible for what, which phone number to call), ask me; do not leave
 > a gap and do not invent. Each manual carries a date and the system version. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Gere três manuais a partir do sistema tal como está hoje no ambiente de teste: o manual de
@@ -116,7 +137,16 @@ e a pergunta quando não está claro a que manual vai.
 > como restaurar um backup, o que fazer se cair; escrito para uma pessoa que tem que fazê-lo à
 > mão, sem IA, às três da manhã). Se para alguma seção você precisar de algo que só o negócio
 > sabe (quem é responsável pelo quê, para que telefone ligar), peça-me; não deixe um buraco nem
-> invente. Cada manual leva data e versão do sistema. Responda no meu idioma.
+> invente. Cada manual leva data e versão do sistema.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
+>
+> Responda no meu idioma.
 
 O que estou pedindo: os três manuais com seus leitores; capturas **reais** do ambiente de teste
 (não desenhos nem descrições); o critério das três da manhã para o de recuperação; a cláusula de

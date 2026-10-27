@@ -60,6 +60,13 @@ l'agente:
 > as done something you have not verified; always separate what you verified from what you
 > believe. (6) Speak my language. Add any rules you think this project needs, marked as
 > proposals. If you need to know something about how I work in order to write this, ask me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Prima di scrivere codice, fisseremo il patto di convivenza tra te e me. Scrivi
@@ -73,6 +80,14 @@ l'agente:
 > ciò che credi. (6) Parla la mia lingua. Aggiungi le regole che ritieni che questo progetto
 > richieda, marcate come proposte. Se hai bisogno di sapere qualcosa su come lavoro per scrivere
 > questo, chiedimelo.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: le sei regole minime, ciascuna con il fallimento che evita (è questo che
 le rende regole e non consigli); che proponga regole proprie del progetto ma le marchi come
@@ -93,11 +108,26 @@ patto redatto senza una sola domanda è sospetto: l'agente non conosce la person
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Accetto le regole da 1 a 6 e le tue proposte [X, Y]; rifiuto [Z] perché [ragione]. Chiudi il
 > patto con la data di oggi e un numero di versione. Poi aggiungi al file di progetto l'istruzione
 > di leggere questo patto all'inizio di ogni sessione.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: che chiuda il patto con data e versione, e che lo agganci al file di
 progetto perché venga letto in ogni sessione. Senza quell'aggancio il patto esiste ma non agisce.

@@ -71,6 +71,14 @@ machst es, nicht der Agent:
 > environment. Declare the gates of the workflow (what must be green to move from one stage to
 > the next) in `docs/GATES.md`. When done, take a screenshot of the empty UI running in the
 > test environment and show it to me. Do not add any functionality "while you are at it".
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [de]
@@ -83,6 +91,15 @@ machst es, nicht der Agent:
 > Tore des Arbeitsablaufs (was grün sein muss, um von einer Etappe zur nächsten zu kommen) in
 > `docs/GATES.md`. Wenn du fertig bist, mach einen Screenshot der leeren Oberfläche, die in der
 > Testumgebung läuft, und zeig ihn mir. Füge keine Funktionalität „wo du schon dabei bist“ hinzu.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
 > Antworte in meiner Sprache.
 
 Was ich hier verlange: dass er prüft, ob er die Zugänge hat, bevor er anfängt (ohne das bleibt
@@ -108,12 +125,27 @@ schon dabei bin“, und das bricht den exakten Umfang.
 > Skeleton approved. Record in `docs/STATUS.md` the test environment URL, the command to run
 > the tests and the command to deploy, and mark this step as done. Then run the deployment a
 > second time and show me that the second run changed nothing.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Skelett freigegeben. Halte in `docs/STATUS.md` die URL der Testumgebung, den Befehl zum
 > Ausführen der Tests und den Befehl zum Deployen fest, und markiere diesen Schritt als erledigt.
 > Führe dann das Deployment ein zweites Mal aus und zeig mir, dass der zweite Lauf nichts geändert
 > hat.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: die drei Befehle dort hinterlassen, wo die nächste Sitzung sie findet, und
 beweisen, dass das Deployment wiederholbar ist (es zweimal laufen lassen, ohne etwas zu brechen).

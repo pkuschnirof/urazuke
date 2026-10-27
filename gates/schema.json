@@ -112,6 +112,11 @@
       "adapter",
       "owner"
     ],
+    "communication_depth": [
+      "beginner",
+      "decision_maker",
+      "technical"
+    ],
     "anchor_source": [
       "annex",
       "derived_from_instrument"
@@ -403,6 +408,16 @@
         },
         "escalates_to": {
           "type": "object"
+        },
+        "since_schema": {
+          "type": "integer",
+          "enum": "since_schema",
+          "note": "A rule of the frozen base declares none. A rule the method added later declares it, like any other entry, so that the upgrade differential can count it (D-068, D-070)."
+        },
+        "since_version": {
+          "type": "string",
+          "pattern": "^\\d{4}\\.\\d{2}\\.\\d+$",
+          "note": "The catalog_version in which this rule first appeared. Required on every entry that declares since_schema, which is every entry the method added after the freeze. Absent on a base entry, because the base is present in every published version."
         }
       }
     }
@@ -415,7 +430,8 @@
       "switches": "One entry per rule group: true, or an object { on: false, reason, authorized_by, review_date }.",
       "switched_off": "List of individual rules switched off, each with the full record.",
       "thresholds": "Declared values, by threshold id. Whatever is not here is reported as undeclared, never invented.",
-      "tools": "Tool names and versions actually used, for the ruleset fingerprint."
+      "tools": "Tool names and versions actually used, for the ruleset fingerprint.",
+      "communication_depth": "One of communication_depth: the technical depth at which the agent speaks to the owner (UX-28). Undeclared means decision_maker, and the agent says which one it is using."
     },
     "switch_off_record": [
       "rule",

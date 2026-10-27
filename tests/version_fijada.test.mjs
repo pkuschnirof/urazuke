@@ -84,6 +84,7 @@ test('C: el diferencial desde la primera version publicada es la historia medida
     '2026.10.4 Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?',
     '2026.10.5 docs/GLOSSARY.md',
     '2026.10.5 docs/PROFILES.md',
+    '2026.10.8 UX-28',
   ]);
 });
 
@@ -133,6 +134,10 @@ test('el contrato de fijacion se publica, y la huella lo cubre', () => {
 
 test('D: el documento generado trae el enunciado del dato, extraido y no transcrito', () => {
   const fij = armarContenido(cargarFuentes(), extraerAnexo()).pinning;
+  // Afirmar que esta ANTES de desreferenciarlo: corrida contra un arbol sin contrato de
+  // fijacion, esta prueba caia con un TypeError en vez de nombrar lo que falta, y un rojo que
+  // no nombra lo que falta es la mitad de un rojo (herramienta PND-049).
+  assert.ok(fij, 'el publicado no lleva el contrato de fijacion: no hay enunciado que extraer');
   for (const texto of [fij.what, fij.consumer_contract.must_record, fij.consumer_contract.forbidden, fij.upgrade.how_to_compute]) {
     assert.ok(arbol.documento.includes(texto), 'el documento no trae: ' + texto.slice(0, 60));
   }
@@ -140,6 +145,10 @@ test('D: el documento generado trae el enunciado del dato, extraido y no transcr
 
 test('E: la comprobacion reviso algo, y lo dice con su cuenta', () => {
   assert.equal(Object.keys(arbol.textosPorIdioma).length * 2, 16);
-  assert.equal(arbol.entradas.length, 35, 'las entradas agregadas despues del congelado, medidas el 2026-10-27');
+  // Treinta y cinco el 2026-10-27 por la manana; la trigesimo sexta es UX-28, la primera REGLA
+  // que el metodo agrego despues de que esta maquinaria existiera (D-070).
+  assert.equal(arbol.entradas.length, 36, 'las entradas agregadas despues del congelado, medidas el 2026-10-27');
+  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['UX-28'],
+    'una regla agregada despues del congelado entra en el diferencial: sin esto un upgrade la omitia en silencio');
   assert.ok(arbol.versiones.length >= 7, 'el registro de versiones tiene al menos las siete publicadas');
 });

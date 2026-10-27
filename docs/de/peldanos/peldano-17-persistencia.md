@@ -86,6 +86,14 @@ machst es, nicht der Agent:
 > change: indexes derived from the real queries, pagination, batching, the elimination of N+1
 > loops, retention and archiving per table, pool size; for each change, the expected gain, the
 > risk, and which consumers in the map it touches. Do not change anything yet: I approve the list.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [de]
@@ -101,7 +109,17 @@ machst es, nicht der Agent:
 > ist: Indizes, abgeleitet aus den echten Abfragen, Paginierung, Stapelverarbeitung, die
 > Beseitigung der N+1-Schleifen, Retention und Archivierung pro Tabelle, Größe des Pools; für jede
 > Änderung den erwarteten Gewinn, das Risiko, und welche Konsumenten der Karte sie berührt. Ändere
-> noch nichts: ich gebe die Liste frei. Antworte in meiner Sprache.
+> noch nichts: ich gebe die Liste frei.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange: messen mit der Methode von Schritt 7 (Messgerät mit Test, in beide
 Richtungen auditiert, Zahl mit Befehl), bevor vorgeschlagen wird; Abfrage für Abfrage
@@ -128,6 +146,13 @@ am meisten „verbessert“ wird, was niemand verlangt hat.
 > test that fails if it is exceeded. Update every consumer in the map that a change touches, in
 > the same commit. Record the before and after table, the budgets and the retention per table in
 > `docs/PERSISTENCE.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Wende die freigegebenen Änderungen [Liste] an, ein Commit pro Stück. Zeig mir für jede das
@@ -137,6 +162,14 @@ am meisten „verbessert“ wird, was niemand verlangt hat.
 > es überschritten wird. Aktualisiere im selben Commit jeden Konsumenten der Karte, den eine
 > Änderung berührt. Halt die Tabelle von Vorher und Nachher, die Budgets und die Retention pro
 > Tabelle in `docs/PERSISTENCE.md` fest.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: ein Commit pro Änderung, damit das Vorher und das Nachher zuordenbar sind;
 dasselbe Messgerät auf denselben Daten (wenn sich die Daten ändern, sagt die Zahl nichts); das

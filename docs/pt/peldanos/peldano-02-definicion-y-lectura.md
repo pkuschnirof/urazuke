@@ -89,7 +89,16 @@ o agente:
 > me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
 > `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
-> changes every day; the other two change only when the system changes. Reply in my language.
+> changes every day; the other two change only when the system changes.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [pt]
 > Vamos definir o projeto por escrito. Leia o levantamento do negócio em
@@ -111,7 +120,16 @@ o agente:
 > nomeie-as em `PROJECT.md` e marque também ali o que inferiu.
 > À parte, crie `docs/STATUS.md` para o estado vivo (no que se está
 > trabalhando, o que está aberto): esse arquivo muda todos os dias; os outros dois mudam só
-> quando o sistema muda. Responda no meu idioma.
+> quando o sistema muda.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
+>
+> Responda no meu idioma.
 
 O que estou pedindo: que avalie o levantamento e pergunte antes de redigir; que o arquivo de
 projeto seja **curto** (o teto de trezentas linhas é arbitrário mas necessário: sem teto,
@@ -150,6 +168,13 @@ motivo que na árvore.
 > `PROJECT.md` (it goes to `docs/STATUS.md` or to the pending-items register); and every pending
 > item must hang from a node of the semantic tree, and the tree is updated in the same commit
 > whenever a block adds or changes a node.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Aplique estas correções: [lista]. Feche `PROJECT.md` e `docs/SEMANTIC_TREE.md` com a data de
@@ -157,6 +182,13 @@ motivo que na árvore.
 > `PROJECT.md` (vai para `docs/STATUS.md` ou para o registro de pendências); e toda pendência
 > tem que pender de um nó da árvore semântica, e a árvore se atualiza no mesmo commit cada vez
 > que um bloco acrescenta ou muda um nó.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: as suas correções (sobretudo aos nós que ele marcou como inferidos), a
 data, e duas regras novas no contrato: a que protege o arquivo de projeto de virar histórico, e a

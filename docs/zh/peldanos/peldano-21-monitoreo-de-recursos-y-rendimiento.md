@@ -71,7 +71,16 @@
 > own verifiable window: the first and the last timestamp read from the database or the log, never a
 > number typed by hand; a window typed by hand is marked as such in the report and only warns, it
 > never opens a pending item on its own. Document the thresholds, the channel, the cycle and how to
-> silence an alert with a written reason in `docs/MONITORING.md`. Reply in my language.
+> silence an alert with a written reason in `docs/MONITORING.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要让这个系统在生产里被看着。用第 16 级台阶的指标和日志、`docs/PERSISTENCE.md` 的预
@@ -86,7 +95,14 @@
 > 的真实数据生成的第一份报告，以及一条故意超过阈值触发出来的告警。用于复核容量规划的行数必须
 > 自带可验证的时间窗口：从数据库或日志读取的最早和最晚时间戳，而不是手工输入的数字；手工输入
 > 的窗口要在报告中标明，只发出提醒，绝不自行打开待办项。把阈值、渠道、周期，以及如何带着书面
-> 理由让一条告警静默，记进 `docs/MONITORING.md`。用我的语言回复。
+> 理由让一条告警静默，记进 `docs/MONITORING.md`。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 **测量的时间窗口。** 周期报告把每年观测到的行数与台阶 3 声明的值作比较。数字正确而窗口错误会打开一个假的待办项：在继承的 Turnera 练习中，三年的 30,000 行被当作一年传入。因此测量必须自带**可验证的**窗口：从数据库或日志读取的最早和最晚记录，而不是手工输入的数字。如果工具读不了数据库，就把它声明为盲点；手工输入的窗口要在报告中标明，只发出提醒，绝不自行打开待办项。（决定 D-039。）
 
@@ -108,12 +124,24 @@
 > reason; write the decision with the date in the report itself; and tell me whether any threshold
 > must change and why, with the measurement that justifies it. Never raise a threshold to silence
 > an alert without a measured reason written down.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 每一份资源与性能的周期报告：和我一起逐个事件地走一遍；告诉我哪些超出范围的事件现在变成
 > 待办项、哪些可以等，连同你的理由；把带日期的决定写进报告本身；并告诉我是否有哪个阈值必
 > 须改、为什么，附上支持它的测量。绝不要为了让一条告警闭嘴而在没有一条测出来的书面理由的
 > 情况下调高阈值。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：报告要被读、要做出决定，并留下痕迹；以及阈值那条规则，它是避免监控一点一点变哑的
 东西。

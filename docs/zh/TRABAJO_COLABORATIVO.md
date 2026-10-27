@@ -97,7 +97,16 @@
 > and update them in the same change, whoever owns them. (6) Every business decision goes to
 > `docs/DECISIONS.md` the moment it is taken, with the person's name and the date. (7) Update
 > `docs/STATUS.md` with what you are doing when you start and when you stop, so that the others'
-> agents see it. Reply in my language.
+> agents see it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们是一个团队，在一个共享分支上工作，每个人有自己的代理会话，而唯一共享的记忆是写在仓库里
@@ -110,6 +119,11 @@
 > 在 `docs/PRODUCER_CONSUMER_MAP.md` 里查它的消费者，并在同一次改动中更新它们，不管它们属于
 > 谁。(6) 每一条业务决策在作出的那一刻就进 `docs/DECISIONS.md`，带那个人的名字和日期。(7) 开
 > 始和停下时都用你正在做的事更新 `docs/STATUS.md`，好让别人的代理看得见。用我的语言回答。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：那七条规则变成代理的例行，因为代理看不见其他代理，它只会遵守它读到的东西；会话
 开始时的必读，那是取代走廊闲聊的东西；以测试套件为条件的小步频繁集成；给没做完的东西准备的开
@@ -129,7 +143,16 @@
 > field and by the producer-consumer map; if there is an overlap, stop and tell me, do not start.
 > If there is none, write my name in the "claimed by" field with today's date, write in
 > `docs/STATUS.md` what I am starting, re-read the item's specification, and tell me which
-> contracts of the map this item will touch and who consumes them. Reply in my language.
+> contracts of the map this item will touch and who consumes them.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我拿下待办项 [PND-NNN]。首先：列出别人认领的待办项，并按"触及的模块"字段和生产者-消费者地
@@ -137,6 +160,11 @@
 > 果没有，在"认领人"字段里写上我的名字和今天的日期，在 `docs/STATUS.md` 里写下我开始了什么，
 > 重读这个待办项的规格，并告诉我这个待办项将要触及地图里的哪些契约、以及谁在消费它们。用我的
 > 语言回答。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：开始之前的重叠检查，那是避免一次冲突最便宜的时刻；写下来的认领；以及我将要触及
 的消费者清单，好让我从一开始就知道我在给谁改东西。
@@ -156,7 +184,16 @@
 > show me the counts. If anything is red, stop: tell me what and whose change it comes from. If
 > this item is not finished, confirm the feature switch is off by default and say so in the
 > commit message. Then push, show me the pipeline green on the shared branch, and update
-> `docs/STATUS.md` and the pending item. Reply in my language.
+> `docs/STATUS.md` and the pending item.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要往共享分支集成。先拉下别人的改动，并告诉我进来了什么、有没有什么触及了我的模块。如果
@@ -165,6 +202,11 @@
 > 么是红的，停下来：告诉我是什么，以及它来自谁的哪个改动。如果这个待办项还没做完，确认那个功
 > 能开关默认是关闭的，并在提交信息里写明。然后 push，给我看共享分支上流水线是绿的，并更新
 > `docs/STATUS.md` 和那个待办项。用我的语言回答。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：先拉再上传；靠读两边来解决冲突，而不是靠"赢"（模型面对冲突的反射是留下自己那
 个版本）；以测试套件为条件；以共享分支上的链条变绿作为证据，而不是代理机器上的；以及保持最新

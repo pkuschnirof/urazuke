@@ -57,13 +57,32 @@ machst es, nicht der Agent:
 > Build `docs/PRODUCER_CONSUMER_MAP.md`: for every contract in the system (a service, a table,
 > a file format, a list of values), who produces it and who consumes it. If there are parts of
 > the system you cannot access or do not understand, tell me instead of leaving them out of the
-> map. Reply in my language.
+> map.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [de]
 > Baue `docs/PRODUCER_CONSUMER_MAP.md`: für jeden Vertrag im System (einen Dienst, eine Tabelle,
 > ein Dateiformat, eine Werteliste), wer ihn produziert und wer ihn konsumiert. Wenn es Teile des
 > Systems gibt, auf die du nicht zugreifen kannst oder die du nicht verstehst, sag es mir, statt
-> sie aus der Karte wegzulassen. Antworte in meiner Sprache.
+> sie aus der Karte wegzulassen.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange: das Inventar der Verträge mit ihren zwei Seiten, und die
 Vollständigkeitsklausel in ihrer Form für diesen Schritt: was nicht gesehen wird, wird erklärt,
@@ -83,12 +102,27 @@ nicht weggelassen. Eine Karte mit versteckten Löchern ist schlimmer als keine K
 > update them in the same commit. Always prefer that the producer defines the list (columns,
 > causes, states) and the consumer reads it, rather than each keeping its own copy. If the map
 > does not have that relationship, add it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Bevor du eine Änderung schließt, die einen Vertrag berührt, such in der Karte jeden Konsumenten
 > und aktualisiere sie im selben Commit. Bevorzuge immer, dass der Produzent die Liste definiert
 > (Spalten, Gründe, Zustände) und der Konsument sie liest, statt dass jeder seine eigene Kopie
 > hält. Wenn die Karte diese Beziehung nicht hat, füge sie hinzu.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: die Symmetrie als Reflex (die andere Seite suchen, bevor geschlossen
 wird), die Regel der Liste mit einem einzigen Eigentümer, und dass die Karte sich von selbst
@@ -110,11 +144,26 @@ pflegt, während sie benutzt wird.
 > This has happened to us before. Record it in `docs/GOTCHAS.md` with: how it smells (the early
 > sign), the root cause, the fix, and how to detect it next time before it hurts. And add, if
 > possible, a test or an automatic check that detects it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Das ist uns schon einmal passiert. Halte es in `docs/GOTCHAS.md` fest mit: wie es riecht (das
 > frühe Zeichen), der Grundursache, der Behebung, und wie man es nächstes Mal erkennt, bevor es
 > wehtut. Und füge, wenn möglich, einen Test oder eine automatische Prüfung hinzu, die es erkennt.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: das feste Format eines Anti-Musters (Geruch, Grundursache, Behebung,
 Früherkennung) und vor allem die automatische Prüfung: ein notiertes, aber nicht automatisiertes

@@ -83,7 +83,16 @@ faites, pas l'agent :
 > information before going on; do not assume. Then fill in the sheet criterion by criterion:
 > the answer, where it comes from, and for each exclusionary criterion whether it is green or
 > red. Do not decide: present me the completed sheet with your reading and your doubts, and I
-> will decide. Reply in my language.
+> will decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [fr]
 > Nous allons évaluer si ce projet peut être mené avec la méthode Urazuke. Lis le relevé initial
@@ -92,7 +101,16 @@ faites, pas l'agent :
 > être répondu à partir du relevé, demande-moi l'information manquante avant de continuer ; ne
 > suppose rien. Ensuite remplis la fiche critère par critère : la réponse, d'où elle vient, et
 > pour chaque critère excluant s'il est au vert ou au rouge. Ne décide pas : présente-moi la fiche
-> complète avec ta lecture et tes doutes, et c'est moi qui décide. Réponds dans ma langue.
+> complète avec ta lecture et tes doutes, et c'est moi qui décide.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
+> Réponds dans ma langue.
 
 Ce que je lui demande : qu'il lise les deux intrants (le relevé et la fiche de critères) ;
 qu'**avant de répondre il évalue si le relevé suffit** et, s'il ne suffit pas, qu'il pose la
@@ -119,11 +137,25 @@ parce que le prompt est en anglais mais la conversation n'a aucune raison de l'�
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
 > source, and the conditions if any. Include the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Décision : [ça passe / ça ne passe pas / ça passe sous ces conditions : …]. Écris la fiche
 > finale dans `docs/ELIGIBILITY.md` avec la date, qui a décidé, la réponse à chaque critère avec
 > sa source, et les conditions s'il y en a. Inclus les questions que tu as posées et mes réponses.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : qu'il laisse la décision écrite avec sa date et son propriétaire
 (échelon 6), avec les conditions s'il y en a, et avec la trace des questions et des réponses, qui

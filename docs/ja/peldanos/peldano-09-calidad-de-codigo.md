@@ -111,6 +111,13 @@
 > `docs/USABILITY.md` report result by result, never as a single number. The
 > catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
 >
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [ja]
@@ -138,6 +145,12 @@
 > せん。カタログは `docs/ANEXO_HEURISTICAS.md` です：引用
 > し、コピーしないでください。
 >
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
 > 私の言語で答えてください。
 
 何を求めているか：人間のレビュアーが行うであろう五つの検証を、機械が行い、ビルドの赤を帰結と
@@ -162,6 +175,13 @@
 > raised to pass; if a limit must change, say so with the reason and I decide. At the close of
 > every block, show me `docs/CODE_QUALITY.md` with the numbers of the block against the previous
 > one.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > すべての保留項目は品質のゲートが緑の状態で閉じます：リンタ、フォーマッタ、大きさと複雑度
@@ -170,6 +190,12 @@
 > 上限が変わらなければならないなら、理由とともに言ってください。決めるのは私です。各ブロッ
 > クの締めに、そのブロックの数字を前のブロックと対比した `docs/CODE_QUALITY.md` を見せて
 > ください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：品質が別の作業ではなく各保留項目の締めの一部であること。黙らせることの禁止
 （赤のリンタを前にしたモデルは、直すより速いので例外を足す方へ傾く）と上限を引き上げることの
@@ -195,7 +221,16 @@
 > killed, how many survived and where. Do not fix anything yet: every surviving mutant in code
 > that matters becomes a pending item for a test that catches it, and I decide which ones matter.
 > From now on, report the mutation score at the close of every block next to the coverage, and
-> treat a drop as a quality failure. Reply in my language.
+> treat a drop as a quality failure.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > 品質のゲートにミューテーションテストを加えてください。[コード全体に | 各保留項目で変更
@@ -205,7 +240,15 @@
 > そしてどこで。まだ何も直さないでください。重要なコードの中で生き残ったミュータントはそれ
 > ぞれ、それを捕まえるテストのための保留項目になり、どれが重要かは私が決めます。これ以降、
 > 各ブロックの締めにミューテーションの得点をカバレッジの隣に報告し、低下を品質の失敗として
-> 扱ってください。私の言語で答えてください。
+> 扱ってください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：カバレッジが与えない尺度（カバレッジはどのコードが実行されたかを言い、
 ミューテーションはどのコードが見張られているかを言う）。変更された行に絞った範囲。各保留項

@@ -86,6 +86,13 @@ el agente:
 > first-click check, where I name the place I would look for a task and you
 > compare that with the menu, and the real screenshot of the test
 > environment.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [es]
 > Todo pendiente que cambie lo que un usuario ve o hace se cierra con sus casos de prueba manual
@@ -105,6 +112,13 @@ el agente:
 > máquina reemplaza: la del primer clic, donde yo nombro el lugar donde
 > buscaría una tarea y vos comparás eso con el menú, y la captura real del
 > entorno de prueba.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
 
 Qué le estoy pidiendo: que el caso salga de los criterios de aceptación (así prueba lo que se
 pidió, no lo que el modelo entendió); que esté escrito para alguien que no sabe cómo funciona el
@@ -133,7 +147,16 @@ es que los ejecute una persona.
 > the semantic tree it touches; do not fix anything now. For every case that passed, nothing. Then
 > tell me, flow by flow, how many cases passed and how many failed, compared with the previous
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
-> the case or the system is the problem. Reply in my language.
+> the case or the system is the problem.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [es]
 > Leé las ejecuciones de hoy en `docs/MANUAL_TESTS.md`. Por cada caso que falló, y por cada
@@ -142,6 +165,14 @@ es que los ejecute una persona.
 > toca; no arregles nada ahora. Por cada caso que pasó, nada. Después decime, flujo por flujo,
 > cuántos casos pasaron y cuántos fallaron, comparado con la ejecución anterior, y qué fallos se
 > repiten. Si un caso no se pudo ejecutar, decime por qué y si el problema es el caso o el sistema.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
+>
 > Respondé en mi idioma.
 
 Qué le estoy pidiendo: la reinyección hecha operativa: cada fallo humano es un pendiente

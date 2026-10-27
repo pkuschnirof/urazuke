@@ -99,6 +99,19 @@ test('rojo 8: un evaluador requerido nuevo sale nombrado con el peldano que trab
   assert.deepEqual(evaluadoresQueTraban(sueltos, '2026.10.6', '2026.10.7'), []);
 });
 
+test('rojo 10: una REGLA agregada sin procedencia sale nombrada, y el diferencial la cuenta', () => {
+  // UX-28 fue la primera regla que el metodo agrego despues de que existiera la maquinaria de la
+  // fijacion, y el diferencial la omitia porque solo miraba pasos, estaciones y evaluadores. Este
+  // rojo es el que impide que vuelva a omitirla: muta la regla y tiene que caer nombrandola.
+  const sinVersion = arbol.entradas.map((e) => (e.que === 'UX-28' ? { ...e, since_version: null } : e));
+  assert.deepEqual(sinProcedencia(sinVersion), ['catalog.rules[45]']);
+  const reglas = arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules'));
+  assert.deepEqual(reglas.map((e) => e.que + '@' + e.since_version), ['UX-28@2026.10.8'],
+    'la regla esta en las entradas agregadas: si no estuviera, un upgrade no la contaria');
+  assert.ok(diferencial(arbol.entradas, '2026.10.7', '2026.10.8').some((e) => e.que === 'UX-28'),
+    'y el diferencial del salto que la trae la nombra');
+});
+
 test('rojo 9: con el arbol real todas las mutaciones de arriba caen de a una, no en bloque', () => {
   // Un verde del arbol real es la unica manera de saber que los rojos de arriba son rojos de
   // la mutacion y no del estado del repositorio.

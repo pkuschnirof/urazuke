@@ -91,7 +91,7 @@ export function evaluarHeuristicas(config, medido, contenido = armarContenido())
     cifras = {
       compliance: { numerator: pasan, denominator: contables.length, value: contables.length ? redondear(pasan / contables.length) : null },
       gate_coverage: { numerator: activas.length, denominator: cat.counts.total, value: redondear(activas.length / cat.counts.total) },
-      note: 'Compliance counts only what a machine judges. What a person judges is reported separately and stays out of the percentage (D-047). The denominator of the coverage figure is the 45 declared rules, exactly as D-047 says; whatever is out of scope is reported on its own line and not hidden.',
+      note: 'Compliance counts only what a machine judges. What a person judges is reported separately and stays out of the percentage (D-047). The denominator of the coverage figure is every declared rule, exactly as D-047 says; whatever is out of scope is reported on its own line and not hidden.',
     };
   }
 

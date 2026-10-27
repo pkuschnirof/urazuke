@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.7** - schema **2**
-- content fingerprint `7575673f723e498c...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.8** - schema **2**
+- content fingerprint `54b57e7871914e28...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -25,7 +25,7 @@ What a project pins, and what it costs to change it. A project pins ONE catalog_
 
 For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.7`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.8`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -49,6 +49,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.5** (2026-10-27, D-065) -- `6fc83add4a1245d3...`
 - **2026.10.6** (2026-10-27, D-067) -- `649f10179cc1a4ef...`
 - **2026.10.7** (2026-10-27, D-068) -- `7575673f723e498c...`
+- **2026.10.8** (2026-10-27, D-070) -- `54b57e7871914e28...`
 
 ## Pinning: what a tool that freezes the method owes
 
@@ -655,14 +656,14 @@ called steps) and only then enters the Construction Loop at step 5.
 
 - Cada pendiente de deuda esta emparejado con el modulo que el pedido toca?
 
-## Annex H: forty-five rules
+## Annex H: 46 rules
 
 The statement of every rule lives **only** in Annex H: it is extracted from there on every build,
 never transcribed. The published statement comes from [the English version](en/ANEXO_HEURISTICAS.md); the
 [Spanish one](ANEXO_HEURISTICAS.md) is the source of truth of the method, and the build demands that both carry
 the same rules with the same severities. What this data adds is the mechanical part: the group, the
 instrument, the initial severity, when it is looked at and the step where it hooks. There are 18 of
-code quality and 27 of usability.
+code quality and 28 of usability.
 
 The two switches (`code_quality` and `usability`) are turned on and off separately,
 they live in the project configuration and the gate reads them: never inside the prompt.
@@ -694,7 +695,7 @@ Result per rule in `docs/CODE_QUALITY.md`.
 | CQ-17 | interface | All colours, spacings and typefaces come out of tokens; no loose magic value in the stylesheet. | automatic gate | on every push and at block close | BLOCKS | 9 |
 | CQ-18 | interface | Basic accessibility is verified on its own: contrast, labels on fields, visible focus, keyboard navigation in the main flows, images with alternative text. | automatic gate | on every push and at block close | WARNS | 9 |
 
-### Usability (UX-01..UX-27)
+### Usability (UX-01..UX-28)
 
 Result per rule in `docs/USABILITY.md`.
 
@@ -727,12 +728,13 @@ Result per rule in `docs/USABILITY.md`.
 | UX-25 | B5 | Everything can be done without a mouse and with a screen reader in the main flows; the focus is always visible and it does not get trapped. | automatic gate + manual case | on every push and at block close | WARNS | 9, 10 * |
 | UX-26 | B5 | States are not communicated by colour alone; every informative image has alternative text; texts are read at normal size without zoom. | automatic gate | on every push and at block close | WARNS | 9 * |
 | UX-27 | B5 | Every pending item that touches a screen delivers the real screenshot of the test environment, and the owner looks at it before closing. The screenshot is not optional and it is not a mock-up. | manual case | at the close of the pending item | BLOCKS (human red) | 10 * |
+| UX-28 | B6 | When the agent needs a decision from the owner, the question arrives with its four parts and in this order: the data that makes it necessary, listed; one paragraph of no more than five lines that links that data and lets the question be seen; the question with its possible answers numbered; and the agent recommendation. And at the technical depth the project declared. A loose question leaves the owner the work of reconstructing why they are being asked. | manual case | at the close of the pending item | WARNS (human red) | 1 |
 
 The rules marked with `*` in the step column are not anchored by the annex explicitly: the hook is
 derived from their instrument (the manual case runs at step 10, the automatic gate runs at step 9)
 and is declared as derived, not as a decision of the method.
 
-The four that block with a **human red** -- CQ-12, CQ-14, UX-22, UX-27 -- are tested by no
+The four that block with a **human red** -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- are tested by no
 tool at all: they are verified at the close of the pending item, with the manual case in front, and
 never on a commit.
 
@@ -790,6 +792,7 @@ The shape of the per-project configuration that the gate reads (layer 3 of Annex
 | `switched_off` | List of individual rules switched off, each with the full record. |
 | `thresholds` | Declared values, by threshold id. Whatever is not here is reported as undeclared, never invented. |
 | `tools` | Tool names and versions actually used, for the ruleset fingerprint. |
+| `communication_depth` | One of communication_depth: the technical depth at which the agent speaks to the owner (UX-28). Undeclared means decision_maker, and the agent says which one it is using. |
 
 The switch-off record is `rule`, `reason`, `authorized_by`, `review_date`. Without it: red, and the ruleset is invalid: the scoreboard emits no figures at all (D-046, D-047).
 
@@ -813,5 +816,5 @@ Order in the step 12 report: binary verdict -> the two figures -> what is switch
 ## The decisions that govern this
 
 D-050 (the method owns the definition of the gates), D-051 (the data layer and this document are
-published in English), and the Annex H ones: D-043, D-044, D-045, D-046, D-047, D-048, D-049. They are in the
+published in English), and the Annex H ones: D-043, D-044, D-045, D-046, D-047, D-048, D-049, D-070. They are in the
 [decision register](DECISIONES.md), written in Spanish, which is the language of the method.

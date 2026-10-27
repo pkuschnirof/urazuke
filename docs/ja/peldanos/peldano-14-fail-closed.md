@@ -63,7 +63,16 @@
 > propose: whether it is reversible, which lock it gets (explicit confirmation, double safety,
 > dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong.
 > General rule: on any doubt or failure along the way, the action is NOT executed and the reason
-> is logged. Present me the table; I confirm lock by lock. Reply in my language.
+> is logged. Present me the table; I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > システムのどの行動に錠が必要かを決めます。帰結のある行動の調査を読み、コードを調べて
@@ -72,7 +81,15 @@
 > ください。各行動について提案してください：可逆か、どの錠を付けるか（明示的な確認、二重の
 > 安全装置、ドライランモード、日次上限、回路内の人間）、そしてうまくいかなかったときの戻り
 > 道は何か。一般ルール：途中で疑いや故障があれば、行動は実行**されず**、理由が記録される。
-> 表を私に提示してください。私が錠ごとに確認します。私の言語で答えてください。
+> 表を私に提示してください。私が錠ごとに確認します。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：事業が言ったこととコードがすることの突き合わせ（誰も覚えていなかった
 行動がそこに現れる）。この段に合わせた形の完全性の条項：二つのリストの差異は解決するの
@@ -92,12 +109,25 @@
 > that, under the doubt condition, the action does NOT happen (proved red against the version
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 錠[リスト]を確認します。[X]を[Y]に変えてください。錠ごとに一つのテストで実装してくだ
 > さい。疑いの条件下で行動が起き**ない**ことを証明するテストです（錠のないバージョンに対して
 > 赤で証明）。最終の表を `docs/LOCKS.md` に記録してください。そして新しい自動化はすべて：
 > まずドライランモードで、何をしたはずかを記録し、私が有効化するまで。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：**赤で証明**された錠ごとのテスト（錠なしでは行動が起きた。錠ありでは
 起きない）、セキュリティに適用された第8段だ。最終の表。そしてすべての新しい自動化に対する

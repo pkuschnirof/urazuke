@@ -225,7 +225,16 @@ the agent:
 > and has ever been restored; (7) list every external integration and say whether it has a test
 > mode or can be isolated at the edge. For each prerequisite: green or red, the evidence (what you
 > did and what happened), and, if red, what project would make it green. Do not decide: present me
-> the sheet, and I decide. Reply in my language.
+> the sheet, and I decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: that the prerequisites be verified **by doing** (setting up, reading,
 writing the document, running a test), because a frontier model can do all four things and then
@@ -245,6 +254,13 @@ the prior project is taken on now, later, or never (and then the system is not e
 > evidence, and, for every red one, the prerequisite project as a pending item in `docs/PENDING.md`
 > marked as blocking, with its own acceptance criterion: the prerequisite verified green. Include
 > the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 Completeness check: does every prerequisite have evidence of something the agent **did**, not an
 answer from you? Does `docs/FUNCTIONALITY_RECOVERED.md` exist, and did you read it as the owner:
@@ -293,6 +309,13 @@ in one afternoon for a system nobody understands. The agent answered instead of 
 > (11) No change reaches the test environment without the characterization suite green. Add any
 > rules you think this system needs, marked as proposals. If you need to know something about how
 > I work in order to write this, ask me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: the usual six rules, and five that exist because a model faced with
 somebody else's code does three things by reflex: it reorders it, it "fixes" it wherever it looks
@@ -363,7 +386,16 @@ the agent:
 > same way. Third, `docs/DISCREPANCIES.md`: everything where the code, the database, the
 > documentation and what the business says in the survey do not agree, with the evidence on each
 > side. Do not resolve any discrepancy and do not fix anything: list them. Create `docs/STATUS.md`
-> for the living state. Reply in my language.
+> for the living state.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: that it read everything and declare what it could not read (the
 completeness clause in its legacy form: the gap is marked, not filled); that the survey and the
@@ -390,6 +422,13 @@ many of those).
 > where I decided the current behaviour stays, write it next to the node as a confirmed rule. Add
 > to `PROJECT.md` the instruction to read this file, the tree and the working agreement at the
 > start of every session.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: that the decision about each discrepancy end up in the usual three places
 (the decision register, the pending item if something has to change, the tree if it is confirmed),
@@ -455,7 +494,16 @@ the agent:
 > field: whether it BLOCKS (must be fixed before any change, by my criteria: [criteria]), whether
 > it is PAID WHEN TOUCHED (fixed together with the first change that enters its module), or whether
 > it CAN WAIT. Grade every dimension you audited. End with every finding turned into a proposed
-> pending item, blocking ones first. Reply in my language.
+> pending item, blocking ones first.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: the audit of step 13 with the "deployability" dimension added (because in a
 legacy system the deployment is usually the first problem) and with the speed field, which is
@@ -537,6 +585,14 @@ the agent:
 > characterization suite green, and nothing reaches production without the full suite green with
 > the exact version. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by hand
 > without you. Take a screenshot of the system running in the test environment and show it to me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 What I am asking for: the skeleton of step 4 built around something that already exists, with
@@ -563,7 +619,16 @@ closed before this suite or as part of it.
 > simulate it: say so and open a pending item marked as blocking. If while writing these tests you
 > find behaviour that looks wrong, do not fix it: add it to `docs/DISCREPANCIES.md` with the
 > evidence. Record the command to run the suite in `docs/STATUS.md`, and make the suite the gate
-> for the test environment as `docs/GATES.md` says. Reply in my language.
+> for the test environment as `docs/GATES.md` says.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: step 8 the other way round. In a new project the test is born red and turns
 green with the change; here the test is born green, because it captures what is there, and the
@@ -634,7 +699,16 @@ the agent:
 > parts you cannot see, say so instead of leaving them out. Present me the actions table with a
 > proposed lock for each (explicit confirmation, double safety, dry-run mode, daily limit, a human
 > in the loop) and a proposal of which locks go NOW, before any change, and which can go when the
-> module is touched. Do not implement anything yet: I confirm lock by lock. Reply in my language.
+> module is touched. Do not implement anything yet: I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: the inventory of steps 14 and 11 in a single pass, because they walk the
 same code; the comparison between what the business remembers and what the code does, which is
@@ -690,7 +764,16 @@ that never happens; it failed to look at the scheduled tasks or at the database 
 > expects and whether the system will serve more than one site. Then write `docs/SIZING.md`: what
 > breaks first if everything is multiplied by ten, which of the current architecture choices hold
 > and which do not, and which asymmetric decisions we take now, before evolving, because they are
-> cheap today and expensive later. Do not change any code. Reply in my language.
+> cheap today and expensive later. Do not change any code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: measuring instead of asking, which is what a legacy system allows and a new
 project does not; the meter with a test and the audit in both directions of step 7, because
@@ -755,7 +838,16 @@ the agent:
 > same modules and should be paid together with it. If the request is ambiguous on any point such
 > that you cannot write a verifiable item, ask me; do not resolve it by assuming. Order: blocking
 > items first, then the client's items in the priority I gave you, each with its paired
-> normalization. Reply in my language.
+> normalization.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: the whole of step 5 (the detailed specification lives in each pending item,
 including the normalization ones), with the two marks that make this path what it is: the speed,
@@ -821,7 +913,16 @@ without a written reproduction, each round fixes a different symptom.
 > fix changes a current behaviour that someone may depend on, say so explicitly: that is a decision
 > for me, not a side effect. Close the paired normalization items of this module in the same
 > block, each with its own evidence. The commit message says "proved red against [version]" and
-> the test counts. Reply in my language.
+> the test counts.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: the reproduction **before** the diagnosis, because a model diagnoses with
 great confidence what it did not reproduce; the root cause in prose before touching anything, so
@@ -864,7 +965,16 @@ the way back (the N0 backup or the previous version) at hand.
 > what you did not verify. Do not touch anything else. Then, today, open the corrective pending
 > item in `docs/PENDING.md` with what happened, and we close it with the full routine: the test
 > that reproduces it in red, the root cause, the fix at the root, the characterization suite and
-> the regression green. Reply in my language.
+> the regression green.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: the minimum, with the rollback before and not after, and with the honest
 report of what was not verified (step 12); and the obligation to come back in through the loop the

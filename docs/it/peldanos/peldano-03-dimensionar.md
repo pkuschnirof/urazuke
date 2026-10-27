@@ -80,6 +80,14 @@ l'agente:
 > for the three largest tables, peak concurrency, data size at five years, and what breaks first
 > if everything is multiplied by ten. Then present three options for persistence and concurrency,
 > each with the cost of migrating to the others later. Do not choose: I choose. Do not write code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [it]
@@ -93,7 +101,17 @@ l'agente:
 > all'anno delle tre tabelle più grandi, concorrenza nel picco, dimensione dei dati a cinque anni,
 > e cosa si rompe per primo se tutto si moltiplica per dieci. Poi presenta tre opzioni di
 > persistenza e concorrenza, ciascuna con il costo di migrare alle altre più avanti. Non scegliere:
-> scelgo io. Non scrivere codice. Rispondi nella mia lingua.
+> scelgo io. Non scrivere codice.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo, clausola per clausola: distinguere primari da derivati (è la distinzione
 che evita l'invenzione); **chiedere i primari che mancano e non stimarli mai**; usare numeri reali
@@ -121,6 +139,13 @@ non di costruzione.
 > taking "just in case" even though they are not needed today (for example: the persistence
 > interface is asynchronous from line one, even if the first engine is synchronous). Include the
 > questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Scelgo l'opzione [B]. Registra in `docs/SIZING.md`: i dati primari con la loro fonte, i derivati
@@ -128,6 +153,14 @@ non di costruzione.
 > sicurezza" anche se oggi non servono (per esempio: l'interfaccia di persistenza è asincrona dalla
 > riga uno, anche se il primo motore è sincrono). Includi le domande che hai fatto e le mie
 > risposte.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: il registro completo, con fonti e conti; quella scelta e la ragione; e le
 decisioni asimmetriche scritte, perché se restano implicite non si rispettano.
