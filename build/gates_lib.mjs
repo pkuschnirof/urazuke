@@ -117,7 +117,21 @@ export function reglasConEnunciado(fuentes, anexo) {
 
 /** Lo que se publica, sin la metadata de publicacion (eso lo pone gates_api). */
 export function armarContenido(fuentes = cargarFuentes(), anexo = extraerAnexo()) {
+  const reglas = reglasConEnunciado(fuentes, anexo);
   return {
+    // `what` y `counts` viven ACA y no en el armado del archivo porque desde la version
+    // 2026.10.6 los cubre la huella (PND-010): un resumen de cantidades que puede mentir es peor
+    // que no tener resumen --una herramienta que lo usa para comprobar que termino de leer
+    // aceptaria en silencio un archivo truncado-- y `what` es justo donde el archivo declara el
+    // alcance de su propia proteccion. Lo que la huella cubre tiene que estar en el contenido
+    // que se canonicaliza, no agregado despues.
+    what: 'The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.',
+    counts: {
+      steps: fuentes.steps.steps.length,
+      stations: fuentes.stations.stations.length,
+      rules: reglas.length,
+      evaluators: fuentes.evaluators.evaluators.length,
+    },
     schema_version: fuentes.catalog.schema_version,
     catalog_version: fuentes.catalog.catalog_version,
     languages: fuentes.catalog.languages,
@@ -128,7 +142,7 @@ export function armarContenido(fuentes = cargarFuentes(), anexo = extraerAnexo()
     steps: fuentes.steps.steps,
     stations: fuentes.stations.stations,
     loop_entry: fuentes.stations.loop_entry,
-    heuristics: { ...fuentes.heuristics, rules: reglasConEnunciado(fuentes, anexo) },
+    heuristics: { ...fuentes.heuristics, rules: reglas },
     adapters: fuentes.adapters,
     project_config: fuentes.schema.project_config,
   };

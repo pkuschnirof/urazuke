@@ -55,13 +55,18 @@ export function armarContenido() {
     if (m) steps.push({ num: Number(m[1]), key: 'peldano-' + f.slice(8, 10), title: m[2] });
   }
   const contenido = {
+    // `what` viaja ACA y no en el armado del archivo porque desde la version 2026.10.4 lo cubre
+    // la huella (PND-010): es la clave donde el archivo dice que es y que viaja tal cual, asi que
+    // una copia congelada alterada ahi se describiria mal y la huella recalculada seguiria
+    // coincidiendo. Lo que la huella cubre tiene que estar en el contenido que se canonicaliza.
+    what: 'The prompts of the Urazuke method, published as data. The method owns them; a tool consumes them. They are one English piece, identical in every version of the method -- the list of versions is declared in the gate catalogue under languages.prose_versions -- and a tool does not rewrite them.',
     corpus_version: catalogo.corpus_version,
     language: 'en',
     languages: {
       prompts: 'en',
       step_titles: 'en',
       decision: 'D-051',
-      note: 'The prompts are ONE English piece, identical in the eight versions of the method (D-013): that is what makes them comparable. The step titles come from the English contracts (docs/en/peldanos/), because this file is tool data and the data layer is published in English. The file is UTF-8 and NOT pure ASCII: the prompt text travels verbatim, typographic punctuation included.',
+      note: 'The prompts are ONE English piece, identical in EVERY version of the method (D-013): that is what makes them comparable. How many versions there are is not stated here as a count: the list is declared once, in the gate catalogue under languages.prose_versions, so that adding a language changes an array and no sentence. The step titles come from the English contracts (docs/en/peldanos/), because this file is tool data and the data layer is published in English. The file is UTF-8 and NOT pure ASCII: the prompt text travels verbatim, typographic punctuation included.',
       consumer: 'Do not print `title` to an end user. Read the opaque `key` and `num` -- they are never translated -- and take your display text from your own catalogue, in the language of your reader.',
     },
     contracts,
@@ -113,7 +118,7 @@ export function armarPublicado() {
   const esquema = catalogo.version_scheme;
   const valor = huellaDeContenido(contenido, esquema.hash_covers);
   const salida = {
-    what: 'The prompts of the Urazuke method, published as data. The method owns them; a tool consumes them. They are one English piece, identical in the eight versions of the method, and a tool does not rewrite them.',
+    what: contenido.what,
     corpus_version: contenido.corpus_version,
     content_hash: {
       algo: receta.hash_algo,

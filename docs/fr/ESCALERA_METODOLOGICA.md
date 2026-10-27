@@ -23,7 +23,7 @@ fil ou la suivre si le détail vous intéresse.
 Le dépôt public de la méthode est
 [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke). On y trouve ce
 document, les contrats de chaque échelon, le manuel du cours et les références, dans les huit
-langues de NAC3.
+langues que la méthode déclare d’elle-même.
 
 ## Le nom
 

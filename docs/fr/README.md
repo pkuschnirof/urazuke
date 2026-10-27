@@ -111,7 +111,8 @@ ceux du chemin évolutif-correctif) et produit, pour chaque langue, `ESCALERA_ME
 
 ## Langues
 
-L'espagnol est la source de vérité. La documentation existe dans les huit langues de NAC3 :
+L'espagnol est la source de vérité. La documentation existe dans les huit langues que la méthode
+déclare d’elle-même :
 espagnol (`docs/`), anglais (`docs/en/`), portugais (`docs/pt/`), français (`docs/fr/`), allemand
 (`docs/de/`), italien (`docs/it/`), japonais (`docs/ja/`) et chinois (`docs/zh/`). Chaque dossier a
 son README, le document principal, les références, les vingt-quatre contrats, le chemin

@@ -103,7 +103,8 @@ caminho evolutivo-corretivo) e produz, para cada idioma, `ESCALERA_METODOLOGICA.
 
 ## Idiomas
 
-O espanhol é a fonte da verdade. A documentação existe nos oito idiomas do NAC3: espanhol
+O espanhol é a fonte da verdade. A documentação existe nos oito idiomas que o método declara
+por conta própria: espanhol
 (`docs/`), inglês (`docs/en/`), português (`docs/pt/`), francês (`docs/fr/`), alemão (`docs/de/`),
 italiano (`docs/it/`), japonês (`docs/ja/`) e chinês (`docs/zh/`). Cada pasta tem seu README, o
 documento principal, as referências, os vinte e quatro contratos, o caminho evolutivo-corretivo e as

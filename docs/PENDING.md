@@ -789,7 +789,8 @@ atacante puede editar para que diga lo contrario.
 ## PND-010 — `counts` y `what` quedan fuera de la huella *(era U-09)*
 
 - **Nodo:** `interfaz-publica/api` [nodo propuesto]
-- **Grupo:** G-API · **Severidad:** bloquea · **Repositorio:** método · **Estado: abierto**
+- **Grupo:** G-API · **Severidad:** bloquea · **Repositorio:** método · **Estado: CERRADO** el
+  2026-10-27, en `catalog_version 2026.10.6` y `corpus_version 2026.10.4`.
 - **Decisión del dueño (2026-10-24): cubrir las dos.** En el mismo cambio de versión que ya fuerzan
   otras entradas de este backlog.
 
@@ -827,6 +828,32 @@ donde PND-009 pone la frase sobre el alcance de la protección.
 declarada** de los dos archivos y anota su entrada en el registro, que es append-only. Si no se
 hace en ese orden, la publicación se niega con `E_VERSION`, que es exactamente para lo que ese
 chequeo existe.
+
+**Cierre (2026-10-27).** Las dos claves quedaron **cubiertas**, y en el mismo cambio de versión que
+`PND-019`, que es lo que esta entrada pedía: una versión es un contenido, y uno solo.
+
+Lo que hubo que mover no era la declaración sino **dónde se arma el dato**. `what` y `counts` se
+construían *después* de calcular la huella, en el armado del archivo, así que declararlos cubiertos
+sin más daba `E_HUELLA: la huella cubre la clave counts, que el publicado no tiene` —el validador
+tenía razón—. Ahora los dos viven en `armarContenido()`, que es el contenido que se canonicaliza, y
+el armado del archivo los toma de ahí. En los prompts, lo mismo con `what`.
+
+```
+gates.json    2026.10.5 -> 2026.10.6   huella 6fc83add4a12 -> 649f10179cc1
+  covers  += counts, what        (13 claves -> 15)
+  excludes -= counts, what       (8 claves -> 6)
+prompts.json  2026.10.3 -> 2026.10.4   huella f5b02b3c893c -> 8e69d1189be9
+  covers  += what                (6 claves -> 7)
+  excludes -= what               (7 claves -> 6)
+node build/gates_validate.mjs  -> validado (24 peldaños, 8 estaciones, 45 reglas)
+node build/api_check.mjs       -> los tres recursos coinciden con las fuentes
+node --test                    -> 261 pruebas, 0 fallos
+```
+
+Los valores no cambiaron: mismo resumen de cantidades, mismo texto. Lo que cambió es que ahora
+**no pueden** cambiar sin que la verificación lo note, y queda dicho en el propio esquema
+(`version_scheme.counts_is_covered`) por qué un resumen que puede mentir es peor que no tener
+resumen.
 
 **Depende de:** nada; va junto con PND-019 en el mismo cambio de versión.
 
@@ -1760,7 +1787,8 @@ fallos).
 
 - **Nodo:** `corpus/idiomas`, `interfaz-publica/api` [nodos propuestos]
 - **Grupo:** G-IDIOMA · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** los dos · **Estado: abierto**
+- **Repositorio:** los dos · **Estado: CERRADO** el 2026-10-27 del lado del método; las cuarenta
+  cadenas de la portada quedan nombradas y son del otro repositorio.
 
 **Qué está mal.** La afirmación "ocho idiomas" está en más lugares de los que parece, y dos de
 ellos están **protegidos por la huella** de los archivos publicados, así que corregir una oración
@@ -1819,6 +1847,42 @@ Cortar esa dependencia conceptual es casi gratis y refuerza justo el argumento d
   README y en el documento principal es el mismo.
 - *P5:* dado el perfil auditor, cada versión nueva tiene su entrada en el registro con la huella
   que produjo, y ninguna entrada anterior se editó.
+
+**Cierre (2026-10-27): hecho del lado del método, y la pieza conceptual es la que más valía.** El
+paso explícito se corrió en el orden que esta entrada escribió, que es el único orden en que no
+termina en un rojo que nadie entiende.
+
+1. La prosa de los dos archivos publicados dejó de llevar la **cuenta**. `languages.note` de las
+   compuertas ya no dice «translated into seven more languages» y los prompts ya no dicen
+   «identical in the eight versions»: los dos apuntan a una lista que el método declara **una sola
+   vez**, `languages.prose_versions`, con su `prose_versions_what` al lado. Agregar un idioma ahora
+   cambia un arreglo y **ninguna oración**. Era la forma de este defecto: la afirmación vivía en
+   una nota, en el corpus de prompts, en dos README, en la prosa del documento principal y en
+   cuarenta cadenas de una portada, así que corregir una oración costaba dos versiones declaradas.
+2. Subieron las dos versiones: `2026.10.5 -> 2026.10.6` y `2026.10.3 -> 2026.10.4`.
+3. Las dos entradas nuevas quedaron anotadas en sus registros append-only con la huella que
+   produjeron (`649f10179cc1` y `8e69d1189be9`), sin tocar ninguna huella ya publicada.
+4. La prosa: **dieciséis** lugares, los ocho README y el documento principal en los ocho idiomas,
+   en el mismo commit. «Los ocho idiomas de NAC3» pasó a «los ocho idiomas **que el método declara
+   por su cuenta**», con su equivalente en inglés, portugués, francés, alemán, italiano, japonés y
+   chino. Medido después: cero ocurrencias de la frase heredada en el corpus, y la única que queda
+   en el repositorio es la que esta entrada cita como evidencia.
+
+**La pieza conceptual, que es por la que esto importaba más de lo que parecía.** Hoy son ocho
+idiomas porque se heredaron de la lista de un protocolo, y esa lista ya tiene diez: la frase
+**quedó vieja sola**, sin que nadie la tocara. El método declara **sus** idiomas; si coinciden con
+los de un protocolo, es coincidencia y no definición. Cortar esa dependencia costó una frase por
+idioma y es exactamente el argumento que `PND-022` defiende: el método se sostiene sin el
+protocolo y sin la herramienta.
+
+**El número no se movió, y eso es a propósito.** Siguen siendo ocho. Pasar a diez es `PND-016`, que
+es la decisión más cara del backlog y está abierta; lo que este cambio hace es que ese día cueste
+un arreglo y no una cacería de oraciones.
+
+**Lo que NO entró, nombrado y no omitido.** Las **cuarenta cadenas** del i18n de la portada
+—cuatro claves por diez locales— viven en el repositorio del portal, que es otro árbol con otro
+despliegue. Quedan pendientes ahí, y conviene que entren junto con `PND-016`, porque es el cambio
+que les va a mover el número.
 
 **Depende de:** PND-016 (la decisión de los diez idiomas es la que fija el número) y va junto con
 PND-010 en el mismo cambio de versión.
@@ -4181,14 +4245,14 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 14 | 6 | 8 | 2 |
+| G-API | 14 | 5 | 9 | 1 |
 | G-ALCANCE | 4 | 0 | 4 | 0 |
-| G-IDIOMA | 13 | 11 | 2 | 2 |
+| G-IDIOMA | 13 | 10 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 11 | 1 | 10 | 0 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **53** | **19** | **34** | **4** |
+| **total** | **53** | **17** | **36** | **2** |
 
 Cincuenta y tres entradas, `PND-001` a `PND-053`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,

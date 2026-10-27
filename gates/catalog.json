@@ -1,6 +1,6 @@
 {
   "what": "The header of the gate catalogue: the version a project freezes. Declared BY HAND. Any change to a key covered by the content hash raises the version and is recorded in the changelog with the hash it produced; regenerating the published file without touching a covered key leaves it alone.",
-  "catalog_version": "2026.10.5",
+  "catalog_version": "2026.10.6",
   "schema_version": 2,
   "declared_at": "2026-10-23",
   "method": {
@@ -54,24 +54,54 @@
       "decision": "D-065",
       "content_hash": "6fc83add4a1245d3a1a78844f27203b8bb551174f93093ceeeb01ac8a68e6c75",
       "changed": "One requirement comes in and one note stops being true, and both are the same decision: the two prior inputs of Annex H -- the user glossary and the list of profiles -- now have a canonical path declared by the owner, docs/GLOSSARY.md and docs/PROFILES.md. Until today the method asked for them in the step 2 contract and declared no path, so the catalogue published them as required and not measurable by machine: a gate cannot look at a file whose name nobody knows, and the matrix of step 5 could keep being invented against a list that nothing obliged to exist. They come in as NEW step 2 artifacts with their since_schema, with min_bytes and no must_contain, because what those two files have to SAY is judged by a person and a pattern invented here would publish a default the owner never declared. The frozen base is untouched. Note for a consumer that froze 2026.10.4: the two prior inputs change from declared: false / path: null to declared: true with their path, so a tool that branched on declared has a new branch to take."
+    },
+    {
+      "catalog_version": "2026.10.6",
+      "date": "2026-10-27",
+      "decision": "D-067",
+      "content_hash": "649f10179cc1a4ef2639cdb07c7ec441e8c6f2306f643dd6fd1404632ec07cfb",
+      "changed": "Two findings of the external audit close together, because both move the fingerprint and a version is one content and one only. First: `counts` and `what` were the only two keys of the published file that could change without breaking verification, and they are now COVERED. A summary of quantities that can lie is worse than no summary -- a tool that uses it to check it finished reading would accept a truncated file in silence -- and `what` is where the file states the scope of its own protection. Nothing else about them changed: same values, same meaning. Second: the languages of the prose are now declared as a LIST, `languages.prose_versions`, instead of as a count inside a sentence. The claim lived in this note, in the prompt corpus, in two README files and in forty strings of a landing page, so correcting one sentence meant mechanically raising two declared versions; from here on, adding a language changes an array and no prose. And the method declares ITS OWN languages: the list was inherited from another specification's, which already moved on, so the sentence had gone stale on its own. No requirement, no id and no threshold changed in this version."
     }
   ],
   "languages": {
     "prose": "es",
     "data": "mixed",
     "decision": "D-051",
-    "note": "The prose of the method (docs/) is written in Spanish and translated into seven more languages. The data layer (gates/ and the published file) is written in English, which is the canonical language of the profession, because it is not part of the translated corpus. Translating for the comprehension of an end user is the job of the consumer tool, not of this catalogue.",
+    "note": "The prose of the method (docs/) is written in Spanish, which is the source of truth, and published in every language listed in `prose_versions`. The data layer (gates/ and the published file) is written in English, which is the canonical language of the profession, because it is not part of the translated corpus. Translating for the comprehension of an end user is the job of the consumer tool, not of this catalogue.",
     "exception": "The frozen base (gates/baseline.json) keeps the Spanish text and the `tramo` field name it had when the method took ownership. The base is not edited: changing it is a change of the method, with its own decision.",
     "text_language": {
       "what": "Which language each human-readable text of this file is in. It is declared mechanically because the file is bilingual: reading `data` as a single language would make a consumer show Spanish to an English reader.",
       "default": "en",
-      "spanish_scope": ["tramos", "steps", "stations", "loop_entry"],
+      "spanish_scope": [
+        "tramos",
+        "steps",
+        "stations",
+        "loop_entry"
+      ],
       "marker": "since_schema",
       "rule": "Inside the keys listed in `spanish_scope`, a text is Spanish when neither its own node nor any enclosing node declares `since_schema` >= 2: it comes from the frozen base, and the base is not edited. A node with `since_schema` >= 2 is new, and its text is English. Every text outside `spanish_scope` is English.",
-      "text_fields": ["title", "summary", "verify", "label", "text", "note"],
+      "text_fields": [
+        "title",
+        "summary",
+        "verify",
+        "label",
+        "text",
+        "note"
+      ],
       "language_neutral": "Ids, step and station keys, evaluator names, enum values, file paths and the regular expressions of must_contain / should_contain are not prose and carry no language. The regular expressions are deliberately bilingual, so that a gate matches a document written in either language.",
       "verified": "The method checks this declaration on every build: every text the rule calls Spanish has to appear literally in gates/baseline.json, and no text the rule calls English may read as Spanish. If the declaration stops being true, nothing is published.",
       "consumer": "Do not print these texts to an end user. Read the stable `id` -- an opaque key that is never translated -- and take the text from your own catalogue. That holds for the English texts too: this file is the definition of the gates, not a translated user interface."
-    }
+    },
+    "prose_versions": [
+      "es",
+      "en",
+      "pt",
+      "fr",
+      "de",
+      "it",
+      "ja",
+      "zh"
+    ],
+    "prose_versions_what": "The languages the prose of the method is published in, declared as a LIST and not as a count inside a sentence. The method declares ITS OWN languages: if they coincide with those of some other specification, that is a coincidence and not a definition. Adding a language changes this array and no prose anywhere, which is why the array exists -- the claim used to live in a sentence here, in the prompt corpus, in two README files and in forty strings of the landing page, and correcting one of them meant mechanically raising two declared versions."
   }
 }

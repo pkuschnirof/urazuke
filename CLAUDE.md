@@ -53,7 +53,8 @@ por la que existe**, y que esa razón **cite el pendiente o la decisión que lo 
 tampoco puede tener registros que sobren, y las exclusiones de árbol son un registro con su razón y
 no una condición escondida (D-066). Lee el **disco** y no el índice de git, porque el apunte que
 conviene atrapar es el que todavía no se commiteó. Lo que **no** hace, y queda dicho: mirar el
-mensaje de un commit. Agregar un documento de trabajo cuesta una línea en ese inventario. Va en castellano, es voz del autor y **no** se traduce ni se genera. La
+mensaje de un commit. Agregar un documento de trabajo cuesta una línea en ese inventario.
+El registro va en castellano, es voz del autor y **no** se traduce ni se genera. La
 numeración `PND-nnn` es la de este registro y no se corresponde con la de ninguna herramienta.
 Mientras el árbol semántico del peldaño 2 no exista, los nodos se escriben `[nodo propuesto]`.
 No se genera, pero **su resumen no puede contradecir sus entradas**: `tests/pending_resumen.test.mjs`
@@ -214,7 +215,11 @@ de estas tres piezas se replica en las otras dos.
   comando y la cuenta en vez de la frase, y acá el comando estaba, la cuenta estaba, y el universo
   era el equivocado.
 - Nombre: Urazuke (D-014). No se traduce; el subtítulo sí.
-- Idiomas (D-013): castellano como fuente de verdad (`docs/`); las otras siete versiones de NAC3
+- Idiomas (D-013): castellano como fuente de verdad (`docs/`); **el método declara sus propios
+  idiomas** y no los hereda de la lista de ningún protocolo —la lista vive una sola vez, en el dato
+  publicado, en `languages.prose_versions`, y la prosa dice «los ocho idiomas que el método declara
+  por su cuenta» en los dieciséis lugares donde la afirmación aparece (D-067, PND-019)—; las otras
+  siete versiones
   en `docs/<idioma>/` (en, pt, fr, de, it, ja, zh), cada una con README, documento principal,
   referencias, veinticuatro contratos, camino evolutivo-correctivo, las dos partes del manual-curso, el documento sobre la capacitación del junior, el Anexo H y la hoja de las veinticinco preguntas para el proveedor (`PREGUNTAS_AL_PROVEEDOR.md`, D-061). Un cambio en el castellano se replica en las
   siete traducciones en el mismo commit. Un documento nuevo del corpus, además, entra al arreglo
@@ -359,7 +364,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
 - **Nada inventado.** Un umbral que el dueño no declaró se publica con valor nulo y
   `declarado: false`. Los únicos dos que el anexo declara son 300 líneas por archivo y 40 por
   función.
-- **La versión.** `catalog_version` la declara el método a mano (hoy `2026.10.5`); el archivo
+- **La versión.** `catalog_version` la declara el método a mano (hoy `2026.10.6`); el archivo
   publicado viaja con una huella `sha256` del contenido canonicalizado que el consumidor
   **recalcula**. El identificador de git es informativo: se calcula antes de guardar, así que
   siempre nombra al cambio anterior al que lo contiene.
@@ -403,7 +408,13 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   apagado sea el mismo en el catálogo y en la configuración que lo consume.
 - **La huella no deja claves en el limbo.** Toda clave del publicado está cubierta por
   `hash_covers` o excluida en `hash_excludes`, y el validador lo verifica (`E_HUELLA`): una clave
-  que no esté en ninguna de las dos viajaría sin protección.
+  que no esté en ninguna de las dos viajaría sin protección. Desde `2026.10.6` el **resumen de
+  cantidades** (`counts`) y la clave `what` están **cubiertos** (D-067, PND-010): eran las dos
+  únicas del publicado que podían cambiar sin romper la verificación, y un resumen de cantidades
+  que puede mentir es peor que no tener resumen —una herramienta que lo usa para comprobar que
+  terminó de leer aceptaría en silencio un archivo truncado—. Lo que la huella cubre se arma en
+  `armarContenido()`, que es el contenido que se canonicaliza: agregado después, el validador lo
+  rechaza diciendo que cubre una clave que el publicado no tiene.
 - `docs/COMPUERTAS.md` **se genera** (`node build/gates_doc.mjs`), **en inglés**, y la construcción
   falla si lo que hay en disco no coincide con los datos. No se edita a mano. Queda fuera del
   corpus traducido: es documentación de herramienta (D-051), y su HTML se marca `lang="en"`.
@@ -414,7 +425,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
 
 `prompts/*.en.md` **se genera** desde los contratos castellanos (`build/prompts.mjs`) y no se edita
 a mano; `prompts/catalog.json` se mantiene **a mano**, porque es la identidad de lo publicado y la
-declara el método: `corpus_version` (hoy `2026.10.3`) y el registro de huellas, con las mismas
+declara el método: `corpus_version` (hoy `2026.10.4`) y el registro de huellas, con las mismas
 reglas que el catálogo de compuertas (D-053). `docs/html/api/prompts.json` viaja entonces con
 versión declarada **y** huella recalculable, y conserva el campo `version` con el sha de git, ahora
 explícitamente informativo, para no romper al consumidor que ya lo imprime: el cambio es aditivo y

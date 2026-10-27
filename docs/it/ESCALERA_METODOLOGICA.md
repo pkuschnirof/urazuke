@@ -21,8 +21,8 @@ perdere il filo o seguirlo se ti interessa il dettaglio.
 
 Il repository pubblico del metodo è
 [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke). Lì ci sono questo
-documento, i contratti di ogni gradino, il manuale del corso e le referenze, nelle otto lingue di
-NAC3.
+documento, i contratti di ogni gradino, il manuale del corso e le referenze, nelle otto lingue che il metodo
+dichiara per conto proprio.
 
 ## Il nome
 

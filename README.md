@@ -102,7 +102,8 @@ los del camino evolutivo-correctivo) y produce, para cada idioma, `ESCALERA_METO
 
 ## Idiomas
 
-El castellano es la fuente de verdad. La documentación existe en los ocho idiomas de NAC3:
+El castellano es la fuente de verdad. La documentación existe en los ocho idiomas que el método declara
+por su cuenta:
 castellano (`docs/`), inglés (`docs/en/`), portugués (`docs/pt/`), francés (`docs/fr/`), alemán
 (`docs/de/`), italiano (`docs/it/`), japonés (`docs/ja/`) y chino (`docs/zh/`). Cada carpeta tiene
 su README, el documento principal, las referencias, los veinticuatro contratos, el camino

@@ -34,7 +34,9 @@
       "loop_entry",
       "heuristics",
       "adapters",
-      "project_config"
+      "project_config",
+      "counts",
+      "what"
     ],
     "hash_excludes": [
       "generated_at",
@@ -42,13 +44,12 @@
       "git_commit_note",
       "source",
       "license",
-      "content_hash",
-      "what",
-      "counts"
+      "content_hash"
     ],
     "hash_completeness": "Every key of the published payload is either covered or excluded, and the validator checks it. A requirement-bearing key left out of both would travel without protection: a frozen copy could be altered there and the recomputed hash would still match.",
     "version_bump": "Any change to a key listed in hash_covers raises catalog_version, even when no requirement changed: the content hash moves with it, and two different contents published under one declared version would make a freeze unreadable. A regeneration that only rewrites generated_at or git_commit changes nothing covered, so it leaves the version alone.",
-    "version_ledger": "gates/catalog.json#changelog records, for each catalog_version, the content hash it produced. The build refuses to publish when the hash of the current content is not the one recorded for the current version: that is what forces the bump instead of trusting it. The ledger is append-only and a hash already recorded is never edited, for the same reason the base is not edited. It is not part of the published payload, so recording a new entry cannot change the hash it records."
+    "version_ledger": "gates/catalog.json#changelog records, for each catalog_version, the content hash it produced. The build refuses to publish when the hash of the current content is not the one recorded for the current version: that is what forces the bump instead of trusting it. The ledger is append-only and a hash already recorded is never edited, for the same reason the base is not edited. It is not part of the published payload, so recording a new entry cannot change the hash it records.",
+    "counts_is_covered": "The summary of quantities is covered by the fingerprint (since catalog_version 2026.10.6). It is derived data, and leaving it out was defensible, but a summary of quantities that can lie is worse than no summary: a tool that uses it to check it finished reading would accept a truncated file in silence. Covered, a consumer can compare counts against what it parsed and detect a short read without a second request. The same goes for `what`, which is where the file states the scope of its own protection."
   },
   "compatibility": {
     "unknown_evaluator_required": "The installation does NOT report green. It reports \"declared, not measured by this installation\", naming the evaluator, and the step does not advance.",

@@ -109,7 +109,8 @@ anderen in `docs/html/<Sprache>/`).
 
 ## Sprachen
 
-Spanisch ist die Quelle der Wahrheit. Die Dokumentation existiert in den acht Sprachen von NAC3:
+Spanisch ist die Quelle der Wahrheit. Die Dokumentation existiert in den acht Sprachen, die die Methode
+von sich aus festlegt:
 Spanisch (`docs/`), Englisch (`docs/en/`), Portugiesisch (`docs/pt/`), Französisch (`docs/fr/`),
 Deutsch (`docs/de/`), Italienisch (`docs/it/`), Japanisch (`docs/ja/`) und Chinesisch
 (`docs/zh/`). Jeder Ordner hat sein README, das Hauptdokument, die Referenzen, die vierundzwanzig

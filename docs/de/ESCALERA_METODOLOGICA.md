@@ -22,8 +22,8 @@ wenn dich das Detail interessiert.
 
 Das öffentliche Repository der Methode ist
 [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke). Dort liegen dieses
-Dokument, die Verträge jedes Schritts, das Kurshandbuch und die Referenzen, in den acht Sprachen
-von NAC3.
+Dokument, die Verträge jedes Schritts, das Kurshandbuch und die Referenzen, in den acht Sprachen, die die
+Methode von sich aus festlegt.
 
 ## Der Name
 
