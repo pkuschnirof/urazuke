@@ -4236,6 +4236,106 @@ ausencia sin su bloque de universo, y que traiga su rojo deliberado.
 
 ---
 
+## PND-054 — El método exige la pregunta y no dice cómo se hace
+
+- **Nodo:** `metodo/prompts` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Quién decide:** el dueño. La pieza la pidió él;
+  lo que vuelve a él es **dónde vive**, **cómo se llaman los tres niveles** y si se exige por
+  máquina.
+- **Repositorio:** método · **Estado: abierto**
+- **Origen:** pedido del dueño el 2026-10-27, escrito en medio de otro trabajo: *"Quiero agregar una
+  forma mandatoria de comunicación"*.
+
+**Qué está mal.** Todos los prompts del método llevan la cláusula de completitud —evaluá si el
+contexto alcanza, pedí lo que falte, **no estimes**— y eso significa que el método **le ordena al
+modelo preguntar**. Pero no dice **cómo**. La forma de la pregunta queda a la improvisación del
+modelo, y entonces la persona que tiene que decidir recibe, en el mejor de los casos, una pregunta
+suelta: sin los datos que la justifican, sin las opciones enumeradas y sin la recomendación de
+quien ya miró el código. Es la misma asimetría que persigue el peldaño 11 —una punta exige y la
+otra no sabe con qué cumplir—, acá en la dirección que más caro sale: hacia la persona.
+
+Y es la contracara exacta de lo que el método ya hizo bien dos veces. El peldaño 8 no se conformó
+con «mostrame el rojo»: definió **qué es un recibo de rojo** (comando exacto, versión, cantidad de
+fallos, código de salida, pegados tal cual). El peldaño 12 no se conformó con «reportá»: separó
+**verificado** de **creído**. Falta la tercera de la misma familia: no conformarse con «preguntá».
+
+**El pedido del dueño, con sus palabras (2026-10-27).**
+
+> Cuando el brain necesita una respuesta del interlocutor, quiero que mandatoriamente la plantee de
+> la siguiente manera 1) enuncie los datos que justifican la pregunta ENUMERADOS ó con bullet 2)
+> Una frase de no más de 5 líneas que visualice el contexto mediante el cuál esos datos enlazan y
+> dejan ver el interrogante 3) La pregunta taxativa con las opciones de respuesta enumeradas 4) La
+> recomendación del brain. 5) Tres niveles de profundidad técnica de la comunicación seleccionables
+> por parámetro. Podemos incluír esto en el método y los prompts?
+
+**Mi reproducción (2026-10-27), medida.**
+
+```
+$ grep -o "ask me" prompts/*.en.md | wc -l
+22                                   (en 15 de los 27 archivos del corpus publicado)
+
+$ grep -oi "options|recommendation|enumerat|bullet" prompts/*.en.md | sort | uniq -c
+      2 prompts/peldano-03.en.md:options
+      1 prompts/peldano-01.en.md:recommendation
+      1 prompts/peldano-06.en.md:recommendation
+```
+
+Veintidós órdenes de preguntar, en más de la mitad de los prompts. **Cuatro** menciones de una
+forma, en todo el corpus, y las cuatro incidentales. La orden está en todas partes; la forma, en
+ninguna.
+
+**Lo que ya existe y hay que no duplicar.** Los niveles de profundidad **no se inventan desde
+cero**: el método ya tiene el **nivel principiante** (D-025, con su párrafo "Si sos principiante"
+en ocho contratos) y la herramienta ya tiene **dos** modos de comunicación —didáctico y técnico—.
+Tres niveles son una extensión de algo que existe, no una invención. Y los **nombres** de los tres
+los declara el dueño: un valor que él no declaró no entra como si fuera de fábrica.
+
+**Las tres salidas, con su costo.**
+
+- **(i) Sólo los prompts.** La cláusula entra en la pieza inglesa de cada prompt, que es donde el
+  modelo la lee. Costo: toca los 54 prompts, es **una** pieza idéntica byte a byte en las ocho
+  versiones (`build/prompts.mjs` lo exige), su traducción de lectura se escribe en las siete, y
+  **sube `corpus_version`** con su huella anotada. Lo que gana: es el único lugar que el modelo lee
+  como instrucción.
+- **(ii) Sólo la prosa.** Un párrafo transversal en la Parte A del documento principal y una línea
+  en la sección 2 de cada contrato. Costo: ocho idiomas, cero cambios de versión del dato. Lo que
+  gana: el lector sabe qué exigir. Lo que **no** gana: el modelo no lee la prosa, lee el prompt.
+- **(iii) Las dos, más una regla del Anexo H.** Igual que arriba y además un id nuevo (`UX-28` o
+  `CQ-19`, append-only) para que la forma sea **exigible** y no sólo recomendada, con su severidad
+  y su fila en el anexo castellano e inglés. Costo: los dos de arriba, más `catalog_version` con su
+  huella, más la simetría que `tests/anexo_simetria.test.mjs` ya vigila.
+
+**Mi recomendación: la (iii), y con una honestidad por delante.** Una regla que vive sólo en la
+prosa es una recomendación; una que vive sólo en el prompt no la puede exigir nadie. Pero lo que
+una compuerta **puede** verificar es que la cláusula esté presente en los 54 prompts y en los ocho
+idiomas —eso es decidible, y es la misma forma que `artefacto_nombrado`—. Lo que **ninguna** prueba
+de este repositorio puede verificar es que una pregunta concreta que un modelo escribió el martes
+tenga sus cuatro partes: eso lo juzga la persona que la recibe. Decirlo ahora evita la sexta guarda
+dormida: una prueba que diga verde sobre la calidad de las preguntas sin haberla medido nunca.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dada esa persona, cuando el modelo necesita que
+  decida, recibe los datos enumerados, el párrafo de contexto, la pregunta con sus opciones
+  numeradas y la recomendación; y puede contestar con un número, sin reconstruir el problema.
+- *P6 (lector humano que entra por el documento principal):* dada esa persona, puede leer en el
+  método qué forma tiene derecho a exigirle a una pregunta, igual que hoy lee qué forma tiene
+  derecho a exigirle a un recibo de rojo.
+- *P1, P2 (herramientas consumidoras):* dada una herramienta que compila los prompts, esa
+  herramienta recibe la cláusula dentro de la pieza inglesa, sin tener que escribirse su propia
+  versión; y el parámetro de nivel llega con sus tres valores declarados en el dato.
+- *P5 (auditor):* dado el perfil auditor, esta persona puede comprobar que la cláusula está en los
+  54 prompts y en los ocho idiomas, y que la versión publicada subió con su huella.
+
+**Cómo se verifica.** La presencia, por máquina: una prueba que cuente la cláusula en los 54
+prompts por idioma y caiga nombrando el que le falta, con su rojo deliberado. La **calidad** de una
+pregunta concreta, no: la juzga el dueño, y queda escrito así para que nadie le atribuya a la
+compuerta algo que no mide.
+
+**Depende de:** la decisión del dueño entre las tres salidas, y los nombres de los tres niveles.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -4250,11 +4350,11 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 13 | 10 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 11 | 1 | 10 | 0 |
+| G-METODO | 12 | 2 | 10 | 1 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **53** | **17** | **36** | **2** |
+| **total** | **54** | **18** | **36** | **3** |
 
-Cincuenta y tres entradas, `PND-001` a `PND-053`. Veintidós vienen de la auditoría externa
+Cincuenta y cuatro entradas, `PND-001` a `PND-054`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada, y
@@ -4370,13 +4470,18 @@ de trabajo en curso se quedaron donde estaban. **Lo que queda abierto es la prev
 al dueño: hoy la única defensa contra que vuelva a pasar es que alguien se acuerde de mirar el
 árbol, que es la forma de una guarda dormida vista del otro lado —no hay guarda—.
 
-Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-010,
-PND-011, PND-012, PND-016, PND-024, PND-046 y la prevención de PND-050, que ya tiene **dos**
-ocurrencias medidas), la revisión semántica de los nueve idiomas de la interfaz (PND-026 a PND-034)
-y la prevención de los desvíos de medición (**PND-052**, que es el segundo del mismo grupo en dos
-días). Los cuatro bloqueantes abiertos que quedan son dos del grupo de la API (PND-010 y PND-011, las dos
-esperando decisión del dueño) y dos del de idiomas (PND-016 y PND-019): el del método y el de la
-publicación se cerraron.
+`PND-054` es la última, y la pidió el dueño: el método les ordena a sus prompts **preguntar** —
+veintidós veces, en más de la mitad del corpus— y no dice en ninguna parte **cómo se pregunta**.
+Es la tercera de la familia del recibo de rojo y del reporte proporcional: el peldaño 8 definió qué
+es un recibo, el 12 separó verificado de creído, y falta no conformarse con «preguntá».
+
+Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-012,
+PND-016, PND-024, PND-046 y PND-054), la revisión semántica de los nueve idiomas de la interfaz
+(PND-026 a PND-034) y la prevención de los desvíos de medición (**PND-052**, que es el segundo del
+mismo grupo en dos días). Los tres bloqueantes abiertos que quedan son uno de la API (PND-011, que
+necesita el corpus en diez idiomas), uno de idiomas (PND-016, la decisión más cara del backlog) y
+el del contenido (PND-054): el del método, el del alcance y el de la publicación se cerraron, y
+`PND-010` y `PND-019` cerraron juntos en un solo cambio de versión.
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar
