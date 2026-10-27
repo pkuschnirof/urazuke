@@ -232,7 +232,8 @@ export function verificarIndice(indice, disco = leerDisco()) {
         'el par (version -> huella) es el unico ancla de confianza que vive fuera de este alojamiento (PND-007).');
     }
     const cruda = r.version_ledger?.fetch_url;
-    if (!cruda || !cruda.startsWith(REPO_CRUDO) || !cruda.endsWith(r.version_ledger?.path ?? ' ')) {
+    const ruta = r.version_ledger?.path;
+    if (!ruta || !cruda || !cruda.startsWith(REPO_CRUDO) || !cruda.endsWith(ruta)) {
       err('E_INDICE_REGISTRO_CRUDO', r.name + ' declara el registro de versiones y no la direccion que devuelve el JSON: ' + JSON.stringify(cruda ?? null),
         'regenera el indice: node build/index_api.mjs. La pagina del blob se sirve como HTML, asi que un consumidor que solo tiene `url` tiene que ADIVINAR la cruda, y adivinar una direccion es lo que el anexo prohibe (PND-056).');
     }

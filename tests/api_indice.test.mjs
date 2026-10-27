@@ -182,6 +182,17 @@ test('ROJO: el registro de versiones sin la direccion que devuelve el JSON', () 
   assert.deepEqual(codigos(verificarIndice(malo, disco)), ['E_INDICE_REGISTRO_CRUDO']);
 });
 
+// Y el caso que el arreglo del byte NUL destapo: si falta el `path`, la comparacion
+// tiene que fallar y no volverse vacua. Con `?? ''` -- que era la intencion escrita --
+// `endsWith('')` es SIEMPRE verdadero, asi que un recurso sin path pasaba en verde; el
+// literal commiteado tenia un byte NUL en vez de la cadena vacia, que hacia caer el
+// chequeo por accidente y no por diseno. Ahora la condicion dice lo que quiere decir.
+test('ROJO: el registro de versiones sin el path con el que se comprueba la direccion', () => {
+  const malo = clonar(indiceEnDisco);
+  delete malo.resources[0].version_ledger.path;
+  assert.deepEqual(codigos(verificarIndice(malo, disco)), ['E_INDICE_REGISTRO_CRUDO']);
+});
+
 test('ROJO: la direccion de bajada apunta a otro archivo que el path declarado', () => {
   const malo = clonar(indiceEnDisco);
   malo.resources[0].version_ledger.fetch_url =
