@@ -6,3 +6,7 @@ docs/html/.contratos.tmp.md
 # estado local del panel de Forge (no es parte del metodo)
 .yujin-forge/
 yujin.forge.json
+# el directorio de trabajo del panel: catalogo compilado, configuracion del flujo, recibos,
+# apuntes y los programas de una sola vez. 39 MB el 2026-10-27, y es la misma regla que D-062
+# dejo escrita -- los apuntes del panel no son corpus ni evidencia y no entran al repositorio.
+.forge/

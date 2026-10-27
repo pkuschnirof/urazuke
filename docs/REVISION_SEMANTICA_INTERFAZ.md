@@ -44,7 +44,7 @@ columnas** (`PND-058`). `material.lede` dice «Tres documentos por idioma» y «
 dos documentos más»; la tabla que sigue lista `material.col2` a `material.col11`: documento
 principal, contratos, manual-curso, referencias, camino evolutivo, curso parte 2, junior, en
 equipo, anexo de heurísticas y preguntas al proveedor. Un lector que confía en la entrada no se
-entera de que existen el anexo de las cuarenta y cinco reglas ni la hoja de las veinticinco
+entera de que existen el anexo de las cuarenta y seis reglas ni la hoja de las veinticinco
 preguntas. Ya estaba viejo antes de la columna de la hoja; lo digo porque la columna la agregué yo
 anteayer y no revisé el párrafo que la presenta.
 
@@ -271,6 +271,42 @@ aclaraciones correctas.
 - **No toca el corpus.** Son las 245 cadenas de la interfaz de la portada. El corpus —los treinta y
   cuatro documentos, cientos de miles de caracteres— es otro trabajo y todavía no tiene entrada,
   porque primero hay que decidir si se revisa todo o sólo lo que cambió.
+- **La cuenta de lo que quedaba estaba mal, y se corrige acá.** Este documento decía que quedaban
+  **veintisiete** hallazgos de juicio. Quedaban **treinta y siete**: la tabla da 46 y esa mañana se
+  habían aplicado 9. El 27 no sale de ninguna resta. Se deja escrito en vez de reemplazar el
+  número, porque el defecto es haber afirmado una cuenta sin restar en un documento cuyo trabajo
+  entero es contar.
+- **La tarde del 2026-10-27 se aplicaron treinta y cinco de esos treinta y siete, en 106 cadenas.**
+  El dueño pidió las de coherencia interna —un archivo que usa dos palabras para la misma cosa— y
+  que volvieran a él sólo las que cambian el tono. El desempate, cuando el hallazgo no decía cuál
+  de las dos formas elegir, fue **el corpus publicado de ese idioma**, que es el documento que el
+  lector abre al clic siguiente; hubo tres empates exactos dentro de la página, así que la mayoría
+  no alcanzaba. Eso cambió tres decisiones que estas listas recomendaban al revés: el alemán va a
+  `Tor` y no a `Gate` (141 : 50), a `Sperren` y no a `Schlösser` (152 : 3), a `Kette` y no a
+  `Pipeline` (41 : 3) y a `Arbeitsvereinbarung` (51 : 0). Con dos excepciones declaradas: cuando
+  una de las dos formas es **semánticamente equivocada** gana la correcta aunque el corpus prefiera
+  la otra (el alemán `offener Posten`, que es una factura impagada; el árabe `خط الإنتاج`, que es la
+  línea de producción), y **el hindi y el árabe no tienen corpus publicado** —son ocho idiomas
+  contra diez de interfaz—, así que para esos dos el criterio fue la mayoría en la página y la
+  palabra del título, que es más débil y queda dicho.
+- **Cuatro de estas listas estaban mal, y lo dijo la verificación y no una relectura.** (1) El
+  hallazgo árabe de «la cadena» incluía `thesis.body`, donde el castellano dice «pipelines» y no
+  «la cadena»: la forma árabe era **fiel** y el cambio se revirtió; el mismo falso positivo estaba
+  latente en el alemán, el japonés y el chino. (2) El hallazgo japonés de «la cadena» nombraba dos
+  formas y hay **tres**: `tramo3.p` dice `本番への経路`, que es *la ruta*; el corpus lo confirma
+  —`経路` 52 veces y siempre es ruta, `連鎖` 45 y siempre es la cadena, incluido `本番への連鎖`—.
+  (3) El hallazgo hindi de «método» nombraba nueve claves y hay **diez**: `faq.a5` llevaba dos
+  ocurrencias. (4) Dos «residuos» italianos no eran residuos: `porta` es también el verbo *lleva*,
+  y por eso la medición del italiano se hizo contra el nombre del campo del contrato (`**Cancello`,
+  35 veces) y no contra el conteo crudo, que daba 238 falsos positivos y habría invertido la
+  decisión.
+- **Lo que queda son dos hallazgos, y los dos se arreglan escribiendo castellano:** el
+  ablandamiento de `thesis.k2.p` (inglés y alemán) y el «(en español)» que nueve idiomas agregan en
+  `material.practica`. Los dos esperan al dueño.
+- **Y un hallazgo que estas nueve listas no podían ver.** Comparar cada idioma contra el castellano
+  **de la misma página** no detecta que la página y el documento usen palabras distintas para lo
+  mismo. Al medir el desempate aparecieron tres casos —dos en alemán y uno en francés—, y tienen
+  entrada propia: `PND-060`.
 - **No arregló nada el día que se escribió, y hoy arregló la mitad medida.** El 2026-10-27, el
   mismo día, el dueño eligió aplicar sólo lo que se reproduce con un comando —números, flechas,
   registro— y dejar el juicio de traducción para después. Entraron veintiún cambios en seis
