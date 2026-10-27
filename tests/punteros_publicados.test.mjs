@@ -56,7 +56,11 @@ test('C bis: fetch_url apunta al mismo path que el registro declara, por recurso
   const recursos = pub.indice?.resources ?? [];
   assert.ok(recursos.length >= 2, 'el indice tiene que listar los recursos publicados');
   for (const r of recursos) {
-    const reg = r.version_ledger;
+    const reg = r.version_ledger ?? {};
+    // Presencia primero: sin esto, un indice sin las direcciones cae con un TypeError en vez
+    // de nombrar lo que falta, y un rojo que no dice lo suyo obliga a leer el codigo.
+    assert.ok(reg.url, r.name + ': el registro de versiones no declara la pagina que lee una persona (url)');
+    assert.ok(reg.fetch_url, r.name + ': el registro de versiones no declara la direccion que baja una maquina (fetch_url)');
     assert.ok(reg.url.includes(reg.path), r.name + ': la pagina no nombra el path del registro');
     assert.ok(reg.fetch_url.endsWith(reg.path), r.name + ': la direccion de bajada no termina en el path del registro');
     assert.notEqual(reg.url, reg.fetch_url, r.name + ': las dos direcciones son la misma, asi que una de las dos no es la que dice ser');
