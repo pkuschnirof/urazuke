@@ -3837,8 +3837,9 @@ $ node build/api_check.mjs        -> los tres recursos coinciden con las fuentes
 
 - **Nodo:** `proyecto/registro` [nodo propuesto]
 - **Grupo:** G-TRAZABILIDAD · **Severidad:** registra · **Quién decide:** la limpieza se hizo y se
-  reporta; la prevención vuelve al dueño, que es quien fija el orden del backlog
-- **Repositorio:** método · **Estado: abierto**
+  reporta; la prevención volvió al dueño, que eligió la recomendada
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-27, con la prevención hecha y probada
+  en rojo contra el árbol que llevaba los apuntes.
 - **Origen:** nació el 2026-10-26, revisando qué se había movido después de fusionar el pedido
   **#13**. No lo encontró el dueño y no lo encontró ninguna compuerta: apareció al leer el árbol.
 
@@ -3947,6 +3948,70 @@ opción es que ya falló una vez, y no por descuido de nadie en particular.
 `1a02cd3` nombrando los tres apuntes, y queda en verde contra el árbol de ahora. Mientras no esté,
 esta entrada se queda abierta, que es lo que corresponde: la parte vieja está documentada y la
 parte que impide la próxima vez, no.
+
+**Cierre (2026-10-27): la prevención está hecha, y es la acotada.** El dueño eligió entre las tres
+salidas que esta entrada deja escritas —*"Tu recomendación"*— y la recomendada era la **(a)**: el
+inventario del árbol del método, sin agrandar el alcance a algo que mire el mensaje de un commit.
+Vive en `build/inventario_documentos.mjs` con sus dos pruebas, y exige tres cosas: que todo
+documento bajo `docs/` esté **en el arreglo literal de la construcción** o **en el inventario con
+su razón**; que esa razón **cite el pendiente o la decisión que pide el documento** (una línea
+«porque siempre estuvo ahí» es roja); y que el inventario **no tenga registros que sobren**, porque
+una línea que explica un archivo que el árbol ya no tiene es un registro viejo diciendo algo falso.
+Las exclusiones de árbol —las siete traducciones, `docs/html/`, `docs/peldanos/` y la evidencia de
+los dos proyectos guía— son un **registro con su razón** y no una condición escondida adentro de la
+comprobación, que es lo que el Anexo H pide para una regla apagada.
+
+Y lee el **disco**, no el índice de git. Eso no es un detalle: el panel auto-guarda sus apuntes en
+`docs/`, así que el archivo que conviene atrapar es el que todavía no se commiteó. La guarda cae
+**antes** del commit y no después.
+
+**La evidencia, medida y no relatada.**
+
+```
+$ node --test                                        (antes: 249 pruebas)
+# tests 261 | # pass 261 | # fail 0
+
+árbol de hoy
+  rutas bajo docs/: 486 | documentos a explicar: 22
+  publica la construcción: 11 | en el inventario: 11 | hallazgos: 0 | registros que sobran: 0
+
+el rojo contra el árbol real, con la función pura alimentada por `git ls-tree -r 1a02cd3`
+  arbol 1a02cd3: 25 documentos a explicar, 11 publicados por su propia construcción
+  HALLAZGOS: 4
+    docs/auditoria-urazuke-el-arbol-del-portal-y-las-siete-decisiones.md
+    docs/backlog-de-la-auditoria-el-registro-inaugurado-y-lo-que-qued.md
+    docs/backlog-de-la-retrospectiva-las-4-decisiones-del-dueno.md
+    docs/la-cuarta-decision-con-contexto-medido-pnd-048.md
+  (igual contra 08a429d, que es el commit que los llevó)
+
+el rojo con el archivo puesto en el disco y sin commitear, que es como lo deja el panel
+  not ok 1 - A: cada documento del arbol lo publica la construccion o lo explica el inventario
+      docs/apunte-del-panel-de-prueba.md: no lo publica la construccion y no esta en el inventario
+  not ok 4 - D: la comprobacion reviso algo, y lo dice con su cuenta
+  not ok 5 - los cuatro apuntes del panel que motivaron esto no estan en el arbol
+  # pass 2 | # fail 3     -> borrado el archivo, 5 de 5 en verde
+```
+
+**Corrección del criterio de aceptación que esta entrada escribió.** Decía «nombrando los **tres**
+apuntes». Nombra **cuatro**: el cuarto es `la-cuarta-decision-con-contexto-medido-pnd-048.md`, que
+no se borró sino que se renombró a `DECISION_PND-048_CONTEXTO_MEDIDO.md` porque el registro lo cita
+como evidencia. En el árbol de `1a02cd3` todavía estaba con el nombre del panel, así que la guarda
+lo cuenta, y tiene razón: ahí era un apunte suelto como los otros tres.
+
+**Lo que la guarda encontró el día cero, y no estaba en ninguna entrada.** Dos documentos del árbol
+que **nada explicaba**: `docs/AIevaluation.md` —las evaluaciones crudas de los modelos, de donde se
+escribe `EVALUACIONES_DE_IA.md`; entró el 2026-10-20 con `D-041` y `D-042` y ni `CLAUDE.md`, ni
+`DECISIONES.md`, ni este registro lo nombran— y `docs/PLAN_CURSO_MENTORING.md`, que `CLAUDE.md` sí
+nombra pero ninguna entrada pide. Los dos entraron al inventario con su razón escrita. Es el mismo
+efecto que tuvo el registro de comodines del Anexo H: una guarda que se gana el sueldo antes de
+nacer, porque obliga a escribir lo que nadie había escrito.
+
+**Lo que esta guarda NO hace, dicho para que nadie le atribuya más.** No mira el **mensaje** de un
+commit. Un commit que lleva un documento ya registrado y no lo nombra sigue siendo posible, y eso
+fue exactamente la segunda ocurrencia de abajo. Cubrirlo agranda el alcance —hace falta algo que
+lea el mensaje, y en el repositorio del portal no hay ni pull request ni compuerta donde colgarlo—
+y por eso no entró acá: el dueño eligió la (a) sabiendo ese límite, y está escrito en el encabezado
+del propio programa.
 
 **Segunda ocurrencia, el mismo día, y es el argumento de que la regla sola no alcanza.** Horas
 después de escribir esta entrada y D-062, el commit `6ea7f38` del repositorio del portal —la
@@ -4122,8 +4187,8 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 11 | 1 | 10 | 0 |
-| G-TRAZABILIDAD | 3 | 2 | 1 | 0 |
-| **total** | **53** | **20** | **33** | **4** |
+| G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
+| **total** | **53** | **19** | **34** | **4** |
 
 Cincuenta y tres entradas, `PND-001` a `PND-053`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,

@@ -46,7 +46,14 @@ documentos que no menciona, mil sesenta y seis líneas de las mil ochenta y siet
 (`PND-050`). Los apuntes del panel de chat **no son corpus ni evidencia y no entran al
 repositorio**; un documento de trabajo entra con el pendiente que lo pide; y un archivo que el
 registro cita como evidencia se queda, con el nombre del resto de la carpeta y no con el del
-panel (D-062). Va en castellano, es voz del autor y **no** se traduce ni se genera. La
+panel (D-062). Desde el 2026-10-27 eso **no depende de que alguien se acuerde de mirar el árbol**:
+`build/inventario_documentos.mjs`, con sus dos pruebas, exige que cada documento bajo `docs/` esté
+en el arreglo literal de la construcción —es corpus y se publica— o en su inventario **con la razón
+por la que existe**, y que esa razón **cite el pendiente o la decisión que lo pide**; el inventario
+tampoco puede tener registros que sobren, y las exclusiones de árbol son un registro con su razón y
+no una condición escondida (D-066). Lee el **disco** y no el índice de git, porque el apunte que
+conviene atrapar es el que todavía no se commiteó. Lo que **no** hace, y queda dicho: mirar el
+mensaje de un commit. Agregar un documento de trabajo cuesta una línea en ese inventario. Va en castellano, es voz del autor y **no** se traduce ni se genera. La
 numeración `PND-nnn` es la de este registro y no se corresponde con la de ninguna herramienta.
 Mientras el árbol semántico del peldaño 2 no exista, los nodos se escriben `[nodo propuesto]`.
 No se genera, pero **su resumen no puede contradecir sus entradas**: `tests/pending_resumen.test.mjs`
@@ -431,7 +438,9 @@ fixture que prende y apaga el interruptor, el test de idioma del nivel de datos 
 versión declarada contra su huella, en los dos archivos publicados (D-053), y las del índice de la
 interfaz de datos, que son casi todas rojos deliberados (D-056), y la del registro de pendientes
 contra su propio resumen (D-057), y las del aviso de huérfanas, donde cinco de las veintitrés son
-rojos deliberados y tres corren el programa aparte para exigir su salida medida (D-058). Los cinco
+rojos deliberados y tres corren el programa aparte para exigir su salida medida (D-058), y las del
+inventario del árbol, donde siete de las doce son rojos deliberados y uno reproduce el árbol que
+llevaba los cuatro apuntes del panel (D-066). Los cinco
 programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
 `index_api`, `portal_orphans`)
 detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
