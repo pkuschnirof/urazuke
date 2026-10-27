@@ -1481,7 +1481,8 @@ huerfanas: comprobado -- 84 documentos, 0 huerfanos, 0 fuera del mapa
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
 - **Grupo:** G-ALCANCE · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: abierto**
+- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-27, cuando el empujón ocurrió y la
+  entrada servida pasó a nombrar los diez documentos en los diez idiomas.
 
 **Qué está mal.** La entrada de la sección del material (`material.lede`) dice «Tres documentos por
 idioma» y «desde la versión 5, dos documentos más por idioma». La tabla que sigue, en la misma
@@ -1511,6 +1512,48 @@ la interfaz, así que se reescribe una vez en castellano y nueve veces traducida
 conviene escribirla **sin número** —«los documentos que la tabla lista»— para que la próxima columna
 no vuelva a dejar la entrada vieja: es la misma lección que D-067 dejó para la lista de idiomas, que
 ahora vive una sola vez.
+
+**Lo que se escribió el 2026-10-27, y por qué NO es lo que este criterio pedía.** La entrada de
+arriba decía que la frase convenía escribirla sin número. Se escribió **con** número y nombrando
+los diez documentos, en el orden de la tabla, en los diez idiomas. La razón, dicha para que se
+pueda discutir: el valor de ese párrafo para el lector es que explica *qué es* cada documento —«la
+tesis, el relevamiento de los tres sistemas, los veinticuatro peldaños, los fallos reales y el
+glosario»—, y una frase sin número del tipo «los documentos que la tabla lista» no dice nada que la
+tabla no diga ya. Así que se eligió el texto útil y se pagó el precio con una guarda en vez de con
+una promesa de acordarse.
+
+**El trinquete, que es la parte que impide que vuelva a pasar.** Nada puede leer la prosa del
+párrafo contra el marcado de la tabla: una es prosa en diez idiomas y la otra son once celdas. Lo
+que **sí** puede hacer una máquina es negarse a que la cuenta de columnas cambie en silencio, y eso
+es lo que entró como comprobación 10 de `build/verify-urazuke-homes.mjs`, con la cuenta declarada
+(`COLUMNAS_DECLARADAS = 11`: una de idioma y diez de documento). Agregar o sacar una columna la pone
+en rojo nombrando los diez catálogos que hay que volver a leer. Y trae su rojo deliberado, que es la
+décima mutación de `build/redproof-urazuke-homes.mjs`:
+
+```
+ROJO  una columna de la tabla del material se va sin avisar  exit=1
+      - [index.html] the material table has 10 columns and this verifier declares 11:
+        re-read material.lede in the 10 catalogues ...
+mutaciones: 10  rojos: 10
+PRUEBA EN ROJO OK
+```
+
+Queda dicho qué **no** guarda, para no parir otra guarda dormida: no verifica que el párrafo diga la
+verdad, ni que los diez nombres sean los diez títulos. Eso lo lee una persona. Lo único que
+garantiza es que la próxima columna no pueda aterrizar sin que alguien tenga que mirar el párrafo.
+
+**Documentación de cierre (2026-10-27).** Cierra por el **efecto en producción** y no por el
+commit. El despliegue del portal (`40601065094`) corrió la comprobación nueva dentro de la cadena
+y dejó sus recibos: `PASS -- every page is baked, linked, canonical and reciprocal` y
+`PRUEBA EN ROJO OK: las 10 mutaciones caen y el verificador nombra el problema` —diez mutaciones,
+no nueve: la décima es la de este trinquete, y es su primera corrida real—. Medido contra
+producción después:
+
+```
+es/ "Diez documentos por idioma" 1 · "Tres documentos por idioma" 0
+en/ "Ten documents per language" 1 · de/ "Zehn Dokumente" 1
+los diez catalogos servidos == los diez commiteados (normalizados los finales de linea)
+```
 
 **Depende de:** nada.
 
@@ -2714,10 +2757,11 @@ limpio: `node --test` = **220 pruebas, 0 fallos** (eran 197; las 23 nuevas está
 ## PND-026 a PND-034 — Revisión semántica de los nueve idiomas de la interfaz *(era U-17, segunda parte)*
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
-- **Grupo:** G-IDIOMA · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: en curso** (las nueve: revisadas el 2026-10-27; la mitad
-  medida aplicada, publicada y verificada contra producción el mismo día; quedan los veintisiete
-  hallazgos de juicio de traducción)
+- **Grupo:** G-IDIOMA · **Severidad:** avisa · **Quién decide:** se hace y se reporta, menos los
+  dos hallazgos que se resuelven escribiendo castellano, que son del dueño
+- **Repositorio:** portal · **Estado: en curso** (las nueve: revisadas el 2026-10-27; cuarenta y
+  cuatro de los cuarenta y seis hallazgos aplicados, publicados y verificados contra producción el
+  mismo día; quedan **dos**, y los dos esperan al dueño)
 
 **Por qué son nueve entradas y no una.** La auditoría lo pidió así, y tiene razón: cada idioma lo
 revisa alguien que lo lee, en un momento distinto, y el resultado de uno no dice nada del otro.
@@ -2751,17 +2795,33 @@ de correcciones propuestas, o la constancia de que no hay ninguna.
 
 **Las nueve entradas.**
 
-| id | idioma | hallazgos | aplicados | estado |
-|---|---|---:|---:|---|
-| PND-026 | árabe (ar) | 7 | 2 | lo medido, servido |
-| PND-027 | alemán (de) | 8 | 1 | lo medido, servido |
-| PND-028 | inglés (en) | 1 | 0 | revisado; su único hallazgo es de juicio |
-| PND-029 | francés (fr) | 5 | 1 | lo medido, servido |
-| PND-030 | hindi (hi) | 5 | 0 | revisado; los cinco son de juicio |
-| PND-031 | italiano (it) | 5 | 0 | revisado; los cinco son de juicio |
-| PND-032 | japonés (ja) | 6 | 2 | lo medido, servido |
-| PND-033 | portugués (pt) | 3 | 1 | lo medido, servido |
-| PND-034 | chino (zh) | 6 | 2 | lo medido, servido |
+| id | idioma | hallazgos | aplicados | queda | estado |
+|---|---|---:|---:|---:|---|
+| PND-026 | árabe (ar) | 7 | 7 | 0 propios + el compartido | todo lo propio, servido |
+| PND-027 | alemán (de) | 8 | 8 | 1 propio + el compartido | queda el ablandamiento de `thesis.k2.p` |
+| PND-028 | inglés (en) | 1 | 0 | 1 propio + el compartido | su único hallazgo propio es el ablandamiento |
+| PND-029 | francés (fr) | 5 | 5 | 0 propios + el compartido | todo lo propio, servido |
+| PND-030 | hindi (hi) | 5 | 5 | 0 propios + el compartido | todo lo propio, servido |
+| PND-031 | italiano (it) | 5 | 4 | 0 propios + el compartido | el «(in spagnolo)» es el compartido |
+| PND-032 | japonés (ja) | 6 | 6 | 0 propios + el compartido | todo lo propio, servido |
+| PND-033 | portugués (pt) | 3 | 3 | 0 propios + el compartido | todo lo propio, servido |
+| PND-034 | chino (zh) | 6 | 6 | 0 propios + el compartido | todo lo propio, servido |
+
+La columna «aplicados» cuenta hallazgos, no cadenas: los cuarenta y cuatro aplicados son **127
+cadenas** (21 el 2026-10-27 a la mañana y 106 a la tarde, más tres correcciones de las propias
+correcciones). La de «queda» son **dos** hallazgos, y los dos los decide el dueño porque los dos
+se resuelven escribiendo castellano: el ablandamiento de `thesis.k2.p` —que el inglés y el alemán
+comparten— y la aclaración «(en español)» de `material.practica`.
+
+**Y la columna «queda» hay que leerla con una corrección, porque la tabla la decía mal.** El
+segundo hallazgo estaba archivado bajo el italiano, que fue donde se vio primero, y eso hacía que
+la tabla mostrara seis idiomas con cero pendiente. Medido el 2026-10-27 sobre los diez catálogos:
+la aclaración la agregan **los nueve**, cada uno en su idioma (`(Spanish)`, `(auf Spanisch)`,
+`(en espagnol)`, `(in spagnolo)`, `(em espanhol)`, `（スペイン語）`, `（西班牙语）`,
+`(स्पेनिश में)`, `(بالإسبانية)`). Así que es **un hallazgo compartido por las nueve entradas**,
+no uno del italiano, y ninguna de las nueve puede cerrar hasta que esté resuelto: su criterio de
+aceptación dice que lo que el lector lee dice lo mismo que la castellana, y eso hoy no se cumple
+en ninguno de los nueve. Archivarlo en una sola entrada era cómodo y escondía ocho.
 
 **Lo que se aplicó el 2026-10-27, y es la mitad medida.** El dueño eligió aplicar sólo lo que se
 reproduce con un comando —números, flechas, registro— y dejar el juicio de traducción para después,
@@ -2787,11 +2847,11 @@ las dos; `ar/` sirve 8 `←` y 0 `→` contra los 8 `→` y 0 `←` del castella
 catálogos servidos coinciden con los commiteados, normalizados los finales de línea (sin
 normalizarlos los diez salen distintos, y es sólo CRLF: el contenido es idéntico).
 
-**Por qué las nueve siguen en curso después de publicar.** Lo que se publicó es la mitad medida.
-Los veintisiete hallazgos de juicio de traducción siguen sin tocar, y el criterio de aceptación es
-sobre lo que el lector lee: mientras una de las dos formas de una misma palabra siga en la página,
-la entrada de ese idioma no cerró. Cerrar por el empujón sería contar como efecto lo que todavía
-no está en la página.
+**Por qué las nueve siguieron en curso después de ese primer empujón.** Lo que se publicó esa
+mañana era la mitad medida. Los hallazgos de juicio de traducción seguían sin tocar, y el criterio
+de aceptación es sobre lo que el lector lee: mientras una de las dos formas de una misma palabra
+siga en la página, la entrada de ese idioma no cerró. Cerrar por el empujón sería contar como
+efecto lo que todavía no está en la página.
 
 Dos cosas que se dejaron dichas en vez de redondeadas. El alemán conserva «du» en `prompt.tr` **a
 propósito**: ese texto le habla al modelo y no a la persona, que es el mismo criterio que el
@@ -2800,10 +2860,173 @@ las seis que la lista nombra. Y el hallazgo #2 del portugués —`o pendente` co
 del resto del archivo— es elección de término y **no** entró, aunque vive en la clave que sí se
 tocó: queda a medias y se dice.
 
-**Lo que queda: veintisiete hallazgos de juicio de traducción**, las dos formas de una misma
-palabra en ocho de los nueve idiomas, más el ablandamiento de `thesis.k2.p` en inglés y en alemán,
-más la aclaración «(en español)» que nueve idiomas agregan y el castellano no dice. Esa última la
-recomendación es **agregarla al castellano**, no borrar nueve aclaraciones correctas.
+**Corrección de la cuenta de lo que quedaba, y es la segunda cuenta mal de esta misma entrada.**
+Este registro dijo dos veces, el 2026-10-27, que quedaban **veintisiete** hallazgos de juicio.
+Quedaban **treinta y siete**. La cuenta sale sola de la tabla —46 hallazgos menos los 9 aplicados
+esa mañana— y el 27 no sale de ninguna resta: no era una medición, era una cifra escrita de memoria
+en el mismo párrafo donde estaba el 46 que la desmiente. Se deja escrito en vez de corregir el
+número y seguir, porque el defecto no es el número: es haber afirmado una cuenta sin restar, en una
+entrada cuyo trabajo entero es contar. Es la misma familia que el resumen viejo del registro, que
+ya tiene su propia prueba, en el único lugar del archivo donde ninguna prueba mira.
+
+**Lo que se aplicó la tarde del 2026-10-27: treinta y cinco de los treinta y siete, 106 cadenas.**
+El dueño pidió aplicar las de **coherencia interna** —un archivo que usa dos palabras para la misma
+cosa se arregla eligiendo una— y que volvieran a él sólo las que cambian el tono.
+
+**El criterio del desempate, que es lo que esta entrada deja como regla.** Cuando el hallazgo dice
+«hay dos formas» y no dice cuál, elegir «la que más aparece en la página» es arbitrario: hubo tres
+empates exactos. El desempate que se usó es **el corpus publicado de ese idioma**, que es el
+documento que el lector abre al clic siguiente, y es la misma razón por la que el hallazgo del
+inglés se cerró diciendo que su vocabulario coincide con el del corpus inglés. Medido antes de
+elegir una sola palabra, y cambió tres decisiones que la lista recomendaba al revés:
+
+```
+de  Tor 141 : Gate 50            de  Sperre 152 : Schloss 3
+de  Kette 41 : Pipeline 3        de  Arbeitsvereinbarung 51 : Zusammenarbeitsvereinbarung 0
+it  **Cancello 35 : **Porta 0    it  voce in sospeso 444 : pendente 5
+it  tratto 177 : fase 51         ja  保留項目 612 : 保留事項 0
+ja  振り返り 56 : レトロスペクティブ 0  ja  区間 75 : フェーズ 28
+ja  連鎖 46 : チェーン 1           zh  复盘 52 : 回顾 5
+zh  待办项 650 : 待办事项 0        zh  部分 277 : 区段 1
+zh  链条 29 : 链路 0              pt  pendência 680 : pendente 42
+pt  cadeia 48 : esteira 0        fr  verrou 150 : cadenas 0
+```
+
+Y con **dos excepciones declaradas**, porque el criterio solo no alcanza. La primera: cuando el
+hallazgo señala que una de las dos formas es **semánticamente equivocada**, gana la correcta aunque
+el corpus prefiera la otra (es el caso del alemán `offener Posten`, que es una factura impagada, y
+del árabe `خط الإنتاج`, que es la línea de producción). La segunda: **el hindi y el árabe no tienen
+corpus publicado** —el corpus son ocho idiomas y la interfaz diez—, así que para esos dos el
+desempate fue la mayoría en la página y la palabra del título, y queda dicho que es un criterio más
+débil.
+
+**Cuatro correcciones a las propias listas, que aparecieron al aplicarlas.** Las cuatro salen de
+una verificación que exige que la forma vieja no quede en ninguna clave, y no de volver a leer:
+
+- El hallazgo árabe de «la cadena» nombraba **cuatro** formas e incluía `thesis.body`. Ahí el
+  castellano dice «pipelines», no «la cadena», así que la forma árabe era **fiel** y el cambio se
+  revirtió. El mismo falso positivo estaba latente en el alemán, el japonés y el chino, y por eso
+  los cuatro quedan salteados **con su razón escrita** en la verificación.
+- El hallazgo japonés de «la cadena» nombraba dos formas y hay **tres**: `tramo3.p` traduce «la
+  cadena a producción» como `本番への経路`, que es *la ruta*. El corpus lo confirma sin ambigüedad
+  —`経路` 52 veces y es siempre *ruta*, `連鎖` 45 y es siempre *la cadena*, incluido `本番への連鎖`—,
+  así que arreglar dos de tres habría dejado la incoherencia viva.
+- El hallazgo hindi de «método» nombraba nueve claves y hay **diez**: `faq.a5` llevaba dos
+  ocurrencias que la lista no nombraba.
+- Y dos «residuos» italianos no eran residuos: `porta` es también el verbo *lleva*. Van salteados
+  con su razón, y la medición del italiano se hizo contra el nombre del campo del contrato
+  (`**Cancello`, 35 veces) y no contra el conteo crudo, que daba 238 falsos positivos y habría
+  invertido la decisión.
+
+**Verificación, pegada tal cual (2026-10-27).**
+
+```
+A paridad: los diez con 245 claves, cero vacias
+B residuos: cero | salteados con razon escrita: 6
+C simetria pagina/corpus: 3 terminos donde el corpus prefiere la otra forma
+C hi y ar no tienen corpus publicado: su criterio fue la mayoria en pagina + correccion semantica
+
+prerender: 10 idiomas, "Every key was present in every catalogue -- no fallbacks used"
+verify-urazuke-homes: PASS -- every page is baked, linked, canonical and reciprocal
+redproof-urazuke-homes: mutaciones 10, rojos 10
+redproof-arbol-propio: comprobado · redproof-sitemap-eol: comprobado
+```
+
+Y queda dicho qué es cada mitad de ese recibo, porque no vale lo mismo. Las cuatro últimas líneas
+son la cadena del portal, que corre en cada despliegue. Las tres primeras —`A`, `B` y `C`— salen de
+un programa de **una sola vez**, escrito para esta aplicación y no commiteado, así que la
+verificación es reproducible sólo mientras alguien lo vuelva a escribir. Convertirla en guarda es
+justamente lo que `PND-060` propone, y necesita los dos árboles juntos.
+
+**Lo que queda: dos hallazgos, medidos cadena por cadena el 2026-10-27, y los dos tocan el
+castellano.** Van con su enunciado completo porque son lo único que impide cerrar las nueve, y van
+con una **corrección de cómo los había clasificado este registro**: decía que los dos se resuelven
+«escribiendo castellano», y para el primero eso es falso por la propia regla del proyecto.
+
+*(1) El ablandamiento de `thesis.k2.p`, en el inglés y el alemán.* Medidas las diez cadenas:
+
+```
+es  «Un test que nunca viste fallar NO SABES SI prueba algo.»
+en  "A test you never saw fail MAY PROVE NOTHING."
+de  "Ein Test, den man nie hat scheitern sehen, BEWEIST VIELLEICHT NICHTS."
+fr  it  pt  ja  zh  hi  ar  -> los siete dicen lo que dice el castellano
+```
+
+Son dos afirmaciones distintas. La castellana es sobre **lo que uno puede saber**: no viste el
+rojo, entonces no sabés. La inglesa y la alemana son sobre el test: *quizás* no prueba nada, que
+deja abierta la lectura «y quizás sí», que es exactamente el consuelo que el peldaño 8 le saca al
+lector. Siete de nueve traducciones no se ablandaron, así que la divergencia no es del idioma.
+
+Y acá está la corrección: por D-013 **el castellano es la fuente de verdad y, si divergen,
+prevalece**. Entonces la dirección del arreglo no la elige nadie: si la afirmación castellana se
+mantiene, lo que se cambia son dos cadenas, la inglesa y la alemana. Lo único que el dueño decide
+es si la afirmación castellana es la que el método quiere hacer. Las dos salidas, con su costo:
+**(a)** alinear el inglés y el alemán al castellano —dos cadenas, el método dice que no sabés—; o
+**(b)** adoptar la forma ablandada como la buena y bajarla al castellano y a las siete fieles
+—ocho cadenas, y el método dice *quizás*—. La recomendación es la **(a)**: la frase vive en la
+tarjeta que presenta la disciplina del rojo, y «quizás no prueba nada» es la frase que el método
+existe para no dejar decir. Redacciones propuestas, que son traducción y no reescritura:
+`A test you never saw fail -- you do not know whether it proves anything.` y
+`Ein Test, den man nie hat scheitern sehen: man weiss nicht, ob er irgendetwas beweist.`
+
+*(2) La aclaración de `material.practica`, que los nueve agregan y el castellano no dice.* Los dos
+manuales de práctica están **sólo en castellano** —`docs/practica/` queda explícitamente fuera del
+corpus traducido—, así que las nueve aclaraciones son **verdaderas y útiles**: le avisan al lector
+que el enlace que está por abrir no está en su idioma. Lo que falta es del lado del castellano, y
+no es una redundancia: es una **incoherencia interna de la portada castellana**, medida en la
+clave de al lado. `material.toolsdocs`, un párrafo más abajo en la misma sección, sí declara el
+idioma de los documentos que quedan fuera del corpus: «Dos documentos más, fuera del corpus
+traducido: las compuertas explicadas, **en inglés** […]; y las evaluaciones de modelos de IA sobre
+el método, **en castellano**». O sea que la página ya fijó la convención un párrafo antes y
+`material.practica` es la única entrada fuera del corpus que no la cumple. Las nueve traducciones
+encontraron el hueco cada una por su cuenta.
+
+Las tres salidas: **(a)** agregarlo al castellano con la forma de `material.toolsdocs` y pasar los
+nueve de la acotación entre paréntesis a la frase completa —diez cadenas, y la página queda con una
+sola convención—; **(b)** sacar la aclaración de los nueve —nueve cadenas, y un lector árabe abre
+un manual en castellano sin aviso—; **(c)** dejar la asimetría. La recomendación es la **(a)**, y la
+redacción propuesta para el castellano es: «Con la evidencia recolectada en cada peldaño. Los dos
+están **fuera del corpus traducido**: van sólo en castellano.» Para los nueve, la misma frase en su
+idioma en lugar del paréntesis, que dice *por qué* y no sólo *en qué idioma*.
+
+**Y la tarde del 2026-10-27 se publicó también el vocabulario único, así que las 106 cadenas ya
+son lo que el lector lee.** El dueño autorizó el empujón de los dos commits juntos —el de los dos
+defectos del castellano y el del vocabulario—, en ese orden, para que cada uno dejara el árbol
+desplegable por su cuenta. El commit del vocabulario es `94d3656` y el despliegue cerró en verde en
+la corrida `40601065094`, con los cuatro recibos que su paso exige:
+
+```
+Urazuke per-language homes: 10/10 pages on disk (ar, de, en, es, fr, hi, it, ja, pt, zh)
+PASS -- every page is baked, linked, canonical and reciprocal.
+PRUEBA EN ROJO OK: las 10 mutaciones caen y el verificador nombra el problema.
+arbol propio: comprobado -- la prueba en rojo mutila el arbol donde vive ...
+eol: comprobado -- el mapa del sitio regenerado es el mismo archivo con CRLF y con LF ...
+```
+
+Medido contra **producción** después y no antes, con las formas que el desempate del corpus eligió
+contra las que descartó, que es la comprobación que importa porque es donde el criterio se podría
+haber aplicado al revés:
+
+```
+los diez catalogos servidos == los diez commiteados: 10/10 (normalizados los finales de linea)
+de/  Tor 9 : Gate 0     Sperre 4 : Schloss 0     Kette 8 : Pipeline 1
+fr/  verrou 3 : cadenas 0
+it/  cancello 4 : porta 2
+pt/  pendencia 25 : pendente 0
+ja/  保留項目 20 : 保留事項 0     振り返り 6 : レトロスペクティブ 0
+zh/  待办项 22 : 待办事项 0      复盘 6 : 回顾 0
+```
+
+Las dos cuentas que no son cero están explicadas y son las dos excepciones ya declaradas arriba, no
+residuos: el `Pipeline` alemán vive en `thesis.body`, donde el castellano dice «pipelines» y la
+forma alemana es fiel; y los dos `porta` italianos son el verbo *lleva*. Están salteados con su
+razón escrita en la verificación, y se vuelven a medir acá para que el cero de las otras diez
+cuentas signifique algo.
+
+**Y un hallazgo que estas nueve entradas no podían ver, con entrada propia.** Comparar cada idioma
+contra el castellano **de la misma página** no puede detectar que la página y el documento usen
+palabras distintas para lo mismo. Al medir el desempate aparecieron tres casos, dos en alemán y uno
+en francés: `PND-060`.
 
 **La revisión se hizo el 2026-10-27, y la hizo un modelo.** El dueño lo autorizó así ese día,
 después de que la entrada se reportara durante tres días como trabajo que necesitaba un hablante
@@ -2814,11 +3037,15 @@ listas, hallazgo por hallazgo, con la corrección recomendada— está en
 `[medido]` se reproduce con un comando y no depende del juicio del revisor; el resto es juicio de
 traducción y un nativo puede discutir una recomendación concreta sin que el hallazgo deje de serlo.
 
-**Por qué quedan en curso y no cerradas.** El criterio de aceptación de arriba es sobre **lo que el
-lector lee en la portada**, no sobre la existencia de la lista. Las nueve cierran cuando la
-corrección está **servida**, y los arreglos viven en el repositorio del portal, donde empujar es
-publicar las diez portadas horneadas. Cerrarlas con la lista sería exactamente el defecto de D-057:
-un arreglo en una máquina no es un efecto en producción. La autorización de publicar es del dueño.
+**Por qué quedan en curso y no cerradas, al 2026-10-27 con todo lo aplicado ya servido.** El
+criterio de aceptación es sobre **lo que el lector lee en la portada**, no sobre la existencia de
+la lista ni sobre que el empujón haya ocurrido. Los cuarenta y cuatro hallazgos aplicados están
+servidos y medidos contra producción, y eso cierra la parte que se podía cerrar sin el dueño. Lo
+que queda abierto es **un hallazgo compartido por las nueve** —la aclaración de `material.practica`,
+que los nueve agregan y la fuente de verdad no dice— más el ablandamiento de `thesis.k2.p` en el
+inglés y el alemán. Mientras el compartido no se resuelva, lo que el lector lee en cualquiera de
+los nueve sigue diciendo algo que la castellana no dice, y por eso ninguna de las nueve cerró.
+Cerrar seis de ellas por tener cero hallazgos propios habría sido leer la tabla y no el criterio.
 
 **Lo más grave de las nueve, para que no se pierda entre los cuarenta y seis hallazgos.** El
 japonés y el chino escriben en el título de «De dónde sale» (`origin.h2`) la cadena `四二十四`, que
@@ -2843,6 +3070,85 @@ por lo tanto están, fielmente traducidos, en los diez idiomas: la portada afirm
 retrospectiva es el peldaño 15 cuando una línea más arriba dice que es el 23 (`PND-057`), y la
 entrada de la tabla del material promete cinco documentos por idioma cuando la tabla tiene diez
 columnas (`PND-058`). Van con entrada propia porque no se arreglan traduciendo.
+
+---
+
+## PND-060 — La portada y el documento usan palabras distintas para lo mismo, y la revisión no podía verlo *(salió de medir el desempate de PND-026 a PND-034)*
+
+- **Nodo:** `interfaz-publica/portada` [nodo propuesto]
+- **Grupo:** G-IDIOMA · **Severidad:** avisa · **Quién decide:** **el dueño**, porque los tres
+  arreglos posibles tienen costos muy distintos y uno de ellos toca el corpus
+- **Repositorio:** los dos · **Estado: abierto**
+
+**Qué está mal.** Un lector llega a la portada en su idioma, lee «compuerta», «pendiente» o
+«peldaño» con una palabra, hace clic en el documento principal y encuentra otra. La portada y el
+corpus son dos vocabularios distintos en el mismo idioma, y nada lo mira: la auditoría externa
+comprobó paridad de claves, y las nueve revisiones semánticas comparan cada idioma contra el
+**castellano de la misma página**. Ninguna de las dos puede ver esto, por construcción.
+
+**Cómo apareció.** No lo buscó nadie. Salió de necesitar un desempate para unificar un término que
+la página escribía de dos maneras: se midió qué palabra usa el corpus publicado de ese idioma, y
+tres de las mediciones salieron al revés de lo que la página dice.
+
+**Mi reproducción (2026-10-27), los tres casos con su cuenta.**
+
+```
+aleman, «pendiente»   pagina: offener Punkt    corpus: offener Posten   519 : 22
+aleman, «evidencia»   pagina: Nachweis         corpus: Belege           190 : 4
+frances, «peldano»    pagina: marche           corpus: echelon          545 : 27
+```
+
+El alemán es el caso raro y conviene decirlo entero: el corpus usa `offener Posten` 519 veces, y
+`offener Posten` es, en alemán corriente, **una factura impagada**. O sea que el corpus no sólo
+difiere de la página: difiere eligiendo un falso amigo, y lo hace casi quinientas veces más que la
+alternativa. En la página se unificó sobre `offener Punkt`, que es la forma correcta, y eso es lo
+que abre esta entrada.
+
+**Lo que NO está mal, para que no se busque donde no hay nada.** Los otros dieciocho términos que se
+midieron están alineados: la página y el corpus usan la misma palabra en los cuatro del alemán que
+quedan, los tres del italiano, los cuatro del japonés, los cuatro del chino, los dos del portugués
+y el candado francés. Y el hindi y el árabe quedan afuera de esta entrada porque **no tienen corpus
+publicado**: la interfaz son diez idiomas y el corpus son ocho.
+
+**Criterio de aceptación por perfil.**
+
+- *P3 (lector humano en ese idioma):* dado un lector que pasa de la portada al documento principal,
+  la palabra que nombra cada cosa es la misma en los dos.
+- *P5 (lector que adapta el método a otro formato):* dado alguien que cita el método en alemán, la
+  palabra que elija no depende de cuál de los dos textos leyó primero.
+
+**Las tres salidas, con su costo medido, para que la decisión sea sobre números.**
+
+1. **Alinear la portada al corpus.** El francés son 29 claves y 33 ocurrencias, y no es mecánico:
+   `marche` es femenino y `échelon` masculino, así que cada frase cambia de artículo y de
+   concordancia. Y el alemán vuelve a meter el falso amigo en la página. Costo: medio, y el
+   resultado es peor en alemán que lo que hay hoy.
+2. **Alinear el corpus a la portada.** Son 519 + 190 + 545 ocurrencias en tres términos y dos
+   idiomas del corpus traducido, con concordancia en cada frase, y es un cambio del **método**, no
+   del portal. Es lo correcto en alemán —saca un falso amigo repetido quinientas veces— y es
+   discutible en francés, donde las dos palabras son válidas y `échelon` es la que los contratos
+   usan. Costo: alto, y hay que medir antes si alguna ocurrencia cae dentro de un prompt, porque
+   entonces sube el corpus de prompts con su huella.
+3. **Elegir por término en vez de por dirección.** El alemán al corpus hacia `offener Punkt` y
+   `Belege`, el francés a la portada hacia `échelon`. Es la única salida que no cambia una decisión
+   buena para hacerla uniforme. Costo: el de la 2 en alemán y el de la 1 en francés, y hay que
+   escribirlo como regla o la próxima vez se vuelve a discutir.
+
+**Mi recomendación: la 3**, y primero el alemán, que es el que tiene un defecto de significado y no
+sólo de coherencia. El francés puede esperar: `marche` y `échelon` son las dos correctas y lo único
+que está mal es que no sean la misma.
+
+**Lo que esto deja como regla, y es lo que vale más que los tres arreglos.** Hasta hoy el método
+comprobaba que los diez catálogos tuvieran las mismas claves y que cada idioma dijera lo que dice el
+castellano. Nunca comprobó que la portada y el corpus hablaran el mismo idioma **dentro** de un
+idioma. La comprobación es posible y es barata para un glosario corto —contar las formas de cada
+término en los dos árboles y exigir que la elegida sea la misma—, y necesita los **dos** árboles
+juntos, que es la misma condición que el chequeo de huérfanas (D-058) y por lo tanto el mismo lugar:
+el trabajo de publicación. Queda como propuesta y no como compromiso, porque exige declarar el
+glosario término por término y eso es trabajo del dueño.
+
+**Depende de:** nada, pero conviene después de que `PND-026` a `PND-034` cierren, para no mover dos
+veces las mismas claves.
 
 ---
 
@@ -4016,7 +4322,8 @@ $ node build/api_check.mjs        -> los tres recursos coinciden con las fuentes
 
 - **Nodo:** `corpus/escalera` [nodo propuesto]
 - **Grupo:** G-METODO · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: abierto**
+- **Repositorio:** portal · **Estado: CERRADO** el 2026-10-27, cuando el empujón ocurrió y
+  producción sirvió el 23 en los diez idiomas.
 
 **Qué está mal.** La portada se contradice sobre el número de un peldaño, dentro de la misma
 página. En las preguntas frecuentes (`faq.a6`): «el **peldaño 15** pide que cada retrospectiva
@@ -4061,6 +4368,44 @@ documento principal, y hoy no la comprueba nada. Una comprobación posible —y 
 una propuesta y no un compromiso— es exigir que todo «peldaño N» que la portada nombre exista y
 que, cuando la frase nombre la retrospectiva, el N sea el del título que la contiene. Eso vive en
 el repositorio del portal y agranda su cadena; queda escrito acá y lo decide el dueño.
+
+**Lo que se aplicó el 2026-10-27, y lo que lo distingue de los hallazgos de traducción.** El dueño
+pidió los dos defectos del castellano juntos y en el acto. Son **veinte cadenas**: las dos claves
+en los diez idiomas, todas con el 15 escrito con dígitos árabes, también en japonés (`第15段`),
+chino (`第 15 级`) y árabe (`الدرجة 15`). Medido antes de tocar nada —y es la comprobación que
+hacía falta para poder reemplazar sin leer veinte frases a mano—: en las veinte cadenas el `15`
+aparece **exactamente una vez**, así que no hay otro número que se pueda pisar. Después:
+
+```
+PND-057: cadenas cambiadas = 20
+verificado: 20 con 23 y sin 15, 0 mal
+```
+
+Y lo que el arreglo deja dicho, porque es lo que explica el defecto en vez de sólo taparlo: el 15
+era el peldaño que cerraba el ciclo **cuando la escalera tenía dieciséis**. Las dos claves son
+fósiles de esa escalera, traducidos fielmente a nueve idiomas, en un archivo que vive en otro
+repositorio y que ninguna regla de este mira.
+
+**Documentación de cierre (2026-10-27).** El dueño autorizó el empujón y cerró por el **efecto en
+producción**, que es la regla de D-057: un arreglo en una máquina no es un efecto. El commit
+`a5012b9` entró a `main` del portal y el despliegue cerró en verde en la corrida `40601065094`,
+con los cuatro recibos que su paso exige a la vista. Medido contra producción después y no antes,
+con la aguja de cada idioma y no con una sola:
+
+```
+es/ "peldaño 23" 1 · "peldaño 15" 0 · "Es el 23" 1 · "Es el 15" 0
+en/ "step 23" 2 · "step 15" 0        de/ "Stufe 23" 1 · "Stufe 15" 0
+fr/ "marche 23" 1 · "marche 15" 0    it/ "gradino 23" 1 · "gradino 15" 0 · "È il 23" 1
+pt/ "degrau 23" 1 · "degrau 15" 0    ja/ "第23段" 3 · "第15段" 0
+zh/ "第 23 级" 3 · "第 15 级" 0        hi/ "सीढ़ी 23" 1 · "सीढ़ी 15" 0
+ar/ "الدرجة 23" 3 · "الدرجة 15" 0
+los diez catalogos servidos == los diez commiteados (normalizados los finales de linea)
+```
+
+Lo que **no** se hizo, y queda escrito como propuesta y no como compromiso: la comprobación que
+exija que todo «peldaño N» de la portada exista y que el N de la retrospectiva sea el del título
+que la contiene. Vive en el repositorio del portal, agranda su cadena y la decide el dueño. Hoy la
+única defensa contra que vuelva a derivar es que alguien lo lea.
 
 **Depende de:** nada.
 
@@ -4938,20 +5283,21 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
 | G-API | 17 | 5 | 12 | 1 |
-| G-ALCANCE | 5 | 1 | 4 | 0 |
-| G-IDIOMA | 13 | 10 | 3 | 1 |
+| G-ALCANCE | 5 | 0 | 5 | 0 |
+| G-IDIOMA | 14 | 11 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 13 | 2 | 11 | 0 |
+| G-METODO | 13 | 1 | 12 | 0 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **59** | **19** | **40** | **2** |
+| **total** | **60** | **18** | **42** | **2** |
 
-Cincuenta y nueve entradas, `PND-001` a `PND-059`. Veintidós vienen de la auditoría externa
+Sesenta entradas, `PND-001` a `PND-060`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
-PND-037 y PND-038), quince son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
+PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
-las nueve revisiones semánticas y los dos defectos del castellano que esas revisiones encontraron al
-pasar (`PND-057` y `PND-058`)— y **diez son de una fuente nueva**: la retrospectiva
+las nueve revisiones semánticas, los dos defectos del castellano que esas revisiones encontraron al
+pasar (`PND-057` y `PND-058`) y el vocabulario partido entre la portada y el documento que apareció
+al medir su desempate (`PND-060`)— y **diez son de una fuente nueva**: la retrospectiva
 del peldaño 23 sobre «El Arte de Forjar Sistemas», la novela de Oscar Schmitz que adapta el método,
 validada aseveración por aseveración contra la letra (`PND-039` a `PND-048`, grupo G-METODO). No las
 trajo una auditoría encargada ni una medición propia: las trajo **un lector que aplicó el método a
@@ -4971,7 +5317,15 @@ después** de escribir la regla, en la primera entrada nueva desde que la regla 
 el consumidor ni una auditoría: salió de volver a leer lo que se acababa de publicar, que es lo
 único que la separa de las tres anteriores.
 
-`PND-053` es la última, y es de otra clase: no es un desvío ni un hallazgo de nadie, es una
+`PND-060` es la última, y es la única del registro que **ninguna de las comprobaciones que ya
+existen podía encontrar**. No es un desvío ni un hallazgo de nadie de afuera: salió de necesitar un
+desempate. Las nueve revisiones semánticas comparan cada idioma contra el castellano **de la misma
+página**, y la auditoría externa comparó paridad de claves; ninguna de las dos puede ver que la
+portada y el documento usen palabras distintas para la misma cosa dentro de un idioma. Medido:
+tres términos lo hacen, y en uno de ellos el corpus alemán repite quinientas diecinueve veces una
+palabra que en alemán corriente significa *factura impagada*.
+
+`PND-053` es de otra clase: no es un desvío ni un hallazgo de nadie, es una
 declaración que faltaba. `PND-039` dejó escrito que las dos entradas previas del Anexo H no tenían
 ruta y que no se inventaba ninguna porque el dueño no la había declarado; el 2026-10-27 la declaró
 (`docs/GLOSSARY.md` y `docs/PROFILES.md`) y con eso dejaron de estar publicadas como exigidas y no
@@ -5000,13 +5354,14 @@ que hasta ese día la única defensa era que alguien se acordara. Eso quedó reg
 **PND-038**, con su arreglo escrito y medido —el despliegue del portal corre la compuerta y las
 pruebas en rojo, y exige la línea que cada una imprime—, y **cerró el mismo día**, cuando el
 empujón ocurrió y la primera corrida real del paso dejó sus cuatro líneas en el registro de un
-despliegue del portal. Con eso el grupo de la publicación queda **completo** y el del alcance estuvo
-completo un día: `PND-049`, la hoja nueva, está enlazada desde las diez portadas servidas y los
-ochenta y cuatro documentos del método están enlazados y en el mapa del sitio. Lo reabrió la
-revisión semántica el 2026-10-27 con **PND-058**: la entrada de la tabla del material promete cinco
-documentos por idioma y la tabla tiene diez columnas, así que el Anexo H y la hoja nueva están
-enlazados y el párrafo que los presenta no los nombra. Llegar al material no es sólo que el enlace
-exista.
+despliegue del portal. Con eso el grupo de la publicación queda **completo**, y el del alcance
+también: `PND-049`, la hoja nueva, está enlazada desde las diez portadas servidas y los ochenta y
+cuatro documentos del método están enlazados y en el mapa del sitio. Lo había reabierto la revisión
+semántica el 2026-10-27 con **PND-058** —la entrada de la tabla del material prometía cinco
+documentos por idioma y la tabla tiene diez columnas, así que el Anexo H y la hoja nueva estaban
+enlazados y el párrafo que los presenta no los nombraba; llegar al material no es sólo que el
+enlace exista—, y cerró el mismo día, cuando la entrada reescrita quedó servida en los diez
+idiomas con el trinquete de la cuenta de columnas corriendo en el despliegue.
 
 **Y el 2026-10-26 el grupo del ecosistema cerró a medias, y la mitad que no cerró es la lección.**
 **PND-022**: la distinción entre el método, el protocolo y la herramienta está escrita arriba en el

@@ -222,6 +222,18 @@ de estas tres piezas se replica en las otras dos.
   párrafo cuidadoso arriba, porque el lector llega dispuesto a leer con cuidado; una portada
   contesta la pregunta donde la pregunta se hace. Lo único que faltaba era la **taxonomía** —nombrar
   las tres naturalezas como tres—, y eso vive en el README.
+- **Una palabra de la portada se unifica contra el corpus de ese idioma, y la divergencia se
+  registra** (D-072, PND-026 a PND-034, PND-060). Cuando la interfaz de la portada usa dos palabras
+  para la misma cosa —el defecto que UX-24 prohíbe adentro de un sistema—, se elige una sola, y el
+  desempate **no** es la mayoría dentro de la página (hubo tres empates exactos) sino **el corpus
+  publicado de ese idioma**, que es el documento que el lector abre al clic siguiente; medirlo
+  invirtió tres decisiones del alemán. Dos excepciones escritas: si una de las dos formas es
+  semánticamente equivocada gana la correcta aunque el corpus prefiera la otra —`offener Posten` es
+  una factura impagada—, y el **hindi y el árabe no tienen corpus** (son ocho contra diez idiomas de
+  interfaz), así que ahí el criterio es la mayoría en la página y la palabra del título, y se dice
+  que es más débil. Y la mitad que vale: cuando la forma elegida no es la que el corpus usa, **el
+  corpus no se toca de callado** —se registra con su cuenta y lo decide el dueño—, porque es un
+  cambio del método y no del portal.
 - **La portada del protocolo sí tiene fuente, y creer que no la tenía fue un defecto propio de
   medición** (PND-036 refutado el 2026-10-27, PND-052, D-064). `yujin.app/nac-spec/` vive en
   `yujinapp/nac-spec` —otra **organización** de GitHub, distinta de `pkuschnirof/nac-spec`, que es el
