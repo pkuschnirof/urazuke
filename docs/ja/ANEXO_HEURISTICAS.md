@@ -90,7 +90,7 @@ CQ-12 から CQ-18 の規則こそが、「コード品質」をフロントエ�
 
 ## 5. パート B — ユーザビリティ
 
-五つのファミリ。第一と第二は所有者が明示的に求めたものであり、他の三つは、それらがなければグルーピングとプロファイルが同じように、ただより遅く劣化するから存在する。
+六つのファミリ。第一と第二は所有者が明示的に求めたものであり、他の三つは、それらがなければグルーピングとプロファイルが同じように、ただより遅く劣化するから存在する。 六番目は後から生まれた。2026-10-27（D-070）で、性質が違う。最初の五つはシステムが人に見せる画面についてであり、六番目はシステムが作られる会話についてである。
 
 ### B1 — 機能的収束によるグルーピング
 
@@ -152,6 +152,19 @@ CQ-12 から CQ-18 の規則こそが、「コード品質」をフロントエ�
 | UX-26 | 状態は色だけで伝わらない。情報を持つ画像はすべて代替テキストを持ち、テキストはズームなしで通常のサイズで読める。 | ゲート（CQ-18） | AVISA |
 | UX-27 | 画面に触れる各ペンディングはテスト環境の実際のスクリーンショットを提出し、所有者は閉じる前にそれを見る。スクリーンショットは任意でもなく、モックアップでもない。 | ペンディングの閉鎖 | BLOQUEA |
 
+### B6 — 所有者への問い
+
+この方法はプロンプトの半分以上で、モデルに**尋ねること**を命じている。公開された資料の二十七ファイルのうち十五で、二十二回。しかし 2026-10-27 まで、**どう尋ねるか**はどこにも書かれていなかった。だから形は場任せになり、所有者は問いを裸で受け取った。それを正当化するデータもなく、選択肢もなく、推奨もなく。これは第 11 段が追う非対称そのものである——片側で要求し、もう片側で定義しない——しかも最も高くつく方向、決める人の側で。方法はすでに二度これをやっている。第 8 段は「赤を見せて」で満足せず、受領とは何かを定義した。第 12 段は「報告して」で満足せず、検証済みと信じていることを分けた。
+
+| id | 規則 | 検証 | 重大度 |
+|---|---|---|---|
+| UX-28 | エージェントが所有者の決定を必要とするとき、問いは四つの部分を伴い、この順で届く。それを必要にしているデータを列挙して。それらをつないで問いが見えるようにする五行以内の段落。取りうる答えに番号を振った問いそのもの。そしてエージェントの推奨。そしてプロジェクトが宣言した技術的な深さで。裸の問いは、なぜそれを尋ねられているのかを再構成する仕事を所有者に残す。 | ペンディングの閉鎖時の所有者のレビュー | AVISA |
+
+**三つの深さの水準と、その出どころ。** プロジェクトが一つを宣言し、エージェントはその水準で話す。`beginner`（日常の言葉、結果に向けて、ファイル名も専門用語もなし）、`decision_maker`（測った数字と帰結、ファイルの道筋なし。方法が既定で使うもの）、`technical`（ファイル、行、コマンド）。この規則のために発明したものではない。初心者の水準はすでに方法全体の形である（D-025）。パラメータの名と三つの値はデータの層、`project_config.communication_depth` に住む。消費する道具が推測せずに読まなければならないものだからである。
+
+**この規則が約束しないこと。** compuerta は、その条項が七十二のプロンプトと八つの言語にあることを検証できる——実際にする。だが、ある火曜日にモデルが書いた具体的な問いが四つの部分を備えているかは、どの試験も検証できない。それを judge するのは所有者であり、だからこの規則は警告しブロックしない。ブロックするのに誰も検証できない規則は、警告する規則より悪い。CQ-12 と CQ-14 がすでに持つ、同じ宣言された限界である。
+
+
 ## 6. どこに掛かるか、そしてどんな成果物を生むか
 
 本付録は新しいステップを発明しない。存在するものに掛かる。それによってゲートの複製を避け、ユーザビリティの一覧の通常の行き先、すなわち一度読まれて終わることを避ける。
@@ -159,6 +172,8 @@ CQ-12 から CQ-18 の規則こそが、「コード品質」をフロントエ�
 **どこに置くか（D-043）。** 四つの区間に横断的であり、主な重みは建設ループ（ステップ 5 から 12）にあり、そこが決定され建設される場所である。独自のステップではない。番号付きのステップはラダーの再番号付けを強制し、ステップの数え方を変え、付録を八言語への契約の義務的翻訳に従わせることになり、建設が緑で通る前にそれを要求することになる。しかもループがすでに持たないゲートを一つも加えない。
 
 **どう掛かるか（D-044）。** 一つの正典の出所、五つのアンカー、二つの事前入口。規則のテキストはここにだけ住み、プロンプトはそれを引用する。決してコピーしない。四十五の規則をループの八つのプロンプトの中で繰り返すと、それらを薄める（各ステップ自身の仕事と競合し、エージェントは毎回違う仕方で従う）。それらを派生させる（同じテキストの二つのコピーはひとりでに同期を失う。ステップ 11 が追うアンチパターンである）。そしてそれらをより横断的にするわけではない。規則を横断的にするのは、各ブロックが同じゲートを通ることなのであり、規則がどこにでも書かれていることではない。
+
+**プロンプトに入る唯一の規則と、その理由（D-070）。** UX-28 は上の原則に対する書かれた例外であり、他の四十五とどこが違うかを言っておくべきである。あちらは**作られるシステム**への要求で、compuerta はプロジェクトが書き残す成果物の上で測る。UX-28 は**作られる会話**への要求で、モデルがそれに従う唯一の道は、モデルが読むものの中にあることである。狭く入る——四つの部分とパラメータを名指し、それ以上は言わない——八つの言語で同一の、たった一つの英語の文として。この例外が**認めない**のは、他のどれかを写すことである。D-044 の論は、compuerta が見られるすべてについて丸ごと立っている。
 
 | 時点 | 何が加わるか | なぜそこか |
 |---|---|---|
@@ -197,6 +212,7 @@ CQ-12 から CQ-18 の規則こそが、「コード品質」をフロントエ�
     "mutacion": "stryker",
     "accesibilidad": "axe-core"
   },
+  "communication_depth": "decision_maker",
   "umbrales": {
     "lineas_por_archivo": 300,
     "lineas_por_funcion": 40,
@@ -215,6 +231,8 @@ CQ-12 から CQ-18 の規則こそが、「コード品質」をフロントエ�
 }
 ```
 
+`communication_depth` は UX-28 のパラメータで、三つの値のどれかを取る——`beginner`、`decision_maker`、`technical`。プロジェクトが宣言しなければ、エージェントは `decision_maker` を使い、そう言う。既定値は宣言するものであって、推測するものではない。
+
 二つのゼロは意図的であり、それこそが重要な部分である。最低カバレッジはラチェットが実測値で決め、ミューテーションの目標はプロジェクトにユーザーがいるときに所有者が決める。それらがゼロで誰も宣言していないなら、ゲートはそれを発明する代わりに未宣言のしきい値として報告する。
 
 ## 8. 二つの部品、本方法が使う形態で
@@ -222,20 +240,46 @@ CQ-12 から CQ-18 の規則こそが、「コード品質」をフロントエ�
 **コード品質。**
 
 > Set up and maintain the code-quality gate for this project, configured for its frontend family. The core rules are the same in every project; what changes is how each one is measured and at which threshold. Install one formatter and one linter with a single shared configuration; enforce size limits per file and per function, complexity per function, duplication, dead code, declared-and-used dependencies, type checking where the language allows it, coverage with a ratchet, and secret scanning. Where the project has real users, add mutation testing scoped to the changed lines and record the score per block. Then extend the gate to the frontend itself: no business rule inside a screen, one typed client for every server call, one home for shared state, no user-visible string outside the translation catalogue, a stable identifier and role on every interactive element, styling only through tokens, and automatic basic accessibility checks. Every rule has a stable id, a severity (blocks, warns, records) and a named verifier. Thresholds and exceptions are declared by the owner in one configuration file; a rule switched off without a written exception is a gate failure, not a decision. Report the result per rule in `docs/CODE_QUALITY.md`, not as a single number.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > このプロジェクトのコード品質ゲートを、そのフロントエンドのファミリに合わせて設定し、構築して維持せよ。中核の規則はどのプロジェクトでも同じである。変わるのは、各規則を何で測り、どのしきい値で測るかである。フォーマッタを一つ、リンタを一つ、単一の共通設定でインストールせよ。ファイルごとおよび関数ごとのサイズ上限、関数ごとの複雑度、重複、デッドコード、宣言され使用されている依存関係、言語が許すところでの型検査、ラチェット付きのカバレッジ、シークレットの走査を強制せよ。プロジェクトに実際のユーザーがいるところでは、変更された行に限定したミューテーションテストを加え、スコアをブロックごとに記録せよ。次にゲートをフロントエンド自体へ広げよ。画面の中に業務規則を置かないこと、サーバへのすべての呼び出しに対して一つの型付きクライアント、共有状態のための一つの置き場所、翻訳カタログの外にユーザーに見える文字列がないこと、すべてのインタラクティブな要素に安定した識別子とロール、スタイルはトークンのみを通すこと、そして基本的なアクセシビリティの自動検査である。すべての規則は安定した識別子、重大度（ブロックする、警告する、記録する）、そして名前のある検証器を持つ。しきい値と例外は所有者が一つの設定ファイルで宣言する。書かれた例外なしに切られた規則は、決定ではなくゲートの故障である。結果は単一の数値ではなく、`docs/CODE_QUALITY.md` に規則ごとに報告せよ。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 **ユーザビリティ。**
 
 > Build the usability criteria for this project before writing the first screen, and enforce them where the method already has hooks. Group functionality by what the person came to do, never by the internal module or the data entity: every menu group is named with a user job in the project glossary, every functionality has exactly one canonical home, no functionality is orphaned, and every group is reachable in no more than three steps from the entry screen. Then declare accessibility in one matrix and derive everything from it: each functionality lists the profiles that have it, each functionality has at least one profile, each profile has at least one functionality and its own entry point, the navigation is generated from the matrix instead of written by hand, and every route checks the permission on the server because hiding an entry is not protecting it. Verify the matrix per profile with an end-to-end check that compares what is reachable with the matrix row: neither less nor more. Require the four states on every list (with data, empty, loading, error), a visible working indicator with the option to cancel long operations, an error message that says what happened and what to do without losing entered data, a primary action per screen, confirmation or undo for destructive actions, and a form that keeps what was typed. Run each manual test case once per affected profile, run the first-click check at the close of every block, and require a real screenshot of the test environment on every item that touches a screen. Record the result per rule, with owner-declared exceptions, in `docs/USABILITY.md`, and keep the matrix in `docs/PROFILE_MATRIX.md` as the single source of truth.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 最初の画面を書く前に、このプロジェクトのユーザビリティ基準を組み立て、本方法がすでに掛かり所を持っている場所でそれらを強制せよ。機能はその人がしに来たことによってグループ化し、内部のモジュールによってもデータのエンティティによっても決してグループ化するな。メニューの各グループはプロジェクトの用語集にあるユーザーの仕事で名付け、各機能はちょうど一つの正規の家を持ち、どの機能も孤児にならず、すべてのグループは入口画面から三ステップ以内で到達可能でなければならない。次にアクセシビリティを一つのマトリクスで宣言し、そこからすべてを導出せよ。各機能はそれを持つプロファイルを列挙し、各機能は少なくとも一つのプロファイルを持ち、各プロファイルは少なくとも一つの機能と独自の入口点を持ち、ナビゲーションは手書きではなくマトリクスから生成され、すべてのルートはサーバ側で権限を検証する。入口を隠すことは保護することではないからである。マトリクスをプロファイルごとに、到達可能なものをマトリクスの行と比較するエンドツーエンドの検査で検証せよ。少なすぎても多すぎてもならない。すべての一覧に四つの状態（データあり、空、読み込み中、エラー）を要求せよ。長い操作をキャンセルする選択肢を伴う可視の進行中指示、入力済みのデータを失わずに何が起きたかと何をすべきかを言うエラー・メッセージ、画面ごとに一つの主操作、破壊的な操作に対する確認または取り消し、そして入力されたものを保つフォームを要求せよ。各手動テストケースを影響を受けるプロファイルごとに一度実行し、各ブロックの閉鎖時に最初のクリックのテストを実行し、画面に触れるすべてのペンディングにテスト環境の実際のスクリーンショットを要求せよ。結果を規則ごとに、所有者が宣言した例外とともに `docs/USABILITY.md` に記録し、マトリクスを唯一の真実の源として `docs/PROFILE_MATRIX.md` に保て。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 ## 9. この提案がしないこと
 
-- **ステップを加えない。** 四十五の横断的な規則（18 の品質と 27 のユーザビリティ）であり、新しい段階ではない。存在するステップに掛かる。
+- **ステップを加えない。** 四十六の横断的な規則（18 の品質と 28 のユーザビリティ）であり、新しい段階ではない。存在するステップに掛かる。
 - **スコアを発明しない。** 「ユーザビリティ 78」という数値は何を直すべきかを言わず、間違った方向に最適化される。規則ごとに報告する。第 12 節は二つの派生した数値を提案するが、それらは規則とその座席の数え直しであり——品質やユーザビリティの評点ではなく——何も閉じる権限を与えない。
 - **所有者を置き換えない。** 最初のクリックのテスト、スクリーンショット、タスクテストは人間のものであり続ける。「動く」と「役に立つ」を区別する唯一の計器だからである。
 - **工場出荷のしきい値を持たない。** アダプタのものは宣言された出発点である。自分のものを宣言しないプロジェクトはそれを継承し、そのように記録される。
@@ -253,6 +297,7 @@ CQ-12 から CQ-18 の規則こそが、「コード品質」をフロントエ�
 | 4 | **スイッチの規律：** プロジェクトの設定に住み、プロンプトには住まない。消すことは、理由、認可者、再検討日を伴う記録された決定としてのみ有効である。消えていることは報告で観測可能である。そしてスイッチは入れて切って試される。 | D-046 |
 | 5 | **規則ごとに定められた初期重大度：** 品質では十四がブロックし（CQ-01 から CQ-06、CQ-08、CQ-11 から CQ-17）、CQ-09 は実際のユーザーがいるところでブロックし、三つが警告する（CQ-07、CQ-10、CQ-18）。ユーザビリティでは十一がブロックし（UX-02、UX-03、UX-08 から UX-12、UX-15、UX-16、UX-22、UX-27）、UX-06 は記録するだけで、残りは警告する。「すべてがブロックする」——プロジェクトが動き出さない——のでも、「すべてが警告する」——ヒューリスティクスが飾りになる——のでもない。 | D-048 |
 | 6 | **アクセシビリティは警告で始まり、製品に組織外の最終ユーザーがいるときに所有者の宣言によってブロックへ昇格する。** 既定値は発明されない。昇格は他のどのしきい値とも同じ仕組みで宣言される（D-045）。 | D-048 |
+| 7 | **問いの形は識別子を持つ規則（UX-28）であり、プロンプトに入る。** 方法は二十二回「尋ねよ」と命じ、どう尋ねるかを一度も言わなかった。形は順序のある四つの部分と、プロジェクトが宣言する深さの水準である。D-044 への書かれた例外であり、狭く、第 6 節で論じてある。 | D-070 |
 
 ### D-048 で閉じたもの、そしてそれが引きずる二つの訂正
 
@@ -260,6 +305,8 @@ CQ-12 から CQ-18 の規則こそが、「コード品質」をフロントエ�
 
 1. **数え方の欠陥。** 本付録が「二十七の規則」と言っていたところ、正しい数は**四十五**である。品質が 18（CQ-01 から CQ-18）、ユーザビリティが 27（UX-01 から UX-27）。古い数字は、半分だけを数えていた草稿から来ていた。第 6 節と第 9 節で訂正し、D-048 に注記した。D-044 のテキストは書かれたまま保持される。決定は記録であり、書き直されないからである。
 2. **フォーマッタ、リンタ、サイズ、複雑度は緩めない。** この勧告の以前の版は、継承された負債を抱えるプロジェクトを妨げないために、それらを「警告する」に送っていた。そうはできない。ステップ 9 がすでに今日それらをブロックしており、この拡張はそれを拡張するのであって置き換えるのではない。継承された負債は、宣言された例外——理由と再検討日を伴う——かラチェットのベースラインで解決するのであり、規則の重大度を下げて解決するのではない。
+
+**そして 2026-10-27 からは四十六である。** UX-28 が D-070 とともに入り、数は品質 18 とユーザビリティ 28 になった。上の注記は書かれたままに保つ。訂正もまた記録だからである。新しい規則が変えるのは数であって、数の歴史ではない。
 
 そして宣言された限界が一つある。その類で唯一だからである。**CQ-12 と CQ-14 は人間の赤でブロックする。** 画面が業務規則を決定していないことを証明する道具はない。それらはペンディングの閉鎖時に、手動のケースを前にし、UX-22 と UX-27 と同じ基準で検証される。プロジェクトがその閉鎖を支えられないなら、記録された決定によって AVISA に下がる。ブロックするのに誰も検証しない規則は、警告する規則より悪い。
 

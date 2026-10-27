@@ -60,6 +60,13 @@ l'agente:
 > item's specification and in `docs/DECISIONS.md`, with the exact words I used. If I do not
 > answer and you must move on, implement the most reversible option and mark it "decision by
 > omission, pending confirmation", so that I can review it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Ogni volta che implementare qualcosa richiede una regola di business che non è scritta, o devi
@@ -69,6 +76,14 @@ l'agente:
 > della voce in sospeso e in `docs/DECISIONS.md`, con le parole esatte che ho usato. Se non
 > rispondo e devi proseguire, implementa l'opzione più reversibile e marcala come "decisione per
 > omissione, in attesa di conferma", perché io la riveda.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: che si **fermi** davanti a una regola non scritta o a una biforcazione
 visibile; che chieda con raccomandazione e alternativa (perché tu decida in dieci secondi, non in
@@ -89,9 +104,24 @@ che la decisione sparisca.
   nella chat. Una regola parafrasata dopo è una regola diversa.
 
 > Rule: [exact wording]. Decided by me, [date]. Write it down and continue.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Regola: [testo esatto]. Decisa da me, [data]. Annotala e prosegui.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: il formato minimo di una decisione: la regola testuale, chi, quando. Tre
 cose; senza una delle tre non è una decisione registrata.

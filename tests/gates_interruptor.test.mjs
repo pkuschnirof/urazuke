@@ -14,7 +14,7 @@ const contenido = armarContenido();
 const fixture = JSON.parse(readFileSync(join(raiz, 'tests', 'fixture', 'proyecto_con_violaciones.json'), 'utf8'));
 const REGISTRO = { reason: 'inherited debt from the printable report', authorized_by: 'the owner', review_date: '2027-01-31' };
 
-/** Mide las 45: todas pasan, menos las que se le pidan, con el archivo del fixture. */
+/** Mide las 46: todas pasan, menos las que se le pidan, con el archivo del fixture. */
 function medir(fallan = []) {
   return contenido.heuristics.rules.map((r) => {
     const v = fixture.violations.find((x) => x.rule === r.id);
@@ -44,7 +44,7 @@ test('sin violaciones y con todo encendido: verde, con las dos cifras', () => {
   const r = correr({}, []);
   assert.equal(r.verdict, 'green');
   assert.equal(r.figures.compliance.numerator, r.figures.compliance.denominator);
-  assert.equal(r.figures.gate_coverage.numerator, 45);
+  assert.equal(r.figures.gate_coverage.numerator, 46);
 });
 
 test('todo veredicto que emite el evaluador esta declarado en el esquema', () => {
@@ -150,7 +150,7 @@ test('tablero: apagar una regla con registro sube el cumplimiento y baja la cobe
   assert.ok(apagada.figures.compliance.value > con.figures.compliance.value, 'apagar sube el cumplimiento');
   assert.equal(apagada.figures.gate_coverage.numerator, con.figures.gate_coverage.numerator - 1,
     'y baja la cobertura en exactamente una regla sobre las declaradas');
-  assert.equal(apagada.figures.gate_coverage.denominator, 45);
+  assert.equal(apagada.figures.gate_coverage.denominator, 46);
   assert.deepEqual(apagada.switched_off, [{ rule: 'CQ-15', reason: REGISTRO.reason, authorized_by: 'the owner', review_date: '2027-01-31', since: null }],
     'el reporte nombra la regla, el motivo y la fecha de revision');
 });
@@ -173,7 +173,7 @@ test('tablero: la huella del reglamento viaja con cada registro', () => {
   const r = correr({}, []);
   assert.equal(r.fingerprint.catalog_version, contenido.catalog_version);
   assert.equal(r.fingerprint.adapter, 'react-vite');
-  assert.equal(r.fingerprint.rules_declared, 45);
+  assert.equal(r.fingerprint.rules_declared, 46);
   assert.deepEqual(r.fingerprint.tools, fixture.config.tools);
 });
 
@@ -187,7 +187,7 @@ test('lo que juzga una persona queda fuera del porcentaje', () => {
   const r = correr({}, []);
   const manuales = contenido.heuristics.rules.filter((x) => x.instrument.length === 1 && x.instrument[0] === 'manual_case');
   assert.ok(manuales.length >= 15, 'hay un monton de reglas que solo juzga una persona');
-  assert.equal(r.figures.compliance.denominator, 45 - manuales.length,
+  assert.equal(r.figures.compliance.denominator, 46 - manuales.length,
     'el porcentaje cuenta solo lo que mide una maquina');
   const humana = correr({}, ['UX-20']);
   assert.equal(humana.figures.compliance.value, r.figures.compliance.value,

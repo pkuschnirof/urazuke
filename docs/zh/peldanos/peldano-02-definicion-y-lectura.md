@@ -74,7 +74,16 @@
 > me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
 > `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
-> changes every day; the other two change only when the system changes. Reply in my language.
+> changes every day; the other two change only when the system changes.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要把项目写下来。读 `docs/INITIAL_SURVEY.md` 中的业务调研和 `docs/WORKING_AGREEMENT.md`
@@ -90,7 +99,14 @@
 > 就向我要而不要编，把它们写成 `docs/GLOSSARY.md` 和 `docs/PROFILES.md`，在 `PROJECT.md` 里
 > 点出它们的名字，并把你在那里推断出来的也标出来。
 > 另外，创建 `docs/STATUS.md` 用于活状态（正在做什么，什么
-> 还开着）：那个文件每天都变；另外两个只在系统变化时才变。用我的语言回复。
+> 还开着）：那个文件每天都变；另外两个只在系统变化时才变。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求什么：先评估调研、再提问、再起草；项目文件要**短**（三百行的上限是随意定的，但必
 要：没有上限它就会长）；明确说出系统**不是**什么，因为没说的就是模型会去发明的；决定要附
@@ -122,12 +138,24 @@
 > `PROJECT.md` (it goes to `docs/STATUS.md` or to the pending-items register); and every pending
 > item must hang from a node of the semantic tree, and the tree is updated in the same commit
 > whenever a block adds or changes a node.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 应用这些修正：[清单]。用今天的日期定稿 `PROJECT.md` 和 `docs/SEMANTIC_TREE.md`。在协作契约
 > 中加两条规则：变更历史绝不进 `PROJECT.md`（它进 `docs/STATUS.md` 或待办项登记册）；每个待
 > 办项都必须挂在语义树的某个节点下，每当一个功能块新增或改变一个节点，树就在同一次提交中
 > 更新。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：你的修正（尤其是对它标为推断的节点），日期，以及契约里的两条新规则：一条保护
 项目文件不变成历史，一条把每个待办项绑到树的一个节点，那是让树保持活着、让你在十秒内发现一

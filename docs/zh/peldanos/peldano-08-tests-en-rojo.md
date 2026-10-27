@@ -78,6 +78,13 @@
 > every route checks the permission on the server, because hiding the entry
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 要关闭这个待办项，我需要证据，不是你的口头保证。(1) 写出证明该项所要求之事的测试，遵循
@@ -95,6 +102,11 @@
 > 色能到达的内容正好是它在 `docs/PROFILE_MATRIX.md` 中那一行，
 > 不多不少；每条路由都在服务端校验权限，因为把入口藏起来保护不了任何东西（附录H，UX
 > -11、UX-12、UX-15）。没有任何东西去执行的矩阵，是没人读的文件。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 **第一个块的红色。** 新项目的第一个块没有先前代码：新测试失败只是因为模块不存在，这种失败并不能证明测试能分辨行为。因此，当上一版本没有这个模块时，红色要**通过变异**来证明：代理在刚写好的函数里故意植入一个缺陷，展示测试针对该缺陷变红（凭据附带缺陷的 diff，让你看到它不是微不足道的），再还原并展示绿色。每个待办项一个变异体，像其他凭据一样执行并记录；对整个代码库的变异测试仍然是台阶 9 的可选加固。（决定 D-037，来自练习 Turnera：六张红色凭据只说"文件无法加载"。）
 
@@ -119,11 +131,23 @@
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
 > item for it; do not pass it as covered.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 在测试环境中，用将要提升的精确版本，运行到目前为止存在的每个流程的完整端到端套件。给我
 > 看数字，以及每个流程证明它的后端检查。如果有哪个流程没有端到端测试，说出来并为它开一个
 > 待办项；不要把它当作已覆盖放过去。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：端到端测试的第二和第三个尺度，用精确版本（不是"最新的"），每个流程附后端效果，
 以及完整性条款：没覆盖的要声明并变成待办项，不当作已覆盖放过去。
@@ -140,9 +164,21 @@
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 解释为什么无法测试、要加什么才能测试，并为此开一个待办项。变更在能测试之前不算关闭。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么："无法测试"不是对话的结束，而是一个待办项的开始。不可测试性是债务，债务要
 记录。

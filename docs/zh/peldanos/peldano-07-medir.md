@@ -54,14 +54,30 @@
 > number together with the command that produces it, and audit it in both directions: from the
 > code to the measurement (is everything that should be counted, counted?) and from the
 > measurement to the code (does everything counted actually exist?). Only then propose what to
-> build. Reply in my language.
+> build.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 在构建任何东西之前，我们要先测量。假设是：[X]。写一把量具（一个活在仓库里的脚本）来测
 > 量 [那个数量]，再写一个量具的测试，对一个事先知道答案的已知案例检验它。如果测量需要你没
 > 有的访问权或数据，问我；不要悄悄近似。如果某部分只能近似，标为近似并告诉我误差范围。运
 > 行量具，把数字连同产生它的命令给我看，并双向审计它：从代码到测量（该数的都数了吗？）和
-> 从测量到代码（数到的都真的存在吗？）。只有那时才提议要构建什么。用我的语言回复。
+> 从测量到代码（数到的都真的存在吗？）。只有那时才提议要构建什么。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求什么，逐条：量具**在仓库里**（不是一条会丢的零散命令）；对已知案例的**量具测试**
 （守卫）；适配测量的完整性条款（索要访问权，不悄悄近似）；把近似的标出来并附误差范围；数字
@@ -80,10 +96,22 @@
 > Set the budget for [queries / loops / time] on this path at the measured value plus a small
 > margin, and protect it with a test that fails if it is exceeded. Tell me the number and the
 > margin.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 把这条路径上 [查询 / 循环 / 时间] 的预算定在测得的值加一个小余量，并用一个超过就失败的测
 > 试保护它。告诉我数字和余量。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：预算是测得的值加一点点，不是一个整数，并且有一个超过就失败的测试。这样一次性
 能退化会出现在测试套件里，而不是生产里 [Ref. 37](../REFERENCIAS.md#ref-37)。
@@ -99,10 +127,22 @@
 
 > Before executing the plan, verify every number the plan asserts with the meter. If any does
 > not match, stop and tell me; do not execute on a wrong number.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 在执行计划之前，用量具验证计划断言的每一个数字。如果有任何一个不符，停下来告诉我；不要
 > 在错误的数字上执行。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：执行者不信任规划者的数字，哪怕是同一个模型在另一次会话里。在我的案例中，计划
 的四条断言有三条是错的；有仪器的地方，数字是精确的。

@@ -87,7 +87,16 @@ machst es, nicht der Agent:
 > the report. Tag every captured error with its source, and keep the errors of the tools that watch
 > the system (the panel, the resident agent, the monitoring itself) apart from the errors of the
 > system: the report lists them in a separate section, and only the system's errors open pending
-> items. Document it in `docs/MONITORING.md`. Reply in my language.
+> items. Document it in `docs/MONITORING.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [de]
 > Wir werden sicherstellen, dass kein Fehler in der Produktion ungesehen bleibt. Bau mit den
@@ -109,7 +118,17 @@ machst es, nicht der Agent:
 > Quelle und halte die Fehler der Werkzeuge, die das System beobachten (das Panel, der residente
 > Agent, das Monitoring selbst), von den Fehlern des Systems getrennt: der Bericht führt sie in
 > einem eigenen Abschnitt auf, und nur die Fehler des Systems öffnen offene Punkte. Dokumentiere es
-> in `docs/MONITORING.md`. Antworte in meiner Sprache.
+> in `docs/MONITORING.md`.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 **Die Fehler des Werkzeugs sind nicht die Fehler des Systems.** Die zentrale Erfassung trennt nach Quelle: die Fehler des Systems und die der Werkzeuge, die es beobachten (das Panel, der residente Agent, das Monitoring selbst), werden unter verschiedenen Quellen gespeichert, der Bericht führt sie in getrennten Abschnitten auf, und nur die Fehler des Systems öffnen offene Punkte. In der Übung Turnera öffnete der erste zyklische Bericht sechs "Bugs", die das Forge-Panel im Gespräch mit einem abgeschalteten Server waren. (Entscheidung D-038.)
 
@@ -134,6 +153,13 @@ vom Browser bis zum Bericht.
 > pending item or a written reason with a date; and tell me which errors disappeared and why,
 > with the commit that fixed each one. An error that disappeared without a fix is not solved: it
 > is hiding, and it stays in the report until its cause is known.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Mit jedem zyklischen Fehlerbericht: geh ihn mit mir durch; eröffne die korrektiven offenen
@@ -142,6 +168,14 @@ vom Browser bis zum Bericht.
 > sag mir, welche Fehler verschwunden sind und warum, mit dem Commit, der jeden einzelnen
 > repariert hat. Ein Fehler, der ohne Reparatur verschwunden ist, ist nicht gelöst: er versteckt
 > sich, und er bleibt im Bericht, bis seine Ursache bekannt ist.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: die Disziplin des Zyklus, und die Regel des Fehlers, der verschwindet, die
 die kontraintuitivste ist und die am meisten wert ist: ein Fehler, der von allein ging, kommt von

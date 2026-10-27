@@ -259,6 +259,24 @@ est née de l'avoir découvert tard : l'annexe a été obligatoire et jamais nom
 et le premier lecteur qui a adapté la méthode à un autre format a sauté vingt-sept des
 quarante-cinq règles parce qu'il n'a jamais su qu'elles existaient.
 
+Et l'une de ces quarante-six ne porte pas sur le système qu'on construit mais sur **la manière
+dont on te demande**. C'est l'**UX-28**, et elle est entrée le 2026-10-27 parce qu'elle manquait :
+la méthode ordonne à ses prompts de te demander — vingt-deux fois, dans plus de la moitié du
+corpus — et ne disait nulle part comment on demande, donc la forme restait à l'improvisation et tu
+recevais la question en vrac. Désormais, toute question que l'agent te pose arrive avec quatre
+parties et dans cet ordre : **les données** qui la rendent nécessaire, énumérées ; **un
+paragraphe** de cinq lignes au plus qui les relie et laisse voir la question ; **la question** avec
+ses réponses possibles numérotées ; et **la recommandation** de l'agent. Et à la profondeur
+technique que tu choisis, qui sont trois et se déclarent une fois dans la configuration du projet :
+`beginner` (langage de tous les jours, orienté résultat), `decision_maker` (chiffres mesurés et
+conséquences, sans chemins de fichier — c'est la valeur par défaut) et `technical` (fichier, ligne
+et commande). Si tu n'en déclares aucune, l'agent utilise `decision_maker` et le dit. La clause est
+dans les soixante-douze prompts du corpus, en une seule rédaction anglaise identique dans les huit
+langues, et il y a une vérification dans la chaîne qui passe au rouge si elle tombe de l'un d'eux.
+Ce qu'aucune vérification ne peut faire, et il vaut mieux le savoir, c'est vérifier qu'une question
+concrète a ses quatre parties : cela, c'est toi qui en juges, et c'est pourquoi la règle avertit au
+lieu de bloquer.
+
 Et une chose de plus qui change ce qu'il faut lire, parce qu'elle décide **laquelle** de toutes ces
 exigences s'applique à vous : **la version de la méthode que le projet fixe.** La définition
 mécanique des guichets — quel fichier doit exister à chaque échelon et ce qu'il doit dire — est
@@ -1667,7 +1685,7 @@ si la pièce n'est pas là, la barrière de cet échelon ne passe pas au vert. I
 bonne pratique : ça fait partie de ce qui se mesure.
 
 **Annexe H** — L'annexe d'heuristiques de la méthode
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)) : quarante-cinq règles vérifiables, dix-huit de
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)) : quarante-six règles vérifiables, dix-huit de
 qualité du code et vingt-sept d'utilisabilité, chacune avec son identifiant stable, sa sévérité et
 l'instrument qui la mesure. Elle est obligatoire et traverse les quatre tronçons : elle entre avec
 deux entrées préalables à l'échelon 2 et avec cinq ancrages aux échelons 5, 8, 9, 10 et 12. Le « H »

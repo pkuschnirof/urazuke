@@ -90,7 +90,7 @@ CQ-12 到 CQ-18 这些规则，正是让“代码质量”在前端有意义的�
 
 ## 5. B 部分 — 可用性
 
-五个家族。第一个和第二个是所有者明确要求的；另外三个之所以存在，是因为没有它们，分组和角色会以同样的方式退化，只是更慢。
+六个家族。第一个和第二个是所有者明确要求的；另外三个之所以存在，是因为没有它们，分组和角色会以同样的方式退化，只是更慢。 第六个是后来才有的，在 2026-10-27（D-070），性质也不同：前五个讲系统给人看的页面，第六个讲系统被建造时的那场对话。
 
 ### B1 — 按功能收敛的分组
 
@@ -152,6 +152,19 @@ CQ-12 到 CQ-18 这些规则，正是让“代码质量”在前端有意义的�
 | UX-26 | 状态不只靠颜色传达；每一张有信息量的图片都有替代文本；文本在正常字号下无需缩放即可阅读。 | 闸门（CQ-18） | 警告 |
 | UX-27 | 每个触及页面的待办项都交付来自测试环境的真实截图，所有者在关闭之前看它。截图不是可选项，也不是一张效果图。 | 待办项关闭 | 阻断 |
 
+### B6 — 向所有者提问
+
+方法在一半以上的提示词里命令模型**提问**：二十二次，分布在已发布语料的二十七个文件中的十五个。可是直到 2026-10-27，它在任何地方都没有说过**该怎么问**，于是形式交给了临场发挥，所有者收到的是一个光秃秃的问题：没有让它成为必要的数据，没有选项，也没有推荐。这正是第 11 级台阶追的那种不对称——一边要求，另一边不定义——而且是在代价最高的方向上：朝着做决定的那个人。方法已经做过两次这件事：第 8 级台阶不满足于"把红给我看"，定义了什么是收据；第 12 级台阶不满足于"报告"，把已验证和相信分开了。
+
+| id | 规则 | 验证 | 严重度 |
+|---|---|---|---|
+| UX-28 | 当代理需要所有者做决定时，问题带着它的四个部分、按这个顺序到来：让它成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的答案逐一编号；以及代理的推荐。并且用项目声明的技术深度来说。一个光秃秃的问题，把"为什么要问我"的重建工作留给了所有者。 | 待办项关闭时的所有者审查 | 警告 |
+
+**三个深度层级，以及它们从哪里来。** 项目声明一个，代理就在那个层级说话：`beginner`（日常语言，面向结果，不出现文件名也不出现术语）、`decision_maker`（测出来的数字和后果，不出现文件路径：方法默认用的那个）和 `technical`（文件、行、命令）。它们不是为这条规则发明的：初学者层级本来就是整个方法的形式（D-025）。参数名和三个取值住在数据层，在 `project_config.communication_depth` 里，因为那是消费方工具必须读到、而不该去猜的东西。
+
+**这条规则不承诺什么。** 闸门可以验证这段条款出现在七十二条提示词和八种语言里——它确实在做；但没有任何测试能验证某个星期二模型写下的那个具体问题是否带着它的四个部分。那由所有者来判断，这也是这条规则警告而不阻断的原因。一条阻断却没人能验证的规则，比一条警告的规则更糟：这跟 CQ-12 和 CQ-14 已有的那条声明出来的限制是同一条。
+
+
 ## 6. 它挂接在哪里，产生哪些产物
 
 本附录不发明新的台阶：它挂在已经存在的台阶上。这避免了闸门重复，也避免了可用性清单通常的命运——被读一次。
@@ -159,6 +172,8 @@ CQ-12 到 CQ-18 这些规则，正是让“代码质量”在前端有意义的�
 **它放在哪里（D-043）。** 它横贯四个阶段，主要重量在建设循环（台阶 5 到 12），因为那才是做决定和施工的地方。它不是自己的一个台阶：一个编号台阶会迫使整条梯子重编号、改变步数计数，并让本附录在建设转绿之前就受制于合同必须译成八种语言的义务，却不增加任何循环本来没有的闸门。
 
 **它如何挂接（D-044）。** 一份唯一来源、五个锚点和两个前置入口。规则文本只住在这里，提示词引用它；绝不复制它。把四十五条规则重复进循环的八条提示词里，会稀释它们（它们与每个台阶自己的工作竞争，代理每次遵守得都不一样）、使它们走偏（同一文本的两份副本会自己不同步，正是台阶 11 所追的那种反模式），也不会让它们更横向：让一条规则横向的，是每个块都经过同一道闸门，而不是规则被写在所有地方。
+
+**唯一进入提示词的规则，以及为什么（D-070）。** UX-28 是对上面那条原则写下来的例外，值得说清它跟另外四十五条的区别：那些是对**被建造的系统**的要求，闸门在项目留下的产出物上测量它们；UX-28 是对**建造时那场对话**的要求，而让模型遵守它的唯一办法，就是它出现在模型读到的东西里。它进得很窄——只点出四个部分和那个参数，别的不说——以一段在八种语言里完全相同的英文写法。这个例外**不**授权去抄别的任何一条：对于闸门能看的一切，D-044 的论证整条仍然成立。
 
 | 时刻 | 增加什么 | 为什么在这里 |
 |---|---|---|
@@ -197,6 +212,7 @@ CQ-12 到 CQ-18 这些规则，正是让“代码质量”在前端有意义的�
     "mutacion": "stryker",
     "accesibilidad": "axe-core"
   },
+  "communication_depth": "decision_maker",
   "umbrales": {
     "lineas_por_archivo": 300,
     "lineas_por_funcion": 40,
@@ -215,6 +231,8 @@ CQ-12 到 CQ-18 这些规则，正是让“代码质量”在前端有意义的�
 }
 ```
 
+`communication_depth` 是 UX-28 的参数，取三个值之一——`beginner`、`decision_maker`、`technical`。项目没有声明时，代理就用 `decision_maker`，并且说出来。默认值是声明出来的，不是猜出来的。
+
 那两个零是故意的，而且正是要紧的部分：最低覆盖率由棘轮用实测值确定，变异目标由所有者在项目有用户时确定。如果它们是零而没有人声明过，闸门会把它报告为未声明的阈值，而不是自己编一个。
 
 ## 8. 这两件东西，按方法使用的形态
@@ -222,20 +240,44 @@ CQ-12 到 CQ-18 这些规则，正是让“代码质量”在前端有意义的�
 **代码质量。**
 
 > Set up and maintain the code-quality gate for this project, configured for its frontend family. The core rules are the same in every project; what changes is how each one is measured and at which threshold. Install one formatter and one linter with a single shared configuration; enforce size limits per file and per function, complexity per function, duplication, dead code, declared-and-used dependencies, type checking where the language allows it, coverage with a ratchet, and secret scanning. Where the project has real users, add mutation testing scoped to the changed lines and record the score per block. Then extend the gate to the frontend itself: no business rule inside a screen, one typed client for every server call, one home for shared state, no user-visible string outside the translation catalogue, a stable identifier and role on every interactive element, styling only through tokens, and automatic basic accessibility checks. Every rule has a stable id, a severity (blocks, warns, records) and a named verifier. Thresholds and exceptions are declared by the owner in one configuration file; a rule switched off without a written exception is a gate failure, not a decision. Report the result per rule in `docs/CODE_QUALITY.md`, not as a single number.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 为本项目搭建并维护代码质量闸门，按它的前端家族来配置。内核规则在每个项目里都一样；变的是每条规则用什么测量、在哪个阈值上测量。安装一个格式化器和一个 linter，共用一份配置；强制每文件和每函数的尺寸上限、每函数的复杂度、重复、死代码、已声明且被使用的依赖、语言允许时的类型检查、带棘轮的覆盖率以及密钥扫描。在项目有真实用户之处，增加限定在改动行上的变异测试，并按块记录得分。然后把闸门延展到前端本身：页面里不放业务规则、每次服务端调用只有一个带类型的客户端、共享状态只有一处存放地、翻译目录之外不出现任何用户可见字符串、每个可交互元素都有稳定标识符和角色、样式只通过设计令牌、以及基本的无障碍自动检查。每条规则都有稳定编号、严重级别（阻断、警告、记录）和有名字的验证器。阈值和例外由所有者在同一个配置文件里声明；一条被关掉却没有书面例外的规则属于闸门的故障，不是一项决定。在 `docs/CODE_QUALITY.md` 里按规则报告结果，不要汇成一个数字。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 **可用性。**
 
 > Build the usability criteria for this project before writing the first screen, and enforce them where the method already has hooks. Group functionality by what the person came to do, never by the internal module or the data entity: every menu group is named with a user job in the project glossary, every functionality has exactly one canonical home, no functionality is orphaned, and every group is reachable in no more than three steps from the entry screen. Then declare accessibility in one matrix and derive everything from it: each functionality lists the profiles that have it, each functionality has at least one profile, each profile has at least one functionality and its own entry point, the navigation is generated from the matrix instead of written by hand, and every route checks the permission on the server because hiding an entry is not protecting it. Verify the matrix per profile with an end-to-end check that compares what is reachable with the matrix row: neither less nor more. Require the four states on every list (with data, empty, loading, error), a visible working indicator with the option to cancel long operations, an error message that says what happened and what to do without losing entered data, a primary action per screen, confirmation or undo for destructive actions, and a form that keeps what was typed. Run each manual test case once per affected profile, run the first-click check at the close of every block, and require a real screenshot of the test environment on every item that touches a screen. Record the result per rule, with owner-declared exceptions, in `docs/USABILITY.md`, and keep the matrix in `docs/PROFILE_MATRIX.md` as the single source of truth.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 在写第一个页面之前，为本项目建立可用性准则，并在方法已经有挂接点的地方强制它们。按人来做的事分组功能，绝不按内部模块或数据实体分组：菜单的每个分组都用项目术语表里的一个用户工作来命名，每个功能恰好有一个归口，没有任何功能成为孤儿，每个分组都能从入口页面在三步之内到达。然后用一个矩阵声明无障碍，并从中派生一切：每个功能列出拥有它的角色，每个功能至少有一个角色，每个角色至少有一个功能和自己的入口点，导航由矩阵生成而不是手写，每条路由都在服务端校验权限，因为把入口藏起来保护不了任何东西。按角色用端到端测试验证矩阵，把可到达的内容与矩阵那一行比较：不多不少。要求每张列表都有四个状态（有数据、空、加载中、出错）、一个可见的进行中指示并能取消长操作、一条说明发生了什么和该做什么且不丢失已录入数据的错误消息、每个页面一个主操作、破坏性操作的确认或撤销，以及一个保留已输入内容的表单。每个手工测试用例对每个受影响角色跑一次，每个块关闭时跑首次点击测试，并要求每个触及页面的待办项都附上测试环境的真实截图。按规则记录结果，连同所有者声明的例外，写进 `docs/USABILITY.md`，并把矩阵保存在 `docs/PROFILE_MATRIX.md` 里作为唯一真相来源。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 ## 9. 这个提案不做什么
 
-- **它不增加台阶。** 是四十五条横向规则（18 条质量、27 条可用性），不是一个新阶段。它们挂在已经存在的台阶上。
+- **它不增加台阶。** 是四十六条横向规则（18 条质量、28 条可用性），不是一个新阶段。它们挂在已经存在的台阶上。
 - **它不发明一个分数。** 一个“可用性 78”的数字不说明该修什么，而且会被往错的方向优化。按规则报告。第 12 节提出两个派生数字，但它们是带依据的规则计数——不是质量或可用性的评分——也不授权关闭任何东西。
 - **它不取代所有者。** 首次点击测试、截图和任务测试仍然是人的：它们是唯一能区分“能运行”和“有用”的工具。
 - **它不带来出厂阈值。** 适配器的那些是一个声明出来的起点；不声明自己阈值的项目继承它们，并被登记为该状态。
@@ -253,6 +295,7 @@ CQ-12 到 CQ-18 这些规则，正是让“代码质量”在前端有意义的�
 | 4 | **开关的纪律：** 它住在项目配置里，不在提示词里；关掉只有在有理由、批准人和复查日期的登记决定下才算数；关掉在报告里是可观察的；开关要通过开和关两种方式来测。 | D-046 |
 | 5 | **初始严重级别，逐条规则定下：** 质量里阻断的有十四条（CQ-01 至 CQ-06、CQ-08、CQ-11 至 CQ-17），CQ-09 在有真实用户之处阻断，警告的有三条（CQ-07、CQ-10、CQ-18）。可用性里阻断的有十一条（UX-02、UX-03、UX-08 至 UX-12、UX-15、UX-16、UX-22、UX-27），UX-06 只记录，其余警告。既不是“全部都阻断”——项目根本起不来——也不是“全部都警告”——启发式规则就成了装饰。 | D-048 |
 | 6 | **无障碍从警告起步，并在所有者声明时升级为阻断**，前提是产品有组织之外的最终用户。默认值不靠编：升级要被声明，用与任何阈值相同的机制（D-045）。 | D-048 |
+| 7 | **问题的形式是一条带标识的规则（UX-28），而且进入提示词。** 方法命令提问二十二次，却从没说过怎么问；形式就是有顺序的四个部分，加上一个由项目声明的深度层级。它是对 D-044 写下来的例外，很窄，并在第 6 节里论证过。 | D-070 |
 
 ### 在 D-048 中关闭，以及它带来的两处更正
 
@@ -260,6 +303,8 @@ CQ-12 到 CQ-18 这些规则，正是让“代码质量”在前端有意义的�
 
 1. **计数的缺陷。** 凡是本附录说“二十七条规则”的地方，正确的数字是**四十五条**：18 条质量（CQ-01 至 CQ-18）和 27 条可用性（UX-01 至 UX-27）。那个旧数字来自一份只数了一半的草稿。已在第 6 节和第 9 节更正，并在 D-048 中记下；D-044 的文本按原样保留，因为一项决定是一份登记，不重写。
 2. **格式化器、linter、尺寸和复杂度不放宽。** 这份建议的一个早期版本把它们送去“警告”，为了不阻塞带遗留债务的项目。这不可能：台阶 9 今天就已经阻断它们，而这次延展是延展，不是替换。遗留债务用一条声明出来的例外——带理由和复查日期——或者用棘轮的基线来解决，不是靠降低规则的严重级别。
+
+**而从 2026-10-27 起是四十六条。** UX-28 随 D-070 进来，数目变成 18 条质量和 28 条可用性。上面那条注记保持原样，因为一次更正也是一份记录；一条新规则改变的是数目，不是数目的历史。
 
 还有一条声明出来的限制，因为它是同类中唯一的一条：**CQ-12 和 CQ-14 以人工红来阻断。** 没有任何工具能证明一个页面不做业务决定。它们在待办项关闭时验证，把人工用例摆在面前，判据与 UX-22 和 UX-27 相同；如果项目撑不住这种关闭，它们因登记的决定降为 AVISA。一条阻断却没人验证的规则，比一条警告的规则更糟。
 

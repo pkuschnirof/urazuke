@@ -229,7 +229,7 @@ Each step has eight parts, always the same, so that they can be compared:
 
 And there is one more part, which shows up in **six steps only** and is a transversal piece
 that changes what has to be read: **Annex H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)).
-Forty-five verifiable rules -- eighteen on code quality and twenty-seven on usability -- each one
+Forty-six verifiable rules -- eighteen on code quality and twenty-eight on usability -- each one
 with its stable id, its severity and the instrument that measures it. It is not an optional
 appendix: **it is mandatory**, and it hooks into the ladder at six points. At step 2 its two
 **prior inputs** come in (the user glossary and the list of profiles: the words people actually
@@ -242,6 +242,22 @@ method's own chain that turns red if any of them stops saying it. It was born fr
 late: the annex was mandatory and unnamed in this document, and the first reader who adapted the
 method to another format skipped twenty-seven of the forty-five rules because he never knew they
 were there.
+
+And one of those forty-six is not about the system being built but about **how you get asked**.
+It is **UX-28**, and it came in on 2026-10-27 because it was missing: the method orders its
+prompts to ask you -- twenty-two times, in more than half of the corpus -- and said nowhere how
+one asks, so the form was left to improvisation and you got the question loose. From now on every
+question the agent puts to you arrives with four parts and in this order: **the data** that makes
+it necessary, listed; **one paragraph** of no more than five lines that links that data and lets
+the question be seen; **the question** with its possible answers numbered; and **the agent
+recommendation**. And at the technical depth you choose, which are three and are declared once in
+the project configuration: `beginner` (everyday language, outcome-oriented), `decision_maker`
+(measured numbers and consequences, no file paths -- it is the default) and `technical` (file,
+line and command). If you declare none, the agent uses `decision_maker` and says so. The clause is
+in the seventy-two prompts of the corpus, in a single English wording identical across the eight
+languages, and there is a check in the chain that turns red if it falls out of any of them. What
+no check can do, and it is worth knowing, is verify that a concrete question has its four parts:
+you judge that, and that is why the rule warns instead of blocking.
 
 And one more thing that changes what has to be read, because it decides **which** of all these
 demands apply to you: **the version of the method the project pins.** The mechanical definition of

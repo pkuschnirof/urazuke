@@ -68,7 +68,16 @@
 > only read is not a receipt you audited. For every finding: where it is (file and line), what
 > the risk is, what evidence proves it (the command, the query, the number), and its priority:
 > P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited.
-> End with the list of P0 findings turned into proposed pending items. Reply in my language.
+> End with the list of P0 findings turned into proposed pending items.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > このシステムを[範囲]について監査してください。読み取り専用：`docs/AUDIT_[日付].md` に
@@ -81,6 +90,13 @@
 > 見について：どこにあるか（ファイルと行）、リスクは何か、どの証拠がそれを証明するか（コマンド、
 > クエリ、数字）、そして優先度：P0は今すぐ修正、P1は近いうちに、P2は可能なときに。監査した
 > 各次元に評点を付けてください。P0の発見を提案保留項目に変換したリストで終えてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
 > 私の言語で答えてください。
 
 何を求めているか、条項ごとに：読み取り専用（監査者は直さない。提案する）。監査に合わせた
@@ -104,11 +120,24 @@
 
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > `docs/AUDIT_[日付].md` を読んでください。各P0とP1について、発見を引用した保留項目を一つ
 > 開いてください。どれかに同意しないなら、反証とともに私に教えてください。無視しないで
 > ください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：監査が保留項目に変わること（さもなければ保管される報告だ）、そして不同意
 は黙ってではなく明示的に証拠付きで。

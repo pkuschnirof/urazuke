@@ -102,6 +102,13 @@ machst es, nicht der Agent:
 > every route checks the permission on the server, because hiding the entry
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Um diesen offenen Posten zu schließen, brauche ich Belege, nicht dein Wort. (1) Schreib den
@@ -130,6 +137,14 @@ machst es, nicht der Agent:
 > prüft die Berechtigung auf dem Server, denn den Einstiegspunkt zu
 > verstecken schützt nichts (Anhang H, UX-11, UX-12, UX-15). Eine Matrix,
 > die nichts ausübt, ist ein Dokument, das niemand liest.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 **Das Rot des ersten Blocks.** Im ersten Block eines neuen Projekts gibt es keinen vorherigen Code: der neue Test schlägt fehl, weil das Modul nicht existiert, und dieser Fehlschlag beweist nicht, dass der Test Verhalten unterscheidet. Deshalb wird, wenn die vorherige Version das Modul nicht hat, das Rot **durch Mutation** bewiesen: der Agent pflanzt absichtlich einen Fehler in die gerade geschriebene Funktion, zeigt den Test rot gegen diesen Fehler (der Beleg trägt den Diff des Fehlers, damit du siehst, dass er nicht trivial war), macht ihn rückgängig und zeigt das Grün. Ein Mutant pro offenem Punkt, ausgeführt und aufgezeichnet wie jeder andere Beleg; Mutationstests über die ganze Codebasis bleiben die optionale Verstärkung der Stufe 9. (Entscheidung D-037, aus der Übung Turnera: sechs rote Belege, die nur "die Datei lädt nicht" sagten.)
 
@@ -161,12 +176,27 @@ hinterlässt den Beleg dort, wo der Code lebt.
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
 > item for it; do not pass it as covered.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Lass die vollständige Ende-zu-Ende-Batterie aller bisher existierenden Flüsse laufen, in der
 > Testumgebung, mit der exakten Version, die befördert werden soll. Zeig mir die Zahlen und für
 > jeden Fluss die Backend-Prüfung, die ihn beweist. Wenn ein Fluss keinen Ende-zu-Ende-Test hat,
 > sag es und öffne einen offenen Posten dafür; lass ihn nicht als abgedeckt durchgehen.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: den zweiten und dritten Maßstab der Ende-zu-Ende-Tests, mit der exakten
 Version (nicht „der neuesten“), mit der Wirkung im Backend pro Fluss, und mit der
@@ -187,10 +217,25 @@ geht nicht als abgedeckt durch.
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Erkläre, warum es sich nicht testen lässt, was hinzugefügt werden müsste, damit es geht, und
 > öffne einen offenen Posten dafür. Die Änderung ist nicht geschlossen, bis sie sich testen lässt.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: dass „lässt sich nicht testen“ nicht das Ende des Gesprächs ist, sondern
 der Anfang eines offenen Postens. Nicht-Testbarkeit ist Schuld, und Schulden werden registriert.

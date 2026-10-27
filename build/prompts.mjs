@@ -3,12 +3,15 @@
 // exactamente los mismos prompts. Es un medidor con guarda aplicado al propio repositorio: si una
 // traducción alteró un prompt, el build falla.
 // Un bloque de cita que empieza con una etiqueta de idioma ("> [es]", "> [it]"...) es la
-// traducción del prompt anterior, para lectura, y no cuenta como prompt.
+// traducción del prompt anterior, para lectura, y no cuenta como prompt. La lectura de los
+// bloques vive una sola vez, en build/forma_de_la_pregunta.mjs, y se importa de ahí: dos
+// copias de la misma lectura se desincronizan solas, que es el antipatrón del peldaño 11.
 // Uso: node build/prompts.mjs            -> extrae y verifica
 //      node build/prompts.mjs --check    -> solo verifica (no escribe)
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { bloquesDeCita } from './forma_de_la_pregunta.mjs';
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
 const soloVerificar = process.argv.includes('--check');
@@ -16,22 +19,11 @@ const fuente = join(raiz, 'docs', 'peldanos');
 const destino = join(raiz, 'prompts');
 const idiomas = ['en', 'pt', 'fr', 'de', 'it', 'ja', 'zh'];
 
-// Un prompt es un bloque de líneas consecutivas que empiezan con "> ". Se normaliza el espacio
-// para que un re-ajuste de líneas en una traducción no cuente como alteración.
+// Un prompt es un bloque de líneas consecutivas que empiezan con "> " y que no es una
+// traducción. El espacio viene ya normalizado para que un reajuste de líneas en una traducción
+// no cuente como alteración.
 function extraerPrompts(md) {
-  const bloques = [];
-  let actual = [];
-  const cerrar = () => {
-    if (!actual.length) return;
-    if (!/^\[[a-z]{2}\]\s*$/.test(actual[0])) bloques.push(actual.join(' '));
-    actual = [];
-  };
-  for (const linea of md.split(/\r?\n/)) {
-    if (/^> ?/.test(linea)) actual.push(linea.replace(/^> ?/, ''));
-    else cerrar();
-  }
-  cerrar();
-  return bloques.map(b => b.replace(/\s+/g, ' ').trim());
+  return bloquesDeCita(md).filter(b => !b.etiqueta).map(b => b.texto);
 }
 
 // Cuenta cuántos prompts tienen su traducción colgada (para informar, no para fallar).

@@ -90,7 +90,16 @@ faites, pas l'agent :
 > own verifiable window: the first and the last timestamp read from the database or the log, never a
 > number typed by hand; a window typed by hand is marked as such in the report and only warns, it
 > never opens a pending item on its own. Document the thresholds, the channel, the cycle and how to
-> silence an alert with a written reason in `docs/MONITORING.md`. Reply in my language.
+> silence an alert with a written reason in `docs/MONITORING.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [fr]
 > Nous allons garder ce système sous surveillance en production. En utilisant les métriques et les
@@ -114,7 +123,16 @@ faites, pas l'agent :
 > nombre saisi à la main ; une fenêtre saisie à la main est marquée comme telle dans le rapport et
 > ne fait qu'avertir, elle n'ouvre jamais d'élément en attente à elle seule. Documente les seuils,
 > le canal, le cycle et comment faire taire une alerte avec une raison écrite dans
-> `docs/MONITORING.md`. Réponds dans ma langue.
+> `docs/MONITORING.md`.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
+> Réponds dans ma langue.
 
 **La fenêtre de la mesure.** Le rapport cyclique compare les lignes observées par an à ce que l'échelon 3 a déclaré. Un nombre correct avec une mauvaise fenêtre ouvre un faux élément en attente : dans la pratique Turnera héritée, 30 000 lignes de trois ans ont été passées comme si elles étaient d'une seule année. C'est pourquoi la mesure porte sa fenêtre **vérifiable** : le premier et le dernier enregistrement lus dans la base ou dans le journal, pas un nombre saisi à la main. Si l'outil ne peut pas lire la base, il le déclare comme angle mort ; une fenêtre saisie à la main est marquée comme telle dans le rapport et ne fait qu'avertir, elle n'ouvre jamais d'élément en attente à elle seule. (Décision D-039.)
 
@@ -140,6 +158,13 @@ démonstrations : le premier rapport et une alerte provoquée.
 > reason; write the decision with the date in the report itself; and tell me whether any threshold
 > must change and why, with the measurement that justifies it. Never raise a threshold to silence
 > an alert without a measured reason written down.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > À chaque rapport cyclique de ressources et de performance : parcours-le avec moi, événement par
@@ -147,6 +172,13 @@ démonstrations : le premier rapport et une alerte provoquée.
 > lesquels peuvent attendre, avec ta raison ; écris la décision avec la date dans le rapport
 > lui-même ; et dis-moi si un seuil doit changer et pourquoi, avec la mesure qui le justifie. Ne
 > monte jamais un seuil pour faire taire une alerte sans une raison mesurée écrite.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : que le rapport se lise et se décide, avec une trace ; et la règle du seuil,
 qui est celle qui évite que la supervision devienne silencieuse petit à petit.

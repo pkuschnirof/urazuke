@@ -97,6 +97,13 @@ faites, pas l'agent :
 > every route checks the permission on the server, because hiding the entry
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Pour clore cet élément en attente, j'ai besoin d'une preuve, pas de ta parole. (1) Écris le test
@@ -124,6 +131,13 @@ faites, pas l'agent :
 > ni plus, et chaque route vérifie la permission côté serveur, car masquer
 > le point d'entrée ne protège rien (Annexe H, UX-11, UX-12, UX-15). Une
 > matrice que rien n'exerce est un document que personne ne lit.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 **Le rouge du premier bloc.** Dans le premier bloc d'un nouveau projet il n'y a pas de code précédent : le nouveau test échoue parce que le module n'existe pas, et cet échec ne prouve pas que le test distingue un comportement. C'est pourquoi, quand la version précédente n'a pas le module, le rouge se prouve **par mutation** : l'agent plante volontairement un défaut dans la fonction qu'il vient d'écrire, montre le test en rouge contre ce défaut (le reçu porte le diff du défaut, pour que vous voyiez qu'il n'était pas trivial), l'annule et montre le vert. Un seul mutant par élément en attente, exécuté et enregistré comme n'importe quel autre reçu ; les tests de mutation sur toute la base restent le renfort optionnel de l'échelon 9. (Décision D-037, issue de la pratique Turnera : six reçus de rouge qui disaient seulement « le fichier ne se charge pas ».)
 
@@ -154,6 +168,13 @@ code.
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
 > item for it; do not pass it as covered.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Lance la batterie complète de bout en bout de tous les flux qui existent jusqu'ici, dans
@@ -161,6 +182,13 @@ code.
 > pour chaque flux, la vérification dans le backend qui le prouve. Si un flux n'a pas de test de
 > bout en bout, dis-le et ouvre un élément en attente pour cela ; ne le fais pas passer pour
 > couvert.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : la deuxième et la troisième échelle des tests de bout en bout, avec la
 version exacte (pas « la dernière »), avec l'effet dans le backend par flux, et avec la clause de
@@ -180,11 +208,25 @@ pas passer pour couvert.
   et « le système n'est pas testable ici » (ce prompt).
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Explique pourquoi on ne peut pas le tester, ce qu'il faudrait ajouter pour que ce soit
 > possible, et ouvre un élément en attente pour cela. Le changement n'est pas clos tant qu'il ne
 > peut pas être testé.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : que « on ne peut pas tester » ne soit pas la fin de la conversation mais
 le début d'un élément en attente. La non-testabilité est de la dette, et la dette s'enregistre.

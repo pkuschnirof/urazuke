@@ -58,11 +58,23 @@
 > functional block, add to the user manual the screens and flows of the pending items closed
 > in that block, with real screenshots from the test environment, and add their entries to the
 > changelog. If you do not know which manual, ask.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 每一次改变用户所见、操作员所做或系统部署方式的变更，都在同一次提交中更新相应的手册。每
 > 个功能块收尾时，把该块中关闭的待办项的界面和流程加到用户手册里，附来自测试环境的真实截
 > 图，并把它们的条目加到变更日志。如果你不知道该进哪份手册，问。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：同一次提交的规则，那是唯一能让手册保持最新的规则；把功能块收尾作为已关闭待办
 项变成手册和变更日志的时刻；以及不清楚该进哪份手册时提问。
@@ -88,6 +100,13 @@
 > business knows (who is responsible for what, which phone number to call), ask me; do not leave
 > a gap and do not invent. Each manual carries a date and the system version. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 根据系统今天在测试环境中的样子生成三份手册：用户手册（逐个界面，附真实截图，用用户的语
@@ -96,6 +115,11 @@
 > 一个必须在凌晨三点、没有 AI、手工完成的人）。如果某一节你需要只有业务知道的东西（谁负责
 > 什么、打哪个电话），问我；不要留空，也不要发明。每份手册都带日期和系统版本。用我的语言
 > 回复。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：三份手册及其读者；来自测试环境的**真实**截图（不是图画或描述）；恢复手册的凌晨
 三点标准；适配文档的完整性条款：只有业务知道的要问，**不留空、不发明**；以及日期和版本，让人

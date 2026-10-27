@@ -89,6 +89,13 @@ machst es, nicht der Agent:
 > first-click check, where I name the place I would look for a task and you
 > compare that with the menu, and the real screenshot of the test
 > environment.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Jeder offene Posten, der ändert, was ein Nutzer sieht oder tut, wird mit seinen manuellen
@@ -110,6 +117,14 @@ machst es, nicht der Agent:
 > Prüfung des ersten Klicks, bei der ich den Ort nenne, an dem ich eine
 > Aufgabe suchen würde, und du das mit dem Menü vergleichst, und den echten
 > Screenshot der Testumgebung.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: dass der Fall aus den Abnahmekriterien kommt (so prüft er, was verlangt
 wurde, und nicht, was das Modell verstanden hat); dass er für jemanden geschrieben ist, der nicht
@@ -138,7 +153,16 @@ vom Modell ausgeführt sind sie ein weiterer Test, und der Witz ist, dass eine P
 > the semantic tree it touches; do not fix anything now. For every case that passed, nothing. Then
 > tell me, flow by flow, how many cases passed and how many failed, compared with the previous
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
-> the case or the system is the problem. Reply in my language.
+> the case or the system is the problem.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [de]
 > Lies die Ausführungen von heute in `docs/MANUAL_TESTS.md`. Für jeden Fall, der fehlgeschlagen
@@ -148,7 +172,17 @@ vom Modell ausgeführt sind sie ein weiterer Test, und der Witz ist, dass eine P
 > bestanden hat, nichts. Dann sag mir, Fluss für Fluss, wie viele Fälle bestanden haben und wie
 > viele fehlgeschlagen sind, verglichen mit der vorherigen Ausführung, und welche Fehlschläge sich
 > wiederholen. Wenn ein Fall nicht ausgeführt werden konnte, sag mir warum und ob das Problem der
-> Fall oder das System ist. Antworte in meiner Sprache.
+> Fall oder das System ist.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange: die Rückspeisung, operativ gemacht: jeder menschliche Fehlschlag ist ein
 korrektiver offener Posten, mit den Worten der Person (nicht denen des Modells) als Reproduktion,

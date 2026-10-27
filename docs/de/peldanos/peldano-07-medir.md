@@ -73,7 +73,16 @@ machst es, nicht der Agent:
 > number together with the command that produces it, and audit it in both directions: from the
 > code to the measurement (is everything that should be counted, counted?) and from the
 > measurement to the code (does everything counted actually exist?). Only then propose what to
-> build. Reply in my language.
+> build.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [de]
 > Bevor wir irgendetwas bauen, messen wir. Die Hypothese ist: [X]. Schreib ein Messgerät (ein
@@ -84,7 +93,17 @@ machst es, nicht der Agent:
 > Messgerät laufen, zeig mir die Zahl zusammen mit dem Befehl, der sie erzeugt, und auditiere sie
 > in beide Richtungen: vom Code zur Messung (ist alles gezählt, was gezählt werden sollte?) und
 > von der Messung zum Code (existiert alles Gezählte wirklich?). Erst dann schlag vor, was zu
-> bauen ist. Antworte in meiner Sprache.
+> bauen ist.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange, Klausel für Klausel: das Messgerät **im Repository** (keinen losen Befehl,
 der verloren geht); den **Test des Messgeräts** gegen einen bekannten Fall (den Schutz); die
@@ -107,11 +126,26 @@ Messgeräte entlarvt hat; und die Reihenfolge: erst messen, dann vorschlagen.
 > Set the budget for [queries / loops / time] on this path at the measured value plus a small
 > margin, and protect it with a test that fails if it is exceeded. Tell me the number and the
 > margin.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Setze das Budget für [Abfragen / Schleifen / Zeit] auf diesem Pfad auf den gemessenen Wert
 > plus eine kleine Marge, und schütze es mit einem Test, der fehlschlägt, wenn es überschritten
 > wird. Nenn mir die Zahl und die Marge.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: dass das Budget das Gemessene plus wenig ist, keine runde Zahl, und dass es
 einen Test hat, der fehlschlägt, wenn es überschritten wird. So taucht eine Leistungsregression in
@@ -131,10 +165,25 @@ der Batterie auf und nicht in der Produktion [Ref. 37](../REFERENCIAS.md#ref-37)
 
 > Before executing the plan, verify every number the plan asserts with the meter. If any does
 > not match, stop and tell me; do not execute on a wrong number.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Bevor du den Plan ausführst, verifiziere jede Zahl, die der Plan behauptet, mit dem Messgerät.
 > Wenn eine nicht übereinstimmt, halt an und sag es mir; führe nicht auf einer falschen Zahl aus.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: dass derjenige, der ausführt, den Zahlen dessen, der geplant hat, nicht
 vertraut, auch wenn es dasselbe Modell in einer anderen Sitzung ist. In meinem Fall waren drei von

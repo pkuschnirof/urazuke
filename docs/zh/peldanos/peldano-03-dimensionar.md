@@ -63,6 +63,14 @@
 > for the three largest tables, peak concurrency, data size at five years, and what breaks first
 > if everything is multiplied by ten. Then present three options for persistence and concurrency,
 > each with the cost of migrating to the others later. Do not choose: I choose. Do not write code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [zh]
@@ -72,7 +80,14 @@
 > 续之前向我索要所有缺的数字。绝不估计原始数字。如果可以查询旧系统，用它的真实数字，并说
 > 明每个数字从哪里来。原始数据齐全后，计算并展示算式：三张最大的表每年的行数、峰值并发、
 > 五年后的数据大小，以及如果一切乘以十先坏的是什么。然后给出三个持久化与并发的选项，每个
-> 附上以后迁移到其他选项的代价。不要选：我来选。不要写代码。用我的语言回复。
+> 附上以后迁移到其他选项的代价。不要选：我来选。不要写代码。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求什么，逐条：区分原始数据和派生数据（这是避免发明的区分）；**索要缺的原始数据，绝不
 估计它们**；旧系统存在时用它的真实数字，附来源；把派生数据连算式一起算出来，让你能重算；
@@ -96,11 +111,23 @@
 > taking "just in case" even though they are not needed today (for example: the persistence
 > interface is asynchronous from line one, even if the first engine is synchronous). Include the
 > questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 我选选项 [B]。记录到 `docs/SIZING.md`：原始数据及其来源、派生数据及其算式、三个选项、选
 > 中的那个和原因，以及我们"以防万一"做的、今天虽然不需要的决定（例如：持久化接口从第一行
 > 起就是异步的，哪怕第一个引擎是同步的）。把你问过的问题和我的回答包含进去。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：完整的记录，附来源和算式；选中的和理由；以及写下来的非对称决策，因为留在隐含
 状态它们就不会被遵守。

@@ -4371,7 +4371,7 @@ ausencia sin su bloque de universo, y que traiga su rojo deliberado.
 - **Grupo:** G-METODO · **Severidad:** bloquea · **Quién decide:** el dueño. La pieza la pidió él;
   lo que vuelve a él es **dónde vive**, **cómo se llaman los tres niveles** y si se exige por
   máquina.
-- **Repositorio:** método · **Estado: abierto**
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-27. **Decisión:** D-070.
 - **Origen:** pedido del dueño el 2026-10-27, escrito en medio de otro trabajo: *"Quiero agregar una
   forma mandatoria de comunicación"*.
 
@@ -4461,7 +4461,95 @@ prompts por idioma y caiga nombrando el que le falta, con su rojo deliberado. La
 pregunta concreta, no: la juzga el dueño, y queda escrito así para que nadie le atribuya a la
 compuerta algo que no mide.
 
-**Depende de:** la decisión del dueño entre las tres salidas, y los nombres de los tres niveles.
+**Depende de:** nada. La decisión del dueño llegó el mismo día.
+
+**Lo que decidió el dueño (2026-10-27), con sus palabras.** Entre las tres salidas: *"iii"* —las
+dos, los prompts y la prosa, **más la regla nueva del Anexo H**, para que la forma sea exigible y
+no sólo recomendada—. Y sobre los nombres de los tres niveles: *"con los nombres propuestos"*, que
+son principiante, decisor y técnico; en el dato van en inglés, como las otras cuarenta rutas y
+enumeraciones que el dato declara (D-051): `beginner`, `decision_maker`, `technical`.
+
+**Estado: CERRADO.** Lo que quedó:
+
+- **La regla.** `UX-28`, en una **familia nueva** del anexo: `B6`, la primera que no es sobre la
+  pantalla que el sistema le muestra a una persona sino sobre la conversación en la que el sistema
+  se construye. Cuatro partes en orden, y la profundidad declarada. Avisa, no bloquea, y se
+  verifica con rojo humano al cierre del pendiente, como la captura de `UX-27`.
+- **El parámetro.** `project_config.communication_depth`, con sus tres valores en
+  `enums.communication_depth` y su campo en el contrato de configuración de proyecto. Sin declarar
+  significa `decision_maker`, **y el agente dice cuál usó**: el default se declara, no se adivina.
+- **La cláusula, en los prompts.** Una sola redacción inglesa idéntica, en los **setenta y dos**
+  prompts de cada uno de los **ocho idiomas**, más su traducción en cada bloque `[xx]`. Son 576
+  cláusulas inglesas y 504 traducidas.
+- **La prosa.** El párrafo de la Parte A del documento principal —donde ya se nombra el Anexo H— y
+  la sección `B6` del anexo con sus tres bloques: el por qué medido, los tres niveles y lo que la
+  regla no promete. En los ocho idiomas, en el mismo commit.
+- **La guarda.** `build/forma_de_la_pregunta.mjs`, con tres comprobaciones y **siete rojos
+  deliberados**, invocada por `build/build.mjs` y por un paso del flujo que **exige la línea que
+  imprime**. Las tres: (A) la cláusula inglesa en todos los prompts de los ocho idiomas, byte a
+  byte la misma; (B) la traducción en cada bloque de su idioma; (C) **simetría con el dato** —los
+  tres niveles que la cláusula nombra son exactamente los que el dato declara, y el campo está en
+  el contrato de configuración—, que es la parte que impide que el modelo escriba un nivel que la
+  herramienta no sabe leer.
+
+**Y un agujero que este trabajo abrió y cerró en el mismo movimiento.** `UX-28` es la primera
+**regla** que el método agrega después de que existiera la maquinaria de la fijación (D-068), y el
+diferencial de un upgrade **no la contaba**: `entradasAgregadas` miraba peldaños, estaciones y
+evaluadores, y las reglas del anexo no declaraban procedencia porque su tipo no tenía los campos.
+Medido: el diferencial `2026.10.1 -> 2026.10.8` decía 3 entradas cuando son 4. Un proyecto que
+subiera de versión se habría encontrado con una regla nueva que el diferencial omitió en silencio,
+que es exactamente el defecto que D-067 cerró para el resumen de cantidades. Ahora el tipo `rule`
+admite `since_schema` y `since_version`, el validador los exige con el mismo criterio que a
+cualquier entrada, y hay un rojo deliberado —el décimo de esa guarda— que mutila la regla y tiene
+que caer nombrándola.
+
+**Lo medido, antes y después.**
+
+```
+$ node build/forma_de_la_pregunta.mjs
+forma de la pregunta: comprobado -- 8 idiomas, 576 prompts, 504 traducciones, 0 hallazgos
+$ node build/prompts.mjs            -> 54 prompts, siete traducciones, errores: 0
+$ node build/gates_validate.mjs     -> validado (24 peldanos, 8 estaciones, 46 reglas)
+$ node build/gates_doc.mjs --check  -> COMPUERTAS.md coincide con los datos
+$ node build/api_check.mjs          -> los tres recursos coinciden con las fuentes
+$ node build/version_fijada.mjs     -> 36 entradas agregadas, 0 hallazgos
+$ node --test                       -> # tests 324 | # pass 324 | # fail 0   (eran 311)
+```
+
+**Los rojos, antes del verde.** El de la guarda nueva, en sus dos direcciones y en el dato:
+
+```
+rojo: a un prompt le falta la clausula            -> cae nombrando archivo y bloque
+rojo: una traduccion perdio la clausula           -> cae nombrando [it]
+rojo: el dato declara un nivel que la clausula no -> "no nombra el nivel auditor"
+rojo: la clausula nombra uno que el dato no       -> "nombra expert", y el que falta
+rojo: el contrato no declara el campo             -> "una herramienta tendria que adivinarlo"
+rojo: el dato no declara el enum                  -> un solo hallazgo, y dice cual
+rojo: una etiqueta de idioma que nadie declaro    -> "etiqueta de idioma xx"
+```
+
+Y el del conteo, que es el que atrapa una regla que entra o sale sin decisión: con las 46 reglas
+puestas y la cuenta vieja declarada, `gates_validate` cae con `E_CUENTA`; y la prueba de la base
+cae nombrando las cinco de rojo humano cuando eran cuatro.
+
+**La tensión que este trabajo abrió, dicha porque es lo que el registro guarda.** La cláusula entra
+**adentro** de los prompts, y la sección 6 del propio anexo argumenta que eso no se hace: D-044 dice
+que repetir las reglas en los prompts las diluye y las deriva. No se resolvió haciendo de cuenta que
+no existe: la excepción está **escrita en el anexo**, acotada (la cláusula nombra las cuatro partes y
+el parámetro, y nada más; el enunciado completo sigue viviendo una sola vez) y argumentada —las otras
+cuarenta y cinco son exigencias sobre el sistema, medidas sobre artefactos; ésta es una exigencia
+sobre la conversación, y el único lugar desde donde se puede obedecer es lo que el modelo lee—. Y
+dice qué **no** autoriza: copiar ninguna de las otras.
+
+**Lo que no se midió, y el pedido original lo pedía.** El dueño pidió una forma «mandatoria». La
+cláusula está y es exigible mecánicamente en su **presencia**; su **cumplimiento** en una pregunta
+concreta no lo puede medir nada de este repositorio. Está escrito en la regla, en la guarda y acá,
+en los tres lugares, para que nadie le atribuya a la compuerta algo que no mide.
+
+**Lo que costó.** El nivel de datos subió a `2026.10.8` y el corpus de prompts a `2026.10.5`, cada
+uno con su huella anotada en su registro; la cuenta del anexo pasó a cuarenta y seis reglas (18 de
+calidad y 28 de usabilidad) en los ocho idiomas, y de paso dos cuentas que estaban clavadas a mano
+—la línea de éxito del validador y el título del documento generado— ahora se cuentan del dato.
 
 ## PND-055 — El método decía qué congelar y nunca decía con qué congelarlo *(lo trajo una pregunta del dueño; herramienta: PND-013)*
 
@@ -4716,9 +4804,9 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 13 | 10 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 13 | 3 | 10 | 1 |
+| G-METODO | 13 | 2 | 11 | 0 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **58** | **20** | **38** | **3** |
+| **total** | **58** | **19** | **39** | **2** |
 
 Cincuenta y ocho entradas, `PND-001` a `PND-058`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
@@ -4845,19 +4933,25 @@ al dueño: hoy la única defensa contra que vuelva a pasar es que alguien se acu
 árbol, que es la forma de una guarda dormida vista del otro lado —no hay guarda—.
 
 `PND-054` es la última, y la pidió el dueño: el método les ordena a sus prompts **preguntar** —
-veintidós veces, en más de la mitad del corpus— y no dice en ninguna parte **cómo se pregunta**.
+veintidós veces, en más de la mitad del corpus— y no decía en ninguna parte **cómo se pregunta**.
 Es la tercera de la familia del recibo de rojo y del reporte proporcional: el peldaño 8 definió qué
-es un recibo, el 12 separó verificado de creído, y falta no conformarse con «preguntá».
+es un recibo, el 12 separó verificado de creído, y faltaba no conformarse con «preguntá». **Cerró
+el mismo día** (D-070): la regla `UX-28` con su familia nueva `B6`, el parámetro
+`communication_depth` con sus tres niveles declarados en el dato, la cláusula en los setenta y dos
+prompts de los ocho idiomas y la guarda que exige que siga ahí. Y dejó escrita la tensión que abrió:
+la cláusula entra **adentro** de los prompts, que es lo que D-044 argumentó que no se hace, así que
+la excepción está escrita, acotada y argumentada en el propio anexo.
 
 Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-012,
 PND-016, PND-024 y PND-046), los arreglos de las nueve revisiones semánticas —**ya hechas** el
 2026-10-27, cuarenta y seis hallazgos, y en curso porque su criterio de aceptación es sobre lo que
 el lector lee y publicar la portada es del dueño (PND-026 a PND-034, con PND-057 y PND-058, que son
 del castellano)— y la prevención de los desvíos de medición (**PND-052**, que es el segundo del
-mismo grupo en dos días). Los tres bloqueantes abiertos que quedan son uno de la API (PND-011, que
-necesita el corpus en diez idiomas), uno de idiomas (PND-016, la decisión más cara del backlog) y
-el del contenido (PND-054): el del método, el del alcance y el de la publicación se cerraron, y
-`PND-010` y `PND-019` cerraron juntos en un solo cambio de versión.
+mismo grupo en dos días). Los dos bloqueantes abiertos que quedan son uno de la API (PND-011, que
+necesita el corpus en diez idiomas) y uno de idiomas (PND-016, la decisión más cara del backlog):
+el del método, el del alcance, el de la publicación y el del contenido se cerraron —`PND-054`, la
+forma de la pregunta, el 2026-10-27 con D-070—, y `PND-010` y `PND-019` cerraron juntos en un solo
+cambio de versión.
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar

@@ -77,7 +77,16 @@
 > P2 when possible), and whether a fix exists (an upgrade, a patch, a configuration change). If a
 > part cannot be scanned from where you are, say so and mark it as not scanned; do not pass it as
 > clean. Then propose the fixes for every P0 and P1, one pending item each. Do not apply any
-> upgrade yet: an upgrade is a change and goes through the full routine. Reply in my language.
+> upgrade yet: an upgrade is a change and goes through the full routine.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > このシステムの脆弱性を走査し、本番の前に重要なものを直します。継続的インテグレーションの中
@@ -91,7 +100,15 @@
 > そして修正が存在するか（更新、パッチ、設定の変更）。あなたのいる場所から走査できない部分が
 > あれば、そう言って未走査と印してください。きれいだと見なさないでください。その後、各P0とP1
 > の修正を、一つにつき一つの保留項目として提案してください。まだどの更新も適用しないでくださ
-> い：更新は変更であり、完全なルーチンを通ります。私の言語で答えてください。
+> い：更新は変更であり、完全なルーチンを通ります。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：四つの層の走査（依存関係、コード、履歴の中の秘密、設定）を、連鎖の中で**そ
 して暦とともに**。新しい脆弱性はあなたの次のプッシュを待たないからだ。第13段の形をした報告、
@@ -114,6 +131,13 @@
 > again and show me it is clean of P0 and P1. Make the scan a gate in `docs/GATES.md`: nothing is
 > promoted to production with an open P0, and a new P1 opens a pending item automatically. Record
 > the policy, the schedule and what is not covered in `docs/SECURITY.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > [リスト]を直してください。それぞれを独自の保留項目として、テストが当てはまるところではその
@@ -122,6 +146,12 @@
 > せ、P0とP1がきれいであることを見せてください。走査を `docs/GATES.md` のゲートにしてくださ
 > い：開いたP0があるものは本番に昇格せず、新しいP1は自動で保留項目を開きます。方針、暦、そし
 > て覆われていないものを `docs/SECURITY.md` に記録してください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：修正ごとに一つの保留項目、可能なところでは第8段の赤とともに（テストなしに
 直された脆弱性は次のリファクタとともに戻る）。証拠としての繰り返された走査。そしてゲートへの

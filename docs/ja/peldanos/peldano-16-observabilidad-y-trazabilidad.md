@@ -86,6 +86,13 @@
 > layer, and show me the level changing in the test environment without a redeploy. Document the
 > levels, where to change them and where the records live in `docs/OBSERVABILITY.md`. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > このシステムを、端から端まで、観測可能でトレース可能にします。レベルは再デプロイなしに私が
@@ -105,7 +112,15 @@
 > データが含まれないように。実際の要求一つがその識別子によってすべての層を通って追われるとこ
 > ろを見せてください。そしてテスト環境でレベルが再デプロイなしに変わるところを見せてくださ
 > い。レベル、どこで変えるか、記録がどこに住むかを `docs/OBSERVABILITY.md` に文書化してくだ
-> さい。私の言語で答えてください。
+> さい。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：五つの部品と、この段の証拠である二つの実証だ。**実際の識別子がすべての層を
 通って追われること**（見せられないなら、伝播がどこかで壊れている）と、**デプロイなしにレベル
@@ -127,12 +142,25 @@
 > the actor at the level that corresponds, masks personal data, propagates the id to every call it
 > makes, and records every consequential action in the audit trail. A pending item that adds one
 > of those is not closed without showing one real id followed end to end through the new code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > すべての新しいモジュール、ジョブ、インテグレーションは、相関識別子とアクターを伴う構造化さ
 > れた記録を、対応するレベルで書き、個人データを伏せ、自分が行うあらゆる呼び出しに識別子を伝
 > 播し、帰結のあるすべての行動を監査の跡に記録します。そのいずれかを追加する保留項目は、新し
 > いコードを通って端から端まで追われた実際の識別子を一つ見せずには閉じられません。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：可観測性が新しいモジュールごとに劣化しないこと。ルールでなければ必ずそうな
 る：三か月目のモジュールは何も記録せず、そしてそれこそが失敗するモジュールだ。

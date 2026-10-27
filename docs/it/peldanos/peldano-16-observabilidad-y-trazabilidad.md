@@ -90,6 +90,13 @@ l'agente:
 > layer, and show me the level changing in the test environment without a redeploy. Document the
 > levels, where to change them and where the records live in `docs/OBSERVABILITY.md`. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Faremo in modo che questo sistema sia osservabile e tracciabile, da un capo all'altro, con un
@@ -111,7 +118,17 @@ l'agente:
 > modo che nessun record di log contenga dati personali. Mostrami una richiesta reale seguita dal
 > suo identificatore attraverso ogni strato, e mostrami il livello che cambia nell'ambiente di
 > test senza rifare il deployment. Documenta i livelli, dove cambiarli e dove vivono i record in
-> `docs/OBSERVABILITY.md`. Rispondi nella mia lingua.
+> `docs/OBSERVABILITY.md`.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: i cinque pezzi, e due dimostrazioni che sono la prova del gradino: **un
 identificatore reale seguito attraverso tutti gli strati** (se non lo può mostrare, la
@@ -134,6 +151,13 @@ luogo dove più dati personali si disperdono senza che nessuno lo decida.
 > the actor at the level that corresponds, masks personal data, propagates the id to every call it
 > makes, and records every consequential action in the audit trail. A pending item that adds one
 > of those is not closed without showing one real id followed end to end through the new code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Ogni modulo, processo o integrazione nuova scrive record di log strutturati con l'identificatore
@@ -141,6 +165,14 @@ luogo dove più dati personali si disperdono senza che nessuno lo decida.
 > l'identificatore a ogni chiamata che fa, e registra ogni azione con conseguenza nella traccia di
 > audit. Una voce in sospeso che aggiunge uno di questi non si chiude senza mostrare un
 > identificatore reale seguito da un capo all'altro attraverso il codice nuovo.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: che l'osservabilità non si degradi con ogni modulo nuovo, che è ciò che
 succede sempre se non è una regola: il modulo del terzo mese non registra niente ed è proprio

@@ -185,7 +185,16 @@
 > and has ever been restored; (7) list every external integration and say whether it has a test
 > mode or can be isolated at the edge. For each prerequisite: green or red, the evidence (what you
 > did and what happened), and, if red, what project would make it green. Do not decide: present me
-> the sheet, and I decide. Reply in my language.
+> the sheet, and I decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要评估这个既有系统能不能用 Urazuke 方法接下来，判断用的是那些你靠**做**来验证、而不是
@@ -200,7 +209,14 @@
 > 个解析不了的依赖；(6) 核实生产数据能不能被复制并匿名化到一个测试环境，以及是否存在一份曾经
 > 恢复过的备份；(7) 列出每一个外部集成，说明它有没有测试模式、能不能在边界上被隔离。对每条前
 > 提条件：绿或红、证据（你做了什么、发生了什么），以及如果是红的，什么样的项目能把它变绿。不
-> 要做决定：把卡片呈给我，由我来决定。用我的语言回复。
+> 要做决定：把卡片呈给我，由我来决定。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求的东西：那些前提条件要**靠做**来验证（搭起来、读、写出那份文档、跑一个测试），因为一
 个前沿模型这四件事都能做，于是适格性就不再是一种看法；功能恢复文档，它是"代码可上手"最有力的
@@ -218,12 +234,24 @@
 > evidence, and, for every red one, the prerequisite project as a pending item in `docs/PENDING.md`
 > marked as blocking, with its own acceptance criterion: the prerequisite verified green. Include
 > the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 决定：[可行 / 在这些前置项目之后可行：…… / 不可行]。把最终卡片写到 `docs/ELIGIBILITY.md`，附
 > 上日期、谁做的决定、每条前提条件及其颜色和证据，并且对每一条红的，在 `docs/PENDING.md` 里把
 > 那个前置项目作为待办项写下来、标为阻塞，带上它自己的验收标准：该前提条件被验证为绿。把你问
 > 过的问题和我的回答包含进去。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 完整性检验：每条前提条件都有代理**做了**某件事的证据，而不是你给出的一个回答吗？
 `docs/FUNCTIONALITY_RECOVERED.md` 存在吗，而且你以所有者的身份读过它：它描述的是他以为自己拥
@@ -267,6 +295,13 @@
 > (11) No change reaches the test environment without the characterization suite green. Add any
 > rules you think this system needs, marked as proposals. If you need to know something about how
 > I work in order to write this, ask me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 在我们动任何东西之前，要为一个已经存在、而且有用户的系统，定下你和我之间的协作契约。写
@@ -279,6 +314,11 @@
 > 来决定的不一致，不是一个由你悄悄修掉的 bug。（13）表征测试套件不绿，任何改动都不许进测试环境。
 > 你认为这个系统还需要什么规则，就加上，标为提案。如果你需要知道我是怎么工作的才能写出这份契约，
 > 就问我。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求的东西：一贯的六条规则，再加五条，它们之所以存在，是因为一个模型面对别人的代码会条件
 反射地做三件事：重排它，在它觉得不对的地方"修"它，以及当代码的行为和它预期的不一样时就认定那
@@ -337,7 +377,16 @@
 > same way. Third, `docs/DISCREPANCIES.md`: everything where the code, the database, the
 > documentation and what the business says in the survey do not agree, with the evidence on each
 > side. Do not resolve any discrepancy and do not fix anything: list them. Create `docs/STATUS.md`
-> for the living state. Reply in my language.
+> for the living state.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要从现有的东西里把这个系统的地图恢复出来。读整个仓库（所有分支）、数据库结构（只读）、每
@@ -350,7 +399,14 @@
 > 库和代码真正强制的属性、状态和状态转移、界面、外部集成和定时任务；每个节点都用同样的方式打标
 > 记。第三，`docs/DISCREPANCIES.md`：代码、数据库、文档，以及业务在调研里说的话，这四者对不上
 > 的一切，附上各方的证据。不要解决任何一条不一致，也不要修任何东西：把它们列出来。创建
-> `docs/STATUS.md` 来记录活状态。用我的语言回复。
+> `docs/STATUS.md` 来记录活状态。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求的东西：要它读完一切并声明读不到什么（完整性条款在遗留系统里的形态：缺口要标出来，不
 要填上）；要调研和树里的每条断言都带**来源标记**，因为那个标记正是让你不读代码也能验证的东西；
@@ -372,6 +428,13 @@
 > where I decided the current behaviour stays, write it next to the node as a confirmed rule. Add
 > to `PROJECT.md` the instruction to read this file, the tree and the working agreement at the
 > start of every session.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 我确认这些节点：[清单]。纠正这些：[清单]。那些不一致这样决定：[每条一行：不一致、我的决定、
@@ -380,6 +443,11 @@
 > `docs/DECISIONS.md`，并且对每一条我决定要改系统的不一致，在 `docs/PENDING.md` 里开一条待办项；
 > 对那些我决定保留当前行为的，把它作为一条已确认的规则写在对应节点旁边。在 `PROJECT.md` 里加上
 > 一条指令：每次会话开始时读这个文件、语义树和协作契约。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求的东西：每条不一致的决定都落在一贯的三个地方（决策记录、要改的话就落在待办项、确认的
 话就落在树上），而且来源标记在关闭时**不要被抹掉**：一棵丢了标记的树，是一棵再也无法验证的树。
@@ -431,7 +499,16 @@
 > field: whether it BLOCKS (must be fixed before any change, by my criteria: [criteria]), whether
 > it is PAID WHEN TOUCHED (fixed together with the first change that enters its module), or whether
 > it CAN WAIT. Grade every dimension you audited. End with every finding turned into a proposed
-> pending item, blocking ones first. Reply in my language.
+> pending item, blocking ones first.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 从完整性、安全、性能、代码质量和可部署性五个方面审计这个系统，作为"在演进之前和演进期间必须
@@ -442,7 +519,14 @@
 > 它的优先级（P0 必须马上修，P1 尽快，P2 有条件时），再加一个字段：它是**阻塞**（任何改动之前
 > 必须修掉，按我的标准：[标准]）、是**触及时偿还**（和进入它所在模块的第一个改动一起修掉），还
 > 是**可以等待**。给你审计过的每个维度打一个评级。最后把每条发现都变成一条提议的待办项，阻塞的
-> 排在前面。用我的语言回复。
+> 排在前面。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求的东西：第 13 级台阶的审计，加上"可部署性"这个维度（因为在遗留系统里部署往往是第一个
 问题），再加上速度字段，而这正是把一份报告变成一份计划的东西：没有那个字段，一个审计过的遗留
@@ -509,6 +593,14 @@
 > characterization suite green, and nothing reaches production without the full suite green with
 > the exact version. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by hand
 > without you. Take a screenshot of the system running in the test environment and show it to me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [zh]
@@ -522,7 +614,14 @@
 > 续集成，在每次 push 时运行今天现有的任何测试套件，哪怕只有一个冒烟测试；（5）`docs/GATES.md`，
 > 写上这个项目的闸门，包括：表征测试套件不绿，任何东西都不许到测试环境；完整测试套件不以确切版
 > 本变绿，任何东西都不许到生产。把这一切记录到 `docs/DEPLOYMENT.md`，让一个人不靠你也能手工完
-> 成。给我截一张系统在测试环境里运行的图并拿给我看。用我的语言回复。
+> 成。给我截一张系统在测试环境里运行的图并拿给我看。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求的东西：第 4 级台阶的骨架，围着一个已经存在的东西来造，并且把第 15 级台阶的一半提前
 （密钥挪到外面、部署有记录），因为在遗留系统里代码里有密钥是常态而不是例外
@@ -545,7 +644,16 @@
 > simulate it: say so and open a pending item marked as blocking. If while writing these tests you
 > find behaviour that looks wrong, do not fix it: add it to `docs/DISCREPANCIES.md` with the
 > evidence. Record the command to run the suite in `docs/STATUS.md`, and make the suite the gate
-> for the test environment as `docs/GATES.md` says. Reply in my language.
+> for the test environment as `docs/GATES.md` says.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要为这些关键流程写表征测试：[清单]。一个表征测试捕捉的是系统今天做了什么、而且完全按它今
@@ -555,7 +663,14 @@
 > 把改动撤回，给我看绿色。如果某个流程没法从界面操作，不要模拟它：说出来，并开一条标为阻塞的待
 > 办项。如果在写这些测试的过程中你发现某个行为看起来不对，不要修它：把它连同证据加到
 > `docs/DISCREPANCIES.md` 里。把运行测试套件的命令记录到 `docs/STATUS.md`，并按
-> `docs/GATES.md` 所说，让这套测试成为测试环境的闸门。用我的语言回复。
+> `docs/GATES.md` 所说，让这套测试成为测试环境的闸门。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求的东西：反过来的第 8 级台阶。在新项目里，测试诞生时是红的，改动让它变绿；在这里，测
 试诞生时是绿的，因为它捕捉的是现有的东西，而它有用的证据是**当你故意弄坏流程时它会变红**。没
@@ -613,7 +728,16 @@
 > parts you cannot see, say so instead of leaving them out. Present me the actions table with a
 > proposed lock for each (explicit confirmation, double safety, dry-run mode, daily limit, a human
 > in the loop) and a proposal of which locks go NOW, before any change, and which can go when the
-> module is touched. Do not implement anything yet: I confirm lock by lock. Reply in my language.
+> module is touched. Do not implement anything yet: I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 走遍代码、数据库触发器和服务器上的定时任务，找出一切会收钱、发送、批准、删除、对外通知或者按
@@ -625,7 +749,14 @@
 > 告诉过你的那些仓库之外的东西。如果有些部分你看不到，说出来，不要把它们略掉。把动作表呈给我，
 > 每个动作附一把提议的锁（显式确认、双重保险、演练模式、每日上限、回路中的人），以及一份提案：
 > 哪些锁**现在**就上，在任何改动之前，哪些可以等到触及那个模块时再上。先不要实现任何东西：我一
-> 把锁一把锁地确认。用我的语言回复。
+> 把锁一把锁地确认。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求的东西：把第 14 和第 11 级台阶的盘点放在一遍里做，因为它们走的是同一份代码；业务记得
 的和代码做的之间的比对，而那正是"没人记得的那些发送"冒出来的地方；还有每把锁的**现在还是触及
@@ -675,7 +806,16 @@
 > expects and whether the system will serve more than one site. Then write `docs/SIZING.md`: what
 > breaks first if everything is multiplied by ten, which of the current architecture choices hold
 > and which do not, and which asymmetric decisions we take now, before evolving, because they are
-> cheap today and expensive later. Do not change any code. Reply in my language.
+> cheap today and expensive later. Do not change any code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 在改动任何东西之前，我们要用这个系统的真实数字给它做容量估算。用对生产数据库（或者完整的测试
@@ -686,7 +826,14 @@
 > `docs/VOLUME_SURVEY.md`，每个数字标上 `[数据库]` 或 `[日志]`，并且只向我索要测不出来的东西：
 > 业务预期的增长，以及这个系统会不会服务于不止一个站点。然后写 `docs/SIZING.md`：如果一切都乘
 > 以十，最先坏掉的是什么；当前架构的哪些选择撑得住、哪些撑不住；以及我们现在、在演进之前要做哪
-> 些不对称决策，因为它们今天便宜、以后昂贵。不要改任何代码。用我的语言回复。
+> 些不对称决策，因为它们今天便宜、以后昂贵。不要改任何代码。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求的东西：测量而不是提问，这是遗留系统给得起而新项目给不起的；第 7 级台阶的带测试量具
 和双向审计，因为量具会撒谎 [Ref. 35](REFERENCIAS.md#ref-35)、
@@ -743,7 +890,16 @@
 > same modules and should be paid together with it. If the request is ambiguous on any point such
 > that you cannot write a verifiable item, ask me; do not resolve it by assuming. Order: blocking
 > items first, then the client's items in the priority I gave you, each with its paired
-> normalization. Reply in my language.
+> normalization.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要把规范化和客户对这一阶段的请求，变成 `docs/PENDING.md` 里一条编号待办项的单一队列，每
@@ -755,7 +911,14 @@
 > **纠正型**（今天出错的东西，附上用客户的话写的复现方式）或**演进型**（新东西）。对每个客户待
 > 办项，列出那些触及同样模块、应该和它一起偿还的规范化待办项。如果请求在某一点上含糊到你写不出
 > 一条可验证的待办项，就问我；不要靠假设去解决它。顺序：先是阻塞的那些，然后是客户的那些，按我
-> 给你的优先级，每一条带着它配对的规范化待办项。用我的语言回复。
+> 给你的优先级，每一条带着它配对的规范化待办项。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求的东西：完整的第 5 级台阶（详细规格住在每一个待办项里，规范化的那些也一样），加上让
 这条路之所以成立的两个标记：速度，它说每一笔债务什么时候偿还；类型，它说每一项怎么关闭（一个
@@ -812,7 +975,16 @@ N7 结束之后，这条路和梯子汇合：第 5 到 10 级台阶随每条待�
 > fix changes a current behaviour that someone may depend on, say so explicitly: that is a decision
 > for me, not a side effect. Close the paired normalization items of this module in the same
 > block, each with its own evidence. The commit message says "proved red against [version]" and
-> the test counts. Reply in my language.
+> the test counts.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 这条待办项是一次纠正：[用客户的话写：什么出错了，以及怎么复现它]。在改动任何东西之前：（1）
@@ -823,7 +995,14 @@ N7 结束之后，这条路和梯子汇合：第 5 到 10 级台阶随每条待�
 > 给我看测试变绿、表征测试套件仍然是绿的，以及相邻待办项的回归。（5）如果这次修复改变了某个当
 > 前行为、而可能有人依赖它，明确说出来：那是我的一个决定，不是一个副作用。把这个模块里和它配对
 > 的规范化待办项在同一个功能块里关闭，每一条都带自己的证据。提交信息里写"对着[版本]先证红"以及
-> 测试的数字。用我的语言回复。
+> 测试的数字。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求的东西：复现在诊断**之前**，因为一个模型会非常笃定地诊断它没有复现过的东西；根因在动
 手之前用散文说出来，好让你能叫停一次指错方向的修复；在根上修而且只修它，因为在遗留系统里"反
@@ -857,13 +1036,29 @@ N7 结束之后，这条路和梯子汇合：第 5 到 10 级台阶随每条待�
 > what you did not verify. Do not touch anything else. Then, today, open the corrective pending
 > item in `docs/PENDING.md` with what happened, and we close it with the full routine: the test
 > that reproduces it in red, the root cause, the fix at the root, the characterization suite and
-> the regression green. Reply in my language.
+> the regression green.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 这是一次生产环境的紧急修复：[正在发生什么]。做能止住损害的最小改动，在一个分支上做，在部署之
 > 前把回退准备好，并且准确告诉我你改了什么、以及什么是你没有验证的。别的什么都不要碰。然后，就
 > 在今天，在 `docs/PENDING.md` 里开出那条纠正型待办项，写上发生了什么，我们用完整的例行来关闭
-> 它：复现它的红色测试、根因、在根上的修复、表征测试套件和回归都变绿。用我的语言回复。
+> 它：复现它的红色测试、根因、在根上的修复、表征测试套件和回归都变绿。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求的东西：最小改动，回退在前不在后，还有对未验证内容的诚实报告（第 12 级台阶）；以及当
 天就必须重新走一遍循环的义务，那正是把一次例外和一个习惯区分开来的东西。

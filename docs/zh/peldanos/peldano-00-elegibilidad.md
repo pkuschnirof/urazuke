@@ -64,14 +64,30 @@
 > information before going on; do not assume. Then fill in the sheet criterion by criterion:
 > the answer, where it comes from, and for each exclusionary criterion whether it is green or
 > red. Do not decide: present me the completed sheet with your reading and your doubts, and I
-> will decide. Reply in my language.
+> will decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 我们要评估这个项目能否用 Urazuke 方法来做。读 `docs/INITIAL_SURVEY.md` 中的初始调研和
 > `docs/ELIGIBILITY_CRITERIA.md` 中的准则表。首先，评估调研是否足以回答每一条准则。如果
 > 有任何准则无法从调研中回答，在继续之前向我索要缺少的信息；不要假设。然后逐条填写准则
 > 表：答案、它从哪里来，以及每条排他性准则是绿色还是红色。不要做决定：把填好的表连同你
-> 的解读和你的疑问呈给我，由我来决定。用我的语言回复。
+> 的解读和你的疑问呈给我，由我来决定。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求什么：读两份输入（调研和准则表）；**在回答之前先评估调研是否足够**，不够就提问而
 不是假设（这是方法所有提示词的核心条款）；填表时注明每个答案的来源，以便事后追溯；把排他
@@ -93,10 +109,22 @@
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
 > source, and the conditions if any. Include the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 决定：[可行 / 不可行 / 有条件可行：…]。把最终的表写到 `docs/ELIGIBILITY.md`，附日期、
 > 谁决定的、每条准则的答案及其来源，以及条件（如有）。把你问过的问题和我的回答包含进去。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：把决定写下来，附日期和所有者（第 6 级台阶），附条件（如有），并留下问答的痕
 迹，那是它没有假设任何东西的证据。

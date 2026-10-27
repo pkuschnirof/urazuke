@@ -91,6 +91,13 @@
 > every route checks the permission on the server, because hiding the entry
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > この保留項目を閉じるには、あなたの言葉ではなく証拠が必要です。(1) 項目が求めることを
@@ -116,6 +123,12 @@
 > 多くてもいけません。そして各ルートはサーバー側で権限を検査します。入り口を隠すことは
 > 何も守らないからです（付録H、UX-11、UX-12、UX-15）。何も実行しないマ
 > トリクスは、誰も読まない文書です。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 **最初のブロックの赤。** 新規プロジェクトの最初のブロックには以前のコードがありません。新しいテストはモジュールが存在しないから失敗するのであって、その失敗はテストが振る舞いを見分けることを証明しません。そのため、以前のバージョンにモジュールがないときは、赤を**ミューテーションで**証明します。エージェントは書いたばかりの関数に意図的な欠陥を植え、その欠陥に対してテストが赤になるところを見せ（レシートには欠陥の diff が付くので、些細なものでなかったことが分かります）、元に戻して緑を見せます。保留項目ごとにミュータントひとつ、他のレシートと同じように実行して記録します。コードベース全体のミューテーションテストは、引き続き段 9 の任意の補強です。（決定 D-037。練習 Turnera から：「ファイルが読み込めない」としか言わない赤のレシートが六つ。）
 
@@ -145,12 +158,25 @@
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
 > item for it; do not pass it as covered.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > ここまでに存在するすべてのフローの完全なエンドツーエンドのテスト群を、テスト環境で、
 > 昇格される正確なバージョンで実行してください。数を見せ、各フローについてそれを証明する
 > バックエンドの検証を見せてください。エンドツーエンドテストのないフローがあれば、そう
 > 言って保留項目を開いてください。カバー済みとして通さないでください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：エンドツーエンドテストの二つ目と三つ目の規模、正確なバージョンで（「最新」
 ではなく）、フローごとのバックエンドでの効果付きで、そして完全性の条項とともに：カバーされ
@@ -169,10 +195,23 @@
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > なぜテストできないのか、テストできるようにするには何を追加すべきかを説明し、そのための
 > 保留項目を開いてください。テストできるようになるまで変更は閉じられません。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：「テストできない」が会話の終わりではなく保留項目の始まりであること。
 テスト不可能性は負債であり、負債は記録される。

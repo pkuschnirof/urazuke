@@ -81,6 +81,14 @@ l'agente:
 > change: indexes derived from the real queries, pagination, batching, the elimination of N+1
 > loops, retention and archiving per table, pool size; for each change, the expected gain, the
 > risk, and which consumers in the map it touches. Do not change anything yet: I approve the list.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [it]
@@ -95,7 +103,17 @@ l'agente:
 > Poi proponi, query per query, cosa cambiare: indici derivati dalle query reali, paginazione,
 > lotti, l'eliminazione dei cicli N+1, retention e archiviazione per tabella, dimensione del pool;
 > per ogni modifica, il guadagno atteso, il rischio, e quali consumatori della mappa tocca. Non
-> cambiare ancora nulla: la lista la approvo io. Rispondi nella mia lingua.
+> cambiare ancora nulla: la lista la approvo io.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: misurare con il metodo del gradino 7 (misuratore con test, verificato
 nelle due direzioni, numero con comando) prima di proporre; proporre query per query, con il
@@ -121,6 +139,13 @@ non tocca nessuno; una retention per tabella tocca tutti quelli che leggono quel
 > test that fails if it is exceeded. Update every consumer in the map that a change touches, in
 > the same commit. Record the before and after table, the budgets and the retention per table in
 > `docs/PERSISTENCE.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Applica le modifiche approvate [lista], un commit ciascuna. Per ognuna mostrami il misuratore
@@ -129,6 +154,14 @@ non tocca nessuno; una retention per tabella tocca tutti quelli che leggono quel
 > protetto da un test che fallisce se viene superato. Aggiorna ogni consumatore della mappa che
 > una modifica tocca, nello stesso commit. Registra la tabella del prima e dopo, i budget e la
 > retention per tabella in `docs/PERSISTENCE.md`.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: un commit per modifica, perché il prima e il dopo siano attribuibili; lo
 stesso misuratore sugli stessi dati (se cambiano i dati, il numero non dice niente); il budget

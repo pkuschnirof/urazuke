@@ -87,7 +87,16 @@ machst es, nicht der Agent:
 > P2 when possible), and whether a fix exists (an upgrade, a patch, a configuration change). If a
 > part cannot be scanned from where you are, say so and mark it as not scanned; do not pass it as
 > clean. Then propose the fixes for every P0 and P1, one pending item each. Do not apply any
-> upgrade yet: an upgrade is a change and goes through the full routine. Reply in my language.
+> upgrade yet: an upgrade is a change and goes through the full routine.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [de]
 > Wir werden dieses System nach Schwachstellen durchsuchen und das reparieren, was zählt, bevor es
@@ -107,6 +116,14 @@ machst es, nicht der Agent:
 > für jedes P0 und P1 vor, je ein offener Posten. Wende noch keine Aktualisierung an: eine
 > Aktualisierung ist eine Änderung und geht durch die vollständige Routine. Antworte in meiner
 > Sprache.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: die vier Scan-Schichten (Abhängigkeiten, Code, Geheimnisse in der
 Historie, Konfiguration), in der Kette **und mit Zeitplan**, denn neue Schwachstellen warten
@@ -130,6 +147,13 @@ durch die Schleife zu aktualisieren, das den kaputten Freitag verhindert.
 > again and show me it is clean of P0 and P1. Make the scan a gate in `docs/GATES.md`: nothing is
 > promoted to production with an open P0, and a new P1 opens a pending item automatically. Record
 > the policy, the schedule and what is not covered in `docs/SECURITY.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Repariere [Liste], jedes als eigenen offenen Posten, mit seinem rot bewiesenen Test, wo ein Test
@@ -139,6 +163,14 @@ durch die Schleife zu aktualisieren, das den kaputten Freitag verhindert.
 > Mach aus dem Scan ein Tor in `docs/GATES.md`: nichts wird mit einem offenen P0 in die Produktion
 > befördert, und ein neues P1 eröffnet automatisch einen offenen Posten. Halt die Richtlinie, den
 > Zeitplan und das, was nicht abgedeckt ist, in `docs/SECURITY.md` fest.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: ein offener Posten pro Reparatur, mit dem Rot von Schritt 8, wo es möglich
 ist (eine ohne Test reparierte Schwachstelle kommt mit dem nächsten Refactor zurück); den

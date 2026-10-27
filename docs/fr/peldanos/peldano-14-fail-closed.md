@@ -67,7 +67,16 @@ faites, pas l'agent :
 > propose: whether it is reversible, which lock it gets (explicit confirmation, double safety,
 > dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong.
 > General rule: on any doubt or failure along the way, the action is NOT executed and the reason
-> is logged. Present me the table; I confirm lock by lock. Reply in my language.
+> is logged. Present me the table; I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [fr]
 > Nous allons décider quelles actions du système ont besoin d'un verrou. Lis le relevé des
@@ -78,7 +87,16 @@ faites, pas l'agent :
 > sécurité, mode à blanc, limite quotidienne, un humain dans la boucle), et quel est le chemin de
 > retour si ça tourne mal. Règle générale : au moindre doute ou à la moindre panne en chemin,
 > l'action N'est PAS exécutée et le motif est consigné. Présente-moi le tableau ; je confirme
-> verrou par verrou. Réponds dans ma langue.
+> verrou par verrou.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
+> Réponds dans ma langue.
 
 Ce que je lui demande : le croisement entre ce que le métier a dit et ce que le code fait (c'est
 là qu'apparaissent les actions dont personne ne se souvenait) ; la clause de complétude sous sa
@@ -99,6 +117,13 @@ fail-closed écrite dans le prompt, pour qu'elle reste dans le tableau et dans l
 > that, under the doubt condition, the action does NOT happen (proved red against the version
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Je confirme les verrous [liste] ; change [X] en [Y]. Implémente-les avec un test par verrou qui
@@ -106,6 +131,13 @@ fail-closed écrite dans le prompt, pour qu'elle reste dans le tableau et dans l
 > sans le verrou). Enregistre le tableau final dans `docs/LOCKS.md`. Et pour toute nouvelle
 > automatisation : mode à blanc d'abord, en consignant ce qu'elle aurait fait, jusqu'à ce que je
 > l'active.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : le test par verrou **prouvé en rouge** (sans le verrou, l'action avait
 lieu ; avec le verrou, non), qui est l'échelon 8 appliqué à la sécurité ; le tableau final ; et la

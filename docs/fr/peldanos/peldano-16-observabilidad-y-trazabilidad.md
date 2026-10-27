@@ -94,6 +94,13 @@ faites, pas l'agent :
 > layer, and show me the level changing in the test environment without a redeploy. Document the
 > levels, where to change them and where the records live in `docs/OBSERVABILITY.md`. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Nous allons rendre ce système observable et traçable, de bout en bout, avec un niveau que je
@@ -115,7 +122,16 @@ faites, pas l'agent :
 > enregistrement de journal ne contienne de données personnelles. Montre-moi une requête réelle
 > suivie par son identifiant à travers chaque couche, et montre-moi le niveau qui change dans
 > l'environnement de test sans redéployer. Documente les niveaux, où les changer et où vivent les
-> enregistrements dans `docs/OBSERVABILITY.md`. Réponds dans ma langue.
+> enregistrements dans `docs/OBSERVABILITY.md`.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
+> Réponds dans ma langue.
 
 Ce que je lui demande : les cinq pièces, et deux démonstrations qui sont la preuve de l'échelon :
 **un identifiant réel suivi à travers toutes les couches** (s'il ne peut pas le montrer, la
@@ -139,6 +155,13 @@ données personnelles fuient sans que personne ne l'ait décidé.
 > the actor at the level that corresponds, masks personal data, propagates the id to every call it
 > makes, and records every consequential action in the audit trail. A pending item that adds one
 > of those is not closed without showing one real id followed end to end through the new code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Tout nouveau module, tâche ou intégration écrit des enregistrements de journal structurés avec
@@ -146,6 +169,13 @@ données personnelles fuient sans que personne ne l'ait décidé.
 > propage l'identifiant à chaque appel qu'il fait, et consigne toute action à conséquence dans la
 > piste d'audit. Un élément en attente qui ajoute l'un de ceux-là n'est pas clos sans montrer un
 > identifiant réel suivi de bout en bout à travers le nouveau code.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : que l'observabilité ne se dégrade pas à chaque nouveau module, ce qui est ce
 qui arrive toujours si ce n'est pas une règle : le module du mois trois ne journalise rien et c'est

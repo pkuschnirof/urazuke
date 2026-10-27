@@ -76,6 +76,13 @@ machst es, nicht der Agent:
 > functional block, add to the user manual the screens and flows of the pending items closed
 > in that block, with real screenshots from the test environment, and add their entries to the
 > changelog. If you do not know which manual, ask.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Jede Änderung, die verändert, was der Nutzer sieht, was der Betreiber tut oder wie das System
@@ -83,6 +90,14 @@ machst es, nicht der Agent:
 > Funktionsblocks füge dem Benutzerhandbuch die Bildschirme und Flüsse der in diesem Block
 > geschlossenen Posten hinzu, mit echten Screenshots aus der Testumgebung, und füge ihre
 > Einträge dem Änderungsprotokoll hinzu. Wenn du nicht weißt, in welches Handbuch, frag.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: die Regel des selben Commits, die einzige, die ein Handbuch aktuell hält;
 den Blockabschluss als Moment, in dem die geschlossenen Posten zu Handbuch und Änderungsprotokoll
@@ -113,6 +128,13 @@ werden; und die Frage, wenn nicht klar ist, in welches Handbuch es gehört.
 > business knows (who is responsible for what, which phone number to call), ask me; do not leave
 > a gap and do not invent. Each manual carries a date and the system version. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Erzeuge drei Handbücher aus dem System, wie es heute in der Testumgebung ist: das
@@ -124,7 +146,17 @@ werden; und die Frage, wenn nicht klar ist, in welches Handbuch es gehört.
 > Hand tun muss, ohne KI, um drei Uhr morgens). Wenn du für einen Abschnitt etwas brauchst, das
 > nur das Geschäft weiß (wer wofür verantwortlich ist, welche Telefonnummer anzurufen ist), frag
 > mich; lass keine Lücke und erfinde nichts. Jedes Handbuch trägt ein Datum und die
-> Systemversion. Antworte in meiner Sprache.
+> Systemversion.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange: die drei Handbücher mit ihren Lesern; **echte** Screenshots aus der
 Testumgebung (keine Zeichnungen oder Beschreibungen); das Kriterium der drei Uhr morgens für das

@@ -82,7 +82,16 @@ the agent:
 > information before going on; do not assume. Then fill in the sheet criterion by criterion:
 > the answer, where it comes from, and for each exclusionary criterion whether it is green or
 > red. Do not decide: present me the completed sheet with your reading and your doubts, and I
-> will decide. Reply in my language.
+> will decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: that it read the two inputs (the survey and the criteria sheet); that
 **before answering it evaluate whether the survey is enough** and, if it is not, ask instead of
@@ -109,6 +118,13 @@ not have to be.
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
 > source, and the conditions if any. Include the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: that it leave the decision written with date and owner (step 6), with the
 conditions if there are any, and with the trail of questions and answers, which is the evidence

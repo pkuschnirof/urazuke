@@ -90,7 +90,7 @@ What changes between columns is the tool and the threshold. What does not change
 
 ## 5. Part B - Usability
 
-Five families. The first and the second are the ones the owner explicitly asked for; the other three exist because without them the grouping and the profiles degrade just the same, more slowly.
+Six families. The first and the second are the ones the owner explicitly asked for; the next three exist because without them the grouping and the profiles degrade just the same, more slowly. The sixth was born later, on 2026-10-27 (D-070), and it is of another kind: the first five are about the screen the system shows a person, and the sixth is about the conversation in which the system gets built.
 
 ### B1 - Grouping by functional convergence
 
@@ -152,6 +152,18 @@ Most "it does not work" complaints are screens that did not know how to say "the
 | UX-26 | States are not communicated by colour alone; every informative image has alternative text; texts are read at normal size without zoom. | Gate (CQ-18) | WARNS |
 | UX-27 | Every pending item that touches a screen delivers the real screenshot of the test environment, and the owner looks at it before closing. The screenshot is not optional and it is not a mock-up. | Pending close | BLOCKS |
 
+### B6 - The question to the owner
+
+The method orders the model to **ask** in more than half of its prompts: twenty-two times, in fifteen of the twenty-seven files of the published corpus. And until 2026-10-27 it said nowhere **how one asks**, so the form was left to improvisation and the owner got the question loose: without the data that justifies it, without options and without a recommendation. It is the same asymmetry step 11 pursues -- something demanded on one side and not defined on the other -- in the direction that costs the most: towards the person who decides. The method has already done this twice, which is why this rule is not a whim: step 8 did not settle for "show me the red" and defined what a receipt is; step 12 did not settle for "report" and separated verified from believed.
+
+| id | Statement | Verifies | Severity |
+|---|---|---|---|
+| UX-28 | When the agent needs a decision from the owner, the question arrives with its four parts and in this order: the data that makes it necessary, listed; one paragraph of no more than five lines that links that data and lets the question be seen; the question with its possible answers numbered; and the agent recommendation. And at the technical depth the project declared. A loose question leaves the owner the work of reconstructing why they are being asked. | Owner review at pending close | WARNS |
+
+**The three depth levels, and where they come from.** The project declares one and the agent speaks at that level: `beginner` (everyday language, outcome-oriented, no file names and no jargon), `decision_maker` (measured numbers and consequences, no file paths: the one the method uses by default) and `technical` (file, line and command). They were not invented for this rule: the beginner level is already the form of the whole method (D-025) and the distinction between speaking to the owner and speaking to whoever builds was already in practice. The parameter name and the three values live in the data level, in `project_config.communication_depth`, because that is what a consuming tool has to read without guessing.
+
+**What this rule does not promise, and it is better said here than when it fails.** A gate can verify that the clause is in the seventy-two prompts and in the eight languages -- and it does; no test can verify that a concrete question a model wrote on a Tuesday has its four parts. That is judged by the owner, which is why the rule warns and does not block, and why its verification says "owner review". A rule that blocks and that nobody can verify is worse than a rule that warns: it is the same declared limitation CQ-12 and CQ-14 already have.
+
 ## 6. Where it hooks, and what artifacts it produces
 
 The annex does not invent new steps: it hangs from the ones that exist. That avoids duplicating gates and avoids the usual fate of usability lists, which is to be read once.
@@ -159,6 +171,8 @@ The annex does not invent new steps: it hangs from the ones that exist. That avo
 **Where it goes (D-043).** It is transversal to the four stretches, with the main weight on the Construction Loop (steps 5 to 12), which is where things are decided and built. It is not a step of its own: a numbered step would force the ladder to be renumbered, would alter the step count and would subject the annex to the mandatory translation of the contracts into the eight languages before the construction could pass green, without adding any gate the loop does not already have.
 
 **How it hooks (D-044).** One canonical source, five anchors and two previous entries. The text of the rules lives only here and the prompts cite it; they never copy it. Repeating the forty-five rules inside the eight prompts of the loop dilutes them (they compete with the work of each step and the agent obeys them differently each time), drifts them (two copies of the same text drift apart on their own, which is the antipattern step 11 pursues) and does not make them more transversal: what makes a rule transversal is that every block passes through the same gate, not that the rule is written everywhere.
+
+**The only rule that does enter the prompt, and why (D-070).** UX-28 is the written exception to the above, and it is worth saying how it differs from the other forty-five: those are demands on **the system being built**, and the gate measures them over artifacts the project leaves written; UX-28 is a demand on **the conversation in which it gets built**, and the only way for the model to obey it is for it to be in what the model reads. It enters narrowly -- it names the four parts and the parameter, and nothing else -- in a single English wording identical across the eight languages, which is the same rule that already governs every prompt; the full statement still lives once, here. What this exception does **not** authorize is copying any of the others: the argument of D-044 stands whole for everything a gate can look at.
 
 | Moment | What is added | Why there |
 |---|---|---|
@@ -197,6 +211,7 @@ A single file per project declares layer 2 and layer 3. Example with the propose
     "mutation": "stryker",
     "accessibility": "axe-core"
   },
+  "communication_depth": "decision_maker",
   "thresholds": {
     "lines_per_file": 300,
     "lines_per_function": 40,
@@ -215,6 +230,8 @@ A single file per project declares layer 2 and layer 3. Example with the propose
 }
 ```
 
+`communication_depth` is the parameter of UX-28 and it takes one of three values -- `beginner`, `decision_maker`, `technical`. If the project does not declare it, the agent uses `decision_maker` and says so: the default is declared, not guessed.
+
 The two zeros are deliberate and they are the part that matters: the minimum coverage is set by the ratchet with what was measured, and the mutation target is set by the owner when the project has users. If they are at zero and nobody declared them, the gate reports it as an undeclared threshold instead of inventing it.
 
 ## 8. The two pieces, in the form the method uses
@@ -222,14 +239,28 @@ The two zeros are deliberate and they are the part that matters: the minimum cov
 **Code quality.**
 
 > Set up and maintain the code-quality gate for this project, configured for its frontend family. The core rules are the same in every project; what changes is how each one is measured and at which threshold. Install one formatter and one linter with a single shared configuration; enforce size limits per file and per function, complexity per function, duplication, dead code, declared-and-used dependencies, type checking where the language allows it, coverage with a ratchet, and secret scanning. Where the project has real users, add mutation testing scoped to the changed lines and record the score per block. Then extend the gate to the frontend itself: no business rule inside a screen, one typed client for every server call, one home for shared state, no user-visible string outside the translation catalogue, a stable identifier and role on every interactive element, styling only through tokens, and automatic basic accessibility checks. Every rule has a stable id, a severity (blocks, warns, records) and a named verifier. Thresholds and exceptions are declared by the owner in one configuration file; a rule switched off without a written exception is a gate failure, not a decision. Report the result per rule in `docs/CODE_QUALITY.md`, not as a single number.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 **Usability.**
 
 > Build the usability criteria for this project before writing the first screen, and enforce them where the method already has hooks. Group functionality by what the person came to do, never by the internal module or the data entity: every menu group is named with a user job in the project glossary, every functionality has exactly one canonical home, no functionality is orphaned, and every group is reachable in no more than three steps from the entry screen. Then declare accessibility in one matrix and derive everything from it: each functionality lists the profiles that have it, each functionality has at least one profile, each profile has at least one functionality and its own entry point, the navigation is generated from the matrix instead of written by hand, and every route checks the permission on the server because hiding an entry is not protecting it. Verify the matrix per profile with an end-to-end check that compares what is reachable with the matrix row: neither less nor more. Require the four states on every list (with data, empty, loading, error), a visible working indicator with the option to cancel long operations, an error message that says what happened and what to do without losing entered data, a primary action per screen, confirmation or undo for destructive actions, and a form that keeps what was typed. Run each manual test case once per affected profile, run the first-click check at the close of every block, and require a real screenshot of the test environment on every item that touches a screen. Record the result per rule, with owner-declared exceptions, in `docs/USABILITY.md`, and keep the matrix in `docs/PROFILE_MATRIX.md` as the single source of truth.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 ## 9. What this proposal does not do
 
-- **It does not add a step.** They are forty-five transversal rules (18 of quality and 27 of usability), not a new stage. They hang from the steps that already exist.
+- **It does not add a step.** They are forty-six transversal rules (18 of quality and 28 of usability), not a new stage. They hang from the steps that already exist.
 - **It does not invent a score.** A number of "usability 78" does not say what to fix and gets optimised in the wrong direction. It is reported per rule. Section 12 proposes two derived figures, but they are a count of rules with their entry - not a quality or usability grade - and they do not authorise closing anything.
 - **It does not replace the owner.** The first-click test, the screenshot and the task test remain human: they are the only instrument that distinguishes "it works" from "it serves".
 - **It brings no factory thresholds.** Those of the adapter are a declared starting point; the project that does not declare its own inherits them and it is recorded as such.
@@ -247,6 +278,7 @@ The two zeros are deliberate and they are the part that matters: the minimum cov
 | 4 | **Switch discipline:** it lives in the project configuration and not in the prompt; switching off is only valid as a recorded decision with reason, author and review date; the switching off is observable in the report; and the switch is tested by turning it on and off. | D-046 |
 | 5 | **Initial severities, fixed rule by rule:** in quality fourteen block (CQ-01 to CQ-06, CQ-08, CQ-11 to CQ-17), CQ-09 blocks where there are real users, and three warn (CQ-07, CQ-10, CQ-18). In usability eleven block (UX-02, UX-03, UX-08 to UX-12, UX-15, UX-16, UX-22, UX-27), UX-06 only records and the rest warn. Neither "everything blocks" - the project does not start - nor "everything warns" - the heuristic is an ornament. | D-048 |
 | 6 | **Accessibility starts by warning and escalates to blocking by declaration of the owner** when the product has end users outside the organisation. The default is not invented: the escalation is declared, with the same mechanism as any threshold (D-045). | D-048 |
+| 7 | **The form of the question is a rule with an id (UX-28), and it enters the prompts.** The method ordered asking twenty-two times and never said how; the form is four parts in order and a depth level declared by the project. It is the written exception to D-044, narrow and argued in section 6. | D-070 |
 
 ### Closed in D-048, and the two corrections it carries
 
@@ -254,6 +286,8 @@ The two questions that were blocking the writing of the prompts are already answ
 
 1. **The counting defect.** Where this annex said "twenty-seven rules" the correct number is **forty-five**: 18 of quality (CQ-01 to CQ-18) and 27 of usability (UX-01 to UX-27). The old figure came from a draft that only counted half. Corrected in sections 6 and 9 and noted in D-048; the text of D-044 is kept as it was written, because a decision is a record and it is not rewritten.
 2. **The formatter, the linter, size and complexity are not loosened.** An earlier version of this recommendation sent them to "warns" so as not to block projects with inherited debt. It cannot be: step 9 already blocks them today, and this extension extends it, it does not replace it. Inherited debt is resolved with a declared exception - with reason and review date - or with the ratchet baseline, not by lowering the severity of the rule.
+
+**And since 2026-10-27 they are forty-six.** UX-28 entered with D-070 and the count moved to 18 of quality and 28 of usability. The note above is kept exactly as it was written -- it says which number was correct the day the counting defect was corrected -- because a correction is also a record; what a new rule changes is the count, not the history of the count.
 
 And a declared limitation, because it is the only one of its class: **CQ-12 and CQ-14 block with a human red.** No tool proves that a screen does not decide business rules. They are verified at the close of the pending item, with the manual case in front and the same criterion as UX-22 and UX-27; if the project cannot sustain that close, they go down to WARNS by recorded decision. A rule that blocks and that nobody verifies is worse than a rule that warns.
 
@@ -304,7 +338,7 @@ The reason there are two: switching a rule off **raises** compliance and **lower
 
 **Ratchet.** Compliance does not go down from one block to the next without a recorded decision that explains it. It is the same mechanism that test coverage already has in CQ-08: today's number is tomorrow's floor. Going down is not forbidden; going down without a record is.
 
-**What does not enter the count.** What only a person can judge - the first-click test (UX-07), the task test (UX-06), the screenshot (UX-27) and all the manual cases - is recorded as passed or failed, per block, with name and date, and is reported separately as human verification coverage. It does not enter the compliance percentage. If they are mixed, the result is a number that is sixty per cent measurement and forty per cent opinion, and nobody can say which is which. That is why section 9 still holds: the dashboard does not invent a usability grade, it counts rules.
+**What does not enter the count.** What only a person can judge - the first-click test (UX-07), the task test (UX-06), the screenshot (UX-27), the form of the question (UX-28) and all the manual cases - is recorded as passed or failed, per block, with name and date, and is reported separately as human verification coverage. It does not enter the compliance percentage. If they are mixed, the result is a number that is sixty per cent measurement and forty per cent opinion, and nobody can say which is which. That is why section 9 still holds: the dashboard does not invent a usability grade, it counts rules.
 
 **How it is falsified.** It extends the acceptance test of section 11:
 

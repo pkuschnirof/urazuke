@@ -103,6 +103,14 @@ jobs:
           grep -q '0 hallazgos' punteros.txt || { echo "::error::hay un puntero publicado que no resuelve, o una direccion que una maquina no puede bajar (el detalle, arriba)"; exit 1; }
           rm punteros.txt
 
+      - name: Exigir que la forma de la pregunta este en todos los prompts
+        run: |
+          set -o pipefail
+          node build/forma_de_la_pregunta.mjs | tee pregunta.txt
+          grep -q '^forma de la pregunta: comprobado' pregunta.txt || { echo "::error::la guarda de la forma de la pregunta no dijo que comprobo: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          grep -q '0 hallazgos' pregunta.txt || { echo "::error::hay un prompt o una traduccion sin la clausula de UX-28, o un nivel que el dato no declara (el detalle, arriba)"; exit 1; }
+          rm pregunta.txt
+
       - name: Dejar el arbol limpio (ningun generado sin commitear)
         run: |
           git diff --stat -- docs/html/api/ gates/ docs/COMPUERTAS.md

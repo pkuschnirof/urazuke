@@ -59,6 +59,13 @@
 > as done something you have not verified; always separate what you verified from what you
 > believe. (6) Speak my language. Add any rules you think this project needs, marked as
 > proposals. If you need to know something about how I work in order to write this, ask me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > コードを書く前に、あなたと私の間の共働の約束を定めます。`docs/WORKING_AGREEMENT.md` を
@@ -71,6 +78,12 @@
 > てください。(6) 私の言語で話してください。このプロジェクトに必要だと思うルールを、提案と
 > して印して追加してください。これを書くために私の働き方について知る必要があれば、私に聞い
 > てください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：六つの最低限のルール、それぞれが防ぐ失敗とともに（それがルールを助言
 ではなくルールにする）。プロジェクト固有のルールを提案するが、あなたが受け入れるか拒否
@@ -91,11 +104,24 @@
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > ルール1から6とあなたの提案[X、Y]を受け入れます。[Z]は[理由]のため拒否します。今日の日付
 > とバージョン番号で約束を確定してください。その後、プロジェクトファイルに、毎セッションの
 > 最初にこの約束を読むという指示を追加してください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：日付とバージョンで約束を確定し、毎セッション読まれるようプロジェクト
 ファイルに結び付けること。その結び付けなしには約束は存在するが作用しない。

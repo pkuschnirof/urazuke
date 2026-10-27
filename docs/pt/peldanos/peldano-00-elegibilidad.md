@@ -79,7 +79,16 @@ o agente:
 > information before going on; do not assume. Then fill in the sheet criterion by criterion:
 > the answer, where it comes from, and for each exclusionary criterion whether it is green or
 > red. Do not decide: present me the completed sheet with your reading and your doubts, and I
-> will decide. Reply in my language.
+> will decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [pt]
 > Vamos avaliar se este projeto pode ser encarado com o método Urazuke. Leia o levantamento
@@ -88,7 +97,16 @@ o agente:
 > puder ser respondido com o levantamento, peça-me a informação que falta antes de seguir; não
 > suponha. Depois preencha a ficha critério por critério: a resposta, de onde sai, e para cada
 > critério excludente se está em verde ou em vermelho. Não decida: apresente-me a ficha completa
-> com a sua leitura e as suas dúvidas, e eu decido. Responda no meu idioma.
+> com a sua leitura e as suas dúvidas, e eu decido.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
+>
+> Responda no meu idioma.
 
 O que estou pedindo: que leia os dois insumos (o levantamento e a ficha de critérios); que
 **antes de responder avalie se o levantamento basta** e, se não bastar, pergunte em vez de supor
@@ -113,11 +131,25 @@ idioma, porque o prompt está em inglês mas a conversa não precisa estar.
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
 > source, and the conditions if any. Include the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Decisão: [vai / não vai / vai com estas condições: …]. Escreva a ficha final em
 > `docs/ELIGIBILITY.md` com a data, quem decidiu, a resposta a cada critério com sua fonte, e as
 > condições, se houver. Inclua as perguntas que você fez e as minhas respostas.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: que deixe a decisão escrita com data e dono (degrau 6), com as condições se
 houver, e com o rastro de perguntas e respostas, que é a evidência de que não supôs nada.

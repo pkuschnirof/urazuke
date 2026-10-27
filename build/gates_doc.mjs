@@ -202,7 +202,9 @@ export function generar() {
     for (const v of s.verify) p('- ' + (typeof v === 'string' ? v : v.text + marcaNueva(v)));
     p();
   }
-  p('## Annex H: forty-five rules');
+  // El titulo cuenta del dato: una cuenta escrita a mano en un documento GENERADO es la peor de
+  // las dos, porque parece verificada (D-070).
+  p('## Annex H: ' + fuentes.heuristics.rules.length + ' rules');
   p();
   p('The statement of every rule lives **only** in Annex H: it is extracted from there on every build,');
   p('never transcribed. The published statement comes from [the English version](' + ANEXOS.en.replace('docs/', '') + '); the');

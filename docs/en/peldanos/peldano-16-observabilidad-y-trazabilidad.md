@@ -91,6 +91,13 @@ the agent:
 > layer, and show me the level changing in the test environment without a redeploy. Document the
 > levels, where to change them and where the records live in `docs/OBSERVABILITY.md`. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: the five pieces, and two demonstrations that are the evidence of the step:
 **one real identifier followed through every layer** (if it cannot show that, the propagation is
@@ -114,6 +121,13 @@ anybody deciding it.
 > the actor at the level that corresponds, masks personal data, propagates the id to every call it
 > makes, and records every consequential action in the audit trail. A pending item that adds one
 > of those is not closed without showing one real id followed end to end through the new code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: that the observability does not degrade with every new module, which is what
 always happens if it is not a rule: the module of month three logs nothing and it is exactly the

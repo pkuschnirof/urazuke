@@ -209,7 +209,16 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > and has ever been restored; (7) list every external integration and say whether it has a test
 > mode or can be isolated at the edge. For each prerequisite: green or red, the evidence (what you
 > did and what happened), and, if red, what project would make it green. Do not decide: present me
-> the sheet, and I decide. Reply in my language.
+> the sheet, and I decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > この既存システムをUrazukeの方法で引き受けられるかを、あなたが聞くのではなく実際に行って
@@ -230,6 +239,12 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > 緑か赤か、証拠（あなたが何をして何が起きたか）、そして赤なら、どんなプロジェクトがそれを
 > 緑にするか。決定はしないでください：シートを私に提示してください。私が決めます。私の言語
 > で答えてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：前提条件が**実際に行うこと**で検証されること（立ち上げる、読む、文書を
 書く、テストを走らせる）。フロンティアのモデルはその四つができるのであり、そうすれば適格性
@@ -249,6 +264,13 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > evidence, and, for every red one, the prerequisite project as a pending item in `docs/PENDING.md`
 > marked as blocking, with its own acceptance criterion: the prerequisite verified green. Include
 > the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 決定：[可 / 次の前段のプロジェクトの後に可：… / 不可]。最終シートを
@@ -256,6 +278,12 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > ともに。そして赤のものそれぞれについて、前段のプロジェクトを `docs/PENDING.md` の保留項目
 > として、ブロックすると印し、独自の受け入れ基準とともに：前提条件が緑で検証されること。
 > あなたがした質問と私の答えを含めてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 完全性の検証：各前提条件に、あなたの答えではなくエージェントが**行った**ことの証拠がある
 か？ `docs/FUNCTIONALITY_RECOVERED.md` は存在し、あなたはオーナーとしてそれを読んだか：彼が
@@ -301,6 +329,13 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > (11) No change reaches the test environment without the characterization suite green. Add any
 > rules you think this system needs, marked as proposals. If you need to know something about how
 > I work in order to write this, ask me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 何にも触れる前に、既に存在してユーザーがいるシステムのための、あなたと私の共働の約束を
@@ -316,6 +351,12 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > バグではない。(11) 特性化テスト群が緑でなければ、どんな変更もテスト環境に届かない。この
 > システムに必要だと思うルールがあれば、提案と印して加えてください。これを書くために私の
 > 働き方について知る必要があることがあれば、聞いてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 求めているのは、いつもの六つのルールと、他人のコードを前にしたモデルが反射的に三つのことを
 するから存在する五つだ：並べ替える。悪いと思ったところを「直す」。そして、コードがすること
@@ -383,7 +424,16 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > same way. Third, `docs/DISCREPANCIES.md`: everything where the code, the database, the
 > documentation and what the business says in the survey do not agree, with the evidence on each
 > side. Do not resolve any discrepancy and do not fix anything: list them. Create `docs/STATUS.md`
-> for the living state. Reply in my language.
+> for the living state.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > 存在するものからこのシステムの地図を復元します。リポジトリ全体（すべてのブランチ）、
@@ -401,7 +451,15 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > `docs/DISCREPANCIES.md`：コード、データベース、文書、そして調査で業務が言っていることが
 > 一致しないすべてを、それぞれの側の証拠とともに。どの食い違いも解決しないでください。何も
 > 直さないでください：列挙してください。生きた状態のために `docs/STATUS.md` を作って
-> ください。私の言語で答えてください。
+> ください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 求めているのは、すべてを読んで読めなかったものを申告すること（完全性の条項のレガシー版：
 穴は印すのであって埋めるのではない）。調査とツリーが各主張に**出所の印**付きで出てくること。
@@ -426,6 +484,13 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > where I decided the current behaviour stays, write it next to the node as a confirmed rule. Add
 > to `PROJECT.md` the instruction to read this file, the tree and the working agreement at the
 > start of every session.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > このノードを確認します：[一覧]。これを訂正してください：[一覧]。食い違いはこう決まります：
@@ -435,6 +500,12 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > 私が決めた食い違いごとに `docs/PENDING.md` に保留項目を開いてください。現在の挙動が残ると
 > 私が決めたものは、確認されたルールとしてノードの隣に書いてください。`PROJECT.md` に、各
 > セッションの始めにこのファイル、ツリー、共働の約束を読む指示を加えてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 求めているのは、各食い違いについての決定がいつもの三つの場所（決定の記録、変える必要が
 あれば保留項目、確認されたならツリー）に残ること。そして締めるときに出所の印が**消され
@@ -496,7 +567,16 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > field: whether it BLOCKS (must be fixed before any change, by my criteria: [criteria]), whether
 > it is PAID WHEN TOUCHED (fixed together with the first change that enters its module), or whether
 > it CAN WAIT. Grade every dimension you audited. End with every finding turned into a proposed
-> pending item, blocking ones first. Reply in my language.
+> pending item, blocking ones first.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > このシステムを、完全性、セキュリティ、性能、コードの品質、デプロイ可能性について監査して
@@ -512,6 +592,12 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > に入る最初の変更と一緒に直す）、それとも待てるか。監査した各次元に評点を付けてください。
 > 各発見を提案された保留項目に変えて終えてください。ブロックするものを先に。私の言語で答えて
 > ください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 求めているのは、第13段の監査に「デプロイ可能性」の次元を加えたもの（レガシーではデプロイが
 最初の問題であることが多いから）と、速度の項目だ。それが報告書を計画に変える：その項目が
@@ -587,6 +673,14 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > characterization suite green, and nothing reaches production without the full suite green with
 > the exact version. Document all of it in `docs/DEPLOYMENT.md` so that a person can do it by hand
 > without you. Take a screenshot of the system running in the test environment and show it to me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [ja]
@@ -604,7 +698,15 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > ください：特性化テスト群が緑でなければ何もテスト環境に届かない。完全なテスト群が正確な
 > バージョンで緑でなければ何も本番に届かない。そのすべてを `docs/DEPLOYMENT.md` に、人が
 > あなたなしで手で行えるように文書化してください。テスト環境で動いているシステムの
-> スクリーンショットを撮って私に見せてください。私の言語で答えてください。
+> スクリーンショットを撮って私に見せてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 求めているのは、既に存在するものの周りに築く第4段の骨組みだ。第15段の半分を前倒しして
 （秘密を外へ、デプロイを文書化）。レガシーではコードの中の秘密が例外ではなく規則だからだ
@@ -628,7 +730,16 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > simulate it: say so and open a pending item marked as blocking. If while writing these tests you
 > find behaviour that looks wrong, do not fix it: add it to `docs/DISCREPANCIES.md` with the
 > evidence. Record the command to run the suite in `docs/STATUS.md`, and make the suite the gate
-> for the test environment as `docs/GATES.md` says. Reply in my language.
+> for the test environment as `docs/GATES.md` says.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > この重要なフローの特性化テストを書きます：[一覧]。特性化テストは、システムが今日している
@@ -641,7 +752,15 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > ブロックすると印した保留項目を開いてください。これらのテストを書いているあいだに誤って
 > いそうな挙動を見つけても、直さないでください：証拠とともに `docs/DISCREPANCIES.md` に
 > 加えてください。テスト群を走らせるコマンドを `docs/STATUS.md` に記録し、`docs/GATES.md` が
-> 言う通り、テスト群をテスト環境のゲートにしてください。私の言語で答えてください。
+> 言う通り、テスト群をテスト環境のゲートにしてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 求めているのは、第8段を裏返したものだ。新規プロジェクトではテストは赤で生まれ、変更とともに
 緑になる。ここではテストは緑で生まれる。あるものを捉えるからだ。そして役に立つことの証明は、
@@ -709,7 +828,16 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > parts you cannot see, say so instead of leaving them out. Present me the actions table with a
 > proposed lock for each (explicit confirmation, double safety, dry-run mode, daily limit, a human
 > in the loop) and a proposal of which locks go NOW, before any change, and which can go when the
-> module is touched. Do not implement anything yet: I confirm lock by lock. Reply in my language.
+> module is touched. Do not implement anything yet: I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > コード、データベースのトリガ、サーバーの定期処理を辿り、請求するもの、送るもの、承認する
@@ -724,7 +852,15 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > ください。各行動に提案された錠（明示的な確認、二重の安全、ドライランモード、一日の上限、
 > 回路内の人間）を付けた行動の表と、どの錠がどんな変更よりも前に今すぐ行き、どれがモジュール
 > に触れるときに行けるかの提案を、私に提示してください。まだ何も実装しないでください：私が
-> 錠を一つずつ確認します。私の言語で答えてください。
+> 錠を一つずつ確認します。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 求めているのは、第14段と第11段の棚卸しを一周で行うことだ。同じコードを辿るからだ。業務が
 覚えていることとコードがすることの比較、そこに誰も覚えていなかった送信が現れる。そして各錠
@@ -779,7 +915,16 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > expects and whether the system will serve more than one site. Then write `docs/SIZING.md`: what
 > breaks first if everything is multiplied by ten, which of the current architecture choices hold
 > and which do not, and which asymmetric decisions we take now, before evolving, because they are
-> cheap today and expensive later. Do not change any code. Reply in my language.
+> cheap today and expensive later. Do not change any code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > 何かを変える前に、このシステムをその実数でサイジングします。本番データベース（または完全な
@@ -793,7 +938,15 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > を私に求めてください：業務が見込む成長と、システムが一か所より多くに仕えるかどうか。その後
 > `docs/SIZING.md` を書いてください：すべてが十倍になったら何が最初に壊れるか、現在のアーキ
 > テクチャの決定のどれが耐えてどれが耐えないか、そして今日は安く後では高いから、進化する前に
-> 今どんな非対称な決定を取るか。コードは何も変えないでください。私の言語で答えてください。
+> 今どんな非対称な決定を取るか。コードは何も変えないでください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 求めているのは、聞く代わりに計測することだ。それはレガシーが許し、新規プロジェクトが許さ
 ないことだ。テスト付きの計器と第7段の二方向の監査。計器は嘘をつくからだ
@@ -856,7 +1009,16 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > same modules and should be paid together with it. If the request is ambiguous on any point such
 > that you cannot write a verifiable item, ask me; do not resolve it by assuming. Order: blocking
 > items first, then the client's items in the priority I gave you, each with its paired
-> normalization. Reply in my language.
+> normalization.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > 正常化とこの段階に対する顧客の依頼を、`docs/PENDING.md` の中の番号付き保留項目の一つの
@@ -871,7 +1033,15 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > 印してください。顧客の各項目について、同じモジュールに触れていて一緒に払うべき正常化の項目
 > を列挙してください。依頼がどこかの点で曖昧で検証可能な項目を書けないなら、私に聞いて
 > ください。推測で解決しないでください。順序：ブロックする項目を先に、その後に顧客の項目を
-> 私が与えた優先順位で、それぞれ対になった正常化とともに。私の言語で答えてください。
+> 私が与えた優先順位で、それぞれ対になった正常化とともに。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 求めているのは、完全な第5段（詳細な仕様は各保留項目の中に住む。正常化のものにも）に、この道
 を成り立たせる二つの印を加えたものだ。速度は各負債をいつ払うかを言い、種類はどう閉じるかを
@@ -931,7 +1101,16 @@ N7を終えると、道ははしごと合流する：第5段から第12段を保
 > fix changes a current behaviour that someone may depend on, say so explicitly: that is a decision
 > for me, not a side effect. Close the paired normalization items of this module in the same
 > block, each with its own evidence. The commit message says "proved red against [version]" and
-> the test counts. Reply in my language.
+> the test counts.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > この保留項目は修正です：[何が失敗するか、顧客の言葉で、そしてどう再現するか]。何かを変える
@@ -945,7 +1124,15 @@ N7を終えると、道ははしごと合流する：第5段から第12段を保
 > 誰かが依存しているかもしれない現在の挙動を変えるなら、はっきりそう言ってください：それは
 > 副作用ではなく私の決定です。このモジュールの対になった正常化の保留項目を同じブロックで、
 > それぞれ自分の証拠とともに閉じてください。コミットのメッセージには「[バージョン]に対して
-> 赤で証明」とテストの数を書いてください。私の言語で答えてください。
+> 赤で証明」とテストの数を書いてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 求めているのは、診断の**前の**再現だ。モデルは再現していないものをとても自信ありげに診断する
 からだ。触れる前の散文による根本原因、あなたが的外れな修正を止められるように。根とそれだけ、
@@ -984,7 +1171,16 @@ N7を終えると、道ははしごと合流する：第5段から第12段を保
 > what you did not verify. Do not touch anything else. Then, today, open the corrective pending
 > item in `docs/PENDING.md` with what happened, and we close it with the full routine: the test
 > that reproduces it in red, the root cause, the fix at the root, the characterization suite and
-> the regression green. Reply in my language.
+> the regression green.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > これは本番での緊急の修正です：[何が起きているか]。損害を止める最小限を、ブランチの上で、
@@ -993,6 +1189,12 @@ N7を終えると、道ははしごと合流する：第5段から第12段を保
 > に何が起きたかを記した修正の保留項目を開いてください。それを完全なルーチンで閉じます：
 > それを再現する赤のテスト、根本原因、根での修正、特性化テスト群と回帰が緑であること。私の
 > 言語で答えてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 求めているのは、最小限を、戻り道を後ではなく先に用意して、検証していないことの誠実な報告
 （第12段）とともに。そして同じ日のうちにループへ戻る義務、それが例外を習慣から分けるものだ。

@@ -2,6 +2,7 @@
   "what": "El proyecto fixture de la seccion 11 del Anexo H: violaciones deliberadas de cada familia, para probar el interruptor prendiendolo y apagandolo. Si el resultado observable no cambia, no era una compuerta, era decoracion (D-046 (4)). Los nombres de campo son los del contrato de configuracion de proyecto (gates/schema.json, project_config).",
   "config": {
     "frontend": "react-vite",
+    "communication_depth": "decision_maker",
     "real_users": true,
     "switches": { "code_quality": true, "usability": true },
     "switched_off": [],

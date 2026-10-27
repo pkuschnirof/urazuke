@@ -83,7 +83,16 @@ the agent:
 > the tolerance I gave you ([tolerance] for the most used screen) and with the sizing assumptions,
 > and tell me which assumption was wrong, if any. Do not optimize anything yet. Write
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
-> diagnosis of the first bottleneck. Reply in my language.
+> diagnosis of the first bottleneck.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 What I am asking for: a load script that is one more meter (it lives in the repository and has a
 test, because a load script that does not exercise the flow measures thin air); three runs
@@ -110,6 +119,13 @@ diagnosis is changing what was not the problem.
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
 > reruns before every deployment that changes the architecture, the persistence or a critical
 > flow, and its results are archived with date and version. Show me the first run archived.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: the alert thresholds derived from the breaking point, which is the hook into
 step 21; the bottlenecks as pending items with the number as the criterion (that way they are

@@ -72,6 +72,13 @@ el agente:
 > functional block, add to the user manual the screens and flows of the pending items closed
 > in that block, with real screenshots from the test environment, and add their entries to the
 > changelog. If you do not know which manual, ask.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [es]
 > Todo cambio que modifique lo que el usuario ve, lo que el operador hace, o cómo se despliega el
@@ -79,6 +86,13 @@ el agente:
 > funcional, agregá al manual de usuario las pantallas y los flujos de los pendientes cerrados en
 > ese bloque, con capturas reales del entorno de prueba, y agregá sus entradas al diario de
 > cambios. Si no sabés a qué manual va, preguntá.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
 
 Qué le estoy pidiendo: la regla del mismo commit, que es la única que mantiene un manual al día;
 el cierre de bloque como momento en que los pendientes cerrados se vuelven manual y diario de
@@ -109,6 +123,13 @@ cambios; y la pregunta cuando no está claro a qué manual va.
 > business knows (who is responsible for what, which phone number to call), ask me; do not leave
 > a gap and do not invent. Each manual carries a date and the system version. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [es]
 > Generá tres manuales a partir del sistema tal como está hoy en el entorno de prueba: el manual
@@ -118,7 +139,16 @@ cambios; y la pregunta cuando no está claro a qué manual va.
 > volver atrás, cómo restaurar una copia de respaldo, qué hacer si se cae; escrito para una persona
 > que tiene que hacerlo a mano, sin IA, a las tres de la mañana). Si para alguna sección necesitás
 > algo que solo el negocio sabe (quién es responsable de qué, a qué teléfono llamar), pedímelo; no
-> dejes un hueco ni inventes. Cada manual lleva fecha y versión del sistema. Respondé en mi idioma.
+> dejes un hueco ni inventes. Cada manual lleva fecha y versión del sistema.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo: los tres manuales con sus lectores; capturas **reales** del entorno de
 prueba (no dibujos ni descripciones); el criterio de las tres de la mañana para el de

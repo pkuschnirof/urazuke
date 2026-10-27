@@ -80,7 +80,16 @@ el agente:
 > information before going on; do not assume. Then fill in the sheet criterion by criterion:
 > the answer, where it comes from, and for each exclusionary criterion whether it is green or
 > red. Do not decide: present me the completed sheet with your reading and your doubts, and I
-> will decide. Reply in my language.
+> will decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [es]
 > Vamos a evaluar si este proyecto se puede encarar con el método Urazuke. Leé el relevamiento
@@ -89,7 +98,16 @@ el agente:
 > se puede responder con el relevamiento, pedime la información que falta antes de seguir; no
 > supongas. Después completá la ficha criterio por criterio: la respuesta, de dónde sale, y para
 > cada criterio excluyente si está en verde o en rojo. No decidas: presentame la ficha completa
-> con tu lectura y tus dudas, y decido yo. Respondé en mi idioma.
+> con tu lectura y tus dudas, y decido yo.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo: que lea los dos insumos (el relevamiento y la ficha de criterios); que
 **antes de responder evalúe si el relevamiento alcanza** y, si no alcanza, pregunte en vez de
@@ -115,11 +133,25 @@ estarlo.
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
 > source, and the conditions if any. Include the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [es]
 > Decisión: [va / no va / va con estas condiciones: …]. Escribí la ficha final en
 > `docs/ELIGIBILITY.md` con la fecha, quién decidió, la respuesta a cada criterio con su fuente,
 > y las condiciones si las hay. Incluí las preguntas que hiciste y mis respuestas.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
 
 Qué le estoy pidiendo: que deje la decisión escrita con fecha y dueño (peldaño 6), con las
 condiciones si las hay, y con el rastro de preguntas y respuestas, que es la evidencia de que no

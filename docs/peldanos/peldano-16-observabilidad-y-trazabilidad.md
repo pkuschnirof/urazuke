@@ -89,6 +89,13 @@ el agente:
 > layer, and show me the level changing in the test environment without a redeploy. Document the
 > levels, where to change them and where the records live in `docs/OBSERVABILITY.md`. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [es]
 > Vamos a hacer que este sistema sea observable y trazable, de punta a punta, con un nivel que yo
@@ -109,7 +116,16 @@ el agente:
 > en `docs/INITIAL_SURVEY.md`, de modo que ningún registro contenga datos personales. Mostrame un
 > pedido real seguido por su identificador a través de cada capa, y mostrame el nivel cambiando en
 > el entorno de prueba sin volver a desplegar. Documentá los niveles, dónde se cambian y dónde
-> viven los registros en `docs/OBSERVABILITY.md`. Respondé en mi idioma.
+> viven los registros en `docs/OBSERVABILITY.md`.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo: las cinco piezas, y dos demostraciones que son la evidencia del peldaño:
 **un identificador real seguido por todas las capas** (si no lo puede mostrar, la propagación
@@ -131,6 +147,13 @@ personales se filtran sin que nadie lo decida.
 > the actor at the level that corresponds, masks personal data, propagates the id to every call it
 > makes, and records every consequential action in the audit trail. A pending item that adds one
 > of those is not closed without showing one real id followed end to end through the new code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [es]
 > Todo módulo, tarea o integración nueva escribe registros estructurados con el identificador de
@@ -138,6 +161,13 @@ personales se filtran sin que nadie lo decida.
 > identificador a cada llamada que hace, y registra toda acción con consecuencia en la auditoría.
 > Un pendiente que agrega uno de esos no se cierra sin mostrar un identificador real seguido de
 > punta a punta a través del código nuevo.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
 
 Qué le estoy pidiendo: que la observabilidad no se degrade con cada módulo nuevo, que es lo que
 pasa siempre si no es regla: el módulo del mes tres no registra nada y es justo el que falla.

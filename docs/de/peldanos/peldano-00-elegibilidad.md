@@ -83,7 +83,16 @@ machst es, nicht der Agent:
 > information before going on; do not assume. Then fill in the sheet criterion by criterion:
 > the answer, where it comes from, and for each exclusionary criterion whether it is green or
 > red. Do not decide: present me the completed sheet with your reading and your doubts, and I
-> will decide. Reply in my language.
+> will decide.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [de]
 > Wir werden bewerten, ob dieses Projekt mit der Urazuke-Methode angegangen werden kann. Lies die
@@ -93,7 +102,17 @@ machst es, nicht der Agent:
 > die fehlende Information, bevor du weitermachst; nimm nichts an. Fülle dann das Blatt Kriterium
 > für Kriterium aus: die Antwort, woher sie stammt, und für jedes Ausschlusskriterium, ob es grün
 > oder rot ist. Entscheide nicht: lege mir das ausgefüllte Blatt mit deiner Lesart und deinen
-> Zweifeln vor, und ich entscheide. Antworte in meiner Sprache.
+> Zweifeln vor, und ich entscheide.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange: dass er die beiden Eingaben liest (die Erhebung und das Kriterienblatt);
 dass er **vor dem Antworten bewertet, ob die Erhebung ausreicht**, und, wenn sie nicht ausreicht,
@@ -121,12 +140,27 @@ auf Englisch, aber das Gespräch muss es nicht sein.
 > Decision: [go / no-go / go under these conditions: …]. Write the final sheet to
 > `docs/ELIGIBILITY.md` with the date, who decided, the answer to every criterion with its
 > source, and the conditions if any. Include the questions you asked and my answers.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Entscheidung: [go / no-go / go unter diesen Bedingungen: …]. Schreibe das endgültige Blatt nach
 > `docs/ELIGIBILITY.md` mit dem Datum, wer entschieden hat, der Antwort auf jedes Kriterium mit
 > ihrer Quelle, und den Bedingungen, falls es welche gibt. Nimm die Fragen auf, die du gestellt
 > hast, und meine Antworten.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: dass er die Entscheidung schriftlich hinterlässt, mit Datum und
 Eigentümer (Schritt 6), mit den Bedingungen, falls es welche gibt, und mit der Spur aus Fragen und

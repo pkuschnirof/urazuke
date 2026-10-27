@@ -66,6 +66,14 @@
 > change: indexes derived from the real queries, pagination, batching, the elimination of N+1
 > loops, retention and archiving per table, pool size; for each change, the expected gain, the
 > risk, and which consumers in the map it touches. Do not change anything yet: I approve the list.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [zh]
@@ -76,7 +84,14 @@
 > 一次的查询；每张表的大小和月增长；峰值时连接池的使用。在两个方向上审计每一把量具。把数
 > 字连同产生它们的命令给我看。然后逐条查询地提议改什么：从真实查询推导出来的索引、分页、
 > 批量、N+1 循环的消除、每张表的保留期和归档、连接池大小；对每项改动，说明预期收益、风
-> 险，以及它触及地图里的哪些消费者。先不要改任何东西：由我批准这份清单。用我的语言回复。
+> 险，以及它触及地图里的哪些消费者。先不要改任何东西：由我批准这份清单。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求什么：在提议之前，用第 7 级台阶的方法测量（量具带测试，在两个方向上审计过，数字带命
 令）；逐条查询地提议，带上收益和风险，以及每项改动触及的地图消费者（一个新索引谁也不触及；一张
@@ -98,12 +113,24 @@
 > test that fails if it is exceeded. Update every consumer in the map that a change touches, in
 > the same commit. Record the before and after table, the budgets and the retention per table in
 > `docs/PERSISTENCE.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 应用批准的改动 [清单]，每项一次提交。对每一项，把同样数据上的量具前后对比、绿色的回
 > 归、绿色的端到端套件给我看。按关键路径设一个预算（查询数和时间），定在测量值加一点小余
 > 量上，由一个超出就失败的测试保护。在同一次提交里更新每项改动所触及的地图消费者。把前后
 > 对比表、预算和每张表的保留期记进 `docs/PERSISTENCE.md`。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：一项改动一次提交，好让前和后可归因；同一把量具在同样的数据上（数据变了，数字就什
 么都说明不了）；带测试的预算，那是防止 N+1 循环三个月后回来的东西；以及第 11 级台阶的对称性应用

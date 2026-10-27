@@ -88,7 +88,16 @@ the agent:
 > own verifiable window: the first and the last timestamp read from the database or the log, never a
 > number typed by hand; a window typed by hand is marked as such in the report and only warns, it
 > never opens a pending item on its own. Document the thresholds, the channel, the cycle and how to
-> silence an alert with a written reason in `docs/MONITORING.md`. Reply in my language.
+> silence an alert with a written reason in `docs/MONITORING.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 **The window of the measurement.** The cyclic report compares the rows observed per year against what step 3 declared. A correct number with a wrong window opens a false pending item: in the inherited Turnera practice, 30,000 rows of three years were passed as if they were one. So the measurement carries its **verifiable** window: the first and the last record read from the database or the log, not a number typed by hand. If the tool cannot read the database, it declares it as a blind spot; a window typed by hand is marked as such in the report and only warns, it never opens a pending item on its own. (Decision D-039.)
 
@@ -113,6 +122,13 @@ first report and a provoked alert.
 > reason; write the decision with the date in the report itself; and tell me whether any threshold
 > must change and why, with the measurement that justifies it. Never raise a threshold to silence
 > an alert without a measured reason written down.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 What I am asking for: that the report be read and decided on, with a trace; and the threshold
 rule, which is the one that keeps the monitoring from going silent little by little.

@@ -65,7 +65,16 @@ el agente:
 > propose: whether it is reversible, which lock it gets (explicit confirmation, double safety,
 > dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong.
 > General rule: on any doubt or failure along the way, the action is NOT executed and the reason
-> is logged. Present me the table; I confirm lock by lock. Reply in my language.
+> is logged. Present me the table; I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [es]
 > Vamos a decidir qué acciones del sistema necesitan candado. Leé el relevamiento de acciones
@@ -75,7 +84,16 @@ el agente:
 > qué candado lleva (confirmación explícita, doble seguro, modo de ensayo, límite diario, un
 > humano en el circuito), y cuál es el camino de vuelta si sale mal. Regla general: ante cualquier
 > duda o fallo en el camino, la acción NO se ejecuta y se registra el motivo. Presentame la tabla;
-> yo confirmo candado por candado. Respondé en mi idioma.
+> yo confirmo candado por candado.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo: el cruce entre lo que el negocio dijo y lo que el código hace (ahí
 aparecen las acciones que nadie recordaba); la cláusula de completitud en su forma para este
@@ -96,12 +114,26 @@ prompt, para que quede en la tabla y en el código.
 > that, under the doubt condition, the action does NOT happen (proved red against the version
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [es]
 > Confirmo los candados [lista]; cambiá [X] por [Y]. Implementalos con un test por candado que
 > pruebe que, en la condición de duda, la acción NO ocurre (probado en rojo contra la versión sin
 > el candado). Registrá la tabla final en `docs/LOCKS.md`. Y para toda automatización nueva: modo
 > de ensayo primero, registrando lo que habría hecho, hasta que yo la habilite.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
 
 Qué le estoy pidiendo: el test por candado **probado en rojo** (sin el candado, la acción
 ocurría; con el candado, no), que es el peldaño 8 aplicado a la seguridad; la tabla final; y la

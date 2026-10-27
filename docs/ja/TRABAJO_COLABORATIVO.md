@@ -115,7 +115,16 @@
 > and update them in the same change, whoever owns them. (6) Every business decision goes to
 > `docs/DECISIONS.md` the moment it is taken, with the person's name and the date. (7) Update
 > `docs/STATUS.md` with what you are doing when you start and when you stop, so that the others'
-> agents see it. Reply in my language.
+> agents see it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > 私たちは一つの共有ブランチの上でチームとして働きます。各人が自分自身のエージェントの
@@ -131,7 +140,15 @@
 > でその消費者を調べ、誰のものであれ同じ変更の中で更新してください。(6) すべての事業上の決定
 > は、決まったその瞬間に、人の名前と日付とともに `docs/DECISIONS.md` へ行きます。(7) 始める
 > ときと止めるときに、何をしているかを `docs/STATUS.md` に更新してください。他の人の
-> エージェントがそれを見られるように。私の言語で答えてください。
+> エージェントがそれを見られるように。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：七つのルールをエージェントのルーチンにすること。エージェントは他の
 エージェントを見ないのであり、読んだものしか守らないからだ。セッションを始めるときの必読、
@@ -153,7 +170,16 @@
 > field and by the producer-consumer map; if there is an overlap, stop and tell me, do not start.
 > If there is none, write my name in the "claimed by" field with today's date, write in
 > `docs/STATUS.md` what I am starting, re-read the item's specification, and tell me which
-> contracts of the map this item will touch and who consumes them. Reply in my language.
+> contracts of the map this item will touch and who consumes them.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > 保留項目 [PND-NNN] を取ります。何よりもまず：他人が宣言した保留項目を列挙し、「触れる
@@ -161,7 +187,15 @@
 > 触れるかを教えてください。重なりがあれば、止まって私に教えてください。始めないでください。
 > なければ、「宣言者」の欄に今日の日付とともに私の名前を書き、`docs/STATUS.md` に私が何を
 > 始めるかを書き、保留項目の仕様を読み直し、この保留項目が地図のどの契約に触れることになり、
-> 誰がそれを消費しているかを教えてください。私の言語で答えてください。
+> 誰がそれを消費しているかを教えてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：始める前の重なりの検証、衝突を避けるのに最も安い瞬間だ。書かれた宣言。
 そして私が触れることになる消費者の一覧、最初から誰に何を変えるのかを知るために。
@@ -183,7 +217,16 @@
 > show me the counts. If anything is red, stop: tell me what and whose change it comes from. If
 > this item is not finished, confirm the feature switch is off by default and say so in the
 > commit message. Then push, show me the pipeline green on the shared branch, and update
-> `docs/STATUS.md` and the pending item. Reply in my language.
+> `docs/STATUS.md` and the pending item.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > 共有ブランチへ統合します。まず他の人の変更を取り込み、何が入ってきたか、そして何かが私の
@@ -193,7 +236,15 @@
 > 見せてください。何かが赤なら、止まってください：何が、誰の変更から来ているかを教えて
 > ください。この保留項目が終わっていないなら、機能スイッチが既定で消えていることを確認し、
 > コミットのメッセージでそう言ってください。その後プッシュし、共有ブランチの上で連鎖が緑で
-> あることを見せ、`docs/STATUS.md` と保留項目を更新してください。私の言語で答えてください。
+> あることを見せ、`docs/STATUS.md` と保留項目を更新してください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：上げる前に取り込むこと。衝突を両側を読んで解決し、「勝つ」のではないこと
 （衝突を前にしたモデルの反射は自分の版を残すことだ）。条件としてのテスト群。エージェントの

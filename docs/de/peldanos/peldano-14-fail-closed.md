@@ -70,7 +70,16 @@ machst es, nicht der Agent:
 > propose: whether it is reversible, which lock it gets (explicit confirmation, double safety,
 > dry-run mode, daily limit, a human in the loop), and what the way back is if it goes wrong.
 > General rule: on any doubt or failure along the way, the action is NOT executed and the reason
-> is logged. Present me the table; I confirm lock by lock. Reply in my language.
+> is logged. Present me the table; I confirm lock by lock.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [de]
 > Wir werden entscheiden, welche Aktionen des Systems eine Sperre brauchen. Lies die Erhebung
@@ -81,7 +90,17 @@ machst es, nicht der Agent:
 > (explizite Bestätigung, doppelte Sicherung, Trockenlauf, Tageslimit, ein Mensch im Kreislauf),
 > und was der Rückweg ist, wenn es schiefgeht. Allgemeine Regel: bei jedem Zweifel oder Fehler
 > auf dem Weg wird die Aktion NICHT ausgeführt und der Grund wird protokolliert. Lege mir die
-> Tabelle vor; ich bestätige Sperre für Sperre. Antworte in meiner Sprache.
+> Tabelle vor; ich bestätige Sperre für Sperre.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange: den Abgleich zwischen dem, was das Geschäft gesagt hat, und dem, was der
 Code tut (dort tauchen die Aktionen auf, an die sich niemand erinnerte); die Vollständigkeitsklausel
@@ -103,6 +122,13 @@ Fail-closed im Prompt ausgeschrieben, damit sie in der Tabelle und im Code bleib
 > that, under the doubt condition, the action does NOT happen (proved red against the version
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Ich bestätige die Sperren [Liste]; ändere [X] in [Y]. Setze sie um, mit einem Test pro Sperre,
@@ -110,6 +136,14 @@ Fail-closed im Prompt ausgeschrieben, damit sie in der Tabelle und im Code bleib
 > die Version ohne die Sperre). Halte die endgültige Tabelle in `docs/LOCKS.md` fest. Und für jede
 > neue Automatisierung: erst Trockenlauf, mit Protokoll dessen, was sie getan hätte, bis ich sie
 > freischalte.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: den Test pro Sperre, **rot bewiesen** (ohne die Sperre fand die Aktion
 statt; mit der Sperre nicht), was Schritt 8 angewandt auf die Sicherheit ist; die endgültige

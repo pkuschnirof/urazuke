@@ -95,6 +95,13 @@
 > `docs/USABILITY.md` report result by result, never as a single number. The
 > catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
 >
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [zh]
@@ -118,6 +125,11 @@
 > `docs/ANEXO_HEURISTICAS.md`：引用它，不要复制它。
 >
 > 用我的语言回答。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：一个人类评审会做的那五项检查，由机器来做，并且以构建变红作为后果，因为一项不拦
 路的检查只是一条建议；限制带着它的实测值，这样限制出自数字而不是出自一种看法；覆盖率的棘轮，
@@ -140,12 +152,24 @@
 > raised to pass; if a limit must change, say so with the reason and I decide. At the close of
 > every block, show me `docs/CODE_QUALITY.md` with the numbers of the block against the previous
 > one.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 每个待办项都在质量闸门为绿时关闭：linter、格式化工具、大小和复杂度限制、没有新的重复、没
 > 有死代码、覆盖率等于或高于棘轮。一处质量失败在同一次提交中修好，绝不用例外把它消音，也绝
 > 不为了通过而提高某条限制；如果某条限制必须改，说出来并给出理由，由我决定。每个功能块收尾
 > 时，给我看 `docs/CODE_QUALITY.md`，用本块的数字对比上一块。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：质量成为每个待办项收尾的一部分，而不是一件另外的任务；禁止消音（一个模型面对红
 色的 linter 时，倾向于加上例外而不是去修，因为那样更快）和禁止把限制调高；以及按功能块的阅
@@ -168,7 +192,16 @@
 > killed, how many survived and where. Do not fix anything yet: every surviving mutant in code
 > that matters becomes a pending item for a test that catches it, and I decide which ones matter.
 > From now on, report the mutation score at the close of every block next to the coverage, and
-> treat a drop as a quality failure. Reply in my language.
+> treat a drop as a quality failure.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 把变异测试加进质量闸门，[对全部代码 | 只对每个待办项改动的行]：一个工具，它故意在代码里
@@ -177,6 +210,11 @@
 > 多少以及在哪里。先什么都不要修：每一个在重要代码里存活下来的变异体都变成一个待办项，对应
 > 一个能抓住它的测试，而哪些重要由我决定。从现在起，每个功能块收尾时把变异分数报告在覆盖率
 > 旁边，并把下降当作一次质量失败。用我的语言回答。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：覆盖率给不出的那个度量（覆盖率说的是哪些代码被执行到了；变异说的是哪些代码被
 看守着）；范围收窄到改动的行，这是让每个待办项都付得起这笔成本的关键；**先什么都不要修**，因

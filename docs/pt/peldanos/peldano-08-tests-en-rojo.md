@@ -96,6 +96,13 @@ o agente:
 > every route checks the permission on the server, because hiding the entry
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Para fechar esta pendência preciso de evidência, não da sua palavra. (1) Escreva o teste que
@@ -121,6 +128,13 @@ o agente:
 > nem mais, e cada rota verifica a permissão no servidor, porque esconder o
 > ponto de entrada não protege nada (Anexo H, UX-11, UX-12, UX-15). Uma
 > matriz que nada exercita é um documento que ninguém lê.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 **O vermelho do primeiro bloco.** No primeiro bloco de um projeto novo não há código anterior: o teste novo falha porque o módulo não existe, e essa falha não prova que o teste distingue comportamento. Por isso, quando a versão anterior não tem o módulo, o vermelho se prova **por mutação**: o agente planta um defeito de propósito na função que acabou de escrever, mostra o teste em vermelho contra esse defeito (o recibo leva o diff do defeito, para você ver que não foi trivial), reverte-o e mostra o verde. É um só mutante por pendente, executado e registrado como qualquer outro recibo; os testes de mutação sobre toda a base continuam sendo o reforço opcional do degrau 9. (Decisão D-037, a partir da prática Turnera: seis recibos de vermelho que só diziam "o arquivo não carrega".)
 
@@ -151,12 +165,26 @@ commit com os números deixa a evidência onde vive o código.
 > with the exact version that will be promoted. Show me the counts, and for each flow the
 > backend check that proves it. If any flow has no end-to-end test, say so and open a pending
 > item for it; do not pass it as covered.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Rode a bateria completa de ponta a ponta de todos os fluxos que existem até agora, no
 > ambiente de teste, com a versão exata que vai ser promovida. Mostre-me os números e, para cada
 > fluxo, a verificação no backend que o prova. Se algum fluxo não tem teste de ponta a ponta,
 > diga e abra uma pendência; não o dê por coberto.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: a segunda e a terceira escala dos testes de ponta a ponta, com a versão
 exata (não "a última"), com o efeito no backend por fluxo, e com a cláusula de completude: o que
@@ -175,10 +203,24 @@ não está coberto se declara e vira pendência, não se dá por coberto.
 
 > Explain why it cannot be tested, what would have to be added so that it can, and open a
 > pending item for that. The change is not closed until it can be tested.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Explique por que não dá para testar, o que haveria que acrescentar para que dê, e abra uma
 > pendência para isso. A mudança não está fechada até que possa ser testada.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: que "não dá para testar" não seja o fim da conversa mas o começo de uma
 pendência. A não-testabilidade é dívida, e a dívida se registra.

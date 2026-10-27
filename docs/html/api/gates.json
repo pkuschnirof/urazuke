@@ -1,6 +1,6 @@
 {
   "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.",
-  "catalog_version": "2026.10.7",
+  "catalog_version": "2026.10.8",
   "schema_version": 2,
   "content_hash": {
     "algo": "sha256",
@@ -32,18 +32,18 @@
       "license",
       "content_hash"
     ],
-    "value": "7575673f723e498cf217b97b9efa0da3e98bd1e6d0a01cefaa87718a6cce027c",
+    "value": "54b57e7871914e28b49fe45d05188660589dff5427abf032e1e0efcd6651e269",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "0af2a00",
+  "git_commit": "24105b8",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-10-27T14:34:14.210Z",
+  "generated_at": "2026-10-27T16:40:34.731Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
     "steps": 24,
     "stations": 8,
-    "rules": 45,
+    "rules": 46,
     "evaluators": 12
   },
   "languages": {
@@ -1615,11 +1615,11 @@
     "note": "A legacy system enters the Construction Loop at step 5, so from there the five anchors of Annex H rule exactly as they do in a new project (D-023 + D-043). The two prior inputs are recovered by self-discovery with a source mark, like every input of an earlier stage on this path."
   },
   "heuristics": {
-    "what": "The forty-five rules of Annex H as data: 18 of code quality (CQ-01 to CQ-18) and 27 of usability (UX-01 to UX-27). The mechanical fields live here. The STATEMENT of every rule lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
+    "what": "The forty-six rules of Annex H as data: 18 of code quality (CQ-01 to CQ-18) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
     "counts": {
       "code_quality": 18,
-      "usability": 27,
-      "total": 45
+      "usability": 28,
+      "total": 46
     },
     "decisions": [
       "D-043",
@@ -1628,7 +1628,8 @@
       "D-046",
       "D-047",
       "D-048",
-      "D-049"
+      "D-049",
+      "D-070"
     ],
     "groups": [
       {
@@ -1643,7 +1644,7 @@
       },
       {
         "id": "usability",
-        "range": "UX-01..UX-27",
+        "range": "UX-01..UX-28",
         "switch": {
           "lives_in": "the project configuration",
           "read_by": "the gate",
@@ -3246,6 +3247,42 @@
           "family_label": "B5",
           "verification_label": "Pending close"
         }
+      },
+      {
+        "id": "UX-28",
+        "since_schema": 2,
+        "since_version": "2026.10.8",
+        "group": "usability",
+        "family": "B6",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": {
+          "value": "pending_close",
+          "source": "rule"
+        },
+        "human_red": true,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            1
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-28",
+          "language": "en",
+          "text": "When the agent needs a decision from the owner, the question arrives with its four parts and in this order: the data that makes it necessary, listed; one paragraph of no more than five lines that links that data and lets the question be seen; the question with its possible answers numbered; and the agent recommendation. And at the technical depth the project declared. A loose question leaves the owner the work of reconstructing why they are being asked.",
+          "extracted": true,
+          "family_label": "B6",
+          "verification_label": "Owner review at pending close"
+        }
       }
     ]
   },
@@ -3377,7 +3414,8 @@
       "switches": "One entry per rule group: true, or an object { on: false, reason, authorized_by, review_date }.",
       "switched_off": "List of individual rules switched off, each with the full record.",
       "thresholds": "Declared values, by threshold id. Whatever is not here is reported as undeclared, never invented.",
-      "tools": "Tool names and versions actually used, for the ruleset fingerprint."
+      "tools": "Tool names and versions actually used, for the ruleset fingerprint.",
+      "communication_depth": "One of communication_depth: the technical depth at which the agent speaks to the owner (UX-28). Undeclared means decision_maker, and the agent says which one it is using."
     },
     "switch_off_record": [
       "rule",

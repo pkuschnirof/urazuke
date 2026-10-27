@@ -229,7 +229,7 @@ Cada degrau tem oito partes, sempre as mesmas, para que se possam comparar:
 
 E há uma parte mais, que aparece **apenas em seis degraus** e é uma peça transversal que muda
 o que tem de ser lido: o **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). São
-quarenta e cinco regras verificáveis — dezoito de qualidade de código e vinte e sete de
+quarenta e seis regras verificáveis — dezoito de qualidade de código e vinte e oito de
 usabilidade —, cada uma com seu identificador estável, sua severidade e o instrumento que a mede.
 Não é um apêndice opcional: **é obrigatório**, e se engata na escada em seis pontos. No degrau 2
 entram suas duas **entradas prévias** (o glossário do usuário e a lista de perfis: as palavras que
@@ -241,6 +241,23 @@ um desses seis degraus diz isso em sua ficha, com o link, e há uma verificaçã
 método que fica vermelha se alguma deixar de dizê-lo. Nasceu de ter descoberto tarde: o anexo
 esteve obrigatório e sem ser nomeado neste documento, e o primeiro leitor que adaptou o método a
 outro formato pulou vinte e sete das quarenta e cinco regras porque nunca soube que existiam.
+
+E uma dessas quarenta e seis não é sobre o sistema que se constrói, mas sobre **como você é
+perguntado**. É a **UX-28**, e entrou em 2026-10-27 porque faltava: o método ordena aos seus
+prompts que perguntem a você — vinte e duas vezes, em mais da metade do corpus — e não dizia em
+nenhuma parte como se pergunta, então a forma ficava na improvisação e você recebia a pergunta
+solta. De agora em diante, toda pergunta que o agente lhe fizer chega com quatro partes e nesta
+ordem: **os dados** que a tornam necessária, enumerados; **um parágrafo** de no máximo cinco
+linhas que os ligue e deixe ver a dúvida; **a pergunta** com as suas respostas possíveis
+enumeradas; e **a recomendação** do agente. E na profundidade técnica que você escolher, que são
+três e se declaram uma vez na configuração do projeto: `beginner` (linguagem do dia a dia,
+orientada ao resultado), `decision_maker` (números medidos e consequências, sem caminhos de
+arquivo — é o valor por padrão) e `technical` (arquivo, linha e comando). Se você não declarar
+nenhuma, o agente usa `decision_maker` e diz isso. A cláusula está nos setenta e dois prompts do
+corpus, numa única redação inglesa idêntica nos oito idiomas, e há uma comprovação na cadeia que
+fica vermelha se ela cair de algum. O que nenhuma comprovação pode fazer, e convém saber, é
+verificar que uma pergunta concreta tenha as suas quatro partes: isso você julga, e é por isso que
+a regra avisa em vez de bloquear.
 
 E uma coisa mais que muda o que tem de ser lido, porque decide **qual** de todas estas exigências
 se aplica a você: **a versão do método que o projeto fixa.** A definição mecânica das comportas —

@@ -97,6 +97,13 @@ faites, pas l'agent :
 > catalogue lives in `docs/ANEXO_HEURISTICAS.md`: cite it, do not restate
 > it.
 >
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [fr]
@@ -126,6 +133,13 @@ faites, pas l'agent :
 > s'écrit ici et ne s'invente pas plus tard dans le code. Le catalogue se
 > trouve dans `docs/ANEXO_HEURISTICAS.md` : citez-le, ne le répétez pas.
 >
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
 > Réponds dans ma langue.
 
 Ce que je lui demande : qu'il convertisse la demande en éléments vérifiables et qu'il **pose la
@@ -154,6 +168,13 @@ l'échelon 8 ; et un ordre proposé avec sa raison, pour que vous le confirmiez 
 > add: the evidence, the commit, the date, and any decision that was taken along the way; that
 > record is the documentation of what was built. If along the way you see something that is not
 > on the list, add it as a new pending item with its specification; do not do it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Avant de toucher au code, ouvre `docs/PENDING.md`, dis-moi quel élément tu prends et pourquoi,
@@ -164,6 +185,13 @@ l'échelon 8 ; et un ordre proposé avec sa raison, pour que vous le confirmiez 
 > chemin ; cet enregistrement est la documentation de ce qui a été construit. Si en chemin tu vois
 > quelque chose qui n'est pas dans la liste, ajoute-le comme nouvel élément en attente avec sa
 > spécification ; ne le fais pas.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : la discipline de chaque session : annoncer ce qu'il prend et relire la
 spécification (l'agent démarre sans mémoire, et la spécification est sa mémoire de l'élément),

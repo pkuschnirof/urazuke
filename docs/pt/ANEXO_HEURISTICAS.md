@@ -90,7 +90,7 @@ O que muda entre colunas é a ferramenta e o limiar. O que não muda é o enunci
 
 ## 5. Parte B - Usabilidade
 
-Cinco famílias. A primeira e a segunda são as que o dono pediu explicitamente; as outras três existem porque sem elas o agrupamento e os perfis se degradam igual, mais devagar.
+Seis famílias. A primeira e a segunda são as que o dono pediu explicitamente; as outras três existem porque sem elas o agrupamento e os perfis se degradam igual, mais devagar. A sexta nasceu depois, em 2026-10-27 (D-070), e é de outra classe: as cinco primeiras são sobre a tela que o sistema mostra a uma pessoa, e a sexta é sobre a conversa na qual o sistema é construído.
 
 ### B1 - Agrupamento por convergência funcional
 
@@ -152,6 +152,19 @@ A maioria das reclamações de "não funciona" são telas que não souberam dize
 | UX-26 | Os estados não se comunicam só por cor; toda imagem informativa tem texto alternativo; os textos se leem em tamanho normal sem zoom. | Comporta (CQ-18) | AVISA |
 | UX-27 | Todo pendente que toca uma tela entrega a captura real do ambiente de teste, e o dono a olha antes de fechar. A captura não é opcional e não é um mockup. | Fechamento do pendente | BLOQUEIA |
 
+### B6 - A pergunta ao dono
+
+O método ordena ao modelo **perguntar** em mais da metade dos seus prompts: vinte e duas vezes, em quinze dos vinte e sete arquivos do corpus publicado. E até 2026-10-27 não dizia em nenhuma parte **como se pergunta**, então a forma ficava na improvisação e o dono recebia a pergunta solta: sem os dados que a justificam, sem opções e sem recomendação. É a mesma assimetria que o passo 11 persegue -- algo exigido de um lado e não definido do outro -- na direção que sai mais caro: para a pessoa que decide. O método já fez isto duas vezes: o passo 8 não se contentou com "mostre-me o vermelho" e definiu o que é um recibo; o passo 12 não se contentou com "reporte" e separou verificado de acreditado.
+
+| id | Enunciado | Verifica | Severidade |
+|---|---|---|---|
+| UX-28 | Quando o agente precisa de uma decisão do dono, a pergunta chega com as suas quatro partes e nesta ordem: os dados que a tornam necessária, enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta com as suas respostas possíveis enumeradas; e a recomendação do agente. E na profundidade técnica que o projeto declarou. Uma pergunta solta deixa para o dono o trabalho de reconstruir por que lhe perguntam. | Revisão do dono no fechamento do pendente | AVISA |
+
+**Os três níveis de profundidade, e de onde saem.** O projeto declara um e o agente fala nesse nível: `beginner` (linguagem do dia a dia, orientada ao resultado, sem nomes de arquivo nem jargão), `decision_maker` (números medidos e consequências, sem caminhos de arquivo: o que o método usa por padrão) e `technical` (arquivo, linha e comando). Não foram inventados para esta regra: o nível principiante já é a forma de todo o método (D-025). O nome do parâmetro e os três valores vivem no nível de dados, em `project_config.communication_depth`, porque é o que uma ferramenta consumidora tem de ler sem adivinhar.
+
+**O que esta regra não promete.** Uma comporta pode verificar que a cláusula esteja nos setenta e dois prompts e nos oito idiomas -- e verifica; nenhum teste pode verificar que uma pergunta concreta que um modelo escreveu numa terça tenha as suas quatro partes. Isso o dono julga, e é por isso que a regra avisa e não bloqueia. Uma regra que bloqueia e que ninguém pode verificar é pior que uma regra que avisa: é a mesma limitação declarada que CQ-12 e CQ-14 já têm.
+
+
 ## 6. Onde se engancha, e que artefatos produz
 
 O anexo não inventa passos novos: pendura-se nos que existem. Isso evita duplicar comportas e evita o destino habitual das listas de usabilidade, que é serem lidas uma vez.
@@ -159,6 +172,8 @@ O anexo não inventa passos novos: pendura-se nos que existem. Isso evita duplic
 **Onde vai (D-043).** É transversal aos quatro trechos, com o peso principal no Loop de Construção (passos 5 a 12), que é onde se decide e se constrói. Não é um passo próprio: um passo numerado obrigaria a renumerar a escada, alteraria a contagem de passos e sujeitaria o anexo a tradução obrigatória dos contratos aos oito idiomas antes de que a construção pudesse passar em verde, sem agregar nenhuma comporta que o loop não tenha já.
 
 **Como se engancha (D-044).** Uma fonte canônica, cinco âncoras e duas entradas prévias. O texto das regras vive só aqui e os prompts o citam; nunca o copiam. Repetir as quarenta e cinco regras dentro dos oito prompts do loop as dilui (competem com o trabalho de cada passo e o agente as obedece diferente em cada vez), as desalinha (duas cópias do mesmo texto se desincronizam sozinhas, que é o antipadrão que o passo 11 persegue) e não as torna mais transversais: o que torna uma regra transversal é que cada bloco passe pela mesma comporta, não que a regra esteja escrita em todas partes.
+
+**A única regra que entra no prompt, e por quê (D-070).** UX-28 é a exceção escrita ao de cima, e convém dizer em que difere das outras quarenta e cinco: aquelas são exigências sobre **o sistema que se constrói**, e a comporta mede-as sobre artefatos que o projeto deixa escritos; UX-28 é uma exigência sobre **a conversa na qual se constrói**, e a única maneira de o modelo obedecê-la é que esteja no que o modelo lê. Entra acotada -- nomeia as quatro partes e o parâmetro, e nada mais -- numa única redação inglesa idêntica nos oito idiomas. O que esta exceção **não** autoriza é copiar nenhuma das outras: o argumento de D-044 segue inteiro para tudo o que uma comporta pode olhar.
 
 | Momento | O que se agrega | Por que ali |
 |---|---|---|
@@ -197,6 +212,7 @@ Um único arquivo por projeto declara a capa 2 e a capa 3. Exemplo com a forma p
     "mutation": "stryker",
     "accessibility": "axe-core"
   },
+  "communication_depth": "decision_maker",
   "thresholds": {
     "lines_per_file": 300,
     "lines_per_function": 40,
@@ -215,6 +231,8 @@ Um único arquivo por projeto declara a capa 2 e a capa 3. Exemplo com a forma p
 }
 ```
 
+`communication_depth` é o parâmetro de UX-28 e toma um de três valores -- `beginner`, `decision_maker`, `technical`. Se o projeto não o declara, o agente usa `decision_maker` e diz isso: o default declara-se, não se adivinha.
+
 Os dois zeros são deliberados e são a parte que importa: a cobertura mínima a fixa a catraca com o medido, e o objetivo de mutação o fixa o dono quando o projeto tem usuários. Se estão em zero e ninguém os declarou, a comporta o reporta como limiar não declarado em vez de inventá-lo.
 
 ## 8. As duas peças, na forma que o método usa
@@ -222,20 +240,48 @@ Os dois zeros são deliberados e são a parte que importa: a cobertura mínima a
 **Qualidade de código.**
 
 > Set up and maintain the code-quality gate for this project, configured for its frontend family. The core rules are the same in every project; what changes is how each one is measured and at which threshold. Install one formatter and one linter with a single shared configuration; enforce size limits per file and per function, complexity per function, duplication, dead code, declared-and-used dependencies, type checking where the language allows it, coverage with a ratchet, and secret scanning. Where the project has real users, add mutation testing scoped to the changed lines and record the score per block. Then extend the gate to the frontend itself: no business rule inside a screen, one typed client for every server call, one home for shared state, no user-visible string outside the translation catalogue, a stable identifier and role on every interactive element, styling only through tokens, and automatic basic accessibility checks. Every rule has a stable id, a severity (blocks, warns, records) and a named verifier. Thresholds and exceptions are declared by the owner in one configuration file; a rule switched off without a written exception is a gate failure, not a decision. Report the result per rule in `docs/CODE_QUALITY.md`, not as a single number.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Monte e mantenha a comporta de qualidade de código do projeto, configurada para a sua família de frontend. As regras do núcleo são as mesmas em todo projeto; o que muda é com o que se mede cada uma e com qual limiar. Instale um único formatador e um único linter com configuração compartilhada; faça cumprir limites de tamanho por arquivo e por função, complexidade por função, duplicação, código morto, dependências declaradas e usadas, verificação de tipos onde a linguagem permitir, cobertura com catraca e varredura de segredos. Onde o projeto tiver usuários reais, agregue testes de mutação restritos às linhas mudadas e registre o escore por bloco. Depois estenda a comporta ao front: nenhuma regra de negocio dentro de uma tela, um único cliente tipado para toda chamada ao servidor, um só lugar para o estado compartilhado, nenhum texto visível fora do catálogo de traduções, identificador estável e papel em todo elemento interativo, estilos só por tokens e verificação automática de acessibilidade básica. Cada regra tem identificador estável, severidade (bloqueia, avisa, registra) e verificador nomeado. Os limiares e as exceções os declara o dono em um arquivo de configuração; uma regra apagada sem exceção escrita é um fracasso da comporta, não uma decisão. Reporte o resultado por regra em `docs/CODE_QUALITY.md`, não como um número único.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 **Usabilidade.**
 
 > Build the usability criteria for this project before writing the first screen, and enforce them where the method already has hooks. Group functionality by what the person came to do, never by the internal module or the data entity: every menu group is named with a user job in the project glossary, every functionality has exactly one canonical home, no functionality is orphaned, and every group is reachable in no more than three steps from the entry screen. Then declare accessibility in one matrix and derive everything from it: each functionality lists the profiles that have it, each functionality has at least one profile, each profile has at least one functionality and its own entry point, the navigation is generated from the matrix instead of written by hand, and every route checks the permission on the server because hiding an entry is not protecting it. Verify the matrix per profile with an end-to-end check that compares what is reachable with the matrix row: neither less nor more. Require the four states on every list (with data, empty, loading, error), a visible working indicator with the option to cancel long operations, an error message that says what happened and what to do without losing entered data, a primary action per screen, confirmation or undo for destructive actions, and a form that keeps what was typed. Run each manual test case once per affected profile, run the first-click check at the close of every block, and require a real screenshot of the test environment on every item that touches a screen. Record the result per rule, with owner-declared exceptions, in `docs/USABILITY.md`, and keep the matrix in `docs/PROFILE_MATRIX.md` as the single source of truth.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Monte os critérios de usabilidade do projeto antes de escrever a primeira tela, e faça-os cumprir onde o método já tem enganches. Agrupe as funcionalidades pelo que a pessoa veio fazer, nunca pelo módulo interno nem pela entidade de dados: cada grupo do menu se nomeia com um trabalho do usuário no glossário do projeto, cada funcionalidade tem exatamente uma casa canônica, nenhuma fica órfã e todo grupo se alcanca em no máximo três passos desde a tela de entrada. Depois declare a acessibilidade em uma única matriz e derive tudo dela: cada funcionalidade enumera que perfis a tem, cada funcionalidade tem ao menos um perfil, cada perfil tem ao menos uma funcionalidade e um ponto de entrada próprio, a navegação se gera desde a matriz em vez de se escrever a mão, e toda rota verifica a permissão do lado do servidor porque esconder uma entrada não é protegê-la. Verifique a matriz por perfil com um teste ponta a ponta que compare o alcançável contra a linha da matriz: nem menos nem mais. Exija os quatro estados em toda lista (com dados, vazia, carregando, com erro), um indicador visível de trabalho em curso com opção de cancelar o longo, uma mensagem de erro que diga o que passou e o que fazer sem perder o carregado, uma ação principal por tela, confirmação ou desfazer nas ações destrutivas e um formulário que conserve o escrito. Rode cada caso de teste manual uma vez por perfil afetado, rode o teste do primeiro clique no fechamento de cada bloco e exija uma captura real do ambiente de teste em todo pendente que toque uma tela. Registre o resultado por regra, com as exceções declaradas pelo dono, em `docs/USABILITY.md`, e mantenha a matriz em `docs/PROFILE_MATRIX.md` como fonte única de verdade.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 ## 9. O que esta proposta não faz
 
-- **Não agrega um passo.** São quarenta e cinco regras transversais (18 de qualidade e 27 de usabilidade), não uma etapa nova. Penduram-se nos passos que já existem.
+- **Não agrega um passo.** São quarenta e seis regras transversais (18 de qualidade e 28 de usabilidade), não uma etapa nova. Penduram-se nos passos que já existem.
 - **Não inventa um escore.** Um número de "usabilidade 78" não diz o que arrumar e se otimiza na direção errada. Se reporta por regra. A seção 12 propõe duas cifras derivadas, mas são uma contagem de regras com o seu assento - não uma nota de qualidade nem de usabilidade - e não autorizam fechar nada.
 - **Não substitui o dono.** O teste do primeiro clique, a captura e o teste de tarefa continuam sendo humanos: são o único instrumento que distingue "funciona" de "serve".
 - **Não traz limiares de fabrica.** Os do adaptador são um ponto de partida declarado; o projeto que não declare os seus os herda e fica registrado como tal.
@@ -253,6 +299,7 @@ Os dois zeros são deliberados e são a parte que importa: a cobertura mínima a
 | 4 | **Disciplina do interruptor:** vive na configuração do projeto e não no prompt; apagar só vale como decisão registrada com motivo, autor e data de revisão; o apagado é observável no reporte; e o interruptor se testa acendendo e apagando. | D-046 |
 | 5 | **Severidades iniciais, fixadas regra por regra:** em qualidade bloqueiam catorze (CQ-01 a CQ-06, CQ-08, CQ-11 a CQ-17), CQ-09 bloqueia onde há usuários reais, e avisam três (CQ-07, CQ-10, CQ-18). Em usabilidade bloqueiam onze (UX-02, UX-03, UX-08 a UX-12, UX-15, UX-16, UX-22, UX-27), UX-06 só registra e o resto avisa. Nem "tudo bloqueia" - o projeto não arranca - nem "tudo avisa" - a heurística é um adorno. | D-048 |
 | 6 | **A acessibilidade arranca avisando e escala a bloqueante por declaração do dono** quando o produto tem usuários finais fora da organização. O default não se inventa: a escalada se declara, com o mesmo mecanismo que qualquer limiar (D-045). | D-048 |
+| 7 | **A forma da pergunta é uma regra com identificador (UX-28), e entra nos prompts.** O método ordenava perguntar vinte e duas vezes e nunca dizia como; a forma são quatro partes em ordem e um nível de profundidade declarado pelo projeto. É a exceção escrita a D-044, acotada e argumentada na seção 6. | D-070 |
 
 ### Fechado em D-048, e as duas correções que arrasta
 
@@ -260,6 +307,8 @@ As duas perguntas que travavam a escrita dos prompts já estão respondidas: a 1
 
 1. **O defeito da contagem.** Onde este anexo dizia "vinte e sete regras" o número correto é **quarenta e cinco**: 18 de qualidade (CQ-01 a CQ-18) e 27 de usabilidade (UX-01 a UX-27). A cifra velha vinha de um rascunho que só contava a metade. Corrigido nas seções 6 e 9 e anotado em D-048; o texto de D-044 se conserva tal como se escreveu, porque uma decisão é um registro e não se reescreve.
 2. **O formatador, o linter, o tamanho e a complexidade não se afrouxam.** Uma versão anterior desta recomendação os mandava a "avisa" para não travar projetos com dívida herdada. Não pode ser: o passo 9 já os bloqueia hoje, e esta extensão o estende, não o substitui. A dívida herdada se resolve com exceção declarada - com motivo e data de revisão - ou com a linha de base da catraca, não baixando a severidade da regra.
+
+**E desde 2026-10-27 são quarenta e seis.** UX-28 entrou com D-070 e a conta passou a 18 de qualidade e 28 de usabilidade. A nota de cima conserva-se tal como foi escrita, porque uma correção também é um registro; o que muda com uma regra nova é a conta, não a história da conta.
 
 É uma limitação declarada, porque é a única de sua classe: **CQ-12 e CQ-14 bloqueiam com vermelho humano.** Nenhuma ferramenta prova que uma tela não decide regras de negocio. Se verificam no fechamento do pendente, com o caso manual na frente e o mesmo critério que UX-22 e UX-27; se o projeto não consegue sustentar esse fechamento, baixam a AVISA por decisão registrada. Uma regra que bloqueia e que ninguém verifica e pior que uma regra que avisa.
 
@@ -310,7 +359,7 @@ A razão de que sejam duas: apagar uma regra **sobe** o cumprimento e **baixa** 
 
 **Catraca.** O cumprimento não baixa de um bloco ao seguinte sem uma decisão registrada que o explique. É o mesmo mecanismo que a cobertura de testes já tem em CQ-08: o número de hoje é o piso de amanhã. Baixar não está proibido; baixar sem registro, sim.
 
-**O que não entra na conta.** O que só pode julgar uma pessoa - o teste do primeiro clique (UX-07), o teste de tarefa (UX-06), a captura (UX-27) e todos os casos manuais - se registra como passado ou falhado, por bloco, com nome e data, e se reporta a parte como cobertura de verificação humana. Não entra na porcentagem de cumprimento. Se se misturam, o resultado é um número que é sessenta por cento medição e quarenta por cento opinião, e ninguém pode dizer qual é qual. Por isso a seção 9 segue valendo: o painel não inventa uma nota de usabilidade, conta regras.
+**O que não entra na conta.** O que só pode julgar uma pessoa - o teste do primeiro clique (UX-07), o teste de tarefa (UX-06), a captura (UX-27), UX-28 e todos os casos manuais - se registra como passado ou falhado, por bloco, com nome e data, e se reporta a parte como cobertura de verificação humana. Não entra na porcentagem de cumprimento. Se se misturam, o resultado é um número que é sessenta por cento medição e quarenta por cento opinião, e ninguém pode dizer qual é qual. Por isso a seção 9 segue valendo: o painel não inventa uma nota de usabilidade, conta regras.
 
 **Como se falsifica.** Amplia a prova de aceitação da seção 11:
 

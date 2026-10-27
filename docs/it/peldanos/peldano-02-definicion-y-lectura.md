@@ -89,7 +89,16 @@ l'agente:
 > me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
 > `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
-> changes every day; the other two change only when the system changes. Reply in my language.
+> changes every day; the other two change only when the system changes.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Definiremo il progetto per iscritto. Leggi la rilevazione del business in
@@ -111,7 +120,17 @@ l'agente:
 > nominali in `PROJECT.md` e marca anche lì quello che hai inferito.
 > A parte, crea `docs/STATUS.md` per lo
 > stato vivo (su cosa si sta lavorando, cosa è aperto): quel file cambia tutti i giorni; gli altri
-> due cambiano solo quando cambia il sistema. Rispondi nella mia lingua.
+> due cambiano solo quando cambia il sistema.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
+>
+> Rispondi nella mia lingua.
 
 Cosa gli sto chiedendo: che valuti la rilevazione e chieda prima di redigere; che il file di
 progetto sia **corto** (il tetto di trecento righe è arbitrario ma necessario: senza tetto,
@@ -151,6 +170,13 @@ nell'albero.
 > `PROJECT.md` (it goes to `docs/STATUS.md` or to the pending-items register); and every pending
 > item must hang from a node of the semantic tree, and the tree is updated in the same commit
 > whenever a block adds or changes a node.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Applica queste correzioni: [lista]. Chiudi `PROJECT.md` e `docs/SEMANTIC_TREE.md` con la data
@@ -158,6 +184,14 @@ nell'albero.
 > `PROJECT.md` (va in `docs/STATUS.md` o nel registro delle voci in sospeso); e ogni voce in
 > sospeso deve pendere da un nodo dell'albero semantico, e l'albero si aggiorna nello stesso
 > commit ogni volta che un blocco aggiunge o cambia un nodo.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: le tue correzioni (soprattutto ai nodi che ha marcato come inferiti), la
 data, e due regole nuove nel patto: quella che protegge il file di progetto dal diventare storico,

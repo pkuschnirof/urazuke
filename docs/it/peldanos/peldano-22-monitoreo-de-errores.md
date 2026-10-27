@@ -85,7 +85,16 @@ l'agente:
 > the report. Tag every captured error with its source, and keep the errors of the tools that watch
 > the system (the panel, the resident agent, the monitoring itself) apart from the errors of the
 > system: the report lists them in a separate section, and only the system's errors open pending
-> items. Document it in `docs/MONITORING.md`. Reply in my language.
+> items. Document it in `docs/MONITORING.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [it]
 > Ci assicureremo che nessun errore in produzione passi inosservato. Usando i record del gradino
@@ -108,6 +117,14 @@ l'agente:
 > dagli errori del sistema: il report li elenca in una sezione a parte, e solo gli errori del
 > sistema aprono elementi in sospeso. Documentalo in `docs/MONITORING.md`. Rispondi nella mia
 > lingua.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 **Gli errori dello strumento non sono errori del sistema.** La cattura centralizzata separa per fonte: gli errori del sistema e quelli degli strumenti che lo osservano (il pannello, l'agente residente, il monitoraggio stesso) si conservano con fonte distinta, il report li elenca in sezioni separate, e solo quelli del sistema aprono elementi in sospeso. Nella pratica Turnera, il primo report ciclico aprì sei "bug" che erano il pannello di Forge che parlava con un server spento. (Decisione D-038.)
 
@@ -131,6 +148,13 @@ rapporto.
 > pending item or a written reason with a date; and tell me which errors disappeared and why,
 > with the commit that fixed each one. An error that disappeared without a fix is not solved: it
 > is hiding, and it stays in the report until its cause is known.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
 > Con ogni rapporto ciclico degli errori: percorrilo con me; apri le voci in sospeso correttive
@@ -138,6 +162,14 @@ rapporto.
 > una voce in sospeso o una ragione scritta con una data; e dimmi quali errori sono spariti e
 > perché, con il commit che ha sistemato ciascuno. Un errore sparito senza una correzione non è
 > risolto: si sta nascondendo, e resta nel rapporto finché non se ne conosce la causa.
+>
+> Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
+> elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
+> l'interrogativo; la domanda con le sue possibili risposte numerate; e la tua raccomandazione.
+> Dillo alla profondità tecnica che il progetto ha dichiarato in `communication_depth`
+> —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
+> `decision_maker`.
 
 Cosa gli sto chiedendo: la disciplina del ciclo, e la regola dell'errore che sparisce, che è la
 più controintuitiva e quella che vale di più: un errore che se n'è andato da solo torna da solo.

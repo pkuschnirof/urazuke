@@ -88,6 +88,13 @@ o agente:
 > layer, and show me the level changing in the test environment without a redeploy. Document the
 > levels, where to change them and where the records live in `docs/OBSERVABILITY.md`. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Vamos fazer com que este sistema seja observável e rastreável, de ponta a ponta, com um nível
@@ -108,7 +115,16 @@ o agente:
 > `docs/INITIAL_SURVEY.md`, de modo que nenhum registro contenha dados pessoais. Mostre-me um
 > pedido real seguido pelo seu identificador através de cada camada, e mostre-me o nível mudando
 > no ambiente de teste sem voltar a implantar. Documente os níveis, onde se mudam e onde vivem os
-> registros em `docs/OBSERVABILITY.md`. Responda no meu idioma.
+> registros em `docs/OBSERVABILITY.md`.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
+>
+> Responda no meu idioma.
 
 O que estou pedindo: as cinco peças, e duas demonstrações que são a evidência do degrau: **um
 identificador real seguido por todas as camadas** (se não consegue mostrá-lo, a propagação está
@@ -130,6 +146,13 @@ ninguém o decida.
 > the actor at the level that corresponds, masks personal data, propagates the id to every call it
 > makes, and records every consequential action in the audit trail. A pending item that adds one
 > of those is not closed without showing one real id followed end to end through the new code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Todo módulo, tarefa ou integração nova escreve registros estruturados com o identificador de
@@ -137,6 +160,13 @@ ninguém o decida.
 > identificador a cada chamada que faz, e registra toda ação com consequência na auditoria. Uma
 > pendência que acrescenta um desses não se fecha sem mostrar um identificador real seguido de
 > ponta a ponta através do código novo.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: que a observabilidade não se degrade com cada módulo novo, que é o que
 acontece sempre se não for regra: o módulo do mês três não registra nada e é justamente o que

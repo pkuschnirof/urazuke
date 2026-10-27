@@ -115,7 +115,16 @@ el agente:
 > and update them in the same change, whoever owns them. (6) Every business decision goes to
 > `docs/DECISIONS.md` the moment it is taken, with the person's name and the date. (7) Update
 > `docs/STATUS.md` with what you are doing when you start and when you stop, so that the others'
-> agents see it. Reply in my language.
+> agents see it.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [es]
 > Trabajamos en equipo sobre una sola rama compartida, cada persona con su propia sesión de
@@ -131,7 +140,16 @@ el agente:
 > sus consumidores en `docs/PRODUCER_CONSUMER_MAP.md` y actualizalos en el mismo cambio, sean de
 > quien sean. (6) Toda decisión de negocio va a `docs/DECISIONS.md` en el momento en que se toma,
 > con el nombre de la persona y la fecha. (7) Actualizá `docs/STATUS.md` con lo que estás haciendo
-> al empezar y al terminar, para que los agentes de los demás lo vean. Respondé en mi idioma.
+> al empezar y al terminar, para que los agentes de los demás lo vean.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo: las siete reglas hechas rutina del agente, porque el agente no ve a los
 otros agentes y solo va a cumplir lo que lea; la lectura obligatoria al empezar la sesión, que es
@@ -153,7 +171,16 @@ estado vivo escrito al momento.
 > field and by the producer-consumer map; if there is an overlap, stop and tell me, do not start.
 > If there is none, write my name in the "claimed by" field with today's date, write in
 > `docs/STATUS.md` what I am starting, re-read the item's specification, and tell me which
-> contracts of the map this item will touch and who consumes them. Reply in my language.
+> contracts of the map this item will touch and who consumes them.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [es]
 > Tomo el pendiente [PND-NNN]. Antes que nada: listá los pendientes reclamados por otros y decime
@@ -161,7 +188,16 @@ estado vivo escrito al momento.
 > productor-consumidor; si hay solapamiento, frená y decímelo, no empieces. Si no hay, escribí mi
 > nombre en el campo "reclamado por" con la fecha de hoy, escribí en `docs/STATUS.md` qué empiezo,
 > releé la especificación del pendiente, y decime qué contratos del mapa va a tocar este pendiente
-> y quién los consume. Respondé en mi idioma.
+> y quién los consume.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo: la verificación de solapamiento antes de empezar, que es el momento barato
 de evitar un conflicto; el reclamo escrito; y la lista de consumidores que voy a tocar, para
@@ -184,7 +220,16 @@ saber desde el principio a quién le cambio algo.
 > show me the counts. If anything is red, stop: tell me what and whose change it comes from. If
 > this item is not finished, confirm the feature switch is off by default and say so in the
 > commit message. Then push, show me the pipeline green on the shared branch, and update
-> `docs/STATUS.md` and the pending item. Reply in my language.
+> `docs/STATUS.md` and the pending item.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [es]
 > Vamos a integrar a la rama compartida. Traé primero los cambios de los demás y decime qué entró y
@@ -194,7 +239,16 @@ saber desde el principio a quién le cambio algo.
 > caracterización, y mostrame los números. Si algo está en rojo, frená: decime qué y de qué cambio
 > de quién viene. Si este pendiente no está terminado, confirmá que el interruptor está apagado por
 > defecto y decilo en el mensaje del commit. Después subí, mostrame la cadena en verde sobre la
-> rama compartida, y actualizá `docs/STATUS.md` y el pendiente. Respondé en mi idioma.
+> rama compartida, y actualizá `docs/STATUS.md` y el pendiente.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
+>
+> Respondé en mi idioma.
 
 Qué le estoy pidiendo: traer antes de subir; resolver los conflictos leyendo los dos lados y no
 "ganando" (el reflejo del modelo ante un conflicto es quedarse con su versión); la batería como

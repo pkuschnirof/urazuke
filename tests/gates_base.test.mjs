@@ -87,13 +87,20 @@ test('las severidades iniciales son las que fijo D-048, regla por regla', () => 
     ['UX-02', 'UX-03', 'UX-08', 'UX-09', 'UX-10', 'UX-11', 'UX-12', 'UX-15', 'UX-16', 'UX-22', 'UX-27'],
     'en usabilidad bloquean once');
   assert.deepEqual(ids((x) => x.group === 'usability' && x.initial_severity === 'records'), ['UX-06'], 'UX-06 solo registra');
-  assert.deepEqual(ids((x) => x.human_red), ['CQ-12', 'CQ-14', 'UX-22', 'UX-27'], 'cuatro reglas bloquean con rojo humano');
+  // UX-28 entro el 2026-10-27 (D-070) y es la quinta de rojo humano: la forma de la pregunta la
+  // juzga el dueno al cierre del pendiente, por el mismo motivo que la captura de UX-27.
+  assert.deepEqual(ids((x) => x.human_red), ['CQ-12', 'CQ-14', 'UX-22', 'UX-27', 'UX-28'], 'cinco reglas se verifican con rojo humano');
+  assert.deepEqual(ids((x) => x.group === 'usability' && x.initial_severity === 'warns' && x.human_red), ['UX-28'],
+    'UX-28 es la unica que avisa y ademas se verifica a mano: ninguna prueba puede mirar una pregunta concreta');
 });
 
-test('el conteo correcto es cuarenta y cinco: 18 de calidad y 27 de usabilidad', () => {
-  assert.equal(fuentes.heuristics.rules.length, 45);
+test('el conteo correcto es cuarenta y seis: 18 de calidad y 28 de usabilidad', () => {
+  // Era cuarenta y cinco hasta el 2026-10-27, cuando entro UX-28 (D-070). La cuenta se congela
+  // aca a proposito: es el unico lugar del arbol que cae si una regla entra o sale sin decision.
+  assert.equal(fuentes.heuristics.rules.length, 46);
   assert.equal(fuentes.heuristics.rules.filter((r) => r.group === 'code_quality').length, 18);
-  assert.equal(fuentes.heuristics.rules.filter((r) => r.group === 'usability').length, 27);
+  assert.equal(fuentes.heuristics.rules.filter((r) => r.group === 'usability').length, 28);
+  assert.equal(fuentes.heuristics.counts.total, 46, 'la cuenta declarada es la real');
 });
 
 test('todo enunciado se resuelve contra el anexo, y ninguno esta transcrito en los datos', () => {
@@ -104,7 +111,7 @@ test('todo enunciado se resuelve contra el anexo, y ninguno esta transcrito en l
     assert.ok(!('text' in r.statement), 'la regla ' + r.id + ' trae el texto transcrito en los datos');
     assert.ok(!('document' in r.statement), 'la regla ' + r.id + ' repite la ruta del anexo');
   }
-  assert.equal(anexo.reglas.size, 45, 'el anexo declara ' + anexo.reglas.size + ' reglas');
+  assert.equal(anexo.reglas.size, 46, 'el anexo declara ' + anexo.reglas.size + ' reglas');
   assert.deepEqual(anexo.problemas, []);
 });
 

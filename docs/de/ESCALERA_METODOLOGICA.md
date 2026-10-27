@@ -245,8 +245,8 @@ Jeder Schritt hat acht Teile, immer dieselben, damit sie sich vergleichen lassen
 
 Und es gibt noch einen Teil, der **nur in sechs Schritten** auftaucht und ein querliegendes
 Stück ist, das ändert, was gelesen werden muss: **Anhang H**
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Fünfundvierzig überprüfbare Regeln — achtzehn zur
-Codequalität und siebenundzwanzig zur Benutzbarkeit —, jede mit ihrer stabilen Kennung, ihrer
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Sechsundvierzig überprüfbare Regeln — achtzehn zur
+Codequalität und achtundzwanzig zur Benutzbarkeit —, jede mit ihrer stabilen Kennung, ihrer
 Schwere und dem Instrument, das sie misst. Es ist kein optionaler Anhang: **er ist verpflichtend**,
 und er hängt sich an sechs Punkten in die Leiter ein. In Schritt 2 kommen seine zwei
 **Voreingaben** herein (das Benutzerglossar und die Profilliste: die Wörter, die die Leute
@@ -260,6 +260,23 @@ einer davon aufhört, es zu sagen. Sie ist daraus geboren, es spät entdeckt zu 
 verpflichtend und in diesem Dokument nicht genannt, und der erste Leser, der die Methode in ein
 anderes Format übertrug, übersprang siebenundzwanzig der fünfundvierzig Regeln, weil er nie wusste,
 dass sie da waren.
+
+Und eine dieser sechsundvierzig handelt nicht von dem System, das gebaut wird, sondern davon,
+**wie du gefragt wirst**. Es ist **UX-28**, und sie kam am 2026-10-27 hinzu, weil sie fehlte: die
+Methode befiehlt ihren Prompts, dich zu fragen — zweiundzwanzig Mal, in mehr als der Hälfte des
+Korpus — und sagte nirgends, wie man fragt, also blieb die Form der Improvisation überlassen und
+du bekamst die Frage lose. Von jetzt an kommt jede Frage, die der Agent dir stellt, mit vier
+Teilen und in dieser Reihenfolge: **die Daten**, die sie nötig machen, aufgelistet; **ein Absatz**
+von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar macht; **die Frage** mit ihren
+möglichen Antworten durchnummeriert; und **die Empfehlung** des Agenten. Und in der technischen
+Tiefe, die du wählst, und das sind drei, einmal in der Projektkonfiguration erklärt: `beginner`
+(Alltagssprache, am Ergebnis orientiert), `decision_maker` (gemessene Zahlen und Folgen, ohne
+Dateipfade — der Default) und `technical` (Datei, Zeile und Befehl). Erklärst du keine, nutzt der
+Agent `decision_maker` und sagt es. Die Klausel steht in den zweiundsiebzig Prompts des Korpus, in
+einer einzigen englischen Fassung, identisch in den acht Sprachen, und es gibt eine Prüfung in der
+Kette, die rot wird, wenn sie aus einer herausfällt. Was keine Prüfung kann, und das sollte man
+wissen, ist zu prüfen, ob eine konkrete Frage ihre vier Teile hat: das beurteilst du, und darum
+warnt die Regel statt zu blockieren.
 
 Und noch etwas, das ändert, was gelesen werden muss, weil es entscheidet, **welche** dieser
 Anforderungen für dich gelten: **die Version der Methode, die das Projekt festschreibt.** Die

@@ -66,6 +66,13 @@
 > functional block, add to the user manual the screens and flows of the pending items closed
 > in that block, with real screenshots from the test environment, and add their entries to the
 > changelog. If you do not know which manual, ask.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > ユーザーが見るもの、オペレータがすること、またはシステムのデプロイ方法を変えるすべての
@@ -73,6 +80,12 @@
 > ックで閉じた保留項目の画面とフローを、テスト環境の実際のスクリーンショットとともにユーザー
 > マニュアルに追加し、その項目を変更日誌に追加してください。どのマニュアルかわからなければ、
 > 聞いてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：同じコミットのルール、マニュアルを最新に保つ唯一のもの。閉じた保留項目
 がマニュアルと変更日誌になる瞬間としてのブロックの締め。そしてどのマニュアルへ行くか明確
@@ -102,6 +115,13 @@
 > business knows (who is responsible for what, which phone number to call), ask me; do not leave
 > a gap and do not invent. Each manual carries a date and the system version. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > 今日テスト環境にあるシステムから三つのマニュアルを生成してください：ユーザーマニュアル
@@ -111,7 +131,15 @@
 > 復元方法、落ちたときに何をするか。AIなしで、午前三時に、手でやらなければならない人のため
 > に書かれたもの）。どこかの節に事業だけが知ること（誰が何の責任者か、どの電話番号にかける
 > か）が必要なら、私に聞いてください。穴を残さず、発明しないでください。各マニュアルは日付
-> とシステムのバージョンを持ちます。私の言語で答えてください。
+> とシステムのバージョンを持ちます。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
+>
+> 私の言語で答えてください。
 
 何を求めているか：読者付きの三つのマニュアル。テスト環境の**実際の**スクリーンショット
 （絵でも記述でもなく）。復旧マニュアルのための午前三時の基準。文書化に合わせた形の完全性

@@ -119,6 +119,13 @@ faites, pas l'agent :
 > `docs/USABILITY.md` report result by result, never as a single number. The
 > catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
 >
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [fr]
@@ -152,6 +159,13 @@ faites, pas l'agent :
 > seul nombre. Le catalogue est `docs/ANEXO_HEURISTICAS.md` : citez-le, ne
 > le copiez pas.
 >
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
 > Réponds dans ma langue.
 
 Ce que je lui demande : les cinq vérifications qu'un relecteur humain ferait, faites par machine
@@ -179,6 +193,13 @@ qui se tolère avec une date m'appartient.
 > raised to pass; if a limit must change, say so with the reason and I decide. At the close of
 > every block, show me `docs/CODE_QUALITY.md` with the numbers of the block against the previous
 > one.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [fr]
 > Tout élément en attente se clôt avec la porte de qualité au vert : linter, formateur, limites de
@@ -187,6 +208,13 @@ qui se tolère avec une date m'appartient.
 > taire avec une exception, et une limite ne se relève jamais pour passer ; si une limite doit
 > changer, dis-le avec la raison et c'est moi qui décide. À la clôture de chaque bloc, montre-moi
 > `docs/CODE_QUALITY.md` avec les chiffres du bloc face au précédent.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
 
 Ce que je lui demande : que la qualité fasse partie de la clôture de chaque élément en attente et
 ne soit pas une tâche à part ; l'interdiction de faire taire (un modèle face à un linter au rouge
@@ -212,7 +240,16 @@ réels) : tests de mutation.**
 > killed, how many survived and where. Do not fix anything yet: every surviving mutant in code
 > that matters becomes a pending item for a test that catches it, and I decide which ones matter.
 > From now on, report the mutation score at the close of every block next to the coverage, and
-> treat a drop as a quality failure. Reply in my language.
+> treat a drop as a quality failure.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [fr]
 > Ajoute des tests de mutation à la porte de qualité, [sur tout le code | seulement sur les lignes
@@ -223,7 +260,16 @@ réels) : tests de mutation.**
 > encore : chaque mutant qui survit dans du code qui compte devient un élément en attente pour un
 > test qui l'attrape, et c'est moi qui décide lesquels comptent. Dès maintenant, rapporte le score
 > de mutation à la clôture de chaque bloc à côté de la couverture, et traite une baisse comme un
-> échec de qualité. Réponds dans ma langue.
+> échec de qualité.
+>
+> Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
+> nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
+> question ; la question avec ses réponses possibles numérotées ; et ta recommandation. Dis-le à
+> la profondeur technique que le projet a déclarée dans `communication_depth` —`beginner`,
+> `decision_maker` ou `technical`— ; si le projet n'en a déclaré aucune, utilise `decision_maker`.
+>
+> Réponds dans ma langue.
 
 Ce que je lui demande : la mesure que la couverture ne donne pas (la couverture dit quel code a été
 exécuté ; la mutation dit quel code est surveillé) ; le périmètre limité aux lignes changées, qui

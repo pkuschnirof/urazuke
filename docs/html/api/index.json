@@ -6,7 +6,7 @@
     "why": "A directory, not a catalogue: its identity is the identity of what it points at. A hash of its own would force a third declared version line, that nobody declares, every time one of the listed resources changes.",
     "staleness_check": "Fetch a listed resource, recompute its hash over the canonical form declared here for that resource, and compare it with the hash quoted here. If the two differ, this index is stale, and you know that without having to trust it."
   },
-  "generated_at": "2026-10-27T14:34:14.875Z",
+  "generated_at": "2026-10-27T16:40:34.877Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "canonical_base": "https://yujin.app/urazuke/api/",
@@ -21,16 +21,16 @@
       "name": "gates.json",
       "url": "https://yujin.app/urazuke/api/gates.json",
       "media_type": "application/json",
-      "bytes": 107965,
+      "bytes": 109517,
       "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.",
       "version_field": "catalog_version",
-      "version": "2026.10.7",
+      "version": "2026.10.8",
       "content_hash": {
         "field": "content_hash.value",
         "algo": "sha256",
         "encoding": "hex_lower",
         "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
-        "value": "7575673f723e498cf217b97b9efa0da3e98bd1e6d0a01cefaa87718a6cce027c"
+        "value": "54b57e7871914e28b49fe45d05188660589dff5427abf032e1e0efcd6651e269"
       },
       "version_ledger": {
         "url": "https://github.com/pkuschnirof/urazuke/blob/main/gates/catalog.json",
@@ -45,16 +45,16 @@
       "name": "prompts.json",
       "url": "https://yujin.app/urazuke/api/prompts.json",
       "media_type": "application/json",
-      "bytes": 64931,
+      "bytes": 102083,
       "what": "The prompts of the Urazuke method, published as data. The method owns them; a tool consumes them. They are one English piece, identical in every version of the method -- the list of versions is declared in the gate catalogue under languages.prose_versions -- and a tool does not rewrite them.",
       "version_field": "corpus_version",
-      "version": "2026.10.4",
+      "version": "2026.10.5",
       "content_hash": {
         "field": "content_hash.value",
         "algo": "sha256",
         "encoding": "hex_lower",
         "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
-        "value": "8e69d1189be99e6e0eee2bb8b2f06c23ce58ac56a25e5edeab7a5122d5c1adb1"
+        "value": "d388f6adb8c788631b4908ed57c0a599accf19c88dde069f4275c25a90845363"
       },
       "version_ledger": {
         "url": "https://github.com/pkuschnirof/urazuke/blob/main/prompts/catalog.json",

@@ -81,7 +81,16 @@ el agente:
 > the tolerance I gave you ([tolerance] for the most used screen) and with the sizing assumptions,
 > and tell me which assumption was wrong, if any. Do not optimize anything yet. Write
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
-> diagnosis of the first bottleneck. Reply in my language.
+> diagnosis of the first bottleneck.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [es]
 > Vamos a averiguar cómo se comporta este sistema a los volúmenes de `docs/SIZING.md`, y dónde se
@@ -100,6 +109,13 @@ el agente:
 > si alguno. No optimices nada todavía. Escribí `docs/PERFORMANCE_[fecha].md` con los números, los
 > comandos, el punto de ruptura y tu diagnóstico del primer cuello de botella. Respondé en mi
 > idioma.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
 
 Qué le estoy pidiendo: un script de carga que es un medidor más (vive en el repositorio y tiene
 test, porque un script de carga que no ejercita el flujo mide el aire); tres corridas (esperado,
@@ -126,6 +142,13 @@ diagnóstico es cambiar lo que no era.
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
 > reruns before every deployment that changes the architecture, the persistence or a critical
 > flow, and its results are archived with date and version. Show me the first run archived.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [es]
 > Registrá en `docs/PERFORMANCE.md`: el volumen esperado, el volumen por diez, el punto de ruptura
@@ -136,6 +159,13 @@ diagnóstico es cambiar lo que no era.
 > compuerta en `docs/GATES.md`: se vuelve a correr antes de cada despliegue que cambie la
 > arquitectura, la persistencia o un flujo crítico, y sus resultados se archivan con fecha y
 > versión. Mostrame la primera corrida archivada.
+>
+> Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
+> enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
+> pregunta con sus respuestas posibles enumeradas; y tu recomendación. Decilo a la profundidad
+> técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
+> `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
 
 Qué le estoy pidiendo: los umbrales de alerta derivados del punto de ruptura, que es el enganche
 con el peldaño 21; los cuellos de botella como pendientes con el número como criterio (así se

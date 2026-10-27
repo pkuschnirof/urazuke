@@ -72,6 +72,13 @@
 > layer, and show me the level changing in the test environment without a redeploy. Document the
 > levels, where to change them and where the records live in `docs/OBSERVABILITY.md`. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 我们要让这个系统从头到尾可观测、可追溯，而且级别由我来改、不用重新部署。读
@@ -86,7 +93,14 @@
 > 监控将要读的健康与指标端点或文件（请求数、延迟、错误、队列大小、资源使用）；(5) 对
 > `docs/INITIAL_SURVEY.md` 中列出的每个个人字段做脱敏，使得没有任何一条日志记录含有个人
 > 数据。给我看一个真实请求被它的标识符贯穿每一层，并给我看在测试环境里不重新部署就改变级
-> 别。把级别、在哪里改它们、日志住在哪里记进 `docs/OBSERVABILITY.md`。用我的语言回复。
+> 别。把级别、在哪里改它们、日志住在哪里记进 `docs/OBSERVABILITY.md`。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
+>
+> 用我的语言回复。
 
 我在要求什么：那五件东西，以及两次演示，它们就是这级台阶的证据：**一个真实标识符被所有层跟踪**
 （如果它拿不出来，传递在某处断了）和**不部署就改变级别**（如果必须部署，那就不是可配置的）。有
@@ -105,11 +119,23 @@
 > the actor at the level that corresponds, masks personal data, propagates the id to every call it
 > makes, and records every consequential action in the audit trail. A pending item that adds one
 > of those is not closed without showing one real id followed end to end through the new code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 每个新模块、新任务或新集成都要在相应的级别上写带关联标识符和执行者的结构化日志记录，对
 > 个人数据做脱敏，把标识符传递给它发起的每一次调用，并把每个有后果的动作记进审计轨迹。一
 > 个加了上述之一的待办项，不拿出一个真实标识符被从头到尾跟踪着穿过新代码，就不算关闭。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：让可观测性不随着每个新模块退化，而不是规则的话这总会发生：第三个月的那个模块什么
 都不记录，而它恰恰就是会坏的那个。

@@ -71,6 +71,13 @@
 > first-click check, where I name the place I would look for a task and you
 > compare that with the menu, and the real screenshot of the test
 > environment.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 每个会改变用户所见或所做之事的待办项，都要在它的人工测试用例写进 `docs/MANUAL_TESTS.md`
@@ -84,6 +91,11 @@
 > `docs/PROFILE_MATRIX.md` 推导出来的，不是手写的：只用一个角
 > 色跑过的用例不算执行过（附录H，锚点4）。每个块收尾时加上两项没有任何机器能替代的确
 > 认：第一次点击，我说出我会去哪里找这件事，你把它和菜单对照；以及对测试环境的真实截图。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：用例出自验收标准（这样它检验的是被要求的东西，而不是模型理解到的东西）；它写给
 一个不知道系统怎么运转的人看，那正是一个测试用例和一份技术笔记之间的差别；它包含一个人能验证
@@ -106,7 +118,16 @@
 > the semantic tree it touches; do not fix anything now. For every case that passed, nothing. Then
 > tell me, flow by flow, how many cases passed and how many failed, compared with the previous
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
-> the case or the system is the problem. Reply in my language.
+> the case or the system is the problem.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [zh]
 > 读 `docs/MANUAL_TESTS.md` 里今天的那些执行。对每一个失败的用例，以及文件末尾每一条零散
@@ -114,6 +135,11 @@
 > 及的语义树节点下；现在什么都不要修。对每一个通过的用例，什么都不做。然后逐条流程告诉我，
 > 多少个用例通过、多少个失败，和上一次执行作对比，以及哪些失败在重复出现。如果某个用例没能
 > 执行，告诉我为什么，以及问题出在用例身上还是系统身上。用我的语言回答。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：把重新注入做成可操作的：每一次人为发现的失败都是一个纠正型待办项，用那个人的话
 （不是模型的话）作为复现，并挂在树上；和上一次执行的对比，那是告诉你系统在功能块之间是在变好

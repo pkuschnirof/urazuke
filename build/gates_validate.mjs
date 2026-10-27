@@ -285,7 +285,7 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
   const cq = heuristics.rules.filter((r) => r.group === 'code_quality').length;
   const ux = heuristics.rules.filter((r) => r.group === 'usability').length;
   if (cq !== heuristics.counts.code_quality || ux !== heuristics.counts.usability || cq + ux !== heuristics.counts.total) {
-    err('E_CUENTA', 'las cuentas declaradas (' + heuristics.counts.code_quality + ' + ' + heuristics.counts.usability + ' = ' + heuristics.counts.total + ') no son las reales (' + cq + ' + ' + ux + ' = ' + (cq + ux) + ')', 'gates/heuristics.json', 'corregi la cuenta; el conteo correcto es 45 (D-048)');
+    err('E_CUENTA', 'las cuentas declaradas (' + heuristics.counts.code_quality + ' + ' + heuristics.counts.usability + ' = ' + heuristics.counts.total + ') no son las reales (' + cq + ' + ' + ux + ' = ' + (cq + ux) + ')', 'gates/heuristics.json', 'corregi la cuenta: la declarada tiene que ser la real (D-048, D-070)');
   }
   for (const r of heuristics.rules) {
     if (r.human_red && r.instrument.includes('auto_gate')) err('E_ROJO_HUMANO', 'la regla ' + r.id + ' bloquea con rojo humano y a la vez declara compuerta automatica', 'gates/heuristics.json', 'un rojo humano se verifica al cierre, no por commit');
@@ -491,6 +491,9 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
     }
   }
   evaluators.evaluators.forEach((e, i) => revisarProcedencia(e, 'gates/evaluators.json.evaluators[' + i + ']'));
+  // Las reglas del anexo tambien: una regla agregada despues del congelado sin procedencia
+  // dejaria el diferencial de un upgrade sin contarla (D-070).
+  heuristics.rules.forEach((r) => revisarProcedencia(r, 'gates/heuristics.json.rules[' + r.id + ']'));
 
   const fijacion = schema.pinning;
   if (!esObjeto(fijacion)) {
@@ -550,9 +553,15 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
 if (esLineaDeComandos(import.meta.url)) {
   const i = process.argv.indexOf('--config');
   const config = i > 0 ? JSON.parse(readFileSync(process.argv[i + 1], 'utf8')) : null;
-  const errores = validar(cargarFuentes(), extraerAnexo(), config);
+  const fuentes = cargarFuentes();
+  const errores = validar(fuentes, extraerAnexo(), config);
   if (!errores.length) {
-    console.log('compuertas: validado (24 peldanos, 8 estaciones, 45 reglas)' + (config ? ' + la configuracion del proyecto' : ''));
+    // La linea se cuenta del dato y no se escribe a mano: una cuenta clavada en el mensaje de
+    // exito es una cuenta que puede mentir justo cuando el dato cambio (UX-28 entro el
+    // 2026-10-27 y esta linea seguia diciendo 45).
+    const cuenta = fuentes.steps.steps.length + ' peldanos, ' + fuentes.stations.stations.length
+      + ' estaciones, ' + fuentes.heuristics.rules.length + ' reglas';
+    console.log('compuertas: validado (' + cuenta + ')' + (config ? ' + la configuracion del proyecto' : ''));
     process.exit(0);
   }
   for (const e of errores) {

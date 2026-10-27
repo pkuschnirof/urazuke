@@ -75,7 +75,16 @@
 > the tolerance I gave you ([tolerance] for the most used screen) and with the sizing assumptions,
 > and tell me which assumption was wrong, if any. Do not optimize anything yet. Write
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
-> diagnosis of the first bottleneck. Reply in my language.
+> diagnosis of the first bottleneck.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [ja]
 > このシステムが `docs/SIZING.md` の量でどうふるまうか、そしてどこで壊れるかを調べます。テス
@@ -92,6 +101,12 @@
 > ください。まだ何も最適化しないでください。`docs/PERFORMANCE_[日付].md` に数字、コマンド、
 > 破断点、そして最初のボトルネックについてのあなたの診断を書いてください。私の言語で答えてく
 > ださい。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：もう一つの計器である負荷スクリプト（リポジトリに住みテストを持つ。フローを
 動かさない負荷スクリプトは空気を計測するからだ）。三つの実行（期待される量、十倍、壊れるま
@@ -116,6 +131,13 @@
 > measured number as its acceptance criterion. Make the load test a gate in `docs/GATES.md`: it
 > reruns before every deployment that changes the architecture, the persistence or a critical
 > flow, and its results are archived with date and version. Show me the first run archived.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [ja]
 > `docs/PERFORMANCE.md` に記録してください：期待される量、十倍の量、何が壊れるかとともに書い
@@ -125,6 +147,12 @@
 > `docs/GATES.md` のゲートにしてください：アーキテクチャ、永続化、重要なフローを変えるデプロ
 > イのたびに走らせ直し、その結果を日付とバージョンとともに保管します。最初の実行が保管された
 > のを見せてください。
+>
+> 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
+> てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
+> 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
+> ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
+> れば `decision_maker` を使ってください。
 
 何を求めているか：破断点から導かれた警報の閾値。それが第21段との接続だ。数字を基準として持つ
 保留項目としてのボトルネック（そうすれば「今は速くなった」ではなく証拠で閉じられる）。そして

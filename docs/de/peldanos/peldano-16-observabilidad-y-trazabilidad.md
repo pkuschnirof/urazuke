@@ -93,6 +93,13 @@ machst es, nicht der Agent:
 > layer, and show me the level changing in the test environment without a redeploy. Document the
 > levels, where to change them and where the records live in `docs/OBSERVABILITY.md`. Reply in my
 > language.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Wir werden dieses System beobachtbar und nachverfolgbar machen, von Anfang bis Ende, mit einem
@@ -114,7 +121,17 @@ machst es, nicht der Agent:
 > aufgelistet ist, sodass kein Log-Eintrag personenbezogene Daten enthält. Zeig mir eine echte
 > Anfrage, der über jede Schicht hinweg ihre ID folgt, und zeig mir das Level, das sich in der
 > Testumgebung ohne neues Deployment ändert. Dokumentiere die Level, wo man sie ändert und wo die
-> Einträge leben, in `docs/OBSERVABILITY.md`. Antworte in meiner Sprache.
+> Einträge leben, in `docs/OBSERVABILITY.md`.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 Was ich hier verlange: die fünf Teile, und zwei Beweise, die der Beleg dieses Schritts sind:
 **eine echte Kennung, der durch alle Schichten gefolgt wird** (wenn er sie nicht zeigen kann, ist
@@ -139,6 +156,13 @@ entschieden hat.
 > the actor at the level that corresponds, masks personal data, propagates the id to every call it
 > makes, and records every consequential action in the audit trail. A pending item that adds one
 > of those is not closed without showing one real id followed end to end through the new code.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Jedes neue Modul, jede neue Aufgabe und jede neue Integration schreibt strukturierte
@@ -147,6 +171,14 @@ entschieden hat.
 > mit Konsequenz im Audit-Log fest. Ein offener Posten, der eines davon hinzufügt, wird nicht
 > geschlossen, ohne eine echte ID zu zeigen, der von Anfang bis Ende durch den neuen Code gefolgt
 > wurde.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: dass sich die Beobachtbarkeit nicht mit jedem neuen Modul verschlechtert,
 was immer passiert, wenn es keine Regel ist: das Modul aus Monat drei loggt nichts und ist genau

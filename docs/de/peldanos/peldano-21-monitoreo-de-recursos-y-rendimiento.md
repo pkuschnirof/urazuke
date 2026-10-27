@@ -93,7 +93,16 @@ machst es, nicht der Agent:
 > own verifiable window: the first and the last timestamp read from the database or the log, never a
 > number typed by hand; a window typed by hand is marked as such in the report and only warns, it
 > never opens a pending item on its own. Document the thresholds, the channel, the cycle and how to
-> silence an alert with a written reason in `docs/MONITORING.md`. Reply in my language.
+> silence an alert with a written reason in `docs/MONITORING.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
+> Reply in my language.
 
 > [de]
 > Wir werden dieses System in der Produktion unter Beobachtung halten. Bau mit den Metriken und
@@ -118,7 +127,17 @@ machst es, nicht der Agent:
 > Zahl; ein von Hand getipptes Fenster wird im Bericht als solches markiert und warnt nur, es
 > öffnet nie von allein einen offenen Punkt. Dokumentiere die Schwellenwerte, den Kanal, den Zyklus
 > und wie man einen Alarm mit einer geschriebenen Begründung stummschaltet, in
-> `docs/MONITORING.md`. Antworte in meiner Sprache.
+> `docs/MONITORING.md`.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
+>
+> Antworte in meiner Sprache.
 
 **Das Fenster der Messung.** Der zyklische Bericht vergleicht die beobachteten Zeilen pro Jahr mit dem, was Stufe 3 erklärt hat. Eine richtige Zahl mit einem falschen Fenster öffnet einen falschen offenen Punkt: in der Übung mit dem geerbten Turnera wurden 30.000 Zeilen aus drei Jahren übergeben, als wären sie aus einem. Deshalb trägt die Messung ihr **überprüfbares** Fenster: den ersten und den letzten Datensatz, aus der Datenbank oder dem Protokoll gelesen, keine von Hand getippte Zahl. Kann das Werkzeug die Datenbank nicht lesen, erklärt es das als blinden Fleck; ein von Hand getipptes Fenster wird im Bericht als solches markiert und warnt nur, es öffnet nie von allein einen offenen Punkt. (Entscheidung D-039.)
 
@@ -144,6 +163,13 @@ Posten mit Zahl; und die zwei Beweise: den ersten Bericht und einen provozierten
 > reason; write the decision with the date in the report itself; and tell me whether any threshold
 > must change and why, with the measurement that justifies it. Never raise a threshold to silence
 > an alert without a measured reason written down.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
 > Mit jedem zyklischen Bericht über Ressourcen und Leistung: geh ihn mit mir durch, Ereignis für
@@ -152,6 +178,14 @@ Posten mit Zahl; und die zwei Beweise: den ersten Bericht und einen provozierten
 > Bericht selbst; und sag mir, ob irgendein Schwellenwert sich ändern muss und warum, mit der
 > Messung, die es rechtfertigt. Heb niemals einen Schwellenwert an, um einen Alarm zum Schweigen
 > zu bringen, ohne eine gemessene, geschriebene Begründung.
+>
+> Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
+> aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
+> macht; die Frage selbst mit ihren möglichen Antworten durchnummeriert; und deine Empfehlung.
+> Sage es in der technischen Tiefe, die das Projekt in `communication_depth` erklärt hat
+> —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
+> `decision_maker`.
 
 Was ich hier verlange: dass der Bericht gelesen wird und entschieden wird, mit Spur; und die
 Regel des Schwellenwerts, die verhindert, dass das Monitoring nach und nach stumm wird.

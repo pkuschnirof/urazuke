@@ -80,6 +80,14 @@ o agente:
 > change: indexes derived from the real queries, pagination, batching, the elimination of N+1
 > loops, retention and archiving per table, pool size; for each change, the expected gain, the
 > risk, and which consumers in the map it touches. Do not change anything yet: I approve the list.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
+>
 > Reply in my language.
 
 > [pt]
@@ -94,6 +102,14 @@ o agente:
 > consulta, o que mudar: índices derivados das consultas reais, paginação, lotes, a eliminação
 > dos laços N+1, retenção e arquivamento por tabela, tamanho do pool; para cada mudança, o ganho
 > esperado, o risco, e que consumidores do mapa ela toca. Não mude nada ainda: eu aprovo a lista.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
+>
 > Responda no meu idioma.
 
 O que estou pedindo: medir com o método do degrau 7 (medidor com teste, auditado nas duas
@@ -119,6 +135,13 @@ porque a otimização é o lugar onde mais se "melhora" o que ninguém pediu.
 > test that fails if it is exceeded. Update every consumer in the map that a change touches, in
 > the same commit. Record the before and after table, the budgets and the retention per table in
 > `docs/PERSISTENCE.md`.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [pt]
 > Aplique as mudanças aprovadas [lista], um commit cada uma. Para cada uma mostre-me o medidor
@@ -127,6 +150,13 @@ porque a otimização é o lugar onde mais se "melhora" o que ninguém pediu.
 > margem pequena, protegido por um teste que falhe se for ultrapassado. Atualize no mesmo commit
 > cada consumidor do mapa que uma mudança toque. Registre a tabela de antes e depois, os
 > orçamentos e a retenção por tabela em `docs/PERSISTENCE.md`.
+>
+> Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
+> enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
+> com as suas respostas possíveis enumeradas; e a sua recomendação. Diga-o na profundidade técnica
+> que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
+> se o projeto não declarou nenhuma, use `decision_maker`.
 
 O que estou pedindo: um commit por mudança, para que o antes e o depois sejam atribuíveis; o
 mesmo medidor sobre os mesmos dados (se os dados mudam, o número não diz nada); o orçamento com

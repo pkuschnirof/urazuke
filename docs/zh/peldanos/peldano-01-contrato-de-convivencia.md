@@ -50,6 +50,13 @@
 > as done something you have not verified; always separate what you verified from what you
 > believe. (6) Speak my language. Add any rules you think this project needs, marked as
 > proposals. If you need to know something about how I work in order to write this, ask me.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 在写任何代码之前，我们要确定你我之间的协作契约。写 `docs/WORKING_AGREEMENT.md`，至少包含
@@ -59,6 +66,11 @@
 > 档在变更的同一次提交中更新。(5) 绝不把你没验证的事报告为已完成；永远把你验证过的和你相
 > 信的分开。(6) 说我的语言。加上你认为这个项目需要的规则，标为提案。如果为了写这个你需要
 > 了解我怎么工作，问我。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：六条最低规则，每条附它避免的故障（这正是让它们成为规则而不是建议的东西）；它
 提出项目自己的规则但标为提案，由你接受或拒绝；以及问它需要了解的关于你的事。一份一个问题都
@@ -78,10 +90,22 @@
 > I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
+>
+> When you need a decision from me, ask it with the four parts of UX-28
+> (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
+> listed; one paragraph of at most five lines that links that data and lets the question be seen;
+> the question itself with its possible answers numbered; and your recommendation. Say it at the
+> technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
+> `technical`; if the project declared none, use `decision_maker`.
 
 > [zh]
 > 我接受规则 1 到 6 和你的提案 [X, Y]；我拒绝 [Z]，因为 [原因]。用今天的日期和一个版本号
 > 定稿契约。然后在项目文件中加上每次会话开始时读这份契约的指令。
+>
+> 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
+> 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
+> 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
+> cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
 我在要求什么：用日期和版本定稿契约，并把它挂到项目文件上，让每次会话都读它。没有那个挂钩，
 契约存在但不起作用。
