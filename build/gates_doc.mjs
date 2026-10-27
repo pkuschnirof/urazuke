@@ -283,6 +283,14 @@ export function generar() {
   p('|---|---|');
   for (const [campo, texto] of Object.entries(contenido.project_config.fields)) p('| `' + campo + '` | ' + texto + ' |');
   p();
+  p(contenido.project_config.enums_what);
+  p();
+  p('| enum | values |');
+  p('|---|---|');
+  for (const [nombre, valores] of Object.entries(contenido.project_config.enums)) {
+    p('| `project_config.enums.' + nombre + '` | `' + valores.join('`, `') + '` |');
+  }
+  p();
   p('The switch-off record is `' + contenido.project_config.switch_off_record.join('`, `') + '`. Without it: '
     + contenido.project_config.without_record);
   p();

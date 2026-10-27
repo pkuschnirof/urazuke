@@ -431,8 +431,9 @@
       "switched_off": "List of individual rules switched off, each with the full record.",
       "thresholds": "Declared values, by threshold id. Whatever is not here is reported as undeclared, never invented.",
       "tools": "Tool names and versions actually used, for the ruleset fingerprint.",
-      "communication_depth": "One of communication_depth: the technical depth at which the agent speaks to the owner (UX-28). Undeclared means decision_maker, and the agent says which one it is using."
+      "communication_depth": "One of `project_config.enums.communication_depth` -- beginner, decision_maker or technical: the technical depth at which the agent speaks to the owner (UX-28). Undeclared means decision_maker, and the agent says which one it is using."
     },
+    "enums_what": "The value list of every field above that names one, resolved here so a consumer does not have to guess it. It is not transcribed: the lists are declared once in the sources and the published block is derived from them, so a field that names an enum which does not exist is refused by the validator. Written this way on 2026-10-27: the field above said \"One of communication_depth\" and no key of the published file carried that name, so a tool that wanted to validate the declared depth had to guess the three values and could see only two of them mentioned in prose -- a partial list that reads as complete, which is worse than none (PND-059).",
     "switch_off_record": [
       "rule",
       "reason",

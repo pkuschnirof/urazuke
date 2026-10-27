@@ -6,7 +6,7 @@
     "why": "A directory, not a catalogue: its identity is the identity of what it points at. A hash of its own would force a third declared version line, that nobody declares, every time one of the listed resources changes.",
     "staleness_check": "Fetch a listed resource, recompute its hash over the canonical form declared here for that resource, and compare it with the hash quoted here. If the two differ, this index is stale, and you know that without having to trust it."
   },
-  "generated_at": "2026-10-27T16:40:34.877Z",
+  "generated_at": "2026-10-27T19:12:07.024Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "canonical_base": "https://yujin.app/urazuke/api/",
@@ -21,16 +21,16 @@
       "name": "gates.json",
       "url": "https://yujin.app/urazuke/api/gates.json",
       "media_type": "application/json",
-      "bytes": 109517,
+      "bytes": 110375,
       "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.",
       "version_field": "catalog_version",
-      "version": "2026.10.8",
+      "version": "2026.10.9",
       "content_hash": {
         "field": "content_hash.value",
         "algo": "sha256",
         "encoding": "hex_lower",
         "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
-        "value": "54b57e7871914e28b49fe45d05188660589dff5427abf032e1e0efcd6651e269"
+        "value": "a4f6c78fa040f72e5ccc8cc50bbd891d8c88ff64af9e91be587d9bb080e1d585"
       },
       "version_ledger": {
         "url": "https://github.com/pkuschnirof/urazuke/blob/main/gates/catalog.json",

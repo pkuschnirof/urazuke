@@ -1,6 +1,6 @@
 {
   "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.",
-  "catalog_version": "2026.10.8",
+  "catalog_version": "2026.10.9",
   "schema_version": 2,
   "content_hash": {
     "algo": "sha256",
@@ -32,12 +32,12 @@
       "license",
       "content_hash"
     ],
-    "value": "54b57e7871914e28b49fe45d05188660589dff5427abf032e1e0efcd6651e269",
+    "value": "a4f6c78fa040f72e5ccc8cc50bbd891d8c88ff64af9e91be587d9bb080e1d585",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "24105b8",
+  "git_commit": "deb06ce",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-10-27T16:40:34.731Z",
+  "generated_at": "2026-10-27T19:12:06.928Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
@@ -3415,15 +3415,23 @@
       "switched_off": "List of individual rules switched off, each with the full record.",
       "thresholds": "Declared values, by threshold id. Whatever is not here is reported as undeclared, never invented.",
       "tools": "Tool names and versions actually used, for the ruleset fingerprint.",
-      "communication_depth": "One of communication_depth: the technical depth at which the agent speaks to the owner (UX-28). Undeclared means decision_maker, and the agent says which one it is using."
+      "communication_depth": "One of `project_config.enums.communication_depth` -- beginner, decision_maker or technical: the technical depth at which the agent speaks to the owner (UX-28). Undeclared means decision_maker, and the agent says which one it is using."
     },
+    "enums_what": "The value list of every field above that names one, resolved here so a consumer does not have to guess it. It is not transcribed: the lists are declared once in the sources and the published block is derived from them, so a field that names an enum which does not exist is refused by the validator. Written this way on 2026-10-27: the field above said \"One of communication_depth\" and no key of the published file carried that name, so a tool that wanted to validate the declared depth had to guess the three values and could see only two of them mentioned in prose -- a partial list that reads as complete, which is worse than none (PND-059).",
     "switch_off_record": [
       "rule",
       "reason",
       "authorized_by",
       "review_date"
     ],
-    "without_record": "red, and the ruleset is invalid: the scoreboard emits no figures at all (D-046, D-047)."
+    "without_record": "red, and the ruleset is invalid: the scoreboard emits no figures at all (D-046, D-047).",
+    "enums": {
+      "communication_depth": [
+        "beginner",
+        "decision_maker",
+        "technical"
+      ]
+    }
   },
   "pinning": {
     "what": "What a project pins, and what it costs to change it. A project pins ONE catalog_version the day it starts and keeps it until the end. That is not convenience: raising the version in the middle of a project is a REGRESSION of the completeness state, because a version that adds a requirement to a step already closed reopens that step, and what was green yesterday is not green today. Raising it is allowed and it is the owner decision, written with its date in the project decision record; what is not allowed is raising it in silence, or discovering mid-project that the gate is measuring against a definition nobody chose.",

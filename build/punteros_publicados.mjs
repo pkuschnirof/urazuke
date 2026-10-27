@@ -27,6 +27,11 @@
 //      a adivinar.
 //   D. la cuenta no puede ser cero. Una comprobacion que reviso 0 punteros y dijo verde es
 //      el defecto que este repositorio ya pago cuatro veces.
+//   E. un campo de la configuracion de proyecto que dice "uno de <enum>" lo nombra por un
+//      camino que resuelve --no por el nombre suelto-- y el publicado lleva ese enum
+//      RESUELTO, con su lista de valores. Es la misma regla que A, para la forma que A no
+//      sabia ver: un token sin punto. Y es simetrica: un enum publicado que ningun campo
+//      nombra tambien es hallazgo, porque es una copia sin consumidor.
 //
 // Lo que NO guarda, dicho para que nadie le atribuya mas de lo que hace: no verifica que la
 // direccion cruda CONTESTE -- eso es red, y la construccion corre sin red (lo pregunta
@@ -172,6 +177,58 @@ export function simetriaDelRegistroDeVersiones(pub = leerPublicados()) {
   return hallazgos;
 }
 
+// Lo que parece un camino y no lo es porque no lleva punto: "One of <enum>". La forma se
+// eligio medida el 2026-10-27 -- el dia DESPUES de escribir la regla de arriba, el campo
+// `communication_depth` entro diciendo "One of communication_depth" y ninguna clave del
+// publicado llevaba ese nombre, asi que una herramienta que quisiera validar la profundidad
+// declarada tenia que ADIVINAR los tres valores y solo veia dos mencionados en prosa inglesa:
+// una lista parcial que se lee como completa, que es peor que ninguna. RE_CAMINO no lo vio y
+// dijo la verdad: para los punteros que sabe ver, no habia ninguno roto (PND-059, D-071).
+export const RE_ENUM_SUELTO = /\bOne of ([a-z][a-z0-9_]*)\b/g;
+export const RE_ENUM_RESUELTO = /`project_config\.enums\.([a-z][a-z0-9_]*)`/g;
+
+/** E: un campo que dice "uno de <enum>" lo nombra por un camino que resuelve, y el bloque esta. */
+export function enumsDeLaConfiguracion(pub = leerPublicados()) {
+  const hallazgos = [];
+  const pc = pub.recursos['gates.json']?.project_config;
+  if (!pc) return [{ donde: 'gates.json#project_config', por_que: 'el publicado no lleva la configuracion de proyecto: no haber podido mirar es rojo' }];
+  const campos = pc.fields ?? {};
+  const nombrados = [];
+  for (const [campo, texto] of Object.entries(campos)) {
+    if (typeof texto !== 'string') continue;
+    for (const m of texto.matchAll(RE_ENUM_SUELTO)) {
+      hallazgos.push({ donde: 'gates.json#project_config.fields.' + campo, token: m[1],
+        por_que: 'nombra el enum por su nombre suelto, que no es una clave del publicado: el consumidor tiene que adivinar la lista de valores' });
+    }
+    for (const m of texto.matchAll(RE_ENUM_RESUELTO)) {
+      nombrados.push(m[1]);
+      const lista = pc.enums?.[m[1]];
+      if (!Array.isArray(lista) || lista.length === 0) {
+        hallazgos.push({ donde: 'gates.json#project_config.fields.' + campo, token: m[1],
+          por_que: 'el campo nombra ese enum y project_config.enums no lo publica resuelto' });
+      }
+    }
+  }
+  for (const nombre of Object.keys(pc.enums ?? {})) {
+    if (!nombrados.includes(nombre)) {
+      hallazgos.push({ donde: 'gates.json#project_config.enums', token: nombre,
+        por_que: 'el publicado lleva ese enum resuelto y ningun campo lo nombra: un bloque que sobra es una copia sin consumidor' });
+    }
+  }
+  if (!pc.enums) {
+    hallazgos.push({ donde: 'gates.json#project_config', por_que: 'no publica el bloque de enums resuelto, asi que ningun campo puede nombrar una lista de valores que resuelva' });
+  } else if (!pc.enums_what) {
+    hallazgos.push({ donde: 'gates.json#project_config', por_que: 'publica enums y no dice que son' });
+  }
+  return hallazgos;
+}
+
+/** Cuantos enums de configuracion se revisaron. Cero seria la comprobacion que no miro nada. */
+export function cuentaDeEnums(pub = leerPublicados()) {
+  const pc = pub.recursos['gates.json']?.project_config;
+  return Object.keys(pc?.enums ?? {}).length;
+}
+
 export function cuenta(pub = leerPublicados()) {
   let n = 0;
   for (const payload of Object.values(pub.recursos)) n += tokensDe(payload).length;
@@ -184,14 +241,19 @@ if (esLineaDeComandos(import.meta.url)) {
     ...punterosQueNoResuelven(pub),
     ...registrosSinUsar(pub),
     ...simetriaDelRegistroDeVersiones(pub),
+    ...enumsDeLaConfiguracion(pub),
   ];
   const c = cuenta(pub);
+  const e = cuentaDeEnums(pub);
   for (const h of hallazgos) console.error('  HALLAZGO ' + JSON.stringify(h));
-  if (hallazgos.length || c.tokens === 0) {
+  if (hallazgos.length || c.tokens === 0 || e === 0) {
     console.error('punteros: ' + (c.tokens === 0
       ? 'cero punteros revisados, que es el defecto que esta comprobacion existe para evitar'
-      : hallazgos.length + ' hallazgo(s)'));
+      : e === 0
+        ? 'cero enums de configuracion revisados: el publicado no lleva ninguno resuelto'
+        : hallazgos.length + ' hallazgo(s)'));
     process.exit(1);
   }
-  console.log('punteros: comprobado -- ' + c.tokens + ' punteros en ' + c.recursos + ' recursos publicados, 0 hallazgos');
+  console.log('punteros: comprobado -- ' + c.tokens + ' punteros en ' + c.recursos + ' recursos publicados, '
+    + e + ' enum(s) de configuracion resuelto(s), 0 hallazgos');
 }

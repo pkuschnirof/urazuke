@@ -469,8 +469,16 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   verificador; la cláusula es autocontenida y las nombra. La regla que deja:
   **un camino de clave que un texto publicado nombra resuelve en el publicado**, o está en un
   registro de punteros cruzados con su razón; `build/punteros_publicados.mjs` +
-  `tests/punteros_publicados.test.mjs` lo exigen, con diez rojos deliberados y el paso del flujo que
-  exige la línea medida. Y el alcance exacto de la otra regla, porque acá se usó: la huella de una
+  `tests/punteros_publicados.test.mjs` lo exigen, con quince rojos deliberados y el paso del flujo
+  que exige la línea medida. **Y la regla vale también para un enum, que es la forma que la guarda
+  no sabía ver** (D-071, `PND-059`): `2026.10.8` publicó el parámetro de UX-28 diciendo «One of
+  communication_depth» y esa clave no existía en el publicado —medido: de los tres valores, un
+  consumidor podía recuperar **uno**—, y la guarda dijo «0 hallazgos» con razón, porque sólo
+  reconocía caminos **con punto**. Ahora un campo que dice «uno de \<enum\>» lo nombra por un camino
+  que resuelve, el publicado lleva `project_config.enums` con la lista **derivada** de la única copia
+  de las fuentes, y la regla es simétrica: un enum publicado que ningún campo nombra también es
+  hallazgo. Es el cuarto desvío propio del proyecto y el único cometido **un día después** de
+  escribir la regla que lo prohíbe. Y el alcance exacto de la otra regla, porque acá se usó: la huella de una
   versión **no se edita una vez que esa versión se sirvió**; `2026.10.7` se corrigió antes de
   publicarse, y subir a `2026.10.8` habría dejado registrada una versión que nadie puede pedir
   nunca.

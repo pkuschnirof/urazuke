@@ -2715,7 +2715,8 @@ limpio: `node --test` = **220 pruebas, 0 fallos** (eran 197; las 23 nuevas está
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
 - **Grupo:** G-IDIOMA · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: en curso** (las nueve: revisadas el 2026-10-27, sin arreglar)
+- **Repositorio:** portal · **Estado: en curso** (las nueve: revisadas el 2026-10-27; la mitad
+  medida aplicada y commiteada el mismo día en el repositorio del portal, sin empujar)
 
 **Por qué son nueve entradas y no una.** La auditoría lo pidió así, y tiene razón: cada idioma lo
 revisa alguien que lo lee, en un momento distinto, y el resultado de uno no dice nada del otro.
@@ -2749,19 +2750,40 @@ de correcciones propuestas, o la constancia de que no hay ninguna.
 
 **Las nueve entradas.**
 
-| id | idioma | estado |
-|---|---|---|
-| id | idioma | hallazgos | estado |
-|---|---|---:|---|
-| PND-026 | árabe (ar) | 7 | revisado, sin arreglar |
-| PND-027 | alemán (de) | 8 | revisado, sin arreglar |
-| PND-028 | inglés (en) | 1 | revisado, sin arreglar |
-| PND-029 | francés (fr) | 5 | revisado, sin arreglar |
-| PND-030 | hindi (hi) | 5 | revisado, sin arreglar |
-| PND-031 | italiano (it) | 5 | revisado, sin arreglar |
-| PND-032 | japonés (ja) | 6 | revisado, sin arreglar |
-| PND-033 | portugués (pt) | 3 | revisado, sin arreglar |
-| PND-034 | chino (zh) | 6 | revisado, sin arreglar |
+| id | idioma | hallazgos | aplicados | estado |
+|---|---|---:|---:|---|
+| PND-026 | árabe (ar) | 7 | 2 | lo medido aplicado, sin empujar |
+| PND-027 | alemán (de) | 8 | 1 | lo medido aplicado, sin empujar |
+| PND-028 | inglés (en) | 1 | 0 | revisado; su único hallazgo es de juicio |
+| PND-029 | francés (fr) | 5 | 1 | lo medido aplicado, sin empujar |
+| PND-030 | hindi (hi) | 5 | 0 | revisado; los cinco son de juicio |
+| PND-031 | italiano (it) | 5 | 0 | revisado; los cinco son de juicio |
+| PND-032 | japonés (ja) | 6 | 2 | lo medido aplicado, sin empujar |
+| PND-033 | portugués (pt) | 3 | 1 | lo medido aplicado, sin empujar |
+| PND-034 | chino (zh) | 6 | 2 | lo medido aplicado, sin empujar |
+
+**Lo que se aplicó el 2026-10-27, y es la mitad medida.** El dueño eligió aplicar sólo lo que se
+reproduce con un comando —números, flechas, registro— y dejar el juicio de traducción para después,
+porque la elección de una palabra la discute un hablante nativo y el hallazgo no deja de serlo.
+Entraron **veintiún** cambios en seis idiomas, en el repositorio del portal: los dos números del
+japonés y del chino (`origin.h2`, que no era un número, y la cifra de la retrospectiva), las ocho
+flechas del árabe en una sola dirección más su concordancia, el alemán tratando al lector de «Sie»
+en las cinco claves que lo trataban de «du», el francés de «vous» en `prompt.antes`, y la variedad
+del portugués de esa misma clave. Medido en lo horneado: 8 ← y 0 → en árabe, 8 → y 0 ← en
+castellano; `四十六` en los dos títulos; `24〜27分` y `24 到 27 分钟`. El verificador de las diez
+portadas da PASS y sus tres pruebas en rojo caen: 9 mutaciones, 9 rojos.
+
+Dos cosas que se dejaron dichas en vez de redondeadas. El alemán conserva «du» en `prompt.tr` **a
+propósito**: ese texto le habla al modelo y no a la persona, que es el mismo criterio que el
+francés ya aplicaba, así que el hallazgo medido se resolvió en las cinco claves del lector y no en
+las seis que la lista nombra. Y el hallazgo #2 del portugués —`o pendente` contra la `pendência`
+del resto del archivo— es elección de término y **no** entró, aunque vive en la clave que sí se
+tocó: queda a medias y se dice.
+
+**Lo que queda: veintisiete hallazgos de juicio de traducción**, las dos formas de una misma
+palabra en ocho de los nueve idiomas, más el ablandamiento de `thesis.k2.p` en inglés y en alemán,
+más la aclaración «(en español)» que nueve idiomas agregan y el castellano no dice. Esa última la
+recomendación es **agregarla al castellano**, no borrar nueve aclaraciones correctas.
 
 **La revisión se hizo el 2026-10-27, y la hizo un modelo.** El dueño lo autorizó así ese día,
 después de que la entrada se reportara durante tres días como trabajo que necesitaba un hablante
@@ -4790,6 +4812,102 @@ repositorio, no en éste.
 
 ---
 
+## PND-059 — El dato publicó un parámetro y no publicó sus valores, un día después de escribir la regla *(desvío propio; lo encontró la revisión de lo recién publicado)*
+
+- **Nodo:** `datos/compuertas` [nodo propuesto]
+- **Grupo:** G-API · **Severidad:** importante · **Quién decide:** nadie: es un defecto medido y su arreglo es mecánico
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-27, con el bloque de enums resuelto en el publicado, el validador que lo exige y la regla E de la guarda de punteros.
+
+**Qué estaba mal.** `2026.10.8` publicó el parámetro de UX-28 como
+`project_config.communication_depth` y lo describió así: *«One of communication_depth: the
+technical depth at which the agent speaks to the owner»*. Y **`communication_depth` no es una
+clave de ningún archivo publicado**: los tres valores viven sólo en `gates/schema.json#enums`, que
+es una fuente y no se publica. O sea que una herramienta que quisiera validar la profundidad que un
+proyecto declaró tenía que **adivinar la lista**, y lo que veía mencionado era **uno** de los tres
+valores, no los tres: una lista parcial que se lee como completa, que es peor que ninguna.
+
+Es la misma familia que `PND-056` cerró **el día anterior** —un camino de clave que un texto
+publicado nombra tiene que resolver en el publicado— cometida en la **primera entrada nueva** desde
+que la regla existe. Y la guarda de punteros no lo vio por una razón que se puede nombrar: sólo
+reconoce caminos **con punto**, y «One of communication_depth» es un token suelto. Dijo «0
+hallazgos» y era verdad para los punteros que sabe ver.
+
+**Mi reproducción (2026-10-27), medida sobre el archivo publicado de `deb06ce`.** Qué podía
+recuperar un consumidor que sólo tiene `gates.json`:
+
+```
+$ node -e "contar los tres valores en el recurso que declara el parametro"
+beginner          0 ocurrencias
+decision_maker    1 ocurrencia   <- y solo como el default de la frase
+technical         4 ocurrencias  <- las cuatro son la palabra inglesa ("technical depth",
+                                    "technical module"), ninguna es el valor
+communication_depth               no es clave en ninguna parte del publicado
+project_config.enums              NO EXISTE
+```
+
+Los tres **sí** viajaban, pero en el **otro** recurso y en prosa: `prompts.json` los trae 72, 144 y
+146 veces, adentro de la cláusula. Recuperables leyendo prosa inglesa de otro archivo, que no es lo
+que una herramienta hace con un enum.
+
+Y la mitad que más molesta: la entrada del registro de versiones de `2026.10.8` afirma que *«el
+nombre y los tres valores se declaran acá para que ninguna herramienta los adivine»*. **El registro
+no viaja en el publicado.** Para un consumidor, esa frase era falsa.
+
+**Lo que se hizo.**
+
+- **El bloque resuelto, y derivado.** `project_config.enums` publica la lista de valores de cada
+  campo que nombra una, **derivada** de la única copia que hay en las fuentes
+  (`gates/schema.json#enums`), para que no existan dos listas que puedan divergir —la misma regla
+  que el enunciado de las reglas del anexo (D-044)—. Va con `enums_what`, que dice qué es el bloque
+  y por qué existe. El campo lo nombra ahora como `` `project_config.enums.communication_depth` ``
+  y lista los tres valores en la frase, así que el camino resuelve también por la regla A.
+- **El validador lo exige** (`E_ENUM_CONFIGURACION`): un campo que nombra un enum por su nombre
+  suelto es rojo, uno que nombra un enum que no existe es rojo, y publicar el bloque sin decir qué
+  es también. Tres rojos deliberados nuevos.
+- **La regla E de la guarda de punteros**, que es la regla A para la forma que la A no sabía ver.
+  Es simétrica en las dos direcciones: un enum publicado que **ningún** campo nombra también es
+  hallazgo, porque es una copia sin consumidor. Y la cuenta no puede ser cero: un publicado sin un
+  solo enum resuelto frena la línea de comandos en vez de decir verde. Cinco rojos deliberados
+  nuevos.
+- **La versión sube a `2026.10.9`** con su huella anotada (`a4f6c78fa040`). No cambia ningún
+  requisito, ningún id, ningún umbral y ninguna regla: el único contenido nuevo es la lista de tres
+  valores que ya estaba publicada en prosa.
+
+**Lo que la hace falsable, dicho con el número.** Esta guarda **sí** habría atrapado el defecto que
+la originó. Medida contra el árbol publicado de `deb06ce`:
+
+```
+$ node -e "regla E contra el publicado de deb06ce"
+enums de configuracion revisados: 0
+  HALLAZGO communication_depth -- nombra el enum por su nombre suelto, que no es una clave del
+           publicado: el consumidor tiene que adivinar la lista de valores
+  HALLAZGO project_config -- no publica el bloque de enums resuelto
+regla A sobre el mismo arbol: 0 hallazgos   <- por eso hacia falta la E
+```
+
+**Criterio de aceptación por perfil.**
+
+- *P1, P2 (herramientas consumidoras):* dada una herramienta que sólo tiene la interfaz publicada,
+  esa herramienta puede validar el valor que un proyecto declaró en `communication_depth` **sin
+  adivinar ni leer prosa de otro recurso**, porque la lista de valores está en el mismo archivo que
+  declara el campo.
+- *P5 (auditor):* dado el perfil auditor, esta persona corre una orden y ve que ningún campo de la
+  configuración nombra un enum que el publicado no resuelve, con la cuenta a la vista.
+- *P8 (dueño de proyecto que aplica el método):* dada esa persona, lo que el método le pide declarar
+  en su configuración tiene sus valores posibles escritos donde la herramienta los lee, así que una
+  profundidad mal escrita se rechaza con los tres valores a la vista en vez de aceptarse en silencio.
+
+**Cómo se verifica.** `node build/punteros_publicados.mjs` imprime la cuenta de enums resueltos y
+sus hallazgos; `node build/gates_validate.mjs` cae con `E_ENUM_CONFIGURACION` si un campo vuelve a
+nombrar un enum suelto; `node --test` corre las tres comprobaciones verdes y los ocho rojos nuevos;
+`node build/gates_doc.mjs --check` exige que el documento generado publique la tabla de valores.
+
+**Lo que queda afuera, nombrado.** Que un consumidor **use** la lista en vez de seguir con una
+copia propia se mide en su repositorio, no en éste. Y la guarda resuelve nombres, no significados:
+no verifica que los tres valores signifiquen lo que la prosa del anexo dice que significan.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -4799,16 +4917,16 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 16 | 5 | 11 | 1 |
+| G-API | 17 | 5 | 12 | 1 |
 | G-ALCANCE | 5 | 1 | 4 | 0 |
 | G-IDIOMA | 13 | 10 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 13 | 2 | 11 | 0 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **58** | **19** | **39** | **2** |
+| **total** | **59** | **19** | **40** | **2** |
 
-Cincuenta y ocho entradas, `PND-001` a `PND-058`. Veintidós vienen de la auditoría externa
+Cincuenta y nueve entradas, `PND-001` a `PND-059`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), quince son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -4826,6 +4944,12 @@ cuatro árboles y ninguno era el que correspondía. Y `PND-056` tiene el origen 
 publicada tendría que tener más seguido: **lo trajo el consumidor**. No una auditoría ni el autor
 releyéndose, sino la herramienta que intentó cumplir la obligación recién publicada y se encontró
 con que, para cumplirla, tenía que adivinar una dirección.
+
+`PND-059` es el cuarto desvío propio y el más incómodo de los cuatro, porque es la misma familia
+que `PND-056` —un texto publicado que apunta a algo que el publicado no tiene— cometida **un día
+después** de escribir la regla, en la primera entrada nueva desde que la regla existe. No la trajo
+el consumidor ni una auditoría: salió de volver a leer lo que se acababa de publicar, que es lo
+único que la separa de las tres anteriores.
 
 `PND-053` es la última, y es de otra clase: no es un desvío ni un hallazgo de nadie, es una
 declaración que faltaba. `PND-039` dejó escrito que las dos entradas previas del Anexo H no tenían

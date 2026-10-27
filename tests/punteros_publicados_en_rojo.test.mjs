@@ -12,6 +12,8 @@ import {
   punterosQueNoResuelven,
   registrosSinUsar,
   simetriaDelRegistroDeVersiones,
+  enumsDeLaConfiguracion,
+  cuentaDeEnums,
   cuenta,
 } from '../build/punteros_publicados.mjs';
 
@@ -102,3 +104,55 @@ test('rojo 10: un publicado sin un solo puntero no es un verde', () => {
   assert.deepEqual(punterosQueNoResuelven(pub), [], 'sin punteros no hay colgantes: por eso la cuenta cero la atrapa B y D, no A');
   assert.ok(registrosSinUsar(pub).length >= 3, 'los dos registros quedan sin usar y la guarda lo dice');
 });
+
+/* ------------------------------------------------------------------ *
+ * Regla E: el enum nombrado por su nombre suelto (D-071, PND-059)
+ * ------------------------------------------------------------------ */
+
+test('rojo 11: el enum nombrado por su nombre suelto, que es el defecto que origino la regla', () => {
+  const pub = clonar();
+  // Esto es, textual, lo que 2026.10.8 publico: el nombre sin camino y sin lista de valores.
+  pub.recursos['gates.json'].project_config.fields.communication_depth =
+    'One of communication_depth: the technical depth at which the agent speaks to the owner (UX-28).';
+  delete pub.recursos['gates.json'].project_config.enums;
+  delete pub.recursos['gates.json'].project_config.enums_what;
+  const h = enumsDeLaConfiguracion(pub);
+  assert.ok(h.some((x) => x.token === 'communication_depth' && /nombre suelto/.test(x.por_que)),
+    'el hallazgo tiene que nombrar el token, no solo decir que algo esta mal');
+  assert.ok(h.some((x) => /no publica el bloque de enums/.test(x.por_que)));
+  // Y la razon por la que la regla A no lo veia, que es lo que hace falsable a la E:
+  assert.deepEqual(punterosQueNoResuelven(pub), [],
+    'A solo reconoce caminos con punto, asi que decia la verdad: para los punteros que sabe ver, no habia ninguno roto');
+});
+
+test('rojo 12: el campo nombra un camino y el bloque no publica esa lista', () => {
+  const pub = clonar();
+  delete pub.recursos['gates.json'].project_config.enums.communication_depth;
+  const h = enumsDeLaConfiguracion(pub);
+  assert.ok(h.some((x) => x.token === 'communication_depth' && /no lo publica resuelto/.test(x.por_que)));
+});
+
+test('rojo 13: una lista publicada que ningun campo nombra es una copia sin consumidor', () => {
+  const pub = clonar();
+  pub.recursos['gates.json'].project_config.enums.verdict = ['green', 'red'];
+  const h = enumsDeLaConfiguracion(pub);
+  assert.ok(h.some((x) => x.token === 'verdict' && /ningun campo lo nombra/.test(x.por_que)));
+});
+
+test('rojo 14: el bloque publicado sin decir que es', () => {
+  const pub = clonar();
+  delete pub.recursos['gates.json'].project_config.enums_what;
+  const h = enumsDeLaConfiguracion(pub);
+  assert.equal(h.length, 1);
+  assert.match(h[0].por_que, /no dice que son/);
+});
+
+test('rojo 15: sin configuracion de proyecto, no haber podido mirar es rojo y no verde', () => {
+  const pub = clonar();
+  delete pub.recursos['gates.json'].project_config;
+  const h = enumsDeLaConfiguracion(pub);
+  assert.equal(h.length, 1);
+  assert.match(h[0].por_que, /no haber podido mirar es rojo/);
+  assert.equal(cuentaDeEnums(pub), 0, 'y la cuenta en cero es lo que frena la linea de comandos');
+});
+

@@ -7,7 +7,7 @@
 // Cada error sale con codigo estable, que paso, donde y como se arregla. Devuelve
 // codigo de salida 1 si hay al menos un error.
 import { readFileSync } from 'node:fs';
-import { cargarFuentes, extraerAnexo, proyectarPasoABase, idFamilia, armarContenido, huellaDeContenido, esLineaDeComandos, ANEXOS } from './gates_lib.mjs';
+import { cargarFuentes, extraerAnexo, proyectarPasoABase, idFamilia, armarContenido, huellaDeContenido, esLineaDeComandos, ANEXOS, RE_ENUM_DE_CONFIGURACION } from './gates_lib.mjs';
 
 const esObjeto = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
 
@@ -306,6 +306,28 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
   if (JSON.stringify(heuristics.switch_off.requires) !== JSON.stringify(schema.project_config.switch_off_record)) {
     err('E_APAGADO', 'el registro de apagado del catalogo y el de la configuracion no son el mismo', 'gates/schema.json',
       'un productor y un consumidor del mismo registro con campos distintos es una desincronizacion esperando: igualalos');
+  }
+  // Un campo de la configuracion que dice "uno de <enum>" tiene que nombrarlo por un camino
+  // que RESUELVA en el publicado, no por el nombre suelto: el consumidor no tiene las fuentes
+  // delante y un nombre que no es clave de ningun archivo publicado lo obliga a adivinar la
+  // lista. Medido el 2026-10-27, un dia despues de escribir la regla (PND-059, D-071).
+  for (const [campo, texto] of Object.entries(schema.project_config.fields)) {
+    if (typeof texto !== 'string') continue;
+    const sueltos = [...texto.matchAll(/One of ([a-z][a-z0-9_]*)\b/g)].map((m) => m[1]);
+    for (const nombre of sueltos) {
+      err('E_ENUM_CONFIGURACION', 'el campo ' + campo + ' nombra el enum "' + nombre + '" por su nombre suelto', 'gates/schema.json',
+        'escribilo como `project_config.enums.' + nombre + '`: el publicado lleva el bloque resuelto y asi el puntero resuelve del lado del consumidor');
+    }
+    for (const m of texto.matchAll(RE_ENUM_DE_CONFIGURACION)) {
+      if (!(m[1] in (schema.enums ?? {}))) {
+        err('E_ENUM_CONFIGURACION', 'el campo ' + campo + ' nombra el enum "' + m[1] + '", que no existe en enums', 'gates/schema.json',
+          'declaralo en enums o corregi el nombre: el bloque publicado se deriva de ahi y no se transcribe');
+      }
+    }
+  }
+  if (!schema.project_config.enums_what) {
+    err('E_ENUM_CONFIGURACION', 'la configuracion de proyecto publica enums sin decir que son', 'gates/schema.json',
+      'declara enums_what: lo que el publicado lleva resuelto se explica donde se lee');
   }
   for (const u of adapters.thresholds) {
     if ((u.value === null) !== (u.declared === false)) err('E_UMBRAL', 'el umbral ' + u.id + ' dice valor ' + JSON.stringify(u.value) + ' y declarado ' + u.declared, 'gates/adapters.json', 'un umbral sin valor se publica como no declarado, y uno declarado tiene valor. No se inventa ninguno.');
