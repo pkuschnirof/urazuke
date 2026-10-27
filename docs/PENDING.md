@@ -2716,7 +2716,8 @@ limpio: `node --test` = **220 pruebas, 0 fallos** (eran 197; las 23 nuevas está
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
 - **Grupo:** G-IDIOMA · **Severidad:** avisa · **Quién decide:** se hace y se reporta
 - **Repositorio:** portal · **Estado: en curso** (las nueve: revisadas el 2026-10-27; la mitad
-  medida aplicada y commiteada el mismo día en el repositorio del portal, sin empujar)
+  medida aplicada, publicada y verificada contra producción el mismo día; quedan los veintisiete
+  hallazgos de juicio de traducción)
 
 **Por qué son nueve entradas y no una.** La auditoría lo pidió así, y tiene razón: cada idioma lo
 revisa alguien que lo lee, en un momento distinto, y el resultado de uno no dice nada del otro.
@@ -2752,15 +2753,15 @@ de correcciones propuestas, o la constancia de que no hay ninguna.
 
 | id | idioma | hallazgos | aplicados | estado |
 |---|---|---:|---:|---|
-| PND-026 | árabe (ar) | 7 | 2 | lo medido aplicado, sin empujar |
-| PND-027 | alemán (de) | 8 | 1 | lo medido aplicado, sin empujar |
+| PND-026 | árabe (ar) | 7 | 2 | lo medido, servido |
+| PND-027 | alemán (de) | 8 | 1 | lo medido, servido |
 | PND-028 | inglés (en) | 1 | 0 | revisado; su único hallazgo es de juicio |
-| PND-029 | francés (fr) | 5 | 1 | lo medido aplicado, sin empujar |
+| PND-029 | francés (fr) | 5 | 1 | lo medido, servido |
 | PND-030 | hindi (hi) | 5 | 0 | revisado; los cinco son de juicio |
 | PND-031 | italiano (it) | 5 | 0 | revisado; los cinco son de juicio |
-| PND-032 | japonés (ja) | 6 | 2 | lo medido aplicado, sin empujar |
-| PND-033 | portugués (pt) | 3 | 1 | lo medido aplicado, sin empujar |
-| PND-034 | chino (zh) | 6 | 2 | lo medido aplicado, sin empujar |
+| PND-032 | japonés (ja) | 6 | 2 | lo medido, servido |
+| PND-033 | portugués (pt) | 3 | 1 | lo medido, servido |
+| PND-034 | chino (zh) | 6 | 2 | lo medido, servido |
 
 **Lo que se aplicó el 2026-10-27, y es la mitad medida.** El dueño eligió aplicar sólo lo que se
 reproduce con un comando —números, flechas, registro— y dejar el juicio de traducción para después,
@@ -2772,6 +2773,25 @@ en las cinco claves que lo trataban de «du», el francés de «vous» en `promp
 del portugués de esa misma clave. Medido en lo horneado: 8 ← y 0 → en árabe, 8 → y 0 ← en
 castellano; `四十六` en los dos títulos; `24〜27分` y `24 到 27 分钟`. El verificador de las diez
 portadas da PASS y sus tres pruebas en rojo caen: 9 mutaciones, 9 rojos.
+
+**Y el 2026-10-27 se publicó, así que esto ya es lo que el lector lee.** El dueño autorizó el
+empujón. El commit se rebasó antes sobre la publicación automática del método que había entrado en
+el medio —de `898547c` a `0d3ad88`, sin conflicto, porque uno toca el i18n de la portada y la otra
+toca `api/`—, así que el identificador que este registro citaba como firme no lo era, y eso ya
+estaba dicho: un identificador de algo sin empujar no es firme. El despliegue del portal cerró en
+verde en la corrida `40590835303`, con los cuatro recibos que su paso exige a la vista
+(`PASS -- every page is baked`, `PRUEBA EN ROJO OK`, `arbol propio: comprobado`,
+`eol: comprobado`). Medido contra **producción** después y no antes: `ja/` y `zh/` sirven `四十六`
+y `24〜27分` / `24 到 27 分钟`, y la cadena `四二十四` —la que no era un número— devuelve **cero** en
+las dos; `ar/` sirve 8 `←` y 0 `→` contra los 8 `→` y 0 `←` del castellano; y los **diez**
+catálogos servidos coinciden con los commiteados, normalizados los finales de línea (sin
+normalizarlos los diez salen distintos, y es sólo CRLF: el contenido es idéntico).
+
+**Por qué las nueve siguen en curso después de publicar.** Lo que se publicó es la mitad medida.
+Los veintisiete hallazgos de juicio de traducción siguen sin tocar, y el criterio de aceptación es
+sobre lo que el lector lee: mientras una de las dos formas de una misma palabra siga en la página,
+la entrada de ese idioma no cerró. Cerrar por el empujón sería contar como efecto lo que todavía
+no está en la página.
 
 Dos cosas que se dejaron dichas en vez de redondeadas. El alemán conserva «du» en `prompt.tr` **a
 propósito**: ese texto le habla al modelo y no a la persona, que es el mismo criterio que el
