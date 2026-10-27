@@ -2757,11 +2757,15 @@ limpio: `node --test` = **220 pruebas, 0 fallos** (eran 197; las 23 nuevas está
 ## PND-026 a PND-034 — Revisión semántica de los nueve idiomas de la interfaz *(era U-17, segunda parte)*
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
-- **Grupo:** G-IDIOMA · **Severidad:** avisa · **Quién decide:** se hace y se reporta, menos los
-  dos hallazgos que se resuelven escribiendo castellano, que son del dueño
+- **Grupo:** G-IDIOMA · **Severidad:** avisa · **Quién decide:** se hace y se reporta, menos el
+  hallazgo que toca el castellano, que es del dueño
 - **Repositorio:** portal · **Estado: en curso** (las nueve: revisadas el 2026-10-27; cuarenta y
-  cuatro de los cuarenta y seis hallazgos aplicados, publicados y verificados contra producción el
-  mismo día; quedan **dos**, y los dos esperan al dueño)
+  **cinco** de los cuarenta y seis hallazgos aplicados, publicados y verificados contra producción
+  el mismo día; queda **uno**, el compartido por las nueve, y espera al dueño)
+- **Decisión del dueño (2026-10-27):** sobre el ablandamiento de `thesis.k2.p`, *"Tu recomendación,
+  1"* — la salida (a): el inglés y el alemán se alinean al castellano. Aplicada y servida el mismo
+  día. Y, en el mismo mensaje, *"Terminado el tema de las traducciones por ahora. Necesitamos
+  avanzar"*: el hallazgo compartido de `material.practica` queda sin decidir y sin tocar.
 
 **Por qué son nueve entradas y no una.** La auditoría lo pidió así, y tiene razón: cada idioma lo
 revisa alguien que lo lee, en un momento distinto, y el resultado de uno no dice nada del otro.
@@ -2798,8 +2802,8 @@ de correcciones propuestas, o la constancia de que no hay ninguna.
 | id | idioma | hallazgos | aplicados | queda | estado |
 |---|---|---:|---:|---:|---|
 | PND-026 | árabe (ar) | 7 | 7 | 0 propios + el compartido | todo lo propio, servido |
-| PND-027 | alemán (de) | 8 | 8 | 1 propio + el compartido | queda el ablandamiento de `thesis.k2.p` |
-| PND-028 | inglés (en) | 1 | 0 | 1 propio + el compartido | su único hallazgo propio es el ablandamiento |
+| PND-027 | alemán (de) | 8 | 8 | 0 propios + el compartido | todo lo propio, servido |
+| PND-028 | inglés (en) | 1 | 1 | 0 propios + el compartido | su único hallazgo propio, servido |
 | PND-029 | francés (fr) | 5 | 5 | 0 propios + el compartido | todo lo propio, servido |
 | PND-030 | hindi (hi) | 5 | 5 | 0 propios + el compartido | todo lo propio, servido |
 | PND-031 | italiano (it) | 5 | 4 | 0 propios + el compartido | el «(in spagnolo)» es el compartido |
@@ -2807,11 +2811,12 @@ de correcciones propuestas, o la constancia de que no hay ninguna.
 | PND-033 | portugués (pt) | 3 | 3 | 0 propios + el compartido | todo lo propio, servido |
 | PND-034 | chino (zh) | 6 | 6 | 0 propios + el compartido | todo lo propio, servido |
 
-La columna «aplicados» cuenta hallazgos, no cadenas: los cuarenta y cuatro aplicados son **127
-cadenas** (21 el 2026-10-27 a la mañana y 106 a la tarde, más tres correcciones de las propias
-correcciones). La de «queda» son **dos** hallazgos, y los dos los decide el dueño porque los dos
-se resuelven escribiendo castellano: el ablandamiento de `thesis.k2.p` —que el inglés y el alemán
-comparten— y la aclaración «(en español)» de `material.practica`.
+La columna «aplicados» cuenta hallazgos, no cadenas: los cuarenta y cinco aplicados son **129
+cadenas** (21 el 2026-10-27 a la mañana, 106 a la tarde y 2 a la noche, más tres correcciones de
+las propias correcciones). La de «queda» es **uno**: la aclaración «(en español)» de
+`material.practica`, que los nueve agregan y el castellano no dice, y lo decide el dueño porque se
+resuelve escribiendo castellano. El otro que quedaba —el ablandamiento de `thesis.k2.p`, que el
+inglés y el alemán compartían— lo decidió el dueño esa misma noche y ya está servido.
 
 **Y la columna «queda» hay que leerla con una corrección, porque la tabla la decía mal.** El
 segundo hallazgo estaba archivado bajo el italiano, que fue donde se vio primero, y eso hacía que
@@ -2963,11 +2968,43 @@ mantiene, lo que se cambia son dos cadenas, la inglesa y la alemana. Lo único q
 es si la afirmación castellana es la que el método quiere hacer. Las dos salidas, con su costo:
 **(a)** alinear el inglés y el alemán al castellano —dos cadenas, el método dice que no sabés—; o
 **(b)** adoptar la forma ablandada como la buena y bajarla al castellano y a las siete fieles
-—ocho cadenas, y el método dice *quizás*—. La recomendación es la **(a)**: la frase vive en la
+—ocho cadenas, y el método dice *quizás*—. La recomendación fue la **(a)**: la frase vive en la
 tarjeta que presenta la disciplina del rojo, y «quizás no prueba nada» es la frase que el método
-existe para no dejar decir. Redacciones propuestas, que son traducción y no reescritura:
-`A test you never saw fail -- you do not know whether it proves anything.` y
-`Ein Test, den man nie hat scheitern sehen: man weiss nicht, ob er irgendetwas beweist.`
+existe para no dejar decir.
+
+**RESUELTO Y SERVIDO el 2026-10-27 a la noche, con la salida (a).** El dueño eligió la (a) y las
+dos cadenas quedaron así:
+
+```
+en  A test you never saw fail -- you do not know whether it proves anything.
+de  Ein Test, den man nie hat scheitern sehen: man weiß nicht, ob er irgendetwas beweist.
+```
+
+**El alemán entró con eszett y la redacción propuesta decía doble s**, y la diferencia se midió
+antes de escribir la cadena en vez de arrastrar la propuesta: el catálogo alemán usa `ß` en diez
+cadenas (`schließt`, `verhältnismäßiger`, `außerhalb`, `Maßstäbe`, `Größe`), o sea ortografía
+alemana corriente y no la variante suiza, así que `weiss` habría sido la única excepción del
+archivo. Es la misma clase de corrección que las cuatro de las propias listas de más arriba: la
+propuesta de un revisor no es la cadena que se publica hasta que se mide contra el archivo que la
+va a llevar.
+
+El commit del portal es `2d74175`, rebasado a `6704325` sobre la publicación automática del método
+que había entrado en el medio —otra vez, y por la misma razón: un identificador de algo sin empujar
+no es firme—. El despliegue cerró en verde en la corrida `40603256711`, con los cuatro recibos que
+su paso exige a la vista (`10/10 pages on disk`, `PASS -- every page is baked, linked, canonical
+and reciprocal`, `PRUEBA EN ROJO OK: las 10 mutaciones caen`, `arbol propio: comprobado`,
+`eol: comprobado`). Medido contra **producción** después y no antes, con la forma nueva contra la
+que se descartó:
+
+```
+en  HTTP 200   70851 bytes  |  "you do not know whether it proves anything" 1  |  "may prove nothing" 0
+de  HTTP 200   73302 bytes  |  "man weiß nicht, ob er irgendetwas beweist"  1  |  "beweist vielleicht nichts" 0
+es  HTTP 200   71248 bytes  |  "no sabés si prueba algo" 1                      |  "quizás" 0
+```
+
+Y el diff, para que se vea el alcance: **cuatro archivos, una línea cada uno** —los dos catálogos y
+los dos horneados—, los otros ocho idiomas sin tocar. Con esto `PND-028` se queda sin hallazgos
+propios y `PND-027` tampoco: las nueve quedan con **el compartido y nada más**.
 
 *(2) La aclaración de `material.practica`, que los nueve agregan y el castellano no dice.* Los dos
 manuales de práctica están **sólo en castellano** —`docs/practica/` queda explícitamente fuera del
@@ -3041,11 +3078,15 @@ traducción y un nativo puede discutir una recomendación concreta sin que el ha
 criterio de aceptación es sobre **lo que el lector lee en la portada**, no sobre la existencia de
 la lista ni sobre que el empujón haya ocurrido. Los cuarenta y cuatro hallazgos aplicados están
 servidos y medidos contra producción, y eso cierra la parte que se podía cerrar sin el dueño. Lo
-que queda abierto es **un hallazgo compartido por las nueve** —la aclaración de `material.practica`,
-que los nueve agregan y la fuente de verdad no dice— más el ablandamiento de `thesis.k2.p` en el
-inglés y el alemán. Mientras el compartido no se resuelva, lo que el lector lee en cualquiera de
-los nueve sigue diciendo algo que la castellana no dice, y por eso ninguna de las nueve cerró.
-Cerrar seis de ellas por tener cero hallazgos propios habría sido leer la tabla y no el criterio.
+que queda abierto es **un hallazgo compartido por las nueve**: la aclaración de `material.practica`,
+que los nueve agregan y la fuente de verdad no dice. El otro que quedaba —el ablandamiento de
+`thesis.k2.p` en el inglés y el alemán— se resolvió y se sirvió la noche del 2026-10-27, así que
+ninguna de las nueve tiene hallazgos propios abiertos. Mientras el compartido no se resuelva, lo
+que el lector lee en cualquiera de los nueve sigue diciendo algo que la castellana no dice, y por
+eso ninguna de las nueve cierra. Cerrar seis de ellas por tener cero hallazgos propios habría sido
+leer la tabla y no el criterio; cerrar las nueve ahora, por el mismo motivo, sería leer la tabla de
+nuevo. **Y el dueño pidió terminar el tema de las traducciones por ahora**, así que el compartido
+queda escrito, medido y sin tocar: a una decisión de distancia y sin trabajo pendiente detrás.
 
 **Lo más grave de las nueve, para que no se pierda entre los cuarenta y seis hallazgos.** El
 japonés y el chino escriben en el título de «De dónde sale» (`origin.h2`) la cadena `四二十四`, que

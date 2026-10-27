@@ -300,9 +300,13 @@ aclaraciones correctas.
   y por eso la medición del italiano se hizo contra el nombre del campo del contrato (`**Cancello`,
   35 veces) y no contra el conteo crudo, que daba 238 falsos positivos y habría invertido la
   decisión.
-- **Lo que queda son dos hallazgos, y los dos se arreglan escribiendo castellano:** el
-  ablandamiento de `thesis.k2.p` (inglés y alemán) y el «(en español)» que nueve idiomas agregan en
-  `material.practica`. Los dos esperan al dueño.
+- **Lo que queda es un hallazgo, y se arregla escribiendo castellano:** el «(en español)» que
+  nueve idiomas agregan en `material.practica`, y lo decide el dueño. Esta lista decía **dos** y el
+  otro era el ablandamiento de `thesis.k2.p` (inglés y alemán): el dueño eligió la salida (a) la
+  noche del 2026-10-27 —el castellano prevalece, D-013— y las dos cadenas ya están servidas. De esa
+  lista queda además una corrección propia: decía que los dos se arreglan «escribiendo castellano»,
+  y para el ablandamiento era falso por la propia regla del proyecto. El detalle, con la medición
+  contra producción, está en `PND-026` a `PND-034` de [`PENDING.md`](PENDING.md).
 - **Y un hallazgo que estas nueve listas no podían ver.** Comparar cada idioma contra el castellano
   **de la misma página** no detecta que la página y el documento usen palabras distintas para lo
   mismo. Al medir el desempate aparecieron tres casos —dos en alemán y uno en francés—, y tienen
@@ -314,12 +318,15 @@ aclaraciones correctas.
   dirección más su concordancia, las cinco claves alemanas que trataban al lector de «du», el
   `prompt.antes` francés y la variedad del `prompt.antes` portugués. Lo horneado lo confirma: 8 ←
   y 0 → en árabe contra 8 → y 0 ← en castellano, `四十六` en los dos títulos, `24〜27分` y
-  `24 到 27 分钟`. Quedan **veintisiete** hallazgos de juicio, que son los de abajo sin marca
-  `[medido]`. Dos cosas a medias, dichas: el alemán conserva «du» en `prompt.tr` a propósito
+  `24 到 27 分钟`. Quedaban **treinta y siete** hallazgos de juicio, que son los de abajo sin
+  marca `[medido]` —esta lista dijo veintisiete y la resta correcta es 46 menos 9—. Dos cosas a medias, dichas: el alemán conserva «du» en `prompt.tr` a propósito
   —le habla al modelo, no a la persona, el mismo criterio que el francés ya aplicaba— y el
   hallazgo #2 del portugués no entró aunque vive en la clave que sí se tocó, porque es elección
   de término.
-- **Y los arreglos siguen sin publicar.** Viven en el repositorio del portal, y ahí empujar **es**
-  publicar: son las diez portadas horneadas en diez idiomas. El criterio de aceptación de las nueve
-  entradas es sobre lo que el lector lee, así que ninguna puede cerrar con la lista ni con el
-  commit: cierran cuando la corrección está **servida**. Están en curso.
+- **Y el 2026-10-27 se publicó todo lo decidido, en tres empujones del mismo día.** La mitad
+  medida (21 cadenas), el vocabulario único (106 cadenas, con el desempate del corpus de D-072) y
+  las dos del ablandamiento. Los tres despliegues del portal cerraron en verde con los cuatro
+  recibos que su paso exige, y las tres tandas están medidas **contra producción** en las entradas
+  del registro. Las nueve siguen **en curso** y no cerradas: su criterio de aceptación es sobre lo
+  que el lector lee, y el hallazgo compartido de `material.practica` sigue sin decidir, así que lo
+  que el lector lee en cualquiera de los nueve sigue diciendo algo que la castellana no dice.
