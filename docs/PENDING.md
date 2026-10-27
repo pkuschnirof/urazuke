@@ -1477,6 +1477,45 @@ huerfanas: comprobado -- 84 documentos, 0 huerfanos, 0 fuera del mapa
 
 ---
 
+## PND-058 — La portada promete cinco documentos por idioma y su tabla tiene diez *(lo encontró la revisión semántica)*
+
+- **Nodo:** `interfaz-publica/portada` [nodo propuesto]
+- **Grupo:** G-ALCANCE · **Severidad:** avisa · **Quién decide:** se hace y se reporta
+- **Repositorio:** portal · **Estado: abierto**
+
+**Qué está mal.** La entrada de la sección del material (`material.lede`) dice «Tres documentos por
+idioma» y «desde la versión 5, dos documentos más por idioma». La tabla que sigue, en la misma
+sección, tiene **diez** columnas de documento: documento principal, contratos de peldaño,
+manual-curso, referencias, camino evolutivo, curso parte 2, junior, en equipo, anexo de heurísticas
+y preguntas al proveedor. Un lector que le cree a la entrada y no cuenta las columnas no se entera
+de que existen el Anexo H en su idioma ni la hoja de las veinticinco preguntas.
+
+**Cómo apareció.** No lo trajo nadie de afuera: salió de leer las 245 cadenas de cada idioma contra
+las castellanas para `PND-026` a `PND-034`. Es un defecto del **castellano**, así que los nueve
+idiomas lo repiten fielmente y ninguna de las nueve entradas lo cubre.
+
+**Mi reproducción (2026-10-27).** `material.lede` nombra tres documentos más dos; las claves
+`material.col2` a `material.col11` son diez. La columna más nueva —la hoja de las veinticinco
+preguntas— la agregué yo el 2026-10-26 y no revisé el párrafo que presenta la tabla, que ya estaba
+viejo desde la versión en que entraron el junior, el trabajo en equipo y el anexo.
+
+**Criterio de aceptación por perfil.**
+
+- *P3 (lector humano que llega por la portada):* dado un lector en cualquiera de los diez idiomas,
+  lo que la entrada promete es exactamente lo que la tabla lista, y el número no hay que contarlo.
+- *P4 (rastreador que no ejecuta JavaScript):* sin cambio; esto es texto horneado en las diez
+  páginas.
+
+**Lo que cuesta, dicho porque cambia la forma del arreglo.** La frase vive en los diez catálogos de
+la interfaz, así que se reescribe una vez en castellano y nueve veces traducida, y se hornea. Y
+conviene escribirla **sin número** —«los documentos que la tabla lista»— para que la próxima columna
+no vuelva a dejar la entrada vieja: es la misma lección que D-067 dejó para la lista de idiomas, que
+ahora vive una sola vez.
+
+**Depende de:** nada.
+
+---
+
 # Abiertos — G-IDIOMA: leer el método en mi idioma
 
 ## PND-016 — La interfaz está en diez idiomas y el corpus en ocho *(era U-15)*
@@ -2676,7 +2715,7 @@ limpio: `node --test` = **220 pruebas, 0 fallos** (eran 197; las 23 nuevas está
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
 - **Grupo:** G-IDIOMA · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: abierto** (las nueve)
+- **Repositorio:** portal · **Estado: en curso** (las nueve: revisadas el 2026-10-27, sin arreglar)
 
 **Por qué son nueve entradas y no una.** La auditoría lo pidió así, y tiene razón: cada idioma lo
 revisa alguien que lo lee, en un momento distinto, y el resultado de uno no dice nada del otro.
@@ -2712,20 +2751,56 @@ de correcciones propuestas, o la constancia de que no hay ninguna.
 
 | id | idioma | estado |
 |---|---|---|
-| PND-026 | árabe (ar) | abierto |
-| PND-027 | alemán (de) | abierto |
-| PND-028 | inglés (en) | abierto |
-| PND-029 | francés (fr) | abierto |
-| PND-030 | hindi (hi) | abierto |
-| PND-031 | italiano (it) | abierto |
-| PND-032 | japonés (ja) | abierto |
-| PND-033 | portugués (pt) | abierto |
-| PND-034 | chino (zh) | abierto |
+| id | idioma | hallazgos | estado |
+|---|---|---:|---|
+| PND-026 | árabe (ar) | 7 | revisado, sin arreglar |
+| PND-027 | alemán (de) | 8 | revisado, sin arreglar |
+| PND-028 | inglés (en) | 1 | revisado, sin arreglar |
+| PND-029 | francés (fr) | 5 | revisado, sin arreglar |
+| PND-030 | hindi (hi) | 5 | revisado, sin arreglar |
+| PND-031 | italiano (it) | 5 | revisado, sin arreglar |
+| PND-032 | japonés (ja) | 6 | revisado, sin arreglar |
+| PND-033 | portugués (pt) | 3 | revisado, sin arreglar |
+| PND-034 | chino (zh) | 6 | revisado, sin arreglar |
+
+**La revisión se hizo el 2026-10-27, y la hizo un modelo.** El dueño lo autorizó así ese día,
+después de que la entrada se reportara durante tres días como trabajo que necesitaba un hablante
+nativo de cada idioma: es lo que la máquina del panel puede leer, y queda dicho en el propio
+entregable para que nadie lo lea como la revisión de un nativo contratado. El entregable —las nueve
+listas, hallazgo por hallazgo, con la corrección recomendada— está en
+[`REVISION_SEMANTICA_INTERFAZ.md`](REVISION_SEMANTICA_INTERFAZ.md). Lo que ahí está marcado
+`[medido]` se reproduce con un comando y no depende del juicio del revisor; el resto es juicio de
+traducción y un nativo puede discutir una recomendación concreta sin que el hallazgo deje de serlo.
+
+**Por qué quedan en curso y no cerradas.** El criterio de aceptación de arriba es sobre **lo que el
+lector lee en la portada**, no sobre la existencia de la lista. Las nueve cierran cuando la
+corrección está **servida**, y los arreglos viven en el repositorio del portal, donde empujar es
+publicar las diez portadas horneadas. Cerrarlas con la lista sería exactamente el defecto de D-057:
+un arreglo en una máquina no es un efecto en producción. La autorización de publicar es del dueño.
+
+**Lo más grave de las nueve, para que no se pierda entre los cuarenta y seis hallazgos.** El
+japonés y el chino escriben en el título de «De dónde sale» (`origin.h2`) la cadena `四二十四`, que
+**no es un número**: el castellano dice «cuarenta y seis casos» y los otros siete idiomas lo dicen
+bien. Los dos mismos idiomas cambian además una cifra de una retrospectiva real (`origin.f2.p`):
+dicen «16 a 27 minutos» donde el castellano dice veinticuatro a veintisiete. Es la cifra que el
+método publica para decir que mide.
+
+**Corrección de la cuenta de esta entrada.** Decía 241 cadenas por idioma, y la auditoría también.
+Medido el 2026-10-27: son **245** en los diez archivos, cero faltantes y cero vacías. Las cuatro de
+diferencia entraron después de la auditoría —la columna de la hoja de las veinticinco preguntas y
+su cabecera—, así que el número de la auditoría era correcto el día que lo midió. Se deja escrito
+en vez de reescribir la evidencia del auditor, que no se toca.
 
 **Nota sobre el alcance, para que no se confunda con PND-016.** Esto es la **interfaz** de la
-portada: 241 cadenas por idioma. El **corpus** —34 documentos, cientos de miles de caracteres— no
+portada: 245 cadenas por idioma. El **corpus** —34 documentos, cientos de miles de caracteres— no
 entra acá; su revisión es otro trabajo y todavía no tiene entrada, porque primero hay que decidir
 si se revisa todo o sólo lo que cambió.
+
+**Dos defectos que la revisión encontró y no son de ninguna traducción.** Están en el castellano y
+por lo tanto están, fielmente traducidos, en los diez idiomas: la portada afirma dos veces que la
+retrospectiva es el peldaño 15 cuando una línea más arriba dice que es el 23 (`PND-057`), y la
+entrada de la tabla del material promete cinco documentos por idioma cuando la tabla tiene diez
+columnas (`PND-058`). Van con entrada propia porque no se arreglan traduciendo.
 
 ---
 
@@ -3895,6 +3970,60 @@ $ node build/api_check.mjs        -> los tres recursos coinciden con las fuentes
 
 ---
 
+## PND-057 — La portada dice dos veces que la retrospectiva es el peldaño 15, y una línea más arriba dice que es el 23 *(lo encontró la revisión semántica)*
+
+- **Nodo:** `corpus/escalera` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** avisa · **Quién decide:** se hace y se reporta
+- **Repositorio:** portal · **Estado: abierto**
+
+**Qué está mal.** La portada se contradice sobre el número de un peldaño, dentro de la misma
+página. En las preguntas frecuentes (`faq.a6`): «el **peldaño 15** pide que cada retrospectiva
+termine en una propuesta concreta de cambio a la escalera». En los tres casos de uso
+(`paths.c2.p`): «Es el **15** volviendo al 0». Y en la entrada de la escalera (`ladder.lede`), más
+arriba en la misma página: «El **23** cierra el ciclo y vuelve al 0».
+
+**Cuál es el número bueno.** El 23. Medido contra el documento principal el 2026-10-27:
+
+```
+$ grep -n "cierra el ciclo y vuelve al 0" docs/ESCALERA_METODOLOGICA.md
+276: vivo. El 23 cierra el ciclo y vuelve al 0 para el proximo proyecto.
+$ grep -n "Peldano 23" docs/ESCALERA_METODOLOGICA.md
+1221: ### Peldano 23 -- El agente adentro del sistema, y la retrospectiva con numero
+```
+
+El 15 es *Integración continua, entornos, secretos y despliegue como producto*, que no tiene nada
+que ver con la retrospectiva. Es un resto de cuando la escalera tenía dieciséis peldaños y el
+último era el que cerraba el ciclo: `CLAUDE.md` ya dejó escrito que «dieciséis» no aparece más como
+cuenta de peldaños, y esto es la misma deriva un nivel más abajo —un número de peldaño viejo— en un
+archivo que esa regla no mira.
+
+**Mi reproducción (2026-10-27).** Las dos claves llevan el 15 en los **diez** idiomas: el
+castellano lo dice y las nueve traducciones lo traducen bien. O sea que esto no lo arregla ninguna
+de las nueve revisiones semánticas; se arregla en la fuente y se replica.
+
+**Lo que cuesta de verdad, y es la razón de la severidad.** Un lector que quiere proponer una mejora
+va al peldaño 15 a buscar la retrospectiva y no la encuentra, y un lector que arma su calendario
+pone la retrospectiva antes del primer despliegue. El dato publicado no tiene el defecto —`faq.a6`
+es prosa de la portada, no `gates.json`—, así que ninguna herramienta lo hereda.
+
+**Criterio de aceptación por perfil.**
+
+- *P3 (lector humano que llega por la portada):* dado un lector en cualquiera de los diez idiomas,
+  el número del peldaño de la retrospectiva es el mismo en las tres claves y es el 23.
+- *P8 (dueño de proyecto que aplica el método):* dado el dueño que entra por la portada a buscar
+  dónde se pide la propuesta de mejora, el peldaño que la portada nombra es el que la pide.
+
+**Lo que esto deja como regla, y es lo que lo hace valer más que el arreglo.** Los números de
+peldaño son la única parte de la prosa de la portada que se puede comprobar por máquina contra el
+documento principal, y hoy no la comprueba nada. Una comprobación posible —y conviene decir que es
+una propuesta y no un compromiso— es exigir que todo «peldaño N» que la portada nombre exista y
+que, cuando la frase nombre la retrospectiva, el N sea el del título que la contiene. Eso vive en
+el repositorio del portal y agranda su cadena; queda escrito acá y lo decide el dueño.
+
+**Depende de:** nada.
+
+---
+
 # Abiertos — G-TRAZABILIDAD: reconstruir, desde el registro, qué cambió y por qué
 
 ## PND-050 — Un commit llevó ocho documentos que su mensaje no nombra
@@ -4583,19 +4712,20 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
 | G-API | 16 | 5 | 11 | 1 |
-| G-ALCANCE | 4 | 0 | 4 | 0 |
+| G-ALCANCE | 5 | 1 | 4 | 0 |
 | G-IDIOMA | 13 | 10 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 12 | 2 | 10 | 1 |
+| G-METODO | 13 | 3 | 10 | 1 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **56** | **18** | **38** | **3** |
+| **total** | **58** | **20** | **38** | **3** |
 
-Cincuenta y seis entradas, `PND-001` a `PND-056`. Veintidós vienen de la auditoría externa
+Cincuenta y ocho entradas, `PND-001` a `PND-058`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
-PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
-protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada, y
-las nueve revisiones semánticas— y **diez son de una fuente nueva**: la retrospectiva
+PND-037 y PND-038), quince son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
+protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
+las nueve revisiones semánticas y los dos defectos del castellano que esas revisiones encontraron al
+pasar (`PND-057` y `PND-058`)— y **diez son de una fuente nueva**: la retrospectiva
 del peldaño 23 sobre «El Arte de Forjar Sistemas», la novela de Oscar Schmitz que adapta el método,
 validada aseveración por aseveración contra la letra (`PND-039` a `PND-048`, grupo G-METODO). No las
 trajo una auditoría encargada ni una medición propia: las trajo **un lector que aplicó el método a
@@ -4638,9 +4768,13 @@ que hasta ese día la única defensa era que alguien se acordara. Eso quedó reg
 **PND-038**, con su arreglo escrito y medido —el despliegue del portal corre la compuerta y las
 pruebas en rojo, y exige la línea que cada una imprime—, y **cerró el mismo día**, cuando el
 empujón ocurrió y la primera corrida real del paso dejó sus cuatro líneas en el registro de un
-despliegue del portal. Con eso el grupo del alcance y el de la publicación quedan **completos**:
-`PND-049`, la hoja nueva, está enlazada desde las diez portadas servidas y los ochenta y cuatro
-documentos del método están enlazados y en el mapa del sitio.
+despliegue del portal. Con eso el grupo de la publicación queda **completo** y el del alcance estuvo
+completo un día: `PND-049`, la hoja nueva, está enlazada desde las diez portadas servidas y los
+ochenta y cuatro documentos del método están enlazados y en el mapa del sitio. Lo reabrió la
+revisión semántica el 2026-10-27 con **PND-058**: la entrada de la tabla del material promete cinco
+documentos por idioma y la tabla tiene diez columnas, así que el Anexo H y la hoja nueva están
+enlazados y el párrafo que los presenta no los nombra. Llegar al material no es sólo que el enlace
+exista.
 
 **Y el 2026-10-26 el grupo del ecosistema cerró a medias, y la mitad que no cerró es la lección.**
 **PND-022**: la distinción entre el método, el protocolo y la herramienta está escrita arriba en el
@@ -4716,8 +4850,10 @@ Es la tercera de la familia del recibo de rojo y del reporte proporcional: el pe
 es un recibo, el 12 separó verificado de creído, y falta no conformarse con «preguntá».
 
 Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-012,
-PND-016, PND-024, PND-046 y PND-054), la revisión semántica de los nueve idiomas de la interfaz
-(PND-026 a PND-034) y la prevención de los desvíos de medición (**PND-052**, que es el segundo del
+PND-016, PND-024 y PND-046), los arreglos de las nueve revisiones semánticas —**ya hechas** el
+2026-10-27, cuarenta y seis hallazgos, y en curso porque su criterio de aceptación es sobre lo que
+el lector lee y publicar la portada es del dueño (PND-026 a PND-034, con PND-057 y PND-058, que son
+del castellano)— y la prevención de los desvíos de medición (**PND-052**, que es el segundo del
 mismo grupo en dos días). Los tres bloqueantes abiertos que quedan son uno de la API (PND-011, que
 necesita el corpus en diez idiomas), uno de idiomas (PND-016, la decisión más cara del backlog) y
 el del contenido (PND-054): el del método, el del alcance y el de la publicación se cerraron, y
