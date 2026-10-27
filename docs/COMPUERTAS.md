@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.4** - schema **2**
-- content fingerprint `ad88adccfcbfff7d...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.5** - schema **2**
+- content fingerprint `6fc83add4a1245d3...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -24,7 +24,7 @@ it already publishes the prompts, and the tool consumes it.
 A project starts and ends on the same version of the method, unless somebody applies the double
 lock. For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.4`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.5`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -45,6 +45,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.2** (2026-10-23, D-053) -- `3bd03ac3bf79a600...`
 - **2026.10.3** (2026-10-24, D-055) -- `0f3c1b472f922428...`
 - **2026.10.4** (2026-10-26, D-061) -- `ad88adccfcbfff7d...`
+- **2026.10.5** (2026-10-27, D-065) -- `6fc83add4a1245d3...`
 
 ## The language of each text
 
@@ -97,7 +98,7 @@ method declares from now on is in English, and it is marked as new.
 |---|---|---|---|---|---|---|---|
 | 0 | Este proyecto se puede encarar asi? (elegibilidad) | conversation | always | `artifacts` | 1 | 1 | 3 |
 | 1 | El contrato de convivencia | one_shot | always | `artifacts` | 2 | 1 | 3 |
-| 2 | La definicion del proyecto, el arbol semantico y la lectura obligatoria | conversation | always | `artifacts` | 2 | 3 | 5 |
+| 2 | La definicion del proyecto, el arbol semantico y la lectura obligatoria | conversation | always | `artifacts` | 2 | 5 | 5 |
 | 3 | Dimensionar antes de disenar la arquitectura | conversation | always | `sizing` | 3 | 1 | 3 |
 | 4 | El esqueleto con sus compuertas | one_shot | always | `ci` | 2 | 2 | 3 |
 
@@ -180,6 +181,8 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `PROJECT.md` -- definicion del proyecto
 - `docs/SEMANTIC_TREE.md` -- arbol semantico
 - `docs/STATUS.md` -- estado del proyecto; at least 80 bytes, so that a sketch does not count
+- `docs/GLOSSARY.md` -- the user glossary, in the words the business uses; at least 80 bytes, so that a sketch does not count; **new in schema 2**
+- `docs/PROFILES.md` -- the list of profiles, who each one is and what they come to do; at least 80 bytes, so that a sketch does not count; **new in schema 2**
 
 Completeness check, without reading code:
 - PROJECT.md explica el sistema a alguien que no lo conoce?
@@ -718,8 +721,8 @@ never on a commit.
 | 4 | 10 | one manual case per affected profile, derived from the matrix | `manual_cases_per_profile` |
 | 5 | 12 | the report says what was measured, what was left warning and which rule is switched off, with reason, author and review date | `heuristics` |
 
-- **the user glossary** (step 2): without it, UX-01 and UX-24 have nothing to compare against. Declared path: **none yet**. The annex requires it when scope is defined and declares no file for it. Since 2026-10-26 the step 2 contract DOES ask for it, in writing and named from the project file, and the step 2 completeness check reads it; what the method still does not declare is a canonical path, on purpose, because the owner never declared one and a file name invented here would be published as a default. So it stays machine-measurable only through the step 2 checklist: declared, and not measured by path.
-- **the list of profiles** (step 2): without it, the B2 matrix gets invented at step 5. Declared path: **none yet**. Same status as prior input 1: asked for by the step 2 contract since 2026-10-26, with no canonical path declared.
+- **the user glossary** (step 2): without it, UX-01 and UX-24 have nothing to compare against. Declared path: `docs/GLOSSARY.md`. The annex requires it when scope is defined. Since 2026-10-26 the step 2 contract asks for it in writing, and since 2026-10-27 the method also declares its canonical path, which the owner decided: the step 2 artifact list carries it like the other three, so a gate can look at the file instead of trusting a checklist. The path is the only thing a consumer may assume; what the file says is read by a person.
+- **the list of profiles** (step 2): without it, the B2 matrix gets invented at step 5. Declared path: `docs/PROFILES.md`. Same status as prior input 1: asked for by the step 2 contract since 2026-10-26, with its canonical path declared by the owner on 2026-10-27 and carried as a step 2 artifact.
 
 ### The three artifacts
 

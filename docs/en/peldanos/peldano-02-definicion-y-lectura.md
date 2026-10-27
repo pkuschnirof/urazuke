@@ -89,8 +89,8 @@ the agent:
 > needs before a single screen exists: the user glossary, with the words people actually use
 > for each thing as the business says them and not as the system calls them; and the list of
 > profiles, saying who each one is and what they come to do. Take both from the survey, ask
-> me for whatever is not in it instead of inventing it, write them as files of the project,
-> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
+> `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
 > changes every day; the other two change only when the system changes. Reply in my language.
 
@@ -149,9 +149,12 @@ and what lets you spot an out-of-scope pending item in ten seconds.
 - `docs/STATUS.md`: living state, separate from the previous two.
 - The two prior inputs of Annex H, written and named in `PROJECT.md`: the **user glossary** (the
   words people actually use for each thing) and the **list of profiles** (who each one is and what
-  they come to do), with whatever was inferred marked. The method does not impose the names of
-  those two files on you -- use the ones your project uses --; what it does demand is that they
-  exist, that they can be found from the project file, and that they are there before step 5.
+  they come to do), with whatever was inferred marked. The method declares the names of those two files
+  -- `docs/GLOSSARY.md` and `docs/PROFILES.md` --, just as it declares the other three: a gate
+  cannot look at a file whose name nobody knows, and while it declared none, the matrix of step 8
+  could keep being invented against a list that nothing obliged to exist. What it demands is still
+  the same: that they exist, that they can be found from the project file, and that they are there
+  before step 5.
 - In all three, a date of last update.
 - In the agreement, the two new rules.
 

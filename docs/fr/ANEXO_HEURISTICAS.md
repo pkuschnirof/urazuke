@@ -162,8 +162,8 @@ L'annexe n'invente pas d'étapes nouvelles : elle s'accroche à celles qui exist
 
 | Moment | Ce qui s'ajoute | Pourquoi la |
 |---|---|---|
-| **Entrée préalable 1** - définition du périmètre | Le glossaire de l'utilisateur | Sans glossaire, UX-01 et UX-24 n'ont rien à quoi se comparer. |
-| **Entrée préalable 2** - définition du périmètre | La liste des profils | Sans la liste, la matrice de B2 s'invente à l'étape 5 et tout ce qui en dérive naît sans base. |
+| **Entrée préalable 1** - définition du périmètre | Le glossaire de l'utilisateur, dans `docs/GLOSSARY.md` | Sans glossaire, UX-01 et UX-24 n'ont rien à quoi se comparer. |
+| **Entrée préalable 2** - définition du périmètre | La liste des profils, dans `docs/PROFILES.md` | Sans la liste, la matrice de B2 s'invente à l'étape 5 et tout ce qui en dérive naît sans base. |
 | **Ancre 1** - étape 5 (le plan) | Chaque élément en attente qui touche un écran déclare trois choses : à quel groupe de convergence il appartient (B1), quels profils l'ont et quels critères d'acceptation sont par profil ("étant donne le profil X, la personne peut faire Y et ne peut pas faire Z"). Sans cette déclaration l'élément ne passe pas l'étape. | Ici *naissent* le regroupement et les profils : ce sont des décisions de planification, pas de code. C'est l'ancre au meilleur rendement et celle qui n'existe pas aujourd'hui. |
 | **Ancre 2** - étape 8 (tests au rouge) | La matrice devient un test que l'on voit d'abord échouer : pour chaque profil, l'accessible contre sa ligne (UX-11, UX-12, UX-15). | Sans cela la matrice est un document que personne ne regarde. |
 | **Ancre 3** - étape 9 (qualité) | Le catalogue CQ complet avec son adaptateur et ses seuils déclarés ; `docs/CODE_QUALITY.md` rend compte par règle, pas par un chiffre unique. Et la matrice comme barrière (UX-02, UX-03, UX-08, UX-09, UX-10, UX-16). | C'est le seul endroit où le texte entre littéralement comme directive, et c'est la barrière qui tourne à chaque bloc avec cliquet. |

@@ -89,8 +89,8 @@ faites, pas l'agent :
 > needs before a single screen exists: the user glossary, with the words people actually use
 > for each thing as the business says them and not as the system calls them; and the list of
 > profiles, saying who each one is and what they come to do. Take both from the survey, ask
-> me for whatever is not in it instead of inventing it, write them as files of the project,
-> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
+> `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
 > changes every day; the other two change only when the system changes. Reply in my language.
 
@@ -111,8 +111,8 @@ faites, pas l'agent :
 > l'Annexe H a besoin avant qu'un seul écran existe : le glossaire de l'utilisateur, avec les mots
 > que les gens emploient vraiment pour chaque chose, comme le métier les dit et non comme le système
 > les appelle ; et la liste des profils, en disant qui est chacun et ce qu'il vient faire. Tire les
-> deux du relevé, demande-moi ce qui n'y est pas au lieu de l'inventer, écris-les comme des fichiers
-> du projet, nomme ces fichiers dans `PROJECT.md` et marque là aussi ce que tu as inféré.
+> deux du relevé, demande-moi ce qui n'y est pas au lieu de l'inventer, écris-les dans `docs/GLOSSARY.md`
+> et `docs/PROFILES.md`, nomme-les dans `PROJECT.md` et marque là aussi ce que tu as inféré.
 > À part, crée `docs/STATUS.md` pour l'état vivant (ce sur quoi on travaille, ce qui est
 > ouvert) : ce fichier change tous les jours ; les deux autres ne changent que quand le système
 > change. Réponds dans ma langue.
@@ -180,10 +180,12 @@ périmètre.
 - `docs/STATUS.md` : l'état vivant, séparé des précédents.
 - Les deux entrées préalables de l'Annexe H, écrites et nommées dans `PROJECT.md` : le **glossaire
   de l'utilisateur** (les mots que les gens emploient vraiment pour chaque chose) et la **liste des
-  profils** (qui est chacun et ce qu'il vient faire), avec ce qui a été inféré marqué. La méthode ne
-  vous impose pas le nom de ces deux fichiers — mettez celui qu'emploie votre projet — ; ce qu'elle
-  exige, en revanche, c'est qu'ils existent, qu'on puisse les trouver depuis le fichier de projet et
-  qu'ils soient là avant l'échelon 5.
+  profils** (qui est chacun et ce qu'il vient faire), avec ce qui a été inféré marqué. La méthode déclare le nom de ces deux
+  fichiers — `docs/GLOSSARY.md` et `docs/PROFILES.md` —, comme elle déclare celui des trois autres :
+  une porte ne peut pas regarder un fichier dont personne ne connaît le nom, et tant qu'elle n'en
+  déclarait aucun, la matrice de l'échelon 8 pouvait continuer à s'inventer contre une liste que
+  rien n'obligeait à exister. Ce qu'elle exige reste le même : qu'ils existent, qu'on puisse les
+  trouver depuis le fichier de projet et qu'ils soient là avant l'échelon 5.
 - Dans les trois, une date de dernière mise à jour.
 - Dans le contrat, les deux règles nouvelles.
 

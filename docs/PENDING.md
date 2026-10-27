@@ -2667,7 +2667,7 @@ si se revisa todo o sólo lo que cambió.
 
 # Abiertos — G-METODO: aplicar el método completo, sin que falte una parte que el método exige
 
-*De dónde salen las diez entradas de este grupo.* Un tercero —Oscar Schmitz— escribió una novela
+*De dónde salen diez de las once entradas de este grupo.* Un tercero —Oscar Schmitz— escribió una novela
 que adapta el método, «El Arte de Forjar Sistemas» (191 páginas, 189.115 caracteres, 2026), y se
 validó aseveración por aseveración contra la letra: 195 aseveraciones, 154 con veredicto, 108
 exactas. El informe completo está en `docs/VALIDACION_LIBRO_EL_ARTE_DE_FORJAR_SISTEMAS.html`. De
@@ -2678,12 +2678,14 @@ de cambio a la escalera con el incidente que la justifica. La diferencia con las
 ocho entradas es la fuente: no es una auditoría encargada ni una medición propia, es **un lector
 que aplicó el método a fondo y lo que le pasó al aplicarlo**. Las etiquetas `M-01` a `M-06` y
 `C-01` a `C-03` son las que el dueño usó al pedir el trabajo; las `C+nn` y `O-nn` son las del
-informe. Se citan las dos para que se pueda ir de una a la otra.
+informe. Se citan las dos para que se pueda ir de una a la otra. La undécima, `PND-053`, no sale
+de ahí: es la mitad de abajo de `PND-039` —la ruta de las dos entradas previas del Anexo H—, que
+quedó esperando una declaración del dueño y entró el 2026-10-27.
 
 *Por qué un grupo nuevo y no uno de los cinco que ya hay.* Los cinco grupos existentes son todos
 de la **interfaz publicada**: cómo se llega al material (G-ALCANCE), si lo servido es lo último
 (G-PUBLICACION), si se puede consumir el dato (G-API), si se lee en el idioma de cada uno
-(G-IDIOMA) y si se entiende qué es cada cosa (G-ECOSISTEMA). Estas diez entradas son del
+(G-IDIOMA) y si se entiende qué es cada cosa (G-ECOSISTEMA). Las entradas de este grupo son del
 **contenido del método**: si lo que el lector recibe está completo, es consistente y se puede
 aplicar. La tentación es meter `PND-039` en G-ALCANCE, porque el síntoma se parece, y conviene no
 hacerlo: `PND-015` era «el archivo no está enlazado» —un defecto de transporte, cerrado— y
@@ -3726,6 +3728,109 @@ y no viaja a los ocho idiomas. Se quedaron sólo los dos candados decidibles (E 
 
 ---
 
+## PND-053 — Las dos entradas previas del Anexo H no tenían ruta, así que ninguna compuerta podía mirarlas *(el dueño la declara; herramienta: PND-008)*
+
+- **Nodo:** `corpus/anexo-h` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Quién decide:** el dueño declaró el nombre y
+  delegó la forma
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-27.
+
+**Qué estaba mal.** El Anexo H exige dos entradas **previas** al Bucle de Construcción —el glosario
+del usuario y la lista de perfiles— y el método no decía dónde viven. El 2026-10-26 (`PND-039`,
+D-061) se cerró la mitad de arriba: el contrato del peldaño 2 empezó a pedirlas por escrito y la
+sección 4 a comprobarlas. La ruta quedó sin declarar **a propósito** —el dueño nunca la había
+declarado y un nombre inventado ahí se publica como si fuera un valor de fábrica—, y ese "a
+propósito" tenía un precio que estaba medido y que no era teórico.
+
+**Mi reproducción (2026-10-27).** Las dos entradas se publicaban como exigidas y **no verificables
+por máquina**:
+
+```
+$ node -e "..." sobre gates/heuristics.json (antes)
+  prior_input_1  the user glossary     step 2  path: null  declared: false
+  prior_input_2  the list of profiles  step 2  path: null  declared: false
+
+$ las rutas que el peldano 2 declaraba
+  PROJECT.md | docs/SEMANTIC_TREE.md | docs/STATUS.md      (tres, ninguna de las dos previas)
+```
+
+Las consecuencias, las dos escritas antes de hoy. **Una:** la compuerta del peldaño 5 no puede
+contrastar los perfiles de un pendiente contra una lista que nada obliga a existir, así que la
+matriz del peldaño 8 se puede seguir inventando. **Dos:** el consumidor que tiene que escribir el
+evaluador de la matriz lo marcó como bloqueante de su propio trabajo —iba a medir sobre un insumo
+opcional— y pidió resolverlo **antes** de escribirlo, no después.
+
+**Decisión del dueño (2026-10-27).** *"Dales ruta y cierra."* El nombre queda delegado.
+
+**Qué se hizo.** Las dos tienen ruta: **`docs/GLOSSARY.md`** y **`docs/PROFILES.md`**.
+
+- **Por qué esos nombres y no los que proponía el camino** (`docs/GLOSARIO_USUARIO.md` y
+  `docs/PERFILES.md`): medido antes de elegir, las cuarenta rutas de artefacto e insumo que el dato
+  declara hoy están en inglés y en mayúsculas —`docs/SEMANTIC_TREE.md`, `docs/PROFILE_MATRIX.md`,
+  `docs/WORKING_AGREEMENT.md`—, así que dos rutas en castellano serían las únicas dos del nivel de
+  datos, que es justo donde D-051 manda inglés. `docs/PROFILES.md` además queda al lado de la
+  `docs/PROFILE_MATRIX.md` que sale de ella.
+- **Cómo entran al dato:** como artefactos **nuevos** del peldaño 2 con su `since_schema`, sin
+  tocar la base congelada; con `min_bytes` y **sin** `must_contain`, porque lo que esos dos
+  archivos tienen que *decir* lo juzga una persona y un patrón inventado acá publica una exigencia
+  que el dueño no declaró. En `gates/heuristics.json` las dos entradas previas pasan a
+  `declared: true` con su `path`. `catalog_version` sube a `2026.10.5` con su huella.
+- **Y en la prosa, en los ocho idiomas:** el prompt del peldaño 2 nombra los dos archivos (una sola
+  pieza en inglés, idéntica en las ocho; `corpus_version` sube a `2026.10.3` con su huella), la
+  sección 3 del contrato reemplaza el "el método no te impone el nombre de esos dos archivos" por
+  la ruta declarada, y la tabla del Anexo H lleva la ruta en la fila de cada entrada previa. Un
+  archivo que la compuerta busca y el prompt no nombra es una compuerta que falla por una razón que
+  a la persona nunca se le dijo.
+- **Lo que NO se tocó, y por qué:** la ficha del peldaño 2 en el documento principal. Las fichas son
+  prosa y no nombran archivos —dicen «un archivo de proyecto operativo», no `PROJECT.md`—; meterle
+  dos rutas le rompe el registro. La ficha ya nombra las dos entradas previas desde D-061.
+
+**La guarda que lo sostiene.** `tests/artefacto_nombrado.test.mjs`, con sus comprobaciones puras en
+`build/artefacto_nombrado.mjs`: toda ruta que el dato declare para un peldaño tiene que estar
+**nombrada en su contrato, en los ocho idiomas**; un contrato que no se pudo leer es hallazgo y no
+salteo; los comodines (`docs/AUDIT_*.md` y los otros cuatro) se saltean desde un **registro con su
+razón**, que la prueba exige idéntico al conjunto que el dato declara; y una corrida que revisó cero
+pares no puede dar verde.
+
+**Dicho sin inflarlo, que es lo que el método pide:** esta guarda **no** habría atrapado el defecto
+que la originó. Mientras el dato no declaraba ninguna ruta no había par que revisar y la
+comprobación daba verde con razón. Lo que guarda es que la ruta declarada hoy no se quede sin su
+prosa en ninguno de los ocho idiomas, y que una ruta nueva no entre al dato en silencio.
+
+**Criterio de aceptación por perfil.**
+
+- *P1 (herramienta consumidora que compila las compuertas):* dada esa herramienta, puede escribir el
+  evaluador de la matriz de perfiles contra un insumo que tiene ruta declarada, en vez de medir
+  sobre un archivo opcional.
+- *P8 (dueño de proyecto que aplica el método):* dado ese perfil, esa persona sabe en qué dos
+  archivos van el glosario y los perfiles antes de que la compuerta del peldaño 5 la detenga.
+- *P6 (lector humano que entra por el documento principal):* dada esa persona, lo que el peldaño 2
+  le pide y lo que la compuerta le va a exigir dicen lo mismo.
+
+**Evidencia de cierre.** Medido con el mismo programa, antes y después:
+
+```
+$ la guarda contra el arbol de HEAD, con la ruta en el dato y no en la prosa
+  16 hallazgos (docs/GLOSSARY.md y docs/PROFILES.md, en los ocho idiomas)
+
+$ en el arbol de hoy
+  288 pares revisados (peldano x ruta x idioma), 288 en verde, 0 hallazgos
+
+$ rojo demostrado en disco, no solo en memoria: sacada la ruta del contrato japones
+  not ok 1 - A: cada artefacto que el dato exige por ruta esta nombrado en su contrato
+    ja/peldano-2: docs/PROFILES.md
+
+$ node --test                     -> # tests 249 | # pass 249 | # fail 0   (eran 239)
+$ node build/prompts.mjs          -> 54 prompts, siete traducciones, errores: 0
+$ node build/gates_validate.mjs   -> validado (24 peldanos, 8 estaciones, 45 reglas)
+$ node build/gates_doc.mjs --check-> COMPUERTAS.md coincide con los datos
+$ node build/api_check.mjs        -> los tres recursos coinciden con las fuentes
+```
+
+**Depende de:** nada. `PND-039` cerró la mitad de arriba; esta es la de abajo. **Decisión:** D-065.
+
+---
+
 # Abiertos — G-TRAZABILIDAD: reconstruir, desde el registro, qué cambió y por qué
 
 ## PND-050 — Un commit llevó ocho documentos que su mensaje no nombra
@@ -4016,11 +4121,11 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 13 | 11 | 2 | 2 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 10 | 1 | 9 | 0 |
+| G-METODO | 11 | 1 | 10 | 0 |
 | G-TRAZABILIDAD | 3 | 2 | 1 | 0 |
-| **total** | **52** | **20** | **32** | **4** |
+| **total** | **53** | **20** | **33** | **4** |
 
-Cincuenta y dos entradas, `PND-001` a `PND-052`. Veintidós vienen de la auditoría externa
+Cincuenta y tres entradas, `PND-001` a `PND-053`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada, y
@@ -4034,6 +4139,12 @@ dos últimas no las trajo nadie de afuera: `PND-050` salió de leer el árbol de
 son desvíos propios, y las dos del mismo día. `PND-052` es el tercero, del día siguiente, y sale de
 **refutar** una de las dos: `PND-036` afirmaba una ausencia desde una búsqueda que había mirado
 cuatro árboles y ninguno era el que correspondía.
+
+`PND-053` es la última, y es de otra clase: no es un desvío ni un hallazgo de nadie, es una
+declaración que faltaba. `PND-039` dejó escrito que las dos entradas previas del Anexo H no tenían
+ruta y que no se inventaba ninguna porque el dueño no la había declarado; el 2026-10-27 la declaró
+(`docs/GLOSSARY.md` y `docs/PROFILES.md`) y con eso dejaron de estar publicadas como exigidas y no
+verificables por máquina.
 
 **Lo que está primero, y por qué.** Las precondiciones del grupo de la API están cerradas, y en
 este orden: PND-021 (cuál es el árbol del portal realmente desplegado), PND-020 y PND-018 (la

@@ -86,8 +86,8 @@
 > needs before a single screen exists: the user glossary, with the words people actually use
 > for each thing as the business says them and not as the system calls them; and the list of
 > profiles, saying who each one is and what they come to do. Take both from the survey, ask
-> me for whatever is not in it instead of inventing it, write them as files of the project,
-> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
+> `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
 > changes every day; the other two change only when the system changes. Reply in my language.
 
@@ -106,8 +106,8 @@
 > 附属書Hが必要とする二つの前提入力：ユーザー用語集——人々が実際に各々のものを呼ぶ言葉で、
 > 事業が言うとおりに、システムが呼ぶとおりにではなく——と、プロフィール一覧——それぞれが
 > 誰で何をしに来るのかを言うもの。二つとも調査から取り、調査にないものはでっち上げる代わり
-> に私に求め、プロジェクトのファイルとして書き、そのファイルを `PROJECT.md` で名前を挙げ、
-> そこでも推論したものに印を付けてください。
+> に私に求め、`docs/GLOSSARY.md` と `docs/PROFILES.md` として書き、`PROJECT.md` で
+> それらの名前を挙げ、そこでも推論したものに印を付けてください。
 > 別途、生きた状態（取り組んでいること、開いていること）のために
 > `docs/STATUS.md` を作成してください。そのファイルは毎日変わります。他の二つはシステムが
 > 変わるときだけ変わります。私の言語で答えてください。
@@ -170,9 +170,11 @@
 - `docs/STATUS.md`：生きた状態、前の二つとは分離。
 - 附属書Hの二つの前提入力。書かれ、`PROJECT.md` で名前を挙げられていること：**ユーザー
   用語集**（人々が実際に各々のものを呼ぶ言葉）と**プロフィール一覧**（それぞれが誰で何を
-  しに来るのか）。推論したものに印を付けて。方法はその二つのファイルの名前を押し付けない
-  ——あなたのプロジェクトが使う名前にすること——。求めるのは、存在すること、プロジェクト
-  ファイルから見つけられること、そして第5段より前にあることだ。
+  しに来るのか）。推論したものに印を付けて。方法はその二つのファイルの名前を宣言する
+  ——`docs/GLOSSARY.md` と `docs/PROFILES.md`——、他の三つと同じように。ゲートは誰も名前を
+  知らないファイルを見ることができないし、宣言がない間は、第8段のマトリクスは存在を義務
+  づけられていない一覧に対してでっち上げられ続けられた。求めるものは同じままだ：存在する
+  こと、プロジェクトファイルから見つけられること、そして第5段より前にあることだ。
 - 三つすべてに最終更新日。
 - 約束に、二つの新ルール。
 

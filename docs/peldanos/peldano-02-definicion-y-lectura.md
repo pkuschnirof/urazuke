@@ -88,8 +88,8 @@ el agente:
 > needs before a single screen exists: the user glossary, with the words people actually use
 > for each thing as the business says them and not as the system calls them; and the list of
 > profiles, saying who each one is and what they come to do. Take both from the survey, ask
-> me for whatever is not in it instead of inventing it, write them as files of the project,
-> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
+> `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
 > changes every day; the other two change only when the system changes. Reply in my language.
 
@@ -110,8 +110,8 @@ el agente:
 > palabras que la gente usa de verdad para cada cosa, como las dice el negocio y no como las
 > llama el sistema; y la lista de perfiles, diciendo quién es cada uno y qué viene a hacer.
 > Sacá las dos del relevamiento, pedime lo que no esté en él en vez de inventarlo, escribilas
-> como archivos del proyecto, nombrá esos archivos en `PROJECT.md` y marcá también ahí lo que
-> hayas inferido. Aparte, creá `docs/STATUS.md` para el estado
+> en `docs/GLOSSARY.md` y `docs/PROFILES.md`, nombralas en `PROJECT.md` y marcá también ahí
+> lo que hayas inferido. Aparte, creá `docs/STATUS.md` para el estado
 > vivo (en qué se está trabajando, qué está abierto): ese archivo cambia todos los días; los otros
 > dos cambian solo cuando cambia el sistema. Respondé en mi idioma.
 
@@ -176,9 +176,12 @@ lo que te permite detectar en diez segundos un pendiente fuera de alcance.
 - `docs/STATUS.md`: estado vivo, separado de los anteriores.
 - Las dos entradas previas del Anexo H, escritas y nombradas en `PROJECT.md`: el **glosario del
   usuario** (las palabras que la gente usa de verdad para cada cosa) y la **lista de perfiles**
-  (quién es cada uno y qué viene a hacer), con lo inferido marcado. El método no te impone el
-  nombre de esos dos archivos —poné el que use tu proyecto—; lo que sí exige es que existan, que
-  se puedan encontrar desde el archivo de proyecto y que estén antes del peldaño 5.
+  (quién es cada uno y qué viene a hacer), con lo inferido marcado. El método declara el nombre de esos dos
+  archivos —`docs/GLOSSARY.md` y `docs/PROFILES.md`—, igual que declara el de los otros tres: una
+  compuerta no puede mirar un archivo cuyo nombre nadie sabe, y mientras no lo declaró, la matriz
+  del peldaño 8 se podía seguir inventando contra una lista que nada obligaba a existir. Lo que
+  exige sigue siendo lo mismo: que existan, que se puedan encontrar desde el archivo de proyecto y
+  que estén antes del peldaño 5.
 - En los tres, una fecha de última actualización.
 - En el contrato, las dos reglas nuevas.
 

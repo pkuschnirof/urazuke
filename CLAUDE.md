@@ -132,6 +132,20 @@ Parte C y en la **ficha** de cada uno de los seis peldaños que lo cargan, con e
 idiomas; y `README.md` lo lista en su tabla, que es donde las siete traducciones ya lo listaban y la
 fuente de verdad no (D-013 al revés). La ficha lleva una línea que empieza con `**Anexo H**`.
 
+Las **dos entradas previas** tienen ruta declarada desde el 2026-10-27 (D-065, `PND-053`):
+`docs/GLOSSARY.md` para el glosario del usuario y `docs/PROFILES.md` para la lista de perfiles.
+Hasta ese día el método las exigía sin decir dónde viven, así que se publicaban como exigidas y
+**no verificables por máquina** —una compuerta no puede mirar un archivo cuyo nombre nadie sabe— y
+la matriz del peldaño 8 se podía seguir inventando contra una lista que nada obligaba a existir.
+Entran como artefactos **nuevos** del peldaño 2 con su `since_schema`, con `min_bytes` y **sin**
+`must_contain`: lo que esos dos archivos tienen que *decir* lo juzga una persona. Los nombres van
+en inglés y en mayúsculas porque es el nivel de datos (D-051) y porque las otras cuarenta rutas
+que el dato declara están así. Y la regla que eso deja: **una ruta que el dato declara, el
+contrato de su peldaño la nombra, en los ocho idiomas**;
+`tests/artefacto_nombrado.test.mjs` lo exige (288 pares hoy) y los comodines se saltean desde un
+registro con su razón, nunca desde una condición escondida. Un archivo que la compuerta busca y el
+prompt no nombra es una compuerta que falla por una razón que a la persona nunca se le dijo.
+
 `tests/anexo_simetria.test.mjs` lo exige en las dos direcciones y **no se negocia por comodidad**: un
 peldaño que declara un ancla en `gates/steps.json` tiene que enlazar `ANEXO_HEURISTICAS.md` en su
 ficha (en los ocho) y nombrar el token inglés `Annex H` en su contrato; y una ficha que enlaza el
@@ -338,7 +352,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
 - **Nada inventado.** Un umbral que el dueño no declaró se publica con valor nulo y
   `declarado: false`. Los únicos dos que el anexo declara son 300 líneas por archivo y 40 por
   función.
-- **La versión.** `catalog_version` la declara el método a mano (hoy `2026.10.3`); el archivo
+- **La versión.** `catalog_version` la declara el método a mano (hoy `2026.10.5`); el archivo
   publicado viaja con una huella `sha256` del contenido canonicalizado que el consumidor
   **recalcula**. El identificador de git es informativo: se calcula antes de guardar, así que
   siempre nombra al cambio anterior al que lo contiene.
@@ -393,7 +407,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
 
 `prompts/*.en.md` **se genera** desde los contratos castellanos (`build/prompts.mjs`) y no se edita
 a mano; `prompts/catalog.json` se mantiene **a mano**, porque es la identidad de lo publicado y la
-declara el método: `corpus_version` (hoy `2026.10.1`) y el registro de huellas, con las mismas
+declara el método: `corpus_version` (hoy `2026.10.3`) y el registro de huellas, con las mismas
 reglas que el catálogo de compuertas (D-053). `docs/html/api/prompts.json` viaja entonces con
 versión declarada **y** huella recalculable, y conserva el campo `version` con el sha de git, ahora
 explícitamente informativo, para no romper al consumidor que ya lo imprime: el cambio es aditivo y

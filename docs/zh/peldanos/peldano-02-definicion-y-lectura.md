@@ -71,8 +71,8 @@
 > needs before a single screen exists: the user glossary, with the words people actually use
 > for each thing as the business says them and not as the system calls them; and the list of
 > profiles, saying who each one is and what they come to do. Take both from the survey, ask
-> me for whatever is not in it instead of inventing it, write them as files of the project,
-> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
+> `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
 > changes every day; the other two change only when the system changes. Reply in my language.
 
@@ -87,8 +87,8 @@
 > 节点标出来，以便我确认或纠正。第三，附录H在一个界面都还不存在之前就
 > 需要的两项前置输入：用户术语表，带上人们实际怎么称呼每样东西——按业务说的样子，而不是按
 > 系统叫的样子；以及角色清单，说明每个角色是谁、来做什么。两样都从调研里取，调研里没有的
-> 就向我要而不要编，把它们写成项目的文件，在 `PROJECT.md` 里点出这些文件的名字，并把你在
-> 那里推断出来的也标出来。
+> 就向我要而不要编，把它们写成 `docs/GLOSSARY.md` 和 `docs/PROFILES.md`，在 `PROJECT.md` 里
+> 点出它们的名字，并把你在那里推断出来的也标出来。
 > 另外，创建 `docs/STATUS.md` 用于活状态（正在做什么，什么
 > 还开着）：那个文件每天都变；另外两个只在系统变化时才变。用我的语言回复。
 
@@ -141,9 +141,11 @@
   项和决策挂在各自的节点下。
 - `docs/STATUS.md`：活状态，与前两者分开。
 - 附录H的两项前置输入，写出来并在 `PROJECT.md` 里点了名：**用户术语表**（人们实际上怎么称
-  呼每样东西）和**角色清单**（每个角色是谁、来做什么），推断出来的都标出来。本方法不强加这
-  两个文件的名字——用你的项目在用的名字——；它要求的是：它们存在、能从项目文件找到，并且在第
-  5级之前就在。
+  呼每样东西）和**角色清单**（每个角色是谁、来做什么），推断出来的都标出来。本方法声明这两个文件的名字
+  ——`docs/GLOSSARY.md` 和 `docs/PROFILES.md`——，就像声明另外三个一样：闸门没法去看一个谁都
+  不知道名字的文件，而在没有声明的那段时间里，第8级的矩阵可以继续对着一份没有任何东西强制
+  其存在的清单编出来。它要求的仍然是同样三件事：它们存在、能从项目文件找到，并且在第5级之
+  前就在。
 - 三个文件都有最后更新日期。
 - 契约里有两条新规则。
 
