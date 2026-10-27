@@ -2715,7 +2715,8 @@ limpio: `node --test` = **220 pruebas, 0 fallos** (eran 197; las 23 nuevas está
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
 - **Grupo:** G-IDIOMA · **Severidad:** avisa · **Quién decide:** se hace y se reporta
-- **Repositorio:** portal · **Estado: en curso** (las nueve: revisadas el 2026-10-27, sin arreglar)
+- **Repositorio:** portal · **Estado: en curso** (las nueve: revisadas el 2026-10-27; la mitad
+  medida aplicada y commiteada el mismo día en el repositorio del portal, sin empujar)
 
 **Por qué son nueve entradas y no una.** La auditoría lo pidió así, y tiene razón: cada idioma lo
 revisa alguien que lo lee, en un momento distinto, y el resultado de uno no dice nada del otro.
@@ -2749,19 +2750,40 @@ de correcciones propuestas, o la constancia de que no hay ninguna.
 
 **Las nueve entradas.**
 
-| id | idioma | estado |
-|---|---|---|
-| id | idioma | hallazgos | estado |
-|---|---|---:|---|
-| PND-026 | árabe (ar) | 7 | revisado, sin arreglar |
-| PND-027 | alemán (de) | 8 | revisado, sin arreglar |
-| PND-028 | inglés (en) | 1 | revisado, sin arreglar |
-| PND-029 | francés (fr) | 5 | revisado, sin arreglar |
-| PND-030 | hindi (hi) | 5 | revisado, sin arreglar |
-| PND-031 | italiano (it) | 5 | revisado, sin arreglar |
-| PND-032 | japonés (ja) | 6 | revisado, sin arreglar |
-| PND-033 | portugués (pt) | 3 | revisado, sin arreglar |
-| PND-034 | chino (zh) | 6 | revisado, sin arreglar |
+| id | idioma | hallazgos | aplicados | estado |
+|---|---|---:|---:|---|
+| PND-026 | árabe (ar) | 7 | 2 | lo medido aplicado, sin empujar |
+| PND-027 | alemán (de) | 8 | 1 | lo medido aplicado, sin empujar |
+| PND-028 | inglés (en) | 1 | 0 | revisado; su único hallazgo es de juicio |
+| PND-029 | francés (fr) | 5 | 1 | lo medido aplicado, sin empujar |
+| PND-030 | hindi (hi) | 5 | 0 | revisado; los cinco son de juicio |
+| PND-031 | italiano (it) | 5 | 0 | revisado; los cinco son de juicio |
+| PND-032 | japonés (ja) | 6 | 2 | lo medido aplicado, sin empujar |
+| PND-033 | portugués (pt) | 3 | 1 | lo medido aplicado, sin empujar |
+| PND-034 | chino (zh) | 6 | 2 | lo medido aplicado, sin empujar |
+
+**Lo que se aplicó el 2026-10-27, y es la mitad medida.** El dueño eligió aplicar sólo lo que se
+reproduce con un comando —números, flechas, registro— y dejar el juicio de traducción para después,
+porque la elección de una palabra la discute un hablante nativo y el hallazgo no deja de serlo.
+Entraron **veintiún** cambios en seis idiomas, en el repositorio del portal: los dos números del
+japonés y del chino (`origin.h2`, que no era un número, y la cifra de la retrospectiva), las ocho
+flechas del árabe en una sola dirección más su concordancia, el alemán tratando al lector de «Sie»
+en las cinco claves que lo trataban de «du», el francés de «vous» en `prompt.antes`, y la variedad
+del portugués de esa misma clave. Medido en lo horneado: 8 ← y 0 → en árabe, 8 → y 0 ← en
+castellano; `四十六` en los dos títulos; `24〜27分` y `24 到 27 分钟`. El verificador de las diez
+portadas da PASS y sus tres pruebas en rojo caen: 9 mutaciones, 9 rojos.
+
+Dos cosas que se dejaron dichas en vez de redondeadas. El alemán conserva «du» en `prompt.tr` **a
+propósito**: ese texto le habla al modelo y no a la persona, que es el mismo criterio que el
+francés ya aplicaba, así que el hallazgo medido se resolvió en las cinco claves del lector y no en
+las seis que la lista nombra. Y el hallazgo #2 del portugués —`o pendente` contra la `pendência`
+del resto del archivo— es elección de término y **no** entró, aunque vive en la clave que sí se
+tocó: queda a medias y se dice.
+
+**Lo que queda: veintisiete hallazgos de juicio de traducción**, las dos formas de una misma
+palabra en ocho de los nueve idiomas, más el ablandamiento de `thesis.k2.p` en inglés y en alemán,
+más la aclaración «(en español)» que nueve idiomas agregan y el castellano no dice. Esa última la
+recomendación es **agregarla al castellano**, no borrar nueve aclaraciones correctas.
 
 **La revisión se hizo el 2026-10-27, y la hizo un modelo.** El dueño lo autorizó así ese día,
 después de que la entrada se reportara durante tres días como trabajo que necesitaba un hablante

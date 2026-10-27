@@ -271,7 +271,19 @@ aclaraciones correctas.
 - **No toca el corpus.** Son las 245 cadenas de la interfaz de la portada. El corpus —los treinta y
   cuatro documentos, cientos de miles de caracteres— es otro trabajo y todavía no tiene entrada,
   porque primero hay que decidir si se revisa todo o sólo lo que cambió.
-- **No arregló nada.** Los arreglos viven en el repositorio del portal, y ahí empujar **es**
+- **No arregló nada el día que se escribió, y hoy arregló la mitad medida.** El 2026-10-27, el
+  mismo día, el dueño eligió aplicar sólo lo que se reproduce con un comando —números, flechas,
+  registro— y dejar el juicio de traducción para después. Entraron veintiún cambios en seis
+  idiomas: los dos números del japonés y del chino, las ocho flechas del árabe en una sola
+  dirección más su concordancia, las cinco claves alemanas que trataban al lector de «du», el
+  `prompt.antes` francés y la variedad del `prompt.antes` portugués. Lo horneado lo confirma: 8 ←
+  y 0 → en árabe contra 8 → y 0 ← en castellano, `四十六` en los dos títulos, `24〜27分` y
+  `24 到 27 分钟`. Quedan **veintisiete** hallazgos de juicio, que son los de abajo sin marca
+  `[medido]`. Dos cosas a medias, dichas: el alemán conserva «du» en `prompt.tr` a propósito
+  —le habla al modelo, no a la persona, el mismo criterio que el francés ya aplicaba— y el
+  hallazgo #2 del portugués no entró aunque vive en la clave que sí se tocó, porque es elección
+  de término.
+- **Y los arreglos siguen sin publicar.** Viven en el repositorio del portal, y ahí empujar **es**
   publicar: son las diez portadas horneadas en diez idiomas. El criterio de aceptación de las nueve
-  entradas es sobre lo que el lector lee, así que ninguna puede cerrar con la lista: cierran cuando
-  la corrección está servida. Están en curso.
+  entradas es sobre lo que el lector lee, así que ninguna puede cerrar con la lista ni con el
+  commit: cierran cuando la corrección está **servida**. Están en curso.
