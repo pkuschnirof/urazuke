@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.8** - schema **2**
-- content fingerprint `54b57e7871914e28...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.9** - schema **2**
+- content fingerprint `a4f6c78fa040f72e...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -25,7 +25,7 @@ What a project pins, and what it costs to change it. A project pins ONE catalog_
 
 For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.8`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.9`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -50,6 +50,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.6** (2026-10-27, D-067) -- `649f10179cc1a4ef...`
 - **2026.10.7** (2026-10-27, D-068) -- `7575673f723e498c...`
 - **2026.10.8** (2026-10-27, D-070) -- `54b57e7871914e28...`
+- **2026.10.9** (2026-10-27, D-071) -- `a4f6c78fa040f72e...`
 
 ## Pinning: what a tool that freezes the method owes
 
@@ -792,7 +793,13 @@ The shape of the per-project configuration that the gate reads (layer 3 of Annex
 | `switched_off` | List of individual rules switched off, each with the full record. |
 | `thresholds` | Declared values, by threshold id. Whatever is not here is reported as undeclared, never invented. |
 | `tools` | Tool names and versions actually used, for the ruleset fingerprint. |
-| `communication_depth` | One of communication_depth: the technical depth at which the agent speaks to the owner (UX-28). Undeclared means decision_maker, and the agent says which one it is using. |
+| `communication_depth` | One of `project_config.enums.communication_depth` -- beginner, decision_maker or technical: the technical depth at which the agent speaks to the owner (UX-28). Undeclared means decision_maker, and the agent says which one it is using. |
+
+The value list of every field above that names one, resolved here so a consumer does not have to guess it. It is not transcribed: the lists are declared once in the sources and the published block is derived from them, so a field that names an enum which does not exist is refused by the validator. Written this way on 2026-10-27: the field above said "One of communication_depth" and no key of the published file carried that name, so a tool that wanted to validate the declared depth had to guess the three values and could see only two of them mentioned in prose -- a partial list that reads as complete, which is worse than none (PND-059).
+
+| enum | values |
+|---|---|
+| `project_config.enums.communication_depth` | `beginner`, `decision_maker`, `technical` |
 
 The switch-off record is `rule`, `reason`, `authorized_by`, `review_date`. Without it: red, and the ruleset is invalid: the scoreboard emits no figures at all (D-046, D-047).
 

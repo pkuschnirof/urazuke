@@ -115,6 +115,40 @@ export function reglasConEnunciado(fuentes, anexo) {
   });
 }
 
+/* ------------------------------------------------------------------ *
+ * Los enums que la configuracion de proyecto nombra
+ * ------------------------------------------------------------------ *
+ * Un campo de la configuracion de proyecto que dice "uno de <enum>" tiene que poder
+ * resolverse CONTRA EL PUBLICADO, porque el consumidor no tiene las fuentes delante. Y la
+ * lista no se transcribe: vive una sola vez en gates/schema.json#enums y el bloque
+ * publicado se DERIVA de ahi, para que no haya dos copias que puedan divergir (la misma
+ * regla que el enunciado de las reglas del anexo, D-044).
+ * Nacio medido el 2026-10-27: el campo decia "One of communication_depth" y ninguna clave
+ * del publicado llevaba ese nombre (PND-059).
+ */
+export const RE_ENUM_DE_CONFIGURACION = /`project_config\.enums\.([a-z][a-z0-9_]*)`/g;
+
+/** Los nombres de enum que los campos de la configuracion de proyecto nombran, en orden. */
+export function enumsNombradosPorLaConfiguracion(schema) {
+  const nombres = [];
+  for (const texto of Object.values(schema.project_config.fields)) {
+    if (typeof texto !== 'string') continue;
+    for (const m of texto.matchAll(RE_ENUM_DE_CONFIGURACION)) {
+      if (!nombres.includes(m[1])) nombres.push(m[1]);
+    }
+  }
+  return nombres;
+}
+
+/** El bloque publicado: cada enum nombrado, con su lista sacada de schema.enums. */
+export function enumsDeLaConfiguracion(schema) {
+  const out = {};
+  for (const nombre of enumsNombradosPorLaConfiguracion(schema)) {
+    if (nombre in (schema.enums ?? {})) out[nombre] = schema.enums[nombre];
+  }
+  return out;
+}
+
 /** Lo que se publica, sin la metadata de publicacion (eso lo pone gates_api). */
 export function armarContenido(fuentes = cargarFuentes(), anexo = extraerAnexo()) {
   const reglas = reglasConEnunciado(fuentes, anexo);
@@ -144,7 +178,10 @@ export function armarContenido(fuentes = cargarFuentes(), anexo = extraerAnexo()
     loop_entry: fuentes.stations.loop_entry,
     heuristics: { ...fuentes.heuristics, rules: reglas },
     adapters: fuentes.adapters,
-    project_config: fuentes.schema.project_config,
+    // Los enums que los campos nombran viajan RESUELTOS en el publicado (PND-059): el
+    // consumidor no tiene las fuentes, y un campo que dice "uno de X" sin X publicada obliga
+    // a adivinar la lista. Se derivan de schema.enums, que sigue siendo la unica copia.
+    project_config: { ...fuentes.schema.project_config, enums: enumsDeLaConfiguracion(fuentes.schema) },
     // El contrato de fijacion (D-068): que version congela un proyecto, con que par la congela,
     // que le exige al consumidor y como se computa el diferencial de un upgrade. Va cubierto por
     // la huella porque lleva requisitos: una copia congelada alterada ahi cambiaria lo que el

@@ -25,9 +25,9 @@
     "value": "d388f6adb8c788631b4908ed57c0a599accf19c88dde069f4275c25a90845363",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "version": "24105b8",
+  "version": "deb06ce",
   "version_note": "Informative, and kept for the consumers that already print it. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: the identity of what is published is corpus_version + content_hash, and no comparison looks at this.",
-  "generated_at": "2026-10-27T16:40:34.358Z",
+  "generated_at": "2026-10-27T19:12:06.764Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "language": "en",

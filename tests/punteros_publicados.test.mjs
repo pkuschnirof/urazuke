@@ -22,8 +22,11 @@ import {
   registrosSinUsar,
   simetriaDelRegistroDeVersiones,
   cuenta,
+  cuentaDeEnums,
+  enumsDeLaConfiguracion,
   resuelve,
 } from '../build/punteros_publicados.mjs';
+import { cargarFuentes, enumsNombradosPorLaConfiguracion } from '../build/gates_lib.mjs';
 
 const pub = leerPublicados();
 
@@ -65,6 +68,36 @@ test('C bis: fetch_url apunta al mismo path que el registro declara, por recurso
     assert.ok(reg.fetch_url.endsWith(reg.path), r.name + ': la direccion de bajada no termina en el path del registro');
     assert.notEqual(reg.url, reg.fetch_url, r.name + ': las dos direcciones son la misma, asi que una de las dos no es la que dice ser');
   }
+});
+
+test('E: un campo que dice "uno de <enum>" lo nombra por un camino que resuelve', () => {
+  const h = enumsDeLaConfiguracion(pub);
+  assert.deepEqual(h, [], 'enums de la configuracion:\n' + h.map((x) => '  ' + JSON.stringify(x)).join('\n'));
+});
+
+test('E bis: el publicado lleva la lista de valores, no solo el nombre del enum', () => {
+  const pc = pub.recursos['gates.json'].project_config;
+  assert.ok(pc.enums_what, 'el bloque resuelto se explica donde se lee');
+  assert.ok(cuentaDeEnums(pub) > 0, 'cero enums resueltos con verde es el defecto que esta prueba existe para evitar');
+  // La lista no se transcribe: es la que declaran las fuentes, y el publicado la DERIVA. Si
+  // alguien la copiara a mano habria dos copias que pueden divergir; esta asercion mide la
+  // igualdad, que es lo unico que atrapa esa divergencia.
+  const fuentes = cargarFuentes();
+  for (const [nombre, valores] of Object.entries(pc.enums)) {
+    assert.deepEqual(valores, fuentes.schema.enums[nombre],
+      'el enum ' + nombre + ' publicado no es el que declaran las fuentes');
+    assert.ok(Array.isArray(valores) && valores.length > 0, 'el enum ' + nombre + ' se publica vacio');
+  }
+});
+
+test('E ter: el publicado resuelve exactamente los enums que los campos nombran', () => {
+  const fuentes = cargarFuentes();
+  const nombrados = enumsNombradosPorLaConfiguracion(fuentes.schema);
+  assert.deepEqual(
+    Object.keys(pub.recursos['gates.json'].project_config.enums).sort(),
+    [...nombrados].sort(),
+    'el bloque publicado y los enums que los campos nombran tienen que ser el mismo conjunto',
+  );
 });
 
 test('D: la cuenta no es cero, y los dos recursos se revisaron', () => {
