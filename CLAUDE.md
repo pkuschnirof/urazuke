@@ -174,11 +174,24 @@ de estas tres piezas se replica en las otras dos.
   párrafo cuidadoso arriba, porque el lector llega dispuesto a leer con cuidado; una portada
   contesta la pregunta donde la pregunta se hace. Lo único que faltaba era la **taxonomía** —nombrar
   las tres naturalezas como tres—, y eso vive en el README.
-- **El enlace de vuelta desde la portada del protocolo apareció solo, y eso confirma su pendiente**
-  (PND-036). El 2026-10-26, a las 19:10 UTC, `yujin.app/nac-spec/` pasó a 103.651 bytes, nombra
-  Urazuke veintisiete veces y enlaza `https://yujin.app/urazuke/`, **sin ningún commit que lo
-  produzca**: esa página está servida y su fuente no está en ningún repositorio. El pendiente nunca
-  fue el enlace; es que la página no tiene fuente versionada y cambia sin dejar rastro.
+- **La portada del protocolo sí tiene fuente, y creer que no la tenía fue un defecto propio de
+  medición** (PND-036 refutado el 2026-10-27, PND-052, D-064). `yujin.app/nac-spec/` vive en
+  `yujinapp/nac-spec` —otra **organización** de GitHub, distinta de `pkuschnirof/nac-spec`, que es el
+  repositorio de la especificación—, con su flujo `Deploy nac-spec to yujin.app/nac-spec/` y su
+  comprobación en vivo después del `rsync`. El enlace de vuelta a Urazuke lo escribió el commit
+  `c64fcf2` y lo publicó la corrida `40384271448`: el `Last-Modified` de las 19:10 UTC que se citó
+  como prueba de que la página «cambia sin dejar rastro» era la hora en que esa corrida terminó.
+  La entrada original había buscado en cuatro árboles y ninguno era el que correspondía; en el
+  portal encontró el **fósil** de una mudanza —el espejo vivía antes en `rpaforce/yujin.app/nac-spec/`
+  y el propio flujo lo dice— y lo leyó como ausencia. De acá sale la regla de abajo.
+- **Una ausencia se registra enumerando el universo buscado, nunca desde una búsqueda que falló**
+  (D-064, PND-052). «No lo encontré donde miré» no es «no existe». Una entrada que afirme que algo
+  no existe —un archivo, una fuente, una mención, un repositorio— lleva **el universo sobre el que
+  corrió la búsqueda y por qué esa enumeración es completa**; si el universo son repositorios, se
+  enumeran por su **remoto** (`git remote get-url origin`) y no por el nombre de la carpeta, que es
+  lo que hizo caer a PND-036. Es la segunda forma del mismo defecto en dos días: D-063 ya pedía el
+  comando y la cuenta en vez de la frase, y acá el comando estaba, la cuenta estaba, y el universo
+  era el equivocado.
 - Nombre: Urazuke (D-014). No se traduce; el subtítulo sí.
 - Idiomas (D-013): castellano como fuente de verdad (`docs/`); las otras siete versiones de NAC3
   en `docs/<idioma>/` (en, pt, fr, de, it, ja, zh), cada una con README, documento principal,
