@@ -2372,80 +2372,126 @@ cuando el árbol que tenía al lado tenía otras. Es `PND-037`, y está arreglad
 segundos ahora imprime el árbol que ejercita —`arbol: C:portal-trabajo`, `claves (es): 245`— y las
 nueve mutaciones caen con la cuenta viva.
 
-**El enlace de vuelta, que esta entrada no cerró, y lo que pasó con él.** La portada del protocolo es
-`yujin.app/nac-spec/`. El 2026-10-24 no enlazaba a Urazuke y su fuente no estaba en ningún
-repositorio, así que no se escribió: no se toca una página viva que alguien mantiene en otra parte.
-El 2026-10-26 **el enlace apareció solo**. Medido a las 20:24 UTC:
-
-```
-curl -s  https://yujin.app/nac-spec/   -> HTTP 200, 103651 bytes  (eran 88826 el 24)
-grep -o -i "urazuke" | wc -l           -> 27                      (eran 0)
-href="https://yujin.app/urazuke/"      -> presente
-curl -sI https://yujin.app/nac-spec/   -> Last-Modified: Mon, 26 Oct 2026 19:10:25 GMT
-```
-
-Y **sin ningún commit que lo produzca**. Eso no cierra `PND-036`: lo confirma. El pendiente nunca
-fue el enlace; es que esa página no tiene fuente versionada, y acaba de cambiar sin dejar rastro.
+**El enlace de vuelta, que esta entrada no cerró, y lo que de verdad pasó con él.** La portada del
+protocolo es `yujin.app/nac-spec/`. El 2026-10-24 no enlazaba a Urazuke, y la reproducción de
+entonces concluyó que su fuente no estaba en ningún repositorio: por eso no se escribió. El
+2026-10-26 el enlace apareció, y esta entrada lo registró como que **había aparecido solo**, sin
+commit que lo produzca. **Las dos cosas eran falsas**, y el error es de método y no de dato: se
+buscó en cuatro árboles y el que correspondía no era ninguno de ellos. La página vive en
+`yujinapp/nac-spec` —otra **organización** de GitHub, distinta de `pkuschnirof/nac-spec`, que es el
+repositorio de la especificación— y el enlace de vuelta tiene commit, pendiente y despliegue
+propios. La refutación completa, con su medición, está en `PND-036`.
 
 ---
 
-## PND-036 — La portada del protocolo está servida y no tiene fuente en ningún repositorio *(deriva de U-21)*
+## PND-036 — REFUTADO: la portada del protocolo sí tiene fuente, y el hallazgo era un defecto propio de medición *(deriva de U-21)*
 
 - **Nodo:** `identidad/ecosistema` [nodo propuesto]
-- **Grupo:** G-ECOSISTEMA · **Severidad:** avisa · **Quién decide:** el dueño, porque hay que
-  decir dónde vive esa página antes de tocarla
-- **Repositorio:** ninguno de los conocidos, que es justamente el hallazgo · **Estado: abierto**
-- **Origen:** apareció al cerrar PND-022. La especificación de esa entrada pedía, además del
-  párrafo, **el enlace de vuelta**: la portada de Urazuke enlaza al protocolo en el pie y la del
-  protocolo no enlaza a Urazuke. Al ir a escribirlo, la página no estaba en ninguna parte.
+- **Grupo:** G-ECOSISTEMA · **Severidad:** avisa · **Quién decide:** se hace y se reporta
+- **Repositorio:** método (la entrada; el hallazgo nunca fue de otro repositorio) ·
+  **Estado: CERRADO** el 2026-10-27 — **refutado**, con la fuente, el commit y el despliegue a la
+  vista. Se queda en el registro con su refutación escrita, porque un hallazgo retirado es
+  documentación de cómo se midió mal.
+- **Origen:** apareció al cerrar `PND-022`, al ir a escribir el enlace de vuelta y no encontrar la
+  página. El dueño lo cuestionó con una pregunta de alcance —«¿por qué estás tan preocupado con
+  nac-spec? Es otro proyecto»— y al volver a medirlo con esa pregunta puesta, la entrada se cayó.
 
-**Qué está mal.** `https://yujin.app/nac-spec/` existe, contesta HTTP 200 y sirve 88.826 bytes con
-el título *"NAC -- Native Agent Contract"*. Es la portada del protocolo, la que el método enlaza.
-Su código fuente **no está en ningún repositorio al que se pueda llegar**, así que nadie puede
-cambiarle una línea por la vía normal: no hay commit que la produzca, no hay despliegue que la
-publique, y un cambio en ella sería una subida a mano encima de algo que no se puede revisar.
+**Qué afirmaba esta entrada, y es falso.** Dos cosas. Que `https://yujin.app/nac-spec/` «no está en
+ningún repositorio al que se pueda llegar», de modo que «no hay commit que la produzca, no hay
+despliegue que la publique». Y, como confirmación, que el 2026-10-26 a las 19:10 UTC el enlace de
+vuelta a Urazuke «apareció solo», **sin ningún commit que lo produzca**. Las dos son falsas, y la
+segunda es peor que la primera: se presentó como la **prueba** del hallazgo.
 
-**Mi reproducción (2026-10-26).** Buscada por el texto de su propio título en los cuatro árboles
-donde podía estar:
+**La refutación, medida (2026-10-27, 02:05 UTC).** La página tiene repositorio, tiene historia de
+commits, tiene flujo de despliegue y tiene una comprobación en vivo después de publicar:
 
 ```
-produccion:
-  https://yujin.app/nac-spec/   HTTP 200, 88826 bytes, <title>NAC -- Native Agent Contract</title>
-  menciones de "urazuke" en esa pagina: 0
+produccion
+  curl -s -o /dev/null -w "%{http_code} %{size_download}" https://yujin.app/nac-spec/
+    -> 200 89876
+  menciones de "urazuke"                        -> 39
+  href="https://yujin.app/urazuke/"             -> 4
+  curl -sI | grep -i last-modified
+    -> Last-Modified: Tue, 27 Oct 2026 01:57:29 GMT
 
-grep -rl "Native Agent Contract" (por arbol):
-  metodo      (pkuschnirof/urazuke)        -> 0 coincidencias
-  portal      (pkuschnirof/rpaforce)       -> index.html y yujin-forge/funcionalidad.html,
-                                              que la NOMBRAN y la enlazan; la pagina no esta
-  protocolo   (pkuschnirof/nac-spec)       -> 0 coincidencias, y 0 archivos .html en todo el arbol
-  voz         (pkuschnirof/nac3-kikoe, servido en el portal) -> 0 coincidencias
+la fuente, que si existe
+  git remote get-url origin                     -> https://github.com/yujinapp/nac-spec.git
+  git cat-file -s origin/main:index.html        -> 89422
+  git show origin/main:index.html | head
+    <title data-i18n="meta.title">NAC3 - the Native Agent Contract for agent-driven front-ends</title>
+  menciones de "urazuke" en la fuente           -> 39
 
-el arbol del portal, que es el que despliega yujin.app, no tiene un directorio nac-spec/
+el commit que escribio el enlace de vuelta
+  git log origin/main -S "yujin.app/urazuke/" -- index.html
+    c64fcf2  feat(landing): say what NAC3 does not cover, and link back to
+             the method (N-09/D-04, N-15, N-16)
+
+el despliegue que esta entrada dijo que no existia
+  .github/workflows/deploy.yml   name: Deploy nac-spec to yujin.app/nac-spec/
+    rsync ... "USER@HOST:/home/USER/public_html/yujin.app/nac-spec/"
+    node scripts/smoke-live-landing.mjs --base https://yujin.app/nac-spec/ --retries 3
+
+el "cambio solo a las 19:10 sin ningun commit"
+  gh run list
+    40384271448  success  push  main  2026-10-26T19:09:59Z
+      "docs(handoff): the 2.5.0 is published, measured against the registry"
+    40435557479  success  push  main  2026-10-27T01:57:04Z
+      "docs(handoff): the 2.5.1 is published, and the two defects that publishing found"
 ```
 
-Es el mismo defecto que el método ya tiene nombrado dos veces, en su tercera forma. **Servido no
-es publicado** (PND-015): una página que nadie enlaza no está publicada. **Un verde que no midió
-nada no es un verde** (D-057). Y ahora: **una página servida sin fuente no es mantenible** —está
-viva, la gente la lee, el método la enlaza, y no hay forma de cambiarla ni de saber quién la
-produjo.
+El `Last-Modified` que esta entrada usó como prueba de que la página cambia sin dejar rastro es la
+hora en que terminó la corrida **40384271448**, que es un empujón a `main` de su repositorio. Y el
+de hoy es la corrida **40435557479**. No cambió sola: la publicaron, dos veces, con su flujo.
 
-**Qué hay que producir.** No el enlace: primero la respuesta a dónde vive esa página. Tres salidas
-posibles, y la decisión es del dueño. Que su fuente aparezca y se registre dónde está. Que se
-adopte en el repositorio del portal, que es el que despliega el dominio, y entonces el enlace de
-vuelta es un cambio de una línea con su verificación. O que se decida que la portada del protocolo
-se vuelve a escribir, y eso es un trabajo con su propio alcance y no un enlace.
+**Lo único que no se reconcilió, dicho en vez de redondeado.** La fuente mide 89.422 bytes y
+producción sirve 89.876: 454 de diferencia. Es consistente con el paso de horneado de los diez
+idiomas que el flujo corre antes del `rsync`, y **no se verificó byte a byte**. No cambia la
+refutación —la página tiene fuente— pero no se afirma lo que no se midió.
 
-**Criterio de aceptación por perfil.**
+**Por qué falló la reproducción original, que es lo que hay que aprender.** No falló por falta de
+comandos: la entrada trae su `grep -rl` corrido en cuatro árboles. Falló porque **ninguno de los
+cuatro era el árbol correcto**, y la conclusión se escribió como si la lista hubiera sido completa:
 
-- *P3 (lector humano):* dado el perfil lector, esta persona que llega a la portada del protocolo
-  puede volver al método desde ahí, y no se queda en una rama sin vuelta.
-- *P5 (auditor):* dado el perfil auditor, existe un repositorio y un commit que producen la página
-  que produccion sirve, de modo que se pueda saber qué dice y por qué.
+```
+arbol buscado por la entrada      remoto real                      por que no era
+  metodo                          pkuschnirof/urazuke              no es
+  portal                          pkuschnirof/rpaforce             la NOMBRA y la enlaza
+  protocolo                       pkuschnirof/nac-spec             es la ESPECIFICACION, no el sitio
+  voz                             pkuschnirof/nac3-kikoe           no es
 
-**Cómo se verifica.** `curl -s https://yujin.app/nac-spec/ | grep -c urazuke` → mayor que 0, y la
-página que lo dice sale de un árbol versionado.
+el arbol que correspondia         yujinapp/nac-spec                otra ORGANIZACION de GitHub
+  presente en esta maquina en dos clones, ninguno de los cuatro mirados
+```
 
-**Depende de:** nada técnico. Depende de que el dueño diga dónde vive esa página.
+Y el propio flujo de la página explica el falso negativo más convincente de los cuatro: su
+encabezado dice que el espejo **vivía antes dentro de `rpaforce`** (`rpaforce/yujin.app/nac-spec/`)
+y se movió. La búsqueda encontró el fósil en el portal, leyó «la nombra pero no está» y cerró el
+caso. Un rastro de una mudanza se interpretó como ausencia.
+
+**Lo que queda verdadero de esta entrada: nada.** El enlace de vuelta existe —39 menciones y 4
+enlaces a `yujin.app/urazuke/`— y allá se resolvió con sus propios identificadores (`N-09`, `N-15`,
+`N-16`, `D-04`) **antes** de que el método lo buscara. Y la pregunta de alcance del dueño también se
+sostiene por separado: el método no depende del protocolo, y eso está medido en `PND-019` —cero
+menciones en los veinticuatro contratos, cero en el camino evolutivo-correctivo y cero en el nivel
+de datos—.
+
+**Criterio de aceptación por perfil, contra la medición de arriba.**
+
+- *P3 (lector humano):* **cumplido, y ya lo estaba.** Esta persona llega a la portada del protocolo
+  y vuelve al método: cuatro enlaces a `yujin.app/urazuke/` en la página servida.
+- *P5 (auditor):* **cumplido, y ya lo estaba.** Existe repositorio (`yujinapp/nac-spec`), existe el
+  commit que escribió el enlace (`c64fcf2`) y existe la corrida que lo publicó (`40384271448`).
+
+**Cómo se verifica la refutación.** `curl -s https://yujin.app/nac-spec/ | grep -c -i urazuke` →
+mayor que 0; y `git log origin/main -S "yujin.app/urazuke/" -- index.html` en `yujinapp/nac-spec` →
+nombra el commit. Las dos órdenes están arriba con su salida.
+
+**Lo que deja escrito, y es el único valor que tuvo esta entrada.** Una ausencia no se registra como
+hallazgo desde una búsqueda que falló: se enumera el universo buscado y se dice por qué esa
+enumeración es completa. «No lo encontré donde miré» no es «no existe». Es `PND-052`, y es el
+segundo desvío de medición propio en dos días.
+
+**Depende de:** nada. Era un hallazgo, y no lo era.
 ---
 
 # Abiertos — trabajo derivado de las decisiones y de la revisión semántica
@@ -3893,6 +3939,69 @@ entrada corregida dice.
 
 ---
 
+## PND-052 — Una ausencia se registró como hallazgo desde una búsqueda que falló *(desvío propio, el segundo en dos días)*
+
+- **Nodo:** `proyecto/registro` [nodo propuesto]
+- **Grupo:** G-TRAZABILIDAD · **Severidad:** registra · **Quién decide:** la refutación se hizo y se
+  reporta; la **prevención** vuelve al dueño, porque la única forma decidible que se encontró le
+  cambia el alcance a este registro
+- **Repositorio:** método · **Estado: abierto**
+- **Origen:** lo abrió la refutación de `PND-036`. Y, como `PND-051`, no lo encontró una compuerta:
+  lo encontró el dueño preguntando por qué el registro se estaba ocupando de otro proyecto.
+
+**Qué está mal.** `PND-036` afirmó una **ausencia** —«no está en ningún repositorio al que se pueda
+llegar»— desde una búsqueda que había mirado cuatro árboles y ninguno era el que correspondía, y la
+escribió con la forma de un hallazgo medido: con su comando, su salida y su conclusión. Eso es más
+peligroso que una afirmación sin medir, porque **parece** medida y pasa cualquier lectura. Y después
+usó un `Last-Modified` como prueba de que una página «cambia sin dejar rastro», cuando el rastro era
+una corrida de despliegue del repositorio que nunca se buscó.
+
+**Por qué es el segundo y no el primero.** `PND-051` (D-063) fue el día anterior: un cierre afirmó
+que algo «no está escrito en ninguna parte» y la portada servida lo contestaba tres veces. La regla
+que salió de ahí —una reproducción que afirma una ausencia lleva el comando y la cuenta, no la
+frase— **se cumplió** acá, y no alcanzó: el comando estaba, la cuenta estaba, y el universo sobre el
+que corrió era el equivocado. Dos ocurrencias en dos días, de la misma familia y en formas
+distintas, es un patrón del proyecto y no dos anécdotas.
+
+**Evidencia medida (2026-10-27).**
+
+```
+entradas del registro que afirmaron una ausencia y resultaron falsas:  2
+  PND-022 (cerrada el 26)  "no esta escrito en ninguna parte"   -> la portada lo dice 3 veces
+  PND-036 (abierta el 26)  "no esta en ningun repositorio"      -> yujinapp/nac-spec
+
+arboles con remoto de este ecosistema presentes en esta maquina:  8
+arboles que la reproduccion de PND-036 enumero:                   4
+arboles que contenian la pagina:                                  2  (ninguno de los 4)
+```
+
+**Qué habría que producir, y es la decisión.** Dos caminos, con su costo.
+
+- *La regla escrita, y nada más.* Queda en `CLAUDE.md`: una entrada que afirma una ausencia enumera
+  el universo buscado y dice por qué la enumeración es completa; si el universo son repositorios, se
+  enumeran por su **remoto**, no por su carpeta. Cuesta un párrafo. Es la misma clase de defensa que
+  este proyecto viene llamando «guarda dormida» cuando la encuentra del otro lado: depende de que
+  alguien se acuerde.
+- *La forma decidible.* Que el registro no pueda afirmar una ausencia de repositorio sin un bloque
+  que liste los remotos consultados, y que una prueba exija ese bloque en toda entrada que use las
+  fórmulas de ausencia. Es mecanizable y es barato de correr, pero **le cambia el alcance** a este
+  registro: pasa a tener un campo obligatorio nuevo, y eso no lo decide quien escribe las entradas.
+
+**Criterio de aceptación por perfil.**
+
+- *P5 (auditor):* dado el perfil auditor, esta persona puede saber, de cada afirmación de ausencia
+  del registro, sobre qué universo se corrió la búsqueda, sin tener que confiar en que fue completo.
+- *P8 (dueño de proyecto):* dado ese perfil, esta persona no vuelve a encontrar el registro ocupado
+  de un problema que no existe, y cuando pregunta «¿por qué esto?» la entrada ya dice su alcance.
+
+**Cómo se verifica.** Con la regla escrita: que `CLAUDE.md` la lleve y que la refutación de
+`PND-036` la cite. Con la forma decidible: una prueba que caiga sobre una entrada que afirme una
+ausencia sin su bloque de universo, y que traiga su rojo deliberado.
+
+**Depende de:** la decisión del dueño entre los dos caminos.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -3906,23 +4015,25 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-ALCANCE | 4 | 0 | 4 | 0 |
 | G-IDIOMA | 13 | 11 | 2 | 2 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
-| G-ECOSISTEMA | 3 | 1 | 2 | 0 |
+| G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 10 | 1 | 9 | 0 |
-| G-TRAZABILIDAD | 2 | 1 | 1 | 0 |
-| **total** | **51** | **20** | **31** | **4** |
+| G-TRAZABILIDAD | 3 | 2 | 1 | 0 |
+| **total** | **52** | **20** | **32** | **4** |
 
-Cincuenta y una entradas, `PND-001` a `PND-051`. Veintidós vienen de la auditoría externa
+Cincuenta y dos entradas, `PND-001` a `PND-052`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
-PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la
-portada del protocolo que está servida y no tiene fuente, la hoja nueva que nace sin enlace en la
-portada, y las nueve revisiones semánticas— y **diez son de una fuente nueva**: la retrospectiva
+PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
+protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada, y
+las nueve revisiones semánticas— y **diez son de una fuente nueva**: la retrospectiva
 del peldaño 23 sobre «El Arte de Forjar Sistemas», la novela de Oscar Schmitz que adapta el método,
 validada aseveración por aseveración contra la letra (`PND-039` a `PND-048`, grupo G-METODO). No las
 trajo una auditoría encargada ni una medición propia: las trajo **un lector que aplicó el método a
 fondo y lo que le pasó al aplicarlo**, que es exactamente la entrada que el peldaño 23 espera. Y las
 dos últimas no las trajo nadie de afuera: `PND-050` salió de leer el árbol después de fusionar, y
 `PND-051` de que el dueño leyera la portada que una entrada cerrada decía que no existía. Las dos
-son desvíos propios, y las dos del mismo día.
+son desvíos propios, y las dos del mismo día. `PND-052` es el tercero, del día siguiente, y sale de
+**refutar** una de las dos: `PND-036` afirmaba una ausencia desde una búsqueda que había mirado
+cuatro árboles y ninguno era el que correspondía.
 
 **Lo que está primero, y por qué.** Las precondiciones del grupo de la API están cerradas, y en
 este orden: PND-021 (cuál es el árbol del portal realmente desplegado), PND-020 y PND-018 (la
@@ -3962,11 +4073,12 @@ una corrección del mismo día: la reproducción de esa entrada decía que la di
 en ninguna parte» y era falsa —la portada contesta la pregunta práctica tres veces, una sobre el
 pliegue—, así que el párrafo que se había escrito y horneado en diez idiomas se descartó sin publicar
 (`PND-051`, D-063). Al trabajarlo aparecieron dos cosas que no estaban registradas y que son mejores
-que el pendiente: la portada del protocolo está servida y **no tiene fuente en ningún repositorio**
-—el 2026-10-26, a las 19:10 UTC, el enlace de vuelta apareció solo, sin ningún commit que lo
-produzca, que es la confirmación del pendiente y no su cierre (**PND-036**)— y la prueba en rojo del
-verificador de portadas mira **un árbol clavado a una ruta local** y pasa en verde sin ver el cambio
-que tiene al lado (**PND-037**).
+que el pendiente. Una era real: la prueba en rojo del verificador de portadas mira **un árbol
+clavado a una ruta local** y pasa en verde sin ver el cambio que tiene al lado (**PND-037**). La otra
+**no existía**: se registró que la portada del protocolo estaba servida sin fuente en ningún
+repositorio, y era un defecto propio de medición —se buscó en cuatro árboles y el que correspondía
+no era ninguno— que quedó refutado el 2026-10-27 con la fuente, el commit y el despliegue a la vista
+(**PND-036**, D-064).
 
 **Y las cuatro guardas dormidas, contadas juntas, porque es el patrón del proyecto y no cuatro
 anécdotas.** El guardián de línea de comandos que acertaba sólo en un sistema operativo y dejaba
@@ -4021,8 +4133,8 @@ al dueño: hoy la única defensa contra que vuelva a pasar es que alguien se acu
 Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-010,
 PND-011, PND-012, PND-016, PND-024, PND-046 y la prevención de PND-050, que ya tiene **dos**
 ocurrencias medidas), la revisión semántica de los nueve idiomas de la interfaz (PND-026 a PND-034)
-y el hallazgo que depende de una decisión suya (**PND-036**: dónde vive la portada del protocolo).
-Los cuatro bloqueantes abiertos que quedan son dos del grupo de la API (PND-010 y PND-011, las dos
+y la prevención de los desvíos de medición (**PND-052**, que es el segundo del mismo grupo en dos
+días). Los cuatro bloqueantes abiertos que quedan son dos del grupo de la API (PND-010 y PND-011, las dos
 esperando decisión del dueño) y dos del de idiomas (PND-016 y PND-019): el del método y el de la
 publicación se cerraron.
 
