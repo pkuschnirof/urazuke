@@ -4475,6 +4475,104 @@ declarado hoy no se quede sin su prosa, y que una entrada nueva no entre sin dec
 
 ---
 
+## PND-056 — El dato publicó una dirección que una máquina no puede bajar, y un puntero a una clave que el publicado no tiene *(lo trajo el consumidor; herramienta: PND-048)*
+
+- **Nodo:** `datos/compuertas` [nodo propuesto]
+- **Grupo:** G-API · **Severidad:** importante · **Quién decide:** nadie: es un defecto medido y su arreglo es mecánico
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-27, con las dos direcciones publicadas, la cláusula autocontenida y su guarda.
+
+**Qué estaba mal, y son dos cosas de la misma familia.** El contrato de fijación que acababa de
+entrar con `PND-055` —publicado y cubierto por la huella— le decía al consumidor que contraste el
+par (versión → huella) *«contra `version_scheme.version_ledger`»*. Esa clave **no existe en el
+publicado**: vive sólo en `gates/schema.json`, que es una fuente. O sea que el único lector capaz de
+seguir ese puntero era el que tiene el repositorio del método delante, que es exactamente el lector
+para el que la interfaz de datos no hace falta. Y el índice de la interfaz declaraba del registro de
+versiones **una sola dirección**, la página del blob, que ese alojamiento sirve como HTML; la
+dirección que devuelve el JSON no estaba publicada en ninguna parte, así que para bajarlo hay que
+**derivarla**. Adivinar una dirección es lo que la regla «nada inventado» prohíbe, y acá lo
+obligaba el propio dato.
+
+**Quién lo trajo.** El consumidor, el mismo día que implementó la obligación. No una auditoría, no
+una medición propia: lo reportó quien tuvo que adivinar la dirección, con sus palabras:
+
+> `index.json` publica la direccion de la PAGINA del blob, que devuelve HTML; hay que derivar
+> `raw.githubusercontent` para bajar el JSON. Lo derivo en un solo lugar y lo reporto en el
+> veredicto, pero adivinar una direccion es lo que el anexo prohibe. Convendria publicar tambien la
+> cruda.
+
+**Mi reproducción (2026-10-27), medida.** Las dos direcciones, pedidas de verdad:
+
+```
+$ node -e "fetch de las dos direcciones del registro de versiones"
+200 text/html    284852  NO es JSON (        <!DOCTY...)  .../blob/main/gates/catalog.json
+200 text/plain    11386  JSON valido                      raw.githubusercontent.com/.../gates/catalog.json
+```
+
+Y el puntero colgante, contra el publicado de `0af2a00`:
+
+```
+$ node -e "cada camino de clave que un texto del publicado nombra, resuelto contra el publicado"
+NO RESUELVE  version_scheme.version_ledger   <- pinning.consumer_contract.must_contrast
+RESUELVE     (los otros seis tokens de los dos recursos)
+```
+
+**Lo que se hizo.**
+
+- **Las dos direcciones, publicadas.** El índice declara ahora, por recurso,
+  `version_ledger.url` —la página que lee una persona— y `version_ledger.fetch_url` —el mismo
+  archivo como JSON, que es lo que baja una herramienta—, con la nota que dice por qué son dos y no
+  una. El verificador del índice las exige las dos (`E_INDICE_REGISTRO_CRUDO`) y exige que la de
+  bajada termine en el `path` que el propio registro declara: una dirección que apunta a otro
+  archivo es peor que ninguna. **El índice no tiene versión ni huella propias** (D-056), así que
+  esta mitad **no cambia ninguna versión declarada**.
+- **La cláusula, autocontenida.** `pinning.consumer_contract.must_contrast` ya no apunta a una clave
+  de las fuentes: dice qué es el registro, que vive fuera del alojamiento que sirvió el archivo, y
+  de dónde se saca su dirección —los dos campos del índice, por su nombre—, con la instrucción
+  explícita de no derivar una de la otra ni clavarlas en el código.
+- **La guarda, que es lo que hace que esto no vuelva.** `build/punteros_publicados.mjs` +
+  `tests/punteros_publicados.test.mjs` (siete comprobaciones) y sus **diez rojos deliberados**
+  aparte. Exige que **cada camino de clave que un texto publicado nombra resuelva en el publicado**;
+  que los dos registros de salteo —sufijos que no son claves, y punteros que a propósito apuntan a
+  otro recurso— no tengan entradas que sobren y lleven su razón escrita, como el anexo pide para una
+  regla apagada; y la simetría entre la cláusula y el directorio: si el contrato manda leer un campo,
+  el índice tiene que publicarlo. No haber podido mirar —sin índice— es **rojo y no verde**. Tiene
+  **quien la invoque** desde el primer día: el paso nuevo del flujo exige la línea que el programa
+  imprime. Tres rojos más en `api_indice`.
+- **La huella de la versión, corregida antes de publicarla.** `2026.10.7` seguía sin publicar
+  —producción servía `2026.10.6` y la entrada vivía en una rama sin fusionar—, así que la entrada del
+  registro anota la huella del **contenido corregido** (`7575673f723e`) y dice por qué se corrigió en
+  vez de subir a `2026.10.8`: una versión nueva habría dejado registrada una `2026.10.7` que nadie
+  puede pedir nunca, y eso es una mentira peor que la nota. La regla sigue en pie y queda escrita con
+  su alcance exacto: **la huella de una versión no se edita una vez que esa versión se sirvió.**
+
+**Y lo que la distingue de la guarda de ayer, dicho porque es lo que la hace falsable:** ésta **sí**
+habría atrapado el defecto que la originó. Medida contra el árbol publicado de `0af2a00` da **5
+hallazgos** y nombra los dos —el puntero colgante y las dos direcciones que faltaban—; contra el
+árbol de hoy, **cero**.
+
+**Criterio de aceptación por perfil.**
+
+- *P1, P2 (herramientas consumidoras):* dada una herramienta que sólo tiene la interfaz publicada,
+  esa herramienta llega al registro de versiones **sin derivar ni adivinar** ninguna dirección, y
+  todo campo que el contrato le manda leer existe en el archivo donde el contrato dice que está.
+- *P5 (auditor):* dado el perfil auditor, esta persona puede correr una orden y ver que ningún texto
+  del publicado apunta a una clave que el publicado no tiene, con la cuenta a la vista y no con una
+  afirmación.
+- *P8 (dueño de proyecto que aplica el método):* dada esa persona, lo que el método publica como
+  obligación del consumidor es **cumplible** sin acceso al repositorio del método, que es la
+  condición para poder exigirlo.
+
+**Cómo se verifica.** `node build/punteros_publicados.mjs` imprime su cuenta y sus hallazgos;
+`node --test` corre las siete comprobaciones, sus diez rojos y los tres nuevos del índice;
+`node build/api_check.mjs` exige que el índice publicado sea el que dan las fuentes.
+
+**Lo que queda afuera, nombrado.** Que la dirección de bajada **conteste** no lo verifica esta
+guarda: eso es red, y la construcción corre sin red a propósito; lo pregunta la publicación contra
+producción. Y que el consumidor **use** los dos campos en vez de seguir derivándolos se mide en su
+repositorio, no en éste.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -4484,16 +4582,16 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 15 | 5 | 10 | 1 |
+| G-API | 16 | 5 | 11 | 1 |
 | G-ALCANCE | 4 | 0 | 4 | 0 |
 | G-IDIOMA | 13 | 10 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 12 | 2 | 10 | 1 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **55** | **18** | **37** | **3** |
+| **total** | **56** | **18** | **38** | **3** |
 
-Cincuenta y cinco entradas, `PND-001` a `PND-055`. Veintidós vienen de la auditoría externa
+Cincuenta y seis entradas, `PND-001` a `PND-056`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada, y
@@ -4506,7 +4604,10 @@ dos últimas no las trajo nadie de afuera: `PND-050` salió de leer el árbol de
 `PND-051` de que el dueño leyera la portada que una entrada cerrada decía que no existía. Las dos
 son desvíos propios, y las dos del mismo día. `PND-052` es el tercero, del día siguiente, y sale de
 **refutar** una de las dos: `PND-036` afirmaba una ausencia desde una búsqueda que había mirado
-cuatro árboles y ninguno era el que correspondía.
+cuatro árboles y ninguno era el que correspondía. Y `PND-056` tiene el origen que una interfaz
+publicada tendría que tener más seguido: **lo trajo el consumidor**. No una auditoría ni el autor
+releyéndose, sino la herramienta que intentó cumplir la obligación recién publicada y se encontró
+con que, para cumplirla, tenía que adivinar una dirección.
 
 `PND-053` es la última, y es de otra clase: no es un desvío ni un hallazgo de nadie, es una
 declaración que faltaba. `PND-039` dejó escrito que las dos entradas previas del Anexo H no tenían

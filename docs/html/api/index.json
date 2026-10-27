@@ -6,7 +6,7 @@
     "why": "A directory, not a catalogue: its identity is the identity of what it points at. A hash of its own would force a third declared version line, that nobody declares, every time one of the listed resources changes.",
     "staleness_check": "Fetch a listed resource, recompute its hash over the canonical form declared here for that resource, and compare it with the hash quoted here. If the two differ, this index is stale, and you know that without having to trust it."
   },
-  "generated_at": "2026-10-27T13:50:42.457Z",
+  "generated_at": "2026-10-27T14:34:14.875Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "canonical_base": "https://yujin.app/urazuke/api/",
@@ -21,7 +21,7 @@
       "name": "gates.json",
       "url": "https://yujin.app/urazuke/api/gates.json",
       "media_type": "application/json",
-      "bytes": 107323,
+      "bytes": 107965,
       "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.",
       "version_field": "catalog_version",
       "version": "2026.10.7",
@@ -30,13 +30,15 @@
         "algo": "sha256",
         "encoding": "hex_lower",
         "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
-        "value": "f6adbf113d5712142db5cdc6968fba090cdbf2bc81fb083c33fdb6f604cadfd5"
+        "value": "7575673f723e498cf217b97b9efa0da3e98bd1e6d0a01cefaa87718a6cce027c"
       },
       "version_ledger": {
         "url": "https://github.com/pkuschnirof/urazuke/blob/main/gates/catalog.json",
+        "fetch_url": "https://raw.githubusercontent.com/pkuschnirof/urazuke/main/gates/catalog.json",
         "path": "gates/catalog.json",
         "field": "changelog",
-        "note": "Append-only: one entry per declared version with the content hash it produced, and a hash already recorded is never edited. It lives in the method repository, not on this host, so the pair (version -> hash) can be checked against a source other than the server that handed you the file. It is not part of any published payload, so recording an entry cannot change the hash that entry records."
+        "note": "Append-only: one entry per declared version with the content hash it produced, and a hash already recorded is never edited. It lives in the method repository, not on this host, so the pair (version -> hash) can be checked against a source other than the server that handed you the file. It is not part of any published payload, so recording an entry cannot change the hash that entry records.",
+        "fetch_note": "Two addresses because they are two different things: url is the page a person reads, which this host serves as HTML, and fetch_url is the same file as JSON, which is what a tool downloads. Both are declared so no consumer has to derive one from the other: a derived address is an invented address."
       }
     },
     {
@@ -56,9 +58,11 @@
       },
       "version_ledger": {
         "url": "https://github.com/pkuschnirof/urazuke/blob/main/prompts/catalog.json",
+        "fetch_url": "https://raw.githubusercontent.com/pkuschnirof/urazuke/main/prompts/catalog.json",
         "path": "prompts/catalog.json",
         "field": "changelog",
-        "note": "Append-only: one entry per declared version with the content hash it produced, and a hash already recorded is never edited. It lives in the method repository, not on this host, so the pair (version -> hash) can be checked against a source other than the server that handed you the file. It is not part of any published payload, so recording an entry cannot change the hash that entry records."
+        "note": "Append-only: one entry per declared version with the content hash it produced, and a hash already recorded is never edited. It lives in the method repository, not on this host, so the pair (version -> hash) can be checked against a source other than the server that handed you the file. It is not part of any published payload, so recording an entry cannot change the hash that entry records.",
+        "fetch_note": "Two addresses because they are two different things: url is the page a person reads, which this host serves as HTML, and fetch_url is the same file as JSON, which is what a tool downloads. Both are declared so no consumer has to derive one from the other: a derived address is an invented address."
       }
     }
   ]

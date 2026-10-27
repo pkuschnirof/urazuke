@@ -32,12 +32,12 @@
       "license",
       "content_hash"
     ],
-    "value": "f6adbf113d5712142db5cdc6968fba090cdbf2bc81fb083c33fdb6f604cadfd5",
+    "value": "7575673f723e498cf217b97b9efa0da3e98bd1e6d0a01cefaa87718a6cce027c",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "9cee765",
+  "git_commit": "0af2a00",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-10-27T13:50:42.401Z",
+  "generated_at": "2026-10-27T14:34:14.210Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
@@ -3395,7 +3395,7 @@
     ],
     "consumer_contract": {
       "must_record": "A tool that pins records, in whatever it writes for the project, the catalog_version it pinned and the content_hash that version declares. Those two, by those names.",
-      "must_contrast": "It contrasts that pair against the version ledger declared in version_scheme.version_ledger, which lives in the method repository and not on the host that served the file, so the pair (version -> hash) can be checked against a second source.",
+      "must_contrast": "It contrasts that pair against the version ledger: an append-only record of (declared version -> content hash) that lives in the method repository and not on the host that served this file, so the pair can be checked against a second source. Its address is published per resource by the index of this data interface, under resources[].version_ledger: url is the page a person reads and fetch_url is the same file as JSON, which is the one a tool downloads. Read both from the index; do not derive one from the other and do not hardcode either, because a derived address is an invented address. Written this way on 2026-10-27: the first wording of this clause pointed the consumer at a key of the sources that no published payload carries, and the index declared only the human page, so the one consumer that implemented the obligation had to guess the address it downloads (PND-056).",
       "on_mismatch": "Red, and it says which of the two moved: the content under a declared version, or the version under one content. Never green, and never a silent re-pin to whatever the host is serving today.",
       "forbidden": "Pinning to an internal compiled identity that the method cannot name. It looks like pinning and it is not: nobody outside the tool can audit it, and the differential against a published version cannot be computed, so the project cannot be told what an upgrade would reopen.",
       "why_it_is_written": "Measured on 2026-10-27: a consumer that already pinned, and pinned correctly in its own terms, pinned to an identity of its own that is not a catalog_version and appears in no ledger. The data said what to freeze and never said what to freeze it BY."

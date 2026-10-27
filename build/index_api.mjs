@@ -33,6 +33,13 @@ export const NOMBRE = 'index.json';
 export const BASE_CANONICA = 'https://yujin.app/urazuke/api/';
 export const BASE_ESPEJO = 'https://yujin.app/urazuke/docs/api/';
 export const REPO = 'https://github.com/pkuschnirof/urazuke';
+// El mismo registro, en la direccion que devuelve el JSON. Hace falta las dos porque son
+// dos cosas distintas: `url` es la pagina que lee una persona (GitHub la sirve como HTML:
+// medido 284852 B de text/html) y `fetch_url` es el archivo que baja una maquina (11386 B
+// de JSON valido). Publicar solo la primera obligaba al consumidor a DERIVAR la segunda,
+// y adivinar una direccion es justo lo que el anexo prohibe: lo pidio el consumidor que
+// implemento la obligacion de fijacion, el 2026-10-27 (PND-056).
+export const REPO_CRUDO = 'https://raw.githubusercontent.com/pkuschnirof/urazuke/main/';
 
 // Los recursos que la interfaz publica, declarados a mano: cada uno con el NOMBRE del
 // campo de version que usa (no el valor: el valor se extrae del archivo) y el registro
@@ -56,6 +63,8 @@ export const RECURSOS = [
 ];
 
 const LEDGER_NOTE = 'Append-only: one entry per declared version with the content hash it produced, and a hash already recorded is never edited. It lives in the method repository, not on this host, so the pair (version -> hash) can be checked against a source other than the server that handed you the file. It is not part of any published payload, so recording an entry cannot change the hash that entry records.';
+
+const FETCH_NOTE = 'Two addresses because they are two different things: url is the page a person reads, which this host serves as HTML, and fetch_url is the same file as JSON, which is what a tool downloads. Both are declared so no consumer has to derive one from the other: a derived address is an invented address.';
 
 const WHAT = 'A directory of the data interface of the Urazuke method: the one resource you can ask for without knowing anything else beforehand. For every published resource it declares the canonical URL, the media type, the size in bytes, the name and the value of the version field that resource declares, and the content hash it declares with its algorithm and its canonical form, so a consumer knows what it is going to recompute before downloading anything. This file carries no version and no content hash of its own, on purpose (see identity): do not use it as a trust anchor, verify it against the resources it lists. And about those hashes, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls this host. The anchors that do not live here are the version ledger of each resource, in the method repository, and the transport security of this connection.';
 
@@ -118,9 +127,11 @@ export function armarIndice(disco = leerDisco(), ahora = new Date()) {
       },
       version_ledger: {
         url: REPO + '/blob/main/' + r.ledger_path,
+        fetch_url: REPO_CRUDO + r.ledger_path,
         path: r.ledger_path,
         field: r.ledger_field,
         note: LEDGER_NOTE,
+        fetch_note: FETCH_NOTE,
       },
     });
   }
@@ -219,6 +230,11 @@ export function verificarIndice(indice, disco = leerDisco()) {
     if (!r.version_ledger?.url || !r.version_ledger?.field) {
       err('E_INDICE_REGISTRO', r.name + ' no apunta a su registro de versiones',
         'el par (version -> huella) es el unico ancla de confianza que vive fuera de este alojamiento (PND-007).');
+    }
+    const cruda = r.version_ledger?.fetch_url;
+    if (!cruda || !cruda.startsWith(REPO_CRUDO) || !cruda.endsWith(r.version_ledger?.path ?? ' ')) {
+      err('E_INDICE_REGISTRO_CRUDO', r.name + ' declara el registro de versiones y no la direccion que devuelve el JSON: ' + JSON.stringify(cruda ?? null),
+        'regenera el indice: node build/index_api.mjs. La pagina del blob se sirve como HTML, asi que un consumidor que solo tiene `url` tiene que ADIVINAR la cruda, y adivinar una direccion es lo que el anexo prohibe (PND-056).');
     }
   }
 

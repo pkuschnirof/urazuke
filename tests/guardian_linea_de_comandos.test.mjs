@@ -69,9 +69,9 @@ test('ningun programa de build/ vuelve a comparar a mano contra "file:///"', () 
   assert.deepEqual(culpables, [], 'usa esLineaDeComandos(import.meta.url) de gates_lib.mjs: pegar "file:///" adelante de argv[1] no acierta en POSIX');
 });
 
-test('los seis programas con modo de linea de comandos usan el guardian compartido', () => {
+test('los siete programas con modo de linea de comandos usan el guardian compartido', () => {
   for (const nombre of ['gates_validate.mjs', 'gates_doc.mjs', 'prompts_api.mjs', 'index_api.mjs',
-    'portal_orphans.mjs', 'version_fijada.mjs']) {
+    'portal_orphans.mjs', 'version_fijada.mjs', 'punteros_publicados.mjs']) {
     const texto = readFileSync(join(raiz, 'build', nombre), 'utf8');
     assert.ok(texto.includes('esLineaDeComandos(import.meta.url)'),
       'build/' + nombre + ' tiene modo de linea de comandos y no usa el guardian compartido');

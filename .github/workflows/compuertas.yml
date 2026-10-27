@@ -95,6 +95,14 @@ jobs:
           grep -q '0 hallazgos' fijacion.txt || { echo "::error::hay prosa que no nombra la version fijada, o una entrada sin procedencia (el detalle, arriba)"; exit 1; }
           rm fijacion.txt
 
+      - name: Exigir que los punteros del dato publicado resuelvan
+        run: |
+          set -o pipefail
+          node build/punteros_publicados.mjs | tee punteros.txt
+          grep -q '^punteros: comprobado' punteros.txt || { echo "::error::la guarda de punteros no dijo que comprobo: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          grep -q '0 hallazgos' punteros.txt || { echo "::error::hay un puntero publicado que no resuelve, o una direccion que una maquina no puede bajar (el detalle, arriba)"; exit 1; }
+          rm punteros.txt
+
       - name: Dejar el arbol limpio (ningun generado sin commitear)
         run: |
           git diff --stat -- docs/html/api/ gates/ docs/COMPUERTAS.md
