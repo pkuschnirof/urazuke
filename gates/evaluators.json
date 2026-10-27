@@ -50,6 +50,7 @@
     {
       "name": "heuristics",
       "since_schema": 2,
+      "since_version": "2026.10.1",
       "checks": "The Annex H rule catalogue is declared and active per group; every active rule has an instrument, a severity and a checker; every switched-off rule has its record with reason, author and review date (switched off without a record is red, not the absence of a rule); every undeclared threshold is reported as undeclared instead of invented; and the report emits the two figures with the ruleset fingerprint. A switched-off group is never read as fulfilled.",
       "declares": [
         "D-045",
@@ -61,6 +62,7 @@
     {
       "name": "profile_matrix",
       "since_schema": 2,
+      "since_version": "2026.10.1",
       "checks": "The functionality-by-profile matrix exists and is consistent: every functionality has at least one profile, every profile has at least one functionality and its entry point, and navigation is derived from the matrix rather than hand-written. And for every profile, the end-to-end test compares what is reachable against its row: neither less nor more.",
       "declares": [
         "D-044"
@@ -69,6 +71,7 @@
     {
       "name": "manual_cases_per_profile",
       "since_schema": 2,
+      "since_version": "2026.10.1",
       "checks": "Every manual test case was run once per affected profile, derived from the matrix. A case run with a single profile does not count as executed.",
       "declares": [
         "D-044"
@@ -77,6 +80,7 @@
     {
       "name": "pendings_profiles",
       "since_schema": 2,
+      "since_version": "2026.10.1",
       "checks": "Every pending item that touches a screen declares its functional convergence group, the profiles that have it and one acceptance criterion per profile. Without that declaration the pending item does not pass the step.",
       "declares": [
         "D-044"

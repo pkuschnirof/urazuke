@@ -181,6 +181,10 @@ e ciò che ti permette di rilevare in dieci secondi una voce fuori perimetro.
   siano prima del gradino 5.
 - In tutti e tre, una data di ultimo aggiornamento.
 - Nel patto, le due regole nuove.
+- Nel file di progetto, una riga che dica con quale versione del metodo lavora il progetto: la
+  `catalog_version` che hai fissato e l'impronta di contenuto che quella versione dichiara. È
+  quello che permette, fra un anno, di sapere contro quale definizione ogni gradino ha avuto il suo
+  verde, e quello che fa di un aumento di versione una decisione e non un incidente.
 
 ## 4. Verifica di completezza
 
@@ -203,6 +207,8 @@ e ciò che ti permette di rilevare in dieci secondi una voce fuori perimetro.
 - È scritta la lista dei profili, dicendo chi è ciascuno e cosa viene a fare? Conta i profili con le
   dita del tuo business: se manca uno, manca una riga della matrice del gradino 8 e una tornata di
   casi di prova del 10.
+- È scritto con quale versione del metodo lavora il progetto, con la sua impronta? Se non c'è, il
+  giorno in cui la definizione cambi nessuno potrà dire se i gradini chiusi sono ancora chiusi.
 
 ## 5. Segnali d'allarme
 

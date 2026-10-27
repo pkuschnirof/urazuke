@@ -59,8 +59,11 @@ export function generar() {
   p();
   p('## The version: what a project freezes');
   p();
-  p('A project starts and ends on the same version of the method, unless somebody applies the double');
-  p('lock. For that to be possible, what is published has to be identifiable and stable:');
+  // El enunciado de la fijacion vive en el dato (gates/schema.json#pinning) y se extrae, no se
+  // transcribe: una sola copia de cada texto, igual que los enunciados del Anexo H.
+  p(contenido.pinning.what);
+  p();
+  p('For that to be possible, what is published has to be identifiable and stable:');
   p();
   p('- **`catalog_version`** (`' + contenido.catalog_version + '`): declared by hand by the method. It is what a project freezes, and');
   p('  what has to read back the same two years from now.');
@@ -82,6 +85,29 @@ export function generar() {
   for (const c of fuentes.catalog.changelog) {
     p('- **' + c.catalog_version + '** (' + c.date + ', ' + c.decision + ') -- `' + c.content_hash.slice(0, 16) + '...`');
   }
+  p();
+  p('## Pinning: what a tool that freezes the method owes');
+  p();
+  const fij = contenido.pinning;
+  p('The pair a project freezes: `' + fij.pinned_pair.join('`, `') + '`.');
+  p();
+  p('- **It records**: ' + fij.consumer_contract.must_record);
+  p('- **It contrasts**: ' + fij.consumer_contract.must_contrast);
+  p('- **On a mismatch**: ' + fij.consumer_contract.on_mismatch);
+  p('- **Forbidden**: ' + fij.consumer_contract.forbidden);
+  p('- Why it is written: ' + fij.consumer_contract.why_it_is_written);
+  p();
+  p('**Raising the version.** Who decides: `' + fij.upgrade.who_decides + '`.');
+  p();
+  p('- Before deciding: ' + fij.upgrade.before_deciding);
+  p('- How the differential is computed: ' + fij.upgrade.how_to_compute);
+  p('- What a newly required evaluator means: ' + fij.upgrade.what_a_new_required_evaluator_means);
+  p('- Every covered key has existed since **' + fij.upgrade.covered_keys_since + '**. ' + fij.upgrade.covered_keys_note);
+  p();
+  p('**A prior version.** The canonical URL serves `' + fij.prior_version_content.canonical_url_serves + '`.');
+  p();
+  p('- ' + fij.prior_version_content.how);
+  p('- Not guaranteed: ' + fij.prior_version_content.not_guaranteed);
   p();
   p('## The language of each text');
   p();

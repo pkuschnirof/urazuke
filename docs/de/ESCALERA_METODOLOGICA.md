@@ -261,6 +261,34 @@ verpflichtend und in diesem Dokument nicht genannt, und der erste Leser, der die
 anderes Format übertrug, übersprang siebenundzwanzig der fünfundvierzig Regeln, weil er nie wusste,
 dass sie da waren.
 
+Und noch etwas, das ändert, was gelesen werden muss, weil es entscheidet, **welche** dieser
+Anforderungen für dich gelten: **die Version der Methode, die das Projekt festschreibt.** Die
+mechanische Definition der Tore — welche Datei bei jedem Schritt existieren muss und was sie sagen
+muss — wird als Daten veröffentlicht, mit einer deklarierten Version (`catalog_version`) und einem
+Inhaltsfingerabdruck: einer langen Zahl, aus der ganzen Datei berechnet, die sich ändert, wenn
+jemand ein Komma ändert, und die deshalb dazu dient zu prüfen, dass die Kopie, die du hast, genau
+die ist, die die Methode veröffentlicht hat. Ein Projekt **schreibt** eine dieser Versionen an dem
+Tag fest, an dem es beginnt, und behält sie bis zum Ende. Und das ist keine Bequemlichkeit: die
+Version mitten im Projekt zu erhöhen ist eine **Regression des Vollständigkeitszustands**. Wenn die
+neue Version einem Schritt, den du schon abgeschlossen hattest, eine Anforderung hinzufügt, ist
+dieser Schritt wieder unvollständig; und wenn sie eine Anforderung hinzufügt, die dein Werkzeug
+noch nicht messen kann, sagt das Tor nicht grün: es sagt "deklariert und nicht gemessen", und der
+Schritt rückt nicht vor. Das ist kein Fehler, das ist der Mechanismus bei der Arbeit. Die Version
+zu erhöhen ist erlaubt — der Eigentümer entscheidet es, es wird mit seinem Datum im
+Entscheidungsregister von Schritt 6 geschrieben, und vor der Entscheidung schaut man, welche
+Anforderungen dazwischen hereinkommen, eine Zählung, die man tatsächlich machen kann, weil jede
+nach dem Einfrieren hinzugefügte Anforderung sagt, in welcher Version sie hereinkam. Was nicht
+erlaubt ist: sie im Stillen zu erhöhen, oder auf halbem Weg zu erfahren, dass das Tor gegen eine
+Definition misst, die niemand gewählt hat. Und von dem Werkzeug, das dir assistiert, wenn du eines
+benutzt, verlangt die Methode dasselbe wie von dir: dass es aufschreibt, welche Version es
+festgeschrieben hat und mit welchem Fingerabdruck, und dass es dieses Paar gegen das
+Versionsregister der Methode abgleicht, das im Repositorium der Methode lebt und nicht auf dem
+Server, der ihm die Datei geliefert hat. Auf einen eigenen internen Bezeichner festzuschreiben,
+den die Methode nicht benennen kann, sieht wie Festschreiben aus und ist es nicht: niemand von
+außen kann es prüfen. Dass das hier bis heute nicht geschrieben stand, war ein Mangel von denen,
+die Schritt 11 verfolgt: das Datum sagte es dem Konsumenten und die Prosa sagte es dem Eigentümer
+nie, der der Einzige ist, der einen Versionswechsel entscheiden kann.
+
 Zwei wichtige Klarstellungen. Erstens: **die Leiter ist neutral gegenüber dem Werkzeug**. Jedes
 Artefakt ist eine Datei, ein Test oder ein Skript; keines verlangt mein Werkzeug oder irgendein
 anderes. Forge automatisiert sie (die Tore, die Befehle, das Register der offenen Posten), aber der

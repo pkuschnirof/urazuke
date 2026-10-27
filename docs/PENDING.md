@@ -4334,6 +4334,145 @@ compuerta algo que no mide.
 
 **Depende de:** la decisión del dueño entre las tres salidas, y los nombres de los tres niveles.
 
+## PND-055 — El método decía qué congelar y nunca decía con qué congelarlo *(lo trajo una pregunta del dueño; herramienta: PND-013)*
+
+- **Nodo:** `datos/compuertas` [nodo propuesto]
+- **Grupo:** G-API · **Severidad:** bloquea · **Quién decide:** el dueño eligió la salida entre tres
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-27, con la prosa en los ocho idiomas, el
+  dato diferenciable y la obligación del consumidor declarada.
+
+**Qué estaba mal.** El método publica la definición mecánica de las compuertas con una versión
+declarada y una huella, y el documento generado dice desde el primer día que «un proyecto empieza y
+termina en la misma versión del método». Lo que **no** estaba escrito en ninguna parte era tres
+cosas: con **qué** se fija —el par `catalog_version` + huella de contenido—, que subir de versión en
+medio de un proyecto es una **regresión del estado de completitud**, y que esa decisión es del
+dueño. Y como el dato no lo decía, tampoco decía qué le exige al consumidor que fija.
+
+El grupo es **G-API** y no G-METODO, y vale decir por qué: lo que la persona viene a hacer acá es
+*consumir la definición con confianza*, y una definición que no dice contra qué se la fija no se
+puede consumir con confianza por más que la huella coincida. La mitad de prosa —el párrafo del
+documento principal y las dos líneas del contrato del peldaño 2— no cambia eso: está al servicio de
+lo mismo, porque el dueño es la otra punta de ese contrato y es el único que puede decidir un
+cambio de versión. No se abrió grupo nuevo: el séptimo abrió hace un día y abrir uno cuesta tocar
+tres lugares a la vez.
+
+**El origen, con las palabras del dueño (2026-10-27).** No lo trajo una auditoría ni una medición
+propia: lo trajo una pregunta, hecha para encuadrar la medición del Anexo H del lado de la
+herramienta.
+
+> Forge encara un proyecto, con una versión de urazuke, y la tiene que mantener hasta el fin del
+> proyecto a menos que el usuario decida upgradear. Porque el upgrade, trae necesariamente una
+> regresión en el estado de completitud y puede cambiar los estados ya evaluados del proyecto,
+> llevando a regresiones. (…) Justo ahora, queremos upgradear todo, porque no hay proyectos en
+> marcha.
+
+**Mi reproducción (2026-10-27), medida.** La prosa no lo nombraba, en ninguno de los ocho idiomas:
+
+```
+$ grep -c -i "congel" docs/ESCALERA_METODOLOGICA.md
+2        (las dos son sobre congelar DECISIONES en el peldano 6, no una version)
+$ grep -c "fijar la version\|cambiar de version" docs/ESCALERA_METODOLOGICA.md docs/peldanos/*.md
+0
+$ grep -c "catalog_version" docs/ESCALERA_METODOLOGICA.md docs/peldanos/peldano-02-*.md
+0  0
+```
+
+Y la medición que le da el cuerpo: la herramienta que asiste este trabajo **ya fijaba, y fijaba
+bien**, contra un identificador propio de su catálogo compilado —`base-schema-1`, con su hash— que
+**no es una `catalog_version`** y no figura en ningún registro de versiones. Fija, sí, pero a algo
+que el método no puede nombrar y que nadie de afuera puede auditar; y con eso, el diferencial de un
+upgrade no se puede computar, así que al proyecto no se le puede decir **qué le reabre** subir. El
+mecanismo estaba del lado de la herramienta y el contrato no estaba de ninguno de los dos.
+
+La superficie, contada con el propio instrumento del método y no estimada: cada entrada que no está
+en el congelado lleva su `since_schema`, así que la distancia es exactamente ese conjunto.
+
+```
+$ node -e "cuenta de entradas con since_schema >= 2 en gates/"
+evaluadores nuevos:     4   (heuristics, profile_matrix, manual_cases_per_profile, pendings_profiles)
+anclas required:true:   5   (peldanos 5, 8, 9, 10 y 12)
+artefactos nuevos:      9
+verificaciones nuevas: 17   (en 11 peldanos + 1 estacion)
+```
+
+**Y una cosa que apareció al medir y cambia cómo se lee un upgrade.** Los cuatro evaluadores nuevos
+entraron con `2026.10.1`, que es la **primera** versión publicada. O sea que ningún salto entre dos
+versiones publicadas agrega hoy un evaluador requerido, y el único caso que traba un proyecto es el
+de quien nunca fijó una versión publicada y mide contra el congelado anterior a todas. Eso es
+exactamente el caso medido arriba. La prueba lo deja anclado, para que el día que entre uno nuevo la
+cuenta salga sola.
+
+**Las tres salidas que volvieron al dueño, con su costo.**
+
+- **(i) Sólo la prosa.** Un párrafo en el documento principal y una línea en el peldaño 2, en los
+  ocho idiomas. Dice la regla; no la hace exigible. Cero cambios de versión del dato.
+- **(ii) Prosa + el dato se hace diferenciable.** Procedencia por entrada a nivel de
+  `catalog_version` y la declaración de cómo se obtiene el contenido de una versión anterior. Hace
+  computable el diferencial. Toca el esquema y sube versión.
+- **(iii) Lo anterior, más la obligación al consumidor.** Que el congelado registre la
+  `catalog_version` y su huella y las contraste contra el registro. Convierte «fijar» en algo
+  verificable desde afuera.
+
+**Decisión del dueño (2026-10-27):** *"Mi respuesta a tu pregunta es 3."* — la (iii), completa.
+
+**Lo que se hizo.**
+
+- **El dato declara el contrato.** `gates/schema.json#pinning`, publicado y **cubierto por la
+  huella** (es requisito, no decoración: una copia congelada alterada ahí cambiaría lo que el
+  proyecto cree que debe). Declara el par que se fija, qué registra y qué contrasta el consumidor,
+  qué pasa cuando no coincide —rojo, diciendo cuál de los dos se movió, nunca un re-fijado
+  silencioso a lo que el servidor sirva hoy—, qué está prohibido —fijar a una identidad interna que
+  el método no puede nombrar—, que el upgrade lo decide el dueño, y cómo se obtiene el contenido de
+  una versión anterior. Eso último incluye lo que **no** está garantizado, dicho acá en vez de
+  dejarlo descubrir: hoy no hay una dirección por versión.
+- **La procedencia, medida y no inventada.** Las **35** entradas agregadas después del congelado
+  declaran `since_version`. Reconstruida contra la historia de `gates/`: 32 llegaron con
+  `2026.10.1`, una con `2026.10.4` y dos con `2026.10.5`. Una entrada de la base **no** declara
+  procedencia, porque está en todas las versiones publicadas, y el validador rechaza las dos
+  omisiones y una procedencia que apunte a una versión que nadie publicó.
+- **La prosa, en los ocho idiomas.** Un párrafo en la Parte A del documento principal —ahí porque la
+  versión fijada decide *cuál* de todas las exigencias aplica, igual que el Anexo H decide qué hay
+  que leer— y dos líneas en el contrato del peldaño 2: una en el resultado esperado y una pregunta
+  en la verificación de completitud.
+- **La guarda.** `build/version_fijada.mjs` + `tests/version_fijada.test.mjs`, con once
+  comprobaciones, y su archivo de rojos aparte, donde **ocho** mutilan el insumo y tienen que caer
+  nombrando lo suyo —entre ellos el castellano, que es donde ya pasó lo contrario, y la comparación
+  de versiones, que con cadenas pone `2026.10.9` por encima de `2026.10.10` y dejaría el
+  diferencial vacío justo cuando hay trabajo que mirar—. Exige la simetría con la prosa en los ocho idiomas por el token inglés
+  `catalog_version` —que es un identificador del dato y viaja idéntico, la misma forma que
+  `anexo_simetria`—, la procedencia completa, y el diferencial **ejecutable**, anclado en la
+  historia medida. Nueve rojos del validador más, en `gates_validador_en_rojo`. Y tiene **quien la
+  invoque** desde el primer día: el paso nuevo del flujo exige la línea que el programa imprime,
+  porque un paso que no imprimió nada no corrió.
+- **La versión.** `catalog_version 2026.10.6 → 2026.10.7`, con su entrada en el registro
+  append-only y la huella que produjo (`f6adbf113d57`). Ningún requisito, ningún id y ningún umbral
+  cambiaron.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dada esa persona, puede leer en el método con qué
+  versión trabaja su proyecto, qué le cuesta subirla y que la decisión es suya; y antes de decidirla
+  puede pedir la cuenta de qué requisitos entran en el medio.
+- *P1, P2 (herramientas consumidoras):* dada una herramienta que compila las compuertas, esa
+  herramienta encuentra **declarado** qué par tiene que registrar al fijar, contra qué contrastarlo
+  y qué hacer cuando no coincide, sin tener que inventarse una convención propia.
+- *P5 (auditor):* dado el perfil auditor, esta persona puede comprobar, sin leer código, que la
+  prosa nombra la fijación en los ocho idiomas y que cada entrada agregada dice en qué versión
+  entró; y puede reproducir el diferencial entre dos versiones publicadas.
+- *P6 (lector humano que entra por el documento principal):* dada esa persona, al leer la Parte A se
+  entera de que existe una versión fijada antes de que un upgrade le reabra un peldaño cerrado.
+
+**Cómo se verifica.** `node build/version_fijada.mjs` imprime su cuenta y sus hallazgos;
+`node --test` corre la guarda, sus diez rojos y los nueve del validador; `node build/api_check.mjs`
+exige que lo publicado coincida y que el índice cite la huella viva.
+
+**Lo que queda afuera, nombrado.** Que una herramienta **cumpla** la obligación que el dato le
+declara no se mide en este repositorio: se mide en el de esa herramienta. El 2026-10-27 se le pasó
+la medición y el orden corregido por el canal, con el detalle de que fijar a `base-schema-1` no es
+fijar a una versión del método. Y esta guarda **no** habría atrapado el defecto que la originó:
+mientras el dato no declaraba el contrato, no había simetría que revisar. Lo que guarda es que lo
+declarado hoy no se quede sin su prosa, y que una entrada nueva no entre sin decir de dónde viene.
+
 ---
 
 # Resumen del estado
@@ -4345,16 +4484,16 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 14 | 5 | 9 | 1 |
+| G-API | 15 | 5 | 10 | 1 |
 | G-ALCANCE | 4 | 0 | 4 | 0 |
 | G-IDIOMA | 13 | 10 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 12 | 2 | 10 | 1 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **54** | **18** | **36** | **3** |
+| **total** | **55** | **18** | **37** | **3** |
 
-Cincuenta y cuatro entradas, `PND-001` a `PND-054`. Veintidós vienen de la auditoría externa
+Cincuenta y cinco entradas, `PND-001` a `PND-055`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada, y

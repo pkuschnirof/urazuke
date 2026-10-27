@@ -76,6 +76,20 @@ const CASOS = [
   ['un texto nuevo sin su marca, que la regla daria por castellano', (f) => { paso(f, 9).verify.push('A question nobody marked as new'); }, 'E_IDIOMA_DECLARADO'],
   ['el alcance del castellano nombrando una clave que no existe', (f) => { f.catalog.languages.text_language.spanish_scope.push('pasos'); }, 'E_IDIOMA_DECLARADO'],
   ['el nivel de datos declarado en un idioma que no es el ingles', (f) => { f.catalog.languages.text_language.default = 'es'; }, 'E_IDIOMA_DECLARADO'],
+  // La procedencia por version y el contrato de fijacion (D-068). Sin procedencia, un
+  // proyecto que fijo una version no puede contar que requisitos le entran si sube, y el
+  // upgrade se decide a ciegas; sin contrato de fijacion, el dato dice que congelar y nunca
+  // dice CON QUE congelarlo, que es como se llego a una herramienta fijada a un
+  // identificador que nadie de afuera podia auditar.
+  ['una entrada agregada que no dice en que version entro', (f) => { delete paso(f, 2).artifacts.find((a) => a.path === 'docs/GLOSSARY.md').since_version; }, 'E_PROCEDENCIA'],
+  ['una entrada de la base que se atribuye una procedencia', (f) => { paso(f, 9).artifacts[0].since_version = '2026.10.1'; }, 'E_PROCEDENCIA'],
+  ['una procedencia que apunta a una version que nadie publico', (f) => { paso(f, 2).artifacts.find((a) => a.path === 'docs/PROFILES.md').since_version = '2025.01.1'; }, 'E_PROCEDENCIA'],
+  ['una procedencia posterior a la version declarada', (f) => { paso(f, 2).artifacts.find((a) => a.path === 'docs/PROFILES.md').since_version = '2026.10.99'; }, 'E_PROCEDENCIA'],
+  ['el contrato de fijacion que desaparece', (f) => { delete f.schema.pinning; }, 'E_FIJACION'],
+  ['el par que un proyecto congela reducido a la version sola', (f) => { f.schema.pinning.pinned_pair = ['catalog_version']; }, 'E_FIJACION'],
+  ['la obligacion del consumidor sin lo que pasa cuando no coincide', (f) => { delete f.schema.pinning.consumer_contract.on_mismatch; }, 'E_FIJACION'],
+  ['el upgrade que deja de ser decision del dueno', (f) => { f.schema.pinning.upgrade.who_decides = 'tool'; }, 'E_FIJACION'],
+  ['la afirmacion de las claves cubiertas apuntando a una version inexistente', (f) => { f.schema.pinning.upgrade.covered_keys_since = '2026.09.1'; }, 'E_FIJACION'],
 ];
 
 test('el catalogo limpio no devuelve ni un error (si no, los rojos de abajo no prueban nada)', () => {

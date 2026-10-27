@@ -87,6 +87,14 @@ jobs:
           grep -q 'coincide con los datos' documento.txt || { echo "::error::la comprobacion del documento no dijo nada: no corrio, y un paso que no corrio no es un verde"; exit 1; }
           rm documento.txt
 
+      - name: Exigir que la prosa nombre la version que un proyecto fija
+        run: |
+          set -o pipefail
+          node build/version_fijada.mjs | tee fijacion.txt
+          grep -q '^fijacion: comprobado' fijacion.txt || { echo "::error::la guarda de la fijacion no dijo que comprobo: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          grep -q '0 hallazgos' fijacion.txt || { echo "::error::hay prosa que no nombra la version fijada, o una entrada sin procedencia (el detalle, arriba)"; exit 1; }
+          rm fijacion.txt
+
       - name: Dejar el arbol limpio (ningun generado sin commitear)
         run: |
           git diff --stat -- docs/html/api/ gates/ docs/COMPUERTAS.md

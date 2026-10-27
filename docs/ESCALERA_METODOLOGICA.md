@@ -242,6 +242,30 @@ haberlo descubierto tarde: el anexo estuvo obligatorio y sin nombrar en este doc
 primer lector que adaptó el método a otro formato se salteó veintisiete de las cuarenta y cinco
 reglas porque nunca supo que existían.
 
+Y una cosa más que cambia qué hay que leer, porque decide **cuál** de todas estas exigencias te
+aplica: **la versión del método que el proyecto fija.** La definición mecánica de las compuertas
+—qué archivo tiene que existir en cada peldaño y qué tiene que decir— se publica como datos, con
+una versión declarada (`catalog_version`) y una huella de contenido: un número largo calculado a
+partir del archivo entero, que cambia si alguien le cambia una coma, y que por eso sirve para
+comprobar que la copia que tenés es exactamente la que el método publicó. Un proyecto **fija** una
+de esas versiones el día que arranca y la mantiene hasta el final. Y eso no es comodidad: subir de
+versión en medio de un proyecto es una **regresión del estado de completitud**. Si la versión nueva
+le agrega un requisito a un peldaño que ya habías dado por cerrado, ese peldaño vuelve a estar
+incompleto; y si le agrega una exigencia que tu herramienta todavía no sabe medir, la compuerta no
+dice verde: dice "declarado y no medido", y el peldaño no avanza. Eso no es una falla, es el
+mecanismo funcionando. Subir de versión está permitido —lo decide el dueño, se escribe con fecha en
+el registro de decisiones del peldaño 6, y antes de decidirlo se mira qué requisitos entran en el
+medio, que es una cuenta que se puede hacer porque cada requisito agregado después del congelado
+dice en qué versión entró—. Lo que no está permitido es subirla en silencio, ni enterarse a mitad
+de camino de que la compuerta está midiendo contra una definición que nadie eligió. Y a la
+herramienta que te asista, si usás una, el método le exige lo mismo que a vos: que anote qué
+versión fijó y con qué huella, y que ese par lo contraste contra el registro de versiones del
+método, que vive en el repositorio del método y no en el servidor que le sirvió el archivo. Fijar
+a un identificador interno propio, que el método no puede nombrar, se parece a fijar y no lo es:
+nadie de afuera lo puede auditar. Que esto no estuviera escrito acá hasta hoy era un defecto de
+los que persigue el peldaño 11: el dato se lo decía al consumidor y la prosa no se lo decía nunca
+al dueño, que es el único que puede decidir un cambio de versión.
+
 Dos aclaraciones importantes. Primero: **la escalera es neutral respecto de la herramienta**. Cada
 artefacto es un archivo, un test o un script; ninguno exige mi herramienta ni ninguna otra. Forge
 los automatiza (las compuertas, los comandos, el registro de pendientes), pero el peldaño existe

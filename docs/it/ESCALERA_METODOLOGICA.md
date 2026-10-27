@@ -248,6 +248,31 @@ tardi: l'allegato è stato obbligatorio e non nominato in questo documento, e il
 adattato il metodo a un altro formato ha saltato ventisette delle quarantacinque regole perché non
 ha mai saputo che esistevano.
 
+E una cosa in più che cambia cosa bisogna leggere, perché decide **quale** di tutte queste esigenze
+ti si applica: **la versione del metodo che il progetto fissa.** La definizione meccanica dei
+varchi — quale file deve esistere a ogni gradino e cosa deve dire — si pubblica come dato, con una
+versione dichiarata (`catalog_version`) e un'impronta di contenuto: un numero lungo calcolato a
+partire dal file intero, che cambia se qualcuno cambia una virgola, e che per questo serve a
+verificare che la copia che hai è esattamente quella che il metodo ha pubblicato. Un progetto
+**fissa** una di quelle versioni il giorno in cui parte e la mantiene fino alla fine. E non è
+comodità: alzare la versione nel mezzo di un progetto è una **regressione dello stato di
+completezza**. Se la versione nuova aggiunge un requisito a un gradino che avevi già dato per
+chiuso, quel gradino torna a essere incompleto; e se aggiunge un'esigenza che il tuo strumento non
+sa ancora misurare, il varco non dice verde: dice "dichiarato e non misurato", e il gradino non
+avanza. Non è un guasto, è il meccanismo che funziona. Alzare la versione è permesso — lo decide il
+proprietario, si scrive con la sua data nel registro di decisioni del gradino 6, e prima di
+deciderlo si guarda quali requisiti entrano nel mezzo, un conto che si può davvero fare perché ogni
+requisito aggiunto dopo il congelamento dice in quale versione è entrato. Quello che non è permesso
+è alzarla in silenzio, o scoprire a metà strada che il varco sta misurando contro una definizione
+che nessuno ha scelto. E allo strumento che ti assiste, se ne usi uno, il metodo esige lo stesso
+che a te: che annoti quale versione ha fissato e con quale impronta, e che contrasti quella coppia
+con il registro di versioni del metodo, che vive nel repositorio del metodo e non nel server che
+gli ha servito il file. Fissare a un identificatore interno proprio, che il metodo non può
+nominare, assomiglia a fissare e non lo è: nessuno da fuori lo può verificare. Che questo non fosse
+scritto qui fino a oggi era un difetto di quelli che il gradino 11 persegue: il dato lo diceva al
+consumatore e la prosa non lo diceva mai al proprietario, che è il solo che può decidere un cambio
+di versione.
+
 Due chiarimenti importanti. Primo: **la scala è neutrale rispetto allo strumento**. Ogni artefatto
 è un file, un test o uno script; nessuno esige il mio strumento né nessun altro. Forge li
 automatizza (i cancelli, i comandi, il registro delle voci in sospeso), ma il gradino esiste

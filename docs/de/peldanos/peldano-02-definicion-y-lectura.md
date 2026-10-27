@@ -195,6 +195,11 @@ des Umfangs zu erkennen.
   dass man sie von der Projektdatei aus finden kann und dass sie vor Schritt 5 da sind.
 - In allen dreien ein Datum der letzten Aktualisierung.
 - In der Vereinbarung die zwei neuen Regeln.
+- In der Projektdatei eine Zeile, die sagt, mit welcher Version der Methode das Projekt arbeitet:
+  die `catalog_version`, die du festgeschrieben hast, und der Inhaltsfingerabdruck, den diese
+  Version deklariert. Das ist es, was in einem Jahr erlaubt zu wissen, gegen welche Definition
+  jeder Schritt sein Grün bekam, und was eine Versionserhöhung zu einer Entscheidung macht und
+  nicht zu einem Unfall.
 
 ## 4. Vollständigkeitsprüfung
 
@@ -218,6 +223,9 @@ des Umfangs zu erkennen.
 - Ist die Profilliste geschrieben, die sagt, wer jeder ist und was er zu tun kommt? Zähl die Profile
   an den Fingern deines Geschäfts: wenn eines fehlt, fehlt eine Zeile der Matrix von Schritt 8 und
   eine Ladung manueller Testfälle von Schritt 10.
+- Steht geschrieben, mit welcher Version der Methode das Projekt arbeitet, mit ihrem
+  Fingerabdruck? Wenn nicht, wird an dem Tag, an dem die Definition sich ändert, niemand sagen
+  können, ob die abgeschlossenen Schritte noch abgeschlossen sind.
 
 ## 5. Warnsignale
 

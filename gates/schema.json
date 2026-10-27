@@ -12,7 +12,8 @@
     "single_copy_of_each_text": "The statement of every rule lives ONLY in Annex H. gates/heuristics.json carries the pointer and the build extracts the text from the English version of the annex. Transcribing it here would be the second copy that step 11 hunts down.",
     "nothing_invented": "A threshold the owner did not declare is published with value null and declared:false. Never with a factory value disguised as a default.",
     "version_is_declared": "The version is declared by hand and bound to its content. Changing a covered key without raising catalog_version is rejected (E_VERSION), and so is recording a hash that is not the one the content produces.",
-    "language_is_declared": "The language of each text is declared in catalog.json#languages.text_language and checked on every build: every text the rule calls Spanish has to be literally in the frozen base. The file is bilingual because the base is not edited, and saying so is the difference between a consumer that can translate for its reader and one that shows Spanish to an English reader."
+    "language_is_declared": "The language of each text is declared in catalog.json#languages.text_language and checked on every build: every text the rule calls Spanish has to be literally in the frozen base. The file is bilingual because the base is not edited, and saying so is the difference between a consumer that can translate for its reader and one that shows Spanish to an English reader.",
+    "provenance_is_declared": "Every entry the method added after the freeze declares since_version: the published catalog_version in which it first appeared. since_schema says which schema an entry belongs to and is too coarse to compute an upgrade -- it only separates the frozen base from everything added later. since_version is what makes the differential between two published versions computable without guessing, which is what a project that pinned one of them needs before deciding to raise it."
   },
   "version_scheme": {
     "catalog_version": "Declared BY HAND by the method in gates/catalog.json, in the 2026.10.1 style. It is what a project freezes, and what has to read back the same two years from now.",
@@ -36,7 +37,8 @@
       "adapters",
       "project_config",
       "counts",
-      "what"
+      "what",
+      "pinning"
     ],
     "hash_excludes": [
       "generated_at",
@@ -49,7 +51,8 @@
     "hash_completeness": "Every key of the published payload is either covered or excluded, and the validator checks it. A requirement-bearing key left out of both would travel without protection: a frozen copy could be altered there and the recomputed hash would still match.",
     "version_bump": "Any change to a key listed in hash_covers raises catalog_version, even when no requirement changed: the content hash moves with it, and two different contents published under one declared version would make a freeze unreadable. A regeneration that only rewrites generated_at or git_commit changes nothing covered, so it leaves the version alone.",
     "version_ledger": "gates/catalog.json#changelog records, for each catalog_version, the content hash it produced. The build refuses to publish when the hash of the current content is not the one recorded for the current version: that is what forces the bump instead of trusting it. The ledger is append-only and a hash already recorded is never edited, for the same reason the base is not edited. It is not part of the published payload, so recording a new entry cannot change the hash it records.",
-    "counts_is_covered": "The summary of quantities is covered by the fingerprint (since catalog_version 2026.10.6). It is derived data, and leaving it out was defensible, but a summary of quantities that can lie is worse than no summary: a tool that uses it to check it finished reading would accept a truncated file in silence. Covered, a consumer can compare counts against what it parsed and detect a short read without a second request. The same goes for `what`, which is where the file states the scope of its own protection."
+    "counts_is_covered": "The summary of quantities is covered by the fingerprint (since catalog_version 2026.10.6). It is derived data, and leaving it out was defensible, but a summary of quantities that can lie is worse than no summary: a tool that uses it to check it finished reading would accept a truncated file in silence. Covered, a consumer can compare counts against what it parsed and detect a short read without a second request. The same goes for `what`, which is where the file states the scope of its own protection.",
+    "pinning_is_covered": "The pinning contract is covered by the fingerprint (since catalog_version 2026.10.7). It carries requirements -- on the consumer and on the owner -- so a frozen copy altered there would change what the project believes it owes, and the recomputed hash has to notice."
   },
   "compatibility": {
     "unknown_evaluator_required": "The installation does NOT report green. It reports \"declared, not measured by this installation\", naming the evaluator, and the step does not advance.",
@@ -164,6 +167,11 @@
         "since_schema": {
           "type": "integer",
           "enum": "since_schema"
+        },
+        "since_version": {
+          "type": "string",
+          "pattern": "^\\d{4}\\.\\d{2}\\.\\d+$",
+          "note": "The catalog_version in which this entry first appeared. Required on every entry that declares since_schema, which is every entry the method added after the freeze. Absent on a base entry, because the base is present in every published version."
         }
       }
     },
@@ -179,6 +187,11 @@
           "type": "integer",
           "required": true,
           "enum": "since_schema"
+        },
+        "since_version": {
+          "type": "string",
+          "pattern": "^\\d{4}\\.\\d{2}\\.\\d+$",
+          "note": "The catalog_version in which this entry first appeared. Required on every entry that declares since_schema, which is every entry the method added after the freeze. Absent on a base entry, because the base is present in every published version."
         },
         "required": {
           "type": "boolean",
@@ -203,6 +216,11 @@
               "type": "integer",
               "required": true,
               "enum": "since_schema"
+            },
+            "since_version": {
+              "type": "string",
+              "pattern": "^\\d{4}\\.\\d{2}\\.\\d+$",
+              "note": "The catalog_version in which this entry first appeared. Required on every entry that declares since_schema, which is every entry the method added after the freeze. Absent on a base entry, because the base is present in every published version."
             },
             "anchor": {
               "type": "any"
@@ -406,5 +424,32 @@
       "review_date"
     ],
     "without_record": "red, and the ruleset is invalid: the scoreboard emits no figures at all (D-046, D-047)."
+  },
+  "pinning": {
+    "what": "What a project pins, and what it costs to change it. A project pins ONE catalog_version the day it starts and keeps it until the end. That is not convenience: raising the version in the middle of a project is a REGRESSION of the completeness state, because a version that adds a requirement to a step already closed reopens that step, and what was green yesterday is not green today. Raising it is allowed and it is the owner decision, written with its date in the project decision record; what is not allowed is raising it in silence, or discovering mid-project that the gate is measuring against a definition nobody chose.",
+    "pinned_pair": [
+      "catalog_version",
+      "content_hash"
+    ],
+    "consumer_contract": {
+      "must_record": "A tool that pins records, in whatever it writes for the project, the catalog_version it pinned and the content_hash that version declares. Those two, by those names.",
+      "must_contrast": "It contrasts that pair against the version ledger declared in version_scheme.version_ledger, which lives in the method repository and not on the host that served the file, so the pair (version -> hash) can be checked against a second source.",
+      "on_mismatch": "Red, and it says which of the two moved: the content under a declared version, or the version under one content. Never green, and never a silent re-pin to whatever the host is serving today.",
+      "forbidden": "Pinning to an internal compiled identity that the method cannot name. It looks like pinning and it is not: nobody outside the tool can audit it, and the differential against a published version cannot be computed, so the project cannot be told what an upgrade would reopen.",
+      "why_it_is_written": "Measured on 2026-10-27: a consumer that already pinned, and pinned correctly in its own terms, pinned to an identity of its own that is not a catalog_version and appears in no ledger. The data said what to freeze and never said what to freeze it BY."
+    },
+    "upgrade": {
+      "who_decides": "owner",
+      "before_deciding": "Compute the differential and show it: which requirements enter between the pinned version and the candidate, and which steps they anchor. A project is told what an upgrade reopens before it is raised, not after.",
+      "how_to_compute": "Every entry the method added after the freeze declares since_version. An entry with no since_schema comes from the frozen base and is present in every published version. So the differential between a pinned version X and a candidate Y is every entry whose since_version is greater than X and not greater than Y; it needs no network beyond the two files.",
+      "what_a_new_required_evaluator_means": "An installation that cannot measure a required evaluator reports declared and not measured, and the step does not advance (see compatibility). That is the mechanism by which an upgrade stops a project, and it is the intended behaviour, not a defect.",
+      "covered_keys_since": "2026.10.1",
+      "covered_keys_note": "Every top-level key the fingerprint covers has existed since the first version the method published, so no consumer can hold a pinned version that is missing one of them. A key added later records its arrival in the ledger entry of its version."
+    },
+    "prior_version_content": {
+      "canonical_url_serves": "current_only",
+      "how": "The canonical URL serves the current version only. The content of a prior version is in the method repository: the ledger gives the pair (version -> content hash) and the published file is committed there, so searching that history for a recorded hash finds the commit that published that version.",
+      "not_guaranteed": "There is no per-version URL on this host today, and saying so here is cheaper than letting a consumer discover it. A tool that needs to re-read the exact content it pinned reads it from its own frozen copy; the fingerprint is what tells it the copy is intact."
+    }
   }
 }

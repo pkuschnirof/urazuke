@@ -181,6 +181,10 @@ detectar em dez segundos uma pendência fora de escopo.
   antes do degrau 5.
 - Nos três, uma data de última atualização.
 - No contrato, as duas regras novas.
+- No arquivo de projeto, uma linha dizendo com qual versão do método o projeto trabalha: a
+  `catalog_version` que você fixou e a impressão de conteúdo que essa versão declara. É o que
+  permite que dentro de um ano se saiba contra qual definição cada degrau recebeu o seu verde, e o
+  que faz de subir a versão uma decisão e não um acidente.
 
 ## 4. Verificação de completude
 
@@ -203,6 +207,8 @@ detectar em dez segundos uma pendência fora de escopo.
   prova do 10.
 - A prova de leitura: feche a sessão, abra uma nova, e pergunte o que o sistema NÃO faz e de que
   nó da árvore pende tal tela. Se responde com o mapa, o engate funciona.
+- Está escrito com qual versão do método o projeto trabalha, com a sua impressão? Se não está, no
+  dia em que a definição mudar ninguém vai poder dizer se os degraus fechados seguem fechados.
 
 ## 5. Sinais de alerta
 

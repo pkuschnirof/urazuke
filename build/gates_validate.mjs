@@ -438,6 +438,87 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
     }
   }
 
+  /* ---------- 13. la procedencia por version y el contrato de fijacion ---------- */
+  /* Un proyecto fija UNA catalog_version y la mantiene; subirla es una regresion del estado de
+   * completitud. Para decidirla hace falta el diferencial, y para que el diferencial sea
+   * computable cada entrada que el metodo agrego despues del congelado tiene que decir EN QUE
+   * VERSION entro: since_schema solo separa la base de todo lo agregado, y con eso no se puede
+   * contar que entra entre dos versiones publicadas (D-068). */
+
+  const versionesDeclaradas = new Set((fuentes.catalog.changelog ?? []).map((c) => c.catalog_version));
+  const comoNumeros = (v) => String(v).split('.').map((x) => parseInt(x, 10));
+  const mayor = (a, b) => {
+    const [x, y] = [comoNumeros(a), comoNumeros(b)];
+    for (let i = 0; i < Math.max(x.length, y.length); i++) {
+      const d = (x[i] ?? 0) - (y[i] ?? 0);
+      if (d) return d > 0;
+    }
+    return false;
+  };
+
+  const revisarProcedencia = (entrada, donde) => {
+    if (!esObjeto(entrada)) return;
+    const tieneSchema = entrada.since_schema >= 2;
+    if (tieneSchema && !entrada.since_version) {
+      err('E_PROCEDENCIA', 'la entrada declara since_schema y no dice en que version entro', donde,
+        'agrega since_version con la catalog_version en la que aparecio. Sin eso, un proyecto que fijo una version no puede contar que requisitos le entran si sube, y el upgrade se decide a ciegas.');
+      return;
+    }
+    if (!tieneSchema && 'since_version' in entrada) {
+      err('E_PROCEDENCIA', 'una entrada de la base declara since_version', donde,
+        'la base viene del congelado y esta en TODAS las versiones publicadas: su procedencia es no tener ninguna. Saca el campo.');
+      return;
+    }
+    if (!entrada.since_version) return;
+    if (!versionesDeclaradas.has(entrada.since_version)) {
+      err('E_PROCEDENCIA', 'since_version ' + entrada.since_version + ' no es una version del registro', donde,
+        'las versiones son las del changelog de gates/catalog.json: ' + [...versionesDeclaradas].join(', ') + '. Una procedencia que apunta a una version que nadie publico no se puede contrastar contra nada.');
+    }
+    if (mayor(entrada.since_version, fuentes.catalog.catalog_version)) {
+      err('E_PROCEDENCIA', 'since_version ' + entrada.since_version + ' es posterior a la version declarada ' + fuentes.catalog.catalog_version, donde,
+        'una entrada no puede haber entrado en una version que todavia no se publico: corregi la procedencia, o subi catalog_version');
+    }
+  };
+
+  for (const [lista, etiqueta] of [[steps.steps, 'steps'], [stations.stations, 'stations']]) {
+    for (const paso of lista) {
+      const base = etiqueta + '[' + (paso.num ?? paso.id) + ']';
+      for (const campo of ['inputs', 'artifacts']) {
+        (paso[campo] ?? []).forEach((a, i) => revisarProcedencia(a, base + '.' + campo + '[' + i + ']'));
+      }
+      (paso.verify ?? []).forEach((v, i) => revisarProcedencia(v, base + '.verify[' + i + ']'));
+      (paso.evaluators ?? []).forEach((e, i) => revisarProcedencia(e, base + '.evaluators[' + i + ']'));
+    }
+  }
+  evaluators.evaluators.forEach((e, i) => revisarProcedencia(e, 'gates/evaluators.json.evaluators[' + i + ']'));
+
+  const fijacion = schema.pinning;
+  if (!esObjeto(fijacion)) {
+    err('E_FIJACION', 'gates/schema.json no declara el contrato de fijacion', 'gates/schema.json',
+      'declara pinning: que par congela un proyecto, que le exige al consumidor y como se computa el diferencial de un upgrade. El dato decia que congelar y nunca decia CON QUE congelarlo.');
+  } else {
+    const par = fijacion.pinned_pair;
+    if (!Array.isArray(par) || par.join(',') !== 'catalog_version,content_hash') {
+      err('E_FIJACION', 'el par que un proyecto congela no es (catalog_version, content_hash)', 'gates/schema.json#pinning.pinned_pair',
+        'son esos dos, por esos nombres: la version sola no distingue dos contenidos y la huella sola no se puede buscar en el registro');
+    }
+    for (const clave of ['what', 'consumer_contract', 'upgrade', 'prior_version_content']) {
+      if (!fijacion[clave]) err('E_FIJACION', 'el contrato de fijacion no declara ' + clave, 'gates/schema.json#pinning', 'completalo: lo que no declara, el consumidor lo adivina');
+    }
+    for (const clave of ['must_record', 'must_contrast', 'on_mismatch', 'forbidden']) {
+      if (!fijacion.consumer_contract?.[clave]) err('E_FIJACION', 'la obligacion del consumidor no declara ' + clave, 'gates/schema.json#pinning.consumer_contract', 'completalo');
+    }
+    const desde = fijacion.upgrade?.covered_keys_since;
+    if (desde && !versionesDeclaradas.has(desde)) {
+      err('E_FIJACION', 'covered_keys_since ' + desde + ' no es una version del registro', 'gates/schema.json#pinning.upgrade',
+        'usa una version del changelog: es la afirmacion de que ninguna clave cubierta falta en una version que alguien pudo congelar');
+    }
+    if (!(fijacion.upgrade?.who_decides === 'owner')) {
+      err('E_FIJACION', 'el contrato de fijacion no dice que el upgrade lo decide el dueno', 'gates/schema.json#pinning.upgrade.who_decides',
+        'lo decide el dueno: una herramienta que se repinta sola a lo ultimo publicado le cambia el estado de completitud a un proyecto sin que nadie lo haya decidido');
+    }
+  }
+
   /* ---------- 12. la configuracion de un proyecto (opcional) ---------- */
 
   if (config) {

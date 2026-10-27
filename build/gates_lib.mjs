@@ -145,6 +145,11 @@ export function armarContenido(fuentes = cargarFuentes(), anexo = extraerAnexo()
     heuristics: { ...fuentes.heuristics, rules: reglas },
     adapters: fuentes.adapters,
     project_config: fuentes.schema.project_config,
+    // El contrato de fijacion (D-068): que version congela un proyecto, con que par la congela,
+    // que le exige al consumidor y como se computa el diferencial de un upgrade. Va cubierto por
+    // la huella porque lleva requisitos: una copia congelada alterada ahi cambiaria lo que el
+    // proyecto cree que debe.
+    pinning: fuentes.schema.pinning,
   };
 }
 

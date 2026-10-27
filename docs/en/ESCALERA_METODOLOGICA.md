@@ -243,6 +243,30 @@ late: the annex was mandatory and unnamed in this document, and the first reader
 method to another format skipped twenty-seven of the forty-five rules because he never knew they
 were there.
 
+And one more thing that changes what has to be read, because it decides **which** of all these
+demands apply to you: **the version of the method the project pins.** The mechanical definition of
+the gates -- which file has to exist at each step and what it has to say -- is published as data,
+with a declared version (`catalog_version`) and a content fingerprint: a long number computed from
+the whole file, which changes if anybody changes one comma, and which therefore serves to check
+that the copy you hold is exactly the one the method published. A project **pins** one of those
+versions the day it starts and keeps it until the end. And that is not convenience: raising the
+version in the middle of a project is a **regression of the completeness state**. If the new
+version adds a requirement to a step you had already closed, that step is incomplete again; and if
+it adds a demand your tool cannot measure yet, the gate does not say green: it says "declared and
+not measured", and the step does not advance. That is not a failure, it is the mechanism working.
+Raising the version is allowed -- the owner decides it, it is written with its date in the decision
+record of step 6, and before deciding you look at which requirements come in between, a count you
+can actually do because every requirement added after the freeze says in which version it arrived.
+What is not allowed is raising it in silence, or finding out halfway through that the gate is
+measuring against a definition nobody chose. And of the tool that assists you, if you use one, the
+method demands the same as it demands of you: that it write down which version it pinned and with
+which fingerprint, and that it contrast that pair against the method version ledger, which lives
+in the method repository and not on the server that handed it the file. Pinning to an internal
+identifier of its own, one the method cannot name, looks like pinning and is not: nobody from the
+outside can audit it. That this was not written here until today was a defect of the kind step 11
+hunts down: the data was telling the consumer and the prose never told the owner, who is the only
+one who can decide a change of version.
+
 Two important clarifications. First: **the ladder is neutral with respect to the tool**. Each
 artefact is a file, a test or a script; none requires my tool or any other. Forge automates them
 (the gates, the commands, the pending-items register), but the step exists without Forge. Second:
