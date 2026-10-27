@@ -1,6 +1,6 @@
 {
   "what": "The header of the prompt corpus published as an API: the version a project freezes. Declared BY HAND, for the same reason as the gate catalogue (gates/catalog.json): a project starts and finishes with the same version of the method, so what it froze has to read back the same two years from now.",
-  "corpus_version": "2026.10.3",
+  "corpus_version": "2026.10.4",
   "declared_at": "2026-10-27",
   "published_as": "docs/html/api/prompts.json",
   "version_scheme": {
@@ -12,17 +12,18 @@
       "languages",
       "contracts",
       "steps",
-      "count"
+      "count",
+      "what"
     ],
     "hash_excludes": [
-      "what",
       "version",
       "version_note",
       "generated_at",
       "source",
       "license",
       "content_hash"
-    ]
+    ],
+    "what_is_covered": "`what` is covered by the fingerprint (since corpus_version 2026.10.4). It is the key where the file states what it is and what travels verbatim, so a frozen copy altered there would misdescribe itself and the recomputed hash would still match. The same reasoning covers `counts` in the gate catalogue."
   },
   "changelog": [
     {
@@ -45,6 +46,13 @@
       "decision": "D-065",
       "content_hash": "f5b02b3c893c75665bc66b8e8728b994b5e853a6adee0c55224ddfd7c1fe3a51",
       "changed": "The same step 2 prompt changes again, and for the second half of the same finding. Yesterday it started asking for the two prior inputs of Annex H and left their file names to the project, because the owner had not declared any; today the owner declared them, so the prompt names them: the glossary goes to docs/GLOSSARY.md and the list of profiles to docs/PROFILES.md, and the two are named from the project file as before. It matters that the prompt says it and not only the gate data: an artifact the gate looks for by path and the prompt does not name is a gate that fails for a reason the person was never told. The English piece is one piece, identical in the eight versions, and build/prompts.mjs enforces that; the reader-facing translation was rewritten in each of the seven. No other prompt moved."
+    },
+    {
+      "corpus_version": "2026.10.4",
+      "date": "2026-10-27",
+      "decision": "D-067",
+      "content_hash": "8e69d1189be99e6e0eee2bb8b2f06c23ce58ac56a25e5edeab7a5122d5c1adb1",
+      "changed": "No prompt moved. What moved is the identity of the file and two sentences about it. `what` is now COVERED by the fingerprint: it is the key where the file says what it is and what travels verbatim, so a frozen copy altered there would misdescribe itself while the recomputed hash still matched. And the two sentences that said the English piece is identical in `the eight versions` no longer carry a count: they point at the list the method declares once, in the gate catalogue under `languages.prose_versions`. The corpus is the same 54 prompts in the same 24 contracts."
     }
   ]
 }

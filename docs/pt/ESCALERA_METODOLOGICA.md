@@ -24,8 +24,8 @@ espanhola vale e esta é corrigida. Os prompts para o modelo são idênticos em 
 
 O repositório público do método é
 [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke). Lá estão este
-documento, os contratos de cada degrau, o manual do curso e as referências, nos oito idiomas do
-NAC3.
+documento, os contratos de cada degrau, o manual do curso e as referências, nos oito idiomas que o método
+declara por conta própria.
 
 ## O nome
 

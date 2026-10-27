@@ -110,7 +110,8 @@ del percorso evolutivo-correttivo) e produce, per ogni lingua, `ESCALERA_METODOL
 ## Lingue
 
 Lo spagnolo è la fonte della verità; questa versione italiana è una traduzione. La documentazione
-esiste nelle otto lingue di NAC3: spagnolo (`docs/`), inglese (`docs/en/`), portoghese
+esiste nelle otto lingue che il metodo dichiara
+per conto proprio: spagnolo (`docs/`), inglese (`docs/en/`), portoghese
 (`docs/pt/`), francese (`docs/fr/`), tedesco (`docs/de/`), italiano (`docs/it/`), giapponese
 (`docs/ja/`) e cinese (`docs/zh/`). Ogni cartella ha il suo README, il documento principale, le
 referenze, i ventiquattro contratti, il percorso evolutivo-correttivo e le due parti del

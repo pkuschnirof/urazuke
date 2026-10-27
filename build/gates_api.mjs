@@ -38,7 +38,7 @@ const esquema = fuentes.schema.version_scheme;
 const valor = huellaDeContenido(contenido, esquema.hash_covers);
 
 const salida = {
-  what: 'The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.',
+  what: contenido.what,
   catalog_version: contenido.catalog_version,
   schema_version: contenido.schema_version,
   content_hash: {
@@ -55,12 +55,7 @@ const salida = {
   generated_at: new Date().toISOString(),
   source: 'https://github.com/pkuschnirof/urazuke',
   license: 'CC BY-SA 4.0',
-  counts: {
-    steps: contenido.steps.length,
-    stations: contenido.stations.length,
-    rules: contenido.heuristics.rules.length,
-    evaluators: contenido.evaluators.length,
-  },
+  counts: contenido.counts,
   ...contenido,
 };
 

@@ -22,7 +22,7 @@ interesa el detalle.
 El repositorio público del método es
 [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke). Ahí están este
 documento, los contratos de cada peldaño, el manual del curso y las referencias, en los ocho
-idiomas de NAC3.
+idiomas que el método declara por su cuenta.
 
 ## El nombre
 

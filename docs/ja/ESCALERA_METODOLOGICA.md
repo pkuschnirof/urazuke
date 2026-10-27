@@ -19,7 +19,7 @@
 
 方法の公開リポジトリは
 [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke)。そこにこの文書、
-各段の契約、コースのマニュアル、参照文書が、NAC3の八言語である。
+各段の契約、コースのマニュアル、参照文書が、方法が自ら宣言する八言語である。
 
 ## 名前
 

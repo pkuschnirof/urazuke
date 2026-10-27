@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.5** - schema **2**
-- content fingerprint `6fc83add4a1245d3...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.6** - schema **2**
+- content fingerprint `649f10179cc1a4ef...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -24,7 +24,7 @@ it already publishes the prompts, and the tool consumes it.
 A project starts and ends on the same version of the method, unless somebody applies the double
 lock. For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.5`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.6`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -33,8 +33,8 @@ lock. For that to be possible, what is published has to be identifiable and stab
   itself is always the one of the change *before* the change that contains it, because it is computed
   before saving; it is useless as the identity of what is published.
 
-Covered by the fingerprint: `schema_version`, `catalog_version`, `languages`, `evaluators`, `evaluator_semantics`, `compatibility`, `tramos`, `steps`, `stations`, `loop_entry`, `heuristics`, `adapters`, `project_config`.
-Left out: `generated_at`, `git_commit`, `git_commit_note`, `source`, `license`, `content_hash`, `what`, `counts`.
+Covered by the fingerprint: `schema_version`, `catalog_version`, `languages`, `evaluators`, `evaluator_semantics`, `compatibility`, `tramos`, `steps`, `stations`, `loop_entry`, `heuristics`, `adapters`, `project_config`, `counts`, `what`.
+Left out: `generated_at`, `git_commit`, `git_commit_note`, `source`, `license`, `content_hash`.
 Nothing in between: Every key of the published payload is either covered or excluded, and the validator checks it. A requirement-bearing key left out of both would travel without protection: a frozen copy could be altered there and the recomputed hash would still match.
 
 When the version moves: Any change to a key listed in hash_covers raises catalog_version, even when no requirement changed: the content hash moves with it, and two different contents published under one declared version would make a freeze unreadable. A regeneration that only rewrites generated_at or git_commit changes nothing covered, so it leaves the version alone.
@@ -46,6 +46,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.3** (2026-10-24, D-055) -- `0f3c1b472f922428...`
 - **2026.10.4** (2026-10-26, D-061) -- `ad88adccfcbfff7d...`
 - **2026.10.5** (2026-10-27, D-065) -- `6fc83add4a1245d3...`
+- **2026.10.6** (2026-10-27, D-067) -- `649f10179cc1a4ef...`
 
 ## The language of each text
 

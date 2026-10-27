@@ -16,7 +16,7 @@
 
 方法的公开仓库是
 [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke)。那里有这份文档、每级
-台阶的契约、课程手册和参考资料，以 NAC3 的八种语言。
+台阶的契约、课程手册和参考资料，以方法自行声明的八种语言。
 
 ## 名字
 

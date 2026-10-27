@@ -789,7 +789,8 @@ atacante puede editar para que diga lo contrario.
 ## PND-010 — `counts` y `what` quedan fuera de la huella *(era U-09)*
 
 - **Nodo:** `interfaz-publica/api` [nodo propuesto]
-- **Grupo:** G-API · **Severidad:** bloquea · **Repositorio:** método · **Estado: abierto**
+- **Grupo:** G-API · **Severidad:** bloquea · **Repositorio:** método · **Estado: CERRADO** el
+  2026-10-27, en `catalog_version 2026.10.6` y `corpus_version 2026.10.4`.
 - **Decisión del dueño (2026-10-24): cubrir las dos.** En el mismo cambio de versión que ya fuerzan
   otras entradas de este backlog.
 
@@ -827,6 +828,32 @@ donde PND-009 pone la frase sobre el alcance de la protección.
 declarada** de los dos archivos y anota su entrada en el registro, que es append-only. Si no se
 hace en ese orden, la publicación se niega con `E_VERSION`, que es exactamente para lo que ese
 chequeo existe.
+
+**Cierre (2026-10-27).** Las dos claves quedaron **cubiertas**, y en el mismo cambio de versión que
+`PND-019`, que es lo que esta entrada pedía: una versión es un contenido, y uno solo.
+
+Lo que hubo que mover no era la declaración sino **dónde se arma el dato**. `what` y `counts` se
+construían *después* de calcular la huella, en el armado del archivo, así que declararlos cubiertos
+sin más daba `E_HUELLA: la huella cubre la clave counts, que el publicado no tiene` —el validador
+tenía razón—. Ahora los dos viven en `armarContenido()`, que es el contenido que se canonicaliza, y
+el armado del archivo los toma de ahí. En los prompts, lo mismo con `what`.
+
+```
+gates.json    2026.10.5 -> 2026.10.6   huella 6fc83add4a12 -> 649f10179cc1
+  covers  += counts, what        (13 claves -> 15)
+  excludes -= counts, what       (8 claves -> 6)
+prompts.json  2026.10.3 -> 2026.10.4   huella f5b02b3c893c -> 8e69d1189be9
+  covers  += what                (6 claves -> 7)
+  excludes -= what               (7 claves -> 6)
+node build/gates_validate.mjs  -> validado (24 peldaños, 8 estaciones, 45 reglas)
+node build/api_check.mjs       -> los tres recursos coinciden con las fuentes
+node --test                    -> 261 pruebas, 0 fallos
+```
+
+Los valores no cambiaron: mismo resumen de cantidades, mismo texto. Lo que cambió es que ahora
+**no pueden** cambiar sin que la verificación lo note, y queda dicho en el propio esquema
+(`version_scheme.counts_is_covered`) por qué un resumen que puede mentir es peor que no tener
+resumen.
 
 **Depende de:** nada; va junto con PND-019 en el mismo cambio de versión.
 
@@ -1760,7 +1787,8 @@ fallos).
 
 - **Nodo:** `corpus/idiomas`, `interfaz-publica/api` [nodos propuestos]
 - **Grupo:** G-IDIOMA · **Severidad:** bloquea · **Quién decide:** se hace y se reporta
-- **Repositorio:** los dos · **Estado: abierto**
+- **Repositorio:** los dos · **Estado: CERRADO** el 2026-10-27 del lado del método; las cuarenta
+  cadenas de la portada quedan nombradas y son del otro repositorio.
 
 **Qué está mal.** La afirmación "ocho idiomas" está en más lugares de los que parece, y dos de
 ellos están **protegidos por la huella** de los archivos publicados, así que corregir una oración
@@ -1819,6 +1847,42 @@ Cortar esa dependencia conceptual es casi gratis y refuerza justo el argumento d
   README y en el documento principal es el mismo.
 - *P5:* dado el perfil auditor, cada versión nueva tiene su entrada en el registro con la huella
   que produjo, y ninguna entrada anterior se editó.
+
+**Cierre (2026-10-27): hecho del lado del método, y la pieza conceptual es la que más valía.** El
+paso explícito se corrió en el orden que esta entrada escribió, que es el único orden en que no
+termina en un rojo que nadie entiende.
+
+1. La prosa de los dos archivos publicados dejó de llevar la **cuenta**. `languages.note` de las
+   compuertas ya no dice «translated into seven more languages» y los prompts ya no dicen
+   «identical in the eight versions»: los dos apuntan a una lista que el método declara **una sola
+   vez**, `languages.prose_versions`, con su `prose_versions_what` al lado. Agregar un idioma ahora
+   cambia un arreglo y **ninguna oración**. Era la forma de este defecto: la afirmación vivía en
+   una nota, en el corpus de prompts, en dos README, en la prosa del documento principal y en
+   cuarenta cadenas de una portada, así que corregir una oración costaba dos versiones declaradas.
+2. Subieron las dos versiones: `2026.10.5 -> 2026.10.6` y `2026.10.3 -> 2026.10.4`.
+3. Las dos entradas nuevas quedaron anotadas en sus registros append-only con la huella que
+   produjeron (`649f10179cc1` y `8e69d1189be9`), sin tocar ninguna huella ya publicada.
+4. La prosa: **dieciséis** lugares, los ocho README y el documento principal en los ocho idiomas,
+   en el mismo commit. «Los ocho idiomas de NAC3» pasó a «los ocho idiomas **que el método declara
+   por su cuenta**», con su equivalente en inglés, portugués, francés, alemán, italiano, japonés y
+   chino. Medido después: cero ocurrencias de la frase heredada en el corpus, y la única que queda
+   en el repositorio es la que esta entrada cita como evidencia.
+
+**La pieza conceptual, que es por la que esto importaba más de lo que parecía.** Hoy son ocho
+idiomas porque se heredaron de la lista de un protocolo, y esa lista ya tiene diez: la frase
+**quedó vieja sola**, sin que nadie la tocara. El método declara **sus** idiomas; si coinciden con
+los de un protocolo, es coincidencia y no definición. Cortar esa dependencia costó una frase por
+idioma y es exactamente el argumento que `PND-022` defiende: el método se sostiene sin el
+protocolo y sin la herramienta.
+
+**El número no se movió, y eso es a propósito.** Siguen siendo ocho. Pasar a diez es `PND-016`, que
+es la decisión más cara del backlog y está abierta; lo que este cambio hace es que ese día cueste
+un arreglo y no una cacería de oraciones.
+
+**Lo que NO entró, nombrado y no omitido.** Las **cuarenta cadenas** del i18n de la portada
+—cuatro claves por diez locales— viven en el repositorio del portal, que es otro árbol con otro
+despliegue. Quedan pendientes ahí, y conviene que entren junto con `PND-016`, porque es el cambio
+que les va a mover el número.
 
 **Depende de:** PND-016 (la decisión de los diez idiomas es la que fija el número) y va junto con
 PND-010 en el mismo cambio de versión.
@@ -3837,8 +3901,9 @@ $ node build/api_check.mjs        -> los tres recursos coinciden con las fuentes
 
 - **Nodo:** `proyecto/registro` [nodo propuesto]
 - **Grupo:** G-TRAZABILIDAD · **Severidad:** registra · **Quién decide:** la limpieza se hizo y se
-  reporta; la prevención vuelve al dueño, que es quien fija el orden del backlog
-- **Repositorio:** método · **Estado: abierto**
+  reporta; la prevención volvió al dueño, que eligió la recomendada
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-27, con la prevención hecha y probada
+  en rojo contra el árbol que llevaba los apuntes.
 - **Origen:** nació el 2026-10-26, revisando qué se había movido después de fusionar el pedido
   **#13**. No lo encontró el dueño y no lo encontró ninguna compuerta: apareció al leer el árbol.
 
@@ -3947,6 +4012,70 @@ opción es que ya falló una vez, y no por descuido de nadie en particular.
 `1a02cd3` nombrando los tres apuntes, y queda en verde contra el árbol de ahora. Mientras no esté,
 esta entrada se queda abierta, que es lo que corresponde: la parte vieja está documentada y la
 parte que impide la próxima vez, no.
+
+**Cierre (2026-10-27): la prevención está hecha, y es la acotada.** El dueño eligió entre las tres
+salidas que esta entrada deja escritas —*"Tu recomendación"*— y la recomendada era la **(a)**: el
+inventario del árbol del método, sin agrandar el alcance a algo que mire el mensaje de un commit.
+Vive en `build/inventario_documentos.mjs` con sus dos pruebas, y exige tres cosas: que todo
+documento bajo `docs/` esté **en el arreglo literal de la construcción** o **en el inventario con
+su razón**; que esa razón **cite el pendiente o la decisión que pide el documento** (una línea
+«porque siempre estuvo ahí» es roja); y que el inventario **no tenga registros que sobren**, porque
+una línea que explica un archivo que el árbol ya no tiene es un registro viejo diciendo algo falso.
+Las exclusiones de árbol —las siete traducciones, `docs/html/`, `docs/peldanos/` y la evidencia de
+los dos proyectos guía— son un **registro con su razón** y no una condición escondida adentro de la
+comprobación, que es lo que el Anexo H pide para una regla apagada.
+
+Y lee el **disco**, no el índice de git. Eso no es un detalle: el panel auto-guarda sus apuntes en
+`docs/`, así que el archivo que conviene atrapar es el que todavía no se commiteó. La guarda cae
+**antes** del commit y no después.
+
+**La evidencia, medida y no relatada.**
+
+```
+$ node --test                                        (antes: 249 pruebas)
+# tests 261 | # pass 261 | # fail 0
+
+árbol de hoy
+  rutas bajo docs/: 486 | documentos a explicar: 22
+  publica la construcción: 11 | en el inventario: 11 | hallazgos: 0 | registros que sobran: 0
+
+el rojo contra el árbol real, con la función pura alimentada por `git ls-tree -r 1a02cd3`
+  arbol 1a02cd3: 25 documentos a explicar, 11 publicados por su propia construcción
+  HALLAZGOS: 4
+    docs/auditoria-urazuke-el-arbol-del-portal-y-las-siete-decisiones.md
+    docs/backlog-de-la-auditoria-el-registro-inaugurado-y-lo-que-qued.md
+    docs/backlog-de-la-retrospectiva-las-4-decisiones-del-dueno.md
+    docs/la-cuarta-decision-con-contexto-medido-pnd-048.md
+  (igual contra 08a429d, que es el commit que los llevó)
+
+el rojo con el archivo puesto en el disco y sin commitear, que es como lo deja el panel
+  not ok 1 - A: cada documento del arbol lo publica la construccion o lo explica el inventario
+      docs/apunte-del-panel-de-prueba.md: no lo publica la construccion y no esta en el inventario
+  not ok 4 - D: la comprobacion reviso algo, y lo dice con su cuenta
+  not ok 5 - los cuatro apuntes del panel que motivaron esto no estan en el arbol
+  # pass 2 | # fail 3     -> borrado el archivo, 5 de 5 en verde
+```
+
+**Corrección del criterio de aceptación que esta entrada escribió.** Decía «nombrando los **tres**
+apuntes». Nombra **cuatro**: el cuarto es `la-cuarta-decision-con-contexto-medido-pnd-048.md`, que
+no se borró sino que se renombró a `DECISION_PND-048_CONTEXTO_MEDIDO.md` porque el registro lo cita
+como evidencia. En el árbol de `1a02cd3` todavía estaba con el nombre del panel, así que la guarda
+lo cuenta, y tiene razón: ahí era un apunte suelto como los otros tres.
+
+**Lo que la guarda encontró el día cero, y no estaba en ninguna entrada.** Dos documentos del árbol
+que **nada explicaba**: `docs/AIevaluation.md` —las evaluaciones crudas de los modelos, de donde se
+escribe `EVALUACIONES_DE_IA.md`; entró el 2026-10-20 con `D-041` y `D-042` y ni `CLAUDE.md`, ni
+`DECISIONES.md`, ni este registro lo nombran— y `docs/PLAN_CURSO_MENTORING.md`, que `CLAUDE.md` sí
+nombra pero ninguna entrada pide. Los dos entraron al inventario con su razón escrita. Es el mismo
+efecto que tuvo el registro de comodines del Anexo H: una guarda que se gana el sueldo antes de
+nacer, porque obliga a escribir lo que nadie había escrito.
+
+**Lo que esta guarda NO hace, dicho para que nadie le atribuya más.** No mira el **mensaje** de un
+commit. Un commit que lleva un documento ya registrado y no lo nombra sigue siendo posible, y eso
+fue exactamente la segunda ocurrencia de abajo. Cubrirlo agranda el alcance —hace falta algo que
+lea el mensaje, y en el repositorio del portal no hay ni pull request ni compuerta donde colgarlo—
+y por eso no entró acá: el dueño eligió la (a) sabiendo ese límite, y está escrito en el encabezado
+del propio programa.
 
 **Segunda ocurrencia, el mismo día, y es el argumento de que la regla sola no alcanza.** Horas
 después de escribir esta entrada y D-062, el commit `6ea7f38` del repositorio del portal —la
@@ -4107,6 +4236,106 @@ ausencia sin su bloque de universo, y que traiga su rojo deliberado.
 
 ---
 
+## PND-054 — El método exige la pregunta y no dice cómo se hace
+
+- **Nodo:** `metodo/prompts` [nodo propuesto]
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Quién decide:** el dueño. La pieza la pidió él;
+  lo que vuelve a él es **dónde vive**, **cómo se llaman los tres niveles** y si se exige por
+  máquina.
+- **Repositorio:** método · **Estado: abierto**
+- **Origen:** pedido del dueño el 2026-10-27, escrito en medio de otro trabajo: *"Quiero agregar una
+  forma mandatoria de comunicación"*.
+
+**Qué está mal.** Todos los prompts del método llevan la cláusula de completitud —evaluá si el
+contexto alcanza, pedí lo que falte, **no estimes**— y eso significa que el método **le ordena al
+modelo preguntar**. Pero no dice **cómo**. La forma de la pregunta queda a la improvisación del
+modelo, y entonces la persona que tiene que decidir recibe, en el mejor de los casos, una pregunta
+suelta: sin los datos que la justifican, sin las opciones enumeradas y sin la recomendación de
+quien ya miró el código. Es la misma asimetría que persigue el peldaño 11 —una punta exige y la
+otra no sabe con qué cumplir—, acá en la dirección que más caro sale: hacia la persona.
+
+Y es la contracara exacta de lo que el método ya hizo bien dos veces. El peldaño 8 no se conformó
+con «mostrame el rojo»: definió **qué es un recibo de rojo** (comando exacto, versión, cantidad de
+fallos, código de salida, pegados tal cual). El peldaño 12 no se conformó con «reportá»: separó
+**verificado** de **creído**. Falta la tercera de la misma familia: no conformarse con «preguntá».
+
+**El pedido del dueño, con sus palabras (2026-10-27).**
+
+> Cuando el brain necesita una respuesta del interlocutor, quiero que mandatoriamente la plantee de
+> la siguiente manera 1) enuncie los datos que justifican la pregunta ENUMERADOS ó con bullet 2)
+> Una frase de no más de 5 líneas que visualice el contexto mediante el cuál esos datos enlazan y
+> dejan ver el interrogante 3) La pregunta taxativa con las opciones de respuesta enumeradas 4) La
+> recomendación del brain. 5) Tres niveles de profundidad técnica de la comunicación seleccionables
+> por parámetro. Podemos incluír esto en el método y los prompts?
+
+**Mi reproducción (2026-10-27), medida.**
+
+```
+$ grep -o "ask me" prompts/*.en.md | wc -l
+22                                   (en 15 de los 27 archivos del corpus publicado)
+
+$ grep -oi "options|recommendation|enumerat|bullet" prompts/*.en.md | sort | uniq -c
+      2 prompts/peldano-03.en.md:options
+      1 prompts/peldano-01.en.md:recommendation
+      1 prompts/peldano-06.en.md:recommendation
+```
+
+Veintidós órdenes de preguntar, en más de la mitad de los prompts. **Cuatro** menciones de una
+forma, en todo el corpus, y las cuatro incidentales. La orden está en todas partes; la forma, en
+ninguna.
+
+**Lo que ya existe y hay que no duplicar.** Los niveles de profundidad **no se inventan desde
+cero**: el método ya tiene el **nivel principiante** (D-025, con su párrafo "Si sos principiante"
+en ocho contratos) y la herramienta ya tiene **dos** modos de comunicación —didáctico y técnico—.
+Tres niveles son una extensión de algo que existe, no una invención. Y los **nombres** de los tres
+los declara el dueño: un valor que él no declaró no entra como si fuera de fábrica.
+
+**Las tres salidas, con su costo.**
+
+- **(i) Sólo los prompts.** La cláusula entra en la pieza inglesa de cada prompt, que es donde el
+  modelo la lee. Costo: toca los 54 prompts, es **una** pieza idéntica byte a byte en las ocho
+  versiones (`build/prompts.mjs` lo exige), su traducción de lectura se escribe en las siete, y
+  **sube `corpus_version`** con su huella anotada. Lo que gana: es el único lugar que el modelo lee
+  como instrucción.
+- **(ii) Sólo la prosa.** Un párrafo transversal en la Parte A del documento principal y una línea
+  en la sección 2 de cada contrato. Costo: ocho idiomas, cero cambios de versión del dato. Lo que
+  gana: el lector sabe qué exigir. Lo que **no** gana: el modelo no lee la prosa, lee el prompt.
+- **(iii) Las dos, más una regla del Anexo H.** Igual que arriba y además un id nuevo (`UX-28` o
+  `CQ-19`, append-only) para que la forma sea **exigible** y no sólo recomendada, con su severidad
+  y su fila en el anexo castellano e inglés. Costo: los dos de arriba, más `catalog_version` con su
+  huella, más la simetría que `tests/anexo_simetria.test.mjs` ya vigila.
+
+**Mi recomendación: la (iii), y con una honestidad por delante.** Una regla que vive sólo en la
+prosa es una recomendación; una que vive sólo en el prompt no la puede exigir nadie. Pero lo que
+una compuerta **puede** verificar es que la cláusula esté presente en los 54 prompts y en los ocho
+idiomas —eso es decidible, y es la misma forma que `artefacto_nombrado`—. Lo que **ninguna** prueba
+de este repositorio puede verificar es que una pregunta concreta que un modelo escribió el martes
+tenga sus cuatro partes: eso lo juzga la persona que la recibe. Decirlo ahora evita la sexta guarda
+dormida: una prueba que diga verde sobre la calidad de las preguntas sin haberla medido nunca.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dada esa persona, cuando el modelo necesita que
+  decida, recibe los datos enumerados, el párrafo de contexto, la pregunta con sus opciones
+  numeradas y la recomendación; y puede contestar con un número, sin reconstruir el problema.
+- *P6 (lector humano que entra por el documento principal):* dada esa persona, puede leer en el
+  método qué forma tiene derecho a exigirle a una pregunta, igual que hoy lee qué forma tiene
+  derecho a exigirle a un recibo de rojo.
+- *P1, P2 (herramientas consumidoras):* dada una herramienta que compila los prompts, esa
+  herramienta recibe la cláusula dentro de la pieza inglesa, sin tener que escribirse su propia
+  versión; y el parámetro de nivel llega con sus tres valores declarados en el dato.
+- *P5 (auditor):* dado el perfil auditor, esta persona puede comprobar que la cláusula está en los
+  54 prompts y en los ocho idiomas, y que la versión publicada subió con su huella.
+
+**Cómo se verifica.** La presencia, por máquina: una prueba que cuente la cláusula en los 54
+prompts por idioma y caiga nombrando el que le falta, con su rojo deliberado. La **calidad** de una
+pregunta concreta, no: la juzga el dueño, y queda escrito así para que nadie le atribuya a la
+compuerta algo que no mide.
+
+**Depende de:** la decisión del dueño entre las tres salidas, y los nombres de los tres niveles.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -4116,16 +4345,16 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 14 | 6 | 8 | 2 |
+| G-API | 14 | 5 | 9 | 1 |
 | G-ALCANCE | 4 | 0 | 4 | 0 |
-| G-IDIOMA | 13 | 11 | 2 | 2 |
+| G-IDIOMA | 13 | 10 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 11 | 1 | 10 | 0 |
-| G-TRAZABILIDAD | 3 | 2 | 1 | 0 |
-| **total** | **53** | **20** | **33** | **4** |
+| G-METODO | 12 | 2 | 10 | 1 |
+| G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
+| **total** | **54** | **18** | **36** | **3** |
 
-Cincuenta y tres entradas, `PND-001` a `PND-053`. Veintidós vienen de la auditoría externa
+Cincuenta y cuatro entradas, `PND-001` a `PND-054`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada, y
@@ -4241,13 +4470,18 @@ de trabajo en curso se quedaron donde estaban. **Lo que queda abierto es la prev
 al dueño: hoy la única defensa contra que vuelva a pasar es que alguien se acuerde de mirar el
 árbol, que es la forma de una guarda dormida vista del otro lado —no hay guarda—.
 
-Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-010,
-PND-011, PND-012, PND-016, PND-024, PND-046 y la prevención de PND-050, que ya tiene **dos**
-ocurrencias medidas), la revisión semántica de los nueve idiomas de la interfaz (PND-026 a PND-034)
-y la prevención de los desvíos de medición (**PND-052**, que es el segundo del mismo grupo en dos
-días). Los cuatro bloqueantes abiertos que quedan son dos del grupo de la API (PND-010 y PND-011, las dos
-esperando decisión del dueño) y dos del de idiomas (PND-016 y PND-019): el del método y el de la
-publicación se cerraron.
+`PND-054` es la última, y la pidió el dueño: el método les ordena a sus prompts **preguntar** —
+veintidós veces, en más de la mitad del corpus— y no dice en ninguna parte **cómo se pregunta**.
+Es la tercera de la familia del recibo de rojo y del reporte proporcional: el peldaño 8 definió qué
+es un recibo, el 12 separó verificado de creído, y falta no conformarse con «preguntá».
+
+Lo que sigue son las decisiones del dueño que están esperando turno (PND-008, PND-009, PND-012,
+PND-016, PND-024, PND-046 y PND-054), la revisión semántica de los nueve idiomas de la interfaz
+(PND-026 a PND-034) y la prevención de los desvíos de medición (**PND-052**, que es el segundo del
+mismo grupo en dos días). Los tres bloqueantes abiertos que quedan son uno de la API (PND-011, que
+necesita el corpus en diez idiomas), uno de idiomas (PND-016, la decisión más cara del backlog) y
+el del contenido (PND-054): el del método, el del alcance y el de la publicación se cerraron, y
+`PND-010` y `PND-019` cerraron juntos en un solo cambio de versión.
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar

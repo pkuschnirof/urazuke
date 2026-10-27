@@ -1,6 +1,6 @@
 {
-  "what": "The prompts of the Urazuke method, published as data. The method owns them; a tool consumes them. They are one English piece, identical in the eight versions of the method, and a tool does not rewrite them.",
-  "corpus_version": "2026.10.3",
+  "what": "The prompts of the Urazuke method, published as data. The method owns them; a tool consumes them. They are one English piece, identical in every version of the method -- the list of versions is declared in the gate catalogue under languages.prose_versions -- and a tool does not rewrite them.",
+  "corpus_version": "2026.10.4",
   "content_hash": {
     "algo": "sha256",
     "encoding": "hex_lower",
@@ -11,10 +11,10 @@
       "languages",
       "contracts",
       "steps",
-      "count"
+      "count",
+      "what"
     ],
     "excludes": [
-      "what",
       "version",
       "version_note",
       "generated_at",
@@ -22,12 +22,12 @@
       "license",
       "content_hash"
     ],
-    "value": "f5b02b3c893c75665bc66b8e8728b994b5e853a6adee0c55224ddfd7c1fe3a51",
+    "value": "8e69d1189be99e6e0eee2bb8b2f06c23ce58ac56a25e5edeab7a5122d5c1adb1",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "version": "b8519f6",
+  "version": "6bd85bd",
   "version_note": "Informative, and kept for the consumers that already print it. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: the identity of what is published is corpus_version + content_hash, and no comparison looks at this.",
-  "generated_at": "2026-10-27T10:14:36.920Z",
+  "generated_at": "2026-10-27T12:18:47.275Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "language": "en",
@@ -35,7 +35,7 @@
     "prompts": "en",
     "step_titles": "en",
     "decision": "D-051",
-    "note": "The prompts are ONE English piece, identical in the eight versions of the method (D-013): that is what makes them comparable. The step titles come from the English contracts (docs/en/peldanos/), because this file is tool data and the data layer is published in English. The file is UTF-8 and NOT pure ASCII: the prompt text travels verbatim, typographic punctuation included.",
+    "note": "The prompts are ONE English piece, identical in EVERY version of the method (D-013): that is what makes them comparable. How many versions there are is not stated here as a count: the list is declared once, in the gate catalogue under languages.prose_versions, so that adding a language changes an array and no sentence. The step titles come from the English contracts (docs/en/peldanos/), because this file is tool data and the data layer is published in English. The file is UTF-8 and NOT pure ASCII: the prompt text travels verbatim, typographic punctuation included.",
     "consumer": "Do not print `title` to an end user. Read the opaque `key` and `num` -- they are never translated -- and take your display text from your own catalogue, in the language of your reader."
   },
   "contracts": {
