@@ -259,6 +259,32 @@ est née de l'avoir découvert tard : l'annexe a été obligatoire et jamais nom
 et le premier lecteur qui a adapté la méthode à un autre format a sauté vingt-sept des
 quarante-cinq règles parce qu'il n'a jamais su qu'elles existaient.
 
+Et une chose de plus qui change ce qu'il faut lire, parce qu'elle décide **laquelle** de toutes ces
+exigences s'applique à vous : **la version de la méthode que le projet fixe.** La définition
+mécanique des guichets — quel fichier doit exister à chaque échelon et ce qu'il doit dire — est
+publiée comme donnée, avec une version déclarée (`catalog_version`) et une empreinte de contenu :
+un nombre long calculé à partir du fichier entier, qui change si quelqu'un change une virgule, et
+qui sert donc à vérifier que la copie que vous avez est exactement celle que la méthode a publiée.
+Un projet **fixe** une de ces versions le jour où il démarre et la garde jusqu'au bout. Et ce n'est
+pas du confort : monter de version au milieu d'un projet est une **régression de l'état de
+complétude**. Si la nouvelle version ajoute une exigence à un échelon que vous aviez déjà clos, cet
+échelon redevient incomplet ; et si elle ajoute une exigence que votre outil ne sait pas encore
+mesurer, le guichet ne dit pas vert : il dit « déclaré et non mesuré », et l'échelon n'avance pas.
+Ce n'est pas une panne, c'est le mécanisme qui fonctionne. Monter de version est permis — c'est le
+propriétaire qui le décide, cela s'écrit avec sa date dans le registre de décisions de l'échelon 6,
+et avant de décider on regarde quelles exigences entrent entre les deux, un compte que l'on peut
+réellement faire parce que chaque exigence ajoutée après le gel dit dans quelle version elle est
+entrée. Ce qui n'est pas permis, c'est de monter en silence, ou d'apprendre à mi-chemin que le
+guichet mesure contre une définition que personne n'a choisie. Et à l'outil qui vous assiste, si
+vous en utilisez un, la méthode exige la même chose qu'à vous : qu'il note quelle version il a
+fixée et avec quelle empreinte, et qu'il confronte cette paire au registre des versions de la
+méthode, qui vit dans le dépôt de la méthode et non sur le serveur qui lui a servi le fichier.
+Fixer à un identifiant interne à lui, que la méthode ne peut pas nommer, ressemble à fixer et ne
+l'est pas : personne de l'extérieur ne peut l'auditer. Que cela n'ait pas été écrit ici jusqu'à
+aujourd'hui était un défaut de ceux que l'échelon 11 poursuit : la donnée le disait au
+consommateur et la prose ne le disait jamais au propriétaire, qui est le seul à pouvoir décider un
+changement de version.
+
 Deux précisions importantes. D'abord : **l'échelle est neutre vis-à-vis de l'outil**. Chaque
 artefact est un fichier, un test ou un script ; aucun n'exige mon outil ni aucun autre. Forge les
 automatise (les portes, les commandes, le registre des éléments en attente), mais l'échelon existe

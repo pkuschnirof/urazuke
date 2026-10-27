@@ -168,7 +168,32 @@ test('ROJO: una direccion relativa en vez de la canonica absoluta', () => {
 test('ROJO: un recurso sin puntero a su registro de versiones', () => {
   const malo = clonar(indiceEnDisco);
   delete malo.resources[0].version_ledger;
-  assert.deepEqual(codigos(verificarIndice(malo, disco)), ['E_INDICE_REGISTRO']);
+  // Sin el bloque entero se pierden las dos cosas: el puntero y la direccion que baja.
+  assert.deepEqual(codigos(verificarIndice(malo, disco)), ['E_INDICE_REGISTRO', 'E_INDICE_REGISTRO_CRUDO']);
+});
+
+// El registro de versiones se declara con DOS direcciones porque son dos cosas: la pagina
+// que lee una persona (este alojamiento la sirve como HTML) y el archivo que baja una
+// maquina. Publicar solo la primera obligaba al consumidor a derivar la segunda, y el unico
+// que implemento la obligacion de fijacion tuvo que adivinarla (PND-056, D-069).
+test('ROJO: el registro de versiones sin la direccion que devuelve el JSON', () => {
+  const malo = clonar(indiceEnDisco);
+  delete malo.resources[0].version_ledger.fetch_url;
+  assert.deepEqual(codigos(verificarIndice(malo, disco)), ['E_INDICE_REGISTRO_CRUDO']);
+});
+
+test('ROJO: la direccion de bajada apunta a otro archivo que el path declarado', () => {
+  const malo = clonar(indiceEnDisco);
+  malo.resources[0].version_ledger.fetch_url =
+    'https://raw.githubusercontent.com/pkuschnirof/urazuke/main/gates/schema.json';
+  assert.deepEqual(codigos(verificarIndice(malo, disco)), ['E_INDICE_REGISTRO_CRUDO']);
+});
+
+test('ROJO: la direccion de bajada no vive en el host que devuelve el crudo', () => {
+  const malo = clonar(indiceEnDisco);
+  malo.resources[0].version_ledger.fetch_url =
+    'https://github.com/pkuschnirof/urazuke/blob/main/gates/catalog.json';
+  assert.deepEqual(codigos(verificarIndice(malo, disco)), ['E_INDICE_REGISTRO_CRUDO']);
 });
 
 /* ------------------------------------------------------------------ *

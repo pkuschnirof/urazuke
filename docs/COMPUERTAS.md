@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.6** - schema **2**
-- content fingerprint `649f10179cc1a4ef...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.7** - schema **2**
+- content fingerprint `7575673f723e498c...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -21,10 +21,11 @@ it already publishes the prompts, and the tool consumes it.
 
 ## The version: what a project freezes
 
-A project starts and ends on the same version of the method, unless somebody applies the double
-lock. For that to be possible, what is published has to be identifiable and stable:
+What a project pins, and what it costs to change it. A project pins ONE catalog_version the day it starts and keeps it until the end. That is not convenience: raising the version in the middle of a project is a REGRESSION of the completeness state, because a version that adds a requirement to a step already closed reopens that step, and what was green yesterday is not green today. Raising it is allowed and it is the owner decision, written with its date in the project decision record; what is not allowed is raising it in silence, or discovering mid-project that the gate is measuring against a definition nobody chose.
 
-- **`catalog_version`** (`2026.10.6`): declared by hand by the method. It is what a project freezes, and
+For that to be possible, what is published has to be identifiable and stable:
+
+- **`catalog_version`** (`2026.10.7`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -33,7 +34,7 @@ lock. For that to be possible, what is published has to be identifiable and stab
   itself is always the one of the change *before* the change that contains it, because it is computed
   before saving; it is useless as the identity of what is published.
 
-Covered by the fingerprint: `schema_version`, `catalog_version`, `languages`, `evaluators`, `evaluator_semantics`, `compatibility`, `tramos`, `steps`, `stations`, `loop_entry`, `heuristics`, `adapters`, `project_config`, `counts`, `what`.
+Covered by the fingerprint: `schema_version`, `catalog_version`, `languages`, `evaluators`, `evaluator_semantics`, `compatibility`, `tramos`, `steps`, `stations`, `loop_entry`, `heuristics`, `adapters`, `project_config`, `counts`, `what`, `pinning`.
 Left out: `generated_at`, `git_commit`, `git_commit_note`, `source`, `license`, `content_hash`.
 Nothing in between: Every key of the published payload is either covered or excluded, and the validator checks it. A requirement-bearing key left out of both would travel without protection: a frozen copy could be altered there and the recomputed hash would still match.
 
@@ -47,6 +48,29 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.4** (2026-10-26, D-061) -- `ad88adccfcbfff7d...`
 - **2026.10.5** (2026-10-27, D-065) -- `6fc83add4a1245d3...`
 - **2026.10.6** (2026-10-27, D-067) -- `649f10179cc1a4ef...`
+- **2026.10.7** (2026-10-27, D-068) -- `7575673f723e498c...`
+
+## Pinning: what a tool that freezes the method owes
+
+The pair a project freezes: `catalog_version`, `content_hash`.
+
+- **It records**: A tool that pins records, in whatever it writes for the project, the catalog_version it pinned and the content_hash that version declares. Those two, by those names.
+- **It contrasts**: It contrasts that pair against the version ledger: an append-only record of (declared version -> content hash) that lives in the method repository and not on the host that served this file, so the pair can be checked against a second source. Its address is published per resource by the index of this data interface, under resources[].version_ledger: url is the page a person reads and fetch_url is the same file as JSON, which is the one a tool downloads. Read both from the index; do not derive one from the other and do not hardcode either, because a derived address is an invented address. Written this way on 2026-10-27: the first wording of this clause pointed the consumer at a key of the sources that no published payload carries, and the index declared only the human page, so the one consumer that implemented the obligation had to guess the address it downloads (PND-056).
+- **On a mismatch**: Red, and it says which of the two moved: the content under a declared version, or the version under one content. Never green, and never a silent re-pin to whatever the host is serving today.
+- **Forbidden**: Pinning to an internal compiled identity that the method cannot name. It looks like pinning and it is not: nobody outside the tool can audit it, and the differential against a published version cannot be computed, so the project cannot be told what an upgrade would reopen.
+- Why it is written: Measured on 2026-10-27: a consumer that already pinned, and pinned correctly in its own terms, pinned to an identity of its own that is not a catalog_version and appears in no ledger. The data said what to freeze and never said what to freeze it BY.
+
+**Raising the version.** Who decides: `owner`.
+
+- Before deciding: Compute the differential and show it: which requirements enter between the pinned version and the candidate, and which steps they anchor. A project is told what an upgrade reopens before it is raised, not after.
+- How the differential is computed: Every entry the method added after the freeze declares since_version. An entry with no since_schema comes from the frozen base and is present in every published version. So the differential between a pinned version X and a candidate Y is every entry whose since_version is greater than X and not greater than Y; it needs no network beyond the two files.
+- What a newly required evaluator means: An installation that cannot measure a required evaluator reports declared and not measured, and the step does not advance (see compatibility). That is the mechanism by which an upgrade stops a project, and it is the intended behaviour, not a defect.
+- Every covered key has existed since **2026.10.1**. Every top-level key the fingerprint covers has existed since the first version the method published, so no consumer can hold a pinned version that is missing one of them. A key added later records its arrival in the ledger entry of its version.
+
+**A prior version.** The canonical URL serves `current_only`.
+
+- The canonical URL serves the current version only. The content of a prior version is in the method repository: the ledger gives the pair (version -> content hash) and the published file is committed there, so searching that history for a recorded hash finds the commit that published that version.
+- Not guaranteed: There is no per-version URL on this host today, and saying so here is cheaper than letting a consumer discover it. A tool that needs to re-read the exact content it pinned reads it from its own frozen copy; the fingerprint is what tells it the copy is intact.
 
 ## The language of each text
 

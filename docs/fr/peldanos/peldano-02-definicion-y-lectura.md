@@ -188,6 +188,10 @@ périmètre.
   trouver depuis le fichier de projet et qu'ils soient là avant l'échelon 5.
 - Dans les trois, une date de dernière mise à jour.
 - Dans le contrat, les deux règles nouvelles.
+- Dans le fichier de projet, une ligne disant avec quelle version de la méthode le projet
+  travaille : la `catalog_version` que vous avez fixée et l'empreinte de contenu que cette version
+  déclare. C'est ce qui permet, dans un an, de savoir contre quelle définition chaque échelon a
+  reçu son vert, et ce qui fait d'une montée de version une décision et non un accident.
 
 ## 4. Vérification de complétude
 
@@ -213,6 +217,8 @@ périmètre.
 - La liste des profils est-elle écrite, en disant qui est chacun et ce qu'il vient faire ? Comptez
   les profils sur les doigts de votre métier : s'il en manque un, il manque une ligne de la matrice
   de l'échelon 8 et une fournée de cas de test de l'échelon 10.
+- Est-il écrit avec quelle version de la méthode le projet travaille, avec son empreinte ? Sinon,
+  le jour où la définition changera, personne ne pourra dire si les échelons clos le sont encore.
 
 ## 5. Signaux d'alarme
 

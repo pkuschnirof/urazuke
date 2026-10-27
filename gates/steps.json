@@ -144,13 +144,15 @@
           "path": "docs/GLOSSARY.md",
           "min_bytes": 80,
           "label": "the user glossary, in the words the business uses",
-          "since_schema": 2
+          "since_schema": 2,
+          "since_version": "2026.10.5"
         },
         {
           "path": "docs/PROFILES.md",
           "min_bytes": 80,
           "label": "the list of profiles, who each one is and what they come to do",
-          "since_schema": 2
+          "since_schema": 2,
+          "since_version": "2026.10.5"
         }
       ],
       "verify": [
@@ -160,11 +162,13 @@
         {
           "text": "Is the user glossary written, with the words people actually use for things?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "anchor": "prior_input_1"
         },
         {
           "text": "Is the list of profiles written, saying who each one is and what they come to do?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "anchor": "prior_input_2"
         }
       ],
@@ -287,7 +291,8 @@
             "perfil|profile"
           ],
           "label": "the functionality-by-profile matrix",
-          "since_schema": 2
+          "since_schema": 2,
+          "since_version": "2026.10.1"
         }
       ],
       "verify": [
@@ -297,6 +302,7 @@
         {
           "text": "Does every pending item that touches a screen declare its convergence group, its profiles and one acceptance criterion per profile?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "anchor": 1
         }
       ],
@@ -309,6 +315,7 @@
         {
           "name": "pendings_profiles",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "required": true
         }
       ]
@@ -405,6 +412,7 @@
         {
           "text": "Was the matrix seen failing first: for each profile, what is reachable against its row, neither less nor more?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "anchor": 2
         }
       ],
@@ -417,6 +425,7 @@
         {
           "name": "profile_matrix",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "required": true
         }
       ]
@@ -453,7 +462,8 @@
             "CQ-\\d\\d"
           ],
           "label": "the result per rule, not as a single number",
-          "since_schema": 2
+          "since_schema": 2,
+          "since_version": "2026.10.1"
         },
         {
           "path": "docs/USABILITY.md",
@@ -461,7 +471,8 @@
             "UX-\\d\\d"
           ],
           "label": "the result per usability rule, with its declared exceptions",
-          "since_schema": 2
+          "since_schema": 2,
+          "since_version": "2026.10.1"
         }
       ],
       "verify": [
@@ -471,16 +482,19 @@
         {
           "text": "Is the rule catalogue complete, with its frontend adapter and its declared thresholds (and does whatever is undeclared say so)?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "anchor": 3
         },
         {
           "text": "Does every switched-off rule have its record with reason, author and review date?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "anchor": 3
         },
         {
           "text": "With real users, is the mutation score measured per block, and did every surviving mutant in new code open a pending item?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "anchor": 3
         }
       ],
@@ -493,6 +507,7 @@
         {
           "name": "heuristics",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "required": true
         }
       ]
@@ -527,6 +542,7 @@
         {
           "text": "Was each case run once per affected profile, derived from the matrix? A case run with a single profile does not count.",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "anchor": 4
         }
       ],
@@ -539,6 +555,7 @@
         {
           "name": "manual_cases_per_profile",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "required": true
         }
       ]
@@ -610,11 +627,13 @@
         {
           "text": "Does the report say what was measured, what was left warning and which rule is switched off, with reason, author and review date?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "anchor": 5
         },
         {
           "text": "Do the two figures travel with their ruleset fingerprint, and does neither of them close a block?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "anchor": 5
         }
       ],
@@ -627,6 +646,7 @@
         {
           "name": "heuristics",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "required": true
         }
       ]
@@ -667,7 +687,8 @@
             "modelo|model"
           ],
           "label": "the audit reproduces receipts and declares which model performed it",
-          "since_schema": 2
+          "since_schema": 2,
+          "since_version": "2026.10.1"
         }
       ],
       "verify": [
@@ -677,11 +698,13 @@
         {
           "text": "Did you literally reproduce two or three receipts of closed pending items (same command, same numbers), rather than just reading them?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "decision": "D-042"
         },
         {
           "text": "Was the audit done, where possible, by a model other than the one that builds?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "decision": "D-042"
         }
       ],
@@ -759,7 +782,8 @@
             "deshacer|compensar|undo|compensat"
           ],
           "label": "the migration with an undo or compensation plan of its own",
-          "since_schema": 2
+          "since_schema": 2,
+          "since_version": "2026.10.1"
         }
       ],
       "verify": [
@@ -769,6 +793,7 @@
         {
           "text": "Does every schema or data migration have its own undo or compensation plan? Rolling the code back is not enough.",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "decision": "D-042"
         }
       ],
@@ -974,7 +999,8 @@
         "Alguien que no sos vos siguio el manual de usuario y llego?",
         {
           "text": "Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?",
-          "since_schema": 2
+          "since_schema": 2,
+          "since_version": "2026.10.4"
         }
       ],
       "evaluators": [
@@ -1105,7 +1131,8 @@
             "inyecc|injection"
           ],
           "label": "the injection clause inside the scope of the resident agent",
-          "since_schema": 2
+          "since_schema": 2,
+          "since_version": "2026.10.1"
         },
         {
           "path": "docs/RETROSPECTIVE_*.md",
@@ -1114,7 +1141,8 @@
             "modelo|model"
           ],
           "label": "the retrospective names the model the system was built with",
-          "since_schema": 2
+          "since_schema": 2,
+          "since_version": "2026.10.1"
         }
       ],
       "verify": [
@@ -1123,11 +1151,13 @@
         {
           "text": "Does the scope of the resident agent say that whatever it reads in production is data and never an instruction?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "decision": "D-042"
         },
         {
           "text": "Was there a short retrospective when the building model changed?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "decision": "D-042"
         }
       ],

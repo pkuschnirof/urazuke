@@ -4334,6 +4334,243 @@ compuerta algo que no mide.
 
 **Depende de:** la decisión del dueño entre las tres salidas, y los nombres de los tres niveles.
 
+## PND-055 — El método decía qué congelar y nunca decía con qué congelarlo *(lo trajo una pregunta del dueño; herramienta: PND-013)*
+
+- **Nodo:** `datos/compuertas` [nodo propuesto]
+- **Grupo:** G-API · **Severidad:** bloquea · **Quién decide:** el dueño eligió la salida entre tres
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-27, con la prosa en los ocho idiomas, el
+  dato diferenciable y la obligación del consumidor declarada.
+
+**Qué estaba mal.** El método publica la definición mecánica de las compuertas con una versión
+declarada y una huella, y el documento generado dice desde el primer día que «un proyecto empieza y
+termina en la misma versión del método». Lo que **no** estaba escrito en ninguna parte era tres
+cosas: con **qué** se fija —el par `catalog_version` + huella de contenido—, que subir de versión en
+medio de un proyecto es una **regresión del estado de completitud**, y que esa decisión es del
+dueño. Y como el dato no lo decía, tampoco decía qué le exige al consumidor que fija.
+
+El grupo es **G-API** y no G-METODO, y vale decir por qué: lo que la persona viene a hacer acá es
+*consumir la definición con confianza*, y una definición que no dice contra qué se la fija no se
+puede consumir con confianza por más que la huella coincida. La mitad de prosa —el párrafo del
+documento principal y las dos líneas del contrato del peldaño 2— no cambia eso: está al servicio de
+lo mismo, porque el dueño es la otra punta de ese contrato y es el único que puede decidir un
+cambio de versión. No se abrió grupo nuevo: el séptimo abrió hace un día y abrir uno cuesta tocar
+tres lugares a la vez.
+
+**El origen, con las palabras del dueño (2026-10-27).** No lo trajo una auditoría ni una medición
+propia: lo trajo una pregunta, hecha para encuadrar la medición del Anexo H del lado de la
+herramienta.
+
+> Forge encara un proyecto, con una versión de urazuke, y la tiene que mantener hasta el fin del
+> proyecto a menos que el usuario decida upgradear. Porque el upgrade, trae necesariamente una
+> regresión en el estado de completitud y puede cambiar los estados ya evaluados del proyecto,
+> llevando a regresiones. (…) Justo ahora, queremos upgradear todo, porque no hay proyectos en
+> marcha.
+
+**Mi reproducción (2026-10-27), medida.** La prosa no lo nombraba, en ninguno de los ocho idiomas:
+
+```
+$ grep -c -i "congel" docs/ESCALERA_METODOLOGICA.md
+2        (las dos son sobre congelar DECISIONES en el peldano 6, no una version)
+$ grep -c "fijar la version\|cambiar de version" docs/ESCALERA_METODOLOGICA.md docs/peldanos/*.md
+0
+$ grep -c "catalog_version" docs/ESCALERA_METODOLOGICA.md docs/peldanos/peldano-02-*.md
+0  0
+```
+
+Y la medición que le da el cuerpo: la herramienta que asiste este trabajo **ya fijaba, y fijaba
+bien**, contra un identificador propio de su catálogo compilado —`base-schema-1`, con su hash— que
+**no es una `catalog_version`** y no figura en ningún registro de versiones. Fija, sí, pero a algo
+que el método no puede nombrar y que nadie de afuera puede auditar; y con eso, el diferencial de un
+upgrade no se puede computar, así que al proyecto no se le puede decir **qué le reabre** subir. El
+mecanismo estaba del lado de la herramienta y el contrato no estaba de ninguno de los dos.
+
+La superficie, contada con el propio instrumento del método y no estimada: cada entrada que no está
+en el congelado lleva su `since_schema`, así que la distancia es exactamente ese conjunto.
+
+```
+$ node -e "cuenta de entradas con since_schema >= 2 en gates/"
+evaluadores nuevos:     4   (heuristics, profile_matrix, manual_cases_per_profile, pendings_profiles)
+anclas required:true:   5   (peldanos 5, 8, 9, 10 y 12)
+artefactos nuevos:      9
+verificaciones nuevas: 17   (en 11 peldanos + 1 estacion)
+```
+
+**Y una cosa que apareció al medir y cambia cómo se lee un upgrade.** Los cuatro evaluadores nuevos
+entraron con `2026.10.1`, que es la **primera** versión publicada. O sea que ningún salto entre dos
+versiones publicadas agrega hoy un evaluador requerido, y el único caso que traba un proyecto es el
+de quien nunca fijó una versión publicada y mide contra el congelado anterior a todas. Eso es
+exactamente el caso medido arriba. La prueba lo deja anclado, para que el día que entre uno nuevo la
+cuenta salga sola.
+
+**Las tres salidas que volvieron al dueño, con su costo.**
+
+- **(i) Sólo la prosa.** Un párrafo en el documento principal y una línea en el peldaño 2, en los
+  ocho idiomas. Dice la regla; no la hace exigible. Cero cambios de versión del dato.
+- **(ii) Prosa + el dato se hace diferenciable.** Procedencia por entrada a nivel de
+  `catalog_version` y la declaración de cómo se obtiene el contenido de una versión anterior. Hace
+  computable el diferencial. Toca el esquema y sube versión.
+- **(iii) Lo anterior, más la obligación al consumidor.** Que el congelado registre la
+  `catalog_version` y su huella y las contraste contra el registro. Convierte «fijar» en algo
+  verificable desde afuera.
+
+**Decisión del dueño (2026-10-27):** *"Mi respuesta a tu pregunta es 3."* — la (iii), completa.
+
+**Lo que se hizo.**
+
+- **El dato declara el contrato.** `gates/schema.json#pinning`, publicado y **cubierto por la
+  huella** (es requisito, no decoración: una copia congelada alterada ahí cambiaría lo que el
+  proyecto cree que debe). Declara el par que se fija, qué registra y qué contrasta el consumidor,
+  qué pasa cuando no coincide —rojo, diciendo cuál de los dos se movió, nunca un re-fijado
+  silencioso a lo que el servidor sirva hoy—, qué está prohibido —fijar a una identidad interna que
+  el método no puede nombrar—, que el upgrade lo decide el dueño, y cómo se obtiene el contenido de
+  una versión anterior. Eso último incluye lo que **no** está garantizado, dicho acá en vez de
+  dejarlo descubrir: hoy no hay una dirección por versión.
+- **La procedencia, medida y no inventada.** Las **35** entradas agregadas después del congelado
+  declaran `since_version`. Reconstruida contra la historia de `gates/`: 32 llegaron con
+  `2026.10.1`, una con `2026.10.4` y dos con `2026.10.5`. Una entrada de la base **no** declara
+  procedencia, porque está en todas las versiones publicadas, y el validador rechaza las dos
+  omisiones y una procedencia que apunte a una versión que nadie publicó.
+- **La prosa, en los ocho idiomas.** Un párrafo en la Parte A del documento principal —ahí porque la
+  versión fijada decide *cuál* de todas las exigencias aplica, igual que el Anexo H decide qué hay
+  que leer— y dos líneas en el contrato del peldaño 2: una en el resultado esperado y una pregunta
+  en la verificación de completitud.
+- **La guarda.** `build/version_fijada.mjs` + `tests/version_fijada.test.mjs`, con once
+  comprobaciones, y su archivo de rojos aparte, donde **ocho** mutilan el insumo y tienen que caer
+  nombrando lo suyo —entre ellos el castellano, que es donde ya pasó lo contrario, y la comparación
+  de versiones, que con cadenas pone `2026.10.9` por encima de `2026.10.10` y dejaría el
+  diferencial vacío justo cuando hay trabajo que mirar—. Exige la simetría con la prosa en los ocho idiomas por el token inglés
+  `catalog_version` —que es un identificador del dato y viaja idéntico, la misma forma que
+  `anexo_simetria`—, la procedencia completa, y el diferencial **ejecutable**, anclado en la
+  historia medida. Nueve rojos del validador más, en `gates_validador_en_rojo`. Y tiene **quien la
+  invoque** desde el primer día: el paso nuevo del flujo exige la línea que el programa imprime,
+  porque un paso que no imprimió nada no corrió.
+- **La versión.** `catalog_version 2026.10.6 → 2026.10.7`, con su entrada en el registro
+  append-only y la huella que produjo (`f6adbf113d57`). Ningún requisito, ningún id y ningún umbral
+  cambiaron.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dada esa persona, puede leer en el método con qué
+  versión trabaja su proyecto, qué le cuesta subirla y que la decisión es suya; y antes de decidirla
+  puede pedir la cuenta de qué requisitos entran en el medio.
+- *P1, P2 (herramientas consumidoras):* dada una herramienta que compila las compuertas, esa
+  herramienta encuentra **declarado** qué par tiene que registrar al fijar, contra qué contrastarlo
+  y qué hacer cuando no coincide, sin tener que inventarse una convención propia.
+- *P5 (auditor):* dado el perfil auditor, esta persona puede comprobar, sin leer código, que la
+  prosa nombra la fijación en los ocho idiomas y que cada entrada agregada dice en qué versión
+  entró; y puede reproducir el diferencial entre dos versiones publicadas.
+- *P6 (lector humano que entra por el documento principal):* dada esa persona, al leer la Parte A se
+  entera de que existe una versión fijada antes de que un upgrade le reabra un peldaño cerrado.
+
+**Cómo se verifica.** `node build/version_fijada.mjs` imprime su cuenta y sus hallazgos;
+`node --test` corre la guarda, sus diez rojos y los nueve del validador; `node build/api_check.mjs`
+exige que lo publicado coincida y que el índice cite la huella viva.
+
+**Lo que queda afuera, nombrado.** Que una herramienta **cumpla** la obligación que el dato le
+declara no se mide en este repositorio: se mide en el de esa herramienta. El 2026-10-27 se le pasó
+la medición y el orden corregido por el canal, con el detalle de que fijar a `base-schema-1` no es
+fijar a una versión del método. Y esta guarda **no** habría atrapado el defecto que la originó:
+mientras el dato no declaraba el contrato, no había simetría que revisar. Lo que guarda es que lo
+declarado hoy no se quede sin su prosa, y que una entrada nueva no entre sin decir de dónde viene.
+
+---
+
+## PND-056 — El dato publicó una dirección que una máquina no puede bajar, y un puntero a una clave que el publicado no tiene *(lo trajo el consumidor; herramienta: PND-048)*
+
+- **Nodo:** `datos/compuertas` [nodo propuesto]
+- **Grupo:** G-API · **Severidad:** importante · **Quién decide:** nadie: es un defecto medido y su arreglo es mecánico
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-27, con las dos direcciones publicadas, la cláusula autocontenida y su guarda.
+
+**Qué estaba mal, y son dos cosas de la misma familia.** El contrato de fijación que acababa de
+entrar con `PND-055` —publicado y cubierto por la huella— le decía al consumidor que contraste el
+par (versión → huella) *«contra `version_scheme.version_ledger`»*. Esa clave **no existe en el
+publicado**: vive sólo en `gates/schema.json`, que es una fuente. O sea que el único lector capaz de
+seguir ese puntero era el que tiene el repositorio del método delante, que es exactamente el lector
+para el que la interfaz de datos no hace falta. Y el índice de la interfaz declaraba del registro de
+versiones **una sola dirección**, la página del blob, que ese alojamiento sirve como HTML; la
+dirección que devuelve el JSON no estaba publicada en ninguna parte, así que para bajarlo hay que
+**derivarla**. Adivinar una dirección es lo que la regla «nada inventado» prohíbe, y acá lo
+obligaba el propio dato.
+
+**Quién lo trajo.** El consumidor, el mismo día que implementó la obligación. No una auditoría, no
+una medición propia: lo reportó quien tuvo que adivinar la dirección, con sus palabras:
+
+> `index.json` publica la direccion de la PAGINA del blob, que devuelve HTML; hay que derivar
+> `raw.githubusercontent` para bajar el JSON. Lo derivo en un solo lugar y lo reporto en el
+> veredicto, pero adivinar una direccion es lo que el anexo prohibe. Convendria publicar tambien la
+> cruda.
+
+**Mi reproducción (2026-10-27), medida.** Las dos direcciones, pedidas de verdad:
+
+```
+$ node -e "fetch de las dos direcciones del registro de versiones"
+200 text/html    284852  NO es JSON (        <!DOCTY...)  .../blob/main/gates/catalog.json
+200 text/plain    11386  JSON valido                      raw.githubusercontent.com/.../gates/catalog.json
+```
+
+Y el puntero colgante, contra el publicado de `0af2a00`:
+
+```
+$ node -e "cada camino de clave que un texto del publicado nombra, resuelto contra el publicado"
+NO RESUELVE  version_scheme.version_ledger   <- pinning.consumer_contract.must_contrast
+RESUELVE     (los otros seis tokens de los dos recursos)
+```
+
+**Lo que se hizo.**
+
+- **Las dos direcciones, publicadas.** El índice declara ahora, por recurso,
+  `version_ledger.url` —la página que lee una persona— y `version_ledger.fetch_url` —el mismo
+  archivo como JSON, que es lo que baja una herramienta—, con la nota que dice por qué son dos y no
+  una. El verificador del índice las exige las dos (`E_INDICE_REGISTRO_CRUDO`) y exige que la de
+  bajada termine en el `path` que el propio registro declara: una dirección que apunta a otro
+  archivo es peor que ninguna. **El índice no tiene versión ni huella propias** (D-056), así que
+  esta mitad **no cambia ninguna versión declarada**.
+- **La cláusula, autocontenida.** `pinning.consumer_contract.must_contrast` ya no apunta a una clave
+  de las fuentes: dice qué es el registro, que vive fuera del alojamiento que sirvió el archivo, y
+  de dónde se saca su dirección —los dos campos del índice, por su nombre—, con la instrucción
+  explícita de no derivar una de la otra ni clavarlas en el código.
+- **La guarda, que es lo que hace que esto no vuelva.** `build/punteros_publicados.mjs` +
+  `tests/punteros_publicados.test.mjs` (siete comprobaciones) y sus **diez rojos deliberados**
+  aparte. Exige que **cada camino de clave que un texto publicado nombra resuelva en el publicado**;
+  que los dos registros de salteo —sufijos que no son claves, y punteros que a propósito apuntan a
+  otro recurso— no tengan entradas que sobren y lleven su razón escrita, como el anexo pide para una
+  regla apagada; y la simetría entre la cláusula y el directorio: si el contrato manda leer un campo,
+  el índice tiene que publicarlo. No haber podido mirar —sin índice— es **rojo y no verde**. Tiene
+  **quien la invoque** desde el primer día: el paso nuevo del flujo exige la línea que el programa
+  imprime. Tres rojos más en `api_indice`.
+- **La huella de la versión, corregida antes de publicarla.** `2026.10.7` seguía sin publicar
+  —producción servía `2026.10.6` y la entrada vivía en una rama sin fusionar—, así que la entrada del
+  registro anota la huella del **contenido corregido** (`7575673f723e`) y dice por qué se corrigió en
+  vez de subir a `2026.10.8`: una versión nueva habría dejado registrada una `2026.10.7` que nadie
+  puede pedir nunca, y eso es una mentira peor que la nota. La regla sigue en pie y queda escrita con
+  su alcance exacto: **la huella de una versión no se edita una vez que esa versión se sirvió.**
+
+**Y lo que la distingue de la guarda de ayer, dicho porque es lo que la hace falsable:** ésta **sí**
+habría atrapado el defecto que la originó. Medida contra el árbol publicado de `0af2a00` da **5
+hallazgos** y nombra los dos —el puntero colgante y las dos direcciones que faltaban—; contra el
+árbol de hoy, **cero**.
+
+**Criterio de aceptación por perfil.**
+
+- *P1, P2 (herramientas consumidoras):* dada una herramienta que sólo tiene la interfaz publicada,
+  esa herramienta llega al registro de versiones **sin derivar ni adivinar** ninguna dirección, y
+  todo campo que el contrato le manda leer existe en el archivo donde el contrato dice que está.
+- *P5 (auditor):* dado el perfil auditor, esta persona puede correr una orden y ver que ningún texto
+  del publicado apunta a una clave que el publicado no tiene, con la cuenta a la vista y no con una
+  afirmación.
+- *P8 (dueño de proyecto que aplica el método):* dada esa persona, lo que el método publica como
+  obligación del consumidor es **cumplible** sin acceso al repositorio del método, que es la
+  condición para poder exigirlo.
+
+**Cómo se verifica.** `node build/punteros_publicados.mjs` imprime su cuenta y sus hallazgos;
+`node --test` corre las siete comprobaciones, sus diez rojos y los tres nuevos del índice;
+`node build/api_check.mjs` exige que el índice publicado sea el que dan las fuentes.
+
+**Lo que queda afuera, nombrado.** Que la dirección de bajada **conteste** no lo verifica esta
+guarda: eso es red, y la construcción corre sin red a propósito; lo pregunta la publicación contra
+producción. Y que el consumidor **use** los dos campos en vez de seguir derivándolos se mide en su
+repositorio, no en éste.
+
 ---
 
 # Resumen del estado
@@ -4345,16 +4582,16 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 14 | 5 | 9 | 1 |
+| G-API | 16 | 5 | 11 | 1 |
 | G-ALCANCE | 4 | 0 | 4 | 0 |
 | G-IDIOMA | 13 | 10 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 12 | 2 | 10 | 1 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **54** | **18** | **36** | **3** |
+| **total** | **56** | **18** | **38** | **3** |
 
-Cincuenta y cuatro entradas, `PND-001` a `PND-054`. Veintidós vienen de la auditoría externa
+Cincuenta y seis entradas, `PND-001` a `PND-056`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), trece son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada, y
@@ -4367,7 +4604,10 @@ dos últimas no las trajo nadie de afuera: `PND-050` salió de leer el árbol de
 `PND-051` de que el dueño leyera la portada que una entrada cerrada decía que no existía. Las dos
 son desvíos propios, y las dos del mismo día. `PND-052` es el tercero, del día siguiente, y sale de
 **refutar** una de las dos: `PND-036` afirmaba una ausencia desde una búsqueda que había mirado
-cuatro árboles y ninguno era el que correspondía.
+cuatro árboles y ninguno era el que correspondía. Y `PND-056` tiene el origen que una interfaz
+publicada tendría que tener más seguido: **lo trajo el consumidor**. No una auditoría ni el autor
+releyéndose, sino la herramienta que intentó cumplir la obligación recién publicada y se encontró
+con que, para cumplirla, tenía que adivinar una dirección.
 
 `PND-053` es la última, y es de otra clase: no es un desvío ni un hallazgo de nadie, es una
 declaración que faltaba. `PND-039` dejó escrito que las dos entradas previas del Anexo H no tenían

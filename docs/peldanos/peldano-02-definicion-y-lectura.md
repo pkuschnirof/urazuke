@@ -184,6 +184,10 @@ lo que te permite detectar en diez segundos un pendiente fuera de alcance.
   que estén antes del peldaño 5.
 - En los tres, una fecha de última actualización.
 - En el contrato, las dos reglas nuevas.
+- En el archivo de proyecto, una línea que diga con qué versión del método trabaja el proyecto:
+  la `catalog_version` que fijaste y la huella de contenido que esa versión declara. Es lo que
+  permite que dentro de un año se sepa contra qué definición se le dio verde a cada peldaño, y lo
+  que hace que subir de versión sea una decisión y no un accidente.
 
 ## 4. Verificación de completitud
 
@@ -206,6 +210,8 @@ lo que te permite detectar en diez segundos un pendiente fuera de alcance.
   una tanda de casos de prueba del 10.
 - La prueba de lectura: cerrá la sesión, abrí una nueva, y preguntale qué NO hace el sistema y de
   qué nodo del árbol cuelga tal pantalla. Si contesta con el mapa, el enganche funciona.
+- ¿Está escrito con qué versión del método trabaja el proyecto, con su huella? Si no está, el día
+  que la definición cambie nadie va a poder decir si los peldaños cerrados siguen cerrados.
 
 ## 5. Señales de alarma
 

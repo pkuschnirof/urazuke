@@ -107,6 +107,7 @@
         {
           "text": "Were the user glossary and the list of profiles recovered, with their source mark where nobody had written them?",
           "since_schema": 2,
+          "since_version": "2026.10.1",
           "anchor": "prior_inputs"
         }
       ],

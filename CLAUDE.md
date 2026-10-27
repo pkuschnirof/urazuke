@@ -415,6 +415,39 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   terminó de leer aceptaría en silencio un archivo truncado—. Lo que la huella cubre se arma en
   `armarContenido()`, que es el contenido que se canonicaliza: agregado después, el validador lo
   rechaza diciendo que cubre una clave que el publicado no tiene.
+- **Lo que un proyecto fija se declara, y la procedencia también** (D-068, `PND-055`). Un proyecto
+  fija el par `catalog_version` + huella y lo mantiene hasta el final: subir de versión en medio de
+  un proyecto **reabre** un peldaño que ya se había cerrado, y la decide el dueño, nunca la
+  herramienta. Eso vive en `gates/schema.json#pinning`, se publica y está **cubierto por la
+  huella**, porque lleva requisitos: declara qué registra y contra qué contrasta el consumidor, que
+  cuando no coincide es rojo diciendo cuál de los dos se movió —nunca un re-fijado silencioso a lo
+  que el servidor sirva hoy—, y que **está prohibido fijar a una identidad interna que el método no
+  puede nombrar**. Esto último se escribió medido: una herramienta que ya fijaba, y fijaba bien,
+  fijaba contra el identificador de su catálogo compilado, que no es una `catalog_version` y no
+  figura en ningún registro. Y para que el diferencial de un upgrade sea computable, cada entrada
+  agregada después del congelado declara `since_version` —la versión publicada en la que entró—; una
+  entrada de la base **no** declara ninguna, porque está en todas. `since_schema` no alcanza: sólo
+  separa la base de todo lo agregado. La prosa lo nombra en la Parte A y en el contrato del peldaño
+  2, en los ocho idiomas, y `tests/version_fijada.test.mjs` lo exige por el token inglés
+  `catalog_version`, que es lo que viaja idéntico; lo que ninguna prueba de acá puede verificar es
+  si una herramienta **cumple** la obligación: eso se mide en su repositorio.
+- **Un puntero que el dato publica tiene que resolver, y una dirección que publica tiene que poder
+  bajarla una máquina** (D-069, `PND-056`). Lo trajo el **consumidor**, el mismo día que implementó
+  la obligación de arriba: la cláusula que le decía contra qué contrastar apuntaba a
+  `version_scheme.version_ledger`, que no es una clave del publicado —vive sólo en las fuentes—, y
+  el índice declaraba del registro de versiones una sola dirección, la página del blob, que ese
+  alojamiento sirve como HTML (284.852 bytes de HTML contra 11.386 de JSON en la cruda), así que
+  para bajarlo había que **derivar** la dirección, y una dirección derivada es una dirección
+  inventada. Ahora el índice declara `version_ledger.url` —la página que lee una persona— y
+  `version_ledger.fetch_url` —el archivo que baja una herramienta—, las dos exigidas por su
+  verificador; la cláusula es autocontenida y las nombra. La regla que deja:
+  **un camino de clave que un texto publicado nombra resuelve en el publicado**, o está en un
+  registro de punteros cruzados con su razón; `build/punteros_publicados.mjs` +
+  `tests/punteros_publicados.test.mjs` lo exigen, con diez rojos deliberados y el paso del flujo que
+  exige la línea medida. Y el alcance exacto de la otra regla, porque acá se usó: la huella de una
+  versión **no se edita una vez que esa versión se sirvió**; `2026.10.7` se corrigió antes de
+  publicarse, y subir a `2026.10.8` habría dejado registrada una versión que nadie puede pedir
+  nunca.
 - `docs/COMPUERTAS.md` **se genera** (`node build/gates_doc.mjs`), **en inglés**, y la construcción
   falla si lo que hay en disco no coincide con los datos. No se edita a mano. Queda fuera del
   corpus traducido: es documentación de herramienta (D-051), y su HTML se marca `lang="en"`.
@@ -451,9 +484,14 @@ interfaz de datos, que son casi todas rojos deliberados (D-056), y la del regist
 contra su propio resumen (D-057), y las del aviso de huérfanas, donde cinco de las veintitrés son
 rojos deliberados y tres corren el programa aparte para exigir su salida medida (D-058), y las del
 inventario del árbol, donde siete de las doce son rojos deliberados y uno reproduce el árbol que
-llevaba los cuatro apuntes del panel (D-066). Los cinco
+llevaba los cuatro apuntes del panel (D-066), y las de la versión fijada, que son once y traen su
+archivo de rojos aparte: ocho mutilan el insumo y tienen que caer nombrando lo suyo, y entre las
+once hay una que exige que el enunciado del contrato de fijación viaje del dato al documento
+generado por extracción y no transcrito (D-068), y las de los punteros del publicado, que son
+siete y traen diez rojos deliberados aparte —entre ellos el puntero colgante que las originó, que
+tiene que volver a caer si alguien lo reintroduce (D-069)—. Los siete
 programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
-`index_api`, `portal_orphans`)
+`index_api`, `portal_orphans`, `version_fijada`, `punteros_publicados`)
 detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
 el idiom de pegar `file:///` adelante de `argv[1]` sólo acierta en Windows y dejaba dos pasos
 de la cadena corriendo en vacío sobre Linux, en verde. Hay una prueba que lo exige en las dos

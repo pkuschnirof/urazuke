@@ -157,6 +157,10 @@ and what lets you spot an out-of-scope pending item in ten seconds.
   before step 5.
 - In all three, a date of last update.
 - In the agreement, the two new rules.
+- In the project file, one line saying which version of the method the project works with: the
+  `catalog_version` you pinned and the content fingerprint that version declares. It is what makes
+  it possible, a year from now, to know against which definition each step was given its green,
+  and what makes raising the version a decision instead of an accident.
 
 ## 4. Completeness check
 
@@ -180,6 +184,9 @@ and what lets you spot an out-of-scope pending item in ten seconds.
 - The reading test: close the session, open a new one, and ask it what the system does NOT do
   and which node of the tree a given screen hangs from. If it answers with the map, the hook
   works.
+- Is it written which version of the method the project works with, with its fingerprint? If it is
+  not, the day the definition changes nobody will be able to say whether the closed steps are still
+  closed.
 
 ## 5. Warning signs
 

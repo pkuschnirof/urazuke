@@ -242,6 +242,29 @@ método que fica vermelha se alguma deixar de dizê-lo. Nasceu de ter descoberto
 esteve obrigatório e sem ser nomeado neste documento, e o primeiro leitor que adaptou o método a
 outro formato pulou vinte e sete das quarenta e cinco regras porque nunca soube que existiam.
 
+E uma coisa mais que muda o que tem de ser lido, porque decide **qual** de todas estas exigências
+se aplica a você: **a versão do método que o projeto fixa.** A definição mecânica das comportas —
+que arquivo tem de existir em cada degrau e o que tem de dizer — é publicada como dados, com uma
+versão declarada (`catalog_version`) e uma impressão de conteúdo: um número longo calculado a
+partir do arquivo inteiro, que muda se alguém mudar uma vírgula, e que por isso serve para
+comprovar que a cópia que você tem é exatamente a que o método publicou. Um projeto **fixa** uma
+dessas versões no dia em que começa e a mantém até o fim. E isso não é comodidade: subir de versão
+no meio de um projeto é uma **regressão do estado de completude**. Se a versão nova acrescenta um
+requisito a um degrau que você já tinha dado por fechado, esse degrau volta a estar incompleto; e
+se acrescenta uma exigência que a sua ferramenta ainda não sabe medir, a comporta não diz verde:
+diz "declarado e não medido", e o degrau não avança. Isso não é uma falha, é o mecanismo
+funcionando. Subir de versão é permitido —decide o dono, escreve-se com data no registro de
+decisões do degrau 6, e antes de decidir se olha quais requisitos entram no meio, uma conta que se
+pode fazer porque cada requisito acrescentado depois do congelamento diz em que versão entrou—. O
+que não é permitido é subi-la em silêncio, nem descobrir no meio do caminho que a comporta está
+medindo contra uma definição que ninguém escolheu. E da ferramenta que te assiste, se você usa
+uma, o método exige o mesmo que de você: que anote qual versão fixou e com qual impressão, e que
+contraste esse par com o registro de versões do método, que vive no repositório do método e não no
+servidor que lhe serviu o arquivo. Fixar a um identificador interno próprio, que o método não pode
+nomear, parece fixar e não é: ninguém de fora pode auditá-lo. Que isto não estivesse escrito aqui
+até hoje era um defeito dos que o degrau 11 persegue: o dado dizia ao consumidor e a prosa nunca
+dizia ao dono, que é o único que pode decidir uma troca de versão.
+
 Dois esclarecimentos importantes. Primeiro: **a escada é neutra em relação à ferramenta**. Cada
 artefato é um arquivo, um teste ou um script; nenhum exige a minha ferramenta nem nenhuma outra.
 O Forge os automatiza (as comportas, os comandos, o registro de pendências), mas o degrau existe
