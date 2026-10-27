@@ -162,8 +162,8 @@ The annex does not invent new steps: it hangs from the ones that exist. That avo
 
 | Moment | What is added | Why there |
 |---|---|---|
-| **Previous entry 1** - scope definition | The user glossary | Without a glossary, UX-01 and UX-24 have nothing to compare against. |
-| **Previous entry 2** - scope definition | The list of profiles | Without the list, the matrix of B2 is invented in step 5 and everything derived from it is born without foundation. |
+| **Previous entry 1** - scope definition | The user glossary, in `docs/GLOSSARY.md` | Without a glossary, UX-01 and UX-24 have nothing to compare against. |
+| **Previous entry 2** - scope definition | The list of profiles, in `docs/PROFILES.md` | Without the list, the matrix of B2 is invented in step 5 and everything derived from it is born without foundation. |
 | **Anchor 1** - step 5 (the plan) | Every pending item that touches a screen declares three things: which convergence group it belongs to (B1), which profiles have it and which acceptance criteria are per profile ("given profile X, the person can do Y and cannot do Z"). Without that declaration the pending item does not pass the step. | Here the grouping and the profiles are *born*: they are planning decisions, not code ones. It is the highest-yield anchor and the one that does not exist today. |
 | **Anchor 2** - step 8 (tests in red) | The matrix becomes a test that is first seen failing: for each profile, what is reachable against its row (UX-11, UX-12, UX-15). | Without this the matrix is a document nobody looks at. |
 | **Anchor 3** - step 9 (quality) | The complete CQ catalogue with its adapter and its declared thresholds; `docs/CODE_QUALITY.md` reports per rule, not as a single number. And the matrix as a gate (UX-02, UX-03, UX-08, UX-09, UX-10, UX-16). | It is the only place where the text enters literally as a directive, and it is the gate that runs on every block with a ratchet. |

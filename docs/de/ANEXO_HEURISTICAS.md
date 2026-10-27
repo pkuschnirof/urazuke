@@ -162,8 +162,8 @@ Der Anhang erfindet keine neuen Stufen: er hängt sich an die, die es gibt. Das 
 
 | Moment | Was hinzukommt | Warum dort |
 |---|---|---|
-| **Vorheriger Eingang 1** — Definition des Geltungsbereichs | Das Glossar des Nutzers | Ohne Glossar haben UX-01 und UX-24 nichts, wogegen sie vergleichen könnten. |
-| **Vorheriger Eingang 2** — Definition des Geltungsbereichs | Die Liste der Profile | Ohne die Liste wird die Matrix aus B2 in Stufe 5 erfunden, und alles, was aus ihr abgeleitet wird, entsteht ohne Grundlage. |
+| **Vorheriger Eingang 1** — Definition des Geltungsbereichs | Das Glossar des Nutzers, in `docs/GLOSSARY.md` | Ohne Glossar haben UX-01 und UX-24 nichts, wogegen sie vergleichen könnten. |
+| **Vorheriger Eingang 2** — Definition des Geltungsbereichs | Die Liste der Profile, in `docs/PROFILES.md` | Ohne die Liste wird die Matrix aus B2 in Stufe 5 erfunden, und alles, was aus ihr abgeleitet wird, entsteht ohne Grundlage. |
 | **Anker 1** — Stufe 5 (der Plan) | Jeder offene Punkt, der eine Bildschirmseite berührt, erklärt drei Dinge: zu welcher Konvergenzgruppe er gehört (B1), welche Profile sie haben und welche Abnahmekriterien profilbezogen sind („gegeben das Profil X, die Person kann Y tun und kann Z nicht tun"). Ohne diese Erklärung besteht der offene Punkt die Stufe nicht. | Hier *entstehen* die Gruppierung und die Profile: das sind Planungsentscheidungen, keine Codeentscheidungen. Es ist der Anker mit dem größten Ertrag und der, den es heute nicht gibt. |
 | **Anker 2** — Stufe 8 (Tests in Rot) | Die Matrix wird zu einem Test, der zuerst fehlschlagen muss: pro Profil das Erreichbare gegen seine Zeile (UX-11, UX-12, UX-15). | Ohne das ist die Matrix ein Dokument, das niemand ansieht. |
 | **Anker 3** — Stufe 9 (Qualität) | Der vollständige CQ-Katalog mit seinem Adapter und seinen erklärten Schwellenwerten; `docs/CODE_QUALITY.md` berichtet pro Regel, nicht als einzelne Zahl. Und die Matrix als Gate (UX-02, UX-03, UX-08, UX-09, UX-10, UX-16). | Es ist der einzige Ort, an dem der Text wörtlich als Direktive eintritt, und es ist das Gate, das in jedem Block mit Sperrklinke läuft. |

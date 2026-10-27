@@ -1,7 +1,7 @@
 {
   "what": "The header of the prompt corpus published as an API: the version a project freezes. Declared BY HAND, for the same reason as the gate catalogue (gates/catalog.json): a project starts and finishes with the same version of the method, so what it froze has to read back the same two years from now.",
-  "corpus_version": "2026.10.2",
-  "declared_at": "2026-10-26",
+  "corpus_version": "2026.10.3",
+  "declared_at": "2026-10-27",
   "published_as": "docs/html/api/prompts.json",
   "version_scheme": {
     "recipe": "gates/schema.json#version_scheme",
@@ -38,6 +38,13 @@
       "decision": "D-061",
       "content_hash": "b751bf7a2467394a6d9cf26cd29894108f3e245b86d771706c5b6aebe7f19adc",
       "changed": "One prompt changed, and it is the first time the published corpus changes a prompt instead of its identity. The step 2 prompt now also asks for the two prior inputs of Annex H -- the user glossary, with the words people actually use for each thing, and the list of profiles, saying who each one is and what they come to do -- taken from the survey, asked for rather than invented, written as files of the project and named from the project file. The gate data already demanded both at step 2 (the two prior-input anchors, since_schema 2) and the contract did not ask for them: the asymmetry between the published data and the prose is what the step 23 retrospective found, and it is what step 11 hunts. The English piece is one piece, identical byte for byte in the eight versions, and build/prompts.mjs enforces that; the translation of the prompt was written in each of the seven. No other prompt moved."
+    },
+    {
+      "corpus_version": "2026.10.3",
+      "date": "2026-10-27",
+      "decision": "D-065",
+      "content_hash": "f5b02b3c893c75665bc66b8e8728b994b5e853a6adee0c55224ddfd7c1fe3a51",
+      "changed": "The same step 2 prompt changes again, and for the second half of the same finding. Yesterday it started asking for the two prior inputs of Annex H and left their file names to the project, because the owner had not declared any; today the owner declared them, so the prompt names them: the glossary goes to docs/GLOSSARY.md and the list of profiles to docs/PROFILES.md, and the two are named from the project file as before. It matters that the prompt says it and not only the gate data: an artifact the gate looks for by path and the prompt does not name is a gate that fails for a reason the person was never told. The English piece is one piece, identical in the eight versions, and build/prompts.mjs enforces that; the reader-facing translation was rewritten in each of the seven. No other prompt moved."
     }
   ]
 }

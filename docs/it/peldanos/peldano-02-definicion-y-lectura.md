@@ -86,8 +86,8 @@ l'agente:
 > needs before a single screen exists: the user glossary, with the words people actually use
 > for each thing as the business says them and not as the system calls them; and the list of
 > profiles, saying who each one is and what they come to do. Take both from the survey, ask
-> me for whatever is not in it instead of inventing it, write them as files of the project,
-> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
+> `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
 > changes every day; the other two change only when the system changes. Reply in my language.
 
@@ -107,8 +107,8 @@ l'agente:
 > bisogno prima che esista una sola schermata: il glossario dell'utente, con le parole che la gente
 > usa davvero per ogni cosa, come le dice il business e non come le chiama il sistema; e la lista dei
 > profili, dicendo chi è ciascuno e cosa viene a fare. Prendi entrambi dalla rilevazione, chiedimi
-> quello che non c'è invece di inventarlo, scrivili come file del progetto, nomina quei file in
-> `PROJECT.md` e marca anche lì quello che hai inferito.
+> quello che non c'è invece di inventarlo, scrivili in `docs/GLOSSARY.md` e `docs/PROFILES.md`,
+> nominali in `PROJECT.md` e marca anche lì quello che hai inferito.
 > A parte, crea `docs/STATUS.md` per lo
 > stato vivo (su cosa si sta lavorando, cosa è aperto): quel file cambia tutti i giorni; gli altri
 > due cambiano solo quando cambia il sistema. Rispondi nella mia lingua.
@@ -173,9 +173,12 @@ e ciò che ti permette di rilevare in dieci secondi una voce fuori perimetro.
 - `docs/STATUS.md`: stato vivo, separato dai precedenti.
 - I due ingressi previi dell'Allegato H, scritti e nominati in `PROJECT.md`: il **glossario
   dell'utente** (le parole che la gente usa davvero per ogni cosa) e la **lista dei profili** (chi è
-  ciascuno e cosa viene a fare), con l'inferito marcato. Il metodo non ti impone il nome di quei due
-  file — metti quello che usa il tuo progetto —; quello che esige è che esistano, che si possano
-  trovare dal file di progetto e che ci siano prima del gradino 5.
+  ciascuno e cosa viene a fare), con l'inferito marcato. Il metodo dichiara il nome di quei due file
+  — `docs/GLOSSARY.md` e `docs/PROFILES.md` —, come dichiara quello degli altri tre: un cancello non
+  può guardare un file di cui nessuno sa il nome, e finché non lo ha dichiarato, la matrice del
+  gradino 8 poteva continuare a inventarsi contro una lista che niente obbligava a esistere. Quello
+  che esige resta lo stesso: che esistano, che si possano trovare dal file di progetto e che ci
+  siano prima del gradino 5.
 - In tutti e tre, una data di ultimo aggiornamento.
 - Nel patto, le due regole nuove.
 

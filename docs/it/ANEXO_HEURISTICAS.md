@@ -162,8 +162,8 @@ L'allegato non inventa gradini nuovi: si appende a quelli che esistono. Questo e
 
 | Momento | Cosa si aggiunge | Perché lì |
 |---|---|---|
-| **Ingresso precedente 1** — definizione del perimetro | Il glossario dell'utente | Senza glossario, UX-01 e UX-24 non hanno con cosa confrontarsi. |
-| **Ingresso precedente 2** — definizione del perimetro | L'elenco dei profili | Senza l'elenco, la matrice di B2 si inventa al gradino 5 e tutto ciò che ne deriva nasce senza fondamento. |
+| **Ingresso precedente 1** — definizione del perimetro | Il glossario dell'utente, in `docs/GLOSSARY.md` | Senza glossario, UX-01 e UX-24 non hanno con cosa confrontarsi. |
+| **Ingresso precedente 2** — definizione del perimetro | L'elenco dei profili, in `docs/PROFILES.md` | Senza l'elenco, la matrice di B2 si inventa al gradino 5 e tutto ciò che ne deriva nasce senza fondamento. |
 | **Ancora 1** — gradino 5 (il piano) | Ogni pendenza che tocca una schermata dichiara tre cose: a quale gruppo di convergenza appartiene (B1), quali profili la hanno e quali criteri di accettazione sono per profilo ("dato il profilo X, la persona può fare Y e non può fare Z"). Senza quella dichiarazione la pendenza non supera il gradino. | Qui *nascono* il raggruppamento e i profili: sono decisioni di pianificazione, non di codice. È l'ancora di maggior resa e quella che oggi non esiste. |
 | **Ancora 2** — gradino 8 (prove in rosso) | La matrice diventa una prova che prima si vede fallire: per ogni profilo, il raggiungibile contro la sua riga (UX-11, UX-12, UX-15). | Senza questo la matrice è un documento che nessuno guarda. |
 | **Ancora 3** — gradino 9 (qualità) | Il catalogo CQ completo con il suo adattatore e le sue soglie dichiarate; `docs/CODE_QUALITY.md` riporta per regola, non per numero unico. E la matrice come cancello (UX-02, UX-03, UX-08, UX-09, UX-10, UX-16). | È l'unico posto dove il testo entra letterale come direttiva, ed è il cancello che corre in ogni blocco con cricchetto. |

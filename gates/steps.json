@@ -139,6 +139,18 @@
           "path": "docs/STATUS.md",
           "min_bytes": 80,
           "label": "estado del proyecto"
+        },
+        {
+          "path": "docs/GLOSSARY.md",
+          "min_bytes": 80,
+          "label": "the user glossary, in the words the business uses",
+          "since_schema": 2
+        },
+        {
+          "path": "docs/PROFILES.md",
+          "min_bytes": 80,
+          "label": "the list of profiles, who each one is and what they come to do",
+          "since_schema": 2
         }
       ],
       "verify": [

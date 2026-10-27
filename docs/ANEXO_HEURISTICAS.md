@@ -162,8 +162,8 @@ El anexo no inventa peldaños nuevos: se cuelga de los que existen. Eso evita du
 
 | Momento | Qué se agrega | Por qué ahí |
 |---|---|---|
-| **Entrada previa 1** — definición del alcance | El glosario del usuario | Sin glosario, UX-01 y UX-24 no tienen contra qué comparar. |
-| **Entrada previa 2** — definición del alcance | La lista de perfiles | Sin la lista, la matriz de B2 se inventa en el peldaño 5 y todo lo que se deriva de ella nace sin fundamento. |
+| **Entrada previa 1** — definición del alcance | El glosario del usuario, en `docs/GLOSSARY.md` | Sin glosario, UX-01 y UX-24 no tienen contra qué comparar. |
+| **Entrada previa 2** — definición del alcance | La lista de perfiles, en `docs/PROFILES.md` | Sin la lista, la matriz de B2 se inventa en el peldaño 5 y todo lo que se deriva de ella nace sin fundamento. |
 | **Ancla 1** — peldaño 5 (el plan) | Todo pendiente que toca una pantalla declara tres cosas: a qué grupo de convergencia pertenece (B1), qué perfiles la tienen y qué criterios de aceptación son por perfil ("dado el perfil X, la persona puede hacer Y y no puede hacer Z"). Sin esa declaración el pendiente no pasa el peldaño. | Acá *nacen* la agrupación y los perfiles: son decisiones de planificación, no de código. Es el ancla de mayor rendimiento y la que hoy no existe. |
 | **Ancla 2** — peldaño 8 (tests en rojo) | La matriz se convierte en un test que primero se ve fallar: por cada perfil, lo alcanzable contra su fila (UX-11, UX-12, UX-15). | Sin esto la matriz es un documento que nadie mira. |
 | **Ancla 3** — peldaño 9 (calidad) | El catálogo CQ completo con su adaptador y sus umbrales declarados; `docs/CODE_QUALITY.md` reporta por regla, no por número único. Y la matriz como compuerta (UX-02, UX-03, UX-08, UX-09, UX-10, UX-16). | Es el único lugar donde el texto entra literal como directiva, y es la compuerta que corre en cada bloque con trinquete. |

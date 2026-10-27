@@ -94,8 +94,8 @@ machst es, nicht der Agent:
 > needs before a single screen exists: the user glossary, with the words people actually use
 > for each thing as the business says them and not as the system calls them; and the list of
 > profiles, saying who each one is and what they come to do. Take both from the survey, ask
-> me for whatever is not in it instead of inventing it, write them as files of the project,
-> name those files in `PROJECT.md`, and mark what you inferred there too. Separately, create
+> me for whatever is not in it instead of inventing it, write them as `docs/GLOSSARY.md` and
+> `docs/PROFILES.md`, name them in `PROJECT.md`, and mark what you inferred there too. Separately, create
 > `docs/STATUS.md` for the living state (what is being worked on, what is open): that file
 > changes every day; the other two change only when the system changes. Reply in my language.
 
@@ -116,9 +116,9 @@ machst es, nicht der Agent:
 > braucht, bevor ein einziger Bildschirm existiert: das Benutzerglossar, mit den Wörtern, die die
 > Leute wirklich für jede Sache benutzen, so wie das Geschäft sie sagt und nicht so, wie das System
 > sie nennt; und die Profilliste, die sagt, wer jeder ist und was er zu tun kommt. Nimm beide aus
-> der Erhebung, bitte mich um das, was nicht darin steht, statt es zu erfinden, schreib sie als
-> Dateien des Projekts, nenn diese Dateien in `PROJECT.md` und markiere auch dort, was du
-> erschlossen hast.
+> der Erhebung, bitte mich um das, was nicht darin steht, statt es zu erfinden, schreib sie in
+> `docs/GLOSSARY.md` und `docs/PROFILES.md`, nenn sie in `PROJECT.md` und markiere auch dort,
+> was du erschlossen hast.
 > Lege getrennt davon `docs/STATUS.md` für den
 > lebenden Zustand an (woran gearbeitet wird, was offen ist): diese Datei ändert sich jeden Tag;
 > die anderen beiden ändern sich nur, wenn sich das System ändert. Antworte in meiner Sprache.
@@ -188,9 +188,11 @@ des Umfangs zu erkennen.
 - Die zwei Voreingaben von Anhang H, geschrieben und in `PROJECT.md` benannt: das
   **Benutzerglossar** (die Wörter, die die Leute wirklich für jede Sache benutzen) und die
   **Profilliste** (wer jeder ist und was er zu tun kommt), mit markiertem Erschlossenen. Die Methode
-  schreibt dir den Namen dieser zwei Dateien nicht vor — nimm den, den dein Projekt benutzt —; was
-  sie verlangt, ist, dass sie existieren, dass man sie von der Projektdatei aus finden kann und dass
-  sie vor Schritt 5 da sind.
+  erklärt den Namen dieser zwei Dateien — `docs/GLOSSARY.md` und `docs/PROFILES.md` —, so wie sie
+  den der anderen drei erklärt: ein Tor kann keine Datei ansehen, deren Namen niemand kennt, und
+  solange sie keinen erklärte, konnte die Matrix von Schritt 8 weiter gegen eine Liste erfunden
+  werden, die nichts zu existieren zwang. Was sie verlangt, bleibt dasselbe: dass sie existieren,
+  dass man sie von der Projektdatei aus finden kann und dass sie vor Schritt 5 da sind.
 - In allen dreien ein Datum der letzten Aktualisierung.
 - In der Vereinbarung die zwei neuen Regeln.
 

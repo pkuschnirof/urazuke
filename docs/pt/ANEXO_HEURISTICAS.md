@@ -162,8 +162,8 @@ O anexo não inventa passos novos: pendura-se nos que existem. Isso evita duplic
 
 | Momento | O que se agrega | Por que ali |
 |---|---|---|
-| **Entrada prévia 1** - definição de escopo | O glossário do usuário | Sem glossário, UX-01 e UX-24 não têm com o que se comparar. |
-| **Entrada prévia 2** - definição de escopo | A lista de perfis | Sem a lista, a matriz de B2 se inventa no passo 5 e tudo o que se deriva dela nasce sem base. |
+| **Entrada prévia 1** - definição de escopo | O glossário do usuário, em `docs/GLOSSARY.md` | Sem glossário, UX-01 e UX-24 não têm com o que se comparar. |
+| **Entrada prévia 2** - definição de escopo | A lista de perfis, em `docs/PROFILES.md` | Sem a lista, a matriz de B2 se inventa no passo 5 e tudo o que se deriva dela nasce sem base. |
 | **Âncora 1** - passo 5 (o plano) | Todo pendente que toca uma tela declara três coisas: a que grupo de convergência pertence (B1), que perfis a tem e que critérios de aceitação são por perfil ("dado o perfil X, a pessoa pode fazer Y e não pode fazer Z"). Sem essa declaração o pendente não passa o passo. | Aqui *nascem* o agrupamento e os perfis: são decisões de planejamento, não de código. É a âncora de maior rendimento e a que hoje não existe. |
 | **Âncora 2** - passo 8 (testes em vermelho) | A matriz se converte em um teste que primeiro se vê falhar: por cada perfil, o alcançável contra a sua linha (UX-11, UX-12, UX-15). | Sem isso a matriz é um documento que ninguém olha. |
 | **Âncora 3** - passo 9 (qualidade) | O catálogo CQ completo com o seu adaptador e os seus limiares declarados; `docs/CODE_QUALITY.md` reporta por regra, não por número único. E a matriz como comporta (UX-02, UX-03, UX-08, UX-09, UX-10, UX-16). | É o único lugar onde o texto entra literal como diretiva, e é a comporta que corre em cada bloco com catraca. |
