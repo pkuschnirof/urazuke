@@ -43,7 +43,7 @@ para você, ou se você não a quer, o método continua igualmente completo.
 E isto não é uma declaração de boa vontade: **está no dado e pode ser medido.** A definição
 mecânica das comportas que o método publica para qualquer consumidor não nomeia nenhuma ferramenta
 nem nenhum protocolo, nem os meus. Há um teste automático que o exige em cada superfície onde
-poderia se infiltrar (as fontes, os dois arquivos publicados, seu índice e o documento gerado), e
+poderia se infiltrar (as fontes, os arquivos publicados, seu índice e o documento gerado), e
 qualquer pessoa pode comprovar hoje, em um segundo, sobre o arquivo servido:
 
 ```

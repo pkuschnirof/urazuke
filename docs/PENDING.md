@@ -1010,8 +1010,83 @@ no una edición de los datos. Entran al índice como recursos propios.
 - *P5:* dado el perfil auditor, esta persona puede comprobar que ningún identificador le falta a
   ningún idioma.
 
-**Depende de:** PND-002 (van al índice) y PND-017 (son diez archivos porque el corpus va a diez
-idiomas).
+**Depende de:** PND-002 (van al índice) y PND-016 (el corpus va a diez idiomas). *El número de
+este segundo decía `PND-017`, que es el error de traducción del italiano; la referencia estaba
+mal desde que se escribió la entrada y se corrige acá, a la vista, el 2026-10-28.*
+
+**Avance (2026-10-28, decisión D-074). Construido y medido; falta el efecto en producción.**
+
+El catálogo existe: `docs/html/api/labels.json`, `labels_version 2026.10.1`, huella
+`0f3c78defe6f`, generado por `build/labels_api.mjs`. Lleva el título de los veinticuatro
+peldaños, el título de las ocho estaciones y el enunciado de las cuarenta y seis reglas del
+Anexo H, en los ocho idiomas que la prosa declara, con su entrada en el índice, su registro
+append-only y su dirección por versión. Lo medido, pegado tal cual:
+
+```
+node build/labels_api.mjs
+api: docs/html/api/labels.json (catalogo 2026.10.1, 8 idiomas x 78 ids = 624 textos extraidos, huella 0f3c78defe6f)
+
+node build/api_check.mjs
+gates.json: la huella recalculada coincide (version 2026.10.10, 280d8745797b)
+prompts.json: la huella recalculada coincide (version 2026.10.6, 03866b055357)
+labels.json: la huella recalculada coincide (version 2026.10.1, 0f3c78defe6f)
+index.json: cita las versiones y huellas vivas de gates.json 2026.10.10/280d8745797b,
+  prompts.json 2026.10.6/03866b055357, labels.json 2026.10.1/0f3c78defe6f
+versiones inmutables: comprobado -- 17 copias, cada una con la huella que su registro anota
+  (gates/ 10, prompts/ 6, labels/ 1)
+
+node --test
+# tests 383   # pass 383   # fail 0        (eran 360 antes de este cambio: 23 nuevas,
+                                            doce de ellas rojos deliberados)
+```
+
+**Lo que no es:** una traducción nueva. Las traducciones ya estaban en la prosa, así que esto es
+una **extracción**, el mismo mecanismo que ya resolvía el enunciado inglés de las reglas. Y hay
+una prueba que lo exige sobre las **624** cadenas: cada una tiene que aparecer **literal** en el
+documento del idioma del que dice salir. Es la que impide que este archivo se vuelva una segunda
+versión del método, que es el riesgo propio de un catálogo de textos.
+
+**Lo que quedó afuera, con su razón y su medición** (declarado en `scope`, adentro de la huella):
+el vocabulario de evaluadores, cuya descripción es nivel de datos y existe en un solo idioma
+—traducirla sería escribir texto acá—; y las preguntas de verificación de cada peldaño, porque la
+lista que el dato declara y la que la prosa del contrato lleva **no son la misma**: medido el
+2026-10-28, **cero de veinticuatro** peldaños coinciden en cantidad y la prosa es la más larga en
+todos, así que emparejarlas por posición las etiquetaría mal. Esa medición se reproduce en una
+prueba, para que la exclusión no se vuelva falsa sola.
+
+**Los ocho idiomas y la decisión de diez.** El dueño decidió diez el 2026-10-24 y esto publica
+ocho, que son los que tienen prosa: un idioma sin prosa no tiene texto que extraer. No hay nada
+que hacer acá para llegar a diez —la lista se **deriva** de `languages.prose_versions`, así que el
+día que `PND-016` lleve el corpus a diez el catálogo publica diez sin tocar una línea de este
+programa—, y el recurso lo dice de frente en `languages.note`.
+
+**El desvío propio que este cambio atrapó, y vale más que el recurso.**
+`build/portal_verify.mjs` —el programa que después de empujar le pregunta a producción si sirve lo
+que este repositorio commiteó— llevaba su lista de recursos **clavada en dos**. Con un tercero
+publicado, la publicación le habría preguntado por dos de tres y habría cerrado **en verde sin
+haber mirado el tercero**: el defecto de D-057 otra vez, en otra escala. Ahora la lista sale de la
+que el índice declara, igual que la de las copias por versión. Medido contra producción antes de
+fusionar, con el arreglo puesto:
+
+```
+node build/portal_verify.mjs --rondas 1          (código de salida 1)
+gates.json:   coincide    -- HTTP 200, 113626 bytes, version 2026.10.10, huella 280d8745797b
+prompts.json: coincide    -- HTTP 200, 102716 bytes, version 2026.10.6,  huella 03866b055357
+labels.json:  ilegible    -- HTTP 404, 13 bytes: 404 Not Found
+index.json:   otra_huella -- HTTP 200, 9118 bytes, el indice servido no cita la huella de labels.json
+No se pudo leer produccion. La publicacion ocurrio; lo que falta es la evidencia de que llego.
+```
+
+Ese 404 es el correcto: el recurso todavía no se fusionó. Y es la prueba de que la guarda que
+acabo de arreglar de verdad mira el tercer recurso, porque antes del arreglo habría dicho que todo
+estaba bien.
+
+**Qué falta para cerrar, y es de dos tipos.** (1) El efecto en producción: el recurso está
+construido en la máquina y eso no es un efecto (D-057); cierra cuando una corrida de publicación
+real lo sirva en `https://yujin.app/urazuke/api/labels.json` con su huella, y eso depende de la
+fusión, que es del dueño. (2) La decisión del dueño sobre si esta entrada cierra con ocho idiomas
+—con la obligación de diez viviendo en `PND-016`, que es donde está su costo— o si se queda
+abierta hasta que el corpus sea diez.
 
 ---
 

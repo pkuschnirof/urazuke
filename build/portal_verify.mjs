@@ -30,13 +30,20 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { raiz } from './gates_lib.mjs';
+import { RECURSOS } from './index_api.mjs';
 
-export const ARCHIVOS = ['gates.json', 'prompts.json'];
+// Los recursos salen del indice y NO se vuelven a declarar aca, por la misma razon que en
+// build/version_inmutable.mjs: el indice es el que declara que publica la interfaz, y dos
+// listas que hay que acordarse de mantener juntas es la forma mas comun del defecto que este
+// repositorio persigue. Medido el 2026-10-28, al agregar el catalogo de textos: esta lista
+// estaba clavada en dos, asi que la publicacion habria preguntado a produccion por dos
+// recursos de tres y habria cerrado en verde sin haber mirado el tercero (D-074).
+export const ARCHIVOS = RECURSOS.map((r) => r.name);
 export const INDICE = 'index.json';
-// El indice se pregunta igual que los dos recursos, con el mismo vocabulario de tres
-// estados, pero NO pasa por clasificar(): esa funcion se apoya en content_hash.value y
-// el indice no tiene huella propia a proposito (D-056). Lo que se le exige es otra cosa:
-// que las huellas que CITA sean las que declara lo commiteado.
+// El indice se pregunta igual que los recursos, con el mismo vocabulario de tres estados,
+// pero NO pasa por clasificar(): esa funcion se apoya en content_hash.value y el indice no
+// tiene huella propia a proposito (D-056). Lo que se le exige es otra cosa: que las huellas
+// que CITA sean las que declara lo commiteado.
 export const TODOS = [...ARCHIVOS, INDICE];
 export const BASE = 'https://yujin.app/urazuke/api';
 export const PREFIJO_MAX = 120;

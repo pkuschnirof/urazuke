@@ -48,7 +48,7 @@ non ti serve, o non lo vuoi, il metodo ti resta altrettanto completo.
 E questa non è una dichiarazione di buona volontà: **sta nel dato e si può misurare.** La
 definizione meccanica delle comporte che il metodo pubblica per qualunque consumatore non nomina
 nessuno strumento né nessun protocollo, nemmeno i miei. C'è un test automatico che lo esige su ogni
-superficie dove un nome potrebbe infilarsi (le fonti, i due file pubblicati, il loro indice e il
+superficie dove un nome potrebbe infilarsi (le fonti, i file pubblicati, il loro indice e il
 documento generato), e chiunque può verificarlo oggi, in un secondo, sul file servito:
 
 ```

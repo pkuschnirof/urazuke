@@ -68,20 +68,24 @@ test('el campo what dice que protege la huella y que no (PND-009)', () => {
 // 2026.10.6 y 2026.10.4). La trampa estaba anticipada en el propio pendiente desde el
 // 2026-10-24: "si esa frase vive en what, y what esta fuera de la huella, es una
 // declaracion de seguridad que un atacante puede editar".
-test('la frase del alcance de la huella es UNA SOLA COPIA, y viaja en los tres (PND-009)', () => {
-  const gates = JSON.parse(readFileSync(join(raiz, 'docs', 'html', 'api', 'gates.json'), 'utf8'));
-  const prompts = JSON.parse(readFileSync(join(raiz, 'docs', 'html', 'api', 'prompts.json'), 'utf8'));
-  for (const [nombre, payload] of [['gates.json', gates], ['prompts.json', prompts], ['index.json', indiceEnDisco]]) {
+// CUANTOS son no se escribe aca: son los recursos que el indice declara, mas el indice. Un
+// recurso nuevo que no lleve la frase cae por esta prueba sin que nadie tenga que acordarse
+// de agregarlo a una lista -- que es la razon por la que la lista sale del declarante.
+test('la frase del alcance de la huella es UNA SOLA COPIA, y viaja en todos (PND-009)', () => {
+  const recursos = RECURSOS.map((r) => [r.name, JSON.parse(readFileSync(join(raiz, 'docs', 'html', 'api', r.name), 'utf8'))]);
+  const todos = [...recursos, ['index.json', indiceEnDisco]];
+  assert.ok(recursos.length >= 2, 'la interfaz publica mas de un recurso');
+  for (const [nombre, payload] of todos) {
     assert.ok(payload.what.includes(ALCANCE_DE_LA_HUELLA), nombre + ' lleva la frase, literal y no parafraseada');
   }
   // Una sola copia quiere decir que es la MISMA cadena: si alguien la reescribe en un
-  // archivo, esto cae en vez de dejar tres versiones de la misma promesa.
-  assert.equal(new Set([gates, prompts, indiceEnDisco].map((p) => {
+  // archivo, esto cae en vez de dejar varias versiones de la misma promesa.
+  assert.equal(new Set(todos.map(([, p]) => {
     const i = p.what.indexOf(ALCANCE_DE_LA_HUELLA);
     return p.what.slice(i);
-  })).size, 1, 'la misma frase, byte a byte, en los tres');
-  // Y en los dos recursos esta adentro de lo que la huella cubre, que era la condicion.
-  for (const [nombre, payload] of [['gates.json', gates], ['prompts.json', prompts]]) {
+  })).size, 1, 'la misma frase, byte a byte, en los ' + todos.length);
+  // Y en los recursos esta adentro de lo que la huella cubre, que era la condicion.
+  for (const [nombre, payload] of recursos) {
     assert.ok(payload.content_hash.covers.includes('what'), nombre + ': `what` esta cubierto por la huella');
   }
   // El indice no: no tiene huella propia, y eso es la decision, no un olvido.

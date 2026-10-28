@@ -6,7 +6,7 @@
     "why": "A directory, not a catalogue: its identity is the identity of what it points at. A hash of its own would force a third declared version line, that nobody declares, every time one of the listed resources changes.",
     "staleness_check": "Fetch a listed resource, recompute its hash over the canonical form declared here for that resource, and compare it with the hash quoted here. If the two differ, this index is stale, and you know that without having to trust it."
   },
-  "generated_at": "2026-10-28T00:11:13.951Z",
+  "generated_at": "2026-10-28T10:50:30.508Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "canonical_base": "https://yujin.app/urazuke/api/",
@@ -92,6 +92,39 @@
         "url": "https://github.com/pkuschnirof/urazuke/blob/main/prompts/catalog.json",
         "fetch_url": "https://raw.githubusercontent.com/pkuschnirof/urazuke/main/prompts/catalog.json",
         "path": "prompts/catalog.json",
+        "field": "changelog",
+        "note": "Append-only: one entry per declared version with the content hash it produced, and a hash already recorded is never edited. It lives in the method repository, not on this host, so the pair (version -> hash) can be checked against a source other than the server that handed you the file. It is not part of any published payload, so recording an entry cannot change the hash that entry records.",
+        "fetch_note": "Two addresses because they are two different things: url is the page a person reads, which this host serves as HTML, and fetch_url is the same file as JSON, which is what a tool downloads. Both are declared so no consumer has to derive one from the other: a derived address is an invented address."
+      }
+    },
+    {
+      "name": "labels.json",
+      "url": "https://yujin.app/urazuke/api/labels.json",
+      "media_type": "application/json",
+      "bytes": 91432,
+      "what": "The texts of the Urazuke method by stable identifier, in the languages its prose is published in. It exists because the gate catalogue tells a consumer not to print its texts and to take them from its own catalogue instead, and until this resource there was no catalogue to take them from: the instruction was right and impossible to obey, so every tool ended up writing its own translations of the titles of the method. Nothing here is translated by this file. Every string is EXTRACTED from the prose of the method, which already carries the translations; if a text is not in the prose, publication is refused instead of inventing it. Read the opaque id from the gate catalogue and look it up here under the language you are rendering for. And about the content hash, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls the host that served the file. The anchors that do not live on that host are the version ledger of each resource, which lives in the method repository and records the pair (version -> hash) append-only, and the transport security of the connection. There is no cryptographic signature: that is a written decision with its cost on the table, not an oversight.",
+      "version_field": "labels_version",
+      "version": "2026.10.1",
+      "content_hash": {
+        "field": "content_hash.value",
+        "algo": "sha256",
+        "encoding": "hex_lower",
+        "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
+        "value": "0f3c78defe6fb19192098acd1f707814851bd832465c6901ef2a0e336835e66b"
+      },
+      "immutable": {
+        "base": "https://yujin.app/urazuke/api/labels/",
+        "url_pattern": "<base><version>.json",
+        "current": "https://yujin.app/urazuke/api/labels/2026.10.1.json",
+        "versions": [
+          "2026.10.1"
+        ],
+        "note": "The live url above always serves whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. Each address below returns one declared version and only that one, and versions are never removed. What the address promises is the content whose hash the version ledger records for that version, not the bytes: the keys the hash excludes are publication metadata and a regeneration can move them. Recompute and compare, which is what you were going to do anyway."
+      },
+      "version_ledger": {
+        "url": "https://github.com/pkuschnirof/urazuke/blob/main/labels/catalog.json",
+        "fetch_url": "https://raw.githubusercontent.com/pkuschnirof/urazuke/main/labels/catalog.json",
+        "path": "labels/catalog.json",
         "field": "changelog",
         "note": "Append-only: one entry per declared version with the content hash it produced, and a hash already recorded is never edited. It lives in the method repository, not on this host, so the pair (version -> hash) can be checked against a source other than the server that handed you the file. It is not part of any published payload, so recording an entry cannot change the hash that entry records.",
         "fetch_note": "Two addresses because they are two different things: url is the page a person reads, which this host serves as HTML, and fetch_url is the same file as JSON, which is what a tool downloads. Both are declared so no consumer has to derive one from the other: a derived address is an invented address."
