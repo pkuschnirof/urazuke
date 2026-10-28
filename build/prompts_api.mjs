@@ -27,7 +27,7 @@
 // Uso: node build/prompts_api.mjs
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { raiz, huellaDeContenido, gitCommitCorto, esLineaDeComandos } from './gates_lib.mjs';
+import { raiz, huellaDeContenido, gitCommitCorto, esLineaDeComandos, ALCANCE_DE_LA_HUELLA } from './gates_lib.mjs';
 
 const dirPrompts = join(raiz, 'prompts');
 const dirContratos = join(raiz, 'docs', 'en', 'peldanos');
@@ -59,7 +59,7 @@ export function armarContenido() {
     // la huella (PND-010): es la clave donde el archivo dice que es y que viaja tal cual, asi que
     // una copia congelada alterada ahi se describiria mal y la huella recalculada seguiria
     // coincidiendo. Lo que la huella cubre tiene que estar en el contenido que se canonicaliza.
-    what: 'The prompts of the Urazuke method, published as data. The method owns them; a tool consumes them. They are one English piece, identical in every version of the method -- the list of versions is declared in the gate catalogue under languages.prose_versions -- and a tool does not rewrite them.',
+    what: 'The prompts of the Urazuke method, published as data. The method owns them; a tool consumes them. They are one English piece, identical in every version of the method -- the list of versions is declared in the gate catalogue under languages.prose_versions -- and a tool does not rewrite them. ' + ALCANCE_DE_LA_HUELLA,
     corpus_version: catalogo.corpus_version,
     language: 'en',
     languages: {

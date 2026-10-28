@@ -26,6 +26,8 @@ import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { raiz, huellaDeContenido } from './gates_lib.mjs';
 import { verificarIndice, leerDisco } from './index_api.mjs';
+import { verificar as verificarInmutables, congeladasEnDisco, RECURSOS as RECURSOS_INMUTABLES } from './version_inmutable.mjs';
+import { CARPETA_INMUTABLE } from './gates_lib.mjs';
 
 const VOLATILES = {
   'prompts.json': ['version', 'generated_at'],
@@ -84,10 +86,25 @@ function verificarCitasDelIndice() {
   return true;
 }
 
+// Las copias por version: lo mismo que un consumidor puede hacer con la direccion
+// inmutable, hecho aca sobre lo commiteado. Es la unica comprobacion de este archivo que
+// mira el registro de versiones, que es el ancla que no vive en el alojamiento (PND-008).
+function verificarInmutablesAca() {
+  const { revisadas, hallazgos } = verificarInmutables();
+  if (hallazgos.length) {
+    for (const x of hallazgos) console.error('[' + x.recurso + '] ' + x.que + ' -- arreglo: ' + x.arreglo);
+    return false;
+  }
+  const detalle = RECURSOS_INMUTABLES.map((r) => CARPETA_INMUTABLE[r.name] + '/ ' + congeladasEnDisco(r).length).join(', ');
+  console.log('versiones inmutables: comprobado -- ' + revisadas + ' copias, cada una con la huella que su registro anota (' + detalle + ')');
+  return true;
+}
+
 const huellas = () => {
   const recursos = ['gates.json', 'prompts.json'].map((n) => verificarHuella(n, antes[n])).every(Boolean);
   const indice = verificarCitasDelIndice();
-  return recursos && indice;
+  const inmutables = verificarInmutablesAca();
+  return recursos && indice && inmutables;
 };
 
 if (process.argv.includes('--huella')) {
@@ -96,8 +113,13 @@ if (process.argv.includes('--huella')) {
 
 if (!huellas()) fallas++;
 
-for (const script of ['prompts_api.mjs', 'gates_api.mjs', 'index_api.mjs']) {
-  execFileSync(process.execPath, [join(raiz, 'build', script)], { stdio: 'inherit' });
+// La copia de la version vigente va en la misma lista: si no, regenerar deja el archivo
+// vivo con un `generated_at` nuevo y su copia con el anterior, y el arbol commiteado queda
+// con los dos distintos. No rompe nada --la promesa es el contenido cubierto, no los
+// bytes-- pero obliga a `congelar` a reescribirla en cada corrida, y una diferencia que
+// aparece sola en cada clon es ruido que tapa las que importan.
+for (const script of [['prompts_api.mjs'], ['gates_api.mjs'], ['index_api.mjs'], ['version_inmutable.mjs', '--vigente']]) {
+  execFileSync(process.execPath, [join(raiz, 'build', script[0]), ...script.slice(1)], { stdio: 'inherit' });
 }
 
 for (const nombre of ARCHIVOS) {

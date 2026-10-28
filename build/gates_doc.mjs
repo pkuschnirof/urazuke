@@ -104,10 +104,16 @@ export function generar() {
   p('- What a newly required evaluator means: ' + fij.upgrade.what_a_new_required_evaluator_means);
   p('- Every covered key has existed since **' + fij.upgrade.covered_keys_since + '**. ' + fij.upgrade.covered_keys_note);
   p();
-  p('**A prior version.** The canonical URL serves `' + fij.prior_version_content.canonical_url_serves + '`.');
+  p('**A prior version.** The canonical URL serves `' + fij.prior_version_content.canonical_url_serves + '`,');
+  p('and every declared version also has an address of its own: `' + fij.prior_version_content.immutable_url_pattern + '`.');
   p();
-  p('- ' + fij.prior_version_content.how);
+  p('- ' + fij.prior_version_content.immutable_url_what);
+  p('- Where it is declared: ' + fij.prior_version_content.immutable_url_where);
+  p('- This version lives at `' + fij.prior_version_content.immutable_path + '` under the canonical base, and the first version with an address is **' + fij.prior_version_content.first_version_with_an_address + '**.');
+  p('- No purge: ' + fij.prior_version_content.no_purge);
+  p('- What the address promises: ' + fij.prior_version_content.what_is_promised);
   p('- Not guaranteed: ' + fij.prior_version_content.not_guaranteed);
+  p('- ' + fij.prior_version_content.how);
   p();
   p('## The language of each text');
   p();

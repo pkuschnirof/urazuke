@@ -80,7 +80,15 @@ test('el indice publicado tampoco, y su unica excepcion es una direccion -- prob
     indice.canonical_base,
     ...(indice.mirrors ?? []).map((m) => m.base),
     ...indice.resources.map((r) => r.url),
-  ]);
+    // Y las de la direccion inmutable, que son direcciones por el mismo motivo: la base de
+    // la carpeta del recurso y la de su version vigente (PND-008). La excepcion no se
+    // ensancha de concepto -- sigue siendo "el alojamiento solo aparece como una direccion
+    // que este archivo declara" --, se ensancha la lista de las que declara. Y la direccion
+    // ABSOLUTA de una version vive solo aca: el recurso declara su camino RELATIVO, porque
+    // el nivel de datos no nombra el alojamiento y el metodo publica la cuenta medida.
+    ...indice.resources.map((r) => r.immutable?.base),
+    ...indice.resources.map((r) => r.immutable?.current),
+  ].filter(Boolean));
   const hallazgos = hallazgosEnPayload(indice);
   const sobrantes = hallazgos.filter((h) => {
     const m = /^yujin @ [^=]+= (.*)$/.exec(h);

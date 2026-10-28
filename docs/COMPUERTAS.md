@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.9** - schema **2**
-- content fingerprint `a4f6c78fa040f72e...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.10** - schema **2**
+- content fingerprint `280d8745797b66f2...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -25,7 +25,7 @@ What a project pins, and what it costs to change it. A project pins ONE catalog_
 
 For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.9`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.10`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -51,6 +51,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.7** (2026-10-27, D-068) -- `7575673f723e498c...`
 - **2026.10.8** (2026-10-27, D-070) -- `54b57e7871914e28...`
 - **2026.10.9** (2026-10-27, D-071) -- `a4f6c78fa040f72e...`
+- **2026.10.10** (2026-10-27, D-073) -- `280d8745797b66f2...`
 
 ## Pinning: what a tool that freezes the method owes
 
@@ -69,10 +70,16 @@ The pair a project freezes: `catalog_version`, `content_hash`.
 - What a newly required evaluator means: An installation that cannot measure a required evaluator reports declared and not measured, and the step does not advance (see compatibility). That is the mechanism by which an upgrade stops a project, and it is the intended behaviour, not a defect.
 - Every covered key has existed since **2026.10.1**. Every top-level key the fingerprint covers has existed since the first version the method published, so no consumer can hold a pinned version that is missing one of them. A key added later records its arrival in the ledger entry of its version.
 
-**A prior version.** The canonical URL serves `current_only`.
+**A prior version.** The canonical URL serves `current_only`,
+and every declared version also has an address of its own: `<canonical base>/<resource folder>/<version>.json -- one folder per resource, because each resource declares its own version line and a folder named after one version would be naming the other resource's content with it.`.
 
+- The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.
+- Where it is declared: Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.
+- This version lives at `gates/2026.10.10.json` under the canonical base, and the first version with an address is **2026.10.1**.
+- No purge: Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.
+- What the address promises: The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.
+- Not guaranteed: Byte identity is not promised, only the covered content, for the reason above. And an address on this host is not a substitute for the ledger: if this host is compromised, both the file and its hash can be rewritten together, so the pair (version -> hash) is still checked against the ledger, which lives elsewhere.
 - The canonical URL serves the current version only. The content of a prior version is in the method repository: the ledger gives the pair (version -> content hash) and the published file is committed there, so searching that history for a recorded hash finds the commit that published that version.
-- Not guaranteed: There is no per-version URL on this host today, and saying so here is cheaper than letting a consumer discover it. A tool that needs to re-read the exact content it pinned reads it from its own frozen copy; the fingerprint is what tells it the copy is intact.
 
 ## The language of each text
 

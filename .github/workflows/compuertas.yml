@@ -87,6 +87,14 @@ jobs:
           grep -q 'coincide con los datos' documento.txt || { echo "::error::la comprobacion del documento no dijo nada: no corrio, y un paso que no corrio no es un verde"; exit 1; }
           rm documento.txt
 
+      - name: Exigir que cada version publicada tenga su copia con la huella de su registro
+        run: |
+          set -o pipefail
+          node build/version_inmutable.mjs | tee inmutables.txt
+          grep -q '^versiones inmutables: comprobado' inmutables.txt || { echo "::error::la guarda de las versiones inmutables no dijo que comprobo: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          grep -q '0 hallazgos' inmutables.txt || { echo "::error::una version publicada se quedo sin su copia, o una copia no tiene la huella que su registro anota (el detalle, arriba)"; exit 1; }
+          rm inmutables.txt
+
       - name: Exigir que la prosa nombre la version que un proyecto fija
         run: |
           set -o pipefail

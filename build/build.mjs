@@ -32,6 +32,12 @@ execFileSync(process.execPath, [join(raiz, 'build', 'gates_api.mjs')], { stdio: 
 // El indice de la API (docs/html/api/index.json): va DESPUES de los dos recursos, porque
 // cita la version y la huella que cada uno declara. Si citara una vieja no se publica.
 execFileSync(process.execPath, [join(raiz, 'build', 'index_api.mjs')], { stdio: 'inherit' });
+// Las copias por version de la direccion inmutable (PND-008). Corre VERIFICANDO y no
+// congelando: congelar una version anterior necesita la historia de git y la cadena clona a
+// profundidad 1, asi que es una operacion local y deliberada (--congelar). Lo que esto
+// exige es que ninguna version del registro se quede sin su copia y que cada copia tenga la
+// huella que su registro anota. La construccion sigue corriendo sin red.
+execFileSync(process.execPath, [join(raiz, 'build', 'version_inmutable.mjs'), '--vigente'], { stdio: 'inherit' });
 execFileSync(process.execPath, [join(raiz, 'build', 'gates_doc.mjs'), '--check'], { stdio: 'inherit' });
 const conv = join(raiz, 'build', 'md2html.mjs');
 

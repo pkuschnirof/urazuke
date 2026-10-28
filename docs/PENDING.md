@@ -710,7 +710,8 @@ archivo. **Commit:** `e286902`, publicado en `pkuschnirof/rpaforce` `f89d273`. D
 
 - **Nodo:** `interfaz-publica/api` [nodo propuesto]
 - **Grupo:** G-API · **Severidad:** avisa · **Repositorio:** método (el generador; el espejo la
-  arrastra solo) · **Estado: abierto**
+  arrastra solo) · **Estado: CERRADO** el 2026-10-27, en `catalog_version 2026.10.10` y
+  `corpus_version 2026.10.6`.
 - **Decisión del dueño (2026-10-24): opción (b), hacerlo, y SIN PURGA.** Una dirección inmutable
   que un día desaparece es peor que no haberla publicado, porque rompe exactamente a quien confió
   en la promesa; y un megabyte por año no es un problema que haya que resolver.
@@ -746,12 +747,95 @@ vivo—. El índice dice cuál es la dirección viva y cuál la congelada.
 **Depende de:** PND-002 (el índice tiene que existir primero, porque es el que declara cuál es
 cuál).
 
+**Lo que entró, y dos cosas de la especificación cambiaron al medirlas.**
+
+*Una carpeta por RECURSO y no una por versión.* La especificación decía «una carpeta por versión
+con los dos archivos», que es lo que el auditor había propuesto (`/api/2026.10.2/gates.json`). No
+se puede: cada recurso declara **su propia línea de versión** —hoy el catálogo va en `2026.10.10`
+y el corpus de prompts en `2026.10.6`—, así que una carpeta con un número adentro estaría
+nombrando con la versión de uno el contenido del otro. Quedó
+`docs/html/api/gates/2026.10.10.json` y `docs/html/api/prompts/2026.10.6.json`. El espejo las
+arrastra solas, como la especificación anticipaba: la publicación copia el directorio entero.
+
+*La promesa es el CONTENIDO y no los bytes, y eso corrige la comprobación que la especificación
+pedía.* Decía que la copia de la versión vigente tiene que ser «idéntica byte a byte» al archivo
+vivo. No sirve: `generated_at` y `git_commit` quedan **fuera** de la huella a propósito —si
+entraran, cada regeneración cambiaría la huella sin que cambie una sola regla—, así que prometer
+los bytes es prometer algo que la primera regeneración rompe. Lo que se promete es el contenido que
+la huella cubre, y la comprobación es la que de verdad vale: la huella **recalculada** de cada
+copia tiene que ser la que su propia entrada del registro anota. Eso es, literalmente, el criterio
+de aceptación de P5.
+
+*Y hasta dónde llega la promesa de una versión vieja, medido y escrito en el dato.* La huella de
+una versión cubre lo que cubría el día que se publicó, y eso creció: `PND-010` metió `what` y
+`counts` adentro en `2026.10.6`. Medido copia por copia: las versiones `2026.10.1` a `2026.10.5`
+del catálogo **no cubren** esas dos claves, y las de `2026.10.6` en adelante no dejan nada en el
+limbo. Para una de esas cinco, la dirección sólo puede prometer lo que esa versión podía probar, y
+eso **no lo arregla una versión posterior** —una huella ya publicada no se edita (D-053)—. Está
+dicho en `pinning.prior_version_content.what_is_promised`, con las versiones nombradas, y hay una
+prueba que fija la tabla para que el límite no se pueda ensanchar en silencio.
+
+**Lo que se recuperó, que es la mitad que no estaba en la especificación.** La dirección inmutable
+podía haber empezado a existir desde hoy, hacia adelante, dejando sin dirección las nueve versiones
+ya publicadas —que son justamente las que alguien pudo haber fijado—. No hizo falta: el archivo
+publicado está commiteado en cada versión, así que las copias se **extraen** de la historia de
+`main` y se verifican una por una contra el registro. No es arqueología, es extracción, y la
+diferencia la dice la medición:
+
+```
+node build/version_inmutable.mjs --congelar
+  congelada: gates.json 2026.10.1 ... 2026.10.9   (nueve)
+  congelada: prompts.json 2026.10.1 ... 2026.10.5  (cinco)
+  versiones inmutables: comprobado -- 14 copias, cada una con la huella que su registro anota, 0 hallazgos
+```
+
+Las catorce recalculan exactamente la huella que su propia entrada del registro anota. Si una no
+hubiera dado, se decía y se dejaba sin dirección; dieron las catorce.
+
+**Y una cosa que NO entró, y la decidió la medición y no el gusto.** El primer intento puso la
+dirección **absoluta** adentro de `gates.json`, para que una herramienta que sólo tiene ese archivo
+sepa de dónde volver a leerlo. La prueba de neutralidad lo rechazó, y tenía razón: una dirección
+absoluta lleva el nombre del alojamiento, y el README publica —en los ocho idiomas— un comando que
+cuenta esas ocurrencias **sobre el archivo servido** y afirma que devuelve **0**. Habría convertido
+una afirmación medida y publicada en una afirmación falsa, que es exactamente el defecto que este
+proyecto persigue. Quedó así: el recurso declara su **camino relativo** (`gates/2026.10.10.json`) y
+la dirección **absoluta** la declara el índice, que es el directorio de la interfaz y tiene su
+excepción escrita y probada desde D-056. Medido después del cambio: `gates.json` 0, `prompts.json`
+0, y hay una prueba que corre esa misma cuenta sobre los dos archivos para que el README no dependa
+de que alguien se acuerde.
+
+**Evidencia de cierre.**
+
+```
+node --test                        ->  359 pruebas, 0 fallos (eran 335)
+node build/version_inmutable.mjs   ->  comprobado -- 16 copias, 0 hallazgos (gates/ 10, prompts/ 6)
+node build/api_check.mjs           ->  los tres recursos coinciden, y las 16 copias tambien
+la cuenta del README sobre lo publicado:  gates.json 0 | prompts.json 0
+archivos a publicar                ->  156 (eran 140: +16 copias)
+```
+
+Los rojos antes del verde, en `tests/version_inmutable.test.mjs`: falta una copia y sale nombrada;
+una copia alterada en una clave cubierta cae por la huella; una copia bien nombrada con otra
+versión adentro cae por las dos cosas; una copia que el registro no anota cae; la versión viva sin
+entrada en el registro cae; y `congelar` **no toca** una copia que ya existe, porque el directorio
+es append-only igual que el registro del que sale. Más un verde deliberado que documenta la
+promesa: una copia alterada **sólo** en `generated_at` pasa, y eso no es un agujero sino lo que
+`what_is_promised` declara.
+
+**La guarda nace con quien la invoque**, que es la lección que este repositorio pagó cuatro veces:
+el paso nuevo del flujo exige la línea que el programa imprime, y `build/build.mjs` congela sola la
+copia de la versión vigente —que es una copia de un archivo que está en disco y no necesita git—,
+así que subir de versión no depende de que alguien se acuerde de un comando. Recuperar una versión
+**anterior** sí necesita la historia, y la cadena clona a profundidad 1: por eso eso es una
+operación local y deliberada (`--congelar`) y lo que corre en cada cambio es la verificación.
+
 ---
 
 ## PND-009 — La huella no es una firma, y conviene que el archivo lo diga más fuerte *(era U-08)*
 
 - **Nodo:** `interfaz-publica/api` [nodo propuesto]
-- **Grupo:** G-API · **Severidad:** avisa · **Repositorio:** método · **Estado: abierto**
+- **Grupo:** G-API · **Severidad:** avisa · **Repositorio:** método · **Estado: CERRADO** el
+  2026-10-27, en `catalog_version 2026.10.10` y `corpus_version 2026.10.6`.
 - **Decisión del dueño (2026-10-24):** se adopta la recomendación: **escribirlo honesto en el
   archivo** y dejar la firma criptográfica como propuesta escrita, **no construida** (ver
   PND-024, creado por pedido del dueño en el mismo acto).
@@ -783,6 +867,33 @@ atacante puede editar para que diga lo contrario.
 **Depende de:** PND-010 (cubrir `what` con la huella) y PND-002.
 
 **Avance (2026-10-24, decisión D-056).** La frase está escrita, y sin maquillaje, en el campo `what` del índice: la huella es auto-consistente, detecta el truncado, la fusión mal hecha y la edición a mano, y **no** protege contra un adversario que controle el portal; las anclas que no viven ahí son el registro de versiones y el cifrado de la conexión. Hay una prueba que la exige. Lo que falta para cerrar es lo que este pendiente ya anticipaba, y es de PND-010: esa frase, en el índice, viaja sin huella que la proteja **por definición** (el índice no tiene), así que la misma declaración tiene que quedar también en el `what` de los dos recursos, una vez que `what` esté cubierto.
+
+**Cierre (2026-10-27).** `what` quedó cubierto por la huella en `2026.10.6` del catálogo y en
+`2026.10.4` del corpus de prompts (`PND-010`), que era la condición que este pendiente tenía
+escrita desde el 24. Con eso la frase se movió a donde se puede comprobar: viaja en el `what` de
+los **dos recursos**, adentro de lo que la huella cubre, y sigue viajando en el del índice.
+
+**Y va en UNA SOLA COPIA**, que es la misma regla que el enunciado de las reglas del anexo (D-044):
+vive en `ALCANCE_DE_LA_HUELLA` de `build/gates_lib.mjs` y los tres `what` la componen. La prueba no
+se conforma con que los tres digan algo parecido: exige que sea la **misma cadena, byte a byte**, y
+cae si alguien la reescribe en un archivo y deja tres versiones de la misma promesa.
+
+Lo que la frase dice, sin maquillaje, es lo que la huella hace de verdad: es auto-consistente —quien
+puede editar un archivo puede recalcularla—, detecta el truncado, la fusión mal hecha y la edición a
+mano, **no** protege contra un adversario que controle el alojamiento que sirvió el archivo, las
+anclas que no viven ahí son el registro de versiones y el cifrado de la conexión, y **no hay firma
+criptográfica: eso es una decisión escrita con su costo a la vista y no un olvido**. Esa última
+oración es la que cierra el círculo con `PND-024`, que sigue abierto: la propuesta de firma todavía
+no está escrita, y el archivo ya no deja que alguien suponga que existe.
+
+**Evidencia de cierre.**
+
+```
+node --test  ->  359 pruebas, 0 fallos
+la frase, literal, en los tres publicados: gates.json, prompts.json, index.json
+`what` cubierto por la huella en los dos recursos: si
+el indice NO declara content_hash: es la decision D-056, no un olvido
+```
 
 ---
 
@@ -2757,11 +2868,15 @@ limpio: `node --test` = **220 pruebas, 0 fallos** (eran 197; las 23 nuevas está
 ## PND-026 a PND-034 — Revisión semántica de los nueve idiomas de la interfaz *(era U-17, segunda parte)*
 
 - **Nodo:** `interfaz-publica/portada` [nodo propuesto]
-- **Grupo:** G-IDIOMA · **Severidad:** avisa · **Quién decide:** se hace y se reporta, menos los
-  dos hallazgos que se resuelven escribiendo castellano, que son del dueño
+- **Grupo:** G-IDIOMA · **Severidad:** avisa · **Quién decide:** se hace y se reporta, menos el
+  hallazgo que toca el castellano, que es del dueño
 - **Repositorio:** portal · **Estado: en curso** (las nueve: revisadas el 2026-10-27; cuarenta y
-  cuatro de los cuarenta y seis hallazgos aplicados, publicados y verificados contra producción el
-  mismo día; quedan **dos**, y los dos esperan al dueño)
+  **cinco** de los cuarenta y seis hallazgos aplicados, publicados y verificados contra producción
+  el mismo día; queda **uno**, el compartido por las nueve, y espera al dueño)
+- **Decisión del dueño (2026-10-27):** sobre el ablandamiento de `thesis.k2.p`, *"Tu recomendación,
+  1"* — la salida (a): el inglés y el alemán se alinean al castellano. Aplicada y servida el mismo
+  día. Y, en el mismo mensaje, *"Terminado el tema de las traducciones por ahora. Necesitamos
+  avanzar"*: el hallazgo compartido de `material.practica` queda sin decidir y sin tocar.
 
 **Por qué son nueve entradas y no una.** La auditoría lo pidió así, y tiene razón: cada idioma lo
 revisa alguien que lo lee, en un momento distinto, y el resultado de uno no dice nada del otro.
@@ -2798,8 +2913,8 @@ de correcciones propuestas, o la constancia de que no hay ninguna.
 | id | idioma | hallazgos | aplicados | queda | estado |
 |---|---|---:|---:|---:|---|
 | PND-026 | árabe (ar) | 7 | 7 | 0 propios + el compartido | todo lo propio, servido |
-| PND-027 | alemán (de) | 8 | 8 | 1 propio + el compartido | queda el ablandamiento de `thesis.k2.p` |
-| PND-028 | inglés (en) | 1 | 0 | 1 propio + el compartido | su único hallazgo propio es el ablandamiento |
+| PND-027 | alemán (de) | 8 | 8 | 0 propios + el compartido | todo lo propio, servido |
+| PND-028 | inglés (en) | 1 | 1 | 0 propios + el compartido | su único hallazgo propio, servido |
 | PND-029 | francés (fr) | 5 | 5 | 0 propios + el compartido | todo lo propio, servido |
 | PND-030 | hindi (hi) | 5 | 5 | 0 propios + el compartido | todo lo propio, servido |
 | PND-031 | italiano (it) | 5 | 4 | 0 propios + el compartido | el «(in spagnolo)» es el compartido |
@@ -2807,11 +2922,12 @@ de correcciones propuestas, o la constancia de que no hay ninguna.
 | PND-033 | portugués (pt) | 3 | 3 | 0 propios + el compartido | todo lo propio, servido |
 | PND-034 | chino (zh) | 6 | 6 | 0 propios + el compartido | todo lo propio, servido |
 
-La columna «aplicados» cuenta hallazgos, no cadenas: los cuarenta y cuatro aplicados son **127
-cadenas** (21 el 2026-10-27 a la mañana y 106 a la tarde, más tres correcciones de las propias
-correcciones). La de «queda» son **dos** hallazgos, y los dos los decide el dueño porque los dos
-se resuelven escribiendo castellano: el ablandamiento de `thesis.k2.p` —que el inglés y el alemán
-comparten— y la aclaración «(en español)» de `material.practica`.
+La columna «aplicados» cuenta hallazgos, no cadenas: los cuarenta y cinco aplicados son **129
+cadenas** (21 el 2026-10-27 a la mañana, 106 a la tarde y 2 a la noche, más tres correcciones de
+las propias correcciones). La de «queda» es **uno**: la aclaración «(en español)» de
+`material.practica`, que los nueve agregan y el castellano no dice, y lo decide el dueño porque se
+resuelve escribiendo castellano. El otro que quedaba —el ablandamiento de `thesis.k2.p`, que el
+inglés y el alemán compartían— lo decidió el dueño esa misma noche y ya está servido.
 
 **Y la columna «queda» hay que leerla con una corrección, porque la tabla la decía mal.** El
 segundo hallazgo estaba archivado bajo el italiano, que fue donde se vio primero, y eso hacía que
@@ -2963,11 +3079,43 @@ mantiene, lo que se cambia son dos cadenas, la inglesa y la alemana. Lo único q
 es si la afirmación castellana es la que el método quiere hacer. Las dos salidas, con su costo:
 **(a)** alinear el inglés y el alemán al castellano —dos cadenas, el método dice que no sabés—; o
 **(b)** adoptar la forma ablandada como la buena y bajarla al castellano y a las siete fieles
-—ocho cadenas, y el método dice *quizás*—. La recomendación es la **(a)**: la frase vive en la
+—ocho cadenas, y el método dice *quizás*—. La recomendación fue la **(a)**: la frase vive en la
 tarjeta que presenta la disciplina del rojo, y «quizás no prueba nada» es la frase que el método
-existe para no dejar decir. Redacciones propuestas, que son traducción y no reescritura:
-`A test you never saw fail -- you do not know whether it proves anything.` y
-`Ein Test, den man nie hat scheitern sehen: man weiss nicht, ob er irgendetwas beweist.`
+existe para no dejar decir.
+
+**RESUELTO Y SERVIDO el 2026-10-27 a la noche, con la salida (a).** El dueño eligió la (a) y las
+dos cadenas quedaron así:
+
+```
+en  A test you never saw fail -- you do not know whether it proves anything.
+de  Ein Test, den man nie hat scheitern sehen: man weiß nicht, ob er irgendetwas beweist.
+```
+
+**El alemán entró con eszett y la redacción propuesta decía doble s**, y la diferencia se midió
+antes de escribir la cadena en vez de arrastrar la propuesta: el catálogo alemán usa `ß` en diez
+cadenas (`schließt`, `verhältnismäßiger`, `außerhalb`, `Maßstäbe`, `Größe`), o sea ortografía
+alemana corriente y no la variante suiza, así que `weiss` habría sido la única excepción del
+archivo. Es la misma clase de corrección que las cuatro de las propias listas de más arriba: la
+propuesta de un revisor no es la cadena que se publica hasta que se mide contra el archivo que la
+va a llevar.
+
+El commit del portal es `2d74175`, rebasado a `6704325` sobre la publicación automática del método
+que había entrado en el medio —otra vez, y por la misma razón: un identificador de algo sin empujar
+no es firme—. El despliegue cerró en verde en la corrida `40603256711`, con los cuatro recibos que
+su paso exige a la vista (`10/10 pages on disk`, `PASS -- every page is baked, linked, canonical
+and reciprocal`, `PRUEBA EN ROJO OK: las 10 mutaciones caen`, `arbol propio: comprobado`,
+`eol: comprobado`). Medido contra **producción** después y no antes, con la forma nueva contra la
+que se descartó:
+
+```
+en  HTTP 200   70851 bytes  |  "you do not know whether it proves anything" 1  |  "may prove nothing" 0
+de  HTTP 200   73302 bytes  |  "man weiß nicht, ob er irgendetwas beweist"  1  |  "beweist vielleicht nichts" 0
+es  HTTP 200   71248 bytes  |  "no sabés si prueba algo" 1                      |  "quizás" 0
+```
+
+Y el diff, para que se vea el alcance: **cuatro archivos, una línea cada uno** —los dos catálogos y
+los dos horneados—, los otros ocho idiomas sin tocar. Con esto `PND-028` se queda sin hallazgos
+propios y `PND-027` tampoco: las nueve quedan con **el compartido y nada más**.
 
 *(2) La aclaración de `material.practica`, que los nueve agregan y el castellano no dice.* Los dos
 manuales de práctica están **sólo en castellano** —`docs/practica/` queda explícitamente fuera del
@@ -3041,11 +3189,15 @@ traducción y un nativo puede discutir una recomendación concreta sin que el ha
 criterio de aceptación es sobre **lo que el lector lee en la portada**, no sobre la existencia de
 la lista ni sobre que el empujón haya ocurrido. Los cuarenta y cuatro hallazgos aplicados están
 servidos y medidos contra producción, y eso cierra la parte que se podía cerrar sin el dueño. Lo
-que queda abierto es **un hallazgo compartido por las nueve** —la aclaración de `material.practica`,
-que los nueve agregan y la fuente de verdad no dice— más el ablandamiento de `thesis.k2.p` en el
-inglés y el alemán. Mientras el compartido no se resuelva, lo que el lector lee en cualquiera de
-los nueve sigue diciendo algo que la castellana no dice, y por eso ninguna de las nueve cerró.
-Cerrar seis de ellas por tener cero hallazgos propios habría sido leer la tabla y no el criterio.
+que queda abierto es **un hallazgo compartido por las nueve**: la aclaración de `material.practica`,
+que los nueve agregan y la fuente de verdad no dice. El otro que quedaba —el ablandamiento de
+`thesis.k2.p` en el inglés y el alemán— se resolvió y se sirvió la noche del 2026-10-27, así que
+ninguna de las nueve tiene hallazgos propios abiertos. Mientras el compartido no se resuelva, lo
+que el lector lee en cualquiera de los nueve sigue diciendo algo que la castellana no dice, y por
+eso ninguna de las nueve cierra. Cerrar seis de ellas por tener cero hallazgos propios habría sido
+leer la tabla y no el criterio; cerrar las nueve ahora, por el mismo motivo, sería leer la tabla de
+nuevo. **Y el dueño pidió terminar el tema de las traducciones por ahora**, así que el compartido
+queda escrito, medido y sin tocar: a una decisión de distancia y sin trabajo pendiente detrás.
 
 **Lo más grave de las nueve, para que no se pierda entre los cuarenta y seis hallazgos.** El
 japonés y el chino escriben en el título de «De dónde sale» (`origin.h2`) la cadena `四二十四`, que
@@ -5282,14 +5434,14 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 17 | 5 | 12 | 1 |
+| G-API | 17 | 3 | 14 | 1 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 14 | 11 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 13 | 1 | 12 | 0 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **60** | **18** | **42** | **2** |
+| **total** | **60** | **16** | **44** | **2** |
 
 Sesenta entradas, `PND-001` a `PND-060`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
@@ -5330,6 +5482,25 @@ declaración que faltaba. `PND-039` dejó escrito que las dos entradas previas d
 ruta y que no se inventaba ninguna porque el dueño no la había declarado; el 2026-10-27 la declaró
 (`docs/GLOSSARY.md` y `docs/PROFILES.md`) y con eso dejaron de estar publicadas como exigidas y no
 verificables por máquina.
+
+**Y el 2026-10-27, a la noche, el grupo de la API bajó a tres abiertos.** Cerraron `PND-008` y
+`PND-009` juntos, porque los dos viven en lo que el archivo publicado dice de sí mismo y los dos
+suben la misma versión. **PND-008**: cada versión declarada tiene ahora su propia dirección, sin
+purga, y las nueve del catálogo y las cinco del corpus que ya estaban publicadas se **recuperaron**
+de la historia de `main` y verifican, una por una, contra la huella que su entrada del registro
+anota. Dejó de ser un lujo el día que se publicó el contrato de fijación: el dato le decía a un
+proyecto que congele una versión y la mantenga hasta el final, y no había ninguna dirección desde
+donde volver a leerla —el propio archivo lo decía, *«There is no per-version URL on this host
+today»*—. **PND-009**: la frase que dice qué protege la huella y qué no se movió al `what` de los
+**dos recursos**, que es donde la huella la cubre; vivía sólo en el índice, que no tiene huella
+propia por decisión escrita, así que viajaba sin protección —y la trampa estaba anticipada en el
+propio pendiente desde el 24: una declaración de seguridad en un campo sin proteger es una que un
+atacante puede editar para que diga lo contrario—. Las dos traen un dato que vale más que el
+arreglo: **la primera versión del cambio puso la dirección absoluta adentro del recurso y la prueba
+de neutralidad la rechazó**, porque el README publica, en los ocho idiomas, un comando que cuenta
+las menciones del alojamiento sobre el archivo servido y afirma que da **0**. Una línea más y una
+afirmación medida y publicada quedaba falsa. El recurso declara su camino relativo y la dirección
+absoluta la declara el índice, que es el único archivo con esa excepción escrita.
 
 **Lo que está primero, y por qué.** Las precondiciones del grupo de la API están cerradas, y en
 este orden: PND-021 (cuál es el árbol del portal realmente desplegado), PND-020 y PND-018 (la

@@ -44,11 +44,52 @@ export const idFamilia = (etiqueta) => sinTildes(etiqueta).trim().toLowerCase().
 /** Las dos versiones del anexo: la publicada (en) y la fuente de verdad (es). */
 export const ANEXOS = { en: 'docs/en/ANEXO_HEURISTICAS.md', es: 'docs/ANEXO_HEURISTICAS.md' };
 
+// La interfaz de datos: la base canonica y, bajo ella, UNA CARPETA POR RECURSO con un
+// archivo por version publicada. La direccion viva sirve siempre lo vigente, asi que quien
+// la apunta se actualiza en silencio y la huella le cambia abajo de los pies (PND-008); la
+// direccion inmutable devuelve una version y solo esa, para siempre, sin purga.
+//
+// Es una carpeta por RECURSO y no una por version, y la razon es que cada recurso declara
+// su propia linea de version: hoy el catalogo va en 2026.10.10 y el corpus de prompts en
+// 2026.10.6, asi que una carpeta /api/2026.10.10/ con los dos adentro nombraria con la
+// version de uno el contenido del otro. Una sola copia de la forma, aca.
+export const BASE_API = 'https://yujin.app/urazuke/api/';
+export const CARPETA_INMUTABLE = { 'gates.json': 'gates', 'prompts.json': 'prompts' };
+
+/**
+ * El camino de esa version de ese recurso, RELATIVO a la base canonica: `gates/2026.10.10.json`.
+ * Relativo y no absoluto porque esto viaja adentro del recurso, y el nivel de datos del
+ * metodo no nombra ningun alojamiento: el metodo publica un comando que cuenta las
+ * ocurrencias en el archivo servido y tiene que dar cero (README, en los ocho idiomas).
+ */
+export function caminoInmutable(recurso, version) {
+  const carpeta = CARPETA_INMUTABLE[recurso];
+  if (!carpeta) throw new Error('recurso sin carpeta inmutable declarada: ' + recurso);
+  return carpeta + '/' + version + '.json';
+}
+
+/** La direccion absoluta. Solo la declara el INDICE, que es el directorio de la interfaz. */
+export function urlInmutable(recurso, version) {
+  return BASE_API + caminoInmutable(recurso, version);
+}
+
 // Heuristica deliberada, y por eso escrita: palabras castellanas frecuentes como palabra
 // entera. No detecta idioma, detecta descuido, que es lo que hace falta en el nivel de
 // datos (D-051). Una sola copia, usada por la prueba de idioma y por el verificador del
 // indice de la API.
 export const CASTELLANO = /\b(que|el|la|los|las|del|para|con|una|por|como|cada|sin|esta|tiene|hay|nunca|siempre|todo|toda|su|al|lo|ni|mas|pero|donde|cuando|porque|regla|reglas|motivo|autoriza|revisar|dueno|anexo|peldano|peldanos|compuerta|rojo|verde|archivo|perfil)\b/i;
+
+// El alcance de lo que la huella protege, en UNA SOLA COPIA (PND-009, D-056). Viaja en el
+// `what` de los dos recursos y en el del indice, y el `what` de los dos recursos esta
+// CUBIERTO por la huella desde 2026.10.6 (PND-010), que era la condicion que faltaba: una
+// declaracion de seguridad que vive en un campo sin proteger es una declaracion que un
+// atacante puede editar para que diga lo contrario. En el indice viaja sin huella por
+// definicion -- el indice no tiene identidad propia (D-056) --, y por eso tiene que estar
+// tambien en los recursos, que es donde se puede comprobar.
+//
+// Se escribe asi, sin maquillaje, porque es lo que la huella hace de verdad: decir mas
+// seria vender una proteccion que no existe, y decir menos deja al consumidor deduciendo.
+export const ALCANCE_DE_LA_HUELLA = 'And about the content hash, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls the host that served the file. The anchors that do not live on that host are the version ledger of each resource, which lives in the method repository and records the pair (version -> hash) append-only, and the transport security of the connection. There is no cryptographic signature: that is a written decision with its cost on the table, not an oversight.';
 
 /**
  * Lee UNA version del anexo y devuelve, por id de regla, lo que declara: el enunciado,
@@ -159,7 +200,7 @@ export function armarContenido(fuentes = cargarFuentes(), anexo = extraerAnexo()
     // aceptaria en silencio un archivo truncado-- y `what` es justo donde el archivo declara el
     // alcance de su propia proteccion. Lo que la huella cubre tiene que estar en el contenido
     // que se canonicaliza, no agregado despues.
-    what: 'The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.',
+    what: 'The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green. ' + ALCANCE_DE_LA_HUELLA,
     counts: {
       steps: fuentes.steps.steps.length,
       stations: fuentes.stations.stations.length,
@@ -186,7 +227,19 @@ export function armarContenido(fuentes = cargarFuentes(), anexo = extraerAnexo()
     // que le exige al consumidor y como se computa el diferencial de un upgrade. Va cubierto por
     // la huella porque lleva requisitos: una copia congelada alterada ahi cambiaria lo que el
     // proyecto cree que debe.
-    pinning: fuentes.schema.pinning,
+    // El camino de ESTA version se DERIVA (PND-008): en las fuentes viaja en null a
+    // proposito, porque la forma vive una sola vez en caminoInmutable() y transcribirla en
+    // el dato dejaria dos copias que pueden divergir. El validador exige las dos mitades:
+    // null en la fuente, el camino calculado en el publicado. Es RELATIVO: la absoluta la
+    // declara el indice, porque lleva el nombre del alojamiento y el nivel de datos no lo
+    // nombra (D-055, y el comando que lo mide esta publicado en el README).
+    pinning: {
+      ...fuentes.schema.pinning,
+      prior_version_content: {
+        ...fuentes.schema.pinning.prior_version_content,
+        immutable_path: caminoInmutable('gates.json', fuentes.catalog.catalog_version),
+      },
+    },
   };
 }
 
