@@ -973,7 +973,9 @@ resumen.
 ## PND-011 — El publicado le pide al consumidor un catálogo que el método no le da *(era U-10)*
 
 - **Nodo:** `corpus/idiomas` [nodo propuesto]
-- **Grupo:** G-API · **Severidad:** bloquea · **Repositorio:** método · **Estado: abierto**
+- **Grupo:** G-API · **Severidad:** bloquea · **Repositorio:** método · **Estado: en curso** —
+  publicado y verificado en producción el 2026-10-28; falta sólo la decisión del dueño de la que
+  habla el cierre.
 - **Decisión del dueño (2026-10-24): sí, y en DIEZ idiomas.**
 
 **Qué está mal.** El archivo le dice al consumidor, con razón, "no imprimas estos textos, leé el
@@ -1014,7 +1016,7 @@ no una edición de los datos. Entran al índice como recursos propios.
 este segundo decía `PND-017`, que es el error de traducción del italiano; la referencia estaba
 mal desde que se escribió la entrada y se corrige acá, a la vista, el 2026-10-28.*
 
-**Avance (2026-10-28, decisión D-074). Construido y medido; falta el efecto en producción.**
+**Avance (2026-10-28, decisión D-074). Construido, fusionado y servido por producción.**
 
 El catálogo existe: `docs/html/api/labels.json`, `labels_version 2026.10.1`, huella
 `0f3c78defe6f`, generado por `build/labels_api.mjs`. Lleva el título de los veinticuatro
@@ -1081,12 +1083,67 @@ Ese 404 es el correcto: el recurso todavía no se fusionó. Y es la prueba de qu
 acabo de arreglar de verdad mira el tercer recurso, porque antes del arreglo habría dicho que todo
 estaba bien.
 
-**Qué falta para cerrar, y es de dos tipos.** (1) El efecto en producción: el recurso está
-construido en la máquina y eso no es un efecto (D-057); cierra cuando una corrida de publicación
-real lo sirva en `https://yujin.app/urazuke/api/labels.json` con su huella, y eso depende de la
-fusión, que es del dueño. (2) La decisión del dueño sobre si esta entrada cierra con ocho idiomas
-—con la obligación de diez viviendo en `PND-016`, que es donde está su costo— o si se queda
-abierta hasta que el corpus sea diez.
+**El efecto, que es lo único que cuenta (D-057).** Fusionado el 2026-10-28 a las 10:53 UTC
+(`abc3349`, pedido de fusión 26). La publicación del método espejó el recurso en el portal y
+**el despliegue del portal salió en rojo donde tenía que salir**: su comprobación 8 pidió las
+noventa y nueve direcciones que el método publica y el mapa del sitio llevaba noventa y ocho,
+nombrando la que faltaba. Servido no es publicado, y eso es exactamente lo que esa compuerta
+existe para decir:
+
+```
+FAIL -- 1 problem(s):
+  - [sitemap.xml] missing 1 of the 99 urazuke url(s)
+    (first: https://yujin.app/urazuke/api/labels.json)
+Fix the generator, never this verifier.
+```
+
+El mapa del sitio vive en el repositorio del portal y el trabajo de publicación del método no lo
+toca, así que un recurso nuevo de la interfaz de datos **siempre** va a dejar ese despliegue en
+rojo hasta que alguien regenere el mapa. Arreglado en el generador y no en el verificador
+(`node build/prerender-urazuke.mjs`, que lo descubre del disco), con las cuatro comprobaciones del
+portal en verde antes de empujar, y el despliegue `40676973425` cerró bien. Lo que producción
+sirve ahora, medido desde esta máquina:
+
+```
+node build/portal_verify.mjs --rondas 1          (código de salida 0)
+gates.json:   coincide -- HTTP 200, 113626 bytes, version 2026.10.10, huella 280d8745797b
+prompts.json: coincide -- HTTP 200, 102716 bytes, version 2026.10.6,  huella 03866b055357
+labels.json:  coincide -- HTTP 200,  91432 bytes, version 2026.10.1,  huella 0f3c78defe6f
+index.json:   coincide -- HTTP 200,  12843 bytes, cita las 3 huellas que declara lo commiteado
+Produccion sirve las 3 huellas y un indice que las cita: publicado y verificado.
+
+node build/api_headers.mjs                       (código de salida 0)
+OK    https://yujin.app/urazuke/api/ contesta con el indice -- HTTP 200, 3 recursos listados
+OK    labels.json: un navegador de otro origen puede leerla -- access-control-allow-origin: *
+OK    labels.json: dice cuanto vale la copia -- cache-control: public, max-age=300, must-revalidate
+```
+
+**Y dos defectos propios más del mismo programa, atrapados al leer su propia salida.** El
+veredicto decía `labels.json: version (sin version declarada)` sobre un archivo que **sí** la
+declara, y cerraba con «Produccion sirve **las dos** huellas» habiendo mirado tres. Los dos son la
+misma falta en dos formas: una lista escrita a mano (la cadena `catalog_version ?? corpus_version`,
+que no reconoce `labels_version`) y una cuenta escrita a mano dentro del texto de un veredicto.
+Ninguno afecta la huella —la verificación era correcta—, pero este programa existe **para
+reportar**, y un reporte que dice «no declara versión» sobre un archivo que la declara es la
+misma clase de mentira que el aviso del 2026-10-23 que lo originó. Arreglados derivando las dos
+cosas: el nombre del campo sale de `version_field` de cada recurso del índice y la cuenta sale de
+la lista. Cuatro pruebas nuevas, y las tres que pueden caer **caen** con el defecto reintroducido:
+
+```
+--- con el defecto puesto ---
+not ok 12 - la version se lee del campo que CADA recurso declara, sin adivinar el nombre
+not ok 14 - un recurso que no declara su campo lo dice por su nombre, no "sin version declarada"
+not ok 15 - la linea del veredicto cuenta los recursos que hay, no los que habia
+# pass 12   # fail 3
+--- restaurado ---
+# pass 15   # fail 0        (suite completa: # tests 387  # pass 387  # fail 0)
+```
+
+**Lo único que falta para cerrar, y es del dueño.** Si esta entrada cierra con **ocho** idiomas
+—con la obligación de diez viviendo en `PND-016`, que es donde está su costo y de donde el catálogo
+los va a tomar solo— o si se queda abierta hasta que el corpus sea diez. Los criterios de
+aceptación de arriba están cumplidos para los ocho idiomas que el método publica, y para los dos
+que le faltan no hay texto que extraer.
 
 ---
 

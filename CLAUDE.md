@@ -332,6 +332,17 @@ de estas tres piezas se replica en las otras dos.
   publicó mal; y conviene saber, para leerlo, que el host del portal tiene documentado en su propio
   flujo que rechaza conexiones del runner de GitHub. A mano, en dos segundos:
   `node build/portal_verify.mjs --rondas 1`.
+- **Un recurso nuevo de la interfaz de datos deja el despliegue del portal en rojo hasta que el
+  mapa del sitio se regenere, y eso es correcto** (D-074, `PND-011`). Medido el 2026-10-28, al
+  publicar el cuarto archivo: el trabajo de publicación espeja `docs/html/` y **no toca el mapa
+  del sitio**, que vive en el repositorio del portal, así que la comprobación 8 de
+  `verify-urazuke-homes.mjs` pidió las noventa y nueve direcciones que el método publica, el mapa
+  llevaba noventa y ocho y el despliegue —el del sitio entero— se negó nombrando la que faltaba.
+  No es un defecto de esa compuerta: es la regla «servido no es publicado» funcionando. El arreglo
+  es siempre del lado del portal y **en el generador, nunca en el verificador**:
+  `node build/prerender-urazuke.mjs`, que descubre el mapa del disco, más su commit. Queda dicho
+  acá porque el siguiente recurso lo va a volver a pasar y el rojo aparece en otro repositorio,
+  media hora después de una fusión que cerró en verde.
 - **Lo que el disparador no hace**: tocar la landing. Un documento nuevo se publica y
   queda accesible por su URL, pero no aparece enlazado hasta que alguien lo agregue al índice y al
   i18n de la landing, que viven en el repositorio del portal. Desde el 2026-10-24 eso no pasa en

@@ -1,5 +1,5 @@
-// Verifica que produccion sirva los TRES archivos publicados -- los dos recursos y el
-// indice que los lista -- y DICE QUE VIO.
+// Verifica que produccion sirva los recursos publicados y el indice que los lista -- la
+// lista sale del indice, no de una cuenta escrita aca -- y DICE QUE VIO.
 //
 // Por que existe este archivo y no un curl dentro del workflow: el 2026-10-23 la
 // publicacion de 9a31494 salio bien (el portal commiteo 161e74d a las 12:23:17 y su
@@ -39,6 +39,13 @@ import { RECURSOS } from './index_api.mjs';
 // estaba clavada en dos, asi que la publicacion habria preguntado a produccion por dos
 // recursos de tres y habria cerrado en verde sin haber mirado el tercero (D-074).
 export const ARCHIVOS = RECURSOS.map((r) => r.name);
+// Y el nombre del campo donde cada recurso declara SU version sale del mismo lugar, por el
+// mismo motivo: cada linea de version tiene su propio nombre de campo (catalog_version,
+// corpus_version, labels_version) y una cadena de `a ?? b` escrita aca es la misma lista
+// clavada en otra forma -- medido el 2026-10-28: con el catalogo de textos recien publicado,
+// esa cadena no reconocia labels_version y el veredicto imprimia "(sin version declarada)"
+// sobre un archivo que la declara. La huella no miente, pero el reporte si.
+export const CAMPO_VERSION = Object.fromEntries(RECURSOS.map((r) => [r.name, r.version_field]));
 export const INDICE = 'index.json';
 // El indice se pregunta igual que los recursos, con el mismo vocabulario de tres estados,
 // pero NO pasa por clasificar(): esa funcion se apoya en content_hash.value y el indice no
@@ -60,7 +67,7 @@ const prefijo = (texto) => {
  * (un 503, una pagina de desafio, un JSON sin huella).
  * sonda: { error } o { status, cuerpo }
  */
-export function clasificar(sonda, esperada) {
+export function clasificar(sonda, esperada, campoVersion) {
   if (sonda.error) {
     return { estado: 'ilegible', detalle: 'sin respuesta: ' + prefijo(sonda.error) };
   }
@@ -77,13 +84,15 @@ export function clasificar(sonda, esperada) {
   }
   const servida = json?.content_hash?.value;
   if (typeof servida !== 'string' || !servida) {
-    const version = json?.catalog_version ?? json?.corpus_version ?? json?.version;
+    const version = campoVersion ? json?.[campoVersion] : undefined;
     return {
       estado: 'ilegible',
       detalle: cabeza + ', la respuesta es JSON pero no declara content_hash' + (version ? ' (version ' + version + ')' : ''),
     };
   }
-  const version = json.catalog_version ?? json.corpus_version ?? '(sin version declarada)';
+  const version = campoVersion
+    ? (json[campoVersion] ?? 'no declara ' + campoVersion)
+    : 'sin campo de version declarado por el indice';
   if (servida === esperada) {
     return { estado: 'coincide', huella: servida, detalle: cabeza + ', version ' + version + ', huella ' + servida.slice(0, 12) };
   }
@@ -137,6 +146,17 @@ export function clasificarIndice(sonda, esperadas) {
     return { estado: 'otra_huella', detalle: cabeza + ', el indice servido cita ' + distintas.join('; ') };
   }
   return { estado: 'coincide', detalle: cabeza + ', cita las ' + Object.keys(esperadas).length + ' huellas que declara lo commiteado' };
+}
+
+/**
+ * La linea final, con la cuenta DERIVADA de los recursos que el indice declara. Decia "las
+ * dos huellas" con tres publicadas (D-074): una cuenta escrita a mano en el texto de un
+ * veredicto envejece igual que una lista escrita a mano, y en el unico lugar que se lee.
+ */
+export function lineaVeredicto(codigo, cuantos) {
+  if (codigo === 0) return 'Produccion sirve las ' + cuantos + ' huellas y un indice que las cita: publicado y verificado.';
+  if (codigo === 2) return 'Produccion contesta y todavia sirve otra huella: el despliegue del portal es otro flujo y puede estar corriendo.';
+  return 'No se pudo leer produccion. La publicacion ocurrio; lo que falta es la evidencia de que llego.';
 }
 
 /** El veredicto de la corrida completa. Ilegible gana: si no se pudo mirar, no se sabe. */
@@ -197,7 +217,7 @@ async function principal() {
     // lo que convirtio 20 intentos en 13 minutos.
     for (const nombre of pendientes) {
       const sonda = await sondear(base + '/' + nombre, timeout);
-      const r = nombre === INDICE ? clasificarIndice(sonda, quiero) : clasificar(sonda, quiero[nombre]);
+      const r = nombre === INDICE ? clasificarIndice(sonda, quiero) : clasificar(sonda, quiero[nombre], CAMPO_VERSION[nombre]);
       estados[nombre] = r.estado;
       ultimo[nombre] = r.detalle;
       console.log('  ' + nombre + ' vuelta ' + ronda + ': ' + r.estado + ' -- ' + r.detalle);
@@ -209,9 +229,7 @@ async function principal() {
   console.log('--- veredicto ---');
   for (const nombre of TODOS) console.log(nombre + ': ' + estados[nombre] + ' -- ' + ultimo[nombre]);
   const codigo = codigoDeSalida(estados);
-  if (codigo === 0) console.log('Produccion sirve las dos huellas y un indice que las cita: publicado y verificado.');
-  if (codigo === 2) console.log('Produccion contesta y todavia sirve otra huella: el despliegue del portal es otro flujo y puede estar corriendo.');
-  if (codigo === 1) console.log('No se pudo leer produccion. La publicacion ocurrio; lo que falta es la evidencia de que llego.');
+  console.log(lineaVeredicto(codigo, ARCHIVOS.length));
   process.exit(codigo);
 }
 
