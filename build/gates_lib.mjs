@@ -54,7 +54,7 @@ export const ANEXOS = { en: 'docs/en/ANEXO_HEURISTICAS.md', es: 'docs/ANEXO_HEUR
 // 2026.10.6, asi que una carpeta /api/2026.10.10/ con los dos adentro nombraria con la
 // version de uno el contenido del otro. Una sola copia de la forma, aca.
 export const BASE_API = 'https://yujin.app/urazuke/api/';
-export const CARPETA_INMUTABLE = { 'gates.json': 'gates', 'prompts.json': 'prompts' };
+export const CARPETA_INMUTABLE = { 'gates.json': 'gates', 'prompts.json': 'prompts', 'labels.json': 'labels' };
 
 /**
  * El camino de esa version de ese recurso, RELATIVO a la base canonica: `gates/2026.10.10.json`.

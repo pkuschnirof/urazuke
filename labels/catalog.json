@@ -1,0 +1,44 @@
+{
+  "what": "The header of the catalogue of texts by identifier: the version a project freezes. Declared BY HAND, for the same reason as the gate catalogue (gates/catalog.json) and the prompt corpus (prompts/catalog.json): a project starts and finishes with the same version of the method, so what it froze has to read back the same two years from now.",
+  "labels_version": "2026.10.1",
+  "declared_at": "2026-10-28",
+  "published_as": "docs/html/api/labels.json",
+  "extracted_from": {
+    "note": "The texts are EXTRACTED from the prose of the method, not written here and not transcribed. This is the list of what each kind is read from, in every language the prose declares; if a text is not there, publication is refused.",
+    "steps": "docs/<language>/ESCALERA_METODOLOGICA.md -- the heading of each step card",
+    "stations": "docs/<language>/EVOLUTIVO_CORRECTIVO.md -- the heading of each station",
+    "rules": "docs/<language>/ANEXO_HEURISTICAS.md -- the row of each rule",
+    "languages": "gates/catalog.json#languages.prose_versions -- declared once, derived here (D-067)"
+  },
+  "version_scheme": {
+    "recipe": "gates/schema.json#version_scheme",
+    "note": "The recipe -- canonical form, algorithm, encoding, and the rule that raises the version -- is declared once, there, and the build uses the same implementation. This file only says which keys the fingerprint covers here, because the payload is a different one. One copy of each text.",
+    "hash_covers": [
+      "labels_version",
+      "counts",
+      "keyed_by",
+      "scope",
+      "languages",
+      "labels",
+      "what"
+    ],
+    "hash_excludes": [
+      "git_commit",
+      "git_commit_note",
+      "generated_at",
+      "source",
+      "license",
+      "content_hash"
+    ],
+    "what_is_covered": "Everything the file says and everything it carries. `labels` is the payload; `counts` is the summary a tool uses to check it finished reading, and a summary of quantities that can lie is worse than no summary; `scope` is where the file declares what it leaves out and why, and a declaration of scope that an attacker can edit is a declaration that says nothing; `what` is where it states the reach of its own protection. The only keys outside are publication metadata, which a regeneration moves without changing a single text."
+  },
+  "changelog": [
+    {
+      "labels_version": "2026.10.1",
+      "date": "2026-10-28",
+      "decision": "D-074",
+      "content_hash": "0f3c78defe6fb19192098acd1f707814851bd832465c6901ef2a0e336835e66b",
+      "changed": "First published version of the catalogue of texts. It closes the half that was missing from the gate catalogue since its first version: that file tells a consumer not to print its texts and to take them from its own catalogue instead, and the method published no catalogue to take them from, so the only machine-readable text was exactly the one it asked not to print. The instruction was right and impossible to obey. Coming in: the title of the twenty-four steps, the title of the eight normalisation stations and the statement of the forty-six rules of Annex H, in the eight languages the prose of the method declares -- seventy-eight identifiers per language, six hundred and twenty-four strings, every one of them EXTRACTED from the prose and none of them written or transcribed here. What stays out is declared in `scope` with the measurement that supports it: the evaluator vocabulary, which exists in one language only at the data layer, and the verification questions of a step, which are not the same list in the data and in the prose of the contract. The resource is UTF-8 and NOT pure ASCII, like the prompt corpus and for the same reason: the text of the prose travels verbatim, typographic punctuation included."
+    }
+  ]
+}

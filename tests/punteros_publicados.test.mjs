@@ -27,6 +27,7 @@ import {
   resuelve,
 } from '../build/punteros_publicados.mjs';
 import { cargarFuentes, enumsNombradosPorLaConfiguracion } from '../build/gates_lib.mjs';
+import { RECURSOS } from '../build/index_api.mjs';
 
 const pub = leerPublicados();
 
@@ -100,10 +101,14 @@ test('E ter: el publicado resuelve exactamente los enums que los campos nombran'
   );
 });
 
-test('D: la cuenta no es cero, y los dos recursos se revisaron', () => {
+// Cuantos recursos son NO se escribe aca: sale de la lista que el indice declara. Dos
+// listas que hay que acordarse de mantener juntas es la forma mas comun del defecto que
+// este repositorio persigue, y la prueba sigue siendo falsable: si un recurso declarado
+// deja de estar en disco, la cuenta revisada no da la declarada y esto cae.
+test('D: la cuenta no es cero, y todos los recursos declarados se revisaron', () => {
   const c = cuenta(pub);
   assert.ok(c.tokens > 0, 'cero punteros revisados con verde es el defecto que esta prueba existe para evitar');
-  assert.equal(c.recursos, 2, 'se publican dos recursos ademas del indice');
+  assert.equal(c.recursos, RECURSOS.length, 'se revisan los ' + RECURSOS.length + ' recursos que el indice declara, ademas del indice');
 });
 
 test('el resolvedor de caminos distingue lo que esta de lo que no', () => {

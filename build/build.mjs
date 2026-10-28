@@ -29,7 +29,13 @@ execFileSync(process.execPath, [join(raiz, 'build', 'prompts_api.mjs')], { stdio
 // y contra el Anexo H, y no publica nada si hay un solo error. Despues verifica que
 // docs/COMPUERTAS.md siga coincidiendo con los datos de los que sale.
 execFileSync(process.execPath, [join(raiz, 'build', 'gates_api.mjs')], { stdio: 'inherit' });
-// El indice de la API (docs/html/api/index.json): va DESPUES de los dos recursos, porque
+// El catalogo de textos por identificador (docs/html/api/labels.json): los titulos de los
+// peldanos y de las estaciones y los enunciados del Anexo H, EXTRAIDOS de la prosa de los
+// ocho idiomas. Si a un identificador le falta su texto en un idioma, no publica nada: el
+// texto se extrae y no se escribe, que es lo que impide que esto sea una segunda copia del
+// metodo (D-074).
+execFileSync(process.execPath, [join(raiz, 'build', 'labels_api.mjs')], { stdio: 'inherit' });
+// El indice de la API (docs/html/api/index.json): va DESPUES de los recursos, porque
 // cita la version y la huella que cada uno declara. Si citara una vieja no se publica.
 execFileSync(process.execPath, [join(raiz, 'build', 'index_api.mjs')], { stdio: 'inherit' });
 // Las copias por version de la direccion inmutable (PND-008). Corre VERIFICANDO y no

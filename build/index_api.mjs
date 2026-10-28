@@ -1,17 +1,17 @@
 // Publica el INDICE de la interfaz de datos del metodo: el unico recurso que un
 // consumidor puede pedir sin saber nada de antemano, y que le dice que mas hay, donde
-// vive, con que version y con que huella. Hasta hoy la interfaz publicaba dos archivos
-// que se servian bien y nada que los listara -- /api/ daba 403 y /api/index.json daba
+// vive, con que version y con que huella. Cuando nacio, la interfaz publicaba dos
+// archivos que se servian bien y nada que los listara -- /api/ daba 403 y /api/index.json daba
 // 404 --, asi que quien no habia leido el repositorio no tenia por donde empezar.
 //
-// Es un GENERADO, como los otros dos: no se edita a mano nunca. Sale de leer los dos
+// Es un GENERADO, como los recursos: no se edita a mano nunca. Sale de leer los
 // archivos ya publicados en docs/html/api/ y de EXTRAER lo que cada uno declara; no
 // transcribe ningun texto (una sola copia de cada texto, la misma regla del Anexo H).
 //
 // Lo que NO lleva, y es una decision escrita (D-056): version propia ni huella propia.
 // Es un directorio, no un catalogo: su identidad es la de aquello que apunta. Si llevara
-// huella, cualquier cambio en los otros dos obligaria a subir una TERCERA linea de
-// version que nadie declaro, contra D-053. La tension que eso deja -- como sabe el
+// huella, cualquier cambio en un recurso obligaria a subir una linea de version mas
+// que nadie declaro, contra D-053. La tension que eso deja -- como sabe el
 // consumidor que el indice no esta viejo -- se resuelve sin darle identidad: el indice
 // CITA la version y la huella de cada recurso; el consumidor baja el recurso, recalcula
 // y compara. Si no coinciden, el indice esta viejo y lo sabe sin tener que confiar en el.
@@ -58,6 +58,12 @@ export const RECURSOS = [
     name: 'prompts.json',
     version_field: 'corpus_version',
     ledger_path: 'prompts/catalog.json',
+    ledger_field: 'changelog',
+  },
+  {
+    name: 'labels.json',
+    version_field: 'labels_version',
+    ledger_path: 'labels/catalog.json',
     ledger_field: 'changelog',
   },
 ];
@@ -175,7 +181,7 @@ export function armarIndice(disco = leerDisco(), ahora = new Date()) {
  * El verificador
  * ------------------------------------------------------------------ */
 
-const TOPE_IDENTIDAD = ['version', 'catalog_version', 'corpus_version', 'content_hash', 'index_version'];
+const TOPE_IDENTIDAD = ['version', 'catalog_version', 'corpus_version', 'labels_version', 'content_hash', 'index_version'];
 
 /** Toda cadena del indice, con su camino, para que el rojo diga donde. */
 function cadenas(valor, p = '') {

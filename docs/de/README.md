@@ -48,7 +48,7 @@ genauso vollständig.
 Und das ist keine Absichtserklärung: **es steht im Datum und es ist messbar.** Die mechanische
 Definition der Gates, die die Methode für jeden Konsumenten veröffentlicht, nennt kein Werkzeug und
 kein Protokoll, auch nicht meine eigenen. Es gibt einen automatischen Test, der das auf jeder
-Fläche fordert, auf der sich ein Name einschleichen könnte (die Quellen, die zwei veröffentlichten
+Fläche fordert, auf der sich ein Name einschleichen könnte (die Quellen, die veröffentlichten
 Dateien, ihr Index und das erzeugte Dokument), und jeder kann es heute in einer Sekunde an der
 ausgelieferten Datei prüfen:
 

@@ -45,7 +45,7 @@ it does not suit you, or you do not want it, the method is still just as complet
 And this is not a statement of good intentions: **it is in the data, and it can be measured.** The
 mechanical definition of the gates that the method publishes for any consumer names no tool and no
 protocol, not even mine. There is an automated test that demands it on every surface where one
-could slip in (the sources, the two published files, their index and the generated document), and
+could slip in (the sources, the published files, their index and the generated document), and
 anyone can check it today, in one second, against the served file:
 
 ```

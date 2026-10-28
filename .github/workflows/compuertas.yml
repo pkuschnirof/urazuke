@@ -121,8 +121,8 @@ jobs:
 
       - name: Dejar el arbol limpio (ningun generado sin commitear)
         run: |
-          git diff --stat -- docs/html/api/ gates/ docs/COMPUERTAS.md
-          if [ -n "$(git status --porcelain -- gates/ docs/COMPUERTAS.md)" ]; then
+          git diff --stat -- docs/html/api/ gates/ labels/ docs/COMPUERTAS.md
+          if [ -n "$(git status --porcelain -- gates/ labels/ docs/COMPUERTAS.md)" ]; then
             echo "Hay fuentes o documentos generados sin commitear."
             exit 1
           fi

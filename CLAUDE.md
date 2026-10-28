@@ -288,9 +288,11 @@ de estas tres piezas se replica en las otras dos.
   desde sus ajustes. Si el secreto falta, el trabajo falla diciéndolo; no se saltea en silencio.
   La compuerta humana es la de siempre: `main` protegida, con pull request y aprobación de un
   propietario.
-- **La interfaz de datos publica TRES archivos y uno es su índice** (D-056): `gates.json`,
-  `prompts.json` y `index.json`, que es **generado** (`node build/index_api.mjs`) y no se edita a
-  mano. El índice declara, por recurso, la dirección canónica absoluta, el tipo de medio, el tamaño,
+- **La interfaz de datos publica CUATRO archivos y uno es su índice** (D-056, D-074):
+  `gates.json`, `prompts.json`, `labels.json` y `index.json`, que es **generado**
+  (`node build/index_api.mjs`) y no se edita a mano. Cuántos son no se escribe en ninguna prueba:
+  la lista vive una sola vez, en `RECURSOS` de `build/index_api.mjs`, y las pruebas que necesitan
+  la cuenta la sacan de ahí. El índice declara, por recurso, la dirección canónica absoluta, el tipo de medio, el tamaño,
   el nombre del campo de versión con su valor, la huella que ese recurso declara con su algoritmo y
   su forma canónica, y el puntero al registro de versiones que vive en este repositorio. **No lleva
   versión ni huella propias**, a propósito: es un directorio, no un catálogo, y una huella propia
@@ -319,7 +321,8 @@ de estas tres piezas se replica en las otras dos.
   de comandos, en otra escala: un verde de un paso que no hizo nada no es un verde, y la forma de
   saberlo es exigir la salida medida, no el código de salida.
 - **La publicación se verifica contra producción, y el chequeo dice qué vio** (D-054): después de
-  empujar, `node build/portal_verify.mjs` pide los tres archivos al extremo canónico y separa tres
+  empujar, `node build/portal_verify.mjs` pide los cuatro archivos al extremo canónico —la lista sale
+  de la que el índice declara, no de una constante suya— y separa tres
   situaciones que antes salían con el mismo texto: la huella coincide (verde), producción contesta y
   sirve **otra** huella (aviso, y dice cuál: eso sí es el despliegue del portal, que es otro flujo y
   puede estar corriendo), o no se pudo leer producción (**rojo**, con el código HTTP o el error de
@@ -435,8 +438,10 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   comando, ni por un identificador de compuerta `G<n>`, ni por una ruta de archivo. El motivo no es
   pudor: el método publica esta definición para cualquier consumidor, y una herramienta nombrada
   adentro del dato se lee como una dependencia que no existe. `tests/gates_neutralidad.test.mjs`
-  recorre el payload de las fuentes, los dos archivos publicados y el documento generado contra una
-  lista cerrada, y verifica que cada patrón detecte su propio caso. La **prosa** del método sigue
+  recorre el payload de las fuentes, los dos archivos de compuertas y prompts y el documento
+  generado contra una lista cerrada, y verifica que cada patrón detecte su propio caso. El
+  catálogo de textos tiene su propia guarda, en su propia prueba y con su alcance dicho, porque
+  lo que publica es **prosa** y no nivel de datos (D-074). La **prosa** del método sigue
   comparando herramientas por su nombre a propósito (Parte E, manuales de práctica): ahí es
   información para el lector. Las familias de frontend de `adapters.json` también siguen, porque
   son el alcance de una regla y no el endoso de una herramienta.
@@ -485,9 +490,11 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   afirmación medida y publicada, y la prueba de neutralidad la rechazó antes de que pasara. En el mismo
   cambio, la frase que dice **qué protege la huella y qué no** —auto-consistente, detecta el truncado y
   la edición a mano, no protege contra un adversario que controle el alojamiento, y **no hay firma
-  criptográfica, que es una decisión escrita y no un olvido**— se movió al `what` de los dos recursos,
+  criptográfica, que es una decisión escrita y no un olvido**— se movió al `what` de los recursos,
   que es donde la huella la cubre; vivía sólo en el índice, que no lleva huella propia, así que viajaba
-  sin protección. Va en **una sola copia** y la prueba exige la misma cadena byte a byte en los tres.
+  sin protección. Va en **una sola copia** y la prueba exige la misma cadena byte a byte en todos los
+  recursos que el índice declara, más el índice: un recurso nuevo que no la lleve cae sin que nadie
+  tenga que acordarse de agregarlo a una lista.
 - **Un puntero que el dato publica tiene que resolver, y una dirección que publica tiene que poder
   bajarla una máquina** (D-069, `PND-056`). Lo trajo el **consumidor**, el mismo día que implementó
   la obligación de arriba: la cláusula que le decía contra qué contrastar apuntaba a
@@ -531,10 +538,55 @@ hay un test que lo exige. Los títulos de peldaño salen de los contratos **ingl
 (`docs/en/peldanos/`), porque esto es dato de herramienta (D-051); el archivo sigue siendo UTF-8 y
 no ASCII puro, porque el texto de los prompts viaja tal cual, con su puntuación tipográfica.
 
+## El catálogo de textos por identificador (`labels/`)
+
+D-074 (`PND-011`), bloqueante de la auditoría externa. El archivo de compuertas le dice al
+consumidor, y con razón, «no imprimas estos textos, leé el identificador opaco y sacá el texto de
+tu propio catálogo», y hasta el 2026-10-28 el método **no publicaba ningún catálogo de donde
+sacarlo**: lo único legible por máquina era justo lo que pedía no imprimir, así que la instrucción
+era correcta y no se podía cumplir, y lo que dejaba en la práctica era que cada herramienta se
+escribiera sus propias traducciones de los títulos del método. `docs/html/api/labels.json`
+(`build/labels_api.mjs`) lo cierra: el título de los veinticuatro peldaños, el título de las ocho
+estaciones y el enunciado de las cuarenta y seis reglas del Anexo H, en los ocho idiomas de la
+prosa. Setenta y ocho identificadores por idioma, 624 cadenas. `labels/catalog.json` se mantiene
+**a mano**, igual que los otros dos, porque es la identidad de lo publicado: `labels_version` (hoy
+`2026.10.1`) y el registro de huellas, con las mismas reglas que el catálogo de compuertas (D-053).
+
+Lo que no se negocia de este recurso. **Ni una cadena se escribe ahí**: se **extrae** de la prosa,
+que es el mismo mecanismo que ya resolvía el enunciado inglés de las reglas, y hay una prueba que
+exige que cada una de las 624 aparezca **literal** en el documento del idioma del que dice salir. Es
+la prueba que importa, porque el riesgo propio de un catálogo de textos es volverse una segunda
+versión del método que divergue de la primera sin que nada caiga; y es la que hace que el archivo no
+se pueda «completar a mano» cuando a un idioma le falta algo: si falta, **no se publica nada**. Es
+**un** recurso y no ocho archivos por idioma, como pedía la especificación original, porque el
+método ya replica un cambio del castellano en las siete traducciones en el mismo commit (D-013), así
+que las ocho se mueven siempre juntas y ocho líneas de versión serían ocho copias de un solo hecho.
+Y es UTF-8 y **no** ASCII puro, igual que el corpus de prompts y por la misma razón: el texto de la
+prosa viaja tal cual. Lo que sí es inglés y ASCII (D-051) es lo que el archivo dice *sobre* los
+textos —`what`, `scope`, las notas—: un campo que explica el dato es nivel de datos; un texto
+extraído de la prosa es prosa. De ahí que la guarda de neutralidad de este recurso viva en su propia
+prueba y con su alcance escrito, y no adentro de la del nivel de datos.
+
+Lo que queda **afuera** está declarado en `scope`, con su razón y su medición, adentro de la huella:
+el vocabulario de evaluadores, cuya descripción es nivel de datos y existe en un solo idioma
+—traducirla sería escribir texto nuevo ahí—; y las preguntas de verificación de cada peldaño,
+porque la lista que el dato declara y la que la prosa del contrato lleva **no son la misma**: cero
+de veinticuatro peldaños coinciden en cantidad y la prosa es la más larga en todos, así que
+emparejarlas por posición las etiquetaría mal. Esa medición se **reproduce** en una prueba, para que
+la exclusión no se vuelva falsa sola.
+
+Los idiomas **no se escriben acá**: se derivan de `languages.prose_versions` (D-067). Se publican
+ocho porque son los que tienen prosa, y un idioma sin prosa no tiene texto que extraer; el día que
+`PND-016` lleve el corpus a diez, el catálogo publica diez sin tocar una línea del programa. El
+recurso lo dice de frente en `languages.note`, nombrando la diferencia entre los idiomas de la
+interfaz y los de la prosa como lo que es: un pendiente abierto del método y no un defecto del
+archivo.
+
 ## Build
 
-`node build/build.mjs`: verifica los prompts, valida y publica las compuertas, verifica que
-`docs/COMPUERTAS.md` coincida con los datos, y genera, por idioma, `ESCALERA_METODOLOGICA.html`,
+`node build/build.mjs`: verifica los prompts, valida y publica las compuertas, extrae el catálogo
+de textos por identificador, verifica que `docs/COMPUERTAS.md` coincida con los datos, y genera,
+por idioma, `ESCALERA_METODOLOGICA.html`,
 `REFERENCIAS.html`, `EVOLUTIVO_CORRECTIVO.html`, `MANUAL_CURSO.html`, `MANUAL_CURSO_EVOLUTIVO.html`
 y `CONTRATOS_DE_PELDANO.html`. `build/split.mjs` parte un
 archivo con marcas `<!-- file: … -->` en contratos individuales.
@@ -544,7 +596,7 @@ archivo con marcas `<!-- file: … -->` en contratos individuales.
 que no lo expande corre CERO pruebas y devuelve éxito, y un verde con cero pruebas no es un verde.
 Incluyen el test de diferencia cero contra el congelado, los rojos deliberados del validador, el
 fixture que prende y apaga el interruptor, el test de idioma del nivel de datos (D-051) y el de la
-versión declarada contra su huella, en los dos archivos publicados (D-053), y las del índice de la
+versión declarada contra su huella, en los recursos publicados (D-053), y las del índice de la
 interfaz de datos, que son casi todas rojos deliberados (D-056), y la del registro de pendientes
 contra su propio resumen (D-057), y las del aviso de huérfanas, donde cinco de las veintitrés son
 rojos deliberados y tres corren el programa aparte para exigir su salida medida (D-058), y las del
@@ -554,16 +606,21 @@ archivo de rojos aparte: ocho mutilan el insumo y tienen que caer nombrando lo s
 once hay una que exige que el enunciado del contrato de fijación viaje del dato al documento
 generado por extracción y no transcrito (D-068), y las de los punteros del publicado, que son
 siete y traen diez rojos deliberados aparte —entre ellos el puntero colgante que las originó, que
-tiene que volver a caer si alguien lo reintroduce (D-069)—. Los siete
+tiene que volver a caer si alguien lo reintroduce (D-069)—, y las del catálogo de textos, que son
+veintitrés: once exigen que a ningún identificador le falte su texto en ningún idioma y que cada
+una de las 624 cadenas aparezca **literal** en el documento del que dice salir, y doce son rojos
+deliberados que le dan de comer un árbol mutilado —una ficha arrancada, un encabezado sin su raya,
+una regla que le falta al anexo de un idioma, una que sobra, un documento que no se pudo leer— y
+exigen que caiga nombrando lo suyo (D-074). Los ocho
 programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
-`index_api`, `portal_orphans`, `version_fijada`, `punteros_publicados`)
+`index_api`, `portal_orphans`, `version_fijada`, `punteros_publicados`, `labels_api`)
 detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
 el idiom de pegar `file:///` adelante de `argv[1]` sólo acierta en Windows y dejaba dos pasos
 de la cadena corriendo en vacío sobre Linux, en verde. Hay una prueba que lo exige en las dos
 formas de ruta, y los pasos del flujo que los corren exigen además la línea que el programa
 imprime: un paso que no imprimió nada no corrió, y no es un verde. `node build/api_check.mjs` regenera lo publicado y falla
 si no coincide con lo commiteado, y `node build/api_check.mjs --huella` recalcula la huella de los
-**dos** recursos commiteados sin regenerar nada (es lo que usa el paso de publicación, porque regenerar reescribe
+**tres** recursos commiteados sin regenerar nada (es lo que usa el paso de publicación, porque regenerar reescribe
 `generated_at` y publicaría algo distinto de lo que quedó en `main`); en los dos modos exige además
 que el **índice** (`docs/html/api/index.json`, generado por `build/index_api.mjs`) cite las
 versiones, las huellas y los tamaños vivos, y que no haya un recurso publicado que el índice esconda

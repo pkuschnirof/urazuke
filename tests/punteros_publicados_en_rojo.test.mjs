@@ -68,7 +68,8 @@ test('rojo 6: el indice se queda sin la direccion que baja una maquina', () => {
   const pub = clonar();
   for (const r of pub.indice.resources) delete r.version_ledger.fetch_url;
   const h = simetriaDelRegistroDeVersiones(pub);
-  assert.equal(h.length, 2);
+  // Un hallazgo por recurso, y cuantos son lo dice el indice y no una constante de aca.
+  assert.equal(h.length, pub.indice.resources.length);
   for (const x of h) assert.match(x.por_que, /fetch_url/);
 });
 

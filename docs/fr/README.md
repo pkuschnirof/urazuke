@@ -49,7 +49,7 @@ complète.
 Et ce n'est pas une déclaration de bonne volonté : **c'est dans la donnée et cela se mesure.** La
 définition mécanique des verrous que la méthode publie pour n'importe quel consommateur ne nomme
 aucun outil ni aucun protocole, pas même les miens. Il y a un test automatique qui l'exige sur
-chaque surface où un nom pourrait se glisser (les sources, les deux fichiers publiés, leur index et
+chaque surface où un nom pourrait se glisser (les sources, les fichiers publiés, leur index et
 le document généré), et n'importe qui peut le vérifier aujourd'hui, en une seconde, sur le fichier
 servi :
 

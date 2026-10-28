@@ -1,5 +1,5 @@
 // Verifica que lo publicado en docs/html/api/ sea exactamente lo que dan las fuentes:
-// regenera las dos APIs y compara contra lo que estaba commiteado. Si difieren, alguien
+// regenera las APIs y compara contra lo que estaba commiteado. Si difieren, alguien
 // edito un generado a mano o se olvido de regenerar, y la construccion falla.
 //
 // Dos campos quedan FUERA de la comparacion a proposito, y conviene saber por que:
@@ -9,8 +9,8 @@
 //     anterior al que los contiene. Compararlos dejaria esta verificacion en rojo
 //     permanente por un campo que ninguna decision mira. La identidad de lo publicado
 //     es la version declarada a mano (`catalog_version` en gates.json, `corpus_version`
-//     en prompts.json) + `content_hash` (calculada), y esa SI se verifica: se recalcula
-//     la huella de los DOS archivos sobre lo commiteado.
+//     en prompts.json, `labels_version` en labels.json) + `content_hash` (calculada), y
+//     esa SI se verifica: se recalcula la huella de los TRES archivos sobre lo commiteado.
 //   - `generated_at`: cambia en cada corrida por definicion.
 // Uso: node build/api_check.mjs
 //      node build/api_check.mjs --huella   <- solo recalcula la huella de lo commiteado
@@ -32,12 +32,13 @@ import { CARPETA_INMUTABLE } from './gates_lib.mjs';
 const VOLATILES = {
   'prompts.json': ['version', 'generated_at'],
   'gates.json': ['generated_at', 'git_commit', 'git_commit_note'],
+  'labels.json': ['generated_at', 'git_commit', 'git_commit_note'],
   // El indice no tiene mas metadata de corrida que su fecha: no lleva version ni huella
   // propias (D-056), asi que todo lo demas tiene que coincidir clavado.
   'index.json': ['generated_at'],
 };
 
-const ARCHIVOS = ['prompts.json', 'gates.json', 'index.json'];
+const ARCHIVOS = ['prompts.json', 'gates.json', 'labels.json', 'index.json'];
 
 const ruta = (n) => join(raiz, 'docs', 'html', 'api', n);
 const leer = (n) => { try { return JSON.parse(readFileSync(ruta(n), 'utf8')); } catch { return null; } };
@@ -59,7 +60,7 @@ function verificarHuella(nombre, publicado) {
     console.error('  arreglo: alguien edito el generado a mano. Corre: node build/build.mjs');
     return false;
   }
-  const version = publicado.catalog_version ?? publicado.corpus_version;
+  const version = publicado.catalog_version ?? publicado.corpus_version ?? publicado.labels_version;
   console.log(nombre + ': la huella recalculada coincide (version ' + version + ', ' + publicado.content_hash.value.slice(0, 12) + ')');
   return true;
 }
@@ -101,7 +102,7 @@ function verificarInmutablesAca() {
 }
 
 const huellas = () => {
-  const recursos = ['gates.json', 'prompts.json'].map((n) => verificarHuella(n, antes[n])).every(Boolean);
+  const recursos = ['gates.json', 'prompts.json', 'labels.json'].map((n) => verificarHuella(n, antes[n])).every(Boolean);
   const indice = verificarCitasDelIndice();
   const inmutables = verificarInmutablesAca();
   return recursos && indice && inmutables;
@@ -118,7 +119,7 @@ if (!huellas()) fallas++;
 // con los dos distintos. No rompe nada --la promesa es el contenido cubierto, no los
 // bytes-- pero obliga a `congelar` a reescribirla en cada corrida, y una diferencia que
 // aparece sola en cada clon es ruido que tapa las que importan.
-for (const script of [['prompts_api.mjs'], ['gates_api.mjs'], ['index_api.mjs'], ['version_inmutable.mjs', '--vigente']]) {
+for (const script of [['prompts_api.mjs'], ['gates_api.mjs'], ['labels_api.mjs'], ['index_api.mjs'], ['version_inmutable.mjs', '--vigente']]) {
   execFileSync(process.execPath, [join(raiz, 'build', script[0]), ...script.slice(1)], { stdio: 'inherit' });
 }
 

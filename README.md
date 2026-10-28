@@ -42,7 +42,7 @@ manera. Si no te sirve, o no la querés, el método te queda igual de completo.
 Y esto no es una declaración de buena voluntad: **está en el dato y se puede medir.** La definición
 mecánica de las compuertas que el método publica para cualquier consumidor no nombra ninguna
 herramienta ni ningún protocolo, ni los míos. Hay una prueba automática que lo exige sobre cada
-superficie donde podría colarse —las fuentes, los dos archivos publicados, su índice y el
+superficie donde podría colarse —las fuentes, los archivos publicados, su índice y el
 documento generado—, y cualquiera lo comprueba hoy, en un segundo, sobre el archivo servido:
 
 ```
