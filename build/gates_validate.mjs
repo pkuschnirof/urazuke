@@ -533,6 +533,35 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
     for (const clave of ['must_record', 'must_contrast', 'on_mismatch', 'forbidden']) {
       if (!fijacion.consumer_contract?.[clave]) err('E_FIJACION', 'la obligacion del consumidor no declara ' + clave, 'gates/schema.json#pinning.consumer_contract', 'completalo');
     }
+    // La direccion inmutable (PND-008). El contrato de fijacion no esta completo sin ella:
+    // decirle a un proyecto que congele una version y no darle de donde volver a leerla es
+    // la mitad de una obligacion.
+    const previa = fijacion.prior_version_content ?? {};
+    for (const clave of ['immutable_url_pattern', 'immutable_url_what', 'immutable_url_where', 'first_version_with_an_address', 'no_purge', 'what_is_promised', 'not_guaranteed', 'how']) {
+      if (!previa[clave]) err('E_FIJACION', 'el contrato de la version anterior no declara ' + clave, 'gates/schema.json#pinning.prior_version_content',
+        'completalo: la direccion inmutable es parte del contrato de fijacion, no un extra (PND-008)');
+    }
+    // Y la direccion concreta se DERIVA: en la fuente viaja en null a proposito, porque la
+    // forma vive una sola vez en urlInmutable(). Transcribirla aca dejaria dos copias que
+    // pueden divergir, que es lo que D-044 prohibe para el enunciado de una regla.
+    if (!('immutable_path' in previa) || previa.immutable_path !== null) {
+      err('E_FIJACION', 'immutable_path no viaja en null en la fuente: ' + JSON.stringify(previa.immutable_path), 'gates/schema.json#pinning.prior_version_content.immutable_path',
+        'dejalo en null: el camino se calcula con la version del propio archivo (build/gates_lib.mjs#caminoInmutable). Un camino transcrito a mano es una segunda copia que puede quedar vieja.');
+    }
+    // Y es RELATIVO. Una direccion absoluta aca lleva el nombre del alojamiento adentro del
+    // recurso, y el metodo publica un comando que cuenta esas ocurrencias sobre el archivo
+    // servido y afirma que da cero (D-055, README en los ocho idiomas). La absoluta la
+    // declara el indice, que tiene su excepcion escrita y probada (D-056).
+    for (const [clave, valor] of Object.entries(previa)) {
+      if (typeof valor === 'string' && /https?:\/\//.test(valor)) {
+        err('E_FIJACION', 'prior_version_content.' + clave + ' lleva una direccion absoluta', 'gates/schema.json#pinning.prior_version_content.' + clave,
+          'usa un camino relativo a la base canonica: una absoluta trae el nombre del alojamiento al nivel de datos y rompe la cuenta de neutralidad que el metodo publica medida.');
+      }
+    }
+    if (previa.first_version_with_an_address && !versionesDeclaradas.has(previa.first_version_with_an_address)) {
+      err('E_FIJACION', 'first_version_with_an_address ' + previa.first_version_with_an_address + ' no es una version del registro', 'gates/schema.json#pinning.prior_version_content',
+        'usa una version del changelog: es la afirmacion de desde cuando hay direccion que un consumidor puede pedir');
+    }
     const desde = fijacion.upgrade?.covered_keys_since;
     if (desde && !versionesDeclaradas.has(desde)) {
       err('E_FIJACION', 'covered_keys_since ' + desde + ' no es una version del registro', 'gates/schema.json#pinning.upgrade',

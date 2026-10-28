@@ -1,0 +1,3455 @@
+{
+  "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.",
+  "catalog_version": "2026.10.8",
+  "schema_version": 2,
+  "content_hash": {
+    "algo": "sha256",
+    "encoding": "hex_lower",
+    "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
+    "covers": [
+      "schema_version",
+      "catalog_version",
+      "languages",
+      "evaluators",
+      "evaluator_semantics",
+      "compatibility",
+      "tramos",
+      "steps",
+      "stations",
+      "loop_entry",
+      "heuristics",
+      "adapters",
+      "project_config",
+      "counts",
+      "what",
+      "pinning"
+    ],
+    "excludes": [
+      "generated_at",
+      "git_commit",
+      "git_commit_note",
+      "source",
+      "license",
+      "content_hash"
+    ],
+    "value": "54b57e7871914e28b49fe45d05188660589dff5427abf032e1e0efcd6651e269",
+    "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
+  },
+  "git_commit": "24105b8",
+  "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
+  "generated_at": "2026-10-27T16:40:34.731Z",
+  "source": "https://github.com/pkuschnirof/urazuke",
+  "license": "CC BY-SA 4.0",
+  "counts": {
+    "steps": 24,
+    "stations": 8,
+    "rules": 46,
+    "evaluators": 12
+  },
+  "languages": {
+    "prose": "es",
+    "data": "mixed",
+    "decision": "D-051",
+    "note": "The prose of the method (docs/) is written in Spanish, which is the source of truth, and published in every language listed in `prose_versions`. The data layer (gates/ and the published file) is written in English, which is the canonical language of the profession, because it is not part of the translated corpus. Translating for the comprehension of an end user is the job of the consumer tool, not of this catalogue.",
+    "exception": "The frozen base (gates/baseline.json) keeps the Spanish text and the `tramo` field name it had when the method took ownership. The base is not edited: changing it is a change of the method, with its own decision.",
+    "text_language": {
+      "what": "Which language each human-readable text of this file is in. It is declared mechanically because the file is bilingual: reading `data` as a single language would make a consumer show Spanish to an English reader.",
+      "default": "en",
+      "spanish_scope": [
+        "tramos",
+        "steps",
+        "stations",
+        "loop_entry"
+      ],
+      "marker": "since_schema",
+      "rule": "Inside the keys listed in `spanish_scope`, a text is Spanish when neither its own node nor any enclosing node declares `since_schema` >= 2: it comes from the frozen base, and the base is not edited. A node with `since_schema` >= 2 is new, and its text is English. Every text outside `spanish_scope` is English.",
+      "text_fields": [
+        "title",
+        "summary",
+        "verify",
+        "label",
+        "text",
+        "note"
+      ],
+      "language_neutral": "Ids, step and station keys, evaluator names, enum values, file paths and the regular expressions of must_contain / should_contain are not prose and carry no language. The regular expressions are deliberately bilingual, so that a gate matches a document written in either language.",
+      "verified": "The method checks this declaration on every build: every text the rule calls Spanish has to appear literally in gates/baseline.json, and no text the rule calls English may read as Spanish. If the declaration stops being true, nothing is published.",
+      "consumer": "Do not print these texts to an end user. Read the stable `id` -- an opaque key that is never translated -- and take the text from your own catalogue. That holds for the English texts too: this file is the definition of the gates, not a translated user interface."
+    },
+    "prose_versions": [
+      "es",
+      "en",
+      "pt",
+      "fr",
+      "de",
+      "it",
+      "ja",
+      "zh"
+    ],
+    "prose_versions_what": "The languages the prose of the method is published in, declared as a LIST and not as a count inside a sentence. The method declares ITS OWN languages: if they coincide with those of some other specification, that is a coincidence and not a definition. Adding a language changes this array and no prose anywhere, which is why the array exists -- the claim used to live in a sentence here, in the prompt corpus, in two README files and in forty strings of the landing page, and correcting one of them meant mechanically raising two declared versions."
+  },
+  "evaluators": [
+    {
+      "name": "artifacts",
+      "since_schema": 1,
+      "checks": "Every declared artifact exists, passes its min_bytes, satisfies each must_contain and, if it is a glob, the newest one is within its fresh_days. A should_contain that does not appear leaves a warning, not a red."
+    },
+    {
+      "name": "sizing",
+      "since_schema": 1,
+      "checks": "The artifacts, plus an admissible sizing record: volumetry, retention per data class and hardware envelope, all declared by the owner."
+    },
+    {
+      "name": "ci",
+      "since_schema": 1,
+      "checks": "The artifacts, plus a continuous integration definition that exists in the repository."
+    },
+    {
+      "name": "pendings_spec",
+      "since_schema": 1,
+      "checks": "The artifacts, plus every open pending item carrying its full specification (acceptance criteria and how it is verified). An empty plan is red, not green."
+    },
+    {
+      "name": "receipts",
+      "since_schema": 1,
+      "checks": "The artifacts, plus evidence receipts including at least one proven red and one green. No receipt, no step."
+    },
+    {
+      "name": "reports",
+      "since_schema": 1,
+      "checks": "The artifacts, plus every closed pending item having its honest report (verified / believed / blind spot). No closure yet is red, not green."
+    },
+    {
+      "name": "meters",
+      "since_schema": 1,
+      "checks": "A meter exists in the repository and the meter has a test of its own."
+    },
+    {
+      "name": "owner",
+      "since_schema": 1,
+      "checks": "Nothing mechanical: the owner verifies it and signs it. No step of the catalogue chooses it today; the state exists for a step that leaves no machine check at all, and that is why the name is published anyway."
+    },
+    {
+      "name": "heuristics",
+      "since_schema": 2,
+      "since_version": "2026.10.1",
+      "checks": "The Annex H rule catalogue is declared and active per group; every active rule has an instrument, a severity and a checker; every switched-off rule has its record with reason, author and review date (switched off without a record is red, not the absence of a rule); every undeclared threshold is reported as undeclared instead of invented; and the report emits the two figures with the ruleset fingerprint. A switched-off group is never read as fulfilled.",
+      "declares": [
+        "D-045",
+        "D-046",
+        "D-047",
+        "D-048"
+      ]
+    },
+    {
+      "name": "profile_matrix",
+      "since_schema": 2,
+      "since_version": "2026.10.1",
+      "checks": "The functionality-by-profile matrix exists and is consistent: every functionality has at least one profile, every profile has at least one functionality and its entry point, and navigation is derived from the matrix rather than hand-written. And for every profile, the end-to-end test compares what is reachable against its row: neither less nor more.",
+      "declares": [
+        "D-044"
+      ]
+    },
+    {
+      "name": "manual_cases_per_profile",
+      "since_schema": 2,
+      "since_version": "2026.10.1",
+      "checks": "Every manual test case was run once per affected profile, derived from the matrix. A case run with a single profile does not count as executed.",
+      "declares": [
+        "D-044"
+      ]
+    },
+    {
+      "name": "pendings_profiles",
+      "since_schema": 2,
+      "since_version": "2026.10.1",
+      "checks": "Every pending item that touches a screen declares its functional convergence group, the profiles that have it and one acceptance criterion per profile. Without that declaration the pending item does not pass the step.",
+      "declares": [
+        "D-044"
+      ]
+    }
+  ],
+  "evaluator_semantics": {
+    "required_true": "A step that declares this evaluator needs the installation to know how to measure it. An installation that does not know it does NOT report green: it reports \"declared, not measured by this installation\" and the step does not advance. No approximating with the closest evaluator, and no ignoring.",
+    "required_false": "A warning, not a gate: an installation that does not know it says so and the step may advance anyway.",
+    "unknown_name": "A name that is not in this list is a catalogue error, not an extension: the validator rejects it."
+  },
+  "compatibility": {
+    "unknown_evaluator_required": "The installation does NOT report green. It reports \"declared, not measured by this installation\", naming the evaluator, and the step does not advance.",
+    "unknown_evaluator_not_required": "A warning: it names it and the step may advance.",
+    "forbidden": "Approximating with the closest evaluator, or ignoring the block. Zero silent damage."
+  },
+  "tramos": {
+    "arranque": {
+      "title": "I. Arranque",
+      "steps": [
+        0,
+        4
+      ]
+    },
+    "bucle": {
+      "title": "II. Bucle de construccion",
+      "steps": [
+        5,
+        12
+      ]
+    },
+    "salida": {
+      "title": "III. Salida a produccion",
+      "steps": [
+        13,
+        20
+      ]
+    },
+    "operacion": {
+      "title": "IV. Operacion",
+      "steps": [
+        21,
+        23
+      ]
+    }
+  },
+  "steps": [
+    {
+      "num": 0,
+      "id": "u00-elegibilidad",
+      "tramo": "arranque",
+      "title": "Este proyecto se puede encarar asi? (elegibilidad)",
+      "summary": "Decidir, con criterios excluyentes y ponderados, si el proyecto se puede construir con el metodo.",
+      "form": "conversation",
+      "mandatory": "always",
+      "prompt_key": "peldano-00",
+      "inputs": [
+        {
+          "path": "docs/INITIAL_SURVEY.md",
+          "label": "relevamiento inicial escrito por el dueno"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/ELIGIBILITY.md",
+          "must_contain": [
+            "eligib|elegib"
+          ],
+          "label": "veredicto de elegibilidad"
+        }
+      ],
+      "verify": [
+        "Hay un veredicto escrito (elegible / no elegible / elegible con proyectos previos)?",
+        "Cada criterio excluyente tiene su verificacion, no una opinion?",
+        "Lo que falta quedo como pendiente, no como suposicion?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 1,
+      "id": "u01-contrato-de-convivencia",
+      "tramo": "arranque",
+      "title": "El contrato de convivencia",
+      "summary": "Las reglas que el agente cumple en cada sesion, escritas antes del codigo.",
+      "form": "one_shot",
+      "mandatory": "always",
+      "prompt_key": "peldano-01",
+      "inputs": [
+        {
+          "path": "docs/ELIGIBILITY.md"
+        },
+        {
+          "path": "docs/MY_PREFERENCES.md",
+          "min_bytes": 50,
+          "label": "tus preferencias, en una pagina"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "evidence|evidencia"
+          ],
+          "label": "contrato de convivencia"
+        }
+      ],
+      "verify": [
+        "El contrato dice que ninguna afirmacion de \"hecho\" vale sin evidencia?",
+        "Dice que el agente pide lo que falta en vez de estimar?",
+        "Esta cargado donde la herramienta lo lee en cada sesion?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 2,
+      "id": "u02-definicion-y-lectura",
+      "tramo": "arranque",
+      "title": "La definicion del proyecto, el arbol semantico y la lectura obligatoria",
+      "summary": "Que es el sistema, para quien, con que casos de uso, y que se lee en cada sesion.",
+      "form": "conversation",
+      "mandatory": "always",
+      "prompt_key": "peldano-02",
+      "inputs": [
+        {
+          "path": "docs/INITIAL_SURVEY.md"
+        },
+        {
+          "path": "docs/WORKING_AGREEMENT.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "PROJECT.md",
+          "label": "definicion del proyecto"
+        },
+        {
+          "path": "docs/SEMANTIC_TREE.md",
+          "label": "arbol semantico"
+        },
+        {
+          "path": "docs/STATUS.md",
+          "min_bytes": 80,
+          "label": "estado del proyecto"
+        },
+        {
+          "path": "docs/GLOSSARY.md",
+          "min_bytes": 80,
+          "label": "the user glossary, in the words the business uses",
+          "since_schema": 2,
+          "since_version": "2026.10.5"
+        },
+        {
+          "path": "docs/PROFILES.md",
+          "min_bytes": 80,
+          "label": "the list of profiles, who each one is and what they come to do",
+          "since_schema": 2,
+          "since_version": "2026.10.5"
+        }
+      ],
+      "verify": [
+        "PROJECT.md explica el sistema a alguien que no lo conoce?",
+        "El arbol semantico tiene cada caso de uso que vos nombraste?",
+        "Lo inferido esta marcado como inferido?",
+        {
+          "text": "Is the user glossary written, with the words people actually use for things?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "anchor": "prior_input_1"
+        },
+        {
+          "text": "Is the list of profiles written, saying who each one is and what they come to do?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "anchor": "prior_input_2"
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 3,
+      "id": "u03-dimensionar",
+      "tramo": "arranque",
+      "title": "Dimensionar antes de disenar la arquitectura",
+      "summary": "Volumetria, retencion, concurrencia y envoltura de hardware antes de elegir la persistencia.",
+      "form": "conversation",
+      "mandatory": "always",
+      "prompt_key": "peldano-03",
+      "inputs": [
+        {
+          "path": "docs/VOLUME_SURVEY.md",
+          "min_bytes": 80,
+          "label": "relevamiento de volumen"
+        },
+        {
+          "path": "PROJECT.md"
+        },
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/SIZING.md",
+          "label": "dimensionamiento escrito"
+        }
+      ],
+      "verify": [
+        "Cada numero tiene su fuente (vos, el negocio, medido), no una estimacion del agente?",
+        "La persistencia elegida tiene su envoltura de validez escrita?",
+        "El registro de dimensionamiento esta admisible?"
+      ],
+      "evaluators": [
+        {
+          "name": "sizing",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 4,
+      "id": "u04-esqueleto",
+      "tramo": "arranque",
+      "title": "El esqueleto con sus compuertas",
+      "summary": "Repositorio, integracion continua, entornos y las compuertas que nadie puede saltar.",
+      "form": "one_shot",
+      "mandatory": "always",
+      "prompt_key": "peldano-04",
+      "inputs": [
+        {
+          "path": "docs/ENVIRONMENTS_SURVEY.md",
+          "min_bytes": 80,
+          "label": "relevamiento de entornos"
+        },
+        {
+          "path": "docs/SIZING.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/GATES.md",
+          "label": "las compuertas escritas"
+        },
+        {
+          "path": "docs/STATUS.md",
+          "must_contain": [
+            "test"
+          ],
+          "label": "STATUS con el comando de la bateria"
+        }
+      ],
+      "verify": [
+        "La cadena corre sola en cada push y se pone en rojo cuando corresponde?",
+        "Hay un comando conocido para correr la bateria, anotado en STATUS?",
+        "Las compuertas estan escritas en GATES.md?"
+      ],
+      "evaluators": [
+        {
+          "name": "ci",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 5,
+      "id": "u05-pendientes",
+      "tramo": "bucle",
+      "title": "El plan son los pendientes",
+      "summary": "Cada pendiente lleva su especificacion completa: criterios de aceptacion y como se verifica.",
+      "form": "routine",
+      "mandatory": "always",
+      "prompt_key": "peldano-05",
+      "inputs": [
+        {
+          "path": "docs/blocks/*.md",
+          "label": "el pedido del bloque, escrito por vos"
+        },
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/PROFILE_MATRIX.md",
+          "must_contain": [
+            "perfil|profile"
+          ],
+          "label": "the functionality-by-profile matrix",
+          "since_schema": 2,
+          "since_version": "2026.10.1"
+        }
+      ],
+      "verify": [
+        "Cada pendiente abierto tiene criterios de aceptacion \"dado, cuando, entonces\"?",
+        "Cada pendiente dice como se verifica sin leer codigo?",
+        "Los pendientes cerrados conservan su especificacion (documentacion del hecho)?",
+        {
+          "text": "Does every pending item that touches a screen declare its convergence group, its profiles and one acceptance criterion per profile?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "anchor": 1
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "pendings_spec",
+          "since_schema": 1,
+          "required": true
+        },
+        {
+          "name": "pendings_profiles",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 6,
+      "id": "u06-decisiones",
+      "tramo": "bucle",
+      "title": "Las decisiones se escriben junto al codigo",
+      "summary": "Cada decision con dueno, fecha, la frase textual de origen y donde se aplica.",
+      "form": "conversation",
+      "mandatory": "always",
+      "prompt_key": "peldano-06",
+      "inputs": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/DECISIONS.md",
+          "label": "registro de decisiones"
+        }
+      ],
+      "verify": [
+        "Cada decision tiene quien, cuando y la frase textual?",
+        "El agente pregunta antes de decidir lo que es tuyo?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 7,
+      "id": "u07-medir",
+      "tramo": "bucle",
+      "title": "Medir antes de construir, con un instrumento que tambien se verifica",
+      "summary": "Un numero que alimenta una decision se mide con un programa que tiene su propio test.",
+      "form": "one_shot",
+      "mandatory": "proportional",
+      "prompt_key": "peldano-07",
+      "inputs": [],
+      "artifacts": [],
+      "verify": [
+        "El medidor esta en el repositorio y tiene su test?",
+        "El numero viene con el comando que lo produce y la fecha?",
+        "Lo aproximado esta marcado como aproximado, con su margen?"
+      ],
+      "evaluators": [
+        {
+          "name": "meters",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 8,
+      "id": "u08-tests-en-rojo",
+      "tramo": "bucle",
+      "title": "Tests como candados, probados en rojo",
+      "summary": "El rojo contra el codigo anterior como recibo, el verde, la regresion y la prueba de punta a punta.",
+      "form": "routine",
+      "mandatory": "always",
+      "prompt_key": "peldano-08",
+      "inputs": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md"
+        },
+        {
+          "path": "docs/STATUS.md",
+          "must_contain": [
+            "test"
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "red|rojo"
+          ],
+          "label": "la rutina del rojo en el contrato"
+        }
+      ],
+      "verify": [
+        "El rojo es un recibo (comando, version, numeros, codigo de salida) y no un relato?",
+        "La regresion corrio en la misma sesion, con numeros?",
+        "La prueba de pantalla verifica tambien el efecto en el backend?",
+        {
+          "text": "Was the matrix seen failing first: for each profile, what is reachable against its row, neither less nor more?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "anchor": 2
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "receipts",
+          "since_schema": 1,
+          "required": true
+        },
+        {
+          "name": "profile_matrix",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 9,
+      "id": "u09-calidad-de-codigo",
+      "tramo": "bucle",
+      "title": "Calidad del codigo verificada por maquina, con compuerta",
+      "summary": "Linter, formateador, limites de tamano y complejidad, duplicacion, codigo muerto, cobertura con trinquete.",
+      "form": "routine",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-09",
+      "inputs": [
+        {
+          "path": "docs/GATES.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/CODE_QUALITY.md",
+          "label": "herramientas, limites y valores medidos"
+        },
+        {
+          "path": "docs/GATES.md",
+          "must_contain": [
+            "quality|calidad|lint"
+          ],
+          "label": "la calidad como compuerta"
+        },
+        {
+          "path": "docs/CODE_QUALITY.md",
+          "must_contain": [
+            "CQ-\\d\\d"
+          ],
+          "label": "the result per rule, not as a single number",
+          "since_schema": 2,
+          "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/USABILITY.md",
+          "must_contain": [
+            "UX-\\d\\d"
+          ],
+          "label": "the result per usability rule, with its declared exceptions",
+          "since_schema": 2,
+          "since_version": "2026.10.1"
+        }
+      ],
+      "verify": [
+        "La ultima corrida de la cadena tiene la calidad en verde?",
+        "Una funcion de cien lineas en una rama pone la cadena en rojo?",
+        "La cobertura de hoy es mayor o igual que la del bloque anterior?",
+        {
+          "text": "Is the rule catalogue complete, with its frontend adapter and its declared thresholds (and does whatever is undeclared say so)?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "anchor": 3
+        },
+        {
+          "text": "Does every switched-off rule have its record with reason, author and review date?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "anchor": 3
+        },
+        {
+          "text": "With real users, is the mutation score measured per block, and did every surviving mutant in new code open a pending item?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "anchor": 3
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "ci",
+          "since_schema": 1,
+          "required": true
+        },
+        {
+          "name": "heuristics",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 10,
+      "id": "u10-casos-de-prueba-manual",
+      "tramo": "bucle",
+      "title": "Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas",
+      "summary": "Cada pendiente deja su caso de prueba manual; cada fallo humano vuelve como pendiente.",
+      "form": "routine",
+      "mandatory": "always",
+      "prompt_key": "peldano-10",
+      "inputs": [
+        {
+          "path": "PROJECT.md"
+        },
+        {
+          "path": "docs/WORKING_AGREEMENT.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/MANUAL_TESTS.md",
+          "label": "casos de prueba manual"
+        }
+      ],
+      "verify": [
+        "Cada pendiente cerrado tiene su caso de prueba manual, con pasos y resultado esperado?",
+        "Los casos se ejecutaron al cierre del bloque, con fecha y quien?",
+        "Cada fallo abrio un pendiente?",
+        {
+          "text": "Was each case run once per affected profile, derived from the matrix? A case run with a single profile does not count.",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "anchor": 4
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        },
+        {
+          "name": "manual_cases_per_profile",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 11,
+      "id": "u11-simetria-y-antipatrones",
+      "tramo": "bucle",
+      "title": "Simetria entre productor y consumidor, y el registro de anti-patrones",
+      "summary": "Nadie cambia una estructura compartida sin tocar a todos sus consumidores; cada golpe queda escrito.",
+      "form": "routine",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-11",
+      "inputs": [
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/PRODUCER_CONSUMER_MAP.md",
+          "label": "mapa productor-consumidor"
+        },
+        {
+          "path": "docs/GOTCHAS.md",
+          "min_bytes": 50,
+          "label": "registro de anti-patrones"
+        }
+      ],
+      "verify": [
+        "El mapa nombra cada estructura compartida con sus lectores y escritores?",
+        "Cada golpe de los ultimos bloques esta en GOTCHAS.md con su regla?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 12,
+      "id": "u12-verificacion-honesta",
+      "tramo": "bucle",
+      "title": "Verificacion honesta y reporte proporcional",
+      "summary": "Cada reporte separa lo verificado, lo creido y el punto ciego, y ocupa lo que la evidencia da.",
+      "form": "routine",
+      "mandatory": "always",
+      "prompt_key": "peldano-12",
+      "inputs": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "verif",
+            "blind|ciego"
+          ],
+          "label": "la rutina del reporte honesto"
+        }
+      ],
+      "verify": [
+        "El ultimo reporte separa verificado / creido / punto ciego?",
+        "Lo verificado tiene su recibo?",
+        {
+          "text": "Does the report say what was measured, what was left warning and which rule is switched off, with reason, author and review date?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "anchor": 5
+        },
+        {
+          "text": "Do the two figures travel with their ruleset fingerprint, and does neither of them close a block?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "anchor": 5
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "reports",
+          "since_schema": 1,
+          "required": true
+        },
+        {
+          "name": "heuristics",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 13,
+      "id": "u13-auditoria",
+      "tramo": "salida",
+      "title": "La auditoria periodica como insumo del plan",
+      "summary": "Otra sesion, idealmente otro modelo, revisa todo y sus hallazgos entran al plan como pendientes.",
+      "form": "one_shot",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-13",
+      "inputs": [
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        },
+        {
+          "path": "docs/STATUS.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "label": "auditoria reciente",
+          "should_contain": [
+            "^\\s*\\**\\s*auditor\\s*\\**\\s*:"
+          ]
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "recibo|receipt"
+          ],
+          "should_contain": [
+            "modelo|model"
+          ],
+          "label": "the audit reproduces receipts and declares which model performed it",
+          "since_schema": 2,
+          "since_version": "2026.10.1"
+        }
+      ],
+      "verify": [
+        "La auditoria la hizo una sesion distinta de la que construye?",
+        "Cada hallazgo P0 y P1 tiene pendiente?",
+        "Vuelve a correr una muestra de los recibos de rojo?",
+        {
+          "text": "Did you literally reproduce two or three receipts of closed pending items (same command, same numbers), rather than just reading them?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "decision": "D-042"
+        },
+        {
+          "text": "Was the audit done, where possible, by a model other than the one that builds?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "decision": "D-042"
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 14,
+      "id": "u14-fail-closed",
+      "tramo": "salida",
+      "title": "Fail-closed, candados y cero dano silencioso",
+      "summary": "Cada accion con consecuencia real tiene su candado; ante la duda, el sistema se detiene.",
+      "form": "conversation",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-14",
+      "inputs": [
+        {
+          "path": "docs/CONSEQUENTIAL_ACTIONS_SURVEY.md",
+          "min_bytes": 50,
+          "label": "tu lista de acciones con consecuencia"
+        },
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/LOCKS.md",
+          "label": "registro de candados"
+        }
+      ],
+      "verify": [
+        "Cada accion de tu lista tiene su candado en LOCKS.md, con el test que lo prueba?",
+        "Ante un dato que falta, el sistema se detiene en vez de inventar?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 15,
+      "id": "u15-ci-entornos-secretos-deploy",
+      "tramo": "salida",
+      "title": "Integracion continua, entornos, secretos y despliegue como parte del producto",
+      "summary": "Despliegue repetible, configuracion afuera del codigo, secretos en su lugar y vuelta atras probada.",
+      "form": "one_shot",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-15",
+      "inputs": [
+        {
+          "path": "docs/ENVIRONMENTS_SURVEY.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/DEPLOYMENT.md",
+          "must_contain": [
+            "rollback|vuelta atras"
+          ],
+          "label": "procedimiento de despliegue y vuelta atras"
+        },
+        {
+          "path": "docs/DEPLOYMENT.md",
+          "must_contain": [
+            "migrac|migration",
+            "deshacer|compensar|undo|compensat"
+          ],
+          "label": "the migration with an undo or compensation plan of its own",
+          "since_schema": 2,
+          "since_version": "2026.10.1"
+        }
+      ],
+      "verify": [
+        "El despliegue es un comando, no una lista de pasos a mano?",
+        "La vuelta atras se probo al menos una vez?",
+        "Ningun secreto vive en el repositorio?",
+        {
+          "text": "Does every schema or data migration have its own undo or compensation plan? Rolling the code back is not enough.",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "decision": "D-042"
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "ci",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 16,
+      "id": "u16-observabilidad-y-trazabilidad",
+      "tramo": "salida",
+      "title": "Observabilidad y trazabilidad totales, con nivel configurable",
+      "summary": "Cada accion deja un registro estructurado con su identificador; el nivel se configura sin tocar codigo.",
+      "form": "one_shot",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-16",
+      "inputs": [
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        },
+        {
+          "path": "docs/DEPLOYMENT.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/OBSERVABILITY.md",
+          "label": "que se registra, donde y con que nivel"
+        }
+      ],
+      "verify": [
+        "Pediste una traza real de una accion y la leiste de punta a punta?",
+        "El nivel de registro se cambia por configuracion?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 17,
+      "id": "u17-persistencia",
+      "tramo": "salida",
+      "title": "Optimizacion de la capa de persistencia, medida antes y despues",
+      "summary": "Indices, fin de los bucles N+1, presupuestos de consultas por camino; todo con numero antes y despues.",
+      "form": "one_shot",
+      "mandatory": "proportional",
+      "prompt_key": "peldano-17",
+      "inputs": [
+        {
+          "path": "docs/SIZING.md"
+        },
+        {
+          "path": "docs/VOLUME_SURVEY.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/PERSISTENCE.md",
+          "label": "medicion antes y despues"
+        }
+      ],
+      "verify": [
+        "Cada cambio tiene su numero de antes y de despues?",
+        "Hay un presupuesto de consultas por camino, con test?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 18,
+      "id": "u18-vulnerabilidades",
+      "tramo": "salida",
+      "title": "Escaneo y solucion de vulnerabilidades, en la cadena y con calendario",
+      "summary": "Dependencias, secretos, codigo e infraestructura escaneados en cada push y con fecha de repaso.",
+      "form": "one_shot",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-18",
+      "inputs": [
+        {
+          "path": "docs/ENVIRONMENTS_SURVEY.md"
+        },
+        {
+          "path": "docs/GATES.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/SECURITY.md",
+          "label": "que se escanea y con que calendario"
+        },
+        {
+          "path": "docs/SECURITY_*.md",
+          "fresh_days": 45,
+          "label": "ultimo reporte de escaneo"
+        }
+      ],
+      "verify": [
+        "La cadena se pone en rojo con una dependencia vulnerable conocida?",
+        "Cada hallazgo tiene pendiente o excepcion con razon y fecha?"
+      ],
+      "evaluators": [
+        {
+          "name": "ci",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 19,
+      "id": "u19-rendimiento-y-punto-de-ruptura",
+      "tramo": "salida",
+      "title": "Pruebas de rendimiento en volumen y punto de ruptura",
+      "summary": "Cargar al volumen esperado y al por diez, y encontrar que se rompe primero.",
+      "form": "one_shot",
+      "mandatory": "proportional",
+      "prompt_key": "peldano-19",
+      "inputs": [
+        {
+          "path": "docs/SIZING.md"
+        },
+        {
+          "path": "docs/ENVIRONMENTS_SURVEY.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/PERFORMANCE.md",
+          "label": "umbrales y como se corre la prueba"
+        },
+        {
+          "path": "docs/PERFORMANCE_*.md",
+          "fresh_days": 90,
+          "label": "ultimo resultado"
+        }
+      ],
+      "verify": [
+        "Hay un punto de ruptura escrito, con la pieza que se rompe?",
+        "Los umbrales estan en la cadena o en el monitoreo?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 20,
+      "id": "u20-documentacion-viva",
+      "tramo": "salida",
+      "title": "Documentacion viva y manuales que una persona puede seguir sin IA",
+      "summary": "Manual de usuario, de mantenimiento y de infraestructura y recuperacion; el registro de cambios al dia.",
+      "form": "routine",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-20",
+      "inputs": [
+        {
+          "path": "PROJECT.md"
+        },
+        {
+          "path": "docs/DEPLOYMENT.md"
+        },
+        {
+          "path": "docs/LOCKS.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/USER_MANUAL.md",
+          "label": "manual de usuario"
+        },
+        {
+          "path": "docs/MAINTENANCE_MANUAL.md",
+          "label": "manual de mantenimiento"
+        },
+        {
+          "path": "docs/INFRASTRUCTURE_AND_RECOVERY_MANUAL.md",
+          "label": "manual de infraestructura y recuperacion"
+        },
+        {
+          "path": "docs/CHANGELOG.md",
+          "min_bytes": 50,
+          "label": "registro de cambios"
+        }
+      ],
+      "verify": [
+        "Una persona sin IA puede recuperar el sistema siguiendo el manual?",
+        "Alguien que no sos vos siguio el manual de usuario y llego?",
+        {
+          "text": "Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?",
+          "since_schema": 2,
+          "since_version": "2026.10.4"
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 21,
+      "id": "u21-monitoreo-de-recursos",
+      "tramo": "operacion",
+      "title": "Monitoreo de recursos, funciones y consultas fuera de rango, con reporte ciclico",
+      "summary": "Umbrales por recurso y por funcion, alertas, y un reporte que llega solo cada ciclo.",
+      "form": "routine",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-21",
+      "inputs": [
+        {
+          "path": "docs/OBSERVABILITY.md"
+        },
+        {
+          "path": "docs/PERFORMANCE.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/MONITORING.md",
+          "label": "umbrales, alertas y ciclo del reporte"
+        },
+        {
+          "path": "docs/MONITORING_REPORT_*.md",
+          "fresh_days": 35,
+          "min_bytes": 100,
+          "label": "ultimo reporte ciclico"
+        }
+      ],
+      "verify": [
+        "Recibiste el primer reporte ciclico sin pedirlo?",
+        "Cada umbral tiene una accion escrita para cuando se supera?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 22,
+      "id": "u22-monitoreo-de-errores",
+      "tramo": "operacion",
+      "title": "Monitoreo de errores y reporte ciclico: ningun error sin pendiente",
+      "summary": "Captura centralizada de errores, alerta cuando importa, y cada error nuevo con su pendiente.",
+      "form": "routine",
+      "mandatory": "always",
+      "prompt_key": "peldano-22",
+      "inputs": [
+        {
+          "path": "docs/OBSERVABILITY.md"
+        },
+        {
+          "path": "docs/LOCKS.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/MONITORING.md",
+          "must_contain": [
+            "error"
+          ],
+          "label": "el monitoreo de errores en MONITORING.md"
+        },
+        {
+          "path": "docs/MONITORING_REPORT_*.md",
+          "fresh_days": 35,
+          "min_bytes": 100,
+          "label": "ultimo reporte ciclico con los errores"
+        }
+      ],
+      "verify": [
+        "Cada error nuevo del ultimo ciclo tiene su pendiente?",
+        "El reporte ciclico de errores llega solo?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 23,
+      "id": "u23-agente-residente-y-retrospectiva",
+      "tramo": "operacion",
+      "title": "El agente adentro del sistema, y la retrospectiva con numero",
+      "summary": "Un agente residente con alcance escrito, y una retrospectiva que termina en una propuesta al metodo.",
+      "form": "conversation",
+      "mandatory": "minimum",
+      "prompt_key": "peldano-23",
+      "inputs": [
+        {
+          "path": "docs/RETROSPECTIVE_INPUTS.md",
+          "min_bytes": 50,
+          "label": "tus insumos para la retrospectiva"
+        },
+        {
+          "path": "docs/LOCKS.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "docs/RESIDENT_AGENT.md",
+          "label": "alcance del agente residente"
+        },
+        {
+          "path": "docs/RETROSPECTIVE_*.md",
+          "fresh_days": 120,
+          "label": "retrospectiva reciente"
+        },
+        {
+          "path": "docs/RESIDENT_AGENT.md",
+          "must_contain": [
+            "inyecc|injection"
+          ],
+          "label": "the injection clause inside the scope of the resident agent",
+          "since_schema": 2,
+          "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/RETROSPECTIVE_*.md",
+          "fresh_days": 120,
+          "should_contain": [
+            "modelo|model"
+          ],
+          "label": "the retrospective names the model the system was built with",
+          "since_schema": 2,
+          "since_version": "2026.10.1"
+        }
+      ],
+      "verify": [
+        "La retrospectiva tiene numeros, no impresiones?",
+        "Termina en una propuesta concreta de cambio al metodo, con el incidente que la justifica?",
+        {
+          "text": "Does the scope of the resident agent say that whatever it reads in production is data and never an instruction?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "decision": "D-042"
+        },
+        {
+          "text": "Was there a short retrospective when the building model changed?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "decision": "D-042"
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "stations": [
+    {
+      "num": 0,
+      "id": "n0-elegibilidad-legado",
+      "title": "Elegibilidad de un sistema existente: los prerrequisitos que un modelo puede verificar haciendo",
+      "summary": "Siete prerrequisitos verificados haciendo; cada rojo es un proyecto previo.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        0,
+        1
+      ],
+      "artifacts": [
+        {
+          "path": "docs/ELIGIBILITY.md",
+          "must_contain": [
+            "eligib|elegib"
+          ]
+        },
+        {
+          "path": "docs/FUNCTIONALITY_RECOVERED.md",
+          "label": "la funcionalidad descrita desde el codigo"
+        }
+      ],
+      "verify": [
+        "Cada prerrequisito tiene su verde o su proyecto previo?",
+        "La funcionalidad recuperada la entenderia un usuario final?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 1,
+      "id": "n1-contrato-legado",
+      "title": "El contrato de convivencia para un legado",
+      "summary": "Las reglas del metodo mas la regla de no reescribir.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        2
+      ],
+      "artifacts": [
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "evidence|evidencia"
+          ]
+        }
+      ],
+      "verify": [
+        "El contrato dice que no se reescribe?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 2,
+      "id": "n2-lectura-del-sistema",
+      "title": "La lectura del sistema: el mapa recuperado y las discrepancias",
+      "summary": "Relevamiento, proyecto y arbol desde el codigo con marcas de fuente; la lista de discrepancias.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        3,
+        4
+      ],
+      "artifacts": [
+        {
+          "path": "PROJECT.md"
+        },
+        {
+          "path": "docs/SEMANTIC_TREE.md"
+        },
+        {
+          "path": "docs/STATUS.md",
+          "min_bytes": 80
+        },
+        {
+          "path": "docs/DISCREPANCIES.md",
+          "min_bytes": 50
+        }
+      ],
+      "verify": [
+        "Lo inferido esta marcado como inferido?",
+        "Decidiste cada discrepancia?",
+        {
+          "text": "Were the user glossary and the list of profiles recovered, with their source mark where nobody had written them?",
+          "since_schema": 2,
+          "since_version": "2026.10.1",
+          "anchor": "prior_inputs"
+        }
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 3,
+      "id": "n3-auditoria-inventario",
+      "title": "La auditoria como inventario de la deuda",
+      "summary": "Toda la deuda, con su marca: bloquea, se paga al tocar, puede esperar.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        5
+      ],
+      "artifacts": [
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 120,
+          "should_contain": [
+            "^\\s*\\**\\s*auditor\\s*\\**\\s*:"
+          ]
+        }
+      ],
+      "verify": [
+        "Cada hallazgo tiene su marca de velocidad?",
+        "La hizo otra sesion que la que leyo el sistema (N2)?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 4,
+      "id": "n4-cinturon-de-seguridad",
+      "title": "El cinturon de seguridad",
+      "summary": "Tests de caracterizacion con su rojo por mutacion, la cadena y los entornos. Compuerta dura.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        6,
+        7
+      ],
+      "artifacts": [
+        {
+          "path": "docs/GATES.md"
+        },
+        {
+          "path": "docs/STATUS.md",
+          "must_contain": [
+            "test"
+          ]
+        },
+        {
+          "path": "docs/DEPLOYMENT.md"
+        }
+      ],
+      "verify": [
+        "Cada flujo tiene su caracterizacion con el rojo por mutacion visto?",
+        "La cadena corre sola?"
+      ],
+      "evaluators": [
+        {
+          "name": "ci",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 5,
+      "id": "n5-candados-y-mapa",
+      "title": "Candados y mapa productor-consumidor desde el codigo",
+      "summary": "Las acciones con consecuencia y las estructuras compartidas, leidas del sistema.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        8
+      ],
+      "artifacts": [
+        {
+          "path": "docs/LOCKS.md"
+        },
+        {
+          "path": "docs/PRODUCER_CONSUMER_MAP.md"
+        }
+      ],
+      "verify": [
+        "Cada accion con consecuencia tiene su candado?"
+      ],
+      "evaluators": [
+        {
+          "name": "artifacts",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 6,
+      "id": "n6-dimensionar-real",
+      "title": "Dimensionar con numeros reales",
+      "summary": "La volumetria medida en la base real, y la persistencia contrastada con su envoltura.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        9
+      ],
+      "artifacts": [
+        {
+          "path": "docs/SIZING.md"
+        }
+      ],
+      "verify": [
+        "Los numeros salen de la base, no de una estimacion?"
+      ],
+      "evaluators": [
+        {
+          "name": "sizing",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "num": 7,
+      "id": "n7-backlog-de-normalizacion",
+      "title": "El backlog de normalizacion, emparejado con el pedido del cliente",
+      "summary": "La deuda que bloquea y el pedido del cliente, en un solo plan ordenado.",
+      "prompt_key": "evolutivo-correctivo",
+      "prompt_indexes": [
+        10
+      ],
+      "artifacts": [
+        {
+          "path": "docs/blocks/*.md",
+          "min_bytes": 50,
+          "label": "el pedido de la etapa"
+        }
+      ],
+      "verify": [
+        "Cada pendiente de deuda esta emparejado con el modulo que el pedido toca?"
+      ],
+      "evaluators": [
+        {
+          "name": "pendings_spec",
+          "since_schema": 1,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "loop_entry": {
+    "step": 5,
+    "inherits_anchors": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "since_schema": 2,
+    "note": "A legacy system enters the Construction Loop at step 5, so from there the five anchors of Annex H rule exactly as they do in a new project (D-023 + D-043). The two prior inputs are recovered by self-discovery with a source mark, like every input of an earlier stage on this path."
+  },
+  "heuristics": {
+    "what": "The forty-six rules of Annex H as data: 18 of code quality (CQ-01 to CQ-18) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
+    "counts": {
+      "code_quality": 18,
+      "usability": 28,
+      "total": 46
+    },
+    "decisions": [
+      "D-043",
+      "D-044",
+      "D-045",
+      "D-046",
+      "D-047",
+      "D-048",
+      "D-049",
+      "D-070"
+    ],
+    "groups": [
+      {
+        "id": "code_quality",
+        "range": "CQ-01..CQ-18",
+        "switch": {
+          "lives_in": "the project configuration",
+          "read_by": "the gate",
+          "never_in": "the prompt"
+        },
+        "result_document": "docs/CODE_QUALITY.md"
+      },
+      {
+        "id": "usability",
+        "range": "UX-01..UX-28",
+        "switch": {
+          "lives_in": "the project configuration",
+          "read_by": "the gate",
+          "never_in": "the prompt"
+        },
+        "result_document": "docs/USABILITY.md"
+      }
+    ],
+    "severities": {
+      "blocks": "the gate goes red and the block does not close",
+      "warns": "it opens a pending item naming the rule and the file; warning is not approving",
+      "records": "it only stays in the document"
+    },
+    "switch_off": {
+      "is_not_a_severity": true,
+      "requires": [
+        "rule",
+        "reason",
+        "authorized_by",
+        "review_date"
+      ],
+      "without_record": "red: switching a rule off without a written reason is a failure of the gate, not the absence of a rule",
+      "with_record": "green, and the report says it is switched off, since when and who authorised it",
+      "group_switched_off": "is never read as fulfilled",
+      "decision": "D-046"
+    },
+    "instruments": [
+      {
+        "id": "auto_gate",
+        "default_timing": "push_and_block_close",
+        "returns": "green or red",
+        "section": "3"
+      },
+      {
+        "id": "matrix_query",
+        "default_timing": "push_and_block_close",
+        "returns": "green or red",
+        "section": "3"
+      },
+      {
+        "id": "e2e_per_profile",
+        "default_timing": "push_and_block_close",
+        "returns": "green or red",
+        "section": "3"
+      },
+      {
+        "id": "manual_case",
+        "default_timing": "block_close",
+        "returns": "passed or failed, with a name and a date",
+        "judged_by": "a person",
+        "section": "3"
+      }
+    ],
+    "timings": [
+      "push_and_block_close",
+      "block_close",
+      "pending_close"
+    ],
+    "prior_inputs": [
+      {
+        "id": "prior_input_1",
+        "what": "the user glossary",
+        "without_it": "UX-01 and UX-24 have nothing to compare against",
+        "step": 2,
+        "path": "docs/GLOSSARY.md",
+        "declared": true,
+        "note": "The annex requires it when scope is defined. Since 2026-10-26 the step 2 contract asks for it in writing, and since 2026-10-27 the method also declares its canonical path, which the owner decided: the step 2 artifact list carries it like the other three, so a gate can look at the file instead of trusting a checklist. The path is the only thing a consumer may assume; what the file says is read by a person."
+      },
+      {
+        "id": "prior_input_2",
+        "what": "the list of profiles",
+        "without_it": "the B2 matrix gets invented at step 5",
+        "step": 2,
+        "path": "docs/PROFILES.md",
+        "declared": true,
+        "note": "Same status as prior input 1: asked for by the step 2 contract since 2026-10-26, with its canonical path declared by the owner on 2026-10-27 and carried as a step 2 artifact."
+      }
+    ],
+    "anchors": [
+      {
+        "id": 1,
+        "step": 5,
+        "what": "every pending item that touches a screen declares its convergence group, its profiles and acceptance criteria per profile",
+        "evaluator": "pendings_profiles"
+      },
+      {
+        "id": 2,
+        "step": 8,
+        "what": "the matrix as a test that is seen failing first",
+        "evaluator": "profile_matrix"
+      },
+      {
+        "id": 3,
+        "step": 9,
+        "what": "the full CQ catalogue with its adapter and declared thresholds, and the matrix as a gate",
+        "evaluator": "heuristics"
+      },
+      {
+        "id": 4,
+        "step": 10,
+        "what": "one manual case per affected profile, derived from the matrix",
+        "evaluator": "manual_cases_per_profile"
+      },
+      {
+        "id": 5,
+        "step": 12,
+        "what": "the report says what was measured, what was left warning and which rule is switched off, with reason, author and review date",
+        "evaluator": "heuristics"
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "docs/CODE_QUALITY.md",
+        "status": "extended",
+        "what": "the result per code-quality rule, not a single number"
+      },
+      {
+        "path": "docs/USABILITY.md",
+        "status": "new",
+        "what": "the result per usability rule and the declared exceptions"
+      },
+      {
+        "path": "docs/PROFILE_MATRIX.md",
+        "status": "new",
+        "what": "the matrix: a document and the source of the menu at the same time"
+      }
+    ],
+    "scoreboard": {
+      "decision": "D-047",
+      "figures": [
+        {
+          "id": "compliance",
+          "formula": "rules_passing / rules_active",
+          "moves": "goes up when something is fixed"
+        },
+        {
+          "id": "gate_coverage",
+          "formula": "rules_active / rules_declared",
+          "moves": "goes down when a rule is switched off"
+        }
+      ],
+      "ruleset_fingerprint": [
+        "catalog_version",
+        "rules_active",
+        "rules_switched_off",
+        "adapter",
+        "tool_versions"
+      ],
+      "ratchet": {
+        "on": "compliance",
+        "lowers_only_with": "a recorded decision"
+      },
+      "human_outside_the_percentage": [
+        "UX-06",
+        "UX-07",
+        "UX-27",
+        "every manual case"
+      ],
+      "closes_blocks": false,
+      "invalid_ruleset_emits_no_figures": true,
+      "report_order": [
+        "binary_verdict",
+        "the_two_figures",
+        "what_is_switched_off_and_until_when",
+        "movement_against_the_previous_block_with_its_cause"
+      ]
+    },
+    "statement_source": {
+      "published_language": "en",
+      "extracted": true,
+      "documents": {
+        "en": "docs/en/ANEXO_HEURISTICAS.md",
+        "es": "docs/ANEXO_HEURISTICAS.md"
+      },
+      "single_copy": "The statement of every rule lives only in Annex H (D-044). The build extracts it from the English version, which is the one published; the Spanish version is the source of truth of the method and the build checks both carry the same rules with the same severities.",
+      "not_measured": "Whether the English wording still says what the Spanish one says is not checked by machine: only the set of rules and their severities are."
+    },
+    "rules": [
+      {
+        "id": "CQ-01",
+        "group": "code_quality",
+        "family": "form",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-01",
+          "language": "en",
+          "text": "There is a single formatter, it runs without intervention and it admits no discussion.",
+          "extracted": true,
+          "family_label": "Form",
+          "verification_label": "Gate"
+        }
+      },
+      {
+        "id": "CQ-02",
+        "group": "code_quality",
+        "family": "form",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-02",
+          "language": "en",
+          "text": "There is a single linter per repository and its rules are the same for everybody; a rule is switched off with a written reason, never in a loose file.",
+          "extracted": true,
+          "family_label": "Form",
+          "verification_label": "Gate"
+        }
+      },
+      {
+        "id": "CQ-03",
+        "group": "code_quality",
+        "family": "size",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-03",
+          "language": "en",
+          "text": "No file exceeds the declared limit (starts at 300 lines) and no function exceeds its own (starts at 40).",
+          "extracted": true,
+          "family_label": "Size",
+          "verification_label": "Gate"
+        }
+      },
+      {
+        "id": "CQ-04",
+        "group": "code_quality",
+        "family": "complexity",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-04",
+          "language": "en",
+          "text": "No function exceeds the declared path limit.",
+          "extracted": true,
+          "family_label": "Complexity",
+          "verification_label": "Gate"
+        }
+      },
+      {
+        "id": "CQ-05",
+        "group": "code_quality",
+        "family": "duplication",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-05",
+          "language": "en",
+          "text": "No new duplication enters: the copied block is extracted or justified.",
+          "extracted": true,
+          "family_label": "Duplication",
+          "verification_label": "Gate"
+        }
+      },
+      {
+        "id": "CQ-06",
+        "group": "code_quality",
+        "family": "dead_things",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-06",
+          "language": "en",
+          "text": "There is no dead code: unused functions, variables, imports, branches and dependencies.",
+          "extracted": true,
+          "family_label": "Dead things",
+          "verification_label": "Gate"
+        }
+      },
+      {
+        "id": "CQ-07",
+        "group": "code_quality",
+        "family": "types",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-07",
+          "language": "en",
+          "text": "If the language allows types, the project uses them seriously; the \"any\" type is a declared exception, not a habit.",
+          "extracted": true,
+          "family_label": "Types",
+          "verification_label": "Gate"
+        }
+      },
+      {
+        "id": "CQ-08",
+        "group": "code_quality",
+        "family": "tests",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-08",
+          "language": "en",
+          "text": "Coverage does not go down: today's number is tomorrow's floor.",
+          "extracted": true,
+          "family_label": "Tests",
+          "verification_label": "Gate"
+        }
+      },
+      {
+        "id": "CQ-09",
+        "group": "code_quality",
+        "family": "tests",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-09",
+          "language": "en",
+          "text": "With real users, the mutation score is measured per block and every mutant that survives in new code opens a pending item.",
+          "extracted": true,
+          "family_label": "Tests",
+          "verification_label": "Gate + record"
+        },
+        "applies_if": "real_users",
+        "requires_record": "a score per block, and every surviving mutant in new code opens a pending item"
+      },
+      {
+        "id": "CQ-10",
+        "group": "code_quality",
+        "family": "dependencies",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-10",
+          "language": "en",
+          "text": "Every dependency is declared, is used and does not bring a third-party tree out of proportion to what it contributes.",
+          "extracted": true,
+          "family_label": "Dependencies",
+          "verification_label": "Gate"
+        }
+      },
+      {
+        "id": "CQ-11",
+        "group": "code_quality",
+        "family": "secrets",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-11",
+          "language": "en",
+          "text": "There are no credentials, keys or connection strings in the repository, nor in the new history.",
+          "extracted": true,
+          "family_label": "Secrets",
+          "verification_label": "Gate"
+        }
+      },
+      {
+        "id": "CQ-12",
+        "group": "code_quality",
+        "family": "interface",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "blocks",
+        "timing": {
+          "value": "pending_close",
+          "source": "rule"
+        },
+        "human_red": true,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-12",
+          "language": "en",
+          "text": "The interface does not decide: no screen or component contains business rules (what is allowed, how much it costs, which state follows). It lives in the domain and the view queries it.",
+          "extracted": true,
+          "family_label": "Interface",
+          "verification_label": "Review at close + manual case"
+        }
+      },
+      {
+        "id": "CQ-13",
+        "group": "code_quality",
+        "family": "interface",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-13",
+          "language": "en",
+          "text": "Every server call goes through a single typed client; no screen builds its own request by hand.",
+          "extracted": true,
+          "family_label": "Interface",
+          "verification_label": "Gate (search)"
+        }
+      },
+      {
+        "id": "CQ-14",
+        "group": "code_quality",
+        "family": "interface",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "blocks",
+        "timing": {
+          "value": "pending_close",
+          "source": "rule"
+        },
+        "human_red": true,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-14",
+          "language": "en",
+          "text": "There is a single place where shared state lives; duplicating state between screens is a failure, not a shortcut.",
+          "extracted": true,
+          "family_label": "Interface",
+          "verification_label": "Review at close"
+        }
+      },
+      {
+        "id": "CQ-15",
+        "group": "code_quality",
+        "family": "interface",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-15",
+          "language": "en",
+          "text": "Every visible text comes out of a translation catalogue; no user string stays written inside the component.",
+          "extracted": true,
+          "family_label": "Interface",
+          "verification_label": "Gate (search)"
+        }
+      },
+      {
+        "id": "CQ-16",
+        "group": "code_quality",
+        "family": "interface",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-16",
+          "language": "en",
+          "text": "Every interactive element carries a stable identifier and a role, so that the automated test finds it by name and not by position.",
+          "extracted": true,
+          "family_label": "Interface",
+          "verification_label": "Gate (search)"
+        }
+      },
+      {
+        "id": "CQ-17",
+        "group": "code_quality",
+        "family": "interface",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-17",
+          "language": "en",
+          "text": "All colours, spacings and typefaces come out of tokens; no loose magic value in the stylesheet.",
+          "extracted": true,
+          "family_label": "Interface",
+          "verification_label": "Gate (search)"
+        }
+      },
+      {
+        "id": "CQ-18",
+        "group": "code_quality",
+        "family": "interface",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-18",
+          "language": "en",
+          "text": "Basic accessibility is verified on its own: contrast, labels on fields, visible focus, keyboard navigation in the main flows, images with alternative text.",
+          "extracted": true,
+          "family_label": "Interface",
+          "verification_label": "Gate"
+        },
+        "escalates_to": {
+          "severity": "blocks",
+          "when": "the product has end users outside the organisation",
+          "requires": "a declaration by the owner, through the same mechanism as any threshold",
+          "decision": "D-048"
+        }
+      },
+      {
+        "id": "UX-01",
+        "group": "usability",
+        "family": "B1",
+        "instrument": [
+          "manual_case",
+          "matrix_query"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-01",
+          "language": "en",
+          "text": "Every menu group is named with a user job (in their vocabulary, with the project glossary), never with a technical module nor with a data entity.",
+          "extracted": true,
+          "family_label": "B1",
+          "verification_label": "Manual case + matrix review"
+        }
+      },
+      {
+        "id": "UX-02",
+        "group": "usability",
+        "family": "B1",
+        "instrument": [
+          "matrix_query"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-02",
+          "language": "en",
+          "text": "Every functionality has exactly one canonical home. If it serves two groups, one home is chosen and the other links to it; the entry is not duplicated.",
+          "extracted": true,
+          "family_label": "B1",
+          "verification_label": "Matrix query"
+        }
+      },
+      {
+        "id": "UX-03",
+        "group": "usability",
+        "family": "B1",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-03",
+          "language": "en",
+          "text": "There are no orphans: every declared functionality is reachable from the entry screen in no more than three steps.",
+          "extracted": true,
+          "family_label": "B1",
+          "verification_label": "Automatic route walk"
+        }
+      },
+      {
+        "id": "UX-04",
+        "group": "usability",
+        "family": "B1",
+        "instrument": [
+          "matrix_query"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-04",
+          "language": "en",
+          "text": "The size of a group is reasonable: fewer than three functionalities indicates a group that was not a group; more than seven indicates a drawer.",
+          "extracted": true,
+          "family_label": "B1",
+          "verification_label": "Matrix query"
+        }
+      },
+      {
+        "id": "UX-05",
+        "group": "usability",
+        "family": "B1",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-05",
+          "language": "en",
+          "text": "Every group has an entry screen that says what is done there and which is the main action. No group opens straight into an empty table.",
+          "extracted": true,
+          "family_label": "B1",
+          "verification_label": "Manual case"
+        }
+      },
+      {
+        "id": "UX-06",
+        "group": "usability",
+        "family": "B1",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "records",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-06",
+          "language": "en",
+          "text": "The flows the person does often live together: if \"record a payment\" and \"see the customer's account\" are used in the same session, they share a group.",
+          "extracted": true,
+          "family_label": "B1",
+          "verification_label": "Manual case (task test)"
+        }
+      },
+      {
+        "id": "UX-07",
+        "group": "usability",
+        "family": "B1",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": {
+          "value": "block_close",
+          "source": "rule"
+        },
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-07",
+          "language": "en",
+          "text": "The first-click test: the owner, facing a concrete task (\"where do you charge a payment?\"), names one place. If they name two, there is duplication; if they name none, there is an orphan. It runs at the close of every block.",
+          "extracted": true,
+          "family_label": "B1",
+          "verification_label": "Manual case"
+        }
+      },
+      {
+        "id": "UX-08",
+        "group": "usability",
+        "family": "B2",
+        "instrument": [
+          "matrix_query"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-08",
+          "language": "en",
+          "text": "Every functionality declares in the matrix which profiles have it. A functionality without a profile does not exist: either it is given a profile or it is deleted.",
+          "extracted": true,
+          "family_label": "B2",
+          "verification_label": "Matrix query"
+        }
+      },
+      {
+        "id": "UX-09",
+        "group": "usability",
+        "family": "B2",
+        "instrument": [
+          "matrix_query"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-09",
+          "language": "en",
+          "text": "Every declared profile has at least one functionality and its own entry point. An empty profile is a profile nobody used while designing.",
+          "extracted": true,
+          "family_label": "B2",
+          "verification_label": "Matrix query"
+        }
+      },
+      {
+        "id": "UX-10",
+        "group": "usability",
+        "family": "B2",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-10",
+          "language": "en",
+          "text": "Navigation is generated from the matrix. A hand-written menu is a failure, not a shortcut.",
+          "extracted": true,
+          "family_label": "B2",
+          "verification_label": "Gate (search)"
+        }
+      },
+      {
+        "id": "UX-11",
+        "group": "usability",
+        "family": "B2",
+        "instrument": [
+          "e2e_per_profile"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            8
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-11",
+          "language": "en",
+          "text": "Hiding is not protecting: every route verifies the permission on the server side in addition to hiding the entry. Typing the address by hand is not enough to get in.",
+          "extracted": true,
+          "family_label": "B2",
+          "verification_label": "End-to-end test"
+        }
+      },
+      {
+        "id": "UX-12",
+        "group": "usability",
+        "family": "B2",
+        "instrument": [
+          "e2e_per_profile"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            8
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-12",
+          "language": "en",
+          "text": "Neither less nor more: for each profile, the set of reachable functionalities is exactly the one in its row of the matrix.",
+          "extracted": true,
+          "family_label": "B2",
+          "verification_label": "End-to-end test per profile"
+        }
+      },
+      {
+        "id": "UX-13",
+        "group": "usability",
+        "family": "B2",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-13",
+          "language": "en",
+          "text": "The refusal is explained: if a person enters a functionality that is not theirs, they see a message that says why and who to ask for access. Never a blank screen, never a grey button without a reason.",
+          "extracted": true,
+          "family_label": "B2",
+          "verification_label": "Manual case"
+        }
+      },
+      {
+        "id": "UX-14",
+        "group": "usability",
+        "family": "B2",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-14",
+          "language": "en",
+          "text": "The same button means the same for everybody: if two profiles share a label, they share an effect. If the effect changes per profile, the label changes or the functionality is split in two.",
+          "extracted": true,
+          "family_label": "B2",
+          "verification_label": "Manual case"
+        }
+      },
+      {
+        "id": "UX-15",
+        "group": "usability",
+        "family": "B2",
+        "instrument": [
+          "e2e_per_profile",
+          "manual_case"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            8
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-15",
+          "language": "en",
+          "text": "Data is also filtered by profile: whoever sees the list sees the rows that correspond to them, not the whole list with the rows hidden in the browser.",
+          "extracted": true,
+          "family_label": "B2",
+          "verification_label": "End-to-end test + server review"
+        }
+      },
+      {
+        "id": "UX-16",
+        "group": "usability",
+        "family": "B2",
+        "instrument": [
+          "matrix_query"
+        ],
+        "initial_severity": "blocks",
+        "timing": {
+          "value": "pending_close",
+          "source": "rule"
+        },
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-16",
+          "language": "en",
+          "text": "The matrix and the user manual are updated in the same pending item as the functionality. A new functionality without a row in the matrix does not close.",
+          "extracted": true,
+          "family_label": "B2",
+          "verification_label": "Pending close"
+        }
+      },
+      {
+        "id": "UX-17",
+        "group": "usability",
+        "family": "B3",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-17",
+          "language": "en",
+          "text": "Every list has four resolved states: with data, empty, loading and with error. The empty one distinguishes \"there is nothing yet\" from \"your search found nothing\".",
+          "extracted": true,
+          "family_label": "B3",
+          "verification_label": "Manual case + review"
+        }
+      },
+      {
+        "id": "UX-18",
+        "group": "usability",
+        "family": "B3",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-18",
+          "language": "en",
+          "text": "While something takes time, it is visible that it is working and it can be cancelled if it is long. A button that answers nothing is complaint number one.",
+          "extracted": true,
+          "family_label": "B3",
+          "verification_label": "Manual case"
+        }
+      },
+      {
+        "id": "UX-19",
+        "group": "usability",
+        "family": "B3",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-19",
+          "language": "en",
+          "text": "The error says what happened, what can be done and does not erase what was entered. Neither a technical code alone, nor an \"an error occurred\".",
+          "extracted": true,
+          "family_label": "B3",
+          "verification_label": "Manual case"
+        }
+      },
+      {
+        "id": "UX-20",
+        "group": "usability",
+        "family": "B4",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-20",
+          "language": "en",
+          "text": "A screen has one evident main action; the rest are secondary and look like it.",
+          "extracted": true,
+          "family_label": "B4",
+          "verification_label": "Manual case"
+        }
+      },
+      {
+        "id": "UX-21",
+        "group": "usability",
+        "family": "B4",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-21",
+          "language": "en",
+          "text": "Every destructive action asks for confirmation naming the affected object, and when it can be done it is undone instead of confirmed.",
+          "extracted": true,
+          "family_label": "B4",
+          "verification_label": "Manual case"
+        }
+      },
+      {
+        "id": "UX-22",
+        "group": "usability",
+        "family": "B4",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "blocks",
+        "timing": {
+          "value": "pending_close",
+          "source": "rule"
+        },
+        "human_red": true,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-22",
+          "language": "en",
+          "text": "A form that fails keeps what was entered and marks the field with the problem, in the place of the field.",
+          "extracted": true,
+          "family_label": "B4",
+          "verification_label": "Manual case"
+        }
+      },
+      {
+        "id": "UX-23",
+        "group": "usability",
+        "family": "B4",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-23",
+          "language": "en",
+          "text": "No action leaves the screen without an exit: after saving, deleting or cancelling, the person knows where they are and how to continue.",
+          "extracted": true,
+          "family_label": "B4",
+          "verification_label": "Manual case"
+        }
+      },
+      {
+        "id": "UX-24",
+        "group": "usability",
+        "family": "B5",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-24",
+          "language": "en",
+          "text": "The interface speaks the language of the project glossary: the same object is called the same on the screen, in the manual and in the email. A synonym is a defect.",
+          "extracted": true,
+          "family_label": "B5",
+          "verification_label": "Manual case + review"
+        }
+      },
+      {
+        "id": "UX-25",
+        "group": "usability",
+        "family": "B5",
+        "instrument": [
+          "auto_gate",
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9,
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-25",
+          "language": "en",
+          "text": "Everything can be done without a mouse and with a screen reader in the main flows; the focus is always visible and it does not get trapped.",
+          "extracted": true,
+          "family_label": "B5",
+          "verification_label": "Gate (CQ-18) + manual case"
+        }
+      },
+      {
+        "id": "UX-26",
+        "group": "usability",
+        "family": "B5",
+        "instrument": [
+          "auto_gate"
+        ],
+        "initial_severity": "warns",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            9
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-26",
+          "language": "en",
+          "text": "States are not communicated by colour alone; every informative image has alternative text; texts are read at normal size without zoom.",
+          "extracted": true,
+          "family_label": "B5",
+          "verification_label": "Gate (CQ-18)"
+        }
+      },
+      {
+        "id": "UX-27",
+        "group": "usability",
+        "family": "B5",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "blocks",
+        "timing": {
+          "value": "pending_close",
+          "source": "rule"
+        },
+        "human_red": true,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            10
+          ],
+          "source": "derived_from_instrument"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-27",
+          "language": "en",
+          "text": "Every pending item that touches a screen delivers the real screenshot of the test environment, and the owner looks at it before closing. The screenshot is not optional and it is not a mock-up.",
+          "extracted": true,
+          "family_label": "B5",
+          "verification_label": "Pending close"
+        }
+      },
+      {
+        "id": "UX-28",
+        "since_schema": 2,
+        "since_version": "2026.10.8",
+        "group": "usability",
+        "family": "B6",
+        "instrument": [
+          "manual_case"
+        ],
+        "initial_severity": "warns",
+        "timing": {
+          "value": "pending_close",
+          "source": "rule"
+        },
+        "human_red": true,
+        "checker_declared_by": "owner",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            1
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "5",
+          "row": "UX-28",
+          "language": "en",
+          "text": "When the agent needs a decision from the owner, the question arrives with its four parts and in this order: the data that makes it necessary, listed; one paragraph of no more than five lines that links that data and lets the question be seen; the question with its possible answers numbered; and the agent recommendation. And at the technical depth the project declared. A loose question leaves the owner the work of reconstructing why they are being asked.",
+          "extracted": true,
+          "family_label": "B6",
+          "verification_label": "Owner review at pending close"
+        }
+      }
+    ]
+  },
+  "adapters": {
+    "what": "Layer 2 of Annex H: per frontend family, with what each rule is measured and with which default threshold. Whatever the annex declares is here; whatever the annex leaves to the project is published as UNDECLARED, never with an invented value. The tool names in the example of the annex (section 7) are illustrative and are therefore NOT copied here: a tool named in this data would read as a default, and it is not one.",
+    "layers": {
+      "1": "agnostic core: the statement of the rule, the same in every project, not negotiable",
+      "2": "adapter per frontend family: with what it is measured and with which starting threshold",
+      "3": "project decisions: the concrete thresholds and the exceptions, declared by the owner and never by the agent"
+    },
+    "families": [
+      {
+        "id": "react-vite",
+        "annex_column": "spa",
+        "not_applicable": []
+      },
+      {
+        "id": "next",
+        "annex_column": "spa",
+        "not_applicable": []
+      },
+      {
+        "id": "angular",
+        "annex_column": "spa",
+        "not_applicable": []
+      },
+      {
+        "id": "server-templates",
+        "annex_column": "server-templates",
+        "not_applicable": []
+      },
+      {
+        "id": "mobile-native",
+        "annex_column": "mobile-native",
+        "not_applicable": []
+      },
+      {
+        "id": "cli",
+        "annex_column": "cli",
+        "not_applicable": [
+          "CQ-17",
+          "CQ-18"
+        ]
+      }
+    ],
+    "annex_columns": {
+      "document": "docs/en/ANEXO_HEURISTICAS.md",
+      "section": "4",
+      "table": "Adapter per frontend family",
+      "covers": [
+        "CQ-12",
+        "CQ-13",
+        "CQ-15",
+        "CQ-16",
+        "CQ-17",
+        "CQ-18"
+      ],
+      "note": "The table says with what each of those six is measured in each family. The text of every cell lives only in the annex: what goes here is the pointer."
+    },
+    "measured_by": {
+      "declared_by": "project",
+      "in": "a single configuration file per project",
+      "example_shape": {
+        "document": "docs/en/ANEXO_HEURISTICAS.md",
+        "section": "7"
+      },
+      "illustrative": true,
+      "note": "The annex shows the SHAPE of the file, not final values. An installation that takes those names as defaults is inventing layer 2."
+    },
+    "thresholds": [
+      {
+        "id": "lines_per_file",
+        "rule": "CQ-03",
+        "value": 300,
+        "declared": true,
+        "source": "annex",
+        "note": "starting value of the core; the project may declare its own"
+      },
+      {
+        "id": "lines_per_function",
+        "rule": "CQ-03",
+        "value": 40,
+        "declared": true,
+        "source": "annex",
+        "note": "starting value of the core; the project may declare its own"
+      },
+      {
+        "id": "paths_per_function",
+        "rule": "CQ-04",
+        "value": null,
+        "declared": false,
+        "declared_by": "the owner",
+        "note": "the annex requires the limit to be declared and does not fix the number: with no declaration it is reported as an undeclared threshold"
+      },
+      {
+        "id": "minimum_coverage",
+        "rule": "CQ-08",
+        "value": null,
+        "declared": false,
+        "declared_by": "the ratchet, over what is measured",
+        "note": "the zero in the example is deliberate: the floor is the number of today, not a factory value"
+      },
+      {
+        "id": "mutation_target",
+        "rule": "CQ-09",
+        "value": null,
+        "declared": false,
+        "declared_by": "the owner, once the project has real users",
+        "note": "the zero in the example is deliberate"
+      }
+    ],
+    "undeclared_threshold": "it is reported as an undeclared threshold. No approximating, no silent inheriting and no inventing: the same rule as the sizing of the architecture step.",
+    "exception": {
+      "requires": [
+        "rule",
+        "reason",
+        "authorized_by",
+        "review_date"
+      ],
+      "authorized_by": "the owner, never the agent",
+      "without_record": "red"
+    }
+  },
+  "project_config": {
+    "what": "The shape of the per-project configuration that the gate reads (layer 3 of Annex H). It lives in the project, never inside a prompt (D-046), and these are the field names a consumer tool has to write and read. Declared here so no tool has to guess them.",
+    "fields": {
+      "frontend": "Id of the adapter family (see gates/adapters.json families).",
+      "real_users": "Boolean. Rules with applies_if real_users only run where it is true, and that is scope, not an exception.",
+      "switches": "One entry per rule group: true, or an object { on: false, reason, authorized_by, review_date }.",
+      "switched_off": "List of individual rules switched off, each with the full record.",
+      "thresholds": "Declared values, by threshold id. Whatever is not here is reported as undeclared, never invented.",
+      "tools": "Tool names and versions actually used, for the ruleset fingerprint.",
+      "communication_depth": "One of communication_depth: the technical depth at which the agent speaks to the owner (UX-28). Undeclared means decision_maker, and the agent says which one it is using."
+    },
+    "switch_off_record": [
+      "rule",
+      "reason",
+      "authorized_by",
+      "review_date"
+    ],
+    "without_record": "red, and the ruleset is invalid: the scoreboard emits no figures at all (D-046, D-047)."
+  },
+  "pinning": {
+    "what": "What a project pins, and what it costs to change it. A project pins ONE catalog_version the day it starts and keeps it until the end. That is not convenience: raising the version in the middle of a project is a REGRESSION of the completeness state, because a version that adds a requirement to a step already closed reopens that step, and what was green yesterday is not green today. Raising it is allowed and it is the owner decision, written with its date in the project decision record; what is not allowed is raising it in silence, or discovering mid-project that the gate is measuring against a definition nobody chose.",
+    "pinned_pair": [
+      "catalog_version",
+      "content_hash"
+    ],
+    "consumer_contract": {
+      "must_record": "A tool that pins records, in whatever it writes for the project, the catalog_version it pinned and the content_hash that version declares. Those two, by those names.",
+      "must_contrast": "It contrasts that pair against the version ledger: an append-only record of (declared version -> content hash) that lives in the method repository and not on the host that served this file, so the pair can be checked against a second source. Its address is published per resource by the index of this data interface, under resources[].version_ledger: url is the page a person reads and fetch_url is the same file as JSON, which is the one a tool downloads. Read both from the index; do not derive one from the other and do not hardcode either, because a derived address is an invented address. Written this way on 2026-10-27: the first wording of this clause pointed the consumer at a key of the sources that no published payload carries, and the index declared only the human page, so the one consumer that implemented the obligation had to guess the address it downloads (PND-056).",
+      "on_mismatch": "Red, and it says which of the two moved: the content under a declared version, or the version under one content. Never green, and never a silent re-pin to whatever the host is serving today.",
+      "forbidden": "Pinning to an internal compiled identity that the method cannot name. It looks like pinning and it is not: nobody outside the tool can audit it, and the differential against a published version cannot be computed, so the project cannot be told what an upgrade would reopen.",
+      "why_it_is_written": "Measured on 2026-10-27: a consumer that already pinned, and pinned correctly in its own terms, pinned to an identity of its own that is not a catalog_version and appears in no ledger. The data said what to freeze and never said what to freeze it BY."
+    },
+    "upgrade": {
+      "who_decides": "owner",
+      "before_deciding": "Compute the differential and show it: which requirements enter between the pinned version and the candidate, and which steps they anchor. A project is told what an upgrade reopens before it is raised, not after.",
+      "how_to_compute": "Every entry the method added after the freeze declares since_version. An entry with no since_schema comes from the frozen base and is present in every published version. So the differential between a pinned version X and a candidate Y is every entry whose since_version is greater than X and not greater than Y; it needs no network beyond the two files.",
+      "what_a_new_required_evaluator_means": "An installation that cannot measure a required evaluator reports declared and not measured, and the step does not advance (see compatibility). That is the mechanism by which an upgrade stops a project, and it is the intended behaviour, not a defect.",
+      "covered_keys_since": "2026.10.1",
+      "covered_keys_note": "Every top-level key the fingerprint covers has existed since the first version the method published, so no consumer can hold a pinned version that is missing one of them. A key added later records its arrival in the ledger entry of its version."
+    },
+    "prior_version_content": {
+      "canonical_url_serves": "current_only",
+      "how": "The canonical URL serves the current version only. The content of a prior version is in the method repository: the ledger gives the pair (version -> content hash) and the published file is committed there, so searching that history for a recorded hash finds the commit that published that version.",
+      "not_guaranteed": "There is no per-version URL on this host today, and saying so here is cheaper than letting a consumer discover it. A tool that needs to re-read the exact content it pinned reads it from its own frozen copy; the fingerprint is what tells it the copy is intact."
+    }
+  }
+}

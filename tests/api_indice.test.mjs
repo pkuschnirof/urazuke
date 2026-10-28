@@ -16,9 +16,10 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { raiz } from '../build/gates_lib.mjs';
+import { CARPETA_INMUTABLE, urlInmutable, ALCANCE_DE_LA_HUELLA } from '../build/gates_lib.mjs';
 import {
   BASE_CANONICA, BASE_ESPEJO, RECURSOS, NOMBRE,
-  armarIndice, leerDisco, verificarIndice,
+  armarIndice, leerDisco, verificarIndice, versionesDelRegistro,
 } from '../build/index_api.mjs';
 import { clasificarIndice } from '../build/portal_verify.mjs';
 
@@ -57,6 +58,90 @@ test('el campo what dice que protege la huella y que no (PND-009)', () => {
   assert.match(indiceEnDisco.what, /self-consistent/i);
   assert.match(indiceEnDisco.what, /truncation/i);
   assert.match(indiceEnDisco.what, /does not protect/i);
+});
+
+// Y lo dicen tambien los DOS RECURSOS, que es la mitad que faltaba (PND-009). La frase
+// vivia solo en el indice, y el indice no lleva huella propia por decision escrita
+// (D-056): o sea que viajaba sin proteccion, y una declaracion de seguridad en un campo
+// sin proteger es una que un atacante puede editar para que diga lo contrario. Solo se
+// pudo mover a los recursos cuando `what` quedo CUBIERTO por la huella (PND-010, en
+// 2026.10.6 y 2026.10.4). La trampa estaba anticipada en el propio pendiente desde el
+// 2026-10-24: "si esa frase vive en what, y what esta fuera de la huella, es una
+// declaracion de seguridad que un atacante puede editar".
+test('la frase del alcance de la huella es UNA SOLA COPIA, y viaja en los tres (PND-009)', () => {
+  const gates = JSON.parse(readFileSync(join(raiz, 'docs', 'html', 'api', 'gates.json'), 'utf8'));
+  const prompts = JSON.parse(readFileSync(join(raiz, 'docs', 'html', 'api', 'prompts.json'), 'utf8'));
+  for (const [nombre, payload] of [['gates.json', gates], ['prompts.json', prompts], ['index.json', indiceEnDisco]]) {
+    assert.ok(payload.what.includes(ALCANCE_DE_LA_HUELLA), nombre + ' lleva la frase, literal y no parafraseada');
+  }
+  // Una sola copia quiere decir que es la MISMA cadena: si alguien la reescribe en un
+  // archivo, esto cae en vez de dejar tres versiones de la misma promesa.
+  assert.equal(new Set([gates, prompts, indiceEnDisco].map((p) => {
+    const i = p.what.indexOf(ALCANCE_DE_LA_HUELLA);
+    return p.what.slice(i);
+  })).size, 1, 'la misma frase, byte a byte, en los tres');
+  // Y en los dos recursos esta adentro de lo que la huella cubre, que era la condicion.
+  for (const [nombre, payload] of [['gates.json', gates], ['prompts.json', prompts]]) {
+    assert.ok(payload.content_hash.covers.includes('what'), nombre + ': `what` esta cubierto por la huella');
+  }
+  // El indice no: no tiene huella propia, y eso es la decision, no un olvido.
+  assert.equal('content_hash' in indiceEnDisco, false);
+});
+
+// La direccion versionada e inmutable (PND-008). La viva sirve siempre lo vigente, asi que
+// quien la apunta se actualiza en silencio; sin una direccion por version, un proyecto que
+// fijo una version no tiene de donde volver a leerla, que es la mitad que le faltaba al
+// contrato de fijacion de D-068.
+test('declara la direccion inmutable de cada recurso, su version vigente y la lista entera (PND-008)', () => {
+  for (const r of indiceEnDisco.resources) {
+    assert.equal(r.immutable.base, BASE_CANONICA + CARPETA_INMUTABLE[r.name] + '/');
+    assert.equal(r.immutable.current, urlInmutable(r.name, r.version));
+    assert.ok(r.immutable.current.startsWith(r.immutable.base), 'la vigente vive bajo su base');
+    assert.ok(r.immutable.versions.includes(r.version), 'la vigente esta en la lista');
+    assert.deepEqual(r.immutable.versions, versionesDelRegistro(RECURSOS.find((d) => d.name === r.name)),
+      'la lista es la del registro append-only, extraida y no transcrita');
+    // Y lo que la direccion promete, dicho en el archivo y no en la cabeza del autor.
+    assert.match(r.immutable.note, /never removed/i);
+    assert.match(r.immutable.note, /not the bytes/i);
+  }
+});
+
+test('ROJO: el indice se queda sin la direccion inmutable de un recurso', () => {
+  const malo = clonar(indiceEnDisco);
+  delete malo.resources[0].immutable;
+  assert.deepEqual(codigos(verificarIndice(malo, disco)), ['E_INDICE_INMUTABLE']);
+});
+
+test('ROJO: la direccion inmutable vigente quedo en la version anterior', () => {
+  const malo = clonar(indiceEnDisco);
+  malo.resources[0].immutable.current = urlInmutable(malo.resources[0].name, '2026.10.1');
+  const errores = verificarIndice(malo, disco);
+  assert.deepEqual(codigos(errores), ['E_INDICE_INMUTABLE']);
+  assert.match(errores[0].que, /2026\.10\.1/, 'y dice cual quedo citada');
+});
+
+test('ROJO: la lista de versiones con direccion no es la del registro', () => {
+  const malo = clonar(indiceEnDisco);
+  malo.resources[0].immutable.versions = malo.resources[0].immutable.versions.slice(1);
+  assert.deepEqual(codigos(verificarIndice(malo, disco)), ['E_INDICE_INMUTABLE']);
+});
+
+test('ROJO: el indice lista un recurso que RECURSOS no declara', () => {
+  const malo = clonar(indiceEnDisco);
+  const extra = clonar(malo.resources[0]);
+  extra.name = 'otra_cosa.json';
+  malo.resources.push(extra);
+  // Si no esta en disco, lo que se dice es eso y se corta ahi: no hace falta mas.
+  assert.deepEqual(codigos(verificarIndice(malo, disco)), ['E_INDICE_FALTA_RECURSO']);
+
+  // Y el caso que SI llega al chequeo de la declaracion: el archivo esta publicado, el
+  // indice lo lista, y RECURSOS no lo declara, asi que nadie sabe de que registro de
+  // versiones sale su lista. Va aparte porque una rama de error que no se puede alcanzar
+  // es una guarda dormida, y este repositorio ya pago cinco.
+  const conExtra = { ...disco, 'otra_cosa.json': disco[malo.resources[0].name] };
+  // Y tambien E_INDICE_URL, porque la copia del recurso se quedo con la direccion del otro:
+  // los dos codigos, cada uno diciendo lo suyo, que es lo contrario de un error generico.
+  assert.deepEqual(codigos(verificarIndice(malo, conExtra)), ['E_INDICE_NO_DECLARADO', 'E_INDICE_URL']);
 });
 
 test('declara la direccion canonica absoluta, y el espejo como espejo (PND-006)', () => {

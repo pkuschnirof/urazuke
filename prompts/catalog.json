@@ -1,6 +1,6 @@
 {
   "what": "The header of the prompt corpus published as an API: the version a project freezes. Declared BY HAND, for the same reason as the gate catalogue (gates/catalog.json): a project starts and finishes with the same version of the method, so what it froze has to read back the same two years from now.",
-  "corpus_version": "2026.10.5",
+  "corpus_version": "2026.10.6",
   "declared_at": "2026-10-27",
   "published_as": "docs/html/api/prompts.json",
   "version_scheme": {
@@ -60,6 +60,13 @@
       "decision": "D-070",
       "content_hash": "d388f6adb8c788631b4908ed57c0a599accf19c88dde069f4275c25a90845363",
       "changed": "Every prompt of the corpus carries one clause more, and it is the same clause: the form of the question. The method ordered the model to ASK twenty-two times, in fifteen of the twenty-seven files, and never said HOW. Now each of the seventy-two prompts closes with the four parts of UX-28 -- the data that makes the question necessary, listed; one paragraph of no more than five lines that links it and lets the question be seen; the question with its possible answers numbered; the recommendation -- and with the depth parameter project_config.communication_depth (beginner, decision_maker, technical; undeclared means decision_maker). It is one single English wording, identical in the eight prose versions the method declares, which is the rule that already governed every prompt and is what build/prompts.mjs verifies byte by byte. Nothing else moved: no prompt lost a sentence and no prompt changed its order. This is the written exception to D-044 and it is narrow -- the clause names the four parts and the parameter and nothing else, the full statement lives once in Annex H -- because unlike the other forty-five rules this one is a demand on the conversation and not on the artifact, so the only place it can be obeyed from is what the model reads (D-070, PND-054)."
+    },
+    {
+      "corpus_version": "2026.10.6",
+      "date": "2026-10-27",
+      "decision": "D-073",
+      "content_hash": "03866b055357cfbaff4ec842b9666912b88257256ebedfa6e0ca2e2210905733",
+      "changed": "Not one character of prompt text is touched. `what` now carries, in one single copy shared with the gate catalogue and with the index of the data interface, the SCOPE of what the content hash protects: it is self-consistent, so whoever can edit a file can recompute it; it detects truncation, a bad merge and hand editing; it does not protect against an adversary who controls the host that served the file; the anchors that do not live on that host are the version ledger and the transport security; and there is no cryptographic signature, which is a written decision with its cost on the table and not an oversight. That sentence had lived since 2026.10.2 only in the index, which carries no hash of its own by design (D-056), so it travelled unprotected -- and a security declaration in an unprotected field is one an attacker can edit to say the opposite. It could only move into the resources once `what` was covered by the hash, which happened for this corpus in 2026.10.4. This version also gets an address of its own that returns it and only it, with no purge, declared by the index (D-073, PND-008, PND-009)."
     }
   ]
 }

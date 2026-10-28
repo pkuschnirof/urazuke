@@ -1,6 +1,6 @@
 {
-  "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green.",
-  "catalog_version": "2026.10.9",
+  "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green. And about the content hash, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls the host that served the file. The anchors that do not live on that host are the version ledger of each resource, which lives in the method repository and records the pair (version -> hash) append-only, and the transport security of the connection. There is no cryptographic signature: that is a written decision with its cost on the table, not an oversight.",
+  "catalog_version": "2026.10.10",
   "schema_version": 2,
   "content_hash": {
     "algo": "sha256",
@@ -32,12 +32,12 @@
       "license",
       "content_hash"
     ],
-    "value": "a4f6c78fa040f72e5ccc8cc50bbd891d8c88ff64af9e91be587d9bb080e1d585",
+    "value": "280d8745797b66f223ea29d380d0d2f0176ab505d714403aa08bbb4861b785e2",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "bcb5092",
+  "git_commit": "7a80703",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-10-27T22:53:38.792Z",
+  "generated_at": "2026-10-28T00:06:37.982Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
@@ -3456,8 +3456,15 @@
     },
     "prior_version_content": {
       "canonical_url_serves": "current_only",
-      "how": "The canonical URL serves the current version only. The content of a prior version is in the method repository: the ledger gives the pair (version -> content hash) and the published file is committed there, so searching that history for a recorded hash finds the commit that published that version.",
-      "not_guaranteed": "There is no per-version URL on this host today, and saying so here is cheaper than letting a consumer discover it. A tool that needs to re-read the exact content it pinned reads it from its own frozen copy; the fingerprint is what tells it the copy is intact."
+      "immutable_url_pattern": "<canonical base>/<resource folder>/<version>.json -- one folder per resource, because each resource declares its own version line and a folder named after one version would be naming the other resource's content with it.",
+      "immutable_url_what": "The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.",
+      "immutable_url_where": "Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.",
+      "immutable_path": "gates/2026.10.10.json",
+      "first_version_with_an_address": "2026.10.1",
+      "no_purge": "Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.",
+      "what_is_promised": "The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.",
+      "not_guaranteed": "Byte identity is not promised, only the covered content, for the reason above. And an address on this host is not a substitute for the ledger: if this host is compromised, both the file and its hash can be rewritten together, so the pair (version -> hash) is still checked against the ledger, which lives elsewhere.",
+      "how": "The canonical URL serves the current version only. The content of a prior version is in the method repository: the ledger gives the pair (version -> content hash) and the published file is committed there, so searching that history for a recorded hash finds the commit that published that version."
     }
   }
 }

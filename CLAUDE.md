@@ -469,6 +469,25 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   2, en los ocho idiomas, y `tests/version_fijada.test.mjs` lo exige por el token inglés
   `catalog_version`, que es lo que viaja idéntico; lo que ninguna prueba de acá puede verificar es
   si una herramienta **cumple** la obligación: eso se mide en su repositorio.
+- **Cada versión declarada tiene su dirección, y lo que la dirección promete es el contenido que su
+  huella cubría** (D-073, `PND-008`, `PND-009`). La dirección viva sirve siempre lo vigente, así que
+  quien la apunta se actualiza en silencio; desde el 2026-10-27 hay además una carpeta por **recurso**
+  —y no por versión, porque cada recurso declara su propia línea— con un archivo por versión publicada
+  (`docs/html/api/gates/2026.10.10.json`), **sin purga**, y el índice declara la base, la vigente y la
+  lista entera, extraída del registro. Las catorce versiones ya publicadas se **recuperaron** de la
+  historia de `main` y verifican contra la huella que su entrada anota. Lo que se promete es el
+  contenido cubierto y **no los bytes** (`generated_at` queda fuera de la huella a propósito), y para
+  una versión vieja llega hasta donde llegaba **su** huella: `2026.10.1` a `2026.10.5` no cubren `what`
+  ni `counts`, y eso no lo arregla una versión posterior. La regla que deja, y se midió caro: **el
+  nivel de datos declara caminos RELATIVOS; la dirección absoluta la declara sólo el índice**, porque
+  el README publica en los ocho idiomas un comando que cuenta las menciones del alojamiento sobre el
+  archivo servido y afirma que da cero — una absoluta adentro de `gates.json` habría dejado falsa una
+  afirmación medida y publicada, y la prueba de neutralidad la rechazó antes de que pasara. En el mismo
+  cambio, la frase que dice **qué protege la huella y qué no** —auto-consistente, detecta el truncado y
+  la edición a mano, no protege contra un adversario que controle el alojamiento, y **no hay firma
+  criptográfica, que es una decisión escrita y no un olvido**— se movió al `what` de los dos recursos,
+  que es donde la huella la cubre; vivía sólo en el índice, que no lleva huella propia, así que viajaba
+  sin protección. Va en **una sola copia** y la prueba exige la misma cadena byte a byte en los tres.
 - **Un puntero que el dato publica tiene que resolver, y una dirección que publica tiene que poder
   bajarla una máquina** (D-069, `PND-056`). Lo trajo el **consumidor**, el mismo día que implementó
   la obligación de arriba: la cláusula que le decía contra qué contrastar apuntaba a

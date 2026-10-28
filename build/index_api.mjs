@@ -26,11 +26,11 @@
 // Uso: node build/index_api.mjs
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { raiz, esLineaDeComandos, CASTELLANO } from './gates_lib.mjs';
+import { raiz, esLineaDeComandos, CASTELLANO, ALCANCE_DE_LA_HUELLA, BASE_API, CARPETA_INMUTABLE, urlInmutable } from './gates_lib.mjs';
 
 export const DIR = join(raiz, 'docs', 'html', 'api');
 export const NOMBRE = 'index.json';
-export const BASE_CANONICA = 'https://yujin.app/urazuke/api/';
+export const BASE_CANONICA = BASE_API;   // una sola copia de la base, en gates_lib
 export const BASE_ESPEJO = 'https://yujin.app/urazuke/docs/api/';
 export const REPO = 'https://github.com/pkuschnirof/urazuke';
 // El mismo registro, en la direccion que devuelve el JSON. Hace falta las dos porque son
@@ -64,9 +64,17 @@ export const RECURSOS = [
 
 const LEDGER_NOTE = 'Append-only: one entry per declared version with the content hash it produced, and a hash already recorded is never edited. It lives in the method repository, not on this host, so the pair (version -> hash) can be checked against a source other than the server that handed you the file. It is not part of any published payload, so recording an entry cannot change the hash that entry records.';
 
+// La direccion inmutable (PND-008). La viva sirve siempre lo vigente, asi que quien la
+// apunta se actualiza en silencio; la inmutable devuelve una version y solo esa. El indice
+// las declara LAS DOS y la lista completa de versiones que tienen direccion, para que
+// ningun consumidor tenga que derivar una direccion -- que es inventarla (D-069).
+const INMUTABLE_NOTE = 'The live url above always serves whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. Each address below returns one declared version and only that one, and versions are never removed. What the address promises is the content whose hash the version ledger records for that version, not the bytes: the keys the hash excludes are publication metadata and a regeneration can move them. Recompute and compare, which is what you were going to do anyway.';
+
+const INMUTABLE_PATTERN = '<base><version>.json';
+
 const FETCH_NOTE = 'Two addresses because they are two different things: url is the page a person reads, which this host serves as HTML, and fetch_url is the same file as JSON, which is what a tool downloads. Both are declared so no consumer has to derive one from the other: a derived address is an invented address.';
 
-const WHAT = 'A directory of the data interface of the Urazuke method: the one resource you can ask for without knowing anything else beforehand. For every published resource it declares the canonical URL, the media type, the size in bytes, the name and the value of the version field that resource declares, and the content hash it declares with its algorithm and its canonical form, so a consumer knows what it is going to recompute before downloading anything. This file carries no version and no content hash of its own, on purpose (see identity): do not use it as a trust anchor, verify it against the resources it lists. And about those hashes, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls this host. The anchors that do not live here are the version ledger of each resource, in the method repository, and the transport security of this connection.';
+const WHAT = 'A directory of the data interface of the Urazuke method: the one resource you can ask for without knowing anything else beforehand. For every published resource it declares the canonical URL, the media type, the size in bytes, the name and the value of the version field that resource declares, and the content hash it declares with its algorithm and its canonical form, so a consumer knows what it is going to recompute before downloading anything. This file carries no version and no content hash of its own, on purpose (see identity): do not use it as a trust anchor, verify it against the resources it lists.' + ' ' + ALCANCE_DE_LA_HUELLA;
 
 const IDENTITY = {
   has_own_version: false,
@@ -102,6 +110,15 @@ export function leerDisco(dir = DIR) {
   return disco;
 }
 
+/**
+ * Las versiones que el registro append-only de un recurso declara, en orden. Es extraccion
+ * y no transcripcion: la lista vive una sola vez, en el changelog del catalogo del recurso.
+ */
+export function versionesDelRegistro(r, base = raiz) {
+  const catalogo = JSON.parse(readFileSync(join(base, r.ledger_path), 'utf8'));
+  return (catalogo[r.ledger_field] ?? []).map((e) => e[r.version_field]).filter(Boolean);
+}
+
 /** El indice, armado de lo que los recursos declaran. No transcribe: extrae. */
 export function armarIndice(disco = leerDisco(), ahora = new Date()) {
   const recursos = [];
@@ -124,6 +141,13 @@ export function armarIndice(disco = leerDisco(), ahora = new Date()) {
         encoding: h.encoding,
         canonical_form: h.canonical_form,
         value: h.value,
+      },
+      immutable: {
+        base: BASE_API + CARPETA_INMUTABLE[r.name] + '/',
+        url_pattern: INMUTABLE_PATTERN,
+        current: urlInmutable(r.name, p[r.version_field]),
+        versions: versionesDelRegistro(r),
+        note: INMUTABLE_NOTE,
       },
       version_ledger: {
         url: REPO + '/blob/main/' + r.ledger_path,
@@ -230,6 +254,36 @@ export function verificarIndice(indice, disco = leerDisco()) {
     if (!r.version_ledger?.url || !r.version_ledger?.field) {
       err('E_INDICE_REGISTRO', r.name + ' no apunta a su registro de versiones',
         'el par (version -> huella) es el unico ancla de confianza que vive fuera de este alojamiento (PND-007).');
+    }
+    // La direccion inmutable: la declara el indice y el consumidor NO la deriva, asi que
+    // tiene que ser la que el recurso tiene de verdad y la lista tiene que ser la del
+    // registro. Un indice que declara una direccion inmutable vieja manda a bajar otra
+    // version que la que el consumidor cree (PND-008).
+    const inm = r.immutable;
+    // El recurso DECLARADO (build/index_api.mjs#RECURSOS), que es el que sabe de que
+    // registro sale la lista de versiones. El indice lista nombres; la declaracion dice
+    // donde vive el registro de cada uno.
+    const declarado = RECURSOS.find((d) => d.name === r.name);
+    if (!declarado) {
+      err('E_INDICE_NO_DECLARADO', 'el indice lista ' + r.name + ' y RECURSOS no lo declara',
+        'agregalo a RECURSOS en build/index_api.mjs con su campo de version y su registro, o sacalo del indice.');
+      continue;
+    }
+    const baseEsperada = BASE_API + CARPETA_INMUTABLE[r.name] + '/';
+    if (!inm || inm.base !== baseEsperada || inm.url_pattern !== INMUTABLE_PATTERN || !inm.note) {
+      err('E_INDICE_INMUTABLE', r.name + ' no declara su direccion versionada e inmutable: ' + JSON.stringify(inm?.base ?? null),
+        'regenera el indice: node build/index_api.mjs. Sin ella, un consumidor que fijo una version no tiene de donde volver a leerla y la direccion viva se le actualiza en silencio (PND-008).');
+    } else {
+      const esperada = declaradaVersion === undefined ? null : urlInmutable(r.name, declaradaVersion);
+      if (esperada && inm.current !== esperada) {
+        err('E_INDICE_INMUTABLE', 'el indice dice que la version vigente de ' + r.name + ' vive en ' + JSON.stringify(inm.current) + ' y el archivo declara ' + declaradaVersion,
+          'regenera el indice: node build/index_api.mjs. Una direccion inmutable vieja es peor que ninguna: devuelve contenido y no es el que el consumidor pidio.');
+      }
+      const delRegistro = versionesDelRegistro(declarado);
+      if (JSON.stringify(inm.versions) !== JSON.stringify(delRegistro)) {
+        err('E_INDICE_INMUTABLE', 'la lista de versiones con direccion de ' + r.name + ' no es la del registro (' + (inm.versions ?? []).length + ' contra ' + delRegistro.length + ')',
+          'regenera el indice: node build/index_api.mjs. La lista se extrae del changelog del catalogo del recurso, que es append-only.');
+      }
     }
     const cruda = r.version_ledger?.fetch_url;
     const ruta = r.version_ledger?.path;
