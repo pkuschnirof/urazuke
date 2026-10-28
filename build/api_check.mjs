@@ -113,8 +113,13 @@ if (process.argv.includes('--huella')) {
 
 if (!huellas()) fallas++;
 
-for (const script of ['prompts_api.mjs', 'gates_api.mjs', 'index_api.mjs']) {
-  execFileSync(process.execPath, [join(raiz, 'build', script)], { stdio: 'inherit' });
+// La copia de la version vigente va en la misma lista: si no, regenerar deja el archivo
+// vivo con un `generated_at` nuevo y su copia con el anterior, y el arbol commiteado queda
+// con los dos distintos. No rompe nada --la promesa es el contenido cubierto, no los
+// bytes-- pero obliga a `congelar` a reescribirla en cada corrida, y una diferencia que
+// aparece sola en cada clon es ruido que tapa las que importan.
+for (const script of [['prompts_api.mjs'], ['gates_api.mjs'], ['index_api.mjs'], ['version_inmutable.mjs', '--vigente']]) {
+  execFileSync(process.execPath, [join(raiz, 'build', script[0]), ...script.slice(1)], { stdio: 'inherit' });
 }
 
 for (const nombre of ARCHIVOS) {

@@ -222,7 +222,11 @@ test('congelar no toca una copia que ya existe: el directorio es append-only', (
   marcado.generated_at = '1999-01-01T00:00:00.000Z';   // fuera de la huella: no dispara rojo
   escribir(p, marcado);
   const { escritas } = congelar(dir, raiz);
-  assert.equal(escritas.filter((e) => e.includes(version)).length, 0, 'no la reescribio');
+  // Coincidencia EXACTA y no `includes`: la primera version de esta prueba filtraba por
+  // substring y "gates.json 2026.10.10 (vigente)" contiene "2026.10.1", asi que daba verde
+  // en esta maquina --donde la copia vigente ya coincidia-- y rojo en la cadena, donde no.
+  // Un filtro por substring sobre numeros de version es un falso verde esperando su turno.
+  assert.deepEqual(escritas.filter((e) => e === recurso.name + ' ' + version), [], 'no reescribio la vieja');
   assert.notEqual(readFileSync(p, 'utf8'), antes, 'y la dejo como estaba, con la marca puesta');
 });
 

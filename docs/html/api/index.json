@@ -6,7 +6,7 @@
     "why": "A directory, not a catalogue: its identity is the identity of what it points at. A hash of its own would force a third declared version line, that nobody declares, every time one of the listed resources changes.",
     "staleness_check": "Fetch a listed resource, recompute its hash over the canonical form declared here for that resource, and compare it with the hash quoted here. If the two differ, this index is stale, and you know that without having to trust it."
   },
-  "generated_at": "2026-10-28T00:06:38.036Z",
+  "generated_at": "2026-10-28T00:11:13.951Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "canonical_base": "https://yujin.app/urazuke/api/",
