@@ -973,10 +973,12 @@ resumen.
 ## PND-011 — El publicado le pide al consumidor un catálogo que el método no le da *(era U-10)*
 
 - **Nodo:** `corpus/idiomas` [nodo propuesto]
-- **Grupo:** G-API · **Severidad:** bloquea · **Repositorio:** método · **Estado: en curso** —
-  publicado y verificado en producción el 2026-10-28; falta sólo la decisión del dueño de la que
-  habla el cierre.
+- **Grupo:** G-API · **Severidad:** bloquea · **Repositorio:** método · **Estado: CERRADO** el
+  2026-10-28 — publicado, verificado en producción y cerrado con los ocho idiomas que tienen prosa.
 - **Decisión del dueño (2026-10-24): sí, y en DIEZ idiomas.**
+- **Decisión del dueño (2026-10-28): "PND-011 cerrar con 8 idiomas".** La obligación de los diez
+  no se retira: vive en `PND-016`, que es donde está su costo y de donde este catálogo los va a
+  tomar solo.
 
 **Qué está mal.** El archivo le dice al consumidor, con razón, "no imprimas estos textos, leé el
 identificador y sacá el texto de tu propio catálogo", y el método no le da ningún catálogo: lo
@@ -1139,11 +1141,53 @@ not ok 15 - la linea del veredicto cuenta los recursos que hay, no los que habia
 # pass 15   # fail 0        (suite completa: # tests 387  # pass 387  # fail 0)
 ```
 
-**Lo único que falta para cerrar, y es del dueño.** Si esta entrada cierra con **ocho** idiomas
-—con la obligación de diez viviendo en `PND-016`, que es donde está su costo y de donde el catálogo
-los va a tomar solo— o si se queda abierta hasta que el corpus sea diez. Los criterios de
-aceptación de arriba están cumplidos para los ocho idiomas que el método publica, y para los dos
-que le faltan no hay texto que extraer.
+**Evidencia de cierre (2026-10-28), medida del lado del consumidor y no del disco.** Los dos
+criterios de aceptación son sobre lo que un consumidor puede hacer, así que se comprobaron como lo
+haría un consumidor: bajando el archivo **servido** y leyéndolo como lo leería una herramienta
+ajena, sin ninguna traducción propia a mano.
+
+```
+GET https://yujin.app/urazuke/api/labels.json   HTTP 200, 91432 bytes, labels_version 2026.10.1
+idiomas 8 [es en pt fr de it ja zh]   ids 78   cadenas 624   ids sin texto en algun idioma: 0
+counts declarado: steps 24, stations 8, rules 46, ids_per_language 78, strings 624  -- coincide
+labels.es.steps[5] -> El plan son los pendientes
+labels.ja.steps[5] -> 計画とは保留項目のこと
+labels.de.steps[5] -> Der Plan sind die offenen Posten
+labels.zh.steps[5] -> 计划就是待办项
+labels.pt.rules["UX-28"] -> Quando o agente precisa de uma decisao do dono, a pergunta chega com
+  as suas quatro partes e nesta ordem: os dados que a tornam necessaria, enumerados; [...]
+
+node --test                                     # tests 387   # pass 387   # fail 0
+```
+
+- *P1, P2 — cumplido.* Una herramienta que no tiene ni una traducción propia pide **un** archivo por
+  red y le muestra a su usuario el título del peldaño 5 en japonés, en alemán o en chino. El texto
+  que le muestra es el de la prosa del método, no una traducción que la herramienta se escribió.
+- *P5 — cumplido.* El auditor comprueba que a ningún identificador le falta su texto en ningún
+  idioma con la cuenta de arriba —78 por idioma, 624 en total, cero huecos— y la contrasta contra
+  el `counts` que el propio archivo declara, que desde `2026.10.6` está **cubierto por la huella**
+  (D-067): un archivo truncado no puede mentir sobre su propio tamaño.
+
+**Por qué cierra con ocho, dicho entero porque el dueño había decidido diez.** No hay trabajo que
+hacer acá para llegar a diez. Los ocho son exactamente los idiomas que tienen prosa, un idioma sin
+prosa no tiene texto que extraer —extraerlo sería **escribir** texto nuevo acá, que es lo único que
+este recurso no puede hacer—, y la lista se **deriva** de `languages.prose_versions` (D-067), así
+que el día que `PND-016` lleve el corpus a diez este catálogo publica diez sin que nadie toque una
+línea del programa. Dejar la entrada abierta habría mostrado en el registro un bloqueante que nadie
+puede trabajar: su costo es el de `PND-016`, que tiene su propia entrada y es la decisión más cara
+del backlog. El recurso lo dice de frente en `languages.note`, nombrando la diferencia entre los
+diez idiomas de la interfaz y los ocho de la prosa como lo que es: un pendiente abierto del método
+y no un defecto del archivo.
+
+**Lo que este cierre deja afuera a propósito, para que no se busque acá.** Los diez idiomas del
+corpus son `PND-016`. Y la tabla «Qué hay acá» de `README.md` no lista `labels/`, igual que no
+lista `gates/`: la tabla nombra el corpus y lo que un lector abre, y cambiar ese criterio son ocho
+traducciones que ninguna entrada pide.
+
+**Commit / pull request:** el recurso entró con el pull request **#26**, fusionado en `main` el
+2026-10-28 como `abc3349`, y los dos defectos del reporte del verificador con el **#27**,
+`dab37f7`. Esta documentación de cierre y el resumen recontado van en su propio pedido de fusión,
+que es lo único que este cierre agrega.
 
 ---
 
@@ -1884,8 +1928,11 @@ prompt se reconoce por idioma, así que hay que enseñarle **dos formas nuevas**
   esos dos.
 
 **Depende de:** nada para arrancar. **Arrastra:** PND-019 (la frase de los idiomas está adentro de
-la huella) y condiciona PND-011 (diez catálogos de textos, no ocho) y PND-018 (las portadas por
-idioma).
+la huella) y PND-018 (las portadas por idioma). **Ya no condiciona PND-011**, que cerró el
+2026-10-28 con los ocho idiomas que tienen prosa: el catálogo de textos deriva su lista de
+`languages.prose_versions`, así que publica diez el día que este pendiente lleve el corpus a diez,
+sin que nadie toque una línea de ese programa. Lo que sí sigue siendo cierto es que **ese** día el
+catálogo sube de versión y vuelve a publicar: los diez no son gratis, son de acá.
 
 ---
 
@@ -5566,14 +5613,14 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 17 | 3 | 14 | 1 |
+| G-API | 17 | 2 | 15 | 0 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 14 | 11 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 13 | 1 | 12 | 0 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **60** | **16** | **44** | **2** |
+| **total** | **60** | **15** | **45** | **1** |
 
 Sesenta entradas, `PND-001` a `PND-060`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
@@ -5633,6 +5680,17 @@ de neutralidad la rechazó**, porque el README publica, en los ocho idiomas, un 
 las menciones del alojamiento sobre el archivo servido y afirma que da **0**. Una línea más y una
 afirmación medida y publicada quedaba falsa. El recurso declara su camino relativo y la dirección
 absoluta la declara el índice, que es el único archivo con esa excepción escrita.
+
+**Y el 2026-10-28 el grupo de la API bajó a dos abiertos y se quedó sin ningún bloqueante.**
+Cerró `PND-011`: el archivo publicado le pedía al consumidor, con razón, que no imprima sus textos
+y que lea el identificador contra un catálogo propio, y el método no publicaba ningún catálogo de
+donde sacarlo, así que la instrucción era correcta y no se podía cumplir. Ahora lo publica —setenta
+y ocho identificadores en los ocho idiomas de la prosa, 624 cadenas **extraídas** y no escritas—, y
+cierra con ocho por decisión del dueño del mismo día, porque los dos que faltan no tienen prosa de
+donde extraer y la lista se deriva sola el día que `PND-016` los traiga. Lo que ese cambio dejó
+vale más que el recurso: el programa que después de empujar le pregunta a producción si sirve lo
+commiteado llevaba su lista de recursos **clavada en dos**, así que con un tercero publicado habría
+cerrado en verde sin haber mirado el tercero.
 
 **Lo que está primero, y por qué.** Las precondiciones del grupo de la API están cerradas, y en
 este orden: PND-021 (cuál es el árbol del portal realmente desplegado), PND-020 y PND-018 (la
@@ -5749,9 +5807,10 @@ PND-016, PND-024 y PND-046), los arreglos de las nueve revisiones semánticas �
 2026-10-27, cuarenta y seis hallazgos, y en curso porque su criterio de aceptación es sobre lo que
 el lector lee y publicar la portada es del dueño (PND-026 a PND-034, con PND-057 y PND-058, que son
 del castellano)— y la prevención de los desvíos de medición (**PND-052**, que es el segundo del
-mismo grupo en dos días). Los dos bloqueantes abiertos que quedan son uno de la API (PND-011, que
-necesita el corpus en diez idiomas) y uno de idiomas (PND-016, la decisión más cara del backlog):
-el del método, el del alcance, el de la publicación y el del contenido se cerraron —`PND-054`, la
+mismo grupo en dos días). El único bloqueante abierto que queda es el de idiomas (PND-016, la
+decisión más cara del backlog): el de la API cerró el 2026-10-28 con PND-011 —el catálogo de textos
+servido y verificado, con los ocho idiomas que tienen prosa— y el del método, el del alcance, el de
+la publicación y el del contenido se cerraron antes —`PND-054`, la
 forma de la pregunta, el 2026-10-27 con D-070—, y `PND-010` y `PND-019` cerraron juntos en un solo
 cambio de versión.
 
