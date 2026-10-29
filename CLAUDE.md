@@ -192,6 +192,42 @@ juzga el dueño y queda fuera del porcentaje del tablero. Y **la cláusula y el 
 par**: los tres niveles que la cláusula nombra son exactamente los que declara
 `enums.communication_depth`, y la guarda cae si uno cambia sin el otro.
 
+## Las claves del archivo de configuración son nivel de datos
+
+D-075 (`PND-063`), y el dueño lo pidió al pedir un ejemplo práctico. El Anexo H, sección 7, muestra
+el único archivo que un proyecto escribe para la compuerta, y esas claves **no son prosa**: son el
+contrato que una herramienta escribe y lee, y el propio dato lo dice en `project_config.what`. Hasta
+el 2026-10-29 el ejemplo las llevaba **traducidas**: cuatro vocabularios distintos en los ocho
+idiomas —el japonés y el chino no las tradujeron y se quedaron con el castellano, el portugués y el
+francés tomaron las inglesas, el alemán y el italiano tradujeron a las suyas— y **ochenta y siete
+nombres para veinticuatro casilleros**. Y lo que lo convirtió en bloqueante no fue la incomodidad:
+el apagado escrito **exactamente como el ejemplo lo enseñaba** (`exceptions` / `authorised_by` /
+`review`) sale `validado` con código **0** por la propia compuerta del método, con la regla apagada
+y el registro de cuatro campos de D-046 sin mirarse, porque la compuerta lee `switched_off`. Es daño
+silencioso causado por la documentación del método, y le pasa al lector que **obedece**.
+
+La regla: las **claves** van en inglés, en ASCII puro, con el nombre exacto que el dato declara
+—`project_config.fields`, `switch_off_record`, los ids de umbral y los ids de grupo— e idénticas en
+los ocho idiomas; los **valores** que escribe una persona van en el idioma del lector, y hay una
+prueba que exige que sigan diferentes para que nadie «termine de unificar» el ejemplo al revés.
+`build/claves_configuracion.mjs` lo exige en las **dos direcciones** —toda clave del ejemplo es un
+nombre declarado, y todo nombre declarado aparece en el ejemplo—, con su paso en el flujo que exige
+la línea medida; contra el árbol anterior da **151 hallazgos**. Lo que la guarda **no** revisa es un
+registro con su razón y no una condición escondida: las nueve claves de `measured_by`, porque **el
+método no abarca con qué se mide cada regla y eso queda a criterio de quien mide** (decisión del
+dueño, D-075), y el contenido de `tools`, porque el nivel de datos no nombra herramientas (D-055).
+
+Lo mismo, en la otra capa: la escalada de CQ-18 a bloqueante se declaraba «por el mismo mecanismo
+que cualquier umbral» y **no tenía identificador de umbral**, así que la ausencia de una clave
+significaba a la vez «escalada declinada con fundamento» y «nadie la miró» (D-076, `PND-062`).
+Entra `end_users_outside_the_organisation`, con sus tres estados dichos, y `real_users` **no sirve
+para esto**: una herramienta interna puede tener doscientos usuarios reales y cero fuera de la
+organización. De ahí salieron dos simetrías que faltaban: el validador recorre los umbrales
+exigiendo procedencia, y el **diferencial de un upgrade los cuenta** —declarar un umbral cambia la
+severidad de su regla, y un diferencial que no lo cuenta deja a un proyecto subiendo de versión a
+ciegas—.
+
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio
@@ -622,13 +658,19 @@ veintitrés: once exigen que a ningún identificador le falte su texto en ningú
 una de las 624 cadenas aparezca **literal** en el documento del que dice salir, y doce son rojos
 deliberados que le dan de comer un árbol mutilado —una ficha arrancada, un encabezado sin su raya,
 una regla que le falta al anexo de un idioma, una que sobra, un documento que no se pudo leer— y
-exigen que caiga nombrando lo suyo (D-074). Los ocho
+exigen que caiga nombrando lo suyo (D-074), y las de las claves de configuración, que son
+veinticuatro: diez verdes —entre ellas la que le da el ejemplo de cada idioma a la compuerta y
+exige que lo único que salga sean los dos umbrales deliberados en cero— y catorce rojos
+deliberados, uno de los cuales reproduce el verde falso que la originó (D-075). Los **once**
 programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
-`index_api`, `portal_orphans`, `version_fijada`, `punteros_publicados`, `labels_api`)
+`index_api`, `portal_orphans`, `version_fijada`, `punteros_publicados`, `labels_api`,
+`forma_de_la_pregunta`, `version_inmutable`, `claves_configuracion`)
 detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
 el idiom de pegar `file:///` adelante de `argv[1]` sólo acierta en Windows y dejaba dos pasos
 de la cadena corriendo en vacío sobre Linux, en verde. Hay una prueba que lo exige en las dos
-formas de ruta, y los pasos del flujo que los corren exigen además la línea que el programa
+formas de ruta —y, desde el 2026-10-29, en las **dos direcciones**: la lista decía ocho y el disco
+tenía diez, así que ahora un programa que use el guardián sin estar en la lista también es rojo—, y
+los pasos del flujo que los corren exigen además la línea que el programa
 imprime: un paso que no imprimió nada no corrió, y no es un verde. `node build/api_check.mjs` regenera lo publicado y falla
 si no coincide con lo commiteado, y `node build/api_check.mjs --huella` recalcula la huella de los
 **tres** recursos commiteados sin regenerar nada (es lo que usa el paso de publicación, porque regenerar reescribe

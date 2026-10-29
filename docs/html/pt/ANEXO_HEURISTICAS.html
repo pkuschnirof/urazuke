@@ -130,8 +130,9 @@ pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8p
 <h2 id="7-configuracao">7. Configuração</h2>
 <p>Um único arquivo por projeto declara a capa 2 e a capa 3. Exemplo com a forma proposta, não com valores definitivos:</p>
 <pre class="code"><code>{
-  "version": 1,
   "frontend": "react-vite",
+  "real_users": true,
+  "communication_depth": "decision_maker",
   "measured_by": {
     "format": "prettier",
     "lint": "eslint",
@@ -143,23 +144,34 @@ pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8p
     "mutation": "stryker",
     "accessibility": "axe-core"
   },
-  "communication_depth": "decision_maker",
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
   "thresholds": {
     "lines_per_file": 300,
     "lines_per_function": 40,
     "paths_per_function": 10,
     "minimum_coverage": 0,
-    "mutation_target": 0
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
   },
-  "exceptions": [
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
       "rule": "CQ-17",
       "reason": "relatório imprimível herdado, sem tokens",
-      "authorised_by": "dono",
-      "review": "2027-01-31"
+      "authorized_by": "dono",
+      "review_date": "2027-01-31"
     }
   ]
 }</code></pre>
+<p><strong>As chaves desse arquivo são nível de dados e não se traduzem</strong> (D-051, D-075): vão em inglês, em ASCII puro, com o nome exato que o dado declara —as oito de primeiro nível, as quatro do registro de desligamento (<code>gates/schema.json#project_config</code>) e os identificadores de limiar (<code>gates/adapters.json</code>)— e <strong>idênticas nos oito idiomas</strong>. No idioma do leitor vão os <strong>valores</strong> que uma pessoa escreve: o motivo de um desligamento, por exemplo. Escreveu-se medido em 2026-10-29: até esse dia o exemplo levava as chaves traduzidas —quatro vocabulários distintos nos oito idiomas e oitenta e sete nomes para vinte e quatro casas— e um desligamento escrito como o exemplo ensinava passava pela própria comporta do método <strong>em verde</strong>, com a regra desligada e o registro de quatro campos de D-046 sem ser olhado, porque a comporta lê <code>switched_off</code> e o exemplo dizia <code>exceptions</code>. <code>build/claves_configuracion.mjs</code> agora o exige.</p>
+<p>As nove chaves de dentro de <code>measured_by</code> são as únicas <strong>ilustrativas</strong>, e isso é uma decisão e não um descuido: o método <strong>não abrange com que se mede cada regra</strong>, o que fica a critério de quem mede (decisão do dono, 2026-10-29). E <code>end_users_outside_the_organisation</code> é o limiar da escalada de CQ-18 (D-048, D-076): em <code>true</code> a regra bloqueia, em <code>false</code> a escalada fica <strong>declinada e registrada</strong>, e sem declarar reporta-se como limiar não declarado —que é «escalada pendente, ninguém olhou» e não o mesmo que tê-la declinado—. Não se usa <code>real_users</code> para isso: uma ferramenta interna pode ter duzentos usuários reais e nenhum fora da organização.</p>
 <p><code>communication_depth</code> é o parâmetro de UX-28 e toma um de três valores -- <code>beginner</code>, <code>decision_maker</code>, <code>technical</code>. Se o projeto não o declara, o agente usa <code>decision_maker</code> e diz isso: o default declara-se, não se adivinha.</p>
 <p>Os dois zeros são deliberados e são a parte que importa: a cobertura mínima a fixa a catraca com o medido, e o objetivo de mutação o fixa o dono quando o projeto tem usuários. Se estão em zero e ninguém os declarou, a comporta o reporta como limiar não declarado em vez de inventá-lo.</p>
 </section><section>

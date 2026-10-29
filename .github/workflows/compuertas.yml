@@ -119,6 +119,14 @@ jobs:
           grep -q '0 hallazgos' pregunta.txt || { echo "::error::hay un prompt o una traduccion sin la clausula de UX-28, o un nivel que el dato no declara (el detalle, arriba)"; exit 1; }
           rm pregunta.txt
 
+      - name: Exigir que las claves del ejemplo de configuracion sean las que el dato declara
+        run: |
+          set -o pipefail
+          node build/claves_configuracion.mjs | tee claves.txt
+          grep -q '^claves de configuracion: comprobado' claves.txt || { echo "::error::la guarda de las claves de configuracion no dijo que comprobo: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          grep -q '0 hallazgos' claves.txt || { echo "::error::el ejemplo del Anexo H usa una clave que el dato no declara, o un idioma no lleva las mismas (el detalle, arriba)"; exit 1; }
+          rm claves.txt
+
       - name: Dejar el arbol limpio (ningun generado sin commitear)
         run: |
           git diff --stat -- docs/html/api/ gates/ labels/ docs/COMPUERTAS.md

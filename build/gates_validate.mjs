@@ -516,6 +516,12 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
   // Las reglas del anexo tambien: una regla agregada despues del congelado sin procedencia
   // dejaria el diferencial de un upgrade sin contarla (D-070).
   heuristics.rules.forEach((r) => revisarProcedencia(r, 'gates/heuristics.json.rules[' + r.id + ']'));
+  // Y los umbrales: el primero que entro despues del congelado fue
+  // end_users_outside_the_organisation (D-076), y un umbral es una entrada que lleva requisito
+  // --declararlo o no cambia la severidad de su regla--, asi que el diferencial de un upgrade
+  // tiene que poder contarlo. Los cinco que ya estaban no declaran since_schema y por eso no
+  // declaran procedencia: estan en todas las versiones publicadas.
+  adapters.thresholds.forEach((u) => revisarProcedencia(u, 'gates/adapters.json.thresholds[' + u.id + ']'));
 
   const fijacion = schema.pinning;
   if (!esObjeto(fijacion)) {

@@ -130,36 +130,48 @@ pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8p
 <h2 id="7-configurazione">7. Configurazione</h2>
 <p>Un solo file per progetto dichiara strato 2 e strato 3. Esempio con la forma proposta, non con valori definitivi:</p>
 <pre class="code"><code>{
-  "version": 1,
   "frontend": "react-vite",
-  "misurato_da": {
-    "formato": "prettier",
-    "lint": "eslint",
-    "tipi": "tsc",
-    "complessita": "eslint-complexity",
-    "duplicazione": "jscpd",
-    "morti": "knip",
-    "copertura": "vitest-coverage",
-    "mutazione": "stryker",
-    "accessibilita": "axe-core"
-  },
+  "real_users": true,
   "communication_depth": "decision_maker",
-  "soglie": {
-    "righe_per_file": 300,
-    "righe_per_funzione": 40,
-    "percorsi_per_funzione": 10,
-    "copertura_minima": 0,
-    "obiettivo_mutazione": 0
+  "measured_by": {
+    "format": "prettier",
+    "lint": "eslint",
+    "types": "tsc",
+    "complexity": "eslint-complexity",
+    "duplication": "jscpd",
+    "dead": "knip",
+    "coverage": "vitest-coverage",
+    "mutation": "stryker",
+    "accessibility": "axe-core"
   },
-  "eccezioni": [
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
+  "thresholds": {
+    "lines_per_file": 300,
+    "lines_per_function": 40,
+    "paths_per_function": 10,
+    "minimum_coverage": 0,
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
+  },
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
-      "regola": "CQ-17",
-      "motivo": "report stampabile ereditato, senza token",
-      "autorizza": "proprietario",
-      "rivedere": "2027-01-31"
+      "rule": "CQ-17",
+      "reason": "report stampabile ereditato, senza token",
+      "authorized_by": "proprietario",
+      "review_date": "2027-01-31"
     }
   ]
 }</code></pre>
+<p><strong>Le chiavi di quel file sono livello di dati e non si traducono</strong> (D-051, D-075): in inglese, in ASCII puro, con il nome esatto che il dato dichiara —le otto di primo livello, le quattro del registro di spegnimento (<code>gates/schema.json#project_config</code>) e gli identificatori di soglia (<code>gates/adapters.json</code>)— e <strong>identiche negli otto idiomi</strong>. Nella lingua del lettore vanno i <strong>valori</strong> che scrive una persona: il motivo di uno spegnimento, per esempio. Scritto misurato il 2026-10-29: fino a quel giorno l'esempio portava le chiavi tradotte —quattro vocabolari distinti negli otto idiomi e ottantasette nomi per ventiquattro caselle— e uno spegnimento scritto come l'esempio lo insegnava passava il cancello del metodo stesso <strong>in verde</strong>, con la regola spenta e il registro di quattro campi di D-046 mai guardato, perché il cancello legge <code>switched_off</code> e l'esempio diceva <code>exceptions</code>. <code>build/claves_configuracion.mjs</code> ora lo esige.</p>
+<p>Le nove chiavi dentro <code>measured_by</code> sono le uniche <strong>illustrative</strong>, e questa è una decisione e non una distrazione: il metodo <strong>non copre con che cosa si misura ogni regola</strong>, che resta a giudizio di chi misura (decisione del proprietario, 2026-10-29). E <code>end_users_outside_the_organisation</code> è la soglia dell'escalation di CQ-18 (D-048, D-076): a <code>true</code> la regola blocca, a <code>false</code> l'escalation resta <strong>declinata e registrata</strong>, e non dichiarata viene riportata come soglia non dichiarata —cioè «escalation in attesa, nessuno l'ha guardata» e non la stessa cosa di averla declinata—. Non si usa <code>real_users</code> per questo: uno strumento interno può avere duecento utenti reali e nessuno fuori dall'organizzazione.</p>
 <p><code>communication_depth</code> è il parametro di UX-28 e prende uno di tre valori -- <code>beginner</code>, <code>decision_maker</code>, <code>technical</code>. Se il progetto non lo dichiara, l'agente usa <code>decision_maker</code> e lo dice: il default si dichiara, non si indovina.</p>
 <p>Gli due zeri sono deliberati e sono la parte che conta: la copertura minima la fissa il cricchetto con il misurato, e l'obiettivo di mutazione lo fissa il proprietario quando il progetto ha utenti. Se stanno a zero e nessuno li ha dichiarati, il cancello lo riporta come soglia non dichiarata invece di inventarla.</p>
 </section><section>

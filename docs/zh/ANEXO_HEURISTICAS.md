@@ -199,37 +199,51 @@ CQ-12 到 CQ-18 这些规则，正是让“代码质量”在前端有意义的�
 
 ```json
 {
-  "version": 1,
   "frontend": "react-vite",
-  "medido_por": {
-    "formato": "prettier",
-    "lint": "eslint",
-    "tipos": "tsc",
-    "complejidad": "eslint-complexity",
-    "duplicacion": "jscpd",
-    "muertos": "knip",
-    "cobertura": "vitest-coverage",
-    "mutacion": "stryker",
-    "accesibilidad": "axe-core"
-  },
+  "real_users": true,
   "communication_depth": "decision_maker",
-  "umbrales": {
-    "lineas_por_archivo": 300,
-    "lineas_por_funcion": 40,
-    "caminos_por_funcion": 10,
-    "cobertura_minima": 0,
-    "mutacion_objetivo": 0
+  "measured_by": {
+    "format": "prettier",
+    "lint": "eslint",
+    "types": "tsc",
+    "complexity": "eslint-complexity",
+    "duplication": "jscpd",
+    "dead": "knip",
+    "coverage": "vitest-coverage",
+    "mutation": "stryker",
+    "accessibility": "axe-core"
   },
-  "excepciones": [
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
+  "thresholds": {
+    "lines_per_file": 300,
+    "lines_per_function": 40,
+    "paths_per_function": 10,
+    "minimum_coverage": 0,
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
+  },
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
-      "regla": "CQ-17",
-      "motivo": "遗留的可打印报表，未使用设计令牌",
-      "autoriza": "所有者",
-      "revisar": "2027-01-31"
+      "rule": "CQ-17",
+      "reason": "遗留的可打印报表，未使用设计令牌",
+      "authorized_by": "所有者",
+      "review_date": "2027-01-31"
     }
   ]
 }
 ```
+
+**那个文件的键属于数据层，不翻译**（D-051、D-075）：用英文、纯 ASCII，并且与数据声明的名字完全一致——第一层的八个、关闭记录的四个（`gates/schema.json#project_config`）和阈值标识（`gates/adapters.json`）——在八种语言里**完全相同**。用读者语言写的是人写的**取值**，比如关掉一条规则的理由。这段话是 2026-10-29 实测之后写的：在那天之前，例子里的键是翻译过的——八种语言里有四套不同的词汇，二十四个位置上有八十七个名字——而按照例子教的写法关掉一条规则，竟然**绿着**通过了方法自己的闸门：规则已经关掉，而 D-046 要求的四个字段的记录从来没有被看过，因为闸门读的是 `switched_off`，例子写的却是 `exceptions`。现在由 `build/claves_configuracion.mjs` 来要求它。
+
+`measured_by` 里面的九个键是唯一**示例性**的，而这是一个决定，不是疏漏：方法**不规定每条规则用什么来测**，这交给测的人自己判断（所有者的决定，2026-10-29）。而 `end_users_outside_the_organisation` 是 CQ-18 升级的阈值（D-048、D-076）：写 `true` 规则就阻断，写 `false` 就表示升级**被谢绍并留下记录**，不声明则报告为未声明的阈值——那是「升级待定，没有人看过」，和谢绍过不是一回事。这件事不用 `real_users`：一个内部工具可以有两百个真实用户，而组织之外一个也没有。
 
 `communication_depth` 是 UX-28 的参数，取三个值之一——`beginner`、`decision_maker`、`technical`。项目没有声明时，代理就用 `decision_maker`，并且说出来。默认值是声明出来的，不是猜出来的。
 

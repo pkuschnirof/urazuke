@@ -199,37 +199,51 @@ CQ-12 から CQ-18 の規則こそが、「コード品質」をフロントエ�
 
 ```json
 {
-  "version": 1,
   "frontend": "react-vite",
-  "medido_por": {
-    "formato": "prettier",
-    "lint": "eslint",
-    "tipos": "tsc",
-    "complejidad": "eslint-complexity",
-    "duplicacion": "jscpd",
-    "muertos": "knip",
-    "cobertura": "vitest-coverage",
-    "mutacion": "stryker",
-    "accesibilidad": "axe-core"
-  },
+  "real_users": true,
   "communication_depth": "decision_maker",
-  "umbrales": {
-    "lineas_por_archivo": 300,
-    "lineas_por_funcion": 40,
-    "caminos_por_funcion": 10,
-    "cobertura_minima": 0,
-    "mutacion_objetivo": 0
+  "measured_by": {
+    "format": "prettier",
+    "lint": "eslint",
+    "types": "tsc",
+    "complexity": "eslint-complexity",
+    "duplication": "jscpd",
+    "dead": "knip",
+    "coverage": "vitest-coverage",
+    "mutation": "stryker",
+    "accessibility": "axe-core"
   },
-  "excepciones": [
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
+  "thresholds": {
+    "lines_per_file": 300,
+    "lines_per_function": 40,
+    "paths_per_function": 10,
+    "minimum_coverage": 0,
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
+  },
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
-      "regla": "CQ-17",
-      "motivo": "トークンを持たない継承された印刷用レポート",
-      "autoriza": "所有者",
-      "revisar": "2027-01-31"
+      "rule": "CQ-17",
+      "reason": "トークンを持たない継承された印刷用レポート",
+      "authorized_by": "所有者",
+      "review_date": "2027-01-31"
     }
   ]
 }
 ```
+
+**そのファイルのキーはデータ層であり、翻訳しない**（D-051、D-075）。英語で、純粋な ASCII で、データが宣言するとおりの名前で——第一階層の八つ、消灯の記録の四つ（`gates/schema.json#project_config`）、しきい値の識別子（`gates/adapters.json`）——八つの言語で**同一**である。読者の言語で書くのは、人が書く**値**のほうだ。たとえば規則を消した理由。2026-10-29 に実測して書いた。その日まで例はキーを翻訳して載せていた——八つの言語に四つの異なる語彙、二十四の枠に八十七の名前——そして例が教えるとおりに書いた消灯は、本方法自身のゲートを**緑で**通った。規則は消えていて、D-046 の四項目の記録は一度も見られない。ゲートが読むのは `switched_off` で、例が言っていたのは `exceptions` だからだ。いまは `build/claves_configuracion.mjs` がそれを要求する。
+
+`measured_by` の中の九つのキーだけが**例示**であり、それは手落ちではなく決定である。本方法は**各規則を何で測るかを扱わない**。それは測る者の判断に委ねられる（所有者の決定、2026-10-29）。そして `end_users_outside_the_organisation` は CQ-18 のエスカレーションのしきい値である（D-048、D-076）。`true` なら規則は阮止し、`false` ならエスカレーションは**辞退として記録され**、宣言がなければ未宣言のしきい値として報告される——つまり「エスカレーションは未決、誰も見ていない」であり、辞退したこととは別物だ。これに `real_users` は使わない。社内向けの道具は、実ユーザーが二百人いて組織の外には一人もいない、ということがありうる。
 
 `communication_depth` は UX-28 のパラメータで、三つの値のどれかを取る——`beginner`、`decision_maker`、`technical`。プロジェクトが宣言しなければ、エージェントは `decision_maker` を使い、そう言う。既定値は宣言するものであって、推測するものではない。
 

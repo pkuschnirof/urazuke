@@ -199,8 +199,9 @@ Um único arquivo por projeto declara a capa 2 e a capa 3. Exemplo com a forma p
 
 ```json
 {
-  "version": 1,
   "frontend": "react-vite",
+  "real_users": true,
+  "communication_depth": "decision_maker",
   "measured_by": {
     "format": "prettier",
     "lint": "eslint",
@@ -212,24 +213,37 @@ Um único arquivo por projeto declara a capa 2 e a capa 3. Exemplo com a forma p
     "mutation": "stryker",
     "accessibility": "axe-core"
   },
-  "communication_depth": "decision_maker",
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
   "thresholds": {
     "lines_per_file": 300,
     "lines_per_function": 40,
     "paths_per_function": 10,
     "minimum_coverage": 0,
-    "mutation_target": 0
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
   },
-  "exceptions": [
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
       "rule": "CQ-17",
       "reason": "relatório imprimível herdado, sem tokens",
-      "authorised_by": "dono",
-      "review": "2027-01-31"
+      "authorized_by": "dono",
+      "review_date": "2027-01-31"
     }
   ]
 }
 ```
+
+**As chaves desse arquivo são nível de dados e não se traduzem** (D-051, D-075): vão em inglês, em ASCII puro, com o nome exato que o dado declara —as oito de primeiro nível, as quatro do registro de desligamento (`gates/schema.json#project_config`) e os identificadores de limiar (`gates/adapters.json`)— e **idênticas nos oito idiomas**. No idioma do leitor vão os **valores** que uma pessoa escreve: o motivo de um desligamento, por exemplo. Escreveu-se medido em 2026-10-29: até esse dia o exemplo levava as chaves traduzidas —quatro vocabulários distintos nos oito idiomas e oitenta e sete nomes para vinte e quatro casas— e um desligamento escrito como o exemplo ensinava passava pela própria comporta do método **em verde**, com a regra desligada e o registro de quatro campos de D-046 sem ser olhado, porque a comporta lê `switched_off` e o exemplo dizia `exceptions`. `build/claves_configuracion.mjs` agora o exige.
+
+As nove chaves de dentro de `measured_by` são as únicas **ilustrativas**, e isso é uma decisão e não um descuido: o método **não abrange com que se mede cada regra**, o que fica a critério de quem mede (decisão do dono, 2026-10-29). E `end_users_outside_the_organisation` é o limiar da escalada de CQ-18 (D-048, D-076): em `true` a regra bloqueia, em `false` a escalada fica **declinada e registrada**, e sem declarar reporta-se como limiar não declarado —que é «escalada pendente, ninguém olhou» e não o mesmo que tê-la declinado—. Não se usa `real_users` para isso: uma ferramenta interna pode ter duzentos usuários reais e nenhum fora da organização.
 
 `communication_depth` é o parâmetro de UX-28 e toma um de três valores -- `beginner`, `decision_maker`, `technical`. Se o projeto não o declara, o agente usa `decision_maker` e diz isso: o default declara-se, não se adivinha.
 

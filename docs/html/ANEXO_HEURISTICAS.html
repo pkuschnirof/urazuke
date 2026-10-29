@@ -130,36 +130,48 @@ pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8p
 <h2 id="7-configuracion">7. Configuración</h2>
 <p>Un solo archivo por proyecto declara capa 2 y capa 3. Ejemplo con la forma propuesta, no con valores definitivos:</p>
 <pre class="code"><code>{
-  "version": 1,
   "frontend": "react-vite",
-  "medido_por": {
-    "formato": "prettier",
-    "lint": "eslint",
-    "tipos": "tsc",
-    "complejidad": "eslint-complexity",
-    "duplicacion": "jscpd",
-    "muertos": "knip",
-    "cobertura": "vitest-coverage",
-    "mutacion": "stryker",
-    "accesibilidad": "axe-core"
-  },
+  "real_users": true,
   "communication_depth": "decision_maker",
-  "umbrales": {
-    "lineas_por_archivo": 300,
-    "lineas_por_funcion": 40,
-    "caminos_por_funcion": 10,
-    "cobertura_minima": 0,
-    "mutacion_objetivo": 0
+  "measured_by": {
+    "format": "prettier",
+    "lint": "eslint",
+    "types": "tsc",
+    "complexity": "eslint-complexity",
+    "duplication": "jscpd",
+    "dead": "knip",
+    "coverage": "vitest-coverage",
+    "mutation": "stryker",
+    "accessibility": "axe-core"
   },
-  "excepciones": [
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
+  "thresholds": {
+    "lines_per_file": 300,
+    "lines_per_function": 40,
+    "paths_per_function": 10,
+    "minimum_coverage": 0,
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
+  },
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
-      "regla": "CQ-17",
-      "motivo": "informe imprimible heredado, sin tokens",
-      "autoriza": "dueño",
-      "revisar": "2027-01-31"
+      "rule": "CQ-17",
+      "reason": "informe imprimible heredado, sin tokens",
+      "authorized_by": "dueño",
+      "review_date": "2027-01-31"
     }
   ]
 }</code></pre>
+<p><strong>Las claves de ese archivo son nivel de datos y no se traducen</strong> (D-051, D-075): van en inglés, en ASCII puro, con el nombre exacto que el dato declara —las ocho de primer nivel, las cuatro del registro de apagado (<code>gates/schema.json#project_config</code>) y los identificadores de umbral (<code>gates/adapters.json</code>)— e <strong>idénticas en los ocho idiomas</strong>. En el idioma del lector van los <strong>valores</strong> que escribe una persona: el motivo de un apagado, por ejemplo. Se escribió medido el 2026-10-29: hasta ese día el ejemplo llevaba las claves traducidas —cuatro vocabularios distintos en los ocho idiomas y ochenta y siete nombres para veinticuatro casilleros— y un apagado escrito como el ejemplo lo enseñaba pasaba por la propia compuerta del método <strong>en verde</strong>, con la regla apagada y el registro de cuatro campos de D-046 sin mirar, porque la compuerta lee <code>switched_off</code> y el ejemplo decía <code>exceptions</code>. <code>build/claves_configuracion.mjs</code> lo exige ahora.</p>
+<p>Las nueve claves de dentro de <code>measured_by</code> son las únicas <strong>ilustrativas</strong>, y eso es una decisión y no un descuido: el método <strong>no abarca con qué se mide cada regla</strong>, que queda a criterio de quien mide (decisión del dueño, 2026-10-29). Y <code>end_users_outside_the_organisation</code> es el umbral de la escalada de CQ-18 (D-048, D-076): en <code>true</code> la regla bloquea, en <code>false</code> la escalada queda <strong>declinada y registrada</strong>, y sin declarar se reporta como umbral no declarado —que es «escalada pendiente, nadie la miró» y no lo mismo que haberla declinado—. No se usa <code>real_users</code> para esto: una herramienta interna puede tener doscientos usuarios reales y ninguno fuera de la organización.</p>
 <p><code>communication_depth</code> es el parámetro de UX-28 y toma uno de tres valores —<code>beginner</code>, <code>decision_maker</code>, <code>technical</code>—. Si el proyecto no lo declara, el agente usa <code>decision_maker</code> y lo dice: el default se declara, no se adivina.</p>
 <p>Los dos ceros son deliberados y son la parte que importa: la cobertura mínima la fija el trinquete con lo medido, y el objetivo de mutación lo fija el dueño cuando el proyecto tiene usuarios. Si están en cero y nadie los declaró, la compuerta lo reporta como umbral no declarado en vez de inventarlo.</p>
 </section><section>

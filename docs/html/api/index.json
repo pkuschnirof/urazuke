@@ -6,7 +6,7 @@
     "why": "A directory, not a catalogue: its identity is the identity of what it points at. A hash of its own would force a third declared version line, that nobody declares, every time one of the listed resources changes.",
     "staleness_check": "Fetch a listed resource, recompute its hash over the canonical form declared here for that resource, and compare it with the hash quoted here. If the two differ, this index is stale, and you know that without having to trust it."
   },
-  "generated_at": "2026-10-28T10:50:30.508Z",
+  "generated_at": "2026-10-29T12:05:18.545Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "canonical_base": "https://yujin.app/urazuke/api/",
@@ -21,21 +21,21 @@
       "name": "gates.json",
       "url": "https://yujin.app/urazuke/api/gates.json",
       "media_type": "application/json",
-      "bytes": 113626,
+      "bytes": 115272,
       "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green. And about the content hash, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls the host that served the file. The anchors that do not live on that host are the version ledger of each resource, which lives in the method repository and records the pair (version -> hash) append-only, and the transport security of the connection. There is no cryptographic signature: that is a written decision with its cost on the table, not an oversight.",
       "version_field": "catalog_version",
-      "version": "2026.10.10",
+      "version": "2026.10.11",
       "content_hash": {
         "field": "content_hash.value",
         "algo": "sha256",
         "encoding": "hex_lower",
         "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
-        "value": "280d8745797b66f223ea29d380d0d2f0176ab505d714403aa08bbb4861b785e2"
+        "value": "c17a09557a5f216ba493a3e10f4fe8306ffa75eb344e58e4e7e0d22ca1e7f623"
       },
       "immutable": {
         "base": "https://yujin.app/urazuke/api/gates/",
         "url_pattern": "<base><version>.json",
-        "current": "https://yujin.app/urazuke/api/gates/2026.10.10.json",
+        "current": "https://yujin.app/urazuke/api/gates/2026.10.11.json",
         "versions": [
           "2026.10.1",
           "2026.10.2",
@@ -46,7 +46,8 @@
           "2026.10.7",
           "2026.10.8",
           "2026.10.9",
-          "2026.10.10"
+          "2026.10.10",
+          "2026.10.11"
         ],
         "note": "The live url above always serves whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. Each address below returns one declared version and only that one, and versions are never removed. What the address promises is the content whose hash the version ledger records for that version, not the bytes: the keys the hash excludes are publication metadata and a regeneration can move them. Recompute and compare, which is what you were going to do anyway."
       },

@@ -130,36 +130,48 @@ pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8p
 <h2 id="7-設定">7. 設定</h2>
 <p>プロジェクトごとに一つのファイルが第 2 層と第 3 層を宣言する。提案された形態での例であり、最終的な値ではない。</p>
 <pre class="code"><code>{
-  "version": 1,
   "frontend": "react-vite",
-  "medido_por": {
-    "formato": "prettier",
-    "lint": "eslint",
-    "tipos": "tsc",
-    "complejidad": "eslint-complexity",
-    "duplicacion": "jscpd",
-    "muertos": "knip",
-    "cobertura": "vitest-coverage",
-    "mutacion": "stryker",
-    "accesibilidad": "axe-core"
-  },
+  "real_users": true,
   "communication_depth": "decision_maker",
-  "umbrales": {
-    "lineas_por_archivo": 300,
-    "lineas_por_funcion": 40,
-    "caminos_por_funcion": 10,
-    "cobertura_minima": 0,
-    "mutacion_objetivo": 0
+  "measured_by": {
+    "format": "prettier",
+    "lint": "eslint",
+    "types": "tsc",
+    "complexity": "eslint-complexity",
+    "duplication": "jscpd",
+    "dead": "knip",
+    "coverage": "vitest-coverage",
+    "mutation": "stryker",
+    "accessibility": "axe-core"
   },
-  "excepciones": [
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
+  "thresholds": {
+    "lines_per_file": 300,
+    "lines_per_function": 40,
+    "paths_per_function": 10,
+    "minimum_coverage": 0,
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
+  },
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
-      "regla": "CQ-17",
-      "motivo": "トークンを持たない継承された印刷用レポート",
-      "autoriza": "所有者",
-      "revisar": "2027-01-31"
+      "rule": "CQ-17",
+      "reason": "トークンを持たない継承された印刷用レポート",
+      "authorized_by": "所有者",
+      "review_date": "2027-01-31"
     }
   ]
 }</code></pre>
+<p><strong>そのファイルのキーはデータ層であり、翻訳しない</strong>（D-051、D-075）。英語で、純粋な ASCII で、データが宣言するとおりの名前で——第一階層の八つ、消灯の記録の四つ（<code>gates/schema.json#project_config</code>）、しきい値の識別子（<code>gates/adapters.json</code>）——八つの言語で<strong>同一</strong>である。読者の言語で書くのは、人が書く<strong>値</strong>のほうだ。たとえば規則を消した理由。2026-10-29 に実測して書いた。その日まで例はキーを翻訳して載せていた——八つの言語に四つの異なる語彙、二十四の枠に八十七の名前——そして例が教えるとおりに書いた消灯は、本方法自身のゲートを<strong>緑で</strong>通った。規則は消えていて、D-046 の四項目の記録は一度も見られない。ゲートが読むのは <code>switched_off</code> で、例が言っていたのは <code>exceptions</code> だからだ。いまは <code>build/claves_configuracion.mjs</code> がそれを要求する。</p>
+<p><code>measured_by</code> の中の九つのキーだけが<strong>例示</strong>であり、それは手落ちではなく決定である。本方法は<strong>各規則を何で測るかを扱わない</strong>。それは測る者の判断に委ねられる（所有者の決定、2026-10-29）。そして <code>end_users_outside_the_organisation</code> は CQ-18 のエスカレーションのしきい値である（D-048、D-076）。<code>true</code> なら規則は阮止し、<code>false</code> ならエスカレーションは<strong>辞退として記録され</strong>、宣言がなければ未宣言のしきい値として報告される——つまり「エスカレーションは未決、誰も見ていない」であり、辞退したこととは別物だ。これに <code>real_users</code> は使わない。社内向けの道具は、実ユーザーが二百人いて組織の外には一人もいない、ということがありうる。</p>
 <p><code>communication_depth</code> は UX-28 のパラメータで、三つの値のどれかを取る——<code>beginner</code>、<code>decision_maker</code>、<code>technical</code>。プロジェクトが宣言しなければ、エージェントは <code>decision_maker</code> を使い、そう言う。既定値は宣言するものであって、推測するものではない。</p>
 <p>二つのゼロは意図的であり、それこそが重要な部分である。最低カバレッジはラチェットが実測値で決め、ミューテーションの目標はプロジェクトにユーザーがいるときに所有者が決める。それらがゼロで誰も宣言していないなら、ゲートはそれを発明する代わりに未宣言のしきい値として報告する。</p>
 </section><section>

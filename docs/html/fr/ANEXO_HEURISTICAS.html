@@ -130,8 +130,9 @@ pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8p
 <h2 id="7-configuration">7. Configuration</h2>
 <p>Un seul fichier par projet déclare la couche 2 et la couche 3. Exemple avec la forme proposée, pas avec des valeurs definitives :</p>
 <pre class="code"><code>{
-  "version": 1,
   "frontend": "react-vite",
+  "real_users": true,
+  "communication_depth": "decision_maker",
   "measured_by": {
     "format": "prettier",
     "lint": "eslint",
@@ -143,23 +144,34 @@ pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8p
     "mutation": "stryker",
     "accessibility": "axe-core"
   },
-  "communication_depth": "decision_maker",
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
   "thresholds": {
     "lines_per_file": 300,
     "lines_per_function": 40,
     "paths_per_function": 10,
     "minimum_coverage": 0,
-    "mutation_target": 0
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
   },
-  "exceptions": [
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
       "rule": "CQ-17",
       "reason": "rapport imprimable herite, sans tokens",
-      "authorised_by": "proprietaire",
-      "review": "2027-01-31"
+      "authorized_by": "proprietaire",
+      "review_date": "2027-01-31"
     }
   ]
 }</code></pre>
+<p><strong>Les clés de ce fichier sont du niveau de données et ne se traduisent pas</strong> (D-051, D-075) : en anglais, en ASCII pur, avec le nom exact que la donnée déclare —les huit de premier niveau, les quatre du registre d'extinction (<code>gates/schema.json#project_config</code>) et les identifiants de seuil (<code>gates/adapters.json</code>)— et <strong>identiques dans les huit langues</strong>. Ce qui va dans la langue du lecteur, ce sont les <strong>valeurs</strong> qu'une personne écrit : le motif d'une extinction, par exemple. Écrit après mesure le 2026-10-29 : jusqu'à ce jour l'exemple portait les clés traduites —quatre vocabulaires différents dans les huit langues et quatre-vingt-sept noms pour vingt-quatre cases— et une extinction écrite comme l'exemple l'enseignait passait la barrière de la méthode elle-même <strong>en vert</strong>, avec la règle éteinte et le registre de quatre champs de D-046 jamais regardé, parce que la barrière lit <code>switched_off</code> et que l'exemple disait <code>exceptions</code>. <code>build/claves_configuracion.mjs</code> l'exige maintenant.</p>
+<p>Les neuf clés à l'intérieur de <code>measured_by</code> sont les seules <strong>illustratives</strong>, et c'est une décision et non un oubli : la méthode <strong>ne couvre pas avec quoi chaque règle est mesurée</strong>, ce qui est laissé au jugement de celui qui mesure (décision du propriétaire, 2026-10-29). Et <code>end_users_outside_the_organisation</code> est le seuil de l'escalade de CQ-18 (D-048, D-076) : à <code>true</code> la règle bloque, à <code>false</code> l'escalade est <strong>déclinée et enregistrée</strong>, et non déclarée elle est signalée comme seuil non déclaré —c'est-à-dire « escalade en attente, personne ne l'a regardée » et pas la même chose que de l'avoir déclinée—. On n'utilise pas <code>real_users</code> pour cela : un outil interne peut avoir deux cents utilisateurs réels et aucun en dehors de l'organisation.</p>
 <p><code>communication_depth</code> est le paramètre d'UX-28 et prend une de trois valeurs -- <code>beginner</code>, <code>decision_maker</code>, <code>technical</code>. Si le projet ne le déclare pas, l'agent utilise <code>decision_maker</code> et le dit : le défaut se déclare, il ne se devine pas.</p>
 <p>Les deux zéros sont délibérés et c'est la partie qui compte : la couverture minimale est fixée par le cliquet avec ce qui a été mesuré, et l'objectif de mutation est fixé par le propriétaire quand le projet a des utilisateurs. S'ils sont à zéro et que personne ne les a déclarés, la barrière le signale comme seuil non déclaré au lieu de l'inventer.</p>
 </section><section>

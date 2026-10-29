@@ -1460,6 +1460,258 @@ leyendo el flujo del portal.
 
 ---
 
+## PND-061 — La cifra de cumplimiento y la exclusión de lo humano no pueden ser las dos literales *(lo trajo una verificación del consumidor; el dueño la decide)*
+
+- **Nodo:** `datos/compuertas` [nodo propuesto]
+- **Grupo:** G-API · **Severidad:** avisa · **Quién decide:** el dueño, porque cualquiera de las tres lecturas cambia un número que el método publica
+- **Repositorio:** método · **Estado: abierto** desde el 2026-10-29.
+
+**Qué está mal.** El tablero del Anexo H publica dos cifras, y la primera es
+`compliance = rules_passing / rules_active`. Al lado, la lista de lo que queda **fuera** del
+porcentaje: `["UX-06", "UX-07", "UX-27", "every manual case"]`. Tres identificadores y **una
+frase** — y la frase es la que decide el número. Una herramienta que lee el dato tiene que elegir
+qué significa «every manual case», y las tres lecturas razonables dan tres cifras distintas para el
+mismo proyecto, todas defendibles contra el mismo archivo publicado.
+
+**Mi reproducción (2026-10-29), sobre un proyecto `react-vite` sin usuarios reales — 45 reglas
+activas de las 46, porque CQ-09 sólo corre donde hay usuarios.**
+
+```
+$ node -e "contar las tres lecturas de 'every manual case' sobre gates/heuristics.json"
+instrumento manual_case, solo              17 reglas   CQ-12 CQ-14 UX-05 UX-06 UX-07 UX-13 UX-14
+                                                       UX-17 UX-18 UX-19 UX-20 UX-21 UX-22 UX-23
+                                                       UX-24 UX-27 UX-28
+instrumento manual_case, entre otros       20 reglas   (las 17 + UX-01, UX-15, UX-25)
+las tres nombradas por su id                3 reglas   UX-06 UX-07 UX-27  <- las tres son
+                                                       exclusivamente manual_case
+
+lectura                                   fuera   maximo alcanzable
+solo las tres nombradas                       3        42/45 = 93.3 %
+las exclusivamente manuales                  17        28/45 = 62.2 %
+toda regla que toque un caso manual          20        25/45 = 55.6 %
+```
+
+Y tres reglas quedan indecidibles en cualquier lectura intermedia, porque su instrumento es
+**mixto**: UX-01 (`manual_case` + `matrix_query`), UX-15 (`e2e_per_profile` + `manual_case`) y
+UX-25 (`auto_gate` + `manual_case`). Mitad adentro, mitad afuera, y el dato no dice de qué lado
+caen.
+
+**La segunda mitad, que es la que obliga a decidir y no sólo a aclarar.** El dato tampoco dice si
+una regla que **juzga una persona** puede entrar en `rules_passing`. De eso dependen dos mundos
+distintos:
+
+- Si **puede** —un dueño mira el caso manual y la da por buena—, entonces excluir del divisor a
+  UX-06, UX-07 y UX-27 necesita una razón escrita, porque las otras catorce exclusivamente
+  manuales no se excluyen y se juzgan igual.
+- Si **no puede**, entonces las diecisiete están en el divisor y no pueden estar nunca en el
+  dividendo, así que la cifra queda clavada abajo del 100 % para siempre **y agregar un caso manual
+  la baja** — con lo cual el trinquete, que el mismo bloque le pone encima, le pide al dueño una
+  decisión registrada por una caída que causó haciendo exactamente lo que el método le pide. Un
+  trinquete que castiga cumplir es un trinquete que se apaga.
+
+Esto último se dice como lo que es: el 2026-10-28, al reportarlo por primera vez, se afirmó
+directamente que la cifra queda clavada. **Era la segunda rama y se contó como la única**, sin
+haber verificado que el dato prohíba lo primero. No lo prohíbe: no dice nada. Es la forma chica de
+D-064 y queda escrita acá en vez de corregida en silencio.
+
+**Lo que mide el consumidor hoy, y lo dice.** La herramienta que implementa el anexo divide por las
+reglas que están **dentro** del porcentaje y declara la divergencia con el dato. Es la única de las
+tres lecturas que no hace absurdo al trinquete, y está bien elegida; lo que no puede hacer una
+herramienta es decidir por el método.
+
+**Criterio de aceptación por perfil.**
+
+- *P1, P2 (herramientas consumidoras):* dada una herramienta que sólo tiene la interfaz publicada,
+  esa herramienta calcula la cifra de cumplimiento **sin elegir entre tres lecturas**: la exclusión
+  se resuelve desde el dato, por lista de identificadores o por un predicado sobre un campo
+  publicado, y las tres reglas de instrumento mixto tienen su lado dicho.
+- *P5 (auditor):* dado el perfil auditor, esta persona recalcula la cifra de un proyecto y le da
+  **el mismo número** que la herramienta, sin preguntarle a nadie qué quiso decir la frase.
+- *P8 (dueño de proyecto):* dada esa persona, agregar un caso manual nunca le baja la cifra ni le
+  pide una decisión registrada por haber hecho lo que el método pide.
+
+**Lo que hay que decidir, y por eso el pendiente vuelve al dueño.** Cuál de las tres lecturas es la
+del método —y, con ella, si una regla juzgada por una persona cuenta como aprobada—. Las tres son
+aditivas: por D-068 ningún proyecto que ya fijó una versión se mueve hasta que su dueño lo decida,
+así que escribirla no reabre ningún peldaño cerrado.
+
+---
+
+## PND-062 — La escalada de CQ-18 no tenía identificador de umbral, así que su ausencia significaba dos cosas *(lo trajo una verificación del consumidor)*
+
+- **Nodo:** `datos/compuertas` [nodo propuesto]
+- **Grupo:** G-API · **Severidad:** avisa · **Quién decide:** nadie: es un defecto medido y su arreglo es mecánico
+- **Repositorio:** método · **Estado: en curso** desde el 2026-10-29: el identificador está escrito, validado y en el diferencial; cierra cuando producción sirva `2026.10.11` (D-057: se cierra por el efecto, no por el commit).
+
+**Qué estaba mal.** CQ-18 (la accesibilidad básica) **avisa** desde el día uno y **escala a
+bloquea** cuando el producto tiene usuarios finales fuera de la organización (D-048). La cláusula
+decía que la escalada *«requiere una declaración del dueño, por el mismo mecanismo que cualquier
+umbral»* — y ese mecanismo es **por identificador de umbral**: un proyecto declara
+`thresholds.<id>` y lo que no está declarado se reporta como no declarado, nunca se inventa. **No
+existía el identificador.**
+
+**Mi reproducción (2026-10-29).**
+
+```
+$ node -e "los ids de umbral que el dato publica"
+lines_per_file  lines_per_function  paths_per_function  minimum_coverage  mutation_target
+                                                        <- ninguno es esta condicion
+```
+
+Así que un dueño que decidía bien —«esta herramienta es para gente de adentro, la escalada no
+aplica»— **no tenía dónde escribirlo**. Y lo que eso costaba no es la decisión: es la auditoría de
+seis meses después, donde la ausencia de una clave se lee **igual** para una escalada *declinada
+con fundamento* y para una escalada *que nadie miró nunca*. Es la forma de D-057 en otra escala: un
+estado que no se distingue de no haber medido.
+
+**Y la trampa de al lado, medida porque es el atajo obvio.** `project_config.real_users` significa
+otra cosa. Una herramienta interna de recursos humanos puede tener doscientos usuarios reales y
+**cero** usuarios fuera de la organización, así que reusar ese campo escalaría la regla a
+bloqueante **en silencio** justo en el proyecto donde la escalada no corresponde.
+
+**Lo que se hizo.**
+
+- **Un umbral nuevo**, `end_users_outside_the_organisation`, con `value: null` y
+  `declared: false` como cualquier umbral que el método no fija, `declared_by` el dueño, y su
+  procedencia (`since_schema: 2`, `since_version: "2026.10.11"`). Es un booleano y no un número,
+  porque lo que un umbral declara es **un valor**, y el valor acá es si la condición se cumple.
+- **La cláusula lo nombra y declara los tres estados**: `true` escala la regla a bloquea, `false`
+  registra la escalada como **declinada**, y sin declaración se reporta como umbral no declarado,
+  que es **escalada pendiente** y no escalada declinada.
+- **El contrato del anexo lo nombra en los ocho idiomas**, en la sección 7, con los tres estados y
+  con el aviso de que `real_users` no sirve para esto.
+- **El validador recorre los umbrales buscando procedencia**, así que el próximo umbral no puede
+  entrar sin decir en qué versión entró; y **el diferencial de un upgrade lo cuenta**: pasó de
+  cuatro entradas a cinco, con la nueva nombrada.
+- **La versión sube a `2026.10.11`** con su huella anotada (`c17a09557a5f`). No cambia ningún
+  requisito, ningún id se recicla y ninguna severidad se mueve: CQ-18 sigue avisando y sigue
+  escalando bajo exactamente la condición que D-048 escribió.
+
+La ortografía del identificador sigue las palabras que la regla ya usaba —*outside the
+organisation*— porque los identificadores son append-only y no se renombran.
+
+**Criterio de aceptación por perfil.**
+
+- *P1 (herramienta consumidora):* dada una herramienta que corre la compuerta, esa herramienta
+  distingue las tres situaciones de la escalada de CQ-18 leyendo **una** clave del proyecto, y
+  reporta «escalada pendiente» cuando nadie declaró nada, en vez de tratarla como declinada.
+- *P5 (auditor):* dado el perfil auditor, esta persona puede ver en la configuración de un proyecto
+  si la escalada se declinó y quién lo decidió, en vez de deducirlo de una ausencia.
+- *P8 (dueño de proyecto):* dada esa persona, su decisión sobre la escalada **tiene dónde
+  escribirse**, y declararla no la obliga a tocar `real_users`, que significa otra cosa.
+
+**Cómo se verifica.** `node build/gates_validate.mjs` (24 peldaños, 8 estaciones, 46 reglas, en
+verde); `node build/version_fijada.mjs`, que imprime el diferencial `2026.10.1 -> 2026.10.11` con
+cinco entradas; `node build/claves_configuracion.mjs`, que exige que el identificador esté nombrado
+en los ocho idiomas; `node --test`, con el rojo deliberado que cae si el ejemplo deja de nombrarlo.
+
+**Lo que queda afuera, nombrado.** Que una herramienta **implemente** los tres estados se mide en
+su repositorio. Y el método no declara ningún valor por omisión: un proyecto que no declara nada
+sigue con la escalada pendiente, que es el estado que faltaba poder decir.
+
+---
+
+## PND-063 — Las claves del archivo de configuración estaban traducidas, y el apagado escrito como el anexo lo enseñaba pasaba la compuerta en verde *(desvío propio, el quinto; lo encontró el dueño al pedir un ejemplo)*
+
+- **Nodo:** `corpus/anexo-h` [nodo propuesto]
+- **Grupo:** G-API · **Severidad:** bloquea · **Quién decide:** nadie: es un defecto medido y su arreglo es mecánico
+- **Repositorio:** método · **Estado: en curso** desde el 2026-10-29: las ocho versiones están corregidas y la guarda corre en la cadena; cierra cuando producción sirva el anexo corregido (D-057).
+
+**Qué estaba mal.** El Anexo H, sección 7, muestra el único archivo que un proyecto escribe para la
+compuerta: la capa 2 y la capa 3. Esas claves **no son prosa**: son el contrato que una herramienta
+escribe y lee, y el propio dato lo dice en `project_config.what` —*«these are the field names a
+consumer tool has to write and read. Declared here so no tool has to guess them»*—. El ejemplo las
+llevaba **traducidas**, y encima no eran las que el contrato declara.
+
+**Mi reproducción (2026-10-29). Primero el tamaño del desvío:**
+
+```
+$ node -e "los caminos de clave del ejemplo de la seccion 7, por idioma"
+es en pt fr de it ja zh      24 caminos de clave cada uno
+vocabularios distintos        4   es/ja/zh castellano | en/pt/fr ingles | de aleman | it italiano
+nombres distintos en total   87   para 24 casilleros
+```
+
+Las ocho versiones se mueven siempre juntas (D-013) y aun así el ejemplo había quedado con cuatro
+vocabularios: el japonés y el chino no tradujeron las claves y se quedaron con el castellano; el
+portugués y el francés tomaron las inglesas; el alemán y el italiano tradujeron a las suyas.
+
+**Y después el daño, que es lo que convierte esto en bloqueante.** El apagado escrito **exactamente
+como el ejemplo inglés lo enseñaba** —`exceptions` / `authorised_by` / `review`— dado a la propia
+compuerta del método:
+
+```
+$ node build/gates_validate.mjs --config <el apagado como lo ensena el ejemplo>
+compuertas: validado (24 peldanos, 8 estaciones, 46 reglas) + la configuracion del proyecto
+exit=0
+
+$ node build/gates_validate.mjs --config <el mismo apagado, con el nombre del contrato>
+[E_APAGADO_SIN_REGISTRO] la regla CQ-17 esta apagada sin authorized_by
+[E_APAGADO_SIN_REGISTRO] la regla CQ-17 esta apagada sin review_date
+exit=1
+```
+
+**Sale en verde con la regla apagada.** La compuerta lee `switched_off` y el ejemplo decía
+`exceptions`, así que el registro de cuatro campos que D-046 llama no negociable **no se mira
+nunca**. Es daño silencioso —lo que SQ 0.3 prohíbe— causado por la documentación del propio método,
+no por un adversario ni por un atajo de nadie: le pasa al lector que **obedece**.
+
+**Lo que se hizo.**
+
+- **Las ocho versiones llevan las mismas claves**, en inglés, en ASCII puro y con el nombre exacto
+  que el dato declara. Los **valores** siguen en el idioma del lector, porque los escribe una
+  persona: el motivo de un apagado, el nombre de quien lo autoriza.
+- **El ejemplo pasó a mostrar las ocho de primer nivel** —las siete que declara
+  `project_config.fields` más `measured_by`, que es la capa 2— y no cinco. Faltaban `real_users`,
+  `switches` y `tools`: campos que la compuerta lee y que el lector no escribía porque nunca supo
+  que existían. Y salió `version`, que no es un nombre que el contrato declare.
+- **Una guarda nueva**, `build/claves_configuracion.mjs`, con su paso en el flujo que exige la
+  línea medida. Exige las dos direcciones: toda clave del ejemplo es un nombre que el dato declara,
+  y todo nombre que el dato declara aparece en el ejemplo. Más los ocho idiomas idénticos y el
+  ASCII.
+- **Catorce rojos deliberados**, entre ellos los dos defectos originales —la clave traducida y el
+  nombre viejo del apagado—, que tienen que volver a caer si alguien los reintroduce. El
+  decimocuarto reproduce el daño: exige que con el nombre viejo la compuerta salga **limpia**, que
+  es el defecto, y que con el del contrato caigan los dos campos del registro.
+- **Y una prueba que ata el documento al programa**: se le da el ejemplo de cada idioma a la
+  compuerta y se exige que lo único que salga sean los **dos** umbrales que el anexo declara
+  deliberados en cero. Sin ella, los ocho ejemplos podrían quedar idénticos y los ocho equivocados.
+- **Las exenciones son un registro con su razón**, no una condición escondida: las nueve claves de
+  dentro de `measured_by` (el método no abarca con qué se mide cada regla, y eso lo decidió el
+  dueño el 2026-10-29) y el contenido de `tools` (nombres y versiones de herramientas, que el nivel
+  de datos no nombra, D-055). Hay un rojo deliberado que cae si alguien agrega una exención sin
+  razón.
+
+**Lo que la hace falsable, dicho con el número.** Medida contra el árbol anterior a este cambio:
+
+```
+$ node -e "la guarda nueva contra el arbol de 08afa11"
+hallazgos: 151
+  en: no lleva las mismas claves que es -- tiene thresholds... le falta umbrales...
+  es: la clave medido_por no es un nombre que el dato declare
+  ...
+$ node build/claves_configuracion.mjs          (sobre el arbol corregido)
+claves de configuracion: comprobado -- 8 idiomas, 32 claves, 2 exenciones con su razon, 0 hallazgos
+```
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dada esa persona, el archivo que escribe copiando
+  la forma del anexo **es el que la compuerta lee**, en cualquiera de los ocho idiomas: una regla
+  apagada se ve como apagada y le exige su registro de cuatro campos.
+- *P1 (herramienta consumidora):* dada una herramienta que lee el anexo de cualquier idioma, los
+  nombres de campo que encuentra son los mismos y son los que el dato declara, así que no hay dos
+  implementaciones que escriban dos archivos incompatibles.
+- *P5 (auditor):* dado el perfil auditor, esta persona corre una orden y ve la cuenta de claves
+  revisadas, los ocho idiomas y las exenciones con su razón.
+
+**Lo que queda afuera, nombrado.** Con qué se mide cada regla —las nueve claves de `measured_by`—
+sigue siendo criterio de quien mide, por decisión del dueño del 2026-10-29, así que el método no
+declara esos nombres y la guarda no los exige. Y ninguna prueba verifica que los **valores** del
+ejemplo sean los adecuados para un proyecto: son ilustrativos y el anexo lo dice.
+
+---
+
 # Abiertos — G-ALCANCE: llegar al material publicado
 
 ## PND-014 — El mapa del sitio no conoce ningún documento del método *(era U-13)*
@@ -5613,16 +5865,16 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 17 | 2 | 15 | 0 |
+| G-API | 20 | 5 | 15 | 1 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 14 | 11 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 13 | 1 | 12 | 0 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **60** | **15** | **45** | **1** |
+| **total** | **63** | **18** | **45** | **2** |
 
-Sesenta entradas, `PND-001` a `PND-060`. Veintidós vienen de la auditoría externa
+Sesenta y tres entradas, `PND-001` a `PND-063`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -5807,12 +6059,20 @@ PND-016, PND-024 y PND-046), los arreglos de las nueve revisiones semánticas �
 2026-10-27, cuarenta y seis hallazgos, y en curso porque su criterio de aceptación es sobre lo que
 el lector lee y publicar la portada es del dueño (PND-026 a PND-034, con PND-057 y PND-058, que son
 del castellano)— y la prevención de los desvíos de medición (**PND-052**, que es el segundo del
-mismo grupo en dos días). El único bloqueante abierto que queda es el de idiomas (PND-016, la
-decisión más cara del backlog): el de la API cerró el 2026-10-28 con PND-011 —el catálogo de textos
-servido y verificado, con los ocho idiomas que tienen prosa— y el del método, el del alcance, el de
+mismo grupo en dos días). Quedan **dos** bloqueantes abiertos, y conviene decir que son de distinta
+naturaleza: el de idiomas (PND-016) es la decisión más cara del backlog y está esperando al dueño,
+y el de las claves de configuración (PND-063) ya está **arreglado y medido** —las ocho versiones
+corregidas, la guarda en la cadena— y sigue abierto porque un arreglo en la máquina no es un
+efecto en producción (D-057). El de la API había cerrado el 2026-10-28 con PND-011 —el catálogo de
+textos servido y verificado, con los ocho idiomas que tienen prosa— y lo reabrió este desvío; el
+del método, el del alcance, el de
 la publicación y el del contenido se cerraron antes —`PND-054`, la
 forma de la pregunta, el 2026-10-27 con D-070—, y `PND-010` y `PND-019` cerraron juntos en un solo
 cambio de versión.
+
+**Y las tres últimas, del 2026-10-29, salieron de verificar al consumidor en vez de a la publicación.** Las dos primeras son huecos de las capas 2 y 3 del Anexo H que aparecieron al medir si la herramienta había implementado el anexo: `PND-061`, la cifra de cumplimiento, donde la lista de lo que queda fuera del porcentaje lleva tres identificadores y **una frase**, y las tres lecturas razonables de esa frase dan 93,3 %, 62,2 % y 55,6 % para el mismo proyecto; y `PND-062`, la escalada de CQ-18, que se declaraba «por el mismo mecanismo que cualquier umbral» y no tenía identificador de umbral, así que la ausencia de una clave significaba a la vez «escalada declinada» y «nadie la miró». El tercer hueco que esa verificación trajo —con qué se mide cada regla— **no es un pendiente**: el dueño decidió el mismo día que el método no lo abarca y queda a criterio de quien mide (D-075).
+
+`PND-063` es el quinto desvío propio y el peor de los cinco, porque no falló un reporte: falló una compuerta. Lo encontró el dueño pidiendo un ejemplo práctico de los otros dos. El ejemplo de configuración del anexo llevaba las claves **traducidas** —cuatro vocabularios distintos en los ocho idiomas, ochenta y siete nombres para veinticuatro casilleros— y, medido contra la propia compuerta del método, un apagado escrito **exactamente como el ejemplo lo enseñaba** salía `validado` con código 0: la regla apagada y el registro de cuatro campos que D-046 llama no negociable sin mirarse nunca, porque la compuerta lee `switched_off` y el ejemplo decía `exceptions`. Los cuatro desvíos anteriores fueron afirmaciones que la medición desmentía; este es daño silencioso —lo que SQ 0.3 prohíbe— y le pasaba al lector que **obedece**. La guarda que lo cierra exige las dos direcciones y trae catorce rojos deliberados, uno de ellos reproduciendo el verde falso.
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar

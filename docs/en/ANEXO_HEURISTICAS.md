@@ -198,8 +198,9 @@ A single file per project declares layer 2 and layer 3. Example with the propose
 
 ```json
 {
-  "version": 1,
   "frontend": "react-vite",
+  "real_users": true,
+  "communication_depth": "decision_maker",
   "measured_by": {
     "format": "prettier",
     "lint": "eslint",
@@ -211,24 +212,37 @@ A single file per project declares layer 2 and layer 3. Example with the propose
     "mutation": "stryker",
     "accessibility": "axe-core"
   },
-  "communication_depth": "decision_maker",
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
   "thresholds": {
     "lines_per_file": 300,
     "lines_per_function": 40,
     "paths_per_function": 10,
     "minimum_coverage": 0,
-    "mutation_target": 0
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
   },
-  "exceptions": [
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
       "rule": "CQ-17",
       "reason": "inherited printable report, without tokens",
-      "authorised_by": "owner",
-      "review": "2027-01-31"
+      "authorized_by": "owner",
+      "review_date": "2027-01-31"
     }
   ]
 }
 ```
+
+**The keys of that file are data layer and they are not translated** (D-051, D-075): English, pure ASCII, with the exact name the data declares -- the eight top-level ones, the four of the switch-off record (`gates/schema.json#project_config`) and the threshold ids (`gates/adapters.json`) -- and **identical in the eight languages**. What goes in the reader's language are the **values** a person writes: the reason for a switch-off, for instance. Written measured on 2026-10-29: until that day the example carried the keys translated -- four different vocabularies across the eight languages and eighty-seven names for twenty-four slots -- and a switch-off written the way the example taught it passed the method's own gate **green**, with the rule off and the four-field record of D-046 never looked at, because the gate reads `switched_off` and the example said `exceptions`. `build/claves_configuracion.mjs` enforces it now.
+
+The nine keys inside `measured_by` are the only **illustrative** ones, and that is a decision and not an oversight: the method **does not cover with what each rule is measured**, which is left to the judgement of whoever measures (owner decision, 2026-10-29). And `end_users_outside_the_organisation` is the threshold of the CQ-18 escalation (D-048, D-076): true and the rule blocks, false and the escalation is **declined and recorded**, undeclared and it is reported as an undeclared threshold -- which is "escalation pending, nobody looked at it" and not the same as having declined it. `real_users` is not used for this: an internal tool can have two hundred real users and none outside the organisation.
 
 `communication_depth` is the parameter of UX-28 and it takes one of three values -- `beginner`, `decision_maker`, `technical`. If the project does not declare it, the agent uses `decision_maker` and says so: the default is declared, not guessed.
 
