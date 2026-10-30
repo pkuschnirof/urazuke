@@ -199,8 +199,9 @@ Un seul fichier par projet déclare la couche 2 et la couche 3. Exemple avec la 
 
 ```json
 {
-  "version": 1,
   "frontend": "react-vite",
+  "real_users": true,
+  "communication_depth": "decision_maker",
   "measured_by": {
     "format": "prettier",
     "lint": "eslint",
@@ -212,24 +213,37 @@ Un seul fichier par projet déclare la couche 2 et la couche 3. Exemple avec la 
     "mutation": "stryker",
     "accessibility": "axe-core"
   },
-  "communication_depth": "decision_maker",
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
   "thresholds": {
     "lines_per_file": 300,
     "lines_per_function": 40,
     "paths_per_function": 10,
     "minimum_coverage": 0,
-    "mutation_target": 0
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
   },
-  "exceptions": [
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
       "rule": "CQ-17",
       "reason": "rapport imprimable herite, sans tokens",
-      "authorised_by": "proprietaire",
-      "review": "2027-01-31"
+      "authorized_by": "proprietaire",
+      "review_date": "2027-01-31"
     }
   ]
 }
 ```
+
+**Les clés de ce fichier sont du niveau de données et ne se traduisent pas** (D-051, D-075) : en anglais, en ASCII pur, avec le nom exact que la donnée déclare —les huit de premier niveau, les quatre du registre d'extinction (`gates/schema.json#project_config`) et les identifiants de seuil (`gates/adapters.json`)— et **identiques dans les huit langues**. Ce qui va dans la langue du lecteur, ce sont les **valeurs** qu'une personne écrit : le motif d'une extinction, par exemple. Écrit après mesure le 2026-10-29 : jusqu'à ce jour l'exemple portait les clés traduites —quatre vocabulaires différents dans les huit langues et quatre-vingt-sept noms pour vingt-quatre cases— et une extinction écrite comme l'exemple l'enseignait passait la barrière de la méthode elle-même **en vert**, avec la règle éteinte et le registre de quatre champs de D-046 jamais regardé, parce que la barrière lit `switched_off` et que l'exemple disait `exceptions`. `build/claves_configuracion.mjs` l'exige maintenant.
+
+Les neuf clés à l'intérieur de `measured_by` sont les seules **illustratives**, et c'est une décision et non un oubli : la méthode **ne couvre pas avec quoi chaque règle est mesurée**, ce qui est laissé au jugement de celui qui mesure (décision du propriétaire, 2026-10-29). Et `end_users_outside_the_organisation` est le seuil de l'escalade de CQ-18 (D-048, D-076) : à `true` la règle bloque, à `false` l'escalade est **déclinée et enregistrée**, et non déclarée elle est signalée comme seuil non déclaré —c'est-à-dire « escalade en attente, personne ne l'a regardée » et pas la même chose que de l'avoir déclinée—. On n'utilise pas `real_users` pour cela : un outil interne peut avoir deux cents utilisateurs réels et aucun en dehors de l'organisation.
 
 `communication_depth` est le paramètre d'UX-28 et prend une de trois valeurs -- `beginner`, `decision_maker`, `technical`. Si le projet ne le déclare pas, l'agent utilise `decision_maker` et le dit : le défaut se déclare, il ne se devine pas.
 

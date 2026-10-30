@@ -685,7 +685,8 @@
       "escalates_to": {
         "severity": "blocks",
         "when": "the product has end users outside the organisation",
-        "requires": "a declaration by the owner, through the same mechanism as any threshold",
+        "requires": "a declaration by the owner under the threshold id end_users_outside_the_organisation (see adapters.thresholds), like any other threshold. True escalates the rule to blocks; false records the escalation as declined; no declaration is reported as an undeclared threshold, which is an escalation PENDING and not one declined. Written this way on 2026-10-29: the clause said through the same mechanism as any threshold and that mechanism is by threshold id, and no id existed for this one, so the absence of a key meant the two states at once and no auditor could tell them apart (D-076).",
+        "declared_by_threshold": "end_users_outside_the_organisation",
         "decision": "D-048"
       }
     },

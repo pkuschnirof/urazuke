@@ -69,13 +69,31 @@ test('ningun programa de build/ vuelve a comparar a mano contra "file:///"', () 
   assert.deepEqual(culpables, [], 'usa esLineaDeComandos(import.meta.url) de gates_lib.mjs: pegar "file:///" adelante de argv[1] no acierta en POSIX');
 });
 
-test('los ocho programas con modo de linea de comandos usan el guardian compartido', () => {
-  for (const nombre of ['gates_validate.mjs', 'gates_doc.mjs', 'prompts_api.mjs', 'index_api.mjs',
-    'portal_orphans.mjs', 'version_fijada.mjs', 'punteros_publicados.mjs', 'labels_api.mjs']) {
+// El registro de los programas con modo de linea de comandos. Se mantiene a mano porque "tener
+// modo de linea de comandos" no se puede leer del disco sin mirar justo el idiom que esta prueba
+// vigila. Lo que si se puede, y se hace abajo, es exigirlo en las DOS direcciones: medido el
+// 2026-10-29, esta lista decia ocho y el disco tenia diez -- forma_de_la_pregunta.mjs y
+// version_inmutable.mjs usaban el guardian y nadie los habia agregado. Una lista a mano que nada
+// obliga a completar es la misma clase de defecto que el resumen del registro de pendientes.
+const CON_LINEA_DE_COMANDOS = [
+  'gates_validate.mjs', 'gates_doc.mjs', 'prompts_api.mjs', 'index_api.mjs',
+  'portal_orphans.mjs', 'version_fijada.mjs', 'punteros_publicados.mjs', 'labels_api.mjs',
+  'forma_de_la_pregunta.mjs', 'version_inmutable.mjs', 'claves_configuracion.mjs',
+];
+
+test('los programas con modo de linea de comandos usan el guardian compartido', () => {
+  for (const nombre of CON_LINEA_DE_COMANDOS) {
     const texto = readFileSync(join(raiz, 'build', nombre), 'utf8');
     assert.ok(texto.includes('esLineaDeComandos(import.meta.url)'),
       'build/' + nombre + ' tiene modo de linea de comandos y no usa el guardian compartido');
   }
+});
+
+test('ningun programa usa el guardian sin estar en el registro de arriba', () => {
+  const sinRegistrar = readdirSync(join(raiz, 'build'))
+    .filter((n) => n.endsWith('.mjs') && !CON_LINEA_DE_COMANDOS.includes(n))
+    .filter((n) => readFileSync(join(raiz, 'build', n), 'utf8').includes('esLineaDeComandos(import.meta.url)'));
+  assert.deepEqual(sinRegistrar, [], 'agregalos a CON_LINEA_DE_COMANDOS: un programa que la lista no nombra es uno que nadie exige que corra con su linea medida');
 });
 
 test('un programa nuevo no puede inventarse su propio guardian', () => {

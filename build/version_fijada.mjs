@@ -50,7 +50,7 @@ export const PELDANO_DE_LA_DEFINICION = 2;
  * la base no aparece aca: viene del congelado y esta en TODAS las versiones publicadas, asi
  * que su procedencia es no tener ninguna.
  */
-export function entradasAgregadas(pasos, estaciones, evaluadores, reglas = []) {
+export function entradasAgregadas(pasos, estaciones, evaluadores, reglas = [], umbrales = []) {
   const salida = [];
   const mirar = (nodo, etiqueta, campo, lista) => {
     (lista ?? []).forEach((x, i) => {
@@ -78,6 +78,11 @@ export function entradasAgregadas(pasos, estaciones, evaluadores, reglas = []) {
   // silencio --un proyecto que sube de version se encontraria con una regla nueva que el
   // diferencial no conto (D-070). `que` sale del id, que es el nombre estable de una regla.
   mirar(null, 'catalog', 'rules', (reglas ?? []).map((r) => ({ ...r, path: r.id })));
+  // Y los umbrales, por el mismo argumento: end_users_outside_the_organisation fue el primero que
+  // el metodo agrego despues del congelado (D-076), y declararlo o no cambia la severidad de su
+  // regla, asi que es una entrada que lleva requisito. Sin esto, un proyecto que sube de version
+  // se encontraria con un umbral nuevo que el diferencial no conto.
+  mirar(null, 'catalog', 'thresholds', (umbrales ?? []).map((u) => ({ ...u, path: u.id })));
   return salida;
 }
 
@@ -150,7 +155,8 @@ export function leerArbol() {
   const fuentes = cargarFuentes();
   const pasos = fuentes.steps.steps;
   const estaciones = fuentes.stations.stations;
-  const entradas = entradasAgregadas(pasos, estaciones, fuentes.evaluators.evaluators, fuentes.heuristics.rules);
+  const entradas = entradasAgregadas(pasos, estaciones, fuentes.evaluators.evaluators,
+    fuentes.heuristics.rules, fuentes.adapters.thresholds);
   const versiones = fuentes.catalog.changelog.map((c) => c.catalog_version);
   const textosPorIdioma = {};
   for (const idioma of IDIOMAS) {

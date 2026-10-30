@@ -198,37 +198,51 @@ Un solo archivo por proyecto declara capa 2 y capa 3. Ejemplo con la forma propu
 
 ```json
 {
-  "version": 1,
   "frontend": "react-vite",
-  "medido_por": {
-    "formato": "prettier",
-    "lint": "eslint",
-    "tipos": "tsc",
-    "complejidad": "eslint-complexity",
-    "duplicacion": "jscpd",
-    "muertos": "knip",
-    "cobertura": "vitest-coverage",
-    "mutacion": "stryker",
-    "accesibilidad": "axe-core"
-  },
+  "real_users": true,
   "communication_depth": "decision_maker",
-  "umbrales": {
-    "lineas_por_archivo": 300,
-    "lineas_por_funcion": 40,
-    "caminos_por_funcion": 10,
-    "cobertura_minima": 0,
-    "mutacion_objetivo": 0
+  "measured_by": {
+    "format": "prettier",
+    "lint": "eslint",
+    "types": "tsc",
+    "complexity": "eslint-complexity",
+    "duplication": "jscpd",
+    "dead": "knip",
+    "coverage": "vitest-coverage",
+    "mutation": "stryker",
+    "accessibility": "axe-core"
   },
-  "excepciones": [
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
+  "thresholds": {
+    "lines_per_file": 300,
+    "lines_per_function": 40,
+    "paths_per_function": 10,
+    "minimum_coverage": 0,
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
+  },
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
-      "regla": "CQ-17",
-      "motivo": "informe imprimible heredado, sin tokens",
-      "autoriza": "dueño",
-      "revisar": "2027-01-31"
+      "rule": "CQ-17",
+      "reason": "informe imprimible heredado, sin tokens",
+      "authorized_by": "dueño",
+      "review_date": "2027-01-31"
     }
   ]
 }
 ```
+
+**Las claves de ese archivo son nivel de datos y no se traducen** (D-051, D-075): van en inglés, en ASCII puro, con el nombre exacto que el dato declara —las ocho de primer nivel, las cuatro del registro de apagado (`gates/schema.json#project_config`) y los identificadores de umbral (`gates/adapters.json`)— e **idénticas en los ocho idiomas**. En el idioma del lector van los **valores** que escribe una persona: el motivo de un apagado, por ejemplo. Se escribió medido el 2026-10-29: hasta ese día el ejemplo llevaba las claves traducidas —cuatro vocabularios distintos en los ocho idiomas y ochenta y siete nombres para veinticuatro casilleros— y un apagado escrito como el ejemplo lo enseñaba pasaba por la propia compuerta del método **en verde**, con la regla apagada y el registro de cuatro campos de D-046 sin mirar, porque la compuerta lee `switched_off` y el ejemplo decía `exceptions`. `build/claves_configuracion.mjs` lo exige ahora.
+
+Las nueve claves de dentro de `measured_by` son las únicas **ilustrativas**, y eso es una decisión y no un descuido: el método **no abarca con qué se mide cada regla**, que queda a criterio de quien mide (decisión del dueño, 2026-10-29). Y `end_users_outside_the_organisation` es el umbral de la escalada de CQ-18 (D-048, D-076): en `true` la regla bloquea, en `false` la escalada queda **declinada y registrada**, y sin declarar se reporta como umbral no declarado —que es «escalada pendiente, nadie la miró» y no lo mismo que haberla declinado—. No se usa `real_users` para esto: una herramienta interna puede tener doscientos usuarios reales y ninguno fuera de la organización.
 
 `communication_depth` es el parámetro de UX-28 y toma uno de tres valores —`beginner`, `decision_maker`, `technical`—. Si el proyecto no lo declara, el agente usa `decision_maker` y lo dice: el default se declara, no se adivina.
 

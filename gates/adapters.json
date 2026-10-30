@@ -104,6 +104,16 @@
       "declared": false,
       "declared_by": "the owner, once the project has real users",
       "note": "the zero in the example is deliberate"
+    },
+    {
+      "id": "end_users_outside_the_organisation",
+      "rule": "CQ-18",
+      "value": null,
+      "declared": false,
+      "declared_by": "the owner",
+      "note": "the condition of the CQ-18 escalation (D-048): declared true the rule blocks, declared false the escalation is DECLINED with a record, and undeclared is reported as an undeclared threshold, which means the escalation is PENDING and nobody looked at it. Those two are not the same state and before this id there was no key in which to tell them apart: the rule said the escalation is declared through the same mechanism as any threshold and no threshold id existed for it, so the absence of a declaration meant both things at once. The spelling of the id follows the words the rule already uses (outside the organisation), because ids are append-only and are never renamed. It is a boolean and not a number: what a threshold declares is a value, and the value here is whether the condition holds.",
+      "since_schema": 2,
+      "since_version": "2026.10.11"
     }
   ],
   "undeclared_threshold": "it is reported as an undeclared threshold. No approximating, no silent inheriting and no inventing: the same rule as the sizing of the architecture step.",

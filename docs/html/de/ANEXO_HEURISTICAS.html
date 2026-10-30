@@ -130,36 +130,48 @@ pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8p
 <h2 id="7-konfiguration">7. Konfiguration</h2>
 <p>Eine einzige Datei pro Projekt erklärt Schicht 2 und Schicht 3. Beispiel mit der vorgeschlagenen Form, nicht mit endgültigen Werten:</p>
 <pre class="code"><code>{
-  "version": 1,
   "frontend": "react-vite",
-  "gemessen_von": {
+  "real_users": true,
+  "communication_depth": "decision_maker",
+  "measured_by": {
     "format": "prettier",
     "lint": "eslint",
-    "typen": "tsc",
-    "komplexitaet": "eslint-complexity",
-    "duplizierung": "jscpd",
-    "toter_code": "knip",
-    "abdeckung": "vitest-coverage",
+    "types": "tsc",
+    "complexity": "eslint-complexity",
+    "duplication": "jscpd",
+    "dead": "knip",
+    "coverage": "vitest-coverage",
     "mutation": "stryker",
-    "barrierefreiheit": "axe-core"
+    "accessibility": "axe-core"
   },
-  "communication_depth": "decision_maker",
-  "schwellenwerte": {
-    "zeilen_pro_datei": 300,
-    "zeilen_pro_funktion": 40,
-    "pfade_pro_funktion": 10,
-    "mindestabdeckung": 0,
-    "mutationsziel": 0
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
   },
-  "ausnahmen": [
+  "thresholds": {
+    "lines_per_file": 300,
+    "lines_per_function": 40,
+    "paths_per_function": 10,
+    "minimum_coverage": 0,
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
+  },
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
-      "regel": "CQ-17",
-      "begruendung": "geerbter druckbarer Bericht, ohne Tokens",
-      "genehmigt_von": "Eigentuemer",
-      "pruefen_am": "2027-01-31"
+      "rule": "CQ-17",
+      "reason": "geerbter druckbarer Bericht, ohne Tokens",
+      "authorized_by": "Eigentuemer",
+      "review_date": "2027-01-31"
     }
   ]
 }</code></pre>
+<p><strong>Die Schlüssel dieser Datei sind Datenebene und werden nicht übersetzt</strong> (D-051, D-075): auf Englisch, in reinem ASCII, mit genau dem Namen, den die Daten erklären —die acht der ersten Ebene, die vier des Abschaltvermerks (<code>gates/schema.json#project_config</code>) und die Schwellenwert-Kennungen (<code>gates/adapters.json</code>)— und <strong>identisch in den acht Sprachen</strong>. In der Sprache des Lesers stehen die <strong>Werte</strong>, die ein Mensch schreibt: die Begründung einer Abschaltung etwa. Gemessen geschrieben am 2026-10-29: bis zu diesem Tag trug das Beispiel die Schlüssel übersetzt —vier verschiedene Vokabulare in den acht Sprachen und siebenundachtzig Namen für vierundzwanzig Plätze— und eine Abschaltung, so geschrieben, wie das Beispiel sie lehrte, kam <strong>grün</strong> durch das Gate der Methode selbst, mit abgeschalteter Regel und ohne dass der Vier-Felder-Vermerk aus D-046 je angesehen wurde, denn das Gate liest <code>switched_off</code> und das Beispiel sagte <code>exceptions</code>. <code>build/claves_configuracion.mjs</code> verlangt es jetzt.</p>
+<p>Die neun Schlüssel innerhalb von <code>measured_by</code> sind die einzigen <strong>illustrativen</strong>, und das ist eine Entscheidung und kein Versehen: die Methode <strong>deckt nicht ab, womit jede Regel gemessen wird</strong>; das bleibt dem Urteil dessen überlassen, der misst (Entscheidung des Eigentümers, 2026-10-29). Und <code>end_users_outside_the_organisation</code> ist der Schwellenwert der Eskalation von CQ-18 (D-048, D-076): auf <code>true</code> sperrt die Regel, auf <code>false</code> ist die Eskalation <strong>abgelehnt und vermerkt</strong>, und ohne Erklärung wird sie als nicht erklärter Schwellenwert gemeldet —das heißt «Eskalation offen, niemand hat hingesehen» und nicht dasselbe wie abgelehnt—. <code>real_users</code> wird dafür nicht benutzt: ein internes Werkzeug kann zweihundert echte Nutzer haben und keinen außerhalb der Organisation.</p>
 <p><code>communication_depth</code> ist der Parameter von UX-28 und nimmt einen von drei Werten -- <code>beginner</code>, <code>decision_maker</code>, <code>technical</code>. Erklärt das Projekt ihn nicht, nutzt der Agent <code>decision_maker</code> und sagt es: der Default wird erklärt, nicht geraten.</p>
 <p>Die beiden Nullen sind absichtlich und sind der Teil, der zählt: die Mindestabdeckung setzt die Sperrklinke mit dem Gemessenen, und das Mutationsziel setzt der Eigentümer, wenn das Projekt Nutzer hat. Stehen sie auf null und hat sie niemand erklärt, meldet das Gate sie als nicht erklärten Schwellenwert, statt ihn zu erfinden.</p>
 </section><section>

@@ -130,8 +130,9 @@ pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8p
 <h2 id="7-configuration">7. Configuration</h2>
 <p>A single file per project declares layer 2 and layer 3. Example with the proposed form, not with definitive values:</p>
 <pre class="code"><code>{
-  "version": 1,
   "frontend": "react-vite",
+  "real_users": true,
+  "communication_depth": "decision_maker",
   "measured_by": {
     "format": "prettier",
     "lint": "eslint",
@@ -143,23 +144,34 @@ pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8p
     "mutation": "stryker",
     "accessibility": "axe-core"
   },
-  "communication_depth": "decision_maker",
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
+  },
   "thresholds": {
     "lines_per_file": 300,
     "lines_per_function": 40,
     "paths_per_function": 10,
     "minimum_coverage": 0,
-    "mutation_target": 0
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
   },
-  "exceptions": [
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
       "rule": "CQ-17",
       "reason": "inherited printable report, without tokens",
-      "authorised_by": "owner",
-      "review": "2027-01-31"
+      "authorized_by": "owner",
+      "review_date": "2027-01-31"
     }
   ]
 }</code></pre>
+<p><strong>The keys of that file are data layer and they are not translated</strong> (D-051, D-075): English, pure ASCII, with the exact name the data declares -- the eight top-level ones, the four of the switch-off record (<code>gates/schema.json#project_config</code>) and the threshold ids (<code>gates/adapters.json</code>) -- and <strong>identical in the eight languages</strong>. What goes in the reader's language are the <strong>values</strong> a person writes: the reason for a switch-off, for instance. Written measured on 2026-10-29: until that day the example carried the keys translated -- four different vocabularies across the eight languages and eighty-seven names for twenty-four slots -- and a switch-off written the way the example taught it passed the method's own gate <strong>green</strong>, with the rule off and the four-field record of D-046 never looked at, because the gate reads <code>switched_off</code> and the example said <code>exceptions</code>. <code>build/claves_configuracion.mjs</code> enforces it now.</p>
+<p>The nine keys inside <code>measured_by</code> are the only <strong>illustrative</strong> ones, and that is a decision and not an oversight: the method <strong>does not cover with what each rule is measured</strong>, which is left to the judgement of whoever measures (owner decision, 2026-10-29). And <code>end_users_outside_the_organisation</code> is the threshold of the CQ-18 escalation (D-048, D-076): true and the rule blocks, false and the escalation is <strong>declined and recorded</strong>, undeclared and it is reported as an undeclared threshold -- which is "escalation pending, nobody looked at it" and not the same as having declined it. <code>real_users</code> is not used for this: an internal tool can have two hundred real users and none outside the organisation.</p>
 <p><code>communication_depth</code> is the parameter of UX-28 and it takes one of three values -- <code>beginner</code>, <code>decision_maker</code>, <code>technical</code>. If the project does not declare it, the agent uses <code>decision_maker</code> and says so: the default is declared, not guessed.</p>
 <p>The two zeros are deliberate and they are the part that matters: the minimum coverage is set by the ratchet with what was measured, and the mutation target is set by the owner when the project has users. If they are at zero and nobody declared them, the gate reports it as an undeclared threshold instead of inventing it.</p>
 </section><section>

@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.10** - schema **2**
-- content fingerprint `280d8745797b66f2...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.11** - schema **2**
+- content fingerprint `c17a09557a5f216b...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -25,7 +25,7 @@ What a project pins, and what it costs to change it. A project pins ONE catalog_
 
 For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.10`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.11`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -52,6 +52,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.8** (2026-10-27, D-070) -- `54b57e7871914e28...`
 - **2026.10.9** (2026-10-27, D-071) -- `a4f6c78fa040f72e...`
 - **2026.10.10** (2026-10-27, D-073) -- `280d8745797b66f2...`
+- **2026.10.11** (2026-10-29, D-076) -- `c17a09557a5f216b...`
 
 ## Pinning: what a tool that freezes the method owes
 
@@ -75,7 +76,7 @@ and every declared version also has an address of its own: `<canonical base>/<re
 
 - The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.
 - Where it is declared: Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.
-- This version lives at `gates/2026.10.10.json` under the canonical base, and the first version with an address is **2026.10.1**.
+- This version lives at `gates/2026.10.11.json` under the canonical base, and the first version with an address is **2026.10.1**.
 - No purge: Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.
 - What the address promises: The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.
 - Not guaranteed: Byte identity is not promised, only the covered content, for the reason above. And an address on this host is not a substitute for the ledger: if this host is compromised, both the file and its hash can be rewritten together, so the pair (version -> hash) is still checked against the ledger, which lives elsewhere.
@@ -785,6 +786,7 @@ Layer 2 of Annex H: per frontend family, with what each rule is measured and wit
 | `paths_per_function` | CQ-04 | - | **no** | the owner |
 | `minimum_coverage` | CQ-08 | - | **no** | the ratchet, over what is measured |
 | `mutation_target` | CQ-09 | - | **no** | the owner, once the project has real users |
+| `end_users_outside_the_organisation` | CQ-18 | - | **no** | the owner |
 
 **it is reported as an undeclared threshold. No approximating, no silent inheriting and no inventing: the same rule as the sizing of the architecture step.**
 

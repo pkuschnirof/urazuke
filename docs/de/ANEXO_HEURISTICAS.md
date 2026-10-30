@@ -199,37 +199,51 @@ Eine einzige Datei pro Projekt erklärt Schicht 2 und Schicht 3. Beispiel mit de
 
 ```json
 {
-  "version": 1,
   "frontend": "react-vite",
-  "gemessen_von": {
+  "real_users": true,
+  "communication_depth": "decision_maker",
+  "measured_by": {
     "format": "prettier",
     "lint": "eslint",
-    "typen": "tsc",
-    "komplexitaet": "eslint-complexity",
-    "duplizierung": "jscpd",
-    "toter_code": "knip",
-    "abdeckung": "vitest-coverage",
+    "types": "tsc",
+    "complexity": "eslint-complexity",
+    "duplication": "jscpd",
+    "dead": "knip",
+    "coverage": "vitest-coverage",
     "mutation": "stryker",
-    "barrierefreiheit": "axe-core"
+    "accessibility": "axe-core"
   },
-  "communication_depth": "decision_maker",
-  "schwellenwerte": {
-    "zeilen_pro_datei": 300,
-    "zeilen_pro_funktion": 40,
-    "pfade_pro_funktion": 10,
-    "mindestabdeckung": 0,
-    "mutationsziel": 0
+  "tools": {
+    "eslint": "9.12.0",
+    "vitest": "2.1.3",
+    "stryker": "8.6.0"
   },
-  "ausnahmen": [
+  "thresholds": {
+    "lines_per_file": 300,
+    "lines_per_function": 40,
+    "paths_per_function": 10,
+    "minimum_coverage": 0,
+    "mutation_target": 0,
+    "end_users_outside_the_organisation": false
+  },
+  "switches": {
+    "code_quality": true,
+    "usability": true
+  },
+  "switched_off": [
     {
-      "regel": "CQ-17",
-      "begruendung": "geerbter druckbarer Bericht, ohne Tokens",
-      "genehmigt_von": "Eigentuemer",
-      "pruefen_am": "2027-01-31"
+      "rule": "CQ-17",
+      "reason": "geerbter druckbarer Bericht, ohne Tokens",
+      "authorized_by": "Eigentuemer",
+      "review_date": "2027-01-31"
     }
   ]
 }
 ```
+
+**Die Schlüssel dieser Datei sind Datenebene und werden nicht übersetzt** (D-051, D-075): auf Englisch, in reinem ASCII, mit genau dem Namen, den die Daten erklären —die acht der ersten Ebene, die vier des Abschaltvermerks (`gates/schema.json#project_config`) und die Schwellenwert-Kennungen (`gates/adapters.json`)— und **identisch in den acht Sprachen**. In der Sprache des Lesers stehen die **Werte**, die ein Mensch schreibt: die Begründung einer Abschaltung etwa. Gemessen geschrieben am 2026-10-29: bis zu diesem Tag trug das Beispiel die Schlüssel übersetzt —vier verschiedene Vokabulare in den acht Sprachen und siebenundachtzig Namen für vierundzwanzig Plätze— und eine Abschaltung, so geschrieben, wie das Beispiel sie lehrte, kam **grün** durch das Gate der Methode selbst, mit abgeschalteter Regel und ohne dass der Vier-Felder-Vermerk aus D-046 je angesehen wurde, denn das Gate liest `switched_off` und das Beispiel sagte `exceptions`. `build/claves_configuracion.mjs` verlangt es jetzt.
+
+Die neun Schlüssel innerhalb von `measured_by` sind die einzigen **illustrativen**, und das ist eine Entscheidung und kein Versehen: die Methode **deckt nicht ab, womit jede Regel gemessen wird**; das bleibt dem Urteil dessen überlassen, der misst (Entscheidung des Eigentümers, 2026-10-29). Und `end_users_outside_the_organisation` ist der Schwellenwert der Eskalation von CQ-18 (D-048, D-076): auf `true` sperrt die Regel, auf `false` ist die Eskalation **abgelehnt und vermerkt**, und ohne Erklärung wird sie als nicht erklärter Schwellenwert gemeldet —das heißt «Eskalation offen, niemand hat hingesehen» und nicht dasselbe wie abgelehnt—. `real_users` wird dafür nicht benutzt: ein internes Werkzeug kann zweihundert echte Nutzer haben und keinen außerhalb der Organisation.
 
 `communication_depth` ist der Parameter von UX-28 und nimmt einen von drei Werten -- `beginner`, `decision_maker`, `technical`. Erklärt das Projekt ihn nicht, nutzt der Agent `decision_maker` und sagt es: der Default wird erklärt, nicht geraten.
 
