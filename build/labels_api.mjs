@@ -41,7 +41,7 @@
 // Uso: node build/labels_api.mjs
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { raiz, leerAnexo, huellaDeContenido, gitCommitCorto, esLineaDeComandos, ALCANCE_DE_LA_HUELLA } from './gates_lib.mjs';
+import { raiz, leerAnexo, huellaDeContenido, gitCommitCorto, esLineaDeComandos, ALCANCE_DE_LA_HUELLA, cardinal, Cardinal } from './gates_lib.mjs';
 import { dirDe } from './anexo_simetria.mjs';
 
 export const DIR = join(raiz, 'docs', 'html', 'api');
@@ -181,6 +181,11 @@ export function leerDato(base = raiz) {
     pasos: de('steps.json').steps.map((p) => ({ id: p.id, num: p.num })),
     estaciones: de('stations.json').stations.map((e) => ({ id: e.id, num: e.num })),
     reglas: de('heuristics.json').rules.map((r) => ({ id: r.id })),
+    // Los evaluadores no aportan ningun texto a este recurso: entran porque el `scope`
+    // declara, con su cuenta, por que quedan AFUERA, y esa cuenta se deriva en vez de
+    // escribirse (PND-064). Una exclusion que explica su alcance con un numero a mano es
+    // una exclusion que se vuelve falsa sola el dia que entra un evaluador nuevo.
+    evaluadores: de('evaluators.json').evaluators.map((e) => ({ name: e.name })),
   };
 }
 
@@ -206,7 +211,14 @@ const WHAT = 'The texts of the Urazuke method by stable identifier, in the langu
 
 const KEYED_BY = 'labels.<language>.<kind>.<id>, where <language> is one of the entries of `languages.published`, <kind> is one of steps, stations or rules, and <id> is the opaque identifier the gate catalogue declares for that node. The ids are the key, not the order: they are append-only and never renamed.';
 
-const SCOPE = {
+/**
+ * Lo que entra y lo que queda afuera, con su razon y su medicion. Es una FUNCION del dato y
+ * no una constante, porque las cuentas que sus razones citan se derivan (PND-064): una
+ * exclusion que dice "doce evaluadores" con el numero escrito a mano sigue diciendo doce
+ * cuando entre el trece, y lo que queda publicado -- adentro de lo que cubre la huella -- es
+ * una medicion falsa con cara de medida.
+ */
+const scopeDe = (dato) => ({
   included: [
     { kind: 'steps', what: 'The title of each of the steps of the ladder.', source: 'The heading of the step card in the main document of each language.' },
     { kind: 'stations', what: 'The title of each of the normalisation stations.', source: 'The heading of each station in the evolutionary-corrective path of each language.' },
@@ -216,15 +228,19 @@ const SCOPE = {
     {
       kind: 'the evaluator vocabulary',
       why: 'The description of what an evaluator checks is written at the data layer, in English, and is not part of the translated corpus (D-051). There is no prose source for it in the other languages, so publishing it translated would mean writing new text here, and a catalogue of texts is exactly where inventing one is easiest to do and hardest to see.',
-      measured: 'Twelve evaluator names, each with one English description and no other language.',
+      measured: Cardinal(dato.evaluadores.length) + ' evaluator names, each with one English description and no other language.',
     },
     {
       kind: 'the verification questions of a step',
       why: 'The questions the data declares for a step and the ones the prose of its contract lists are not the same list, so matching them by position would mislabel them. Translating them here instead of extracting them would make this file a second copy of the method, which is the thing it exists to prevent.',
-      measured: 'Counted over the twenty-four steps of the Spanish prose on 2026-10-28: zero of twenty-four carry the same number of items in the data and in the contract, and the prose is the longer one in every single step.',
+      // La cuenta de peldanos se deriva; el "zero" es el resultado MEDIDO ese dia, y lo
+      // reproduce tests/labels_catalogo.test.mjs para que la exclusion no se vuelva falsa
+      // sola. Son dos cosas distintas y por eso una se calcula y la otra lleva su fecha.
+      measured: 'Counted over the ' + cardinal(dato.pasos.length) + ' steps of the Spanish prose on 2026-10-28: zero of '
+        + cardinal(dato.pasos.length) + ' carry the same number of items in the data and in the contract, and the prose is the longer one in every single step.',
     },
   ],
-};
+});
 
 const LANGUAGES_NOTE = 'The languages this file publishes are the languages the PROSE of the method is published in, declared once in the gate catalogue and derived here instead of listed again. The reading interface of the method is published in more languages than its prose, and that difference is a known open item of the method, not a defect of this file: a language whose prose does not exist has no text to extract, and inventing it is what this file refuses to do. Ask for a language that is not published here and there is nothing to fall back to; render in one that is.';
 
@@ -256,7 +272,7 @@ export function armarContenido(idiomas, textosPorIdioma, dato, catalogo) {
         strings: idiomas.length * porIdioma,
       },
       keyed_by: KEYED_BY,
-      scope: SCOPE,
+      scope: scopeDe(dato),
       languages: { published: idiomas, note: LANGUAGES_NOTE },
       labels,
     },

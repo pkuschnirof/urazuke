@@ -1753,6 +1753,124 @@ anterior. Fusión `9cf19d8`; 412 pruebas, 0 fallos.
 
 ---
 
+## PND-064 — Una cifra escrita a mano adentro de un artefacto que se genera: el documento decía cuatro y listaba cinco *(desvío propio, el sexto; salió de leer el documento publicado)*
+
+- **Nodo:** `interfaz-publica/api` [nodo propuesto]
+- **Grupo:** G-API · **Severidad:** avisa · **Quién decide:** nadie: es un defecto medido y su arreglo es mecánico
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-30, con la cifra derivada del dato y la guarda que lo exige corriendo en la cadena. **Decisión:** D-077.
+
+**Qué estaba mal.** `docs/COMPUERTAS.md` —que se genera de `gates/`, que se publica, y que dice de
+sí mismo *«This document is generated. Do not edit it: fix the source»*— llevaba esta oración:
+
+> The four that block with a **human red** -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- are tested by no
+> tool at all.
+
+**Cuatro, y después cinco identificadores.** La lista sale del dato (`heuristics.rules` filtrado por
+`human_red`) y el número estaba escrito a mano, así que el día que entró UX-28 la lista creció y el
+número se quedó donde estaba. Y no era el único error de la frase: de esos cinco, UX-28 **avisa y
+no bloquea** —lo dice el propio dato y lo dice la tabla dos líneas más arriba, en la misma página—,
+así que la oración también le atribuía una severidad que el método no le dio. Un lector que la
+tomara por buena verificaría cuatro reglas con una persona delante y se saltearía la quinta.
+
+**Mi reproducción (2026-10-30).**
+
+```
+$ node -e "las reglas con rojo humano, del dato"
+human_red: CQ-12:blocks CQ-14:blocks UX-22:blocks UX-27:blocks UX-28:warns   (son 5, bloquean 4)
+
+$ grep -n "four that block" docs/COMPUERTAS.md
+746:The four that block with a **human red** -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- are tested by no
+```
+
+La frase era **cierta el día que se escribió**: UX-28 entró el 2026-10-27 con D-070, cuatro días
+después. No la rompió nadie; se rompió sola, que es la definición del defecto.
+
+**Por qué es la misma familia que ya está escrita cuatro veces en este repositorio.** Es una
+**segunda copia de un hecho**: una que se actualiza sola (la lista, derivada) y otra que no (el
+número, escrito). Es lo que D-044 resolvió para el enunciado de las reglas, D-067 para la lista de
+idiomas y D-074 para los títulos del método. Lo nuevo acá es **dónde** vivía la copia: no en una
+fuente que alguien mantiene, sino adentro del artefacto que el consumidor lee como autoridad.
+
+**Lo que se buscó además, y lo que se encontró.** Enumerando el universo y no desde una búsqueda
+que falló (D-064): las nueve fuentes que se mantienen a mano, el documento generado y los cuatro
+recursos publicados. Aparecieron tres cifras más de la misma clase, las tres **correctas hoy** y
+ninguna vigilada por nada: `'### The five anchors and the two prior inputs'` y
+`'### The three artifacts'` en `build/gates_doc.mjs`, y `'Twelve evaluator names'` en el `scope` de
+`build/labels_api.mjs` —ésta, además, viaja **adentro de lo que cubre la huella** del recurso, así
+que un evaluador nuevo publicaría una medición falsa con cara de medida—. Y dos registros
+**fechados** que dicen «forty-five rules» cuando hoy son cuarenta y seis: la entrada de `2026.10.1`
+del registro de versiones y `gates/schema.json#history["2"]`. Ésas **no se tocan**: llevan las
+palabras de su día (D-053, D-061) y van al registro de exenciones con su razón.
+
+**Lo que se hizo.**
+
+- **Las cuatro cifras se derivan**: `cardinal(n)` vive una sola vez en `build/gates_lib.mjs`,
+  deletrea de 0 a 99 y **se niega** arriba de su alcance en vez de improvisar. Las cifras correctas
+  salieron byte a byte iguales —que es la prueba de que la derivación no cambia lo publicado—, así
+  que **ninguna huella se movió y ninguna versión sube**.
+- **La frase ahora dice lo que el dato dice**: cinco de las cuarenta y seis reglas llevan rojo
+  humano, cuatro bloquean y una avisa, con los identificadores de cada grupo y la aclaración que el
+  defecto enseñó: un rojo humano dice **quién verifica** una regla, no con cuánta fuerza pega.
+- **Una guarda nueva**, `build/cifras_derivadas.mjs`, con su paso en la cadena y en
+  `build/build.mjs`, que exige la línea medida.
+- **El mapa de colecciones no se escribe: se deriva** del dato —toda clave de arreglo a
+  profundidad 2 o menos de `gates/*.json`—, así que una colección nueva queda vigilada **el día que
+  entra** y no el día que alguien se acuerda de agregarla a una lista. Sin eso, la guarda sería
+  otra enumeración a mano, que es la forma exacta del defecto que persigue, y diría «0 hallazgos»
+  con razón: el defecto de D-071, repetido en la guarda que lo arregla.
+- **Dos comprobaciones y no una**, porque la primera no alcanzaba y eso se midió: la cifra pegada
+  al nombre de una colección (`A`) **no ve** la frase original, donde el número está pegado a
+  *that*. La que la ve es `A2`: **un número al lado de una enumeración de identificadores es la
+  cuenta de esa enumeración**.
+- **Doce rojos deliberados**, el primero de los cuales es la frase original reproducida tal como
+  estaba commiteada. Tiene que volver a caer si alguien la reintroduce.
+
+**Lo que la hace falsable, dicho con el número.** Medida contra el árbol anterior a este cambio:
+
+```
+$ node -e "la guarda nueva contra el arbol de e9ae53b"
+arbol e9ae53b: 14 archivos, 22 colecciones, 27 cifras medidas
+hallazgos: 1
+  docs/COMPUERTAS.md linea 746: dice "four" al lado de una enumeracion de 5 identificadores
+  (CQ-12, CQ-14, UX-22, UX-27, UX-28). La lista sale del dato y el numero esta escrito.
+
+$ node build/cifras_derivadas.mjs                   (sobre el arbol corregido)
+cifras derivadas: comprobado -- 14 archivos del universo, 22 colecciones derivadas del dato,
+29 cifras medidas, 7 exenciones con su razon, 0 hallazgos
+```
+
+**Y los falsos positivos, que también se midieron, porque son los que definen la forma de la
+guarda.** La primera versión daba cinco, y cada uno enseñó una condición: `"one of steps, stations
+or rules"` —el `keyed_by` de `labels.json`, que **enumera** los valores posibles— se leía como «un
+peldaño» y reclamaba veinticuatro; `"sixteen hash covers"` se leía como una cuenta de `covers`, que
+son seis; los extremos de un rango (`CQ-01 to CQ-18`) se leían como una enumeración de dos; un
+`"(step 2)"` coincidía de casualidad con una lista de dos identificadores; y la propia frase
+corregida, que lleva **dos** cifras derivadas, se leía con la equivocada. De ahí las tres
+exigencias que la guarda escribe en su cabecera: el número va **pegado** al sustantivo, una
+enumeración es una **corrida contigua** que un rango corta, y el candidato de `A2` descarta el
+número ya explicado por `A` y el calificado por la palabra que lo precede.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dada esa persona, cuando el documento de las
+  compuertas le dice cuántas reglas necesitan una persona delante, el número **es** la cantidad de
+  reglas que la lista de al lado nombra, y las que bloquean están separadas de las que avisan.
+- *P5 (auditor que quiere probar que su copia es la buena):* dado el perfil auditor, esta persona
+  corre una orden y ve cuántos archivos se miraron, cuántas colecciones se derivaron del dato,
+  cuántas cifras se midieron y cuántas exenciones hay con su razón —y si un archivo del universo no
+  se pudo leer, eso es **rojo** y no un verde con menos cuentas.
+- *P1 (herramienta consumidora):* dada una herramienta que lee el `scope` de un recurso publicado
+  para saber qué quedó afuera, la medición que ese campo declara es la del dato de hoy y no la del
+  día en que alguien la escribió, incluso cuando viaja adentro de la huella.
+
+**Lo que queda afuera, nombrado.** Las cifras de la **prosa** del método —el documento principal,
+los contratos, los manuales— no las mira esta guarda: son voz del autor, están en castellano y
+contar es parte de lo que la prosa hace. Los dos registros fechados tampoco, por decisión escrita y
+con su razón en el registro de exenciones. Y no se verifica que una cifra esté **bien derivada** en
+el programa que la escribe: se verifica el resultado, que es lo que un consumidor lee.
+
+---
+
 # Abiertos — G-ALCANCE: llegar al material publicado
 
 ## PND-014 — El mapa del sitio no conoce ningún documento del método *(era U-13)*
@@ -5906,16 +6024,16 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 20 | 3 | 17 | 0 |
+| G-API | 21 | 3 | 18 | 0 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 14 | 11 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 13 | 1 | 12 | 0 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **63** | **16** | **47** | **1** |
+| **total** | **64** | **16** | **48** | **1** |
 
-Sesenta y tres entradas, `PND-001` a `PND-063`. Veintidós vienen de la auditoría externa
+Sesenta y cuatro entradas, `PND-001` a `PND-064`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -6115,6 +6233,20 @@ cambio de versión.
 **Y las tres últimas, del 2026-10-29, salieron de verificar al consumidor en vez de a la publicación.** Las dos primeras son huecos de las capas 2 y 3 del Anexo H que aparecieron al medir si la herramienta había implementado el anexo: `PND-061`, la cifra de cumplimiento, donde la lista de lo que queda fuera del porcentaje lleva tres identificadores y **una frase**, y las tres lecturas razonables de esa frase dan 93,3 %, 62,2 % y 55,6 % para el mismo proyecto; y `PND-062`, la escalada de CQ-18, que se declaraba «por el mismo mecanismo que cualquier umbral» y no tenía identificador de umbral, así que la ausencia de una clave significaba a la vez «escalada declinada» y «nadie la miró» —**cerrada el 2026-10-30**, con el umbral `end_users_outside_the_organisation` servido y los tres estados dichos—. El tercer hueco que esa verificación trajo —con qué se mide cada regla— **no es un pendiente**: el dueño decidió el mismo día que el método no lo abarca y queda a criterio de quien mide (D-075).
 
 `PND-063` es el quinto desvío propio y el peor de los cinco, porque no falló un reporte: falló una compuerta. Lo encontró el dueño pidiendo un ejemplo práctico de los otros dos. El ejemplo de configuración del anexo llevaba las claves **traducidas** —cuatro vocabularios distintos en los ocho idiomas, ochenta y siete nombres para veinticuatro casilleros— y, medido contra la propia compuerta del método, un apagado escrito **exactamente como el ejemplo lo enseñaba** salía `validado` con código 0: la regla apagada y el registro de cuatro campos que D-046 llama no negociable sin mirarse nunca, porque la compuerta lee `switched_off` y el ejemplo decía `exceptions`. Los cuatro desvíos anteriores fueron afirmaciones que la medición desmentía; este es daño silencioso —lo que SQ 0.3 prohíbe— y le pasaba al lector que **obedece**. La guarda que lo cierra exige las dos direcciones y trae catorce rojos deliberados, uno de ellos reproduciendo el verde falso. **Cerró el 2026-10-30**, con las claves servidas y no sólo corregidas en disco.
+
+`PND-064` es el sexto desvío propio y el de forma más pura: una cifra escrita a mano **adentro de
+un artefacto que se genera**. El documento de las compuertas decía «The four that block with a
+human red» y, a continuación, listaba **cinco** identificadores, uno de los cuales avisa y no
+bloquea. La lista sale del dato; el número estaba escrito. No lo rompió nadie: la frase era cierta
+el día que se escribió y dejó de serlo cuatro días después, cuando UX-28 entró con D-070. Es la
+misma familia que D-044, D-067 y D-074 —dos copias de un hecho, una que se actualiza sola y otra
+que no—, y lo nuevo es dónde vivía la copia: en el archivo que el consumidor lee como autoridad y
+que dice de sí mismo «no lo edites». Enumerando el universo aparecieron tres cifras más de la misma
+clase, las tres correctas hoy y ninguna vigilada, y una de ellas viajando **adentro de lo que cubre
+la huella**. El arreglo deriva las cuatro, y las correctas salieron byte a byte iguales: ninguna
+huella se movió y ninguna versión sube. La guarda que lo cierra deriva su mapa **del dato** y no de
+una lista escrita —si no, sería otra enumeración a mano, que es el defecto que persigue— y trae
+doce rojos deliberados, el primero de ellos la frase original tal como estaba commiteada.
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar

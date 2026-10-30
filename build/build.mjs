@@ -45,6 +45,11 @@ execFileSync(process.execPath, [join(raiz, 'build', 'index_api.mjs')], { stdio: 
 // huella que su registro anota. La construccion sigue corriendo sin red.
 execFileSync(process.execPath, [join(raiz, 'build', 'version_inmutable.mjs'), '--vigente'], { stdio: 'inherit' });
 execFileSync(process.execPath, [join(raiz, 'build', 'gates_doc.mjs'), '--check'], { stdio: 'inherit' });
+// Las cifras del nivel de datos contra las cuentas reales (D-077). Va ULTIMO de la cadena de
+// datos, porque mira los artefactos ya escritos: el documento generado y los cuatro recursos
+// publicados. Una cuenta escrita a mano adentro de algo que se genera se desincroniza sola, y
+// la que lo demostro vivia en un archivo que dice de si mismo "no lo edites".
+execFileSync(process.execPath, [join(raiz, 'build', 'cifras_derivadas.mjs')], { stdio: 'inherit' });
 const conv = join(raiz, 'build', 'md2html.mjs');
 
 function armar(dirMd, dirHtml, idioma) {
