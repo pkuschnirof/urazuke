@@ -18,24 +18,33 @@ que hizo, no con lo que le preguntó a nadie; la ficha completa, con la decisió
   (`git clone https://github.com/pkuschnirof/urazuke.git`), sin tocar el árbol de trabajo. Cada
   celda de evidencia remite a una corrida cuya salida está pegada en la sección "La evidencia,
   medida" de abajo. Lo que no se pudo medir se dice, y no se escribe en verde.
+- **Corrección de la propia ficha, el mismo día y antes de presentarla.** El primer llenado dijo
+  dos cosas que no eran: que X2 y el prerrequisito 4 quedaban **sin verificar porque no había
+  ningún motor de navegador instalado**, y que el prerrequisito 7 estaba en **verde** con una
+  excepción. La primera es el defecto que D-064 prohíbe por escrito, cometido en el repositorio que
+  escribió la regla: la ausencia se afirmó **sin haber buscado** —hay seis versiones de Chromium
+  instaladas en esta máquina y una prueba de punta a punta con navegador real y clic de ratón
+  escrita en octubre, que hoy vuelve a correr—. La segunda ablandaba un rojo que el registro de la
+  corrida anterior ya había anotado. Las dos celdas están corregidas con lo medido, y el error
+  queda escrito acá en vez de borrado, que es lo que el método pide.
 
 ## Los dos criterios excluyentes del peldaño 0
 
 | # | Criterio excluyente | Respuesta | Fuente | Verde o rojo |
 |---|---|---|---|---|
 | X1 | Tecnología heredada sin repositorio accesible, o con repositorios que no siguen un estándar | No aplica como exclusión: hay un repositorio público accesible y es uno solo. El clon limpio trajo 606 archivos versionados y quedó en `c12fb5e`, con la disposición estándar del lenguaje (`build/`, `tests/`, `docs/`, `gates/`, `prompts/`, `labels/`) y su flujo de integración continua | E1 | **verde** |
-| X2 | Tecnología que no se puede probar de punta a punta: no se pueden ejecutar las pantallas y acceder a cada elemento de la interfaz con sus distintos métodos, validando que el cambio llegó al backend | **Partido, y hay que leerlo entero.** Este sistema no tiene backend: lo que publica son 84 pantallas de HTML estático y una interfaz de datos de cuatro archivos. Sobre la interfaz de datos el criterio se cumple y está **medido**: se levantó el sitio construido en un servidor local, se descubrió la interfaz por su índice, se bajó cada recurso y se recalculó su huella como consumidor independiente, y la prueba se puso roja al mutilar el sistema. Sobre las **pantallas** no está verificado: sus 119 botones se alcanzan por su clase y su posición en el árbol del documento, ninguno tiene identificador propio, y no hay ningún motor de navegador instalado que ejecute el click | E4 | **verde en la interfaz de datos; sin verificar en las pantallas** |
+| X2 | Tecnología que no se puede probar de punta a punta: no se pueden ejecutar las pantallas y acceder a cada elemento de la interfaz con sus distintos métodos, validando que el cambio llegó al backend | Se cumple en las dos mitades del sistema, y las dos están medidas hoy. Las **pantallas**: Chrome real manejado por el protocolo de DevTools, con un clic de ratón en coordenadas reales sobre el botón de traducir, y el efecto leído del documento —aparece la traducción, se oculta el inglés, el botón cambia de etiqueta, y el segundo clic cierra el flujo donde empezó—. La **interfaz de datos**: servida y recorrida por programa, con la huella de cada recurso recalculada por un consumidor independiente. Reserva que no bloquea: los 119 botones se alcanzan por su clase y su posición, sin identificador propio, así que el recorrido es posible y frágil | E4, E4b | **verde** |
 
 El criterio neutral de X2, tal como lo fija el documento principal: la interfaz se puede
 ejecutar por programa y cada elemento de la pantalla es accesible con sus distintos métodos
 (hacer clic, tipear, leer su estado), de modo que un test pueda recorrer la pantalla y después
 verificar el efecto en el backend. NAC3 no es condición: es uno de los medios.
 
-Y la lectura que el agente **no** hace, porque es del dueño: si para este sistema "la pantalla"
-es la parte que hay que poder recorrer, o si la parte que hay que poder recorrer es la interfaz
-de datos —que es la que una herramienta consume, la que lleva versión y huella, y la que ya se
-recorre por programa—. De eso depende si X2 está verde o si pide un proyecto previo, y es la
-decisión que [`ELIGIBILITY.md`](ELIGIBILITY.md) tiene que registrar.
+Una aclaración sobre la segunda mitad del criterio, porque este sistema no tiene backend: lo que
+publica son 84 pantallas de HTML estático y una interfaz de datos de cuatro archivos. "El efecto
+llegó al backend" se verifica entonces en lo que hace de backend, que es el extremo publicado: el
+recurso que el propio sitio sirve declara una huella que un tercero recalcula y compara. Eso está
+medido (E4). Lo que queda a criterio del dueño es si esa traducción del criterio le sirve.
 
 ## Los criterios que ponderan (todavía sin peso, `[hipótesis]`)
 
@@ -64,12 +73,12 @@ un proyecto previo con su propio criterio de salida, que es el prerrequisito ver
 | # | Prerrequisito | Verde o rojo | Evidencia (qué hizo el agente y qué pasó) | Proyecto previo, si está en rojo |
 |---|---|---|---|---|
 | 1 | Se puede montar un ambiente completo del sistema, con todos sus fuentes, su modelo de datos y su persistencia, desde el repositorio y una copia de los datos | **verde** | Clon limpio del repositorio público, construcción completa, suite entera y la verificación de lo publicado contra sus fuentes, todo en una carpeta recién creada y sin instalar nada: 13 s de construcción, 412 pruebas en verde, los cuatro archivos publicados coincidiendo con las fuentes. No hay base de datos que copiar: el modelo de datos son los archivos JSON de `gates/` mantenidos a mano y la persistencia es el propio repositorio (E1, E2, E3) | — |
-| 2 | El código es entendible y abordable por un modelo de frontera: puede leerlo entero y explicar qué hace cada módulo sin inventar | **verde** | Se leyeron los 24 programas de `build/` línea por línea —5.102 líneas— y las fuentes de datos. No quedó ningún módulo sin entender, y la lectura dejó tres hallazgos propios que no venían de ninguna auditoría (E5). Lo que **no** se leyó línea por línea, y se dice: las 4.584 líneas de los 30 archivos de prueba; se corrieron, se leyeron sus nombres y se leyó entera la que vigila el guardián de línea de comandos, porque de ella dependía descartar un cuarto hallazgo que resultó falso | — |
+| 2 | El código es entendible y abordable por un modelo de frontera: puede leerlo entero y explicar qué hace cada módulo sin inventar | **verde** | Se leyeron los 24 programas de `build/` línea por línea —5.102 líneas— y las fuentes de datos. No quedó ningún módulo sin entender, y la lectura dejó cuatro hallazgos propios que no venían de ninguna auditoría (E5). Lo que **no** se leyó línea por línea, y se dice: las 4.584 líneas de los 30 archivos de prueba; se corrieron, se leyeron sus nombres y se leyó entera la que vigila el guardián de línea de comandos, porque de ella dependía descartar un quinto hallazgo que resultó falso —`portal_verify.mjs` usa su propio guardián y está registrado con su razón— | — |
 | 3 | A partir del código, el modelo puede describir en un documento la funcionalidad completa del sistema, en una forma que un usuario final reconozca como su sistema y acepte | **verde con una reserva medida** | El documento existe y está escrito desde el código, con sus marcas de fuente: [`FUNCTIONALITY_RECOVERED.md`](FUNCTIONALITY_RECOVERED.md), 18 KB. La reserva: se escribió el 24 de octubre contra `f49b267`, cuando el sistema tenía 12 programas y 2.064 líneas en `build/` y 158 pruebas. Hoy tiene 24 programas, 5.102 líneas y 412 pruebas, así que describe un sistema de menos de la mitad del tamaño del actual. Que un usuario final lo reconozca como su sistema no lo puede verificar el agente: lo acepta o no el dueño (E5) | Actualizar el documento contra `c12fb5e`, con el mismo método y las mismas marcas, y que el dueño lo acepte |
-| 4 | El frontend puede ser recorrido por herramientas de prueba para generar tests de punta a punta, con cada elemento accesible y el efecto en el backend verificable (es X2) | **verde en la interfaz de datos; sin verificar en las pantallas** | Se escribió y corrió una prueba de punta a punta de un flujo real: levantar el sitio construido en un servidor local, pedir el directorio de la interfaz, bajar los tres recursos, recalcular la huella de cada uno como consumidor independiente —sin usar una sola función del sistema— y contrastarla, más pedir una pantalla y exigir que sus elementos interactivos y los dos bloques de cada par estén servidos. 28 comprobaciones en verde, y se verificó que se pone **roja** al editar a mano una clave cubierta por la huella y al sacarle los botones a la pantalla. Lo que la prueba no hace, y hay que decirlo: no ejecuta el click, porque no hay motor de navegador instalado; y los 119 botones de las pantallas castellanas no tienen identificador propio —se alcanzan por su clase y su posición— (E4) | Instalar un motor de navegador y darle a cada elemento interactivo un identificador estable, para que un recorrido de pantalla no dependa de la posición en el árbol del documento |
+| 4 | El frontend puede ser recorrido por herramientas de prueba para generar tests de punta a punta, con cada elemento accesible y el efecto en el backend verificable (es X2) | **verde** | Dos pruebas, las dos corridas hoy sobre el clon limpio. La de **pantalla**, que existía de octubre y se volvió a correr: Chrome real por el protocolo de DevTools, con node pelado y sin instalar nada, y un clic de ratón de verdad —4 de sus 5 comprobaciones en verde; la quinta cae porque la escribieron fijando a mano la versión `2026.10.2` del catálogo y hoy la versión es `2026.10.11`, o sea que cae por el defecto de la prueba y no del sistema (E4b)—. Y la de **interfaz de datos**, escrita hoy: levantar el sitio, pedir el directorio, bajar los tres recursos y recalcular la huella de cada uno como consumidor independiente, sin usar una sola función del sistema; 28 comprobaciones en verde y verificada **en rojo** dos veces (E4). Reserva que no bloquea: los 119 botones no tienen identificador propio y se alcanzan por su clase y su posición | Darle a cada elemento interactivo un identificador estable, para que un recorrido de pantalla no dependa de la posición en el árbol del documento, y sacarle a la prueba de pantalla la versión fijada a mano |
 | 5 | El sistema se puede construir y ejecutar desde los fuentes con herramientas disponibles hoy: las dependencias se resuelven, las versiones existen, nada depende de un binario perdido | **verde** | No hay ninguna dependencia que resolver: cero manifiestos de paquetes, cero `node_modules`, cero archivos de bloqueo, y las importaciones de `build/` y `tests/` son todas módulos propios del lenguaje (`node:fs`, `node:crypto`, `node:test`...). El único tercero del sistema entra en el navegador: ocho de las pantallas importan la biblioteca de diagramas desde una red de distribución pública, sin copia local ni alternativa (E3) | — |
 | 6 | Los datos de producción se pueden copiar y anonimizar para un entorno de prueba, y hay una copia de respaldo que se restauró al menos una vez | **verde en la copia y la restauración; sin guarda la anonimización** | No hay base de datos: cero referencias a motor alguno en todo el árbol, y "los datos de producción" son el propio repositorio y los cuatro archivos que sirve el portal. La copia se hizo hoy, completa, en un minuto. La restauración **ya ocurrió de verdad**: las versiones publicadas de la interfaz se recuperaron de la historia de `main` y cada una verifica contra la huella que su registro anota —18 copias comprobadas hoy—. La anonimización de los clientes es una regla escrita del repositorio y **no la vigila ninguna prueba**: no hay guarda automática que impida escribir un nombre real (E6, E7) | Una guarda que falle si un nombre de cliente, un sistema real o una ruta local aparece en el árbol |
-| 7 | Las integraciones externas tienen un modo de prueba o se pueden aislar en el borde, para que las acciones con consecuencia se prueben sin consecuencias | **verde con una excepción nombrada** | Cuatro integraciones, enumeradas del flujo y del código: la plataforma de integración continua; el repositorio del portal, al que se empuja con una clave de despliegue de alcance único y sólo desde `main` con todo en verde; producción, a la que se le pregunta en **solo lectura** con dos programas que aceptan apuntar a otro extremo (`--base`) y que corren con node pelado; y la red de distribución que sirve la biblioteca de diagramas al navegador. Las tres primeras se aíslan. La cuarta no tiene modo de prueba ni copia local: sin red, las ocho pantallas con diagramas se quedan sin diagramas (E3, E8) | Servir la biblioteca de diagramas desde el propio sitio, o declarar por escrito que el diagrama es decoración y su ausencia no rompe la lectura |
+| 7 | Las integraciones externas tienen un modo de prueba o se pueden aislar en el borde, para que las acciones con consecuencia se prueben sin consecuencias | **rojo** (y es el mismo rojo que anotó la corrida del 24 de octubre) | Cuatro integraciones, enumeradas del flujo y del código. Dos se prueban sin consecuencia: a producción se le pregunta en **solo lectura** con dos programas que aceptan apuntar a otro extremo (`--base`), y la verificación entera corre sobre un clon cualquiera. La que tiene consecuencia real es **el empujón al repositorio del portal, que despliega a producción, y no tiene modo de ensayo**: no hay forma de correr la publicación en seco y ver qué copiaría. Lo que hay es acotación del daño, que no es lo mismo que ensayo: clave de despliegue alcanzada a un repositorio, el trabajo corre sólo en `main`, sólo después de la verificación en verde, y falla diciéndolo si falta el secreto. Y la cuarta, la red de distribución que sirve la biblioteca de diagramas al navegador, no tiene modo de prueba ni copia local: sin red, las ocho pantallas con diagramas se quedan sin diagramas (E3, E8) | Dos, y chicos: un modo en seco de la publicación que imprima qué archivos copiaría y qué borraría sin empujar nada —hoy el paso de copia vacía los dos destinos—, y servir la biblioteca de diagramas desde el propio sitio o declarar por escrito que el diagrama es decoración |
 
 ## Compuerta de la estación
 
@@ -77,12 +86,12 @@ Los siete en verde, con la evidencia del agente: el ambiente montado, el documen
 funcionalidad escrito y un test de punta a punta de un flujo corriendo. Cada rojo se convierte en
 un proyecto previo con su propio pendiente de salida, marcado como bloqueante.
 
-**Estado al 30 de octubre de 2026**: ninguno de los siete está en rojo. Cuatro están en verde sin
-reserva (1, 2, 5 y el núcleo de 6) y tres están en verde con una reserva escrita que el dueño
-tiene que leer antes de decidir: el documento de funcionalidad quedó viejo (3), el recorrido de
-pantalla no está verificado y es el que X2 mira (4), y la anonimización no tiene guarda (6). La
-excepción de la séptima —una biblioteca que viene de una red ajena— es del navegador y no de la
-construcción.
+**Estado al 30 de octubre de 2026**: seis en verde y **uno en rojo**, que es el mismo que estaba
+en rojo el 24 de octubre —las integraciones: el empujón que publica no tiene modo de ensayo—. De
+los seis verdes, tres llevan una reserva escrita que el dueño tiene que leer antes de decidir: el
+documento de funcionalidad quedó viejo (3), los botones de las pantallas no tienen identificador
+propio (4) y la anonimización de los clientes no tiene guarda (6). Ninguna de las tres impide
+recorrer el sistema ni montarlo; las tres son trabajo, y el dueño decide si son previo o posterior.
 
 ## La evidencia, medida
 
@@ -168,15 +177,45 @@ Las pantallas, contadas: 84 archivos HTML (12 del castellano, 10 por cada uno de
 idiomas traducidos, 2 manuales de práctica). Los botones de las pantallas castellanas: 119, todos
 con la misma clase y sin identificador propio.
 
-**E5 — la lectura del código, y los tres hallazgos que dejó.** Se leyeron los 24 programas de
-`build/` (5.102 líneas) y las fuentes de `gates/`. Los tres hallazgos son de la **misma familia**,
-y es una que este repositorio ya documentó dos veces: una cuenta escrita a mano dentro de un
-artefacto **generado**, que es la peor de las dos porque parece verificada.
+**E4b — la pantalla manejada por un navegador real, con un clic de ratón.** La prueba la escribió
+la corrida del 24 de octubre y hoy se volvió a correr contra el clon limpio, sin instalar nada:
+Chrome real manejado por el protocolo de DevTools sobre el WebSocket que trae node 22, con
+`Input.dispatchMouseEvent` en coordenadas reales y no un `.click()` inyectado.
 
 ```
-build/gates_doc.mjs:252   '### The five anchors and the two prior inputs'
-build/gates_doc.mjs:263   '### The three artifacts'
-build/labels_api.mjs      scope.excluded[0].measured = 'Twelve evaluator names, ...'
+$ URAZUKE_RAIZ=C:/n0-clone node --test .forge/n0-env/e2e_traducir.test.mjs
+ok 1 - el documento se sirve por HTTP y trae los botones de traduccion
+ok 2 - estado inicial: el prompt en ingles visible y la traduccion oculta
+ok 3 - un clic de raton en Traducir muestra la traduccion y oculta el ingles
+ok 4 - el segundo clic vuelve al original (el flujo cierra donde empezo)
+not ok 5 - efecto del lado del servidor: ... declara una huella que se recalcula
+    AssertionError: actual '2026.10.11'  expected '2026.10.2'
+    e2e_traducir.test.mjs:204   assert.equal(servido.version, '2026.10.2');
+# tests 5   # pass 4   # fail 1
+```
+
+Y los motores de navegador que la primera versión de esta ficha dijo que no existían, sin haber
+mirado:
+
+```
+$ ls ~/AppData/Local/ms-playwright
+chromium-1148  chromium-1217  chromium-1223  chromium-1228  chromium-1234  chromium-1248  ...
+$ ls ~/.cache/puppeteer
+chrome  chrome-headless-shell
+```
+
+**E5 — la lectura del código, y los cuatro hallazgos que dejó.** Se leyeron los 24 programas de
+`build/` (5.102 líneas) y las fuentes de `gates/`. Los cuatro hallazgos son de la **misma
+familia**, y es una que este repositorio ya documentó dos veces: una cifra escrita a mano dentro de
+un artefacto generado o de una comprobación, que es la peor de las dos porque parece verificada. El
+cuarto no salió de leer sino de correr —es la versión `2026.10.2` fijada a mano en la prueba de
+pantalla (E4b)— y es el único de los cuatro que ya está cayendo.
+
+```
+build/gates_doc.mjs:252            '### The five anchors and the two prior inputs'
+build/gates_doc.mjs:263            '### The three artifacts'
+build/labels_api.mjs               scope.excluded[0].measured = 'Twelve evaluator names, ...'
+.forge/n0-env/e2e_traducir:204     assert.equal(servido.version, '2026.10.2')   <- ya esta cayendo
 
 medido contra el dato: anclas 5, prior_inputs 2, artifacts 3, evaluadores 12   (hoy coinciden)
 ninguna prueba las contrasta: grep en tests/ -> 0 archivos
