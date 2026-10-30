@@ -1,6 +1,6 @@
 # Ficha de criterios de elegibilidad
 
-Insumo de la estación N0 del camino evolutivo-correctivo. Es la ficha **en blanco**: la
+Insumo de la estación N0 del camino evolutivo-correctivo. Era la ficha **en blanco**: la
 transcripción de los criterios del peldaño 0 del documento principal
 ([`ESCALERA_METODOLOGICA.md`](ESCALERA_METODOLOGICA.md), Parte "¿Este proyecto se puede encarar
 así?") más los siete prerrequisitos del legado de
@@ -13,31 +13,42 @@ que hizo, no con lo que le preguntó a nadie; la ficha completa, con la decisió
 - **Quién decide**: Pablo Kuschniroff, dueño del método. El agente verifica y presenta; no
   decide.
 - **Fecha de apertura de la ficha**: 24 de octubre de 2026.
+- **Fecha de llenado**: 30 de octubre de 2026, contra `main` en `c12fb5e`.
+- **Cómo se verificó**: con un clon limpio del repositorio público en una carpeta aparte
+  (`git clone https://github.com/pkuschnirof/urazuke.git`), sin tocar el árbol de trabajo. Cada
+  celda de evidencia remite a una corrida cuya salida está pegada en la sección "La evidencia,
+  medida" de abajo. Lo que no se pudo medir se dice, y no se escribe en verde.
 
 ## Los dos criterios excluyentes del peldaño 0
 
 | # | Criterio excluyente | Respuesta | Fuente | Verde o rojo |
 |---|---|---|---|---|
-| X1 | Tecnología heredada sin repositorio accesible, o con repositorios que no siguen un estándar | | | |
-| X2 | Tecnología que no se puede probar de punta a punta: no se pueden ejecutar las pantallas y acceder a cada elemento de la interfaz con sus distintos métodos, validando que el cambio llegó al backend | | | |
+| X1 | Tecnología heredada sin repositorio accesible, o con repositorios que no siguen un estándar | No aplica como exclusión: hay un repositorio público accesible y es uno solo. El clon limpio trajo 606 archivos versionados y quedó en `c12fb5e`, con la disposición estándar del lenguaje (`build/`, `tests/`, `docs/`, `gates/`, `prompts/`, `labels/`) y su flujo de integración continua | E1 | **verde** |
+| X2 | Tecnología que no se puede probar de punta a punta: no se pueden ejecutar las pantallas y acceder a cada elemento de la interfaz con sus distintos métodos, validando que el cambio llegó al backend | **Partido, y hay que leerlo entero.** Este sistema no tiene backend: lo que publica son 84 pantallas de HTML estático y una interfaz de datos de cuatro archivos. Sobre la interfaz de datos el criterio se cumple y está **medido**: se levantó el sitio construido en un servidor local, se descubrió la interfaz por su índice, se bajó cada recurso y se recalculó su huella como consumidor independiente, y la prueba se puso roja al mutilar el sistema. Sobre las **pantallas** no está verificado: sus 119 botones se alcanzan por su clase y su posición en el árbol del documento, ninguno tiene identificador propio, y no hay ningún motor de navegador instalado que ejecute el click | E4 | **verde en la interfaz de datos; sin verificar en las pantallas** |
 
 El criterio neutral de X2, tal como lo fija el documento principal: la interfaz se puede
 ejecutar por programa y cada elemento de la pantalla es accesible con sus distintos métodos
 (hacer clic, tipear, leer su estado), de modo que un test pueda recorrer la pantalla y después
 verificar el efecto en el backend. NAC3 no es condición: es uno de los medios.
 
+Y la lectura que el agente **no** hace, porque es del dueño: si para este sistema "la pantalla"
+es la parte que hay que poder recorrer, o si la parte que hay que poder recorrer es la interfaz
+de datos —que es la que una herramienta consume, la que lleva versión y huella, y la que ya se
+recorre por programa—. De eso depende si X2 está verde o si pide un proyecto previo, y es la
+decisión que [`ELIGIBILITY.md`](ELIGIBILITY.md) tiene que registrar.
+
 ## Los criterios que ponderan (todavía sin peso, `[hipótesis]`)
 
 | # | Criterio candidato | Respuesta | Fuente | Verde o rojo |
 |---|---|---|---|---|
-| D1 | Hay un dueño del dominio con criterio y con tiempo para decidir (no para programar) | | | |
-| D2 | Hay un "oráculo" de verdad verificable: datos reales, un sistema externo, producción en solo lectura | | | |
-| D4 | La tecnología está dentro de lo que el agente domina sin inventar (Node, Python, SQL, React) | | | |
-| D5 | El error tiene consecuencia real (plata, salud, operación), lo que justifica el fail-closed | | | |
-| D6 | La volumetría se puede conocer desde el día uno | | | |
-| D7 | El cliente tolera un tiempo de maduración y un humano en el circuito | | | |
-| D9 | El alcance cabe en un repositorio y un dueño | | | |
-| D10 | Los secretos y accesos se pueden aislar (bóveda, archivo de entorno, permisos acotados) | | | |
+| D1 | Hay un dueño del dominio con criterio y con tiempo para decidir (no para programar) | Sí, y se ve en el árbol: el registro de decisiones lleva las decisiones firmadas por el dueño, dos de ellas del 2026-10-29 (D-075, D-076), y `.github/CODEOWNERS` le da la aprobación de toda fusión a una sola persona | E8 | **verde** |
+| D2 | Hay un "oráculo" de verdad verificable: datos reales, un sistema externo, producción en solo lectura | Tres, y los tres se consultan sin permiso de nadie: producción en solo lectura (`yujin.app/urazuke/api/`, consultada hoy), el registro append-only de versiones con su par (versión → huella), y el congelado `gates/baseline.json` contra el que corre la prueba de diferencia cero | E2, E7 | **verde** |
+| D4 | La tecnología está dentro de lo que el agente domina sin inventar (Node, Python, SQL, React) | Node 22 pelado, sin una sola dependencia de terceros, más markdown, JSON y un HTML con su CSS embebido y dos líneas de JavaScript. Las 54 unidades de código del repositorio están leídas o corridas | E3, E5 | **verde** |
+| D5 | El error tiene consecuencia real (plata, salud, operación), lo que justifica el fail-closed | Lo medible: la interfaz de datos la consume al menos una herramienta externa que ya reportó tres defectos del método contra lo publicado (PND-056, PND-059, PND-061), así que un dato equivocado sale del repositorio y llega a un consumidor. Si eso alcanza como "consecuencia real" lo decide el dueño | E8 | **del dueño** |
+| D6 | La volumetría se puede conocer desde el día uno | Se conoce entera y es chica: 84 pantallas, 4 recursos publicados, 184 KB de fuentes de compuertas, 16 MB de sitio generado, 63 entradas en el registro de pendientes. No hay base de datos ni crecimiento por uso: el sistema no guarda nada de nadie | E6 | **verde** |
+| D7 | El cliente tolera un tiempo de maduración y un humano en el circuito | El humano en el circuito está en la máquina: `main` protegida con aprobación de un propietario, y ninguna publicación ocurre sin una fusión que él aprueba. La tolerancia al tiempo de maduración la declara el dueño | E8 | **verde en el circuito; el plazo lo declara el dueño** |
+| D9 | El alcance cabe en un repositorio y un dueño | Un repositorio, 606 archivos, un propietario de código | E1, E8 | **verde** |
+| D10 | Los secretos y accesos se pueden aislar (bóveda, archivo de entorno, permisos acotados) | El flujo usa **un** secreto (`PORTAL_DEPLOY_KEY`), que es una clave de despliegue alcanzada a un repositorio y se revoca desde sus ajustes; se lee en un solo trabajo, que corre sólo en `main` y sólo después de que la verificación quede verde; si falta, el trabajo falla diciéndolo y no se saltea en silencio | E8 | **verde** |
 
 Nota de transcripción: el contrato del peldaño 0 habla de "los criterios D1 a D10", y la tabla
 del documento principal tiene ocho filas: faltan D3 y D8. El propio documento dice, dos párrafos
@@ -52,16 +63,165 @@ un proyecto previo con su propio criterio de salida, que es el prerrequisito ver
 
 | # | Prerrequisito | Verde o rojo | Evidencia (qué hizo el agente y qué pasó) | Proyecto previo, si está en rojo |
 |---|---|---|---|---|
-| 1 | Se puede montar un ambiente completo del sistema, con todos sus fuentes, su modelo de datos y su persistencia, desde el repositorio y una copia de los datos | | | |
-| 2 | El código es entendible y abordable por un modelo de frontera: puede leerlo entero y explicar qué hace cada módulo sin inventar | | | |
-| 3 | A partir del código, el modelo puede describir en un documento la funcionalidad completa del sistema, en una forma que un usuario final reconozca como su sistema y acepte | | | |
-| 4 | El frontend puede ser recorrido por herramientas de prueba para generar tests de punta a punta, con cada elemento accesible y el efecto en el backend verificable (es X2) | | | |
-| 5 | El sistema se puede construir y ejecutar desde los fuentes con herramientas disponibles hoy: las dependencias se resuelven, las versiones existen, nada depende de un binario perdido | | | |
-| 6 | Los datos de producción se pueden copiar y anonimizar para un entorno de prueba, y hay una copia de respaldo que se restauró al menos una vez | | | |
-| 7 | Las integraciones externas tienen un modo de prueba o se pueden aislar en el borde, para que las acciones con consecuencia se prueben sin consecuencias | | | |
+| 1 | Se puede montar un ambiente completo del sistema, con todos sus fuentes, su modelo de datos y su persistencia, desde el repositorio y una copia de los datos | **verde** | Clon limpio del repositorio público, construcción completa, suite entera y la verificación de lo publicado contra sus fuentes, todo en una carpeta recién creada y sin instalar nada: 13 s de construcción, 412 pruebas en verde, los cuatro archivos publicados coincidiendo con las fuentes. No hay base de datos que copiar: el modelo de datos son los archivos JSON de `gates/` mantenidos a mano y la persistencia es el propio repositorio (E1, E2, E3) | — |
+| 2 | El código es entendible y abordable por un modelo de frontera: puede leerlo entero y explicar qué hace cada módulo sin inventar | **verde** | Se leyeron los 24 programas de `build/` línea por línea —5.102 líneas— y las fuentes de datos. No quedó ningún módulo sin entender, y la lectura dejó tres hallazgos propios que no venían de ninguna auditoría (E5). Lo que **no** se leyó línea por línea, y se dice: las 4.584 líneas de los 30 archivos de prueba; se corrieron, se leyeron sus nombres y se leyó entera la que vigila el guardián de línea de comandos, porque de ella dependía descartar un cuarto hallazgo que resultó falso | — |
+| 3 | A partir del código, el modelo puede describir en un documento la funcionalidad completa del sistema, en una forma que un usuario final reconozca como su sistema y acepte | **verde con una reserva medida** | El documento existe y está escrito desde el código, con sus marcas de fuente: [`FUNCTIONALITY_RECOVERED.md`](FUNCTIONALITY_RECOVERED.md), 18 KB. La reserva: se escribió el 24 de octubre contra `f49b267`, cuando el sistema tenía 12 programas y 2.064 líneas en `build/` y 158 pruebas. Hoy tiene 24 programas, 5.102 líneas y 412 pruebas, así que describe un sistema de menos de la mitad del tamaño del actual. Que un usuario final lo reconozca como su sistema no lo puede verificar el agente: lo acepta o no el dueño (E5) | Actualizar el documento contra `c12fb5e`, con el mismo método y las mismas marcas, y que el dueño lo acepte |
+| 4 | El frontend puede ser recorrido por herramientas de prueba para generar tests de punta a punta, con cada elemento accesible y el efecto en el backend verificable (es X2) | **verde en la interfaz de datos; sin verificar en las pantallas** | Se escribió y corrió una prueba de punta a punta de un flujo real: levantar el sitio construido en un servidor local, pedir el directorio de la interfaz, bajar los tres recursos, recalcular la huella de cada uno como consumidor independiente —sin usar una sola función del sistema— y contrastarla, más pedir una pantalla y exigir que sus elementos interactivos y los dos bloques de cada par estén servidos. 28 comprobaciones en verde, y se verificó que se pone **roja** al editar a mano una clave cubierta por la huella y al sacarle los botones a la pantalla. Lo que la prueba no hace, y hay que decirlo: no ejecuta el click, porque no hay motor de navegador instalado; y los 119 botones de las pantallas castellanas no tienen identificador propio —se alcanzan por su clase y su posición— (E4) | Instalar un motor de navegador y darle a cada elemento interactivo un identificador estable, para que un recorrido de pantalla no dependa de la posición en el árbol del documento |
+| 5 | El sistema se puede construir y ejecutar desde los fuentes con herramientas disponibles hoy: las dependencias se resuelven, las versiones existen, nada depende de un binario perdido | **verde** | No hay ninguna dependencia que resolver: cero manifiestos de paquetes, cero `node_modules`, cero archivos de bloqueo, y las importaciones de `build/` y `tests/` son todas módulos propios del lenguaje (`node:fs`, `node:crypto`, `node:test`...). El único tercero del sistema entra en el navegador: ocho de las pantallas importan la biblioteca de diagramas desde una red de distribución pública, sin copia local ni alternativa (E3) | — |
+| 6 | Los datos de producción se pueden copiar y anonimizar para un entorno de prueba, y hay una copia de respaldo que se restauró al menos una vez | **verde en la copia y la restauración; sin guarda la anonimización** | No hay base de datos: cero referencias a motor alguno en todo el árbol, y "los datos de producción" son el propio repositorio y los cuatro archivos que sirve el portal. La copia se hizo hoy, completa, en un minuto. La restauración **ya ocurrió de verdad**: las versiones publicadas de la interfaz se recuperaron de la historia de `main` y cada una verifica contra la huella que su registro anota —18 copias comprobadas hoy—. La anonimización de los clientes es una regla escrita del repositorio y **no la vigila ninguna prueba**: no hay guarda automática que impida escribir un nombre real (E6, E7) | Una guarda que falle si un nombre de cliente, un sistema real o una ruta local aparece en el árbol |
+| 7 | Las integraciones externas tienen un modo de prueba o se pueden aislar en el borde, para que las acciones con consecuencia se prueben sin consecuencias | **verde con una excepción nombrada** | Cuatro integraciones, enumeradas del flujo y del código: la plataforma de integración continua; el repositorio del portal, al que se empuja con una clave de despliegue de alcance único y sólo desde `main` con todo en verde; producción, a la que se le pregunta en **solo lectura** con dos programas que aceptan apuntar a otro extremo (`--base`) y que corren con node pelado; y la red de distribución que sirve la biblioteca de diagramas al navegador. Las tres primeras se aíslan. La cuarta no tiene modo de prueba ni copia local: sin red, las ocho pantallas con diagramas se quedan sin diagramas (E3, E8) | Servir la biblioteca de diagramas desde el propio sitio, o declarar por escrito que el diagrama es decoración y su ausencia no rompe la lectura |
 
 ## Compuerta de la estación
 
 Los siete en verde, con la evidencia del agente: el ambiente montado, el documento de
 funcionalidad escrito y un test de punta a punta de un flujo corriendo. Cada rojo se convierte en
 un proyecto previo con su propio pendiente de salida, marcado como bloqueante.
+
+**Estado al 30 de octubre de 2026**: ninguno de los siete está en rojo. Cuatro están en verde sin
+reserva (1, 2, 5 y el núcleo de 6) y tres están en verde con una reserva escrita que el dueño
+tiene que leer antes de decidir: el documento de funcionalidad quedó viejo (3), el recorrido de
+pantalla no está verificado y es el que X2 mira (4), y la anonimización no tiene guarda (6). La
+excepción de la séptima —una biblioteca que viene de una red ajena— es del navegador y no de la
+construcción.
+
+## La evidencia, medida
+
+Cada bloque es la salida real, recortada cuando era larga. Se corrió el 30 de octubre de 2026
+sobre el clon limpio, salvo donde se dice.
+
+**E1 — el clon y lo que trajo.**
+
+```
+$ git clone https://github.com/pkuschnirof/urazuke.git
+HEAD: c12fb5e
+606 archivos versionados
+build  docs  gates  labels  prompts  tests  CLAUDE.md  CONTRIBUTING.md  LICENSE  README.md
+por extension: 357 md, 85 html, 54 mjs, 51 json, 40 png, 12 txt, 2 diff, 1 yml
+```
+
+**E2 — la construcción completa y la suite, en el clon.**
+
+```
+$ node build/build.mjs
+prompts: 54 en 24 contratos ...; traducciones verificadas: en, pt, fr, de, it, ja, zh; errores: 0
+forma de la pregunta: comprobado -- 8 idiomas, 576 prompts, 504 traducciones, 0 hallazgos
+api: docs/html/api/gates.json (catalogo 2026.10.11, ... huella c17a09557a5f)
+api: docs/html/api/labels.json (catalogo 2026.10.1, 8 idiomas x 78 ids = 624 textos extraidos ...)
+versiones inmutables: comprobado -- 18 copias, cada una con la huella que su registro anota
+docs/COMPUERTAS.md: coincide con los datos
+real    0m13.081s
+
+$ node --test
+# tests 412   # pass 412   # fail 0   # duration_ms 3981
+
+$ node build/api_check.mjs
+gates.json: lo commiteado coincide con las fuentes (sin mirar generated_at, git_commit, git_commit_note)
+prompts.json / labels.json / index.json: idem
+```
+
+Y lo que la construcción deja sucio, que son siete archivos y dos campos: `generated_at` y
+`git_commit`, los dos fuera de la huella a propósito. El contenido que la huella cubre es
+reproducible byte a byte en un clon recién hecho.
+
+**E3 — las dependencias, contadas.**
+
+```
+$ find . -name "package*.json" -o -name node_modules -o -name "*.lock"   (sin .git)
+0 manifiestos, 0 node_modules
+
+$ grep -rhoE "from +'[^.'][^']*'" build/ tests/ | sort -u
+node:assert/strict  node:child_process  node:crypto  node:fs  node:os  node:path  node:test  node:url
+https://cdn.jsdelivr.net/npm/mermaid@11/...   <- en el navegador, 8 pantallas
+```
+
+**E4 — la prueba de punta a punta, y su rojo.** El programa vive fuera de este repositorio
+(no entra sin el pendiente que lo pida): levanta un servidor sobre `docs/html/`, pide `/api/`,
+y por cada recurso que el índice declara baja el archivo, lee qué claves dice cubrir, canonicaliza
+con una implementación escrita de cero y compara la huella.
+
+```
+sitio construido servido en http://127.0.0.1:55739
+  ok   GET /api/ contesta 200 (HTTP 200)
+  ok   el indice declara recursos (3 recursos)
+  ok   gates.json pesa lo que el indice dice (115272 vs 115272 declarados)
+  ok   gates.json: la huella recalculada es la declarada (c17a09557a5f vs c17a09557a5f)
+  ok   prompts.json: la huella recalculada es la declarada (03866b055357 vs 03866b055357)
+  ok   labels.json: la huella recalculada es la declarada (0f3c78defe6f vs 0f3c78defe6f)
+  ok   la pantalla sirve sus botones de traducir (54 botones)
+  ok   los dos bloques del par estan servidos (108 bloques para 54 botones)
+  ok   el bloque traducido llega oculto (estado inicial)
+# verdes 28   # fallas 0
+```
+
+Los dos rojos deliberados, que son lo que demuestra que la prueba guarda algo:
+
+```
+rojo 1: una clave cubierta editada a mano (schema_version 2 -> 3)
+  FALLA gates.json pesa lo que el indice dice (115271 vs 115272 declarados)
+  FALLA gates.json: la huella recalculada es la declarada (1f6531683858 vs c17a09557a5f)
+rojo 2: la pantalla sin sus botones
+  FALLA la pantalla sirve sus botones de traducir (0 botones)
+restaurado: # verdes 28   # fallas 0
+```
+
+Las pantallas, contadas: 84 archivos HTML (12 del castellano, 10 por cada uno de los siete
+idiomas traducidos, 2 manuales de práctica). Los botones de las pantallas castellanas: 119, todos
+con la misma clase y sin identificador propio.
+
+**E5 — la lectura del código, y los tres hallazgos que dejó.** Se leyeron los 24 programas de
+`build/` (5.102 líneas) y las fuentes de `gates/`. Los tres hallazgos son de la **misma familia**,
+y es una que este repositorio ya documentó dos veces: una cuenta escrita a mano dentro de un
+artefacto **generado**, que es la peor de las dos porque parece verificada.
+
+```
+build/gates_doc.mjs:252   '### The five anchors and the two prior inputs'
+build/gates_doc.mjs:263   '### The three artifacts'
+build/labels_api.mjs      scope.excluded[0].measured = 'Twelve evaluator names, ...'
+
+medido contra el dato: anclas 5, prior_inputs 2, artifacts 3, evaluadores 12   (hoy coinciden)
+ninguna prueba las contrasta: grep en tests/ -> 0 archivos
+y la tercera viaja en el publicado, adentro de lo que cubre la huella:
+  labels.json content_hash.covers incluye "scope" -> true
+```
+
+El caso de los veinticuatro peldaños no está en la lista porque el validador lo exige con
+`E_CUENTA`, y el de las reglas del anexo tampoco porque ya se deriva del dato (D-070). Los tres de
+arriba no los exige nadie: el día que entre una sexta ancla, un cuarto artefacto o un decimotercer
+evaluador, el documento generado y el recurso publicado van a decir una cifra falsa y toda la
+cadena va a seguir en verde.
+
+**E6 — los datos, la copia y el respaldo.**
+
+```
+$ grep -rlnE "mysql|postgres|sqlite|mongo" build/ tests/ gates/
+(ninguna referencia)
+
+tamanos: gates/ 184K   prompts/ 160K   labels/ 4K   docs/html/api 2.0M   docs/html 16M
+$ grep -rln "anonim..." tests/ build/
+(ninguna guarda)
+```
+
+**E7 — producción, consultada hoy en solo lectura.**
+
+```
+$ node build/portal_verify.mjs --rondas 1
+gates.json: coincide -- HTTP 200, 115272 bytes, version 2026.10.11, huella c17a09557a5f
+prompts.json: coincide -- HTTP 200, 102716 bytes, version 2026.10.6, huella 03866b055357
+labels.json: coincide -- HTTP 200, 91432 bytes, version 2026.10.1, huella 0f3c78defe6f
+index.json: coincide -- HTTP 200, 12867 bytes, cita las 3 huellas que declara lo commiteado
+Produccion sirve las 3 huellas y un indice que las cita: publicado y verificado.
+```
+
+**E8 — el gobierno, las integraciones y los secretos.**
+
+```
+$ grep -o "secrets\.[A-Z_]*" .github/workflows/compuertas.yml | sort | uniq -c
+      2 secrets.PORTAL_DEPLOY_KEY            <- uno solo, en un solo trabajo
+
+publicar:  if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+           needs: verificar                  <- no se publica sin la verificacion en verde
+           primer paso: exigir la credencial, y si falta falla diciendolo
+
+$ cat .github/CODEOWNERS
+* @pkuschnirof                               <- toda fusion en main la aprueba un propietario
+```
