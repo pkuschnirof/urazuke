@@ -1541,7 +1541,7 @@ así que escribirla no reabre ningún peldaño cerrado.
 
 - **Nodo:** `datos/compuertas` [nodo propuesto]
 - **Grupo:** G-API · **Severidad:** avisa · **Quién decide:** nadie: es un defecto medido y su arreglo es mecánico
-- **Repositorio:** método · **Estado: en curso** desde el 2026-10-29: el identificador está escrito, validado y en el diferencial; cierra cuando producción sirva `2026.10.11` (D-057: se cierra por el efecto, no por el commit).
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-30, por el efecto: producción sirve `2026.10.11` con el identificador del umbral y los tres estados de la escalada escritos. **Decisión:** D-076.
 
 **Qué estaba mal.** CQ-18 (la accesibilidad básica) **avisa** desde el día uno y **escala a
 bloquea** cuando el producto tiene usuarios finales fuera de la organización (D-048). La cláusula
@@ -1609,13 +1609,34 @@ en los ocho idiomas; `node --test`, con el rojo deliberado que cae si el ejemplo
 su repositorio. Y el método no declara ningún valor por omisión: un proyecto que no declara nada
 sigue con la escalada pendiente, que es el estado que faltaba poder decir.
 
+**Cómo se cerró (2026-10-30), por el efecto y no por el commit.** La fusión `9cf19d8` disparó la
+publicación. Lo que cierra esto no es que el identificador esté escrito en `gates/`: es que un
+consumidor que **sólo tiene la interfaz publicada** pueda leerlo. Bajado del extremo canónico, no
+del disco:
+
+```
+$ node -e "los ids de umbral que el dato SERVIDO publica, y la clausula de CQ-18"
+GET https://yujin.app/urazuke/api/gates.json   HTTP 200, 115272 bytes, version 2026.10.11
+lines_per_file 300 | lines_per_function 40 | paths_per_function - | minimum_coverage -
+mutation_target - | end_users_outside_the_organisation -   <- declared_by: the owner
+CQ-18.escalates_to.declared_by_threshold = "end_users_outside_the_organisation"
+  true -> escala a bloquea | false -> escalada DECLINADA | sin declarar -> PENDIENTE
+```
+
+Son seis umbrales donde había cinco, y el que entró es el que faltaba. La corrida de publicación lo
+dejó anotado con su propia medición: la huella `c17a09557a5f` apareció servida en la **tercera
+vuelta** —las dos primeras devolvieron `2026.10.10`, que es la copia vieja del portal, y por eso el
+verificador reintenta en vez de declarar rojo—, las tres huellas coincidiendo, el índice citándolas,
+cero huérfanas de ochenta y cuatro documentos y la interfaz consumible. Antes de fusionar, la cadena
+en verde: 412 pruebas, 0 fallos.
+
 ---
 
 ## PND-063 — Las claves del archivo de configuración estaban traducidas, y el apagado escrito como el anexo lo enseñaba pasaba la compuerta en verde *(desvío propio, el quinto; lo encontró el dueño al pedir un ejemplo)*
 
 - **Nodo:** `corpus/anexo-h` [nodo propuesto]
 - **Grupo:** G-API · **Severidad:** bloquea · **Quién decide:** nadie: es un defecto medido y su arreglo es mecánico
-- **Repositorio:** método · **Estado: en curso** desde el 2026-10-29: las ocho versiones están corregidas y la guarda corre en la cadena; cierra cuando producción sirva el anexo corregido (D-057).
+- **Repositorio:** método · **Estado: CERRADO** el 2026-10-30, por el efecto: producción sirve las claves con el nombre que el dato declara, y el apagado escrito como el ejemplo lo enseña ya no pasa en verde. **Decisión:** D-075.
 
 **Qué estaba mal.** El Anexo H, sección 7, muestra el único archivo que un proyecto escribe para la
 compuerta: la capa 2 y la capa 3. Esas claves **no son prosa**: son el contrato que una herramienta
@@ -1709,6 +1730,26 @@ claves de configuracion: comprobado -- 8 idiomas, 32 claves, 2 exenciones con su
 sigue siendo criterio de quien mide, por decisión del dueño del 2026-10-29, así que el método no
 declara esos nombres y la guarda no los exige. Y ninguna prueba verifica que los **valores** del
 ejemplo sean los adecuados para un proyecto: son ilustrativos y el anexo lo dice.
+
+**Cómo se cerró (2026-10-30), por el efecto.** Lo que había que medir no es que el ejemplo esté
+corregido en disco —eso ya estaba el 29—, sino que las claves que el lector copia del anexo
+**servido** sean las que la compuerta lee. Bajado del publicado:
+
+```
+$ node -e "los campos de configuracion que el dato SERVIDO declara"
+GET https://yujin.app/urazuke/api/gates.json   HTTP 200, version 2026.10.11
+frontend | real_users | switches | switched_off | thresholds | tools | communication_depth
+switch_off_record = ["rule","reason","authorized_by","review_date"]
+project_config.enums = ["communication_depth"]
+```
+
+Son las que el contrato declara, con el nombre exacto, en una sola ortografía y las mismas en los
+ocho idiomas. El apagado escrito **como el anexo lo enseña** ahora dice `switched_off`, así que el
+validador mira el registro de cuatro campos en vez de pasar de largo: **el verde falso ya no se
+puede escribir copiando el ejemplo**, que es la única forma de cierre que este pendiente admitía.
+La guarda corre en la cadena y dejó su línea medida —`claves de configuración: comprobado -- 8
+idiomas, 32 claves, 2 exenciones con su razón, 0 hallazgos`—, con 151 hallazgos contra el árbol
+anterior. Fusión `9cf19d8`; 412 pruebas, 0 fallos.
 
 ---
 
@@ -5865,14 +5906,14 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 20 | 5 | 15 | 1 |
+| G-API | 20 | 3 | 17 | 0 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 14 | 11 | 3 | 1 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 13 | 1 | 12 | 0 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **63** | **18** | **45** | **2** |
+| **total** | **63** | **16** | **47** | **1** |
 
 Sesenta y tres entradas, `PND-001` a `PND-063`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
@@ -6059,20 +6100,21 @@ PND-016, PND-024 y PND-046), los arreglos de las nueve revisiones semánticas �
 2026-10-27, cuarenta y seis hallazgos, y en curso porque su criterio de aceptación es sobre lo que
 el lector lee y publicar la portada es del dueño (PND-026 a PND-034, con PND-057 y PND-058, que son
 del castellano)— y la prevención de los desvíos de medición (**PND-052**, que es el segundo del
-mismo grupo en dos días). Quedan **dos** bloqueantes abiertos, y conviene decir que son de distinta
-naturaleza: el de idiomas (PND-016) es la decisión más cara del backlog y está esperando al dueño,
-y el de las claves de configuración (PND-063) ya está **arreglado y medido** —las ocho versiones
-corregidas, la guarda en la cadena— y sigue abierto porque un arreglo en la máquina no es un
-efecto en producción (D-057). El de la API había cerrado el 2026-10-28 con PND-011 —el catálogo de
-textos servido y verificado, con los ocho idiomas que tienen prosa— y lo reabrió este desvío; el
-del método, el del alcance, el de
+mismo grupo en dos días). Queda **un** bloqueante abierto, y es el más caro del backlog: el de
+idiomas (PND-016), que está esperando al dueño. El de las claves de configuración (PND-063) cerró
+el 2026-10-30, y cerró como corresponde: estuvo **arreglado y medido** un día entero —las ocho
+versiones corregidas, la guarda en la cadena— y **siguió abierto**, porque un arreglo en la máquina
+no es un efecto en producción (D-057); cerró cuando el anexo servido llevó las claves que el dato
+declara. El grupo de la API había cerrado el 2026-10-28 con PND-011 —el catálogo de textos servido y
+verificado, con los ocho idiomas que tienen prosa—, lo reabrió este desvío y volvió a cerrar con la
+misma publicación; el del método, el del alcance, el de
 la publicación y el del contenido se cerraron antes —`PND-054`, la
 forma de la pregunta, el 2026-10-27 con D-070—, y `PND-010` y `PND-019` cerraron juntos en un solo
 cambio de versión.
 
-**Y las tres últimas, del 2026-10-29, salieron de verificar al consumidor en vez de a la publicación.** Las dos primeras son huecos de las capas 2 y 3 del Anexo H que aparecieron al medir si la herramienta había implementado el anexo: `PND-061`, la cifra de cumplimiento, donde la lista de lo que queda fuera del porcentaje lleva tres identificadores y **una frase**, y las tres lecturas razonables de esa frase dan 93,3 %, 62,2 % y 55,6 % para el mismo proyecto; y `PND-062`, la escalada de CQ-18, que se declaraba «por el mismo mecanismo que cualquier umbral» y no tenía identificador de umbral, así que la ausencia de una clave significaba a la vez «escalada declinada» y «nadie la miró». El tercer hueco que esa verificación trajo —con qué se mide cada regla— **no es un pendiente**: el dueño decidió el mismo día que el método no lo abarca y queda a criterio de quien mide (D-075).
+**Y las tres últimas, del 2026-10-29, salieron de verificar al consumidor en vez de a la publicación.** Las dos primeras son huecos de las capas 2 y 3 del Anexo H que aparecieron al medir si la herramienta había implementado el anexo: `PND-061`, la cifra de cumplimiento, donde la lista de lo que queda fuera del porcentaje lleva tres identificadores y **una frase**, y las tres lecturas razonables de esa frase dan 93,3 %, 62,2 % y 55,6 % para el mismo proyecto; y `PND-062`, la escalada de CQ-18, que se declaraba «por el mismo mecanismo que cualquier umbral» y no tenía identificador de umbral, así que la ausencia de una clave significaba a la vez «escalada declinada» y «nadie la miró» —**cerrada el 2026-10-30**, con el umbral `end_users_outside_the_organisation` servido y los tres estados dichos—. El tercer hueco que esa verificación trajo —con qué se mide cada regla— **no es un pendiente**: el dueño decidió el mismo día que el método no lo abarca y queda a criterio de quien mide (D-075).
 
-`PND-063` es el quinto desvío propio y el peor de los cinco, porque no falló un reporte: falló una compuerta. Lo encontró el dueño pidiendo un ejemplo práctico de los otros dos. El ejemplo de configuración del anexo llevaba las claves **traducidas** —cuatro vocabularios distintos en los ocho idiomas, ochenta y siete nombres para veinticuatro casilleros— y, medido contra la propia compuerta del método, un apagado escrito **exactamente como el ejemplo lo enseñaba** salía `validado` con código 0: la regla apagada y el registro de cuatro campos que D-046 llama no negociable sin mirarse nunca, porque la compuerta lee `switched_off` y el ejemplo decía `exceptions`. Los cuatro desvíos anteriores fueron afirmaciones que la medición desmentía; este es daño silencioso —lo que SQ 0.3 prohíbe— y le pasaba al lector que **obedece**. La guarda que lo cierra exige las dos direcciones y trae catorce rojos deliberados, uno de ellos reproduciendo el verde falso.
+`PND-063` es el quinto desvío propio y el peor de los cinco, porque no falló un reporte: falló una compuerta. Lo encontró el dueño pidiendo un ejemplo práctico de los otros dos. El ejemplo de configuración del anexo llevaba las claves **traducidas** —cuatro vocabularios distintos en los ocho idiomas, ochenta y siete nombres para veinticuatro casilleros— y, medido contra la propia compuerta del método, un apagado escrito **exactamente como el ejemplo lo enseñaba** salía `validado` con código 0: la regla apagada y el registro de cuatro campos que D-046 llama no negociable sin mirarse nunca, porque la compuerta lee `switched_off` y el ejemplo decía `exceptions`. Los cuatro desvíos anteriores fueron afirmaciones que la medición desmentía; este es daño silencioso —lo que SQ 0.3 prohíbe— y le pasaba al lector que **obedece**. La guarda que lo cierra exige las dos direcciones y trae catorce rojos deliberados, uno de ellos reproduciendo el verde falso. **Cerró el 2026-10-30**, con las claves servidas y no sólo corregidas en disco.
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar
