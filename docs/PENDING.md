@@ -7773,6 +7773,161 @@ detenido. Marcarla bloqueante sería inflar la fila de G-METODO por una cifra en
 Y en las dos salidas: la decisión **cita esta medición**, porque una exclusión declarada sin el daño
 que ya ocurrió se lee como una comodidad.
 
+## PND-090 — La compuerta de `main` pide una aprobación que, para el único que puede escribir, no se puede dar: el único camino es el bypass *(la trajo el dueño al fusionar `#31`)*
+
+- **Nodo:** `gobernanza/main-protegida` [nodo propuesto]
+- **Origen:** el dueño, el 2026-11-01. No la trajo una auditoría ni una prueba: la trajo el **acto de
+  pasar la compuerta** y ver que el único camino disponible era saltearla.
+- **Grupo:** G-TRAZABILIDAD · **Severidad:** avisa · **Repositorio:** método (configuración del
+  repositorio, no código)
+- **Quién decide:** el dueño. La recomendación es suya, está escrita abajo tal como la dictó y no la
+  toco.
+- **Estado: abierto**
+
+**Qué está mal.** El conjunto de reglas que protege `main` se llama «main protegida: PR + aprobacion
+de propietario» y pide una aprobación que, para la única persona con permiso de escritura en este
+repositorio, **no existe forma de dar**: GitHub no permite aprobar tu propio pull request. Así que la
+regla no se cumple, se saltea. Y una compuerta cuyo único camino es el bypass entrena exactamente el
+hábito que el método existe para evitar —es la misma forma que este registro ya anotó dos veces: una
+compuerta que nace en rojo se desactiva en la primera semana—.
+
+**La configuración viva, medida y no recordada.** `gh api repos/pkuschnirof/urazuke/rulesets`: un
+solo conjunto, `id 25306517`, `enforcement: active`, creado el 2026-10-17 a las 11:57:31 (-03). Tres
+reglas —`deletion`, `non_fast_forward` y `pull_request`— y la última con
+`required_approving_review_count: 1`, `require_code_owner_review: true`,
+`require_last_push_approval: true`, `required_review_thread_resolution: true`,
+`require_extra_approval_for_unattributed_changes: true` y `allowed_merge_methods: ["squash"]`.
+`bypass_actors` tiene **una** entrada: el rol de administrador, con `bypass_mode: always`; y el
+propio dato declara `current_user_can_bypass: "always"`. La protección clásica de rama **no existe**
+(`gh api .../branches/main/protection` devuelve `404 Branch not protected`), así que ese conjunto de
+reglas **es toda la compuerta**: no hay una segunda mitad en otro lugar que compense lo que ésta no
+hace.
+
+**Por qué no se puede cumplir, dicho con precisión, porque la frase corta es falsa.** La regla **no**
+es imposible en general: una contribución desde un fork la cumple sin esfuerzo —el dueño aprueba el
+cambio de otro, que es el proceso que `CONTRIBUTING.md` describe—. Es imposible para **un cambio de
+quien tiene el permiso de escritura**: `.github/CODEOWNERS` es `* @pkuschnirof` y la lista de
+colaboradores tiene un solo elemento, `pkuschnirof`, `admin`. Ésa es la mitad que la regla, como está
+escrita, no distingue, y es la mitad donde vive todo el trabajo: los treinta y un pull requests que
+este repositorio fusionó son todos del mismo autor.
+
+**El historial, con su universo enumerado (D-064).** Universo: los pull requests fusionados
+(`gh pr list --state merged --limit 100`, **31** resultados, sin truncar) y el feed de eventos del
+repositorio (`gh api repos/.../events --paginate`, **201** eventos, ventana `2026-10-17T14:51:06Z` a
+`2026-11-01T20:41:47Z`, que arranca **seis minutos antes** de que el conjunto de reglas quedara
+activo y por eso cubre todo el período de vigencia).
+
+- **31 de 31** pull requests fusionados tienen **cero** revisiones. Ninguno se fusionó con la
+  aprobación que la regla pide: los treinta y uno pasaron por el bypass de administrador.
+- **30 empujones directos a `main`** entre el 2026-10-17 y el 2026-10-22, sin pull request —también
+  bypass, porque la regla `pull_request` exige uno—. El último es del 2026-10-22: desde `#1`
+  (2026-10-23) todo entró por pull request.
+- Y una medición que **no alcanza**, dicha porque es justo el tema de este lote: de los 31 pull
+  requests, sólo **26** tienen su empujón a `main` dentro del feed de eventos, que GitHub trunca
+  (201 devueltos contra un tope de 300). O sea que el feed **demostró, contra el único dato que
+  tengo completo, que no cubre todo**, y entonces el **30** de arriba es un **piso y no una cuenta**.
+  Lo completo es la lista de pull requests, y es la que sostiene el 31 de 31.
+- El único empujón a `main` que no pude emparejar con una fusión (`2026-10-27T15:05:42Z`) **no es un
+  empujón directo**: su `head` es `063ec7c`, el commit de aplanado de `#20`. Es el mismo evento
+  repetido, y lo verifiqué en vez de anotarlo como hallazgo.
+
+**Y nada de esto fue un descuido en el momento.** La fusión de `#31` tenía la cadena en verde
+(`verificar: SUCCESS`) y la corrida de `main` posterior también. El problema no es que haya entrado
+algo malo: es que el verde fue **voluntario**. De las tres reglas del conjunto, **ninguna es
+`required_status_checks`**, así que hoy nada impide fusionar con la cadena en rojo.
+
+**Lo que cuesta si queda sin decir, que es lo que el dueño nombró.** Un tercero que audite el
+historial de `main` va a ver una regla de aprobación de propietario vigente desde el 2026-10-17 y una
+fila de entradas a `main` que la ignoran, y va a concluir lo contrario de lo que pasó: que acá se
+fusiona sin control. Lo que pasó es que la compuerta humana real —una sola persona que lee cada
+cambio antes de fusionarlo— no tiene forma de dejar su rastro en el mecanismo que la pide.
+
+**Qué dice hoy el método de sí mismo.** `D-012`, del 2026-10-17 —el mismo día del conjunto de
+reglas—: «Nada se fusiona en `main` sin revisión y autorización de los mantenedores», con las
+palabras del dueño y con la regla de GitHub nombrada en su columna de impacto. `CONTRIBUTING.md`
+promete lo mismo y describe el proceso de la contribución ajena, que es el caso que **sí** se puede
+cumplir. Lo que ninguno de los dos dice es qué pasa con el cambio del mantenedor. `D-012` **no se
+edita** —una decisión lleva las palabras de su día—: lo que entre, entra como decisión nueva.
+
+**La recomendación del dueño, tal como la dictó.** Dejar el `pull_request` exigido, bajar las
+aprobaciones a **0** y hacer **requeridos los chequeos**. La compuerta sigue siendo real —nada entra
+a `main` sin pull request y sin cadena verde— y además se puede cumplir. Dos cosas que la medición le
+agrega, y son de implementación y no de criterio: bajar las aprobaciones a cero implica además soltar
+`require_code_owner_review` y `require_last_push_approval`, que son aprobaciones con otro nombre y
+quedarían pidiendo lo mismo; y los chequeos requeridos **no existen hoy**, así que esa pata no
+reordena nada, **agrega** una compuerta que el repositorio no tiene.
+
+**Criterio de aceptación.** Una de estas dos, y la decide el dueño:
+
+1. **El conjunto de reglas cambia**, con su decisión nueva en `docs/DECISIONES.md`. Verificable sin
+   leer código: `gh api .../rulesets/25306517` muestra `required_approving_review_count: 0`, sin
+   `require_code_owner_review` ni `require_last_push_approval`, y una regla `required_status_checks`
+   con el chequeo `verificar`; y la fusión siguiente cierra **sin** bypass.
+2. **Queda como está, y entonces queda escrito que las fusiones a `main` son bypass por diseño y no
+   por descuido**, donde lo lee quien audita: una decisión nueva en `docs/DECISIONES.md` y una línea
+   en `CONTRIBUTING.md` que diga qué pasa con el cambio del mantenedor, las dos citando esta
+   medición. Criterio: un tercero que lea el historial de `main` sin preguntarle a nadie entiende por
+   qué 31 de 31 fusiones no tienen aprobación.
+
+**La severidad, dicha porque es mi lectura.** **Avisa**: no hay nada detenido y la cadena viene
+estando verde de hecho en cada fusión. Pero conviene decir que hay un argumento para lo contrario, y
+es el más incómodo de los dos: con el sentido que *bloquea* tenía en las entradas anteriores —«una
+compuerta de este repositorio está en rojo y no cierra»— una compuerta que **sólo** cierra por bypass
+está peor que en rojo, porque cierra sin haber hecho nada, que es el defecto de `D-057`. Cambiar la
+severidad es una línea.
+
+## PND-091 — Los tres recursos vivos publican un identificador de commit que no existe en ninguna rama del repositorio *(propia, medida al rebasar el lote de `D-078`)*
+
+- **Nodo:** `api/git-commit` [nodo propuesto]
+- **Origen:** medición propia del 2026-11-01, y salió del **rebase**: al cambiar los shas del lote el
+  campo informativo quedó nombrando un commit que el rebase dejó huérfano. Al mirar el resto
+  aparecieron doce archivos más en la misma condición.
+- **Grupo:** G-API · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** se hace y se reporta —es una cláusula en un campo que la huella no cubre—; el
+  dueño decide sólo si prefiere la segunda salida, que es dejar de emitir el campo.
+- **Estado: abierto**
+
+**Qué está mal.** Los recursos publicados llevan el sha de git del cambio **anterior** al que los
+contiene, y lo declaran: *«Informative. It is the sha of the change BEFORE the one that contains this
+file, because it is computed before saving: it is not the identity of what is published and no
+comparison looks at it.»* Todo eso es cierto. Lo que la nota **no** dice es que ese identificador
+puede **no existir**: `main` sólo recibe commits de aplanado y la rama se borra al fusionar, así que
+el commit que el recurso nombra es, por construcción, uno que la fusión deja huérfano. Un consumidor
+que lo imprime —y la nota dice que ya hay consumidores que lo imprimen— imprime un identificador que
+no resuelve en ninguna parte.
+
+**La medición, con su universo.** Universo: los **25** archivos de `docs/html/api/` que `api_check`
+enumera (los 4 vivos y las 21 copias inmutables). `index.json` no lleva sha; de los **24** que sí,
+**13 nombran un commit que ningún ref del remoto contiene** —`git merge-base --is-ancestor` contra
+todos los `refs/remotes/origin/*`, que hoy es sólo `main`—. Entre esos 13 están **los tres vivos**:
+`gates.json`, `labels.json` y `prompts.json` llevan `0a94f88`, que era un commit local de esta rama
+antes del rebase, nunca se empujó y ya no es alcanzable desde ningún ref. Un clon nuevo de este
+repositorio no tiene ese objeto, y nunca lo va a tener.
+
+**Por qué es la misma familia.** Es `PND-056` y `D-069` —un puntero que el dato publica tiene que
+resolver— en la forma que esa regla no cubre: `build/punteros_publicados.mjs` verifica caminos de
+clave y direcciones, no identificadores de commit. Y es la forma de este lote: el campo **no miente**
+—dice la verdad y dice menos de lo que el lector necesita—, así que el lector completa solo la parte
+que no está escrita, que es que el identificador existe.
+
+**Y lo barato que sale, medido antes de proponerlo.** `git_commit_note` está en `hash_excludes`
+(`gates/schema.json#version_scheme`), así que agregarle una cláusula **no sube ninguna versión y no
+toca ninguna huella**. Lo mismo vale para el `version_note` del corpus de prompts.
+
+**Criterio de aceptación.** Una de estas dos:
+
+1. **La nota lo dice**, en los tres recursos vivos y en las copias que se congelen de ahí en más: que
+   el sha es el del cambio anterior y que **puede no existir en el repositorio publicado**, porque
+   `main` sólo recibe commits de aplanado y las ramas se borran al fusionar; y qué mirar en su lugar
+   —`catalog_version` más la huella, que es la identidad y sí resuelve—.
+2. **Se deja de emitir.** Es un campo que ninguna comparación mira y cuya única función declarada es
+   no romper al consumidor que ya lo imprime; si se saca, se saca con el aviso de compatibilidad que
+   corresponda.
+
+Y en las dos salidas, lo que desde acá **no** se puede verificar, dicho de frente: se puede exigir
+que la cláusula esté, no que el sha resuelva —eso depende del remoto y de qué ramas existan el día
+que alguien mire—.
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -7782,16 +7937,16 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 22 | 4 | 18 | 1 |
+| G-API | 23 | 5 | 18 | 1 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 35 | 23 | 12 | 11 |
-| G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **89** | **41** | **48** | **15** |
+| G-TRAZABILIDAD | 4 | 2 | 2 | 0 |
+| **total** | **91** | **43** | **48** | **15** |
 
-Ochenta y nueve entradas, `PND-001` a `PND-089`. Veintidós vienen de la auditoría externa
+Noventa y una entradas, `PND-001` a `PND-091`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -8075,6 +8230,21 @@ duplicó; queda abierta **con sus dos lecturas y sin desempate** —cara de `CQ-
 archivo**: la tabla del resumen la cuenta una máquina desde el 2026-10-24 y el párrafo que la
 explica, pegado diez líneas abajo, lleva una docena de cifras a mano; una de ellas ya fue falsa, y
 la guarda se mutó para probar que no la mira.
+
+**Y al final del 2026-11-01 entraron dos más, y las dos salen de fusionar y de rebasar.**
+`PND-090` la trajo **el dueño en el acto de pasar la compuerta**: la regla que protege `main` pide
+una aprobación de propietario y, para el único que tiene permiso de escritura, no hay forma de
+dársela —GitHub no permite aprobar el propio pull request—, así que el único camino es el bypass de
+administrador. Medido contra la configuración viva y el universo completo de fusiones: **31 de 31**
+sin ninguna revisión, treinta empujones directos antes del primer pull request, y **ninguna** regla
+de chequeos requeridos, así que el verde de la cadena viene siendo voluntario. No hay nada detenido y
+no entró nada malo; lo que está en juego es lo que concluye quien audite el historial, que vería una
+regla de aprobación vigente y una fila de fusiones que la ignoran. Y `PND-091` salió del **rebase**
+de este mismo lote: los tres recursos vivos publican el sha del cambio anterior al que los contiene,
+declarado informativo, y ese commit no existe en ninguna rama del repositorio —trece de los
+veinticuatro archivos publicados que llevan un sha nombran uno que ningún ref del remoto contiene—.
+Es `D-069` en la forma que la guarda de punteros no sabe ver, y la nota que lo declara informativo es
+cierta y dice menos de lo que el lector completa.
 
 Un aviso para leer la tabla de arriba, porque la cuenta de bloqueantes pasó de uno a ocho en un día
 y eso no significa lo que parece. En las sesenta y cuatro entradas anteriores *bloquea* quería decir
