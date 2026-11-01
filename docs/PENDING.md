@@ -7334,6 +7334,25 @@ regla 9, no existe. Es daño silencioso causado por la traducción, y le pasa al
 método ahora tiene ocho reglas mínimas— se hizo **por orden de aparición y no por valor**, en los
 ocho idiomas, para no arrastrar el desorden chino a la numeración nueva.
 
+**El enunciado, que vale más que el arreglo, y lo pidió el dueño.** **Una compuerta que compara
+traducciones declara qué compara y qué no, y la frase con la que se la cita no puede afirmar más que
+su universo.** La compuerta no miente: `build/prompts.mjs` hace exactamente lo que dice —la pieza
+inglesa es una sola y es idéntica en las ocho versiones— y estuvo verde con razón. La que miente es
+la frase con la que la citamos, que es «las ocho versiones dicen lo mismo», y que afirma sobre los
+bloques traducidos una propiedad que ningún instrumento mira. Es `CQ-19.3` en su forma más
+incómoda, porque el universo declarado y el universo citado se separaron en el repositorio que
+escribió la regla.
+
+**Si es una quinta cara de `CQ-19`, lo decide el dueño, y mi recomendación es que no.** El enunciado
+tiene dos mitades con obligados distintos. La primera —que el instrumento declare qué compara y qué
+no— **ya es `CQ-19.3`**: este defecto no es un hueco de la cara, es su primer caso medido en el
+corpus del propio método, y eso la fortalece en lugar de pedirle una hermana. La segunda —que la
+frase que cita una compuerta no afirme más que su universo— **no es una propiedad de un instrumento
+sino de quien lo cita**, así que su lugar natural es donde ya viven las versiones de conducta, que
+es el contrato de convivencia, y no una cara del anexo. Agregar `CQ-19.5` costaría estirar el
+enunciado de `CQ-19` —que habla de lo que un instrumento informa— para que cubra lo que una persona
+escribe, que es el movimiento por el que `M+06` quedó afuera de la familia.
+
 **Criterio de aceptación.** Una guarda que compare, bloque por bloque y en los ocho idiomas, la
 **secuencia de números** de un prompt traducido contra la del inglés: la pieza inglesa ya está
 candada byte a byte, así que lo único que falta es exigir que la traducción lleve los mismos números
@@ -7369,6 +7388,52 @@ diciendo lo que dice, y `CQ-18.1` a `CQ-18.5` serían entradas nuevas con su `si
 los ocho idiomas, extraídas y no transcritas al dato, con su procedencia; el enunciado de `CQ-18`
 sin cambiar una palabra; y el validador exigiendo lo mismo que ya exige a las caras de `CQ-19`.
 
+## PND-083 — La regla de precedencia del castellano no tiene verificación cruzada, así que un error de la fuente se publica ocho veces *(propia, medida al corregir las cifras de D-078; el dueño pidió escribirla)*
+
+- **Nodo:** `corpus/idiomas` [nodo propuesto]
+- **Origen:** medición propia del 2026-11-01 y pedido explícito del dueño el mismo día: *"Si eso no
+  está escrito en algún lado, escribilo."*
+- **Grupo:** G-IDIOMA · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** el dueño, porque es una regla del método y no un arreglo.
+- **Estado: abierto.** Los dos casos medidos están arreglados en el árbol; lo que falta es el
+  enunciado en el corpus y su verificación.
+
+**El enunciado.** **Una regla de precedencia sin verificación cruzada convierte un error de la
+fuente en ocho errores, y las copias correctas no tienen manera de defenderse.** `D-013` dice que el
+castellano es la fuente de verdad y que las siete traducciones lo siguen en el mismo commit, y toda
+la doctrina de las traducciones está escrita en esa dirección. Lo que ninguna parte del método dice
+es qué pasa **cuando la fuente se equivoca**: la regla de precedencia no se suspende, así que
+propaga el error, y una traducción que estaba bien queda registrada como la desviada.
+
+**Los dos casos medidos, y los dos del mismo repositorio.** El primero es el que `D-061` ya anotó al
+pasar: `README.md` no listaba el Anexo H en su tabla y **las siete traducciones sí lo listaban**, así
+que la fuente de verdad era la única equivocada y las siete copias correctas parecían las
+divergentes. El segundo se midió el 2026-11-01 al corregir las cifras de `D-078`: la ficha del
+glosario del Anexo H decía *cuarenta y cinco reglas* en seis de los ocho idiomas, y los dos que la
+tenían **bien** eran el francés y el italiano —el castellano, que manda, la tenía mal—. Las dos veces
+el defecto se encontró leyendo, no midiendo, y las dos veces lo encontró una persona.
+
+**Qué deja.** Que la propiedad que el método reclama de su corpus —ocho versiones que dicen lo
+mismo— esté sostenida por la dirección de la copia y no por una comparación. Mientras la
+verificación sea «la traducción coincide con el castellano», un error del castellano sale **verde
+ocho veces**, y el único mecanismo que queda es que alguien lea en un idioma que no es el suyo. Es
+la familia de `CQ-19.2`, la independencia: el instrumento que verifica las traducciones depende del
+artefacto que mide.
+
+**Qué NO es.** No es pedir que las traducciones puedan corregir el castellano por su cuenta: la
+precedencia se queda, porque sin ella hay ocho fuentes. Lo que se pide es que **la divergencia se
+detecte en las dos direcciones y la resuelva el dueño**, que es exactamente la forma que `D-072` ya
+eligió para el vocabulario de la portada —cuando la forma elegida no es la que el corpus usa, el
+corpus no se toca de callado: se registra con su cuenta y lo decide el dueño—.
+
+**Criterio de aceptación.** Dos piezas. (1) El enunciado escrito en el corpus, donde la doctrina de
+los idiomas se lee, en los ocho idiomas, diciendo que una divergencia entre el castellano y una
+traducción es un hallazgo **sin presumir cuál de los dos lados está mal**. (2) Una guarda que compare
+en las dos direcciones lo que hoy se compara en una sola, con su rojo deliberado: el `README.md` tal
+como estaba antes de `D-061` y la ficha del glosario tal como estaba commiteada en `1a373c8`, que
+tienen que volver a caer si alguien los reintroduce. Mientras la guarda no exista, lo que vale es el
+enunciado: un lector que sabe que la fuente puede estar mal lee distinto.
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -7380,14 +7445,14 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 |---|---:|---:|---:|---:|
 | G-API | 21 | 3 | 18 | 0 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
-| G-IDIOMA | 15 | 12 | 3 | 2 |
+| G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 30 | 18 | 12 | 8 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **82** | **34** | **48** | **10** |
+| **total** | **83** | **35** | **48** | **11** |
 
-Ochenta y dos entradas, `PND-001` a `PND-082`. Veintidós vienen de la auditoría externa
+Ochenta y tres entradas, `PND-001` a `PND-083`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
