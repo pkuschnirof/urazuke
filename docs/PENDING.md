@@ -7587,6 +7587,192 @@ los tres recibos con su objeto y su cardinalidad; y, del lado del consumidor —
 repositorio y no acá—, la dirección por estado del árbol con el conjunto declarado y la compuerta
 que exige que el commit del recibo sea el entregado.
 
+## PND-087 — La regla (5) del contrato de convivencia parte en dos lo que el propio método parte en tres *(propia, medida al reportar PND-081; el dueño decidió el nombre y la forma rectificando los suyos)*
+
+- **Nodo:** `corpus/peldano-01` [nodo propuesto]
+- **Origen:** salió de mi propio reporte de `PND-081`. La numeración de los cinco bloques traducidos
+  la verifiqué **leyendo los ocho y comparando los números a mano**; lo dije así —reproducible pero
+  no automática— y el dueño la clasificó, correctamente y con el único vocabulario que hay, como
+  *«te lo creo y queda anotado como creído»*. Esa clasificación **es** el defecto: el binario obligó
+  a tirar una medición reproducible al casillero de las creencias. El dueño lo levantó a pendiente
+  el 2026-11-01 y decidió el nombre y la forma el mismo día.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** el dueño, **y ya decidió**: el nombre, la forma y las dos obligaciones. Lo que
+  falta es escribirlo.
+- **Estado: abierto.** Nada tocado: la regla (5) sigue diciendo lo que decía.
+
+**El binario, y las dos salidas malas.** La regla (5) del contrato de convivencia pide *«nunca
+reportes como hecho algo que no verificaste; separá siempre lo que verificaste de lo que creés»*.
+Son dos casilleros y las cosas son tres: lo que verificó una máquina, lo que verificó una persona de
+manera reproducible y sin que ninguna guarda lo cuide, y lo que se cree. Con dos casilleros, el del
+medio tiene que ir a alguno y los dos están mal. Si va a **verificado**, el dueño supone una
+máquina, y suponer una máquina es suponer que el hecho va a seguir siendo cierto mañana sin que
+nadie mire: es un estado que se lee igual que la salud, que es el enunciado de `CQ-19.1` aplicado al
+informe en vez de al instrumento. Si va a **creído**, se tira a la basura una medición que se puede
+repetir y discutir, y eso es peor que exagerar: es evidencia borrada.
+
+**El caso medido, y es del mismo día.** `PND-081` —la traducción china que numeraba sus cinco reglas
+`8, 11, 7, 12, 13`— no la encontró ninguna guarda y no la puede encontrar ninguna, porque no existe:
+la verifiqué leyendo los ocho bloques y comparando las secuencias. Es repetible por cualquiera en
+diez minutos, con el archivo a la vista, y no es una creencia. El criterio de aceptación de esa
+entrada es, justamente, **la guarda que falta**.
+
+**Por qué es un patrón del método y no una excepción.** Este método ya partió un estado en tres
+**cuatro veces, y las cuatro con razón**: `D-054` (la publicación verifica contra producción y separa
+el verde del aviso y del rojo), `D-058` (*no haber podido mirar es rojo y no verde*), `D-076` (el
+umbral `end_users_outside_the_organisation`, con sus tres estados dichos) y `PND-084`
+(`declared_not_measured`, que hoy significa dos cosas). Las cuatro son sobre lo que el **sistema**
+mide. El binario de la regla (5) es el que faltaba, y es el que está más cerca del dueño, porque es
+sobre lo que el agente le **entrega en la conversación**.
+
+**El nombre, y los dos que se descartaron.** **«Verificado sin guarda»** (`verified without a
+gate`). El criterio que lo decide es que **nombre lo que le falta y no lo que tiene**, así no se
+puede usar para quedar bien: un estado que se llama por su carencia no sirve de puerta de escape. Se
+descartaron dos. *«Verificado a mano»* choca de frente con la **cifra a mano** que `D-077` persigue:
+sería usar como etiqueta positiva la misma palabra con la que el método nombra lo que no hay que
+hacer. Y *«verificado leyendo»* cubre sólo los ojos: una medición humana reproducible puede ser
+contar, correr un comando y mirar la salida, o comparar dos archivos, y ninguna de las tres es leer.
+
+**La forma: un tercer valor y no una novena regla.** Entra como tercer valor de la regla (5), que es
+la que ya lleva el binario defectuoso. Eso hace crecer el **vocabulario de una regla que ya existe**
+y **no mueve la cuenta de reglas**, que es exactamente la tensión de `PND-085`: una novena regla para
+arreglar el problema de que hay ocho es el problema otra vez.
+
+**Las dos obligaciones que el estado arrastra, y sin ellas es una etiqueta.** La primera: una
+afirmación en ese estado **nombra la guarda que la volvería verde**. Con eso el estado deja de ser
+una etiqueta y se vuelve un pendiente solo —es lo que el criterio de aceptación de `PND-081` ya es,
+subido un nivel: de criterio de un pendiente a condición de la afirmación—. La segunda: **declara
+quién y cuándo**. Una medición humana reproducible sin autor ni fecha no se puede repetir ni
+discutir, y entonces es una creencia con mejor nombre.
+
+**Lo que esto no es.** No es la copia de una regla del Anexo H adentro de un prompt, que es lo que
+`D-044` prohíbe y lo que `D-078` tuvo que argumentar para las reglas (7) y (8): `CQ-19` y `CQ-20`
+hablan de los **instrumentos del sistema**, y esto le agrega un valor a una regla de **conducta** que
+ya existía desde el primer día. No hay enunciado del anexo que se duplique.
+
+**Dónde entra, y con quiénes.** Con `PND-084` y `PND-085`, **porque los tres son el mismo
+movimiento**: uno parte un veredicto en dos, otro reemplaza una cifra por una propiedad y éste parte
+un binario en tres. Los tres son sobre el vocabulario con el que se informa, y ninguno de los tres
+agrega una regla.
+
+**Criterio de aceptación.** (1) La regla (5) con sus tres valores en el prompt del peldaño 1 de los
+ocho idiomas, cada valor nombrando lo que le falta. (2) Las dos obligaciones **adentro** del
+enunciado y no en una nota al pie. (3) La verificación de completitud del peldaño 1 pregunta por el
+tercer valor con sus dos obligaciones, y no sólo por las ocho reglas. (4) Y lo que ninguna prueba de
+acá puede verificar, dicho de frente: **si una afirmación concreta está en el casillero correcto lo
+juzga el dueño**. Lo que sí se puede exigir por máquina es que los tres valores estén en el prompt
+del peldaño 1 en los ocho idiomas y que la pieza inglesa siga siendo idéntica, que es lo que
+`build/prompts.mjs` ya hace.
+
+## PND-088 — Un instrumento informó «anotada» las dos veces que corrió, y la segunda duplicó: no miró el estado que iba a cambiar *(la herramienta sobre su propio trabajo; el dueño pidió las dos lecturas sin desempate)*
+
+- **Nodo:** `corpus/peldano-14` o `corpus/peldano-09` [nodo propuesto], según la lectura que cierre.
+- **Origen:** lo midió **la herramienta sobre su propio trabajo** el 2026-11-01, escribiendo el
+  registro de `D-078`. El dueño le agregó el enunciado que lo hace verificable y pidió explícitamente
+  que la entrada quede **con las dos lecturas y sin desempate**, para cerrarla él.
+- **Grupo:** G-METODO · **Severidad:** bloquea —una cara no declara severidad propia y hereda la de
+  su regla (verificado en `gates/heuristics.json`: las seis caras de `CQ-19` y `CQ-20` no llevan
+  `initial_severity`), y las dos reglas candidatas bloquean— · **Repositorio:** método
+- **Quién decide:** el dueño, **y a propósito no está decidido**.
+- **Estado: abierto**, con la decisión pendiente y declarada.
+
+**El caso medido.** El programa con el que inserté la nota de `PND-083` no era idempotente. Lo corrí
+dos veces —la segunda porque dudé de que la primera hubiera corrido— e **insertó la nota las dos
+veces, informando «anotada» las dos**, con código de salida 0 las dos. Lo agarré **contando
+apariciones antes de commitear**, no leyendo el archivo. Si no contaba, el registro quedaba con la
+nota duplicada y el commit la publicaba.
+
+**El enunciado, del dueño, y por qué es el que se puede verificar.** *Un instrumento que informa
+éxito sin mirar si ya estaba hecho no es no-idempotente: es un instrumento que no mira el estado que
+va a cambiar.* La diferencia no es de estilo. «No idempotente» nombra una propiedad del
+**resultado** —correrlo dos veces no da lo mismo—, que se descubre corriéndolo dos veces y mirando,
+o sea después del daño. «No mira el estado que va a cambiar» nombra la **omisión en el instrumento**
+—no leyó antes de escribir—, que se ve en el instrumento mismo, con una sola corrida, y que una
+revisión o una compuerta puede exigir. Es la familia de `CQ-20.1` con el signo invertido: ahí el
+comando escribía diciendo que no tocaba nada; acá dice que hizo algo que ya estaba hecho.
+
+**Las dos lecturas, y lo que las separa.**
+
+1. **Cara de `CQ-20`** —el privilegio y el efecto, no el informe—. Es la lectura del dueño. Lo que
+   falló fue una **escritura que no debía ocurrir**, y `CQ-20` es la regla de las escrituras de una
+   verificación. A favor: no estira el enunciado de `CQ-19`, que es el movimiento por el que `M+06`
+   quedó afuera de la familia, y la pareja con `CQ-20.1` se lee sola.
+2. **Cara de `CQ-19`** —el informe—. Lo que el dueño **vio** fue el informe: «anotada» se leyó igual
+   cuando insertó y cuando duplicó, que es un estado que se lee igual que la salud, el enunciado de
+   `CQ-19.1`. A favor: el daño llega por el informe, que es el sujeto de `CQ-19`, y la detección fue
+   **contar**, que es su remedio.
+
+**Lo que no tengo para desempatar.** Depende de qué protege la regla. Si protege el **estado** —que
+no se escriba dos veces—, es `CQ-20`. Si protege **que el dueño pueda saber** —que el informe no
+mienta—, es `CQ-19`. En el caso medido pasaron las dos cosas, y por eso el caso no desempata solo.
+
+**La tercera salida, descartada midiendo.** No es la lectura amplia de una cara que ya existe.
+`CQ-20.1` pide que un comando presentado como de **sólo lectura** corra sin permiso de escribir y que
+el privilegio se declare al lado del resultado; `CQ-19.1` pide el denominador de una medición que
+recorre un conjunto. Ninguna de las dos, leída como está escrita, le pide a un instrumento que
+**escribe a propósito** que lea primero el estado que va a cambiar. Así que es un agregado con cara
+nueva, y no una interpretación de lo ya publicado.
+
+**El precio, que es chico y conviene decirlo.** Una cara más deja a `CQ-20` en tres o a `CQ-19` en
+cinco. La cuenta de caras **se deriva** (`D-077`), así que ninguna cifra escrita se vuelve falsa, y el
+único costo real es que el informe de cumplimiento se alarga en una línea. `PND-082` queda igual:
+`CQ-18` sigue siendo la única regla con comprobaciones que no se pueden apagar de a una.
+
+**Criterio de aceptación.** El dueño elige la lectura; la cara entra con su identificador
+(append-only), su enunciado **una sola vez** en el Anexo H castellano y extraído al inglés, su
+procedencia declarada por cara, la versión del catálogo con su huella y sus textos en el catálogo de
+etiquetas; y el caso medido queda como su «fallo que evita», con su referencia, cuando el corpus se
+toque.
+
+## PND-089 — La tabla del resumen la cuenta una máquina y el párrafo que la explica no, así que una de sus cifras ya fue falsa *(propia, medida mutando la guarda)*
+
+- **Nodo:** `tests/pending-resumen` [nodo propuesto]
+- **Origen:** medición propia del 2026-11-01. Salió de **recontar** las cifras del resumen para
+  escribir las entradas de este lote, no de leerlo.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y es la misma pregunta binaria de `PND-080`: la cifra entra al universo
+  de la guarda, o la exclusión se declara con su razón.
+- **Estado: abierto** —la cifra que estaba mal se corrigió en el commit anterior; lo que falta es la
+  guarda o la exclusión escrita.
+
+**El defecto.** `tests/pending_resumen.test.mjs` existe justamente contra esto: cuenta las entradas
+del archivo y exige que la tabla del resumen sea exactamente eso, sin huecos ni repetidos. Nació de
+un defecto medido —con cinco cierres en un día la tabla seguía diciendo tres cerrados cuando ya eran
+ocho—. Lo que **no** mira es el párrafo pegado abajo de la tabla, donde el mismo hecho está escrito
+**en palabras**. De ese par, la guarda verifica el **rango de ids** y no la **cuenta**. Y el párrafo
+sigue con una docena de cifras más de la misma clase —veintidós de la auditoría externa, cuatro
+propias, dieciséis derivadas, diez de la retrospectiva, quince del experimento—, todas a mano.
+
+**La evidencia, medida y no razonada.** Cambié *«Ochenta y seis entradas»* por *«Doscientas cuarenta
+entradas»* en el disco y corrí la prueba sola: **5 de 5 en verde, 0 fallos**. La guarda no la mira.
+El árbol quedó como estaba.
+
+**Y ya había pasado.** El mismo párrafo decía *«el mismo trabajo dejó tres entradas nuevas»* cuando
+ya eran cuatro: `PND-083` había entrado y la frase quedó vieja **en el mismo commit que la escribió**.
+La encontré recontando para escribir este lote, no leyendo. Es la misma forma que `PND-064` —una
+cifra a mano junto a una colección que se deriva— y la misma que `PND-080` —la prosa fuera del
+universo de la guarda—, en el único archivo donde el método se aplica a sí mismo y a diez líneas de
+la guarda que ya existe.
+
+**La severidad, dicha porque es mi lectura.** **Avisa** y no bloquea: este archivo no es corpus
+publicado, no viaja en ocho idiomas, y lo que un lector usa como plan es la **tabla**, que sí la
+cuenta una máquina. Lo que la cifra falsa cuesta es la credibilidad del registro, no un proyecto
+detenido. Marcarla bloqueante sería inflar la fila de G-METODO por una cifra en palabras.
+
+**Criterio de aceptación.** Una de estas dos, y la decide el dueño:
+
+1. **La cuenta entra al universo de la guarda.** La prueba exige que el párrafo diga la misma cuenta
+   que la tabla, con su rojo deliberado. Y una advertencia medida para que la salida no se compre
+   barata: `cardinal()` de `build/gates_lib.mjs` deletrea en **inglés**, y este archivo es
+   castellano, así que reusarlo no alcanza —habría que escribir un deletreador castellano, que es una
+   segunda copia de la misma función, o que el párrafo diga la cifra en numerales, que es verificable
+   con una línea—. Esa elección es parte de la decisión y no un detalle de implementación.
+2. **La exclusión se declara**, en el comentario de cabecera de la prueba, con su razón y con qué
+   protege en su lugar.
+
+Y en las dos salidas: la decisión **cita esta medición**, porque una exclusión declarada sin el daño
+que ya ocurrió se lee como una comodidad.
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -7601,11 +7787,11 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 32 | 20 | 12 | 9 |
+| G-METODO | 35 | 23 | 12 | 11 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **86** | **38** | **48** | **13** |
+| **total** | **89** | **41** | **48** | **15** |
 
-Ochenta y seis entradas, `PND-001` a `PND-086`. Veintidós vienen de la auditoría externa
+Ochenta y nueve entradas, `PND-001` a `PND-089`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -7873,6 +8059,22 @@ Y `PND-086` la trajo **la herramienta sobre su propio trabajo**: los tres recibo
 tienen la misma forma de dirección y no la misma cardinalidad, porque la regresión es un hecho sobre
 un estado del árbol y no sobre un pendiente. Las tres son **del dueño verificando lo que le
 trajeron**, que es la fuente que ninguna de las cinco anteriores tenía.
+
+**Y el cierre del mismo día dejó tres entradas más, y las tres salen de rectificar: dos al
+dueño y una a mí.** `PND-087` es el tercer valor que le falta a la regla (5) del contrato de
+convivencia: el método ya partió un estado en tres cuatro veces —`D-054`, `D-058`, `D-076` y
+`PND-084`— y el binario «verificado o creído» era el que quedaba, justo en la regla que está más
+cerca del dueño. El nombre que entra es **«verificado sin guarda»**, elegido por un criterio que
+vale más que el nombre —que nombre lo que le falta y no lo que tiene, así no se puede usar para
+quedar bien—, y el dueño descartó los dos suyos, uno de ellos porque *«a mano»* es la palabra con
+la que `D-077` nombra lo que no hay que hacer. `PND-088` la trajo **la herramienta sobre su propio
+trabajo**, por segunda vez en el día: el programa con el que insertó una nota del registro no
+miraba el estado que iba a cambiar, informó «anotada» las dos veces que corrió y la segunda
+duplicó; queda abierta **con sus dos lecturas y sin desempate** —cara de `CQ-20` o cara de
+`CQ-19`— por pedido del dueño. Y `PND-089` es la más incómoda de las tres, porque es **este
+archivo**: la tabla del resumen la cuenta una máquina desde el 2026-10-24 y el párrafo que la
+explica, pegado diez líneas abajo, lleva una docena de cifras a mano; una de ellas ya fue falsa, y
+la guarda se mutó para probar que no la mira.
 
 Un aviso para leer la tabla de arriba, porque la cuenta de bloqueantes pasó de uno a ocho en un día
 y eso no significa lo que parece. En las sesenta y cuatro entradas anteriores *bloquea* quería decir
