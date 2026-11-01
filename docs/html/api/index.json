@@ -6,7 +6,7 @@
     "why": "A directory, not a catalogue: its identity is the identity of what it points at. A hash of its own would force a third declared version line, that nobody declares, every time one of the listed resources changes.",
     "staleness_check": "Fetch a listed resource, recompute its hash over the canonical form declared here for that resource, and compare it with the hash quoted here. If the two differ, this index is stale, and you know that without having to trust it."
   },
-  "generated_at": "2026-11-01T19:04:46.832Z",
+  "generated_at": "2026-11-01T19:59:21.095Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "canonical_base": "https://yujin.app/urazuke/api/",
@@ -65,7 +65,7 @@
       "name": "prompts.json",
       "url": "https://yujin.app/urazuke/api/prompts.json",
       "media_type": "application/json",
-      "bytes": 103408,
+      "bytes": 103429,
       "what": "The prompts of the Urazuke method, published as data. The method owns them; a tool consumes them. They are one English piece, identical in every version of the method -- the list of versions is declared in the gate catalogue under languages.prose_versions -- and a tool does not rewrite them. And about the content hash, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls the host that served the file. The anchors that do not live on that host are the version ledger of each resource, which lives in the method repository and records the pair (version -> hash) append-only, and the transport security of the connection. There is no cryptographic signature: that is a written decision with its cost on the table, not an oversight.",
       "version_field": "corpus_version",
       "version": "2026.10.7",
@@ -74,7 +74,7 @@
         "algo": "sha256",
         "encoding": "hex_lower",
         "canonical_form": "json_sorted_keys_codepoint_no_whitespace_utf8",
-        "value": "636ac3bda7f6ace98a781bc5a1270e3087c970a666aa0d842a9f38df0961d7bc"
+        "value": "09c872358e52cc87ae1dde345f4562211ae5ebb4716ced9ad3968df33defdefd"
       },
       "immutable": {
         "base": "https://yujin.app/urazuke/api/prompts/",

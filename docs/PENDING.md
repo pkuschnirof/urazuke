@@ -7413,6 +7413,17 @@ glosario del Anexo H decía *cuarenta y cinco reglas* en seis de los ocho idioma
 tenían **bien** eran el francés y el italiano —el castellano, que manda, la tenía mal—. Las dos veces
 el defecto se encontró leyendo, no midiendo, y las dos veces lo encontró una persona.
 
+**Y una tercera forma, adentro de un mismo idioma, medida el mismo día.** El dueño pidió que quedara
+anotada porque es del tema y porque **así apareció**: la regla (7) del contrato de convivencia, recién
+escrita por `D-078`, pedía recibo para **todo** número que el agente entrega, cuando el Anexo H se lo
+pide a *«todo instrumento con el que el proyecto decide»* y la línea que distingue los dos recibos,
+cuatro renglones más abajo, dice *«cada vez que una cifra decide algo»*. **Cada una de las tres se lee
+perfecta sola; las tres juntas se contradicen**, y el contrato era el que pedía más. No lo encontró
+quien leyó una redacción: lo encontró quien comparó las tres. Es la misma verificación cruzada que
+esta entrada pide entre idiomas, aplicada **adentro de uno**, y sube el alcance de lo que falta: dos
+copias de una obligación en distintos documentos del mismo idioma tampoco tienen hoy quién las
+compare. La regla quedó acotada en los ocho idiomas antes de publicarse.
+
 **Qué deja.** Que la propiedad que el método reclama de su corpus —ocho versiones que dicen lo
 mismo— esté sostenida por la dirección de la copia y no por una comparación. Mientras la
 verificación sea «la traducción coincide con el castellano», un error del castellano sale **verde

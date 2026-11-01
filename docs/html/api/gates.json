@@ -35,9 +35,9 @@
     "value": "91f3ec00a638322fd36b12f3d6bca68e2c36dda8c7dc456f56fca40369c4665f",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "1a373c8",
+  "git_commit": "0a94f88",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-11-01T19:04:46.640Z",
+  "generated_at": "2026-11-01T19:59:20.773Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {

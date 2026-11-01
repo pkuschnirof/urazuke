@@ -54,21 +54,21 @@ machst es, nicht der Agent:
 - Akzeptabler Mindestzustand: du kannst jede einzelne dieser fünf Fragen beantworten. Die
   Vereinbarung, die dabei herauskommt, wird so gut sein wie deine Antworten.
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
-> counted, how many it expected to count, what it depended on, and what it reports when you
-> could not look; a figure that reads the same when you could not look is not a figure.
-> (8) A command you present as read-only runs without permission to write, and a check that
-> exercises a destructive operation runs where its statement cannot land: that nothing changed
-> is measured, not promised. Add any rules you think this project needs, marked as proposals.
-> If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -86,14 +86,15 @@ machst es, nicht der Agent:
 > nicht mehr und nicht weniger als verlangt; wenn du etwas anderes siehst, trag es als offenen
 > Posten ein, tu es nicht. (4) Die Dokumentation wird im selben Commit wie die Änderung
 > aktualisiert. (5) Melde nie als erledigt, was du nicht verifiziert hast; trenne immer, was du
-> verifiziert hast, von dem, was du glaubst. (6) Sprich meine Sprache. (7) Jede Zahl, die du mir gibst, kommt mit ihrem Beleg: was sie
-> gezählt hat, wie viele sie zu zählen erwartete, wovon sie abhing und was sie meldet, wenn du nicht
-> hinsehen konntest; eine Zahl, die sich gleich liest, wenn du nicht hinsehen konntest, ist keine
-> Zahl. (8) Ein Befehl, den du als nur lesend ausgibst, läuft ohne Schreibrecht, und eine Prüfung,
-> die einen zerstörenden Vorgang ausführt, läuft dort, wo ihre Anweisung nicht landen kann: dass
-> sich nichts geändert hat, wird gemessen und nicht versprochen. Füge die Regeln hinzu, die
-> dieses Projekt deiner Meinung nach braucht, als Vorschläge markiert. Wenn du etwas darüber
-> wissen musst, wie ich arbeite, um das zu schreiben, frag mich.
+> verifiziert hast, von dem, was du glaubst. (6) Sprich meine Sprache. (7) Jede Zahl, die du mir
+> gibst und von der eine Entscheidung abhängt, kommt mit ihrem Beleg: was sie gezählt hat, wie
+> viele sie zu zählen erwartete, wovon sie abhing und was sie meldet, wenn du nicht hinsehen
+> konntest; liest sie sich gleich, wenn du nicht hinsehen konntest, ist sie keine Zahl. (8) Ein
+> Befehl, den du als nur lesend ausgibst, läuft ohne Schreibrecht, und eine Prüfung, die einen
+> zerstörenden Vorgang ausführt, läuft dort, wo ihre Anweisung nicht landen kann: dass sich nichts
+> geändert hat, wird gemessen und nicht versprochen. Füge die Regeln hinzu, die dieses Projekt
+> deiner Meinung nach braucht, als Vorschläge markiert. Wenn du etwas darüber wissen musst, wie
+> ich arbeite, um das zu schreiben, frag mich.
 >
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
@@ -168,7 +169,8 @@ jeder Sitzung zu lesen.
 - Sind die acht Mindestregeln da, jede mit dem Fehler, den sie verhindert? Die letzten zwei sind
   die Verhaltensfassung der zwei Belegregeln von Anhang H (CQ-19 und CQ-20) und keine Kopie ihres
   Wortlauts: der Anhang verlangt den Beleg von den Instrumenten des Systems, und die Vereinbarung
-  verlangt ihn von den Zahlen, die der Agent dir im Gespräch gibt.
+  verlangt ihn von den Zahlen, die der Agent dir im Gespräch gibt und von denen eine Entscheidung
+  abhängt.
 - Ist irgendeine Regel als Absichtserklärung geschrieben („versuchen, …“, „nach Möglichkeit …“)?
   Wenn ja, taugt sie nichts: Regeln werden eingehalten oder nicht.
 - Ordnet die Projektdatei an, sie in jeder Sitzung zu lesen?

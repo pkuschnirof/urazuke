@@ -49,21 +49,21 @@
 - 最低限受け入れられる状態：その五つの問いのどれにも答えられること。出てくる約束は、あなたの
   答えと同じだけの出来にしかなりません。
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
-> counted, how many it expected to count, what it depended on, and what it reports when you
-> could not look; a figure that reads the same when you could not look is not a figure.
-> (8) A command you present as read-only runs without permission to write, and a check that
-> exercises a destructive operation runs where its statement cannot land: that nothing changed
-> is measured, not promised. Add any rules you think this project needs, marked as proposals.
-> If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -80,9 +80,10 @@
 > で直します。(3) 正確な範囲。頼まれた以上でも以下でもなく。他に何か見つけたら、保留項目と
 > して記録し、やらないでください。(4) 文書は変更と同じコミットで更新します。(5) 検証して
 > いないことを決して完了として報告しないでください。検証したことと信じていることを常に分け
-> てください。(6) 私の言語で話してください。(7) あなたが私に渡す数字はすべてレシートを伴います：何を
-> 数えたか、いくつ数える予定だったか、何に依存したか、そして見ることができなかったときに何を
-> 報告するか。見ることができなかったときに同じに読める数字は、数字ではありません。(8) 読み取り
+> てください。(6) 私の言語で話してください。(7) あなたが私に渡す数字のうち、何かを決めるのに使う
+> ものはすべてレシートを伴います：何を数えたか、いくつ数える予定だったか、何に依存した
+> か、そして見ることができなかったときに何を報告するか。見ることができなかったときに
+> 同じに読めるなら、それは数字ではありません。(8) 読み取り
 > 専用として提示するコマンドは書き込みの許可なしで走らせ、破壊的な操作を行使する確認は、その命令
 > が着地できない場所で走らせてください。何も変わらなかったことは測るのであり、約束するのでは
 > ありません。このプロジェクトに必要だと思うルールを、提案と
@@ -152,7 +153,8 @@
 
 - 八つの最低限のルールが、それぞれ防ぐ失敗とともにあるか？ 最後の二つは附属書H のレシート
   の二つの規則（CQ-19 と CQ-20）の**行動版**であり、その文面の写しではない。附属書はシステム
-  の道具にレシートを要求し、この約束は会話のなかでエージェントが渡す数字にそれを要求する。
+  の道具にレシートを要求し、この約束は会話のなかでエージェントが渡す数字のうち、判断がそれに
+  依るものにそれを要求する。
 - 願望として書かれたルールがあるか（「…するよう努める」「可能な限り…」）？ あるなら役に
   立たない。ルールは守られるか守られないかだ。
 - プロジェクトファイルは毎セッションこれを読むよう命じているか？

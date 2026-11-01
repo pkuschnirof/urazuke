@@ -50,21 +50,21 @@ o agente:
 - Estado mínimo aceitável: você sabe responder cada uma dessas cinco perguntas. O contrato que
   sair vai ser tão bom quanto as suas respostas.
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
-> counted, how many it expected to count, what it depended on, and what it reports when you
-> could not look; a figure that reads the same when you could not look is not a figure.
-> (8) A command you present as read-only runs without permission to write, and a check that
-> exercises a destructive operation runs where its statement cannot land: that nothing changed
-> is measured, not promised. Add any rules you think this project needs, marked as proposals.
-> If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -81,12 +81,12 @@ o agente:
 > conserta na raiz, com seu teste de regressão, na mesma sessão. (3) Escopo exato: nem mais nem
 > menos do que o pedido; se vir outra coisa, anote como pendência, não faça. (4) A documentação se
 > atualiza no mesmo commit que a mudança. (5) Nunca relate como feito algo que você não verificou;
-> separe sempre o que verificou do que acredita. (6) Fale o meu idioma. (7) Todo número que você me entrega vem com o seu recibo: o que
-> contou, quantos esperava contar, de que dependeu e o que informa quando você não pôde olhar; um
-> número que se lê igual quando você não pôde olhar não é um número. (8) Um comando que você
-> apresenta como de somente leitura corre sem permissão de escrever, e uma comprovação que exerce
-> uma operação destrutiva corre onde a sua sentença não pode aterrissar: que nada mudou mede-se,
-> não se promete. Acrescente as regras que
+> separe sempre o que verificou do que acredita. (6) Fale o meu idioma. (7) Todo número que você
+> me entrega e do qual depende uma decisão vem com o seu recibo: o que contou, quantos esperava
+> contar, de que dependeu e o que informa quando você não pôde olhar; se é lido igual quando você
+> não pôde olhar, não é um número. (8) Um comando que você apresenta como de somente leitura corre
+> sem permissão de escrever, e uma comprovação que exerce uma operação destrutiva corre onde a sua
+> sentença não pode aterrissar: que nada mudou mede-se, não se promete. Acrescente as regras que
 > achar que este projeto precisa, marcadas como propostas. Se precisar saber algo sobre como eu
 > trabalho para escrever isto, pergunte-me.
 >
@@ -157,7 +157,7 @@ sessão.
 - Estão as oito regras mínimas, cada uma com a falha que evita? As duas últimas são a versão de
   conduta das duas regras do recibo do Anexo H (CQ-19 e CQ-20) e não uma cópia do seu enunciado: o
   anexo exige o recibo dos instrumentos do sistema, e o contrato exige-o dos números que o agente
-  lhe entrega na conversa.
+  lhe entrega na conversa e dos quais depende uma decisão.
 - Há alguma regra escrita como aspiração ("tentar…", "na medida do possível…")? Se há, não serve:
   as regras se cumprem ou não.
 - O arquivo de projeto ordena lê-lo em cada sessão?

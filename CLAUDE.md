@@ -300,9 +300,14 @@ la cuenta deja a un proyecto subiendo de versión a ciegas (D-068, D-076).
 
 Dos consecuencias que quedan dichas donde se leen. El **contrato de convivencia** pasó de seis
 reglas mínimas a **ocho**: las dos nuevas son la versión de **conducta** de `CQ-19` y `CQ-20` —lo
-que el agente me entrega en la conversación— y **no** el enunciado del anexo, que habla de los
-instrumentos del sistema; el contrato lo dice en su prosa en los ocho idiomas, para que nadie lo
-lea como la copia que D-044 prohíbe. Y las cinco reglas del camino heredado se renumeraron de
+que el agente me entrega en la conversación **y de lo que depende una decisión**— y **no** el
+enunciado del anexo, que habla de los instrumentos del sistema; el contrato lo dice en su prosa en
+los ocho idiomas, para que nadie lo lea como la copia que D-044 prohíbe. Ese alcance de la regla (7)
+se acotó antes de publicarse y hay que decirlo porque **así apareció**: la primera redacción pedía
+recibo para *todo* número, que es más de lo que el anexo le pide a un instrumento y más de lo que
+dice la línea que distingue los dos recibos cuatro renglones abajo, y el defecto se encontró
+**comparando las tres redacciones**, no leyendo una —cada una se lee perfecta sola (`PND-083`)—. Y
+las cinco reglas del camino heredado se renumeraron de
 `(7)..(11)` a `(9)..(13)`, lo que destapó `PND-081`: la traducción china las numeraba `8, 11, 7,
 12, 13`, sin `9` ni `10`, desde que existe.
 

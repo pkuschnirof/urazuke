@@ -50,21 +50,21 @@ l'agente:
 - Stato minimo accettabile: sai rispondere a ciascuna di quelle cinque domande. Il patto che ne
   uscirà sarà buono quanto le tue risposte.
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
-> counted, how many it expected to count, what it depended on, and what it reports when you
-> could not look; a figure that reads the same when you could not look is not a figure.
-> (8) A command you present as read-only runs without permission to write, and a check that
-> exercises a destructive operation runs where its statement cannot land: that nothing changed
-> is measured, not promised. Add any rules you think this project needs, marked as proposals.
-> If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -80,16 +80,16 @@ l'agente:
 > chiedi in prosa, con la tua raccomandazione. (2) Zero debito tecnico: ciò che si rompe si
 > corregge alla radice, con il suo test di regressione, nella stessa sessione. (3) Perimetro
 > esatto: né più né meno di ciò che è stato chiesto; se vedi qualcos'altro, annotalo come voce in
-> sospeso, non farlo. (4) La documentazione si aggiorna nello stesso commit della modifica. (5) Non
-> riportare mai come fatto qualcosa che non hai verificato; separa sempre ciò che hai verificato da
-> ciò che credi. (6) Parla la mia lingua. (7) Ogni cifra che mi consegni viene con la sua ricevuta: cosa ha
-> contato, quanti si aspettava di contare, da che cosa è dipesa e cosa informa quando non hai potuto
-> guardare; una cifra che si legge uguale quando non hai potuto guardare non è una cifra. (8) Un
-> comando che presenti come di sola lettura corre senza permesso di scrivere, e una verifica che
-> esercita un'operazione distruttiva corre dove la sua istruzione non può atterrare: che non è
-> cambiato niente si misura, non si promette. Aggiungi le regole che ritieni che questo progetto
-> richieda, marcate come proposte. Se hai bisogno di sapere qualcosa su come lavoro per scrivere
-> questo, chiedimelo.
+> sospeso, non farlo. (4) La documentazione si aggiorna nello stesso commit della modifica. (5)
+> Non riportare mai come fatto qualcosa che non hai verificato; separa sempre ciò che hai
+> verificato da ciò che credi. (6) Parla la mia lingua. (7) Ogni cifra che mi consegni e da cui
+> dipende una decisione viene con la sua ricevuta: cosa ha contato, quanti si aspettava di
+> contare, da che cosa è dipesa e cosa informa quando non hai potuto guardare; se si legge uguale
+> quando non hai potuto guardare, non è una cifra. (8) Un comando che presenti come di sola
+> lettura corre senza permesso di scrivere, e una verifica che esercita un'operazione distruttiva
+> corre dove la sua istruzione non può atterrare: che non è cambiato niente si misura, non si
+> promette. Aggiungi le regole che ritieni che questo progetto richieda, marcate come proposte. Se
+> hai bisogno di sapere qualcosa su come lavoro per scrivere questo, chiedimelo.
 >
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
@@ -159,7 +159,7 @@ ogni sessione.
 - Ci sono le otto regole minime, ciascuna con il fallimento che evita? Le ultime due sono la
   versione di condotta delle due regole della ricevuta dell'Allegato H (CQ-19 e CQ-20) e non una
   copia del loro enunciato: l'allegato esige la ricevuta dagli strumenti del sistema, e il patto la
-  esige dalle cifre che l'agente ti consegna nella conversazione.
+  esige dalle cifre che l'agente ti consegna nella conversazione e da cui dipende una decisione.
 - C'è qualche regola scritta come aspirazione ("cercare di…", "per quanto possibile…")? Se c'è,
   non serve: le regole si rispettano o no.
 - Il file di progetto ordina di leggerlo in ogni sessione?

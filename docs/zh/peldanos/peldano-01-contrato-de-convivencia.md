@@ -40,21 +40,21 @@
 - 项目文件夹已创建，代理在里面打开。
 - 最低可接受状态：那五个问题你每一个都答得上来。出来的契约会和你的回答一样好。
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
-> counted, how many it expected to count, what it depended on, and what it reports when you
-> could not look; a figure that reads the same when you could not look is not a figure.
-> (8) A command you present as read-only runs without permission to write, and a check that
-> exercises a destructive operation runs where its statement cannot land: that nothing changed
-> is measured, not promised. Add any rules you think this project needs, marked as proposals.
-> If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -69,8 +69,9 @@
 > 的时候，用散文问，附你的建议。(2) 零技术债务：坏了的东西从根上修，附回归测试，在同一次
 > 会话中。(3) 范围精确：不多不少，只做要求的；如果你看到别的，记为待办项，不要做。(4) 文
 > 档在变更的同一次提交中更新。(5) 绝不把你没验证的事报告为已完成；永远把你验证过的和你相
-> 信的分开。(6) 说我的语言。(7) 你交给我的每一个数字都带着它的凭据：数了什么、预期要数多少、依赖了
-> 什么，以及你看不到的时候报告什么；在你看不到的时候读起来一样的数字，不是数字。(8) 你自称只读
+> 信的分开。(6) 说我的语言。(7) 你交给我的数字里，凡是有决定依赖于它的，都带着它的凭据：数了什么、
+> 预期要数多少、依赖了什么，以及你看不到的时候报告什么；如果在你看不到的时候读起来一样，
+> 它就不是数字。(8) 你自称只读
 > 的命令要在没有写权限的情况下运行，而去执行破坏性操作的检查要跑在它的语句落不下来的地方：什么
 > 都没变这件事是量出来的，不是承诺出来的。加上你认为这个项目需要的规则，标为提案。如果为了写这个你需要
 > 了解我怎么工作，问我。
@@ -133,7 +134,7 @@
 
 - 八条最低规则是否都在，每条附它避免的故障？最后两条是附录H 里凭据那两条规则（CQ-19 和
   CQ-20）的**行为版**，不是它们表述的副本：附录要求的是系统的器具出凭据，而这份契约要求的是
-  代理在对话里交给你的那些数字出凭据。
+  代理在对话里交给你的、有决定依赖于它的那些数字出凭据。
 - 有没有哪条规则写成了愿望（"尽量……"、"尽可能……"）？有的话，它没用：规则要么遵守要么
   不遵守。
 - 项目文件是否命令每次会话都读它？

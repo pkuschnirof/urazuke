@@ -299,21 +299,21 @@ en anglais parce que le prompt était en anglais.
 
 1. Collez-lui ce prompt :
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
-> counted, how many it expected to count, what it depended on, and what it reports when you
-> could not look; a figure that reads the same when you could not look is not a figure.
-> (8) A command you present as read-only runs without permission to write, and a check that
-> exercises a destructive operation runs where its statement cannot land: that nothing changed
-> is measured, not promised. Add any rules you think this project needs, marked as proposals.
-> If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 
 > [fr]
 > Avant d'écrire du code, nous allons fixer le contrat de collaboration entre toi et moi. Écris
@@ -321,17 +321,18 @@ en anglais parce que le prompt était en anglais.
 > qu'elle évite : (1) Mon temps est sacré : ne me demande pas ce que tu peux résoudre seul, et
 > quand tu demandes, demande en prose, avec ta recommandation. (2) Zéro dette technique : ce qui
 > casse se répare à la racine, avec son test de régression, dans la même session. (3) Périmètre
-> exact : ni plus ni moins que ce qui a été demandé ; si tu vois autre chose, note-le comme élément
-> en attente, ne le fais pas. (4) La documentation se met à jour dans le même commit que le
-> changement. (5) Ne rapporte jamais comme fait quelque chose que tu n'as pas vérifié ; sépare
-> toujours ce que tu as vérifié de ce que tu crois. (6) Parle ma langue. (7) Tout chiffre que tu me remets vient avec son reçu : ce qu'il a
-> compté, combien il s'attendait à compter, de quoi il a dépendu et ce qu'il rapporte quand tu n'as
-> pas pu regarder ; un chiffre qui se lit pareil quand tu n'as pas pu regarder n'est pas un chiffre.
-> (8) Une commande que tu présentes comme en lecture seule tourne sans permission d'écrire, et une
-> vérification qui exerce une opération destructrice tourne là où son instruction ne peut pas
-> atterrir : que rien n'a changé se mesure, ne se promet pas. Ajoute les règles dont tu
-> penses que ce projet a besoin, marquées comme propositions. Si tu as besoin de savoir quelque
-> chose sur ma façon de travailler pour écrire ceci, demande-moi.
+> exact : ni plus ni moins que ce qui a été demandé ; si tu vois autre chose, note-le comme
+> élément en attente, ne le fais pas. (4) La documentation se met à jour dans le même commit que
+> le changement. (5) Ne rapporte jamais comme fait quelque chose que tu n'as pas vérifié ; sépare
+> toujours ce que tu as vérifié de ce que tu crois. (6) Parle ma langue. (7) Tout chiffre que tu
+> me remets et dont dépend une décision vient avec son reçu : ce qu'il a compté, combien il
+> s'attendait à compter, de quoi il a dépendu et ce qu'il rapporte quand tu n'as pas pu regarder ;
+> s'il se lit pareil quand tu n'as pas pu regarder, ce n'est pas un chiffre. (8) Une commande que
+> tu présentes comme en lecture seule tourne sans permission d'écrire, et une vérification qui
+> exerce une opération destructrice tourne là où son instruction ne peut pas atterrir : que rien
+> n'a changé se mesure, ne se promet pas. Ajoute les règles dont tu penses que ce projet a besoin,
+> marquées comme propositions. Si tu as besoin de savoir quelque chose sur ma façon de travailler
+> pour écrire ceci, demande-moi.
 
    Vous lui demandez les huit règles avec l'échec que chacune évite, des règles propres au projet
    marquées comme propositions pour que vous les acceptiez ou les refusiez, et qu'il vous pose des

@@ -50,21 +50,21 @@ el agente:
 - Estado mínimo aceptable: sabés contestar cada una de esas cinco preguntas. El contrato que salga
   va a ser tan bueno como tus respuestas.
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
-> counted, how many it expected to count, what it depended on, and what it reports when you
-> could not look; a figure that reads the same when you could not look is not a figure.
-> (8) A command you present as read-only runs without permission to write, and a check that
-> exercises a destructive operation runs where its statement cannot land: that nothing changed
-> is measured, not promised. Add any rules you think this project needs, marked as proposals.
-> If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -81,13 +81,13 @@ el agente:
 > raíz, con su test de regresión, en la misma sesión. (3) Alcance exacto: ni más ni menos de lo
 > pedido; si ves otra cosa, anotala como pendiente, no la hagas. (4) La documentación se actualiza
 > en el mismo commit que el cambio. (5) Nunca reportes como hecho algo que no verificaste; separá
-> siempre lo que verificaste de lo que creés. (6) Hablá mi idioma. (7) Todo número que me entregás viene con su recibo: qué contó,
-> cuántos esperaba contar, de qué dependió y qué informa cuando no pudiste mirar; un número que se
-> lee igual cuando no pudiste mirar no es un número. (8) Un comando que presentás como de sólo
-> lectura corre sin permiso de escribir, y una comprobación que ejerce una operación destructiva
-> corre donde su sentencia no puede aterrizar: que no cambió nada se mide, no se promete. Agregá
-> las reglas que creas que
-> este proyecto necesita, marcadas como propuestas. Si necesitás saber algo sobre cómo trabajo para
+> siempre lo que verificaste de lo que creés. (6) Hablá mi idioma. (7) Todo número que me entregás
+> y del que depende una decisión viene con su recibo: qué contó, cuántos esperaba contar, de qué
+> dependió y qué informa cuando no pudiste mirar; si se lee igual cuando no pudiste mirar, no es
+> un número. (8) Un comando que presentás como de sólo lectura corre sin permiso de escribir, y
+> una comprobación que ejerce una operación destructiva corre donde su sentencia no puede
+> aterrizar: que no cambió nada se mide, no se promete. Agregá las reglas que creas que este
+> proyecto necesita, marcadas como propuestas. Si necesitás saber algo sobre cómo trabajo para
 > escribir esto, preguntame.
 >
 > Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
@@ -157,7 +157,7 @@ cada sesión.
 - ¿Están las ocho reglas mínimas, cada una con el fallo que evita? Las dos últimas son la
   versión de conducta de las dos reglas del recibo del Anexo H (CQ-19 y CQ-20) y no una copia de su
   enunciado: el anexo exige el recibo a los instrumentos del sistema, y el contrato se lo exige a
-  los números que el agente te entrega en la conversación.
+  los números que el agente te entrega en la conversación y de los que depende una decisión.
 - ¿Hay alguna regla escrita como aspiración ("tratar de…", "en lo posible…")? Si la hay, no
   sirve: las reglas se cumplen o no.
 - ¿El archivo de proyecto ordena leerlo en cada sesión?

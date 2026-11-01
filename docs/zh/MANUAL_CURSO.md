@@ -229,21 +229,21 @@ WhatsApp 或邮件自动发提醒；对某些预约可以通过支付链接收�
 
 1. 粘贴这条提示词：
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
-> counted, how many it expected to count, what it depended on, and what it reports when you
-> could not look; a figure that reads the same when you could not look is not a figure.
-> (8) A command you present as read-only runs without permission to write, and a check that
-> exercises a destructive operation runs where its statement cannot land: that nothing changed
-> is measured, not promised. Add any rules you think this project needs, marked as proposals.
-> If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 
 > [zh]
 > 在写任何代码之前，我们要确定你我之间的协作契约。写 `docs/WORKING_AGREEMENT.md`，至少包含
@@ -251,8 +251,9 @@ WhatsApp 或邮件自动发提醒；对某些预约可以通过支付链接收�
 > 你问的时候，用散文问，带上你的建议。(2) 零技术债务：坏掉的东西从根上修，带上它的回归测
 > 试，在同一次会话中。(3) 范围精确：不多不少，恰好是所要求的；如果你看到别的什么，记为待办
 > 项，不要去做。(4) 文档在变更的同一次提交中更新。(5) 绝不把你没有验证过的东西报告为已完
-> 成；始终把你验证过的和你相信的分开。(6) 说我的语言。(7) 你交给我的每一个数字都带着它的凭据：数了什么、预期要数多少、依赖了
-> 什么，以及你看不到的时候报告什么；在你看不到的时候读起来一样的数字，不是数字。(8) 你自称只读
+> 成；始终把你验证过的和你相信的分开。(6) 说我的语言。(7) 你交给我的数字里，凡是有决定依赖于它的，都带着它的凭据：数了什么、
+> 预期要数多少、依赖了什么，以及你看不到的时候报告什么；如果在你看不到的时候读起来一样，
+> 它就不是数字。(8) 你自称只读
 > 的命令要在没有写权限的情况下运行，而去执行破坏性操作的检查要跑在它的语句落不下来的地方：什么
 > 都没变这件事是量出来的，不是承诺出来的。加上你认为这个项目需要的规则，标为提
 > 案。如果为了写这个你需要了解我怎么工作，问我。
