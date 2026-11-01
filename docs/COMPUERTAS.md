@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.11** - schema **2**
-- content fingerprint `c17a09557a5f216b...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.12** - schema **2**
+- content fingerprint `91f3ec00a638322f...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -25,7 +25,7 @@ What a project pins, and what it costs to change it. A project pins ONE catalog_
 
 For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.11`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.12`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -53,6 +53,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.9** (2026-10-27, D-071) -- `a4f6c78fa040f72e...`
 - **2026.10.10** (2026-10-27, D-073) -- `280d8745797b66f2...`
 - **2026.10.11** (2026-10-29, D-076) -- `c17a09557a5f216b...`
+- **2026.10.12** (2026-11-01, D-078) -- `91f3ec00a638322f...`
 
 ## Pinning: what a tool that freezes the method owes
 
@@ -76,7 +77,7 @@ and every declared version also has an address of its own: `<canonical base>/<re
 
 - The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.
 - Where it is declared: Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.
-- This version lives at `gates/2026.10.11.json` under the canonical base, and the first version with an address is **2026.10.1**.
+- This version lives at `gates/2026.10.12.json` under the canonical base, and the first version with an address is **2026.10.1**.
 - No purge: Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.
 - What the address promises: The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.
 - Not guaranteed: Byte identity is not promised, only the covered content, for the reason above. And an address on this host is not a substitute for the ledger: if this host is compromised, both the file and its hash can be rewritten together, so the pair (version -> hash) is still checked against the ledger, which lives elsewhere.
@@ -145,7 +146,7 @@ method declares from now on is in English, and it is marked as new.
 | 6 | Las decisiones se escriben junto al codigo | conversation | always | `artifacts` | 1 | 1 | 2 |
 | 7 | Medir antes de construir, con un instrumento que tambien se verifica | one_shot | proportional | `meters` | 0 | 0 | 3 |
 | 8 | Tests como candados, probados en rojo | routine | always | `receipts`, `profile_matrix` (new) | 2 | 1 | 4 |
-| 9 | Calidad del codigo verificada por maquina, con compuerta | routine | minimum | `ci`, `heuristics` (new) | 1 | 4 | 6 |
+| 9 | Calidad del codigo verificada por maquina, con compuerta | routine | minimum | `ci`, `heuristics` (new) | 1 | 4 | 7 |
 | 10 | Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas | routine | always | `artifacts`, `manual_cases_per_profile` (new) | 2 | 1 | 4 |
 | 11 | Simetria entre productor y consumidor, y el registro de anti-patrones | routine | minimum | `artifacts` | 1 | 2 | 2 |
 | 12 | Verificacion honesta y reporte proporcional | routine | always | `reports`, `heuristics` (new) | 1 | 1 | 4 |
@@ -155,7 +156,7 @@ method declares from now on is in English, and it is marked as new.
 | # | step | form | demand | evaluators | inputs | artifacts | checks |
 |---|---|---|---|---|---|---|---|
 | 13 | La auditoria periodica como insumo del plan | one_shot | minimum | `artifacts` | 2 | 2 | 5 |
-| 14 | Fail-closed, candados y cero dano silencioso | conversation | minimum | `artifacts` | 2 | 1 | 2 |
+| 14 | Fail-closed, candados y cero dano silencioso | conversation | minimum | `artifacts` | 2 | 1 | 3 |
 | 15 | Integracion continua, entornos, secretos y despliegue como parte del producto | one_shot | minimum | `ci` | 1 | 2 | 4 |
 | 16 | Observabilidad y trazabilidad totales, con nivel configurable | one_shot | minimum | `artifacts` | 2 | 1 | 2 |
 | 17 | Optimizacion de la capa de persistencia, medida antes y despues | one_shot | proportional | `artifacts` | 2 | 1 | 2 |
@@ -337,6 +338,7 @@ Completeness check, without reading code:
 - Is the rule catalogue complete, with its frontend adapter and its declared thresholds (and does whatever is undeclared say so)? **(new in schema 2, anchor 3)**
 - Does every switched-off rule have its record with reason, author and review date? **(new in schema 2, anchor 3)**
 - With real users, is the mutation score measured per block, and did every surviving mutant in new code open a pending item? **(new in schema 2, anchor 3)**
+- Does every instrument this step decides with carry its receipt: which set it expected to walk next to how much of it it walked, what it depends on, and what it reports when it could not look (CQ-19)? **(new in schema 2, anchor 3)**
 
 **10 - Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas** (`u10-casos-de-prueba-manual`, prompt `peldano-10`)
 
@@ -419,6 +421,7 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 Completeness check, without reading code:
 - Cada accion de tu lista tiene su candado en LOCKS.md, con el test que lo prueba?
 - Ante un dato que falta, el sistema se detiene en vez de inventar?
+- Does every verification declare the privilege it ran with, and does the probe that exercises a destructive operation run where its statement cannot land, with the state counted before and after (CQ-20)? **(new in schema 2)**
 
 **15 - Integracion continua, entornos, secretos y despliegue como parte del producto** (`u15-ci-entornos-secretos-deploy`, prompt `peldano-15`)
 
@@ -665,13 +668,13 @@ called steps) and only then enters the Construction Loop at step 5.
 
 - Cada pendiente de deuda esta emparejado con el modulo que el pedido toca?
 
-## Annex H: 46 rules
+## Annex H: 48 rules
 
 The statement of every rule lives **only** in Annex H: it is extracted from there on every build,
 never transcribed. The published statement comes from [the English version](en/ANEXO_HEURISTICAS.md); the
 [Spanish one](ANEXO_HEURISTICAS.md) is the source of truth of the method, and the build demands that both carry
 the same rules with the same severities. What this data adds is the mechanical part: the group, the
-instrument, the initial severity, when it is looked at and the step where it hooks. There are 18 of
+instrument, the initial severity, when it is looked at and the step where it hooks. There are 20 of
 code quality and 28 of usability.
 
 The two switches (`code_quality` and `usability`) are turned on and off separately,
@@ -679,7 +682,7 @@ they live in the project configuration and the gate reads them: never inside the
 Switching a rule off is valid only as a recorded decision with reason, authorized_by, review_date.
 Switched off without a record: red: switching a rule off without a written reason is a failure of the gate, not the absence of a rule. A switched-off group is never read as fulfilled.
 
-### Code quality (CQ-01..CQ-18)
+### Code quality (CQ-01..CQ-20)
 
 Result per rule in `docs/CODE_QUALITY.md`.
 
@@ -703,6 +706,8 @@ Result per rule in `docs/CODE_QUALITY.md`.
 | CQ-16 | interface | Every interactive element carries a stable identifier and a role, so that the automated test finds it by name and not by position. | automatic gate | on every push and at block close | BLOCKS | 9 |
 | CQ-17 | interface | All colours, spacings and typefaces come out of tokens; no loose magic value in the stylesheet. | automatic gate | on every push and at block close | BLOCKS | 9 |
 | CQ-18 | interface | Basic accessibility is verified on its own: contrast, labels on fields, visible focus, keyboard navigation in the main flows, images with alternative text. | automatic gate | on every push and at block close | WARNS | 9 |
+| CQ-19 | receipt | Every instrument the project decides with declares the conditions under which its figure holds: which set it expected to walk and how much of it it walked, what it depends on, and what it reports when it could not look. An instrument whose silence reads like health does not measure: it reassures. | automatic gate + manual case | on every push and at block close | BLOCKS | 9 |
+| CQ-20 | privilege | A verification runs with the least privilege it needs in order to verify and with no more, and that it could do no harm is measured, not promised. | automatic gate + manual case | on every push and at block close | BLOCKS | 14 |
 
 ### Usability (UX-01..UX-28)
 
@@ -743,10 +748,29 @@ The rules marked with `*` in the step column are not anchored by the annex expli
 derived from their instrument (the manual case runs at step 10, the automatic gate runs at step 9)
 and is declared as derived, not as a decision of the method.
 
-A **human red** is carried by five of the forty-six rules -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- and those are tested by no tool
+A **human red** is carried by five of the forty-eight rules -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- and those are tested by no tool
 at all: they are verified at the close of the pending item, with the manual case in front, and
 never on a commit. Four of them block (CQ-12, CQ-14, UX-22, UX-27) and one warns (UX-28):
 a human red says who verifies a rule, not how hard it hits.
+
+### The six faces, and how a single one is switched off
+
+A face is a cut of the statement of one rule with an identifier of its own (CQ-19.1). Faces exist for a mechanical reason and not a drafting one: without an identifier a single one cannot be switched off, and a rule that can only be switched off whole pushes towards switching off too much. Their statement lives only in Annex H, like the statement of a rule, and the build extracts it (D-044).
+
+| id | face | statement | rule |
+|---|---|---|---|
+| CQ-19.1 | The denominator | Every measurement that walks a set declares how many elements it expected to walk next to how many it walked, and fails closed when it walked fewer. Telling the zero that means "there are none" from the zero that means "I could not look" is not enough: what has to be told apart is the "fewer because I did not look at all of it", which is the one that reads like health. | CQ-19 |
+| CQ-19.2 | Independence | No instrument depends on the resource it measures. When that cannot be avoided, its report declares what it depends on, and the failure of that dependency is reported as "I could not look" and never as health. | CQ-19 |
+| CQ-19.3 | The universe, in both directions | Every filter, search or selection declares the universe it ran over: "I found nothing" and "I did not run" are two different results and are not written the same way, and a filter that returned too much was not applied either. A figure that decides something is measured twice, in two different ways, before it is used. | CQ-19 |
+| CQ-19.4 | The lax sibling | When a check has a counterpart in the chain, either they are the same instrument with the same configuration or the difference is declared: what each one measures, which one rules, and what can pass one and fail the other. A local check more permissive than the one that decides is a green that lies. | CQ-19 |
+| CQ-20.1 | The undeclared effect | A command presented as read-only runs without permission to write, and the privilege it ran with is declared next to its result. An instrument that writes while saying it does not leaves the owner deciding over a state the instrument itself changed. | CQ-20 |
+| CQ-20.2 | The probe that is only harmless when it fails | A probe that exercises a destructive operation in order to check that it is blocked runs where its statement cannot land, and its report proves the state was left identical by counting it before and after. A probe whose harm depends on the block working does not verify the block: it bets on it. | CQ-20 |
+
+Switching one off: The record of project_config.switch_off_record, with the id of a face written in its `rule` field. A record whose id resolves neither to a rule nor to a face is a dangling switch-off: red, by the same criterion as a rule switched off without a record.
+A rule with any face switched off is never reported as fulfilled. The report says "three of four faces, one switched off with its reason" and never a percentage alone: a partial compliance whose figure reads like a complete one is the silent damage this whole family is about.
+On the scoreboard: For a rule that has faces the scoreboard counts faces and not rules, or the two figures of section 12 of the annex stop meaning what they say.
+
+Two of the forty-eight rules have faces (CQ-19: four, CQ-20: two). CQ-19 and CQ-20. CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off: giving them ids is adding and not renaming, and it is separate work.
 
 ### The five anchors and the two prior inputs
 
@@ -833,5 +857,5 @@ Order in the step 12 report: binary verdict -> the two figures -> what is switch
 ## The decisions that govern this
 
 D-050 (the method owns the definition of the gates), D-051 (the data layer and this document are
-published in English), and the Annex H ones: D-043, D-044, D-045, D-046, D-047, D-048, D-049, D-070. They are in the
+published in English), and the Annex H ones: D-043, D-044, D-045, D-046, D-047, D-048, D-049, D-070, D-078. They are in the
 [decision register](DECISIONES.md), written in Spanish, which is the language of the method.

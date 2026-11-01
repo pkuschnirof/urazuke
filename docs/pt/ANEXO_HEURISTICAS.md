@@ -37,6 +37,8 @@ Toda regra se escreve sempre com a mesma ficha de seis campos:
 
 **A exceção se declara, nunca se omite.** Uma regra se apaga com ficha de quatro campos: identificador, motivo em uma linha, quem a autoriza (o dono, não o agente) e data de revisão. Uma regra apagada sem ficha é um fracasso da comporta, não uma decisão. É o mesmo critério que o método já usa para recusar um limite subido "para passar".
 
+**Uma regra pode ter faces, e apaga-se uma só (D-078).** Uma face é um corte do mesmo enunciado com identificador próprio —`CQ-19.1`, `CQ-19.2`—, append-only como o das regras e nunca reciclado. Existem por uma razão mecânica e não de redação: sem identificador não se pode apagar uma só, e uma regra que só se pode apagar inteira empurra a apagar demais. A ficha de apagado é a mesma de cima, com o identificador de uma face no lugar do de uma regra, e uma ficha cujo identificador não resolve nem para uma regra nem para uma face é um apagado pendurado, que é vermelho. Três coisas disto não se negociam. Uma regra com qualquer face apagada **não se informa como cumprida**: o reporte diz "CQ-19: três de quatro faces, uma apagada com o seu motivo" e nunca uma porcentagem sozinha, que é o critério do apagado observável aplicado dentro de uma regra. A conta de faces **deriva-se** do dado e não se escreve, como qualquer cifra que vive ao lado do nome de uma coleção. E o painel da seção 12 conta faces e não regras para uma regra que as tem, ou a porcentagem mente. Hoje `CQ-18` tem cinco comprovações sem identificador, então é a única regra com faces não endereçáveis: dar-lhes identificador é agregar e não renomear, e é trabalho à parte.
+
 ## 3. Os quatro instrumentos
 
 Nenhuma heurística vale nada se a sua verificação é uma opinião. São quatro, e cada regra declara a qual pertence.
@@ -70,10 +72,34 @@ O núcleo estende o passo 9: não o substitui e não o contradiz, da nome, sever
 | CQ-16 | Interface | Todo elemento interativo leva identificador estável e papel, para que o teste automático o encontre pelo nome e não pela posição. | Comporta (busca) | BLOQUEIA |
 | CQ-17 | Interface | Todas as cores, espaçamentos e tipografias saem de tokens; nenhum valor solto na folha de estilos. | Comporta (busca) | BLOQUEIA |
 | CQ-18 | Interface | A acessibilidade básica se verifica sozinha: contraste, rótulos nos campos, foco visível, navegação por teclado nos fluxos principais, imagens com texto alternativo. | Comporta | AVISA |
+| CQ-19 | Recibo | Todo instrumento com o qual o projeto decide declara as condições em que o seu número vale: que conjunto esperava percorrer e quanto percorreu, de que depende, e o que informa quando não pôde olhar. Um instrumento cujo silêncio se lê igual à saúde não mede: tranquiliza. | Comporta + caso manual | BLOQUEIA |
+| CQ-20 | Privilégio | Uma verificação corre com o privilégio mínimo para verificar e com nenhum mais, e que não pôde fazer dano mede-se, não se promete. | Comporta + caso manual | BLOQUEIA |
 
 As regras CQ-12 a CQ-18 são as que fazem com que "qualidade de código" signifique algo no front. Sem elas, o projeto pode ter noventa por cento de mutação e uma tela que calcula o total com a sua própria aritmética dentro de um componente: o pior dos dois mundos, porque o cálculo duplicado passa todos os testes de backend.
 
-**Severidades iniciais (D-048).** Desde o primeiro dia bloqueiam as catorze regras que têm verificador e que não dependem de um limiar que valha discutir: CQ-01 a CQ-06, CQ-08 e CQ-11 a CQ-17. CQ-09 bloqueia onde há usuários reais, que é onde se mede. Avisam três, e só três: CQ-07 (tipos), CQ-10 (dependências) e CQ-18 (acessibilidade), porque são as que precisam que o projeto calibre primeiro. O formatador, o linter, o tamanho e a complexidade **não se afrouxam**: o passo 9 já os bloqueia hoje, e esta extensão o estende, não o substitui; a dívida herdada se resolve com exceção declarada ou com a linha de base da catraca, nunca baixando a severidade. E CQ-12 e CQ-14 são as duas únicas regras desta tabela que bloqueiam com vermelho humano e não de máquina: se verificam no fechamento do pendente e com o caso manual na frente, igual a UX-22 e UX-27, não em cada commit. Se o projeto não consegue sustentar esse fechamento, a regra baixa a AVISA por decisão registrada, não por descuido.
+**As duas regras do recibo, e de onde saíram (D-078).** CQ-19 e CQ-20 entraram em 2026-11-01 e não saíram de uma ideia: saíram de onze falhas medidas num experimento que estava medindo outra coisa. Todas tinham a mesma forma —um instrumento que não pôde olhar e informou isso igual à saúde, ou que olhou menos do que acreditava ter olhado— e apareceram por onze caminhos distintos, o que torna muito improvável que seja o defeito de um programa. O que as torna duas regras e não onze é que se lhes pode fazer a mesma pergunta: *qual é o denominador deste número, e o que informa este instrumento quando não pôde olhar?* CQ-19 é sobre o que um instrumento **informa**; CQ-20 é sobre o **privilégio** com o qual corre, que é parte da verificação e não um detalhe de operação. Cada uma entra com as suas faces, que é a forma que a seção 2 descreve.
+
+#### As quatro faces de CQ-19
+
+| id | Face | Enunciado |
+|---|---|---|
+| CQ-19.1 | O denominador | Toda medição que percorre um conjunto declara quantos elementos esperava percorrer ao lado de quantos percorreu, e falha fechado quando percorreu menos. Não basta distinguir o zero que é "não há" do zero que é "não pude olhar": há que distinguir o "menos porque não olhei tudo", que é o que se lê igual à saúde. |
+| CQ-19.2 | A independência | Nenhum instrumento depende do recurso que mede. Quando não se pode evitar, o seu reporte declara de que depende, e a queda dessa dependência informa-se como "não pude olhar" e nunca como saúde. |
+| CQ-19.3 | O universo, nas duas direções | Todo filtro, busca ou seleção declara o universo sobre o qual correu: "não encontrei nada" e "não corri" são dois resultados distintos e não se escrevem igual, e um filtro que devolveu demais também não se aplicou. Uma cifra que decide mede-se duas vezes, de duas formas distintas, antes de ser usada. |
+| CQ-19.4 | O irmão frouxo | Quando um controle tem contraparte na cadeia, ou são o mesmo instrumento com a mesma configuração, ou a diferença está declarada: o que mede cada um, qual manda, e o que pode passar um e falhar o outro. Um controle local mais permissivo do que o que decide é um verde que mente. |
+
+**Em que difere do recibo do passo 8.** São o mesmo conceito sobre objetos distintos, e por isso levam o mesmo nome: o recibo do passo 8 é um artefato que um plano produz —o vermelho com o seu comando exato, a sua versão, os seus números e o seu código de saída, colado tal como saiu—, e o recibo do instrumento é a condição que um número traz ao lado para poder ser lido. Um exige-se uma vez por candado; o outro, cada vez que uma cifra decide algo. Dito ao contrário, que é como se checa sem pensar: se o que você tem na frente é um teste, peça o recibo do passo 8; se é um número, peça o de CQ-19.
+
+#### As duas faces de CQ-20
+
+| id | Face | Enunciado |
+|---|---|---|
+| CQ-20.1 | O efeito não declarado | Um comando que se apresenta como de somente leitura corre sem permissão de escrever, e o privilégio com o qual correu declara-se ao lado do seu resultado. Um instrumento que escreve enquanto diz que não deixa o dono decidindo sobre um estado que o próprio instrumento mudou. |
+| CQ-20.2 | A sonda que só é inofensiva quando falha | Uma sonda que exerce uma operação destrutiva para comprovar que está impedida corre onde a sua sentença não pode aterrissar, e o seu reporte prova que o estado ficou idêntico contando-o antes e depois. Uma sonda cujo dano depende de que o impedimento funcione não verifica o impedimento: aposta nele. |
+
+O par de CQ-20 com a rotina do vermelho do passo 8 lê-se sozinho: o vermelho primeiro exige que um teste **possa** detectar; CQ-20 exige que ao detectar **não rompa**.
+
+**Severidades iniciais (D-048).** Desde o primeiro dia bloqueiam as dezesseis regras que têm verificador e que não dependem de um limiar que valha discutir: CQ-01 a CQ-06, CQ-08, CQ-11 a CQ-17, CQ-19 e CQ-20. CQ-09 bloqueia onde há usuários reais, que é onde se mede. Avisam três, e só três: CQ-07 (tipos), CQ-10 (dependências) e CQ-18 (acessibilidade), porque são as que precisam que o projeto calibre primeiro. O formatador, o linter, o tamanho e a complexidade **não se afrouxam**: o passo 9 já os bloqueia hoje, e esta extensão o estende, não o substitui; a dívida herdada se resolve com exceção declarada ou com a linha de base da catraca, nunca baixando a severidade. E CQ-12 e CQ-14 são as duas únicas regras desta tabela que bloqueiam com vermelho humano e não de máquina: se verificam no fechamento do pendente e com o caso manual na frente, igual a UX-22 e UX-27, não em cada commit. Se o projeto não consegue sustentar esse fechamento, a regra baixa a AVISA por decisão registrada, não por descuido.
 
 **Adaptador por família de frontend.** Exemplo de como se instância a capa 2 (os nomes são ilustrativos; o projeto escolhe e escreve os seus):
 
@@ -171,9 +197,9 @@ O anexo não inventa passos novos: pendura-se nos que existem. Isso evita duplic
 
 **Onde vai (D-043).** É transversal aos quatro trechos, com o peso principal no Loop de Construção (passos 5 a 12), que é onde se decide e se constrói. Não é um passo próprio: um passo numerado obrigaria a renumerar a escada, alteraria a contagem de passos e sujeitaria o anexo a tradução obrigatória dos contratos aos oito idiomas antes de que a construção pudesse passar em verde, sem agregar nenhuma comporta que o loop não tenha já.
 
-**Como se engancha (D-044).** Uma fonte canônica, cinco âncoras e duas entradas prévias. O texto das regras vive só aqui e os prompts o citam; nunca o copiam. Repetir as quarenta e cinco regras dentro dos oito prompts do loop as dilui (competem com o trabalho de cada passo e o agente as obedece diferente em cada vez), as desalinha (duas cópias do mesmo texto se desincronizam sozinhas, que é o antipadrão que o passo 11 persegue) e não as torna mais transversais: o que torna uma regra transversal é que cada bloco passe pela mesma comporta, não que a regra esteja escrita em todas partes.
+**Como se engancha (D-044).** Uma fonte canônica, cinco âncoras e duas entradas prévias. O texto das regras vive só aqui e os prompts o citam; nunca o copiam. Repetir as quarenta e oito regras dentro dos oito prompts do loop as dilui (competem com o trabalho de cada passo e o agente as obedece diferente em cada vez), as desalinha (duas cópias do mesmo texto se desincronizam sozinhas, que é o antipadrão que o passo 11 persegue) e não as torna mais transversais: o que torna uma regra transversal é que cada bloco passe pela mesma comporta, não que a regra esteja escrita em todas partes.
 
-**A única regra que entra no prompt, e por quê (D-070).** UX-28 é a exceção escrita ao de cima, e convém dizer em que difere das outras quarenta e cinco: aquelas são exigências sobre **o sistema que se constrói**, e a comporta mede-as sobre artefatos que o projeto deixa escritos; UX-28 é uma exigência sobre **a conversa na qual se constrói**, e a única maneira de o modelo obedecê-la é que esteja no que o modelo lê. Entra acotada -- nomeia as quatro partes e o parâmetro, e nada mais -- numa única redação inglesa idêntica nos oito idiomas. O que esta exceção **não** autoriza é copiar nenhuma das outras: o argumento de D-044 segue inteiro para tudo o que uma comporta pode olhar.
+**A única regra que entra no prompt, e por quê (D-070).** UX-28 é a exceção escrita ao de cima, e convém dizer em que difere das outras quarenta e sete: aquelas são exigências sobre **o sistema que se constrói**, e a comporta mede-as sobre artefatos que o projeto deixa escritos; UX-28 é uma exigência sobre **a conversa na qual se constrói**, e a única maneira de o modelo obedecê-la é que esteja no que o modelo lê. Entra acotada -- nomeia as quatro partes e o parâmetro, e nada mais -- numa única redação inglesa idêntica nos oito idiomas. O que esta exceção **não** autoriza é copiar nenhuma das outras: o argumento de D-044 segue inteiro para tudo o que uma comporta pode olhar.
 
 | Momento | O que se agrega | Por que ali |
 |---|---|---|
@@ -295,7 +321,7 @@ Os dois zeros são deliberados e são a parte que importa: a cobertura mínima a
 
 ## 9. O que esta proposta não faz
 
-- **Não agrega um passo.** São quarenta e seis regras transversais (18 de qualidade e 28 de usabilidade), não uma etapa nova. Penduram-se nos passos que já existem.
+- **Não agrega um passo.** São quarenta e oito regras transversais (20 de qualidade e 28 de usabilidade), não uma etapa nova. Penduram-se nos passos que já existem.
 - **Não inventa um escore.** Um número de "usabilidade 78" não diz o que arrumar e se otimiza na direção errada. Se reporta por regra. A seção 12 propõe duas cifras derivadas, mas são uma contagem de regras com o seu assento - não uma nota de qualidade nem de usabilidade - e não autorizam fechar nada.
 - **Não substitui o dono.** O teste do primeiro clique, a captura e o teste de tarefa continuam sendo humanos: são o único instrumento que distingue "funciona" de "serve".
 - **Não traz limiares de fabrica.** Os do adaptador são um ponto de partida declarado; o projeto que não declare os seus os herda e fica registrado como tal.
@@ -321,6 +347,8 @@ As duas perguntas que travavam a escrita dos prompts já estão respondidas: a 1
 
 1. **O defeito da contagem.** Onde este anexo dizia "vinte e sete regras" o número correto é **quarenta e cinco**: 18 de qualidade (CQ-01 a CQ-18) e 27 de usabilidade (UX-01 a UX-27). A cifra velha vinha de um rascunho que só contava a metade. Corrigido nas seções 6 e 9 e anotado em D-048; o texto de D-044 se conserva tal como se escreveu, porque uma decisão é um registro e não se reescreve.
 2. **O formatador, o linter, o tamanho e a complexidade não se afrouxam.** Uma versão anterior desta recomendação os mandava a "avisa" para não travar projetos com dívida herdada. Não pode ser: o passo 9 já os bloqueia hoje, e esta extensão o estende, não o substitui. A dívida herdada se resolve com exceção declarada - com motivo e data de revisão - ou com a linha de base da catraca, não baixando a severidade da regra.
+
+**E desde 2026-11-01 são quarenta e oito.** CQ-19 e CQ-20 entraram com D-078 e a conta passou a 20 de qualidade e 28 de usabilidade; são as duas primeiras regras com **faces**, que é a forma que a seção 2 descreve.
 
 **E desde 2026-10-27 são quarenta e seis.** UX-28 entrou com D-070 e a conta passou a 18 de qualidade e 28 de usabilidade. A nota de cima conserva-se tal como foi escrita, porque uma correção também é um registro; o que muda com uma regra nova é a conta, não a história da conta.
 

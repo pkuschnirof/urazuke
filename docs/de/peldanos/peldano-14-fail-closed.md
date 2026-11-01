@@ -171,6 +171,9 @@ was sie getan hätte, bevor man sie handeln lässt.
   gesehen, bevor du sie freigeschaltet hast?
 - Was passiert, wenn der eingebettete Agent etwas außerhalb seiner Berechtigungen versucht? Bitte
   ihn, es zu versuchen und dir die Ablehnung im Log zu zeigen.
+- Mit welchem Privileg lief jede Überprüfung? Der Befehl, der sich als nur lesend ausgibt, ohne
+  Schreibrecht; und die Sonde, die die verhinderte Aktion ausführt, dort laufend, wo ihre Anweisung
+  nicht landen kann, mit dem Zustand vorher und nachher gezählt (CQ-20).
 
 ## 5. Warnsignale
 

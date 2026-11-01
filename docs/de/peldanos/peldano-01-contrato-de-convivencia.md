@@ -62,8 +62,13 @@ machst es, nicht der Agent:
 > no more and no less than what was asked; if you see something else, log it as a pending item,
 > do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
 > as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. Add any rules you think this project needs, marked as
-> proposals. If you need to know something about how I work in order to write this, ask me.
+> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you
+> could not look; a figure that reads the same when you could not look is not a figure.
+> (8) A command you present as read-only runs without permission to write, and a check that
+> exercises a destructive operation runs where its statement cannot land: that nothing changed
+> is measured, not promised. Add any rules you think this project needs, marked as proposals.
+> If you need to know something about how I work in order to write this, ask me.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -81,7 +86,12 @@ machst es, nicht der Agent:
 > nicht mehr und nicht weniger als verlangt; wenn du etwas anderes siehst, trag es als offenen
 > Posten ein, tu es nicht. (4) Die Dokumentation wird im selben Commit wie die Änderung
 > aktualisiert. (5) Melde nie als erledigt, was du nicht verifiziert hast; trenne immer, was du
-> verifiziert hast, von dem, was du glaubst. (6) Sprich meine Sprache. Füge die Regeln hinzu, die
+> verifiziert hast, von dem, was du glaubst. (6) Sprich meine Sprache. (7) Jede Zahl, die du mir gibst, kommt mit ihrem Beleg: was sie
+> gezählt hat, wie viele sie zu zählen erwartete, wovon sie abhing und was sie meldet, wenn du nicht
+> hinsehen konntest; eine Zahl, die sich gleich liest, wenn du nicht hinsehen konntest, ist keine
+> Zahl. (8) Ein Befehl, den du als nur lesend ausgibst, läuft ohne Schreibrecht, und eine Prüfung,
+> die einen zerstörenden Vorgang ausführt, läuft dort, wo ihre Anweisung nicht landen kann: dass
+> sich nichts geändert hat, wird gemessen und nicht versprochen. Füge die Regeln hinzu, die
 > dieses Projekt deiner Meinung nach braucht, als Vorschläge markiert. Wenn du etwas darüber
 > wissen musst, wie ich arbeite, um das zu schreiben, frag mich.
 >
@@ -93,7 +103,7 @@ machst es, nicht der Agent:
 > —`beginner`, `decision_maker` oder `technical`—; hat das Projekt keine erklärt, nimm
 > `decision_maker`.
 
-Was ich hier verlange: die sechs Mindestregeln, jede mit dem Fehler, den sie verhindert (das ist
+Was ich hier verlange: die acht Mindestregeln, jede mit dem Fehler, den sie verhindert (das ist
 es, was sie zu Regeln macht und nicht zu Ratschlägen); dass er projekteigene Regeln vorschlägt,
 sie aber als Vorschläge markiert, damit du sie annimmst oder ablehnst; und dass er fragt, was er
 über dich wissen muss. Eine Vereinbarung, die ohne eine einzige Frage verfasst wurde, ist
@@ -112,7 +122,7 @@ verdächtig: der Agent kennt die Person nicht, mit der er arbeiten wird.
 - Akzeptabler Mindestzustand: keine vorgeschlagene Regel bleibt ohne Urteil. Eine Regel, die du
   weder angenommen noch abgelehnt hast, bleibt in der Vereinbarung, als hättest du sie angenommen.
 
-> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> I accept rules 1 to 8 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 >
@@ -124,7 +134,7 @@ verdächtig: der Agent kennt die Person nicht, mit der er arbeiten wird.
 > `technical`; if the project declared none, use `decision_maker`.
 
 > [de]
-> Ich akzeptiere die Regeln 1 bis 6 und deine Vorschläge [X, Y]; ich lehne [Z] ab, weil [Grund].
+> Ich akzeptiere die Regeln 1 bis 8 und deine Vorschläge [X, Y]; ich lehne [Z] ab, weil [Grund].
 > Schließe die Vereinbarung mit dem heutigen Datum und einer Versionsnummer ab. Füge dann der
 > Projektdatei die Anweisung hinzu, diese Vereinbarung zu Beginn jeder Sitzung zu lesen.
 >
@@ -155,7 +165,10 @@ jeder Sitzung zu lesen.
 
 ## 4. Vollständigkeitsprüfung
 
-- Sind die sechs Mindestregeln da, jede mit dem Fehler, den sie verhindert?
+- Sind die acht Mindestregeln da, jede mit dem Fehler, den sie verhindert? Die letzten zwei sind
+  die Verhaltensfassung der zwei Belegregeln von Anhang H (CQ-19 und CQ-20) und keine Kopie ihres
+  Wortlauts: der Anhang verlangt den Beleg von den Instrumenten des Systems, und die Vereinbarung
+  verlangt ihn von den Zahlen, die der Agent dir im Gespräch gibt.
 - Ist irgendeine Regel als Absichtserklärung geschrieben („versuchen, …“, „nach Möglichkeit …“)?
   Wenn ja, taugt sie nichts: Regeln werden eingehalten oder nicht.
 - Ordnet die Projektdatei an, sie in jeder Sitzung zu lesen?

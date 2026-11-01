@@ -147,19 +147,52 @@ export function enunciadosDeReglas(textoAnexo, reglas) {
 }
 
 /**
+ * Las caras de las reglas que las tienen (D-078). Una cara lleva DOS textos y por eso son
+ * dos clases: su enunciado, como una regla, y su nombre corto, como el titulo de un
+ * peldano. El nombre es lo que un reporte imprime --"CQ-19.2 (la independencia), apagada
+ * con su motivo"-- y el enunciado es lo que el lector necesita para entender por que. Los
+ * dos se EXTRAEN del anexo del idioma; ninguno se escribe aca.
+ */
+export function enunciadosDeCaras(textoAnexo, caras) {
+  const leido = leerAnexo(textoAnexo ?? '');
+  const textos = {};
+  const titulos = {};
+  const hallazgos = [];
+  const esperadas = new Set(caras.map((c) => c.id));
+  for (const c of caras) {
+    const fila = leido.caras.get(c.id);
+    if (!fila) { hallazgos.push(c.id + ': la cara no esta en el anexo de este idioma'); continue; }
+    textos[c.id] = fila.enunciado;
+    titulos[c.id] = fila.nombre;
+  }
+  for (const id of leido.caras.keys()) {
+    if (!esperadas.has(id)) hallazgos.push(id + ': el anexo de este idioma trae una cara que el dato no tiene');
+  }
+  return { textos, titulos, hallazgos };
+}
+
+/**
  * Un idioma entero. `textos` son los tres documentos de ese idioma ya leidos; `dato` son
- * los peldanos, las estaciones y las reglas del dato. No lee disco a proposito.
+ * los peldanos, las estaciones, las reglas y las caras del dato. No lee disco a proposito.
  */
 export function armarUnIdioma(textos, dato) {
   const peldanos = titulosDePeldanos(textos.principal, dato.pasos);
   const estaciones = titulosDeEstaciones(textos.evolutivo, dato.estaciones);
   const reglas = enunciadosDeReglas(textos.anexo, dato.reglas);
+  const caras = enunciadosDeCaras(textos.anexo, dato.caras);
   return {
-    labels: { steps: peldanos.textos, stations: estaciones.textos, rules: reglas.textos },
+    labels: {
+      steps: peldanos.textos,
+      stations: estaciones.textos,
+      rules: reglas.textos,
+      faces: caras.textos,
+      face_titles: caras.titulos,
+    },
     hallazgos: [
       ...peldanos.hallazgos.map((h) => 'steps/' + h),
       ...estaciones.hallazgos.map((h) => 'stations/' + h),
       ...reglas.hallazgos.map((h) => 'rules/' + h),
+      ...caras.hallazgos.map((h) => 'faces/' + h),
     ],
   };
 }
@@ -181,6 +214,7 @@ export function leerDato(base = raiz) {
     pasos: de('steps.json').steps.map((p) => ({ id: p.id, num: p.num })),
     estaciones: de('stations.json').stations.map((e) => ({ id: e.id, num: e.num })),
     reglas: de('heuristics.json').rules.map((r) => ({ id: r.id })),
+    caras: de('heuristics.json').rules.flatMap((r) => (r.faces ?? []).map((c) => ({ id: c.id }))),
     // Los evaluadores no aportan ningun texto a este recurso: entran porque el `scope`
     // declara, con su cuenta, por que quedan AFUERA, y esa cuenta se deriva en vez de
     // escribirse (PND-064). Una exclusion que explica su alcance con un numero a mano es
@@ -209,7 +243,7 @@ export function leerTextos(idioma) {
 
 const WHAT = 'The texts of the Urazuke method by stable identifier, in the languages its prose is published in. It exists because the gate catalogue tells a consumer not to print its texts and to take them from its own catalogue instead, and until this resource there was no catalogue to take them from: the instruction was right and impossible to obey, so every tool ended up writing its own translations of the titles of the method. Nothing here is translated by this file. Every string is EXTRACTED from the prose of the method, which already carries the translations; if a text is not in the prose, publication is refused instead of inventing it. Read the opaque id from the gate catalogue and look it up here under the language you are rendering for. ' + ALCANCE_DE_LA_HUELLA;
 
-const KEYED_BY = 'labels.<language>.<kind>.<id>, where <language> is one of the entries of `languages.published`, <kind> is one of steps, stations or rules, and <id> is the opaque identifier the gate catalogue declares for that node. The ids are the key, not the order: they are append-only and never renamed.';
+const KEYED_BY = 'labels.<language>.<kind>.<id>, where <language> is one of the entries of `languages.published`, <kind> is one of steps, stations, rules, faces or face_titles, and <id> is the opaque identifier the gate catalogue declares for that node. The ids are the key, not the order: they are append-only and never renamed.';
 
 /**
  * Lo que entra y lo que queda afuera, con su razon y su medicion. Es una FUNCION del dato y
@@ -223,6 +257,8 @@ const scopeDe = (dato) => ({
     { kind: 'steps', what: 'The title of each of the steps of the ladder.', source: 'The heading of the step card in the main document of each language.' },
     { kind: 'stations', what: 'The title of each of the normalisation stations.', source: 'The heading of each station in the evolutionary-corrective path of each language.' },
     { kind: 'rules', what: 'The statement of each rule of Annex H.', source: 'The row of each rule in Annex H of each language, read with the same extractor that resolves the English statement published in the gate catalogue.' },
+    { kind: 'faces', what: 'The statement of each face of a rule that has faces.', source: 'The row of each face in Annex H of each language, with the same extractor. A rule with no faces contributes none, and that is the shape of forty-six of the forty-eight.' },
+    { kind: 'face_titles', what: 'The short name of each face -- what a report prints next to its id.', source: 'The same row as its statement. A face carries two texts, so it is two kinds: the statement, like a rule, and the name, like the title of a step.' },
   ],
   excluded: [
     {
@@ -257,7 +293,9 @@ export function armarContenido(idiomas, textosPorIdioma, dato, catalogo) {
     labels[idioma] = uno.labels;
     for (const h of uno.hallazgos) hallazgos.push(idioma + '/' + h);
   }
-  const porIdioma = dato.pasos.length + dato.estaciones.length + dato.reglas.length;
+  // Una cara aporta DOS ids por idioma --su enunciado y su nombre--, y la cuenta se deriva
+  // de eso y no se escribe: el dia que entre una cara, el resumen la cuenta sola (D-077).
+  const porIdioma = dato.pasos.length + dato.estaciones.length + dato.reglas.length + dato.caras.length * 2;
   return {
     hallazgos,
     contenido: {
@@ -269,6 +307,7 @@ export function armarContenido(idiomas, textosPorIdioma, dato, catalogo) {
         steps: dato.pasos.length,
         stations: dato.estaciones.length,
         rules: dato.reglas.length,
+        faces: dato.caras.length,
         strings: idiomas.length * porIdioma,
       },
       keyed_by: KEYED_BY,

@@ -277,7 +277,7 @@ tolérez pas, quel niveau d'autonomie vous lui donnez. Sans contrat, vous lui r�
 choses à chaque session, et chaque fois un peu différemment. Moi, je l'ai écrit pour la première
 fois après deux semaines à me répéter [Ref. 1](REFERENCIAS.md#ref-1).
 
-Les six règles minimales ont chacune un échec derrière elles : « mon temps est sacré » évite qu'il
+Les huit règles minimales ont chacune un échec derrière elles : « mon temps est sacré » évite qu'il
 vous consulte pour chaque détail ; « zéro dette » évite le « je l'arrangerai plus tard » ;
 « périmètre exact » évite que « tant qu'il y est » il vous ajoute des choses ; « documentation
 dans le même commit » évite les manuels périmés ; « ne jamais rapporter comme fait ce qui n'est pas
@@ -307,8 +307,13 @@ en anglais parce que le prompt était en anglais.
 > no more and no less than what was asked; if you see something else, log it as a pending item,
 > do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
 > as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. Add any rules you think this project needs, marked as
-> proposals. If you need to know something about how I work in order to write this, ask me.
+> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you
+> could not look; a figure that reads the same when you could not look is not a figure.
+> (8) A command you present as read-only runs without permission to write, and a check that
+> exercises a destructive operation runs where its statement cannot land: that nothing changed
+> is measured, not promised. Add any rules you think this project needs, marked as proposals.
+> If you need to know something about how I work in order to write this, ask me.
 
 > [fr]
 > Avant d'écrire du code, nous allons fixer le contrat de collaboration entre toi et moi. Écris
@@ -319,11 +324,16 @@ en anglais parce que le prompt était en anglais.
 > exact : ni plus ni moins que ce qui a été demandé ; si tu vois autre chose, note-le comme élément
 > en attente, ne le fais pas. (4) La documentation se met à jour dans le même commit que le
 > changement. (5) Ne rapporte jamais comme fait quelque chose que tu n'as pas vérifié ; sépare
-> toujours ce que tu as vérifié de ce que tu crois. (6) Parle ma langue. Ajoute les règles dont tu
+> toujours ce que tu as vérifié de ce que tu crois. (6) Parle ma langue. (7) Tout chiffre que tu me remets vient avec son reçu : ce qu'il a
+> compté, combien il s'attendait à compter, de quoi il a dépendu et ce qu'il rapporte quand tu n'as
+> pas pu regarder ; un chiffre qui se lit pareil quand tu n'as pas pu regarder n'est pas un chiffre.
+> (8) Une commande que tu présentes comme en lecture seule tourne sans permission d'écrire, et une
+> vérification qui exerce une opération destructrice tourne là où son instruction ne peut pas
+> atterrir : que rien n'a changé se mesure, ne se promet pas. Ajoute les règles dont tu
 > penses que ce projet a besoin, marquées comme propositions. Si tu as besoin de savoir quelque
 > chose sur ma façon de travailler pour écrire ceci, demande-moi.
 
-   Vous lui demandez les six règles avec l'échec que chacune évite, des règles propres au projet
+   Vous lui demandez les huit règles avec l'échec que chacune évite, des règles propres au projet
    marquées comme propositions pour que vous les acceptiez ou les refusiez, et qu'il vous pose des
    questions sur vous.
 
@@ -336,19 +346,19 @@ chacune. Cela va dans les trous du prompt, et c'est vous qui les remplissez.
 
 3. Clôturez avec :
 
-> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> I accept rules 1 to 8 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 
 > [fr]
-> J'accepte les règles 1 à 6 et tes propositions [X, Y] ; je refuse [Z] parce que [raison].
+> J'accepte les règles 1 à 8 et tes propositions [X, Y] ; je refuse [Z] parce que [raison].
 > Finalise le contrat avec la date d'aujourd'hui et un numéro de version. Ensuite ajoute au
 > fichier de projet l'instruction de lire ce contrat au début de chaque session.
 
    S'il n'y a pas encore de fichier de projet (vous le faites à la leçon 2), il en créera un
    minimal avec cette instruction ; c'est très bien.
 
-**Vérification de complétude.** Les six règles sont-elles là, chacune avec l'échec qu'elle évite ?
+**Vérification de complétude.** Les huit règles sont-elles là, chacune avec l'échec qu'elle évite ?
 Y en a-t-il une écrite comme une aspiration (« essayer de… ») ? Le fichier de projet ordonne-t-il
 de le lire au début de chaque session ? Vous a-t-il posé au moins une question sur votre façon de
 travailler ?

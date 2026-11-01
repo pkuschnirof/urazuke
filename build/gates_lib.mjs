@@ -96,17 +96,32 @@ export const ALCANCE_DE_LA_HUELLA = 'And about the content hash, said plainly: a
  * la familia, el instrumento tal como lo escribe la tabla y el token de severidad. Es la
  * UNICA fuente del texto; nadie lo transcribe.
  *
- * Las tablas tienen dos formas:
+ * Las tablas tienen tres formas:
  *   calidad     | id | Familia | Enunciado | Verifica | Severidad |
  *   usabilidad  | id | Enunciado | Verifica | Severidad |     (la familia es el titulo B1..B5)
+ *   caras       | id | Cara | Enunciado |                  (id = CQ-19.1: regla, punto, ordinal)
+ *
+ * Las caras se leen con el MISMO lector y por la misma razon que las reglas (D-044): su
+ * enunciado vive una sola vez, en el anexo, y el dato lleva el puntero. No colisionan con
+ * las filas de regla porque el id de una regla termina en la barra y el de una cara no.
  */
 export function leerAnexo(texto) {
   const reglas = new Map();
+  const caras = new Map();
   const problemas = [];
   let familiaUX = null;
   for (const linea of texto.split(/\r?\n/)) {
     const titulo = /^###\s+(B\d)\s/.exec(linea);
     if (titulo) { familiaUX = titulo[1]; continue; }
+    if (/^\|\s*(CQ|UX)-\d\d\.\d+\s*\|/.test(linea)) {
+      const celdas = linea.replace(/^\|/, '').replace(/\|\s*$/, '').split('|').map((c) => c.trim());
+      const id = celdas[0];
+      if (caras.has(id)) { problemas.push(id + ': la cara aparece dos veces en el anexo'); continue; }
+      if (celdas.length !== 3) { problemas.push(id + ': la fila de la cara tiene ' + celdas.length + ' celdas, se esperaban 3'); continue; }
+      if (!celdas[1] || !celdas[2]) { problemas.push(id + ': la fila de la cara no trae nombre o no trae enunciado'); continue; }
+      caras.set(id, { id, nombre: celdas[1], enunciado: celdas[2] });
+      continue;
+    }
     if (!/^\|\s*(CQ|UX)-\d\d\s*\|/.test(linea)) continue;
     const celdas = linea.replace(/^\|/, '').replace(/\|\s*$/, '').split('|').map((c) => c.trim());
     const id = celdas[0];
@@ -120,7 +135,7 @@ export function leerAnexo(texto) {
       reglas.set(id, { id, familia: idFamilia(familiaUX), familia_label: familiaUX, enunciado: celdas[1], verifica: celdas[2], severidad_token: celdas[3] });
     }
   }
-  return { reglas, problemas };
+  return { reglas, caras, problemas };
 }
 
 /**
@@ -130,19 +145,19 @@ export function leerAnexo(texto) {
 export function extraerAnexo(textoEn, textoEs) {
   const en = leerAnexo(textoEn ?? readFileSync(join(raiz, ANEXOS.en), 'utf8'));
   const es = leerAnexo(textoEs ?? readFileSync(join(raiz, ANEXOS.es), 'utf8'));
-  return { reglas: en.reglas, problemas: en.problemas, idioma: 'en', canonico: { ...es, idioma: 'es' } };
+  return { reglas: en.reglas, caras: en.caras, problemas: en.problemas, idioma: 'en', canonico: { ...es, idioma: 'es' } };
 }
 
 /* ------------------------------------------------------------------ *
  * El payload publicable
  * ------------------------------------------------------------------ */
 
-/** Las reglas con su enunciado ya resuelto contra el anexo. */
+/** Las reglas con su enunciado ya resuelto contra el anexo, y sus caras con el suyo. */
 export function reglasConEnunciado(fuentes, anexo) {
   const idioma = fuentes.heuristics.statement_source.published_language;
   return fuentes.heuristics.rules.map((r) => {
     const a = anexo.reglas.get(r.id);
-    return {
+    const salida = {
       ...r,
       statement: {
         ...r.statement,
@@ -153,6 +168,22 @@ export function reglasConEnunciado(fuentes, anexo) {
         verification_label: a ? a.verifica : null,
       },
     };
+    if (r.faces) {
+      salida.faces = r.faces.map((c) => {
+        const t = anexo.caras.get(c.id);
+        return {
+          ...c,
+          statement: {
+            ...c.statement,
+            language: idioma,
+            text: t ? t.enunciado : null,
+            extracted: Boolean(t),
+            face_label: t ? t.nombre : null,
+          },
+        };
+      });
+    }
+    return salida;
   });
 }
 
@@ -205,6 +236,9 @@ export function armarContenido(fuentes = cargarFuentes(), anexo = extraerAnexo()
       steps: fuentes.steps.steps.length,
       stations: fuentes.stations.stations.length,
       rules: reglas.length,
+      // La cuenta de caras se deriva, que es lo que la propia politica de caras exige de
+      // cualquier cifra pegada al nombre de una coleccion (D-077, D-078).
+      faces: reglas.reduce((n, r) => n + (r.faces ? r.faces.length : 0), 0),
       evaluators: fuentes.evaluators.evaluators.length,
     },
     schema_version: fuentes.catalog.schema_version,

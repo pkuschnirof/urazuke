@@ -219,6 +219,10 @@ coverage, with a drop treated as red.
   justifies not having it?
 - If there is mutation testing: how many mutants survived in the last block, and does each one
   have a pending item or a written reason?
+- Does every instrument of the chain come with its receipt: how many elements it expected to walk
+  next to how many it walked, what it depends on, and what it reports when it could not look? Ask
+  for a run in which the instrument could not look: if that result reads the same as green, CQ-19
+  is not fulfilled, whatever the percentage says.
 
 ## 5. Warning signs
 

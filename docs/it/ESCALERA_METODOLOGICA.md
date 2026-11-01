@@ -248,7 +248,7 @@ tardi: l'allegato è stato obbligatorio e non nominato in questo documento, e il
 adattato il metodo a un altro formato ha saltato ventisette delle quarantacinque regole perché non
 ha mai saputo che esistevano.
 
-E una di quelle quarantasei non riguarda il sistema che si costruisce ma **come ti si chiede**. È
+E una di quelle quarantotto non riguarda il sistema che si costruisce ma **come ti si chiede**. È
 la **UX-28**, ed è entrata il 2026-10-27 perché mancava: il metodo ordina ai suoi prompt di
 chiederti — ventidue volte, in più della metà del corpus — e non diceva da nessuna parte come si
 chiede, così la forma restava all'improvvisazione e tu ricevevi la domanda sciolta. Da ora ogni
@@ -895,7 +895,8 @@ nella Parte F.)
   numero di qualità che peggiora senza che nessuno lo veda [Ref. 35](REFERENCIAS.md#ref-35).
 - **Allegato H**: ancora 3 dell'[Allegato H](ANEXO_HEURISTICAS.md), e la più grande delle cinque:
   qui la paratia si estende dalla qualità del codice all'**usabilità**. Il catalogo delle
-  quarantacinque regole è dichiarato e attivo per gruppo; ogni regola attiva ha il suo strumento, la
+  quarantotto regole è dichiarato e attivo per gruppo -- e due di esse, quelle della ricevuta, si
+  informano faccia per faccia --; ogni regola attiva ha il suo strumento, la
   sua severità e il suo verificatore; ogni regola **spenta** ha il suo registro con il motivo, chi
   lo autorizza e la data di revisione — spenta senza registro è rosso, che non è la stessa cosa
   della regola assente —; ogni soglia che il proprietario non ha dichiarato si pubblica come non
@@ -1029,7 +1030,9 @@ va **prima** di costruire le funzionalità che agiscono sul mondo, non dopo.
 - **Input**: la rilevazione delle azioni con conseguenza, fatta con il proprietario.
 - **Artefatto**: la tabella dei lucchetti: ogni azione con la sua reversibilità, il suo lucchetto,
   la sua via del ritorno; un test per lucchetto provato in rosso; le automazioni nuove in
-  modalità di prova.
+  modalità di prova. E la verifica di ogni lucchetto corre con il privilegio minimo per verificare:
+  la sonda che esercita l'operazione impedita corre dove la sua istruzione non può atterrare, e prova
+  contando prima e dopo che lo stato è rimasto identico (regola CQ-20 dell'Allegato H).
 - **Cancello**: ogni azione irreversibile ha lucchetto e via del ritorno documentata.
 - **Chi decide**: il proprietario approva lucchetto per lucchetto; il sistema non li salta mai.
 - **Fallimento che evita**: un doppio addebito, un'approvazione automatica senza passare per un
@@ -1617,8 +1620,8 @@ noti (un'injection, una chiave scritta nel codice). È uno dei quattro strati de
 delle vulnerabilità del gradino 18.
 
 **Allegato H** — L'allegato di euristiche del metodo
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): quarantasei regole verificabili, diciotto di
-qualità del codice e ventisette di usabilità, ciascuna con il suo identificatore stabile, la sua
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): quarantotto regole verificabili, venti di
+qualità del codice e ventotto di usabilità, ciascuna con il suo identificatore stabile, la sua
 severità e lo strumento che la misura. È obbligatorio e attraversa i quattro tratti: entra con due
 ingressi previi al gradino 2 e con cinque ancore ai gradini 5, 8, 9, 10 e 12. La "H" è di euristiche.
 
@@ -2053,7 +2056,13 @@ carico scalino per scalino (gradino 19), e da lì escono le soglie di allerta de
 
 **Pull / push** — Scaricare e caricare codice sul repository remoto (GitHub).
 
-**Ricevuta** — L'output di un comando incollato così com'è uscito, con il comando esatto, la
+**Ricevuta** — Dal 2026-11-01 la parola nomina due cose, e la seconda è la regola CQ-19
+dell'Allegato H: quello che una cifra porta accanto a sé per poter essere letta -- quale insieme si
+aspettava di percorrere e quanto ne ha percorso, da che cosa dipende, e che cosa informa quando non
+ha potuto guardare. Quella regola e la sua coppia CQ-20 sono le prime due che hanno **facce**: tagli
+dello stesso enunciato con identificatore proprio (`CQ-19.1`), perché si possa spegnerne una sola
+con il suo motivo; e una regola con una faccia spenta non si informa mai come adempiuta. La prima
+accezione, quella del gradino 8: l'output di un comando incollato così com'è uscito, con il comando esatto, la
 versione contro cui è stato eseguito, i numeri e il codice di uscita, in modo che il proprietario
 possa eseguirlo di nuovo senza capire cosa fa. Nel gradino 8, il rosso deve essere una ricevuta,
 non un racconto ("il test è fallito come previsto").

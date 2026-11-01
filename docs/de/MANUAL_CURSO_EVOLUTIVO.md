@@ -153,7 +153,7 @@ Vorprojekten.
 
 ### Lektion N1 — Die Arbeitsvereinbarung für ein Altsystem
 
-**Was du verstehen musst.** Zu den sechs Regeln aus Lektion 1 kommen fünf hinzu, die es gibt, weil
+**Was du verstehen musst.** Zu den acht Regeln aus Lektion 1 kommen fünf hinzu, die es gibt, weil
 ein Modell vor fremdem Code drei Dinge reflexhaft tut: es ordnet ihn um, es „repariert“ ihn dort,
 wo er ihm falsch erscheint, und es nimmt an, dass das, was der Code anders tut, als es selbst
 erwarten würde, ein Fehler ist. Die Regeln des Altsystems blockieren diese Reflexe: es wird nicht
@@ -171,34 +171,40 @@ anderes sagt, und nichts tritt ein ohne grüne Charakterisierung.
 1. Füg ihm diesen Prompt ein:
 
 > Before we touch anything, we are going to set the working agreement between you and me for a
-> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the six rules
-> of the method (my time is sacred; zero technical debt; exact scope; documentation in the same
-> commit; never report as done what you have not verified; speak my language), each with one line
-> explaining what it prevents, and these five rules for an inherited system: (7) Nothing is
-> refactored that was not asked for, and no module is rewritten. (8) Code you do not understand
-> is read before it is touched, and what you learn goes into the system map. (9) Anything strange
+> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the eight
+> rules of the method (my time is sacred; zero technical debt; exact scope; documentation in the
+> same commit; never report as done what you have not verified; speak my language; every figure
+> comes with its receipt -- what it counted, how many it expected to count and what it reports
+> when you could not look; a verification runs with the least privilege it needs and that it
+> could do no harm is measured, not promised), each with one line explaining what it prevents,
+> and these five rules for an inherited system: (9) Nothing is
+> refactored that was not asked for, and no module is rewritten. (10) Code you do not understand
+> is read before it is touched, and what you learn goes into the system map. (11) Anything strange
 > you find (a secret in the code, a dead path, a duplicated rule, a query without an index) is
-> logged as a pending item with its evidence, never fixed in passing. (10) Current behaviour is
+> logged as a pending item with its evidence, never fixed in passing. (12) Current behaviour is
 > the specification until the owner says otherwise: a difference between what the code does and
 > what the business says is a discrepancy for me to decide, not a bug for you to fix silently.
-> (11) No change reaches the test environment without the characterization suite green. Add any
+> (13) No change reaches the test environment without the characterization suite green. Add any
 > rules you think this system needs, marked as proposals. If you need to know something about how
 > I work in order to write this, ask me.
 
 > [de]
 > Bevor wir irgendetwas anfassen, werden wir die Arbeitsvereinbarung zwischen dir und mir für ein
 > System festlegen, das schon existiert und Nutzer hat. Schreibe `docs/WORKING_AGREEMENT.md` mit
-> den sechs Regeln der Methode (meine Zeit ist heilig; null technische Schuld; exakter Umfang;
+> den acht Regeln der Methode (meine Zeit ist heilig; null technische Schuld; exakter Umfang;
 > Dokumentation im selben Commit; nie als erledigt melden, was du nicht verifiziert hast; sprich
-> meine Sprache), jede mit einer Zeile, die erklärt, was sie verhindert, und diesen fünf Regeln
-> für ein geerbtes System: (7) Es wird nichts refaktoriert, was nicht verlangt wurde, und kein
-> Modul wird neu geschrieben. (8) Code, den du nicht verstehst, wird gelesen, bevor er angefasst
-> wird, und was du lernst, kommt in die Karte des Systems. (9) Alles Seltsame, was du findest (ein
+> meine Sprache; jede Zahl kommt mit ihrem Beleg -- was sie gezählt hat, wie viele sie zu zählen
+> erwartete und was sie meldet, wenn sie nicht hinsehen konnte --; eine Überprüfung läuft mit dem
+> geringsten Privileg und dass sie keinen Schaden anrichten konnte, wird gemessen und nicht
+> versprochen), jede mit einer Zeile, die erklärt, was sie verhindert, und diesen fünf Regeln
+> für ein geerbtes System: (9) Es wird nichts refaktoriert, was nicht verlangt wurde, und kein
+> Modul wird neu geschrieben. (10) Code, den du nicht verstehst, wird gelesen, bevor er angefasst
+> wird, und was du lernst, kommt in die Karte des Systems. (11) Alles Seltsame, was du findest (ein
 > Geheimnis im Code, ein toter Pfad, eine doppelte Regel, eine Abfrage ohne Index), wird als
-> offener Posten mit seinem Beleg notiert, nie nebenbei repariert. (10) Das aktuelle Verhalten ist
+> offener Posten mit seinem Beleg notiert, nie nebenbei repariert. (12) Das aktuelle Verhalten ist
 > die Spezifikation, bis der Eigentümer etwas anderes sagt: ein Unterschied zwischen dem, was der
 > Code tut, und dem, was das Geschäft sagt, ist eine Diskrepanz, die ich entscheide, kein Bug, den
-> du still reparierst. (11) Keine Änderung erreicht die Testumgebung ohne grüne
+> du still reparierst. (13) Keine Änderung erreicht die Testumgebung ohne grüne
 > Charakterisierungsbatterie. Füg die Regeln hinzu, die dieses System deiner Meinung nach braucht,
 > als Vorschläge markiert. Wenn du etwas darüber wissen musst, wie ich arbeite, um das zu
 > schreiben, frag mich.
@@ -211,7 +217,7 @@ Begründung, für die Lücken des Prompts.
 
 3. Schließ mit dem Abschluss-Prompt aus Lektion 1 ab, unverändert.
 
-**Vollständigkeitsprüfung.** Stehen die elf Regeln da, jede mit dem Fehler, den sie verhindert?
+**Vollständigkeitsprüfung.** Stehen die dreizehn Regeln da, jede mit dem Fehler, den sie verhindert?
 Gibt es einen Vorschlag, der Refaktorieren oder Neuschreiben erlaubt?
 
 **Ergebnis.** `docs/WORKING_AGREEMENT.md` mit Datum und Version.

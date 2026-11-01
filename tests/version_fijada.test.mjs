@@ -83,6 +83,16 @@ test('C: el diferencial desde la primera version publicada es la historia medida
   assert.deepEqual(dif, [
     // El orden es el del sort() lexico y no el cronologico: 2026.10.11 va antes que 2026.10.4.
     '2026.10.11 end_users_outside_the_organisation',
+    '2026.10.12 CQ-19',
+    '2026.10.12 CQ-19.1',
+    '2026.10.12 CQ-19.2',
+    '2026.10.12 CQ-19.3',
+    '2026.10.12 CQ-19.4',
+    '2026.10.12 CQ-20',
+    '2026.10.12 CQ-20.1',
+    '2026.10.12 CQ-20.2',
+    '2026.10.12 Does every instrument this step decides with carry its receipt: which set it expected to walk next to how much of it it walked, what it depends on, and what it reports when it could not look (CQ-19)?',
+    '2026.10.12 Does every verification declare the privilege it ran with, and does the probe that exercises a destructive operation run where its statement cannot land, with the state counted before and after (CQ-20)?',
     '2026.10.4 Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?',
     '2026.10.5 docs/GLOSSARY.md',
     '2026.10.5 docs/PROFILES.md',
@@ -149,10 +159,16 @@ test('E: la comprobacion reviso algo, y lo dice con su cuenta', () => {
   assert.equal(Object.keys(arbol.textosPorIdioma).length * 2, 16);
   // Treinta y cinco el 2026-10-27 por la manana; la trigesimo sexta es UX-28, la primera REGLA
   // que el metodo agrego despues de que esta maquinaria existiera (D-070); la trigesimo septima es
-  // el primer UMBRAL, end_users_outside_the_organisation (D-076).
-  assert.equal(arbol.entradas.length, 37, 'las entradas agregadas despues del congelado, medidas el 2026-10-29');
-  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['UX-28'],
+  // el primer UMBRAL, end_users_outside_the_organisation (D-076). Las diez que siguen son de
+  // D-078: dos reglas, sus seis CARAS y las dos preguntas de verificacion de sus peldanos.
+  assert.equal(arbol.entradas.length, 47, 'las entradas agregadas despues del congelado, medidas el 2026-11-01');
+  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['CQ-19', 'CQ-20', 'UX-28'],
     'una regla agregada despues del congelado entra en el diferencial: sin esto un upgrade la omitia en silencio');
+  // Y una cara, por el mismo argumento una capa adentro: se puede apagar sola, asi que un
+  // diferencial que cuenta la regla y no sus caras dice que entra una cosa cuando entran cinco.
+  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.faces')).map((e) => e.que),
+    ['CQ-19.1', 'CQ-19.2', 'CQ-19.3', 'CQ-19.4', 'CQ-20.1', 'CQ-20.2'],
+    'las caras entran en el diferencial con su procedencia (D-078)');
   assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.thresholds')).map((e) => e.que), ['end_users_outside_the_organisation'],
     'un umbral agregado despues del congelado entra en el diferencial: declararlo o no cambia la severidad de su regla');
   assert.ok(arbol.versiones.length >= 7, 'el registro de versiones tiene al menos las siete publicadas');

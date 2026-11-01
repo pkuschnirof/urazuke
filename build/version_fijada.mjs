@@ -78,6 +78,11 @@ export function entradasAgregadas(pasos, estaciones, evaluadores, reglas = [], u
   // silencio --un proyecto que sube de version se encontraria con una regla nueva que el
   // diferencial no conto (D-070). `que` sale del id, que es el nombre estable de una regla.
   mirar(null, 'catalog', 'rules', (reglas ?? []).map((r) => ({ ...r, path: r.id })));
+  // Y las CARAS de una regla, por el mismo argumento una capa adentro (D-078): una cara se puede
+  // apagar sola, asi que es una entrada que lleva requisito, y un diferencial que cuenta la regla
+  // y no sus caras le dice a un proyecto que entra una cosa cuando entran cinco. Van todas juntas,
+  // bajo catalog.faces, porque el id de una cara ya nombra a su regla.
+  mirar(null, 'catalog', 'faces', (reglas ?? []).flatMap((r) => (r.faces ?? []).map((c) => ({ ...c, path: c.id }))));
   // Y los umbrales, por el mismo argumento: end_users_outside_the_organisation fue el primero que
   // el metodo agrego despues del congelado (D-076), y declararlo o no cambia la severidad de su
   // regla, asi que es una entrada que lleva requisito. Sin esto, un proyecto que sube de version

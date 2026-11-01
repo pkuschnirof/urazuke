@@ -292,6 +292,10 @@ con una baja tratada como rojo.
   escrita justifica no tenerlas?
 - Si hay pruebas de mutación: ¿cuántos mutantes sobrevivieron en el último bloque, y cada uno
   tiene pendiente o razón escrita?
+- ¿Cada instrumento de la cadena viene con su recibo: cuántos elementos esperaba recorrer al lado
+  de cuántos recorrió, de qué depende, y qué informa cuando no pudo mirar? Pedí una corrida en la
+  que el instrumento no haya podido mirar: si ese resultado se lee igual que el verde, CQ-19 no
+  está cumplida, y no importa lo que diga el porcentaje.
 
 ## 5. Señales de alarma
 

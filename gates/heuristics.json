@@ -1,9 +1,9 @@
 {
-  "what": "The forty-six rules of Annex H as data: 18 of code quality (CQ-01 to CQ-18) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
+  "what": "The forty-eight rules of Annex H as data: 20 of code quality (CQ-01 to CQ-20) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule and of every face lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
   "counts": {
-    "code_quality": 18,
+    "code_quality": 20,
     "usability": 28,
-    "total": 46
+    "total": 48
   },
   "decisions": [
     "D-043",
@@ -13,12 +13,13 @@
     "D-047",
     "D-048",
     "D-049",
-    "D-070"
+    "D-070",
+    "D-078"
   ],
   "groups": [
     {
       "id": "code_quality",
-      "range": "CQ-01..CQ-18",
+      "range": "CQ-01..CQ-20",
       "switch": {
         "lives_in": "the project configuration",
         "read_by": "the gate",
@@ -53,7 +54,8 @@
     "without_record": "red: switching a rule off without a written reason is a failure of the gate, not the absence of a rule",
     "with_record": "green, and the report says it is switched off, since when and who authorised it",
     "group_switched_off": "is never read as fulfilled",
-    "decision": "D-046"
+    "decision": "D-046",
+    "by_face": "see heuristics.faces.switch_off_record"
   },
   "instruments": [
     {
@@ -689,6 +691,122 @@
         "declared_by_threshold": "end_users_outside_the_organisation",
         "decision": "D-048"
       }
+    },
+    {
+      "id": "CQ-19",
+      "since_schema": 2,
+      "since_version": "2026.10.12",
+      "group": "code_quality",
+      "family": "receipt",
+      "instrument": [
+        "auto_gate",
+        "manual_case"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          9
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-19"
+      },
+      "faces": [
+        {
+          "id": "CQ-19.1",
+          "since_schema": 2,
+          "since_version": "2026.10.12",
+          "statement": {
+            "section": "4",
+            "row": "CQ-19.1"
+          }
+        },
+        {
+          "id": "CQ-19.2",
+          "since_schema": 2,
+          "since_version": "2026.10.12",
+          "statement": {
+            "section": "4",
+            "row": "CQ-19.2"
+          }
+        },
+        {
+          "id": "CQ-19.3",
+          "since_schema": 2,
+          "since_version": "2026.10.12",
+          "statement": {
+            "section": "4",
+            "row": "CQ-19.3"
+          }
+        },
+        {
+          "id": "CQ-19.4",
+          "since_schema": 2,
+          "since_version": "2026.10.12",
+          "statement": {
+            "section": "4",
+            "row": "CQ-19.4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CQ-20",
+      "since_schema": 2,
+      "since_version": "2026.10.12",
+      "group": "code_quality",
+      "family": "privilege",
+      "instrument": [
+        "auto_gate",
+        "manual_case"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          14
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-20"
+      },
+      "faces": [
+        {
+          "id": "CQ-20.1",
+          "since_schema": 2,
+          "since_version": "2026.10.12",
+          "statement": {
+            "section": "4",
+            "row": "CQ-20.1"
+          }
+        },
+        {
+          "id": "CQ-20.2",
+          "since_schema": 2,
+          "since_version": "2026.10.12",
+          "statement": {
+            "section": "4",
+            "row": "CQ-20.2"
+          }
+        }
+      ]
     },
     {
       "id": "UX-01",
@@ -1439,5 +1557,18 @@
         "row": "UX-28"
       }
     }
-  ]
+  ],
+  "faces": {
+    "what": "A face is a cut of the statement of one rule with an identifier of its own (CQ-19.1). Faces exist for a mechanical reason and not a drafting one: without an identifier a single one cannot be switched off, and a rule that can only be switched off whole pushes towards switching off too much. Their statement lives only in Annex H, like the statement of a rule, and the build extracts it (D-044).",
+    "id_shape": "the id of the rule, a dot, and an ordinal that is never recycled: CQ-19.1",
+    "ids_append_only": "A face is added; it is never renamed, never recycled and never changes meaning, exactly like a rule id.",
+    "switch_off_record": "The record of project_config.switch_off_record, with the id of a face written in its `rule` field. A record whose id resolves neither to a rule nor to a face is a dangling switch-off: red, by the same criterion as a rule switched off without a record.",
+    "never_reported_as_fulfilled": "A rule with any face switched off is never reported as fulfilled. The report says \"three of four faces, one switched off with its reason\" and never a percentage alone: a partial compliance whose figure reads like a complete one is the silent damage this whole family is about.",
+    "count_is_derived": "How many faces a rule has is derived from this data and is never written next to its name in prose or in a generated document (D-077).",
+    "scoreboard": "For a rule that has faces the scoreboard counts faces and not rules, or the two figures of section 12 of the annex stop meaning what they say.",
+    "rules_with_faces_today": "CQ-19 and CQ-20. CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off: giving them ids is adding and not renaming, and it is separate work.",
+    "decision": "D-078",
+    "since_schema": 2,
+    "since_version": "2026.10.12"
+  }
 }

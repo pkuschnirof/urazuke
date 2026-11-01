@@ -307,6 +307,10 @@ behandelt wird.
   Begründung rechtfertigt, sie nicht zu haben?
 - Wenn es Mutationstests gibt: wie viele Mutanten haben im letzten Block überlebt, und hat jeder
   einen offenen Posten oder eine geschriebene Begründung?
+- Kommt jedes Instrument der Kette mit seinem Beleg: wie viele Elemente es zu durchlaufen erwartete
+  neben der Zahl der durchlaufenen, wovon es abhängt, und was es meldet, wenn es nicht hinsehen
+  konnte? Verlange einen Lauf, in dem das Instrument nicht hinsehen konnte: liest sich dieses
+  Ergebnis wie das Grün, ist CQ-19 nicht erfüllt, egal was der Prozentwert sagt.
 
 ## 5. Warnsignale
 

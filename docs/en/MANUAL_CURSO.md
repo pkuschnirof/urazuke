@@ -252,7 +252,7 @@ tolerate, what level of autonomy you give it. Without an agreement, you are goin
 same things to it every session, and each time a little differently. I wrote it for the first time
 after two weeks of repeating myself [Ref. 1](REFERENCIAS.md#ref-1).
 
-Each of the six minimum rules has a failure behind it: "my time is sacred" prevents it from
+Each of the eight minimum rules has a failure behind it: "my time is sacred" prevents it from
 consulting you on every detail; "zero debt" prevents the "I'll fix it later"; "exact scope"
 prevents it from adding things "while it is at it"; "documentation in the same commit" prevents
 old manuals; "never report as done what was not verified" prevents the "done" that was not; "speak
@@ -279,10 +279,15 @@ my language" prevents it from answering you in English because the prompt was in
 > no more and no less than what was asked; if you see something else, log it as a pending item,
 > do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
 > as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. Add any rules you think this project needs, marked as
-> proposals. If you need to know something about how I work in order to write this, ask me.
+> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you
+> could not look; a figure that reads the same when you could not look is not a figure.
+> (8) A command you present as read-only runs without permission to write, and a check that
+> exercises a destructive operation runs where its statement cannot land: that nothing changed
+> is measured, not promised. Add any rules you think this project needs, marked as proposals.
+> If you need to know something about how I work in order to write this, ask me.
 
-   You are asking it for the six rules with the failure each one prevents, rules of its own
+   You are asking it for the eight rules with the failure each one prevents, rules of its own
    marked as proposals so that you accept or reject them, and to ask you about yourself.
 
 2. Answer its questions. Read the proposals: accept the ones that are useful to you, reject the
@@ -294,14 +299,14 @@ It goes into the gaps of the prompt, and you are the one who fills them in.
 
 3. Close with:
 
-> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> I accept rules 1 to 8 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 
    If there is no project file yet (you make it in lesson 2), it is going to create a minimal one
    with that instruction; that is fine.
 
-**Completeness check.** Are the six rules there, each with the failure it prevents? Is any of them
+**Completeness check.** Are the eight rules there, each with the failure it prevents? Is any of them
 written as an aspiration ("try to…")? Does the project file order it to be read at the start of
 every session? Did it ask you at least one question about how you work?
 

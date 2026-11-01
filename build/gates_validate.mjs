@@ -243,6 +243,42 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
     if (!heuristics.rules.some((r) => r.id === id)) err('E_ANEXO_HUERFANA', 'el anexo declara la regla ' + id + ' y la compuerta no la tiene', 'gates/heuristics.json', 'agregala: una regla escrita que la compuerta no mira es decoracion');
   }
 
+  /* ---------- 6 bis. las caras: en las dos direcciones, en los dos idiomas ---------- */
+  // Una cara es un corte de un enunciado con identificador propio, y existe para que se
+  // pueda apagar UNA sola (D-078). Su texto vive solo en el anexo, igual que el de una
+  // regla, asi que se exige lo mismo y en las dos direcciones: una cara que el dato
+  // declara esta en el anexo --en el publicado y en el castellano, que es la fuente de
+  // verdad-- y una fila de cara del anexo pertenece a una regla que la declara. Una cara
+  // suelta en el anexo es texto que nada mira; una cara suelta en el dato es un apagado
+  // que no se puede escribir.
+  const carasDelDato = new Map();
+  for (const r of heuristics.rules) {
+    for (const c of r.faces ?? []) {
+      if (carasDelDato.has(c.id)) err('E_CARA', 'la cara ' + c.id + ' esta declarada dos veces', 'gates/heuristics.json', 'un id de cara no se recicla ni se repite');
+      carasDelDato.set(c.id, r.id);
+      if (!c.id.startsWith(r.id + '.')) err('E_CARA', 'la cara ' + c.id + ' cuelga de la regla ' + r.id, 'gates/heuristics.json', 'el id de una cara es el de su regla, un punto y un ordinal: ' + r.id + '.1');
+      if ('text' in c.statement) err('E_TEXTO_DUPLICADO', 'la cara ' + c.id + ' trae el enunciado transcrito', 'gates/heuristics.json', 'saca el texto: va el puntero y el build lo extrae');
+      if (!anexo.caras.has(c.id)) err('E_CARA', 'la cara ' + c.id + ' no esta en el anexo publicado (' + fuente.published_language + ')', dondePub, 'escribi su fila: | ' + c.id + ' | nombre | enunciado |');
+      if (!anexo.canonico.caras.has(c.id)) err('E_CARA', 'la cara ' + c.id + ' no esta en el anexo castellano, que es la fuente de verdad', fuente.documents.es, 'escribila en castellano primero');
+    }
+  }
+  for (const id of anexo.caras.keys()) {
+    if (!carasDelDato.has(id)) err('E_CARA_HUERFANA', 'el anexo declara la cara ' + id + ' y ninguna regla de la compuerta la declara', 'gates/heuristics.json', 'agregala a las faces de su regla, o sacala del anexo: una cara que nada mira no se puede apagar ni medir');
+  }
+  for (const id of anexo.canonico.caras.keys()) {
+    if (!anexo.caras.has(id)) err('E_CARA', 'la cara ' + id + ' esta en el anexo castellano y falta en el publicado (' + fuente.published_language + ')', dondePub, 'un cambio en castellano se replica en las traducciones en el mismo commit');
+  }
+  if (carasDelDato.size > 0) {
+    const politica = heuristics.faces;
+    if (!politica) err('E_CARA', 'hay reglas con caras y el catalogo no declara la politica de caras', 'gates/heuristics.json', 'declara heuristics.faces: que es una cara, como se apaga una sola, y que una regla con una cara apagada no se informa como cumplida (D-078)');
+    else {
+      for (const clave of ['what', 'id_shape', 'ids_append_only', 'switch_off_record', 'never_reported_as_fulfilled', 'count_is_derived']) {
+        if (!politica[clave]) err('E_CARA', 'la politica de caras no declara ' + clave, 'gates/heuristics.json', 'una cara sin su politica es una regla que se puede apagar a medias sin que el reporte lo diga');
+      }
+      if (!heuristics.switch_off.by_face) err('E_CARA', 'el registro de apagado no dice que acepta el id de una cara', 'gates/heuristics.json', 'declara switch_off.by_face apuntando a heuristics.faces.switch_off_record');
+    }
+  }
+
   // El castellano es la fuente de verdad: la version publicada no puede tener otras
   // reglas ni otras severidades que ella. Lo que NO se verifica aca, y queda dicho, es
   // si la redaccion inglesa sigue diciendo lo que dice la castellana.
@@ -516,6 +552,10 @@ export function validar(fuentes = cargarFuentes(), anexo = extraerAnexo(), confi
   // Las reglas del anexo tambien: una regla agregada despues del congelado sin procedencia
   // dejaria el diferencial de un upgrade sin contarla (D-070).
   heuristics.rules.forEach((r) => revisarProcedencia(r, 'gates/heuristics.json.rules[' + r.id + ']'));
+  // Y las caras, por lo mismo: una cara es una entrada con requisito --se puede apagar sola--
+  // y un diferencial que no la cuenta deja a un proyecto subiendo de version a ciegas (D-078).
+  heuristics.rules.forEach((r) => (r.faces ?? []).forEach((c) => revisarProcedencia(c, 'gates/heuristics.json.rules[' + r.id + '].faces[' + c.id + ']')));
+  if (heuristics.faces) revisarProcedencia(heuristics.faces, 'gates/heuristics.json.faces');
   // Y los umbrales: el primero que entro despues del congelado fue
   // end_users_outside_the_organisation (D-076), y un umbral es una entrada que lleva requisito
   // --declararlo o no cambia la severidad de su regla--, asi que el diferencial de un upgrade

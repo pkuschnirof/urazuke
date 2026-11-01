@@ -58,8 +58,13 @@ el agente:
 > no more and no less than what was asked; if you see something else, log it as a pending item,
 > do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
 > as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. Add any rules you think this project needs, marked as
-> proposals. If you need to know something about how I work in order to write this, ask me.
+> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you
+> could not look; a figure that reads the same when you could not look is not a figure.
+> (8) A command you present as read-only runs without permission to write, and a check that
+> exercises a destructive operation runs where its statement cannot land: that nothing changed
+> is measured, not promised. Add any rules you think this project needs, marked as proposals.
+> If you need to know something about how I work in order to write this, ask me.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -76,7 +81,12 @@ el agente:
 > raíz, con su test de regresión, en la misma sesión. (3) Alcance exacto: ni más ni menos de lo
 > pedido; si ves otra cosa, anotala como pendiente, no la hagas. (4) La documentación se actualiza
 > en el mismo commit que el cambio. (5) Nunca reportes como hecho algo que no verificaste; separá
-> siempre lo que verificaste de lo que creés. (6) Hablá mi idioma. Agregá las reglas que creas que
+> siempre lo que verificaste de lo que creés. (6) Hablá mi idioma. (7) Todo número que me entregás viene con su recibo: qué contó,
+> cuántos esperaba contar, de qué dependió y qué informa cuando no pudiste mirar; un número que se
+> lee igual cuando no pudiste mirar no es un número. (8) Un comando que presentás como de sólo
+> lectura corre sin permiso de escribir, y una comprobación que ejerce una operación destructiva
+> corre donde su sentencia no puede aterrizar: que no cambió nada se mide, no se promete. Agregá
+> las reglas que creas que
 > este proyecto necesita, marcadas como propuestas. Si necesitás saber algo sobre cómo trabajo para
 > escribir esto, preguntame.
 >
@@ -87,7 +97,7 @@ el agente:
 > técnica que el proyecto declaró en `communication_depth` —`beginner`, `decision_maker` o
 > `technical`—; si el proyecto no declaró ninguna, usá `decision_maker`.
 
-Qué le estoy pidiendo: las seis reglas mínimas, cada una con el fallo que evita (eso es lo que las
+Qué le estoy pidiendo: las ocho reglas mínimas, cada una con el fallo que evita (eso es lo que las
 vuelve reglas y no consejos); que proponga reglas propias del proyecto pero las marque como
 propuestas, para que vos las aceptes o rechaces; y que pregunte lo que necesite saber sobre vos.
 Un contrato redactado sin una sola pregunta es sospechoso: el agente no conoce a la persona con
@@ -104,7 +114,7 @@ la que va a trabajar.
 - Estado mínimo aceptable: no queda ninguna regla propuesta sin veredicto. Una regla que no
   aceptaste ni rechazaste queda en el contrato como si la hubieras aceptado.
 
-> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> I accept rules 1 to 8 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 >
@@ -116,7 +126,7 @@ la que va a trabajar.
 > `technical`; if the project declared none, use `decision_maker`.
 
 > [es]
-> Acepto las reglas 1 a 6 y tus propuestas [X, Y]; rechazo [Z] porque [razón]. Cerrá el contrato
+> Acepto las reglas 1 a 8 y tus propuestas [X, Y]; rechazo [Z] porque [razón]. Cerrá el contrato
 > con la fecha de hoy y un número de versión. Después agregá al archivo de proyecto la
 > instrucción de leer este contrato al empezar cada sesión.
 >
@@ -144,7 +154,10 @@ cada sesión.
 
 ## 4. Verificación de completitud
 
-- ¿Están las seis reglas mínimas, cada una con el fallo que evita?
+- ¿Están las ocho reglas mínimas, cada una con el fallo que evita? Las dos últimas son la
+  versión de conducta de las dos reglas del recibo del Anexo H (CQ-19 y CQ-20) y no una copia de su
+  enunciado: el anexo exige el recibo a los instrumentos del sistema, y el contrato se lo exige a
+  los números que el agente te entrega en la conversación.
 - ¿Hay alguna regla escrita como aspiración ("tratar de…", "en lo posible…")? Si la hay, no
   sirve: las reglas se cumplen o no.
 - ¿El archivo de proyecto ordena leerlo en cada sesión?

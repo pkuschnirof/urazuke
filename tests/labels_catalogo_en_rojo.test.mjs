@@ -168,5 +168,5 @@ test('ROJO: un idioma que no esta en el arbol se reporta, no se omite de la cuen
   const { contenido, hallazgos } = armarContenido(['es', 'xx'], { es: leerTextos('es') }, dato, catalogo);
   assert.ok(hallazgos.length > 0);
   assert.equal(contenido.counts.languages, 2, 'la cuenta es la de los idiomas pedidos, no la de los que salieron bien');
-  assert.deepEqual(contenido.labels.xx, { steps: {}, stations: {}, rules: {} });
+  assert.deepEqual(contenido.labels.xx, { steps: {}, stations: {}, rules: {}, faces: {}, face_titles: {} });
 });

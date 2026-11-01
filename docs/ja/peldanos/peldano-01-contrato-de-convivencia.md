@@ -57,8 +57,13 @@
 > no more and no less than what was asked; if you see something else, log it as a pending item,
 > do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
 > as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. Add any rules you think this project needs, marked as
-> proposals. If you need to know something about how I work in order to write this, ask me.
+> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you
+> could not look; a figure that reads the same when you could not look is not a figure.
+> (8) A command you present as read-only runs without permission to write, and a check that
+> exercises a destructive operation runs where its statement cannot land: that nothing changed
+> is measured, not promised. Add any rules you think this project needs, marked as proposals.
+> If you need to know something about how I work in order to write this, ask me.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -75,7 +80,12 @@
 > で直します。(3) 正確な範囲。頼まれた以上でも以下でもなく。他に何か見つけたら、保留項目と
 > して記録し、やらないでください。(4) 文書は変更と同じコミットで更新します。(5) 検証して
 > いないことを決して完了として報告しないでください。検証したことと信じていることを常に分け
-> てください。(6) 私の言語で話してください。このプロジェクトに必要だと思うルールを、提案と
+> てください。(6) 私の言語で話してください。(7) あなたが私に渡す数字はすべてレシートを伴います：何を
+> 数えたか、いくつ数える予定だったか、何に依存したか、そして見ることができなかったときに何を
+> 報告するか。見ることができなかったときに同じに読める数字は、数字ではありません。(8) 読み取り
+> 専用として提示するコマンドは書き込みの許可なしで走らせ、破壊的な操作を行使する確認は、その命令
+> が着地できない場所で走らせてください。何も変わらなかったことは測るのであり、約束するのでは
+> ありません。このプロジェクトに必要だと思うルールを、提案と
 > して印して追加してください。これを書くために私の働き方について知る必要があれば、私に聞い
 > てください。
 >
@@ -85,7 +95,7 @@
 > ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
 > れば `decision_maker` を使ってください。
 
-何を求めているか：六つの最低限のルール、それぞれが防ぐ失敗とともに（それがルールを助言
+何を求めているか：八つの最低限のルール、それぞれが防ぐ失敗とともに（それがルールを助言
 ではなくルールにする）。プロジェクト固有のルールを提案するが、あなたが受け入れるか拒否
 できるよう提案として印すこと。そしてあなたについて知る必要があることを質問すること。
 一つも質問せずに起草された約束は疑わしい。エージェントは一緒に働く相手を知らないのだ。
@@ -101,7 +111,7 @@
 - 最低限受け入れられる状態：判定のない提案ルールが一つも残っていないこと。受け入れも拒みもし
   なかったルールは、受け入れたかのように約束に残ります。
 
-> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> I accept rules 1 to 8 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 >
@@ -140,7 +150,9 @@
 
 ## 4. 完全性の検証
 
-- 六つの最低限のルールが、それぞれ防ぐ失敗とともにあるか？
+- 八つの最低限のルールが、それぞれ防ぐ失敗とともにあるか？ 最後の二つは附属書H のレシート
+  の二つの規則（CQ-19 と CQ-20）の**行動版**であり、その文面の写しではない。附属書はシステム
+  の道具にレシートを要求し、この約束は会話のなかでエージェントが渡す数字にそれを要求する。
 - 願望として書かれたルールがあるか（「…するよう努める」「可能な限り…」）？ あるなら役に
   立たない。ルールは守られるか守られないかだ。
 - プロジェクトファイルは毎セッションこれを読むよう命じているか？

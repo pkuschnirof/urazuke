@@ -59,8 +59,13 @@ the agent:
 > no more and no less than what was asked; if you see something else, log it as a pending item,
 > do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
 > as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. Add any rules you think this project needs, marked as
-> proposals. If you need to know something about how I work in order to write this, ask me.
+> believe. (6) Speak my language. (7) Every figure you hand me comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you
+> could not look; a figure that reads the same when you could not look is not a figure.
+> (8) A command you present as read-only runs without permission to write, and a check that
+> exercises a destructive operation runs where its statement cannot land: that nothing changed
+> is measured, not promised. Add any rules you think this project needs, marked as proposals.
+> If you need to know something about how I work in order to write this, ask me.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -69,7 +74,7 @@ the agent:
 > technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
 > `technical`; if the project declared none, use `decision_maker`.
 
-What I am asking for: the six minimum rules, each with the failure it prevents (that is what makes
+What I am asking for: the eight minimum rules, each with the failure it prevents (that is what makes
 them rules and not advice); that it propose rules of its own for the project but mark them as
 proposals, so that you accept or reject them; and that it ask whatever it needs to know about you.
 An agreement drafted without a single question is suspicious: the agent does not know the person
@@ -87,7 +92,7 @@ it is going to work with.
 - Minimum acceptable state: no proposed rule is left without a verdict. A rule you neither
   accepted nor rejected stays in the agreement as if you had accepted it.
 
-> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> I accept rules 1 to 8 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 >
@@ -117,7 +122,10 @@ of every session.
 
 ## 4. Completeness check
 
-- Are the six minimum rules there, each with the failure it prevents?
+- Are the eight minimum rules there, each with the failure it prevents? The last two are the
+  conduct version of the two receipt rules of Annex H (CQ-19 and CQ-20) and not a copy of their
+  statement: the annex demands the receipt of the instruments of the system, and the agreement
+  demands it of the figures the agent hands you in the conversation.
 - Is any rule written as an aspiration ("try to…", "whenever possible…")? If there is one, it is
   useless: rules are either followed or not.
 - Does the project file order it to be read in every session?

@@ -160,6 +160,9 @@ hecho antes de dejarla hacer.
   antes de habilitarlas?
 - ¿Qué pasa si el agente embebido intenta algo fuera de sus permisos? Pedile que lo intente y te
   muestre el rechazo en el log.
+- ¿Con qué privilegio corrió cada verificación? El comando que se presenta como de sólo lectura,
+  sin permiso de escribir; y la sonda que ejerce la acción impedida, corriendo donde su sentencia
+  no puede aterrizar, con el estado contado antes y después (CQ-20).
 
 ## 5. Señales de alarma
 

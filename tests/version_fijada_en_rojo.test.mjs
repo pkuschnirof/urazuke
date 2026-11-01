@@ -104,9 +104,13 @@ test('rojo 10: una REGLA agregada sin procedencia sale nombrada, y el diferencia
   // fijacion, y el diferencial la omitia porque solo miraba pasos, estaciones y evaluadores. Este
   // rojo es el que impide que vuelva a omitirla: muta la regla y tiene que caer nombrandola.
   const sinVersion = arbol.entradas.map((e) => (e.que === 'UX-28' ? { ...e, since_version: null } : e));
-  assert.deepEqual(sinProcedencia(sinVersion), ['catalog.rules[45]']);
+  // El indice se DERIVA: una regla nueva antes de UX-28 lo mueve, y un numero a mano aca se
+  // vuelve falso solo el dia que entra una regla, que es justo el dia que este rojo importa.
+  const donde = arbol.entradas.find((e) => e.que === 'UX-28').donde;
+  assert.deepEqual(sinProcedencia(sinVersion), [donde]);
+  assert.match(donde, /^catalog\.rules\[\d+\]$/, 'y el lugar que nombra es la regla en el catalogo');
   const reglas = arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules'));
-  assert.deepEqual(reglas.map((e) => e.que + '@' + e.since_version), ['UX-28@2026.10.8'],
+  assert.deepEqual(reglas.map((e) => e.que + '@' + e.since_version), ['CQ-19@2026.10.12', 'CQ-20@2026.10.12', 'UX-28@2026.10.8'],
     'la regla esta en las entradas agregadas: si no estuviera, un upgrade no la contaria');
   assert.ok(diferencial(arbol.entradas, '2026.10.7', '2026.10.8').some((e) => e.que === 'UX-28'),
     'y el diferencial del salto que la trae la nombra');

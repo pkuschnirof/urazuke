@@ -228,7 +228,7 @@ Cada peldaño tiene ocho partes, siempre las mismas, para que se puedan comparar
 
 Y hay una parte más, que aparece **sólo en seis peldaños** y es una pieza transversal que
 cambia qué hay que leer: el **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Son
-cuarenta y seis reglas verificables —dieciocho de calidad del código y veintiocho de
+cuarenta y ocho reglas verificables —veinte de calidad del código y veintiocho de
 usabilidad—, cada una con su identificador estable, su severidad y el instrumento que la mide. No
 es un apéndice opcional: **es obligatorio**, y se engancha a la escalera en seis puntos. En el
 peldaño 2 entran sus dos **entradas previas** (el glosario del usuario y la lista de perfiles: las
@@ -242,7 +242,7 @@ haberlo descubierto tarde: el anexo estuvo obligatorio y sin nombrar en este doc
 primer lector que adaptó el método a otro formato se salteó veintisiete de las cuarenta y cinco
 reglas porque nunca supo que existían.
 
-Y una de esas cuarenta y seis no es sobre el sistema que se construye, sino sobre **cómo se te
+Y una de esas cuarenta y ocho no es sobre el sistema que se construye, sino sobre **cómo se te
 pregunta**. Es la **UX-28**, y entró el 2026-10-27 porque faltaba: el método les ordena a sus
 prompts preguntarte —veintidós veces, en más de la mitad del corpus— y no decía en ninguna parte
 cómo se pregunta, así que la forma quedaba a la improvisación y vos recibías la pregunta suelta.
@@ -879,7 +879,8 @@ primera adaptación del método a otro formato, acreditada en la Parte F.)
   el número de calidad que empeora sin que nadie lo vea [Ref. 35](REFERENCIAS.md#ref-35).
 - **Anexo H**: ancla 3 del [Anexo H](ANEXO_HEURISTICAS.md), y es la más grande de las cinco: acá la
   compuerta se extiende de la calidad del código a la **usabilidad**. El catálogo de las cuarenta y
-  cinco reglas está declarado y activo por grupo; cada regla activa tiene su instrumento, su
+  ocho reglas está declarado y activo por grupo —y dos de ellas, las del recibo, se informan
+  cara por cara—; cada regla activa tiene su instrumento, su
   severidad y su verificador; cada regla **apagada** tiene su registro con motivo, quién lo autoriza
   y fecha de revisión —apagada sin registro es rojo, que no es lo mismo que la regla ausente—; cada
   umbral que el dueño no declaró se publica como no declarado en vez de inventarse; y el reporte sale
@@ -1005,7 +1006,10 @@ construir las funcionalidades que actúan sobre el mundo, no después.
   unos días.
 - **Entradas**: el relevamiento de las acciones con consecuencia, hecho con el dueño.
 - **Artefacto**: la tabla de candados: cada acción con su reversibilidad, su candado, su camino de
-  vuelta; un test por candado probado en rojo; las automatizaciones nuevas en modo de ensayo.
+  vuelta; un test por candado probado en rojo; las automatizaciones nuevas en modo de ensayo. Y la
+  verificación de cada candado corre con el privilegio mínimo para verificar: la sonda que ejerce la
+  operación impedida corre donde su sentencia no puede aterrizar, y prueba contando antes y después
+  que el estado quedó idéntico (regla CQ-20 del Anexo H).
 - **Compuerta**: toda acción irreversible tiene candado y camino de vuelta documentado.
 - **Quién decide**: el dueño aprueba candado por candado; el sistema no los saltea nunca.
 - **Fallo que evita**: un doble cobro, una aprobación automática sin pasar por un humano, el
@@ -1585,7 +1589,7 @@ si la pieza no está, la compuerta de ese peldaño no da verde. Hay cinco, en lo
 de lo que se mide.
 
 **Anexo H** — El anexo de heurísticas del método ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)):
-cuarenta y cinco reglas verificables, dieciocho de calidad del código y veintisiete de usabilidad,
+cuarenta y ocho reglas verificables, veinte de calidad del código y veintiocho de usabilidad,
 cada una con su identificador estable, su severidad y el instrumento que la mide. Es obligatorio y
 atraviesa los cuatro tramos: entra con dos entradas previas en el peldaño 2 y con cinco anclas en
 los peldaños 5, 8, 9, 10 y 12. La "H" es de heurísticas.
@@ -2010,7 +2014,13 @@ escalón (peldaño 19), y de él salen los umbrales de alerta del 21.
 **Recibo** — La salida de un comando pegada tal como salió, con el comando exacto, la versión
 contra la que corrió, los números y el código de salida, de manera que el dueño pueda volver a
 correrlo sin entender lo que hace. En el peldaño 8, el rojo tiene que ser un recibo, no un relato
-("el test falló como se esperaba").
+("el test falló como se esperaba"). Desde el 2026-11-01 la palabra nombra también lo que un
+número trae al lado para poder leerse —qué conjunto esperaba recorrer y cuánto recorrió, de qué
+depende, y qué informa cuando no pudo mirar—, que es la regla CQ-19 del Anexo H: el recibo del
+peldaño 8 es un artefacto que un plan produce, y el del instrumento es una condición de cada
+cifra que decide algo. Esa regla y su pareja CQ-20 son las dos primeras que tienen **caras**:
+cortes del mismo enunciado con identificador propio (`CQ-19.1`), para que se pueda apagar uno
+solo con su motivo; y una regla con una cara apagada nunca se informa como cumplida.
 
 **Ref. N** — Una referencia corta a un caso real, explicado en el documento de referencias con su
 fecha y su evidencia. Está para que los procedimientos queden limpios y el detalle siga disponible.

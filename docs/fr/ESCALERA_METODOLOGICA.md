@@ -244,7 +244,7 @@ Chaque échelon a huit parties, toujours les mêmes, pour qu'on puisse les compa
 
 Et il y a une partie de plus, qui n'apparaît que dans **six échelons** et qui est une pièce
 transversale qui change ce qu'il faut lire : l'**Annexe H**
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Quarante-cinq règles vérifiables — dix-huit de
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Quarante-huit règles vérifiables — vingt de
 qualité du code et vingt-sept d'utilisabilité —, chacune avec son identifiant stable, sa sévérité
 et l'instrument qui la mesure. Ce n'est pas une annexe facultative : **elle est obligatoire**, et
 elle s'accroche à l'échelle en six points. À l'échelon 2 entrent ses deux **entrées préalables**
@@ -259,7 +259,7 @@ est née de l'avoir découvert tard : l'annexe a été obligatoire et jamais nom
 et le premier lecteur qui a adapté la méthode à un autre format a sauté vingt-sept des
 quarante-cinq règles parce qu'il n'a jamais su qu'elles existaient.
 
-Et l'une de ces quarante-six ne porte pas sur le système qu'on construit mais sur **la manière
+Et l'une de ces quarante-huit ne porte pas sur le système qu'on construit mais sur **la manière
 dont on te demande**. C'est l'**UX-28**, et elle est entrée le 2026-10-27 parce qu'elle manquait :
 la méthode ordonne à ses prompts de te demander — vingt-deux fois, dans plus de la moitié du
 corpus — et ne disait nulle part comment on demande, donc la forme restait à l'improvisation et tu
@@ -935,8 +935,9 @@ de la méthode à un autre format, créditée en Partie F.)
   [Ref. 41](REFERENCIAS.md#ref-41) ; le chiffre de qualité qui empire sans que personne ne le voie
   [Ref. 35](REFERENCIAS.md#ref-35).
 - **Annexe H** : ancrage 3 de l'[Annexe H](ANEXO_HEURISTICAS.md), et le plus grand des cinq : ici
-  la barrière s'étend de la qualité du code à l'**utilisabilité**. Le catalogue des quarante-cinq
-  règles est déclaré et actif par groupe ; chaque règle active a son instrument, sa sévérité et son
+  la barrière s'étend de la qualité du code à l'**utilisabilité**. Le catalogue des quarante-huit
+  règles est déclaré et actif par groupe — et deux d'entre elles, celles du reçu, se rapportent
+  facette par facette — ; chaque règle active a son instrument, sa sévérité et son
   vérificateur ; chaque règle **éteinte** a son registre avec le motif, qui l'autorise et une date
   de révision — éteinte sans registre c'est rouge, ce qui n'est pas la même chose que la règle
   absente — ; chaque seuil que le propriétaire n'a pas déclaré se publie comme non déclaré au lieu
@@ -1075,7 +1076,10 @@ vient **avant** de construire les fonctionnalités qui agissent sur le monde, pa
   journal pendant quelques jours.
 - **Entrées** : le relevé des actions à conséquences, fait avec le propriétaire.
 - **Artefact** : la table des verrous : chaque action avec sa réversibilité, son verrou, son chemin
-  de retour ; un test par verrou prouvé en rouge ; les nouvelles automatisations en mode à blanc.
+  de retour ; un test par verrou prouvé en rouge ; les nouvelles automatisations en mode à blanc. Et
+  la vérification de chaque verrou tourne avec le privilège minimum pour vérifier : la sonde qui
+  exerce l'opération empêchée tourne là où son instruction ne peut pas atterrir, et prouve en
+  comptant avant et après que l'état est resté identique (règle CQ-20 de l'Annexe H).
 - **Porte** : toute action irréversible a un verrou et un chemin de retour documenté.
 - **Qui décide** : le propriétaire approuve verrou par verrou ; le système ne les contourne jamais.
 - **Échec évité** : une double facturation, une approbation automatique sans passer par un humain,
@@ -1685,8 +1689,8 @@ si la pièce n'est pas là, la barrière de cet échelon ne passe pas au vert. I
 bonne pratique : ça fait partie de ce qui se mesure.
 
 **Annexe H** — L'annexe d'heuristiques de la méthode
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)) : quarante-six règles vérifiables, dix-huit de
-qualité du code et vingt-sept d'utilisabilité, chacune avec son identifiant stable, sa sévérité et
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)) : quarante-huit règles vérifiables, vingt de
+qualité du code et vingt-huit d'utilisabilité, chacune avec son identifiant stable, sa sévérité et
 l'instrument qui la mesure. Elle est obligatoire et traverse les quatre tronçons : elle entre avec
 deux entrées préalables à l'échelon 2 et avec cinq ancrages aux échelons 5, 8, 9, 10 et 12. Le « H »
 est pour heuristiques.
@@ -2131,7 +2135,13 @@ ou chaque mois, avec les écarts et les erreurs de la période, et que le propri
 l'agent pour décider ce qui devient un élément en attente. Le contraire d'une alerte : il se lit au
 calme.
 
-**Reçu** — La sortie d'une commande collée telle qu'elle est sortie, avec la commande exacte, la
+**Reçu** — Depuis le 2026-11-01 le mot nomme deux choses, et la seconde est la règle CQ-19 de
+l'Annexe H : ce qu'un chiffre apporte à côté de lui pour pouvoir être lu — quel ensemble il
+s'attendait à parcourir et combien il a parcouru, de quoi il dépend, et ce qu'il rapporte quand il
+n'a pas pu regarder. Cette règle et son binôme CQ-20 sont les deux premières à avoir des
+**facettes** : des coupes du même énoncé avec un identifiant propre (`CQ-19.1`), pour qu'on puisse
+n'en éteindre qu'une avec son motif ; et une règle dont une facette est éteinte ne s'informe jamais
+comme remplie. Le premier sens, celui de l'étape 8 : la sortie d'une commande collée telle qu'elle est sortie, avec la commande exacte, la
 version contre laquelle elle a tourné, les chiffres et le code de sortie, de manière que le
 propriétaire puisse la relancer sans comprendre ce qu'elle fait. À l'échelon 8, le rouge doit être
 un reçu, pas un récit (« le test a échoué comme prévu »).

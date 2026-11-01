@@ -1,6 +1,6 @@
 {
   "what": "The texts of the Urazuke method by stable identifier, in the languages its prose is published in. It exists because the gate catalogue tells a consumer not to print its texts and to take them from its own catalogue instead, and until this resource there was no catalogue to take them from: the instruction was right and impossible to obey, so every tool ended up writing its own translations of the titles of the method. Nothing here is translated by this file. Every string is EXTRACTED from the prose of the method, which already carries the translations; if a text is not in the prose, publication is refused instead of inventing it. Read the opaque id from the gate catalogue and look it up here under the language you are rendering for. And about the content hash, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls the host that served the file. The anchors that do not live on that host are the version ledger of each resource, which lives in the method repository and records the pair (version -> hash) append-only, and the transport security of the connection. There is no cryptographic signature: that is a written decision with its cost on the table, not an oversight.",
-  "labels_version": "2026.10.1",
+  "labels_version": "2026.10.2",
   "content_hash": {
     "algo": "sha256",
     "encoding": "hex_lower",
@@ -22,23 +22,24 @@
       "license",
       "content_hash"
     ],
-    "value": "0f3c78defe6fb19192098acd1f707814851bd832465c6901ef2a0e336835e66b",
+    "value": "a683674f7356e8e3af4d4f4eb7519c3e672fa4154d391a686e83403417577f01",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "82cbfeb",
+  "git_commit": "1a373c8",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-10-28T10:50:30.451Z",
+  "generated_at": "2026-11-01T19:04:46.752Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
     "languages": 8,
-    "ids_per_language": 78,
+    "ids_per_language": 92,
     "steps": 24,
     "stations": 8,
-    "rules": 46,
-    "strings": 624
+    "rules": 48,
+    "faces": 6,
+    "strings": 736
   },
-  "keyed_by": "labels.<language>.<kind>.<id>, where <language> is one of the entries of `languages.published`, <kind> is one of steps, stations or rules, and <id> is the opaque identifier the gate catalogue declares for that node. The ids are the key, not the order: they are append-only and never renamed.",
+  "keyed_by": "labels.<language>.<kind>.<id>, where <language> is one of the entries of `languages.published`, <kind> is one of steps, stations, rules, faces or face_titles, and <id> is the opaque identifier the gate catalogue declares for that node. The ids are the key, not the order: they are append-only and never renamed.",
   "scope": {
     "included": [
       {
@@ -55,6 +56,16 @@
         "kind": "rules",
         "what": "The statement of each rule of Annex H.",
         "source": "The row of each rule in Annex H of each language, read with the same extractor that resolves the English statement published in the gate catalogue."
+      },
+      {
+        "kind": "faces",
+        "what": "The statement of each face of a rule that has faces.",
+        "source": "The row of each face in Annex H of each language, with the same extractor. A rule with no faces contributes none, and that is the shape of forty-six of the forty-eight."
+      },
+      {
+        "kind": "face_titles",
+        "what": "The short name of each face -- what a report prints next to its id.",
+        "source": "The same row as its statement. A face carries two texts, so it is two kinds: the statement, like a rule, and the name, like the title of a step."
       }
     ],
     "excluded": [
@@ -140,6 +151,8 @@
         "CQ-16": "Todo elemento interactivo lleva identificador estable y rol, para que la prueba automática lo encuentre por nombre y no por posición.",
         "CQ-17": "Todos los colores, espaciados y tipografías salen de tokens; ningún valor mágico suelto en la hoja de estilos.",
         "CQ-18": "La accesibilidad básica se verifica sola: contraste, etiquetas en los campos, foco visible, navegación por teclado en los flujos principales, imágenes con texto alternativo.",
+        "CQ-19": "Todo instrumento con el que el proyecto decide declara las condiciones en que su número vale: qué conjunto esperaba recorrer y cuánto recorrió, de qué depende, y qué informa cuando no pudo mirar. Un instrumento cuyo silencio se lee igual que la salud no mide: tranquiliza.",
+        "CQ-20": "Una verificación corre con el privilegio mínimo para verificar y con ninguno más, y que no pudo hacer daño se mide, no se promete.",
         "UX-01": "Cada grupo del menú se nombra con un trabajo del usuario (en su vocabulario, con el glosario del proyecto), nunca con un módulo técnico ni con una entidad de datos.",
         "UX-02": "Cada funcionalidad tiene exactamente una casa canónica. Si sirve a dos grupos, se elige una casa y desde la otra se enlaza; no se duplica la entrada.",
         "UX-03": "No hay huérfanas: toda funcionalidad declarada es alcanzable desde la pantalla de entrada en no más de tres pasos.",
@@ -168,6 +181,22 @@
         "UX-26": "Los estados no se comunican solo por color; toda imagen informativa tiene texto alternativo; los textos se leen a tamaño normal sin zoom.",
         "UX-27": "Cada pendiente que toca una pantalla entrega la captura real del entorno de prueba, y el dueño la mira antes de cerrar. La captura no es opcional ni es un maqueta.",
         "UX-28": "Cuando el agente necesita una decisión del dueño, la pregunta llega con sus cuatro partes y en este orden: los datos que la hacen necesaria, enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la pregunta con sus respuestas posibles enumeradas; y la recomendación del agente. Y a la profundidad técnica que el proyecto declaró. Una pregunta suelta le deja al dueño el trabajo de reconstruir por qué se la hacen."
+      },
+      "faces": {
+        "CQ-19.1": "Toda medición que recorre un conjunto declara cuántos elementos esperaba recorrer al lado de cuántos recorrió, y falla cerrado cuando recorrió menos. No alcanza con distinguir el cero que es \"no hay\" del cero que es \"no pude mirar\": hay que distinguir el \"menos porque no miré todo\", que es el que se lee igual que la salud.",
+        "CQ-19.2": "Ningún instrumento depende del recurso que mide. Cuando no se puede evitar, su informe declara de qué depende, y la caída de esa dependencia se informa como \"no pude mirar\" y nunca como salud.",
+        "CQ-19.3": "Todo filtro, búsqueda o selección declara el universo sobre el que corrió: \"no encontré nada\" y \"no corrí\" son dos resultados distintos y no se escriben igual, y un filtro que devolvió de más tampoco se aplicó. Una cifra que decide se mide dos veces, de dos formas distintas, antes de usarse.",
+        "CQ-19.4": "Cuando un control tiene contraparte en la cadena, o son el mismo instrumento con la misma configuración, o la diferencia está declarada: qué mide cada uno, cuál manda, y qué puede pasar uno y fallar el otro. Un control local más permisivo que el que decide es un verde que miente.",
+        "CQ-20.1": "Un comando que se presenta como de sólo lectura corre sin permiso de escribir, y el privilegio con el que corrió se declara al lado de su resultado. Un instrumento que escribe mientras dice que no deja al dueño decidiendo sobre un estado que el propio instrumento cambió.",
+        "CQ-20.2": "Una sonda que ejerce una operación destructiva para comprobar que está impedida corre donde su sentencia no puede aterrizar, y su informe prueba que el estado quedó idéntico contándolo antes y después. Una sonda cuyo daño depende de que el impedimento funcione no verifica el impedimento: lo apuesta."
+      },
+      "face_titles": {
+        "CQ-19.1": "El denominador",
+        "CQ-19.2": "La independencia",
+        "CQ-19.3": "El universo, en las dos direcciones",
+        "CQ-19.4": "El hermano laxo",
+        "CQ-20.1": "El efecto no declarado",
+        "CQ-20.2": "La sonda que sólo es inofensiva cuando falla"
       }
     },
     "en": {
@@ -226,6 +255,8 @@
         "CQ-16": "Every interactive element carries a stable identifier and a role, so that the automated test finds it by name and not by position.",
         "CQ-17": "All colours, spacings and typefaces come out of tokens; no loose magic value in the stylesheet.",
         "CQ-18": "Basic accessibility is verified on its own: contrast, labels on fields, visible focus, keyboard navigation in the main flows, images with alternative text.",
+        "CQ-19": "Every instrument the project decides with declares the conditions under which its figure holds: which set it expected to walk and how much of it it walked, what it depends on, and what it reports when it could not look. An instrument whose silence reads like health does not measure: it reassures.",
+        "CQ-20": "A verification runs with the least privilege it needs in order to verify and with no more, and that it could do no harm is measured, not promised.",
         "UX-01": "Every menu group is named with a user job (in their vocabulary, with the project glossary), never with a technical module nor with a data entity.",
         "UX-02": "Every functionality has exactly one canonical home. If it serves two groups, one home is chosen and the other links to it; the entry is not duplicated.",
         "UX-03": "There are no orphans: every declared functionality is reachable from the entry screen in no more than three steps.",
@@ -254,6 +285,22 @@
         "UX-26": "States are not communicated by colour alone; every informative image has alternative text; texts are read at normal size without zoom.",
         "UX-27": "Every pending item that touches a screen delivers the real screenshot of the test environment, and the owner looks at it before closing. The screenshot is not optional and it is not a mock-up.",
         "UX-28": "When the agent needs a decision from the owner, the question arrives with its four parts and in this order: the data that makes it necessary, listed; one paragraph of no more than five lines that links that data and lets the question be seen; the question with its possible answers numbered; and the agent recommendation. And at the technical depth the project declared. A loose question leaves the owner the work of reconstructing why they are being asked."
+      },
+      "faces": {
+        "CQ-19.1": "Every measurement that walks a set declares how many elements it expected to walk next to how many it walked, and fails closed when it walked fewer. Telling the zero that means \"there are none\" from the zero that means \"I could not look\" is not enough: what has to be told apart is the \"fewer because I did not look at all of it\", which is the one that reads like health.",
+        "CQ-19.2": "No instrument depends on the resource it measures. When that cannot be avoided, its report declares what it depends on, and the failure of that dependency is reported as \"I could not look\" and never as health.",
+        "CQ-19.3": "Every filter, search or selection declares the universe it ran over: \"I found nothing\" and \"I did not run\" are two different results and are not written the same way, and a filter that returned too much was not applied either. A figure that decides something is measured twice, in two different ways, before it is used.",
+        "CQ-19.4": "When a check has a counterpart in the chain, either they are the same instrument with the same configuration or the difference is declared: what each one measures, which one rules, and what can pass one and fail the other. A local check more permissive than the one that decides is a green that lies.",
+        "CQ-20.1": "A command presented as read-only runs without permission to write, and the privilege it ran with is declared next to its result. An instrument that writes while saying it does not leaves the owner deciding over a state the instrument itself changed.",
+        "CQ-20.2": "A probe that exercises a destructive operation in order to check that it is blocked runs where its statement cannot land, and its report proves the state was left identical by counting it before and after. A probe whose harm depends on the block working does not verify the block: it bets on it."
+      },
+      "face_titles": {
+        "CQ-19.1": "The denominator",
+        "CQ-19.2": "Independence",
+        "CQ-19.3": "The universe, in both directions",
+        "CQ-19.4": "The lax sibling",
+        "CQ-20.1": "The undeclared effect",
+        "CQ-20.2": "The probe that is only harmless when it fails"
       }
     },
     "pt": {
@@ -312,6 +359,8 @@
         "CQ-16": "Todo elemento interativo leva identificador estável e papel, para que o teste automático o encontre pelo nome e não pela posição.",
         "CQ-17": "Todas as cores, espaçamentos e tipografias saem de tokens; nenhum valor solto na folha de estilos.",
         "CQ-18": "A acessibilidade básica se verifica sozinha: contraste, rótulos nos campos, foco visível, navegação por teclado nos fluxos principais, imagens com texto alternativo.",
+        "CQ-19": "Todo instrumento com o qual o projeto decide declara as condições em que o seu número vale: que conjunto esperava percorrer e quanto percorreu, de que depende, e o que informa quando não pôde olhar. Um instrumento cujo silêncio se lê igual à saúde não mede: tranquiliza.",
+        "CQ-20": "Uma verificação corre com o privilégio mínimo para verificar e com nenhum mais, e que não pôde fazer dano mede-se, não se promete.",
         "UX-01": "Todo grupo do menu se nomeia com um trabalho do usuário (no vocabulário dele, com o glossário do projeto), nunca com um módulo técnico nem com uma entidade de dados.",
         "UX-02": "Toda funcionalidade tem exatamente uma casa canônica. Se serve dois grupos, se escolhe uma casa e o outro aponta para ela; não se duplica a entrada.",
         "UX-03": "Não há órfãs: toda funcionalidade declarada é alcançável desde a tela de entrada em no máximo três passos.",
@@ -340,6 +389,22 @@
         "UX-26": "Os estados não se comunicam só por cor; toda imagem informativa tem texto alternativo; os textos se leem em tamanho normal sem zoom.",
         "UX-27": "Todo pendente que toca uma tela entrega a captura real do ambiente de teste, e o dono a olha antes de fechar. A captura não é opcional e não é um mockup.",
         "UX-28": "Quando o agente precisa de uma decisão do dono, a pergunta chega com as suas quatro partes e nesta ordem: os dados que a tornam necessária, enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta com as suas respostas possíveis enumeradas; e a recomendação do agente. E na profundidade técnica que o projeto declarou. Uma pergunta solta deixa para o dono o trabalho de reconstruir por que lhe perguntam."
+      },
+      "faces": {
+        "CQ-19.1": "Toda medição que percorre um conjunto declara quantos elementos esperava percorrer ao lado de quantos percorreu, e falha fechado quando percorreu menos. Não basta distinguir o zero que é \"não há\" do zero que é \"não pude olhar\": há que distinguir o \"menos porque não olhei tudo\", que é o que se lê igual à saúde.",
+        "CQ-19.2": "Nenhum instrumento depende do recurso que mede. Quando não se pode evitar, o seu reporte declara de que depende, e a queda dessa dependência informa-se como \"não pude olhar\" e nunca como saúde.",
+        "CQ-19.3": "Todo filtro, busca ou seleção declara o universo sobre o qual correu: \"não encontrei nada\" e \"não corri\" são dois resultados distintos e não se escrevem igual, e um filtro que devolveu demais também não se aplicou. Uma cifra que decide mede-se duas vezes, de duas formas distintas, antes de ser usada.",
+        "CQ-19.4": "Quando um controle tem contraparte na cadeia, ou são o mesmo instrumento com a mesma configuração, ou a diferença está declarada: o que mede cada um, qual manda, e o que pode passar um e falhar o outro. Um controle local mais permissivo do que o que decide é um verde que mente.",
+        "CQ-20.1": "Um comando que se apresenta como de somente leitura corre sem permissão de escrever, e o privilégio com o qual correu declara-se ao lado do seu resultado. Um instrumento que escreve enquanto diz que não deixa o dono decidindo sobre um estado que o próprio instrumento mudou.",
+        "CQ-20.2": "Uma sonda que exerce uma operação destrutiva para comprovar que está impedida corre onde a sua sentença não pode aterrissar, e o seu reporte prova que o estado ficou idêntico contando-o antes e depois. Uma sonda cujo dano depende de que o impedimento funcione não verifica o impedimento: aposta nele."
+      },
+      "face_titles": {
+        "CQ-19.1": "O denominador",
+        "CQ-19.2": "A independência",
+        "CQ-19.3": "O universo, nas duas direções",
+        "CQ-19.4": "O irmão frouxo",
+        "CQ-20.1": "O efeito não declarado",
+        "CQ-20.2": "A sonda que só é inofensiva quando falha"
       }
     },
     "fr": {
@@ -398,6 +463,8 @@
         "CQ-16": "Tout élément interactif porte un identifiant stable et un rôle, pour que le test automatique le trouve par son nom et non par sa position.",
         "CQ-17": "Toutes les couleurs, espacements et typographies sortent de tokens ; aucune valeur en dur dans la feuille de styles.",
         "CQ-18": "L'accessibilité de base se vérifie toute seule : contraste, etiquettes sur les champs, focus visible, navigation au clavier dans les flux principaux, images avec texte alternatif.",
+        "CQ-19": "Tout instrument avec lequel le projet décide déclare les conditions dans lesquelles son chiffre vaut : quel ensemble il s'attendait à parcourir et combien il a parcouru, de quoi il dépend, et ce qu'il rapporte quand il n'a pas pu regarder. Un instrument dont le silence se lit comme la santé ne mesure pas : il rassure.",
+        "CQ-20": "Une vérification tourne avec le privilège minimum pour vérifier et avec aucun de plus, et le fait qu'elle n'a pas pu faire de dégât se mesure, il ne se promet pas.",
         "UX-01": "Chaque groupe du menu se nomme par un travail de l'utilisateur (dans son vocabulaire, avec le glossaire du projet), jamais par un module technique ni par une entité de données.",
         "UX-02": "Chaque fonctionnalité a exactement une maison canonique. Si elle sert deux groupes, on choisit une maison et l'autre pointe vers elle ; l'entrée n'est pas dupliquée.",
         "UX-03": "Il n'y a pas d'orphelines : chaque fonctionnalité déclarée est accessible depuis l'écran d'entrée en trois étapes au plus.",
@@ -426,6 +493,22 @@
         "UX-26": "Les états ne se communiquent pas seulement par la couleur ; chaque image informative a un texte alternatif ; les textes se lisent en taille normale sans zoom.",
         "UX-27": "Chaque élément en attente qui touche un écran livre la capture réelle de l'environnement de test, et le propriétaire la regarde avant de fermer. La capture n'est pas optionnelle et ce n'est pas une maquette.",
         "UX-28": "Quand l'agent a besoin d'une décision du propriétaire, la question arrive avec ses quatre parties et dans cet ordre : les données qui la rendent nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la question ; la question avec ses réponses possibles numérotées ; et la recommandation de l'agent. Et à la profondeur technique que le projet a déclarée. Une question en vrac laisse au propriétaire le travail de reconstruire pourquoi on la lui pose."
+      },
+      "faces": {
+        "CQ-19.1": "Toute mesure qui parcourt un ensemble déclare combien d'éléments elle s'attendait à parcourir à côté de combien elle en a parcouru, et échoue fermé quand elle en a parcouru moins. Il ne suffit pas de distinguer le zéro qui veut dire \"il n'y en a pas\" du zéro qui veut dire \"je n'ai pas pu regarder\" : ce qu'il faut distinguer, c'est le \"moins parce que je n'ai pas tout regardé\", qui est celui qui se lit comme la santé.",
+        "CQ-19.2": "Aucun instrument ne dépend de la ressource qu'il mesure. Quand on ne peut pas l'éviter, son rapport déclare de quoi il dépend, et la chute de cette dépendance se rapporte comme \"je n'ai pas pu regarder\" et jamais comme la santé.",
+        "CQ-19.3": "Tout filtre, toute recherche et toute sélection déclare l'univers sur lequel il a tourné : \"je n'ai rien trouvé\" et \"je n'ai pas tourné\" sont deux résultats différents et ne s'écrivent pas pareil, et un filtre qui a rendu de trop ne s'est pas appliqué non plus. Un chiffre qui décide se mesure deux fois, de deux façons différentes, avant d'être utilisé.",
+        "CQ-19.4": "Quand un contrôle a une contrepartie dans la chaîne, ou bien ce sont le même instrument avec la même configuration, ou bien la différence est déclarée : ce que mesure chacun, lequel commande, et ce qui peut passer l'un et échouer l'autre. Un contrôle local plus permissif que celui qui décide est un vert qui ment.",
+        "CQ-20.1": "Une commande qui se présente comme en lecture seule tourne sans permission d'écrire, et le privilège avec lequel elle a tourné se déclare à côté de son résultat. Un instrument qui écrit en disant qu'il ne le fait pas laisse le propriétaire décider sur un état que l'instrument lui-même a changé.",
+        "CQ-20.2": "Une sonde qui exerce une opération destructrice pour vérifier qu'elle est empêchée tourne là où son instruction ne peut pas atterrir, et son rapport prouve que l'état est resté identique en le comptant avant et après. Une sonde dont le dégât dépend du bon fonctionnement de l'empêchement ne vérifie pas l'empêchement : elle parie dessus."
+      },
+      "face_titles": {
+        "CQ-19.1": "Le dénominateur",
+        "CQ-19.2": "L'indépendance",
+        "CQ-19.3": "L'univers, dans les deux sens",
+        "CQ-19.4": "Le frère laxiste",
+        "CQ-20.1": "L'effet non déclaré",
+        "CQ-20.2": "La sonde qui n'est inoffensive que quand elle échoue"
       }
     },
     "de": {
@@ -484,6 +567,8 @@
         "CQ-16": "Jedes interaktive Element trägt eine stabile Kennung und eine Rolle, damit der automatische Test es über den Namen findet und nicht über die Position.",
         "CQ-17": "Alle Farben, Abstände und Schriften kommen aus Tokens; kein magischer Wert steht frei im Stylesheet.",
         "CQ-18": "Die grundlegende Barrierefreiheit wird selbst geprüft: Kontrast, Feldbeschriftungen, sichtbarer Fokus, Tastaturnavigation in den Hauptabläufen, Bilder mit Alternativtext.",
+        "CQ-19": "Jedes Instrument, mit dem das Projekt entscheidet, erklärt die Bedingungen, unter denen seine Zahl gilt: welche Menge es zu durchlaufen erwartete und wie viel es durchlief, wovon es abhängt und was es meldet, wenn es nicht hinsehen konnte. Ein Instrument, dessen Schweigen sich wie Gesundheit liest, misst nicht: es beruhigt.",
+        "CQ-20": "Eine Überprüfung läuft mit dem geringsten Privileg, das sie zum Überprüfen braucht, und mit keinem mehr, und dass sie keinen Schaden anrichten konnte, wird gemessen und nicht versprochen.",
         "UX-01": "Jede Menügruppe wird mit einer Arbeit des Nutzers benannt (in seinem Wortschatz, mit dem Glossar des Projekts), niemals mit einem technischen Modul oder einer Datenentität.",
         "UX-02": "Jede Funktionalität hat genau ein kanonisches Zuhause. Dient sie zwei Gruppen, wird ein Zuhause gewählt und aus der anderen verlinkt; der Eintrag wird nicht dupliziert.",
         "UX-03": "Es gibt keine Waisen: jede erklärte Funktionalität ist vom Einstiegsbildschirm aus in nicht mehr als drei Schritten erreichbar.",
@@ -512,6 +597,22 @@
         "UX-26": "Zustände werden nicht nur durch Farbe mitgeteilt; jedes informative Bild hat Alternativtext; die Texte sind bei normaler Größe ohne Zoom lesbar.",
         "UX-27": "Jeder offene Punkt, der eine Bildschirmseite berührt, liefert den echten Screenshot der Testumgebung, und der Eigentümer sieht ihn an, bevor geschlossen wird. Der Screenshot ist weder optional noch ein Mockup.",
         "UX-28": "Wenn der Agent eine Entscheidung des Eigentümers braucht, kommt die Frage mit ihren vier Teilen und in dieser Reihenfolge: die Daten, die sie nötig machen, aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar macht; die Frage mit ihren möglichen Antworten durchnummeriert; und die Empfehlung des Agenten. Und in der technischen Tiefe, die das Projekt erklärt hat. Eine lose Frage überlässt dem Eigentümer die Arbeit, zu rekonstruieren, warum sie ihm gestellt wird."
+      },
+      "faces": {
+        "CQ-19.1": "Jede Messung, die eine Menge durchläuft, erklärt neben der Zahl der durchlaufenen Elemente auch, wie viele sie zu durchlaufen erwartete, und scheitert geschlossen, wenn sie weniger durchlief. Es genügt nicht, die Null, die „es gibt keine\" heißt, von der Null zu unterscheiden, die „ich konnte nicht hinsehen\" heißt: zu unterscheiden ist das „weniger, weil ich nicht alles angesehen habe\", und das ist dasjenige, das sich wie Gesundheit liest.",
+        "CQ-19.2": "Kein Instrument hängt von der Ressource ab, die es misst. Wo das nicht zu vermeiden ist, erklärt sein Bericht, wovon es abhängt, und der Ausfall dieser Abhängigkeit wird als „ich konnte nicht hinsehen\" gemeldet und niemals als Gesundheit.",
+        "CQ-19.3": "Jeder Filter, jede Suche und jede Auswahl erklärt das Universum, über das sie lief: „ich habe nichts gefunden\" und „ich bin nicht gelaufen\" sind zwei verschiedene Ergebnisse und werden nicht gleich geschrieben, und ein Filter, der zu viel zurückgab, wurde ebenfalls nicht angewandt. Eine Zahl, die entscheidet, wird zweimal und auf zwei verschiedene Weisen gemessen, bevor sie benutzt wird.",
+        "CQ-19.4": "Wenn eine Prüfung ein Gegenstück in der Kette hat, dann sind es entweder dasselbe Instrument mit derselben Konfiguration, oder der Unterschied ist erklärt: was jede von beiden misst, welche gilt, und was die eine passieren und die andere scheitern lassen kann. Eine lokale Prüfung, die durchlässiger ist als die entscheidende, ist ein Grün, das lügt.",
+        "CQ-20.1": "Ein Befehl, der sich als nur lesend ausgibt, läuft ohne Schreibrecht, und das Privileg, mit dem er lief, wird neben seinem Ergebnis erklärt. Ein Instrument, das schreibt, während es sagt, dass es das nicht tut, lässt den Eigentümer über einen Zustand entscheiden, den das Instrument selbst verändert hat.",
+        "CQ-20.2": "Eine Sonde, die einen zerstörenden Vorgang ausführt, um zu prüfen, dass er verhindert wird, läuft dort, wo ihre Anweisung nicht landen kann, und ihr Bericht beweist, dass der Zustand identisch blieb, indem er ihn vorher und nachher zählt. Eine Sonde, deren Schaden davon abhängt, dass die Verhinderung funktioniert, überprüft die Verhinderung nicht: sie wettet auf sie."
+      },
+      "face_titles": {
+        "CQ-19.1": "Der Nenner",
+        "CQ-19.2": "Die Unabhängigkeit",
+        "CQ-19.3": "Das Universum, in beiden Richtungen",
+        "CQ-19.4": "Der laxe Bruder",
+        "CQ-20.1": "Die nicht erklärte Wirkung",
+        "CQ-20.2": "Die Sonde, die nur harmlos ist, wenn sie scheitert"
       }
     },
     "it": {
@@ -570,6 +671,8 @@
         "CQ-16": "Ogni elemento interattivo porta identificatore stabile e ruolo, perché la prova automatica lo trovi per nome e non per posizione.",
         "CQ-17": "Tutti i colori, le spaziature e i caratteri escono da token; nessun valore magico sparso nel foglio di stile.",
         "CQ-18": "L'accessibilità di base si verifica da sola: contrasto, etichette nei campi, fuoco visibile, navigazione da tastiera nei flussi principali, immagini con testo alternativo.",
+        "CQ-19": "Ogni strumento con cui il progetto decide dichiara le condizioni in cui la sua cifra vale: quale insieme si aspettava di percorrere e quanto ne ha percorso, da che cosa dipende, e che cosa informa quando non ha potuto guardare. Uno strumento il cui silenzio si legge come la salute non misura: tranquillizza.",
+        "CQ-20": "Una verifica corre con il privilegio minimo per verificare e con nessuno in più, e che non abbia potuto fare danno si misura, non si promette.",
         "UX-01": "Ogni gruppo del menu si nomina con un lavoro dell'utente (nel suo vocabolario, con il glossario del progetto), mai con un modulo tecnico né con un'entità di dati.",
         "UX-02": "Ogni funzionalità ha esattamente una casa canonica. Se serve a due gruppi, si sceglie una casa e dall'altra si collega; la voce non si duplica.",
         "UX-03": "Non ci sono orfane: ogni funzionalità dichiarata è raggiungibile dalla schermata d'ingresso in non più di tre passi.",
@@ -598,6 +701,22 @@
         "UX-26": "Gli stati non si comunicano solo con il colore; ogni immagine informativa ha testo alternativo; i testi si leggono a dimensione normale senza zoom.",
         "UX-27": "Ogni pendenza che tocca una schermata consegna la cattura reale dell'ambiente di prova, e il proprietario la guarda prima di chiudere. La cattura non è opzionale né è una bozza.",
         "UX-28": "Quando l'agente ha bisogno di una decisione del proprietario, la domanda arriva con le sue quattro parti e in questo ordine: i dati che la rendono necessaria, elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere l'interrogativo; la domanda con le sue possibili risposte numerate; e la raccomandazione dell'agente. E alla profondità tecnica che il progetto ha dichiarato. Una domanda sciolta lascia al proprietario il lavoro di ricostruire perché gliela fanno."
+      },
+      "faces": {
+        "CQ-19.1": "Ogni misurazione che percorre un insieme dichiara quanti elementi si aspettava di percorrere accanto a quanti ne ha percorsi, e falla chiuso quando ne ha percorsi meno. Non basta distinguere lo zero che è \"non ce n'è\" dallo zero che è \"non ho potuto guardare\": va distinto il \"meno perché non ho guardato tutto\", che è quello che si legge come la salute.",
+        "CQ-19.2": "Nessuno strumento dipende dalla risorsa che misura. Quando non si può evitare, il suo rapporto dichiara da che cosa dipende, e la caduta di quella dipendenza si informa come \"non ho potuto guardare\" e mai come salute.",
+        "CQ-19.3": "Ogni filtro, ricerca o selezione dichiara l'universo su cui ha corso: \"non ho trovato niente\" e \"non ho corso\" sono due risultati diversi e non si scrivono uguale, e un filtro che ha restituito di più non si è applicato nemmeno lui. Una cifra che decide si misura due volte, in due modi diversi, prima di essere usata.",
+        "CQ-19.4": "Quando un controllo ha una controparte nella catena, o sono lo stesso strumento con la stessa configurazione, o la differenza è dichiarata: che cosa misura ciascuno, quale comanda, e che cosa può passare l'uno e far cadere l'altro. Un controllo locale più permissivo di quello che decide è un verde che mente.",
+        "CQ-20.1": "Un comando che si presenta come di sola lettura corre senza permesso di scrivere, e il privilegio con cui ha corso si dichiara accanto al suo risultato. Uno strumento che scrive mentre dice di non farlo lascia il proprietario a decidere su uno stato che lo strumento stesso ha cambiato.",
+        "CQ-20.2": "Una sonda che esercita un'operazione distruttiva per comprovare che è impedita corre dove la sua istruzione non può atterrare, e il suo rapporto prova che lo stato è rimasto identico contandolo prima e dopo. Una sonda il cui danno dipende dal fatto che l'impedimento funzioni non verifica l'impedimento: ci scommette."
+      },
+      "face_titles": {
+        "CQ-19.1": "Il denominatore",
+        "CQ-19.2": "L'indipendenza",
+        "CQ-19.3": "L'universo, nelle due direzioni",
+        "CQ-19.4": "Il fratello lasso",
+        "CQ-20.1": "L'effetto non dichiarato",
+        "CQ-20.2": "La sonda che è innocua solo quando falla"
       }
     },
     "ja": {
@@ -656,6 +775,8 @@
         "CQ-16": "すべてのインタラクティブな要素は安定した識別子とロールを持ち、自動テストが位置ではなく名前でそれを見つけられるようにする。",
         "CQ-17": "色、間隔、タイポグラフィはすべてトークンから出る。スタイルシートに野放しのマジック値はない。",
         "CQ-18": "基本的なアクセシビリティは自動で検証される。コントラスト、欄のラベル、可視のフォーカス、主要なフローでのキーボードナビゲーション、代替テキストを持つ画像である。",
+        "CQ-19": "プロジェクトが判断に使うすべての道具は、その数字が有効である条件を宣言する。どの集合を走査する予定でどれだけ走査したか、何に依存しているか、そして見ることができなかったときに何を報告するか。沈黙が健全と同じに読める道具は測っていない。安心させているだけである。",
+        "CQ-20": "検証は、検証するために必要な最小の特権で走り、それ以上では走らない。そして害を与えられなかったことは測られるのであり、約束されるのではない。",
         "UX-01": "メニューの各グループはユーザーの仕事で名付けられる（その人の語彙で、プロジェクトの用語集を用いて）。技術的なモジュールでもデータのエンティティでも決してない。",
         "UX-02": "各機能はちょうど一つの正規の家を持つ。二つのグループに役立つなら、一つの家を選び、もう一方からはリンクする。入口は複製しない。",
         "UX-03": "孤児はない。宣言されたすべての機能は入口画面から三ステップ以内で到達可能である。",
@@ -684,6 +805,22 @@
         "UX-26": "状態は色だけで伝わらない。情報を持つ画像はすべて代替テキストを持ち、テキストはズームなしで通常のサイズで読める。",
         "UX-27": "画面に触れる各ペンディングはテスト環境の実際のスクリーンショットを提出し、所有者は閉じる前にそれを見る。スクリーンショットは任意でもなく、モックアップでもない。",
         "UX-28": "エージェントが所有者の決定を必要とするとき、問いは四つの部分を伴い、この順で届く。それを必要にしているデータを列挙して。それらをつないで問いが見えるようにする五行以内の段落。取りうる答えに番号を振った問いそのもの。そしてエージェントの推奨。そしてプロジェクトが宣言した技術的な深さで。裸の問いは、なぜそれを尋ねられているのかを再構成する仕事を所有者に残す。"
+      },
+      "faces": {
+        "CQ-19.1": "集合を走査するすべての測定は、走査した数の横に、走査する予定だった要素の数を宣言し、より少なく走査したときは閉じて失敗する。「無い」という意味のゼロと「見ることができなかった」という意味のゼロを区別するだけでは足りない。区別すべきは「全部を見なかったから少ない」であり、それが健全と同じに読める値である。",
+        "CQ-19.2": "どの道具も、自分が測る資源に依存しない。避けられない場合は、何に依存しているかを報告のなかで宣言し、その依存先の障害は「見ることができなかった」として報告され、決して健全として報告されない。",
+        "CQ-19.3": "すべてのフィルタ、検索、選択は、自分が走った母集団を宣言する。「何も見つからなかった」と「走らなかった」は二つの異なる結果であり、同じようには書かれない。そして多く返したフィルタもまた適用されていない。判断を左右する数字は、使う前に二度、異なる二つの方法で測る。",
+        "CQ-19.4": "ある検査が連鎖のなかに対応物を持つとき、両者は同じ設定の同じ道具であるか、さもなければ差が宣言されている。それぞれが何を測るか、どちらが決めるか、そして一方を通って他方で落ちうるのは何か。決める側より緩い手元の検査は、嘘をつく緑である。",
+        "CQ-20.1": "読み取り専用として提示されるコマンドは、書き込みの許可なしで走り、走った特権はその結果の横に宣言される。そうではないと言いながら書き込む道具は、その道具自身が変えた状態について所有者に判断させることになる。",
+        "CQ-20.2": "破壊的な操作が阻止されていることを確かめるためにそれを行使する探りは、その命令が着地できない場所で走り、その報告は、前と後に数えることで状態が同一のままだったことを証明する。害が阻止の動作にかかっている探りは、阻止を検証していない。賭けているだけである。"
+      },
+      "face_titles": {
+        "CQ-19.1": "分母",
+        "CQ-19.2": "独立性",
+        "CQ-19.3": "母集団、両方向で",
+        "CQ-19.4": "甘い兄弟",
+        "CQ-20.1": "宣言されない作用",
+        "CQ-20.2": "失敗したときだけ無害な探り"
       }
     },
     "zh": {
@@ -742,6 +879,8 @@
         "CQ-16": "每个可交互元素都带稳定标识符和角色，好让自动测试按名字而不是按位置找到它。",
         "CQ-17": "所有颜色、间距和字体都来自设计令牌；样式表里没有任何孤立的魔法值。",
         "CQ-18": "基本无障碍自行验证：对比度、字段标签、可见焦点、主要流程中的键盘导航、带替代文本的图片。",
+        "CQ-19": "项目用来做判断的每一件器具，都声明它的数字在什么条件下成立：它预期要走遍哪个集合、实际走了多少、它依赖什么，以及它看不到的时候报告什么。沉默读起来和健康一样的器具不是在测量：是在安慰。",
+        "CQ-20": "一次验证以验证所需的最小特权运行，不多一分；而它没能造成损害这件事是被测量出来的，不是被承诺的。",
         "UX-01": "菜单的每个分组都用一个用户的工作来命名（用他的词汇，用项目的术语表），绝不用技术模块或数据实体命名。",
         "UX-02": "每个功能恰好有一个归口。如果它服务两个分组，就选一个归口，从另一个链接过去；入口不复制。",
         "UX-03": "没有孤儿：每个声明的功能都能从入口页面在三步之内到达。",
@@ -770,6 +909,22 @@
         "UX-26": "状态不只靠颜色传达；每一张有信息量的图片都有替代文本；文本在正常字号下无需缩放即可阅读。",
         "UX-27": "每个触及页面的待办项都交付来自测试环境的真实截图，所有者在关闭之前看它。截图不是可选项，也不是一张效果图。",
         "UX-28": "当代理需要所有者做决定时，问题带着它的四个部分、按这个顺序到来：让它成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的答案逐一编号；以及代理的推荐。并且用项目声明的技术深度来说。一个光秃秃的问题，把\"为什么要问我\"的重建工作留给了所有者。"
+      },
+      "faces": {
+        "CQ-19.1": "每一次走遍集合的测量，都要在“走了多少”旁边声明“本来预期要走多少”，并且走得更少时以关闭的方式失败。只区分“没有”的那个零和“我看不到”的那个零还不够：要区分的是“因为我没看全所以少”，那一个读起来和健康一样。",
+        "CQ-19.2": "没有一件器具依赖它所测量的那个资源。实在避不开时，它的报告要声明自己依赖什么；而那个依赖倒下，要报告为“我看不到”，绝不能报告为健康。",
+        "CQ-19.3": "每一个过滤、检索或选择，都要声明自己是在哪个全集上跑的：“我什么也没找到”和“我没有跑”是两个不同的结果，不能写成一样；而返回得过多的过滤器，同样是没有被应用上。一个用来做决定的数字，要在被使用之前用两种不同的方式测两次。",
+        "CQ-19.4": "当一项检查在链条上另有对应，那么要么两者是同一件器具、同一套配置，要么差异被声明出来：各自测什么、哪一个说话算数、什么情况下能通过一个而在另一个那里不过。比那个做决定的更宽松的本地检查，是一个说谎的绿。",
+        "CQ-20.1": "一条自称只读的命令，要在没有写权限的情况下运行，而它运行时所带的特权要声明在它的结果旁边。一件嘴上说不写、手上却在写的器具，等于让所有者去对一个它自己改过的状态做判断。",
+        "CQ-20.2": "为了确认某个破坏性操作已被阻止而去执行它的探针，要跑在它的那条语句落不下来的地方；而它的报告要通过前后各数一次，证明状态保持原样。损害与否取决于阻止机制是否生效的探针，并没有在验证那个阻止：它只是在赌。"
+      },
+      "face_titles": {
+        "CQ-19.1": "分母",
+        "CQ-19.2": "独立性",
+        "CQ-19.3": "全集，在两个方向上",
+        "CQ-19.4": "宽松的兄弟",
+        "CQ-20.1": "没有被声明的作用",
+        "CQ-20.2": "只在失败时才无害的探针"
       }
     }
   }

@@ -285,6 +285,10 @@ como vermelho.
   justifica não tê-los?
 - Se há testes de mutação: quantos mutantes sobreviveram no último bloco, e cada um tem pendência
   ou razão escrita?
+- Cada instrumento da cadeia vem com o seu recibo: quantos elementos esperava percorrer ao lado de
+  quantos percorreu, de que depende, e o que informa quando não pôde olhar? Peça uma corrida na
+  qual o instrumento não pôde olhar: se esse resultado se lê igual ao verde, CQ-19 não está
+  cumprida, não importa o que diga a porcentagem.
 
 ## 5. Sinais de alerta
 

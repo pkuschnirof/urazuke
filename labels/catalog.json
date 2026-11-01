@@ -1,6 +1,6 @@
 {
   "what": "The header of the catalogue of texts by identifier: the version a project freezes. Declared BY HAND, for the same reason as the gate catalogue (gates/catalog.json) and the prompt corpus (prompts/catalog.json): a project starts and finishes with the same version of the method, so what it froze has to read back the same two years from now.",
-  "labels_version": "2026.10.1",
+  "labels_version": "2026.10.2",
   "declared_at": "2026-10-28",
   "published_as": "docs/html/api/labels.json",
   "extracted_from": {
@@ -8,7 +8,9 @@
     "steps": "docs/<language>/ESCALERA_METODOLOGICA.md -- the heading of each step card",
     "stations": "docs/<language>/EVOLUTIVO_CORRECTIVO.md -- the heading of each station",
     "rules": "docs/<language>/ANEXO_HEURISTICAS.md -- the row of each rule",
-    "languages": "gates/catalog.json#languages.prose_versions -- declared once, derived here (D-067)"
+    "languages": "gates/catalog.json#languages.prose_versions -- declared once, derived here (D-067)",
+    "faces": "docs/<language>/ANEXO_HEURISTICAS.md -- the row of each face of a rule that has faces, read with the same extractor as a rule",
+    "face_titles": "the same row as the statement of the face: a face carries two texts, its statement and its short name, so it is two kinds"
   },
   "version_scheme": {
     "recipe": "gates/schema.json#version_scheme",
@@ -39,6 +41,13 @@
       "decision": "D-074",
       "content_hash": "0f3c78defe6fb19192098acd1f707814851bd832465c6901ef2a0e336835e66b",
       "changed": "First published version of the catalogue of texts. It closes the half that was missing from the gate catalogue since its first version: that file tells a consumer not to print its texts and to take them from its own catalogue instead, and the method published no catalogue to take them from, so the only machine-readable text was exactly the one it asked not to print. The instruction was right and impossible to obey. Coming in: the title of the twenty-four steps, the title of the eight normalisation stations and the statement of the forty-six rules of Annex H, in the eight languages the prose of the method declares -- seventy-eight identifiers per language, six hundred and twenty-four strings, every one of them EXTRACTED from the prose and none of them written or transcribed here. What stays out is declared in `scope` with the measurement that supports it: the evaluator vocabulary, which exists in one language only at the data layer, and the verification questions of a step, which are not the same list in the data and in the prose of the contract. The resource is UTF-8 and NOT pure ASCII, like the prompt corpus and for the same reason: the text of the prose travels verbatim, typographic punctuation included."
+    },
+    {
+      "labels_version": "2026.10.2",
+      "date": "2026-11-01",
+      "decision": "D-078",
+      "content_hash": "a683674f7356e8e3af4d4f4eb7519c3e672fa4154d391a686e83403417577f01",
+      "changed": "Two kinds enter, faces and face_titles, and with them the sixty strings of the two rules D-078 added. The gate catalogue now has rules with FACES -- a cut of the statement of a rule with an identifier of its own, so that a single one can be switched off -- and a consumer has to be able to print what it switched off: a report that says CQ-19.2 and nothing else is the opaque id with no catalogue behind it, which is exactly the defect this resource exists to close. A face carries two texts and is therefore two kinds, not one: its statement, like a rule, and its short name, like the title of a step -- the name is what a report prints next to the id, and the statement is what the reader needs in order to understand why. Both are EXTRACTED from Annex H of each language with the same extractor that already resolves the statement of a rule; not one string is written here, and the test that demands every string appear literally in the document it claims to come from covers them from the first day. What the count does: 24 step titles, 8 station titles, 48 rule statements and 6 faces counted twice, which is 92 ids per language and 736 strings over the eight languages the prose declares -- and every one of those figures is derived from the data and from the list of prose versions, not written in this file (D-067, D-077). What this version does NOT do: add a language, change a single text of the twenty-four steps, the eight stations or the forty-six rules that were already published, or widen what the scope leaves out (D-078, PND-065 to PND-068)."
     }
   ]
 }

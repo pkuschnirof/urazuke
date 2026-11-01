@@ -33,6 +33,10 @@ const GRUPOS = [
   ['steps', dato.pasos, 'principal'],
   ['stations', dato.estaciones, 'evolutivo'],
   ['rules', dato.reglas, 'anexo'],
+  // Una cara aporta DOS clases (D-078): su enunciado, como una regla, y su nombre corto, que
+  // es lo que un reporte imprime al lado del id. Las dos salen de la misma fila del anexo.
+  ['faces', dato.caras, 'anexo'],
+  ['face_titles', dato.caras, 'anexo'],
 ];
 
 test('a ningun identificador le falta su texto en ningun idioma', () => {
@@ -68,7 +72,7 @@ test('no hay ningun texto publicado que el dato no declare', () => {
 // LA PRUEBA QUE IMPORTA. Si una cadena no esta literal en el documento del que dice salir,
 // alguien la escribio o la transcribio, y entonces este archivo es una segunda version del
 // metodo que puede divergir de la primera sin que nada caiga. Es la misma regla que ya
-// gobierna el enunciado de las 46 reglas en el archivo de compuertas, exigida sobre las 624.
+// gobierna el enunciado de las 46 reglas en el archivo de compuertas, exigida sobre las 736.
 test('ninguna cadena esta escrita aca: cada una aparece literal en su documento de prosa', () => {
   const inventadas = [];
   let revisadas = 0;
@@ -90,13 +94,14 @@ test('ninguna cadena esta escrita aca: cada una aparece literal en su documento 
 
 test('el resumen de cantidades no puede mentir: es el que da el arbol', () => {
   const idiomas = idiomasDeclarados();
-  const porIdioma = dato.pasos.length + dato.estaciones.length + dato.reglas.length;
+  const porIdioma = dato.pasos.length + dato.estaciones.length + dato.reglas.length + dato.caras.length * 2;
   assert.deepEqual(pub.counts, {
     languages: idiomas.length,
     ids_per_language: porIdioma,
     steps: dato.pasos.length,
     stations: dato.estaciones.length,
     rules: dato.reglas.length,
+    faces: dato.caras.length,
     strings: idiomas.length * porIdioma,
   });
   assert.ok(pub.content_hash.covers.includes('counts'), 'y viaja cubierto por la huella');

@@ -229,7 +229,7 @@ Cada degrau tem oito partes, sempre as mesmas, para que se possam comparar:
 
 E há uma parte mais, que aparece **apenas em seis degraus** e é uma peça transversal que muda
 o que tem de ser lido: o **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). São
-quarenta e seis regras verificáveis — dezoito de qualidade de código e vinte e oito de
+quarenta e oito regras verificáveis — vinte de qualidade de código e vinte e oito de
 usabilidade —, cada uma com seu identificador estável, sua severidade e o instrumento que a mede.
 Não é um apêndice opcional: **é obrigatório**, e se engata na escada em seis pontos. No degrau 2
 entram suas duas **entradas prévias** (o glossário do usuário e a lista de perfis: as palavras que
@@ -242,7 +242,7 @@ método que fica vermelha se alguma deixar de dizê-lo. Nasceu de ter descoberto
 esteve obrigatório e sem ser nomeado neste documento, e o primeiro leitor que adaptou o método a
 outro formato pulou vinte e sete das quarenta e cinco regras porque nunca soube que existiam.
 
-E uma dessas quarenta e seis não é sobre o sistema que se constrói, mas sobre **como você é
+E uma dessas quarenta e oito não é sobre o sistema que se constrói, mas sobre **como você é
 perguntado**. É a **UX-28**, e entrou em 2026-10-27 porque faltava: o método ordena aos seus
 prompts que perguntem a você — vinte e duas vezes, em mais da metade do corpus — e não dizia em
 nenhuma parte como se pergunta, então a forma ficava na improvisação e você recebia a pergunta
@@ -869,8 +869,8 @@ creditada na Parte F.)
   uma auditoria encontrou porque nenhum limite os tinha freado [Ref. 41](REFERENCIAS.md#ref-41);
   o número de qualidade que piora sem que ninguém o veja [Ref. 35](REFERENCIAS.md#ref-35).
 - **Anexo H**: âncora 3 do [Anexo H](ANEXO_HEURISTICAS.md), e a maior das cinco: aqui a comporta
-  se estende da qualidade do código à **usabilidade**. O catálogo das quarenta e cinco regras está
-  declarado e ativo por grupo; cada regra ativa tem seu instrumento, sua severidade e seu
+  se estende da qualidade do código à **usabilidade**. O catálogo das quarenta e oito regras está
+  declarado e ativo por grupo — e duas delas, as do recibo, informam-se face por face —; cada regra ativa tem seu instrumento, sua severidade e seu
   verificador; cada regra **desligada** tem seu registro com motivo, quem autoriza e data de
   revisão — desligada sem registro é vermelho, que não é o mesmo que a regra ausente —; cada limite
   que o dono não declarou se publica como não declarado em vez de inventado; e o relatório sai com
@@ -995,7 +995,10 @@ construir as funcionalidades que agem sobre o mundo, não depois.
   novas começam em modo de ensaio e se habilitam depois de olhar seu registro por uns dias.
 - **Entradas**: o levantamento das ações com consequência, feito com o dono.
 - **Artefato**: a tabela de cadeados: cada ação com sua reversibilidade, seu cadeado, seu caminho
-  de volta; um teste por cadeado provado em vermelho; as automações novas em modo de ensaio.
+  de volta; um teste por cadeado provado em vermelho; as automações novas em modo de ensaio. E a
+  verificação de cada cadeado corre com o privilégio mínimo para verificar: a sonda que exerce a
+  operação impedida corre onde a sua sentença não pode aterrissar, e prova contando antes e depois
+  que o estado ficou idêntico (regra CQ-20 do Anexo H).
 - **Comporta**: toda ação irreversível tem cadeado e caminho de volta documentado.
 - **Quem decide**: o dono aprova cadeado por cadeado; o sistema nunca os pula.
 - **Falha que evita**: uma dupla cobrança, uma aprovação automática sem passar por um humano, o
@@ -1563,8 +1566,8 @@ peça não estiver, a comporta daquele degrau não fica verde. São cinco, nos d
 mede.
 
 **Anexo H** — O anexo de heurísticas do método
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): quarenta e cinco regras verificáveis, dezoito de
-qualidade de código e vinte e sete de usabilidade, cada uma com seu identificador estável, sua
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): quarenta e oito regras verificáveis, vinte de
+qualidade de código e vinte e oito de usabilidade, cada uma com seu identificador estável, sua
 severidade e o instrumento que a mede. É obrigatório e atravessa os quatro trechos: entra com duas
 entradas prévias no degrau 2 e com cinco âncoras nos degraus 5, 8, 9, 10 e 12. O "H" é de
 heurísticas.
@@ -1982,7 +1985,12 @@ rastro de quem, quando, o quê, de onde e com que resultado, numa auditoria que 
 pode editar, e que um identificador de correlação permita seguir qualquer ação da tela ao
 banco.
 
-**Recibo** — A saída de um comando colada tal como saiu, com o comando exato, a versão contra a
+**Recibo** — Desde 2026-11-01 a palavra nomeia duas coisas, e a segunda está na regra CQ-19 do
+Anexo H: o que um número traz ao lado para poder ser lido —que conjunto esperava percorrer e quanto
+percorreu, de que depende, e o que informa quando não pôde olhar—. Essa regra e o seu par CQ-20 são
+as duas primeiras que têm **faces**: cortes do mesmo enunciado com identificador próprio
+(`CQ-19.1`), para que se possa apagar uma só com o seu motivo; e uma regra com uma face apagada
+nunca se informa como cumprida. A primeira acepção, a do passo 8: a saída de um comando colada tal como saiu, com o comando exato, a versão contra a
 qual rodou, os números e o código de saída, de maneira que o dono possa voltar a rodá-lo sem
 entender o que ele faz. No degrau 8, o vermelho tem que ser um recibo, não um relato ("o teste
 falhou como se esperava").

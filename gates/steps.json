@@ -496,6 +496,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "anchor": 3
+        },
+        {
+          "text": "Does every instrument this step decides with carry its receipt: which set it expected to walk next to how much of it it walked, what it depends on, and what it reports when it could not look (CQ-19)?",
+          "since_schema": 2,
+          "since_version": "2026.10.12",
+          "anchor": 3
         }
       ],
       "evaluators": [
@@ -743,7 +749,12 @@
       ],
       "verify": [
         "Cada accion de tu lista tiene su candado en LOCKS.md, con el test que lo prueba?",
-        "Ante un dato que falta, el sistema se detiene en vez de inventar?"
+        "Ante un dato que falta, el sistema se detiene en vez de inventar?",
+        {
+          "text": "Does every verification declare the privilege it ran with, and does the probe that exercises a destructive operation run where its statement cannot land, with the state counted before and after (CQ-20)?",
+          "since_schema": 2,
+          "since_version": "2026.10.12"
+        }
       ],
       "evaluators": [
         {

@@ -5153,6 +5153,1238 @@ que la contiene. Vive en el repositorio del portal, agranda su cadena y la decid
 
 ---
 
+# Abiertos — las quince mejoras que trajo el experimento de medición del método
+
+**De dónde salen, y en qué orden conviene leerlas.** Entre el 31 de octubre y el 1 de noviembre
+de 2026 corrí un experimento que midió el método usándolo en serio: tres brazos construyendo el
+mismo sistema, uno de ellos recorriendo la escalera completa en conversación dirigida, veinte idas
+y vueltas, veinte horas de reloj y setecientos setenta y cinco millones de tokens. De ahí salieron
+**treinta y tres hallazgos** —recontados con un programa, porque la cuenta a mano decía treinta y
+uno—; las de la herramienta ya están arregladas del otro lado y **quince son del método**. Son
+éstas.
+
+**Y la quince llegó tarde, lo que es la mejor evidencia del lote.** El prompt que trajo este
+trabajo decía "catorce" y la lista tenía quince: `M+04` —*una cifra que depende del repositorio nace
+envejecida*— se había perdido en una cuenta hecha a mano, que es exactamente lo que `M+04` dice que
+pasa. Aparece acá como `PND-074`, y el rastro de cómo se perdió queda escrito en vez de borrado.
+
+Una aclaración que vale para las quince, y es la misma que abre `docs/REFERENCIAS.md`: ninguna de
+estas reglas nació del incidente que la hizo visible. Todas son ingeniería de sistemas de siempre
+—no le creas a un instrumento que no verificaste, no confundas la ausencia de hallazgos con la
+ausencia de problemas, no aceptes un riesgo sin el aviso que te diga cuándo ocurrió—, y lo que el
+experimento aportó fue **dónde los modelos las aplican de manera frágil** y, en seis casos, que ni
+siquiera un agente que cumple la consigna al pie de la letra las aplica solo. El incidente es la
+prueba de que hace falta decirlo explícito, no el origen de la regla. Si alguna de estas entradas
+termina redactada como "esto salió de que algo se rompió", está mal redactada.
+
+**Lo que estas quince entradas NO son.** No son ediciones del corpus. Una regla nueva del método
+es una obligación que les voy a imponer a todos los proyectos que vengan, y eso lo decide el dueño,
+una por una, con el texto delante. Lo que cada entrada tiene abajo es la especificación, la
+ubicación propuesta, la evidencia y el criterio de aceptación; el borrador de la regla se escribe
+aparte, en un documento de trabajo, y **nada entra al corpus sin aprobación**. Por eso las quince
+dicen `Quién decide: el dueño` y ninguna dice que el trabajo se hace y se reporta.
+
+**El universo de las mediciones propias, enumerado una vez (D-064).** Las quince reproducciones de
+abajo corren sobre los **36 archivos fuente del corpus castellano**: los diez documentos en
+castellano que `build/build.mjs` publica por idioma (`ESCALERA_METODOLOGICA`, `REFERENCIAS`,
+`EVOLUTIVO_CORRECTIVO`, `MANUAL_CURSO`, `MANUAL_CURSO_EVOLUTIVO`, `CAPACITACION_JUNIOR`,
+`TRABAJO_COLABORATIVO`, `EVALUACIONES_DE_IA`, `ANEXO_HEURISTICAS`, `PREGUNTAS_AL_PROVEEDOR`), los
+veinticuatro contratos de peldaño con el `README.md` de su carpeta, y el `README.md` de la raíz.
+Queda **afuera**, con su razón: `docs/COMPUERTAS.md`, que se genera, es nivel de datos y está en
+inglés (D-051); las siete traducciones, que son una copia de lo que la construcción publica y se
+mueven en el mismo commit que el castellano (D-013); y los documentos que no son corpus —este
+registro, el de decisiones, el plan del curso—. La enumeración es completa porque es la misma que
+la construcción recorre para publicar, más los dos README que ninguna otra lista nombra. Cuando una
+entrada dice "cero menciones en el corpus", es cero en esos 36 archivos, y el comando está al lado.
+
+**La severidad de cada entrada es mi lectura, y conviene auditarla acá en vez de quince veces.**
+El criterio que usé: *bloquea* cuando la ausencia de la regla permite que algo cierre en verde sin
+haber probado nada, o produce daño silencioso —que es lo que este proyecto prohíbe desde su primera
+regla de calidad—; *avisa* cuando el costo es real y queda visible, como un renombre de ochenta y
+cuatro citas o un verde que la cadena rechaza después. Con ese criterio salieron **siete que
+bloquean** (`PND-065`, `PND-067`, `PND-069`, `PND-073`, `PND-074`, `PND-077` y `PND-079`) y **ocho
+que avisan**. Ninguna quedó en *registra*: las quince cambian lo que un peldaño exige, y eso no es
+una anotación. Si alguna severidad está mal, cambiarla es una línea y la cuenta del resumen se
+rehace sola.
+
+**Por qué las quince van a G-METODO, y la alternativa que queda abierta.** El grupo de
+convergencia se elige por lo que la persona vino a hacer, y lo que estas quince tocan es **el
+contenido del método**: si lo que el lector recibe está completo y se puede aplicar. Es el mismo
+grupo que abrieron `PND-039` a `PND-048`, que también las trajo alguien que aplicó el método a
+fondo. La alternativa que consideré y no tomé por mi cuenta es abrir un **octavo grupo** para las
+seis de la familia del cero —lo que esa persona vino a hacer sería *poder creerle a un verde*, que
+no es lo mismo que aplicar el método completo—. No se hizo porque abrir un grupo toca tres lugares a
+la vez (la tabla de grupos de arriba, la constante de `tests/pending_resumen.test.mjs` y la tabla
+del resumen) y porque es una decisión del dueño, no una comodidad de redacción. Queda planteada en
+la entrada de la familia.
+
+---
+
+## PND-065 — Una medición que puede informar cero no distingue los dos ceros, y la parcial se lee igual que la salud *(del experimento; `M+07`, cabeza de la familia)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+07` con su ampliación del turno 20.
+  No es de la auditoría externa ni de una medición de la publicación.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** **el dueño**. Es una regla nueva y, además, la que decide cómo se redactan las
+  otras cinco de su familia: hay que resolver primero si es **una regla con seis caras** o **seis
+  reglas hermanas**. La recomendación, con su motivo, está al final de la entrada.
+- **Estado: abierto, escrito y verde en la cadena** — el dueño resolvió la forma el 2026-11-01
+  (D-078): **una regla con cuatro caras**, `CQ-19` «Recibo del instrumento», casa en el peldaño 9
+  (`Ancla 3`), y esta entrada es su **primera cara**, `CQ-19.1` «El denominador». Escrita en el
+  dato (`gates/heuristics.json`, publicado en `2026.10.12`), en el Anexo H de los ocho idiomas, en
+  el catálogo de textos (`2026.10.2`) y en la pregunta de verificación del contrato del peldaño 9.
+  Cadena local en verde: 458 pruebas, cero fallos. **Cierra cuando la fusión a `main` la deje
+  servida en producción**, que es el criterio de D-057: un arreglo en la máquina no es un efecto.
+
+**Qué falta, completo.** El método exige medir antes de construir y exige que el instrumento se
+verifique: el peldaño 7 lo lleva en el título. Lo que **no** exige es que el instrumento declare
+qué informa cuando **no pudo mirar**. Y ésa es la única pregunta que separa un número bueno de un
+número tranquilizador, porque los dos se leen igual: un cero que significa "no hay nada" y un cero
+que significa "no miré" son el mismo carácter en la misma pantalla. La regla que falta tiene dos
+mitades, y la segunda es la que muerde.
+
+1. **El cero.** Toda medición que pueda informar cero tiene que poder distinguir *cero porque no
+   hay* de *cero porque no pude mirar*, y si no puede distinguirlos **falla cerrado**: informa que
+   no midió, no informa cero.
+2. **La cuenta parcial, que es la mitad nueva.** No alcanza con preguntar por cero. Una medición
+   que recorre un conjunto declara **cuántos elementos esperaba recorrer** y falla si recorrió
+   menos, no sólo si recorrió ninguno. La frase que lo cierra es del brazo: *no es "cero porque no
+   miré", es "menos porque no miré todo", y se lee igual que salud*. Y la versión general, que es
+   la que vale para los otros proyectos: **una guarda que sólo cubre el caso extremo deja pasar
+   todo el rango**. El cero es el caso visible; la cuenta parcial es el que muerde.
+
+Es el *rojo primero* del peldaño 8 aplicado al **instrumento que mide** en vez de al test que
+prueba: igual que un test que nadie vio caer no prueba nada, un medidor que nadie vio informar "no
+pude mirar" no mide nada.
+
+**Evidencia medida (el experimento).** El brazo partió su registro de mutaciones para no pasar un
+tope de líneas que no quiso subir, y eso dejó a la medición de calidad informando **cero mutantes
+declarados, sin un solo error**: un número que debía gritar dijo cero en silencio. No lo encontró
+ninguna prueba, ni el analizador estático, ni la revisión del propio texto; lo encontró la compuerta
+que no le cree al documento y lo contrasta contra una medición fresca. La ampliación es peor, porque
+le pasó **sobre su propia guarda**: la cifra de mutantes contaba **28 de 47**, y lo que falló no fue
+el patrón —había una condición escrita a propósito para el caso en que la cifra "cae a 0 en
+silencio", o sea exactamente la guarda que esta regla pide— sino que la desincronización real fue
+**parcial**, y una guarda que pregunta por cero no ve 28 de 47. Los diecinueve que el instrumento no
+vio se leen como si no existieran.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -niE "cero porque|dos ceros|da cero"   ->  4 menciones
+grep -niEc "saturad|saturaci"               ->  0
+```
+
+Las cuatro menciones existen y **ninguna es esta regla**. Dos son la misma **señal de alarma para
+el dueño** —peldaño 7, sección 5: *"El medidor da cero. Casi nunca es cero; casi siempre el medidor
+no está viendo algo"*, repetida en la lección del manual—; una es la explicación de los dos umbrales
+en cero del Anexo H, que es otro tema; y la cuarta es el caso de un medidor propio en las
+referencias. O sea: el método **ya sospecha del cero**, y lo dice en el único lugar donde no obliga
+a nadie —la lista de cosas que el dueño tiene que mirar con desconfianza—. No hay obligación sobre
+quien construye, no hay cláusula en ningún prompt, y de la **cuenta parcial** no hay una sola
+mención en los 36 archivos. Un dueño que lea la señal de alarma y pregunte "¿por qué da cero?"
+recibe una explicación; un dueño frente a un 28 de 47 no tiene ni la señal.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona puede mirar
+  cualquier número que un peldaño le entrega y hacer una sola pregunta —*"¿qué informa este
+  instrumento cuando no pudo mirar?"*— y negarse a cerrar el peldaño si la respuesta es "lo mismo
+  que la salud"; y cuando el número recorre un conjunto, puede exigir la cuenta de lo que el
+  instrumento **esperaba** recorrer al lado de la cuenta de lo que recorrió, sin tener que saber
+  cómo está hecho el instrumento.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona
+  encuentra la regla **por su nombre** desde la ficha del peldaño que la carga, y no tiene que
+  deducirla de una señal de alarma escrita para otra cosa.
+- *P7 (lector que adapta el método a otro formato):* dado ese perfil, esta persona puede reproducir
+  la regla con todas sus caras sin inventar ninguna, porque están enumeradas y cada una dice qué
+  instrumento vigila. Es el perfil que ya falló una vez acá, con las veintisiete reglas del Anexo H
+  que un lector real omitió porque nunca supo que estaban (`PND-039`).
+
+**Dónde iría.** El peldaño 7 (medir antes de construir, con un instrumento que también se verifica)
+es la casa natural, porque la regla es la extensión de su propio título. Con enlaces desde el
+peldaño 8 (donde vive el rojo primero, que es la misma idea aplicada al test), el 12 (verificación
+honesta) y el 14 (fail-closed). Y **una** línea corta en el contrato de convivencia del peldaño 1,
+no cinco: ver el argumento 1 de abajo.
+
+**La recomendación sobre la forma, con el motivo, para que el dueño decida.** Una regla con nombre
+y seis caras, no seis reglas hermanas. Cuatro argumentos, tres de ellos medidos:
+
+1. **El contrato de convivencia no aguanta seis reglas más, y lo dice el propio método.** El
+   peldaño 1 tiene como señal de alarma: *"El contrato tiene más de veinte reglas. Nadie, ni humano
+   ni modelo, respeta veinte reglas; se respetan seis u ocho"*, y hoy exige seis mínimas. Cuatro
+   entradas de este lote proponen, cada una por su cuenta, entrar ahí. Serían diez u once reglas, y
+   la señal que el método escribió para que nadie infle un contrato la rompería el propio método.
+2. **La forma ya existe en el método y es verificable.** `CQ-18` es **un** identificador con cinco
+   comprobaciones adentro (contraste, etiquetas, foco, teclado, texto alternativo). Una regla con
+   caras no es una regla vaga: es una regla cuyas caras son predicados, cada uno con su verificador.
+   Eso evita de paso el defecto que `PND-061` midió —una regla cuyo cumplimiento es parcial y cuyo
+   porcentaje admite tres lecturas— porque las caras se cuentan.
+3. **Las seis aparecieron por seis caminos distintos y ninguna la vio venir la anterior.** Un
+   lector que recibe seis reglas separadas reconoce la que se parece a su caso y no las otras cinco;
+   un lector que recibe una regla con nombre se lleva **la pregunta**, que es lo único que
+   generaliza al séptimo camino, que nadie midió todavía.
+4. **El nivel de datos.** Los identificadores no se reciclan ni cambian de significado nunca. Seis
+   identificadores para un principio son seis lugares que hay que mantener sincronizados, que es la
+   familia de D-044, D-067, D-074 y D-077: dos copias de un hecho, una que se actualiza sola y otra
+   que no.
+
+Lo que la forma de una sola regla **cuesta**, dicho para que la decisión sea con el precio delante:
+una cara apagada se ve menos que una regla apagada, así que el registro de excepciones tiene que
+poder apagar **una cara** con su motivo, y no sólo la regla entera.
+
+**Lo que esta entrada no incluye.** El borrador del texto —el nombre de la regla, el enunciado, la
+cláusula de los prompts y la ficha, si va al Anexo H— se escribe después de que el dueño elija la
+forma, porque la forma condiciona cada palabra. El evaluador que lo verifique por máquina es
+trabajo de la herramienta.
+---
+
+## PND-066 — Un medidor que depende del recurso que mide informa salud cuando el recurso está saturado *(del experimento; `M+08`, segunda cara de la familia)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+08`. Lo encontró el brazo sobre su
+  propio medidor, el mismo día en que escribió la regla de los dos ceros.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** **el dueño**, y depende de cómo resuelva la forma en `PND-065`: si es una regla
+  con caras, ésta es una cara y no una entrada del corpus por su cuenta.
+- **Estado: abierto, escrito y verde en la cadena** — entró como la segunda cara de `CQ-19`,
+  `CQ-19.2` «La independencia» (D-078), con el enunciado que vive una sola vez en el Anexo H y se
+  extrae al publicado. **Cierra con la fusión**, por D-057.
+- **Depende de** `PND-065` (la forma).
+
+**Qué falta, completo.** El peldaño 7 ya exige que el medidor tenga su test contra un caso conocido.
+Lo que falta es **de qué clase** tiene que ser ese caso cuando el medidor comparte el recurso que
+mide: un medidor que usa el mismo reloj, la misma conexión, el mismo bucle o la misma memoria que
+está midiendo **se cae junto con lo que mide**, y al caerse informa exactamente lo mismo que la
+salud. No informa un error: informa cero, o informa "bien". La regla que falta es que un medidor así
+necesita un **control bajo saturación** —un caso que demuestre que el medidor sí detecta la
+saturación cuando la saturación está puesta a propósito—, y que si ese control no se puede
+construir, el medidor se rehace de manera que no dependa del recurso que mide.
+
+Por qué es una cara propia y no una repetición del cero: en las otras apariciones el instrumento
+*mira mal* —un patrón que no encuentra lo que hay, un cero que no distingue dos causas—. Acá el
+instrumento está bien escrito y lo que lo rompe es que **comparte el destino de su objeto**. Un
+reloj que no tictaquea y un sistema sin atraso se leen igual.
+
+**Evidencia medida (el experimento).** El brazo midió el atraso del bucle de eventos para decidir
+si la verificación de contraseña tenía que ser asincrónica. Su primer medidor informó **"0 ms de
+atraso" con el proceso congelado 622 ms**: el medidor usaba el reloj del bucle, el bucle estaba
+bloqueado y el reloj nunca llegaba a tictaquear. Lo rehízo con el reloj arrancado antes del bloqueo
+y con su control, y recién entonces midió **623 ms contra 10 ms**, que son los dos números de los
+que salieron dos decisiones de diseño. Sin el control, la decisión se habría tomado sobre un cero.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -niEc "saturad|saturaci"   ->  0
+grep -nic "caso conocido"       ->  15 menciones (5 en el contrato del peldaño 7)
+```
+
+Cero menciones de la saturación en todo el corpus. Y las quince del caso conocido dicen otra cosa:
+*"un caso conocido donde la respuesta se sabe de antemano"*, que es un caso **en reposo**. El propio
+ejemplo que el contrato del peldaño 7 le da al dueño lo muestra: *"con cero turnos tiene que contar
+exactamente las dos consultas base"*. Un medidor verificado contra ese caso puede estar
+perfectamente verificado y seguir informando salud el día que el recurso se sature, porque nadie le
+pidió nunca el caso de arriba.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona puede
+  preguntarle a quien construye una sola cosa sobre cualquier medidor —*"¿qué informa cuando lo que
+  mide está saturado, y con qué caso lo probaste?"*— y rechazar el peldaño si la respuesta es que no
+  se probó. No necesita entender el medidor para hacer la pregunta.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona entiende
+  en lenguaje de todos los días por qué un instrumento puede estar bien hecho y mentir igual, con un
+  ejemplo que no exige saber qué es un bucle de eventos.
+
+**Dónde iría.** El peldaño 7, pegado a la exigencia del caso conocido, que es donde hoy se lee "que
+el medidor tenga sus casos" y hay que leer "y que tenga su control bajo saturación".
+
+**Lo que esta entrada no incluye.** El caso conocido en reposo no se reemplaza: se **agrega** el de
+saturación. Y no se pide un control de saturación para todo medidor, sino para el que comparte
+recurso con lo que mide; la condición tiene que quedar escrita en el borrador, porque una exigencia
+universal acá sería gold plating en un proyecto chico.
+
+---
+
+## PND-067 — Un filtro que no encuentra nada y un sistema sin hallazgos se leen igual *(del experimento; `M+09`, tercera cara de la familia)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+09`. Le pasó al brazo sobre sí
+  mismo, en el turno 18.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** **el dueño**, y depende de cómo resuelva la forma en `PND-065`.
+- **Estado: abierto, escrito y verde en la cadena** — entró como la tercera cara de `CQ-19`,
+  `CQ-19.3` «El universo, en las dos direcciones» (D-078). La séptima vía que el experimento trajo
+  al final —un filtro que devolvió **de más**— entró acá, como la segunda dirección de esta cara, y
+  por eso **no se abrió el octavo grupo de convergencia**: el disparador quedó evaluado y no
+  disparado, con su razón. **Cierra con la fusión**, por D-057.
+- **Depende de** `PND-065` (la forma).
+
+**Qué falta, completo.** Entre una compuerta y la decisión que se toma con su resultado casi siempre
+hay un **filtro**: una búsqueda sobre la salida, un recuento de líneas, un patrón que pesca la
+palabra que importa. El método exige el recibo de la compuerta y no dice nada del filtro, y el
+filtro es el lugar más barato donde se pierde un rojo: cuando no encuentra nada devuelve lo mismo
+que devolvería si el sistema estuviera impecable. La regla que falta: **ningún filtro sobre la
+salida de una compuerta se usa para decidir sin haber verificado antes que el filtro encuentra algo
+cuando hay algo**. Es el rojo primero aplicado al filtro, y no al test ni al medidor. Y la
+consecuencia práctica, que es la que un dueño puede exigir sin leer código: lo que se mira es **la
+línea medida que el programa imprime**, no su código de salida ni el resultado de un patrón sobre
+su salida.
+
+La frase del brazo, que es la versión más corta y más útil de toda la familia: *un filtro que no
+encuentra nada y un sistema sin hallazgos se leen igual*.
+
+**Evidencia medida (el experimento).** El brazo leyó la salida de una compuerta con una búsqueda
+que pedía `hallazgos`, cuando el mensaje del programa dice `hallazgo(s)`. **La compuerta estaba en
+rojo y su filtro le mostró verde durante tres pasos.** No lo encontró revisando el filtro: lo
+encontró cuando la cadena lo frenó.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -niE "\bfiltros?\b"   ->  2 menciones, ninguna sobre leer la salida de una compuerta
+```
+
+Las dos son de otra cosa: una enseña a leer una consulta de base de datos en el documento de
+capacitación, y la otra es el filtro de datos como consumidor de la matriz de perfiles en el Anexo
+H. O sea: el corpus nombra la palabra dos veces y nunca para esto. Lo más cercano que el método ya
+tiene es la exigencia del peldaño 8 de que el recibo del rojo traiga el comando, la cantidad de
+fallos y el código de salida **pegados tal cual**, que es la misma intuición y no cubre el caso: el
+recibo se exige del test, no del filtro con el que alguien leyó la compuerta. Y este proyecto ya
+pagó cuatro veces la versión grande de este defecto —las cuatro guardas dormidas de `PND-001`,
+`PND-035`, `PND-037` y `PND-038`—, cuyas cuatro lecciones terminan en la misma frase: lo que las
+descubrió fue exigirle a cada guarda **la salida medida** en vez de su código de salida. Eso está
+escrito en este registro y en las instrucciones del repositorio; **no está en el corpus**, que es lo
+que un lector recibe.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona puede pedir, de
+  cualquier verde que se le reporte, la línea que el programa imprimió, y sabe que un paso que no
+  imprimió nada no corrió. Es una exigencia que se hace sin leer código y sin entender el filtro.
+- *P7 (lector que adapta el método a otro formato):* dado ese perfil, esta persona puede llevarse la
+  regla en una sola frase, que es la forma en la que esta cara es más fuerte que las otras cinco.
+
+**Dónde iría.** El contrato de convivencia del peldaño 1 es el lugar que le daría más alcance, por
+su brevedad, pero ahí entra **una** línea de la familia y no cuatro (ver `PND-065`). Si la forma
+elegida es la regla con caras, el enunciado largo vive en el peldaño 7 y lo que va al peldaño 1 es
+la frase corta.
+
+**Lo que esta entrada no incluye.** No propone prohibir los filtros: propone verificarlos. Un
+proyecto que lee compuertas a mano no tiene que construir nada.
+
+---
+
+## PND-068 — Dos instrumentos que miden lo mismo con distinto rigor, y el laxo es el que uno mira primero *(del experimento; `M+11`, cuarta cara de la familia)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+11`, turno 19 del brazo.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** **el dueño**, y depende de cómo resuelva la forma en `PND-065`.
+- **Estado: abierto, escrito y verde en la cadena** — entró como la cuarta cara de `CQ-19`,
+  `CQ-19.4` «El hermano laxo» (D-078). **Cierra con la fusión**, por D-057.
+- **Depende de** `PND-065` (la forma).
+
+**Qué falta, completo.** Un proyecto con integración continua tiene casi siempre **dos** copias de
+cada control: la que corre en la máquina de quien construye y la que corre en la cadena. El método
+exige la cadena y exige que el control exista, y no dice en ninguna parte qué pasa cuando las dos
+copias **miden distinto**. La regla que falta: cuando un control tiene contraparte en la cadena, **o
+son el mismo instrumento con la misma configuración, o la diferencia está declarada** —qué mide cada
+uno, cuál manda, y qué puede pasar uno y fallar el otro—. Un control local más permisivo que el que
+decide no es una comodidad: es un verde que miente, y miente justo en el momento en que quien
+construye baja la guardia.
+
+Por qué es una cara propia: en las otras tres el instrumento informa mal. Acá los dos instrumentos
+informan **bien** —cada uno dice la verdad sobre lo que mide— y el defecto es que **miden distinto y
+nadie lo declaró**, y el que se consulta primero es el más laxo.
+
+**Evidencia medida (el experimento).** El brazo tituló su propio commit con el hallazgo: *"los casos
+de C-25 pasaban el lint local y no el de la cadena"*. Tenía un verde que no era el verde que manda:
+miraba su analizador local, se quedaba tranquilo, y el que decide lo rechazaba después. Lo encontró
+porque la cadena lo frenó, **no porque lo buscara**.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -niE "más permisivo|mas permisivo|el verde que vale"   ->  0
+grep -niE "misma configuración|en tu máquina" (peldaño 15)  ->  0
+```
+
+Cero menciones. El contrato del peldaño 15 exige que la cadena exista y que corra en cada cambio, y
+no dice nada sobre la relación entre lo que corre en la cadena y lo que corre en la máquina. Es un
+hueco de una línea, y es el hueco por el que entró un rechazo entero de la cadena después de tres
+pasos tranquilos.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona sabe que el
+  verde que vale es el de la cadena, y puede exigir, para cada control que corre en los dos lados,
+  o la misma configuración o la diferencia escrita en una línea.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona entiende
+  por qué dos controles que dicen la verdad pueden dejar pasar un error entre los dos.
+
+**Dónde iría.** El peldaño 15 (integración continua, entornos, secretos y despliegue), y en el
+contrato de convivencia como frase corta si el dueño elige llevar una sola línea de la familia allá:
+*el verde que vale es el de la cadena; si el local dice algo distinto, la diferencia se declara o se
+elimina*.
+
+**Lo que esta entrada no incluye.** No pide unificar los dos controles por decreto: unificar es una
+de las dos salidas y declarar la diferencia es la otra, porque hay controles que a propósito corren
+más rápido y más flojo en la máquina para no esperar.
+---
+
+## PND-069 — Una sonda que sólo es inofensiva cuando falla es una trampa *(del experimento; `M+12`, quinta cara de la familia)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+12`. Lo encontró el brazo
+  haciéndose el daño que estaba tratando de demostrar, y cumpliendo mi instrucción al pie de la
+  letra.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** **el dueño**, y depende de cómo resuelva la forma en `PND-065`.
+- **Estado: abierto, escrito y verde en la cadena** — **no** quedó como cara de `CQ-19`: el dueño
+  aplicó su propio criterio en su contra el 2026-11-01 y la separó, porque no es sobre lo que un
+  instrumento **informa** sino sobre el **privilegio** con el que corre. Entró como `CQ-20.2` «La
+  sonda que sólo es inofensiva cuando falla», segunda cara de la regla nueva `CQ-20` «El privilegio
+  de una verificación», con casa en el peldaño 14 —fail-closed—, que es la pareja de la rutina del
+  rojo del peldaño 8: el rojo exige que una prueba **pueda** detectar, y ésta que al detectar **no
+  rompa**. **Cierra con la fusión**, por D-057.
+- **Depende de** `PND-065` (la forma).
+
+**Qué falta, completo.** El método exige el rojo antes del verde, y en el peldaño 14 exige probar
+que lo prohibido se rechaza: que la base rechace el dato inválido, que el candado cierre. Para
+probar eso hay que **intentar** lo prohibido, y una prueba que intenta lo prohibido es inofensiva
+**mientras la prohibición funcione**. El día que no funcione —que es justamente el día que la prueba
+existe para detectar— la prueba **ejecuta** lo que estaba probando. Y en el rojo provocado, donde se
+corre a propósito con un rol que **sí puede** para poder ver el rechazo, el daño no es probable: es
+seguro.
+
+La regla que falta: **toda prueba que verifique una prohibición ejecuta su sentencia dentro de algo
+que siempre se deshace** —una transacción con vuelta atrás garantizada, un entorno descartable, una
+copia—, y el caso que lo demuestra es que **después de correrla el estado es idéntico**, medido, no
+supuesto. Es la pareja de la regla del rojo primero: el rojo primero exige que la prueba **pueda**
+detectar; ésta exige que al detectar **no rompa**.
+
+La frase del brazo: *una sonda que sólo es inofensiva cuando falla es una trampa: el día que alguien
+la corra con un rol que puede, hace el daño que estaba buscando*.
+
+**Evidencia medida (el experimento).** Le pedí el rojo de un caso donde el servidor intentara
+cambiar el esquema y la base lo rechazara. Para provocar ese rojo, el brazo corrió las mismas
+sentencias con la credencial del **dueño** de la base, que sí puede. El séptimo caso **no falló:
+entró**. Un `UPDATE` sin cláusula de filtro le sumó un cupo tomado a **1001 renglones**, con cero
+lugares guardados vivos: su propia sonda rompió la invariante que el sistema existe para sostener.
+La reparó y lo verificó con dos cuentas en cero —cero renglones con el contador distinto de cero,
+cero con la suma por encima de la capacidad—, y repitió el rojo midiendo que no quedara rastro. Y
+la observación sobre el origen, que es la que más me importa: **salió de cumplir mi instrucción al
+pie de la letra**. Yo pedí un rojo que sólo se podía provocar con un rol que pudiera. La instrucción
+era correcta y el modo de cumplirla tenía el defecto adentro; no lo habría evitado pidiéndolo mejor.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -niEc "\bsondas?\b"                             ->  0
+grep -niE "rollback|se deshace" (fuera del glosario) ->  0 sobre pruebas de prohibición
+```
+
+Cero menciones de la sonda y cero del envoltorio que se deshace. Las apariciones de la vuelta atrás
+en el corpus son todas del despliegue —el glosario, el ensayo de la vuelta atrás del peldaño 15— y
+ninguna es sobre una prueba que ejecuta lo prohibido. El contrato del peldaño 14 pide probar el
+rechazo y no dice **con qué recaudo**, que es exactamente el hueco por donde se fue un dato real.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona puede autorizar
+  un rojo provocado sabiendo que viene con su envoltorio que se deshace y con la cuenta que
+  demuestra que no quedó rastro, y puede negarse a autorizar uno que no la traiga. Hoy esa decisión
+  se le presenta sin la pregunta.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona entiende
+  en una frase por qué una prueba puede ser peligrosa precisamente cuando descubre lo que buscaba.
+
+**Dónde iría.** El peldaño 14 (fail-closed y candados), al lado de la exigencia de probar el
+rechazo. Es el único de la familia que no es sobre lo que un instrumento informa, sino sobre lo que
+un instrumento **hace**, y por eso su casa no es el peldaño 7.
+
+**Lo que esta entrada no incluye.** No propone prohibir el rojo provocado con un rol privilegiado:
+es la única forma de ver algunos rechazos. Propone el envoltorio y la cuenta de cero rastro.
+
+---
+
+## PND-070 — Un comando declarado de sólo lectura necesita un caso que lo corra sin permiso de escribir *(del experimento; `M+06`, sexta cara de la familia, y la que dudo que sea de esta familia)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+06`, turno 17 del brazo, encontrado
+  **probando otra cosa**.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** **el dueño**, y hay además una pregunta de clasificación que le dejo abajo.
+- **Estado: abierto, escrito y verde en la cadena** — la duda de clasificación que esta entrada
+  dejaba planteada se resolvió a su favor: **no** es de la familia del recibo. Entró como `CQ-20.1`
+  «El efecto no declarado», primera cara de `CQ-20` (D-078), en el peldaño 14. **Cierra con la
+  fusión**, por D-057.
+
+**Qué falta, completo.** Un comando declarado de sólo lectura que necesita que algo exista tiene dos
+caminos, y el fácil —crearlo— lo convierte en un comando de **escritura** sin que su nombre, su
+documentación ni su salida cambien. Nada en la prosa lo delata. Lo delata una sola cosa: correrlo
+sin el permiso de escribir. La regla que falta, en una frase: *todo comando declarado de sólo
+lectura necesita un caso que lo corra sin permiso de escritura; si pasa, no era de sólo lectura*.
+Y su generalización, que es lo que la hace una regla del método y no una receta: **una declaración
+se verifica quitándole el permiso que dice no necesitar**, nunca leyéndola.
+
+**Evidencia medida (el experimento).** Le pedí al brazo verificar el corredor de migraciones sin
+permiso de escritura, porque un despliegue que falla por eso falla el día peor. Lo probó, y de paso
+descubrió que la opción de estado —que su propio documento promete que *"no toca nada"*— **creaba el
+libro mayor de migraciones** para poder leerlo. Un operador con credenciales de sólo lectura no
+podía enterarse de qué le faltaba: el comando que existe para informarle fallaba por intentar
+escribir, y el que lo corría con permisos no se enteraba nunca.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -niE "sin permiso|credenciales de s[oó]lo lectura"   ->  3 menciones, las tres de otra cosa
+```
+
+Las tres son la credencial de sólo lectura que el dueño le da al **auditor** (peldaño 13 y sus dos
+lecciones del manual). Ninguna es un caso que corra algo sin permiso de escribir para ver si era
+verdad. Y hay una vuelta que conviene decir, porque es del propio método: el prompt de la auditoría
+se declara de sólo lectura —*"no cambies nada salvo escribir tu informe"*— y lo único que sostiene
+esa declaración es la instrucción. El método confía en una declaración de sólo lectura en su propio
+corpus, que es exactamente la clase de confianza que esta regla pide reemplazar por un caso.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona puede pedir, de
+  cualquier comando que le vendan como inofensivo, el caso que lo corrió sin permiso de escribir y
+  su salida; y sabe que si no existe ese caso, la promesa es una frase.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona entiende
+  por qué un comando puede escribir sin que nadie lo haya querido, con un ejemplo de todos los días
+  (el informe que para poder informarte tiene que crear el archivo donde anota).
+
+**Dónde iría.** El peldaño 14 (fail-closed y candados), junto a la familia de reglas que no le creen
+a la declaración.
+
+**Y la objeción que dejo escrita, porque el dueño pidió que las diga antes de redactar.** No estoy
+convencido de que ésta sea la misma familia que las otras cinco. Las cinco anteriores son sobre lo
+que un instrumento **informa** cuando no pudo mirar; ésta es sobre un efecto **no declarado** —el
+comando escribe y dice que no—, y el daño no es un verde falso: es un operador que se queda sin
+información y un entorno que cambia sin que nadie lo sepa. Lo que las hermana es la **forma de
+verificarlas** (correr la cosa en la condición en la que debería fallar), no lo que protegen. Si
+entra como cara de la regla del cero, el enunciado de esa regla hay que estirarlo para que cubra
+efectos además de informes, y un enunciado estirado es exactamente lo que `PND-061` midió cuando
+una frase admitió tres lecturas. Mi recomendación: que sea **regla propia en el peldaño 14**, con un
+enlace a la familia que diga que comparten el método de verificación. La decisión es del dueño y
+cambia la cuenta de la familia: serían cinco caras y una regla hermana, no seis caras.
+---
+
+## PND-071 — Releer cada archivo después de escribirlo, y verificar lo que quedó en disco *(del experimento; `M+03`)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+03`. Nació como regla que impuse en
+  sesión y el brazo la convirtió en mecanismo.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** **el dueño**. Es una regla nueva del contrato de convivencia, que es la pieza
+  más sensible al número de reglas.
+- **Estado: abierto** — especificación escrita, borrador pendiente de aprobación.
+
+**Qué falta, completo.** El contrato de convivencia ya trae, como quinta regla mínima, *"nunca
+reportes como hecho algo que no verificaste; separá siempre lo que verificaste de lo que creés"*. Lo
+que no trae es **el mecanismo**, y acá el mecanismo no es un detalle de implementación: es la
+diferencia entre una regla que se cumple y una que se cree cumplida. El agente escribe un archivo,
+la capa que escribe le contesta que salió bien, y el agente reporta que está hecho. Entre esas dos
+cosas hay un disco que nadie leyó. La regla que falta: **después de escribir un archivo se lo
+vuelve a leer del disco y se verifica lo que quedó** —que exista, que tenga el tamaño esperado, que
+empiece y termine donde debe, que no haya bytes que nadie puso—, y lo que se reporta es el resultado
+de esa lectura, no el de la escritura.
+
+Es hermana de la regla madre de la familia del cero y conviene decirlo: *no confiarle a la memoria,
+ni a la intención, lo que el disco puede decir*. Y tiene una propiedad que la hace barata: no
+necesita que nadie entienda nada, sólo que el orden sea escribir, leer, reportar.
+
+**Evidencia medida (el experimento).** La escribí como regla en sesión y el brazo la convirtió en un
+verificador con siete comprobaciones por archivo. **Falló sobre sí misma en su primera corrida**, y
+lo que encontró fue un archivo con secuencias de escape expandidas a bytes reales, **byte nulo
+incluido**: la búsqueda de texto devolvía "archivo binario" en vez de texto. Sin ese verificador el
+archivo quedaba roto en disco y el agente reportaba que estaba listo. El mismo defecto me rompió
+cuatro archivos en un día del lado del conductor, y los cacé de casualidad, mirando un error de
+sintaxis. Y una nota que vale como evidencia fresca y no del experimento: **esta misma sesión
+reprodujo la clase de defecto** —dos escrituras grandes volvieron con un error de comillas y **el
+archivo no quedó ni creado**, con la herramienta informando el error de otra cosa—, así que la
+escritura se hizo con otra capa y se verificó leyendo. La regla se aplicó para escribir la regla.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -niE "releer|volver a leer"   ->  4 menciones, ninguna sobre releer lo que se escribió
+```
+
+Las cuatro son de otra cosa: tres dicen que el contrato de convivencia se relee cada sesión y una
+dice que un informe de auditoría no debería tener que releerse para ser accionable. La quinta regla
+mínima del peldaño 1 cubre la **obligación** de no reportar sin verificar, y ninguna de las 36
+fuentes dice **cómo** se verifica una escritura. Es el mismo hueco que `PND-054` encontró en la
+pregunta: el método ordenaba preguntar y no decía cómo se pregunta.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona puede pedir, de
+  cualquier archivo que se le reporte escrito, qué se leyó de vuelta y qué decía; y el agente que
+  trabaja con ella no puede reportar un archivo como escrito sin haberlo leído del disco.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona entiende
+  por qué una herramienta que contesta "listo" no es prueba de nada, sin necesitar saber qué es un
+  byte nulo.
+
+**Dónde iría.** El contrato de convivencia del peldaño 1, como mecanismo de la quinta regla mínima
+—no como regla séptima—, y con su enlace desde el peldaño 12 (verificación honesta). Que entre como
+mecanismo de una regla que ya existe es lo que evita inflar el contrato, que es la señal de alarma
+de ese mismo peldaño.
+
+**Lo que esta entrada no incluye.** Las siete comprobaciones concretas del brazo son de su proyecto
+y de su lenguaje; lo que el método puede exigir es la relectura y el reporte de lo leído, no una
+lista de siete comprobaciones que envejecería.
+
+---
+
+## PND-072 — Un insumo con dos públicos en un solo archivo es una trampa esperando *(del experimento; `M+05`, y es un desvío propio del conductor)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+05`. No lo encontró el brazo: lo
+  encontré yo, en mi propia rúbrica de evaluación, el 1 de noviembre.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** **el dueño**.
+- **Estado: abierto** — especificación escrita, borrador pendiente de aprobación.
+
+**Qué falta, completo.** El método tiene compuertas sobre los **artefactos** que un peldaño produce
+y ninguna sobre los **insumos** que un peldaño consume. Y hay una forma de insumo que es una trampa
+esperando: el archivo con **dos públicos** —una parte que puede viajar y otra que no—, porque la
+prohibición vive en la prosa y lo que la tiene que respetar es un programa. La regla que falta tiene
+dos niveles:
+
+1. **Mínimo.** Un insumo que tiene partes que no deben viajar **se parte en archivos**: un archivo,
+   un público. Si por algún motivo tiene que quedar junto, la parte que no viaja va delimitada por
+   una marca que un programa pueda encontrar, y el que lo consume **corta por esa marca y falla
+   cerrado si no la encuentra**.
+2. **Mejor, y es el que propongo.** El que manda un insumo **verifica la salida de su propio
+   recorte**, buscando las frases que no deben estar. No alcanza con cortar en el lugar correcto:
+   hay que comprobar que lo que quedó no contiene lo que se quiso sacar.
+
+La frase que las resume, y que es la que me gustaría que quedara en el método: *un arreglo sin su
+propia verificación es una hipótesis*. Es hermana del rojo antes del verde, aplicada al insumo en
+vez de al artefacto.
+
+**Evidencia medida (el experimento).** Mi rúbrica de evaluación es un archivo congelado con **tres
+públicos mezclados**: un preámbulo para el lector del experimento, que **no** puede viajar porque
+dice que hay una batería oculta; la consigna, que sí viaja; y una sección sobre cómo se puntúa al
+evaluador, que no puede viajar y **lleva escrito en el título** que no se le dice al evaluador. El
+programa que armaba la consigna leía el archivo entero. La prohibición estaba escrita, era clara y
+**no impedía nada**. El agravante que lo convierte en regla y no en anécdota: lo había leído varias
+veces desde que lo congelé, y ninguna compuerta lo miró, porque no hay compuertas sobre los insumos.
+Y el segundo agravante, que es el que justifica el nivel 2: **el primer recorte estaba puesto en el
+lugar correcto** respecto del defecto que yo había entendido, y una frase sobrevivió igual, porque
+el defecto era más grande de lo que creía.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -niE "dos públicos|un público|partir el insumo"   ->  0
+```
+
+Cero menciones. Y la mitad que sí existe conviene decirla, porque delimita el hueco: el método ya
+tiene, desde D-022, el bloque *"Antes de enviar el prompt"* delante de cada prompt, que dice qué
+insumos tiene que haber, quién los hace y su estado mínimo aceptable. O sea: el método **ya declara
+los insumos**; lo que no dice es que un insumo tiene público y que las partes que no viajan se
+separan con un mecanismo. El lugar está preparado y la regla falta.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona puede mirar
+  cualquier insumo que esté por mandarle a un agente y contestar una pregunta —*"¿todo esto es para
+  el que lo va a leer?"*— y, si la respuesta es no, sabe que la parte que no viaja se saca con un
+  corte verificado y no con una advertencia escrita adentro.
+- *P7 (lector que adapta el método a otro formato):* dado ese perfil, esta persona recibe la regla
+  con sus dos niveles y puede adoptar el mínimo sin el mejor, con la diferencia dicha.
+
+**Dónde iría.** El contrato de convivencia del peldaño 1, junto a la relectura de `PND-071` —son la
+misma familia: no confiarle a la intención lo que un programa puede comprobar—, y una línea en el
+bloque genérico de los insumos (D-022), que es donde el método ya habla de qué tiene que existir
+antes de un prompt.
+
+**Lo que esta entrada no incluye.** No propone una compuerta sobre los insumos, que sería un cambio
+de alcance grande y es trabajo de la herramienta: propone la regla y el recaudo del que manda.
+
+---
+
+## PND-073 — Un peor caso aceptado y no instrumentado es daño silencioso *(del experimento; `M+01`)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+01`. Salió de una decisión de
+  arquitectura que acepté en conversación y que el brazo no dejó pasar como aceptación y listo.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** **el dueño**.
+- **Estado: abierto** — especificación escrita, borrador pendiente de aprobación.
+
+**Qué falta, completo.** El peldaño 6 exige que cada decisión quede escrita con el nombre del dueño,
+la fecha y **sus palabras exactas**. Lo que no exige es lo que viene después de un tipo particular
+de decisión: la que **acepta un riesgo**. Cuando el dueño dice "me parece bien, acepto que en ese
+caso se pierda una venta", el registro guarda la aceptación y el proyecto sigue; y el día que el
+caso ocurre, **nadie se entera**, porque la aceptación no vino con el aviso. La regla que falta:
+**por cada riesgo que el dueño acepta, el proyecto declara el mecanismo que avisa cuando ocurre, y
+una aceptación sin instrumentación no cierra la decisión.**
+
+La frase con la que el brazo lo planteó es la que mejor lo dice, y es la que quiero en el método:
+*vos elegiste perder una venta, no elegiste no enterarte*.
+
+Y tiene una **mitad que no es prosa**: para que algo pueda verificarlo, el registro de riesgos
+aceptados tiene que ser un **dato** —cada riesgo aceptado con su mecanismo de aviso declarado—, no
+un párrafo en el registro de decisiones. Esa mitad va al nivel de datos, en inglés y en ASCII puro
+(D-051), y mientras la herramienta no implemente su evaluador el peldaño que la pida sale
+`unmeasured`, que es honesto y no mide.
+
+**Evidencia medida (el experimento).** Cuando acepté el precio de una decisión de arquitectura —que
+se pudieran morir cupos—, el brazo derivó **tres obligaciones no opcionales** en vez de anotar la
+aceptación: la restricción vive en la base y no en el servicio; la costura de verificación
+reconcilia **sin leer el contador que verifica**; y el barrido lleva vigilancia desde el día uno. Las
+tres salen de la misma pregunta —*¿cómo nos enteramos el día que esto pase?*— y ninguna estaba
+pedida por el método.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -niE "riesgo aceptado|peor caso aceptado|aceptás el riesgo|el precio"   ->  0
+```
+
+Cero menciones en las 36 fuentes. El método tiene la aceptación del dueño en varios lugares —el
+dimensionamiento del peldaño 3, el apagado de una regla del Anexo H con su registro de cuatro
+campos, la excepción escrita de la urgencia en el camino evolutivo— y en los tres casos lo que pide
+es **el registro de la decisión**, nunca el aviso de que el caso ocurrió. El registro de apagado es
+el que está más cerca y conviene mirarlo, porque muestra la forma: identificador, motivo, quién
+autoriza y fecha de revisión. Lo que falta es un quinto campo de la misma clase: **con qué nos
+enteramos**.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona no puede
+  aceptar un riesgo sin que le muestren, en la misma conversación, con qué se va a enterar el día
+  que ocurra; y puede releer el registro seis meses después y ver, por cada riesgo que aceptó, qué
+  lo vigila.
+- *P1 (herramienta consumidora):* dada una herramienta consumidora, esa herramienta puede leer el
+  registro de riesgos aceptados como dato y decir, por cada uno, si tiene mecanismo de aviso
+  declarado, sin interpretar prosa.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona entiende
+  la diferencia entre aceptar que algo pase y aceptar no enterarse, que es la frase entera de la
+  regla.
+
+**Dónde iría.** El peldaño 6 (las decisiones se escriben junto al código), que es donde vive la
+aceptación. Con enlaces a los peldaños 16, 21 y 22, que son los que construyen el aviso, y al 3
+cuando el riesgo aceptado es de dimensionamiento. La mitad de datos va a `gates/`.
+
+**Lo que esta entrada no incluye.** No pide que todo riesgo aceptado se mitigue: pide que se
+instrumente. La diferencia es exactamente lo que la vuelve aceptable para un proyecto chico.
+---
+
+## PND-074 — Una cifra que depende del repositorio nace envejecida *(del experimento; `M+04`, y la que el prompt de este lote se perdió por una cuenta a mano)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+04`. Lo encontró el brazo
+  reproduciendo una cifra propia, y yo había tropezado con lo mismo una hora antes construyendo una
+  compuerta. Esa coincidencia es, en sí misma, el dato.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** **el dueño**.
+- **Estado: abierto** — especificación escrita, borrador pendiente de aprobación.
+
+**Qué falta, completo.** No es un error de medición: es una **propiedad** de cualquier cifra que
+depende del estado del repositorio y que vive dentro del repositorio. **El acto de guardarla la
+cambia.** Nace envejecida. El método ya exige el comando que produce el número, y eso no alcanza,
+porque cuando alguien corre ese comando seis semanas después y le da otro número, *"no reproduce"*
+significa dos cosas distintas —un error de medición o el paso del tiempo— y esa distinción es
+justamente la que decide si hay algo que arreglar. La regla que falta tiene dos niveles:
+
+1. **Mínimo, y debería ser obligatorio.** Toda cifra que dependa del estado del repositorio se
+   escribe con **dos** cosas al lado: el comando que la reproduce **y el commit en que se midió**.
+2. **Mejor.** La cifra vive en un archivo aparte con su commit adentro y el documento la cita, para
+   que un verificador pueda decir *"esta cifra es la foto del commit X y el árbol está en Y,
+   rehacela"* en vez de ponerse en rojo por envejecer. Y la razón de fondo, que es una regla del
+   método en sí misma: **un control que se pone en rojo por el paso del tiempo se apaga solo.** Una
+   compuerta que nace en rojo no sirve.
+
+**Evidencia medida (el experimento), y es de dos lados.** Le pedí al brazo reproducir dos de las
+veinte cifras escritas a mano en su documento de pronóstico. Las **72 líneas de producto**
+reprodujeron exacto. Los **36 commits no: eran 37**. Y el motivo que trajo es mejor que el error:
+*"el 36 era cierto cuando se midió y envejeció al commitearse: el commit que trajo el documento es
+el 37"*. Del otro lado, una hora antes, yo estaba construyendo la compuerta que verifica que ninguna
+cifra de mi paper contradiga su archivo y la puse a contar en vivo las líneas de documento del
+brazo: **habría dado rojo en el commit siguiente**, porque el brazo escribe documentos todos los
+turnos. Lo arreglé guardando la cifra en un archivo con el commit en que se midió y haciendo que la
+compuerta **avise** en vez de ponerse en rojo cuando el árbol ya pasó de esa foto. El brazo llegó al
+mismo problema desde el otro lado, por reproducir una cifra en vez de por construir un control.
+
+Y la tercera evidencia es **de esta misma conversación**, y es la mejor que tengo: el prompt que me
+trajo este lote decía *"catorce hallazgos"*, y al recontarlos con un programa resultaron **quince**
+—la entrada que falta en una cuenta a mano es, exactamente, esta regla—. El dueño lo dejó escrito en
+el prompt en vez de borrar el rastro. Una regla cuya ausencia se cobra en el documento que la viene
+a proponer no necesita más justificación.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -niE "con el comando que (lo|la) produce"       ->  4 (peldaño 7, las dos lecciones del
+                                                         manual y el camino evolutivo)
+grep -niE "commit en que se midió|con su commit"     ->  0
+```
+
+El método pide el comando y pide **la fecha**: el resultado esperado del peldaño 7 dice *"El número,
+con el comando que lo produce y la fecha"*. La fecha es lo que no alcanza: con la fecha sé **cuándo**
+se midió y no sé **sobre qué árbol**, que es lo único que hace reproducible la cifra. Cero menciones
+del commit en las 36 fuentes. Y lo que lo hace más llamativo es que el método **ya tiene la idea en
+otro peldaño**: el 20 exige que la documentación se regenere *"en el mismo commit"* que el cambio,
+porque antes envejecía. La misma lógica no llegó nunca a las cifras.
+
+**Lo que este repositorio ya hizo de esta familia, para que el borrador no lo repita.** D-077
+(`PND-064`, cerrado el 2026-10-30) deriva del dato las cifras escritas junto a una colección que el
+dato declara, y eso cubre el artefacto que **se genera**. M+04 es la otra mitad: la cifra en **prosa
+que se escribe a mano** y que nadie puede derivar, donde lo único que se puede exigir es el par
+comando + commit. Las dos son la misma familia —dos copias de un hecho, una que se actualiza sola y
+otra que no— y el borrador tiene que decir cuál se aplica cuándo, porque un lector que lea las dos
+va a preguntar si tiene que hacer las dos cosas.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona puede tomar
+  cualquier cifra de cualquier documento del proyecto, correr el comando que tiene al lado y, si el
+  número no da, saber **sin preguntarle a nadie** si eso es un error o es el paso del tiempo.
+- *P5 (auditor que quiere probar que su copia es la buena):* dado el perfil auditor, esta persona
+  puede reproducir una cifra contra el árbol en el que se midió y no contra el de hoy, que es la
+  única forma de que la reproducción signifique algo.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona entiende
+  por qué una cifra puede ser cierta el día que se escribe y falsa al día siguiente sin que nadie se
+  haya equivocado.
+
+**Dónde iría.** El peldaño 7 (medir), extendiendo el resultado esperado que hoy pide comando y
+fecha; el peldaño 3 (dimensionar) y el 9 (calidad de código), que son los dos que producen
+documentos llenos de cifras medidas; y el contrato de convivencia del peldaño 1, junto a la
+relectura de `PND-071`, porque son la misma familia: **no confiarle a la memoria lo que el disco
+puede decir**.
+
+**Lo que esta entrada no incluye.** No propone derivar toda cifra de prosa, que es lo que D-077 ya
+resolvió donde se puede: propone el par comando + commit donde no se puede derivar. Y no propone
+que un control se ponga en rojo por envejecer, que es justamente el defecto que la regla nombra.
+---
+
+## PND-075 — Una invariante que se cumple y no se puede mirar desde afuera no es verificable *(del experimento; `M+02`, y es declaración, no prosa)*
+
+- **Nodo:** `corpus/anexo-h` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+02`. Lo produjo el brazo
+  escribiendo la tabla de las cinco invariantes de su sistema con dos columnas separadas, sin que
+  el método se lo pidiera.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** **el dueño**, y hay tres decisiones encadenadas abajo, no una.
+- **Estado: abierto, con tres decisiones tomadas el 2026-11-01** — el dueño decidió: (1) el
+  fundamento es **la evidencia medida de esta entrada** y no una cita de `docs/AIevaluation.md`,
+  porque esa objeción está registrada como una de las nueve **erróneas** en
+  `EVALUACIONES_DE_IA.md` y el peldaño 9 cubre lo que reclamaba —citarla la resucitaría en contra
+  del documento que la cerró—; (2) va como **pendiente propio con su secuencia**, no como cara de
+  la familia del recibo, porque el concepto *invariante* no está en el corpus con ninguna otra
+  palabra —cero apariciones en los archivos del corpus castellano— y entra con su explicación de
+  nivel principiante y su entrada de glosario en los ocho idiomas; (3) el evaluador entra como
+  `required: false` **con su prueba**, que sería el primer uso real de ese camino. Falta el
+  borrador.
+- **Depende de** `PND-012` (es el primer uso real de `required: false`).
+- **Y una regla de uso que esta entrada deja escrita:** un documento de trabajo que se cita como
+  fundamento tiene que decir **cuál es el documento que lo juzga**. La fuente cruda
+  (`docs/AIevaluation.md`) y el documento escrito de ella (`EVALUACIONES_DE_IA.md`) pueden
+  contradecirse, y quien cita la cruda sin leer la escrita revive lo que el método cerró. No es un
+  defecto del archivo crudo —una fuente cruda tiene que quedar cruda—: es una línea que le falta a
+  su registro del inventario, que hoy dice de dónde sale la escrita y no dice que **lo que la
+  escrita descartó no se vuelve a citar desde la cruda**.
+
+**Qué falta, completo.** Una **invariante** es una afirmación sobre el sistema que tiene que ser
+verdadera siempre, pase lo que pase: *nunca se reservan más lugares que la capacidad*, *dos personas
+no se quedan con el mismo turno*. El método pide el árbol semántico en el peldaño 2 y pide, en el
+14, que lo prohibido se rechace; lo que no pide en ninguna parte es que cada invariante declare
+**dos cosas distintas**: dónde se **cumple** —qué pieza del sistema la hace imposible de violar, que
+en el buen diseño es la base de datos y no el servicio— y dónde se **observa** —con qué consulta,
+desde afuera, alguien comprueba hoy que sigue valiendo—. Son dos columnas y no una, y la segunda es
+la que falta siempre: *una invariante que se cumple pero no se puede mirar desde afuera no es
+verificable*, y una invariante no verificable es una promesa.
+
+Lo que esta entrada propone escribir es la **declaración**, en inglés y ASCII puro (D-051): el
+artefacto nuevo en el peldaño 2 con su `since_schema` y su `since_version`, su pregunta de
+verificación del dueño, y el evaluador que lo juzga. La implementación del evaluador es de la
+herramienta y no de este trabajo; mientras no exista, el peldaño informa que está declarado y no
+medido.
+
+**Evidencia medida (el experimento).** El brazo escribió la tabla de las cinco invariantes de su
+sistema con las dos columnas separadas, por su cuenta y con la frase de arriba como motivo. Y la
+contracara, medida el mismo día en el mismo sistema: la costura que **verifica** una de esas
+invariantes reconcilia **sin leer el contador que verifica**, porque leerlo haría que el verificador
+y lo verificado compartieran la fuente —que es, dicho de otro modo, la misma regla de `PND-066`
+vista del lado del diseño—. Las dos cosas salieron de la misma conversación y ninguna la pedía el
+método.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -nic "invariantes?"                      ->  0
+grep -niE "dónde se observa|observable desde" ->  0
+```
+
+**Cero.** La palabra *invariante* no aparece ni una vez en las 36 fuentes del corpus castellano, y
+tampoco aparece en el glosario del documento principal. Esto cambia el tamaño de la entrada y hay
+que decirlo antes de redactar: `M+02` no es "agregarle una columna a una tabla que ya existe". Es
+**introducir un concepto que el método no tiene**, con lo que eso implica por D-025 (nivel
+principiante): se explica en lenguaje de todos los días la primera vez que aparece y entra al
+glosario, en los ocho idiomas. Lo más cercano que el método tiene hoy es *"lo que la base rechaza
+por su cuenta"* del peldaño 14, que es la primera columna sin nombrarla y sin la segunda.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona puede pedir la
+  tabla de invariantes de su sistema y, por cada fila, correr la consulta de la segunda columna y
+  ver con sus ojos que la invariante sigue valiendo hoy. Si una fila no tiene consulta, esa
+  invariante es una promesa y ella lo sabe sin que nadie se lo explique.
+- *P1 (herramienta consumidora):* dada una herramienta consumidora, esa herramienta puede leer del
+  dato que el peldaño 2 declara el artefacto de invariantes y su evaluador, y decidir si lo mide o
+  informa que está declarado y no medido —sin inventar la ruta ni aproximar con el evaluador más
+  parecido—.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona aprende
+  qué es una invariante en lenguaje de todos los días, con un ejemplo de su negocio, la primera vez
+  que la palabra aparece.
+
+**Dónde iría, y el precio de cada pieza.** El peldaño 2 (la definición del proyecto, el árbol
+semántico y la lectura obligatoria), como artefacto nuevo —`docs/INVARIANTS.md`, nombre en inglés y
+en mayúsculas porque es nivel de datos y porque las cuarenta y dos rutas que el dato ya declara
+están así (D-051, D-065)—, con `min_bytes` y **sin** `must_contain`, por el mismo motivo que
+`docs/GLOSSARY.md` y `docs/PROFILES.md`: lo que ese archivo tiene que *decir* lo juzga una persona.
+Y con el precio dicho: una ruta que el dato declara **la nombra el contrato de su peldaño, en los
+ocho idiomas** (`tests/artefacto_nombrado.test.mjs`, 288 pares hoy), así que la declaración y la
+prosa de los ocho contratos entran en el mismo commit o la prueba se pone roja.
+
+**Las tres decisiones encadenadas, para que el dueño las vea juntas.**
+
+1. **¿Entra el concepto?** Es vocabulario nuevo del método y va al glosario en ocho idiomas.
+2. **¿Con qué evaluador?** Uno nuevo, de nombre nuevo, porque el vocabulario es append-only y
+   ninguno de los doce actuales significa esto. `artifacts` alcanza para exigir que el archivo
+   exista; no alcanza para exigir que cada fila tenga su consulta.
+3. **¿`required: true` o `required: false`?** Y acá está la trampa que conviene ver antes de
+   publicar: la semántica publicada dice que un evaluador `required: true` que la instalación no
+   conoce **no deja avanzar el peldaño**. Declararlo así congela el peldaño 2 de todos los
+   proyectos hasta que la herramienta lo implemente. `required: false` avisa y deja avanzar, y
+   sería **el primer uso real de ese camino** en toda la historia del dato (`PND-012`), lo que
+   obliga a cubrirlo con una prueba antes de publicarlo. Mi recomendación es `required: false` con
+   su prueba, y subirlo a `true` cuando haya una implementación.
+
+**Lo que esta entrada no incluye.** La implementación del evaluador. Y no propone que el método
+defina *cómo* se observa cada clase de invariante: eso es del proyecto, igual que el método no
+define con qué se mide cada regla del Anexo H (D-075).
+
+---
+
+## PND-076 — La severidad de un defecto encontrado es prosa, y cuatro pases la calificaron igual de mal *(del experimento; `M+10`, y es declaración, no prosa)*
+
+- **Nodo:** `corpus/anexo-h` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M+10`. No salió de una corrida: salió
+  de una conversación con el dueño, y de que él me corrigiera una exageración.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** **el dueño**.
+- **Estado: abierto** — especificación escrita, borrador pendiente de aprobación.
+- **Depende de** `PND-012` (igual que `PND-075`, si el evaluador entra como opcional).
+
+**Qué falta, completo.** El método ya hace bien la mitad difícil: la severidad **de sus propias
+reglas** es un dato. El Anexo H declara `BLOQUEA` / `AVISA` / `REGISTRA` por regla, el dato publicado
+las lleva por identificador, y hasta distingue las que bloquean con rojo humano de las que bloquean
+con rojo de máquina. Para un **defecto que alguien encuentra**, en cambio, la severidad es prosa: el
+peldaño 13 le pide al auditor *"su prioridad: P0 hay que arreglarlo ya, P1 pronto, P2 cuando se
+pueda"*, y eso se lee e interpreta. Dos lectores razonables lo aplican distinto, y no por descuido:
+porque la definición no tiene un predicado que se pueda contrastar contra el hallazgo.
+
+La regla que falta: **criterios de severidad declarados y contrastables**, con la forma de las
+reglas que ya existen. No *"severidad 1 es grave"*, sino predicados que un programa pueda verificar
+contra el hallazgo. Por ejemplo, y es el del experimento: *un endpoint alcanzable sin credencial que
+devuelve datos de otro usuario **es** severidad máxima*. Con eso, una calificación discrepante **se
+puede marcar**: el programa compara la severidad dicha contra el criterio que aplica y reporta la
+diferencia, en vez de que alguien la descubra seis meses después.
+
+**Evidencia medida (el experimento), con su límite adentro.** Cuatro pases de evaluación sobre dos
+sistemas encontraron el mismo bypass de autorización —**en la línea exacta, las cuatro veces**— y
+las cuatro lo calificaron **severidad 3** cuando por la definición escrita es **severidad 1**. El
+evaluador tenía la definición delante: la consigna incluía *"1: viola una invariante, pierde datos,
+o deja actuar sobre lo ajeno"*, y el defecto es "actuar sobre lo ajeno" por la letra —la costura de
+auditoría devuelve el rastro de cualquier reserva a cualquiera, sin credencial—. No fue un problema
+de **encontrarlo**: fue de **calificarlo**.
+
+**El límite de ese dato, y va adentro del borrador, no como nota al pie.** Son cuatro corridas sobre
+**un solo** defecto: es una observación repetida cuatro veces, no cuatro observaciones sobre
+calibración. No alcanza para afirmar que la subestimación es sistemática, y la palabra
+*"sistemáticamente"* quedó retirada del registro del experimento por eso. Lo que queda es: sobre el
+único defecto grave de ese experimento, cuatro pases lo encontraron y ninguno lo calificó como lo
+que era. Eso amerita **medirlo con más defectos**, no concluirlo. Si el borrador se escribe sin esa
+limitación, el método publica como regla una inferencia de un solo caso, que es exactamente lo que
+el peldaño 12 prohíbe.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -o "\bP0\b" | wc -l               ->  63 menciones, en 6 de los 36 archivos
+grep -niE "criterios? de severidad"    ->  0
+```
+
+Las 63 menciones de `P0` son la escala de prioridad del auditor, repetida en el contrato del peldaño
+13, en el del 18, en la Parte B del documento principal, en el camino evolutivo y en las dos
+lecciones del manual, **siempre con la misma definición en prosa**. Cero menciones de un criterio de severidad declarado. Y hay un hallazgo
+lateral que conviene aprovechar porque es la forma que el dueño pide: el contrato del peldaño 18
+(vulnerabilidades) ya escribe *"P0 hay que arreglarlo ya según mi criterio: [criterio]"* —con el
+hueco para que el dueño lo complete—, y el peldaño 13 no. O sea: la forma de pedirle el criterio al
+dueño **ya existe en el método, en un peldaño, y no en el que audita**. El borrador tiene que
+resolver esa asimetría, no inventar una forma nueva.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona recibe el
+  informe de auditoría con cada hallazgo y su severidad **junto al criterio que la determina**, y
+  puede discutir la calificación mirando el criterio en vez de mirando la opinión del que calificó.
+- *P1 (herramienta consumidora):* dada una herramienta consumidora, esa herramienta puede leer los
+  criterios de severidad del dato y marcar un hallazgo cuya severidad dicha no coincide con el
+  criterio que le aplica, con la misma mecánica con la que hoy lee `initial_severity` por regla.
+- *P5 (auditor que quiere probar que su copia es la buena):* dado el perfil auditor, esta persona
+  puede calificar dos auditorías distintas con la misma escala y que las notas se puedan comparar,
+  que es lo que el peldaño 13 ya promete y hoy no sostiene.
+
+**Dónde iría.** La casa natural es el nivel de datos, con la forma que ya existe por regla; y la
+prosa que lo pide, el contrato del peldaño 13, alineado con el del 18 que ya pide el criterio del
+dueño. El Anexo H es donde vive hoy la severidad declarativa y es el lugar donde el borrador tiene
+que mirar antes de inventar nada.
+
+**Lo que esta entrada no incluye.** No propone una tabla universal de severidades por tipo de
+defecto, que envejecería y que ningún proyecto obedecería: propone que los criterios **se declaren**
+y que el proyecto los complete, como ya hace con los umbrales. Y no afirma nada sobre la
+calibración de los evaluadores más allá del único defecto medido.
+---
+
+## PND-077 — Los marcadores de plantilla se confunden con la respuesta del dueño *(del experimento; `M-05`, y es un defecto del método, no un agregado)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M-05`. Lo encontró el brazo en el
+  peldaño 3, y lo encontró **no cayendo en la trampa**.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** **el dueño**. La forma del marcador nuevo es suya: afecta los setenta y dos
+  prompts de los ocho idiomas.
+- **Estado: abierto, con el token decidido el 2026-11-01** — es **`%%`**, y el criterio que lo
+  decidió no es dónde aparece sino **cómo falla**: `{{COMPLETAR}}` procesado por un motor de
+  plantillas —Mustache, Handlebars, Jinja, Django, Vue, Angular, plantillas de Go— **desaparece
+  entero y en silencio**, y el prompt queda leyéndose completo, que es el defecto de esta entrada
+  en forma de token; `%%COMPLETAR%%` en un `printf` queda `%COMPLETAR%`, visiblemente un hueco, y
+  en un decodificador de URL **revienta**, porque `%%` no es una codificación válida. Entre un
+  mecanismo cuya seguridad depende de que un segundo mecanismo funcione y uno seguro por
+  construcción, el dueño tomó el segundo. Medido sobre lo versionado el mismo día: `%%` y `>>>`
+  son los **únicos ceros reales** —`{{` aparece tres veces, las tres como `${{ }}` de Actions, y la
+  primera tabla que dio cero para `{{` había medido sólo los `.md`—. Lo que se pierde y queda
+  dicho: `{{` se reconoce como hueco sin explicación y `%%` no tanto; se compensa en el **texto**
+  del hueco (`%%COMPLETAR: TU RESPUESTA%%`, y la palabra de adentro **se traduce**), no en el
+  delimitador, que es protocolo igual que el nombre de archivo de `PND-079`.
+- **Y la guarda va partida en dos, porque la redacción original miraba el lugar equivocado:** *«ningún
+  prompt enviado puede contener el token»* no es verificable en este repositorio, que nunca ve un
+  prompt enviado y **publica plantillas, que tienen que contener el token**. Acá: todo hueco de un
+  prompt publicado usa el token, y los **152 tokens entre corchetes** que hoy tiene el corpus
+  quedan en un registro cerrado con su razón —eso es lo que hoy no se puede escribir y el token
+  nuevo habilita, porque hoy **ningún patrón separa el hueco del enlace**: `[X]` tiene la misma
+  forma que `[Ref. 35]`, que `[es]` y que cualquier enlace de markdown—. Allá: la obligación
+  declarada sobre el consumidor, como la de fijación de `D-068`, **dicha de frente como lo que
+  ninguna prueba de acá puede verificar**. Y el recurso publica, por prompt, **la cantidad de
+  huecos, derivada** (`D-077`): un consumidor cuyo renderizador se los comió cuenta y se entera, y
+  eso vale para cualquier token, no sólo para el elegido.
+
+**Qué está mal.** El método usa corchetes para marcar lo que el dueño tiene que completar, y hay una
+plantilla que dice, en el prompt de cierre del peldaño 3, **`Elijo la opción [B]`**. Leída por un
+agente, esa línea no parece un hueco: parece **una decisión tomada**. Y es la peor clase de
+contaminación posible, porque el peldaño 3 es el que el método protege más —las cifras del
+dimensionamiento son del dueño y no se inventan— y el marcador está escrito en un lugar que el dueño
+controla, lo que lo hace parecer suyo. El defecto no es el corchete: es que el corchete es **un token
+que un humano podría escribir**. La regla que falta: *un marcador de plantilla usa un token que
+ningún humano escribiría nunca*, y lo que queda sin completar tiene que ser imposible de leer como
+una respuesta.
+
+**Evidencia medida (el experimento).** El brazo **no la tomó por decisión mía**: dejó la sección
+escrita y vacía con el motivo adentro, razonando que era *"la misma clase de contaminación que este
+peldaño acababa de encontrar con las nueve cifras: un dato que parece tuyo porque está escrito en un
+lugar que vos controlás, pero que no dijiste"*. O sea: el método se salvó por la integridad del
+agente, que es exactamente lo que el método no quiere que sostenga una garantía. Un agente menos
+escrupuloso registra un dimensionamiento con la opción B elegida por nadie, y el peldaño cierra en
+verde.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -ohE "\[[^]]{1,24}\]" | sort -u      ->  152 tokens distintos entre corchetes
+grep -rn "Elijo la opción \[B\]"          ->  4 (contrato del peldaño 3 y su lección, es/en)
+```
+
+Ciento cincuenta y dos tokens distintos con la misma forma de un corchete simple, y acá está lo
+que convierte esto en un defecto y no en una incomodidad: **ningún patrón los separa**. El hueco que
+el dueño completa (`[X]`, `[B]`, `[fecha]`) tiene exactamente la misma forma que el enlace a una
+referencia (`[Ref. 35]`), que la etiqueta de idioma de un bloque traducido (`[es]`), que la marca de
+lo que es interpretación y no hecho (`[hipótesis]`), que las marcas de fuente del camino
+evolutivo-correctivo (`[código]`, `[base]`, `[inferido]`) y que el texto de cualquier enlace de
+markdown. Cinco significados y una sola forma, y uno de los cinco quiere decir "esto lo decidió el
+dueño". Por eso hoy **no hay guarda posible** que verifique que un prompt se pegó completo: para
+escribirla habría que poder distinguir el hueco del enlace, y no se puede. Elegir el token nuevo es,
+entonces, también elegir con qué **no** se confunde, y recién con eso la guarda se vuelve escribible.
+La frase del `[B]` aparece cuatro veces en castellano —en el contrato del peldaño 3 y en la lección
+del manual, una dentro del prompt inglés y otra dentro de su bloque traducido—, y contada sobre las
+ocho versiones son **treinta apariciones en dieciséis archivos**: dos por archivo, salvo el inglés,
+que lleva una porque no tiene bloque traducido. Ése es el tamaño real del reemplazo de esta frase,
+y el del lote entero de marcadores es mucho mayor; conviene medirlo antes de redactar.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona puede pegar un
+  prompt sin completar y el agente **no puede** confundir un hueco con una respuesta suya; y si se
+  olvidó de completar uno, el agente se lo dice en vez de seguir.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona ve de un
+  vistazo qué partes de un prompt tiene que completar, sin confundirlas con las citas ni con las
+  marcas del propio texto.
+- *P7 (lector que adapta el método a otro formato):* dado ese perfil, esta persona puede reescribir
+  los prompts en otro formato y conservar la distinción, porque el token es único y buscable.
+
+**Dónde iría.** Los setenta y dos prompts de los ocho idiomas, más la explicación de la forma en la
+Parte A del documento principal (cómo se lee un peldaño), que es donde se explica cómo se usa un
+prompt. Es un cambio **mecánico y grande**: toca los ocho idiomas en el mismo commit (D-013) y la
+pieza inglesa del prompt es una sola y tiene que quedar idéntica en las ocho versiones, que es lo
+que `build/prompts.mjs` verifica. Conviene que el borrador traiga la cuenta exacta de reemplazos y
+una guarda que exija que no quede ningún marcador de la forma vieja, porque un reemplazo parcial acá
+es la cuenta parcial de `PND-065` aplicada a este trabajo.
+
+**Lo que esta entrada no incluye.** No cambia **qué** se le pide al dueño en cada hueco: sólo la
+forma del marcador. Y no toca los otros cuatro significados del corchete, que se quedan como están
+si el token nuevo es distinguible de los cuatro.
+
+---
+
+## PND-078 — El prefijo de un identificador no está fijado en ninguna parte, y dos cosas distintas se llamaron igual *(del experimento; `M-06`)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M-06`. Lo encontró el brazo cuando ya
+  era tarde: renombrando.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** **el dueño**, porque fijar un espacio de nombres es una obligación nueva para
+  todos los proyectos.
+- **Estado: abierto** — especificación escrita, borrador pendiente de aprobación.
+
+**Qué está mal.** El método exige identificadores estables para sus propias reglas —el Anexo H lo
+dice con todas las letras: *identificador estable, no se reutiliza nunca*— y **no dice nada** sobre
+los identificadores que un proyecto crea. Así que el proyecto los inventa en la sesión en que los
+necesita, y dos cosas distintas terminan con el mismo prefijo. Cuando eso pasa, el costo no es de
+confusión: es de **renombrar citas en todo el árbol**, que es un trabajo que no agrega nada y que
+toca archivos que nadie quería tocar. La regla que falta: *los prefijos de identificador se fijan en
+el catálogo del proyecto antes de usarse, uno por clase de cosa, y no se reciclan* —que es, palabra
+por palabra, la regla que el método ya se aplica a sí mismo y nunca le pidió a nadie—.
+
+**Evidencia medida (el experimento).** El prefijo `C-` se usó para las **condiciones de
+elegibilidad** y para las **compuertas** del mismo proyecto. Cuando la colisión se hizo visible,
+hubo que renombrar **84 citas en 14 archivos**. Ninguna de las dos elecciones estaba mal: las dos
+eran razonables y ninguna sabía de la otra, porque nada las obligaba a declararse.
+
+**Mi reproducción (2026-11-01), sobre los 36 archivos del corpus.**
+
+```
+grep -ohE "\b(PND|CQ|UX|D|C|G|N)-[0-9]+\b" | prefijos ->  UX-nn 221 | D-nn 72 | CQ-nn 60 | PND-nn 24
+grep -niE "prefijos?"                                 ->  0
+grep -nic "identificador estable"                     ->  7 (todas sobre las reglas del propio método)
+```
+
+El corpus usa cuatro prefijos propios y los usa con disciplina —`UX-`, `D-`, `CQ-`, `PND-`—, dice
+siete veces que un identificador es estable y **nunca dice la palabra prefijo**. Cero menciones de
+`C-nn`, que confirma que la colisión no fue del corpus sino de lo que el corpus **hace producir**:
+el peldaño 5 pide *"pendientes numerados"* sin fijar su prefijo, y el camino evolutivo pide
+condiciones de elegibilidad sin fijar el suyo. El método tiene la regla y se la aplica sólo a sí
+mismo.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona tiene un lugar
+  donde están declarados los prefijos de su proyecto y puede negarse a aceptar un identificador con
+  un prefijo que no está declarado, sin tener que recordar cuáles ya se usaron.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona entiende
+  por qué dos listas numeradas pueden chocar y qué cuesta arreglarlo después (84 citas, 14
+  archivos), que es el dato que convierte la regla en algo que vale la pena hacer antes.
+
+**Dónde iría.** El peldaño 2, donde se escribe la definición del proyecto y el árbol semántico, que
+es el lugar donde hoy se declaran los nombres de las cosas. Con una mención en el peldaño 5, que es
+el que produce el primer identificador de la vida de un proyecto.
+
+**Y la objeción que dejo escrita.** Ésta es la más chica de las quince y es la que más se parece a
+una comodidad de quien construye. Un proyecto de tres pendientes no necesita un catálogo de
+prefijos, y una regla que lo obligue sería gold plating —lo que el método llama exigencia
+desproporcionada—. Mi recomendación: que entre como **regla proporcional** (obligatoria desde que el
+proyecto tiene dos clases de identificador con numeración propia, no desde el primer commit) y que
+la frase del método diga ese umbral, no que lo deje implícito.
+
+---
+
+## PND-079 — El nombre de archivo es protocolo y no se traduce, y el método no lo dice en ninguna parte *(del experimento; `M-03`, y el dueño ya decidió la regla)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento de medición del método, hallazgo `M-03`. Lo medí yo sobre el brazo
+  autónomo, que escribió su documentación en castellano porque el expediente del dueño la pedía en
+  castellano.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Decisión del dueño (2026-11-01):** *"Ya lo decidí: el nombre de archivo es protocolo y no se
+  traduce"*, y la herramienta ya lo implementó con su mensaje. Lo que falta es **que el método lo
+  diga como regla**, no sólo que la herramienta lo explique en un error.
+- **Quién decide:** la regla está decidida; el dueño aprueba **el texto** y dónde va.
+- **Estado: abierto** — especificación escrita, borrador pendiente de aprobación.
+
+**Qué está mal.** La compuerta compara **rutas literales**. El dato declara `docs/DECISIONS.md` y el
+proyecto escribió `docs/DECISIONES.md`, con el contenido completo y bien hecho; la compuerta informó
+**0 de 29 artefactos presentes**. Y la tensión que lo produjo no es un error de nadie: el expediente
+del dueño pedía la documentación **en castellano** —y el método entero empuja en esa dirección, con
+el nivel principiante y el "respondé en mi idioma"—, mientras su catálogo espera **nombres en
+inglés**. Un dueño real se choca con lo mismo el primer día. La regla que falta es la mitad que la
+herramienta no puede cubrir: **el nombre del archivo es parte del contrato, va en el idioma que el
+dato declara y no se traduce; lo que se traduce es el contenido.**
+
+**Evidencia medida (el experimento).** El brazo autónomo escribió `docs/ARQUITECTURA.md` y
+`docs/DECISIONES.md`; la compuerta exigía `docs/DECISIONS.md` y reportó **0 de 29 presentes**. El
+contenido existía. El silencio del método es lo que convirtió un criterio razonable del dueño en un
+peldaño en rojo sin motivo visible.
+
+**Mi reproducción (2026-11-01), sobre el dato y sobre el corpus.**
+
+```
+rutas declaradas por el dato (24 peldaños + 8 estaciones)  ->  42
+rutas con un carácter del castellano                       ->  0
+grep -niE "no se traducen" en los 36 archivos              ->  1, y es de las claves de configuración
+```
+
+Las cuarenta y dos rutas que el dato declara están en inglés y en mayúsculas, sin una tilde ni una
+eñe, y el corpus dice *"no se traducen"* **una sola vez**: de las claves del archivo de
+configuración, que entró con D-075 el 2026-10-29. O sea: el principio ya está escrito y ya está
+peleado —el nivel de datos va en inglés porque no está traducido (D-051), y las claves que una
+herramienta lee no se traducen (D-075)— y **nunca se extendió a las rutas de los artefactos**, que
+son nivel de datos por el mismo argumento y son lo primero que un proyecto escribe. Es la misma
+familia que `PND-063`: daño silencioso contra el lector que **obedece**, con la diferencia de que
+acá el lector obedece al dueño en vez de al ejemplo.
+
+**Criterio de aceptación por perfil.**
+
+- *P8 (dueño de proyecto que aplica el método):* dado el perfil dueño, esta persona puede pedir la
+  documentación en su idioma y saber, antes de que un peldaño le dé rojo, que **el nombre del
+  archivo no es parte de ese pedido**; y si un peldaño le da 0 de 29, encuentra en el contrato la
+  frase que lo explica sin tener que leer el mensaje de una herramienta.
+- *P1 (herramienta consumidora):* dada una herramienta consumidora, esa herramienta puede comparar
+  rutas literales sin tener que mantener alias por idioma, porque el método declara que la ruta es
+  protocolo.
+- *P6 (lector humano que entra por el documento principal):* dado ese perfil, esta persona entiende
+  la distinción entre el nombre de un archivo y lo que el archivo dice, en una frase y con un
+  ejemplo.
+
+**Dónde iría.** La Parte A del documento principal (cómo se lee un peldaño), que es donde se explica
+qué es un artefacto, y el contrato del peldaño 2, que es el primero que declara rutas. En los ocho
+idiomas, en el mismo commit. Conviene además que el glosario lo lleve, porque "protocolo" usado así
+—el nombre como contrato— es vocabulario que el método no explica todavía.
+
+**Lo que esta entrada no incluye.** La mitad de la herramienta, que ya está hecha: el mensaje que
+explica el rojo cuando encuentra el archivo con el nombre traducido. Y no propone aceptar alias por
+idioma, que era la otra salida posible y el dueño ya decidió la contraria.
+
+---
+
 # Abiertos — G-TRAZABILIDAD: reconstruir, desde el registro, qué cambió y por qué
 
 ## PND-050 — Un commit llevó ocho documentos que su mensaje no nombra
@@ -6015,6 +7247,128 @@ no verifica que los tres valores signifiquen lo que la prosa del anexo dice que 
 
 ---
 
+## PND-080 — El universo de la guarda de cifras derivadas no incluye la prosa, y la exclusión no está declarada *(propia, medida al escribir D-078)*
+
+- **Nodo:** `build/cifras-derivadas` [nodo propuesto]
+- **Origen:** medición propia del 2026-11-01, haciendo D-078. No la trajo una auditoría: apareció al
+  preguntar qué cifras del árbol se vuelven falsas cuando entra una regla nueva.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** **el dueño**, y la pregunta es binaria: la prosa entra al universo de la guarda,
+  o la exclusión se declara con su razón. Las dos salidas son aceptables; **ninguna declaración no
+  lo es**.
+- **Estado: abierto** — el defecto está medido y las cifras de hoy quedaron corregidas a mano en el
+  mismo commit; lo que falta es la guarda o la exclusión escrita.
+
+**Qué falta, completo.** `D-077` dejó una regla que no se negocia: una cifra escrita junto al nombre
+de una colección que el dato declara **se deriva**. Y dejó una guarda que la exige,
+`build/cifras_derivadas.mjs`, con una virtud que su propia decisión subraya —el mapa de colecciones
+no se escribe, se deriva del dato, así que una colección nueva queda vigilada el día que entra—.
+Lo que esa guarda **no** mira es la prosa: su universo son **catorce archivos** —las nueve fuentes de
+`gates/`, el documento generado y los cuatro recursos publicados— y los veintisiete archivos del
+corpus castellano, con sus siete traducciones, no están. Eso no es un olvido descubierto por
+razonamiento: **se midió, y ya había pasado**.
+
+**La evidencia, medida el 2026-11-01 sobre el árbol de `1a373c8`.** La cuenta de reglas del Anexo H
+pasó a cuarenta y seis el 2026-10-27 con `D-070`, y cuatro días después:
+
+- la **ficha del glosario** del documento principal —la entrada «Anexo H», que es donde un lector
+  busca qué es— decía *«cuarenta y cinco reglas verificables, dieciocho de calidad del código y
+  veintisiete de usabilidad»* en **seis de los ocho idiomas** (es, en, pt, de, ja, zh);
+- la línea de la **Parte B** que describe el peldaño 9 decía *«el catálogo de las cuarenta y cinco
+  reglas»* en **ocho de ocho**;
+- y el francés y el italiano tenían el glosario **correcto** mientras el castellano, que es la
+  fuente de verdad, lo tenía mal: `D-013` al revés, la misma forma que el `README.md` tuvo con el
+  Anexo H (`D-061`).
+
+Catorce líneas vivas y falsas, en siete idiomas, durante cuatro días, sin que nada se pusiera en
+rojo. No las rompió nadie: se rompieron solas cuando entró UX-28, que es la definición del defecto
+que `D-077` persigue, **una capa más afuera**. Y la cuenta de arriba es **un piso y no un total**:
+la lista de palabras por idioma con la que se midió se perdió *ancres* en francés, así que hay al
+menos una forma que la medición no vio. Se dice porque es la cara del denominador (`CQ-19.1`)
+aplicada a la propia medición de este pendiente.
+
+**Lo que se arregló en el mismo commit, y lo que no.** D-078 corrigió las catorce líneas y las puso
+en cuarenta y ocho —la cuenta nueva—, en los ocho idiomas, más la cuenta de las que bloquean desde
+el día uno (catorce a dieciséis) y la cuenta de la Parte A. Lo que **no** se arregló es la causa:
+mañana entra otra regla y el mismo defecto vuelve, porque **nada mira la prosa**.
+
+**Criterio de aceptación.** Una de estas dos, y la decide el dueño:
+
+1. **La prosa entra al universo.** `build/cifras_derivadas.mjs` recorre los veintisiete archivos del
+   corpus castellano y sus traducciones, con sus rojos deliberados, y el paso del flujo exige la
+   línea medida. El costo es que la cifra hay que reconocerla en ocho idiomas, incluidos el japonés
+   y el chino, donde se escribe con numerales chinos; la guarda tendría que deletrear en ocho
+   idiomas o bien buscar los **patrones** de cada uno, con su registro de los que no sabe leer.
+2. **La exclusión se declara, con su razón y su alcance.** El registro de exenciones de la guarda
+   dice que la prosa queda afuera, por qué, y **qué protege en su lugar** —hoy, nada—, de manera que
+   un lector que confía en la guarda no crea que mira lo que no mira.
+
+Y una tercera cosa que vale en las dos salidas: la decisión que la resuelva **cita esta medición**,
+porque una exclusión declarada sin el daño que ya ocurrió se lee como una comodidad.
+
+## PND-081 — La traducción china del prompt del camino heredado numeraba sus cinco reglas 8, 11, 7, 12 y 13 *(propia, medida al renumerar por D-078)*
+
+- **Nodo:** `corpus/evolutivo` [nodo propuesto]
+- **Origen:** medición propia del 2026-11-01, haciendo la renumeración que D-078 pide. No la buscaba
+  nadie: apareció al leer el bloque que había que reescribir.
+- **Grupo:** G-IDIOMA · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** nadie: es un defecto medido y su arreglo es mecánico.
+- **Estado: abierto, arreglado en el árbol** — el bloque chino quedó con `9` a `13` en orden, igual
+  que los otros siete idiomas. **Cierra con la fusión**, por D-057.
+
+**Qué estaba mal.** El prompt inicial de la estación del contrato de convivencia heredado enumera
+las cinco reglas que existen porque un modelo frente a código ajeno reescribe: en inglés y en seis
+traducciones van `(7)` a `(11)`, continuando las seis del método. El bloque **chino** las numeraba
+`（8）`, `（11）`, `（7）`, `（12）` y `（13）`: desordenadas, con dos números que ningún otro idioma
+tenía y con el `9` y el `10` ausentes. Está así desde que la traducción existe —se verificó contra
+`HEAD` antes de tocar nada—, y ninguna guarda lo veía: `build/prompts.mjs` exige que la pieza
+**inglesa** sea idéntica byte a byte en las ocho versiones, que es lo que la vuelve una sola pieza,
+y no mira la numeración de los bloques traducidos, que son prosa de cada idioma.
+
+**Qué deja.** Un lector chino que obedece el prompt escribe un contrato cuyas reglas se llaman 7, 8,
+11, 12 y 13 y le pide al dueño que acepte «las reglas 1 a 13» cuando hay once; y si pregunta por la
+regla 9, no existe. Es daño silencioso causado por la traducción, y le pasa al lector que **obedece**
+(`D-075`, mismo patrón).
+
+**Qué se hizo.** La renumeración de D-078 —las cinco pasan de `(7)..(11)` a `(9)..(13)` porque el
+método ahora tiene ocho reglas mínimas— se hizo **por orden de aparición y no por valor**, en los
+ocho idiomas, para no arrastrar el desorden chino a la numeración nueva.
+
+**Criterio de aceptación.** Una guarda que compare, bloque por bloque y en los ocho idiomas, la
+**secuencia de números** de un prompt traducido contra la del inglés: la pieza inglesa ya está
+candada byte a byte, así que lo único que falta es exigir que la traducción lleve los mismos números
+en el mismo orden. Con su rojo deliberado: el bloque chino tal como estaba commiteado el
+2026-11-01, que tiene que volver a caer si alguien lo reintroduce.
+
+## PND-082 — Las cinco comprobaciones de CQ-18 no tienen identificador, así que no se puede apagar una sola *(propia, consecuencia declarada de D-078)*
+
+- **Nodo:** `corpus/anexo-h` [nodo propuesto]
+- **Origen:** la propia decisión D-078, que al darle caras a `CQ-19` y a `CQ-20` deja a `CQ-18`
+  siendo la única regla con caras no direccionables. Está dicho en el anexo y en el dato, no
+  escondido.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** **el dueño**, y el orden ya lo decidió: `CQ-19` sale con el mecanismo, y `CQ-18`
+  recibe identificadores después.
+- **Estado: abierto** — declarado en `heuristics.faces.rules_with_faces_today` y en la sección 2 del
+  Anexo H de los ocho idiomas.
+
+**Qué falta, completo.** `CQ-18` (accesibilidad básica) enuncia **cinco** comprobaciones en una sola
+oración: contraste, etiquetas en los campos, foco visible, navegación por teclado en los flujos
+principales e imágenes con texto alternativo. Ninguna tiene identificador propio, así que un
+proyecto que necesite apagar **una** —la navegación por teclado en una pantalla heredada, por
+ejemplo— tiene que apagar la regla entera, que es justo lo que el mecanismo de caras existe para
+evitar: una regla que sólo se puede apagar entera empuja a apagar de más.
+
+**Por qué no entró en el mismo lote.** Porque el método queda, mientras tanto, con una regla que se
+puede apagar por cara y otra que no, y un lector que necesite apagar una comprobación de `CQ-18` va
+a creer que puede. Eso es lo que esta entrada registra. **Darles identificador es agregar y no
+renombrar**, así que la disciplina append-only lo permite y no hay citas esperando: `CQ-18` sigue
+diciendo lo que dice, y `CQ-18.1` a `CQ-18.5` serían entradas nuevas con su `since_version`.
+
+**Criterio de aceptación.** Las cinco comprobaciones con su identificador y su fila en el Anexo H de
+los ocho idiomas, extraídas y no transcritas al dato, con su procedencia; el enunciado de `CQ-18`
+sin cambiar una palabra; y el validador exigiendo lo mismo que ya exige a las caras de `CQ-19`.
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -6026,14 +7380,14 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 |---|---:|---:|---:|---:|
 | G-API | 21 | 3 | 18 | 0 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
-| G-IDIOMA | 14 | 11 | 3 | 1 |
+| G-IDIOMA | 15 | 12 | 3 | 2 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 13 | 1 | 12 | 0 |
+| G-METODO | 30 | 18 | 12 | 8 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **64** | **16** | **48** | **1** |
+| **total** | **82** | **34** | **48** | **10** |
 
-Sesenta y cuatro entradas, `PND-001` a `PND-064`. Veintidós vienen de la auditoría externa
+Ochenta y dos entradas, `PND-001` a `PND-082`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -6247,6 +7601,48 @@ la huella**. El arreglo deriva las cuatro, y las correctas salieron byte a byte 
 huella se movió y ninguna versión sube. La guarda que lo cierra deriva su mapa **del dato** y no de
 una lista escrita —si no, sería otra enumeración a mano, que es el defecto que persigue— y trae
 doce rojos deliberados, el primero de ellos la frase original tal como estaba commiteada.
+
+**Y el 2026-11-01 entraron quince de una fuente que el registro no tenía: el método medido
+usándolo.** `PND-065` a `PND-079` salen de un experimento de dos días —tres brazos construyendo el
+mismo sistema, uno de ellos recorriendo la escalera completa en conversación dirigida, veinte idas
+y vueltas— y no se parecen a ninguna de las cuatro fuentes anteriores. No las trajo una auditoría
+encargada (como las veintidós de `U-01` a `U-22`), ni un lector que adaptó el corpus (como las diez
+de `PND-039` a `PND-048`), ni una medición de la publicación, ni un desvío propio: las trajo
+**correr el método contra un sistema real y mirar qué deja pasar**. Seis son una sola familia con
+seis caras —un instrumento que informa salud cuando lo que pasó es que no pudo mirar— y aparecieron
+por seis caminos distintos, cada uno ciego al anterior; cuatro más son de la misma raíz y otra forma
+—no confiarle a la intención ni a la memoria lo que un programa o el disco pueden comprobar—; dos
+son declaración y no prosa, y van al nivel de datos con su evaluador; y tres son **defectos del
+método**, no agregados, uno de ellos con la decisión del dueño ya tomada. Las quince están
+**abiertas y en borrador**: ninguna tocó el corpus, porque una regla nueva del método es una
+obligación para todos los proyectos que vengan y la aprueba el dueño una por una.
+
+**Y el 2026-11-01, a la tarde, seis de las quince dejaron de ser borrador.** El dueño decidió las
+cinco preguntas que la familia tenía abiertas y entró `D-078`: **dos** reglas con caras —`CQ-19`
+«Recibo del instrumento», con cuatro, en el peldaño 9; y `CQ-20` «El privilegio de una
+verificación», con dos, en el peldaño 14—, publicadas en `2026.10.12`, con sus textos en el
+catálogo (`2026.10.2`) y con las dos reglas de conducta que arrastran al contrato de convivencia,
+que pasó de seis reglas mínimas a ocho (`2026.10.7` del corpus de prompts). `PND-065` a `PND-070`
+quedan **escritas y verdes en la cadena**, y cierran con la fusión, porque un arreglo en la máquina
+no es un efecto (`D-057`). Las nueve que siguen abiertas en borrador son las otras del experimento.
+
+**Y el mismo trabajo dejó tres entradas nuevas, dos de ellas medidas mientras se escribía la
+decisión.** `PND-080`: la guarda de cifras derivadas **no mira la prosa** y esa exclusión no está
+declarada —y no es una hipótesis, es un daño que ya había ocurrido: la cuenta de reglas del Anexo H
+llevaba cuatro días siendo falsa en catorce líneas vivas de siete idiomas, con el francés y el
+italiano correctos y el castellano, que es la fuente de verdad, equivocado—. `PND-081`: la
+traducción china del prompt del camino heredado numeraba sus cinco reglas `8, 11, 7, 12, 13`, con
+el `9` y el `10` ausentes, desde que la traducción existe; la pieza inglesa está candada byte a
+byte y nadie mira la numeración de los bloques traducidos. Y `PND-082` es la consecuencia declarada
+de la decisión: `CQ-18` enuncia cinco comprobaciones sin identificador, así que es la única regla
+con caras que no se pueden apagar de a una.
+
+Un aviso para leer la tabla de arriba, porque la cuenta de bloqueantes pasó de uno a ocho en un día
+y eso no significa lo que parece. En las sesenta y cuatro entradas anteriores *bloquea* quería decir
+"una compuerta de **este** repositorio está en rojo y no cierra". En estas quince quiere decir **lo
+que su ausencia le cuesta a un proyecto que aplica el método**: nada de lo que este repositorio
+publica hoy está detenido por ellas. Quedó escrito así, y no bajado a *avisa*, porque bajarlo
+escondería el costo; y queda dicho acá para que nadie lea la fila de G-METODO como un incendio.
 
 **Una tensión de método, dicha para que quede en el registro.** Este trabajo se hace con el tramo
 de normalización abierto y **en rojo** —la estación N0 no cerró—, y la normalización prohíbe tocar

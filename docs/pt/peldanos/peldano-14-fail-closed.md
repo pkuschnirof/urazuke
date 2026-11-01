@@ -159,6 +159,9 @@ fazer.
   habilitá-las?
 - O que acontece se o agente embarcado tenta algo fora de suas permissões? Peça que ele tente e
   lhe mostre a recusa no log.
+- Com que privilégio correu cada verificação? O comando que se apresenta como de somente leitura,
+  sem permissão de escrever; e a sonda que exerce a ação impedida, correndo onde a sua sentença não
+  pode aterrissar, com o estado contado antes e depois (CQ-20).
 
 ## 5. Sinais de alerta
 

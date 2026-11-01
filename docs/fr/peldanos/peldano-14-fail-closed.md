@@ -165,6 +165,9 @@ aurait fait avant de la laisser faire.
   « aurait fait » avant de les activer ?
 - Que se passe-t-il si l'agent embarqué tente quelque chose hors de ses permissions ?
   Demandez-lui d'essayer et de vous montrer le refus dans le journal.
+- Avec quel privilège a tourné chaque vérification ? La commande qui se présente comme en lecture
+  seule, sans permission d'écrire ; et la sonde qui exerce l'action empêchée, tournant là où son
+  instruction ne peut pas atterrir, avec l'état compté avant et après (CQ-20).
 
 ## 5. Signaux d'alarme
 
