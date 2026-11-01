@@ -7445,6 +7445,148 @@ como estaba antes de `D-061` y la ficha del glosario tal como estaba commiteada 
 tienen que volver a caer si alguien los reintroduce. Mientras la guarda no exista, lo que vale es el
 enunciado: un lector que sabe que la fuente puede estar mal lee distinto.
 
+## PND-084 — Un estado del veredicto significa a la vez «el método declaró que esto no lo abarca» y «nadie declaró el medidor» *(lo trajo el consumidor; `M+17`, reescrita por el dueño)*
+
+- **Nodo:** `gates/esquema` [nodo propuesto]
+- **Origen:** lo trajo **el consumidor**, como `M+17` del experimento de medición del método. La
+  primera redacción decía que el método publica sus reglas «sin publicar con qué se miden», y el
+  dueño la **retiró el 2026-11-01** al verificar que eso es `D-075`, su propia decisión del
+  2026-10-29, con el número medido y su frase al lado: *«el método no abarca con qué se mide cada
+  regla y eso queda a criterio de quien mide»*. Lo que queda de la mejora es lo que la refutación
+  dejó, y es otra cosa: **D-075 decidió no llenar la celda; no decidió que el consumidor no pueda
+  distinguir una decisión de un descuido.**
+- **Grupo:** G-API · **Severidad:** bloquea · **Repositorio:** método (el vocabulario) y consumidor
+  (lo que computa)
+- **Quién decide:** **el dueño**, porque el vocabulario de situación de una regla es dato publicado
+  y append-only.
+- **Estado: abierto.** Nada está arreglado: es una entrada nueva del mismo día en que se retiró la
+  que la originó.
+
+**El enunciado.** **Un estado que significa dos cosas no es un estado.** El dato publica el
+vocabulario de situación de una regla en `gates/schema.json#enums.rule_situation`, y el evaluador de
+referencia pone `declared_not_measured` con esta nota: *«this installation did not measure it: it is
+not read as green»*. Ese mismo valor cubre dos situaciones que no son la misma: **«el método declaró
+que el medidor es del proyecto y el proyecto no lo declaró»** y **«nadie lo declaró y nadie lo
+miró»**. La primera es una decisión escrita; la segunda es un descuido. Y cuando alguna de las que
+bloquean cae ahí, el veredicto de la corrida entera pasa a `not_measured`, así que la ambigüedad
+sube de la fila al tablero.
+
+**La evidencia, medida el 2026-11-01 sobre `gates/` de este repositorio.** De las **48** reglas,
+**31** declaran `checker_declared_by: adapter` y **17** `owner`; el puntero del adaptador
+(`adapters.annex_columns.covers`) publica **seis** celdas, de las cuales **cinco** son de reglas que
+defieren a él —`CQ-12` declara `owner` y tiene celda igual—, y la forma del archivo del dueño está
+marcada `illustrative: true` con la advertencia de que tomar esos nombres por defecto **es inventar
+la capa 2**. Resultado: **veintiséis reglas defieren al adaptador y no tienen celda publicada**, más
+las **seis caras** de `CQ-19` y `CQ-20`, que no declaran medidor propio y heredan el de su regla. La
+herramienta del otro lado ve **veintiséis filas iguales** donde hay veintiséis decisiones escritas y
+cero descuidos. Y conviene decir lo que este lote le hizo al número: **lo empeoró en dos**, porque
+`CQ-19` y `CQ-20` entraron del lado de las que no tienen celda.
+
+**Qué NO se pide, y está decidido.** No se pide publicar la celda que `D-075` decidió no publicar.
+La decisión se mantiene entera: el método no abarca con qué se mide cada regla, el primer hueco se
+cierra **declarándolo y no llenándolo**, y las nueve claves de `measured_by` siguen ilustrativas por
+decisión escrita.
+
+**Qué se pide.** Partir el estado en dos: *fuera del alcance del método, por decisión* contra *sin
+declarar*. Y no hay que decidir nada nuevo para derivarlo, porque **las dos piezas ya están en el
+dato**: `checker_declared_by` dice de quién es el medidor, y `measured_by.illustrative` dice que lo
+que el método muestra es una forma y no un valor. Es `D-076` en la capa del medidor —la misma forma
+que obligó a escribir `end_users_outside_the_organisation`, donde la ausencia de una clave
+significaba a la vez «escalada declinada con fundamento» y «nadie la miró»—.
+
+**Criterio de aceptación.** Un valor nuevo de `rule_situation`, **agregado y no renombrado**, con su
+`since_version`, derivado de `checker_declared_by` y de `measured_by.illustrative` y no declarado a
+mano regla por regla; `declared_not_measured` sin cambiar una palabra; el evaluador de referencia
+informando los dos conjuntos separados y diciendo el denominador de cada uno (`CQ-19.1`); el
+diferencial de un upgrade contándolo, porque un estado nuevo cambia lo que un proyecto lee de su
+propio tablero (`D-068`, `D-076`); y el rojo deliberado de las veintiséis, que tienen que aparecer
+del lado de la decisión y no del lado del descuido.
+
+## PND-085 — El presupuesto de reglas del contrato de convivencia no es un número, y la cifra de la alarma puesta como techo deja en infracción al único caso real *(del experimento; `M+18`, reescrita por el dueño con la medición en la mano)*
+
+- **Nodo:** `corpus/peldano-01` [nodo propuesto]
+- **Origen:** `M+18` del experimento de medición del método. La primera redacción buscaba **el
+  número** —cuántas reglas aguanta el contrato— y el dueño la reescribió el 2026-11-01 después de
+  medir el contrato de convivencia del brazo que recorrió la escalera completa, corriendo él mismo
+  el contador de ese proyecto.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y ya decidió: **no se busca el número**. Lo que falta es escribirlo.
+- **Estado: abierto.** Nada tocado: la señal de alarma del peldaño 1 sigue diciendo lo que decía.
+
+**La medición que volteó la pregunta.** El contrato de convivencia de ese proyecto tiene
+**veintidós reglas en vigencia** —quince obligatorias, ocho propuestas y una de ellas rechazada—, y
+la cifra **la cuenta una máquina**: el proyecto se escribió su propia compuerta para contarlas. Ese
+contrato se escribió cuando el mínimo que el método pedía eran **seis**, así que el proyecto agregó
+dieciséis. De dónde vinieron es el dato que cambia la conclusión: **nueve las dictó el dueño** —dos
+en la aceptación, dos porque las pide la consigna del peldaño 2, dos en el 5, una en el 10 y dos al
+cerrar un pendiente— y **siete son propuestas del agente, aprobadas regla por regla**. El
+crecimiento no lo infló el agente: fue el método funcionando.
+
+**Qué deja la cifra de la alarma leída como techo.** La señal de alarma del peldaño 1 dice *«nadie
+respeta veinte reglas; se respetan seis u ocho»*, y desde `D-078` el mínimo del método son **ocho**,
+así que el lector queda en el techo de la propia frase el día que cumple el mínimo. Si ese número se
+tomara como presupuesto, **el proyecto que aplicó el método con más cuidado queda catorce reglas en
+infracción, por haber hecho lo que el método le pidió**. Una compuerta que nace en rojo contra el
+único caso real que el método tiene no es un presupuesto. Y hay un segundo dato que lo confirma: en
+el camino evolutivo-correctivo sobre un sistema heredado el piso ya es **trece** antes de que el
+proyecto agregue nada —ocho del método más cinco del legado—, así que un techo de ocho dejaba en
+infracción a ese camino el día uno.
+
+**El enunciado, que es una propiedad y no una cantidad.** **Una regla entra con el fallo medido que
+la hizo necesaria y, donde se pueda, con quién la cuenta —o no entra—; y el total lo cuenta una
+máquina.** Lo que hizo que veintidós reglas siguieran siendo respetables no fue la cantidad: fue que
+cada una llegó con el fallo que evita y la mayoría con su compuerta. Y la mitad mecánica no es un
+adorno: ese mismo contrato decía *«quince en vigencia»* cuando contadas eran **diecisiete**, hasta
+que una compuerta las contó. La cantidad no era el problema; la cifra a mano sí, que es `D-077` en
+la capa del proyecto.
+
+**Criterio de aceptación.** Cuatro piezas, en los ocho idiomas. (1) La señal de alarma del peldaño 1
+deja de dar una cifra como techo y da la propiedad. (2) El prompt de cierre pide que cada regla
+propuesta llegue con el fallo medido que la hizo necesaria, y **lo que necesita motivo escrito es
+una regla sin su fallo**, no la novena regla. (3) La invitación dice *«una regla tuya entra con el
+fallo que la hizo necesaria, y el total lo cuenta una compuerta»* y no *«el presupuesto está
+gastado»*. (4) La verificación de completitud del peldaño 1 pregunta por el contador y no por el
+número.
+
+## PND-086 — Los tres tipos de recibo no tienen la misma cardinalidad, así que un lote en tres pendientes paga tres veces la misma regresión o deja dos sin ninguna *(lo trajo la herramienta sobre su propio trabajo; `M+19`)*
+
+- **Nodo:** `corpus/peldano-08` [nodo propuesto]
+- **Origen:** lo observó **la herramienta sobre su propio trabajo**, lo nombró en su informe y **no
+  lo cambió**: *«un recibo respalda un solo pendiente, así que un lote entregado en tres pendientes
+  paga tres veces la misma batería o deja dos sin regresión»*. El dueño lo verificó en el código del
+  consumidor el 2026-11-01: el campo es singular y el resumen filtra por igualdad exacta.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método (el enunciado) y consumidor
+  (la dirección del recibo)
+- **Quién decide:** el dueño, porque es el enunciado del peldaño 8 y toca `D-033`.
+- **Estado: abierto.**
+
+**El enunciado.** **Un recibo se direcciona por el objeto del que es un hecho, y la regresión es un
+hecho sobre un estado del árbol y no sobre un pendiente.** El método pide tres recibos —el rojo
+primero, el verde y la regresión— y les da **la misma forma de dirección**, pero el rojo y el verde
+dependen del **pendiente** y la regresión depende del **estado del árbol**: el mismo commit es el
+mismo hecho para todos los pendientes que cierran en él. No falta una regresión: **hay una
+haciéndose pasar por tres**.
+
+**Qué deja, y por qué la rama mala es la que no se ve.** Con un lote que cierra tres pendientes, la
+disyuntiva es correr tres veces la misma batería sobre el mismo árbol —caro y sin información
+nueva— o dejar dos pendientes sin recibo de regresión. La segunda rama es la peor **porque no
+avisa**: el pendiente cierra, el resumen no muestra regresión y nada dice *«falta»* —dice **nada**—,
+que es la forma exacta de `CQ-19.1`, un silencio que se lee igual que la salud.
+
+**Qué se pide.** Que la regresión se direccione por su **estado del árbol** y respalde a todos los
+pendientes de ese estado **declarando cuáles**, porque un conjunto no declarado se leería como
+«cubre todo», que es `CQ-19.3`; y que la compuerta verifique que **el commit del recibo sea el que
+se entrega**. Una regresión de ayer sobre un árbol de hoy no es una regresión: es una foto.
+
+**Dónde vive.** En el peldaño 8, junto a `D-033`, y conviene que entre con la línea que `D-078`
+acaba de escribir sobre los dos recibos, porque las dos son sobre lo mismo: **qué recibo corresponde
+a qué afirmación**.
+
+**Criterio de aceptación.** El enunciado en el contrato del peldaño 8 de los ocho idiomas, diciendo
+los tres recibos con su objeto y su cardinalidad; y, del lado del consumidor —que se mide en su
+repositorio y no acá—, la dirección por estado del árbol con el conjunto declarado y la compuerta
+que exige que el commit del recibo sea el entregado.
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -7454,16 +7596,16 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 21 | 3 | 18 | 0 |
+| G-API | 22 | 4 | 18 | 1 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 30 | 18 | 12 | 8 |
+| G-METODO | 32 | 20 | 12 | 9 |
 | G-TRAZABILIDAD | 3 | 1 | 2 | 0 |
-| **total** | **83** | **35** | **48** | **11** |
+| **total** | **86** | **38** | **48** | **13** |
 
-Ochenta y tres entradas, `PND-001` a `PND-083`. Veintidós vienen de la auditoría externa
+Ochenta y seis entradas, `PND-001` a `PND-086`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -7702,7 +7844,7 @@ que pasó de seis reglas mínimas a ocho (`2026.10.7` del corpus de prompts). `P
 quedan **escritas y verdes en la cadena**, y cierran con la fusión, porque un arreglo en la máquina
 no es un efecto (`D-057`). Las nueve que siguen abiertas en borrador son las otras del experimento.
 
-**Y el mismo trabajo dejó tres entradas nuevas, dos de ellas medidas mientras se escribía la
+**Y el mismo trabajo dejó cuatro entradas nuevas, tres de ellas medidas mientras se escribía la
 decisión.** `PND-080`: la guarda de cifras derivadas **no mira la prosa** y esa exclusión no está
 declarada —y no es una hipótesis, es un daño que ya había ocurrido: la cuenta de reglas del Anexo H
 llevaba cuatro días siendo falsa en catorce líneas vivas de siete idiomas, con el francés y el
@@ -7711,7 +7853,26 @@ traducción china del prompt del camino heredado numeraba sus cinco reglas `8, 1
 el `9` y el `10` ausentes, desde que la traducción existe; la pieza inglesa está candada byte a
 byte y nadie mira la numeración de los bloques traducidos. Y `PND-082` es la consecuencia declarada
 de la decisión: `CQ-18` enuncia cinco comprobaciones sin identificador, así que es la única regla
-con caras que no se pueden apagar de a una.
+con caras que no se pueden apagar de a una. Y `PND-083` la pidió el dueño al leer las otras tres:
+la regla de precedencia del castellano no tiene verificación cruzada, así que un error de la fuente
+se publica ocho veces y las copias correctas quedan registradas como las desviadas.
+
+**Y el 2026-11-01, a la noche, entraron tres más, y las tres vienen de que el dueño verificó antes
+de aceptar.** `PND-084` nació **retirando** la mejora que la trajo: `M+17` decía que el método
+publica sus reglas sin publicar con qué se miden, y eso es `D-075`, la decisión del propio dueño de
+dos días antes, con el número medido y su frase al lado. Lo que la refutación dejó es mejor que la
+mejora: `D-075` decidió **no llenar** la celda y no decidió que el consumidor no pueda distinguir
+una decisión de un descuido, y hoy `declared_not_measured` significa las dos cosas para las
+veintiséis reglas que defieren al adaptador sin celda publicada. `PND-085` es la otra que la
+medición dio vuelta: `M+18` buscaba **el número** de reglas que aguanta el contrato de convivencia,
+y el único caso real tiene veintidós en vigencia contadas por su propia compuerta, de las cuales
+dieciséis las agregó el proyecto —nueve dictadas por el dueño— después de que el método le pidiera
+seis. Con el mínimo en ocho, un techo de ocho deja al proyecto que aplicó el método con más cuidado
+catorce reglas en infracción, así que la cifra se reemplaza por la propiedad que de verdad aguantó.
+Y `PND-086` la trajo **la herramienta sobre su propio trabajo**: los tres recibos del peldaño 8
+tienen la misma forma de dirección y no la misma cardinalidad, porque la regresión es un hecho sobre
+un estado del árbol y no sobre un pendiente. Las tres son **del dueño verificando lo que le
+trajeron**, que es la fuente que ninguna de las cinco anteriores tenía.
 
 Un aviso para leer la tabla de arriba, porque la cuenta de bloqueantes pasó de uno a ocho en un día
 y eso no significa lo que parece. En las sesenta y cuatro entradas anteriores *bloquea* quería decir
