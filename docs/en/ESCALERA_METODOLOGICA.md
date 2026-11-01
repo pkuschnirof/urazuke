@@ -229,7 +229,7 @@ Each step has eight parts, always the same, so that they can be compared:
 
 And there is one more part, which shows up in **six steps only** and is a transversal piece
 that changes what has to be read: **Annex H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)).
-Forty-six verifiable rules -- eighteen on code quality and twenty-eight on usability -- each one
+Forty-eight verifiable rules -- twenty on code quality and twenty-eight on usability -- each one
 with its stable id, its severity and the instrument that measures it. It is not an optional
 appendix: **it is mandatory**, and it hooks into the ladder at six points. At step 2 its two
 **prior inputs** come in (the user glossary and the list of profiles: the words people actually
@@ -243,7 +243,7 @@ late: the annex was mandatory and unnamed in this document, and the first reader
 method to another format skipped twenty-seven of the forty-five rules because he never knew they
 were there.
 
-And one of those forty-six is not about the system being built but about **how you get asked**.
+And one of those forty-eight is not about the system being built but about **how you get asked**.
 It is **UX-28**, and it came in on 2026-10-27 because it was missing: the method orders its
 prompts to ask you -- twenty-two times, in more than half of the corpus -- and said nowhere how
 one asks, so the form was left to improvisation and you got the question loose. From now on every
@@ -885,8 +885,9 @@ credited in Part F.)
   [Ref. 41](REFERENCIAS.md#ref-41); the quality number that gets worse without anyone seeing it
   [Ref. 35](REFERENCIAS.md#ref-35).
 - **Annex H**: anchor 3 of [Annex H](ANEXO_HEURISTICAS.md), and the biggest of the five: this is
-  where the gate extends from code quality to **usability**. The catalogue of the forty-five rules
-  is declared and active per group; every active rule has its instrument, its severity and its
+  where the gate extends from code quality to **usability**. The catalogue of the forty-eight rules
+  is declared and active per group -- and two of them, the ones of the receipt, are reported face by
+  face --; every active rule has its instrument, its severity and its
   checker; every **switched-off** rule has its record with the reason, who authorised it and a
   review date -- switched off without a record is red, which is not the same as the rule being
   absent --; every threshold the owner did not declare is published as undeclared instead of
@@ -1011,7 +1012,10 @@ building the functionalities that act on the world, not after.
   mode and are enabled after looking at their log for a few days.
 - **Inputs**: the survey of consequential actions, done with the owner.
 - **Artefact**: the locks table: each action with its reversibility, its lock, its way back; one
-  test per lock proved red; new automations in dry-run mode.
+  test per lock proved red; new automations in dry-run mode. And the verification of each lock runs
+  with the least privilege needed to verify: the probe that exercises the blocked operation runs
+  where its statement cannot land, and proves by counting before and after that the state was left
+  identical (rule CQ-20 of Annex H).
 - **Gate**: every irreversible action has a lock and a documented way back.
 - **Who decides**: the owner approves lock by lock; the system never skips them.
 - **Failure it prevents**: a double charge, an automatic approval without going through a human,
@@ -1594,8 +1598,8 @@ and 12, and the card of each one names them. It is not a recommendation nor a be
 part of what gets measured.
 
 **Annex H** — The heuristics annex of the method
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): forty-five verifiable rules, eighteen on code
-quality and twenty-seven on usability, each one with its stable id, its severity and the instrument
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): forty-eight verifiable rules, twenty on code
+quality and twenty-eight on usability, each one with its stable id, its severity and the instrument
 that measures it. It is mandatory and it cuts across the four stretches: it comes in with two prior
 inputs at step 2 and with five anchors at steps 5, 8, 9, 10 and 12. The "H" is for heuristics.
 
@@ -1974,7 +1978,13 @@ that can only go down: if it goes up, the test fails.
 **Receipt** — The output of a command pasted as it came out, with the exact command, the version
 it ran against, the counts and the exit code, so that the owner can run it again without
 understanding what it does. In step 8, the red has to be a receipt, not a story ("the test failed
-as expected").
+as expected"). Since 2026-11-01 the word also names what a figure brings alongside it in order to
+be readable: which set it expected to walk and how much of it it walked, what it depends on, and
+what it reports when it could not look. That is rule CQ-19 of Annex H: the receipt of step 8 is an
+artifact a plan produces, and the one of the instrument is a condition of every figure that decides
+something. That rule and its pair CQ-20 are the first two to have **faces**: cuts of the same
+statement with an identifier of their own (`CQ-19.1`), so that a single one can be switched off
+with its reason; and a rule with a face switched off is never reported as fulfilled.
 
 **Red by mutation** — The way to prove that a test tells behaviour apart when there is no previous version to run it against: a deliberate defect is planted in the new function, the test fails against that defect, and the receipt carries the diff of the defect. One mutant per pending item (step 8); different from mutation testing over the whole codebase (step 9).
 

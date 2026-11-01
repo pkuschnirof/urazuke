@@ -147,7 +147,7 @@ il progetto precedente più economico di tutti), e il fornitore di messaggi ha u
 
 ### Lezione N1 — Il patto di convivenza per un legacy
 
-**Cosa devi capire.** Alle sei regole della lezione 1 se ne aggiungono cinque che esistono perché
+**Cosa devi capire.** Alle otto regole della lezione 1 se ne aggiungono cinque che esistono perché
 un modello di fronte a codice altrui fa tre cose per riflesso: lo riordina, lo "sistema" dove gli
 sembra sbagliato, e dà per scontato che ciò che il codice fa in modo diverso da come lui se lo
 aspetterebbe sia un errore. Le regole del legacy bloccano quei riflessi: non si rifattorizza ciò
@@ -165,33 +165,39 @@ entra senza la caratterizzazione in verde.
 1. Incollagli:
 
 > Before we touch anything, we are going to set the working agreement between you and me for a
-> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the six rules
-> of the method (my time is sacred; zero technical debt; exact scope; documentation in the same
-> commit; never report as done what you have not verified; speak my language), each with one line
-> explaining what it prevents, and these five rules for an inherited system: (7) Nothing is
-> refactored that was not asked for, and no module is rewritten. (8) Code you do not understand
-> is read before it is touched, and what you learn goes into the system map. (9) Anything strange
+> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the eight
+> rules of the method (my time is sacred; zero technical debt; exact scope; documentation in the
+> same commit; never report as done what you have not verified; speak my language; every figure
+> comes with its receipt -- what it counted, how many it expected to count and what it reports
+> when you could not look; a verification runs with the least privilege it needs and that it
+> could do no harm is measured, not promised), each with one line explaining what it prevents,
+> and these five rules for an inherited system: (9) Nothing is
+> refactored that was not asked for, and no module is rewritten. (10) Code you do not understand
+> is read before it is touched, and what you learn goes into the system map. (11) Anything strange
 > you find (a secret in the code, a dead path, a duplicated rule, a query without an index) is
-> logged as a pending item with its evidence, never fixed in passing. (10) Current behaviour is
+> logged as a pending item with its evidence, never fixed in passing. (12) Current behaviour is
 > the specification until the owner says otherwise: a difference between what the code does and
 > what the business says is a discrepancy for me to decide, not a bug for you to fix silently.
-> (11) No change reaches the test environment without the characterization suite green. Add any
+> (13) No change reaches the test environment without the characterization suite green. Add any
 > rules you think this system needs, marked as proposals. If you need to know something about how
 > I work in order to write this, ask me.
 
 > [it]
 > Prima di toccare qualunque cosa, fisseremo il patto di convivenza fra te e me per un sistema che
-> esiste già e ha utenti. Scrivi `docs/WORKING_AGREEMENT.md` con le sei regole del metodo (il mio
+> esiste già e ha utenti. Scrivi `docs/WORKING_AGREEMENT.md` con le otto regole del metodo (il mio
 > tempo è sacro; zero debito tecnico; ambito esatto; documentazione nello stesso commit; non
-> riportare mai come fatto ciò che non hai verificato; parla la mia lingua), ciascuna con una riga
-> che spieghi cosa evita, e queste cinque regole per un sistema ereditato: (7) Non si rifattorizza
-> nulla che non sia stato chiesto, e non si riscrive nessun modulo. (8) Il codice che non capisci
-> si legge prima di toccarlo, e ciò che impari va nella mappa del sistema. (9) Qualunque cosa
+> riportare mai come fatto ciò che non hai verificato; parla la mia lingua; ogni cifra viene
+> con la sua ricevuta -- cosa ha contato, quanti si aspettava di contare e cosa informa quando non
+> ha potuto guardare --; una verifica corre con il privilegio minimo e che non abbia potuto fare
+> danno si misura, non si promette), ciascuna con una riga
+> che spieghi cosa evita, e queste cinque regole per un sistema ereditato: (9) Non si rifattorizza
+> nulla che non sia stato chiesto, e non si riscrive nessun modulo. (10) Il codice che non capisci
+> si legge prima di toccarlo, e ciò che impari va nella mappa del sistema. (11) Qualunque cosa
 > strana tu trovi (un segreto nel codice, un percorso morto, una regola duplicata, una query senza
-> indice) si annota come voce in sospeso con la sua prova, non si sistema mai di sfuggita. (10) Il
+> indice) si annota come voce in sospeso con la sua prova, non si sistema mai di sfuggita. (12) Il
 > comportamento attuale è la specifica finché il proprietario non dice altro: una differenza fra
 > ciò che il codice fa e ciò che il business dice è una discrepanza che decido io, non un bug che
-> tu sistemi in silenzio. (11) Nessuna modifica arriva all'ambiente di test senza la batteria di
+> tu sistemi in silenzio. (13) Nessuna modifica arriva all'ambiente di test senza la batteria di
 > caratterizzazione in verde. Aggiungi le regole che credi servano a questo sistema, marcate come
 > proposte. Se ti serve sapere qualcosa su come lavoro per scrivere questo, chiedimelo.
 
@@ -203,7 +209,7 @@ di una riga, per gli spazi vuoti del prompt.
 
 3. Chiudi con il prompt di chiusura della lezione 1, senza modifiche.
 
-**Verifica di completezza.** Ci sono tutte e undici le regole, ciascuna con il guasto che evita?
+**Verifica di completezza.** Ci sono tutte e tredici le regole, ciascuna con il guasto che evita?
 C'è qualche proposta che autorizzi a rifattorizzare o riscrivere?
 
 **Consegna.** `docs/WORKING_AGREEMENT.md` con data e versione.

@@ -318,7 +318,7 @@ sistema que ninguém entende. O agente respondeu em vez de fazer.
   própria.
 - **Quando**: depois de N0, antes de ler nada.
 - **Entradas**: as suas preferências de trabalho, como no degrau 1.
-- **Artefato**: `docs/WORKING_AGREEMENT.md` com as seis regras do método e as cinco do legado.
+- **Artefato**: `docs/WORKING_AGREEMENT.md` com as oito regras do método e as cinco do legado.
 - **Comporta**: o contrato tem data e versão, e o arquivo de projeto (quando existir, em N2) manda
   lê-lo.
 - **Quem decide**: o dono.
@@ -336,17 +336,20 @@ sistema que ninguém entende. O agente respondeu em vez de fazer.
 **Inicial:**
 
 > Before we touch anything, we are going to set the working agreement between you and me for a
-> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the six rules
-> of the method (my time is sacred; zero technical debt; exact scope; documentation in the same
-> commit; never report as done what you have not verified; speak my language), each with one line
-> explaining what it prevents, and these five rules for an inherited system: (7) Nothing is
-> refactored that was not asked for, and no module is rewritten. (8) Code you do not understand
-> is read before it is touched, and what you learn goes into the system map. (9) Anything strange
+> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the eight
+> rules of the method (my time is sacred; zero technical debt; exact scope; documentation in the
+> same commit; never report as done what you have not verified; speak my language; every figure
+> comes with its receipt -- what it counted, how many it expected to count and what it reports
+> when you could not look; a verification runs with the least privilege it needs and that it
+> could do no harm is measured, not promised), each with one line explaining what it prevents,
+> and these five rules for an inherited system: (9) Nothing is
+> refactored that was not asked for, and no module is rewritten. (10) Code you do not understand
+> is read before it is touched, and what you learn goes into the system map. (11) Anything strange
 > you find (a secret in the code, a dead path, a duplicated rule, a query without an index) is
-> logged as a pending item with its evidence, never fixed in passing. (10) Current behaviour is
+> logged as a pending item with its evidence, never fixed in passing. (12) Current behaviour is
 > the specification until the owner says otherwise: a difference between what the code does and
 > what the business says is a discrepancy for me to decide, not a bug for you to fix silently.
-> (11) No change reaches the test environment without the characterization suite green. Add any
+> (13) No change reaches the test environment without the characterization suite green. Add any
 > rules you think this system needs, marked as proposals. If you need to know something about how
 > I work in order to write this, ask me.
 >
@@ -359,17 +362,19 @@ sistema que ninguém entende. O agente respondeu em vez de fazer.
 
 > [pt]
 > Antes de tocar em nada, vamos fixar o contrato de convivência entre você e eu para um sistema
-> que já existe e tem usuários. Escreva `docs/WORKING_AGREEMENT.md` com as seis regras do método
+> que já existe e tem usuários. Escreva `docs/WORKING_AGREEMENT.md` com as oito regras do método
 > (o meu tempo é sagrado; zero dívida técnica; escopo exato; documentação no mesmo commit; nunca
-> relatar como feito o que você não verificou; fale o meu idioma), cada uma com uma linha que
-> explique o que ela evita, e estas cinco regras para um sistema herdado: (7) Não se refatora nada
-> que não tenha sido pedido, e não se reescreve nenhum módulo. (8) O código que você não entende é
-> lido antes de ser tocado, e o que você aprende vai para o mapa do sistema. (9) Qualquer coisa
+> relatar como feito o que você não verificou; fale o meu idioma; todo número vem com o seu
+> recibo —o que contou, quantos esperava contar e o que informa quando não pôde olhar—; uma
+> verificação corre com o privilégio mínimo e que não pôde fazer dano mede-se, não se promete), cada uma com uma linha que
+> explique o que ela evita, e estas cinco regras para um sistema herdado: (9) Não se refatora nada
+> que não tenha sido pedido, e não se reescreve nenhum módulo. (10) O código que você não entende é
+> lido antes de ser tocado, e o que você aprende vai para o mapa do sistema. (11) Qualquer coisa
 > estranha que você encontre (um segredo no código, um caminho morto, uma regra duplicada, uma
 > consulta sem índice) é registrada como pendência com a sua evidência, nunca consertada de
-> passagem. (10) O comportamento atual é a especificação até que o dono diga outra coisa: uma
+> passagem. (12) O comportamento atual é a especificação até que o dono diga outra coisa: uma
 > diferença entre o que o código faz e o que o negócio diz é uma discrepância que eu decido, não
-> um bug que você conserta em silêncio. (11) Nenhuma mudança chega ao ambiente de teste sem a
+> um bug que você conserta em silêncio. (13) Nenhuma mudança chega ao ambiente de teste sem a
 > bateria de caracterização em verde. Acrescente as regras que você achar que este sistema
 > precisa, marcadas como propostas. Se você precisa saber algo sobre como eu trabalho para
 > escrever isto, pergunte-me.
@@ -381,7 +386,7 @@ sistema que ninguém entende. O agente respondeu em vez de fazer.
 > que o projeto declarou em `communication_depth` —`beginner`, `decision_maker` ou `technical`—;
 > se o projeto não declarou nenhuma, use `decision_maker`.
 
-O que estou pedindo: as seis regras de sempre, e cinco que existem porque um modelo diante de um
+O que estou pedindo: as oito regras de sempre, e cinco que existem porque um modelo diante de um
 código alheio faz três coisas por reflexo: reordena-o, "conserta-o" onde lhe parece errado, e
 supõe que o que o código faz é um erro quando difere do que ele esperaria. As regras 7, 9 e 10
 bloqueiam exatamente esses três reflexos. A regra 8 converte a leitura em mapa, para que o que o

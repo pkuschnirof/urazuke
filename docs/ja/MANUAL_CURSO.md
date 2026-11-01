@@ -259,16 +259,21 @@ WhatsAppまたはメールによる自動リマインダー。特定の予約に
 
 1. このプロンプトを貼ること：
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. Add any rules you think this project needs, marked as
-> proposals. If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 
 > [ja]
 > コードを書く前に、あなたと私の間の共働の約束を定めます。`docs/WORKING_AGREEMENT.md` を
@@ -278,11 +283,17 @@ WhatsAppまたはメールによる自動リマインダー。特定の予約に
 > で直します。(3) 正確な範囲。頼まれた以上でも以下でもなく。他に何か見つけたら、保留項目と
 > して記録し、やらないでください。(4) 文書は変更と同じコミットで更新します。(5) 検証して
 > いないことを決して完了として報告しないでください。検証したことと信じていることを常に分け
-> てください。(6) 私の言語で話してください。このプロジェクトに必要だと思うルールを、提案と
+> てください。(6) 私の言語で話してください。(7) あなたが私に渡す数字のうち、何かを決めるのに使う
+> ものはすべてレシートを伴います：何を数えたか、いくつ数える予定だったか、何に依存した
+> か、そして見ることができなかったときに何を報告するか。見ることができなかったときに
+> 同じに読めるなら、それは数字ではありません。(8) 読み取り
+> 専用として提示するコマンドは書き込みの許可なしで走らせ、破壊的な操作を行使する確認は、その命令
+> が着地できない場所で走らせてください。何も変わらなかったことは測るのであり、約束するのでは
+> ありません。このプロジェクトに必要だと思うルールを、提案と
 > して印して追加してください。これを書くために私の働き方について知る必要があれば、私に聞い
 > てください。
 
-   求めているのは、それぞれが防ぐ失敗付きの六つのルール、あなたが受け入れるか拒否できる
+   求めているのは、それぞれが防ぐ失敗付きの八つのルール、あなたが受け入れるか拒否できる
    よう提案と印された固有のルール、そしてあなたについて質問すること。
 
 2. 質問に答えること。提案を読むこと：役立つものを受け入れ、役立たないものを拒否する。常に
@@ -294,7 +305,7 @@ WhatsAppまたはメールによる自動リマインダー。特定の予約に
 
 3. こう締めること：
 
-> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> I accept rules 1 to 8 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 
@@ -306,7 +317,7 @@ WhatsAppまたはメールによる自動リマインダー。特定の予約に
    まだプロジェクトファイルがなければ（レッスン2で作る）、その指示を持つ最小限のものを作る。
    それでよい。
 
-**完全性の検証。** 六つのルールが、それぞれ防ぐ失敗とともにあるか？ 願望として書かれたもの
+**完全性の検証。** 八つのルールが、それぞれ防ぐ失敗とともにあるか？ 願望として書かれたもの
 があるか（「…するよう努める」）？ プロジェクトファイルは毎セッションの最初にこれを読むよう
 命じているか？ あなたの働き方について少なくとも一つ質問したか？
 

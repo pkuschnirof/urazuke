@@ -266,7 +266,7 @@
   为了不让代理自作主张地"改进"它所需要的。
 - **时机**：在 N0 之后，在读任何东西之前。
 - **输入**：你的工作偏好，和第 1 级台阶一样。
-- **产出物**：`docs/WORKING_AGREEMENT.md`，含方法的六条规则和遗留系统的五条规则。
+- **产出物**：`docs/WORKING_AGREEMENT.md`，含方法的八条规则和遗留系统的五条规则。
 - **闸门**：契约有日期和版本，而且项目文件（等它在 N2 存在以后）会命令读它。
 - **谁决定**：所有者。
 
@@ -282,17 +282,20 @@
 **初始：**
 
 > Before we touch anything, we are going to set the working agreement between you and me for a
-> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the six rules
-> of the method (my time is sacred; zero technical debt; exact scope; documentation in the same
-> commit; never report as done what you have not verified; speak my language), each with one line
-> explaining what it prevents, and these five rules for an inherited system: (7) Nothing is
-> refactored that was not asked for, and no module is rewritten. (8) Code you do not understand
-> is read before it is touched, and what you learn goes into the system map. (9) Anything strange
+> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the eight
+> rules of the method (my time is sacred; zero technical debt; exact scope; documentation in the
+> same commit; never report as done what you have not verified; speak my language; every figure
+> comes with its receipt -- what it counted, how many it expected to count and what it reports
+> when you could not look; a verification runs with the least privilege it needs and that it
+> could do no harm is measured, not promised), each with one line explaining what it prevents,
+> and these five rules for an inherited system: (9) Nothing is
+> refactored that was not asked for, and no module is rewritten. (10) Code you do not understand
+> is read before it is touched, and what you learn goes into the system map. (11) Anything strange
 > you find (a secret in the code, a dead path, a duplicated rule, a query without an index) is
-> logged as a pending item with its evidence, never fixed in passing. (10) Current behaviour is
+> logged as a pending item with its evidence, never fixed in passing. (12) Current behaviour is
 > the specification until the owner says otherwise: a difference between what the code does and
 > what the business says is a discrepancy for me to decide, not a bug for you to fix silently.
-> (11) No change reaches the test environment without the characterization suite green. Add any
+> (13) No change reaches the test environment without the characterization suite green. Add any
 > rules you think this system needs, marked as proposals. If you need to know something about how
 > I work in order to write this, ask me.
 >
@@ -305,10 +308,12 @@
 
 > [zh]
 > 在我们动任何东西之前，要为一个已经存在、而且有用户的系统，定下你和我之间的协作契约。写
-> `docs/WORKING_AGREEMENT.md`，包含方法的六条规则（我的时间是神圣的；零技术债务；精确的范围；
-> 文档在同一次提交里；绝不把没验证过的东西报告为已完成；说我的语言），每条附一行说明它避免了什
-> 么，再加上这五条针对继承来的系统的规则：（8）不重构任何没被要求的东西，不重写任何模块。（11）
-> 你不理解的代码，先读再动，而你学到的东西要进系统地图。（7）你发现的任何怪事（代码里的一个密
+> `docs/WORKING_AGREEMENT.md`，包含方法的八条规则（我的时间是神圣的；零技术债务；精确的范围；
+> 文档在同一次提交里；绝不把没验证过的东西报告为已完成；说我的语言；每一个数字都带着它的凭据——数了什么、预期
+> 要数多少，以及看不到的时候报告什么——；验证以最小特权运行，而它没能造成损害这件事是量出来
+> 的，不是承诺出来的），每条附一行说明它避免了什
+> 么，再加上这五条针对继承来的系统的规则：（9）不重构任何没被要求的东西，不重写任何模块。（10）
+> 你不理解的代码，先读再动，而你学到的东西要进系统地图。（11）你发现的任何怪事（代码里的一个密
 > 钥、一条死路径、一条重复的规则、一个没有索引的查询）都作为带证据的待办项记下来，绝不顺手修掉。
 > （12）当前行为就是规格，直到所有者另有说法为止：代码做的事和业务说的事之间的差异，是一条由我
 > 来决定的不一致，不是一个由你悄悄修掉的 bug。（13）表征测试套件不绿，任何改动都不许进测试环境。
@@ -320,7 +325,7 @@
 > 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
 > cision_maker` 或 `technical`——；项目没有声明就用 `decision_maker`。
 
-我在要求的东西：一贯的六条规则，再加五条，它们之所以存在，是因为一个模型面对别人的代码会条件
+我在要求的东西：一贯的八条规则，再加五条，它们之所以存在，是因为一个模型面对别人的代码会条件
 反射地做三件事：重排它，在它觉得不对的地方"修"它，以及当代码的行为和它预期的不一样时就认定那
 是个错误。规则 7、9 和 10 恰好挡住这三个反射。规则 8 把阅读变成地图，这样代理从某个模块里学
 到的东西不会在会话关闭时丢掉。规则 11 是把安全带写成规则，好让它在测试套件存在之前就先存在。

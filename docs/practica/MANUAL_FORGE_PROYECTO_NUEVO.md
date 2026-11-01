@@ -151,7 +151,7 @@ es la misma.
 
 ### Peldaño 1: el contrato de convivencia
 
-El agente escribe `docs/WORKING_AGREEMENT.md` con las seis reglas del método, la rutina del rojo
+El agente escribe `docs/WORKING_AGREEMENT.md` con las ocho reglas del método, la rutina del rojo
 y la rutina del reporte honesto. Forge, además de la existencia del archivo, busca que esas dos
 rutinas estén escritas: son las que le va a exigir en los peldaños 8 y 12.
 

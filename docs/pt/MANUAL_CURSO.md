@@ -258,7 +258,7 @@ dá a ele. Sem contrato, você vai repetir as mesmas coisas a cada sessão, e a 
 diferente. Eu o escrevi pela primeira vez depois de duas semanas me repetindo
 [Ref. 1](REFERENCIAS.md#ref-1).
 
-As seis regras mínimas têm cada uma uma falha por trás: "meu tempo é sagrado" evita que ele lhe
+As oito regras mínimas têm cada uma uma falha por trás: "meu tempo é sagrado" evita que ele lhe
 consulte cada detalhe; "zero dívida" evita o "depois eu arrumo"; "escopo exato" evita que "já que
 está aí" ele lhe acrescente coisas; "documentação no mesmo commit" evita os manuais velhos;
 "nunca relatar como feito o não verificado" evita o "pronto" que não era; "fale o meu idioma"
@@ -277,16 +277,21 @@ evita que ele responda em inglês porque o prompt estava em inglês.
 
 1. Cole este prompt:
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. Add any rules you think this project needs, marked as
-> proposals. If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 
 > [pt]
 > Antes de escrever código, vamos fixar o contrato de convivência entre você e eu. Escreva
@@ -296,11 +301,16 @@ evita que ele responda em inglês porque o prompt estava em inglês.
 > conserta na raiz, com seu teste de regressão, na mesma sessão. (3) Escopo exato: nem mais nem
 > menos do que o pedido; se vir outra coisa, anote como pendência, não faça. (4) A documentação se
 > atualiza no mesmo commit que a mudança. (5) Nunca relate como feito algo que você não verificou;
-> separe sempre o que verificou do que acredita. (6) Fale o meu idioma. Acrescente as regras que
+> separe sempre o que verificou do que acredita. (6) Fale o meu idioma. (7) Todo número que você
+> me entrega e do qual depende uma decisão vem com o seu recibo: o que contou, quantos esperava
+> contar, de que dependeu e o que informa quando você não pôde olhar; se é lido igual quando você
+> não pôde olhar, não é um número. (8) Um comando que você apresenta como de somente leitura corre
+> sem permissão de escrever, e uma comprovação que exerce uma operação destrutiva corre onde a sua
+> sentença não pode aterrissar: que nada mudou mede-se, não se promete. Acrescente as regras que
 > achar que este projeto precisa, marcadas como propostas. Se precisar saber algo sobre como eu
 > trabalho para escrever isto, pergunte-me.
 
-   Você está pedindo as seis regras com a falha que cada uma evita, regras próprias marcadas como
+   Você está pedindo as oito regras com a falha que cada uma evita, regras próprias marcadas como
    propostas para que você as aceite ou rejeite, e que ele pergunte sobre você.
 
 2. Responda às perguntas. Leia as propostas: aceite as que lhe servirem, rejeite as que não,
@@ -312,19 +322,19 @@ buracos do prompt, e quem os preenche é você.
 
 3. Feche com:
 
-> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> I accept rules 1 to 8 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 
 > [pt]
-> Aceito as regras 1 a 6 e as suas propostas [X, Y]; rejeito [Z] porque [razão]. Feche o contrato
+> Aceito as regras 1 a 8 e as suas propostas [X, Y]; rejeito [Z] porque [razão]. Feche o contrato
 > com a data de hoje e um número de versão. Depois acrescente ao arquivo de projeto a instrução
 > de ler este contrato ao começar cada sessão.
 
    Se ainda não há arquivo de projeto (você faz isso na lição 2), ele vai criar um mínimo com
    essa instrução; está bem.
 
-**Verificação de completude.** Estão as seis regras, cada uma com a falha que evita? Há alguma
+**Verificação de completude.** Estão as oito regras, cada uma com a falha que evita? Há alguma
 escrita como aspiração ("tentar…")? O arquivo de projeto ordena lê-lo ao começar cada sessão?
 Ele lhe fez pelo menos uma pergunta sobre como você trabalha?
 

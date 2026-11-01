@@ -299,7 +299,7 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
   システムが、エージェントが勝手に「改善」しないために必要とするものだ。
 - **いつ**：N0の後、何かを読む前に。
 - **入力**：あなたの働き方の好み、第1段と同じ。
-- **成果物**：方法の六つのルールとレガシーの五つを記した `docs/WORKING_AGREEMENT.md`。
+- **成果物**：方法の八つのルールとレガシーの五つを記した `docs/WORKING_AGREEMENT.md`。
 - **ゲート**：約束に日付と版があり、プロジェクトファイル（N2で存在するようになったら）が
   それを読むよう命じている。
 - **誰が決めるか**：オーナー。
@@ -316,17 +316,20 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 **最初の：**
 
 > Before we touch anything, we are going to set the working agreement between you and me for a
-> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the six rules
-> of the method (my time is sacred; zero technical debt; exact scope; documentation in the same
-> commit; never report as done what you have not verified; speak my language), each with one line
-> explaining what it prevents, and these five rules for an inherited system: (7) Nothing is
-> refactored that was not asked for, and no module is rewritten. (8) Code you do not understand
-> is read before it is touched, and what you learn goes into the system map. (9) Anything strange
+> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the eight
+> rules of the method (my time is sacred; zero technical debt; exact scope; documentation in the
+> same commit; never report as done what you have not verified; speak my language; every figure
+> comes with its receipt -- what it counted, how many it expected to count and what it reports
+> when you could not look; a verification runs with the least privilege it needs and that it
+> could do no harm is measured, not promised), each with one line explaining what it prevents,
+> and these five rules for an inherited system: (9) Nothing is
+> refactored that was not asked for, and no module is rewritten. (10) Code you do not understand
+> is read before it is touched, and what you learn goes into the system map. (11) Anything strange
 > you find (a secret in the code, a dead path, a duplicated rule, a query without an index) is
-> logged as a pending item with its evidence, never fixed in passing. (10) Current behaviour is
+> logged as a pending item with its evidence, never fixed in passing. (12) Current behaviour is
 > the specification until the owner says otherwise: a difference between what the code does and
 > what the business says is a discrepancy for me to decide, not a bug for you to fix silently.
-> (11) No change reaches the test environment without the characterization suite green. Add any
+> (13) No change reaches the test environment without the characterization suite green. Add any
 > rules you think this system needs, marked as proposals. If you need to know something about how
 > I work in order to write this, ask me.
 >
@@ -339,16 +342,18 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 
 > [ja]
 > 何にも触れる前に、既に存在してユーザーがいるシステムのための、あなたと私の共働の約束を
-> 定めます。`docs/WORKING_AGREEMENT.md` を書いてください。方法の六つのルール（私の時間は
+> 定めます。`docs/WORKING_AGREEMENT.md` を書いてください。方法の八つのルール（私の時間は
 > 神聖。技術的負債ゼロ。範囲は正確に。文書は同じコミットで。検証していないことを決して
-> やったと報告しない。私の言語で話す）を、それぞれ何を防ぐかを説明する一行とともに。そして
-> 受け継いだシステムのためのこの五つのルールを：(7) 頼まれていないものは何もリファクタ
-> リングせず、どのモジュールも書き直さない。(8) 理解していないコードは触れる前に読み、
-> 学んだことはシステムの地図に入れる。(9) 見つけた変なもの（コードの中の秘密、死んだ経路、
+> やったと報告しない。私の言語で話す。すべての数字はレシートを伴う——何を数えたか、いくつ
+> 数える予定だったか、そして見ることができなかったときに何を報告するか——。検証は最小の特権で
+> 走り、害を与えられなかったことは測るのであり約束するのではない）を、それぞれ何を防ぐかを説明する一行とともに。そして
+> 受け継いだシステムのためのこの五つのルールを：(9) 頼まれていないものは何もリファクタ
+> リングせず、どのモジュールも書き直さない。(10) 理解していないコードは触れる前に読み、
+> 学んだことはシステムの地図に入れる。(11) 見つけた変なもの（コードの中の秘密、死んだ経路、
 > 重複したルール、インデックスのないクエリ）はすべて、証拠とともに保留項目として記録し、
-> 決してついでに直さない。(10) オーナーが別のことを言うまで、現在の挙動が仕様である：
+> 決してついでに直さない。(12) オーナーが別のことを言うまで、現在の挙動が仕様である：
 > コードがすることと業務が言うことの違いは、私が決める食い違いであって、あなたが黙って直す
-> バグではない。(11) 特性化テスト群が緑でなければ、どんな変更もテスト環境に届かない。この
+> バグではない。(13) 特性化テスト群が緑でなければ、どんな変更もテスト環境に届かない。この
 > システムに必要だと思うルールがあれば、提案と印して加えてください。これを書くために私の
 > 働き方について知る必要があることがあれば、聞いてください。
 >
@@ -358,7 +363,7 @@ N7を終えてこれらのファイルのどれかが欠けていたら、区間
 > ication_depth` で宣言した技術的な深さで——`beginner`、`decision_maker`、`technical`——。宣言がなけ
 > れば `decision_maker` を使ってください。
 
-求めているのは、いつもの六つのルールと、他人のコードを前にしたモデルが反射的に三つのことを
+求めているのは、いつもの八つのルールと、他人のコードを前にしたモデルが反射的に三つのことを
 するから存在する五つだ：並べ替える。悪いと思ったところを「直す」。そして、コードがすること
 が自分の期待と違えばそれは誤りだと決めてかかる。ルール7、9、10はまさにその三つの反射を
 塞ぐ。ルール8は読むことを地図に変える。エージェントがあるモジュールについて学んだことが

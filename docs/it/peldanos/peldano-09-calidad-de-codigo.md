@@ -300,6 +300,10 @@ accanto alla copertura, con un calo trattato come rosso.
   giustifica non averli?
 - Se ci sono test di mutazione: quanti mutanti sono sopravvissuti nell'ultimo blocco, e ciascuno
   ha la sua voce in sospeso o la sua ragione scritta?
+- Ogni strumento della catena viene con la sua ricevuta: quanti elementi si aspettava di percorrere
+  accanto a quanti ne ha percorsi, da che cosa dipende, e che cosa informa quando non ha potuto
+  guardare? Chiedi una corsa in cui lo strumento non ha potuto guardare: se quel risultato si legge
+  come il verde, CQ-19 non è adempiuta, qualunque cosa dica la percentuale.
 
 ## 5. Segnali d'allarme
 

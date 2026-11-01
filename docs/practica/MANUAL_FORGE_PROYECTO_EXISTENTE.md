@@ -77,7 +77,7 @@ convierten en proyectos previos: acá, el cinturón de N4 y el respaldo del bloq
 
 ### N1: el contrato para un legado
 
-`docs/WORKING_AGREEMENT.md` con las seis reglas más las cinco del legado. Forge busca, además,
+`docs/WORKING_AGREEMENT.md` con las ocho reglas más las cinco del legado. Forge busca, además,
 la rutina del rojo y la del reporte honesto: las va a exigir igual que en un proyecto nuevo.
 
 ### N2: el mapa recuperado y las discrepancias

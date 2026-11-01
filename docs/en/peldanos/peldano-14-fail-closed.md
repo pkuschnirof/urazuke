@@ -130,6 +130,9 @@ it do it.
   enabling them?
 - What happens if the embedded agent tries something outside its permissions? Ask it to try and
   show you the rejection in the log.
+- What privilege did each verification run with? The command presented as read-only, without
+  permission to write; and the probe that exercises the blocked action, running where its statement
+  cannot land, with the state counted before and after (CQ-20).
 
 ## 5. Warning signs
 

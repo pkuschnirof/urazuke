@@ -164,6 +164,9 @@ avrebbe fatto prima di lasciarla fare.
   fatto" prima di abilitarle?
 - Cosa succede se l'agente incorporato tenta qualcosa fuori dai suoi permessi? Chiedigli di
   provarci e di mostrarti il rifiuto nel log.
+- Con quale privilegio è corsa ogni verifica? Il comando che si presenta come di sola lettura,
+  senza permesso di scrivere; e la sonda che esercita l'azione impedita, correndo dove la sua
+  istruzione non può atterrare, con lo stato contato prima e dopo (CQ-20).
 
 ## 5. Segnali d'allarme
 

@@ -276,7 +276,7 @@ in one afternoon for a system nobody understands. The agent answered instead of 
   are the ones an inherited system needs so that the agent does not "improve" it on its own.
 - **When**: after N0, before reading anything.
 - **Inputs**: your working preferences, as in step 1.
-- **Artefact**: `docs/WORKING_AGREEMENT.md` with the six rules of the method and the five of the
+- **Artefact**: `docs/WORKING_AGREEMENT.md` with the eight rules of the method and the five of the
   legacy system.
 - **Gate**: the agreement has a date and a version, and the project file (once it exists, in N2)
   orders it to be read.
@@ -296,17 +296,20 @@ in one afternoon for a system nobody understands. The agent answered instead of 
 **Opening:**
 
 > Before we touch anything, we are going to set the working agreement between you and me for a
-> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the six rules
-> of the method (my time is sacred; zero technical debt; exact scope; documentation in the same
-> commit; never report as done what you have not verified; speak my language), each with one line
-> explaining what it prevents, and these five rules for an inherited system: (7) Nothing is
-> refactored that was not asked for, and no module is rewritten. (8) Code you do not understand
-> is read before it is touched, and what you learn goes into the system map. (9) Anything strange
+> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the eight
+> rules of the method (my time is sacred; zero technical debt; exact scope; documentation in the
+> same commit; never report as done what you have not verified; speak my language; every figure
+> comes with its receipt -- what it counted, how many it expected to count and what it reports
+> when you could not look; a verification runs with the least privilege it needs and that it
+> could do no harm is measured, not promised), each with one line explaining what it prevents,
+> and these five rules for an inherited system: (9) Nothing is
+> refactored that was not asked for, and no module is rewritten. (10) Code you do not understand
+> is read before it is touched, and what you learn goes into the system map. (11) Anything strange
 > you find (a secret in the code, a dead path, a duplicated rule, a query without an index) is
-> logged as a pending item with its evidence, never fixed in passing. (10) Current behaviour is
+> logged as a pending item with its evidence, never fixed in passing. (12) Current behaviour is
 > the specification until the owner says otherwise: a difference between what the code does and
 > what the business says is a discrepancy for me to decide, not a bug for you to fix silently.
-> (11) No change reaches the test environment without the characterization suite green. Add any
+> (13) No change reaches the test environment without the characterization suite green. Add any
 > rules you think this system needs, marked as proposals. If you need to know something about how
 > I work in order to write this, ask me.
 >
@@ -317,7 +320,7 @@ in one afternoon for a system nobody understands. The agent answered instead of 
 > technical depth the project declared in `communication_depth` -- `beginner`, `decision_maker` or
 > `technical`; if the project declared none, use `decision_maker`.
 
-What I am asking for: the usual six rules, and five that exist because a model faced with
+What I am asking for: the usual eight rules, and five that exist because a model faced with
 somebody else's code does three things by reflex: it reorders it, it "fixes" it wherever it looks
 wrong, and it assumes that what the code does is a mistake when it differs from what it would
 expect. Rules 7, 9 and 10 block exactly those three reflexes. Rule 8 turns the reading into a

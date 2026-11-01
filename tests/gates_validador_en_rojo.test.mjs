@@ -93,6 +93,18 @@ const CASOS = [
   ['la obligacion del consumidor sin lo que pasa cuando no coincide', (f) => { delete f.schema.pinning.consumer_contract.on_mismatch; }, 'E_FIJACION'],
   ['el upgrade que deja de ser decision del dueno', (f) => { f.schema.pinning.upgrade.who_decides = 'tool'; }, 'E_FIJACION'],
   ['la afirmacion de las claves cubiertas apuntando a una version inexistente', (f) => { f.schema.pinning.upgrade.covered_keys_since = '2026.09.1'; }, 'E_FIJACION'],
+  // Las caras (D-078). Lo que una cara habilita es apagar UNA comprobacion de una regla, asi que
+  // cada forma de dejarla fuera de control tiene que caer: una cara que el anexo no tiene no se
+  // puede enunciar, una cara que ninguna regla declara no se puede medir ni apagar, y una politica
+  // incompleta deja una regla apagada a medias informandose como cumplida.
+  ['una cara que el anexo no tiene', (f) => { regla(f, 'CQ-19').faces.push({ id: 'CQ-19.9', since_schema: 2, since_version: '2026.10.12', statement: { section: '4', row: 'CQ-19.9' } }); }, 'E_CARA'],
+  ['una cara que cuelga de otra regla', (f) => { regla(f, 'CQ-19').faces[0].id = 'CQ-20.9'; }, 'E_CARA'],
+  ['una cara del anexo que ninguna regla declara', (f) => { delete regla(f, 'CQ-20').faces; }, 'E_CARA_HUERFANA'],
+  ['el enunciado de una cara transcrito en los datos', (f) => { regla(f, 'CQ-19').faces[0].statement.text = 'El denominador.'; }, 'E_TEXTO_DUPLICADO'],
+  ['la politica de caras que desaparece', (f) => { delete f.heuristics.faces; }, 'E_CARA'],
+  ['la politica que deja de decir que una cara apagada no se informa como cumplida', (f) => { delete f.heuristics.faces.never_reported_as_fulfilled; }, 'E_CARA'],
+  ['el registro de apagado que deja de aceptar el id de una cara', (f) => { delete f.heuristics.switch_off.by_face; }, 'E_CARA'],
+  ['una cara sin procedencia, que el diferencial de un upgrade no podria contar', (f) => { delete regla(f, 'CQ-19').faces[0].since_version; }, 'E_PROCEDENCIA'],
 ];
 
 test('el catalogo limpio no devuelve ni un error (si no, los rojos de abajo no prueban nada)', () => {
@@ -169,6 +181,29 @@ test('rojo: si las dos versiones del anexo no coinciden en la severidad, se dice
   const codigos = [...new Set(errores.map((e) => e.code))];
   assert.ok(codigos.includes('E_ANEXO_TRADUCCION'), 'codigos: ' + codigos.join(', '));
   assert.ok(errores.some((e) => e.que.includes('CQ-01')));
+});
+
+test('rojo: si el anexo pierde la fila de una CARA, se dice cual y no se publica', () => {
+  const mutilado = textoAnexoEn.split(/\r?\n/).filter((l) => !/^\|\s*CQ-19\.3\s*\|/.test(l)).join('\n');
+  assert.notEqual(mutilado, textoAnexoEn, 'la fila de CQ-19.3 tenia que quedar fuera');
+  const errores = validar(limpio(), extraerAnexo(mutilado, textoAnexoEs));
+  assert.ok(errores.some((e) => e.code === 'E_CARA' && e.que.includes('CQ-19.3')),
+    'codigos: ' + [...new Set(errores.map((e) => e.code))].join(', '));
+});
+
+test('rojo: una cara que esta en castellano y no en el publicado tampoco pasa', () => {
+  const sinLaCara = textoAnexoEn.split(/\r?\n/).filter((l) => !/^\|\s*CQ-20\.2\s*\|/.test(l)).join('\n');
+  const errores = validar(limpio(), extraerAnexo(sinLaCara, textoAnexoEs));
+  assert.ok(errores.some((e) => e.code === 'E_CARA' && e.que.includes('CQ-20.2')),
+    'codigos: ' + [...new Set(errores.map((e) => e.code))].join(', '));
+});
+
+test('rojo: si una fila de cara cambia de forma, la extraccion lo dice en vez de adivinar', () => {
+  const mutilado = textoAnexoEn.replace(/^\|\s*CQ-19\.1\s*\|/m, '| CQ-19.1 | de mas |');
+  assert.notEqual(mutilado, textoAnexoEn, 'la fila de CQ-19.1 tenia que quedar modificada');
+  const errores = validar(limpio(), extraerAnexo(mutilado, textoAnexoEs));
+  const codigos = [...new Set(errores.map((e) => e.code))];
+  assert.ok(codigos.includes('E_ANEXO_ILEGIBLE') || codigos.includes('E_CARA'), 'codigos: ' + codigos.join(', '));
 });
 
 test('rojo: si una fila se mueve de familia en una sola version, el agrupamiento lo delata', () => {

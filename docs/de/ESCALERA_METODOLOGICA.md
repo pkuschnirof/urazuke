@@ -261,7 +261,7 @@ verpflichtend und in diesem Dokument nicht genannt, und der erste Leser, der die
 anderes Format übertrug, übersprang siebenundzwanzig der fünfundvierzig Regeln, weil er nie wusste,
 dass sie da waren.
 
-Und eine dieser sechsundvierzig handelt nicht von dem System, das gebaut wird, sondern davon,
+Und eine dieser achtundvierzig handelt nicht von dem System, das gebaut wird, sondern davon,
 **wie du gefragt wirst**. Es ist **UX-28**, und sie kam am 2026-10-27 hinzu, weil sie fehlte: die
 Methode befiehlt ihren Prompts, dich zu fragen — zweiundzwanzig Mal, in mehr als der Hälfte des
 Korpus — und sagte nirgends, wie man fragt, also blieb die Form der Improvisation überlassen und
@@ -953,7 +953,8 @@ anderes Format, in Teil F mit Quellenangabe.)
   sieht [Ref. 35](REFERENCIAS.md#ref-35).
 - **Anhang H**: Anker 3 von [Anhang H](ANEXO_HEURISTICAS.md), und der größte der fünf: hier
   erweitert sich die Schranke von der Codequalität auf die **Benutzbarkeit**. Der Katalog der
-  fünfundvierzig Regeln ist erklärt und pro Gruppe aktiv; jede aktive Regel hat ihr Instrument,
+  achtundvierzig Regeln ist erklärt und pro Gruppe aktiv -- und zwei davon, die des Belegs,
+  werden Facette für Facette gemeldet --; jede aktive Regel hat ihr Instrument,
   ihre Schwere und ihren Prüfer; jede **abgeschaltete** Regel hat ihren Eintrag mit Grund, wer es
   genehmigt und Revisionsdatum — abgeschaltet ohne Eintrag ist rot, was nicht dasselbe ist wie die
   fehlende Regel —; jeder Grenzwert, den der Eigentümer nicht erklärt hat, wird als nicht erklärt
@@ -1092,7 +1093,10 @@ Schritt kommt **vor** dem Bau der Funktionalitäten, die auf die Welt wirken, ni
   Protokoll ein paar Tage angesehen hat.
 - **Eingaben**: die Erhebung der Aktionen mit Konsequenz, mit dem Eigentümer gemacht.
 - **Artefakt**: die Sperrentabelle: jede Aktion mit ihrer Umkehrbarkeit, ihrer Sperre, ihrem
-  Rückweg; ein Test pro Sperre, rot bewiesen; die neuen Automatisierungen im Trockenlauf.
+  Rückweg; ein Test pro Sperre, rot bewiesen; die neuen Automatisierungen im Trockenlauf. Und die
+  Überprüfung jeder Sperre läuft mit dem geringsten Privileg, das zum Überprüfen nötig ist: die
+  Sonde, die den verhinderten Vorgang ausführt, läuft dort, wo ihre Anweisung nicht landen kann, und
+  beweist durch Zählen vorher und nachher, dass der Zustand identisch blieb (Regel CQ-20 von Anhang H).
 - **Tor**: jede unumkehrbare Aktion hat eine Sperre und einen dokumentierten Rückweg.
 - **Wer entscheidet**: der Eigentümer gibt Sperre für Sperre frei; das System überspringt sie nie.
 - **Fehler, den er verhindert**: eine doppelte Abbuchung, eine automatische Genehmigung ohne einen
@@ -1731,8 +1735,8 @@ seine vollständige detaillierte Spezifikation, und die Summe der offenen Posten
 Spezifikation des Systems. Siehe B.5.
 
 **Anhang H** — Der Heuristik-Anhang der Methode
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): fünfundvierzig überprüfbare Regeln, achtzehn zur
-Codequalität und siebenundzwanzig zur Benutzbarkeit, jede mit ihrer stabilen Kennung, ihrer Schwere
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): achtundvierzig überprüfbare Regeln, zwanzig zur
+Codequalität und achtundzwanzig zur Benutzbarkeit, jede mit ihrer stabilen Kennung, ihrer Schwere
 und dem Instrument, das sie misst. Er ist verpflichtend und läuft durch alle vier Abschnitte: er
 kommt mit zwei Voreingaben in Schritt 2 und mit fünf Ankern in den Schritten 5, 8, 9, 10 und 12
 herein. Das „H" steht für Heuristiken.
@@ -1796,7 +1800,13 @@ ausgeführt.
 
 **Beförderung (UAT → PROD)** — Etwas kontrolliert von der Testumgebung in die Produktion bringen.
 
-**Beleg** — Die Ausgabe eines Befehls, so eingefügt, wie sie herauskam, mit dem exakten Befehl,
+**Beleg** — Seit dem 2026-11-01 benennt das Wort zwei Dinge, und das zweite ist Regel CQ-19 von
+Anhang H: was eine Zahl neben sich mitbringt, um überhaupt lesbar zu sein -- welche Menge sie zu
+durchlaufen erwartete und wie viel sie durchlief, wovon sie abhängt, und was sie meldet, wenn sie
+nicht hinsehen konnte. Diese Regel und ihr Paar CQ-20 sind die ersten zwei mit **Facetten**:
+Schnitte desselben Wortlauts mit eigener Kennung (`CQ-19.1`), damit eine einzelne mit ihrem Grund
+abgeschaltet werden kann; und eine Regel mit einer abgeschalteten Facette wird niemals als erfüllt
+gemeldet. Die erste Bedeutung, die der Stufe 8: die Ausgabe eines Befehls, so eingefügt, wie sie herauskam, mit dem exakten Befehl,
 der Version, gegen die er lief, den Zahlen und dem Exit-Code, sodass der Eigentümer ihn noch einmal
 laufen lassen kann, ohne zu verstehen, was er tut. In Schritt 8 muss das Rot ein Beleg sein, keine
 Erzählung („der Test ist wie erwartet fehlgeschlagen“).

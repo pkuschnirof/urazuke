@@ -256,6 +256,27 @@ export function generar() {
     + (avisan.length === 1 ? 'warns' : 'warn') + ' (' + avisan.map((r) => r.id).join(', ') + '):');
   p('a human red says who verifies a rule, not how hard it hits.');
   p();
+  // Las caras: la cuenta se DERIVA del dato, igual que la de las anclas. Una cifra pegada al
+  // nombre de una coleccion no se escribe a mano en un documento que se genera (D-077, D-078).
+  const conCaras = h.rules.filter((r) => r.faces && r.faces.length > 0);
+  if (conCaras.length > 0) {
+    const caras = conCaras.flatMap((r) => r.faces.map((c) => ({ ...c, rule: r.id })));
+    p('### The ' + cardinal(caras.length) + ' faces, and how a single one is switched off');
+    p();
+    p(h.faces.what);
+    p();
+    p('| id | face | statement | rule |');
+    p('|---|---|---|---|');
+    for (const c of caras) p('| ' + c.id + ' | ' + c.statement.face_label + ' | ' + c.statement.text + ' | ' + c.rule + ' |');
+    p();
+    p('Switching one off: ' + h.faces.switch_off_record);
+    p(h.faces.never_reported_as_fulfilled);
+    p('On the scoreboard: ' + h.faces.scoreboard);
+    p();
+    p(Cardinal(conCaras.length) + ' of the ' + cardinal(h.rules.length) + ' rules have faces ('
+      + conCaras.map((r) => r.id + ': ' + cardinal(r.faces.length)).join(', ') + '). ' + h.faces.rules_with_faces_today);
+    p();
+  }
   p('### The ' + cardinal(h.anchors.length) + ' anchors and the ' + cardinal(h.prior_inputs.length) + ' prior inputs');
   p();
   p('| anchor | step | what it adds | evaluator |');

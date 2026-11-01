@@ -323,7 +323,7 @@ verde in un pomeriggio per un sistema che nessuno capisce. L'agente ha risposto 
   non lo "migliori" per conto suo.
 - **Quando**: dopo N0, prima di leggere qualunque cosa.
 - **Input**: le tue preferenze di lavoro, come nel gradino 1.
-- **Artefatto**: `docs/WORKING_AGREEMENT.md` con le sei regole del metodo e le cinque del legacy.
+- **Artefatto**: `docs/WORKING_AGREEMENT.md` con le otto regole del metodo e le cinque del legacy.
 - **Cancello**: il patto ha data e versione, e il file di progetto (quando esisterà, in N2) ordina
   di leggerlo.
 - **Chi decide**: il proprietario.
@@ -341,17 +341,20 @@ verde in un pomeriggio per un sistema che nessuno capisce. L'agente ha risposto 
 **Iniziale:**
 
 > Before we touch anything, we are going to set the working agreement between you and me for a
-> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the six rules
-> of the method (my time is sacred; zero technical debt; exact scope; documentation in the same
-> commit; never report as done what you have not verified; speak my language), each with one line
-> explaining what it prevents, and these five rules for an inherited system: (7) Nothing is
-> refactored that was not asked for, and no module is rewritten. (8) Code you do not understand
-> is read before it is touched, and what you learn goes into the system map. (9) Anything strange
+> system that already exists and has users. Write `docs/WORKING_AGREEMENT.md` with the eight
+> rules of the method (my time is sacred; zero technical debt; exact scope; documentation in the
+> same commit; never report as done what you have not verified; speak my language; every figure
+> comes with its receipt -- what it counted, how many it expected to count and what it reports
+> when you could not look; a verification runs with the least privilege it needs and that it
+> could do no harm is measured, not promised), each with one line explaining what it prevents,
+> and these five rules for an inherited system: (9) Nothing is
+> refactored that was not asked for, and no module is rewritten. (10) Code you do not understand
+> is read before it is touched, and what you learn goes into the system map. (11) Anything strange
 > you find (a secret in the code, a dead path, a duplicated rule, a query without an index) is
-> logged as a pending item with its evidence, never fixed in passing. (10) Current behaviour is
+> logged as a pending item with its evidence, never fixed in passing. (12) Current behaviour is
 > the specification until the owner says otherwise: a difference between what the code does and
 > what the business says is a discrepancy for me to decide, not a bug for you to fix silently.
-> (11) No change reaches the test environment without the characterization suite green. Add any
+> (13) No change reaches the test environment without the characterization suite green. Add any
 > rules you think this system needs, marked as proposals. If you need to know something about how
 > I work in order to write this, ask me.
 >
@@ -364,17 +367,20 @@ verde in un pomeriggio per un sistema che nessuno capisce. L'agente ha risposto 
 
 > [it]
 > Prima di toccare qualunque cosa, fisseremo il patto di convivenza fra te e me per un sistema che
-> esiste già e ha utenti. Scrivi `docs/WORKING_AGREEMENT.md` con le sei regole del metodo (il mio
+> esiste già e ha utenti. Scrivi `docs/WORKING_AGREEMENT.md` con le otto regole del metodo (il mio
 > tempo è sacro; zero debito tecnico; ambito esatto; documentazione nello stesso commit; non
-> riportare mai come fatto ciò che non hai verificato; parla la mia lingua), ciascuna con una riga
-> che spieghi cosa evita, e queste cinque regole per un sistema ereditato: (7) Non si rifattorizza
-> nulla che non sia stato chiesto, e non si riscrive nessun modulo. (8) Il codice che non capisci
-> si legge prima di toccarlo, e ciò che impari va nella mappa del sistema. (9) Qualunque cosa
+> riportare mai come fatto ciò che non hai verificato; parla la mia lingua; ogni cifra viene
+> con la sua ricevuta -- cosa ha contato, quanti si aspettava di contare e cosa informa quando non
+> ha potuto guardare --; una verifica corre con il privilegio minimo e che non abbia potuto fare
+> danno si misura, non si promette), ciascuna con una riga
+> che spieghi cosa evita, e queste cinque regole per un sistema ereditato: (9) Non si rifattorizza
+> nulla che non sia stato chiesto, e non si riscrive nessun modulo. (10) Il codice che non capisci
+> si legge prima di toccarlo, e ciò che impari va nella mappa del sistema. (11) Qualunque cosa
 > strana tu trovi (un segreto nel codice, un percorso morto, una regola duplicata, una query senza
-> indice) si annota come voce in sospeso con la sua prova, non si sistema mai di sfuggita. (10) Il
+> indice) si annota come voce in sospeso con la sua prova, non si sistema mai di sfuggita. (12) Il
 > comportamento attuale è la specifica finché il proprietario non dice altro: una differenza fra
 > ciò che il codice fa e ciò che il business dice è una discrepanza che decido io, non un bug che
-> tu sistemi in silenzio. (11) Nessuna modifica arriva all'ambiente di test senza la batteria di
+> tu sistemi in silenzio. (13) Nessuna modifica arriva all'ambiente di test senza la batteria di
 > caratterizzazione in verde. Aggiungi le regole che credi servano a questo sistema, marcate come
 > proposte. Se ti serve sapere qualcosa su come lavoro per scrivere questo, chiedimelo.
 >
@@ -386,7 +392,7 @@ verde in un pomeriggio per un sistema che nessuno capisce. L'agente ha risposto 
 > —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
 > `decision_maker`.
 
-Cosa gli sto chiedendo: le sei regole di sempre, e cinque che esistono perché un modello di fronte
+Cosa gli sto chiedendo: le otto regole di sempre, e cinque che esistono perché un modello di fronte
 a codice altrui fa tre cose per riflesso: lo riordina, lo "sistema" dove gli sembra sbagliato, e
 dà per scontato che ciò che il codice fa sia un errore quando differisce da ciò che lui si
 aspetterebbe. Le regole 7, 9 e 10 bloccano esattamente questi tre riflessi. La regola 8 trasforma

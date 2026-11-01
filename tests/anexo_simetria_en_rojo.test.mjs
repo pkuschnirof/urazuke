@@ -44,7 +44,11 @@ test('rojo A: una ficha a la que le sacan el enlace del anexo, en UN solo idioma
   // habria dejado pasar en silencio, y es por eso que la ficha se mide por el enlace.
   const mutado = conFichaCambiada(arbol.fichasPorIdioma, 'ja', 9, (t) => t.split(ANEXO).join('OTRA_COSA.md'));
   const hallazgos = fichasQueNoCitanElAnexo(arbol.conAncla, mutado);
-  assert.deepEqual(hallazgos, ['ja/peldano-9 (anclas: 3, 3, 3)'], 'la mutacion cae y nombra el idioma y el peldano');
+  // Las anclas que el hallazgo nombra se DERIVAN del dato y no se escriben aca: cada pregunta de
+  // verificacion que cita un ancla la repite, asi que una pregunta nueva --CQ-19 en el peldano 9,
+  // D-078-- cambia la lista. Una cifra a mano en una prueba se vuelve falsa sola (D-077).
+  const anclas = arbol.conAncla.find((p) => p.num === 9).anclas.join(', ');
+  assert.deepEqual(hallazgos, ['ja/peldano-9 (anclas: ' + anclas + ')'], 'la mutacion cae y nombra el idioma y el peldano');
 });
 
 test('rojo A bis: una ficha que desaparece del documento tampoco pasa como verde', () => {

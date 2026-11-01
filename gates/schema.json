@@ -418,6 +418,35 @@
           "type": "string",
           "pattern": "^\\d{4}\\.\\d{2}\\.\\d+$",
           "note": "The catalog_version in which this rule first appeared. Required on every entry that declares since_schema, which is every entry the method added after the freeze. Absent on a base entry, because the base is present in every published version."
+        },
+        "faces": {
+          "type": "array",
+          "items": "face",
+          "note": "Present only on a rule that has faces. A rule without this key has none, and that is not a degraded case: it is the shape of forty-six of the forty-eight (D-078)."
+        }
+      }
+    },
+    "face": {
+      "additional": false,
+      "fields": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "pattern": "^(CQ|UX)-\\d\\d\\.\\d+$"
+        },
+        "statement": {
+          "type": "object",
+          "required": true
+        },
+        "since_schema": {
+          "type": "integer",
+          "enum": "since_schema",
+          "note": "Every face is later than the freeze, so every face declares it."
+        },
+        "since_version": {
+          "type": "string",
+          "pattern": "^\\d{4}\\.\\d{2}\\.\\d+$",
+          "note": "The catalog_version in which this face first appeared, so that the differential of an upgrade can count it (D-068)."
         }
       }
     }
@@ -440,7 +469,8 @@
       "authorized_by",
       "review_date"
     ],
-    "without_record": "red, and the ruleset is invalid: the scoreboard emits no figures at all (D-046, D-047)."
+    "without_record": "red, and the ruleset is invalid: the scoreboard emits no figures at all (D-046, D-047).",
+    "switch_off_record_accepts": "The `rule` field of a switch-off record takes the id of a rule or the id of one of its faces: see heuristics.faces.switch_off_record."
   },
   "pinning": {
     "what": "What a project pins, and what it costs to change it. A project pins ONE catalog_version the day it starts and keeps it until the end. That is not convenience: raising the version in the middle of a project is a REGRESSION of the completeness state, because a version that adds a requirement to a step already closed reopens that step, and what was green yesterday is not green today. Raising it is allowed and it is the owner decision, written with its date in the project decision record; what is not allowed is raising it in silence, or discovering mid-project that the gate is measuring against a definition nobody chose.",

@@ -50,16 +50,21 @@ l'agente:
 - Stato minimo accettabile: sai rispondere a ciascuna di quelle cinque domande. Il patto che ne
   uscirà sarà buono quanto le tue risposte.
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. Add any rules you think this project needs, marked as
-> proposals. If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -75,11 +80,16 @@ l'agente:
 > chiedi in prosa, con la tua raccomandazione. (2) Zero debito tecnico: ciò che si rompe si
 > corregge alla radice, con il suo test di regressione, nella stessa sessione. (3) Perimetro
 > esatto: né più né meno di ciò che è stato chiesto; se vedi qualcos'altro, annotalo come voce in
-> sospeso, non farlo. (4) La documentazione si aggiorna nello stesso commit della modifica. (5) Non
-> riportare mai come fatto qualcosa che non hai verificato; separa sempre ciò che hai verificato da
-> ciò che credi. (6) Parla la mia lingua. Aggiungi le regole che ritieni che questo progetto
-> richieda, marcate come proposte. Se hai bisogno di sapere qualcosa su come lavoro per scrivere
-> questo, chiedimelo.
+> sospeso, non farlo. (4) La documentazione si aggiorna nello stesso commit della modifica. (5)
+> Non riportare mai come fatto qualcosa che non hai verificato; separa sempre ciò che hai
+> verificato da ciò che credi. (6) Parla la mia lingua. (7) Ogni cifra che mi consegni e da cui
+> dipende una decisione viene con la sua ricevuta: cosa ha contato, quanti si aspettava di
+> contare, da che cosa è dipesa e cosa informa quando non hai potuto guardare; se si legge uguale
+> quando non hai potuto guardare, non è una cifra. (8) Un comando che presenti come di sola
+> lettura corre senza permesso di scrivere, e una verifica che esercita un'operazione distruttiva
+> corre dove la sua istruzione non può atterrare: che non è cambiato niente si misura, non si
+> promette. Aggiungi le regole che ritieni che questo progetto richieda, marcate come proposte. Se
+> hai bisogno di sapere qualcosa su come lavoro per scrivere questo, chiedimelo.
 >
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
@@ -89,7 +99,7 @@ l'agente:
 > —`beginner`, `decision_maker` o `technical`—; se il progetto non ne ha dichiarata nessuna, usa
 > `decision_maker`.
 
-Cosa gli sto chiedendo: le sei regole minime, ciascuna con il fallimento che evita (è questo che
+Cosa gli sto chiedendo: le otto regole minime, ciascuna con il fallimento che evita (è questo che
 le rende regole e non consigli); che proponga regole proprie del progetto ma le marchi come
 proposte, perché tu le accetti o le rifiuti; e che chieda ciò che ha bisogno di sapere su di te. Un
 patto redatto senza una sola domanda è sospetto: l'agente non conosce la persona con cui lavorerà.
@@ -105,7 +115,7 @@ patto redatto senza una sola domanda è sospetto: l'agente non conosce la person
 - Stato minimo accettabile: non resta nessuna regola proposta senza verdetto. Una regola che non
   hai né accettato né rifiutato resta nel patto come se l'avessi accettata.
 
-> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> I accept rules 1 to 8 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 >
@@ -117,7 +127,7 @@ patto redatto senza una sola domanda è sospetto: l'agente non conosce la person
 > `technical`; if the project declared none, use `decision_maker`.
 
 > [it]
-> Accetto le regole da 1 a 6 e le tue proposte [X, Y]; rifiuto [Z] perché [ragione]. Chiudi il
+> Accetto le regole da 1 a 8 e le tue proposte [X, Y]; rifiuto [Z] perché [ragione]. Chiudi il
 > patto con la data di oggi e un numero di versione. Poi aggiungi al file di progetto l'istruzione
 > di leggere questo patto all'inizio di ogni sessione.
 >
@@ -146,7 +156,10 @@ ogni sessione.
 
 ## 4. Verifica di completezza
 
-- Ci sono le sei regole minime, ciascuna con il fallimento che evita?
+- Ci sono le otto regole minime, ciascuna con il fallimento che evita? Le ultime due sono la
+  versione di condotta delle due regole della ricevuta dell'Allegato H (CQ-19 e CQ-20) e non una
+  copia del loro enunciato: l'allegato esige la ricevuta dagli strumenti del sistema, e il patto la
+  esige dalle cifre che l'agente ti consegna nella conversazione e da cui dipende una decisione.
 - C'è qualche regola scritta come aspirazione ("cercare di…", "per quanto possibile…")? Se c'è,
   non serve: le regole si rispettano o no.
 - Il file di progetto ordina di leggerlo in ogni sessione?

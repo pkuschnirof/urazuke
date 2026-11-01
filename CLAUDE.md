@@ -130,7 +130,7 @@ visto: el Anexo H era obligatorio y el documento principal no lo nombraba.
 
 ## El Anexo H se nombra donde el dato lo exige
 
-D-061 (PND-039, PND-048). El Anexo H es obligatorio —46 reglas desde D-070, 45 cuando se escribió esto—, con dos entradas previas en el
+D-061 (PND-039, PND-048). El Anexo H es obligatorio —48 reglas desde D-078, 46 desde D-070, 45 cuando se escribió esto—, con dos entradas previas en el
 peldaño 2 y cinco anclas en los peldaños 5, 8, 9, 10 y 12, y esas cinco son evaluadores
 `required: true` en el dato publicado— y hasta el 2026-10-26 el documento principal **no lo nombraba
 ni una vez**. Lo descubrió un lector: el autor de la adaptación reprodujo sin error seis cifras de
@@ -263,6 +263,57 @@ enumerado en el programa (D-064): las nueve fuentes que se mantienen a mano, el 
 los cuatro recursos publicados; el congelado queda afuera con su razón, porque no se edita. Doce
 rojos deliberados, el primero la frase original tal como estaba commiteada, y el paso del flujo
 exige la línea medida.
+
+## La familia del cero: dos reglas con caras, y una cara se apaga sola
+
+D-078 (`PND-065` a `PND-070`), y no salió de una idea: salió de **once fallos medidos** el
+2026-11-01 en un experimento que estaba midiendo otra cosa. Todos tenían la misma forma —un
+instrumento que no pudo mirar y lo informó igual que la salud, o que miró menos de lo que creía
+haber mirado— y aparecieron por **once caminos distintos**, que es lo que vuelve improbable que sea
+el defecto de un programa. Lo que los hace dos reglas y no once es que se les puede hacer la misma
+pregunta: *¿cuál es el denominador de este número, y qué informa este instrumento cuando no pudo
+mirar?*
+
+Entran **`CQ-19` «Recibo del instrumento»**, con cuatro caras —el denominador, la independencia, el
+universo en las dos direcciones, el hermano laxo—, anclada en el **peldaño 9**, que es `Ancla 3`,
+donde ya vive el catálogo CQ completo; y **`CQ-20` «El privilegio de una verificación»**, con dos
+—el efecto no declarado, la sonda que sólo es inofensiva cuando falla—, en el **peldaño 14**,
+fail-closed, como pareja de la rutina del rojo del peldaño 8: el rojo exige que una prueba **pueda**
+detectar, y `CQ-20` que al detectar **no rompa**. La cuenta del anexo pasó a **cuarenta y ocho**
+(20 de calidad y 28 de usabilidad).
+
+El nombre es «recibo» porque **no introduce nada**: la palabra ya está en servicio en los ocho
+idiomas por D-033, así que no hay traducción que decidir ni glosario que escribir. Lo que sí hay, y
+es la única condición que el dueño le puso, es **una línea que lo distinga del recibo del peldaño
+8**: ése es un artefacto que un plan produce, y el del instrumento es la condición que un número
+trae al lado para poder leerse. Sin esa línea, es una palabra con dos lecturas según quién la
+escribió, que es el defecto de `PND-078`.
+
+La **forma con caras** es nueva y su precio está dicho en el anexo y en el dato: una cara es un
+corte del enunciado con identificador propio (`CQ-19.1`), append-only; el registro de apagado
+acepta el id de una cara; **una regla con cualquier cara apagada no se informa como cumplida**
+—«tres de cuatro caras, una apagada con su motivo», nunca un porcentaje solo—; la cuenta de caras
+**se deriva** (D-077); y el enunciado de cada cara, como el de cada regla, vive **una sola vez** en
+el Anexo H y se extrae (D-044). El validador lo exige en las dos direcciones y en los dos idiomas,
+y pide procedencia por cara, porque una cara es una entrada con requisito y un diferencial que no
+la cuenta deja a un proyecto subiendo de versión a ciegas (D-068, D-076).
+
+Dos consecuencias que quedan dichas donde se leen. El **contrato de convivencia** pasó de seis
+reglas mínimas a **ocho**: las dos nuevas son la versión de **conducta** de `CQ-19` y `CQ-20` —lo
+que el agente me entrega en la conversación **y de lo que depende una decisión**— y **no** el
+enunciado del anexo, que habla de los instrumentos del sistema; el contrato lo dice en su prosa en
+los ocho idiomas, para que nadie lo lea como la copia que D-044 prohíbe. Ese alcance de la regla (7)
+se acotó antes de publicarse y hay que decirlo porque **así apareció**: la primera redacción pedía
+recibo para *todo* número, que es más de lo que el anexo le pide a un instrumento y más de lo que
+dice la línea que distingue los dos recibos cuatro renglones abajo, y el defecto se encontró
+**comparando las tres redacciones**, no leyendo una —cada una se lee perfecta sola (`PND-083`)—. Y
+las cinco reglas del camino heredado se renumeraron de
+`(7)..(11)` a `(9)..(13)`, lo que destapó `PND-081`: la traducción china las numeraba `8, 11, 7,
+12, 13`, sin `9` ni `10`, desde que existe.
+
+Y lo que esto **no** hace: tocar una sola de las cuarenta y seis reglas que ya estaban, ni darle
+identificador a las cinco comprobaciones de `CQ-18`, que es agregar y no renombrar y es trabajo
+aparte (`PND-082`).
 
 ## La línea de tiempo
 
@@ -460,8 +511,8 @@ existir en cada peldaño, qué tiene que decir, con qué estrategia se verifica)
 `docs/html/api/gates.json`; Yujin-Forge es consumidor, igual que con los prompts. La fuente es
 `gates/`, mantenida **a mano** porque es datos y no prosa: `catalog.json` (la versión declarada),
 `schema.json` (el esquema, que el validador interpreta), `evaluators.json` (el vocabulario cerrado
-y append-only), `steps.json` (24 peldaños), `stations.json` (N0 a N7), `heuristics.json` (las 46
-reglas del Anexo H) y `adapters.json` (las familias de frontend y los umbrales).
+y append-only), `steps.json` (24 peldaños), `stations.json` (N0 a N7), `heuristics.json` (las 48
+reglas del Anexo H, dos de ellas con caras) y `adapters.json` (las familias de frontend y los umbrales).
 `baseline.json` es el congelado de lo que la herramienta tenía compilado el día del cambio: es la
 referencia del test de diferencia cero y **no se edita** (la única excepción escrita es D-055, y
 fue del dueño). Su cabecera guarda la procedencia —repositorio y commit de origen— y por eso el
@@ -474,7 +525,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   verdad hay que cambiar un requisito existente, es un cambio del método y va con su decisión.
   Pasó una sola vez (D-055, autorizada por el dueño y acotada a dos textos): cuando se edita, se
   edita **en sincronía** con el congelado, para que la diferencia cero siga siendo demostrable.
-- **Una sola copia de cada texto.** El enunciado de las 46 reglas vive sólo en el Anexo H;
+- **Una sola copia de cada texto.** El enunciado de las 48 reglas y de las 6 caras vive sólo en el Anexo H;
   `heuristics.json` lleva el puntero (`statement_source` para la ruta, una vez, y `section` +
   `row` por regla) y el build **extrae** el texto de `docs/en/ANEXO_HEURISTICAS.md`, que es la
   versión que se publica. El validador rechaza un enunciado transcrito, una severidad que no
@@ -488,7 +539,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
 - **Nada inventado.** Un umbral que el dueño no declaró se publica con valor nulo y
   `declarado: false`. Los únicos dos que el anexo declara son 300 líneas por archivo y 40 por
   función.
-- **La versión.** `catalog_version` la declara el método a mano (hoy `2026.10.6`); el archivo
+- **La versión.** `catalog_version` la declara el método a mano (hoy `2026.10.12`); el archivo
   publicado viaja con una huella `sha256` del contenido canonicalizado que el consumidor
   **recalcula**. El identificador de git es informativo: se calcula antes de guardar, así que
   siempre nombra al cambio anterior al que lo contiene.
@@ -613,7 +664,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
 
 `prompts/*.en.md` **se genera** desde los contratos castellanos (`build/prompts.mjs`) y no se edita
 a mano; `prompts/catalog.json` se mantiene **a mano**, porque es la identidad de lo publicado y la
-declara el método: `corpus_version` (hoy `2026.10.4`) y el registro de huellas, con las mismas
+declara el método: `corpus_version` (hoy `2026.10.7`) y el registro de huellas, con las mismas
 reglas que el catálogo de compuertas (D-053). `docs/html/api/prompts.json` viaja entonces con
 versión declarada **y** huella recalculable, y conserva el campo `version` con el sha de git, ahora
 explícitamente informativo, para no romper al consumidor que ya lo imprime: el cambio es aditivo y
@@ -630,14 +681,15 @@ sacarlo**: lo único legible por máquina era justo lo que pedía no imprimir, a
 era correcta y no se podía cumplir, y lo que dejaba en la práctica era que cada herramienta se
 escribiera sus propias traducciones de los títulos del método. `docs/html/api/labels.json`
 (`build/labels_api.mjs`) lo cierra: el título de los veinticuatro peldaños, el título de las ocho
-estaciones y el enunciado de las cuarenta y seis reglas del Anexo H, en los ocho idiomas de la
-prosa. Setenta y ocho identificadores por idioma, 624 cadenas. `labels/catalog.json` se mantiene
+estaciones, el enunciado de las cuarenta y ocho reglas del Anexo H y, desde D-078, el enunciado y
+el nombre corto de cada una de las seis caras, en los ocho idiomas de la prosa. Noventa y dos
+identificadores por idioma, 736 cadenas. `labels/catalog.json` se mantiene
 **a mano**, igual que los otros dos, porque es la identidad de lo publicado: `labels_version` (hoy
-`2026.10.1`) y el registro de huellas, con las mismas reglas que el catálogo de compuertas (D-053).
+`2026.10.2`) y el registro de huellas, con las mismas reglas que el catálogo de compuertas (D-053).
 
 Lo que no se negocia de este recurso. **Ni una cadena se escribe ahí**: se **extrae** de la prosa,
 que es el mismo mecanismo que ya resolvía el enunciado inglés de las reglas, y hay una prueba que
-exige que cada una de las 624 aparezca **literal** en el documento del idioma del que dice salir. Es
+exige que cada una de las 736 aparezca **literal** en el documento del idioma del que dice salir. Es
 la prueba que importa, porque el riesgo propio de un catálogo de textos es volverse una segunda
 versión del método que divergue de la primera sin que nada caiga; y es la que hace que el archivo no
 se pueda «completar a mano» cuando a un idioma le falta algo: si falta, **no se publica nada**. Es
@@ -691,7 +743,7 @@ generado por extracción y no transcrito (D-068), y las de los punteros del publ
 siete y traen diez rojos deliberados aparte —entre ellos el puntero colgante que las originó, que
 tiene que volver a caer si alguien lo reintroduce (D-069)—, y las del catálogo de textos, que son
 veintitrés: once exigen que a ningún identificador le falte su texto en ningún idioma y que cada
-una de las 624 cadenas aparezca **literal** en el documento del que dice salir, y doce son rojos
+una de las 736 cadenas aparezca **literal** en el documento del que dice salir, y doce son rojos
 deliberados que le dan de comer un árbol mutilado —una ficha arrancada, un encabezado sin su raya,
 una regla que le falta al anexo de un idioma, una que sobra, un documento que no se pudo leer— y
 exigen que caiga nombrando lo suyo (D-074), y las de las claves de configuración, que son

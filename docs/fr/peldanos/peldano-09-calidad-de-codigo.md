@@ -304,6 +304,10 @@ couverture, avec une baisse traitée comme du rouge.
   écrite justifie de ne pas les avoir ?
 - S'il y a des tests de mutation : combien de mutants ont survécu dans le dernier bloc, et chacun
   a-t-il son élément en attente ou sa raison écrite ?
+- Chaque instrument de la chaîne vient-il avec son reçu : combien d'éléments il s'attendait à
+  parcourir à côté de combien il en a parcouru, de quoi il dépend, et ce qu'il rapporte quand il
+  n'a pas pu regarder ? Demande une exécution où l'instrument n'a pas pu regarder : si ce résultat
+  se lit comme le vert, CQ-19 n'est pas remplie, quoi que dise le pourcentage.
 
 ## 5. Signaux d'alarme
 

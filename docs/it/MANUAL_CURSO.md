@@ -260,7 +260,7 @@ che rileggerà tutti i giorni: come lavori, cosa non tolleri, che livello di aut
 Senza patto, gli ripeterai le stesse cose a ogni sessione, e ogni volta un po' diverse. Io l'ho
 scritto per la prima volta dopo due settimane passate a ripetermi [Ref. 1](REFERENCIAS.md#ref-1).
 
-Le sei regole minime hanno ciascuna un fallimento alle spalle: "il mio tempo è sacro" evita che ti
+Le otto regole minime hanno ciascuna un fallimento alle spalle: "il mio tempo è sacro" evita che ti
 consulti per ogni dettaglio; "zero debito" evita il "dopo lo sistemo"; "perimetro esatto" evita
 che "già che c'è" ti aggiunga cose; "documentazione nello stesso commit" evita i manuali vecchi;
 "mai riportare come fatto ciò che non è verificato" evita il "fatto" che non lo era; "parla la mia
@@ -279,16 +279,21 @@ lingua" evita che ti risponda in inglese perché il prompt era in inglese.
 
 1. Incollagli questo prompt:
 
-> Before we write any code, we are going to set the working agreement between you and me.
-> Write `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining
-> what it prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and
-> when you do ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever
-> breaks is fixed at the root, with its regression test, in the same session. (3) Exact scope:
-> no more and no less than what was asked; if you see something else, log it as a pending item,
-> do not do it. (4) Documentation is updated in the same commit as the change. (5) Never report
-> as done something you have not verified; always separate what you verified from what you
-> believe. (6) Speak my language. Add any rules you think this project needs, marked as
-> proposals. If you need to know something about how I work in order to write this, ask me.
+> Before we write any code, we are going to set the working agreement between you and me. Write
+> `docs/WORKING_AGREEMENT.md` with at least these rules, each with one line explaining what it
+> prevents: (1) My time is sacred: do not ask me what you can resolve on your own, and when you do
+> ask, ask in prose, with your recommendation. (2) Zero technical debt: whatever breaks is fixed
+> at the root, with its regression test, in the same session. (3) Exact scope: no more and no less
+> than what was asked; if you see something else, log it as a pending item, do not do it. (4)
+> Documentation is updated in the same commit as the change. (5) Never report as done something
+> you have not verified; always separate what you verified from what you believe. (6) Speak my
+> language. (7) Every figure you hand me that a decision rests on comes with its receipt: what it
+> counted, how many it expected to count, what it depended on, and what it reports when you could
+> not look; if it reads the same when you could not look, it is not a figure. (8) A command you
+> present as read-only runs without permission to write, and a check that exercises a destructive
+> operation runs where its statement cannot land: that nothing changed is measured, not promised.
+> Add any rules you think this project needs, marked as proposals. If you need to know something
+> about how I work in order to write this, ask me.
 
 > [it]
 > Prima di scrivere codice, fisseremo il patto di convivenza tra te e me. Scrivi
@@ -299,11 +304,16 @@ lingua" evita che ti risponda in inglese perché il prompt era in inglese.
 > esatto: né più né meno di ciò che è stato chiesto; se vedi qualcos'altro, annotalo come voce in
 > sospeso, non farlo. (4) La documentazione si aggiorna nello stesso commit della modifica. (5)
 > Non riportare mai come fatto qualcosa che non hai verificato; separa sempre ciò che hai
-> verificato da ciò che credi. (6) Parla la mia lingua. Aggiungi le regole che pensi servano a
-> questo progetto, segnate come proposte. Se hai bisogno di sapere qualcosa su come lavoro per
-> scrivere questo, chiedimelo.
+> verificato da ciò che credi. (6) Parla la mia lingua. (7) Ogni cifra che mi consegni e da cui
+> dipende una decisione viene con la sua ricevuta: cosa ha contato, quanti si aspettava di
+> contare, da che cosa è dipesa e cosa informa quando non hai potuto guardare; se si legge uguale
+> quando non hai potuto guardare, non è una cifra. (8) Un comando che presenti come di sola
+> lettura corre senza permesso di scrivere, e una verifica che esercita un'operazione distruttiva
+> corre dove la sua istruzione non può atterrare: che non è cambiato niente si misura, non si
+> promette. Aggiungi le regole che pensi servano a questo progetto, segnate come proposte. Se hai
+> bisogno di sapere qualcosa su come lavoro per scrivere questo, chiedimelo.
 
-   Gli stai chiedendo le sei regole con il fallimento che ciascuna evita, regole proprie segnate
+   Gli stai chiedendo le otto regole con il fallimento che ciascuna evita, regole proprie segnate
    come proposte perché tu le accetti o le respinga, e che ti faccia domande su di te.
 
 2. Rispondi alle sue domande. Leggi le proposte: accetta quelle che ti servono, respingi quelle
@@ -315,19 +325,19 @@ prompt, e li riempi tu.
 
 3. Chiudi con:
 
-> I accept rules 1 to 6 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
+> I accept rules 1 to 8 and your proposals [X, Y]; I reject [Z] because [reason]. Finalize the
 > agreement with today's date and a version number. Then add to the project file the
 > instruction to read this agreement at the start of every session.
 
 > [it]
-> Accetto le regole da 1 a 6 e le tue proposte [X, Y]; respingo [Z] perché [ragione]. Chiudi il
+> Accetto le regole da 1 a 8 e le tue proposte [X, Y]; respingo [Z] perché [ragione]. Chiudi il
 > patto con la data di oggi e un numero di versione. Poi aggiungi al file di progetto
 > l'istruzione di leggere questo patto all'inizio di ogni sessione.
 
    Se non c'è ancora un file di progetto (lo fai nella lezione 2), ne creerà uno minimo con
    quell'istruzione; va bene.
 
-**Verifica di completezza.** Ci sono le sei regole, ciascuna con il fallimento che evita? Ce n'è
+**Verifica di completezza.** Ci sono le otto regole, ciascuna con il fallimento che evita? Ce n'è
 qualcuna scritta come aspirazione ("cercare di…")? Il file di progetto ordina di leggerlo
 all'inizio di ogni sessione? Ti ha fatto almeno una domanda su come lavori?
 
