@@ -304,6 +304,42 @@ export function proyectarPasoABase(paso) {
   return salida;
 }
 
+/* ------------------------------------------------------------------ *
+ * Las cifras del nivel de datos se DERIVAN
+ * ------------------------------------------------------------------ *
+ * Una cuenta escrita a mano adentro de un artefacto que se genera es la misma forma del
+ * defecto que el metodo persigue en otra capa: dos copias del mismo hecho, una que se
+ * actualiza sola y otra que no. Medido el 2026-10-30 (PND-064): el documento generado
+ * decia "The four that block with a human red" y listaba CINCO ids, porque la lista sale
+ * del dato y el numero estaba escrito; y de esos cinco, uno avisa y no bloquea. La frase
+ * era cierta el dia que se escribio y dejo de serlo cuando UX-28 entro (D-070), sin que
+ * nada cayera.
+ *
+ * Se detiene en 99 a proposito, con el error a la vista: un deletreador que improvisa
+ * arriba de su alcance publicaria una cifra inventada, que es justo lo que esto viene a
+ * impedir. El dia que una coleccion del metodo pase de 99, la frase se piensa de nuevo.
+ */
+const UNIDADES = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+  'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen',
+  'eighteen', 'nineteen'];
+const DECENAS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+/** El cardinal ingles de un entero de 0 a 99, en minuscula y ASCII puro. */
+export function cardinal(n) {
+  if (!Number.isInteger(n) || n < 0 || n > 99) {
+    throw new Error('cardinal(' + n + '): el deletreador llega hasta 99 y no improvisa arriba de su alcance');
+  }
+  if (n < 20) return UNIDADES[n];
+  const unidad = n % 10;
+  return DECENAS[Math.floor(n / 10)] + (unidad ? '-' + UNIDADES[unidad] : '');
+}
+
+/** El mismo cardinal con la primera letra en mayuscula, para cuando abre la oracion. */
+export function Cardinal(n) {
+  const s = cardinal(n);
+  return s[0].toUpperCase() + s.slice(1);
+}
+
 export function gitCommitCorto() {
   try { return execFileSync('git', ['rev-parse', '--short', 'HEAD'], { cwd: raiz, encoding: 'utf8' }).trim(); }
   catch { return null; }

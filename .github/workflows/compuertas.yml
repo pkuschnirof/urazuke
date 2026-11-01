@@ -127,6 +127,14 @@ jobs:
           grep -q '0 hallazgos' claves.txt || { echo "::error::el ejemplo del Anexo H usa una clave que el dato no declara, o un idioma no lleva las mismas (el detalle, arriba)"; exit 1; }
           rm claves.txt
 
+      - name: Exigir que las cifras del nivel de datos sean las cuentas que el dato declara
+        run: |
+          set -o pipefail
+          node build/cifras_derivadas.mjs | tee cifras.txt
+          grep -q '^cifras derivadas: comprobado' cifras.txt || { echo "::error::la guarda de las cifras derivadas no dijo que comprobo: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          grep -q '0 hallazgos' cifras.txt || { echo "::error::hay una cifra escrita a mano que el dato no sostiene, o una enumeracion con su cuenta vieja (el detalle, arriba)"; exit 1; }
+          rm cifras.txt
+
       - name: Dejar el arbol limpio (ningun generado sin commitear)
         run: |
           git diff --stat -- docs/html/api/ gates/ labels/ docs/COMPUERTAS.md

@@ -11,7 +11,7 @@
 //      node build/gates_doc.mjs --check   (falla si lo escrito en disco no coincide)
 import { writeFileSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { raiz, cargarFuentes, extraerAnexo, armarContenido, huellaDeContenido, esLineaDeComandos, ANEXOS } from './gates_lib.mjs';
+import { raiz, cargarFuentes, extraerAnexo, armarContenido, huellaDeContenido, esLineaDeComandos, ANEXOS, cardinal, Cardinal } from './gates_lib.mjs';
 
 const SEVERITY = { blocks: 'BLOCKS', warns: 'WARNS', records: 'RECORDS' };
 const INSTRUMENT = {
@@ -245,11 +245,18 @@ export function generar() {
   p('derived from their instrument (the manual case runs at step 10, the automatic gate runs at step 9)');
   p('and is declared as derived, not as a decision of the method.');
   p();
-  p('The four that block with a **human red** -- ' + h.rules.filter((r) => r.human_red).map((r) => r.id).join(', ') + ' -- are tested by no');
-  p('tool at all: they are verified at the close of the pending item, with the manual case in front, and');
-  p('never on a commit.');
+  const humanas = h.rules.filter((r) => r.human_red);
+  const bloquean = humanas.filter((r) => r.initial_severity === 'blocks');
+  const avisan = humanas.filter((r) => r.initial_severity !== 'blocks');
+  p('A **human red** is carried by ' + cardinal(humanas.length) + ' of the ' + cardinal(h.rules.length)
+    + ' rules -- ' + humanas.map((r) => r.id).join(', ') + ' -- and those are tested by no tool');
+  p('at all: they are verified at the close of the pending item, with the manual case in front, and');
+  p('never on a commit. ' + Cardinal(bloquean.length) + ' of them block ('
+    + bloquean.map((r) => r.id).join(', ') + ') and ' + cardinal(avisan.length) + ' '
+    + (avisan.length === 1 ? 'warns' : 'warn') + ' (' + avisan.map((r) => r.id).join(', ') + '):');
+  p('a human red says who verifies a rule, not how hard it hits.');
   p();
-  p('### The five anchors and the two prior inputs');
+  p('### The ' + cardinal(h.anchors.length) + ' anchors and the ' + cardinal(h.prior_inputs.length) + ' prior inputs');
   p();
   p('| anchor | step | what it adds | evaluator |');
   p('|---|---|---|---|');
@@ -260,7 +267,7 @@ export function generar() {
       + (e.path ? '`' + e.path + '`' : '**none yet**') + '. ' + e.note);
   }
   p();
-  p('### The three artifacts');
+  p('### The ' + cardinal(h.artifacts.length) + ' artifacts');
   p();
   for (const a of h.artifacts) p('- `' + a.path + '` (' + a.status + '): ' + a.what);
   p();

@@ -743,9 +743,10 @@ The rules marked with `*` in the step column are not anchored by the annex expli
 derived from their instrument (the manual case runs at step 10, the automatic gate runs at step 9)
 and is declared as derived, not as a decision of the method.
 
-The four that block with a **human red** -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- are tested by no
-tool at all: they are verified at the close of the pending item, with the manual case in front, and
-never on a commit.
+A **human red** is carried by five of the forty-six rules -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- and those are tested by no tool
+at all: they are verified at the close of the pending item, with the manual case in front, and
+never on a commit. Four of them block (CQ-12, CQ-14, UX-22, UX-27) and one warns (UX-28):
+a human red says who verifies a rule, not how hard it hits.
 
 ### The five anchors and the two prior inputs
 

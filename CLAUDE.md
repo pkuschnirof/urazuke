@@ -228,6 +228,42 @@ severidad de su regla, y un diferencial que no lo cuenta deja a un proyecto subi
 ciegas—.
 
 
+## Una cifra del nivel de datos se deriva del dato
+
+D-077 (`PND-064`), y es un desvío propio: el sexto. El documento de las compuertas se **genera**, se
+publica y dice de sí mismo «no lo edites», y hasta el 2026-10-30 decía *«The four that block with a
+human red»* y a continuación listaba **cinco** identificadores, uno de los cuales **avisa y no
+bloquea**. La lista sale del dato; el número estaba escrito a mano. La frase era cierta el día que
+se escribió y dejó de serlo cuatro días después, cuando UX-28 entró con D-070: no la rompió nadie,
+se rompió sola. Es la misma familia que D-044, D-067 y D-074 —dos copias de un hecho, una que se
+actualiza sola y otra que no— y lo nuevo es **dónde** vivía la copia: adentro del artefacto que el
+consumidor lee como autoridad.
+
+La regla: una cifra escrita junto al nombre de una colección que el dato declara, o junto a una
+enumeración de identificadores que sale del dato, **se deriva**. `cardinal(n)` vive una sola vez, en
+`build/gates_lib.mjs`, deletrea de 0 a 99 y **se niega** arriba de su alcance en vez de improvisar.
+Lo que no se puede derivar porque es un **registro fechado** —la entrada de `2026.10.1` del registro
+de versiones, que dice «forty-five rules» cuando hoy son cuarenta y seis, y
+`gates/schema.json#history`— no se toca y va al registro de exenciones con su razón, porque un
+registro lleva las palabras de su día (D-053, D-061).
+
+Tres cosas de esta guarda no se negocian. **El mapa de colecciones no se escribe**:
+`build/cifras_derivadas.mjs` lo deriva de toda clave de arreglo a profundidad dos o menos de
+`gates/*.json`, así que una colección nueva queda vigilada el día que entra y no el día que alguien
+se acuerda de agregarla a una lista —una guarda contra el defecto de la lista a mano que se
+defendiera **con** una lista a mano diría «0 hallazgos» con razón, que es exactamente D-071—.
+**Hacen falta dos comprobaciones, y eso se midió**: la cifra pegada al nombre de una colección no ve
+la frase original, donde el número está pegado a *that*; la que la ve es la segunda, que dice que un
+número al lado de una enumeración de identificadores es la cuenta de esa enumeración, y sus tres
+condiciones —número pegado al sustantivo, corrida contigua que un rango corta, candidato que
+descarta el número ya explicado y el calificado— salieron cada una de un falso positivo medido. Y
+**las cifras correctas salieron byte a byte iguales** al derivarlas: ninguna huella se movió y
+ninguna versión subió, que es la prueba de que derivar no cambia lo publicado. El universo está
+enumerado en el programa (D-064): las nueve fuentes que se mantienen a mano, el documento generado y
+los cuatro recursos publicados; el congelado queda afuera con su razón, porque no se edita. Doce
+rojos deliberados, el primero la frase original tal como estaba commiteada, y el paso del flujo
+exige la línea medida.
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio
@@ -661,10 +697,14 @@ una regla que le falta al anexo de un idioma, una que sobra, un documento que no
 exigen que caiga nombrando lo suyo (D-074), y las de las claves de configuración, que son
 veinticuatro: diez verdes —entre ellas la que le da el ejemplo de cada idioma a la compuerta y
 exige que lo único que salga sean los dos umbrales deliberados en cero— y catorce rojos
-deliberados, uno de los cuales reproduce el verde falso que la originó (D-075). Los **once**
+deliberados, uno de los cuales reproduce el verde falso que la originó (D-075), y las de las cifras
+derivadas, que son treinta y cuatro: veinte verdes —entre ellas la que exige que una colección
+**nueva** del dato quede vigilada sin tocar ninguna lista, que es la que impide que esta guarda sea
+el defecto que persigue— y catorce rojos, doce de ellos mutaciones del árbol, y la primera es la
+frase original con su cuatro y sus cinco identificadores (D-077). Los **doce**
 programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
 `index_api`, `portal_orphans`, `version_fijada`, `punteros_publicados`, `labels_api`,
-`forma_de_la_pregunta`, `version_inmutable`, `claves_configuracion`)
+`forma_de_la_pregunta`, `version_inmutable`, `claves_configuracion`, `cifras_derivadas`)
 detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
 el idiom de pegar `file:///` adelante de `argv[1]` sólo acierta en Windows y dejaba dos pasos
 de la cadena corriendo en vacío sobre Linux, en verde. Hay una prueba que lo exige en las dos
