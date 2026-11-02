@@ -8034,9 +8034,9 @@ registros según su destino y el control no cierra con uno sin asignar.
 - **Origen:** medido al aplicar este lote. Es un hallazgo con **destino método**, que es justamente
   lo que D-080 va a exigir de ahora en más de cada control.
 - **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
-- **Quién decide:** **el dueño**, porque las dos salidas son legítimas y opuestas: declarar la
-  divergencia o eliminarla.
-- **Estado: abierto**
+- **Quién decide:** el dueño, y la regla escrita de este lote fue que yo eligiera donde algo
+  estuviera ambiguo y dejara escrito por qué ésa y no otra. Elegí la **(1)**, declarar.
+- **Estado: CERRADO** el 2026-11-02, con **D-085**.
 
 **Qué está mal.** Los manuales del curso llevan **su propia copia** de los prompts de cada lección,
 y esa copia **no la compara nadie** con el contrato del peldaño que enseña. El universo de
@@ -8068,6 +8068,63 @@ lección es más corto que el del contrato. **(2) Unificada:** el prompt del con
 lección y el manual deja de llevar copia, con la cláusula de la UX-28 incluida. Verificable sin leer
 código en las dos salidas: abrir la lección 13 y el contrato del peldaño 13 y ver si dicen lo mismo
 o si el manual dice por qué no.
+
+**Qué quedó, y por qué la (1).** La hipótesis de esta entrada era que la copia corta es deliberada,
+y al medirla se confirma: unificar metería en cuarenta y siete lecciones las cláusulas que el
+contrato arrastra —la forma de la pregunta, la reproducción de un recibo, las declaraciones del
+rastro— y taparía el concepto que la lección enseña, que es exactamente lo contrario del nivel
+principiante de D-025. Entonces se declara. En los dos manuales y en los ocho idiomas: una
+subsección propia que dice que el prompt de la lección es la versión del curso y que el completo
+vive en el contrato, con la regla práctica —para aprender, el de la lección; para un sistema de
+verdad, el del contrato—; y, en cada lección que trae prompt, el puntero a su contrato **con el
+nombre del archivo**, que es protocolo y viaja idéntico en las ocho versiones. Dieciséis punteros en
+el manual del curso y ocho en el evolutivo, por idioma: ciento noventa y dos en total.
+
+**Y el defecto era peor de lo que esta entrada decía, que es lo que se encontró al aplicarla.** El
+manual no sólo no declaraba la divergencia: declaraba **lo contrario**. Decía, en su sección de cómo
+se cursa y en los ocho idiomas, «la tarea: paso a paso, con el prompt **exacto** que le vas a dar al
+agente». Ésa era la copia que mentía —la familia de D-044 y D-067— y es lo primero que se corrigió:
+ahora dice «el prompt del curso».
+
+**La guarda**, `build/prompts_didacticos.mjs`, con su paso en el flujo que exige la línea medida:
+
+```
+prompts didacticos: comprobado -- 8 idiomas, 2 manuales, 192 lecciones con prompt, 376 prompts,
+192 punteros al contrato, 2 exenciones con su razon, 0 hallazgos
+```
+
+Exige cinco cosas, y ninguna es que la lección diga lo mismo que el contrato: la declaración en los
+dieciséis pares idioma-manual; el puntero en cada lección con prompt; que el archivo nombrado
+**exista** en el árbol de ese idioma, que es D-069 aplicado a la prosa; que las ocho versiones
+tengan los mismos prompts en las mismas lecciones y apunten a los mismos contratos, posición por
+posición —lo que atrapa a una traducción que pierde un prompt o que apunta a otro peldaño, el drift
+silencioso que nadie estaba midiendo—; y el orden ascendente, para que la lección 13 no apunte al
+contrato del 12. Las dos exenciones son los manuales de práctica, y **cada una declara su cifra
+medida** de bloques de cita: el de proyecto nuevo tiene uno, que es la salida de un comando y no un
+prompt. Va con su número porque una máquina no puede distinguir una salida de un prompt, así que lo
+que la guarda exige es que esa cifra no se mueva sin que alguien vuelva a mirar; una exención que se
+puede volver falsa sola es el defecto de D-077.
+
+**Los rojos**, en `tests/prompts_didacticos.test.mjs`: once comprobaciones, ocho de ellas
+mutaciones del árbol. La primera reproduce el árbol **tal como estaba antes de esta decisión** —sin
+declaración y sin un solo puntero— y tiene que caer nombrando los dieciséis manuales y las lecciones
+una por una; después, un manual sin su declaración (y sólo ése), una lección con prompt y sin
+puntero, un puntero que no resuelve, una traducción que pierde un prompt, una que apunta a otro
+peldaño, las ocho apuntando mal a la vez —que es el caso donde la comparación entre idiomas no dice
+nada y lo único que queda es el orden— y una exención cuya razón dejó de ser verdad.
+
+**Una cifra de esta entrada se corrige.** Decía cuarenta y ocho prompts en los manuales; son
+**cuarenta y siete** (treinta y siete en el manual del curso y diez en el evolutivo). El que sobraba
+era el único bloque de cita de `docs/practica/MANUAL_FORGE_PROYECTO_NUEVO.md`, y no es un prompt: es
+la salida de un comando. Ese manual, además, dice de frente que los prompts llegan desde la API
+publicada del método y que la herramienta los inyecta sola, así que no es una copia divergente y
+queda exento con su razón.
+
+**Criterio de aceptación.** Dado un lector principiante que abre la lección 13 y el contrato del
+peldaño 13, cuando compara los dos prompts, entonces el manual dice por qué no dicen lo mismo —y la
+lección nombra el archivo del contrato, que es `peldanos/peldano-13-auditoria.md`—. Y dado un cambio
+que rompa esa declaración, cuando corre la cadena, entonces la guarda lo nombra en vez de callarse:
+verificado con los ocho rojos deliberados.
 
 ## PND-095 — La compuerta del peldaño 13 no podía ver que una auditoría estuviera incompleta: dio verde con un informe que se declara incompleto *(del experimento A/B del método; el dueño pidió el lote)*
 
@@ -8347,9 +8404,9 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 42 | 24 | 18 | 11 |
+| G-METODO | 42 | 23 | 19 | 11 |
 | G-TRAZABILIDAD | 4 | 2 | 2 | 0 |
-| **total** | **98** | **44** | **54** | **15** |
+| **total** | **98** | **43** | **55** | **15** |
 
 Noventa y ocho entradas, `PND-001` a `PND-098`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,

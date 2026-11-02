@@ -478,6 +478,40 @@ de D-081: el vocabulario es append-only y un nombre que una instalación no cono
 para todos los consumidores, y tres cifras que escribió la misma mano no se verifican entre sí, así
 que la suma la comprueba el dueño contando.
 
+## Los prompts del curso son una versión didáctica declarada
+
+D-085 (`PND-094`), y fue el **primer** hallazgo con destino método que produjo el mecanismo que
+D-080 instaló: apareció al aplicar D-079 y D-080, no al buscarlo. Los dos manuales del curso llevan
+**su propia copia** del prompt de cada lección —cuarenta y siete por idioma, trescientos setenta y
+seis en los ocho— y ninguna guarda la comparaba con el contrato del peldaño que enseña. Medido:
+**cero** de los trescientos setenta y seis llevan la cláusula de la UX-28, y la lección 13 no tiene
+la reproducción de recibos de D-042 ni las declaraciones de D-079 a D-082.
+
+La decisión es **declarar** la divergencia y no eliminarla, y la razón es que la copia corta es
+deliberada: enseña un peldaño sin que al principiante le llegue todo junto (D-025), y unificar
+inflaría cuarenta y siete lecciones con cláusulas que tapan el concepto. Lo que **sí** era un
+defecto, y peor de lo que el pendiente decía: el manual declaraba lo **contrario**, con la frase «la
+tarea, con el prompt **exacto** que le vas a dar al agente», en los ocho idiomas. Ésa era la copia
+que mentía y es lo primero que se corrigió.
+
+Lo que queda, en los dos manuales y en los ocho idiomas: una subsección propia que dice que el
+prompt de la lección es la versión del curso, que el completo vive en el contrato y que **para
+aprender se usa el de la lección y para un sistema de verdad el del contrato**; y, en cada lección
+que trae prompt, el puntero a su contrato con el nombre del archivo, que es protocolo y viaja
+idéntico en las ocho versiones. La guarda es `build/prompts_didacticos.mjs`, con su paso en el flujo
+que exige la línea medida y sus ocho rojos deliberados, y exige cinco cosas: la declaración en los
+dieciséis pares idioma-manual; el puntero en cada lección con prompt; que el archivo nombrado
+**exista** en el árbol de ese idioma (D-069 aplicado a la prosa); que las ocho versiones tengan los
+mismos prompts en las mismas lecciones y apunten a los mismos contratos, posición por posición; y el
+orden ascendente, para que la lección 13 no apunte al contrato del 12. Las dos exenciones son los
+manuales de práctica, cada una **con su cifra medida** de bloques de cita, porque una máquina no
+puede distinguir la salida de un comando de un prompt y una exención que se puede volver falsa sola
+es el defecto de D-077.
+
+Y lo que esta guarda **no** promete, que está escrito en su cabecera y no aparece cuando falla: que
+el prompt de la lección diga lo mismo que el del contrato. No tiene que decirlo. Lo que una persona
+tiene que poder hacer es abrir la lección y el contrato y ver la diferencia **declarada**.
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio
@@ -916,10 +950,11 @@ deliberados, uno de los cuales reproduce el verde falso que la originó (D-075),
 derivadas, que son treinta y cuatro: veinte verdes —entre ellas la que exige que una colección
 **nueva** del dato quede vigilada sin tocar ninguna lista, que es la que impide que esta guarda sea
 el defecto que persigue— y catorce rojos, doce de ellos mutaciones del árbol, y la primera es la
-frase original con su cuatro y sus cinco identificadores (D-077). Los **doce**
+frase original con su cuatro y sus cinco identificadores (D-077). Los **trece**
 programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
 `index_api`, `portal_orphans`, `version_fijada`, `punteros_publicados`, `labels_api`,
-`forma_de_la_pregunta`, `version_inmutable`, `claves_configuracion`, `cifras_derivadas`)
+`forma_de_la_pregunta`, `version_inmutable`, `claves_configuracion`, `cifras_derivadas`,
+`prompts_didacticos`)
 detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
 el idiom de pegar `file:///` adelante de `argv[1]` sólo acierta en Windows y dejaba dos pasos
 de la cadena corriendo en vacío sobre Linux, en verde. Hay una prueba que lo exige en las dos

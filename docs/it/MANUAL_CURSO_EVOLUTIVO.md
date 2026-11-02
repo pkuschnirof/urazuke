@@ -78,6 +78,27 @@ Con questo basta. Tutto il resto è nel sistema, ed è l'agente che lo leggerà.
 
 ---
 
+### I prompt delle lezioni sono la versione del corso, non quella del contratto
+
+Ogni lezione porta il prompt che incollerai all'agente, e conviene che sappia che cos'è e che cosa
+non è. Il prompt della lezione è la **versione del corso**: più corta, con un solo fuoco, scritta
+perché tu impari il gradino senza che la prima volta ti arrivi tutto insieme. Il prompt
+**completo** di ogni gradino vive nel suo contratto (`peldanos/peldano-NN-....md`), e ogni lezione
+che porta prompt lo nomina sopra con il suo file. I due esistono di proposito e non dicono la stessa
+cosa: quello del contratto porta, oltre alla richiesta, le clausole che il metodo ha aggiunto nel
+tempo —la forma in cui una decisione ti deve essere chiesta, la riproduzione letterale di una
+ricevuta, le dichiarazioni che una barriera legge— e la lezione te le risparmia per non coprirti il
+concetto.
+
+E la regola pratica, che è quella che importa: **per imparare, quello della lezione; per un sistema
+vero, quello del contratto.** Se il tuo progetto del corso è un sistema che avrà utenti —il manuale
+ti raccomanda che lo sia—, quando finisci la lezione torna al contratto e incolla il suo prompt
+completo. Questo è scritto qui perché nessuna barriera lo può prendere: quelle che contano clausole
+contano quelle dei prompt del corpus e non quelle delle lezioni. Quello che
+`build/prompts_didacticos.mjs` controlla è che la differenza resti **dichiarata**: che ogni lezione
+con prompt nomini il suo contratto, che il file che nomina esista, e che le otto versioni del
+manuale abbiano gli stessi prompt nelle stesse lezioni.
+
 ## Tratto di normalizzazione: lezioni da N0 a N7
 
 Queste otto lezioni sono il tratto che la prima parte non aveva. Le prime quattro sono di lettura:
@@ -146,6 +167,9 @@ il progetto precedente più economico di tutti), e il fornitore di messaggi ha u
 (verde). Decisione: va, dopo tre piccoli progetti precedenti.
 
 ### Lezione N1 — Il patto di convivenza per un legacy
+
+**Il contratto di questa stazione:** `EVOLUTIVO_CORRECTIVO.md`, stazione N1. Il prompt qui sotto è
+la versione del corso, più corta.
 
 **Cosa devi capire.** Alle otto regole della lezione 1 se ne aggiungono cinque che esistono perché
 un modello di fronte a codice altrui fa tre cose per riflesso: lo riordina, lo "sistema" dove gli
@@ -224,6 +248,9 @@ come contratto". La seconda è la mappa produttore-consumatore che si affaccia i
 bene così.
 
 ### Lezione N2 — La lettura del sistema: la mappa recuperata e le discrepanze
+
+**Il contratto di questa stazione:** `EVOLUTIVO_CORRECTIVO.md`, stazione N2. Il prompt qui sotto è
+la versione del corso, più corta.
 
 **Cosa devi capire.** È la lezione che dà più valore per ora di lavoro di tutto il corso. Nella
 lezione 2 il file di progetto e l'albero uscivano dalla rilevazione; qui escono dal sistema
@@ -352,6 +379,9 @@ e la decide in un minuto: "quello non si cancella più". Voce in sospeso.
 
 ### Lezione N3 — L'audit come inventario del debito
 
+**Il contratto di questa stazione:** `EVOLUTIVO_CORRECTIVO.md`, stazione N3. Il prompt qui sotto è
+la versione del corso, più corta.
+
 **Cosa devi capire.** La lezione 13, ma all'inizio invece che alla fine, e con un campo in più per
 ogni rilievo: se blocca (va risolto prima di qualunque modifica), se si paga quando si tocca il
 modulo, o se può aspettare. Senza quel campo, un legacy sottoposto ad audit ha quaranta rilievi e
@@ -433,6 +463,9 @@ Come "può aspettare": una dipendenza vecchia senza vulnerabilità note, e il co
 formato della data in tre posti.
 
 ### Lezione N4 — La cintura di sicurezza
+
+**Il contratto di questa stazione:** `EVOLUTIVO_CORRECTIVO.md`, stazione N4. Il prompt qui sotto è
+la versione del corso, più corta.
 
 **Cosa devi capire.** È il cancello duro di questo percorso: finché la cintura non è in verde, non
 si cambia una riga di funzionalità. La cintura ha cinque pezzi: un ambiente di test con dati
@@ -565,6 +598,9 @@ l'agente commenta la riga che mette il messaggio in coda, il test fallisce, la d
 
 ### Lezione N5 — Lucchetti e mappa produttore-consumatore dal codice
 
+**Il contratto di questa stazione:** `EVOLUTIVO_CORRECTIVO.md`, stazione N5. Il prompt qui sotto è
+la versione del corso, più corta.
+
 **Cosa devi capire.** Le lezioni 14 e 11, fatte per inventario su ciò che esiste già, prima di
 cambiare qualunque cosa. L'agente troverà nel codice più di quanto il business ricordi che il
 sistema faccia verso l'esterno: invii, cancellazioni, processi notturni. Il confronto fra le due
@@ -644,6 +680,9 @@ rompe in silenzio.
 
 ### Lezione N6 — Dimensionare con numeri reali
 
+**Il contratto di questa stazione:** `EVOLUTIVO_CORRECTIVO.md`, stazione N6. Il prompt qui sotto è
+la versione del corso, più corta.
+
 **Cosa devi capire.** La lezione 3 con un vantaggio: i dati primari sono nel database e nei log.
 Non si chiedono, si misurano, con un misuratore con test (lezione 7). La responsabile apporta solo
 ciò che non è da nessuna parte: quanto si aspettano di crescere, e se il sistema verrà venduto ad
@@ -714,6 +753,9 @@ appuntamenti. Decisione asimmetrica: l'interfaccia di invio dei messaggi passa a
 anche se oggi non serve, perché la caparra (lezione R2) userà lo stesso canale.
 
 ### Lezione N7 — Il backlog di normalizzazione, abbinato alla richiesta del cliente
+
+**Il contratto di questa stazione:** `EVOLUTIVO_CORRECTIVO.md`, stazione N7. Il prompt qui sotto è
+la versione del corso, più corta.
 
 **Cosa devi capire.** La lezione 5 con due colonne in più. Una sola coda dove convivono il debito
 (audit, discrepanze, schermate, lucchetti in sospeso, decisioni del dimensionamento) e la
@@ -793,6 +835,9 @@ dozzina di voci di normalizzazione, di cui tre "possono aspettare" e lo si dice.
 ## Il ciclo sul legacy: lezioni R1 e R2
 
 ### Lezione R1 — Il primo blocco: il bug, in modalità correttiva
+
+**Il contratto di questo ciclo:** `EVOLUTIVO_CORRECTIVO.md`, il ciclo in modo correttivo ed
+evolutivo. Il prompt qui sotto è la versione del corso, più corta.
 
 **Cosa devi capire.** Una voce in sospeso correttiva è un bug noto. Nella lezione 8 il rosso si
 fabbricava; qui il rosso è il bug stesso: il test che riproduce il guasto, operando il flusso come

@@ -81,6 +81,27 @@ lire.
 
 ---
 
+### Les prompts des leçons sont la version du cours, pas celle du contrat
+
+Chaque leçon apporte le prompt que tu vas coller à l'agent, et il vaut la peine de savoir ce qu'il
+est et ce qu'il n'est pas. Le prompt de la leçon est la **version du cours** : plus courte, avec un
+seul focus, écrite pour que tu apprennes l'échelon sans que tout t'arrive d'un coup la première
+fois. Le prompt **complet** de chaque échelon vit dans son contrat
+(`peldanos/peldano-NN-....md`), et chaque leçon qui porte un prompt le nomme en haut avec son
+fichier. Les deux existent exprès et ne disent pas la même chose : celui du contrat porte, outre la
+demande, les clauses que la méthode a ajoutées au fil du temps — la forme dans laquelle une décision
+doit t'être demandée, la reproduction littérale d'un reçu, les déclarations qu'une barrière lit — et
+la leçon te les épargne pour ne pas recouvrir le concept.
+
+Et la règle pratique, celle qui importe : **pour apprendre, celui de la leçon ; pour un vrai
+système, celui du contrat.** Si ton projet du cours est un système qui va avoir des utilisateurs —
+le manuel te recommande que ce soit le cas —, quand tu finis la leçon reviens au contrat et colle
+son prompt complet. Ceci est écrit ici parce qu'aucune barrière ne peut l'attraper : celles qui
+comptent les clauses comptent celles des prompts du corpus et non celles des leçons. Ce que
+`build/prompts_didacticos.mjs` vérifie, c'est que la différence reste **déclarée** : que chaque
+leçon avec prompt nomme son contrat, que le fichier qu'elle nomme existe, et que les huit versions
+du manuel aient les mêmes prompts dans les mêmes leçons.
+
 ## Tronçon de normalisation : leçons N0 à N7
 
 Ces huit leçons sont le tronçon que la première partie n'avait pas. Les quatre premières sont de
@@ -153,6 +174,9 @@ restaurer est le projet préalable le moins cher de tous), et le prestataire de 
 de test (vert). Décision : ça passe, après trois petits projets préalables.
 
 ### Leçon N1 — Le contrat de collaboration pour un legacy
+
+**Le contrat de cette station :** `EVOLUTIVO_CORRECTIVO.md`, station N1. Le prompt ci-dessous est
+la version du cours, plus courte.
 
 **Ce que vous devez comprendre.** Aux huit règles de la leçon 1 s'en ajoutent cinq qui existent
 parce qu'un modèle face à du code d'autrui fait trois choses par réflexe : il le réordonne, il le
@@ -234,6 +258,9 @@ consommateur du système et compte comme contrat ». La seconde, c'est la carte
 producteur-consommateur qui pointe avant l'heure, et c'est très bien.
 
 ### Leçon N2 — La lecture du système : la carte récupérée et les divergences
+
+**Le contrat de cette station :** `EVOLUTIVO_CORRECTIVO.md`, station N2. Le prompt ci-dessous est
+la version du cours, plus courte.
 
 **Ce que vous devez comprendre.** C'est la leçon qui donne le plus de valeur par heure de tout le
 cours. À la leçon 2, le fichier de projet et l'arbre sortaient du relevé ; ici ils sortent du
@@ -367,6 +394,9 @@ attente.
 
 ### Leçon N3 — L'audit comme inventaire de la dette
 
+**Le contrat de cette station :** `EVOLUTIVO_CORRECTIVO.md`, station N3. Le prompt ci-dessous est
+la version du cours, plus courte.
+
 **Ce que vous devez comprendre.** La leçon 13, mais au début au lieu de la fin, et avec un champ
 de plus par constat : s'il bloque (il faut le corriger avant tout changement), s'il se paie quand
 on touche au module, ou s'il peut attendre. Sans ce champ, un legacy audité a quarante constats et
@@ -449,6 +479,9 @@ fait une requête par rendez-vous (module de l'agenda), l'envoi des rappels sans
 sans vulnérabilité connue, et le code dupliqué du format de date à trois endroits.
 
 ### Leçon N4 — La ceinture de sécurité
+
+**Le contrat de cette station :** `EVOLUTIVO_CORRECTIVO.md`, station N4. Le prompt ci-dessous est
+la version du cours, plus courte.
 
 **Ce que vous devez comprendre.** C'est la porte dure de ce chemin : tant que la ceinture n'est
 pas au vert, on ne change pas une ligne de fonctionnalité. La ceinture a cinq pièces : un
@@ -589,6 +622,9 @@ décommente, il passe.
 
 ### Leçon N5 — Verrous et carte producteur-consommateur depuis le code
 
+**Le contrat de cette station :** `EVOLUTIVO_CORRECTIVO.md`, station N5. Le prompt ci-dessous est
+la version du cours, plus courte.
+
 **Ce que vous devez comprendre.** Les leçons 14 et 11, faites par inventaire sur ce qui existe
 déjà, avant de rien changer. L'agent va trouver dans le code plus de choses que le métier ne se
 rappelle que le système fait vers l'extérieur : envois, effacements, processus nocturnes. La
@@ -670,6 +706,9 @@ colonne, la feuille se casse en silence.
 
 ### Leçon N6 — Dimensionner avec de vrais chiffres
 
+**Le contrat de cette station :** `EVOLUTIVO_CORRECTIVO.md`, station N6. Le prompt ci-dessous est
+la version du cours, plus courte.
+
 **Ce que vous devez comprendre.** La leçon 3 avec un avantage : les données primaires sont dans la
 base et dans les journaux. Elles ne se demandent pas, elles se mesurent, avec un compteur et son
 test (leçon 7). La responsable n'apporte que ce qui n'est nulle part : de combien ils espèrent
@@ -743,6 +782,9 @@ passe à une file d'attente, même si aujourd'hui ce n'est pas nécessaire, parc
 (leçon R2) va utiliser le même canal.
 
 ### Leçon N7 — La file de normalisation, appariée à la demande du client
+
+**Le contrat de cette station :** `EVOLUTIVO_CORRECTIVO.md`, station N7. Le prompt ci-dessous est
+la version du cours, plus courte.
 
 **Ce que vous devez comprendre.** La leçon 5 avec deux colonnes de plus. Une seule file où
 cohabitent la dette (audit, divergences, écrans, verrous en attente, décisions du dimensionnement)
@@ -826,6 +868,9 @@ attendre » et on le dit.
 ## La boucle sur le legacy : leçons R1 et R2
 
 ### Leçon R1 — Le premier bloc : le bug, en mode correctif
+
+**Le contrat de cette boucle :** `EVOLUTIVO_CORRECTIVO.md`, la boucle en mode correctif et
+évolutif. Le prompt ci-dessous est la version du cours, plus courte.
 
 **Ce que vous devez comprendre.** Un élément en attente correctif est un bug connu. À la leçon 8
 le rouge se fabriquait ; ici le rouge est le bug lui-même : le test qui reproduit la panne, en
