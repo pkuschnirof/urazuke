@@ -163,6 +163,11 @@
 > which step is modified, how, and which incident justifies it. Write it to
 > `docs/RETROSPECTIVE_[date].md`.
 >
+> Close with the fixed key `findings_by_destination`: every finding of this retrospective
+> assigned to `product` if the defect is in the system, `method` if it is in the method being
+> followed, `tool` if it is in the tool that runs it, and written into the register of that
+> destination. A finding whose destination nobody assigned leaves the retrospective open.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -180,6 +185,11 @@
 > 発明しないでください。はしごを変える具体的な提案で終えてください：どの段をどう修正し、
 > どのインシデントがそれを正当化するか。`docs/RETROSPECTIVE_[日付].md` に書いてください。
 >
+> 固定のキー `findings_by_destination` で締めてください：この振り返りの各発見を、欠陥が
+> システムにあるなら `product`、従っている方法にあるなら `method`、それを走らせる道具に
+> あるなら `tool` に割り当て、その行き先の記録に書いてください。行き先を誰も割り当てて
+> いない発見は、振り返りを開いたままにします。
+>
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
 > 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
@@ -193,12 +203,17 @@
 数字のための完全性の条項（求めるか推定と印す）。そして**はしごへの少なくとも一つの具体的
 な変更提案**、何も変えない振り返りは振り返りではなかったから。
 
+そして D-080 以降は、各発見の行き先です。振り返りは方法の発見をいちばん多く生む統制で
+——そのためにあります——、だからすべてが製品の記録に終わることをいちばん高く払います。
+
 ## 3. 期待される成果物
 
 - `docs/RESIDENT_AGENT.md`：システムの地図、選んだ範囲、人に紐付けられた認証情報、承認の
   手順、そしてログに記録された拒否の証明。
 - `docs/RETROSPECTIVE_[日付].md`：出所付きの数字、段に対応付けられたインシデント、そして
   正当化付きのはしごへの少なくとも一つの変更提案。
+- 振り返りにはさらに `findings_by_destination`：各発見にその行き先——製品、方法、道具——を
+  つけ、その行き先の記録に書きます。
 
 ## 4. 完全性の検証
 
@@ -214,6 +229,8 @@
   振り返りではなかった。
 - 前回の振り返り以降、構築するモデルが変わったか？ 変わったなら、どの契約がまだ同じように
   機能し、どれがそうでないかの短い見直しがあるか？
+- 振り返りの各発見に行き先がありますか。すべてを製品の記録に送る振り返りは方法を良くしま
+  せん。そして方法を良くすることが、振り返りの存在理由です。
 
 ## 5. 警告サイン
 

@@ -52,6 +52,12 @@
 > rule, and a switched-off rule with no written exception turns the whole
 > report red.
 >
+> When what you report is a finding about how we work and not about what we built, close it with
+> the fixed key `findings_by_destination`: each finding assigned to `product` if the defect is in
+> the system, `method` if it is in the method being followed, `tool` if it is in the tool that
+> runs it, and written into the register of that destination. A defect of the method or of the
+> tool filed in the product's register is a defect nobody is ever going to fix.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -72,6 +78,11 @@
 > 前端适配器、工具版本）以及任何变动的记录来汇报。任何数字都不关闭一个块：绿是逐条规则
 > 决定的，一条被关掉却没有书面例外的规则会让整份汇报变红。
 >
+> 当你报告的是关于我们怎么工作、而不是关于我们造了什么的发现时，用固定的键
+> `findings_by_destination` 收尾：每个发现都指派——缺陷在系统里就是 `product`，在所遵循的
+> 方法里就是 `method`，在运行它的工具里就是 `tool`——并写进那个去向的登记册。把方法或工具的
+> 缺陷记在产品的登记册里，是一个永远没人会修的缺陷。
+>
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
 > 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
@@ -80,6 +91,9 @@
 我在要求什么，逐条：三块，那是让报告诚实的结构（已验证的附证据，相信的附为什么没测的理由，
 它看不到的）；逐项覆盖，让没有什么"被忘掉"；每条断言旁边的证据；禁止光秃秃的"搞定"；以及坏
 消息先说，因为模型倾向于把它们留到最后或永远不说。
+
+还有，从 D-080 起，是去向：一份把方法的缺陷送进产品登记册的报告，可以是诚实的，也可以是没用
+的，因为本来修得了它的那个人从来不知道。登记册有三个，而这条例程把它们点名。
 
 **面对你的一句"还是坏的"：**
 
@@ -121,6 +135,9 @@
 - 每个要求的项一行，附其状态。
 - 每个"已验证"：命令和输出，或测试和结果，或数字和它的量具。
 - 出错的东西，在开头而不是结尾。
+- 还有，当报告产出的是关于我们怎么工作、而不是关于我们造了什么的发现时，
+  `findings_by_destination`：每个发现带着它的去向——产品、方法或工具——并写进那个去向的
+  登记册。
 
 ## 4. 完整性检验
 
@@ -129,6 +146,8 @@
 - 它覆盖了你要求的每一项，还是有一项"被忘了"？
 - 坏消息在开头吗？
 - 它有没有哪次光说"搞定"？那是违反契约。
+- 那些不属于系统的发现，有没有被指派去向、有没有开在该开的登记册里？方法和工具不是从产品的
+  登记册里修好的。
 
 ## 5. 警报信号
 

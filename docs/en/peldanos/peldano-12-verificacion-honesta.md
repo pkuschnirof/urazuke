@@ -61,6 +61,12 @@ the agent:
 > rule, and a switched-off rule with no written exception turns the whole
 > report red.
 >
+> When what you report is a finding about how we work and not about what we built, close it with
+> the fixed key `findings_by_destination`: each finding assigned to `product` if the defect is in
+> the system, `method` if it is in the method being followed, `tool` if it is in the tool that
+> runs it, and written into the register of that destination. A defect of the method or of the
+> tool filed in the product's register is a defect nobody is ever going to fix.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -75,6 +81,10 @@ report honest (what was verified with its proof, what is believed with the reaso
 tested, what it cannot see); coverage item by item, so that nothing "gets forgotten"; the proof
 next to every claim; the ban on a bare "done"; and the bad news first, because the model tends to
 leave it for the end or for never.
+
+And since D-080, the destination: a report that sends a defect of the method to the product's
+register can be honest and still be useless, because whoever could have fixed it never heard about
+it. There are three different registers, and the routine names them.
 
 **When you say "it is still broken":**
 
@@ -112,6 +122,9 @@ Every report from the agent with:
 - For every "verified": the command and the output, or the test and its result, or the number and
   its meter.
 - What went wrong, at the beginning and not at the end.
+- And when the report produces findings about how we work and not about what we built,
+  `findings_by_destination`: every finding with its destination -- product, method or tool -- and
+  written into the register of that destination.
 
 ## 4. Completeness check
 
@@ -122,6 +135,8 @@ Every report from the agent with:
 - Does it cover every item you asked for, or is there one that "got forgotten"?
 - Is the bad news at the beginning?
 - Did it ever say a bare "done"? That is a breach of the agreement.
+- Did the findings that are not about the system get their destination assigned, and get opened in
+  the register they belong to? The method and the tool do not get fixed from the product's register.
 
 ## 5. Warning signs
 

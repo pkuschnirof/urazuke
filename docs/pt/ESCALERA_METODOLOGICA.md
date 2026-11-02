@@ -949,6 +949,7 @@ notícias, os pontos cegos e o que ele não fez.
   pedido. As más notícias primeiro.
 - **Comporta**: nenhuma afirmação sem sua prova. "Pronto" não se diz seco. Diante de um
   "continua quebrado", primeiro se compara a versão publicada com a que tem a correção.
+  E um achado que não é do produto vai para o registro do seu destino.
 - **Quem decide**: o dono confia, ou pede a prova. Nunca revisa código.
 - **Falha que evita**: o erro relatado como sucesso e os relatórios que declaravam verificado o
   que não estava [Ref. 43](REFERENCIAS.md#ref-43); o turno que trabalhou invisível uma hora e
@@ -976,6 +977,8 @@ pressupostos. Basta outra sessão do modelo, com outro arquivo de instruções.
   prioridade; notas por dimensão; e os achados urgentes já convertidos em pendências.
 - **Comporta**: cada achado urgente tem uma pendência aberta antes de dar a auditoria por
   fechada.
+  E: o relatório declara por que esse é o auditor, mede a saúde do registro da evidência, e
+  não fecha com um achado sem destino.
 - **Quem decide**: o dono prioriza os achados.
 - **Falha que evita**: consultas que leem tabelas inteiras [Ref. 18](REFERENCIAS.md#ref-18); duas
   portas de administrador que ninguém viu até que outro as olhou
@@ -1241,6 +1244,7 @@ revisa com números, e o que se aprende volta ao degrau 0 para o próximo projet
   proposta concreta de mudança à escada.
 - **Comporta**: o agente não pode fazer o que o dono não aprovou; a retrospectiva produz pelo
   menos uma mudança à escada.
+  E cada achado da retrospectiva sai com o seu destino: produto, método ou ferramenta.
 - **Quem decide**: o dono.
 - **Falha que evita**: o agente que opera sem mapa; e o método que se repete igual projeto após
   projeto sem aprender. A retrospectiva com número que matou a equipe multiagente é o modelo

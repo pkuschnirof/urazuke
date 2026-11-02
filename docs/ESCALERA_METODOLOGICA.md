@@ -960,6 +960,7 @@ los puntos ciegos y lo que no hizo.
   Las malas noticias primero.
 - **Compuerta**: ninguna afirmación sin su prueba. "Listo" no se dice a secas. Ante un "sigue
   roto", primero se compara la versión publicada con la que tiene el arreglo.
+  Y un hallazgo que no es del producto va al registro de su destino.
 - **Quién decide**: el dueño confía, o pide la prueba. Nunca revisa código.
 - **Fallo que evita**: el error reportado como éxito y los reportes que declaraban verificado lo
   que no lo estaba [Ref. 43](REFERENCIAS.md#ref-43); el turno que trabajó invisible una hora
@@ -986,6 +987,8 @@ sesión del modelo, con otro archivo de instrucciones.
   prioridad; notas por dimensión; y los hallazgos urgentes ya convertidos en pendientes.
 - **Compuerta**: cada hallazgo urgente tiene un pendiente abierto antes de dar la auditoría por
   cerrada.
+  Y: el informe declara por qué ése es el auditor, mide la salud del registro de la
+  evidencia, y no cierra con un hallazgo sin destino.
 - **Quién decide**: el dueño prioriza los hallazgos.
 - **Fallo que evita**: consultas que leen tablas enteras [Ref. 18](REFERENCIAS.md#ref-18); dos
   puertas de administrador que nadie vio hasta que las miró otro
@@ -1257,6 +1260,7 @@ revisa con números, y lo que se aprende vuelve al peldaño 0 para el próximo p
   propuesta concreta de cambio a la escalera.
 - **Compuerta**: el agente no puede hacer lo que el dueño no aprobó; la retrospectiva produce al
   menos un cambio a la escalera.
+  Y cada hallazgo de la retrospectiva sale con su destino: producto, método o herramienta.
 - **Quién decide**: el dueño.
 - **Fallo que evita**: el agente que opera sin mapa; y el método que se repite igual proyecto tras
   proyecto sin aprender. La retrospectiva con número que mató al equipo multiagente es el modelo

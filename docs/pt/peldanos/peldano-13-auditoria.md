@@ -25,11 +25,24 @@ módulo "sabe" que a senha hardcoded era provisória; um modelo que o vê pela p
 como o que é. Assim se detectaram duas portas de administrador que o construtor tinha deixado num
 dia [Ref. 40](../REFERENCIAS.md#ref-40).
 
-Se puder escolher, que seja também **um modelo diferente** do que construiu, não só outra sessão
-do mesmo: um estudo de 2026 mediu que uma sessão limpa com um modelo diferente encontra mais erros
-que duas sessões do mesmo modelo ([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)). Não é uma
-comporta dura, porque às vezes o modelo do construtor é o único disponível; é uma preferência que
-vale a pena exercer quando se pode, e quanto mais crítico o sistema, mais vale exercê-la.
+Se você pode escolher, que além disso seja **um modelo diferente** do que construiu, não apenas
+outra sessão do mesmo: um estudo de 2026 mediu que uma sessão limpa com um modelo diferente
+encontra mais erros que duas sessões do mesmo modelo
+([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)). Mas essa preferência tem um **piso de
+capacidade**, e digo isso porque medi: outro modelo encontra mais **somente se esse modelo puder
+fazer o trabalho**. Abaixo de certa capacidade a diversidade deixa de ser uma vantagem e vira um
+custo, porque verificar um achado falso custa quase o mesmo que você mesmo o ter procurado. Então a
+ordem é esta: primeiro, **outro modelo, se estiver à altura da tarefa**; se não estiver, **outra
+sessão do mesmo modelo, declarando o desvio** na linha `Auditor:` do relatório; e **nunca** um
+auditor escolhido por qual chave está carregada ou por qual tempo limite ele aguenta. Se um limite
+da ferramenta o escolheu, o relatório diz isso com essas palavras: é o caso `tool_constraint` da
+chave `auditor_choice`, e existe porque a restrição da ferramenta se disfarça de escolha técnica e
+a única coisa que a desnuda é ter de nomeá-la. Que o modelo do construtor seja o único disponível
+não é uma falha do método: é um desvio declarado, e um desvio declarado pode ser auditado. (Decisão
+D-079, sobre o experimento de 2026-11-02: o auditor de outro modelo entregou quatro dos nove
+achados que ele mesmo anunciou, e seu único P0 era falso por ler mal uma vírgula decimal; o do
+mesmo modelo, afastando-se da preferência e declarando-o na sua primeira linha, entregou
+dezessete, e nenhum resultou falso ao verificá-los um por um.)
 
 ## 1. Contexto necessário
 
@@ -43,6 +56,10 @@ prompt" que precede cada um.
 - O escopo: integridade, segurança, desempenho, qualidade de código, ou tudo.
 - `docs/PENDING.md` com as pendências fechadas no último ciclo e seus recibos, para que o
   auditor escolha quais reproduzir.
+- O registro da evidência do último ciclo completo: os commits funcionais, as pendências fechadas
+  com os seus recibos, e os recibos com mutação arquivados. Não é o mesmo que o ponto anterior: lá
+  o auditor escolhe dois ou três recibos para reproduzir, e aqui tem que poder contar o registro
+  inteiro.
 
 ## 2. Prompts
 
@@ -60,6 +77,10 @@ o agente:
 - O escopo, decidido por você, para o buraco [scope]: integridade, segurança, desempenho,
   qualidade de código, ou tudo.
 - A auditoria anterior, se houve (`docs/AUDIT_[data]` da vez passada), para que meça o que mudou.
+- Quem vai auditar e por que esse, decidido por você: outro modelo se estiver à altura da tarefa,
+  outra sessão do mesmo se não estiver, e nunca o que ficou porque era a chave que estava carregada
+  ou o único que aguentava o tempo limite. O prompt pede que ele declare isso no relatório, mas a
+  decisão é sua: se você não a tomar, a ferramenta a toma.
 - Estado mínimo aceitável: a sessão do auditor não é a do construtor, e tem somente leitura.
 
 > Audit this system for [scope]. Read-only: change nothing except writing your report to
@@ -72,6 +93,24 @@ o agente:
 > the risk is, what evidence proves it (the command, the query, the number), and its priority:
 > P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited.
 > End with the list of P0 findings turned into proposed pending items.
+>
+> This report carries declarations that a gate reads, each one under its fixed key, so write the
+> key in English even when the report is in my language. `auditor_choice`: which case applies and
+> who decided it -- `different_model` if you are a model other than the one that built this
+> system; `same_model_declared` if you are the same model because no other one was up to the
+> task; `tool_constraint` if what chose you was a key that happened to be loaded, a timeout or
+> any other limit of the tool, and then say so with those words. In the `Auditor:` line, the
+> model that built and the model that audits. `evidence_register_health`: the health of the
+> register of the evidence, which is a dimension of this audit and is not optional -- how many
+> functional commits carry no receipt of any kind; how many pending items closed as shipped lack
+> their receipts, and of those how many have the reason written; and of the receipts that carry
+> a mutation, how many can be applied again. Each of those figures measured by a program, with
+> the command next to it, and a figure you could not measure declared as not measured and never
+> as zero. If the register of the evidence is broken, every other finding in this report rests
+> on data nobody can reproduce. `findings_by_destination`: every finding assigned to one
+> destination -- `product` if the defect is in the audited system, `method` if it is in the
+> method being followed, `tool` if it is in the tool that runs it -- with the register where its
+> pending item goes. A finding whose destination nobody assigned leaves this audit open.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -94,6 +133,25 @@ o agente:
 > sua prioridade: P0 tem que ser corrigido já, P1 em breve, P2 quando der. Dê uma nota a cada
 > dimensão que auditou. Termine com a lista de achados P0 convertidos em pendências propostas.
 >
+> Este relatório leva declarações que uma comporta lê, cada uma com a sua chave fixa, então
+> escreva a chave em inglês mesmo que o relatório esteja no meu idioma. `auditor_choice`: que
+> caso se aplica e quem o decidiu —`different_model` se você é um modelo diferente do que
+> construiu este sistema; `same_model_declared` se você é o mesmo modelo porque nenhum outro
+> estava à altura da tarefa; `tool_constraint` se o que o escolheu foi uma chave que estava
+> carregada, um tempo limite ou qualquer outro limite da ferramenta, e então diga-o com essas
+> palavras. Na linha `Auditor:`, o modelo que construiu e o modelo que audita.
+> `evidence_register_health`: a saúde do registro da evidência, que é uma dimensão desta
+> auditoria e não é opcional —quantos commits funcionais não têm nenhum recibo; quantas
+> pendências fechadas como entregues não têm os seus recibos, e dessas quantas têm o motivo
+> escrito; e dos recibos que levam uma mutação, quantos se aplicam de novo—. Cada uma dessas
+> cifras medida por um programa, com o comando ao lado, e uma cifra que você não pôde medir
+> declarada como não medida e nunca como zero. Se o registro da evidência está quebrado, todos os
+> outros achados deste relatório apoiam-se em dados que ninguém pode reproduzir.
+> `findings_by_destination`: cada achado atribuído a um destino —`product` se o defeito é do
+> sistema auditado, `method` se é do método que se está seguindo, `tool` se é da ferramenta que o
+> roda— com o registro onde vai a sua pendência. Um achado cujo destino ninguém atribuiu deixa
+> esta auditoria aberta.
+>
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
 > enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
@@ -112,6 +170,16 @@ não é um vermelho auditado); cada achado com localização, risco, evidência 
 seja acionável sem reler o relatório; notas por dimensão, para comparar com a auditoria anterior; e
 os P0 já convertidos em pendências propostas.
 
+E o que as duas decisões de novembro acrescentam, dito à parte porque as duas mudam o trabalho do
+auditor e não só a sua redação: as **três declarações com chave fixa**, porque "completo" e
+"auditado" não são propriedades que se possam ler de um relatório escrito em prosa livre (D-079 e
+D-080); a **saúde do registro da evidência** como dimensão obrigatória, porque é a única que audita
+as demais —se o registro da evidência está quebrado, todos os outros achados do relatório
+apoiam-se em dados que ninguém pode reproduzir, e então o relatório inteiro vale menos do que as
+suas notas dizem—; e o **destino de cada achado**, porque um defeito do método anotado no registro
+do produto é um defeito que ninguém vai corrigir nunca: o dono do produto não pode corrigir o
+método, e quem podia nunca soube.
+
 **De fechamento (ao construtor):**
 
 **Antes de enviar o prompt**, você tem que ter isto à mão:
@@ -126,6 +194,11 @@ os P0 já convertidos em pendências propostas.
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.
 >
+> Open each one in the register of the destination the report assigned to it: the product
+> register for `product`, and for `method` and for `tool` the register of the method or the
+> register of the tool, never the product's. If a finding arrives with no destination, ask me
+> for it before opening anything.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -137,6 +210,10 @@ os P0 já convertidos em pendências propostas.
 > Leia `docs/AUDIT_[data].md`. Abra uma pendência para cada P0 e P1, citando o achado. Se
 > discordar de algum, diga-me com a evidência contrária; não o ignore.
 >
+> Abra cada uma no registro do destino que o relatório lhe atribuiu: o registro do produto para
+> `product`, e para `method` e para `tool` o registro do método ou o da ferramenta, nunca o do
+> produto. Se um achado chega sem destino, peça-mo antes de abrir nada.
+>
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
 > enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
@@ -147,12 +224,22 @@ os P0 já convertidos em pendências propostas.
 O que estou pedindo: que a auditoria se converta em pendências (se não, é um relatório que se
 arquiva), e que a discordância seja explícita e com evidência, não silenciosa.
 
+E, desde D-080, que cada pendência se abra no registro do seu destino. O construtor é quem tem as
+mãos no produto, então é quem mais facilmente manda tudo para o registro do produto; um achado que
+chega sem destino pergunta-se a você antes de abrir nada.
+
 ## 3. Resultado esperado
 
 - `docs/AUDIT_[data].md` com: escopo, o que se pôde verificar e o que não (e por quê), os
   achados com localização, risco, evidência e prioridade, uma nota por dimensão, o resultado de
   reproduzir duas ou três recibos do último ciclo, e a lista de pendências propostas.
 - Em `docs/PENDING.md`: uma pendência para cada P0 e P1, citando o achado.
+- Nesse mesmo relatório, as três declarações que uma comporta pode ler, com a sua chave em inglês:
+  `auditor_choice` (que caso se aplica e quem o decidiu), `evidence_register_health` (as cifras do
+  registro da evidência, cada uma com o comando que a mediu, e "não medida" quando não se pôde
+  medir) e `findings_by_destination` (cada achado com o seu destino).
+- No registro de cada destino: uma pendência para cada P0 e P1. As do produto no registro do
+  produto, as do método no do método, as da ferramenta no da ferramenta.
 
 ## 4. Verificação de completude
 
@@ -162,6 +249,12 @@ arquiva), e que a discordância seja explícita e com evidência, não silencios
 - Cada P0 tem sua pendência aberta antes de dar a auditoria por fechada?
 - As notas por dimensão vão poder ser comparadas com a auditoria anterior?
 - Auditou o mesmo agente que construiu? Se sim, peça um segundo olhar sobre os P0.
+- O relatório diz quem auditou e por que esse? Se a razão é que era o único que havia carregado ou
+  o único que aguentava o tempo limite, isso é `tool_constraint` e tem que estar escrito assim.
+- Estão as cifras da saúde do registro da evidência, cada uma com o comando que a mediu? Uma cifra
+  que não se pôde medir diz "não medida"; um zero que não distingue "não há nenhum" de "não pude
+  olhar" não é uma cifra (CQ-19, o denominador).
+- Cada achado tem destino, e a sua pendência ficou aberta no registro desse destino?
 
 ## 5. Sinais de alerta
 
@@ -173,3 +266,11 @@ arquiva), e que a discordância seja explícita e com evidência, não silencios
   saída. Um recibo lido e um reproduzido não são a mesma coisa, e só o segundo fecha a objeção
   de D-033.
 - Passaram-se duas semanas e os P0 continuam sem pendência. A auditoria foi arquivada.
+- O relatório elogia a independência do auditor e não diz que caso de `auditor_choice` se aplica.
+  Quando foi a ferramenta que escolheu o auditor e não você, é justamente o caso que ninguém
+  escreve por conta própria.
+- A saúde do registro da evidência volta em zero e sem comando. Um zero sem o comando que o
+  produziu é um "não pude olhar" disfarçado de boa notícia.
+- Todos os achados saíram com destino `product`. Num controle que olha o sistema com o método e a
+  ferramenta em uso, que nenhum seja do método nem da ferramenta é improvável: o mais provável é
+  que ninguém se perguntou pelo destino.

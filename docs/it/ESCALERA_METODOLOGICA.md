@@ -981,6 +981,7 @@ esplicitamente le cattive notizie, i punti ciechi e ciò che non ha fatto.
   chiesto. Le cattive notizie prima.
 - **Cancello**: nessuna affermazione senza la sua prova. "Fatto" non si dice e basta. Davanti a
   un "è ancora rotto", prima si confronta la versione pubblicata con quella che ha la correzione.
+  E un rilievo che non è del prodotto va al registro della sua destinazione.
 - **Chi decide**: il proprietario si fida, o chiede la prova. Non rivede mai codice.
 - **Fallimento che evita**: l'errore riportato come successo e i rapporti che dichiaravano
   verificato ciò che non lo era [Ref. 43](REFERENCIAS.md#ref-43); il turno che ha lavorato
@@ -1009,6 +1010,8 @@ proprie assunzioni. Basta un'altra sessione del modello, con un altro file di is
   priorità; voti per dimensione; e i rilievi urgenti già trasformati in voci in sospeso.
 - **Cancello**: ogni rilievo urgente ha una voce in sospeso aperta prima di dare l'audit per
   chiuso.
+  E: il rapporto dichiara perché è quello l'auditor, misura la salute del registro della
+  prova, e non chiude con un rilievo senza destinazione.
 - **Chi decide**: il proprietario dà le priorità ai rilievi.
 - **Fallimento che evita**: query che leggono tabelle intere [Ref. 18](REFERENCIAS.md#ref-18); due
   porte di amministratore che nessuno ha visto finché non le ha guardate un altro
@@ -1286,6 +1289,8 @@ rivede con numeri, e ciò che si impara torna al gradino 0 per il progetto succe
   almeno una proposta concreta di modifica alla scala.
 - **Cancello**: l'agente non può fare ciò che il proprietario non ha approvato; la retrospettiva
   produce almeno una modifica alla scala.
+  E ogni rilievo della retrospettiva esce con la sua destinazione: prodotto, metodo o
+  strumento.
 - **Chi decide**: il proprietario.
 - **Fallimento che evita**: l'agente che opera senza mappa; e il metodo che si ripete uguale
   progetto dopo progetto senza imparare. La retrospettiva con i numeri che ha ucciso la squadra

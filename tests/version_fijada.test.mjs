@@ -93,6 +93,21 @@ test('C: el diferencial desde la primera version publicada es la historia medida
     '2026.10.12 CQ-20.2',
     '2026.10.12 Does every instrument this step decides with carry its receipt: which set it expected to walk next to how much of it it walked, what it depends on, and what it reports when it could not look (CQ-19)?',
     '2026.10.12 Does every verification declare the privilege it ran with, and does the probe that exercises a destructive operation run where its statement cannot land, with the state counted before and after (CQ-20)?',
+    // Las diez de 2026.10.13 son D-079 y D-080: tres artefactos del informe de auditoria, uno
+    // de la rutina del reporte, uno de la retrospectiva, y sus cinco preguntas. Tres entradas
+    // comparten el mismo `que` porque son tres exigencias sobre el MISMO archivo, y el
+    // diferencial cuenta entradas y no rutas: una ruta que ya existia con dos exigencias y hoy
+    // tiene cinco le agrega trabajo a un upgrade, y una cuenta por ruta lo esconderia.
+    '2026.10.13 Does every finding carry its destination, and was its pending item opened in the register of that destination?',
+    "2026.10.13 Does every finding of the retrospective carry its destination, so that what belongs to the method and to the tool does not end up in the product's register?",
+    '2026.10.13 Does every finding that is not about the product carry its destination, and was its pending item opened in the register of that destination?',
+    '2026.10.13 Does the health of the register of the evidence come with the command that measured each figure, and does a figure that could not be measured say so instead of reading as zero?',
+    '2026.10.13 Does the report declare, under auditor_choice, why this auditor and not another one, and does it say so with those words when a limit of the tool chose it?',
+    '2026.10.13 docs/AUDIT_*.md',
+    '2026.10.13 docs/AUDIT_*.md',
+    '2026.10.13 docs/AUDIT_*.md',
+    '2026.10.13 docs/RETROSPECTIVE_*.md',
+    '2026.10.13 docs/WORKING_AGREEMENT.md',
     '2026.10.4 Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?',
     '2026.10.5 docs/GLOSSARY.md',
     '2026.10.5 docs/PROFILES.md',
@@ -160,8 +175,11 @@ test('E: la comprobacion reviso algo, y lo dice con su cuenta', () => {
   // Treinta y cinco el 2026-10-27 por la manana; la trigesimo sexta es UX-28, la primera REGLA
   // que el metodo agrego despues de que esta maquinaria existiera (D-070); la trigesimo septima es
   // el primer UMBRAL, end_users_outside_the_organisation (D-076). Las diez que siguen son de
-  // D-078: dos reglas, sus seis CARAS y las dos preguntas de verificacion de sus peldanos.
-  assert.equal(arbol.entradas.length, 47, 'las entradas agregadas despues del congelado, medidas el 2026-11-01');
+  // D-078: dos reglas, sus seis CARAS y las dos preguntas de verificacion de sus peldanos. Las
+  // diez ultimas son de D-079 y D-080, y son las primeras que no tocan el Anexo H: cinco
+  // artefactos y cinco preguntas sobre los peldanos 12, 13 y 23, que exigen lo que un control
+  // tiene que DECLARAR al cerrar y no lo que el sistema tiene que ser.
+  assert.equal(arbol.entradas.length, 57, 'las entradas agregadas despues del congelado, medidas el 2026-11-02');
   assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['CQ-19', 'CQ-20', 'UX-28'],
     'una regla agregada despues del congelado entra en el diferencial: sin esto un upgrade la omitia en silencio');
   // Y una cara, por el mismo argumento una capa adentro: se puede apagar sola, asi que un

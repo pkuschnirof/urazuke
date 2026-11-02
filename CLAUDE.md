@@ -315,6 +315,67 @@ Y lo que esto **no** hace: tocar una sola de las cuarenta y seis reglas que ya e
 identificador a las cinco comprobaciones de `CQ-18`, que es agregar y no renombrar y es trabajo
 aparte (`PND-082`).
 
+## El auditor se elige con un piso, y un control cierra repartiendo por destino
+
+D-079 y D-080 (`PND-092` a `PND-094`), y las dos salieron del **mismo** control: la auditoría del
+peldaño 13 del experimento A/B del método, el 2026-11-02. Las dos cambian lo que un informe tiene
+que **traer** y no lo que un sistema tiene que ser, y por eso entran juntas, en el catálogo
+`2026.10.13` y en el corpus de prompts `2026.10.8`.
+
+**El piso de capacidad (D-079).** D-042 prefería un modelo distinto del que construyó y aclaraba,
+con razón, que no es compuerta dura «porque a veces el modelo del constructor es el único
+disponible». Lo que no contestaba es el otro caso, que es el que se midió: el otro modelo **está** y
+**no llega**. Se cumplió D-042 en su forma más pura —otro modelo, otro proveedor, sub-sesión sin
+memoria conversacional— y el informe escribió **cuatro de los nueve hallazgos que él mismo anunció**,
+con su único P0 **falso** por leer `p95_ms: 5.666` como 5666 ms, y al auditor lo había elegido un
+**vencimiento de 306 segundos**. El del mismo modelo, apartándose de la preferencia y declarándolo
+en su primera línea, entregó diecisiete y ninguno resultó falso. Entonces el orden es: otro modelo
+**si está a la altura de la tarea**; si no lo está, otra sesión del mismo **declarando la
+desviación** en la línea `Auditor:`; y **nunca** el que eligió una clave que estaba cargada o un
+vencimiento. El informe lo declara bajo `auditor_choice`, y el valor que faltaba es
+`tool_constraint`, porque la restricción de herramienta se disfraza de elección técnica y lo único
+que la desnuda es tener que nombrarla. Dos cosas que no se negocian de la forma: **D-042 no se
+edita** —una decisión lleva las palabras de su día, como ya pasó con D-033 y con D-012—, así que la
+aclaración vive en D-079 y la reescritura se hizo donde D-042 **rige**; y la hipótesis del dueño
+sobre qué proveedores alcanzan **no entra al método**, porque un dato no la prueba y el nivel de
+datos no nombra herramientas (D-055). Lo que entra es el piso, que es falsable y no nombra a nadie.
+
+**El instrumento que guarda la evidencia, y el destino de cada hallazgo (D-080).** El método exigía
+evidencia en varios peldaños —el 8 el rojo como recibo, el 5 el cierre con evidencia escrita, el 12
+separar lo verificado de lo creído— y **en ninguna parte exigía auditar el instrumento que la
+guarda**, así que un registro roto se lee igual que un registro lleno. La misma auditoría encontró
+tres formas de que eso pase, y las encontró **por casualidad**: un commit de 130 archivos y 5.886
+líneas sin un solo recibo; cierres `shipped` sin su terna en un proyecto que afirmaba por escrito
+que el registro los rechaza; y quince mutaciones archivadas que no se vuelven a aplicar porque les
+falta el salto de línea final. Desde D-080 el peldaño 13 lleva la **salud del registro de la
+evidencia** como dimensión **no opcional** —commits funcionales sin recibo; cierres sin su terna, y
+cuántos de ésos tienen el motivo escrito; recibos con mutación que se vuelven a aplicar—, cada cifra
+con el comando al lado y una que no se pudo medir declarada **no medida** y nunca cero, que es
+`CQ-19.1`. No es opcional porque es la única dimensión que **audita a las demás**. Y los tres
+controles que producen hallazgos —el 12, el 13 y el 23— cierran con cada hallazgo asignado a un
+destino: `product`, `method` o `tool`, cada uno al registro que le toca, y **el control no cierra
+con un hallazgo sin destino**. El argumento es el del dueño y es el que convierte la inmunización en
+mecanismo: sin esto, que el método se mejore a sí mismo depende de que alguien se acuerde de separar
+los hallazgos por destino, y **acordarse no es un mecanismo**. Un defecto del método anotado en el
+registro del producto es un defecto que nadie va a arreglar nunca: el dueño del producto no puede
+arreglar el método, y el que puede nunca se enteró.
+
+**Las tres claves van en inglés aunque el informe esté en castellano**, y eso es D-051 y D-075
+bajados a un documento de proyecto en vez de a su archivo de configuración: `auditor_choice`,
+`evidence_register_health` y `findings_by_destination` las lee una compuerta, y una clave que una
+compuerta lee es una clave. La prosa alrededor va en el idioma del lector. Lo que las tres cifras
+**no** reciben es identificador de umbral, por la misma razón que las nueve claves de `measured_by`:
+el método no abarca con qué se mide cada una.
+
+Y lo que este lote dejó abierto, dicho acá porque es el primer hallazgo con **destino método** que
+el propio mecanismo produjo: los **cuarenta y ocho** prompts de los manuales son una copia que
+ningún guardián compara con su contrato —el universo de `build/prompts.mjs` y de
+`build/forma_de_la_pregunta.mjs` son los veinticuatro contratos más tres páginas, y los manuales
+aparecen una sola vez en `build/build.mjs`, en la lista de lo que se convierte a HTML—, y **cero** de
+los cuarenta y ocho llevan la cláusula de la UX-28. Lo más probable es que sean una versión
+didáctica más corta a propósito; el defecto no es la divergencia sino que **no esté declarada**, que
+es la forma de D-076. Lo decide el dueño en `PND-094`.
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio

@@ -60,6 +60,12 @@ faites, pas l'agent :
 > rule, and a switched-off rule with no written exception turns the whole
 > report red.
 >
+> When what you report is a finding about how we work and not about what we built, close it with
+> the fixed key `findings_by_destination`: each finding assigned to `product` if the defect is in
+> the system, `method` if it is in the method being followed, `tool` if it is in the tool that
+> runs it, and written into the register of that destination. A defect of the method or of the
+> tool filed in the product's register is a defect nobody is ever going to fix.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -88,6 +94,13 @@ faites, pas l'agent :
 > par règle, et une règle éteinte sans exception écrite rend tout le rapport
 > rouge.
 >
+> Quand ce que tu rapportes est un constat sur la façon dont nous travaillons et non sur ce que
+> nous avons construit, clos-le avec la clé fixe `findings_by_destination` : chaque constat
+> assigné à `product` si le défaut est dans le système, `method` s'il est dans la méthode suivie,
+> `tool` s'il est dans l'outil qui l'exécute, et écrit dans le registre de cette destination. Un
+> défaut de la méthode ou de l'outil consigné dans le registre du produit est un défaut que
+> personne ne corrigera jamais.
+>
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
 > nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
@@ -103,6 +116,10 @@ testé, ce qu'il ne peut pas voir) ; la couverture point par point, pour que rie
 la preuve à côté de chaque affirmation ; l'interdiction du « c'est fait » tout court ; et les
 mauvaises nouvelles en premier, parce que le modèle a tendance à les laisser pour la fin ou pour
 jamais.
+
+Et depuis D-080, la destination : un rapport qui envoie un défaut de la méthode dans le registre du
+produit peut être honnête et ne servir à rien, parce que celui qui pouvait le corriger ne l'a
+jamais su. Il y a trois registres différents, et la routine les nomme.
 
 **Face à un « c'est toujours cassé » de votre part :**
 
@@ -152,6 +169,9 @@ Chaque rapport de l'agent avec :
 - Pour chaque « vérifié » : la commande et la sortie, ou le test et son résultat, ou le chiffre et
   son compteur.
 - Ce qui a mal tourné, au début et non à la fin.
+- Et quand le rapport produit des constats sur la façon dont nous travaillons et non sur ce que
+  nous avons construit, `findings_by_destination` : chaque constat avec sa destination — produit,
+  méthode ou outil — et écrit dans le registre de cette destination.
 
 ## 4. Vérification de complétude
 
@@ -162,6 +182,9 @@ Chaque rapport de l'agent avec :
 - Couvre-t-il chaque point de ce que vous avez demandé, ou y en a-t-il un qui « s'est oublié » ?
 - Les mauvaises nouvelles sont-elles au début ?
 - A-t-il dit « c'est fait » tout court, une seule fois ? C'est une violation du contrat.
+- Les constats qui ne portent pas sur le système ont-ils reçu leur destination, et ont-ils été
+  ouverts dans le registre qui leur revient ? La méthode et l'outil ne se corrigent pas depuis le
+  registre du produit.
 
 ## 5. Signaux d'alarme
 

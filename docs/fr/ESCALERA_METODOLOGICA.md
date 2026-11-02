@@ -1025,6 +1025,7 @@ explicitement les mauvaises nouvelles, les angles morts et ce qu'il n'a pas fait
 - **Porte** : aucune affirmation sans sa preuve. « C'est fait » ne se dit pas tout court. Devant un
   « c'est toujours cassé », on compare d'abord la version publiée avec celle qui contient le
   correctif.
+  Et un constat qui ne porte pas sur le produit va au registre de sa destination.
 - **Qui décide** : le propriétaire fait confiance, ou demande la preuve. Il ne relit jamais de
   code.
 - **Échec évité** : l'erreur rapportée comme succès et les rapports qui déclaraient vérifié ce qui
@@ -1056,6 +1057,8 @@ autre fichier d'instructions, suffit.
   éléments en attente.
 - **Porte** : chaque constat urgent a un élément en attente ouvert avant de considérer l'audit
   comme clos.
+  Et : le rapport déclare pourquoi cet auditeur-là, mesure la santé du registre de la
+  preuve, et ne clôt pas avec un constat sans destination.
 - **Qui décide** : le propriétaire priorise les constats.
 - **Échec évité** : des requêtes qui lisent des tables entières [Ref. 18](REFERENCIAS.md#ref-18) ;
   deux portes d'administrateur que personne n'avait vues jusqu'à ce qu'un autre les regarde
@@ -1338,6 +1341,7 @@ se révise avec des chiffres, et ce qu'on apprend revient à l'échelon 0 pour l
   proposition concrète de changement de l'échelle.
 - **Porte** : l'agent ne peut pas faire ce que le propriétaire n'a pas approuvé ; la rétrospective
   produit au moins un changement de l'échelle.
+  Et chaque constat de la rétrospective sort avec sa destination : produit, méthode ou outil.
 - **Qui décide** : le propriétaire.
 - **Échec évité** : l'agent qui opère sans carte ; et la méthode qui se répète à l'identique projet
   après projet sans apprendre. La rétrospective chiffrée qui a tué l'équipe multi-agents est le

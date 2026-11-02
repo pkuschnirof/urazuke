@@ -7928,6 +7928,147 @@ Y en las dos salidas, lo que desde acá **no** se puede verificar, dicho de fren
 que la cláusula esté, no que el sha resuelva —eso depende del remoto y de qué ramas existan el día
 que alguien mire—.
 
+## PND-092 — La preferencia por auditar con otro modelo no tenía piso: el informe salió incompleto y el auditor lo había elegido un vencimiento *(del experimento A/B del método; el dueño pidió el lote)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento A/B del método (`C:\urazuke-exp`), peldaño 13 del brazo C1, el
+  2026-11-02. Entrada `PND-059` del registro de la herramienta, que **no es este registro** (la
+  numeración no se corresponde). El dueño pidió el lote y fijó la forma: reproducir primero, aplicar
+  después.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y lo decidió: el orden de preferencia va tal como el pendiente lo
+  propuso.
+- **Estado: CERRADO** el 2026-11-02, con **D-079**.
+
+**Qué estaba mal.** D-042 prefería un modelo distinto del que construyó y decía, con razón, que no
+es compuerta dura «porque a veces el modelo del constructor es el único disponible». Lo que **no**
+contestaba es el otro caso: qué hacer cuando el otro modelo **está** disponible y **no llega**. Y
+ése es el caso que se midió.
+
+**Mi reproducción, el 2026-11-02.** Leí D-042 completa antes de tocar nada: contesta el caso de la
+**disponibilidad** y no el de la **capacidad**, así que el pendiente se sostiene, acotado a esa
+mitad. La medición que lo funda, del recibo `evidence/rendimiento_auditoria.json` del experimento:
+se cumplió D-042 en su forma más pura —otro modelo, otro proveedor, sub-sesión sin ninguna memoria
+conversacional— y el informe escribió **cuatro de los nueve hallazgos que él mismo anunció**; de los
+cuatro, dos nuevos y ciertos, uno ya registrado y nombrado en la propia consigna, y **uno falso**,
+que era su único P0: leyó `p95_ms: 5.666` como 5666 ms y declaró incumplido por 18,9x un criterio
+que tenía **52,9x de margen**. Al auditor lo eligió un **vencimiento de 306 segundos**. El
+contraste, que el dueño verificó uno por uno: el auditor del **mismo** modelo que construyó,
+apartándose de la preferencia y declarándolo en su primera línea, entregó **diecisiete** hallazgos
+—2 P0, 5 P1, 10 P2— y ninguno resultó falso.
+
+**Qué quedó.** El orden de preferencia escrito en el contrato del peldaño 13 y en sus siete
+traducciones: otro modelo **si está a la altura de la tarea**; si no lo está, otra sesión del mismo
+modelo **declarando la desviación** en la línea `Auditor:`; y **nunca** un auditor elegido por qué
+clave hay cargada o por qué vencimiento aguanta. El prompt le pide al auditor declararlo bajo la
+clave fija `auditor_choice`, con uno de sus tres valores, y el caso `tool_constraint` existe
+justamente porque la restricción de herramienta se disfraza de elección técnica. En el dato: un
+artefacto y una pregunta nuevos en el peldaño 13 (`gates/steps.json`, `since_version` `2026.10.13`).
+
+**Lo que este cierre NO hizo, dicho porque es la mitad que queda.** No editó D-042: una decisión
+lleva las palabras de su día (D-053, D-061), así que la aclaración vive en D-079 y la reescritura se
+ejecutó donde D-042 **rige**. No subió la hipótesis del dueño —«para urazuke sólo sirven los
+modelos realmente frontier»— al método: un dato no la prueba y el método no nombra proveedores
+(D-055). Y no convirtió la declaración del auditor en compuerta que bloquea: la línea `Auditor:`
+sigue siendo un `should_contain`, que es trabajo del turno siguiente de este lote.
+
+**Criterio de aceptación.** Leer D-042 y el contrato del peldaño 13 y ver si contestan «el otro
+modelo no llega, y ahora qué», con un orden y con la obligación de declarar por qué ese auditor.
+Verificado: lo contestan, en los ocho idiomas, y el dato lo exige en el artefacto del informe.
+
+## PND-093 — El método exigía evidencia en cinco peldaños y en ninguno exigía auditar el instrumento que la guarda, ni separar los hallazgos por destino *(lo trajo el dueño como la lección general del control)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** la auditoría del peldaño 13 del brazo C1 del experimento A/B, el 2026-11-02, y la
+  lección que el dueño sacó de ella: «el método se inmuniza a sí mismo, pero tienes que registrar
+  pending los defectos de método y herramienta que surgen de cada control». Entrada `PND-061` del
+  registro de la herramienta, que no es este registro.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y lo decidió: las dos partes entran, y la dimensión no es opcional.
+- **Estado: CERRADO** el 2026-11-02, con **D-080**.
+
+**Qué estaba mal.** Dos cosas que son la misma pregunta mirada de los dos lados. La primera: el
+método exigía evidencia —el 8 el rojo como recibo, el 5 el cierre con evidencia escrita, el 12
+separar lo verificado de lo creído— y **en ninguna parte exigía auditar el instrumento que la
+guarda**, así que un registro roto se lee igual que un registro lleno. La segunda: el peldaño 13
+decía *«turn every finding into a proposed pending item»* y **no distinguía de quién es el defecto**,
+así que los de método y de herramienta terminaban en el registro del producto, donde el único que
+puede leerlos no puede arreglarlos.
+
+**Mi reproducción, el 2026-11-02.** Leí los dos prompts del peldaño 13 y sus cinco preguntas de
+verificación publicadas: no piden en ninguna parte mirar si los recibos **sirven**. Lo más cercano
+es la cláusula de D-033, que pide reproducir **dos o tres** recibos elegidos por el auditor —una
+muestra, nunca el censo—, y es por esa cláusula que la auditoría del experimento encontró, **por
+casualidad**, las tres formas que el pendiente nombra: un commit de 130 archivos y 5.886 líneas sin
+un solo recibo; pendientes cerrados como entregados sin su terna, en un proyecto que afirmaba por
+escrito que el registro rechaza esos cierres; y mutaciones archivadas que no se vuelven a aplicar
+porque les falta el salto de línea final. Sobre el destino, la precisión que la reproducción agregó:
+el destino **método** ya existía, y sólo en el peldaño 23 —*«End with a concrete proposal to change
+the ladder»*—; el destino **herramienta** no existía en ninguno de los tres controles, y ninguno
+impedía cerrar con hallazgos sin destino. Así que esto no agregó tres destinos desde cero:
+generalizó al 12 y al 13 lo que el 23 ya hacía con uno, y agregó el tercero.
+
+**Qué quedó.** (a) La **salud del registro de la evidencia** como dimensión **no opcional** del
+peldaño 13, bajo la clave fija `evidence_register_health`, con tres cifras que contesta un programa
+—commits funcionales sin ningún recibo; cierres sin su terna, y cuántos de ésos tienen el motivo
+escrito; recibos con mutación que se vuelven a aplicar—, cada una con el comando al lado, y una
+cifra que no se pudo medir declarada **no medida** y nunca cero, que es `CQ-19.1`. No es opcional
+porque es la única dimensión que audita a las demás. (b) El cierre por destino en los **tres**
+controles —12, 13 y 23— bajo la clave fija `findings_by_destination`, con `product`, `method` y
+`tool`, y el control no cierra con un hallazgo sin destino. En el dato: cuatro artefactos y cuatro
+preguntas nuevos sobre los peldaños 12, 13 y 23 (`since_version` `2026.10.13`).
+
+**Lo que este cierre NO hizo.** Darles identificador de umbral a las tres cifras: el método no
+abarca con qué se mide cada una y eso queda a criterio de quien mide, que es la misma razón de las
+nueve claves de `measured_by` de D-075. Y escribir el programa que las mide: el método declara qué
+cifra se pide, no con qué herramienta.
+
+**Criterio de aceptación.** Leer el peldaño 13 y preguntar si obliga a mirar si los recibos sirven,
+o sólo a mirar el sistema. Verificado: lo obliga, como dimensión y no como sugerencia dentro de otra
+instrucción. Y dado un control que produce hallazgos, los hallazgos quedan repartidos en tres
+registros según su destino y el control no cierra con uno sin asignar.
+
+## PND-094 — Los cuarenta y ocho prompts de los manuales son una copia que ningún guardián compara con su contrato, y ninguno lleva la cláusula de la UX-28 *(propia, medida al aplicar D-079 y D-080; destino: método)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** medido al aplicar este lote. Es un hallazgo con **destino método**, que es justamente
+  lo que D-080 va a exigir de ahora en más de cada control.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** **el dueño**, porque las dos salidas son legítimas y opuestas: declarar la
+  divergencia o eliminarla.
+- **Estado: abierto**
+
+**Qué está mal.** Los manuales del curso llevan **su propia copia** de los prompts de cada lección,
+y esa copia **no la compara nadie** con el contrato del peldaño que enseña. El universo de
+`build/prompts.mjs` y de `build/forma_de_la_pregunta.mjs` es el mismo y está escrito en los dos
+programas: los veinticuatro contratos más `EVOLUTIVO_CORRECTIVO.md`, `TRABAJO_COLABORATIVO.md` y
+`ANEXO_HEURISTICAS.md`. Los manuales quedan **afuera de los dos**, y en `build/build.mjs` aparecen
+una sola vez: en la lista de archivos que se convierten a HTML. O sea que es exactamente la familia
+de D-044, D-067, D-074 y D-077 —dos copias de un hecho, una que se actualiza sola y otra que no—,
+con la copia viviendo en el documento que un lector principiante lee **como instrucción**.
+
+**La evidencia, medida el 2026-11-02 sobre este árbol.** `docs/MANUAL_CURSO.md` lleva **37**
+prompts, `docs/MANUAL_CURSO_EVOLUTIVO.md` **10** y `docs/practica/MANUAL_FORGE_PROYECTO_NUEVO.md`
+**1**: cuarenta y ocho. De los cuarenta y ocho, **cero** llevan la cláusula de la UX-28, que D-070
+puso en los setenta y dos prompts del corpus con una compuerta que los cuenta. Y el drift se ve en
+la lección 13 sin buscarlo: su prompt no tiene la reproducción literal de recibos que D-042 agregó
+el 2026-10-20, ni la cláusula de la UX-28, ni —desde hoy— las tres declaraciones de D-079 y D-080.
+
+**Lo que esta entrada NO afirma.** No afirma que el drift sea un descuido. La hipótesis más probable
+es la contraria: los prompts de las lecciones son una **versión didáctica más corta a propósito**, y
+D-042 ya eligió no tocarlos cuando agregó sus cláusulas. El defecto no es la divergencia: es que la
+divergencia **no está declarada en ninguna parte** y no la mide nadie, así que no se puede distinguir
+«más corto a propósito» de «quedó viejo», que es la misma forma de D-076 y de `PND-084`.
+
+**Criterio de aceptación.** Una de estas dos, y la decide el dueño. **(1) Declarada:** un registro
+—con su razón, como el de exclusiones de `build/inventario_documentos.mjs`— que diga que los prompts
+de los manuales son una versión didáctica y qué se le exige a esa versión, más una guarda que al
+menos verifique eso que se le exige; el principiante tiene que poder saber que el prompt de la
+lección es más corto que el del contrato. **(2) Unificada:** el prompt del contrato entra en la
+lección y el manual deja de llevar copia, con la cláusula de la UX-28 incluida. Verificable sin leer
+código en las dos salidas: abrir la lección 13 y el contrato del peldaño 13 y ver si dicen lo mismo
+o si el manual dice por qué no.
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -7942,11 +8083,11 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 35 | 23 | 12 | 11 |
+| G-METODO | 38 | 24 | 14 | 11 |
 | G-TRAZABILIDAD | 4 | 2 | 2 | 0 |
-| **total** | **91** | **43** | **48** | **15** |
+| **total** | **94** | **44** | **50** | **15** |
 
-Noventa y una entradas, `PND-001` a `PND-091`. Veintidós vienen de la auditoría externa
+Noventa y cuatro entradas, `PND-001` a `PND-094`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,

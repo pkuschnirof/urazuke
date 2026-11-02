@@ -1,6 +1,6 @@
 {
   "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green. And about the content hash, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls the host that served the file. The anchors that do not live on that host are the version ledger of each resource, which lives in the method repository and records the pair (version -> hash) append-only, and the transport security of the connection. There is no cryptographic signature: that is a written decision with its cost on the table, not an oversight.",
-  "catalog_version": "2026.10.12",
+  "catalog_version": "2026.10.13",
   "schema_version": 2,
   "content_hash": {
     "algo": "sha256",
@@ -32,12 +32,12 @@
       "license",
       "content_hash"
     ],
-    "value": "91f3ec00a638322fd36b12f3d6bca68e2c36dda8c7dc456f56fca40369c4665f",
+    "value": "b719312dc8eaca97a81a841e564e1ca435afbf57570268c1c00f8b6b89508d6a",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "0a94f88",
+  "git_commit": "575ed52",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-11-01T19:59:20.773Z",
+  "generated_at": "2026-11-02T17:19:17.556Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
@@ -804,6 +804,15 @@
             "blind|ciego"
           ],
           "label": "la rutina del reporte honesto"
+        },
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "the routine assigns each finding its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
         }
       ],
       "verify": [
@@ -820,6 +829,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "anchor": 5
+        },
+        {
+          "text": "Does every finding that is not about the product carry its destination, and was its pending item opened in the register of that destination?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
         }
       ],
       "evaluators": [
@@ -874,6 +889,36 @@
           "label": "the audit reproduces receipts and declares which model performed it",
           "since_schema": 2,
           "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "auditor_choice.{0,40}(different_model|same_model_declared|tool_constraint)"
+          ],
+          "label": "the audit declares why this auditor and not another one, under its fixed key and with one of its declared values",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "evidence_register_health"
+          ],
+          "label": "the audit measured the health of the register of the evidence, which is a dimension of it and not optional",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "every finding of the audit carries its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
         }
       ],
       "verify": [
@@ -891,6 +936,24 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "decision": "D-042"
+        },
+        {
+          "text": "Does the report declare, under auditor_choice, why this auditor and not another one, and does it say so with those words when a limit of the tool chose it?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-079"
+        },
+        {
+          "text": "Does the health of the register of the evidence come with the command that measured each figure, and does a figure that could not be measured say so instead of reading as zero?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
+        },
+        {
+          "text": "Does every finding carry its destination, and was its pending item opened in the register of that destination?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
         }
       ],
       "evaluators": [
@@ -1333,6 +1396,16 @@
           "label": "the retrospective names the model the system was built with",
           "since_schema": 2,
           "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/RETROSPECTIVE_*.md",
+          "fresh_days": 120,
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "every finding of the retrospective carries its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
         }
       ],
       "verify": [
@@ -1349,6 +1422,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "decision": "D-042"
+        },
+        {
+          "text": "Does every finding of the retrospective carry its destination, so that what belongs to the method and to the tool does not end up in the product's register?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
         }
       ],
       "evaluators": [
@@ -3648,7 +3727,7 @@
       "immutable_url_pattern": "<canonical base>/<resource folder>/<version>.json -- one folder per resource, because each resource declares its own version line and a folder named after one version would be naming the other resource's content with it.",
       "immutable_url_what": "The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.",
       "immutable_url_where": "Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.",
-      "immutable_path": "gates/2026.10.12.json",
+      "immutable_path": "gates/2026.10.13.json",
       "first_version_with_an_address": "2026.10.1",
       "no_purge": "Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.",
       "what_is_promised": "The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.",

@@ -1044,6 +1044,7 @@ Flecken und das, was er nicht getan hat.
 - **Tor**: keine Behauptung ohne ihren Beweis. „Erledigt“ wird nicht einfach so gesagt. Bei einem
   „ist immer noch kaputt“ wird zuerst die veröffentlichte Version mit der verglichen, die die
   Behebung enthält.
+  Und ein Befund, der nicht vom Produkt ist, geht in das Register seines Ziels.
 - **Wer entscheidet**: der Eigentümer vertraut, oder verlangt den Beweis. Er sieht nie Code durch.
 - **Fehler, den er verhindert**: den als Erfolg gemeldeten Fehler und die Berichte, die als
   verifiziert erklärten, was es nicht war [Ref. 43](REFERENCIAS.md#ref-43); den Zug, der eine
@@ -1072,6 +1073,8 @@ Anweisungsdatei.
 - **Artefakt**: ein Bericht mit abgestuften Befunden, jeder mit Ort, Risiko, Beleg und Priorität;
   Noten pro Dimension; und die dringenden Befunde schon in offene Posten verwandelt.
 - **Tor**: jeder dringende Befund hat einen offenen Posten, bevor das Audit als abgeschlossen gilt.
+  Und: der Bericht erklärt, warum dieser Auditor, misst die Gesundheit des Registers der
+  Belege, und schließt nicht mit einem Befund ohne Ziel.
 - **Wer entscheidet**: der Eigentümer priorisiert die Befunde.
 - **Fehler, den er verhindert**: Abfragen, die ganze Tabellen lesen [Ref. 18](REFERENCIAS.md#ref-18);
   zwei Administrator-Türen, die niemand sah, bis ein anderer hinschaute
@@ -1362,6 +1365,8 @@ Projekt zurück.
   zugeordnet, und mindestens einem konkreten Vorschlag, die Leiter zu ändern.
 - **Tor**: der Agent kann nicht tun, was der Eigentümer nicht freigegeben hat; die Retrospektive
   bringt mindestens eine Änderung an der Leiter hervor.
+  Und jeder Befund der Retrospektive kommt mit seinem Ziel heraus: Produkt, Methode oder
+  Werkzeug.
 - **Wer entscheidet**: der Eigentümer.
 - **Fehler, den er verhindert**: den Agenten, der ohne Karte agiert; und die Methode, die sich
   Projekt für Projekt gleich wiederholt, ohne zu lernen. Die Retrospektive mit Zahlen, die das

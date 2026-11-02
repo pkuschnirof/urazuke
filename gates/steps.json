@@ -625,6 +625,15 @@
             "blind|ciego"
           ],
           "label": "la rutina del reporte honesto"
+        },
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "the routine assigns each finding its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
         }
       ],
       "verify": [
@@ -641,6 +650,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "anchor": 5
+        },
+        {
+          "text": "Does every finding that is not about the product carry its destination, and was its pending item opened in the register of that destination?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
         }
       ],
       "evaluators": [
@@ -695,6 +710,36 @@
           "label": "the audit reproduces receipts and declares which model performed it",
           "since_schema": 2,
           "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "auditor_choice.{0,40}(different_model|same_model_declared|tool_constraint)"
+          ],
+          "label": "the audit declares why this auditor and not another one, under its fixed key and with one of its declared values",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "evidence_register_health"
+          ],
+          "label": "the audit measured the health of the register of the evidence, which is a dimension of it and not optional",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "every finding of the audit carries its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
         }
       ],
       "verify": [
@@ -712,6 +757,24 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "decision": "D-042"
+        },
+        {
+          "text": "Does the report declare, under auditor_choice, why this auditor and not another one, and does it say so with those words when a limit of the tool chose it?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-079"
+        },
+        {
+          "text": "Does the health of the register of the evidence come with the command that measured each figure, and does a figure that could not be measured say so instead of reading as zero?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
+        },
+        {
+          "text": "Does every finding carry its destination, and was its pending item opened in the register of that destination?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
         }
       ],
       "evaluators": [
@@ -1154,6 +1217,16 @@
           "label": "the retrospective names the model the system was built with",
           "since_schema": 2,
           "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/RETROSPECTIVE_*.md",
+          "fresh_days": 120,
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "every finding of the retrospective carries its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
         }
       ],
       "verify": [
@@ -1170,6 +1243,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "decision": "D-042"
+        },
+        {
+          "text": "Does every finding of the retrospective carry its destination, so that what belongs to the method and to the tool does not end up in the product's register?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
         }
       ],
       "evaluators": [

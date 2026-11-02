@@ -966,6 +966,7 @@ news, the blind spots and what it did not do.
   asked for. Bad news first.
 - **Gate**: no claim without its proof. "Done" is not said on its own. Faced with a "still broken",
   first the published version is compared with the one that has the fix.
+  And a finding that is not about the product goes to the register of its destination.
 - **Who decides**: the owner trusts, or asks for the proof. Never reviews code.
 - **Failure it prevents**: the error reported as success and the reports that declared verified
   what was not [Ref. 43](REFERENCIAS.md#ref-43); the turn that worked invisible for an hour and
@@ -993,6 +994,8 @@ assumptions. Another session of the model, with another instructions file, is en
 - **Artefact**: a report with graded findings, each with location, risk, evidence and priority;
   grades per dimension; and the urgent findings already turned into pending items.
 - **Gate**: every urgent finding has an open pending item before the audit is considered closed.
+  And: the report declares why that auditor and not another, measures the health of the
+  register of the evidence, and does not close with a finding that has no destination.
 - **Who decides**: the owner prioritises the findings.
 - **Failure it prevents**: queries that read whole tables [Ref. 18](REFERENCIAS.md#ref-18); two
   administrator doors that nobody saw until someone else looked
@@ -1266,6 +1269,8 @@ reviewed with numbers, and what is learned returns to step 0 for the next projec
   proposal to change the ladder.
 - **Gate**: the agent cannot do what the owner did not approve; the retrospective produces at least
   one change to the ladder.
+  And every finding of the retrospective comes out with its destination: product, method or
+  tool.
 - **Who decides**: the owner.
 - **Failure it prevents**: the agent that operates without a map; and the method that repeats
   itself unchanged project after project without learning. The retrospective with numbers that

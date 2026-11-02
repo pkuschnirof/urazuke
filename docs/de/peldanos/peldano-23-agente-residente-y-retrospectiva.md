@@ -183,6 +183,11 @@ machst es, nicht der Agent:
 > which step is modified, how, and which incident justifies it. Write it to
 > `docs/RETROSPECTIVE_[date].md`.
 >
+> Close with the fixed key `findings_by_destination`: every finding of this retrospective
+> assigned to `product` if the defect is in the system, `method` if it is in the method being
+> followed, `tool` if it is in the tool that runs it, and written into the register of that
+> destination. A finding whose destination nobody assigned leaves the retrospective open.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -202,6 +207,12 @@ machst es, nicht der Agent:
 > welcher Schritt geändert wird, wie, und welcher Vorfall es rechtfertigt. Schreib es nach
 > `docs/RETROSPECTIVE_[Datum].md`.
 >
+> Schließe mit dem festen Schlüssel `findings_by_destination` ab: jeder Befund dieser
+> Retrospektive zugeordnet zu `product`, wenn der Defekt im System liegt, `method`, wenn er in
+> der befolgten Methode liegt, `tool`, wenn er im Werkzeug liegt, das sie ausführt, und
+> geschrieben in das Register dieses Ziels. Ein Befund, dessen Ziel niemand zugeordnet hat, lässt
+> die Retrospektive offen.
+>
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
 > aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
@@ -218,12 +229,18 @@ Vollständigkeitsklausel für die Zahlen, die er nicht hat (erfragen oder als Sc
 und **mindestens einen konkreten Vorschlag, die Leiter zu ändern**, denn eine Retrospektive, die
 nichts ändert, war keine Retrospektive.
 
+Und seit D-080 das Ziel jedes Befundes. Die Retrospektive ist die Kontrolle, die am meisten Befunde
+zur Methode erzeugt —dafür ist sie da—, also zahlt sie am teuersten dafür, wenn alle im Register
+des Produkts landen.
+
 ## 3. Erwartetes Ergebnis
 
 - `docs/RESIDENT_AGENT.md`: Systemkarte, gewählter Umfang, einer Person zugeordneter
   Zugangsschlüssel, Freigabeverfahren, und der im Log aufgezeichnete Beweis der Ablehnung.
 - `docs/RETROSPECTIVE_[Datum].md`: die Zahlen mit ihrer Quelle, die Vorfälle Schritten
   zugeordnet, und mindestens ein Vorschlag, die Leiter zu ändern, mit seiner Begründung.
+- In der Retrospektive außerdem `findings_by_destination`: jeder Befund mit seinem Ziel —Produkt,
+  Methode oder Werkzeug— und geschrieben in das Register dieses Ziels.
 
 ## 4. Vollständigkeitsprüfung
 
@@ -240,6 +257,9 @@ nichts ändert, war keine Retrospektive.
   nichts ändert, war sie keine Retrospektive.
 - Hat sich das Modell, das baut, seit der letzten Retrospektive geändert? Wenn ja, gibt es eine
   kurze Überprüfung, welche Verträge noch gleich leisten und welche nicht?
+- Hat jeder Befund der Retrospektive ein Ziel? Eine Retrospektive, die alles ins Register des
+  Produkts schickt, verbessert die Methode nicht, und die Methode zu verbessern ist das, wofür sie
+  existiert.
 
 ## 5. Warnsignale
 
