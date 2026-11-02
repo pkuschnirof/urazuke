@@ -73,6 +73,23 @@ cumplimiento que afirmaba seis criterios como verificados cuyo verificador era u
 nunca los ejecutó. El agente había hecho exactamente lo que el peldaño decía. El hueco era del
 peldaño.
 
+**Y la pregunta que todo esto deja, contestada sin vueltas: si nadie firmó ni un caso, ¿avanzo?**
+No. Lo medí el 2026-11-02 con el evaluador real, y las dos mitades son de la misma pieza: con el
+registro de firmas vacío el peldaño 10 sale **rojo** diciendo que nadie firmó ningún caso, y con un
+solo caso firmado por una persona —con su nombre, su fecha y el perfil con el que lo corrió— el
+mismo árbol, con sus trece casos escritos y su `execution_debt` en `pending_verifier`, deja de estar
+rojo y pasa a la verificación del dueño. Así que lo que frena no es la deuda, y nunca lo fue: lo que
+frena es que **nadie haya firmado nada**, y eso está en el ancla 4 del Anexo H desde `2026.10.1`,
+desde antes de que esta declaración existiera. La deuda no abre ni cierra la compuerta: la hace
+**legible**, que es otra cosa y es la que faltaba.
+
+Lo escribo porque hacía falta decirlo acá y no dejarlo para que cada uno lo deduzca. Un proyecto que
+avanzó el peldaño 10 con el registro de firmas vacío no lo hizo porque el método lo permita: fijó el
+**congelado** del esquema 1, donde el único chequeo del peldaño 10 es que el archivo exista, y eso es
+exactamente lo que `PND-055` y D-068 dicen sobre fijar contra una identidad interna que el método no
+puede nombrar. Si te pasó, lo primero que hay que mirar no es el peldaño: es contra qué versión está
+fijado el proyecto.
+
 ## 1. Contexto requerido
 
 Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
@@ -306,6 +323,10 @@ que son dos pendientes distintos.
   tiene es una cifra inventada.
 - ¿Los defectos de la recorrida tienen su pendiente, igual que los fallos humanos?
 
+- Si todavía nadie firmó ni un caso, ¿el texto te dice que no avanzás? Hacele la pregunta al
+  contrato y a la compuerta —«si nadie ejecutó, ¿avanzo?»— y exigí que contesten lo mismo. Si el
+  contrato dice que sí y la compuerta dice que no, el que está mal es el contrato.
+
 ## 5. Señales de alarma
 
 - El agente marcó los casos como ejecutados. Los ejecutó él, que es lo mismo que no ejecutarlos.
@@ -315,8 +336,10 @@ que son dos pendientes distintos.
   encuentran nada, no están siguiendo el guion o el guion no pide mirar.
 - Los fallos se "arreglan" en el momento, sin pendiente. Se pierden las palabras de la persona y
   el rastro de qué se repitió.
-- El peldaño figura cumplido y `cases_executed_by_a_person` está en cero. No es un error: es la
-  deuda, y está a la vista justamente para que no se lea como cumplimiento.
+- El peldaño figura cumplido, `cases_executed_by_a_person` está en cero **y la compuerta te dio
+  verde**. La cifra en cero no es el problema: una deuda declarada es honesta. El problema es el
+  verde: con el catálogo publicado, un peldaño 10 sin ninguna firma sale rojo por el ancla 4. Si
+  salió verde, no lo festejes: mirá contra qué `catalog_version` está fijado el proyecto.
 - La recorrida del agente no encontró nada y el sistema tiene pantallas nuevas. Recorrer no es
   abrir: si no hay hallazgos, lo más probable es que haya mirado la pantalla y no la haya usado.
 - La recorrida se empieza a usar como excusa para no ejecutar los casos. Son dos cosas con dos

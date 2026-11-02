@@ -424,6 +424,60 @@ familia de D-044 y D-067, y acá la copia que mentía era la nueva. La tensión 
 pidió que la ejecución humana **no** sea condición de avance, y el ancla 4 dice que sí— no se
 resuelve de costado: está en `PND-097`, con su medición, y la decide él.
 
+## La pregunta que un peldaño tiene que contestar, y la columna que decía quién
+
+D-083 y D-084 (`PND-097`, `PND-098`), y las dos vienen del lote anterior: la primera es un hallazgo
+con **destino método** que produjo el mecanismo que D-080 había instalado dos días antes, y la
+segunda es la propuesta que ese mismo lote dejó explícitamente afuera por alcance. Entran en el
+catálogo `2026.10.15` y en el corpus de prompts `2026.10.10`, y las dos son la misma pregunta hecha
+a un peldaño cuyo veredicto depende de una persona.
+
+**Si nadie firmó, no se avanza, y la deuda hace legible ese rojo (D-083).** El lote pedía que la
+ejecución humana de los casos manuales fuera una deuda declarada y **no** una condición de avance, y
+eso se aplicó: la declaración entra y no exige que la cifra sea mayor que cero. Pero el peldaño 10
+ya tenía la ejecución humana como condición por otra vía —`manual_cases_per_profile`, `required`
+desde `2026.10.1`, el ancla 4, D-044— y la prosa, al decir con razón que la declaración no agrega
+compuerta, dejaba leer lo contrario de lo que la compuerta hace. Las dos salidas eran legítimas y
+opuestas; elegí que el ancla siga dura, y la razón es **medida y no una preferencia**: la base
+**congelada** del peldaño 10, que no se edita, lleva en su propio título «y los ejecutan personas» y
+pregunta, entre sus tres verificaciones de base, si los casos se ejecutaron con fecha y quién.
+Relajarla dejaría al dato contradiciendo su propia base. La medición que ordena las dos mitades, con
+el evaluador real: con el registro de firmas **vacío** el peldaño sale rojo diciendo que nadie firmó
+ningún caso, y con **un** caso firmado —nombre, fecha y el perfil con el que se corrió— el mismo
+árbol, con sus trece casos escritos y su `execution_debt` en `pending_verifier`, deja de estar rojo y
+pasa a la verificación del dueño. Entonces lo que entra es **texto**, que es lo que faltaba: la
+respuesta en la prosa del contrato en los ocho idiomas, su verificación del dueño —hacerle la misma
+pregunta al contrato y a la compuerta y exigir que contesten igual— y una pregunta en el dato. Y una
+señal de alarma que estaba al revés: decía que el peldaño cumplido con `cases_executed_by_a_person`
+en cero «no es un error, es la deuda», y con el catálogo publicado el error es el **verde**, que sólo
+sale si el proyecto fijó el congelado del esquema 1. Lo que esta decisión **no** hace, y hay que
+leerlo así porque va contra la letra de lo que el dueño pidió: no relaja el ancla 4. Esa salida es
+suya, cuesta editar un requisito publicado que hay proyectos que ya fijaron, y va con su propia
+decisión.
+
+**El verificador no se elige, se deriva (D-084).** El método exigía desde el ancla 3 que
+`docs/CODE_QUALITY.md` y `docs/USABILITY.md` informen resultado por resultado, y en ninguna parte
+exigía que dijeran **quién lo dijo**, así que un criterio que verifica un programa y uno que juzga
+una persona se leían igual. Medido: un documento de cumplimiento tuvo que corregirse el 2026-11-02 y
+**seis** criterios pasaron de «verificado» a «no verificable», quedando uno solo verificado, porque
+el verificador de los otros era una persona que nunca ejecutó los casos. El agente no mintió; el
+documento no tenía dónde decirlo. Entra la declaración con su **denominador**, que es `CQ-19.1`
+pedido a un documento de cumplimiento (`criteria_total` cuenta las reglas que nadie verificó
+todavía), la reparticion entre programa y persona —ésta firmada con nombre y fecha—,
+`verification_debt` con su verificador pendiente, y, criterio por criterio, `verified_by` con el
+**instrumento que el catálogo ya declara** para esa regla. Esa derivación es el corazón y es lo que
+la abarató: `gates/heuristics.json` dice desde que existe que un `manual_case` lo juzga una persona y
+devuelve «pasó o falló, con un nombre y una fecha», y veintidós de las cuarenta y ocho reglas tienen
+un caso manual entre sus instrumentos, así que la columna que faltaba era una **copia que nadie
+estaba obligado a sacar del dato** —la familia de D-044 y D-077—. La regla que deja: un criterio cuyo
+instrumento es `manual_case` y sin firma se escribe `not_verifiable` y nunca como cumplido. Y entran
+los **dos** documentos y no sólo el que nombró el hallazgo, que es simetría productor/consumidor y no
+celo: cuatro reglas de calidad de código —`CQ-12`, `CQ-14`, `CQ-19`, `CQ-20`, dos de ellas
+`human_red`— también las juzga un caso manual. No entra ningún evaluador nuevo, por las dos razones
+de D-081: el vocabulario es append-only y un nombre que una instalación no conoce detiene el peldaño
+para todos los consumidores, y tres cifras que escribió la misma mano no se verifican entre sí, así
+que la suma la comprueba el dueño contando.
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio

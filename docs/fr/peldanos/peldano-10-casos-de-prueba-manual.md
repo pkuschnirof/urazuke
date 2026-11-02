@@ -78,6 +78,24 @@ d'exécution vide, l'échelon au vert, et un document de conformité qui affirma
 vérifiés dont le vérificateur était une personne qui ne les a jamais exécutés. L'agent avait fait
 exactement ce que l'échelon disait. Le trou était celui de l'échelon.
 
+**Et la question que tout cela laisse, répondue sans détour : si personne n'a signé un seul cas,
+est-ce que j'avance ?** Non. Je l'ai mesuré le 2026-11-02 avec l'évaluateur réel, et les deux moitiés
+sont d'une seule pièce : avec le registre des signatures vide, l'échelon 10 sort **rouge** en disant
+que personne n'a signé aucun cas, et avec un seul cas signé par une personne — avec son nom, sa date
+et le profil avec lequel elle l'a exécuté — le même arbre, avec ses treize cas écrits et son
+`execution_debt` à `pending_verifier`, cesse d'être rouge et passe à la vérification du propriétaire.
+Donc ce qui freine n'est pas la dette, et ne l'a jamais été : ce qui freine, c'est que **personne
+n'ait rien signé**, et cela est dans l'ancre 4 de l'Annexe H depuis `2026.10.1`, avant même que cette
+déclaration existe. La dette n'ouvre ni ne ferme la barrière : elle la rend **lisible**, ce qui est
+autre chose et c'est ce qui manquait.
+
+Je l'écris parce qu'il fallait le dire ici et non le laisser déduire à chacun. Un projet qui a
+franchi l'échelon 10 avec un registre de signatures vide ne l'a pas fait parce que la méthode le
+permet : il a épinglé le **gelé** du schéma 1, où la seule vérification de l'échelon 10 est que le
+fichier existe, et c'est exactement ce que `PND-055` et D-068 disent sur l'épinglage contre une
+identité interne que la méthode ne peut pas nommer. Si cela t'est arrivé, la première chose à
+regarder n'est pas l'échelon : c'est contre quelle version le projet est épinglé.
+
 ## 1. Contexte requis
 
 Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
@@ -318,6 +336,11 @@ système s'améliore ou se dégrade entre les blocs ; et la distinction entre «
   n'a pas, est un chiffre inventé.
 - Les défauts du parcours ont-ils leur élément en attente, comme les échecs humains ?
 
+- Si personne n'a encore signé un seul cas, le texte te dit-il que tu n'avances pas ? Pose la
+  question au contrat et à la barrière — « si personne n'a exécuté, est-ce que j'avance ? » — et
+  exige qu'ils répondent la même chose. Si le contrat dit oui et la barrière dit non, celui qui a
+  tort, c'est le contrat.
+
 ## 5. Signaux d'alarme
 
 - L'agent a marqué les cas comme exécutés. C'est lui qui les a exécutés, ce qui revient à ne pas
@@ -329,9 +352,11 @@ système s'améliore ou se dégrade entre les blocs ; et la distinction entre «
   regarder.
 - Les échecs se « corrigent » sur le moment, sans élément en attente. On perd les mots de la
   personne et la trace de ce qui s'est répété.
-- L'échelon figure comme accompli et `cases_executed_by_a_person` est à zéro. Ce n'est pas une
-  erreur : c'est la dette, et elle est en vue justement pour ne pas être lue comme un
-  accomplissement.
+- L'échelon figure comme accompli, `cases_executed_by_a_person` est à zéro **et la barrière t'a
+  donné le vert**. Le chiffre à zéro n'est pas le problème : une dette déclarée est honnête. Le
+  problème est le vert : sur le catalogue publié, un échelon 10 sans aucune signature sort rouge par
+  l'ancre 4. S'il est sorti vert, ne le fête pas : regarde contre quelle `catalog_version` le projet
+  est épinglé.
 - Le parcours de l'agent n'a rien trouvé et le système a des écrans nouveaux. Parcourir n'est pas
   ouvrir : s'il n'y a pas de constats, le plus probable est qu'il ait regardé l'écran sans
   l'utiliser.

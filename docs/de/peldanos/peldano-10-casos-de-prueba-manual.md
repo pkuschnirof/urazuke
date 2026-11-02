@@ -78,6 +78,26 @@ geschrieben, die Ausführungstabelle leer, der Schritt grün, und ein Konformit�
 Kriterien als verifiziert behauptete, deren Prüfer eine Person war, die sie nie ausgeführt hat. Der
 Agent hatte genau das getan, was der Schritt sagte. Das Loch war das des Schritts.
 
+**Und die Frage, die all das hinterlässt, ohne Umwege beantwortet: wenn niemand einen einzigen
+Fall abgezeichnet hat, komme ich weiter?** Nein. Ich habe es am 2026-11-02 mit dem echten Evaluator
+gemessen, und die beiden Hälften sind aus einem Stück: mit leerem Register der Unterschriften kommt
+Schritt 10 **rot** heraus und sagt, dass niemand einen einzigen Fall abgezeichnet hat, und mit einem
+einzigen von einer Person abgezeichneten Fall -- mit ihrem Namen, ihrem Datum und dem Profil, mit dem
+sie ihn ausgeführt hat -- hört derselbe Baum, mit seinen dreizehn geschriebenen Fällen und seinem
+`execution_debt` auf `pending_verifier`, auf rot zu sein und geht in die Prüfung des Eigentümers. Was
+also bremst, ist nicht die Schuld, und war es nie: was bremst, ist, dass **niemand etwas abgezeichnet
+hat**, und das steht seit `2026.10.1` in Anker 4 von Anhang H, schon bevor diese Deklaration
+existierte. Die Schuld öffnet und schließt das Tor nicht: sie macht es **lesbar**, was etwas anderes
+ist und das, was fehlte.
+
+Ich schreibe es, weil es hier gesagt werden musste und nicht jedem zur Ableitung überlassen. Ein
+Projekt, das Schritt 10 mit leerem Register der Unterschriften bestanden hat, hat das nicht getan,
+weil die Methode es erlaubt: es hat das **Gefrorene** von Schema 1 fixiert, wo die einzige Prüfung
+von Schritt 10 ist, dass die Datei existiert, und das ist genau das, was `PND-055` und D-068 über das
+Fixieren gegen eine interne Identität sagen, die die Methode nicht nennen kann. Wenn es dir passiert
+ist, ist das Erste, was man anschauen muss, nicht der Schritt: es ist, auf welche Version das Projekt
+fixiert ist.
+
 ## 1. Benötigter Kontext
 
 Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
@@ -324,6 +344,11 @@ schlecht geschrieben“ und „das System ist schlecht“, denn das sind zwei ve
   das der Agent nicht hat, ist eine erfundene Zahl.
 - Haben die Defekte des Durchgangs ihren offenen Posten, genau wie die menschlichen Fehlschläge?
 
+- Wenn noch niemand einen einzigen Fall abgezeichnet hat, sagt dir der Text, dass du nicht
+  weiterkommst? Stelle die Frage dem Vertrag und dem Tor -- "wenn niemand ausgeführt hat, komme ich
+  weiter?" -- und verlange, dass sie dasselbe antworten. Wenn der Vertrag ja sagt und das Tor nein,
+  dann ist der Vertrag der, der falsch liegt.
+
 ## 5. Warnsignale
 
 - Der Agent hat die Fälle als ausgeführt markiert. Er hat sie ausgeführt, und das ist dasselbe,
@@ -334,9 +359,11 @@ schlecht geschrieben“ und „das System ist schlecht“, denn das sind zwei ve
   folgen sie dem Drehbuch nicht, oder das Drehbuch verlangt nicht hinzusehen.
 - Die Fehlschläge werden „im Moment repariert“, ohne offenen Posten. Die Worte der Person gehen
   verloren und auch die Spur davon, was sich wiederholt hat.
-- Der Schritt erscheint als erfüllt und `cases_executed_by_a_person` steht auf null. Das ist kein
-  Fehler: das ist die Schuld, und sie ist im Blickfeld, gerade damit sie nicht als Erfüllung
-  gelesen wird.
+- Der Schritt erscheint als erfüllt, `cases_executed_by_a_person` steht auf null **und das Tor hat
+  dir Grün gegeben**. Die Zahl auf null ist nicht das Problem: eine deklarierte Schuld ist ehrlich.
+  Das Problem ist das Grün: auf dem veröffentlichten Katalog kommt ein Schritt 10 ohne jede
+  Unterschrift über Anker 4 rot heraus. Wenn er grün herauskam, feiere ihn nicht: schau, auf welche
+  `catalog_version` das Projekt fixiert ist.
 - Der Durchgang des Agenten fand nichts, und das System hat neue Bildschirme. Durchgehen ist nicht
   Öffnen: wenn es keine Befunde gibt, hat er wahrscheinlich den Bildschirm angesehen und nicht
   benutzt.

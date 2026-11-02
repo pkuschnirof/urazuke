@@ -73,6 +73,24 @@ cases written, the execution table empty, the step green, and a compliance docum
 criteria as verified whose verifier was a person who never executed them. The agent had done
 exactly what the step said. The hole was the step's.
 
+**And the question all of this leaves, answered without detours: if nobody has signed a single
+case, do I advance?** No. I measured it on 2026-11-02 with the real evaluator, and the two halves are
+of one piece: with the register of signatures empty, step 10 comes out **red** saying that nobody
+signed a single case, and with one single case signed by a person -- with their name, their date and
+the profile they ran it with -- that same tree, with its thirteen written cases and its
+`execution_debt` at `pending_verifier`, stops being red and goes to the owner's verification. So what
+stops the step is not the debt, and never was: what stops it is that **nobody has signed anything**,
+and that has been in anchor 4 of Annex H since `2026.10.1`, since before this declaration existed.
+The debt neither opens nor closes the gate: it makes it **legible**, which is a different thing and
+the one that was missing.
+
+I write it because it had to be said here instead of left for each reader to deduce. A project that
+advanced step 10 with an empty register of signatures did not do so because the method allows it: it
+pinned the **frozen** schema 1, where the only check of step 10 is that the file exists, and that is
+exactly what `PND-055` and D-068 say about pinning against an internal identity the method cannot
+name. If it happened to you, the first thing to look at is not the step: it is which version the
+project is pinned to.
+
 ## 1. Required context
 
 What follows is the generic list. The concrete files you have to have made before each prompt,
@@ -238,6 +256,11 @@ is wrong", which are two different pending items.
   have, is an invented figure.
 - Do the defects of the walk have their pending item, the same as the human failures?
 
+- If nobody has signed a single case yet, does the text tell you that you do not advance? Put the
+  question to the contract and to the gate -- "if nobody executed, do I advance?" -- and demand that
+  they answer the same. If the contract says yes and the gate says no, the one that is wrong is the
+  contract.
+
 ## 5. Warning signs
 
 - The agent marked the cases as executed. It executed them, which is the same as not executing
@@ -248,8 +271,11 @@ is wrong", which are two different pending items.
   are not following the script or the script does not ask them to look.
 - The failures get "fixed" on the spot, without a pending item. The person's words and the trail
   of what repeated get lost.
-- The step shows as fulfilled and `cases_executed_by_a_person` is at zero. That is not an error: it
-  is the debt, and it is in plain sight precisely so that it is not read as fulfilment.
+- The step shows as fulfilled, `cases_executed_by_a_person` is at zero **and the gate gave you
+  green**. The figure at zero is not the problem: a declared debt is honest. The problem is the
+  green: on the published catalogue, a step 10 with no signature at all comes out red through anchor
+  4. If it came out green, do not celebrate it: look at which `catalog_version` the project is
+  pinned to.
 - The agent's walk found nothing and the system has new screens. Walking is not opening: if there
   are no findings, most likely it looked at the screen and did not use it.
 - The walk starts being used as an excuse not to execute the cases. They are two things with two

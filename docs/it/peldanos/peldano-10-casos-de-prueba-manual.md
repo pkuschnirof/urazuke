@@ -74,6 +74,24 @@ scritti, la tabella di esecuzioni vuota, il gradino in verde, e un documento di 
 affermava sei criteri come verificati il cui verificatore era una persona che non li ha mai
 eseguiti. L'agente aveva fatto esattamente quello che il gradino diceva. Il buco era del gradino.
 
+**E la domanda che tutto questo lascia, risposta senza giri: se nessuno ha firmato nemmeno un
+caso, avanzo?** No. L'ho misurato il 2026-11-02 con il valutatore reale, e le due metà sono dello
+stesso pezzo: con il registro delle firme vuoto il gradino 10 esce **rosso** dicendo che nessuno ha
+firmato nessun caso, e con un solo caso firmato da una persona —con il suo nome, la sua data e il
+profilo con cui l'ha eseguito— lo stesso albero, con i suoi tredici casi scritti e il suo
+`execution_debt` a `pending_verifier`, smette di essere rosso e passa alla verifica del proprietario.
+Quindi quello che frena non è il debito, e non lo è mai stato: quello che frena è che **nessuno abbia
+firmato niente**, e questo sta nell'ancora 4 dell'Annesso H da `2026.10.1`, da prima che questa
+dichiarazione esistesse. Il debito non apre né chiude la barriera: la rende **leggibile**, che è
+un'altra cosa ed è quella che mancava.
+
+Lo scrivo perché andava detto qui e non lasciato dedurre a ciascuno. Un progetto che ha avanzato il
+gradino 10 con il registro delle firme vuoto non lo ha fatto perché il metodo lo permetta: ha fissato
+il **congelato** dello schema 1, dove l'unica verifica del gradino 10 è che il file esista, ed è
+esattamente quello che `PND-055` e D-068 dicono sul fissare contro un'identità interna che il metodo
+non può nominare. Se ti è successo, la prima cosa da guardare non è il gradino: è contro quale
+versione è fissato il progetto.
+
 ## 1. Contesto richiesto
 
 Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni prompt,
@@ -311,6 +329,10 @@ sbagliato", che sono due voci in sospeso diverse.
   l'agente non ha, è una cifra inventata.
 - I difetti della percorrenza hanno la loro voce in sospeso, come i fallimenti umani?
 
+- Se ancora nessuno ha firmato nemmeno un caso, il testo ti dice che non avanzi? Fai la domanda al
+  contratto e alla barriera —«se nessuno ha eseguito, avanzo?»— ed esigi che rispondano la stessa
+  cosa. Se il contratto dice sì e la barriera dice no, quello che sbaglia è il contratto.
+
 ## 5. Segnali d'allarme
 
 - L'agente ha marcato i casi come eseguiti. Li ha eseguiti lui, che è lo stesso che non eseguirli.
@@ -320,8 +342,10 @@ sbagliato", che sono due voci in sospeso diverse.
   niente, non stanno seguendo il copione o il copione non chiede di guardare.
 - I fallimenti si "sistemano" sul momento, senza voce in sospeso. Si perdono le parole della
   persona e la traccia di cosa si è ripetuto.
-- Il gradino figura compiuto e `cases_executed_by_a_person` è a zero. Non è un errore: è il debito,
-  ed è in vista proprio perché non si legga come compimento.
+- Il gradino figura compiuto, `cases_executed_by_a_person` è a zero **e la barriera ti ha dato
+  verde**. La cifra a zero non è il problema: un debito dichiarato è onesto. Il problema è il verde:
+  con il catalogo pubblicato, un gradino 10 senza nessuna firma esce rosso per l'ancora 4. Se è
+  uscito verde, non festeggiarlo: guarda contro quale `catalog_version` è fissato il progetto.
 - La percorrenza dell'agente non ha trovato niente e il sistema ha schermi nuovi. Percorrere non è
   aprire: se non ci sono rilievi, molto probabilmente ha guardato lo schermo e non l'ha usato.
 - La percorrenza comincia a usarsi come scusa per non eseguire i casi. Sono due cose con due scopi,

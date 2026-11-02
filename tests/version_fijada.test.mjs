@@ -125,6 +125,21 @@ test('C: el diferencial desde la primera version publicada es la historia medida
     '2026.10.14 docs/AUDIT_*.md',
     '2026.10.14 docs/MANUAL_TESTS.md',
     '2026.10.14 docs/SCREEN_WALKTHROUGH.md',
+    // Las siete de 2026.10.15 son D-083 y D-084, y las dos son la misma pregunta sobre un
+    // peldano cuyo veredicto depende de una persona. Del peldano 10 entra UNA pregunta y nada
+    // mas: el requisito ya estaba (el ancla 4), lo que faltaba era que el texto contestara lo
+    // mismo que contesta la compuerta, y eso es prosa. Del peldano 9 entran cuatro exigencias
+    // sobre los dos documentos de cumplimiento -- dos por documento: la cabeza con su
+    // denominador y el verificador por criterio -- y sus dos preguntas. Son los DOS documentos
+    // y no solo el que nombro el hallazgo, porque el dato dice que cuatro reglas de calidad de
+    // codigo tambien las juzga un caso manual.
+    '2026.10.15 Does criteria_total count the rules nobody has looked at yet, rather than only the ones that were verified?',
+    '2026.10.15 If nobody has signed a single case yet, does the text of the step answer the same thing the gate answers -- that the step does not advance -- instead of leaving the reader to deduce it?',
+    '2026.10.15 Take a criterion that reads as met and ask who said so: if its instrument is a manual case, is there a name and a date, instead of a criterion nobody judged reading as one that was verified?',
+    '2026.10.15 docs/CODE_QUALITY.md',
+    '2026.10.15 docs/CODE_QUALITY.md',
+    '2026.10.15 docs/USABILITY.md',
+    '2026.10.15 docs/USABILITY.md',
     '2026.10.4 Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?',
     '2026.10.5 docs/GLOSSARY.md',
     '2026.10.5 docs/PROFILES.md',
@@ -195,8 +210,11 @@ test('E: la comprobacion reviso algo, y lo dice con su cuenta', () => {
   // D-078: dos reglas, sus seis CARAS y las dos preguntas de verificacion de sus peldanos. Las
   // diez ultimas son de D-079 y D-080, y son las primeras que no tocan el Anexo H: cinco
   // artefactos y cinco preguntas sobre los peldanos 12, 13 y 23, que exigen lo que un control
-  // tiene que DECLARAR al cerrar y no lo que el sistema tiene que ser.
-  assert.equal(arbol.entradas.length, 68, 'las entradas agregadas despues del congelado, medidas el 2026-11-02');
+  // tiene que DECLARAR al cerrar y no lo que el sistema tiene que ser. Las once de D-081 y
+  // D-082 son las dos mitades de un peldano cuyo trabajo esta afuera; las siete ultimas son de
+  // D-083 y D-084, y la asimetria entre ellas es el dato: del peldano 10 entra una sola
+  // pregunta, porque lo que faltaba ahi era prosa y no un requisito.
+  assert.equal(arbol.entradas.length, 75, 'las entradas agregadas despues del congelado, medidas el 2026-11-02');
   assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['CQ-19', 'CQ-20', 'UX-28'],
     'una regla agregada despues del congelado entra en el diferencial: sin esto un upgrade la omitia en silencio');
   // Y una cara, por el mismo argumento una capa adentro: se puede apagar sola, asi que un

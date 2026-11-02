@@ -55,6 +55,24 @@
 ずつ、コードをわざと壊してみて、どれかのテストが気づくかを見るプログラムです。どれも気づか
 なければ、そのコードの断片は見張られていません。
 
+**そして、欠けていた一列が D-084 とともに入ります。適合文書は、各基準を誰が検証したかを書く。**
+`docs/CODE_QUALITY.md` と `docs/USABILITY.md` は錨3から結果を一件ずつ報告してきましたが、
+2026-11-02 まで**誰がそう言ったのか**を書いていませんでした。だから、プログラムが検証する基準と、
+人が判断する基準が、同じに読めてしまいました。これは仮説ではありません。私が測った周期では、適合
+文書を直さなければならず、**六つ**の基準が「検証済み」から「検証不能」へ移り、検証済みは一つだけ
+残りました。ほかの基準の検証者は、その事例を一度も実行していない人だったからです。エージェントが
+嘘をついたのではありません。文書には、その基準が誰のものかを書く場所がなかったのです。
+
+入るのは、分母を伴った宣言で、これは `CQ-19.1` がどの道具にも求めているのと同じ一片です。
+`criteria_total`——目録のうち何件の規則がこの計画に当てはまるか、誰も検証していないものも数えて——、
+`criteria_verified_by_a_program`、`criteria_verified_by_a_person`——名前と日付を伴って署名されたもの
+——、そして `verification_debt`。さらに基準ごとに、その規則について**目録がすでに宣言している道具**
+で `verified_by` を書きます。エージェントが選ぶのではなく、データから出てきます。データは、存在する
+ときからずっと、`manual_case` は人が判断し「合否を、名前と日付を伴って」返すと言っています。ここに
+残る規則。道具が `manual_case` で署名のない基準は `not_verifiable` と書き、達成とは決して書きませ
+ん。人が判断しなければならないのに誰も判断していない基準は、規則にかなった基準ではありません。それ
+は自分の人を待っている基準であり、そう読めなければなりません。
+
 ## 1. 必要な文脈
 
 ここに続くのは一般的なリストです。各プロンプトの前にあなたが作り終えていなければならない具体
@@ -111,6 +129,20 @@
 > `docs/USABILITY.md` report result by result, never as a single number. The
 > catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
 >
+> And the compliance documents say who verified, which is not the same thing as what was verified.
+> `docs/CODE_QUALITY.md` and `docs/USABILITY.md` carry at their head four declarations, each one under
+> its fixed key in English even when the file is in my language: `criteria_total`, how many rules of
+> the catalogue apply to this project, counting the ones nobody has verified yet;
+> `criteria_verified_by_a_program`, how many of those a program verified, with the command next to the
+> figure; `criteria_verified_by_a_person`, how many a person signed, with a name and a date; and
+> `verification_debt`, `none` when every criterion has its verifier, or `pending_verifier` and then the
+> criteria nobody has verified yet, with who owes each verification and since when. Then, criterion by
+> criterion, `verified_by` with the instrument the catalogue declares for that rule -- `auto_gate`,
+> `matrix_query`, `e2e_per_profile` or `manual_case` -- read from the data and never chosen by you. And
+> the rule this exists for: a criterion whose instrument is `manual_case` and carries no signature is
+> written `not_verifiable`, never as met. A criterion a person has to judge and nobody judged is not a
+> criterion in good standing: it is a criterion waiting for its person, and it has to read that way.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -144,6 +176,20 @@
 > `docs/USABILITY.md` は結果ごとに報告し、決して一つの数値にはしま
 > せん。カタログは `docs/ANEXO_HEURISTICAS.md` です：引用
 > し、コピーしないでください。
+>
+> そして、適合文書は「誰が検証したか」を書きます。それは「何を検証したか」とは別のことです。
+> `docs/CODE_QUALITY.md` と `docs/USABILITY.md` は、その冒頭に四つの宣言を、ファイルが私の言語で
+> あっても英語の固定キーで持ちます。`criteria_total`：この計画に当てはまる目録の規則がいくつか、
+> まだ誰も検証していないものも数えて。`criteria_verified_by_a_program`：そのうちプログラムが検証した
+> のがいくつか、数字の隣にコマンドを添えて。`criteria_verified_by_a_person`：人が署名したのがいくつ
+> か、名前と日付を添えて。そして `verification_debt`：すべての基準に検証者がいるときは `none`、
+> そうでなければ `pending_verifier` とし、まだ誰も検証していない基準を、誰がどの検証をいつから負って
+> いるかとともに。次に、基準ごとに `verified_by` を、その規則について目録が宣言している道具
+> —`auto_gate`、`matrix_query`、`e2e_per_profile`、`manual_case`— で書きます。データから読むもので
+> あって、あなたが選ぶものではありません。そして、これが存在する理由である規則。道具が
+> `manual_case` で署名のない基準は `not_verifiable` と書き、達成とは決して書きません。人が判断しな
+> ければならないのに誰も判断していない基準は、規則にかなった基準ではありません。それは自分の人を
+> 待っている基準であり、そう読めなければなりません。
 >
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
@@ -267,6 +313,10 @@
   ックごとに、カバレッジの隣に。そして重要なコードの中で生き残ったミュータントごとに一つの
   保留項目。
 
+- `docs/CODE_QUALITY.md` と `docs/USABILITY.md` の冒頭に、`criteria_total`、
+  `criteria_verified_by_a_program`、`criteria_verified_by_a_person`、`verification_debt`。そして
+  基準ごとに、その規則について目録が宣言している道具を添えた `verified_by`。
+
 ## 4. 完全性の検証（あなたが行う、コードを読まずに）
 
 - 連鎖の最後の実行へのリンクを求めること：品質は緑か。
@@ -285,6 +335,12 @@
   なかった回のログを求めること。その結果が緑と同じに読めるなら、割合が何と言おうと CQ-19 は
   満たされていない。
 
+- 「達成」と読める基準を一つ取り、誰がそう言ったのかを尋ねてください。その道具が `manual_case`
+  なら、名前と日付がなければなりません。それがないなら、その基準は達成ではありません。自分の人を
+  待っているのであり、文書は `not_verifiable` と言わなければなりません。
+- `criteria_total` は、まだ誰も見ていない規則も数えていますか。検証済みの合計と等しい総数は、
+  `CQ-19.1` が禁じている、都合よく整えた分母です。
+
 ## 5. 警告サイン
 
 - すでに書かれたコードの上で品質が一発で緑になった。ほとんどの場合それは本当ではない。上限が
@@ -298,3 +354,6 @@
   だ。第8段の示された赤が避けようとする、まさにその事例である。
 - プロジェクトに実際の利用者がいるのに、誰もミューテーションテストを走らせず、その理由も
   書いていない。「任意だから」は、利用者のいるプロジェクトではもう有効な理由ではない。
+- 適合文書のすべての基準が「達成」で、署名が一つもない。いちばんありそうなのは、システムが完璧だ
+  ということではありません。誰も検証していないものを検証済みとして数えた、ということです。基準
+  ごとに名前と日付を求めてください。

@@ -58,6 +58,26 @@ improve: today's number is tomorrow's floor. *Mutation testing* is a program tha
 on purpose, one small change at a time, and looks at whether any test notices; if none does, that
 piece of code is not being watched.
 
+**And a column that was missing, which enters with D-084: the compliance document says who
+verified each criterion.** `docs/CODE_QUALITY.md` and `docs/USABILITY.md` have reported result by
+result since anchor 3, and until 2026-11-02 they did not say **who said so**, so a criterion a
+program verifies and a criterion a person judges read the same. This is not a hypothesis: in the
+cycle I measured, a compliance document had to be corrected and **six** criteria went from
+"verified" to "not verifiable", leaving one single verified, because the verifier of the others was
+a person who never executed the cases. The agent did not lie: the document had nowhere to say whose
+the criterion was.
+
+What enters is the declaration with its denominator, which is the same piece `CQ-19.1` asks of any
+instrument: `criteria_total` -- how many rules of the catalogue apply to the project, counting the
+ones nobody verified --, `criteria_verified_by_a_program`, `criteria_verified_by_a_person` --
+signed, with a name and a date -- and `verification_debt`. And, criterion by criterion,
+`verified_by` with the **instrument the catalogue already declares** for that rule: the agent does
+not choose it, it comes from the data, which has said since it exists that a `manual_case` is judged
+by a person and returns "passed or failed, with a name and a date". The rule this leaves: a criterion
+whose instrument is `manual_case` and carries no signature is written `not_verifiable` and never as
+met. A criterion a person has to judge and nobody judged is not a criterion in good standing: it is a
+criterion waiting for its person, and it has to read that way.
+
 ## 1. Required context
 
 What follows is the generic list. The concrete files you have to have made before each prompt,
@@ -114,6 +134,20 @@ the agent:
 > failure of the gate, not a decision. `docs/CODE_QUALITY.md` and
 > `docs/USABILITY.md` report result by result, never as a single number. The
 > catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
+>
+> And the compliance documents say who verified, which is not the same thing as what was verified.
+> `docs/CODE_QUALITY.md` and `docs/USABILITY.md` carry at their head four declarations, each one under
+> its fixed key in English even when the file is in my language: `criteria_total`, how many rules of
+> the catalogue apply to this project, counting the ones nobody has verified yet;
+> `criteria_verified_by_a_program`, how many of those a program verified, with the command next to the
+> figure; `criteria_verified_by_a_person`, how many a person signed, with a name and a date; and
+> `verification_debt`, `none` when every criterion has its verifier, or `pending_verifier` and then the
+> criteria nobody has verified yet, with who owes each verification and since when. Then, criterion by
+> criterion, `verified_by` with the instrument the catalogue declares for that rule -- `auto_gate`,
+> `matrix_query`, `e2e_per_profile` or `manual_case` -- read from the data and never chosen by you. And
+> the rule this exists for: a criterion whose instrument is `manual_case` and carries no signature is
+> written `not_verifiable`, never as met. A criterion a person has to judge and nobody judged is not a
+> criterion in good standing: it is a criterion waiting for its person, and it has to read that way.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -205,6 +239,10 @@ coverage, with a drop treated as red.
 - In any project with users: the mutation score in `docs/CODE_QUALITY.md`, per block, next
   to the coverage, and a pending item for every surviving mutant in code that matters.
 
+- At the head of `docs/CODE_QUALITY.md` and of `docs/USABILITY.md`: `criteria_total`,
+  `criteria_verified_by_a_program`, `criteria_verified_by_a_person` and `verification_debt`; and,
+  criterion by criterion, `verified_by` with the instrument the catalogue declares for that rule.
+
 ## 4. Completeness check (you do it, without reading code)
 
 - Ask it for the link to the last run of the chain: is quality green?
@@ -224,6 +262,12 @@ coverage, with a drop treated as red.
   for a run in which the instrument could not look: if that result reads the same as green, CQ-19
   is not fulfilled, whatever the percentage says.
 
+- Take a criterion that reads as met and ask who said so: if its instrument is `manual_case`, there
+  has to be a name and a date. If they are not there, that criterion is not met: it is waiting for
+  its person, and the document has to say `not_verifiable`.
+- Does `criteria_total` also count the rules nobody has looked at yet? A total equal to the sum of
+  what was verified is the tidied-up denominator `CQ-19.1` forbids.
+
 ## 5. Warning signs
 
 - Quality passed green on the first try on code already written. It is almost never true: the
@@ -238,3 +282,6 @@ coverage, with a drop treated as red.
   verifying anything: the exact case the demonstrated red of step 8 tries to prevent.
 - The project has real users and nobody ran mutation testing or wrote down why not. "It is
   optional" stopped being a valid reason for a project with users.
+- The compliance document has every criterion as met and not a single signature. The most likely
+  thing is not that the system is impeccable: it is that what nobody verified was counted as
+  verified. Ask for the names and the dates, criterion by criterion.

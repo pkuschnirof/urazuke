@@ -8188,9 +8188,11 @@ contratos, y el chequeo las exige.
   un árbol de prueba y sobre el brazo del experimento. Es un hallazgo con **destino método**, del
   mecanismo que D-080 instaló.
 - **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
-- **Quién decide:** **el dueño**, porque las dos salidas tocan una exigencia publicada y son
-  opuestas.
-- **Estado: abierto**
+- **Quién decide:** el dueño, y la regla escrita de este lote fue que yo eligiera donde algo
+  estuviera ambiguo y dejara escrito por qué ésa y no otra. Elegí la **(1)**, por una razón medida
+  que la entrada no traía y que está abajo; y queda dicho, porque va contra la letra de lo que pidió:
+  la **(2)** sigue siendo suya y cuesta editar un requisito publicado.
+- **Estado: CERRADO** el 2026-11-02, con **D-083**.
 
 **Qué está mal.** El lote pedía, textual, que la ejecución humana de los casos manuales sea «una
 deuda declarada con su verificador pendiente, **no una condición de avance**». Eso se aplicó en lo
@@ -8223,6 +8225,42 @@ le hace al ancla 4 y al diferencial de los proyectos que ya la fijaron. Verifica
 abrir el contrato del peldaño 10 y preguntar «si nadie ejecutó, ¿avanzo?», y que el texto conteste lo
 mismo que contesta la compuerta.
 
+**Qué quedó, y por qué la (1).** La razón no es una preferencia: la base **congelada** del peldaño
+10 —la que no se edita, D-050— lleva en su propio **título** «y los ejecutan personas» y pregunta,
+entre sus tres verificaciones de base, «¿los casos se ejecutaron al cierre del bloque, con fecha y
+quién?». Relajar el ancla 4 dejaría al dato contradiciendo su propia base, y eso no se hace de
+costado. Entonces entra lo que faltaba de verdad, que era **texto**: la prosa del contrato del
+peldaño 10 contesta ahora, en los ocho idiomas y sin vueltas, la pregunta «si nadie firmó ni un
+caso, ¿avanzo?»; la sección 4 trae la verificación del dueño que la hace falsable —preguntarle lo
+mismo al contrato y a la compuerta y exigir que contesten igual—; y el dato suma **una** pregunta de
+verificación (`gates/steps.json`, `since_version` `2026.10.15`). Ningún requisito nuevo: el
+requisito ya estaba.
+
+**Y una señal de alarma que estaba al revés, que es lo que este cierre arregla además de lo
+pedido.** El contrato listaba, entre sus señales: «el peldaño figura cumplido y
+`cases_executed_by_a_person` está en cero. **No es un error**: es la deuda». Con el catálogo
+publicado, el error es el **verde**: la cifra en cero es honesta, y un peldaño 10 sin ninguna firma
+sale rojo por el ancla 4. La señal dice ahora eso, y manda a mirar contra qué `catalog_version`
+está fijado el proyecto, que es la única forma de que salga verde (`PND-055`, D-068, cuarta
+medición).
+
+**La medición del cierre, con el evaluador real de la herramienta** (`node evaluar_ancla.mjs 10
+<árbol>`, que recorre **todos** los evaluadores que el dato declara y no sólo `artifacts`):
+
+- árbol con la matriz bien formada, los trece casos escritos, la deuda declarada y la recorrida
+  hecha, y el **registro de firmas vacío**: `manual_cases_per_profile` -> **red**, «el registro de
+  casos manuales esta vacio: nadie firmo ningun caso».
+- el **mismo** árbol con **un** caso firmado —`judged_by`, fecha y el perfil de su funcionalidad—:
+  `manual_cases_per_profile` -> **owner**. Deja de estar rojo y pasa a la verificación del dueño,
+  con la deuda de los otros doce declarada.
+
+Las dos corridas juntas son la prueba de que las dos afirmaciones del contrato son verdaderas a la
+vez: la declaración no agrega compuerta, y lo que frena es que nadie haya firmado nada.
+
+**Criterio de aceptación.** Dado el contrato del peldaño 10 en cualquiera de los ocho idiomas,
+cuando el lector pregunta «si nadie ejecutó, ¿avanzo?», entonces el texto contesta lo mismo que
+contesta la compuerta. Verificado contra las dos corridas de arriba.
+
 ## PND-098 — El documento de cumplimiento no declara quién verifica cada criterio, así que un criterio cuyo verificador es una persona puede figurar como verificado sin su firma *(propuesta (c) de la entrada de origen, que este lote no pidió; destino: método)*
 
 - **Nodo:** `corpus/contratos` [nodo propuesto]
@@ -8230,8 +8268,9 @@ mismo que contesta la compuerta.
   pidió aplicar la (b) y la (a); la (c) quedó afuera por alcance (SQ 5) y se registra para que no se
   pierda.
 - **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
-- **Quién decide:** el dueño.
-- **Estado: abierto**
+- **Quién decide:** el dueño; el criterio de aceptación de esta entrada era uno solo y no dos
+  salidas opuestas, así que lo apliqué tal como está escrito.
+- **Estado: CERRADO** el 2026-11-02, con **D-084**.
 
 **Qué está mal.** `docs/USABILITY.md` es el documento de cumplimiento del peldaño 9 y lleva, por
 criterio, si está cumplido. Lo que no lleva es **quién lo verifica**. Y hay criterios cuyo
@@ -8249,6 +8288,51 @@ una persona y sin firma, cuando se evalúa el peldaño que lo exige, entonces es
 figurar como verificado. Verificable sin leer código: abrir el documento y preguntar, criterio por
 criterio, quién lo dijo.
 
+**Qué quedó.** Sobre los **dos** documentos de cumplimiento del peldaño 9: la declaración con su
+denominador —`criteria_total` contando las reglas que nadie verificó todavía, que es `CQ-19.1`
+pedido a un documento de cumplimiento, `criteria_verified_by_a_program`,
+`criteria_verified_by_a_person` firmadas con nombre y fecha, y `verification_debt` con su
+verificador pendiente— y, criterio por criterio, `verified_by` con el instrumento que el catálogo
+**ya** declara para esa regla. En el dato: cuatro artefactos y dos preguntas nuevos
+(`gates/steps.json`, `since_version` `2026.10.15`); en el prompt inicial del peldaño 9, la cláusula
+en los ocho idiomas; y en la prosa del contrato, el párrafo, el resultado esperado, dos
+verificaciones del dueño y una señal de alarma.
+
+**La pieza que abarató la entrada, y que la entrada no había visto.** El verificador **no hay que
+inventarlo**: `gates/heuristics.json` declara, por regla, su `instrument`, y declara que un
+`manual_case` lo **juzga una persona** y devuelve «passed or failed, with a name and a date». De las
+cuarenta y ocho reglas, **veintidós** tienen un caso manual entre sus instrumentos. Así que la
+columna que faltaba era una **copia que nadie estaba obligado a sacar del dato**, que es la familia
+de D-044 y D-077, y por eso `verified_by` se deriva y no se elige. De ahí también que entren los
+dos documentos y no sólo `docs/USABILITY.md`, que es el que nombró el hallazgo: cuatro reglas de
+calidad de código —`CQ-12`, `CQ-14`, `CQ-19` y `CQ-20`, dos de ellas `human_red`— también las juzga
+un caso manual, y arreglar una mitad reproducía el defecto en la otra (SQ 14).
+
+**La medición del cierre, con el evaluador real** (`node evaluar_metodo.mjs 9 <árbol>`):
+
+- el documento **como estaba en el experimento** —los criterios en «verificada», sin columna de
+  verificador— sale **rojo** en las cuatro exigencias nuevas, nombrando `/criteria_total.{0,20}\d/`
+  y `/verified_by/` una por una.
+- el documento con las cuatro cifras y el `verified_by` de cada criterio pasa las cuatro. Los
+  chequeos que siguen rojos en ese árbol de prueba son de antes de este lote (el `GATES.md` de
+  juguete y la falta de integración continua), y no de D-084.
+
+**La prueba que lo guarda, y por qué hizo falta.** `tests/declaraciones_del_rastro.test.mjs` creció
+de once a dieciocho comprobaciones: las cinco claves nuevas declaradas en el peldaño y el archivo
+que les toca, el documento que el prompt pide pasando, el documento del experimento cayendo, el
+borde que importa —con la cabeza completa pero **sin** el verificador por criterio cae **una sola**
+exigencia, que es exactamente el hueco que este pendiente nombra—, la cifra en prosa y la deuda
+fuera de vocabulario cayendo, y una simetría que las doce claves de D-081 y D-082 no tenían: los
+cuatro instrumentos que la expresión acepta son **exactamente** los que declara
+`heuristics.json#instruments`, en las dos direcciones. Recibos: `red_proof` contra `a467e1f` (6 de
+18 caen), `green` (18 de 18), `regression` (476 de 476).
+
+**Criterio de aceptación.** Dado un documento de cumplimiento con un criterio cuyo verificador es
+una persona y sin firma, cuando se evalúa el peldaño que lo exige, entonces ese criterio no puede
+figurar como verificado: el documento tiene que escribirlo `not_verifiable`, y si no declara su
+verificador la compuerta sale roja nombrándolo. Verificado con el evaluador real, en los dos
+estados.
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -8263,9 +8347,9 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 42 | 26 | 16 | 11 |
+| G-METODO | 42 | 24 | 18 | 11 |
 | G-TRAZABILIDAD | 4 | 2 | 2 | 0 |
-| **total** | **98** | **46** | **52** | **15** |
+| **total** | **98** | **44** | **54** | **15** |
 
 Noventa y ocho entradas, `PND-001` a `PND-098`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,

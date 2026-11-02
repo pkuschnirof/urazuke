@@ -57,6 +57,25 @@ executada por algum teste. E uma *catraca* é um mecanismo que só deixa melhora
 mudança pequena por vez, e olha se algum teste percebe; se nenhum percebe, esse pedaço de código
 não está vigiado.
 
+**E uma coluna que faltava, que entra com D-084: o documento de cumprimento diz quem verificou
+cada critério.** `docs/CODE_QUALITY.md` e `docs/USABILITY.md` informam resultado por resultado desde
+a âncora 3, e até 2026-11-02 não diziam **quem o disse**, então um critério que um programa verifica
+e um critério que uma pessoa julga liam-se igual. Não é uma hipótese: no ciclo que medi, um documento
+de cumprimento teve de ser corrigido e **seis** critérios passaram de «verificado» a «não
+verificável», ficando um só verificado, porque o verificador dos outros era uma pessoa que nunca
+executou os casos. O agente não mentiu: o documento não tinha onde dizer de quem era o critério.
+
+O que entra é a declaração com o seu denominador, que é a mesma peça que `CQ-19.1` pede a qualquer
+instrumento: `criteria_total` —quantas regras do catálogo se aplicam ao projeto, contando as que
+ninguém verificou—, `criteria_verified_by_a_program`, `criteria_verified_by_a_person` —assinadas, com
+nome e data— e `verification_debt`. E, critério por critério, `verified_by` com o **instrumento que o
+catálogo já declara** para essa regra: não o escolhe o agente, sai do dado, que desde que existe diz
+que um `manual_case` é julgado por uma pessoa e devolve «passou ou falhou, com um nome e uma data». A
+regra que isto deixa: um critério cujo instrumento é `manual_case` e não tem assinatura escreve-se
+`not_verifiable` e nunca como cumprido. Um critério que tem de ser julgado por uma pessoa e que
+ninguém julgou não é um critério em regra: é um critério à espera da sua pessoa, e tem de se ler
+assim.
+
 ## 1. Contexto necessário
 
 O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
@@ -113,6 +132,20 @@ agente:
 > `docs/USABILITY.md` report result by result, never as a single number. The
 > catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
 >
+> And the compliance documents say who verified, which is not the same thing as what was verified.
+> `docs/CODE_QUALITY.md` and `docs/USABILITY.md` carry at their head four declarations, each one under
+> its fixed key in English even when the file is in my language: `criteria_total`, how many rules of
+> the catalogue apply to this project, counting the ones nobody has verified yet;
+> `criteria_verified_by_a_program`, how many of those a program verified, with the command next to the
+> figure; `criteria_verified_by_a_person`, how many a person signed, with a name and a date; and
+> `verification_debt`, `none` when every criterion has its verifier, or `pending_verifier` and then the
+> criteria nobody has verified yet, with who owes each verification and since when. Then, criterion by
+> criterion, `verified_by` with the instrument the catalogue declares for that rule -- `auto_gate`,
+> `matrix_query`, `e2e_per_profile` or `manual_case` -- read from the data and never chosen by you. And
+> the rule this exists for: a criterion whose instrument is `manual_case` and carries no signature is
+> written `not_verifiable`, never as met. A criterion a person has to judge and nobody judged is not a
+> criterion in good standing: it is a criterion waiting for its person, and it has to read that way.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -149,6 +182,21 @@ agente:
 > escrita é uma falha da comporta, não uma decisão. `docs/CODE_QUALITY.md` e
 > `docs/USABILITY.md` informam resultado por resultado, nunca como um único
 > número. O catálogo é `docs/ANEXO_HEURISTICAS.md`: cite-o, não o copie.
+>
+> E os documentos de cumprimento dizem quem verificou, que não é o mesmo que o que se verificou.
+> `docs/CODE_QUALITY.md` e `docs/USABILITY.md` levam na sua cabeça quatro declarações, cada uma com a
+> sua chave fixa em inglês mesmo que o arquivo esteja no meu idioma: `criteria_total`, quantas regras
+> do catálogo se aplicam a este projeto, contando as que ninguém verificou ainda;
+> `criteria_verified_by_a_program`, quantas dessas um programa verificou, com o comando ao lado da
+> cifra; `criteria_verified_by_a_person`, quantas uma pessoa assinou, com nome e data; e
+> `verification_debt`, `none` quando cada critério tem o seu verificador, ou `pending_verifier` e então
+> os critérios que ninguém verificou ainda, com quem deve cada verificação e desde quando. Depois,
+> critério por critério, `verified_by` com o instrumento que o catálogo declara para essa regra
+> —`auto_gate`, `matrix_query`, `e2e_per_profile` ou `manual_case`—, lido do dado e nunca escolhido por
+> você. E a regra pela qual isto existe: um critério cujo instrumento é `manual_case` e não tem
+> assinatura escreve-se `not_verifiable`, nunca como cumprido. Um critério que tem de ser julgado por
+> uma pessoa e que ninguém julgou não é um critério em regra: é um critério à espera da sua pessoa, e
+> tem de se ler assim.
 >
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
@@ -273,6 +321,10 @@ como vermelho.
 - Em qualquer projeto com usuários: a pontuação de mutação em `docs/CODE_QUALITY.md`, por bloco,
   junto à cobertura, e uma pendência por cada mutante que sobrevive em código que importa.
 
+- Na cabeça de `docs/CODE_QUALITY.md` e de `docs/USABILITY.md`: `criteria_total`,
+  `criteria_verified_by_a_program`, `criteria_verified_by_a_person` e `verification_debt`; e,
+  critério por critério, `verified_by` com o instrumento que o catálogo declara para essa regra.
+
 ## 4. Verificação de completude (você a faz, sem ler código)
 
 - Peça a ele o link da última corrida da cadeia: a qualidade está em verde?
@@ -290,6 +342,12 @@ como vermelho.
   qual o instrumento não pôde olhar: se esse resultado se lê igual ao verde, CQ-19 não está
   cumprida, não importa o que diga a porcentagem.
 
+- Toma um critério que diga «cumprido» e pergunta quem o disse: se o seu instrumento é
+  `manual_case`, tem de haver um nome e uma data. Se não estão, esse critério não está cumprido:
+  está à espera da sua pessoa, e o documento tem de dizer `not_verifiable`.
+- `criteria_total` conta também as regras que ninguém olhou ainda? Um total igual à soma do que foi
+  verificado é o denominador acomodado que `CQ-19.1` proíbe.
+
 ## 5. Sinais de alerta
 
 - A qualidade passou em verde de primeira sobre código já escrito. Quase nunca é verdade: os
@@ -305,3 +363,6 @@ como vermelho.
   verificar nada: o caso exato que o vermelho demonstrado do degrau 8 tenta evitar.
 - O projeto tem usuários reais e ninguém rodou os testes de mutação nem escreveu por quê não.
   "É opcional" deixou de ser uma razão válida para um projeto com usuários.
+- O documento de cumprimento tem todos os seus critérios em «cumprido» e nenhuma assinatura. O mais
+  provável não é que o sistema esteja impecável: é que se contou como verificado o que ninguém
+  verificou. Pede os nomes e as datas, critério por critério.

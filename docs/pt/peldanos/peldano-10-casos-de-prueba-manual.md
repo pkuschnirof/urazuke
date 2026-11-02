@@ -71,6 +71,23 @@ documento de cumprimento que afirmava seis critérios como verificados cujo veri
 pessoa que nunca os executou. O agente tinha feito exatamente o que o degrau dizia. O buraco era do
 degrau.
 
+**E a pergunta que tudo isso deixa, respondida sem rodeios: se ninguém assinou nem um caso,
+avanço?** Não. Medi em 2026-11-02 com o avaliador real, e as duas metades são da mesma peça: com o
+registro de assinaturas vazio o degrau 10 sai **vermelho** dizendo que ninguém assinou nenhum caso,
+e com um único caso assinado por uma pessoa —com o seu nome, a sua data e o perfil com que o
+executou— a mesma árvore, com os seus treze casos escritos e o seu `execution_debt` em
+`pending_verifier`, deixa de estar vermelha e passa à verificação do dono. Então o que freia não é a
+dívida, e nunca foi: o que freia é que **ninguém tenha assinado nada**, e isso está na âncora 4 do
+Anexo H desde `2026.10.1`, desde antes de esta declaração existir. A dívida não abre nem fecha a
+comporta: ela a torna **legível**, que é outra coisa e é a que faltava.
+
+Escrevo isso porque era preciso dizê-lo aqui e não deixar que cada um deduza. Um projeto que avançou
+o degrau 10 com o registro de assinaturas vazio não o fez porque o método permita: fixou o
+**congelado** do esquema 1, onde a única verificação do degrau 10 é que o arquivo exista, e isso é
+exatamente o que `PND-055` e D-068 dizem sobre fixar contra uma identidade interna que o método não
+pode nomear. Se te aconteceu, a primeira coisa a olhar não é o degrau: é contra que versão o projeto
+está fixado.
+
 ## 1. Contexto necessário
 
 O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
@@ -302,6 +319,10 @@ diferentes.
   uma cifra inventada.
 - Os defeitos da percorrida têm a sua pendência, igual que as falhas humanas?
 
+- Se ainda ninguém assinou nem um caso, o texto te diz que não avanças? Faz a pergunta ao contrato
+  e à comporta —«se ninguém executou, avanço?»— e exige que respondam o mesmo. Se o contrato diz que
+  sim e a comporta diz que não, quem está errado é o contrato.
+
 ## 5. Sinais de alerta
 
 - O agente marcou os casos como executados. Executou-os ele, que é o mesmo que não executá-los.
@@ -311,8 +332,10 @@ diferentes.
   encontram nada, não estão seguindo o roteiro ou o roteiro não pede que se olhe.
 - As falhas se "consertam" na hora, sem pendência. Perdem-se as palavras da pessoa e o rastro do
   que se repetiu.
-- O degrau figura cumprido e `cases_executed_by_a_person` está em zero. Não é um erro: é a dívida,
-  e está à vista justamente para que não se leia como cumprimento.
+- O degrau figura cumprido, `cases_executed_by_a_person` está em zero **e a comporta te deu
+  verde**. O número em zero não é o problema: uma dívida declarada é honesta. O problema é o verde:
+  com o catálogo publicado, um degrau 10 sem nenhuma assinatura sai vermelho pela âncora 4. Se saiu
+  verde, não festeje: olha contra que `catalog_version` o projeto está fixado.
 - A percorrida do agente não encontrou nada e o sistema tem telas novas. Percorrer não é abrir: se
   não há achados, o mais provável é que tenha olhado a tela e não a tenha usado.
 - A percorrida começa a usar-se como desculpa para não executar os casos. São duas coisas com dois

@@ -62,6 +62,29 @@ zulässt: die Zahl von heute ist der Boden von morgen. Die *Mutationstests* sind
 den Code absichtlich kaputt macht, mit je einer kleinen Änderung auf einmal, und schaut, ob
 irgendein Test es merkt; wenn keiner es merkt, ist dieses Stück Code nicht bewacht.
 
+**Und eine Spalte, die fehlte, die mit D-084 hereinkommt: das Konformitätsdokument sagt, wer jedes
+Kriterium geprüft hat.** `docs/CODE_QUALITY.md` und `docs/USABILITY.md` berichten seit Anker 3
+Ergebnis für Ergebnis, und bis zum 2026-11-02 sagten sie nicht, **wer es gesagt hat**, so dass ein
+Kriterium, das ein Programm prüft, und ein Kriterium, das eine Person beurteilt, gleich gelesen
+wurden. Das ist keine Hypothese: in dem Zyklus, den ich gemessen habe, musste ein
+Konformitätsdokument korrigiert werden, und **sechs** Kriterien gingen von "geprüft" zu "nicht
+prüfbar", wobei ein einziges geprüft blieb, weil der Prüfer der anderen eine Person war, die die
+Fälle nie ausgeführt hat. Der Agent hat nicht gelogen: das Dokument hatte keinen Ort, um zu sagen,
+wessen das Kriterium war.
+
+Was hereinkommt, ist die Deklaration mit ihrem Nenner, die dasselbe Stück ist, das `CQ-19.1` von
+jedem Instrument verlangt: `criteria_total` -- wie viele Regeln des Katalogs auf das Projekt
+zutreffen, mitgezählt die, die niemand geprüft hat --, `criteria_verified_by_a_program`,
+`criteria_verified_by_a_person` -- abgezeichnet, mit Namen und Datum -- und `verification_debt`. Und,
+Kriterium für Kriterium, `verified_by` mit dem **Instrument, das der Katalog für diese Regel schon
+deklariert**: der Agent wählt es nicht, es kommt aus der Daten, die seit sie existiert sagt, dass ein
+`manual_case` von einer Person beurteilt wird und "bestanden oder gescheitert, mit einem Namen und
+einem Datum" zurückgibt. Die Regel, die das hinterlässt: ein Kriterium, dessen Instrument
+`manual_case` ist und das keine Unterschrift trägt, wird `not_verifiable` geschrieben und niemals als
+erfüllt. Ein Kriterium, das eine Person beurteilen muss und das niemand beurteilt hat, ist kein
+Kriterium in Ordnung: es ist ein Kriterium, das auf seine Person wartet, und so muss es gelesen
+werden.
+
 ## 1. Benötigter Kontext
 
 Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
@@ -119,6 +142,20 @@ machst es, nicht der Agent:
 > `docs/USABILITY.md` report result by result, never as a single number. The
 > catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
 >
+> And the compliance documents say who verified, which is not the same thing as what was verified.
+> `docs/CODE_QUALITY.md` and `docs/USABILITY.md` carry at their head four declarations, each one under
+> its fixed key in English even when the file is in my language: `criteria_total`, how many rules of
+> the catalogue apply to this project, counting the ones nobody has verified yet;
+> `criteria_verified_by_a_program`, how many of those a program verified, with the command next to the
+> figure; `criteria_verified_by_a_person`, how many a person signed, with a name and a date; and
+> `verification_debt`, `none` when every criterion has its verifier, or `pending_verifier` and then the
+> criteria nobody has verified yet, with who owes each verification and since when. Then, criterion by
+> criterion, `verified_by` with the instrument the catalogue declares for that rule -- `auto_gate`,
+> `matrix_query`, `e2e_per_profile` or `manual_case` -- read from the data and never chosen by you. And
+> the rule this exists for: a criterion whose instrument is `manual_case` and carries no signature is
+> written `not_verifiable`, never as met. A criterion a person has to judge and nobody judged is not a
+> criterion in good standing: it is a criterion waiting for its person, and it has to read that way.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -157,6 +194,22 @@ machst es, nicht der Agent:
 > `docs/CODE_QUALITY.md` und `docs/USABILITY.md` berichten Ergebnis für
 > Ergebnis, nie als eine einzige Zahl. Der Katalog ist
 > `docs/ANEXO_HEURISTICAS.md`: zitiere ihn, kopiere ihn nicht.
+>
+> Und die Konformitätsdokumente sagen, WER geprüft hat, was nicht dasselbe ist wie, was geprüft wurde.
+> `docs/CODE_QUALITY.md` und `docs/USABILITY.md` tragen an ihrem Kopf vier Deklarationen, jede unter
+> ihrem festen Schlüssel auf Englisch, auch wenn die Datei in meiner Sprache ist: `criteria_total`, wie
+> viele Regeln des Katalogs auf dieses Projekt zutreffen, mitgezählt die, die noch niemand geprüft hat;
+> `criteria_verified_by_a_program`, wie viele davon ein Programm geprüft hat, mit dem Befehl neben der
+> Zahl; `criteria_verified_by_a_person`, wie viele eine Person abgezeichnet hat, mit Namen und Datum;
+> und `verification_debt`, `none`, wenn jedes Kriterium seinen Prüfer hat, oder `pending_verifier` und
+> dann die Kriterien, die noch niemand geprüft hat, mit wem jede Prüfung geschuldet wird und seit wann.
+> Danach, Kriterium für Kriterium, `verified_by` mit dem Instrument, das der Katalog für diese Regel
+> deklariert -- `auto_gate`, `matrix_query`, `e2e_per_profile` oder `manual_case` --, aus der Daten
+> gelesen und niemals von dir gewählt. Und die Regel, für die das existiert: ein Kriterium, dessen
+> Instrument `manual_case` ist und das keine Unterschrift trägt, wird `not_verifiable` geschrieben,
+> niemals als erfüllt. Ein Kriterium, das eine Person beurteilen muss und das niemand beurteilt hat,
+> ist kein Kriterium in Ordnung: es ist ein Kriterium, das auf seine Person wartet, und so muss es
+> gelesen werden.
 >
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
@@ -292,6 +345,11 @@ behandelt wird.
 - In jedem Projekt mit Nutzern: die Mutationspunktzahl in `docs/CODE_QUALITY.md`, pro Block, neben
   der Abdeckung, und ein offener Posten für jeden überlebenden Mutanten in Code, der zählt.
 
+- Am Kopf von `docs/CODE_QUALITY.md` und von `docs/USABILITY.md`: `criteria_total`,
+  `criteria_verified_by_a_program`, `criteria_verified_by_a_person` und `verification_debt`; und,
+  Kriterium für Kriterium, `verified_by` mit dem Instrument, das der Katalog für diese Regel
+  deklariert.
+
 ## 4. Vollständigkeitsprüfung (die machst du, ohne Code zu lesen)
 
 - Verlang den Link zum letzten Lauf der Kette: ist die Qualität grün?
@@ -312,6 +370,13 @@ behandelt wird.
   konnte? Verlange einen Lauf, in dem das Instrument nicht hinsehen konnte: liest sich dieses
   Ergebnis wie das Grün, ist CQ-19 nicht erfüllt, egal was der Prozentwert sagt.
 
+- Nimm ein Kriterium, das als erfüllt gelesen wird, und frage, wer das gesagt hat: wenn sein
+  Instrument `manual_case` ist, muss es einen Namen und ein Datum geben. Wenn sie nicht da sind, ist
+  dieses Kriterium nicht erfüllt: es wartet auf seine Person, und das Dokument muss
+  `not_verifiable` sagen.
+- Zählt `criteria_total` auch die Regeln, die noch niemand angeschaut hat? Eine Gesamtzahl gleich der
+  Summe des Geprüften ist der zurechtgelegte Nenner, den `CQ-19.1` verbietet.
+
 ## 5. Warnsignale
 
 - Die Qualität war auf Anhieb grün über bereits geschriebenem Code. Das stimmt fast nie: die
@@ -329,3 +394,6 @@ behandelt wird.
 - Das Projekt hat echte Nutzer, und niemand hat die Mutationstests laufen lassen oder
   aufgeschrieben, warum nicht. „Es ist optional“ ist für ein Projekt mit Nutzern keine gültige
   Begründung mehr.
+- Das Konformitätsdokument hat alle seine Kriterien als erfüllt und keine einzige Unterschrift. Das
+  Wahrscheinlichste ist nicht, dass das System einwandfrei ist: es ist, dass als geprüft gezählt
+  wurde, was niemand geprüft hat. Verlange die Namen und die Daten, Kriterium für Kriterium.

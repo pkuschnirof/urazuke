@@ -473,6 +473,50 @@
           "label": "the result per usability rule, with its declared exceptions",
           "since_schema": 2,
           "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/CODE_QUALITY.md",
+          "must_contain": [
+            "criteria_total.{0,20}\\d",
+            "criteria_verified_by_a_program.{0,20}\\d",
+            "criteria_verified_by_a_person.{0,20}\\d",
+            "verification_debt[\\s\\S]{0,40}(none|pending_verifier)"
+          ],
+          "label": "the compliance document declares its denominator and who verified: how many criteria apply, how many a program verified, how many a person signed, and the debt with its pending verifier",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
+        },
+        {
+          "path": "docs/CODE_QUALITY.md",
+          "must_contain": [
+            "verified_by",
+            "(auto_gate|matrix_query|e2e_per_profile|manual_case)"
+          ],
+          "label": "every criterion declares the instrument that judged it, with the vocabulary the data declares, so that one judged by a person cannot be read as one a program verified",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
+        },
+        {
+          "path": "docs/USABILITY.md",
+          "must_contain": [
+            "criteria_total.{0,20}\\d",
+            "criteria_verified_by_a_program.{0,20}\\d",
+            "criteria_verified_by_a_person.{0,20}\\d",
+            "verification_debt[\\s\\S]{0,40}(none|pending_verifier)"
+          ],
+          "label": "the compliance document declares its denominator and who verified: how many criteria apply, how many a program verified, how many a person signed, and the debt with its pending verifier",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
+        },
+        {
+          "path": "docs/USABILITY.md",
+          "must_contain": [
+            "verified_by",
+            "(auto_gate|matrix_query|e2e_per_profile|manual_case)"
+          ],
+          "label": "every criterion declares the instrument that judged it, with the vocabulary the data declares, so that one judged by a person cannot be read as one a program verified",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
         }
       ],
       "verify": [
@@ -502,6 +546,18 @@
           "since_schema": 2,
           "since_version": "2026.10.12",
           "anchor": 3
+        },
+        {
+          "text": "Take a criterion that reads as met and ask who said so: if its instrument is a manual case, is there a name and a date, instead of a criterion nobody judged reading as one that was verified?",
+          "since_schema": 2,
+          "since_version": "2026.10.15",
+          "decision": "D-084"
+        },
+        {
+          "text": "Does criteria_total count the rules nobody has looked at yet, rather than only the ones that were verified?",
+          "since_schema": 2,
+          "since_version": "2026.10.15",
+          "decision": "D-084"
         }
       ],
       "evaluators": [
@@ -584,6 +640,12 @@
           "since_schema": 2,
           "since_version": "2026.10.14",
           "decision": "D-082"
+        },
+        {
+          "text": "If nobody has signed a single case yet, does the text of the step answer the same thing the gate answers -- that the step does not advance -- instead of leaving the reader to deduce it?",
+          "since_schema": 2,
+          "since_version": "2026.10.15",
+          "decision": "D-083"
         }
       ],
       "evaluators": [
