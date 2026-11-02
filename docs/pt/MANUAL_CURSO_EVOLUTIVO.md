@@ -75,6 +75,25 @@ Com isto basta. Todo o resto está no sistema, e é o agente que vai lê-lo.
 
 ---
 
+### Os prompts das lições são a versão do curso, não a do contrato
+
+Cada lição traz o prompt que você vai colar no agente, e convém que saiba o que ele é e o que não é.
+O prompt da lição é a **versão do curso**: mais curta, com um só foco, escrita para que você aprenda
+o degrau sem que na primeira vez chegue tudo junto. O prompt **completo** de cada degrau vive no seu
+contrato (`peldanos/peldano-NN-....md`), e cada lição que traz prompt o nomeia acima com o seu
+arquivo. Os dois existem de propósito e não dizem o mesmo: o do contrato leva, além do pedido, as
+cláusulas que o método foi agregando —a forma em que uma decisão tem de lhe ser perguntada, a
+reprodução literal de um recibo, as declarações que uma comporta lê— e a lição as poupa para não
+tapar o conceito.
+
+E a regra prática, que é a que importa: **para aprender, o da lição; para um sistema de verdade, o
+do contrato.** Se o seu projeto do curso é um sistema que vai ter usuários —o manual recomenda que
+seja—, quando terminar a lição volte ao contrato e cole o seu prompt completo. Isto está escrito
+aqui porque nenhuma comporta o pode apanhar: as que contam cláusulas contam as dos prompts do corpus
+e não as das lições. O que `build/prompts_didacticos.mjs` revisa é que a diferença siga
+**declarada**: que cada lição com prompt nomeie o seu contrato, que o arquivo que nomeia exista, e
+que as oito versões do manual tenham os mesmos prompts nas mesmas lições.
+
 ## Trecho de normalização: lições N0 a N7
 
 Estas oito lições são o trecho que a primeira parte não tinha. As quatro primeiras são de leitura:
@@ -142,6 +161,9 @@ prévio mais barato de todos), e o provedor de mensagens tem modo de teste (verd
 depois de três projetos prévios pequenos.
 
 ### Lição N1 — O contrato de convivência para um legado
+
+**O contrato desta estação:** `EVOLUTIVO_CORRECTIVO.md`, estação N1. O prompt abaixo é a versão do
+curso, mais curta.
 
 **O que você tem que entender.** Às oito regras da lição 1 acrescentam-se cinco que existem porque
 um modelo diante de código alheio faz três coisas por reflexo: reordena-o, "conserta-o" onde lhe
@@ -218,6 +240,9 @@ planilha mensal que a encarregada baixa é um consumidor do sistema e conta como
 segunda é o mapa produtor-consumidor aparecendo antes da hora, e está bem.
 
 ### Lição N2 — A leitura do sistema: o mapa recuperado e as discrepâncias
+
+**O contrato desta estação:** `EVOLUTIVO_CORRECTIVO.md`, estação N2. O prompt abaixo é a versão do
+curso, mais curta.
 
 **O que você tem que entender.** É a lição que mais valor dá por hora de todo o curso. Na lição 2
 o arquivo de projeto e a árvore saíam do levantamento; aqui saem do próprio sistema, e cada
@@ -342,6 +367,9 @@ surpreende, e ela a decide num minuto: "isso não se apaga mais". Pendência.
 
 ### Lição N3 — A auditoria como inventário da dívida
 
+**O contrato desta estação:** `EVOLUTIVO_CORRECTIVO.md`, estação N3. O prompt abaixo é a versão do
+curso, mais curta.
+
 **O que você tem que entender.** A lição 13, mas no começo em vez de no final, e com um campo a
 mais por achado: se bloqueia (é preciso consertar antes de qualquer mudança), se se paga ao tocar
 o módulo, ou se pode esperar. Sem esse campo, um legado auditado tem quarenta achados e ninguém
@@ -421,6 +449,9 @@ esperar": uma dependência velha sem vulnerabilidade conhecida, e o código dupl
 data em três lugares.
 
 ### Lição N4 — O cinto de segurança
+
+**O contrato desta estação:** `EVOLUTIVO_CORRECTIVO.md`, estação N4. O prompt abaixo é a versão do
+curso, mais curta.
 
 **O que você tem que entender.** É a comporta dura deste caminho: até que o cinto não esteja em
 verde, não se muda uma linha de funcionalidade. O cinto tem cinco peças: um ambiente de teste com
@@ -551,6 +582,9 @@ linha que enfileira a mensagem, o teste falha, descomenta, passa.
 
 ### Lição N5 — Cadeados e mapa produtor-consumidor a partir do código
 
+**O contrato desta estação:** `EVOLUTIVO_CORRECTIVO.md`, estação N5. O prompt abaixo é a versão do
+curso, mais curta.
+
 **O que você tem que entender.** As lições 14 e 11, feitas por inventário sobre o que já existe,
 antes de mudar nada. O agente vai encontrar no código mais do que o negócio se lembra que o
 sistema faz para fora: envios, apagamentos, processos noturnos. A comparação entre as duas listas
@@ -627,6 +661,9 @@ coluna, a planilha quebra em silêncio.
 
 ### Lição N6 — Dimensionar com números reais
 
+**O contrato desta estação:** `EVOLUTIVO_CORRECTIVO.md`, estação N6. O prompt abaixo é a versão do
+curso, mais curta.
+
 **O que você tem que entender.** A lição 3 com uma vantagem: os dados primários estão no banco e
 nos logs. Não se perguntam, medem-se, com um medidor com teste (lição 7). A encarregada aporta só
 o que não está em lugar nenhum: quanto esperam crescer, e se o sistema vai ser vendido a outros
@@ -697,6 +734,9 @@ de envio de mensagens passa a ter uma fila, mesmo que hoje não faça falta, por
 R2) vai usar o mesmo canal.
 
 ### Lição N7 — O backlog de normalização, emparelhado com o pedido do cliente
+
+**O contrato desta estação:** `EVOLUTIVO_CORRECTIVO.md`, estação N7. O prompt abaixo é a versão do
+curso, mais curta.
 
 **O que você tem que entender.** A lição 5 com duas colunas a mais. Uma única fila onde convivem a
 dívida (auditoria, discrepâncias, telas, cadeados pendentes, decisões do dimensionamento) e o
@@ -775,6 +815,9 @@ de normalização, dos quais três "podem esperar" e isso se diz.
 ## O ciclo sobre o legado: lições R1 e R2
 
 ### Lição R1 — O primeiro bloco: o bug, em modo corretivo
+
+**O contrato deste laço:** `EVOLUTIVO_CORRECTIVO.md`, o laço em modo corretivo e evolutivo. O
+prompt abaixo é a versão do curso, mais curta.
 
 **O que você tem que entender.** Uma pendência corretiva é um bug conhecido. Na lição 8 o vermelho
 se fabricava; aqui o vermelho é o próprio bug: o teste que reproduz a falha, operando o fluxo como

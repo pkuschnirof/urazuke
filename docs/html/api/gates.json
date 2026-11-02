@@ -1,6 +1,6 @@
 {
   "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green. And about the content hash, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls the host that served the file. The anchors that do not live on that host are the version ledger of each resource, which lives in the method repository and records the pair (version -> hash) append-only, and the transport security of the connection. There is no cryptographic signature: that is a written decision with its cost on the table, not an oversight.",
-  "catalog_version": "2026.10.12",
+  "catalog_version": "2026.10.15",
   "schema_version": 2,
   "content_hash": {
     "algo": "sha256",
@@ -32,12 +32,12 @@
       "license",
       "content_hash"
     ],
-    "value": "91f3ec00a638322fd36b12f3d6bca68e2c36dda8c7dc456f56fca40369c4665f",
+    "value": "e1b415a8a01ff3912c585c69229e7c9df5ddb5469a516edc1d65123891bc51d1",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "0a94f88",
+  "git_commit": "449942a",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-11-01T19:59:20.773Z",
+  "generated_at": "2026-11-02T19:05:46.008Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
@@ -652,6 +652,50 @@
           "label": "the result per usability rule, with its declared exceptions",
           "since_schema": 2,
           "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/CODE_QUALITY.md",
+          "must_contain": [
+            "criteria_total.{0,20}\\d",
+            "criteria_verified_by_a_program.{0,20}\\d",
+            "criteria_verified_by_a_person.{0,20}\\d",
+            "verification_debt[\\s\\S]{0,40}(none|pending_verifier)"
+          ],
+          "label": "the compliance document declares its denominator and who verified: how many criteria apply, how many a program verified, how many a person signed, and the debt with its pending verifier",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
+        },
+        {
+          "path": "docs/CODE_QUALITY.md",
+          "must_contain": [
+            "verified_by",
+            "(auto_gate|matrix_query|e2e_per_profile|manual_case)"
+          ],
+          "label": "every criterion declares the instrument that judged it, with the vocabulary the data declares, so that one judged by a person cannot be read as one a program verified",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
+        },
+        {
+          "path": "docs/USABILITY.md",
+          "must_contain": [
+            "criteria_total.{0,20}\\d",
+            "criteria_verified_by_a_program.{0,20}\\d",
+            "criteria_verified_by_a_person.{0,20}\\d",
+            "verification_debt[\\s\\S]{0,40}(none|pending_verifier)"
+          ],
+          "label": "the compliance document declares its denominator and who verified: how many criteria apply, how many a program verified, how many a person signed, and the debt with its pending verifier",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
+        },
+        {
+          "path": "docs/USABILITY.md",
+          "must_contain": [
+            "verified_by",
+            "(auto_gate|matrix_query|e2e_per_profile|manual_case)"
+          ],
+          "label": "every criterion declares the instrument that judged it, with the vocabulary the data declares, so that one judged by a person cannot be read as one a program verified",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
         }
       ],
       "verify": [
@@ -681,6 +725,18 @@
           "since_schema": 2,
           "since_version": "2026.10.12",
           "anchor": 3
+        },
+        {
+          "text": "Take a criterion that reads as met and ask who said so: if its instrument is a manual case, is there a name and a date, instead of a criterion nobody judged reading as one that was verified?",
+          "since_schema": 2,
+          "since_version": "2026.10.15",
+          "decision": "D-084"
+        },
+        {
+          "text": "Does criteria_total count the rules nobody has looked at yet, rather than only the ones that were verified?",
+          "since_schema": 2,
+          "since_version": "2026.10.15",
+          "decision": "D-084"
         }
       ],
       "evaluators": [
@@ -718,6 +774,28 @@
         {
           "path": "docs/MANUAL_TESTS.md",
           "label": "casos de prueba manual"
+        },
+        {
+          "path": "docs/MANUAL_TESTS.md",
+          "must_contain": [
+            "cases_written.{0,20}\\d",
+            "cases_executed_by_a_person.{0,20}\\d",
+            "execution_debt[\\s\\S]{0,40}(none|pending_verifier)"
+          ],
+          "label": "the manual tests separate the cases that are written from the ones a person executed, and the gap travels as a declared debt with its pending verifier",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
+        },
+        {
+          "path": "docs/SCREEN_WALKTHROUGH.md",
+          "must_contain": [
+            "screens_total.{0,20}\\d",
+            "screens_walked.{0,20}\\d",
+            "walkthrough_findings.{0,20}\\d"
+          ],
+          "label": "the agent walked the screens itself to find defects, with the denominator of how many there are, and that walk is not the execution a person owes",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
         }
       ],
       "verify": [
@@ -729,6 +807,24 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "anchor": 4
+        },
+        {
+          "text": "Does cases_executed_by_a_person come from the signed execution tables rather than from the reading of the agent, and does the debt name who owes it and since when?",
+          "since_schema": 2,
+          "since_version": "2026.10.14",
+          "decision": "D-082"
+        },
+        {
+          "text": "Does the walk count the screens it could not open inside the total, with their reason, instead of leaving them out of the denominator?",
+          "since_schema": 2,
+          "since_version": "2026.10.14",
+          "decision": "D-082"
+        },
+        {
+          "text": "If nobody has signed a single case yet, does the text of the step answer the same thing the gate answers -- that the step does not advance -- instead of leaving the reader to deduce it?",
+          "since_schema": 2,
+          "since_version": "2026.10.15",
+          "decision": "D-083"
         }
       ],
       "evaluators": [
@@ -804,6 +900,15 @@
             "blind|ciego"
           ],
           "label": "la rutina del reporte honesto"
+        },
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "the routine assigns each finding its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
         }
       ],
       "verify": [
@@ -820,6 +925,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "anchor": 5
+        },
+        {
+          "text": "Does every finding that is not about the product carry its destination, and was its pending item opened in the register of that destination?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
         }
       ],
       "evaluators": [
@@ -874,6 +985,78 @@
           "label": "the audit reproduces receipts and declares which model performed it",
           "since_schema": 2,
           "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "auditor_choice.{0,40}(different_model|same_model_declared|tool_constraint)"
+          ],
+          "label": "the audit declares why this auditor and not another one, under its fixed key and with one of its declared values",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "evidence_register_health"
+          ],
+          "label": "the audit measured the health of the register of the evidence, which is a dimension of it and not optional",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "every finding of the audit carries its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "audit_completeness.{0,20}\\bcomplete\\b",
+            "findings_announced.{0,20}\\d",
+            "findings_written.{0,20}\\d"
+          ],
+          "label": "the audit declares itself complete under its fixed key, with how many findings it announced and how many it wrote",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "dimension_grades"
+          ],
+          "label": "the audit carries the grade of every dimension it audited, under its fixed key",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "receipts_reproduced[\\s\\S]{0,60}(reproduces|does_not_reproduce)"
+          ],
+          "label": "the audit reproduced at least one receipt and wrote its verdict, which a receipt that was only read does not have",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "not_audited[\\s\\S]{0,40}(none|with_pending)"
+          ],
+          "label": "the audit declares what it did not audit, and nothing left out of it travels without its pending item",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
         }
       ],
       "verify": [
@@ -891,6 +1074,42 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "decision": "D-042"
+        },
+        {
+          "text": "Does the report declare, under auditor_choice, why this auditor and not another one, and does it say so with those words when a limit of the tool chose it?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-079"
+        },
+        {
+          "text": "Does the health of the register of the evidence come with the command that measured each figure, and does a figure that could not be measured say so instead of reading as zero?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
+        },
+        {
+          "text": "Does every finding carry its destination, and was its pending item opened in the register of that destination?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
+        },
+        {
+          "text": "Do findings_announced and findings_written say the same figure, counted by hand against the findings the report actually wrote?",
+          "since_schema": 2,
+          "since_version": "2026.10.14",
+          "decision": "D-081"
+        },
+        {
+          "text": "Does every part the report names as not audited have its pending item open?",
+          "since_schema": 2,
+          "since_version": "2026.10.14",
+          "decision": "D-081"
+        },
+        {
+          "text": "Is there at least one receipt with its verdict, with the command and the output, rather than a receipt that was only read?",
+          "since_schema": 2,
+          "since_version": "2026.10.14",
+          "decision": "D-081"
         }
       ],
       "evaluators": [
@@ -1333,6 +1552,16 @@
           "label": "the retrospective names the model the system was built with",
           "since_schema": 2,
           "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/RETROSPECTIVE_*.md",
+          "fresh_days": 120,
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "every finding of the retrospective carries its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
         }
       ],
       "verify": [
@@ -1349,6 +1578,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "decision": "D-042"
+        },
+        {
+          "text": "Does every finding of the retrospective carry its destination, so that what belongs to the method and to the tool does not end up in the product's register?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
         }
       ],
       "evaluators": [
@@ -3648,7 +3883,7 @@
       "immutable_url_pattern": "<canonical base>/<resource folder>/<version>.json -- one folder per resource, because each resource declares its own version line and a folder named after one version would be naming the other resource's content with it.",
       "immutable_url_what": "The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.",
       "immutable_url_where": "Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.",
-      "immutable_path": "gates/2026.10.12.json",
+      "immutable_path": "gates/2026.10.15.json",
       "first_version_with_an_address": "2026.10.1",
       "no_purge": "Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.",
       "what_is_promised": "The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.",

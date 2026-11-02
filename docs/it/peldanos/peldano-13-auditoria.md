@@ -28,9 +28,41 @@ aveva lasciato in un giorno [Ref. 40](../REFERENCIAS.md#ref-40).
 Se puoi scegliere, che sia anche **un modello diverso** da quello che ha costruito, non solo
 un'altra sessione dello stesso: uno studio del 2026 ha misurato che una sessione pulita con un
 modello diverso trova più errori di due sessioni dello stesso modello
-([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)). Non è un cancello duro, perché a volte il
-modello del costruttore è l'unico disponibile; è una preferenza che vale la pena esercitare quando
-si può, e più il sistema è critico, più vale la pena esercitarla.
+([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)). Ma quella preferenza ha un **pavimento di
+capacità**, e lo dico perché l'ho misurato: un altro modello trova di più **solo se quel modello
+può fare il lavoro**. Sotto una certa capacità la diversità smette di essere un vantaggio e diventa
+un costo, perché verificare un rilievo falso costa quasi quanto averlo cercato tu. Quindi l'ordine
+è questo: prima, **un altro modello, se è all'altezza del compito**; se non lo è, **un'altra
+sessione dello stesso modello, dichiarando lo scostamento** nella riga `Auditor:` del rapporto; e
+**mai** un auditor scelto da quale chiave è caricata o da quale tempo scaduto regge. Se l'ha scelto
+un limite dello strumento, il rapporto lo dice con quelle parole: è il caso `tool_constraint` della
+chiave `auditor_choice`, ed esiste perché la restrizione dello strumento si traveste da scelta
+tecnica e l'unica cosa che la mette a nudo è doverla nominare. Che il modello del costruttore sia
+l'unico disponibile non è un fallimento del metodo: è uno scostamento dichiarato, e uno
+scostamento dichiarato si può sottoporre ad audit. (Decisione D-079, sull'esperimento del
+2026-11-02: l'auditor di un altro modello ha consegnato quattro dei nove rilievi che lui stesso
+aveva annunciato, e il suo unico P0 era falso per aver letto male una virgola decimale; quello
+dello stesso modello, scostandosi dalla preferenza e dichiarandolo nella sua prima riga, ne ha
+consegnati diciassette, e nessuno è risultato falso verificandoli uno per uno.)
+
+E qui va il limite, perché dirlo vale più che simularlo: **il gradino 13 non si può verificare per
+macchina da un capo all'altro**. Il suo lavoro lo fa un terzo, quindi il cancello non può valutare
+il lavoro; può valutare la sua **traccia**. L'ho misurato il 2026-11-02 ed è scomodo: un rapporto
+che diceva di se stesso, testuale, «ho trovato nove rilievi, ne scrivo quattro, il rapporto è
+incompleto» usciva **verde**, perché «completo» non è una proprietà del file —è la relazione tra
+quello che il rapporto annuncia e quello che consegna— e un cancello che guarda il file non la vede.
+E non basta dare più budget all'auditor: in quella misura la sessione **non si è tagliata**, è
+finita da sola, in un turno e centotrentamila token, emettendo il suo segnale di chiusura per conto
+suo. Un cancello non può distinguere un rapporto tagliato da uno abbandonato. Quello che può, ed è
+quello che il metodo gli esige da D-081, è chiedere al rapporto che **dichiari** quello che dopo si
+può falsificare contando: la sua completezza sotto `audit_completeness`, con quanti rilievi ha
+annunciato e quanti ne ha scritti; il voto di ogni dimensione sotto `dimension_grades`; il verdetto
+di ogni ricevuta che ha rieseguito sotto `receipts_reproduced`; e quello che non ha controllato
+sotto `not_audited`, con la sua voce in sospeso aperta. Nessuna delle quattro impedisce di mentire.
+Le quattro trasformano la menzogna in un'affermazione concreta, scritta, con data e con firma,
+invece di un silenzio; e contare i rilievi scritti di un rapporto e confrontarli con la sua stessa
+cifra costa due minuti e non richiede di leggere codice, che è proprio il genere di verifica che
+questo metodo chiede a te.
 
 ## 1. Contesto richiesto
 
@@ -44,6 +76,10 @@ inviare il prompt" che precede ciascuno.
 - Il perimetro: integrità, sicurezza, prestazioni, qualità del codice, o tutto.
 - `docs/PENDING.md` con le voci in sospeso chiuse nell'ultimo ciclo e le loro ricevute, perché
   l'auditor scelga quali riprodurre.
+- Il registro della prova dell'ultimo ciclo completo: i commit funzionali, le voci in sospeso
+  chiuse con le loro ricevute, e le ricevute con mutazione archiviate. Non è la stessa cosa del
+  punto precedente: là l'auditor sceglie due o tre ricevute da riprodurre, e qui deve poter contare
+  il registro intero.
 
 ## 2. Prompt
 
@@ -63,6 +99,10 @@ l'agente:
   del codice, o tutto.
 - L'audit precedente, se c'è stato (`docs/AUDIT_[data]` della volta scorsa), perché misuri cosa è
   cambiato.
+- Chi farà l'audit e perché quello, deciso da te: un altro modello se è all'altezza del compito,
+  un'altra sessione dello stesso se non lo è, e mai quello che è rimasto perché era la chiave che
+  era caricata o il solo che reggeva il tempo scaduto. Il prompt gli chiede di dichiararlo nel
+  rapporto, ma la decisione è tua: se non la prendi, la prende lo strumento.
 - Stato minimo accettabile: la sessione dell'auditor non è quella del costruttore, e ha la sola
   lettura.
 
@@ -76,6 +116,38 @@ l'agente:
 > the risk is, what evidence proves it (the command, the query, the number), and its priority:
 > P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited.
 > End with the list of P0 findings turned into proposed pending items.
+>
+> This report carries declarations that a gate reads, each one under its fixed key, so write the
+> key in English even when the report is in my language. `auditor_choice`: which case applies and
+> who decided it -- `different_model` if you are a model other than the one that built this
+> system; `same_model_declared` if you are the same model because no other one was up to the
+> task; `tool_constraint` if what chose you was a key that happened to be loaded, a timeout or
+> any other limit of the tool, and then say so with those words. In the `Auditor:` line, the
+> model that built and the model that audits. `evidence_register_health`: the health of the
+> register of the evidence, which is a dimension of this audit and is not optional -- how many
+> functional commits carry no receipt of any kind; how many pending items closed as shipped lack
+> their receipts, and of those how many have the reason written; and of the receipts that carry
+> a mutation, how many can be applied again. Each of those figures measured by a program, with
+> the command next to it, and a figure you could not measure declared as not measured and never
+> as zero. If the register of the evidence is broken, every other finding in this report rests
+> on data nobody can reproduce. `findings_by_destination`: every finding assigned to one
+> destination -- `product` if the defect is in the audited system, `method` if it is in the
+> method being followed, `tool` if it is in the tool that runs it -- with the register where its
+> pending item goes. A finding whose destination nobody assigned leaves this audit open.
+>
+> Four more declarations, about this report and not about the system, because a gate can read the
+> trace of the work and cannot read the work. `audit_completeness`: `complete` when you wrote down
+> every finding you found, and next to it `findings_announced` and `findings_written` with their
+> figures. Those two figures have to be the same figure: if you announce nine findings and write
+> four, this report is not complete and this step does not close with it -- so do not announce a
+> count you are not going to write, and do not stop halfway and emit your closing marker as if you
+> had finished. `dimension_grades`: the grade of every dimension you audited, each one with the name
+> of its dimension next to it. `receipts_reproduced`: for every receipt you reran, `reproduces` or
+> `does_not_reproduce`, with the command and its output; at least one, and a receipt you only read
+> is not one of them. `not_audited`: `none` when you audited everything in the scope, or
+> `with_pending` and then, part by part, what you did not audit, why, and the pending item that is
+> open for it. A part named as not audited and left without its own pending item leaves this report
+> open; an audit with a smaller scope declared up front is worth more than a wide one with holes.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -99,6 +171,40 @@ l'agente:
 > un voto a ogni dimensione di cui hai fatto l'audit. Termina con la lista dei rilievi P0 convertiti
 > in voci in sospeso proposte.
 >
+> Questo rapporto porta dichiarazioni che un cancello legge, ognuna sotto la sua chiave fissa,
+> quindi scrivi la chiave in inglese anche se il rapporto è nella mia lingua. `auditor_choice`:
+> quale caso si applica e chi l'ha deciso —`different_model` se sei un modello diverso da quello
+> che ha costruito questo sistema; `same_model_declared` se sei lo stesso modello perché nessun
+> altro era all'altezza del compito; `tool_constraint` se ciò che ti ha scelto è stata una chiave
+> che era caricata, un tempo scaduto o qualunque altro limite dello strumento, e allora dillo con
+> quelle parole. Nella riga `Auditor:`, il modello che ha costruito e il modello che fa l'audit.
+> `evidence_register_health`: la salute del registro della prova, che è una dimensione di questo
+> audit e non è opzionale —quanti commit funzionali non hanno nessuna ricevuta; quante voci in
+> sospeso chiuse come consegnate non hanno le loro ricevute, e di quelle quante hanno il motivo
+> scritto; e delle ricevute che portano una mutazione, quante si applicano di nuovo—. Ognuna di
+> queste cifre misurata da un programma, con il comando accanto, e una cifra che non hai potuto
+> misurare dichiarata come non misurata e mai come zero. Se il registro della prova è rotto, tutti
+> gli altri rilievi di questo rapporto si appoggiano su dati che nessuno può riprodurre.
+> `findings_by_destination`: ogni rilievo assegnato a una destinazione —`product` se il difetto è
+> del sistema sottoposto ad audit, `method` se è del metodo che si sta seguendo, `tool` se è dello
+> strumento che lo esegue— con il registro dove va la sua voce in sospeso. Un rilievo la cui
+> destinazione nessuno ha assegnato lascia questo audit aperto.
+>
+> Quattro dichiarazioni in più, su questo rapporto e non sul sistema, perché un cancello può leggere
+> la traccia del lavoro e non può leggere il lavoro. `audit_completeness`: `complete` quando hai
+> scritto ogni rilievo che hai trovato, e accanto `findings_announced` e `findings_written` con le
+> loro cifre. Quelle due cifre devono essere la stessa cifra: se annunci nove rilievi e ne scrivi
+> quattro, questo rapporto non è completo e questo gradino non chiude con lui —quindi non annunciare
+> un conteggio che non scriverai, e non fermarti a metà strada emettendo il tuo segnale di chiusura
+> come se avessi finito—. `dimension_grades`: il voto di ogni dimensione che hai sottoposto ad audit,
+> ognuna con il nome della sua dimensione accanto. `receipts_reproduced`: per ogni ricevuta che hai
+> rieseguito, `reproduces` o `does_not_reproduce`, con il comando e la sua uscita; almeno una, e una
+> ricevuta che hai solo letto non è una di quelle. `not_audited`: `none` quando hai sottoposto ad
+> audit tutto quello che era nel perimetro, oppure `with_pending` e allora, parte per parte, cosa non
+> hai controllato, perché, e la voce in sospeso che è aperta per quello. Una parte nominata come non
+> controllata e lasciata senza la sua voce in sospeso lascia questo rapporto aperto; un audit con un
+> perimetro più piccolo dichiarato in apertura vale più di uno ampio con i buchi.
+>
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
 > elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
@@ -118,6 +224,17 @@ un rosso raccontato non è un rosso sottoposto ad audit); ogni rilievo con posiz
 e priorità, perché sia azionabile senza rileggere il rapporto; voti per dimensione, per confrontare
 con l'audit precedente; e i P0 già convertiti in voci in sospeso proposte.
 
+E quello che le due decisioni di novembre aggiungono, detto a parte perché entrambe cambiano il
+lavoro dell'auditor e non solo la sua stesura: le **tre dichiarazioni con chiave fissa**, perché
+"completo" e "sottoposto ad audit" non sono proprietà che si possano leggere da un rapporto scritto
+in prosa libera (D-079 e D-080); la **salute del registro della prova** come dimensione
+obbligatoria, perché è la sola che sottopone ad audit tutte le altre —se il registro della prova è
+rotto, tutti gli altri rilievi del rapporto si appoggiano su dati che nessuno può riprodurre, e
+allora il rapporto intero vale meno di quanto dicono i suoi voti—; e la **destinazione di ogni
+rilievo**, perché un difetto del metodo annotato nel registro del prodotto è un difetto che
+nessuno correggerà mai: il proprietario del prodotto non può correggere il metodo, e chi poteva non
+l'ha mai saputo.
+
 **Di chiusura (al costruttore):**
 
 **Prima di inviare il prompt**, devi avere questo a portata di mano:
@@ -132,6 +249,11 @@ con l'audit precedente; e i P0 già convertiti in voci in sospeso proposte.
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.
 >
+> Open each one in the register of the destination the report assigned to it: the product
+> register for `product`, and for `method` and for `tool` the register of the method or the
+> register of the tool, never the product's. If a finding arrives with no destination, ask me
+> for it before opening anything.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -142,6 +264,11 @@ con l'audit precedente; e i P0 già convertiti in voci in sospeso proposte.
 > [it]
 > Leggi `docs/AUDIT_[data].md`. Apri una voce in sospeso per ogni P0 e P1, citando il rilievo. Se
 > non sei d'accordo con qualcuno, dimmelo con la prova contraria; non ignorarlo.
+>
+> Apri ciascuna nel registro della destinazione che il rapporto le ha assegnato: il registro del
+> prodotto per `product`, e per `method` e per `tool` il registro del metodo o quello dello
+> strumento, mai quello del prodotto. Se un rilievo arriva senza destinazione, chiedimela prima
+> di aprire nulla.
 >
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
@@ -154,12 +281,29 @@ con l'audit precedente; e i P0 già convertiti in voci in sospeso proposte.
 Cosa gli sto chiedendo: che l'audit si converta in voci in sospeso (altrimenti è un rapporto che si
 archivia), e che il disaccordo sia esplicito e con prove, non silenzioso.
 
+E, da D-080, che ogni voce in sospeso si apra nel registro della sua destinazione. Il costruttore è
+quello che ha le mani nel prodotto, quindi è quello che più facilmente manda tutto al registro del
+prodotto; un rilievo che arriva senza destinazione si chiede a te prima di aprire nulla.
+
 ## 3. Risultato atteso
 
 - `docs/AUDIT_[data].md` con: perimetro, cosa si è potuto verificare e cosa no (e perché), i
   rilievi con posizione, rischio, prova e priorità, un voto per dimensione, il risultato della
   riproduzione di due o tre ricevute dell'ultimo ciclo, e la lista delle voci in sospeso proposte.
 - In `docs/PENDING.md`: una voce in sospeso per ogni P0 e P1, citando il rilievo.
+- In quello stesso rapporto, le tre dichiarazioni che un cancello può leggere, ognuna con la sua
+  chiave in inglese: `auditor_choice` (quale caso si applica e chi l'ha deciso),
+  `evidence_register_health` (le cifre del registro della prova, ognuna con il comando che l'ha
+  misurata, e "non misurata" quando non si è potuto misurare) e `findings_by_destination` (ogni
+  rilievo con la sua destinazione).
+- Nel registro di ogni destinazione: una voce in sospeso per ogni P0 e P1. Quelle del prodotto nel
+  registro del prodotto, quelle del metodo in quello del metodo, quelle dello strumento in quello
+  dello strumento.
+- In quello stesso rapporto, le quattro dichiarazioni che D-081 aggiunge alle tre precedenti:
+  `audit_completeness` a `complete`, con `findings_announced` e `findings_written` alla stessa
+  cifra; `dimension_grades` con il voto di ogni dimensione controllata; `receipts_reproduced` con il
+  verdetto di ogni ricevuta che è stata rieseguita; e `not_audited` a `none` o a `with_pending`, e
+  allora la voce in sospeso aperta di ogni parte rimasta fuori.
 
 ## 4. Verifica di completezza
 
@@ -170,6 +314,21 @@ archivia), e che il disaccordo sia esplicito e con prove, non silenzioso.
 - Ogni P0 ha la sua voce in sospeso aperta prima di dare l'audit per chiuso?
 - I voti per dimensione si potranno confrontare con l'audit precedente?
 - Ha fatto l'audit lo stesso agente che ha costruito? Se è così, chiedi un secondo sguardo sui P0.
+- Il rapporto dice chi ha fatto l'audit e perché quello? Se la ragione è che era il solo che era
+  caricato o il solo che reggeva il tempo scaduto, quello è `tool_constraint` e deve stare scritto
+  così.
+- Ci sono le cifre della salute del registro della prova, ognuna con il comando che l'ha misurata?
+  Una cifra che non si è potuta misurare dice "non misurata"; uno zero che non distingue "non ce
+  n'è nessuno" da "non ho potuto guardare" non è una cifra (CQ-19, il denominatore).
+- Ogni rilievo ha destinazione, e la sua voce in sospeso è stata aperta nel registro di quella
+  destinazione?
+- `findings_announced` e `findings_written` dicono la stessa cifra? Conta a mano i rilievi scritti e
+  confrontali con la cifra dichiarata: è l'unico modo di falsificare la dichiarazione, ed è la
+  verifica più economica di questo gradino.
+- Ogni parte che il rapporto nomina come non controllata ha la sua voce in sospeso aperta? Una parte
+  dichiarata e senza voce in sospeso è una parte che nessuno controllerà mai.
+- C'è almeno una ricevuta con il suo verdetto, `reproduces` o `does_not_reproduce`, con il comando e
+  l'uscita incollati? Una ricevuta solo letta non ha verdetto.
 
 ## 5. Segnali d'allarme
 
@@ -180,3 +339,18 @@ archivia), e che il disaccordo sia esplicito e con prove, non silenzioso.
   suo output. Una ricevuta letta e una riprodotta non sono la stessa cosa, e solo la seconda chiude
   l'obiezione di D-033.
 - Sono passate due settimane e i P0 sono ancora senza voce in sospeso. L'audit è stato archiviato.
+- Il rapporto elogia l'indipendenza dell'auditor e non dice quale caso di `auditor_choice` si
+  applica. Quando l'auditor l'ha scelto lo strumento e non tu, è proprio il caso che nessuno
+  scrive da solo.
+- La salute del registro della prova torna a zero e senza comando. Uno zero senza il comando che
+  l'ha prodotto è un "non ho potuto guardare" travestito da buona notizia.
+- Tutti i rilievi sono usciti con destinazione `product`. In un controllo che guarda il sistema con
+  il metodo e lo strumento in uso, che nessuno sia del metodo né dello strumento è improbabile: più
+  probabile è che nessuno si sia chiesto la destinazione.
+- Il rapporto dichiara `audit_completeness: complete` e il conto dei rilievi scritti non torna. È
+  l'unica delle dichiarazioni che si può falsificare in due minuti, e per questo conviene farlo
+  sempre.
+- Il rapporto finisce con una frase di chiusura impeccabile e non è tornato sulle parti che aveva
+  segnato come non controllate. Un auditor che rimane senza spazio emette il suo segnale di chiusura
+  comunque: quello che distingue un rapporto finito da uno abbandonato non è il finale, è
+  `not_audited`.

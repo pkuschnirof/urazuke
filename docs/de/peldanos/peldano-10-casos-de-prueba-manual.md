@@ -42,6 +42,62 @@ ob er bestanden hat oder fehlgeschlagen ist. *Vorbedingung* ist das, was vor dem
 muss. Und *zurückspeisen* heißt, dass das, was die Person falsch gefunden hat, als neue Bitte auf
 die Liste der offenen Posten zurückkehrt, mit ihren Worten.
 
+Zwei weitere Dinge kamen mit D-082 herein, und es sind zwei und nicht eines. Das erste: **die
+Person führt aus, um abzunehmen, und der Agent geht durch, um Defekte zu finden**, und die Methode
+verlangt beides. Der agentische Durchgang — dass der Agent jeden Bildschirm öffnet, ansieht, was
+darauf ist, ihn benutzt und dem Fluss von einem Bildschirm zum nächsten folgt, wie es eine Person
+täte — ersetzt die menschliche Ausführung nicht, und er ist auch nicht der Ende-zu-Ende-Test von
+Schritt 8: der Ende-zu-Ende-Test geht einen Weg, den jemand gewählt hat, und der Durchgang sucht
+das, woran niemand beim Testen gedacht hat. Ich verlange ihn, weil ich ihn gemessen habe: von allem,
+was ein Agent in einem vollen Zyklus tat, war der Durchgang **das, was die meisten
+Oberflächendefekte fand**, und die Methode verlangte ihn nicht; der Agent verlangte ihn von sich
+selbst. Er geht nach `docs/SCREEN_WALKTHROUGH.md`, mit seinem Nenner: wie viele Bildschirme das
+System hat, wie viele er durchging und wie viele Defekte er fand. Ein Bildschirm, in den er nicht
+hineinkam, wird im Gesamtwert gezählt und mit seinem Grund benannt; ihn aus dem Nenner zu nehmen,
+damit die Zahl schöner aussieht, ist genau das, was `CQ-19.1` des Anhangs H verbietet.
+
+Und das zweite, das die Grenze dieses Schritts ins Gesicht gesagt ist: **die Fälle zu schreiben und
+dass eine Person sie ausführt, sind zwei verschiedene Zustände, und den zweiten kann die Methode
+nicht erzwingen.** Kein Programm kann verifizieren, dass eine Person ein Skript mit ihren eigenen
+Händen befolgt hat, und ein Tor, das es verlangte, könnte nur durch Lügen befriedigt werden. Also
+verlangt der Schritt, was verifizierbar ist — die Erklärung — und die Schuld bleibt im Blickfeld:
+`cases_written`, `cases_executed_by_a_person` und `execution_debt` am Kopf von
+`docs/MANUAL_TESTS.md`, und die zweite Zahl bewegt eine abgezeichnete Ausführung und niemals das
+Lesen des Agenten. Die Erklärung **fügt kein neues Tor hinzu**: was der Schritt zusätzlich verlangt, ist, dass die
+Schuld geschrieben steht, nicht dass die Zahl über null liegt, denn eine Person zu zwingen ist das,
+was die Methode nicht kann. Was **anhält**, und schon seit Anker 4 des Anhangs H da war, ist, dass
+ein Fall, den niemand pro Profil gespielt hat, kein ausgeführter Fall ist: ich habe es am 2026-11-02
+mit dem echten Evaluator gemessen, und eine Installation, die diesen Anker implementiert, geht auf
+rot und sagt, dass das Register der abgezeichneten Fälle leer ist. Es fehlte also keine Sperre: es
+fehlte, dass die Schuld **lesbar** ist — ihre Zahl und der Name dessen, der sie schuldet — statt
+eines leeren Registers, das „niemand hat abgezeichnet“ sagt, ohne zu sagen, wer abzeichnen sollte
+und seit wann. Und es lohnt sich zu wissen, um diesen Schritt zu lesen, woher die Messung kam, die
+ihn aufgemacht hat: das Projekt, das mit der leeren Tabelle voranging, lief auf dem **Gefrorenen**
+von Schema 1, wo die einzige Prüfung von Schritt 10 ist, dass die Datei existiert. Ich habe es am 2026-11-02 in einem echten Projekt gemessen: die dreizehn Fälle
+geschrieben, die Ausführungstabelle leer, der Schritt grün, und ein Konformitätsdokument, das sechs
+Kriterien als verifiziert behauptete, deren Prüfer eine Person war, die sie nie ausgeführt hat. Der
+Agent hatte genau das getan, was der Schritt sagte. Das Loch war das des Schritts.
+
+**Und die Frage, die all das hinterlässt, ohne Umwege beantwortet: wenn niemand einen einzigen
+Fall abgezeichnet hat, komme ich weiter?** Nein. Ich habe es am 2026-11-02 mit dem echten Evaluator
+gemessen, und die beiden Hälften sind aus einem Stück: mit leerem Register der Unterschriften kommt
+Schritt 10 **rot** heraus und sagt, dass niemand einen einzigen Fall abgezeichnet hat, und mit einem
+einzigen von einer Person abgezeichneten Fall -- mit ihrem Namen, ihrem Datum und dem Profil, mit dem
+sie ihn ausgeführt hat -- hört derselbe Baum, mit seinen dreizehn geschriebenen Fällen und seinem
+`execution_debt` auf `pending_verifier`, auf rot zu sein und geht in die Prüfung des Eigentümers. Was
+also bremst, ist nicht die Schuld, und war es nie: was bremst, ist, dass **niemand etwas abgezeichnet
+hat**, und das steht seit `2026.10.1` in Anker 4 von Anhang H, schon bevor diese Deklaration
+existierte. Die Schuld öffnet und schließt das Tor nicht: sie macht es **lesbar**, was etwas anderes
+ist und das, was fehlte.
+
+Ich schreibe es, weil es hier gesagt werden musste und nicht jedem zur Ableitung überlassen. Ein
+Projekt, das Schritt 10 mit leerem Register der Unterschriften bestanden hat, hat das nicht getan,
+weil die Methode es erlaubt: es hat das **Gefrorene** von Schema 1 fixiert, wo die einzige Prüfung
+von Schritt 10 ist, dass die Datei existiert, und das ist genau das, was `PND-055` und D-068 über das
+Fixieren gegen eine interne Identität sagen, die die Methode nicht nennen kann. Wenn es dir passiert
+ist, ist das Erste, was man anschauen muss, nicht der Schritt: es ist, auf welche Version das Projekt
+fixiert ist.
+
 ## 1. Benötigter Kontext
 
 Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
@@ -90,6 +146,28 @@ machst es, nicht der Agent:
 > compare that with the menu, and the real screenshot of the test
 > environment.
 >
+> `docs/MANUAL_TESTS.md` carries at its head three declarations that a gate reads, each one under
+> its fixed key in English even when the file is in my language, because what this step owes is not
+> the same as what it can prove. `cases_written`: how many cases are written.
+> `cases_executed_by_a_person`: how many of those a person signed in their execution table, with a
+> date and a name; you keep the first figure, and the second one moves only when a person executes
+> -- never from your own reading of the system. `execution_debt`: `none` when the two figures are
+> the same, or `pending_verifier` and then the cases nobody has executed yet, with who owes each
+> execution and since when. That debt is not a gate of its own: what this step asks you for is the
+> declaration and not a figure above zero, because the method cannot make a person execute. But it
+> is never silent either, and a step that advances with its debt declared is honest in a way that a
+> step advancing while it looks complete is not.
+>
+> And walk the screens yourself, which is a different thing from the execution a person owes and
+> never a replacement for it: you walk to find defects, a person executes to accept. Go through
+> every screen the system has as a person would -- open it, look at what is on it, use it, and
+> follow the flow from one screen to the next -- and write `docs/SCREEN_WALKTHROUGH.md` with
+> `screens_total`, how many screens the system has; `screens_walked`, how many of them you actually
+> walked; and `walkthrough_findings`, how many defects the walk found. A screen you could not reach
+> is counted in the total and named with its reason: taking it out of the denominator so that the
+> figure reads better is the one thing this file must never do. For every defect: the screen, what
+> you saw, what you expected instead, and the pending item you opened for it.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -118,6 +196,31 @@ machst es, nicht der Agent:
 > Aufgabe suchen würde, und du das mit dem Menü vergleichst, und den echten
 > Screenshot der Testumgebung.
 >
+> `docs/MANUAL_TESTS.md` trägt an seinem Kopf drei Erklärungen, die ein Tor liest, jede unter ihrem
+> festen Schlüssel auf Englisch, auch wenn die Datei in meiner Sprache ist, denn was dieser Schritt
+> schuldet, ist nicht dasselbe wie das, was sie beweisen kann. `cases_written`: wie viele Fälle
+> geschrieben sind. `cases_executed_by_a_person`: wie viele davon eine Person in ihrer
+> Ausführungstabelle abgezeichnet hat, mit Datum und Namen; die erste Zahl hältst du, und die zweite
+> bewegt sich nur, wenn eine Person ausführt — niemals aus deinem eigenen Lesen des Systems.
+> `execution_debt`: `none`, wenn die zwei Zahlen dieselbe sind, oder `pending_verifier` und dann die
+> Fälle, die noch niemand ausgeführt hat, mit wem jede Ausführung schuldet und seit wann. Diese
+> Schuld ist kein eigenes Tor: was dieser Schritt von dir verlangt, ist die Erklärung und keine Zahl
+> über null, denn die Methode kann eine Person nicht zum Ausführen zwingen. Aber sie ist auch nie
+> stumm, und ein Schritt, der mit seiner erklärten Schuld vorangeht, ist ehrlich auf eine Weise, wie
+> es ein Schritt nicht ist, der vorangeht und dabei vollständig aussieht.
+>
+> Und geh die Bildschirme selbst durch, was etwas anderes ist als die Ausführung, die wir einer
+> Person schulden, und niemals ein Ersatz dafür: du gehst durch, um Defekte zu finden, eine Person
+> führt aus, um abzunehmen. Geh durch jeden Bildschirm, den das System hat, wie es eine Person täte
+> — öffne ihn, schau an, was darauf ist, benutze ihn, und folge dem Fluss von einem Bildschirm zum
+> nächsten — und schreib `docs/SCREEN_WALKTHROUGH.md` mit `screens_total`, wie viele Bildschirme das
+> System hat; `screens_walked`, wie viele davon du wirklich durchgegangen bist; und
+> `walkthrough_findings`, wie viele Defekte der Durchgang gefunden hat. Ein Bildschirm, in den du
+> nicht hineinkamst, wird im Gesamtwert gezählt und mit seinem Grund benannt: ihn aus dem Nenner zu
+> nehmen, damit die Zahl besser zu lesen ist, ist das Einzige, was diese Datei niemals tun darf. Zu
+> jedem Defekt: der Bildschirm, was du gesehen hast, was du stattdessen erwartet hast, und der offene
+> Posten, den du dafür geöffnet hast.
+>
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
 > aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
@@ -133,6 +236,13 @@ technischen Notiz ist; dass er die von einer Person verifizierbare Wirkung im Ba
 damit der manuelle Test auch auf die andere Seite des Bildschirms schaut; dass die Fälle im selben
 Commit gepflegt werden, genau wie die Dokumentation; und **dass das Modell sie nie ausführt**, denn
 vom Modell ausgeführt sind sie ein weiterer Test, und der Witz ist, dass eine Person sie ausführt.
+
+Und was D-082 hinzufügt: dass der Agent **die Bildschirme auf eigene Faust durchgeht**, was die
+meisten Oberflächendefekte findet und was die Methode nicht verlangte; und dass die Datei der Fälle
+an ihrem Kopf den Unterschied zwischen dem Geschriebenen und dem Ausgeführten trägt, damit ein
+Schritt, der mit Schuld vorangeht, **es sagend** vorangeht. Der Durchgang ersetzt die menschliche
+Ausführung nicht: er macht sie kürzer, weil die Person nicht mehr auf die Defekte stößt, die der
+Agent durch Hinsehen hätte finden können.
 
 **Für eine Ausführung (Abschluss eines Blocks, Abnahme, nach einem Deployment):**
 
@@ -155,6 +265,10 @@ vom Modell ausgeführt sind sie ein weiterer Test, und der Witz ist, dass eine P
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
 > the case or the system is the problem.
 >
+> Then refresh the three declarations at the head of the file: `cases_written`,
+> `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
+> `execution_debt` with who still owes which execution and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -173,6 +287,10 @@ vom Modell ausgeführt sind sie ein weiterer Test, und der Witz ist, dass eine P
 > viele fehlgeschlagen sind, verglichen mit der vorherigen Ausführung, und welche Fehlschläge sich
 > wiederholen. Wenn ein Fall nicht ausgeführt werden konnte, sag mir warum und ob das Problem der
 > Fall oder das System ist.
+>
+> Dann aktualisiere die drei Erklärungen am Kopf der Datei: `cases_written`,
+> `cases_executed_by_a_person`, gezählt aus den abgezeichneten Ausführungstabellen und aus nichts
+> sonst, und `execution_debt` mit wem noch welche Ausführung schuldet und seit wann.
 >
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
@@ -197,6 +315,13 @@ schlecht geschrieben“ und „das System ist schlecht“, denn das sind zwei ve
 - Die festgehaltenen Ausführungen, mit Datum und wer, in jedem Zyklus.
 - Ein korrektiver offener Posten pro Fehlschlag und pro Anmerkung.
 - Die Routine in der Vereinbarung.
+- `docs/SCREEN_WALKTHROUGH.md` mit dem Durchgang des Agenten: `screens_total`, `screens_walked` und
+  `walkthrough_findings`, und jeder Defekt mit seinem Bildschirm, was gesehen wurde, was erwartet
+  war und seinem offenen Posten.
+- Am Kopf von `docs/MANUAL_TESTS.md` die drei Erklärungen, die ein Tor liest: `cases_written`,
+  `cases_executed_by_a_person` — die nur eine abgezeichnete Ausführung bewegt — und
+  `execution_debt` auf `none` oder auf `pending_verifier`, mit wem jede Ausführung schuldet und seit
+  wann.
 
 ## 4. Vollständigkeitsprüfung (die machst du, ohne Code zu lesen)
 
@@ -209,6 +334,20 @@ schlecht geschrieben“ und „das System ist schlecht“, denn das sind zwei ve
   eine Person sie verifiziert?
 - Hat die letzte Ausführung bei jedem Fall Datum und Namen? Gibt es ein „bestanden“ ohne Datum?
 - Hat jeder Fehlschlag der letzten Ausführung seinen offenen Posten, mit den Worten der Person?
+- Kommt `cases_executed_by_a_person` aus den abgezeichneten Tabellen und nicht aus dem Lesen des
+  Agenten? Nimm einen als ausgeführt gezählten Fall und such das Datum und den Namen in seiner
+  Tabelle.
+- Wenn es Schuld gibt, sagt `execution_debt`, wer sie schuldet und seit wann? Eine Schuld ohne
+  Namen ist keine Schuld: sie ist ein Versäumnis mit Formatierung.
+- Zählt der Durchgang die Bildschirme, die er nicht öffnen konnte, im Gesamtwert, mit ihrem Grund?
+  Ein `screens_walked` gleich dem Gesamtwert, in einem System mit Bildschirmen hinter einem Profil,
+  das der Agent nicht hat, ist eine erfundene Zahl.
+- Haben die Defekte des Durchgangs ihren offenen Posten, genau wie die menschlichen Fehlschläge?
+
+- Wenn noch niemand einen einzigen Fall abgezeichnet hat, sagt dir der Text, dass du nicht
+  weiterkommst? Stelle die Frage dem Vertrag und dem Tor -- "wenn niemand ausgeführt hat, komme ich
+  weiter?" -- und verlange, dass sie dasselbe antworten. Wenn der Vertrag ja sagt und das Tor nein,
+  dann ist der Vertrag der, der falsch liegt.
 
 ## 5. Warnsignale
 
@@ -220,3 +359,13 @@ schlecht geschrieben“ und „das System ist schlecht“, denn das sind zwei ve
   folgen sie dem Drehbuch nicht, oder das Drehbuch verlangt nicht hinzusehen.
 - Die Fehlschläge werden „im Moment repariert“, ohne offenen Posten. Die Worte der Person gehen
   verloren und auch die Spur davon, was sich wiederholt hat.
+- Der Schritt erscheint als erfüllt, `cases_executed_by_a_person` steht auf null **und das Tor hat
+  dir Grün gegeben**. Die Zahl auf null ist nicht das Problem: eine deklarierte Schuld ist ehrlich.
+  Das Problem ist das Grün: auf dem veröffentlichten Katalog kommt ein Schritt 10 ohne jede
+  Unterschrift über Anker 4 rot heraus. Wenn er grün herauskam, feiere ihn nicht: schau, auf welche
+  `catalog_version` das Projekt fixiert ist.
+- Der Durchgang des Agenten fand nichts, und das System hat neue Bildschirme. Durchgehen ist nicht
+  Öffnen: wenn es keine Befunde gibt, hat er wahrscheinlich den Bildschirm angesehen und nicht
+  benutzt.
+- Der Durchgang fängt an, als Ausrede zu dienen, die Fälle nicht auszuführen. Es sind zwei Dinge
+  mit zwei Zwecken, und das, was abnimmt, ist das der Person.

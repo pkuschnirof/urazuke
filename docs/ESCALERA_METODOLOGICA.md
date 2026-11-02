@@ -909,8 +909,13 @@ gráfico del proceso muestra.
   precondición, pasos con lo que se hace y lo que se ve, resultado esperado con efecto en el
   backend verificable por una persona, datos, tabla de ejecuciones); las ejecuciones registradas;
   un pendiente correctivo por fallo.
+  Y `docs/SCREEN_WALKTHROUGH.md` con la recorrida del agente por todas las pantallas, con su
+  denominador y sus hallazgos.
 - **Compuerta**: ningún pendiente que toque una pantalla se cierra sin su caso; ninguna ejecución
   sin fecha y nombre; ningún fallo sin pendiente con las palabras de la persona.
+  Y: la recorrida agéntica de las pantallas es una exigencia propia, distinta de la ejecución
+  humana; que una persona haya ejecutado no lo verifica ninguna máquina, así que se declara como
+  deuda con su nombre, y lo que frena es el ancla 4 y no la declaración.
 - **Quién decide**: el dueño o un usuario de confianza ejecuta; el agente escribe los casos y
   abre los pendientes; el modelo nunca marca un caso como ejecutado.
 - **Fallo que evita**: la prueba humana sin guion que encuentra cosas distintas cada vez, y el
@@ -960,6 +965,7 @@ los puntos ciegos y lo que no hizo.
   Las malas noticias primero.
 - **Compuerta**: ninguna afirmación sin su prueba. "Listo" no se dice a secas. Ante un "sigue
   roto", primero se compara la versión publicada con la que tiene el arreglo.
+  Y un hallazgo que no es del producto va al registro de su destino.
 - **Quién decide**: el dueño confía, o pide la prueba. Nunca revisa código.
 - **Fallo que evita**: el error reportado como éxito y los reportes que declaraban verificado lo
   que no lo estaba [Ref. 43](REFERENCIAS.md#ref-43); el turno que trabajó invisible una hora
@@ -986,6 +992,11 @@ sesión del modelo, con otro archivo de instrucciones.
   prioridad; notas por dimensión; y los hallazgos urgentes ya convertidos en pendientes.
 - **Compuerta**: cada hallazgo urgente tiene un pendiente abierto antes de dar la auditoría por
   cerrada.
+  Y: el informe declara por qué ése es el auditor, mide la salud del registro de la
+  evidencia, y no cierra con un hallazgo sin destino.
+  Y el informe declara su completitud con las dos cifras que la hacen falsificable: este peldaño
+  no se verifica por máquina de punta a punta, y la compuerta lee el rastro del trabajo y no el
+  trabajo.
 - **Quién decide**: el dueño prioriza los hallazgos.
 - **Fallo que evita**: consultas que leen tablas enteras [Ref. 18](REFERENCIAS.md#ref-18); dos
   puertas de administrador que nadie vio hasta que las miró otro
@@ -1257,6 +1268,7 @@ revisa con números, y lo que se aprende vuelve al peldaño 0 para el próximo p
   propuesta concreta de cambio a la escalera.
 - **Compuerta**: el agente no puede hacer lo que el dueño no aprobó; la retrospectiva produce al
   menos un cambio a la escalera.
+  Y cada hallazgo de la retrospectiva sale con su destino: producto, método o herramienta.
 - **Quién decide**: el dueño.
 - **Fallo que evita**: el agente que opera sin mapa; y el método que se repite igual proyecto tras
   proyecto sin aprender. La retrospectiva con número que mató al equipo multiagente es el modelo

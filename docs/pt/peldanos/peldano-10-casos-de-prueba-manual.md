@@ -38,6 +38,56 @@ passo. Escreve-se para que qualquer um a siga igual, sem saber como o sistema es
 existir antes de começar. E *reinjetar* quer dizer que o que a pessoa encontrou de errado volta à
 lista de pendências como um pedido novo, com as palavras dela.
 
+Duas coisas mais entraram com D-082, e são duas e não uma. A primeira: **a pessoa executa para
+aceitar e o agente percorre para encontrar defeitos**, e o método pede as duas. A percorrida
+agêntica —que o agente abra cada tela, olhe o que há nela, a use e siga o fluxo de uma para a
+seguinte, como o faria uma pessoa— não substitui a execução humana e tampouco é a prova de ponta a
+ponta do degrau 8: a de ponta a ponta percorre um caminho que alguém escolheu, e a percorrida busca
+o que ninguém pensou em provar. Peço-a porque o medi: de tudo o que um agente fez num ciclo
+completo, a percorrida foi **o que mais defeitos de interface encontrou**, e o método não a pedia;
+pedia-a o agente a si mesmo. Fica em `docs/SCREEN_WALKTHROUGH.md`, com o seu denominador: quantas
+telas tem o sistema, quantas percorreu e quantos defeitos encontrou. Uma tela em que não conseguiu
+entrar conta-se no total e nomeia-se com a sua razão; tirá-la do denominador para que o número
+fique bonito é exatamente o que proíbe `CQ-19.1` do Anexo H.
+
+E a segunda, que é o limite deste degrau dito de frente: **escrever os casos e que uma pessoa os
+execute são dois estados distintos, e o segundo o método não o pode obrigar.** Nenhum programa pode
+verificar que uma pessoa seguiu um guião com as suas próprias mãos, e uma comporta que o exigisse
+só se poderia satisfazer mentindo. Então o degrau exige o que se pode verificar —a declaração— e
+a dívida fica à vista: `cases_written`, `cases_executed_by_a_person` e `execution_debt` na cabeça
+de `docs/MANUAL_TESTS.md`, e a segunda cifra move-a uma execução assinada e nunca a leitura do
+agente. A declaração **não acrescenta uma comporta nova**: o que o degrau exige de mais é que a dívida
+esteja escrita, não que a cifra seja maior que zero, porque obrigar uma pessoa é o que o método não
+pode fazer. O que **sim** freia, e já estava desde a âncora 4 do Anexo H, é que um caso que ninguém
+correu por perfil não é um caso executado: medi-o no 2026-11-02 com o avaliador real e uma
+instalação que implementa essa âncora põe-se em vermelho dizendo que o registro de casos assinados
+está vazio. Assim que o que faltava não era um bloqueio: era que a dívida fosse **legível** —a sua
+cifra e o nome de quem a deve— em vez de um registro vazio que diz «ninguém assinou» sem dizer quem
+tinha de assinar nem desde quando. E convém saber, para ler o degrau, de onde saiu a medição que o
+abriu: o projeto que avançou com a tabela vazia corria o **congelado** do esquema 1, onde o único
+chequeo do degrau 10 é que o arquivo exista. Medi-o no 2026-11-02 num
+projeto real: os treze casos escritos, a tabela de execuções vazia, o degrau em verde, e um
+documento de cumprimento que afirmava seis critérios como verificados cujo verificador era uma
+pessoa que nunca os executou. O agente tinha feito exatamente o que o degrau dizia. O buraco era do
+degrau.
+
+**E a pergunta que tudo isso deixa, respondida sem rodeios: se ninguém assinou nem um caso,
+avanço?** Não. Medi em 2026-11-02 com o avaliador real, e as duas metades são da mesma peça: com o
+registro de assinaturas vazio o degrau 10 sai **vermelho** dizendo que ninguém assinou nenhum caso,
+e com um único caso assinado por uma pessoa —com o seu nome, a sua data e o perfil com que o
+executou— a mesma árvore, com os seus treze casos escritos e o seu `execution_debt` em
+`pending_verifier`, deixa de estar vermelha e passa à verificação do dono. Então o que freia não é a
+dívida, e nunca foi: o que freia é que **ninguém tenha assinado nada**, e isso está na âncora 4 do
+Anexo H desde `2026.10.1`, desde antes de esta declaração existir. A dívida não abre nem fecha a
+comporta: ela a torna **legível**, que é outra coisa e é a que faltava.
+
+Escrevo isso porque era preciso dizê-lo aqui e não deixar que cada um deduza. Um projeto que avançou
+o degrau 10 com o registro de assinaturas vazio não o fez porque o método permita: fixou o
+**congelado** do esquema 1, onde a única verificação do degrau 10 é que o arquivo exista, e isso é
+exatamente o que `PND-055` e D-068 dizem sobre fixar contra uma identidade interna que o método não
+pode nomear. Se te aconteceu, a primeira coisa a olhar não é o degrau: é contra que versão o projeto
+está fixado.
+
 ## 1. Contexto necessário
 
 O que segue é a lista genérica. Os arquivos concretos que você tem que ter prontos antes de cada
@@ -86,6 +136,28 @@ agente:
 > compare that with the menu, and the real screenshot of the test
 > environment.
 >
+> `docs/MANUAL_TESTS.md` carries at its head three declarations that a gate reads, each one under
+> its fixed key in English even when the file is in my language, because what this step owes is not
+> the same as what it can prove. `cases_written`: how many cases are written.
+> `cases_executed_by_a_person`: how many of those a person signed in their execution table, with a
+> date and a name; you keep the first figure, and the second one moves only when a person executes
+> -- never from your own reading of the system. `execution_debt`: `none` when the two figures are
+> the same, or `pending_verifier` and then the cases nobody has executed yet, with who owes each
+> execution and since when. That debt is not a gate of its own: what this step asks you for is the
+> declaration and not a figure above zero, because the method cannot make a person execute. But it
+> is never silent either, and a step that advances with its debt declared is honest in a way that a
+> step advancing while it looks complete is not.
+>
+> And walk the screens yourself, which is a different thing from the execution a person owes and
+> never a replacement for it: you walk to find defects, a person executes to accept. Go through
+> every screen the system has as a person would -- open it, look at what is on it, use it, and
+> follow the flow from one screen to the next -- and write `docs/SCREEN_WALKTHROUGH.md` with
+> `screens_total`, how many screens the system has; `screens_walked`, how many of them you actually
+> walked; and `walkthrough_findings`, how many defects the walk found. A screen you could not reach
+> is counted in the total and named with its reason: taking it out of the denominator so that the
+> figure reads better is the one thing this file must never do. For every defect: the screen, what
+> you saw, what you expected instead, and the pending item you opened for it.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -112,6 +184,28 @@ agente:
 > procuraria uma tarefa e você compara isso com o menu, e a captura real do
 > ambiente de teste.
 >
+> `docs/MANUAL_TESTS.md` leva na sua cabeça três declarações que uma comporta lê, cada uma com a sua
+> chave fixa em inglês mesmo que o arquivo esteja no meu idioma, porque o que este degrau deve não é o
+> mesmo que o que ele pode provar. `cases_written`: quantos casos estão escritos.
+> `cases_executed_by_a_person`: quantos desses uma pessoa assinou na sua tabela de execuções, com data
+> e com nome; a primeira cifra é você que a mantém, e a segunda move-se só quando uma pessoa executa
+> —nunca a partir da sua própria leitura do sistema—. `execution_debt`: `none` quando as duas cifras
+> são a mesma, ou `pending_verifier` e então os casos que ninguém executou ainda, com quem deve cada
+> execução e desde quando. Essa dívida não é uma comporta própria: o que este degrau te pede é a
+> declaração e não uma cifra maior que zero, porque o método não pode obrigar uma pessoa a executar.
+> Mas também nunca é silenciosa, e um degrau que avança com a sua dívida declarada é honesto de uma
+> maneira que não o é um que avança parecendo completo.
+>
+> E percorra você mesmo as telas, que é outra coisa distinta da execução que devemos a uma pessoa e
+> nunca um substituto dela: você percorre para encontrar defeitos, uma pessoa executa para aceitar.
+> Passe por cada tela que o sistema tem como o faria uma pessoa —abra-a, olhe o que há nela, use-a,
+> e siga o fluxo de uma tela para a seguinte— e escreva `docs/SCREEN_WALKTHROUGH.md` com
+> `screens_total`, quantas telas o sistema tem; `screens_walked`, quantas dessas você percorreu de
+> verdade; e `walkthrough_findings`, quantos defeitos a percorrida encontrou. Uma tela em que não
+> conseguiu entrar conta-se no total e nomeia-se com a sua razão: tirá-la do denominador para que a
+> cifra se leia melhor é a única coisa que este arquivo nunca pode fazer. Por cada defeito: a tela, o
+> que viu, o que esperava em vez disso, e a pendência que abriu por isso.
+>
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
 > enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
@@ -125,6 +219,12 @@ que é a diferença entre um caso de teste e uma nota técnica; que inclua o efe
 verificável por uma pessoa, para que o teste manual também olhe do outro lado da tela; que os
 casos se mantenham no mesmo commit, igual que a documentação; e **que o modelo nunca os execute**,
 porque executados pelo modelo são mais um teste, e a graça é que os execute uma pessoa.
+
+E o que acrescenta D-082: que o agente **percorra as telas por sua conta**, que é o que mais
+defeitos de interface encontra e o que o método não pedia; e que o arquivo de casos leve na sua
+cabeça a diferença entre o escrito e o executado, para que um degrau que avança com dívida avance
+**dizendo-o**. A percorrida não substitui a execução humana: torna-a mais curta, porque a pessoa já
+não se encontra com os defeitos que o agente poderia ter visto olhando.
 
 **Para uma execução (fechamento de bloco, aceitação, depois de uma implantação):**
 
@@ -147,6 +247,10 @@ porque executados pelo modelo são mais um teste, e a graça é que os execute u
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
 > the case or the system is the problem.
 >
+> Then refresh the three declarations at the head of the file: `cases_written`,
+> `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
+> `execution_debt` with who still owes which execution and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -164,6 +268,10 @@ porque executados pelo modelo são mais um teste, e a graça é que os execute u
 > quantos casos passaram e quantos falharam, comparado com a execução anterior, e que falhas se
 > repetem. Se um caso não se pôde executar, diga-me por quê e se o problema é o caso ou o
 > sistema.
+>
+> Depois atualize as três declarações da cabeça do arquivo: `cases_written`,
+> `cases_executed_by_a_person` contada a partir das tabelas de execução assinadas e de mais nada, e
+> `execution_debt` com quem continua a dever qual execução e desde quando.
 >
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
@@ -187,6 +295,12 @@ diferentes.
 - As execuções registradas, com data e quem, em cada ciclo.
 - Uma pendência corretiva por cada falha e por cada observação.
 - A rotina no contrato.
+- `docs/SCREEN_WALKTHROUGH.md` com a percorrida do agente: `screens_total`, `screens_walked` e
+  `walkthrough_findings`, e cada defeito com a sua tela, o que se viu, o que se esperava e a sua
+  pendência.
+- Na cabeça de `docs/MANUAL_TESTS.md`, as três declarações que uma comporta lê: `cases_written`,
+  `cases_executed_by_a_person` —que só move uma execução assinada— e `execution_debt` em `none` ou
+  em `pending_verifier`, com quem deve cada execução e desde quando.
 
 ## 4. Verificação de completude (você a faz, sem ler código)
 
@@ -196,6 +310,18 @@ diferentes.
 - O caso diz que efeito verificar do outro lado da tela, e como uma pessoa o verifica?
 - A última execução tem data e nome em cada caso? Há algum "passou" sem data?
 - Cada falha da última execução tem a sua pendência, com as palavras da pessoa?
+- `cases_executed_by_a_person` sai das tabelas assinadas e não da leitura do agente? Toma um caso
+  contado como executado e procura a data e o nome na sua tabela.
+- Se há dívida, `execution_debt` diz quem a deve e desde quando? Uma dívida sem nome não é uma
+  dívida: é um esquecimento com formato.
+- A percorrida conta as telas que não conseguiu abrir dentro do total, com a sua razão? Um
+  `screens_walked` igual ao total num sistema com telas atrás de um perfil que o agente não tem é
+  uma cifra inventada.
+- Os defeitos da percorrida têm a sua pendência, igual que as falhas humanas?
+
+- Se ainda ninguém assinou nem um caso, o texto te diz que não avanças? Faz a pergunta ao contrato
+  e à comporta —«se ninguém executou, avanço?»— e exige que respondam o mesmo. Se o contrato diz que
+  sim e a comporta diz que não, quem está errado é o contrato.
 
 ## 5. Sinais de alerta
 
@@ -206,3 +332,11 @@ diferentes.
   encontram nada, não estão seguindo o roteiro ou o roteiro não pede que se olhe.
 - As falhas se "consertam" na hora, sem pendência. Perdem-se as palavras da pessoa e o rastro do
   que se repetiu.
+- O degrau figura cumprido, `cases_executed_by_a_person` está em zero **e a comporta te deu
+  verde**. O número em zero não é o problema: uma dívida declarada é honesta. O problema é o verde:
+  com o catálogo publicado, um degrau 10 sem nenhuma assinatura sai vermelho pela âncora 4. Se saiu
+  verde, não festeje: olha contra que `catalog_version` o projeto está fixado.
+- A percorrida do agente não encontrou nada e o sistema tem telas novas. Percorrer não é abrir: se
+  não há achados, o mais provável é que tenha olhado a tela e não a tenha usado.
+- A percorrida começa a usar-se como desculpa para não executar os casos. São duas coisas com dois
+  propósitos, e a que aceita é a da pessoa.

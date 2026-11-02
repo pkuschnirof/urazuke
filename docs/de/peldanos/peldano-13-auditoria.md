@@ -26,12 +26,49 @@ gebaut hat, „weiß“, dass das hartkodierte Passwort provisorisch war; ein Mo
 Mal sieht, meldet es als das, was es ist. So wurden zwei Administrator-Türen entdeckt, die der
 Bauende an einem Tag hinterlassen hatte [Ref. 40](../REFERENCIAS.md#ref-40).
 
-Wenn du wählen kannst, soll es außerdem **ein anderes Modell** als das des Bauenden sein, nicht nur
-eine andere Sitzung desselben: eine Studie von 2026 hat gemessen, dass eine saubere Sitzung mit
-einem anderen Modell mehr Fehler findet als zwei Sitzungen desselben Modells
-([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)). Es ist kein hartes Tor, weil manchmal das
-Modell des Bauenden das einzig verfügbare ist; es ist eine Präferenz, die es wert ist, ausgeübt zu
-werden, wenn man kann, und je kritischer das System, desto mehr lohnt es sich.
+Wenn du wählen kannst, soll es außerdem **ein anderes Modell** sein als das, das gebaut hat, und
+nicht nur eine andere Sitzung desselben: eine Studie von 2026 hat gemessen, dass eine saubere
+Sitzung mit einem anderen Modell mehr Fehler findet als zwei Sitzungen desselben Modells
+([arXiv 2610.01471](https://arxiv.org/abs/2610.01471)). Aber diese Vorliebe hat einen
+**Mindeststand an Fähigkeit**, und ich sage es, weil ich es gemessen habe: ein anderes Modell
+findet mehr **nur dann, wenn dieses Modell die Arbeit leisten kann**. Unterhalb einer bestimmten
+Fähigkeit hört die Vielfalt auf, ein Vorteil zu sein, und wird zu einem Kosten, denn einen falschen
+Befund zu prüfen kostet fast so viel, wie ihn selbst gesucht zu haben. Die Reihenfolge ist also
+diese: zuerst **ein anderes Modell, wenn es der Aufgabe gewachsen ist**; wenn es das nicht ist,
+**eine andere Sitzung desselben Modells, und die Abweichung erklärt** in der Zeile `Auditor:` des
+Berichts; und **niemals** ein Auditor, der danach ausgewählt wurde, welcher Schlüssel gerade
+geladen ist oder welche Zeitüberschreitung er übersteht. Wenn ihn eine Grenze des Werkzeugs
+ausgewählt hat, sagt der Bericht es mit diesen Worten: das ist der Fall `tool_constraint` des
+Schlüssels `auditor_choice`, und er existiert, weil eine Beschränkung des Werkzeugs sich als
+technische Wahl verkleidet und das Einzige, was sie entblößt, ist, sie nennen zu müssen. Dass das
+Modell des Erbauers das einzig verfügbare ist, ist kein Versagen der Methode: es ist eine erklärte
+Abweichung, und eine erklärte Abweichung kann auditiert werden. (Entscheidung D-079, über das
+Experiment vom 2026-11-02: der Auditor auf einem anderen Modell lieferte vier der neun Befunde, die
+er selbst angekündigt hatte, und sein einziger P0 war falsch, weil er ein Dezimalkomma falsch las;
+der auf demselben Modell, der von der Vorliebe abwich und es in seiner ersten Zeile erklärte,
+lieferte siebzehn, und keiner erwies sich als falsch, als sie einer nach dem anderen geprüft
+wurden.)
+
+Und hier kommt die Grenze, denn sie zu sagen ist mehr wert, als sie zu simulieren: **Schritt 13
+lässt sich nicht von Anfang bis Ende maschinell verifizieren**. Seine Arbeit macht ein Dritter, und
+darum kann das Tor nicht die Arbeit bewerten; es kann ihre **Spur** bewerten. Ich habe es am
+2026-11-02 gemessen, und es ist unbequem: ein Bericht, der wörtlich von sich selbst sagte „ich habe
+neun Befunde gefunden, ich schreibe vier, der Bericht ist unvollständig“, kam **grün** heraus, denn
+„vollständig“ ist keine Eigenschaft der Datei — es ist die Beziehung zwischen dem, was der Bericht
+ankündigt, und dem, was er liefert — und ein Tor, das die Datei ansieht, sieht sie nicht. Und dem
+Auditor mehr Budget zu geben reicht nicht: in dieser Messung **wurde die Sitzung nicht
+abgeschnitten**, sie endete von selbst, in einem Zug und hundertdreißigtausend Token, und setzte
+ihre Abschlussmarke aus eigenem Antrieb. Ein Tor kann einen abgeschnittenen Bericht nicht von einem
+aufgegebenen unterscheiden. Was es kann, und was die Methode ihm seit D-081 abverlangt, ist, vom
+Bericht zu fordern, dass er **erklärt**, was sich hinterher durch Zählen falsifizieren lässt: seine
+Vollständigkeit unter `audit_completeness`, mit wie vielen Befunden er angekündigt und wie vielen
+er geschrieben hat; die Note jeder Dimension unter `dimension_grades`; das Urteil jedes Belegs, den
+er erneut laufen ließ, unter `receipts_reproduced`; und was er nicht auditiert hat unter
+`not_audited`, mit seinem offenen Posten. Keine der vier verhindert eine Lüge. Alle vier machen aus
+der Lüge eine konkrete, geschriebene Behauptung, mit Datum und Unterschrift, anstatt eines
+Schweigens; und die geschriebenen Befunde eines Berichts zu zählen und sie mit seiner eigenen Zahl
+zu vergleichen kostet zwei Minuten und verlangt keinen Blick in den Code, was genau die Art von
+Verifikation ist, die diese Methode von dir verlangt.
 
 ## 1. Benötigter Kontext
 
@@ -45,6 +82,10 @@ den Prompt schickst“, der jedem einzelnen vorangeht.
 - Der Umfang: Integrität, Sicherheit, Leistung, Codequalität, oder alles.
 - `docs/PENDING.md` mit den im letzten Zyklus abgeschlossenen offenen Posten und ihren Belegen,
   damit der Auditor auswählen kann, welche er reproduziert.
+- Das Register der Belege des ganzen letzten Zyklus: die funktionalen Commits, die mit ihren
+  Belegen abgeschlossenen offenen Posten und die archivierten Belege, die eine Mutation tragen. Das
+  ist nicht dasselbe wie der vorige Punkt: dort wählt der Auditor zwei oder drei Belege zum
+  Reproduzieren, und hier muss er das ganze Register zählen können.
 
 ## 2. Prompts
 
@@ -63,6 +104,11 @@ machst es, nicht der Agent:
   Codequalität, oder alles.
 - Das vorige Audit, falls es eines gab (`docs/AUDIT_[Datum]` vom letzten Mal), damit er misst, was
   sich geändert hat.
+- Wer auditieren wird und warum dieser, von dir entschieden: ein anderes Modell, wenn es der
+  Aufgabe gewachsen ist, eine andere Sitzung desselben, wenn es das nicht ist, und niemals das,
+  das übrig blieb, weil es der gerade geladene Schlüssel war oder das einzige, das die
+  Zeitüberschreitung überstand. Der Prompt verlangt, dass es das im Bericht erklärt, aber die
+  Entscheidung ist deine: wenn du sie nicht triffst, trifft sie das Werkzeug.
 - Akzeptabler Mindestzustand: die Sitzung des Auditors ist nicht die des Bauenden, und sie hat nur
   Lesezugang.
 
@@ -76,6 +122,38 @@ machst es, nicht der Agent:
 > the risk is, what evidence proves it (the command, the query, the number), and its priority:
 > P0 must be fixed now, P1 soon, P2 when possible. Give a grade to every dimension you audited.
 > End with the list of P0 findings turned into proposed pending items.
+>
+> This report carries declarations that a gate reads, each one under its fixed key, so write the
+> key in English even when the report is in my language. `auditor_choice`: which case applies and
+> who decided it -- `different_model` if you are a model other than the one that built this
+> system; `same_model_declared` if you are the same model because no other one was up to the
+> task; `tool_constraint` if what chose you was a key that happened to be loaded, a timeout or
+> any other limit of the tool, and then say so with those words. In the `Auditor:` line, the
+> model that built and the model that audits. `evidence_register_health`: the health of the
+> register of the evidence, which is a dimension of this audit and is not optional -- how many
+> functional commits carry no receipt of any kind; how many pending items closed as shipped lack
+> their receipts, and of those how many have the reason written; and of the receipts that carry
+> a mutation, how many can be applied again. Each of those figures measured by a program, with
+> the command next to it, and a figure you could not measure declared as not measured and never
+> as zero. If the register of the evidence is broken, every other finding in this report rests
+> on data nobody can reproduce. `findings_by_destination`: every finding assigned to one
+> destination -- `product` if the defect is in the audited system, `method` if it is in the
+> method being followed, `tool` if it is in the tool that runs it -- with the register where its
+> pending item goes. A finding whose destination nobody assigned leaves this audit open.
+>
+> Four more declarations, about this report and not about the system, because a gate can read the
+> trace of the work and cannot read the work. `audit_completeness`: `complete` when you wrote down
+> every finding you found, and next to it `findings_announced` and `findings_written` with their
+> figures. Those two figures have to be the same figure: if you announce nine findings and write
+> four, this report is not complete and this step does not close with it -- so do not announce a
+> count you are not going to write, and do not stop halfway and emit your closing marker as if you
+> had finished. `dimension_grades`: the grade of every dimension you audited, each one with the name
+> of its dimension next to it. `receipts_reproduced`: for every receipt you reran, `reproduces` or
+> `does_not_reproduce`, with the command and its output; at least one, and a receipt you only read
+> is not one of them. `not_audited`: `none` when you audited everything in the scope, or
+> `with_pending` and then, part by part, what you did not audit, why, and the pending item that is
+> open for it. A part named as not audited and left without its own pending item leaves this report
+> open; an audit with a smaller scope declared up front is worth more than a wide one with holes.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -101,6 +179,42 @@ machst es, nicht der Agent:
 > mit der Liste der P0-Befunde, umgewandelt in vorgeschlagene offene Posten. Antworte in meiner
 > Sprache.
 >
+> Dieser Bericht trägt Erklärungen, die ein Tor liest, jede unter ihrem festen Schlüssel,
+> also schreib den Schlüssel auf Englisch, auch wenn der Bericht in meiner Sprache ist.
+> `auditor_choice`: welcher Fall zutrifft und wer es entschieden hat — `different_model`, wenn du
+> ein anderes Modell bist als das, das dieses System gebaut hat; `same_model_declared`, wenn du
+> dasselbe Modell bist, weil kein anderes der Aufgabe gewachsen war; `tool_constraint`, wenn dich
+> ein Schlüssel ausgewählt hat, der gerade geladen war, eine Zeitüberschreitung oder irgendeine
+> andere Grenze des Werkzeugs, und dann sag es mit diesen Worten. In der Zeile `Auditor:` das
+> Modell, das gebaut hat, und das Modell, das auditiert. `evidence_register_health`: die
+> Gesundheit des Registers der Belege, die eine Dimension dieses Audits ist und nicht optional —
+> wie viele funktionale Commits keinen einzigen Beleg tragen; wie vielen als geliefert
+> abgeschlossenen offenen Posten ihre Belege fehlen, und bei wie vielen davon der Grund
+> geschrieben steht; und von den Belegen, die eine Mutation tragen, wie viele sich erneut anwenden
+> lassen. Jede dieser Zahlen von einem Programm gemessen, mit dem Befehl daneben, und eine Zahl,
+> die du nicht messen konntest, als nicht gemessen erklärt und niemals als null. Wenn das Register
+> der Belege kaputt ist, ruht jeder andere Befund dieses Berichts auf Daten, die niemand
+> reproduzieren kann. `findings_by_destination`: jeder Befund einem Ziel zugeordnet — `product`,
+> wenn der Defekt im auditierten System liegt, `method`, wenn er in der befolgten Methode liegt,
+> `tool`, wenn er im Werkzeug liegt, das sie ausführt — mit dem Register, in das sein offener
+> Posten geht. Ein Befund, dessen Ziel niemand zugeordnet hat, lässt dieses Audit offen.
+>
+> Vier weitere Erklärungen, über diesen Bericht und nicht über das System, denn ein Tor kann die Spur
+> der Arbeit lesen und nicht die Arbeit. `audit_completeness`: `complete`, wenn du jeden Befund
+> aufgeschrieben hast, den du gefunden hast, und daneben `findings_announced` und `findings_written`
+> mit ihren Zahlen. Diese zwei Zahlen müssen dieselbe Zahl sein: wenn du neun Befunde ankündigst und
+> vier schreibst, ist dieser Bericht nicht vollständig und dieser Schritt schließt nicht mit ihm — also
+> kündige keine Zahl an, die du nicht schreiben wirst, und halte nicht auf halbem Weg an und setze
+> deine Abschlussmarke, als wärst du fertig. `dimension_grades`: die Note jeder Dimension, die du
+> auditiert hast, jede mit dem Namen ihrer Dimension daneben. `receipts_reproduced`: für jeden Beleg,
+> den du erneut laufen ließt, `reproduces` oder `does_not_reproduce`, mit dem Befehl und seiner
+> Ausgabe; mindestens einer, und ein Beleg, den du nur gelesen hast, ist keiner davon.
+> `not_audited`: `none`, wenn du alles im Umfang auditiert hast, oder `with_pending` und dann, Teil
+> für Teil, was du nicht auditiert hast, warum, und der offene Posten, der dafür offen ist. Ein als
+> nicht auditiert benannter Teil, der ohne seinen eigenen offenen Posten bleibt, lässt diesen Bericht
+> offen; ein Audit mit einem von vornherein erklärten kleineren Umfang ist mehr wert als ein breites
+> mit Löchern.
+>
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
 > aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
@@ -119,6 +233,17 @@ Rot); jeden Befund mit Ort, Risiko, Beleg und Priorität, damit er umsetzbar ist
 erneut zu lesen; Noten pro Dimension, zum Vergleich mit dem vorherigen Audit; und die P0 schon in
 vorgeschlagene offene Posten umgewandelt.
 
+Und was die zwei Entscheidungen vom November hinzufügen, gesondert gesagt, weil beide die Arbeit
+des Auditors verändern und nicht nur ihre Formulierung: die **drei Erklärungen mit festem
+Schlüssel**, weil „vollständig“ und „auditiert“ keine Eigenschaften sind, die man einem in freier
+Prosa geschriebenen Bericht ablesen kann (D-079 und D-080); die **Gesundheit des Registers der
+Belege** als verpflichtende Dimension, weil sie die einzige ist, die alle anderen auditiert — wenn
+das Register der Belege kaputt ist, ruht jeder andere Befund des Berichts auf Daten, die niemand
+reproduzieren kann, und dann ist der ganze Bericht weniger wert, als seine Noten sagen —; und das
+**Ziel jedes Befundes**, denn ein Defekt der Methode, der im Register des Produkts eingetragen
+wird, ist ein Defekt, den niemals jemand behebt: der Eigentümer des Produkts kann die Methode nicht
+reparieren, und wer es könnte, hat davon nie erfahren.
+
 **Zum Abschluss (an den Bauenden):**
 
 **Bevor du den Prompt schickst**, musst du das hier zur Hand haben:
@@ -133,6 +258,11 @@ vorgeschlagene offene Posten umgewandelt.
 > Read `docs/AUDIT_[date].md`. Open one pending item for every P0 and P1, citing the finding.
 > If you disagree with any of them, tell me with the evidence against; do not ignore it.
 >
+> Open each one in the register of the destination the report assigned to it: the product
+> register for `product`, and for `method` and for `tool` the register of the method or the
+> register of the tool, never the product's. If a finding arrives with no destination, ask me
+> for it before opening anything.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -145,6 +275,11 @@ vorgeschlagene offene Posten umgewandelt.
 > den Befund. Wenn du mit einem nicht einverstanden bist, sag es mir mit dem Gegenbeleg;
 > ignoriere ihn nicht.
 >
+> Öffne jeden im Register des Ziels, das der Bericht ihm zugeordnet hat: das Register des
+> Produkts für `product`, und für `method` und für `tool` das Register der Methode oder das des
+> Werkzeugs, niemals das des Produkts. Wenn ein Befund ohne Ziel ankommt, frag mich danach, bevor
+> du irgendetwas öffnest.
+>
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
 > aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
@@ -156,6 +291,10 @@ vorgeschlagene offene Posten umgewandelt.
 Was ich hier verlange: dass das Audit zu offenen Posten wird (sonst ist es ein Bericht, der
 abgelegt wird), und dass der Widerspruch explizit und mit Beleg erfolgt, nicht stillschweigend.
 
+Und, seit D-080, dass jeder offene Posten im Register seines Ziels eröffnet wird. Der Erbauer ist
+der, der die Hände im Produkt hat, also der, der am leichtesten alles ins Register des Produkts
+schickt; ein Befund, der ohne Ziel ankommt, wird dich gefragt, bevor irgendetwas eröffnet wird.
+
 ## 3. Erwartetes Ergebnis
 
 - `docs/AUDIT_[Datum].md` mit: Umfang, was verifiziert werden konnte und was nicht (und warum),
@@ -163,6 +302,18 @@ abgelegt wird), und dass der Widerspruch explizit und mit Beleg erfolgt, nicht s
   Reproduktion von zwei oder drei Belegen aus dem letzten Zyklus, und der Liste der vorgeschlagenen
   offenen Posten.
 - In `docs/PENDING.md`: ein offener Posten für jeden P0 und P1, mit Verweis auf den Befund.
+- In demselben Bericht die drei Erklärungen, die ein Tor lesen kann, jede mit ihrem Schlüssel auf
+  Englisch: `auditor_choice` (welcher Fall zutrifft und wer es entschieden hat),
+  `evidence_register_health` (die Zahlen des Registers der Belege, jede mit dem Befehl, der sie
+  gemessen hat, und „nicht gemessen“, wenn nicht gemessen werden konnte) und
+  `findings_by_destination` (jeder Befund mit seinem Ziel).
+- Im Register jedes Ziels: ein offener Posten für jeden P0 und P1. Die des Produkts im Register des
+  Produkts, die der Methode in dem der Methode, die des Werkzeugs in dem des Werkzeugs.
+- In demselben Bericht die vier Erklärungen, die D-081 zu den drei vorherigen hinzufügt:
+  `audit_completeness` auf `complete`, mit `findings_announced` und `findings_written` auf derselben
+  Zahl; `dimension_grades` mit der Note jeder auditierten Dimension; `receipts_reproduced` mit dem
+  Urteil jedes Belegs, der erneut lief; und `not_audited` auf `none` oder auf `with_pending`, und
+  dann der offene Posten jedes Teils, der draußen blieb.
 
 ## 4. Vollständigkeitsprüfung
 
@@ -174,6 +325,21 @@ abgelegt wird), und dass der Widerspruch explizit und mit Beleg erfolgt, nicht s
 - Hat jeder P0 seinen offenen Posten, bevor das Audit als abgeschlossen gilt?
 - Werden sich die Noten pro Dimension mit dem vorherigen Audit vergleichen lassen?
 - Hat derselbe Agent auditiert, der gebaut hat? Wenn ja, verlang einen zweiten Blick auf die P0.
+- Sagt der Bericht, wer auditiert hat und warum dieser? Wenn der Grund ist, dass es das einzige
+  geladene war oder das einzige, das die Zeitüberschreitung überstand, ist das `tool_constraint`
+  und es muss so geschrieben stehen.
+- Stehen die Zahlen der Gesundheit des Registers der Belege da, jede mit dem Befehl, der sie
+  gemessen hat? Eine Zahl, die nicht gemessen werden konnte, sagt „nicht gemessen“; eine Null, die
+  „es gibt keinen“ nicht von „ich konnte nicht hinsehen“ unterscheidet, ist keine Zahl (CQ-19, der
+  Nenner).
+- Hat jeder Befund ein Ziel, und wurde sein offener Posten im Register dieses Ziels eröffnet?
+- Sagen `findings_announced` und `findings_written` dieselbe Zahl? Zähl die geschriebenen Befunde
+  von Hand und vergleich sie mit der erklärten Zahl: das ist die einzige Art, die Erklärung zu
+  falsifizieren, und die billigste Verifikation dieses Schritts.
+- Hat jeder Teil, den der Bericht als nicht auditiert benennt, seinen offenen Posten? Ein erklärter
+  Teil ohne offenen Posten ist ein Teil, den niemand jemals auditieren wird.
+- Gibt es mindestens einen Beleg mit seinem Urteil, `reproduces` oder `does_not_reproduce`, mit dem
+  Befehl und der Ausgabe eingeklebt? Ein Beleg, der nur gelesen wurde, hat kein Urteil.
 
 ## 5. Warnsignale
 
@@ -186,3 +352,18 @@ abgelegt wird), und dass der Widerspruch explizit und mit Beleg erfolgt, nicht s
   der zweite schließt den D-033-Einwand.
 - Zwei Wochen sind vergangen und die P0 haben immer noch keinen offenen Posten. Das Audit wurde
   abgelegt.
+- Der Bericht lobt die Unabhängigkeit des Auditors und sagt nicht, welcher Fall von
+  `auditor_choice` zutrifft. Wenn das Werkzeug den Auditor ausgewählt hat und nicht du, ist das
+  genau der Fall, den niemand von sich aus hinschreibt.
+- Die Gesundheit des Registers der Belege kommt als Null und ohne Befehl zurück. Eine Null ohne den
+  Befehl, der sie erzeugt hat, ist ein „ich konnte nicht hinsehen“, als gute Nachricht verkleidet.
+- Alle Befunde kamen mit dem Ziel `product` heraus. In einer Kontrolle, die das System mit der
+  Methode und dem Werkzeug im Einsatz anschaut, ist es unwahrscheinlich, dass keiner von der
+  Methode oder vom Werkzeug ist: wahrscheinlicher ist, dass niemand nach dem Ziel gefragt hat.
+- Der Bericht erklärt `audit_completeness: complete` und die Zahl der geschriebenen Befunde geht
+  nicht auf. Es ist die eine Erklärung, die man in zwei Minuten falsifizieren kann, und darum lohnt
+  es sich immer.
+- Der Bericht endet mit einem einwandfreien Schlusssatz und kam nie auf die Teile zurück, die er
+  als nicht auditiert markiert hatte. Ein Auditor, dem der Platz ausgeht, setzt seine
+  Abschlussmarke trotzdem: was einen fertigen Bericht von einem aufgegebenen unterscheidet, ist
+  nicht das Ende, sondern `not_audited`.

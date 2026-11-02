@@ -984,9 +984,14 @@ zurück. Das ist der Schluss des Kreises, den das Prozessbild zeigt.
   Posten, Vorbedingung, Schritte mit dem, was getan und was gesehen wird, erwartetes Ergebnis mit
   einer von einer Person verifizierbaren Wirkung im Backend, Daten, Ausführungstabelle); die
   festgehaltenen Ausführungen; ein korrektiver offener Posten pro Fehlschlag.
+  Und `docs/SCREEN_WALKTHROUGH.md` mit dem Durchgang des Agenten durch alle Bildschirme, mit
+  seinem Nenner und seinen Befunden.
 - **Tor**: kein offener Posten, der einen Bildschirm berührt, wird ohne seinen Fall geschlossen;
   keine Ausführung ohne Datum und Namen; kein Fehlschlag ohne offenen Posten mit den Worten der
   Person.
+  Und: der agentische Durchgang durch die Bildschirme ist eine eigene Anforderung, verschieden
+  von der menschlichen Ausführung; dass eine Person ausgeführt hat, verifiziert keine Maschine,
+  also wird es als Schuld mit ihrem Namen erklärt, und was den Schritt anhält, ist Anker 4 und nicht die Erklärung.
 - **Wer entscheidet**: der Eigentümer oder ein Nutzer des Vertrauens führt aus; der Agent schreibt
   die Fälle und öffnet die offenen Posten; das Modell markiert nie einen Fall als ausgeführt.
 - **Fehler, den er verhindert**: den menschlichen Test ohne Drehbuch, der jedes Mal etwas anderes
@@ -1044,6 +1049,7 @@ Flecken und das, was er nicht getan hat.
 - **Tor**: keine Behauptung ohne ihren Beweis. „Erledigt“ wird nicht einfach so gesagt. Bei einem
   „ist immer noch kaputt“ wird zuerst die veröffentlichte Version mit der verglichen, die die
   Behebung enthält.
+  Und ein Befund, der nicht vom Produkt ist, geht in das Register seines Ziels.
 - **Wer entscheidet**: der Eigentümer vertraut, oder verlangt den Beweis. Er sieht nie Code durch.
 - **Fehler, den er verhindert**: den als Erfolg gemeldeten Fehler und die Berichte, die als
   verifiziert erklärten, was es nicht war [Ref. 43](REFERENCIAS.md#ref-43); den Zug, der eine
@@ -1072,6 +1078,11 @@ Anweisungsdatei.
 - **Artefakt**: ein Bericht mit abgestuften Befunden, jeder mit Ort, Risiko, Beleg und Priorität;
   Noten pro Dimension; und die dringenden Befunde schon in offene Posten verwandelt.
 - **Tor**: jeder dringende Befund hat einen offenen Posten, bevor das Audit als abgeschlossen gilt.
+  Und: der Bericht erklärt, warum dieser Auditor, misst die Gesundheit des Registers der
+  Belege, und schließt nicht mit einem Befund ohne Ziel.
+  Und der Bericht erklärt seine Vollständigkeit mit den zwei Zahlen, die sie falsifizierbar
+  machen: dieser Schritt wird nicht von Anfang bis Ende maschinell verifiziert, und das Tor liest
+  die Spur der Arbeit und nicht die Arbeit.
 - **Wer entscheidet**: der Eigentümer priorisiert die Befunde.
 - **Fehler, den er verhindert**: Abfragen, die ganze Tabellen lesen [Ref. 18](REFERENCIAS.md#ref-18);
   zwei Administrator-Türen, die niemand sah, bis ein anderer hinschaute
@@ -1362,6 +1373,8 @@ Projekt zurück.
   zugeordnet, und mindestens einem konkreten Vorschlag, die Leiter zu ändern.
 - **Tor**: der Agent kann nicht tun, was der Eigentümer nicht freigegeben hat; die Retrospektive
   bringt mindestens eine Änderung an der Leiter hervor.
+  Und jeder Befund der Retrospektive kommt mit seinem Ziel heraus: Produkt, Methode oder
+  Werkzeug.
 - **Wer entscheidet**: der Eigentümer.
 - **Fehler, den er verhindert**: den Agenten, der ohne Karte agiert; und die Methode, die sich
   Projekt für Projekt gleich wiederholt, ohne zu lernen. Die Retrospektive mit Zahlen, die das

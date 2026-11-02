@@ -80,6 +80,27 @@ Damit reicht es. Alles Weitere steht im System, und es ist der Agent, der es les
 
 ---
 
+### Die Prompts der Lektionen sind die Kursversion, nicht die des Vertrags
+
+Jede Lektion bringt den Prompt, den du dem Agenten einfügen wirst, und es lohnt sich zu wissen, was
+er ist und was nicht. Der Prompt der Lektion ist die **Kursversion**: kürzer, mit einem einzigen
+Fokus, geschrieben, damit du den Schritt lernst, ohne dass dir beim ersten Mal alles auf einmal
+zukommt. Der **vollständige** Prompt jedes Schritts lebt in seinem Vertrag
+(`peldanos/peldano-NN-....md`), und jede Lektion, die einen Prompt trägt, nennt ihn oben mit ihrer
+Datei. Beide existieren mit Absicht und sagen nicht dasselbe: der des Vertrags trägt neben der
+Anforderung die Klauseln, die die Methode nach und nach hinzugefügt hat -- die Form, in der dir eine
+Entscheidung gestellt werden muss, die wörtliche Reproduktion eines Belegs, die Deklarationen, die
+ein Tor liest -- und die Lektion erspart sie dir, um das Konzept nicht zu verdecken.
+
+Und die praktische Regel, die zählt: **zum Lernen der der Lektion; für ein echtes System der des
+Vertrags.** Wenn dein Kursprojekt ein System ist, das Nutzer haben wird -- und das Handbuch
+empfiehlt, dass es eines sei --, geh nach der Lektion zurück zum Vertrag und füge seinen
+vollständigen Prompt ein. Das steht hier, weil kein Tor es fangen kann: die, die Klauseln zählen,
+zählen die der Prompts des Korpus und nicht die der Lektionen. Was
+`build/prompts_didacticos.mjs` prüft, ist, dass der Unterschied **deklariert** bleibt: dass jede
+Lektion mit Prompt ihren Vertrag nennt, dass die Datei, die sie nennt, existiert, und dass die acht
+Versionen des Handbuchs dieselben Prompts in denselben Lektionen haben.
+
 ## Normalisierungsabschnitt: Lektionen N0 bis N7
 
 Diese acht Lektionen sind der Abschnitt, den der erste Teil nicht hatte. Die ersten vier sind
@@ -152,6 +173,9 @@ Nachrichtenanbieter hat einen Testmodus (grün). Entscheidung: es geht, nach dre
 Vorprojekten.
 
 ### Lektion N1 — Die Arbeitsvereinbarung für ein Altsystem
+
+**Der Vertrag dieser Station:** `EVOLUTIVO_CORRECTIVO.md`, Station N1. Der Prompt unten ist die
+Kursversion, kürzer.
 
 **Was du verstehen musst.** Zu den acht Regeln aus Lektion 1 kommen fünf hinzu, die es gibt, weil
 ein Modell vor fremdem Code drei Dinge reflexhaft tut: es ordnet ihn um, es „repariert“ ihn dort,
@@ -233,6 +257,9 @@ des Systems und zählt als Vertrag“. Die zweite ist die Produzenten-Konsumente
 vorzeitig auftaucht, und das ist gut so.
 
 ### Lektion N2 — Das Lesen des Systems: die wiedergewonnene Karte und die Diskrepanzen
+
+**Der Vertrag dieser Station:** `EVOLUTIVO_CORRECTIVO.md`, Station N2. Der Prompt unten ist die
+Kursversion, kürzer.
 
 **Was du verstehen musst.** Es ist die Lektion, die pro Stunde den meisten Wert des ganzen Kurses
 bringt. In Lektion 2 kamen die Projektdatei und der Baum aus der Erhebung; hier kommen sie aus dem
@@ -369,6 +396,9 @@ einer Minute: „das wird nicht mehr gelöscht“. Offener Posten.
 
 ### Lektion N3 — Das Audit als Inventar der Schuld
 
+**Der Vertrag dieser Station:** `EVOLUTIVO_CORRECTIVO.md`, Station N3. Der Prompt unten ist die
+Kursversion, kürzer.
+
 **Was du verstehen musst.** Die Lektion 13, aber am Anfang statt am Ende, und mit einem Feld mehr
 pro Befund: ob er blockiert (er muss vor jeder Änderung behoben werden), ob er beim Anfassen des
 Moduls bezahlt wird, oder ob er warten kann. Ohne dieses Feld hat ein auditiertes Altsystem
@@ -453,6 +483,9 @@ ist die Spur des Bugs). Als „kann warten“: eine alte Abhängigkeit ohne beka
 der doppelte Code der Datumsformatierung an drei Stellen.
 
 ### Lektion N4 — Der Sicherheitsgurt
+
+**Der Vertrag dieser Station:** `EVOLUTIVO_CORRECTIVO.md`, Station N4. Der Prompt unten ist die
+Kursversion, kürzer.
 
 **Was du verstehen musst.** Es ist das harte Tor dieses Weges: solange der Gurt nicht grün ist,
 wird keine Zeile Funktionalität geändert. Der Gurt hat fünf Teile: eine Testumgebung mit
@@ -594,6 +627,9 @@ einreiht, der Test schlägt fehl, er kommentiert sie wieder ein, er besteht.
 
 ### Lektion N5 — Sperren und Produzenten-Konsumenten-Karte aus dem Code
 
+**Der Vertrag dieser Station:** `EVOLUTIVO_CORRECTIVO.md`, Station N5. Der Prompt unten ist die
+Kursversion, kürzer.
+
 **Was du verstehen musst.** Die Lektionen 14 und 11, als Inventur über dem gemacht, was schon
 existiert, bevor etwas geändert wird. Der Agent wird im Code mehr finden, als das Geschäft
 erinnert, was das System nach außen tut: Versendungen, Löschungen, nächtliche Prozesse. Der
@@ -675,6 +711,9 @@ zusammen.
 
 ### Lektion N6 — Dimensionieren mit echten Zahlen
 
+**Der Vertrag dieser Station:** `EVOLUTIVO_CORRECTIVO.md`, Station N6. Der Prompt unten ist die
+Kursversion, kürzer.
+
 **Was du verstehen musst.** Die Lektion 3 mit einem Vorteil: die Primärdaten stehen in der
 Datenbank und in den Logs. Sie werden nicht erfragt, sie werden gemessen, mit einem Messgerät mit
 Test (Lektion 7). Die Leiterin steuert nur bei, was nirgends steht: wie stark sie zu wachsen
@@ -747,6 +786,9 @@ bekommt eine Warteschlange, auch wenn es heute nicht nötig ist, denn die Anzahl
 wird denselben Kanal benutzen.
 
 ### Lektion N7 — Das Normalisierungs-Backlog, gepaart mit der Anfrage des Kunden
+
+**Der Vertrag dieser Station:** `EVOLUTIVO_CORRECTIVO.md`, Station N7. Der Prompt unten ist die
+Kursversion, kürzer.
 
 **Was du verstehen musst.** Die Lektion 5 mit zwei Spalten mehr. Eine einzige Warteschlange, in
 der die Schuld (Audit, Diskrepanzen, Bildschirme, ausstehende Sperren, Entscheidungen der
@@ -830,6 +872,9 @@ können“, und das wird gesagt.
 ## Die Schleife über dem Altsystem: Lektionen R1 und R2
 
 ### Lektion R1 — Der erste Block: der Bug, im korrektiven Modus
+
+**Der Vertrag dieser Schleife:** `EVOLUTIVO_CORRECTIVO.md`, die Schleife im korrektiven und
+evolutiven Modus. Der Prompt unten ist die Kursversion, kürzer.
 
 **Was du verstehen musst.** Ein korrektiver offener Posten ist ein bekannter Bug. In Lektion 8
 wurde das Rot hergestellt; hier ist das Rot der Bug selbst: der Test, der den Fehler reproduziert,

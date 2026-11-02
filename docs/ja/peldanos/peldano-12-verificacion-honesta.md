@@ -59,6 +59,12 @@
 > rule, and a switched-off rule with no written exception turns the whole
 > report red.
 >
+> When what you report is a finding about how we work and not about what we built, close it with
+> the fixed key `findings_by_destination`: each finding assigned to `product` if the defect is in
+> the system, `method` if it is in the method being followed, `tool` if it is in the tool that
+> runs it, and written into the register of that destination. A defect of the method or of the
+> tool filed in the product's register is a defect nobody is ever going to fix.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -83,6 +89,12 @@
 > 値もブロックを閉じません。緑はルールごとに決まり、書面の例外なしに切られたルールは報
 > 告全体を赤にします。
 >
+> あなたが報告するものが、何を作ったかではなく、どう働いているかについての発見であるときは、
+> 固定のキー `findings_by_destination` で締めてください：各発見を、欠陥がシステムにあるなら
+> `product`、従っている方法にあるなら `method`、それを走らせる道具にあるなら `tool` に
+> 割り当て、その行き先の記録に書いてください。方法や道具の欠陥を製品の記録に書くことは、
+> 誰も直さない欠陥です。
+>
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
 > 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
@@ -95,6 +107,10 @@
 なぜテストしなかったかの理由付きの信じている、見えないもの）。項目ごとの網羅、何も
 「忘れられ」ないように。各主張の隣の証拠。そっけない「完了」の禁止。そして悪い知らせを
 最初に。モデルは最後か永遠に残しがちだから。
+
+そして D-080 以降は行き先です。方法の欠陥を製品の記録に送る報告は、正直であってなお役に
+立ちません。直せたはずの人がそれを知らされなかったからです。記録は三つあり、ルーチンが
+それを名指します。
 
 **あなたの「まだ壊れている」に対して：**
 
@@ -141,6 +157,9 @@
 - 頼んだ各項目に一行、その状態付き。
 - 各「検証済み」に：コマンドと出力、またはテストとその結果、または数字とその計器。
 - うまくいかなかったこと、最後ではなく最初に。
+- そして報告が、作ったものについてではなく、どう働いているかについての発見を生むときは、
+  `findings_by_destination`：各発見にその行き先——製品、方法、道具——をつけ、その行き先の
+  記録に書きます。
 
 ## 4. 完全性の検証
 
@@ -150,6 +169,8 @@
 - 頼んだ各項目を網羅しているか、それとも「忘れられた」ものがあるか？
 - 悪い知らせは最初にあるか？
 - そっけなく「完了」と言ったことがあるか？ 約束違反だ。
+- 系のものではない発見に、行き先が割り当てられ、それぞれの記録に開かれましたか。方法と道具は
+  製品の記録からは直りません。
 
 ## 5. 警告サイン
 

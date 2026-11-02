@@ -916,8 +916,13 @@ the circuit the process diagram shows.
   precondition, steps with what is done and what is seen, expected result with a backend effect
   verifiable by a person, data, execution table); the executions recorded; one corrective pending
   item per failure.
+  And `docs/SCREEN_WALKTHROUGH.md` with the agent's walk through every screen, with its
+  denominator and its findings.
 - **Gate**: no pending item that touches a screen is closed without its case; no execution
   without a date and a name; no failure without a pending item carrying the person's words.
+  And: the agentic walk through the screens is a requirement of its own, distinct from the human
+  execution; that a person executed is something no machine verifies, so it is declared as a debt
+  with its name on it, and what stops the step is anchor 4 and not the declaration.
 - **Who decides**: the owner or a trusted user executes; the agent writes the cases and opens the
   pending items; the model never marks a case as executed.
 - **Failure it prevents**: the human test without a script that finds different things every
@@ -966,6 +971,7 @@ news, the blind spots and what it did not do.
   asked for. Bad news first.
 - **Gate**: no claim without its proof. "Done" is not said on its own. Faced with a "still broken",
   first the published version is compared with the one that has the fix.
+  And a finding that is not about the product goes to the register of its destination.
 - **Who decides**: the owner trusts, or asks for the proof. Never reviews code.
 - **Failure it prevents**: the error reported as success and the reports that declared verified
   what was not [Ref. 43](REFERENCIAS.md#ref-43); the turn that worked invisible for an hour and
@@ -993,6 +999,11 @@ assumptions. Another session of the model, with another instructions file, is en
 - **Artefact**: a report with graded findings, each with location, risk, evidence and priority;
   grades per dimension; and the urgent findings already turned into pending items.
 - **Gate**: every urgent finding has an open pending item before the audit is considered closed.
+  And: the report declares why that auditor and not another, measures the health of the
+  register of the evidence, and does not close with a finding that has no destination.
+  And the report declares its completeness with the two figures that make it falsifiable: this
+  step is not verified end to end by a machine, and the gate reads the trace of the work and not
+  the work.
 - **Who decides**: the owner prioritises the findings.
 - **Failure it prevents**: queries that read whole tables [Ref. 18](REFERENCIAS.md#ref-18); two
   administrator doors that nobody saw until someone else looked
@@ -1266,6 +1277,8 @@ reviewed with numbers, and what is learned returns to step 0 for the next projec
   proposal to change the ladder.
 - **Gate**: the agent cannot do what the owner did not approve; the retrospective produces at least
   one change to the ladder.
+  And every finding of the retrospective comes out with its destination: product, method or
+  tool.
 - **Who decides**: the owner.
 - **Failure it prevents**: the agent that operates without a map; and the method that repeats
   itself unchanged project after project without learning. The retrospective with numbers that

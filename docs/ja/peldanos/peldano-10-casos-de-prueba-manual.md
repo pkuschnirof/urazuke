@@ -36,6 +36,52 @@
 す。そして*再注入する*とは、人が見つけた不具合が、その人の言葉とともに、新しい依頼として保
 留項目のリストへ戻ることです。
 
+D-082 でさらに二つのことが入りました。二つであって、一つではありません。一つめ：**人は受け入れる
+ために実行し、エージェントは欠陥を見つけるために歩く**。この方法は両方を求めます。エージェントの
+歩き——各画面を開き、そこに何があるかを見て、使い、ある画面から次の画面へ流れをたどること、人が
+するように——は人の実行を置き換えませんし、段 8 の端から端までの試験でもありません。端から端まで
+の試験は誰かが選んだ道を通りますが、歩きは、誰も試そうと思わなかったものを探します。求めるのは、
+測ったからです。エージェントが一つの完全な周期でしたことのうち、歩きが**インタフェースの欠陥を
+もっとも多く見つけたもの**でした。そして方法はそれを求めていませんでした。エージェントが自分自身に
+求めていたのです。それは `docs/SCREEN_WALKTHROUGH.md` に、その分母とともに残ります——システムに
+画面がいくつあるか、いくつ歩いたか、欠陥をいくつ見つけたか。入れなかった画面も総数に数え、その
+理由を名指します。数字の見えをよくするために分母から外すことは、まさに付録 H の `CQ-19.1` が
+禁じていることです。
+
+そして二つめは、この段の限界を正面から言ったものです。**ケースを書くことと、人がそれを実行する
+ことは二つの別の状態であり、二つめを方法は強制できません。** 人が自分の手で台本をたどったことは、
+どんなプログラムも検証できません。それを要求するゲートは、嘘をつくことでしか満たせません。
+だから段は検証できるもの——宣言——を要求し、負債は目に見えるところに残ります：
+`docs/MANUAL_TESTS.md` の冒頭の `cases_written`、`cases_executed_by_a_person`、
+`execution_debt`。二つめの数字を動かすのは署名された実行だけで、エージェントの読みでは決して
+動きません。この宣言は**新しいゲートを追加しません**。段が余分に求めるのは、負債が書かれていることであり、
+数字がゼロより大きいことではありません。人を強制することが、方法にできないことだからです。
+**止める**のは、付録 H のアンカー 4 からすでにあったことです。プロファイルごとに誰も走らせなかった
+ケースは、実行されたケースではありません。2026-11-02 に実際の評価器で測りました。そのアンカーを
+実装している環境は、署名されたケースの記録が空だと言って赤になります。つまり、足りなかったのは
+封鎖ではなく、負債が**読める**ことでした——その数字と、それを負っている人の名前。「誰も署名して
+いない」とだけ言い、誰が署名すべきでいつから欠けているのかを言わない空の記録の代わりにです。そして、
+この段を読むために知っておくのがよいこと：これを開いた測定の出所は、空の表のまま進んだ計画であり、
+それはスキーマ 1 の**凍結**で走っていました。そこでの段 10 の唯一の検査は、ファイルが存在することだけです。2026-11-02 に
+実際の計画で測りました：十三のケースが書かれ、実行表は空で、段は緑、そして適合文書が六つの基準を
+検証済みと主張していて、その検証者は一度も実行していない人でした。エージェントは段が言ったことを
+正確にやっていました。穴は段の側にありました。
+
+**そして、ここまでの話が残す問いに、回りくどくせずに答えます。誰も一件も署名していないなら、先へ進
+めるのか。** 進めません。2026-11-02 に本物の評価器で測りました。二つの半分は同じ一枚です。署名の台
+帳が空なら、段10は**赤**で出て、誰も一件も署名していないと言います。そして、人が一件だけ署名した場合
+—名前と日付と、どの役割で走らせたかを添えて—、書かれた十三件と `pending_verifier` の `execution_debt`
+を持つ同じ木は、赤を抜けて持ち主の検証に進みます。つまり、止めているのは負債ではなく、最初から負債では
+ありませんでした。止めているのは**誰も何も署名していないこと**で、それは `2026.10.1` から、この宣言が
+存在する前から、附属書Hの錨4に書かれています。負債は門を開けも閉めもしません。門を**読めるように**す
+るのであって、それは別のことで、足りなかったのはそれです。
+
+ここに書くのは、各自に推論させるのではなく、この場で言う必要があったからです。署名の台帳が空のまま段10
+を越えた計画は、方法がそれを許したからそうなったのではありません。スキーマ1の**凍結**に固定したので
+あって、そこでは段10の唯一の検査はファイルが存在することです。それはまさに、方法が名づけられない内部の
+同一性に固定することについて `PND-055` と D-068 が言っていることです。もしそうなったなら、最初に見るべ
+きは段ではありません。その計画がどの版に固定されているかです。
+
 ## 1. 必要な文脈
 
 ここに続くのは一般的なリストです。各プロンプトの前にあなたが作り終えていなければならない具体
@@ -84,6 +130,28 @@
 > compare that with the menu, and the real screenshot of the test
 > environment.
 >
+> `docs/MANUAL_TESTS.md` carries at its head three declarations that a gate reads, each one under
+> its fixed key in English even when the file is in my language, because what this step owes is not
+> the same as what it can prove. `cases_written`: how many cases are written.
+> `cases_executed_by_a_person`: how many of those a person signed in their execution table, with a
+> date and a name; you keep the first figure, and the second one moves only when a person executes
+> -- never from your own reading of the system. `execution_debt`: `none` when the two figures are
+> the same, or `pending_verifier` and then the cases nobody has executed yet, with who owes each
+> execution and since when. That debt is not a gate of its own: what this step asks you for is the
+> declaration and not a figure above zero, because the method cannot make a person execute. But it
+> is never silent either, and a step that advances with its debt declared is honest in a way that a
+> step advancing while it looks complete is not.
+>
+> And walk the screens yourself, which is a different thing from the execution a person owes and
+> never a replacement for it: you walk to find defects, a person executes to accept. Go through
+> every screen the system has as a person would -- open it, look at what is on it, use it, and
+> follow the flow from one screen to the next -- and write `docs/SCREEN_WALKTHROUGH.md` with
+> `screens_total`, how many screens the system has; `screens_walked`, how many of them you actually
+> walked; and `walkthrough_findings`, how many defects the walk found. A screen you could not reach
+> is counted in the total and named with its reason: taking it out of the denominator so that the
+> figure reads better is the one thing this file must never do. For every defect: the screen, what
+> you saw, what you expected instead, and the pending item you opened for it.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -108,6 +176,28 @@
 > 最初のクリックの確認（私がその作業を探す場所を一つ挙げ、あなたがそれをメニューと照ら
 > す）と、テスト環境の実際のスクリーンショットです。
 >
+> `docs/MANUAL_TESTS.md` はその冒頭に、ゲートが読む三つの宣言を、それぞれ固定のキーで英語で
+> 載せます。ファイルが私の言語であってもです。この段が負っていることと、この段が証明できる
+> ことは同じでないからです。`cases_written`：書かれているケースがいくつか。
+> `cases_executed_by_a_person`：そのうち、人が実行表に日付と名前を入れて署名したのがいくつか。
+> 最初の数字はあなたが維持し、二つ目の数字は人が実行したときにのみ動きます——あなた自身の
+> 読みからは決して動きません。`execution_debt`：二つの数字が同じときは `none`、そうでなければ
+> `pending_verifier` とし、まだ誰も実行していないケースを、その実行を誰がいつから負っているかと
+> ともに。この負債はそれ自身がゲートなのではありません。この段があなたに求めるのは宣言であり、
+> ゼロより大きい数字ではありません。方法は人に実行を強制できないからです。しかし決して沈黙した
+> ままでもありません。負債を宣言して進む段は、完全に見えながら進む段とは違って、誠実です。
+>
+> そして、画面をあなた自身で歩いてください。これは人に負っている実行とは別のことであり、
+> その代わりには決してなりません。あなたは欠陥を見つけるために歩き、人は受け入れるために
+> 実行します。システムにあるすべての画面を、人がするように通ってください——開いて、上に何が
+> あるかを見て、使って、ある画面から次の画面への流れをたどって——そして
+> `docs/SCREEN_WALKTHROUGH.md` に、`screens_total`（システムに画面がいくつあるか）、
+> `screens_walked`（そのうち実際に歩いたのはいくつか）、`walkthrough_findings`（歩いて
+> 見つけた欠陥はいくつか）を書いてください。入れなかった画面も総数に数え、その理由を
+> 名指します。数字の見えをよくするために分母から外すことが、このファイルが決してしては
+> いけないただ一つのことです。欠陥ごとに：画面、見たもの、代わりに期待していたもの、そして
+> そのために開いた保留項目。
+>
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
 > 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
@@ -120,6 +210,12 @@
 画面の向こう側を見るように。ケースが文書と同じく同じコミットで保守されること。そして**モデル
 が決してそれを実行しないこと**。モデルが実行したならそれはもう一つのテストにすぎず、肝心なの
 は人が実行することだからだ。
+
+そして D-082 が加えること：エージェントが**自分で画面を歩くこと**。それがインタフェースの欠陥を
+もっとも多く見つけるものであり、方法が求めていなかったものです。そして、ケースのファイルがその
+冒頭に、書かれたものと実行されたものの差を載せること。負債とともに進む段が、**それを言いながら**
+進むためです。歩きは人の実行を置き換えません。短くします。エージェントが見れば気づけた欠陥に、
+人がもう出会わなくなるからです。
 
 **ある実行のために（ブロックの締め、受け入れ、デプロイの後）：**
 
@@ -141,6 +237,10 @@
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
 > the case or the system is the problem.
 >
+> Then refresh the three declarations at the head of the file: `cases_written`,
+> `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
+> `execution_debt` with who still owes which execution and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -158,6 +258,10 @@
 > 前回の実行と比べて、いくつのケースが通りいくつが失敗したか、そしてどの失敗が繰り返されて
 > いるかを教えてください。あるケースが実行できなかったなら、なぜか、そして問題はケースなの
 > かシステムなのかを教えてください。
+>
+> そのあと、ファイルの冒頭の三つの宣言を更新してください：`cases_written`、
+> 署名された実行表からだけ数えた `cases_executed_by_a_person`、そして、誰がどの実行を
+> いつから負ったままなのかを書いた `execution_debt`。
 >
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
@@ -179,6 +283,11 @@
 - 記録された実行、日付と誰付きで、各サイクルで。
 - 各失敗と各所見につき一つの修正の保留項目。
 - 約束の中のルーチン。
+- `docs/SCREEN_WALKTHROUGH.md` にエージェントの歩き：`screens_total`、`screens_walked`、
+  `walkthrough_findings`。そして各欠陥に、その画面、見たもの、期待したもの、その保留項目。
+- `docs/MANUAL_TESTS.md` の冒頭に、ゲートが読む三つの宣言：`cases_written`、署名された実行だけが
+  動かす `cases_executed_by_a_person`、そして `none` か `pending_verifier` の `execution_debt`
+  を、誰がどの実行をいつから負っているかとともに。
 
 ## 4. 完全性の検証（あなたが行う、コードを読まずに）
 
@@ -189,6 +298,17 @@
 - ケースは画面の向こう側でどの効果を検証するか、そして人がそれをどう検証するかを言っているか。
 - 最後の実行は各ケースに日付と名前を持っているか。日付のない「通った」はあるか。
 - 最後の実行の各失敗はその保留項目を、人の言葉とともに持っているか。
+- `cases_executed_by_a_person` は、エージェントの読みではなく署名された表から出ていますか。
+  実行済みと数えられたケースを一つ取って、その表に日付と名前があるか探してください。
+- 負債があるなら、`execution_debt` は誰がいつから負っているかを言っていますか。名前のない負債は
+  負債ではなく、書式のついた忘れものです。
+- 歩きは、開けなかった画面を総数の中に、その理由とともに数えていますか。エージェントが持たない
+  プロファイルの裏に画面がある系で `screens_walked` が総数と同じなら、それは作られた数字です。
+- 歩きの欠陥には、人の失敗と同じように、その保留項目がありますか。
+
+- まだ誰も一件も署名していないとき、文章は「進めない」と言っていますか。契約と門に同じ問いを投げて
+  ください——「誰も実行していないなら、進めるのか」——そして同じ答えを出すことを求めてください。契約
+  が「進める」と言い、門が「進めない」と言うなら、間違っているのは契約です。
 
 ## 5. 警告サイン
 
@@ -199,3 +319,11 @@
 - すべての実行ですべてのケースが通る。人は常に何かを見つける。何も見つけないなら、台本に従っ
   ていないか、台本が見ることを求めていない。
 - 失敗がその場で、保留項目なしに「直される」。人の言葉と、何が繰り返されたかの痕跡が失われる。
+- 段は達成と出ていて、`cases_executed_by_a_person` はゼロ、**しかも門は緑を出した**。ゼロという
+  数字は問題ではありません。宣言された負債は正直です。問題は緑です。公開された目録では、署名が一つ
+  もない段10は錨4によって赤で出ます。緑が出たなら喜ばないでください。その計画がどの
+  `catalog_version` に固定されているかを見てください。
+- エージェントの歩きが何も見つけず、しかもシステムには新しい画面がある。歩くことは開くことでは
+  ありません。発見がないなら、画面を見ただけで使っていない可能性が高いです。
+- 歩きが、ケースを実行しないための口実に使われはじめる。二つの目的を持つ二つのことであり、
+  受け入れるほうは人のものです。

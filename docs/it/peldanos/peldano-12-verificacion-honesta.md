@@ -62,6 +62,12 @@ l'agente:
 > rule, and a switched-off rule with no written exception turns the whole
 > report red.
 >
+> When what you report is a finding about how we work and not about what we built, close it with
+> the fixed key `findings_by_destination`: each finding assigned to `product` if the defect is in
+> the system, `method` if it is in the method being followed, `tool` if it is in the tool that
+> runs it, and written into the register of that destination. A defect of the method or of the
+> tool filed in the product's register is a defect nobody is ever going to fix.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -88,6 +94,12 @@ l'agente:
 > chiude un blocco: il verde si decide regola per regola, e una regola
 > spenta senza eccezione scritta rende rosso l'intero rapporto.
 >
+> Quando ciò che riferisci è un rilievo su come lavoriamo e non su ciò che abbiamo costruito,
+> chiudilo con la chiave fissa `findings_by_destination`: ogni rilievo assegnato a `product` se il
+> difetto è del sistema, `method` se è del metodo che si sta seguendo, `tool` se è dello
+> strumento che lo esegue, e scritto nel registro di quella destinazione. Un difetto del metodo o
+> dello strumento annotato nel registro del prodotto è un difetto che nessuno correggerà mai.
+>
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
 > elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
@@ -103,6 +115,10 @@ onesto un rapporto (il verificato con la sua prova, il creduto con la ragione pe
 provato, ciò che non può vedere); la copertura punto per punto, perché nulla "si dimentichi"; la
 prova accanto a ogni affermazione; il divieto del "fatto" secco; e le cattive notizie per prime,
 perché il modello tende a lasciarle per la fine o per mai.
+
+E da D-080, la destinazione: un rapporto che manda un difetto del metodo al registro del prodotto
+può essere onesto e non servire, perché chi poteva correggerlo non l'ha mai saputo. Sono tre
+registri distinti, e la routine li nomina.
 
 **Davanti a un tuo "è ancora rotto":**
 
@@ -153,6 +169,9 @@ Ogni rapporto dell'agente con:
 - Per ogni "verificato": il comando e l'output, o il test e il suo risultato, o il numero e il suo
   misuratore.
 - Ciò che è andato storto, all'inizio e non alla fine.
+- E quando il rapporto produce rilievi su come lavoriamo e non su ciò che abbiamo costruito,
+  `findings_by_destination`: ogni rilievo con la sua destinazione —prodotto, metodo o strumento— e
+  scritto nel registro di quella destinazione.
 
 ## 4. Verifica di completezza
 
@@ -163,6 +182,8 @@ Ogni rapporto dell'agente con:
 - Copre ogni punto di ciò che hai chiesto, o ce n'è uno che "si è dimenticato"?
 - Le cattive notizie sono all'inizio?
 - Ha detto "fatto" secco qualche volta? È una violazione del patto.
+- I rilievi che non sono del sistema sono rimasti con la loro destinazione assegnata, e aperti nel
+  registro che gli spetta? Il metodo e lo strumento non si correggono dal registro del prodotto.
 
 ## 5. Segnali d'allarme
 

@@ -60,6 +60,12 @@ el agente:
 > rule, and a switched-off rule with no written exception turns the whole
 > report red.
 >
+> When what you report is a finding about how we work and not about what we built, close it with
+> the fixed key `findings_by_destination`: each finding assigned to `product` if the defect is in
+> the system, `method` if it is in the method being followed, `tool` if it is in the tool that
+> runs it, and written into the register of that destination. A defect of the method or of the
+> tool filed in the product's register is a defect nobody is ever going to fix.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -86,6 +92,12 @@ el agente:
 > decide regla por regla, y una regla apagada sin excepción escrita vuelve
 > rojo el informe entero.
 >
+> Cuando lo que reportás es un hallazgo sobre cómo trabajamos y no sobre lo que construimos,
+> cerralo con la clave fija `findings_by_destination`: cada hallazgo asignado a `product` si el
+> defecto es del sistema, `method` si es del método que se está siguiendo, `tool` si es de la
+> herramienta que lo corre, y escrito en el registro de ese destino. Un defecto del método o de la
+> herramienta anotado en el registro del producto es un defecto que nadie va a arreglar nunca.
+>
 > Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
 > enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
@@ -100,6 +112,10 @@ honesto un reporte (lo verificado con su prueba, lo creído con la razón de por
 que no puede ver); la cobertura ítem por ítem, para que nada "se olvide"; la prueba al lado de
 cada afirmación; la prohibición del "listo" a secas; y las malas noticias primero, porque el
 modelo tiende a dejarlas para el final o para nunca.
+
+Y desde D-080, el destino: un reporte que manda un defecto del método al registro del producto
+puede ser honesto y no sirve, porque el que podía arreglarlo nunca se enteró. Son tres registros
+distintos, y la rutina los nombra.
 
 **Ante un "sigue roto" tuyo:**
 
@@ -148,6 +164,9 @@ Cada reporte del agente con:
 - Para cada "verificado": el comando y la salida, o el test y su resultado, o el número y su
   medidor.
 - Lo que salió mal, al principio y no al final.
+- Y cuando el reporte produce hallazgos sobre cómo trabajamos y no sobre lo que construimos,
+  `findings_by_destination`: cada hallazgo con su destino —producto, método o herramienta— y
+  escrito en el registro de ese destino.
 
 ## 4. Verificación de completitud
 
@@ -158,6 +177,8 @@ Cada reporte del agente con:
 - ¿Cubre cada ítem de lo que pediste, o hay uno que "se olvidó"?
 - ¿Las malas noticias están al principio?
 - ¿Dijo "listo" a secas alguna vez? Es una violación del contrato.
+- ¿Los hallazgos que no son del sistema quedaron con su destino asignado, y abiertos en el registro
+  que les toca? El método y la herramienta no se arreglan desde el registro del producto.
 
 ## 5. Señales de alarma
 

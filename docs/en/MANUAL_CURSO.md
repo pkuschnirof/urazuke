@@ -77,7 +77,7 @@ step.
 Every lesson has the same structure:
 
 - **What you need to understand**: the concept, explained the way you explain it to a person.
-- **The task**: step by step, with the exact prompt you are going to give the agent (in English,
+- **The task**: step by step, with the course prompt you are going to give the agent (in English,
   because models follow instructions more precisely in English; below each one it is explained
   what you are asking for) and what to do with what it gives you back. Before each prompt there
   is a block that says **"Before sending the prompt"**: the files and the inputs you have to have
@@ -156,6 +156,27 @@ exercise that it asks.
 
 ---
 
+### The prompts of the lessons are the course version, not the contract one
+
+Every lesson carries the prompt you are going to paste to the agent, and it is worth knowing what it
+is and what it is not. The prompt of the lesson is the **course version**: shorter, with a single
+focus, written so that you learn the step without getting everything at once the first time. The
+**complete** prompt of each step lives in its contract (`peldanos/peldano-NN-....md`), and every
+lesson that carries a prompt names it above with its file. Both exist on purpose and they do not say
+the same thing: the one in the contract carries, besides the request, the clauses the method kept
+adding -- the form in which a decision has to be asked of you, the literal reproduction of a
+receipt, the declarations a gate reads -- and the lesson spares you those so they do not cover the
+concept.
+
+And the practical rule, which is the one that matters: **to learn, the lesson's; for a real system,
+the contract's.** If your course project is a system that is going to have users -- and the manual
+recommends that it be one -- when you finish the lesson go back to the contract and paste its
+complete prompt. This is written here because no gate can catch it: the ones that count clauses
+count those of the corpus prompts and not those of the lessons. What `build/prompts_didacticos.mjs`
+does check is that the difference stays **declared**: that every lesson with a prompt names its
+contract, that the file it names exists, and that the eight versions of the manual have the same
+prompts in the same lessons.
+
 ## The start-up stretch: lessons 0 to 4
 
 These five lessons are done once per project, in stage 1, before writing functionality. They are
@@ -163,6 +184,9 @@ the ones that tempt you most to skip ("I want to see something working"), and th
 that cost the most to skip. Do them in one go, and only then open the loop.
 
 ### Lesson 0 — Can this project be run this way?
+
+**The contract of this step:** `peldanos/peldano-00-elegibilidad.md`. The prompt below is the
+course version, shorter.
 
 **What you need to understand.** The method does not work for every project, and knowing that
 before starting is the first quality decision. There are two conditions without which it does not
@@ -245,6 +269,9 @@ before step 14.
 
 ### Lesson 1 — The working agreement
 
+**The contract of this step:** `peldanos/peldano-01-contrato-de-convivencia.md`. The prompt below
+is the course version, shorter.
+
 **What you need to understand.** The agent arrives at every session with no memory of the
 previous one. It is like a new collaborator every morning. The working agreement is what you tell
 it on the first day and what it is going to re-read every day: how you work, what you do not
@@ -322,6 +349,9 @@ is worth accepting: "I never send a real message to a patient from an environmen
 production; in test, messages go to a fake inbox". It is step 14 peeking in early.
 
 ### Lesson 2 — The project definition, the semantic tree and mandatory reading
+
+**The contract of this step:** `peldanos/peldano-02-definicion-y-lectura.md`. The prompt below is
+the course version, shorter.
 
 **What you need to understand.** The project file (`PROJECT.md`, or `CLAUDE.md`, or whatever name
 your tool uses) is the map the agent reads at the start of every session. It has to be **short**:
@@ -435,6 +465,9 @@ manager did not name it. Maybe it is needed, maybe not; you decide, not the agen
 
 ### Lesson 3 — Size before designing the architecture
 
+**The contract of this step:** `peldanos/peldano-03-dimensionar.md`. The prompt below is the course
+version, shorter.
+
 **What you need to understand.** There are decisions that, taken badly, cost weeks: which
 database, whether the calls to the database are synchronous or asynchronous, how many people can
 use the system at the same time. And they all depend on numbers that **only the business has**:
@@ -529,6 +562,9 @@ SQLite now with the asynchronous interface and a planned migration to PostgreSQL
 one). For the course we choose the third: it is the one that teaches the most.
 
 ### Lesson 4 — The skeleton with its gates
+
+**The contract of this step:** `peldanos/peldano-04-esqueleto.md`. The prompt below is the course
+version, shorter.
 
 **What you need to understand.** Before the system does anything useful, it has to start up, be
 tested and be deployed **empty**. It looks like a waste of time ("deploy what, if there is
@@ -635,6 +671,9 @@ is the basic schedule: see the day's appointments, book an appointment, cancel i
 patients and search. No messages or payments yet; that comes after the locks (lesson 14).
 
 ### Lesson 5 — The plan is the pending items, and the detailed specification lives in each one
+
+**The contract of this step:** `peldanos/peldano-05-pendientes.md`. The prompt below is the course
+version, shorter.
 
 **What you need to understand.** There is no "plan" on one side and a "task list" on the other:
 **the list of pending items is the plan**. But there are two more ideas, and they are the ones
@@ -756,6 +795,9 @@ query. That is a specification.
 
 ### Lesson 6 — Decisions are written next to the code
 
+**The contract of this step:** `peldanos/peldano-06-decisiones.md`. The prompt below is the course
+version, shorter.
+
 **What you need to understand.** The model, when it finds a gap in the business rules, **fills
 it**. It does not stop to ask; it completes with what seems most likely to it, with the same
 naturalness with which it writes everything else. That is why this lesson is not "write down the
@@ -828,6 +870,9 @@ with a date and with the practice manager's name, and each one pasted into the s
 the pending item that needed it.
 
 ### Lesson 7 — Measure before building, with an instrument that is itself verified
+
+**The contract of this step:** `peldanos/peldano-07-medir.md`. The prompt below is the course
+version, shorter.
 
 **What you need to understand.** The model produces claims with a number in them ("there are about
 120 queries of that kind") and they sound exactly the same whether they were measured or estimated.
@@ -921,6 +966,9 @@ fixed, they become 3, 3 and 3, and the budget is set at 4 with a test that fails
 runs more than 4 queries for any number of appointments.
 
 ### Lesson 8 — Tests as locks, proved red, and the end-to-end tests
+
+**The contract of this step:** `peldanos/peldano-08-tests-en-rojo.md`. The prompt below is the
+course version, shorter.
 
 **What you need to understand.** This is the central lesson of the course. A test you never saw
 fail, you do not know whether it proves anything. The model writes the code and the test in the
@@ -1155,6 +1203,9 @@ observation.
 
 ### Lesson 11 — Producer/consumer symmetry, and the anti-pattern register
 
+**The contract of this step:** `peldanos/peldano-11-simetria-y-antipatrones.md`. The prompt below
+is the course version, shorter.
+
 **What you need to understand.** When you change one end of the system (the server, the database,
 a robot), the other end (the screen, a counter, a report) has to change in the same commit. If it
 does not, they diverge, and the user sees one number on one side and a different one on the other
@@ -1243,6 +1294,9 @@ an appointment at 11:30 pm.
 
 ### Lesson 12 — Honest verification and proportional reporting
 
+**The contract of this step:** `peldanos/peldano-12-verificacion-honesta.md`. The prompt below is
+the course version, shorter.
+
 **What you need to understand.** If you are not going to read code, the agent's report has to be
 trustworthy, and that does not happen on its own. The model was trained to be helpful and
 complete, and a report that says "I could not verify this" feels less helpful than one that says
@@ -1328,6 +1382,9 @@ words; read it before the lesson.
 
 ### Lesson 13 — The periodic audit as input to the plan
 
+**The contract of this step:** `peldanos/peldano-13-auditoria.md`. The prompt below is the course
+version, shorter.
+
 **What you need to understand.** Every so often you have to look at the whole system with fresh
 eyes, and what is seen does not go into a report that gets filed: it goes into the list of pending
 items. The important part is "fresh eyes": the one who audits must not be the one who built,
@@ -1397,6 +1454,9 @@ will show at 5,000 patients); the appointment form not validating that the date 
 and line.
 
 ### Lesson 14 — Fail-closed, locks and zero silent harm
+
+**The contract of this step:** `peldanos/peldano-14-fail-closed.md`. The prompt below is the course
+version, shorter.
 
 **What you need to understand.** Software, by default, goes ahead when in doubt: if the validation
 fails, the code continues; if the service does not respond, everything is assumed to be fine. It is
@@ -1475,6 +1535,9 @@ back: none, hence double). Each lock with a test that shows that, without the lo
 happened.
 
 ### Lesson 15 — Continuous integration, environments, secrets and deployment as part of the product
+
+**The contract of this step:** `peldanos/peldano-15-ci-entornos-secretos-deploy.md`. The prompt
+below is the course version, shorter.
 
 **What you need to understand.** Reaching production has to be a reproducible package: the tests
 run **once**, the deployment only packages and uploads, the configuration lives on the server and
@@ -1782,6 +1845,9 @@ to sell it.
 
 ### Lesson 20 — Living documentation and manuals a person can follow without AI
 
+**The contract of this step:** `peldanos/peldano-20-documentacion-viva.md`. The prompt below is the
+course version, shorter.
+
 **What you need to understand.** The system has to be usable, maintainable and recoverable without
 the agent and without you. The criterion for the recovery manual is concrete: **a trusted person
 who does not program has to be able to follow it, at three in the morning, with the system down and
@@ -1984,6 +2050,9 @@ appointment", 0 % in the rest.
 **What changed on 19 October 2026 (D-038).** Error capture separates by source: the errors of the system and those of the tools that watch it (the panel, the resident agent, the monitoring itself) go in different sections of the report, and only the system's errors open pending items. In practice, the first cyclic report opened six "bugs" that were the tool talking to a server that was off.
 
 ### Lesson 23 — The agent inside the system, and the retrospective with numbers
+
+**The contract of this step:** `peldanos/peldano-23-agente-residente-y-retrospectiva.md`. The
+prompt below is the course version, shorter.
 
 **What you need to understand.** Two things close the cycle. The first is optional: leaving the
 agent resident in production, with a bounded scope, to diagnose and give support without you being

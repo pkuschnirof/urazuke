@@ -82,7 +82,7 @@ musst.
 Jede Lektion hat dieselbe Struktur:
 
 - **Was du verstehen musst**: das Konzept, erklärt, wie man es einem Menschen erklärt.
-- **Die Aufgabe**: Schritt für Schritt, mit dem exakten Prompt, den du dem Agenten geben wirst
+- **Die Aufgabe**: Schritt für Schritt, mit dem Kurs-Prompt, den du dem Agenten geben wirst
   (auf Englisch, weil die Modelle Anweisungen auf Englisch präziser befolgen; jeder bringt seine
   Übersetzung mit, und darunter ist erklärt, was du verlangst) und was mit dem zu tun ist, was er
   dir zurückgibt. Vor jedem Prompt steht ein Block, der **„Bevor du den Prompt schickst“** heißt:
@@ -165,6 +165,27 @@ er es fragt.
 
 ---
 
+### Die Prompts der Lektionen sind die Kursversion, nicht die des Vertrags
+
+Jede Lektion bringt den Prompt, den du dem Agenten einfügen wirst, und es lohnt sich zu wissen, was
+er ist und was nicht. Der Prompt der Lektion ist die **Kursversion**: kürzer, mit einem einzigen
+Fokus, geschrieben, damit du den Schritt lernst, ohne dass dir beim ersten Mal alles auf einmal
+zukommt. Der **vollständige** Prompt jedes Schritts lebt in seinem Vertrag
+(`peldanos/peldano-NN-....md`), und jede Lektion, die einen Prompt trägt, nennt ihn oben mit ihrer
+Datei. Beide existieren mit Absicht und sagen nicht dasselbe: der des Vertrags trägt neben der
+Anforderung die Klauseln, die die Methode nach und nach hinzugefügt hat -- die Form, in der dir eine
+Entscheidung gestellt werden muss, die wörtliche Reproduktion eines Belegs, die Deklarationen, die
+ein Tor liest -- und die Lektion erspart sie dir, um das Konzept nicht zu verdecken.
+
+Und die praktische Regel, die zählt: **zum Lernen der der Lektion; für ein echtes System der des
+Vertrags.** Wenn dein Kursprojekt ein System ist, das Nutzer haben wird -- und das Handbuch
+empfiehlt, dass es eines sei --, geh nach der Lektion zurück zum Vertrag und füge seinen
+vollständigen Prompt ein. Das steht hier, weil kein Tor es fangen kann: die, die Klauseln zählen,
+zählen die der Prompts des Korpus und nicht die der Lektionen. Was
+`build/prompts_didacticos.mjs` prüft, ist, dass der Unterschied **deklariert** bleibt: dass jede
+Lektion mit Prompt ihren Vertrag nennt, dass die Datei, die sie nennt, existiert, und dass die acht
+Versionen des Handbuchs dieselben Prompts in denselben Lektionen haben.
+
 ## Startabschnitt: Lektionen 0 bis 4
 
 Diese fünf Lektionen werden einmal pro Projekt gemacht, in Etappe 1, bevor Funktionalität
@@ -173,6 +194,9 @@ etwas laufen sehen“), und die, deren Überspringen am teuersten kommt. Mach si
 erst danach die Schleife.
 
 ### Lektion 0 — Lässt sich dieses Projekt so angehen?
+
+**Der Vertrag dieses Schritts:** `peldanos/peldano-00-elegibilidad.md`. Der Prompt unten ist die
+Kursversion, kürzer.
 
 **Was du verstehen musst.** Die Methode taugt nicht für jedes Projekt, und das vor dem Anfangen zu
 wissen ist die erste Qualitätsentscheidung. Es gibt zwei Bedingungen, ohne die sie nicht
@@ -274,6 +298,9 @@ Blatt endet mit „go“, mit einer vernünftigen Bedingung: den Nachrichtenkana
 festgelegt zu haben.
 
 ### Lektion 1 — Die Arbeitsvereinbarung
+
+**Der Vertrag dieses Schritts:** `peldanos/peldano-01-contrato-de-convivencia.md`. Der Prompt unten
+ist die Kursversion, kürzer.
 
 **Was du verstehen musst.** Der Agent kommt in jede Sitzung ohne Erinnerung an die vorherige. Er
 ist wie ein neuer Mitarbeiter jeden Morgen. Die Arbeitsvereinbarung ist das, was du ihm am ersten
@@ -379,6 +406,9 @@ Umgebung, die nicht Produktion ist; in der Testumgebung gehen die Nachrichten in
 Postausgang“. Das ist Schritt 14, der früh hereinschaut.
 
 ### Lektion 2 — Die Projektdefinition, der semantische Baum und die Pflichtlektüre
+
+**Der Vertrag dieses Schritts:** `peldanos/peldano-02-definicion-y-lectura.md`. Der Prompt unten
+ist die Kursversion, kürzer.
 
 **Was du verstehen musst.** Die Projektdatei (`PROJECT.md`, oder `CLAUDE.md`, oder der Name, den
 dein Werkzeug verwendet) ist die Karte, die der Agent zu Beginn jeder Sitzung liest. Sie muss
@@ -521,6 +551,9 @@ braucht es ihn, vielleicht nicht; das entscheidest du, nicht er.
 
 ### Lektion 3 — Dimensionieren, bevor die Architektur entworfen wird
 
+**Der Vertrag dieses Schritts:** `peldanos/peldano-03-dimensionar.md`. Der Prompt unten ist die
+Kursversion, kürzer.
+
 **Was du verstehen musst.** Es gibt Entscheidungen, die, falsch getroffen, Wochen kosten: welche
 Datenbank, ob die Aufrufe an die Datenbank synchron oder asynchron sind, wie viele Leute das
 System gleichzeitig benutzen können. Und alle hängen von Zahlen ab, die **nur das Geschäft hat**:
@@ -637,6 +670,9 @@ Schnittstelle und einer vorgesehenen Migration zu PostgreSQL (die asymmetrische)
 wählen wir die dritte: sie lehrt am meisten.
 
 ### Lektion 4 — Das Skelett mit seinen Toren
+
+**Der Vertrag dieses Schritts:** `peldanos/peldano-04-esqueleto.md`. Der Prompt unten ist die
+Kursversion, kürzer.
 
 **Was du verstehen musst.** Bevor das System etwas Nützliches tut, muss es **leer** starten,
 getestet und deployt werden. Es wirkt wie Zeitverschwendung („was deployen, wenn es nichts
@@ -764,6 +800,9 @@ Patienten und Suche. Noch keine Nachrichten und keine Zahlungen; das kommt nach 
 (Lektion 14).
 
 ### Lektion 5 — Der Plan sind die offenen Posten, und die detaillierte Spezifikation lebt in jedem einzelnen
+
+**Der Vertrag dieses Schritts:** `peldanos/peldano-05-pendientes.md`. Der Prompt unten ist die
+Kursversion, kürzer.
 
 **Was du verstehen musst.** Es gibt keinen „Plan“ auf der einen und keine „Aufgabenliste“ auf
 der anderen Seite: **die Liste der offenen Posten ist der Plan**. Aber es gibt zwei weitere Ideen,
@@ -914,6 +953,9 @@ Prüfung: Ende-zu-Ende-Test des Formulars plus Datenbankabfrage. Das ist eine Sp
 
 ### Lektion 6 — Entscheidungen werden neben dem Code festgehalten
 
+**Der Vertrag dieses Schritts:** `peldanos/peldano-06-decisiones.md`. Der Prompt unten ist die
+Kursversion, kürzer.
+
 **Was du verstehen musst.** Das Modell, wenn es eine Lücke in den Geschäftsregeln findet, **füllt
 sie**. Es hält nicht inne, um zu fragen; es ergänzt mit dem, was ihm am wahrscheinlichsten
 erscheint, mit derselben Selbstverständlichkeit, mit der es alles andere schreibt. Deshalb lautet
@@ -1004,6 +1046,9 @@ Jede mit Datum und dem Namen der Leiterin, und jede in die Spezifikation des off
 eingefügt, der sie brauchte.
 
 ### Lektion 7 — Messen vor dem Bauen, mit einem Instrument, das ebenfalls geprüft wird
+
+**Der Vertrag dieses Schritts:** `peldanos/peldano-07-medir.md`. Der Prompt unten ist die
+Kursversion, kürzer.
 
 **Was du verstehen musst.** Das Modell produziert Behauptungen mit Zahl („es gibt etwa 120
 Abfragen dieser Art“), und sie klingen exakt gleich, wenn sie gemessen und wenn sie geschätzt
@@ -1126,6 +1171,9 @@ behebt es, sie werden zu 3, 3 und 3, und das Budget bleibt bei 4 mit einem Test,
 wenn die Agenda für irgendeine Anzahl von Terminen mehr als 4 Abfragen macht.
 
 ### Lektion 8 — Tests als Sperren, rot bewiesen, und die Ende-zu-Ende-Tests
+
+**Der Vertrag dieses Schritts:** `peldanos/peldano-08-tests-en-rojo.md`. Der Prompt unten ist die
+Kursversion, kürzer.
 
 **Was du verstehen musst.** Das ist die zentrale Lektion des Kurses. Von einem Test, den du nie
 hast fehlschlagen sehen, weißt du nicht, ob er etwas beweist. Das Modell schreibt den Code und den
@@ -1389,6 +1437,9 @@ Uhrzeit, das kein Test sah, erscheint als lose Anmerkung.
 
 ### Lektion 11 — Symmetrie zwischen Produzent und Konsument, und das Register der Anti-Muster
 
+**Der Vertrag dieses Schritts:** `peldanos/peldano-11-simetria-y-antipatrones.md`. Der Prompt unten
+ist die Kursversion, kürzer.
+
 **Was du verstehen musst.** Wenn du ein Ende des Systems änderst (den Server, die Datenbank, einen
 Roboter), muss sich das andere Ende (der Bildschirm, ein Zähler, ein Bericht) im selben Commit
 ändern. Sonst driften sie auseinander, und der Nutzer sieht auf der einen Seite eine Zahl und auf
@@ -1499,6 +1550,9 @@ eine einzige, auf dem Server. Erkennung: ein Test mit einem Termin um 23:30.
 
 ### Lektion 12 — Ehrliche Verifikation und verhältnismäßiger Bericht
 
+**Der Vertrag dieses Schritts:** `peldanos/peldano-12-verificacion-honesta.md`. Der Prompt unten
+ist die Kursversion, kürzer.
+
 **Was du verstehen musst.** Wenn du keinen Code lesen wirst, muss der Bericht des Agenten
 vertrauenswürdig sein, und das passiert nicht von allein. Das Modell wurde darauf trainiert,
 nützlich und vollständig zu sein, und ein Bericht, der sagt „das konnte ich nicht verifizieren“,
@@ -1602,6 +1656,9 @@ du Anfänger bist“, der seine Wörter erklärt; lies ihn vor der Lektion.
 
 ### Lektion 13 — Das periodische Audit als Input für den Plan
 
+**Der Vertrag dieses Schritts:** `peldanos/peldano-13-auditoria.md`. Der Prompt unten ist die
+Kursversion, kürzer.
+
 **Was du verstehen musst.** Ab und zu muss man sich das ganze System mit frischen Augen ansehen,
 und was man sieht, geht nicht in einen Bericht, der abgelegt wird: es geht in die Liste der offenen
 Posten. Der wichtige Teil ist „frische Augen“: wer auditiert, darf nicht der sein, der gebaut hat,
@@ -1689,6 +1746,9 @@ der Zukunft liegt (P1); und irgendeine Abhängigkeit mit einer bekannten Schwach
 neue offene Posten, alle mit Datei und Zeile.
 
 ### Lektion 14 — Fail-closed, Sperren und null stiller Schaden
+
+**Der Vertrag dieses Schritts:** `peldanos/peldano-14-fail-closed.md`. Der Prompt unten ist die
+Kursversion, kürzer.
 
 **Was du verstehen musst.** Software macht standardmäßig im Zweifel weiter: wenn die Validierung
 fehlschlägt, läuft der Code weiter; wenn der Dienst nicht antwortet, wird angenommen, alles sei in
@@ -1789,6 +1849,9 @@ keine zukünftigen Termine hat; Rückweg: keiner, deshalb doppelt). Jede Sperre 
 zeigt, dass ohne die Sperre die Aktion stattfand.
 
 ### Lektion 15 — Continuous Integration, Umgebungen, Geheimnisse und Deployment als Teil des Produkts
+
+**Der Vertrag dieses Schritts:** `peldanos/peldano-15-ci-entornos-secretos-deploy.md`. Der Prompt
+unten ist die Kursversion, kürzer.
 
 **Was du verstehen musst.** In die Produktion zu kommen muss ein reproduzierbares Paket sein: die
 Tests laufen **einmal**, das Deployment verpackt nur und lädt hoch, die Konfiguration lebt auf dem
@@ -2133,6 +2196,9 @@ Stapeln zu 50, denn die Leiterin will es tatsächlich verkaufen.
 
 ### Lektion 20 — Lebendige Dokumentation und Handbücher, denen eine Person ohne KI folgen kann
 
+**Der Vertrag dieses Schritts:** `peldanos/peldano-20-documentacion-viva.md`. Der Prompt unten ist
+die Kursversion, kürzer.
+
 **Was du verstehen musst.** Das System muss sich ohne den Agenten und ohne dich benutzen, warten
 und wiederherstellen lassen. Das Kriterium für das Wiederherstellungshandbuch ist konkret: **eine
 Vertrauensperson, die nicht programmiert, muss ihm folgen können, um drei Uhr morgens, mit
@@ -2361,6 +2427,9 @@ Lektion R2 in Teil 2 ersetzt). Fehlerrate: 0,3 % bei „Termin eintragen“, 0 %
 **Was sich am 19. Oktober 2026 geändert hat (D-038).** Die Fehlererfassung trennt nach Quelle: die Fehler des Systems und die der Werkzeuge, die es beobachten (das Panel, der residente Agent, das Monitoring selbst), stehen in getrennten Abschnitten des Berichts, und nur die Fehler des Systems öffnen offene Punkte. In der Praxis öffnete der erste zyklische Bericht sechs "Bugs", die das Werkzeug im Gespräch mit einem abgeschalteten Server waren.
 
 ### Lektion 23 — Der Agent im System, und die Retrospektive mit Zahlen
+
+**Der Vertrag dieses Schritts:** `peldanos/peldano-23-agente-residente-y-retrospectiva.md`. Der
+Prompt unten ist die Kursversion, kürzer.
 
 **Was du verstehen musst.** Zwei Dinge schließen den Kreis. Das erste ist optional: den Agenten
 resident in der Produktion lassen, mit begrenztem Umfang, um zu diagnostizieren und Support zu

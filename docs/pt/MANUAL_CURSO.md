@@ -74,7 +74,7 @@ evidência, e de saber exatamente que evidência pedir a ele em cada passo.
 Cada lição tem a mesma estrutura:
 
 - **O que você tem que entender**: o conceito, explicado como se explica a uma pessoa.
-- **A tarefa**: passo a passo, com o prompt exato que você vai dar ao agente (em inglês, porque os
+- **A tarefa**: passo a passo, com o prompt do curso que você vai dar ao agente (em inglês, porque os
   modelos seguem instruções com mais precisão em inglês; cada um traz sua tradução, e abaixo está
   explicado o que você está pedindo) e o que fazer com o que ele devolver. Antes de cada prompt
   há um bloco que diz **"Antes de enviar o prompt"**: os arquivos e os insumos que você tem que
@@ -151,6 +151,25 @@ ele pergunte.
 
 ---
 
+### Os prompts das lições são a versão do curso, não a do contrato
+
+Cada lição traz o prompt que você vai colar no agente, e convém que saiba o que ele é e o que não é.
+O prompt da lição é a **versão do curso**: mais curta, com um só foco, escrita para que você aprenda
+o degrau sem que na primeira vez chegue tudo junto. O prompt **completo** de cada degrau vive no seu
+contrato (`peldanos/peldano-NN-....md`), e cada lição que traz prompt o nomeia acima com o seu
+arquivo. Os dois existem de propósito e não dizem o mesmo: o do contrato leva, além do pedido, as
+cláusulas que o método foi agregando —a forma em que uma decisão tem de lhe ser perguntada, a
+reprodução literal de um recibo, as declarações que uma comporta lê— e a lição as poupa para não
+tapar o conceito.
+
+E a regra prática, que é a que importa: **para aprender, o da lição; para um sistema de verdade, o
+do contrato.** Se o seu projeto do curso é um sistema que vai ter usuários —o manual recomenda que
+seja—, quando terminar a lição volte ao contrato e cole o seu prompt completo. Isto está escrito
+aqui porque nenhuma comporta o pode apanhar: as que contam cláusulas contam as dos prompts do corpus
+e não as das lições. O que `build/prompts_didacticos.mjs` revisa é que a diferença siga
+**declarada**: que cada lição com prompt nomeie o seu contrato, que o arquivo que nomeia exista, e
+que as oito versões do manual tenham os mesmos prompts nas mesmas lições.
+
 ## Fase de arranque: lições 0 a 4
 
 Estas cinco lições se fazem uma vez por projeto, na etapa 1, antes de escrever funcionalidade.
@@ -158,6 +177,9 @@ São as que mais tentação dão de pular ("quero ver algo funcionando"), e são
 custa pular. Faça-as de uma vez, e só depois abra o ciclo.
 
 ### Lição 0 — Este projeto pode ser encarado assim?
+
+**O contrato deste degrau:** `peldanos/peldano-00-elegibilidad.md`. O prompt abaixo é a versão do
+curso, mais curta.
 
 **O que você tem que entender.** O método não serve para qualquer projeto, e saber disso antes de
 começar é a primeira decisão de qualidade. Há duas condições sem as quais não funciona: que haja
@@ -250,6 +272,9 @@ mensagens vai ser usado (o WhatsApp tem requisitos que o e-mail não tem). A fic
 "vai", com uma condição razoável: ter o canal de mensagens definido antes do degrau 14.
 
 ### Lição 1 — O contrato de convivência
+
+**O contrato deste degrau:** `peldanos/peldano-01-contrato-de-convivencia.md`. O prompt abaixo é a
+versão do curso, mais curta.
 
 **O que você tem que entender.** O agente chega a cada sessão sem memória da anterior. É como um
 colaborador novo a cada manhã. O contrato de convivência é o que você diz a ele no primeiro dia e
@@ -349,6 +374,9 @@ pena aceitar: "nunca envio uma mensagem real a um paciente a partir de um ambien
 produção; em teste, as mensagens vão para uma caixa falsa". É o degrau 14 aparecendo cedo.
 
 ### Lição 2 — A definição do projeto, a árvore semântica e a leitura obrigatória
+
+**O contrato deste degrau:** `peldanos/peldano-02-definicion-y-lectura.md`. O prompt abaixo é a
+versão do curso, mais curta.
 
 **O que você tem que entender.** O arquivo de projeto (`PROJECT.md`, ou `CLAUDE.md`, ou o nome
 que a sua ferramenta usar) é o mapa que o agente lê ao começar cada sessão. Tem que ser
@@ -483,6 +511,9 @@ não; você decide, não ele.
 
 ### Lição 3 — Dimensionar antes de desenhar a arquitetura
 
+**O contrato deste degrau:** `peldanos/peldano-03-dimensionar.md`. O prompt abaixo é a versão do
+curso, mais curta.
+
 **O que você tem que entender.** Há decisões que, tomadas mal, custam semanas: que banco de
 dados, se as chamadas ao banco são síncronas ou assíncronas, quanta gente pode usar o sistema ao
 mesmo tempo. E todas dependem de números que **só o negócio tem**: quantas consultas por dia,
@@ -590,6 +621,9 @@ migração prevista para PostgreSQL (a assimétrica). Para o curso escolhemos a 
 ensina mais.
 
 ### Lição 4 — O esqueleto com suas comportas
+
+**O contrato deste degrau:** `peldanos/peldano-04-esqueleto.md`. O prompt abaixo é a versão do
+curso, mais curta.
 
 **O que você tem que entender.** Antes de o sistema fazer algo útil, tem que arrancar, ser testado
 e ser implantado **vazio**. Parece uma perda de tempo ("implantar o quê, se não há nada?") e é o
@@ -708,6 +742,9 @@ agenda básica: ver as consultas do dia, registrar uma consulta, cancelá-la. O 
 e busca. Nada de mensagens nem pagamentos ainda; isso vem depois dos cadeados (lição 14).
 
 ### Lição 5 — O plano são as pendências, e a especificação detalhada vive em cada uma
+
+**O contrato deste degrau:** `peldanos/peldano-05-pendientes.md`. O prompt abaixo é a versão do
+curso, mais curta.
 
 **O que você tem que entender.** Não há um "plano" de um lado e uma "lista de tarefas" do outro:
 **a lista de pendências é o plano**. Mas há duas ideias mais, e são as que distinguem este método
@@ -850,6 +887,9 @@ especificação.
 
 ### Lição 6 — As decisões se escrevem junto ao código
 
+**O contrato deste degrau:** `peldanos/peldano-06-decisiones.md`. O prompt abaixo é a versão do
+curso, mais curta.
+
 **O que você tem que entender.** O modelo, quando encontra um buraco nas regras de negócio, **o
 preenche**. Não para para perguntar; completa com o que lhe parece mais provável, com a mesma
 naturalidade com que escreve o resto. Por isso esta lição não é "escreva as decisões" mas "exija
@@ -932,6 +972,9 @@ consultas na mesma hora, mas sim dois pacientes numa consulta dupla se o profiss
 encarregada, e cada uma colada na especificação da pendência que precisava dela.
 
 ### Lição 7 — Medir antes de construir, com um instrumento que também se verifica
+
+**O contrato deste degrau:** `peldanos/peldano-07-medir.md`. O prompt abaixo é a versão do curso,
+mais curta.
 
 **O que você tem que entender.** O modelo produz afirmações com número ("há umas 120 consultas
 desse tipo") e soam exatamente igual quando são medidas e quando são estimadas. Você não consegue
@@ -1045,6 +1088,9 @@ e o orçamento fica em 4 com um teste que falha se a agenda faz mais de 4 consul
 qualquer quantidade de consultas.
 
 ### Lição 8 — Testes como cadeados, provados em vermelho, e os testes de ponta a ponta
+
+**O contrato deste degrau:** `peldanos/peldano-08-tests-en-rojo.md`. O prompt abaixo é a versão do
+curso, mais curta.
 
 **O que você tem que entender.** Esta é a lição central do curso. Um teste que você nunca viu
 falhar, você não sabe se prova algo. O modelo escreve o código e o teste na mesma sessão, com o
@@ -1292,6 +1338,9 @@ dela. O menu suspenso incomodo da hora, que nenhum teste viu, aparece como obser
 
 ### Lição 11 — Simetria entre produtor e consumidor, e o registro de antipadrões
 
+**O contrato deste degrau:** `peldanos/peldano-11-simetria-y-antipatrones.md`. O prompt abaixo é a
+versão do curso, mais curta.
+
 **O que você tem que entender.** Quando você muda uma ponta do sistema (o servidor, o banco, um
 robô), a outra ponta (a tela, um contador, um relatório) tem que mudar no mesmo commit. Se não,
 divergem, e o usuário vê um número de um lado e outro do outro [Ref. 26](REFERENCIAS.md#ref-26).
@@ -1395,6 +1444,9 @@ dois fusos horários. Correção: um só, no servidor. Detecção: um teste com 
 
 ### Lição 12 — Verificação honesta e relatório proporcional
 
+**O contrato deste degrau:** `peldanos/peldano-12-verificacion-honesta.md`. O prompt abaixo é a
+versão do curso, mais curta.
+
 **O que você tem que entender.** Se você não vai ler código, o relatório do agente tem que ser
 confiável, e isso não acontece sozinho. O modelo foi treinado para ser útil e completo, e um
 relatório que diz "isto não consegui verificar" parece menos útil do que um que diz "pronto".
@@ -1492,6 +1544,9 @@ leia-o antes da lição.
 
 ### Lição 13 — A auditoria periódica como insumo do plano
 
+**O contrato deste degrau:** `peldanos/peldano-13-auditoria.md`. O prompt abaixo é a versão do
+curso, mais curta.
+
 **O que você tem que entender.** De vez em quando há que olhar o sistema inteiro com olhos
 frescos, e o que se vê não vai para um relatório que se arquiva: vai para a lista de pendências.
 A parte importante é "olhos frescos": quem audita não tem que ser quem construiu, porque
@@ -1573,6 +1628,9 @@ alguma dependência com uma vulnerabilidade conhecida (P1). Quatro pendências n
 arquivo e linha.
 
 ### Lição 14 — Fail-closed, cadeados e zero dano silencioso
+
+**O contrato deste degrau:** `peldanos/peldano-14-fail-closed.md`. O prompt abaixo é a versão do
+curso, mais curta.
 
 **O que você tem que entender.** O software, por padrão, diante da dúvida segue em frente: se a
 validação falha, o código continua; se o serviço não responde, assume-se que está tudo bem. É
@@ -1666,6 +1724,9 @@ cadeado: dupla confirmação, só a encarregada, e só se não tem consultas fut
 por isso dupla). Cada cadeado com um teste que mostra que, sem o cadeado, a ação ocorria.
 
 ### Lição 15 — Integração contínua, ambientes, segredos e implantação como parte do produto
+
+**O contrato deste degrau:** `peldanos/peldano-15-ci-entornos-secretos-deploy.md`. O prompt abaixo
+é a versão do curso, mais curta.
 
 **O que você tem que entender.** Chegar à produção tem que ser um pacote reproduzível: os testes
 rodam **uma** vez, a implantação só empacota e sobe, a configuração vive no servidor e não no
@@ -1985,6 +2046,9 @@ envio noturno em lotes de 50, porque a encarregada sim quer vendê-lo.
 
 ### Lição 20 — Documentação viva e manuais que uma pessoa pode seguir sem IA
 
+**O contrato deste degrau:** `peldanos/peldano-20-documentacion-viva.md`. O prompt abaixo é a
+versão do curso, mais curta.
+
 **O que você tem que entender.** O sistema tem que poder ser usado, mantido e recuperado sem o
 agente e sem você. O critério para o manual de recuperação é concreto: **tem que poder ser
 seguido por uma pessoa de confiança que não programe, às três da manhã, com o sistema caído e o
@@ -2192,6 +2256,9 @@ substitui-se pelo relatório da lição R2 na parte 2). Taxa de erro: 0,3 % em "
 **O que mudou em 19 de outubro de 2026 (D-038).** A captura de erros separa por fonte: os erros do sistema e os das ferramentas que o observam (o painel, o agente residente, o próprio monitoramento) vão em seções distintas do relatório, e só os do sistema abrem pendentes. Na prática, o primeiro relatório cíclico abriu seis "bugs" que eram a ferramenta falando com um servidor desligado.
 
 ### Lição 23 — O agente dentro do sistema, e a retrospectiva com número
+
+**O contrato deste degrau:** `peldanos/peldano-23-agente-residente-y-retrospectiva.md`. O prompt
+abaixo é a versão do curso, mais curta.
 
 **O que você tem que entender.** Duas coisas fecham o ciclo. A primeira é opcional: deixar o
 agente residente em produção, com escopo delimitado, para diagnosticar e dar suporte sem que

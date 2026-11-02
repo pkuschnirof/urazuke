@@ -142,6 +142,11 @@
 > which step is modified, how, and which incident justifies it. Write it to
 > `docs/RETROSPECTIVE_[date].md`.
 >
+> Close with the fixed key `findings_by_destination`: every finding of this retrospective
+> assigned to `product` if the defect is in the system, `method` if it is in the method being
+> followed, `tool` if it is in the tool that runs it, and written into the register of that
+> destination. A finding whose destination nobody assigned leaves the retrospective open.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -158,6 +163,10 @@
 > 要发明。以一条对梯子的具体修改提案收尾：修改哪级台阶、怎么改、哪个事故支持它。写到
 > `docs/RETROSPECTIVE_[日期].md`。
 >
+> 用固定的键 `findings_by_destination` 收尾：这次复盘的每个发现都指派——缺陷在系统里就是
+> `product`，在所遵循的方法里就是 `method`，在运行它的工具里就是 `tool`——并写进那个去向的
+> 登记册。没有人指派去向的发现，会让复盘一直开着。
+>
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
 > 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
@@ -169,12 +178,17 @@
 落在任何一级的事故就是一级缺失的台阶；对它没有的数字的完整性条款（索要或标为估计）；以及
 **至少一条对梯子的具体修改提案**，因为一次什么都不改变的复盘不是复盘。
 
+还有，从 D-080 起，是每个发现的去向。复盘是产出方法类发现最多的那个控制——它就是为此而存在
+的——，所以它为"所有发现都落进产品登记册"付的代价最高。
+
 ## 3. 预期结果
 
 - `docs/RESIDENT_AGENT.md`：系统地图、选定的范围、映射到一个人的凭证、批准流程，以及记录在
   日志里的拒绝证明。
 - `docs/RETROSPECTIVE_[日期].md`：带来源的数字、映射到台阶的事故，以及至少一条附理由的对梯
   子的修改提案。
+- 在复盘里还要加上 `findings_by_destination`：每个发现带着它的去向——产品、方法或工具——并写
+  进那个去向的登记册。
 
 ## 4. 完整性检验
 
@@ -187,6 +201,8 @@
 - 至少有一条对梯子的具体修改提案吗？如果复盘什么都不改变，它就不是复盘。
 - 自上次复盘以来构建用的模型变了吗？如果变了，有没有一次简短的复查，看哪些契约还表现得
   一样，哪些不是？
+- 复盘的每个发现都有去向吗？一个把什么都送进产品登记册的复盘不会让方法变好，而让方法变好正是
+  它存在的理由。
 
 ## 5. 警报信号
 

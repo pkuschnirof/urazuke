@@ -64,6 +64,12 @@ machst es, nicht der Agent:
 > rule, and a switched-off rule with no written exception turns the whole
 > report red.
 >
+> When what you report is a finding about how we work and not about what we built, close it with
+> the fixed key `findings_by_destination`: each finding assigned to `product` if the defect is in
+> the system, `method` if it is in the method being followed, `tool` if it is in the tool that
+> runs it, and written into the register of that destination. A defect of the method or of the
+> tool filed in the product's register is a defect nobody is ever going to fix.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -92,6 +98,13 @@ machst es, nicht der Agent:
 > abgeschaltete Regel ohne schriftliche Ausnahme macht den ganzen Bericht
 > rot.
 >
+> Wenn das, was du berichtest, ein Befund darüber ist, wie wir arbeiten, und nicht darüber, was
+> wir gebaut haben, schließe ihn mit dem festen Schlüssel `findings_by_destination` ab: jeder
+> Befund zugeordnet zu `product`, wenn der Defekt im System liegt, `method`, wenn er in der
+> befolgten Methode liegt, `tool`, wenn er im Werkzeug liegt, das sie ausführt, und geschrieben
+> in das Register dieses Ziels. Ein Defekt der Methode oder des Werkzeugs, der im Register des
+> Produkts eingetragen wird, ist ein Defekt, den niemals jemand behebt.
+>
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
 > aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
@@ -108,6 +121,10 @@ nicht getestet wurde, das, was er nicht sehen kann); die Abdeckung Punkt für Pu
 „vergessen“ wird; den Beweis neben jeder Behauptung; das Verbot des bloßen „erledigt“; und die
 schlechten Nachrichten zuerst, denn das Modell neigt dazu, sie für den Schluss oder für nie
 aufzuheben.
+
+Und seit D-080 das Ziel: ein Bericht, der einen Defekt der Methode ins Register des Produkts
+schickt, kann ehrlich sein und nützt nichts, weil wer ihn hätte beheben können, davon nie erfahren
+hat. Es sind drei verschiedene Register, und die Routine nennt sie.
 
 **Bei einem „ist immer noch kaputt“ von dir:**
 
@@ -158,6 +175,9 @@ Jeder Bericht des Agenten mit:
 - Für jedes „verifiziert“: der Befehl und die Ausgabe, oder der Test und sein Ergebnis, oder die
   Zahl und ihr Messgerät.
 - Dem, was schiefgegangen ist, am Anfang und nicht am Ende.
+- Und wenn der Bericht Befunde darüber erzeugt, wie wir arbeiten, und nicht darüber, was wir gebaut
+  haben, `findings_by_destination`: jeder Befund mit seinem Ziel —Produkt, Methode oder Werkzeug—
+  und geschrieben in das Register dieses Ziels.
 
 ## 4. Vollständigkeitsprüfung
 
@@ -169,6 +189,9 @@ Jeder Bericht des Agenten mit:
   wurde?
 - Stehen die schlechten Nachrichten am Anfang?
 - Hat er irgendwann einfach nur „erledigt“ gesagt? Das ist ein Verstoß gegen die Vereinbarung.
+- Haben die Befunde, die nicht vom System sind, ihr Ziel zugeordnet bekommen und wurden sie im
+  Register eröffnet, in das sie gehören? Die Methode und das Werkzeug werden nicht aus dem Register
+  des Produkts heraus repariert.
 
 ## 5. Warnsignale
 

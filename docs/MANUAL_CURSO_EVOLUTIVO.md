@@ -75,6 +75,26 @@ Con esto alcanza. Todo lo demás está en el sistema, y es el agente el que lo v
 
 ---
 
+### Los prompts de las lecciones son la versión del curso, no la del contrato
+
+Cada lección trae el prompt que le vas a pegar al agente, y conviene que sepas qué es y qué no es.
+El prompt de la lección es la **versión del curso**: más corta, con un solo foco, escrita para que
+aprendas el peldaño sin que la primera vez te llegue todo junto. El prompt **completo** de cada
+peldaño vive en su contrato (`peldanos/peldano-NN-....md`), y cada lección que trae prompt lo nombra
+arriba con su archivo. Los dos existen a propósito y no dicen lo mismo: el del contrato lleva,
+además del pedido, las cláusulas que el método fue agregando —la forma en que se te tiene que
+preguntar una decisión, la reproducción literal de un recibo, las declaraciones que una compuerta
+lee— y la lección se las ahorra para no taparte el concepto.
+
+Y la regla práctica, que es la que importa: **para aprender, el de la lección; para un sistema de
+verdad, el del contrato.** Si tu proyecto del curso es un sistema que va a tener usuarios —el manual
+te recomienda que lo sea—, cuando termines la lección volvé al contrato y pegá su prompt completo.
+Esto está escrito acá porque ninguna compuerta lo puede atrapar: las que cuentan cláusulas cuentan
+las de los prompts del corpus y no las de las lecciones. Lo que sí revisa
+`build/prompts_didacticos.mjs` es que la diferencia siga **declarada**: que cada lección con prompt
+nombre su contrato, que el archivo que nombra exista, y que las ocho versiones del manual tengan los
+mismos prompts en las mismas lecciones.
+
 ## Tramo de normalización: lecciones N0 a N7
 
 Estas ocho lecciones son el tramo que la primera parte no tenía. Las cuatro primeras son de
@@ -140,6 +160,9 @@ todos), y el proveedor de mensajes tiene modo de prueba (verde). Decisión: va, 
 proyectos previos chicos.
 
 ### Lección N1 — El contrato de convivencia para un legado
+
+**El contrato de esta estación:** `EVOLUTIVO_CORRECTIVO.md`, estación N1. El prompt de abajo es la
+versión del curso, más corta.
 
 **Qué tenés que entender.** A las ocho reglas de la lección 1 se agregan cinco que existen porque
 un modelo frente a código ajeno hace tres cosas por reflejo: lo reordena, lo "arregla" donde le
@@ -215,6 +238,9 @@ falsa", y "la planilla mensual que baja la encargada es un consumidor del sistem
 contrato". La segunda es el mapa productor-consumidor asomando antes de tiempo, y está bien.
 
 ### Lección N2 — La lectura del sistema: el mapa recuperado y las discrepancias
+
+**El contrato de esta estación:** `EVOLUTIVO_CORRECTIVO.md`, estación N2. El prompt de abajo es la
+versión del curso, más corta.
 
 **Qué tenés que entender.** Es la lección que más valor da por hora de todo el curso. En la
 lección 2 el archivo de proyecto y el árbol salían del relevamiento; acá salen del sistema mismo,
@@ -340,6 +366,9 @@ es la que más la sorprende, y la decide en un minuto: "eso no se borra más". P
 
 ### Lección N3 — La auditoría como inventario de la deuda
 
+**El contrato de esta estación:** `EVOLUTIVO_CORRECTIVO.md`, estación N3. El prompt de abajo es la
+versión del curso, más corta.
+
 **Qué tenés que entender.** La lección 13, pero al principio, en vez de al final, y con un campo
 más por hallazgo: si bloquea (hay que arreglarlo antes de cualquier cambio), si se paga al tocar
 el módulo, o si puede esperar. Sin ese campo, un legado auditado tiene cuarenta hallazgos y nadie
@@ -419,6 +448,9 @@ del bug). Como "puede esperar": una dependencia vieja sin vulnerabilidad conocid
 duplicado del formato de fecha en tres lugares.
 
 ### Lección N4 — El cinturón de seguridad
+
+**El contrato de esta estación:** `EVOLUTIVO_CORRECTIVO.md`, estación N4. El prompt de abajo es la
+versión del curso, más corta.
 
 **Qué tenés que entender.** Es la compuerta dura de este camino: hasta que el cinturón no esté en
 verde, no se cambia una línea de funcionalidad. El cinturón tiene cinco piezas: un entorno de
@@ -549,6 +581,9 @@ comenta la línea que encola el mensaje, el test falla, la descomenta, pasa.
 
 ### Lección N5 — Candados y mapa productor-consumidor desde el código
 
+**El contrato de esta estación:** `EVOLUTIVO_CORRECTIVO.md`, estación N5. El prompt de abajo es la
+versión del curso, más corta.
+
 **Qué tenés que entender.** Las lecciones 14 y 11, hechas por inventario sobre lo que ya existe,
 antes de cambiar nada. El agente va a encontrar en el código más de lo que el negocio recuerda
 que el sistema hace hacia afuera: envíos, borrados, procesos nocturnos. La comparación entre las
@@ -625,6 +660,9 @@ columna, la planilla se rompe en silencio.
 
 ### Lección N6 — Dimensionar con números reales
 
+**El contrato de esta estación:** `EVOLUTIVO_CORRECTIVO.md`, estación N6. El prompt de abajo es la
+versión del curso, más corta.
+
 **Qué tenés que entender.** La lección 3 con una ventaja: los datos primarios están en la base y
 en los logs. No se preguntan, se miden, con un medidor con test (lección 7). La encargada aporta
 solo lo que no está en ningún lado: cuánto esperan crecer, y si el sistema se va a vender a otros
@@ -694,6 +732,9 @@ asimétrica: la interfaz de envío de mensajes pasa a tener una cola, aunque hoy
 porque la seña (lección R2) va a usar el mismo canal.
 
 ### Lección N7 — El backlog de normalización, emparejado con el pedido del cliente
+
+**El contrato de esta estación:** `EVOLUTIVO_CORRECTIVO.md`, estación N7. El prompt de abajo es la
+versión del curso, más corta.
 
 **Qué tenés que entender.** La lección 5 con dos columnas más. Una sola cola donde conviven la
 deuda (auditoría, discrepancias, pantallas, candados pendientes, decisiones del dimensionamiento)
@@ -772,6 +813,9 @@ reemplaza). Y unos doce de normalización, de los cuales tres "pueden esperar" y
 ## El bucle sobre el legado: lecciones R1 y R2
 
 ### Lección R1 — El primer bloque: el bug, en modo correctivo
+
+**El contrato de este bucle:** `EVOLUTIVO_CORRECTIVO.md`, el bucle en modo correctivo y evolutivo.
+El prompt de abajo es la versión del curso, más corta.
 
 **Qué tenés que entender.** Un pendiente correctivo es un bug conocido. En la lección 8 el rojo se
 fabricaba; acá el rojo es el bug mismo: el test que reproduce la falla, operando el flujo como el

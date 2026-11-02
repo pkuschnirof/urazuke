@@ -81,7 +81,7 @@ croire le modèle sans preuve, et de savoir exactement quelle preuve lui demande
 Chaque leçon a la même structure :
 
 - **Ce que vous devez comprendre** : le concept, expliqué comme on l'explique à une personne.
-- **La tâche** : pas à pas, avec le prompt exact que vous allez donner à l'agent (en anglais, parce
+- **La tâche** : pas à pas, avec le prompt du cours que vous allez donner à l'agent (en anglais, parce
   que les modèles suivent les instructions avec plus de précision en anglais ; chacun est accompagné
   de sa traduction, et en dessous est expliqué ce que vous lui demandez) et quoi faire de ce qu'il
   vous renvoie. Avant chaque prompt il y a un bloc qui dit **« Avant d'envoyer le prompt »** : les
@@ -164,6 +164,27 @@ l'exercice qu'il le demande.
 
 ---
 
+### Les prompts des leçons sont la version du cours, pas celle du contrat
+
+Chaque leçon apporte le prompt que tu vas coller à l'agent, et il vaut la peine de savoir ce qu'il
+est et ce qu'il n'est pas. Le prompt de la leçon est la **version du cours** : plus courte, avec un
+seul focus, écrite pour que tu apprennes l'échelon sans que tout t'arrive d'un coup la première
+fois. Le prompt **complet** de chaque échelon vit dans son contrat
+(`peldanos/peldano-NN-....md`), et chaque leçon qui porte un prompt le nomme en haut avec son
+fichier. Les deux existent exprès et ne disent pas la même chose : celui du contrat porte, outre la
+demande, les clauses que la méthode a ajoutées au fil du temps — la forme dans laquelle une décision
+doit t'être demandée, la reproduction littérale d'un reçu, les déclarations qu'une barrière lit — et
+la leçon te les épargne pour ne pas recouvrir le concept.
+
+Et la règle pratique, celle qui importe : **pour apprendre, celui de la leçon ; pour un vrai
+système, celui du contrat.** Si ton projet du cours est un système qui va avoir des utilisateurs —
+le manuel te recommande que ce soit le cas —, quand tu finis la leçon reviens au contrat et colle
+son prompt complet. Ceci est écrit ici parce qu'aucune barrière ne peut l'attraper : celles qui
+comptent les clauses comptent celles des prompts du corpus et non celles des leçons. Ce que
+`build/prompts_didacticos.mjs` vérifie, c'est que la différence reste **déclarée** : que chaque
+leçon avec prompt nomme son contrat, que le fichier qu'elle nomme existe, et que les huit versions
+du manuel aient les mêmes prompts dans les mêmes leçons.
+
 ## Tronçon de démarrage : leçons 0 à 4
 
 Ces cinq leçons se font une fois par projet, à l'étape 1, avant d'écrire de la fonctionnalité. Ce
@@ -172,6 +193,9 @@ ce sont celles qui coûtent le plus cher à sauter. Faites-les d'une traite, et 
 ouvrez la boucle.
 
 ### Leçon 0 — Ce projet peut-il être abordé ainsi ?
+
+**Le contrat de cet échelon :** `peldanos/peldano-00-elegibilidad.md`. Le prompt ci-dessous est la
+version du cours, plus courte.
 
 **Ce que vous devez comprendre.** La méthode ne convient pas à n'importe quel projet, et le savoir
 avant de commencer est la première décision de qualité. Il y a deux conditions sans lesquelles elle
@@ -269,6 +293,9 @@ messages sera utilisé (WhatsApp a des exigences que le courriel n'a pas). La fi
 « ça passe », avec une condition raisonnable : avoir le canal de messages défini avant l'échelon 14.
 
 ### Leçon 1 — Le contrat de collaboration
+
+**Le contrat de cet échelon :** `peldanos/peldano-01-contrato-de-convivencia.md`. Le prompt
+ci-dessous est la version du cours, plus courte.
 
 **Ce que vous devez comprendre.** L'agent arrive à chaque session sans mémoire de la précédente.
 C'est comme un collaborateur nouveau chaque matin. Le contrat de collaboration est ce que vous lui
@@ -377,6 +404,9 @@ autre que la production ; en test, les messages vont dans une boîte factice ».
 qui pointe le nez tôt.
 
 ### Leçon 2 — La définition du projet, l'arbre sémantique et la lecture obligatoire
+
+**Le contrat de cet échelon :** `peldanos/peldano-02-definicion-y-lectura.md`. Le prompt ci-dessous
+est la version du cours, plus courte.
 
 **Ce que vous devez comprendre.** Le fichier de projet (`PROJECT.md`, ou `CLAUDE.md`, ou le nom
 qu'utilise votre outil) est la carte que l'agent lit au début de chaque session. Il doit être
@@ -516,6 +546,9 @@ lui.
 
 ### Leçon 3 — Dimensionner avant de concevoir l'architecture
 
+**Le contrat de cet échelon :** `peldanos/peldano-03-dimensionar.md`. Le prompt ci-dessous est la
+version du cours, plus courte.
+
 **Ce que vous devez comprendre.** Il y a des décisions qui, mal prises, coûtent des semaines :
 quelle base de données, si les appels à la base sont synchrones ou asynchrones, combien de
 personnes peuvent utiliser le système en même temps. Et toutes dépendent de chiffres que **seul le
@@ -631,6 +664,9 @@ maintenant avec l'interface asynchrone et une migration prévue vers PostgreSQL 
 Pour le cours nous choisissons la troisième : c'est celle qui enseigne le plus.
 
 ### Leçon 4 — Le squelette avec ses portes
+
+**Le contrat de cet échelon :** `peldanos/peldano-04-esqueleto.md`. Le prompt ci-dessous est la
+version du cours, plus courte.
 
 **Ce que vous devez comprendre.** Avant que le système fasse quelque chose d'utile, il doit
 démarrer, se tester et se déployer **à vide**. Cela ressemble à une perte de temps (« déployer quoi,
@@ -756,6 +792,9 @@ bloc est l'agenda de base : voir les rendez-vous du jour, enregistrer un rendez-
 second, patients et recherche. Pas de messages ni de paiements pour l'instant ; ça vient après les
 verrous (leçon 14).
 ### Leçon 5 — Le plan, ce sont les éléments en attente, et la spécification détaillée vit dans chacun
+
+**Le contrat de cet échelon :** `peldanos/peldano-05-pendientes.md`. Le prompt ci-dessous est la
+version du cours, plus courte.
 
 **Ce que vous devez comprendre.** Il n'y a pas un « plan » d'un côté et une « liste de tâches » de
 l'autre : **la liste des éléments en attente est le plan**. Mais il y a deux idées de plus, et ce
@@ -905,6 +944,9 @@ base. Ça, c'est une spécification.
 
 ### Leçon 6 — Les décisions s'écrivent à côté du code
 
+**Le contrat de cet échelon :** `peldanos/peldano-06-decisiones.md`. Le prompt ci-dessous est la
+version du cours, plus courte.
+
 **Ce que vous devez comprendre.** Le modèle, quand il trouve un trou dans les règles de métier,
 **le remplit**. Il ne s'arrête pas pour demander ; il complète avec ce qui lui paraît le plus
 probable, avec le même naturel qu'il écrit le reste. C'est pourquoi cette leçon n'est pas « écrivez
@@ -992,6 +1034,9 @@ avec sa date et le nom de la responsable, et chacune collée dans la spécificat
 attente qui en avait besoin.
 
 ### Leçon 7 — Mesurer avant de construire, avec un instrument lui-même vérifié
+
+**Le contrat de cet échelon :** `peldanos/peldano-07-medir.md`. Le prompt ci-dessous est la version
+du cours, plus courte.
 
 **Ce que vous devez comprendre.** Le modèle produit des affirmations chiffrées (« il y a environ
 120 requêtes de ce type ») et elles sonnent exactement pareil quand elles sont mesurées et quand
@@ -1109,6 +1154,9 @@ corrige, ils passent à 3, 3 et 3, et le budget est fixé à 4 avec un test qui 
 fait plus de 4 requêtes pour n'importe quel nombre de rendez-vous.
 
 ### Leçon 8 — Les tests comme verrous, prouvés en rouge, et les tests de bout en bout
+
+**Le contrat de cet échelon :** `peldanos/peldano-08-tests-en-rojo.md`. Le prompt ci-dessous est la
+version du cours, plus courte.
 
 **Ce que vous devez comprendre.** C'est la leçon centrale du cours. Un test que vous n'avez jamais
 vu échouer, vous ne savez pas s'il prouve quelque chose. Le modèle écrit le code et le test dans la
@@ -1371,6 +1419,9 @@ qu'aucun test n'a vu, apparaît comme observation éparse.
 
 ### Leçon 11 — Symétrie entre producteur et consommateur, et le registre des anti-patrons
 
+**Le contrat de cet échelon :** `peldanos/peldano-11-simetria-y-antipatrones.md`. Le prompt
+ci-dessous est la version du cours, plus courte.
+
 **Ce que vous devez comprendre.** Quand vous changez un bout du système (le serveur, la base, un
 robot), l'autre bout (l'écran, un compteur, un rapport) doit changer dans le même commit. Sinon,
 ils divergent, et l'utilisateur voit un chiffre d'un côté et un autre chiffre de l'autre
@@ -1480,6 +1531,9 @@ sur le serveur. Détection : un test avec un rendez-vous à 23 h 30.
 
 ### Leçon 12 — Vérification honnête et rapport proportionné
 
+**Le contrat de cet échelon :** `peldanos/peldano-12-verificacion-honesta.md`. Le prompt ci-dessous
+est la version du cours, plus courte.
+
 **Ce que vous devez comprendre.** Si vous n'allez pas lire le code, le rapport de l'agent doit
 être fiable, et cela n'arrive pas tout seul. Le modèle a été entraîné pour être utile et complet,
 et un rapport qui dit « ceci, je n'ai pas pu le vérifier » semble moins utile qu'un qui dit « c'est
@@ -1584,6 +1638,9 @@ celles que je faisais sans les nommer ; si vous débutez, chacun de leurs contra
 
 ### Leçon 13 — L'audit périodique comme intrant du plan
 
+**Le contrat de cet échelon :** `peldanos/peldano-13-auditoria.md`. Le prompt ci-dessous est la
+version du cours, plus courte.
+
 **Ce que vous devez comprendre.** De temps en temps, il faut regarder le système entier avec des
 yeux neufs, et ce que l'on voit ne va pas dans un rapport que l'on archive : ça va dans la liste
 des éléments en attente. La partie importante est « yeux neufs » : celui qui audite ne doit pas
@@ -1671,6 +1728,9 @@ validation que la date est future (P1) ; et une dépendance avec une vulnérabil
 Quatre nouveaux éléments en attente, tous avec fichier et ligne.
 
 ### Leçon 14 — Fail-closed, verrous et zéro dommage silencieux
+
+**Le contrat de cet échelon :** `peldanos/peldano-14-fail-closed.md`. Le prompt ci-dessous est la
+version du cours, plus courte.
 
 **Ce que vous devez comprendre.** Le logiciel, par défaut, dans le doute, continue : si la
 validation échoue, le code poursuit ; si le service ne répond pas, on suppose que tout va bien.
@@ -1770,6 +1830,9 @@ responsable, et seulement s'il n'a pas de rendez-vous futurs ; retour : aucun, d
 Chaque verrou avec un test qui montre que, sans le verrou, l'action avait lieu.
 
 ### Leçon 15 — Intégration continue, environnements, secrets et déploiement comme partie du produit
+
+**Le contrat de cet échelon :** `peldanos/peldano-15-ci-entornos-secretos-deploy.md`. Le prompt
+ci-dessous est la version du cours, plus courte.
 
 **Ce que vous devez comprendre.** Arriver en production doit être un paquet reproductible : les
 tests tournent **une** fois, le déploiement ne fait qu'empaqueter et téléverser, la configuration
@@ -2107,6 +2170,9 @@ le vendre.
 
 ### Leçon 20 — Documentation vivante et manuels qu'une personne peut suivre sans IA
 
+**Le contrat de cet échelon :** `peldanos/peldano-20-documentacion-viva.md`. Le prompt ci-dessous
+est la version du cours, plus courte.
+
 **Ce que vous devez comprendre.** Le système doit pouvoir s'utiliser, se maintenir et se rétablir
 sans l'agent et sans vous. Le critère pour le manuel de reprise est concret : **une personne de
 confiance qui ne programme pas doit pouvoir le suivre, à trois heures du matin, avec le système à
@@ -2332,6 +2398,9 @@ partie 2). Taux d'erreur : 0,3 % dans « enregistrer un rendez-vous », 0 % dans
 **Ce qui a changé le 19 octobre 2026 (D-038).** La capture des erreurs sépare par source : les erreurs du système et celles des outils qui l'observent (le panneau, l'agent résident, la surveillance elle-même) vont dans des sections distinctes du rapport, et seules les erreurs du système ouvrent des éléments en attente. En pratique, le premier rapport cyclique a ouvert six « bugs » qui étaient l'outil parlant à un serveur éteint.
 
 ### Leçon 23 — L'agent dans le système, et la rétrospective chiffrée
+
+**Le contrat de cet échelon :** `peldanos/peldano-23-agente-residente-y-retrospectiva.md`. Le
+prompt ci-dessous est la version du cours, plus courte.
 
 **Ce que vous devez comprendre.** Deux choses ferment le cycle. La première est optionnelle :
 laisser l'agent résident en production, avec une portée bornée, pour diagnostiquer et assurer le

@@ -23,6 +23,11 @@ execFileSync(process.execPath, [join(raiz, 'build', 'prompts.mjs')], { stdio: 'i
 // ocho idiomas, y los tres niveles que nombra son los que declara el dato. Va DESPUES de
 // prompts.mjs, que es el que ya exige que la pieza inglesa sea una sola.
 execFileSync(process.execPath, [join(raiz, 'build', 'forma_de_la_pregunta.mjs')], { stdio: 'inherit' });
+// Los prompts de las lecciones son una version didactica DECLARADA (D-085): cada leccion con
+// prompt nombra su contrato, el archivo que nombra existe, y las ocho versiones tienen los mismos
+// prompts en las mismas lecciones. Lo que NO exige es que la leccion diga lo mismo que el
+// contrato: no tiene que decirlo, tiene que declarar que es mas corta.
+execFileSync(process.execPath, [join(raiz, 'build', 'prompts_didacticos.mjs')], { stdio: 'inherit' });
 // La API estatica de prompts (docs/html/api/prompts.json), para Forge y cualquier herramienta.
 execFileSync(process.execPath, [join(raiz, 'build', 'prompts_api.mjs')], { stdio: 'inherit' });
 // Las compuertas como datos (docs/html/api/gates.json): valida gates/ contra su esquema

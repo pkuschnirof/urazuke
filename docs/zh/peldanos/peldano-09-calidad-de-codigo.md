@@ -44,6 +44,22 @@
 *棘轮*是一种只许变好的机制：今天的数字就是明天的底线。*变异测试*是一个程序，它故意把代码弄
 坏，一次一个小改动，然后看有没有哪个测试察觉到；如果一个都没察觉到，那块代码就没有被看守。
 
+**还有一列先前缺着的，随 D-084 进来：合规文档要写清每条标准是谁验证的。**
+`docs/CODE_QUALITY.md` 和 `docs/USABILITY.md` 从第 3 锚起就是一条一条地报结果，可是直到
+2026-11-02 它们都没有写**是谁说的**，于是一条由程序验证的标准和一条由人判断的标准读起来一个样。
+这不是假设：在我量过的那个周期里，一份合规文档不得不改正，**六**条标准从「已验证」变成「不可
+验证」，只剩一条还是已验证，因为另外那些标准的验证者是一个从未执行过那些用例的人。智能体没有
+说谎：那份文档根本没有地方写这条标准是谁的。
+
+进来的是带分母的声明，这和 `CQ-19.1` 对任何一个仪器的要求是同一块：`criteria_total`——目录里有
+多少条规则适用于这个项目，把没有人验证过的也数进去——、`criteria_verified_by_a_program`、
+`criteria_verified_by_a_person`——签过名的，带名字和日期——，以及 `verification_debt`。再加上，
+一条一条地写 `verified_by`，用**目录已经为那条规则声明的工具**：不由智能体来挑，它从数据里出来，
+而数据自存在之日起就说，`manual_case` 由一个人来判断，返回的是「通过或失败，带一个名字和一个
+日期」。这件事留下的规则：一条工具是 `manual_case` 又没有签名的标准，要写成 `not_verifiable`，
+绝不写成已达成。一条必须由人来判断、却没有人判断过的标准，不是一条合规的标准：它是一条在等自己
+那个人的标准，而且必须这样被读出来。
+
 ## 1. 所需上下文
 
 下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第
@@ -95,6 +111,20 @@
 > `docs/USABILITY.md` report result by result, never as a single number. The
 > catalogue is `docs/ANEXO_HEURISTICAS.md`: cite it, do not copy it.
 >
+> And the compliance documents say who verified, which is not the same thing as what was verified.
+> `docs/CODE_QUALITY.md` and `docs/USABILITY.md` carry at their head four declarations, each one under
+> its fixed key in English even when the file is in my language: `criteria_total`, how many rules of
+> the catalogue apply to this project, counting the ones nobody has verified yet;
+> `criteria_verified_by_a_program`, how many of those a program verified, with the command next to the
+> figure; `criteria_verified_by_a_person`, how many a person signed, with a name and a date; and
+> `verification_debt`, `none` when every criterion has its verifier, or `pending_verifier` and then the
+> criteria nobody has verified yet, with who owes each verification and since when. Then, criterion by
+> criterion, `verified_by` with the instrument the catalogue declares for that rule -- `auto_gate`,
+> `matrix_query`, `e2e_per_profile` or `manual_case` -- read from the data and never chosen by you. And
+> the rule this exists for: a criterion whose instrument is `manual_case` and carries no signature is
+> written `not_verifiable`, never as met. A criterion a person has to judge and nobody judged is not a
+> criterion in good standing: it is a criterion waiting for its person, and it has to read that way.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -125,6 +155,18 @@
 > `docs/ANEXO_HEURISTICAS.md`：引用它，不要复制它。
 >
 > 用我的语言回答。
+>
+> 而且合规文档要写清**是谁**验证的，这和验证了什么不是同一件事。`docs/CODE_QUALITY.md` 和
+> `docs/USABILITY.md` 在开头带四条声明，即使文件是用我的语言写的，每一条也都用它英文的固定键：
+> `criteria_total`，目录里有多少条规则适用于这个项目，把还没有人验证过的也数进去；
+> `criteria_verified_by_a_program`，其中有多少条是程序验证的，数字旁边附上命令；
+> `criteria_verified_by_a_person`，有多少条是一个人签过的，带名字和日期；以及
+> `verification_debt`，每条标准都有它的验证者时写 `none`，否则写 `pending_verifier`，然后列出还没有
+> 人验证过的标准，带上每一次验证是谁欠的、从什么时候开始欠的。然后，一条一条地写 `verified_by`，
+> 用目录为那条规则声明的工具——`auto_gate`、`matrix_query`、`e2e_per_profile` 或
+> `manual_case`——它从数据里读出来，永远不由你来挑。还有这件事存在的理由：一条工具是
+> `manual_case` 又没有签名的标准，要写成 `not_verifiable`，绝不写成已达成。一条必须由人来判断、
+> 却没有人判断过的标准，不是一条合规的标准：它是一条在等自己那个人的标准，而且必须这样被读出来。
 >
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
@@ -230,6 +272,10 @@
 - 在任何有用户的项目里：`docs/CODE_QUALITY.md` 里的变异分数，按功能块，放在覆盖率旁边，以及
   每一个在重要代码里存活的变异体对应一个待办项。
 
+- 在 `docs/CODE_QUALITY.md` 和 `docs/USABILITY.md` 的开头：`criteria_total`、
+  `criteria_verified_by_a_program`、`criteria_verified_by_a_person` 和 `verification_debt`；以及
+  一条一条写出的 `verified_by`，带着目录为那条规则声明的工具。
+
 ## 4. 完整性检验（由你来做，不读代码）
 
 - 向它要链条最后一次运行的链接：质量是绿的吗？
@@ -243,6 +289,12 @@
   看不到的时候报告什么？要一次"器具看不到"的运行记录：如果那个结果读起来和绿色一样，那么不管
   百分比怎么说，CQ-19 都没有达成。
 
+- 拿一条读起来是「已达成」的标准，问是谁说的：如果它的工具是 `manual_case`，那就必须有一个名字
+  和一个日期。如果没有，这条标准就不是已达成：它在等自己那个人，而文档必须写
+  `not_verifiable`。
+- `criteria_total` 有没有把还没有人看过的规则也数进去？一个等于「已验证之和」的总数，就是
+  `CQ-19.1` 禁止的那种被摆好的分母。
+
 ## 5. 警报信号
 
 - 质量在已经写好的代码上第一次就过了绿。这几乎从来不是真的：限制太松了。
@@ -255,3 +307,5 @@
   来的红色想要避免的情形。
 - 项目有真实用户，却没人跑变异测试，也没人写下不跑的理由。对一个有用户的项目来说，"这是可
   选的"已经不再是一个站得住的理由。
+- 合规文档里每一条标准都是「已达成」，却没有一个签名。最可能的不是这个系统无可挑剔：是把没有人
+  验证过的东西算成了已验证。一条一条地去要名字和日期。

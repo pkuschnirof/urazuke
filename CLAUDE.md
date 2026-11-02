@@ -315,6 +315,203 @@ Y lo que esto **no** hace: tocar una sola de las cuarenta y seis reglas que ya e
 identificador a las cinco comprobaciones de `CQ-18`, que es agregar y no renombrar y es trabajo
 aparte (`PND-082`).
 
+## El auditor se elige con un piso, y un control cierra repartiendo por destino
+
+D-079 y D-080 (`PND-092` a `PND-094`), y las dos salieron del **mismo** control: la auditoría del
+peldaño 13 del experimento A/B del método, el 2026-11-02. Las dos cambian lo que un informe tiene
+que **traer** y no lo que un sistema tiene que ser, y por eso entran juntas, en el catálogo
+`2026.10.13` y en el corpus de prompts `2026.10.8`.
+
+**El piso de capacidad (D-079).** D-042 prefería un modelo distinto del que construyó y aclaraba,
+con razón, que no es compuerta dura «porque a veces el modelo del constructor es el único
+disponible». Lo que no contestaba es el otro caso, que es el que se midió: el otro modelo **está** y
+**no llega**. Se cumplió D-042 en su forma más pura —otro modelo, otro proveedor, sub-sesión sin
+memoria conversacional— y el informe escribió **cuatro de los nueve hallazgos que él mismo anunció**,
+con su único P0 **falso** por leer `p95_ms: 5.666` como 5666 ms, y al auditor lo había elegido un
+**vencimiento de 306 segundos**. El del mismo modelo, apartándose de la preferencia y declarándolo
+en su primera línea, entregó diecisiete y ninguno resultó falso. Entonces el orden es: otro modelo
+**si está a la altura de la tarea**; si no lo está, otra sesión del mismo **declarando la
+desviación** en la línea `Auditor:`; y **nunca** el que eligió una clave que estaba cargada o un
+vencimiento. El informe lo declara bajo `auditor_choice`, y el valor que faltaba es
+`tool_constraint`, porque la restricción de herramienta se disfraza de elección técnica y lo único
+que la desnuda es tener que nombrarla. Dos cosas que no se negocian de la forma: **D-042 no se
+edita** —una decisión lleva las palabras de su día, como ya pasó con D-033 y con D-012—, así que la
+aclaración vive en D-079 y la reescritura se hizo donde D-042 **rige**; y la hipótesis del dueño
+sobre qué proveedores alcanzan **no entra al método**, porque un dato no la prueba y el nivel de
+datos no nombra herramientas (D-055). Lo que entra es el piso, que es falsable y no nombra a nadie.
+
+**El instrumento que guarda la evidencia, y el destino de cada hallazgo (D-080).** El método exigía
+evidencia en varios peldaños —el 8 el rojo como recibo, el 5 el cierre con evidencia escrita, el 12
+separar lo verificado de lo creído— y **en ninguna parte exigía auditar el instrumento que la
+guarda**, así que un registro roto se lee igual que un registro lleno. La misma auditoría encontró
+tres formas de que eso pase, y las encontró **por casualidad**: un commit de 130 archivos y 5.886
+líneas sin un solo recibo; cierres `shipped` sin su terna en un proyecto que afirmaba por escrito
+que el registro los rechaza; y quince mutaciones archivadas que no se vuelven a aplicar porque les
+falta el salto de línea final. Desde D-080 el peldaño 13 lleva la **salud del registro de la
+evidencia** como dimensión **no opcional** —commits funcionales sin recibo; cierres sin su terna, y
+cuántos de ésos tienen el motivo escrito; recibos con mutación que se vuelven a aplicar—, cada cifra
+con el comando al lado y una que no se pudo medir declarada **no medida** y nunca cero, que es
+`CQ-19.1`. No es opcional porque es la única dimensión que **audita a las demás**. Y los tres
+controles que producen hallazgos —el 12, el 13 y el 23— cierran con cada hallazgo asignado a un
+destino: `product`, `method` o `tool`, cada uno al registro que le toca, y **el control no cierra
+con un hallazgo sin destino**. El argumento es el del dueño y es el que convierte la inmunización en
+mecanismo: sin esto, que el método se mejore a sí mismo depende de que alguien se acuerde de separar
+los hallazgos por destino, y **acordarse no es un mecanismo**. Un defecto del método anotado en el
+registro del producto es un defecto que nadie va a arreglar nunca: el dueño del producto no puede
+arreglar el método, y el que puede nunca se enteró.
+
+**Las tres claves van en inglés aunque el informe esté en castellano**, y eso es D-051 y D-075
+bajados a un documento de proyecto en vez de a su archivo de configuración: `auditor_choice`,
+`evidence_register_health` y `findings_by_destination` las lee una compuerta, y una clave que una
+compuerta lee es una clave. La prosa alrededor va en el idioma del lector. Lo que las tres cifras
+**no** reciben es identificador de umbral, por la misma razón que las nueve claves de `measured_by`:
+el método no abarca con qué se mide cada una.
+
+Y lo que este lote dejó abierto, dicho acá porque es el primer hallazgo con **destino método** que
+el propio mecanismo produjo: los **cuarenta y ocho** prompts de los manuales son una copia que
+ningún guardián compara con su contrato —el universo de `build/prompts.mjs` y de
+`build/forma_de_la_pregunta.mjs` son los veinticuatro contratos más tres páginas, y los manuales
+aparecen una sola vez en `build/build.mjs`, en la lista de lo que se convierte a HTML—, y **cero** de
+los cuarenta y ocho llevan la cláusula de la UX-28. Lo más probable es que sean una versión
+didáctica más corta a propósito; el defecto no es la divergencia sino que **no esté declarada**, que
+es la forma de D-076. Lo decide el dueño en `PND-094`.
+
+## Los dos peldaños cuyo trabajo está afuera, y lo que la compuerta puede mirar
+
+D-081 y D-082 (`PND-095` a `PND-098`), y son la misma pregunta mirada en dos peldaños: el 13 tiene
+el trabajo en otra sesión y el 10 lo tiene en una persona, y en los dos la compuerta puede evaluar
+el **rastro** y no el trabajo. Entran en el catálogo `2026.10.14` y en el corpus de prompts
+`2026.10.9`.
+
+**«Completo» es una relación, y el límite se escribe (D-081).** Un `docs/AUDIT_*.md` que decía de sí
+mismo «encontré nueve hallazgos, escribo cuatro, el informe está INCOMPLETO» salía **verde**: del
+peldaño 13 bloqueaban dos cosas —que el archivo exista con doscientos bytes y que tenga menos de
+sesenta días— y la línea `Auditor:` es un `should_contain`, o sea un aviso. Y el informe **no se
+cortó**: la sub-sesión terminó sola, en un turno y 130.525 tokens, emitiendo su marcador de cierre
+por su cuenta, así que más presupuesto no arregla nada y una compuerta no distingue un informe
+cortado de uno abandonado. Entran cuatro exigencias sobre el rastro: `audit_completeness` en
+`complete` con `findings_announced` y `findings_written` en la misma cifra —un informe que se
+declara parcial no cierra el peldaño—, `dimension_grades`, `receipts_reproduced` con el veredicto de
+cada recibo reproducido, y `not_audited` en `none` o en `with_pending`. Ninguna impide mentir: las
+cuatro convierten la mentira en una afirmación escrita que una persona falsifica contando, en vez de
+un silencio. Y **el límite va escrito en la prosa del contrato y en la ficha, en los ocho idiomas**:
+el peldaño 13 no se puede verificar por máquina de punta a punta. Decirlo vale más que simularlo.
+Lo que **no** entra, y la razón importa: un evaluador que compare las dos cifras aritméticamente.
+El vocabulario de evaluadores es append-only y un nombre que una instalación no conoce **detiene el
+peldaño para todos los consumidores**; y dos cifras que escribió la misma mano no se verifican entre
+sí. La comparación contra el cuerpo del informe es del dueño, y se publica como tal.
+
+**El agente recorre, la persona ejecuta (D-082).** Ninguno de los veinticuatro peldaños pedía que el
+agente recorriera las pantallas como una persona —el método pedía capturas y la prueba de punta a
+punta— y, en el ciclo que se midió, la recorrida fue **lo que más defectos de interface encontró**:
+se la pedía el agente a sí mismo. Ahora la pide el peldaño 10, en `docs/SCREEN_WALKTHROUGH.md` y con
+su denominador (`screens_total`, `screens_walked`, `walkthrough_findings`), y una pantalla a la que
+no se pudo entrar se cuenta en el total con su razón, que es `CQ-19.1`. No reemplaza la ejecución
+humana ni es la punta a punta del 8: la punta a punta recorre un camino que alguien eligió, la
+recorrida busca lo que nadie pensó en probar. Y el archivo de casos lleva en su cabeza
+`cases_written`, `cases_executed_by_a_person` —que mueve una ejecución firmada y nunca la lectura
+del agente— y `execution_debt`, con quién debe cada ejecución y desde cuándo.
+
+**Y una corrección propia que conviene leer como método y no como anécdota.** La primera redacción
+de D-082 decía que la deuda «no frena el peldaño», y la medí antes de commitear: es falsa para un
+proyecto que corre el catálogo de hoy. El peldaño 10 declara `manual_cases_per_profile` como
+`required` desde `2026.10.1` —el ancla 4, D-044— y una instalación que lo implementa se pone en rojo
+diciendo que el registro de casos firmados está vacío. El proyecto que avanzó con la tabla vacía
+corría el **congelado del esquema 1**, donde el único chequeo del peldaño 10 es que el archivo
+exista. O sea que lo que faltaba nunca fue un bloqueo: era que la deuda fuera **legible**, con su
+cifra y el nombre de quien la debe. Un párrafo del método que contradice el dato del método es la
+familia de D-044 y D-067, y acá la copia que mentía era la nueva. La tensión que queda —el dueño
+pidió que la ejecución humana **no** sea condición de avance, y el ancla 4 dice que sí— no se
+resuelve de costado: está en `PND-097`, con su medición, y la decide él.
+
+## La pregunta que un peldaño tiene que contestar, y la columna que decía quién
+
+D-083 y D-084 (`PND-097`, `PND-098`), y las dos vienen del lote anterior: la primera es un hallazgo
+con **destino método** que produjo el mecanismo que D-080 había instalado dos días antes, y la
+segunda es la propuesta que ese mismo lote dejó explícitamente afuera por alcance. Entran en el
+catálogo `2026.10.15` y en el corpus de prompts `2026.10.10`, y las dos son la misma pregunta hecha
+a un peldaño cuyo veredicto depende de una persona.
+
+**Si nadie firmó, no se avanza, y la deuda hace legible ese rojo (D-083).** El lote pedía que la
+ejecución humana de los casos manuales fuera una deuda declarada y **no** una condición de avance, y
+eso se aplicó: la declaración entra y no exige que la cifra sea mayor que cero. Pero el peldaño 10
+ya tenía la ejecución humana como condición por otra vía —`manual_cases_per_profile`, `required`
+desde `2026.10.1`, el ancla 4, D-044— y la prosa, al decir con razón que la declaración no agrega
+compuerta, dejaba leer lo contrario de lo que la compuerta hace. Las dos salidas eran legítimas y
+opuestas; elegí que el ancla siga dura, y la razón es **medida y no una preferencia**: la base
+**congelada** del peldaño 10, que no se edita, lleva en su propio título «y los ejecutan personas» y
+pregunta, entre sus tres verificaciones de base, si los casos se ejecutaron con fecha y quién.
+Relajarla dejaría al dato contradiciendo su propia base. La medición que ordena las dos mitades, con
+el evaluador real: con el registro de firmas **vacío** el peldaño sale rojo diciendo que nadie firmó
+ningún caso, y con **un** caso firmado —nombre, fecha y el perfil con el que se corrió— el mismo
+árbol, con sus trece casos escritos y su `execution_debt` en `pending_verifier`, deja de estar rojo y
+pasa a la verificación del dueño. Entonces lo que entra es **texto**, que es lo que faltaba: la
+respuesta en la prosa del contrato en los ocho idiomas, su verificación del dueño —hacerle la misma
+pregunta al contrato y a la compuerta y exigir que contesten igual— y una pregunta en el dato. Y una
+señal de alarma que estaba al revés: decía que el peldaño cumplido con `cases_executed_by_a_person`
+en cero «no es un error, es la deuda», y con el catálogo publicado el error es el **verde**, que sólo
+sale si el proyecto fijó el congelado del esquema 1. Lo que esta decisión **no** hace, y hay que
+leerlo así porque va contra la letra de lo que el dueño pidió: no relaja el ancla 4. Esa salida es
+suya, cuesta editar un requisito publicado que hay proyectos que ya fijaron, y va con su propia
+decisión.
+
+**El verificador no se elige, se deriva (D-084).** El método exigía desde el ancla 3 que
+`docs/CODE_QUALITY.md` y `docs/USABILITY.md` informen resultado por resultado, y en ninguna parte
+exigía que dijeran **quién lo dijo**, así que un criterio que verifica un programa y uno que juzga
+una persona se leían igual. Medido: un documento de cumplimiento tuvo que corregirse el 2026-11-02 y
+**seis** criterios pasaron de «verificado» a «no verificable», quedando uno solo verificado, porque
+el verificador de los otros era una persona que nunca ejecutó los casos. El agente no mintió; el
+documento no tenía dónde decirlo. Entra la declaración con su **denominador**, que es `CQ-19.1`
+pedido a un documento de cumplimiento (`criteria_total` cuenta las reglas que nadie verificó
+todavía), la reparticion entre programa y persona —ésta firmada con nombre y fecha—,
+`verification_debt` con su verificador pendiente, y, criterio por criterio, `verified_by` con el
+**instrumento que el catálogo ya declara** para esa regla. Esa derivación es el corazón y es lo que
+la abarató: `gates/heuristics.json` dice desde que existe que un `manual_case` lo juzga una persona y
+devuelve «pasó o falló, con un nombre y una fecha», y veintidós de las cuarenta y ocho reglas tienen
+un caso manual entre sus instrumentos, así que la columna que faltaba era una **copia que nadie
+estaba obligado a sacar del dato** —la familia de D-044 y D-077—. La regla que deja: un criterio cuyo
+instrumento es `manual_case` y sin firma se escribe `not_verifiable` y nunca como cumplido. Y entran
+los **dos** documentos y no sólo el que nombró el hallazgo, que es simetría productor/consumidor y no
+celo: cuatro reglas de calidad de código —`CQ-12`, `CQ-14`, `CQ-19`, `CQ-20`, dos de ellas
+`human_red`— también las juzga un caso manual. No entra ningún evaluador nuevo, por las dos razones
+de D-081: el vocabulario es append-only y un nombre que una instalación no conoce detiene el peldaño
+para todos los consumidores, y tres cifras que escribió la misma mano no se verifican entre sí, así
+que la suma la comprueba el dueño contando.
+
+## Los prompts del curso son una versión didáctica declarada
+
+D-085 (`PND-094`), y fue el **primer** hallazgo con destino método que produjo el mecanismo que
+D-080 instaló: apareció al aplicar D-079 y D-080, no al buscarlo. Los dos manuales del curso llevan
+**su propia copia** del prompt de cada lección —cuarenta y siete por idioma, trescientos setenta y
+seis en los ocho— y ninguna guarda la comparaba con el contrato del peldaño que enseña. Medido:
+**cero** de los trescientos setenta y seis llevan la cláusula de la UX-28, y la lección 13 no tiene
+la reproducción de recibos de D-042 ni las declaraciones de D-079 a D-082.
+
+La decisión es **declarar** la divergencia y no eliminarla, y la razón es que la copia corta es
+deliberada: enseña un peldaño sin que al principiante le llegue todo junto (D-025), y unificar
+inflaría cuarenta y siete lecciones con cláusulas que tapan el concepto. Lo que **sí** era un
+defecto, y peor de lo que el pendiente decía: el manual declaraba lo **contrario**, con la frase «la
+tarea, con el prompt **exacto** que le vas a dar al agente», en los ocho idiomas. Ésa era la copia
+que mentía y es lo primero que se corrigió.
+
+Lo que queda, en los dos manuales y en los ocho idiomas: una subsección propia que dice que el
+prompt de la lección es la versión del curso, que el completo vive en el contrato y que **para
+aprender se usa el de la lección y para un sistema de verdad el del contrato**; y, en cada lección
+que trae prompt, el puntero a su contrato con el nombre del archivo, que es protocolo y viaja
+idéntico en las ocho versiones. La guarda es `build/prompts_didacticos.mjs`, con su paso en el flujo
+que exige la línea medida y sus ocho rojos deliberados, y exige cinco cosas: la declaración en los
+dieciséis pares idioma-manual; el puntero en cada lección con prompt; que el archivo nombrado
+**exista** en el árbol de ese idioma (D-069 aplicado a la prosa); que las ocho versiones tengan los
+mismos prompts en las mismas lecciones y apunten a los mismos contratos, posición por posición; y el
+orden ascendente, para que la lección 13 no apunte al contrato del 12. Las dos exenciones son los
+manuales de práctica, cada una **con su cifra medida** de bloques de cita, porque una máquina no
+puede distinguir la salida de un comando de un prompt y una exención que se puede volver falsa sola
+es el defecto de D-077.
+
+Y lo que esta guarda **no** promete, que está escrito en su cabecera y no aparece cuando falla: que
+el prompt de la lección diga lo mismo que el del contrato. No tiene que decirlo. Lo que una persona
+tiene que poder hacer es abrir la lección y el contrato y ver la diferencia **declarada**.
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio
@@ -753,10 +950,11 @@ deliberados, uno de los cuales reproduce el verde falso que la originó (D-075),
 derivadas, que son treinta y cuatro: veinte verdes —entre ellas la que exige que una colección
 **nueva** del dato quede vigilada sin tocar ninguna lista, que es la que impide que esta guarda sea
 el defecto que persigue— y catorce rojos, doce de ellos mutaciones del árbol, y la primera es la
-frase original con su cuatro y sus cinco identificadores (D-077). Los **doce**
+frase original con su cuatro y sus cinco identificadores (D-077). Los **trece**
 programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
 `index_api`, `portal_orphans`, `version_fijada`, `punteros_publicados`, `labels_api`,
-`forma_de_la_pregunta`, `version_inmutable`, `claves_configuracion`, `cifras_derivadas`)
+`forma_de_la_pregunta`, `version_inmutable`, `claves_configuracion`, `cifras_derivadas`,
+`prompts_didacticos`)
 detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
 el idiom de pegar `file:///` adelante de `argv[1]` sólo acierta en Windows y dejaba dos pasos
 de la cadena corriendo en vacío sobre Linux, en verde. Hay una prueba que lo exige en las dos

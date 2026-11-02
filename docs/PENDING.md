@@ -7928,6 +7928,611 @@ Y en las dos salidas, lo que desde acá **no** se puede verificar, dicho de fren
 que la cláusula esté, no que el sha resuelva —eso depende del remoto y de qué ramas existan el día
 que alguien mire—.
 
+## PND-092 — La preferencia por auditar con otro modelo no tenía piso: el informe salió incompleto y el auditor lo había elegido un vencimiento *(del experimento A/B del método; el dueño pidió el lote)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento A/B del método (`C:\urazuke-exp`), peldaño 13 del brazo C1, el
+  2026-11-02. Entrada `PND-059` del registro de la herramienta, que **no es este registro** (la
+  numeración no se corresponde). El dueño pidió el lote y fijó la forma: reproducir primero, aplicar
+  después.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y lo decidió: el orden de preferencia va tal como el pendiente lo
+  propuso.
+- **Estado: CERRADO** el 2026-11-02, con **D-079**.
+
+**Qué estaba mal.** D-042 prefería un modelo distinto del que construyó y decía, con razón, que no
+es compuerta dura «porque a veces el modelo del constructor es el único disponible». Lo que **no**
+contestaba es el otro caso: qué hacer cuando el otro modelo **está** disponible y **no llega**. Y
+ése es el caso que se midió.
+
+**Mi reproducción, el 2026-11-02.** Leí D-042 completa antes de tocar nada: contesta el caso de la
+**disponibilidad** y no el de la **capacidad**, así que el pendiente se sostiene, acotado a esa
+mitad. La medición que lo funda, del recibo `evidence/rendimiento_auditoria.json` del experimento:
+se cumplió D-042 en su forma más pura —otro modelo, otro proveedor, sub-sesión sin ninguna memoria
+conversacional— y el informe escribió **cuatro de los nueve hallazgos que él mismo anunció**; de los
+cuatro, dos nuevos y ciertos, uno ya registrado y nombrado en la propia consigna, y **uno falso**,
+que era su único P0: leyó `p95_ms: 5.666` como 5666 ms y declaró incumplido por 18,9x un criterio
+que tenía **52,9x de margen**. Al auditor lo eligió un **vencimiento de 306 segundos**. El
+contraste, que el dueño verificó uno por uno: el auditor del **mismo** modelo que construyó,
+apartándose de la preferencia y declarándolo en su primera línea, entregó **diecisiete** hallazgos
+—2 P0, 5 P1, 10 P2— y ninguno resultó falso.
+
+**Qué quedó.** El orden de preferencia escrito en el contrato del peldaño 13 y en sus siete
+traducciones: otro modelo **si está a la altura de la tarea**; si no lo está, otra sesión del mismo
+modelo **declarando la desviación** en la línea `Auditor:`; y **nunca** un auditor elegido por qué
+clave hay cargada o por qué vencimiento aguanta. El prompt le pide al auditor declararlo bajo la
+clave fija `auditor_choice`, con uno de sus tres valores, y el caso `tool_constraint` existe
+justamente porque la restricción de herramienta se disfraza de elección técnica. En el dato: un
+artefacto y una pregunta nuevos en el peldaño 13 (`gates/steps.json`, `since_version` `2026.10.13`).
+
+**Lo que este cierre NO hizo, dicho porque es la mitad que queda.** No editó D-042: una decisión
+lleva las palabras de su día (D-053, D-061), así que la aclaración vive en D-079 y la reescritura se
+ejecutó donde D-042 **rige**. No subió la hipótesis del dueño —«para urazuke sólo sirven los
+modelos realmente frontier»— al método: un dato no la prueba y el método no nombra proveedores
+(D-055). Y no convirtió la declaración del auditor en compuerta que bloquea: la línea `Auditor:`
+sigue siendo un `should_contain`, que es trabajo del turno siguiente de este lote.
+
+**Criterio de aceptación.** Leer D-042 y el contrato del peldaño 13 y ver si contestan «el otro
+modelo no llega, y ahora qué», con un orden y con la obligación de declarar por qué ese auditor.
+Verificado: lo contestan, en los ocho idiomas, y el dato lo exige en el artefacto del informe.
+
+## PND-093 — El método exigía evidencia en cinco peldaños y en ninguno exigía auditar el instrumento que la guarda, ni separar los hallazgos por destino *(lo trajo el dueño como la lección general del control)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** la auditoría del peldaño 13 del brazo C1 del experimento A/B, el 2026-11-02, y la
+  lección que el dueño sacó de ella: «el método se inmuniza a sí mismo, pero tienes que registrar
+  pending los defectos de método y herramienta que surgen de cada control». Entrada `PND-061` del
+  registro de la herramienta, que no es este registro.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y lo decidió: las dos partes entran, y la dimensión no es opcional.
+- **Estado: CERRADO** el 2026-11-02, con **D-080**.
+
+**Qué estaba mal.** Dos cosas que son la misma pregunta mirada de los dos lados. La primera: el
+método exigía evidencia —el 8 el rojo como recibo, el 5 el cierre con evidencia escrita, el 12
+separar lo verificado de lo creído— y **en ninguna parte exigía auditar el instrumento que la
+guarda**, así que un registro roto se lee igual que un registro lleno. La segunda: el peldaño 13
+decía *«turn every finding into a proposed pending item»* y **no distinguía de quién es el defecto**,
+así que los de método y de herramienta terminaban en el registro del producto, donde el único que
+puede leerlos no puede arreglarlos.
+
+**Mi reproducción, el 2026-11-02.** Leí los dos prompts del peldaño 13 y sus cinco preguntas de
+verificación publicadas: no piden en ninguna parte mirar si los recibos **sirven**. Lo más cercano
+es la cláusula de D-033, que pide reproducir **dos o tres** recibos elegidos por el auditor —una
+muestra, nunca el censo—, y es por esa cláusula que la auditoría del experimento encontró, **por
+casualidad**, las tres formas que el pendiente nombra: un commit de 130 archivos y 5.886 líneas sin
+un solo recibo; pendientes cerrados como entregados sin su terna, en un proyecto que afirmaba por
+escrito que el registro rechaza esos cierres; y mutaciones archivadas que no se vuelven a aplicar
+porque les falta el salto de línea final. Sobre el destino, la precisión que la reproducción agregó:
+el destino **método** ya existía, y sólo en el peldaño 23 —*«End with a concrete proposal to change
+the ladder»*—; el destino **herramienta** no existía en ninguno de los tres controles, y ninguno
+impedía cerrar con hallazgos sin destino. Así que esto no agregó tres destinos desde cero:
+generalizó al 12 y al 13 lo que el 23 ya hacía con uno, y agregó el tercero.
+
+**Qué quedó.** (a) La **salud del registro de la evidencia** como dimensión **no opcional** del
+peldaño 13, bajo la clave fija `evidence_register_health`, con tres cifras que contesta un programa
+—commits funcionales sin ningún recibo; cierres sin su terna, y cuántos de ésos tienen el motivo
+escrito; recibos con mutación que se vuelven a aplicar—, cada una con el comando al lado, y una
+cifra que no se pudo medir declarada **no medida** y nunca cero, que es `CQ-19.1`. No es opcional
+porque es la única dimensión que audita a las demás. (b) El cierre por destino en los **tres**
+controles —12, 13 y 23— bajo la clave fija `findings_by_destination`, con `product`, `method` y
+`tool`, y el control no cierra con un hallazgo sin destino. En el dato: cuatro artefactos y cuatro
+preguntas nuevos sobre los peldaños 12, 13 y 23 (`since_version` `2026.10.13`).
+
+**Lo que este cierre NO hizo.** Darles identificador de umbral a las tres cifras: el método no
+abarca con qué se mide cada una y eso queda a criterio de quien mide, que es la misma razón de las
+nueve claves de `measured_by` de D-075. Y escribir el programa que las mide: el método declara qué
+cifra se pide, no con qué herramienta.
+
+**Criterio de aceptación.** Leer el peldaño 13 y preguntar si obliga a mirar si los recibos sirven,
+o sólo a mirar el sistema. Verificado: lo obliga, como dimensión y no como sugerencia dentro de otra
+instrucción. Y dado un control que produce hallazgos, los hallazgos quedan repartidos en tres
+registros según su destino y el control no cierra con uno sin asignar.
+
+## PND-094 — Los cuarenta y ocho prompts de los manuales son una copia que ningún guardián compara con su contrato, y ninguno lleva la cláusula de la UX-28 *(propia, medida al aplicar D-079 y D-080; destino: método)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** medido al aplicar este lote. Es un hallazgo con **destino método**, que es justamente
+  lo que D-080 va a exigir de ahora en más de cada control.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y la regla escrita de este lote fue que yo eligiera donde algo
+  estuviera ambiguo y dejara escrito por qué ésa y no otra. Elegí la **(1)**, declarar.
+- **Estado: CERRADO** el 2026-11-02, con **D-085**.
+
+**Qué está mal.** Los manuales del curso llevan **su propia copia** de los prompts de cada lección,
+y esa copia **no la compara nadie** con el contrato del peldaño que enseña. El universo de
+`build/prompts.mjs` y de `build/forma_de_la_pregunta.mjs` es el mismo y está escrito en los dos
+programas: los veinticuatro contratos más `EVOLUTIVO_CORRECTIVO.md`, `TRABAJO_COLABORATIVO.md` y
+`ANEXO_HEURISTICAS.md`. Los manuales quedan **afuera de los dos**, y en `build/build.mjs` aparecen
+una sola vez: en la lista de archivos que se convierten a HTML. O sea que es exactamente la familia
+de D-044, D-067, D-074 y D-077 —dos copias de un hecho, una que se actualiza sola y otra que no—,
+con la copia viviendo en el documento que un lector principiante lee **como instrucción**.
+
+**La evidencia, medida el 2026-11-02 sobre este árbol.** `docs/MANUAL_CURSO.md` lleva **37**
+prompts, `docs/MANUAL_CURSO_EVOLUTIVO.md` **10** y `docs/practica/MANUAL_FORGE_PROYECTO_NUEVO.md`
+**1**: cuarenta y ocho. De los cuarenta y ocho, **cero** llevan la cláusula de la UX-28, que D-070
+puso en los setenta y dos prompts del corpus con una compuerta que los cuenta. Y el drift se ve en
+la lección 13 sin buscarlo: su prompt no tiene la reproducción literal de recibos que D-042 agregó
+el 2026-10-20, ni la cláusula de la UX-28, ni —desde hoy— las tres declaraciones de D-079 y D-080.
+
+**Lo que esta entrada NO afirma.** No afirma que el drift sea un descuido. La hipótesis más probable
+es la contraria: los prompts de las lecciones son una **versión didáctica más corta a propósito**, y
+D-042 ya eligió no tocarlos cuando agregó sus cláusulas. El defecto no es la divergencia: es que la
+divergencia **no está declarada en ninguna parte** y no la mide nadie, así que no se puede distinguir
+«más corto a propósito» de «quedó viejo», que es la misma forma de D-076 y de `PND-084`.
+
+**Criterio de aceptación.** Una de estas dos, y la decide el dueño. **(1) Declarada:** un registro
+—con su razón, como el de exclusiones de `build/inventario_documentos.mjs`— que diga que los prompts
+de los manuales son una versión didáctica y qué se le exige a esa versión, más una guarda que al
+menos verifique eso que se le exige; el principiante tiene que poder saber que el prompt de la
+lección es más corto que el del contrato. **(2) Unificada:** el prompt del contrato entra en la
+lección y el manual deja de llevar copia, con la cláusula de la UX-28 incluida. Verificable sin leer
+código en las dos salidas: abrir la lección 13 y el contrato del peldaño 13 y ver si dicen lo mismo
+o si el manual dice por qué no.
+
+**Qué quedó, y por qué la (1).** La hipótesis de esta entrada era que la copia corta es deliberada,
+y al medirla se confirma: unificar metería en cuarenta y siete lecciones las cláusulas que el
+contrato arrastra —la forma de la pregunta, la reproducción de un recibo, las declaraciones del
+rastro— y taparía el concepto que la lección enseña, que es exactamente lo contrario del nivel
+principiante de D-025. Entonces se declara. En los dos manuales y en los ocho idiomas: una
+subsección propia que dice que el prompt de la lección es la versión del curso y que el completo
+vive en el contrato, con la regla práctica —para aprender, el de la lección; para un sistema de
+verdad, el del contrato—; y, en cada lección que trae prompt, el puntero a su contrato **con el
+nombre del archivo**, que es protocolo y viaja idéntico en las ocho versiones. Dieciséis punteros en
+el manual del curso y ocho en el evolutivo, por idioma: ciento noventa y dos en total.
+
+**Y el defecto era peor de lo que esta entrada decía, que es lo que se encontró al aplicarla.** El
+manual no sólo no declaraba la divergencia: declaraba **lo contrario**. Decía, en su sección de cómo
+se cursa y en los ocho idiomas, «la tarea: paso a paso, con el prompt **exacto** que le vas a dar al
+agente». Ésa era la copia que mentía —la familia de D-044 y D-067— y es lo primero que se corrigió:
+ahora dice «el prompt del curso».
+
+**La guarda**, `build/prompts_didacticos.mjs`, con su paso en el flujo que exige la línea medida:
+
+```
+prompts didacticos: comprobado -- 8 idiomas, 2 manuales, 192 lecciones con prompt, 376 prompts,
+192 punteros al contrato, 2 exenciones con su razon, 0 hallazgos
+```
+
+Exige cinco cosas, y ninguna es que la lección diga lo mismo que el contrato: la declaración en los
+dieciséis pares idioma-manual; el puntero en cada lección con prompt; que el archivo nombrado
+**exista** en el árbol de ese idioma, que es D-069 aplicado a la prosa; que las ocho versiones
+tengan los mismos prompts en las mismas lecciones y apunten a los mismos contratos, posición por
+posición —lo que atrapa a una traducción que pierde un prompt o que apunta a otro peldaño, el drift
+silencioso que nadie estaba midiendo—; y el orden ascendente, para que la lección 13 no apunte al
+contrato del 12. Las dos exenciones son los manuales de práctica, y **cada una declara su cifra
+medida** de bloques de cita: el de proyecto nuevo tiene uno, que es la salida de un comando y no un
+prompt. Va con su número porque una máquina no puede distinguir una salida de un prompt, así que lo
+que la guarda exige es que esa cifra no se mueva sin que alguien vuelva a mirar; una exención que se
+puede volver falsa sola es el defecto de D-077.
+
+**Los rojos**, en `tests/prompts_didacticos.test.mjs`: once comprobaciones, ocho de ellas
+mutaciones del árbol. La primera reproduce el árbol **tal como estaba antes de esta decisión** —sin
+declaración y sin un solo puntero— y tiene que caer nombrando los dieciséis manuales y las lecciones
+una por una; después, un manual sin su declaración (y sólo ése), una lección con prompt y sin
+puntero, un puntero que no resuelve, una traducción que pierde un prompt, una que apunta a otro
+peldaño, las ocho apuntando mal a la vez —que es el caso donde la comparación entre idiomas no dice
+nada y lo único que queda es el orden— y una exención cuya razón dejó de ser verdad.
+
+**Una cifra de esta entrada se corrige.** Decía cuarenta y ocho prompts en los manuales; son
+**cuarenta y siete** (treinta y siete en el manual del curso y diez en el evolutivo). El que sobraba
+era el único bloque de cita de `docs/practica/MANUAL_FORGE_PROYECTO_NUEVO.md`, y no es un prompt: es
+la salida de un comando. Ese manual, además, dice de frente que los prompts llegan desde la API
+publicada del método y que la herramienta los inyecta sola, así que no es una copia divergente y
+queda exento con su razón.
+
+**Criterio de aceptación.** Dado un lector principiante que abre la lección 13 y el contrato del
+peldaño 13, cuando compara los dos prompts, entonces el manual dice por qué no dicen lo mismo —y la
+lección nombra el archivo del contrato, que es `peldanos/peldano-13-auditoria.md`—. Y dado un cambio
+que rompa esa declaración, cuando corre la cadena, entonces la guarda lo nombra en vez de callarse:
+verificado con los ocho rojos deliberados.
+
+## PND-095 — La compuerta del peldaño 13 no podía ver que una auditoría estuviera incompleta: dio verde con un informe que se declara incompleto *(del experimento A/B del método; el dueño pidió el lote)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento A/B del método (`C:\urazuke-exp`), peldaño 13 del brazo C1, el
+  2026-11-02, y la frase del dueño: «no debería aceptársele una auditoría abortada». Entrada
+  `PND-058` del registro de la herramienta, que **no es este registro** (la numeración no se
+  corresponde).
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y lo decidió: las cuatro propuestas entran, y el límite que queda se
+  escribe en el texto del método.
+- **Estado: CERRADO** el 2026-11-02, con **D-081**.
+
+**Qué estaba mal.** El método promete que un peldaño cierra cuando la evaluación mecánica da verde,
+y en el peldaño 13 esa promesa era más débil de lo que se lee: «completo» no es una propiedad del
+archivo —es la relación entre lo que el informe **anuncia** y lo que **entrega**— y una compuerta
+que mira el archivo no la puede ver.
+
+**Mi reproducción, el 2026-11-02.** Armé el caso que el pendiente pedía: un `docs/AUDIT_2026-11-02.md`
+que dice de sí mismo, textual, «encontré NUEVE hallazgos. Escribo cuatro ... el informe está
+INCOMPLETO», con su línea `Auditor:` y sus dos insumos, y lo evalué con el evaluador **real** de la
+herramienta. Verde contra el catálogo compilado y verde contra la definición que el método publica.
+Y una tercera medición que el pendiente no traía: **borré la línea `Auditor:` entera y siguió
+verde**, con aviso, porque es un `should_contain`. O sea que del peldaño 13 bloqueaban **dos** cosas
+y no tres: que exista un `docs/AUDIT_*.md` de doscientos bytes y que tenga menos de sesenta días.
+El defecto era peor de lo que la entrada afirmaba. Y hay un dato que lo endurece y que vino del
+experimento: el informe **no se cortó**. La sub-sesión terminó con `status: done`, un turno y 130.525
+tokens, emitiendo su marcador de cierre por su cuenta. No alcanza con darle más presupuesto, y una
+compuerta no puede distinguir un informe cortado de uno abandonado.
+
+**Qué quedó.** Cuatro exigencias nuevas sobre el informe, todas sobre el **rastro** del trabajo:
+`audit_completeness` en `complete` con `findings_announced` y `findings_written` en la misma cifra;
+`dimension_grades` con la nota de cada dimensión; `receipts_reproduced` con el veredicto de cada
+recibo reproducido; y `not_audited` en `none` o en `with_pending`, con el pendiente de cada parte que
+quedó afuera. En el dato: cuatro artefactos y tres preguntas nuevos (`gates/steps.json`,
+`since_version` `2026.10.14`). Y el **límite escrito**, que es la mitad que el dueño pidió aparte: el
+peldaño 13 no se puede verificar por máquina de punta a punta, porque su trabajo lo hace un tercero,
+y eso está en la prosa del contrato y en la ficha, en los ocho idiomas.
+
+**La medición del arreglo, que es lo que lo hace un cierre y no una promesa.** El mismo informe del
+turno 1 pasa de verde a **rojo** nombrando las cuatro que le faltan. Un informe que trae todas las
+declaraciones y dice `audit_completeness: partial` con `findings_announced: 9` y
+`findings_written: 4` sale **rojo**, y el único chequeo que falla es el de la completitud. El mismo
+informe con las nueve escritas y `complete` sale **verde**. Es el criterio de aceptación, medido en
+los tres estados.
+
+**Lo que este cierre NO hizo, dicho porque es el límite.** No agregó un evaluador que compare las
+dos cifras aritméticamente: el vocabulario de evaluadores es append-only y un nombre que una
+instalación no conoce **detiene el peldaño para todos los consumidores**, y dos cifras que escribió
+la misma mano no se verifican entre sí. La comparación contra el cuerpo del informe es la
+verificación del dueño, y quedó publicada como tal en la sección 4 del contrato.
+
+**Criterio de aceptación.** Dado un informe que anuncia N hallazgos y escribe menos de N, cuando se
+evalúa el peldaño 13, entonces la compuerta no da verde y el motivo nombra la incompletitud.
+Verificado con el evaluador real, en los tres casos de arriba.
+
+## PND-096 — La recorrida agéntica de las pantallas no era exigencia de ningún peldaño, y el peldaño 10 no distinguía los casos escritos de los ejecutados *(del experimento A/B del método; el dueño pidió el lote)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento A/B del método, el 2026-11-02, midiendo la procedencia de cada criterio
+  contra el texto de los veinticuatro prompts congelados y no contra sus títulos, y la observación
+  del dueño: «faltan criterios como ... navegabilidad agéntica de las pantallas simulando recorrida
+  humana para detectar bugs de interface y e2e ... son cosas que Forge hace con el método que no
+  tienes evaluadas». Entrada `PND-060` del registro de la herramienta, que no es este registro.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y lo decidió: entran la propuesta (b) y la (a); la (c) queda afuera.
+- **Estado: CERRADO** el 2026-11-02, con **D-082**.
+
+**Qué estaba mal.** Dos cosas distintas que el peldaño 10 mezclaba. La primera: la **recorrida
+agéntica** —que el agente abra cada pantalla, la mire, la use y siga el flujo de una a la siguiente,
+como lo haría una persona— no la pedía **ninguno** de los veinticuatro peldaños, y en el ciclo
+completo que se midió fue lo que más defectos de interface encontró. La hacía el agente por su
+cuenta. La segunda: el peldaño exige escribir los casos y prohíbe explícitamente que el agente los
+marque como ejecutados, pero no distinguía por escrito «casos escritos» de «casos que ejecutó una
+persona», así que la deuda no se veía.
+
+**Mi reproducción, el 2026-11-02.** Las dos mitades se sostienen. La prohibición está textual
+(«Never mark a case as executed yourself: execution is human»). Y la recorrida: corrí diecisiete
+patrones sobre los veinticuatro prompts generados —`navigat`, `walk through`, `browse`, `click`,
+`screenshot`, `every screen`, `as if you were a user`, `accessib` y diez más— y lo que el método
+pide son **capturas** (peldaños 4, 5, 10 y 20) y la prueba de **punta a punta** (8). Lo único
+parecido a una recorrida vive en la estación N0 del camino heredado, que no es uno de los
+veinticuatro y además evalúa testeabilidad en vez de buscar defectos de interface. Cero de
+veinticuatro.
+
+**Qué quedó.** La recorrida entra como exigencia propia del peldaño 10, con artefacto nuevo
+—`docs/SCREEN_WALKTHROUGH.md`, la única ruta nueva de este lote— y con su **denominador**:
+`screens_total`, `screens_walked`, `walkthrough_findings`, y una pantalla a la que no se pudo entrar
+se cuenta en el total con su razón, que es `CQ-19.1`. Y el archivo de casos lleva en su cabeza
+`cases_written`, `cases_executed_by_a_person` —que mueve una ejecución firmada y nunca la lectura del
+agente— y `execution_debt`, con quién debe cada ejecución y desde cuándo.
+
+**La medición del arreglo.** Un árbol con los casos escritos y sin las declaraciones sale **rojo**
+nombrando las dos cosas que le faltan; el mismo árbol con la deuda declarada (`cases_written: 13`,
+`cases_executed_by_a_person: 0`, `execution_debt: pending_verifier` con quién y desde cuándo) y con
+la recorrida escrita pone los dos chequeos nuevos en **verde**.
+
+**Y una corrección que me hice antes de commitear, porque la primera redacción era falsa.** Había
+escrito, en la prosa del contrato y en la ficha, que la deuda «no frena el peldaño». Lo que **entra**
+no frena: lo que se exige es la declaración, no que la cifra sea mayor que cero. Pero el peldaño
+**sí** frena por otra cosa, que ya estaba: `manual_cases_per_profile` es `required: true` desde
+`2026.10.1` (ancla 4 del Anexo H, D-044), y una instalación que lo implementa se pone en rojo
+diciendo que el registro de casos firmados está vacío —lo medí con el evaluador real—. El proyecto
+que avanzó con la tabla de ejecuciones vacía corría el **congelado del esquema 1**, donde el único
+chequeo del peldaño 10 es que el archivo exista. Así que lo que faltaba nunca fue un bloqueo: era que
+la deuda fuera **legible**. El texto quedó corregido en los ocho idiomas antes del commit, y la
+tensión con el ancla 4 quedó registrada aparte, en `PND-097`, porque la decide el dueño.
+
+**Criterio de aceptación.** Dado un proyecto donde nadie ejecutó los casos manuales, cuando se
+evalúa el peldaño 10, entonces el estado distingue escritos de ejecutados y la deuda queda declarada
+con su verificador pendiente. Verificado: las dos cifras y la deuda están en el dato y en los ocho
+contratos, y el chequeo las exige.
+
+## PND-097 — El ancla 4 ya hace de la ejecución humana una condición de avance, y el dueño pidió que no lo sea: la contradicción es del método y no de este lote *(propia, medida al aplicar D-082; destino: método)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** medido al aplicar D-082, el 2026-11-02, con el evaluador real de la herramienta sobre
+  un árbol de prueba y sobre el brazo del experimento. Es un hallazgo con **destino método**, del
+  mecanismo que D-080 instaló.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y la regla escrita de este lote fue que yo eligiera donde algo
+  estuviera ambiguo y dejara escrito por qué ésa y no otra. Elegí la **(1)**, por una razón medida
+  que la entrada no traía y que está abajo; y queda dicho, porque va contra la letra de lo que pidió:
+  la **(2)** sigue siendo suya y cuesta editar un requisito publicado.
+- **Estado: CERRADO** el 2026-11-02, con **D-083**.
+
+**Qué está mal.** El lote pedía, textual, que la ejecución humana de los casos manuales sea «una
+deuda declarada con su verificador pendiente, **no una condición de avance**». Eso se aplicó en lo
+que este lote controla: la declaración entra y no exige que la cifra sea mayor que cero. Pero el
+peldaño 10 **ya tenía** la ejecución humana como condición de avance, por otra vía:
+`manual_cases_per_profile`, `required: true` desde `2026.10.1`, que es el ancla 4 del Anexo H y
+viene de D-044.
+
+**La evidencia, medida el 2026-11-02 con el evaluador real.** Un árbol con la matriz de perfiles
+bien formada, los casos escritos, la deuda declarada y la recorrida hecha sale **rojo** con un solo
+motivo: «el registro de casos manuales está vacío: nadie firmó ningún caso». Y la razón por la que
+el experimento vio el peldaño en verde es otra, y conviene que quede escrita: ese proyecto fijó
+`catalog_version: forge-compiled/base-schema-1`, o sea el **congelado del esquema 1**, donde el
+peldaño 10 no declara ese evaluador y su único chequeo es que el archivo exista. Es, de paso, la
+cuarta medición de lo que `PND-055` y D-068 ya decían sobre fijar contra una identidad interna que
+el método no puede nombrar.
+
+**Por qué no lo resolví yo.** Relajar el ancla 4 es **editar un requisito publicado**, y eso se hace
+con su propia decisión y no de costado: el ancla es `required: true`, está anclada en el Anexo H,
+tiene su entrada en el diferencial desde `2026.10.1`, y hay proyectos que la fijaron. Y la otra
+salida —dejarla como está— obliga a que la prosa del peldaño 10 **diga** que la ejecución humana es
+condición de avance, que es lo contrario de lo que el lote pidió. Las dos son legítimas; ninguna es
+mía.
+
+**Criterio de aceptación.** Una de estas dos, y la decide el dueño. **(1) El ancla sigue siendo dura:**
+la prosa del peldaño 10 dice, en los ocho idiomas, que un proyecto no avanza del peldaño 10 sin que
+una persona haya firmado al menos un caso, y la deuda declarada es lo que hace legible ese rojo.
+**(2) La ejecución humana deja de ser condición:** entra una decisión que lo escriba, con lo que eso
+le hace al ancla 4 y al diferencial de los proyectos que ya la fijaron. Verificable sin leer código:
+abrir el contrato del peldaño 10 y preguntar «si nadie ejecutó, ¿avanzo?», y que el texto conteste lo
+mismo que contesta la compuerta.
+
+**Qué quedó, y por qué la (1).** La razón no es una preferencia: la base **congelada** del peldaño
+10 —la que no se edita, D-050— lleva en su propio **título** «y los ejecutan personas» y pregunta,
+entre sus tres verificaciones de base, «¿los casos se ejecutaron al cierre del bloque, con fecha y
+quién?». Relajar el ancla 4 dejaría al dato contradiciendo su propia base, y eso no se hace de
+costado. Entonces entra lo que faltaba de verdad, que era **texto**: la prosa del contrato del
+peldaño 10 contesta ahora, en los ocho idiomas y sin vueltas, la pregunta «si nadie firmó ni un
+caso, ¿avanzo?»; la sección 4 trae la verificación del dueño que la hace falsable —preguntarle lo
+mismo al contrato y a la compuerta y exigir que contesten igual—; y el dato suma **una** pregunta de
+verificación (`gates/steps.json`, `since_version` `2026.10.15`). Ningún requisito nuevo: el
+requisito ya estaba.
+
+**Y una señal de alarma que estaba al revés, que es lo que este cierre arregla además de lo
+pedido.** El contrato listaba, entre sus señales: «el peldaño figura cumplido y
+`cases_executed_by_a_person` está en cero. **No es un error**: es la deuda». Con el catálogo
+publicado, el error es el **verde**: la cifra en cero es honesta, y un peldaño 10 sin ninguna firma
+sale rojo por el ancla 4. La señal dice ahora eso, y manda a mirar contra qué `catalog_version`
+está fijado el proyecto, que es la única forma de que salga verde (`PND-055`, D-068, cuarta
+medición).
+
+**La medición del cierre, con el evaluador real de la herramienta** (`node evaluar_ancla.mjs 10
+<árbol>`, que recorre **todos** los evaluadores que el dato declara y no sólo `artifacts`):
+
+- árbol con la matriz bien formada, los trece casos escritos, la deuda declarada y la recorrida
+  hecha, y el **registro de firmas vacío**: `manual_cases_per_profile` -> **red**, «el registro de
+  casos manuales esta vacio: nadie firmo ningun caso».
+- el **mismo** árbol con **un** caso firmado —`judged_by`, fecha y el perfil de su funcionalidad—:
+  `manual_cases_per_profile` -> **owner**. Deja de estar rojo y pasa a la verificación del dueño,
+  con la deuda de los otros doce declarada.
+
+Las dos corridas juntas son la prueba de que las dos afirmaciones del contrato son verdaderas a la
+vez: la declaración no agrega compuerta, y lo que frena es que nadie haya firmado nada.
+
+**Criterio de aceptación.** Dado el contrato del peldaño 10 en cualquiera de los ocho idiomas,
+cuando el lector pregunta «si nadie ejecutó, ¿avanzo?», entonces el texto contesta lo mismo que
+contesta la compuerta. Verificado contra las dos corridas de arriba.
+
+## PND-098 — El documento de cumplimiento no declara quién verifica cada criterio, así que un criterio cuyo verificador es una persona puede figurar como verificado sin su firma *(propuesta (c) de la entrada de origen, que este lote no pidió; destino: método)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** la tercera propuesta de la entrada `PND-060` del registro de la herramienta. El lote
+  pidió aplicar la (b) y la (a); la (c) quedó afuera por alcance (SQ 5) y se registra para que no se
+  pierda.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño; el criterio de aceptación de esta entrada era uno solo y no dos
+  salidas opuestas, así que lo apliqué tal como está escrito.
+- **Estado: CERRADO** el 2026-11-02, con **D-084**.
+
+**Qué está mal.** `docs/USABILITY.md` es el documento de cumplimiento del peldaño 9 y lleva, por
+criterio, si está cumplido. Lo que no lleva es **quién lo verifica**. Y hay criterios cuyo
+verificador es una persona —los que se juzgan mirando, los `human_red` del Anexo H— y criterios que
+verifica un programa. Sin esa columna, los dos se leen igual.
+
+**La evidencia, del experimento.** El documento de cumplimiento de ese proyecto tuvo que corregirse
+el 2026-11-02: **seis** criterios pasaron de «verificado» a «no verificable» y **uno solo** quedó en
+verificado, porque el verificador de los otros era una persona y nadie había ejecutado los trece
+casos manuales. Lo escribió el propio brazo al revisarse. No es un defecto del agente: el documento
+no tenía dónde decir de quién era el criterio.
+
+**Criterio de aceptación.** Dado un documento de cumplimiento con un criterio cuyo verificador es
+una persona y sin firma, cuando se evalúa el peldaño que lo exige, entonces ese criterio no puede
+figurar como verificado. Verificable sin leer código: abrir el documento y preguntar, criterio por
+criterio, quién lo dijo.
+
+**Qué quedó.** Sobre los **dos** documentos de cumplimiento del peldaño 9: la declaración con su
+denominador —`criteria_total` contando las reglas que nadie verificó todavía, que es `CQ-19.1`
+pedido a un documento de cumplimiento, `criteria_verified_by_a_program`,
+`criteria_verified_by_a_person` firmadas con nombre y fecha, y `verification_debt` con su
+verificador pendiente— y, criterio por criterio, `verified_by` con el instrumento que el catálogo
+**ya** declara para esa regla. En el dato: cuatro artefactos y dos preguntas nuevos
+(`gates/steps.json`, `since_version` `2026.10.15`); en el prompt inicial del peldaño 9, la cláusula
+en los ocho idiomas; y en la prosa del contrato, el párrafo, el resultado esperado, dos
+verificaciones del dueño y una señal de alarma.
+
+**La pieza que abarató la entrada, y que la entrada no había visto.** El verificador **no hay que
+inventarlo**: `gates/heuristics.json` declara, por regla, su `instrument`, y declara que un
+`manual_case` lo **juzga una persona** y devuelve «passed or failed, with a name and a date». De las
+cuarenta y ocho reglas, **veintidós** tienen un caso manual entre sus instrumentos. Así que la
+columna que faltaba era una **copia que nadie estaba obligado a sacar del dato**, que es la familia
+de D-044 y D-077, y por eso `verified_by` se deriva y no se elige. De ahí también que entren los
+dos documentos y no sólo `docs/USABILITY.md`, que es el que nombró el hallazgo: cuatro reglas de
+calidad de código —`CQ-12`, `CQ-14`, `CQ-19` y `CQ-20`, dos de ellas `human_red`— también las juzga
+un caso manual, y arreglar una mitad reproducía el defecto en la otra (SQ 14).
+
+**La medición del cierre, con el evaluador real** (`node evaluar_metodo.mjs 9 <árbol>`):
+
+- el documento **como estaba en el experimento** —los criterios en «verificada», sin columna de
+  verificador— sale **rojo** en las cuatro exigencias nuevas, nombrando `/criteria_total.{0,20}\d/`
+  y `/verified_by/` una por una.
+- el documento con las cuatro cifras y el `verified_by` de cada criterio pasa las cuatro. Los
+  chequeos que siguen rojos en ese árbol de prueba son de antes de este lote (el `GATES.md` de
+  juguete y la falta de integración continua), y no de D-084.
+
+**La prueba que lo guarda, y por qué hizo falta.** `tests/declaraciones_del_rastro.test.mjs` creció
+de once a dieciocho comprobaciones: las cinco claves nuevas declaradas en el peldaño y el archivo
+que les toca, el documento que el prompt pide pasando, el documento del experimento cayendo, el
+borde que importa —con la cabeza completa pero **sin** el verificador por criterio cae **una sola**
+exigencia, que es exactamente el hueco que este pendiente nombra—, la cifra en prosa y la deuda
+fuera de vocabulario cayendo, y una simetría que las doce claves de D-081 y D-082 no tenían: los
+cuatro instrumentos que la expresión acepta son **exactamente** los que declara
+`heuristics.json#instruments`, en las dos direcciones. Recibos: `red_proof` contra `a467e1f` (6 de
+18 caen), `green` (18 de 18), `regression` (476 de 476).
+
+**Criterio de aceptación.** Dado un documento de cumplimiento con un criterio cuyo verificador es
+una persona y sin firma, cuando se evalúa el peldaño que lo exige, entonces ese criterio no puede
+figurar como verificado: el documento tiene que escribirlo `not_verifiable`, y si no declara su
+verificador la compuerta sale roja nombrándolo. Verificado con el evaluador real, en los dos
+estados.
+
+## PND-099 — Un proyecto corre una definición de compuertas más vieja que la publicada y el atraso no se ve desde adentro *(la trajo el dueño al cerrar el lote del experimento; destino: método)*
+
+- **Nodo:** `datos/compuertas` [nodo propuesto]
+- **Origen:** la pidió el dueño el 2026-11-02, al aceptar el lote, por la **reincidencia**: es la
+  cuarta vez que el mismo defecto se registra, y la segunda vez que se mide en un solo lote. Es un
+  hallazgo con **destino método** del mecanismo que D-080 instaló el mismo día.
+- **Grupo:** G-API · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño. Entra **planteado y sin resolver**, por pedido explícito: congelar
+  está bien y no se discute; lo que falta es que el atraso sea visible, y cómo se hace visible
+  cambia lo que el método le exige a un proyecto.
+- **Estado: abierto**
+
+**Qué está mal.** El método manda fijar una versión del catálogo el día que el proyecto empieza y
+mantenerla hasta el final (D-068), y eso está bien: un upgrade en medio de un proyecto **reabre**
+peldaños ya cerrados. Pero fijar y **decir contra qué se fijó** son dos cosas distintas, y el
+método hoy exige la primera y no la segunda. El resultado es que un proyecto puede estar
+midiéndose contra una definición vieja —o contra una que el método no puede nombrar— y **nadie se
+entera desde adentro del proyecto**: el único que ve la diferencia es alguien de afuera que mide
+contra la publicada.
+
+**Los cuatro registros que el dueño contó, y son tres eventos.** Vale la precisión porque dos de
+los cuatro son la entrada y la decisión del mismo día. Y hay una quinta, de este mismo turno, al
+final de la lista.
+
+1. **2026-10-27 — `PND-055` y D-068.** La herramienta que asiste este trabajo ya fijaba, y fijaba
+   bien en sus propios términos, contra un identificador de su **catálogo compilado**
+   (`base-schema-1` con su hash) que no es una `catalog_version` y no figura en ningún registro.
+   Fija, sí, pero a algo que el método no puede nombrar, nadie de afuera puede auditar, y contra lo
+   cual el diferencial de un upgrade no se puede computar.
+2. **2026-11-02, turno 1 del lote — `PND-095`.** El cuerpo del pendiente que el dueño mandó citaba
+   `dist/urazuke/catalog.js`, que es la **copia compilada** dentro de la herramienta y está
+   atrasada: informaba tres chequeos del peldaño 13 y la definición que el método publica tiene
+   cinco, en dos artefactos. Un número que ya había entrado al paper del experimento. El conductor
+   lo registró en su bitácora con la forma exacta del defecto: *leyó la copia compilada y la llamó
+   «la compuerta»*.
+3. **2026-11-02, turno 3 del lote — `PND-097`.** El brazo del experimento fijó
+   `catalog_version: forge-compiled/base-schema-1`, el congelado del esquema 1, donde el único
+   chequeo del peldaño 10 es que el archivo exista. Vio **verde** con trece casos manuales escritos
+   y **cero** ejecutados por una persona. Con el catálogo publicado, el mismo árbol sale **rojo**:
+   `manual_cases_per_profile` es `required` desde `2026.10.1`.
+
+**Y el daño que hizo el tercero es el que convierte esto en pendiente.** El dueño vio ese verde,
+concluyó —razonablemente— que el peldaño 10 avanzaba hueco, y me instruyó a **relajar un
+requisito publicado** para arreglarlo. El requisito ya lo arreglaba. O sea que el atraso invisible
+no sólo deja pasar un peldaño: **produce una instrucción fundada en una premisa falsa**, y la
+premisa falsa viene de una copia congelada y no del método. Quedó escrito así, por el dueño, al
+aceptar el lote: *«relajar un requisito publicado para arreglar algo que el requisito ya arreglaba
+habría sido el peor resultado posible de este lote»*.
+
+**Y una quinta, encontrada mientras se escribía esta entrada, que es la más limpia de las cinco.**
+El recibo de evidencia del propio cierre de este lote (`RCP-082`, `node --test`, 487 de 487) sale
+sellado con `gates_source: compiled` y `gates_version: forge-compiled/base-schema-1`. Universo
+enumerado, que es lo que D-064 exige para una afirmación de este tipo: los **82** recibos del
+almacén de este proyecto; **66** llevan el sello del conjunto de reglas y **los 66** dicen eso
+mismo; los otros 16 son anteriores al sello y no dicen nada. O sea que el instrumento que guarda la
+evidencia del método estampa, en **cada** recibo, una identidad que el propio método **prohíbe**
+fijar —y la estampa en el casillero donde iría una `catalog_version`, así que se lee igual que una
+versión—. Nadie tenía que buscarla: estaba impresa ochenta y dos veces en el registro que D-080
+instaló para auditar a los demás instrumentos.
+
+**Lo que el dato YA tiene, medido, para que el pendiente no vuelva a pedir lo que existe.**
+`gates/schema.json#pinning` declara desde `2026.10.7`: el par que se fija (`catalog_version` +
+`content_hash`), que el consumidor lo **registre** «en lo que escriba para el proyecto», que lo
+**contraste** contra el registro de versiones, que al no coincidir sea **rojo** diciendo cuál de
+los dos se movió, que esté **prohibido** fijar a una identidad compilada que el método no puede
+nombrar, y cómo se **computa el diferencial** sin red (`since_version` de cada entrada agregada
+después del congelado). El diferencial funciona: `node build/version_fijada.mjs` → *«8 idiomas, 16
+textos, 75 entradas agregadas, 0 hallazgos; diferencial 2026.10.1 → 2026.10.15: 43 entradas, 0
+evaluadores requeridos»*. Nada de esto hay que inventarlo.
+
+**Lo que NO tiene, y es el hueco exacto.** Tres mediciones del 2026-11-02:
+
+- **El diferencial se computa cuando alguien decide un upgrade, que es tarde.** El dato lo pide en
+  `upgrade.before_deciding` —*«compute the differential and show it»*— y en ninguna parte pide que
+  el proyecto **diga** dónde está parado mientras no haya ningún upgrade en curso. El atraso se
+  vuelve visible justo en el momento en que ya no importa que haya sido invisible.
+- **Ningún peldaño lo pide.** `grep -o catalog_version gates/steps.json` → **0**; recorriendo los
+  veinticuatro peldaños, **0 de 24** nombran la versión fijada entre sus artefactos o sus preguntas
+  de verificación. En la prosa castellana aparece en **dos** contratos —el 2, que dice qué fijar, y
+  el 10, que desde D-083 manda mirarla cuando un verde sorprende— y en la Parte A. O sea: el método
+  ya sabe que esto importa y lo dice en prosa, y no lo convirtió en artefacto de ningún peldaño.
+- **Y la asimetría productor/consumidor que lo cierra (SQ 14):** el dato declara la forma de la
+  configuración de proyecto que la compuerta lee —`project_config.fields`, **siete** campos:
+  `frontend`, `real_users`, `switches`, `switched_off`, `thresholds`, `tools`,
+  `communication_depth`— y **ninguno es el par fijado**. El método le pide al consumidor que
+  registre el par «en lo que escriba para el proyecto» y el único archivo de proyecto cuya forma
+  el método declara **no tiene dónde ponerlo**. Un requisito que el productor declara y el
+  consumidor no tiene dónde cumplir es la familia de `PND-056` y D-069, en la capa de la
+  configuración.
+
+**La precisión que afina el planteo, y hay que leerla antes de elegir una salida.** El problema
+**no** está entre dos versiones publicadas: el diferencial de `2026.10.1` a `2026.10.15` agrega
+**43 entradas y 0 evaluadores requeridos**, así que ningún salto entre publicadas traba hoy un
+peldaño —D-068 ya lo había medido—. El único caso que traba, y es el que se midió dos veces en
+este lote, es el del proyecto que **nunca fijó una versión publicada**: se quedó en un congelado
+interno del consumidor. Entonces lo que un proyecto necesita saber primero no es «cuántas versiones
+me atrasé» sino **«¿estoy fijado a algo que el método puede nombrar?»**, y la respuesta «no» tiene
+que ser legible sin salir del proyecto.
+
+**Las salidas posibles, sin elegir ninguna.** Son del dueño y se registran para que la decisión sea
+entre opciones escritas y no entre lo que se le ocurra a quien pase:
+
+1. **Sólo la configuración.** El par fijado entra como campo de `project_config.fields`, con la
+   obligación de que sea una `catalog_version` que el registro de versiones contenga. Barato y
+   mecánico; sube una versión del catálogo. No hace nada por el proyecto cuyo consumidor no escribe
+   esa configuración.
+2. **La configuración más un artefacto de peldaño.** Lo anterior, y además el peldaño 2 —que es
+   donde se fija— pide un artefacto del proyecto que declare la versión fijada, su huella, la
+   vigente el día que se miró y el atraso en entradas del diferencial. Es lo único que lo vuelve
+   verificable por máquina desde adentro del proyecto, y es también lo que más le cuesta a un
+   lector que sigue el método con lápiz y papel.
+3. **La configuración más una verificación del dueño.** Lo de (1), y el peldaño 2 suma una
+   pregunta de verificación —«¿contra qué `catalog_version` corre este proyecto, y está en el
+   registro de versiones?»— sin artefacto nuevo. Más liviano que (2) y no atrapa al que no mira.
+
+Y una cuarta, que no es alternativa sino aviso y conviene tenerla al lado: **que el método declare
+qué informa un proyecto fijado a una identidad que el registro no contiene.** Hoy el dato lo
+**prohíbe** y no dice qué se informa cuando pasa, así que pasa en silencio; es `CQ-19.1` —un
+instrumento que no pudo mirar informa que no pudo, nunca cero— aplicado a la propia fijación.
+
+**Criterio de aceptación.** Dado un proyecto que corre las compuertas del método, cuando el dueño
+de ese proyecto pregunta «contra qué definición me estoy midiendo y cuánto me atrasé», entonces la
+respuesta sale del propio proyecto, con la versión fijada, su huella y el atraso medido contra el
+registro de versiones; y si la identidad fijada no está en el registro, el proyecto lo **dice** en
+vez de quedarse callado. Verificable sin leer código: abrir lo que el proyecto declara y
+preguntarle eso. Y lo que desde acá **no** se va a poder verificar, dicho antes de empezar: que una
+herramienta **cumpla** la obligación se mide en el repositorio de esa herramienta, no en éste
+(D-068).
+
+**Perfiles afectados y criterio por perfil.**
+
+- *P1 (herramienta consumidora):* dada una herramienta que fija, esa herramienta tiene un campo
+  declarado dónde escribir el par fijado, y no tiene que inventarse dónde ponerlo.
+- *P4 (dueño de un proyecto que corre el método):* dada esa persona, puede saber, sin preguntarle a
+  nadie y sin salir de su proyecto, contra qué versión se mide y cuánto se atrasó.
+- *P6 (lector humano que entra por el documento principal):* dada esa persona, se entera de que un
+  verde puede venir de una definición vieja **antes** de festejarlo, y no después de que alguien lo
+  mida de afuera.
+
+**Depende de:** nada. `PND-055` y `PND-056` están cerrados y son sus antecedentes.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -7937,16 +8542,16 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 23 | 5 | 18 | 1 |
+| G-API | 24 | 6 | 18 | 1 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 35 | 23 | 12 | 11 |
+| G-METODO | 42 | 23 | 19 | 11 |
 | G-TRAZABILIDAD | 4 | 2 | 2 | 0 |
-| **total** | **91** | **43** | **48** | **15** |
+| **total** | **99** | **44** | **55** | **15** |
 
-Noventa y una entradas, `PND-001` a `PND-091`. Veintidós vienen de la auditoría externa
+Noventa y nueve entradas, `PND-001` a `PND-099`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,

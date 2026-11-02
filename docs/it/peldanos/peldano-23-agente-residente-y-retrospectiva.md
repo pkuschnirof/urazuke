@@ -177,6 +177,11 @@ l'agente:
 > which step is modified, how, and which incident justifies it. Write it to
 > `docs/RETROSPECTIVE_[date].md`.
 >
+> Close with the fixed key `findings_by_destination`: every finding of this retrospective
+> assigned to `product` if the defect is in the system, `method` if it is in the method being
+> followed, `tool` if it is in the tool that runs it, and written into the register of that
+> destination. A finding whose destination nobody assigned leaves the retrospective open.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -195,6 +200,12 @@ l'agente:
 > alla scala: quale gradino si modifica, come, e quale incidente lo giustifica. Scrivila in
 > `docs/RETROSPECTIVE_[data].md`.
 >
+> Chiudi con la chiave fissa `findings_by_destination`: ogni rilievo di questa retrospettiva
+> assegnato a `product` se il difetto è del sistema, `method` se è del metodo che si sta
+> seguendo, `tool` se è dello strumento che lo esegue, e scritto nel registro di quella
+> destinazione. Un rilievo la cui destinazione nessuno ha assegnato lascia la retrospettiva
+> aperta.
+>
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
 > elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
@@ -211,12 +222,18 @@ manca; la clausola di completezza per i numeri che non ha (chiedere o marcare co
 **almeno una proposta concreta di modifica alla scala**, perché una retrospettiva che non cambia
 nulla non è stata una retrospettiva.
 
+E da D-080, la destinazione di ogni rilievo. La retrospettiva è il controllo che produce più
+rilievi di metodo —è per questo che c'è—, quindi è quella che paga più caro che finiscano tutti nel
+registro del prodotto.
+
 ## 3. Risultato atteso
 
 - `docs/RESIDENT_AGENT.md`: mappa del sistema, perimetro scelto, credenziale associata a una
   persona, procedura di approvazione, e la prova di rifiuto registrata nel log.
 - `docs/RETROSPECTIVE_[data].md`: i numeri con la loro fonte, gli incidenti ricondotti ai gradini,
   e almeno una proposta di modifica alla scala con la sua giustificazione.
+- Nella retrospettiva, inoltre, `findings_by_destination`: ogni rilievo con la sua destinazione
+  —prodotto, metodo o strumento— e scritto nel registro di quella destinazione.
 
 ## 4. Verifica di completezza
 
@@ -232,6 +249,8 @@ nulla non è stata una retrospettiva.
   non è stata una retrospettiva.
 - Il modello che costruisce è cambiato dall'ultima retrospettiva? Se sì, c'è una revisione breve
   di quali contratti rendono ancora uguale e quali no?
+- Ogni rilievo della retrospettiva ha destinazione? Una retrospettiva che manda tutto al registro
+  del prodotto non migliora il metodo, e migliorare il metodo è ciò per cui esiste.
 
 ## 5. Segnali d'allarme
 

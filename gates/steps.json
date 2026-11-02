@@ -473,6 +473,50 @@
           "label": "the result per usability rule, with its declared exceptions",
           "since_schema": 2,
           "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/CODE_QUALITY.md",
+          "must_contain": [
+            "criteria_total.{0,20}\\d",
+            "criteria_verified_by_a_program.{0,20}\\d",
+            "criteria_verified_by_a_person.{0,20}\\d",
+            "verification_debt[\\s\\S]{0,40}(none|pending_verifier)"
+          ],
+          "label": "the compliance document declares its denominator and who verified: how many criteria apply, how many a program verified, how many a person signed, and the debt with its pending verifier",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
+        },
+        {
+          "path": "docs/CODE_QUALITY.md",
+          "must_contain": [
+            "verified_by",
+            "(auto_gate|matrix_query|e2e_per_profile|manual_case)"
+          ],
+          "label": "every criterion declares the instrument that judged it, with the vocabulary the data declares, so that one judged by a person cannot be read as one a program verified",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
+        },
+        {
+          "path": "docs/USABILITY.md",
+          "must_contain": [
+            "criteria_total.{0,20}\\d",
+            "criteria_verified_by_a_program.{0,20}\\d",
+            "criteria_verified_by_a_person.{0,20}\\d",
+            "verification_debt[\\s\\S]{0,40}(none|pending_verifier)"
+          ],
+          "label": "the compliance document declares its denominator and who verified: how many criteria apply, how many a program verified, how many a person signed, and the debt with its pending verifier",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
+        },
+        {
+          "path": "docs/USABILITY.md",
+          "must_contain": [
+            "verified_by",
+            "(auto_gate|matrix_query|e2e_per_profile|manual_case)"
+          ],
+          "label": "every criterion declares the instrument that judged it, with the vocabulary the data declares, so that one judged by a person cannot be read as one a program verified",
+          "since_schema": 2,
+          "since_version": "2026.10.15"
         }
       ],
       "verify": [
@@ -502,6 +546,18 @@
           "since_schema": 2,
           "since_version": "2026.10.12",
           "anchor": 3
+        },
+        {
+          "text": "Take a criterion that reads as met and ask who said so: if its instrument is a manual case, is there a name and a date, instead of a criterion nobody judged reading as one that was verified?",
+          "since_schema": 2,
+          "since_version": "2026.10.15",
+          "decision": "D-084"
+        },
+        {
+          "text": "Does criteria_total count the rules nobody has looked at yet, rather than only the ones that were verified?",
+          "since_schema": 2,
+          "since_version": "2026.10.15",
+          "decision": "D-084"
         }
       ],
       "evaluators": [
@@ -539,6 +595,28 @@
         {
           "path": "docs/MANUAL_TESTS.md",
           "label": "casos de prueba manual"
+        },
+        {
+          "path": "docs/MANUAL_TESTS.md",
+          "must_contain": [
+            "cases_written.{0,20}\\d",
+            "cases_executed_by_a_person.{0,20}\\d",
+            "execution_debt[\\s\\S]{0,40}(none|pending_verifier)"
+          ],
+          "label": "the manual tests separate the cases that are written from the ones a person executed, and the gap travels as a declared debt with its pending verifier",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
+        },
+        {
+          "path": "docs/SCREEN_WALKTHROUGH.md",
+          "must_contain": [
+            "screens_total.{0,20}\\d",
+            "screens_walked.{0,20}\\d",
+            "walkthrough_findings.{0,20}\\d"
+          ],
+          "label": "the agent walked the screens itself to find defects, with the denominator of how many there are, and that walk is not the execution a person owes",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
         }
       ],
       "verify": [
@@ -550,6 +628,24 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "anchor": 4
+        },
+        {
+          "text": "Does cases_executed_by_a_person come from the signed execution tables rather than from the reading of the agent, and does the debt name who owes it and since when?",
+          "since_schema": 2,
+          "since_version": "2026.10.14",
+          "decision": "D-082"
+        },
+        {
+          "text": "Does the walk count the screens it could not open inside the total, with their reason, instead of leaving them out of the denominator?",
+          "since_schema": 2,
+          "since_version": "2026.10.14",
+          "decision": "D-082"
+        },
+        {
+          "text": "If nobody has signed a single case yet, does the text of the step answer the same thing the gate answers -- that the step does not advance -- instead of leaving the reader to deduce it?",
+          "since_schema": 2,
+          "since_version": "2026.10.15",
+          "decision": "D-083"
         }
       ],
       "evaluators": [
@@ -625,6 +721,15 @@
             "blind|ciego"
           ],
           "label": "la rutina del reporte honesto"
+        },
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "the routine assigns each finding its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
         }
       ],
       "verify": [
@@ -641,6 +746,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "anchor": 5
+        },
+        {
+          "text": "Does every finding that is not about the product carry its destination, and was its pending item opened in the register of that destination?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
         }
       ],
       "evaluators": [
@@ -695,6 +806,78 @@
           "label": "the audit reproduces receipts and declares which model performed it",
           "since_schema": 2,
           "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "auditor_choice.{0,40}(different_model|same_model_declared|tool_constraint)"
+          ],
+          "label": "the audit declares why this auditor and not another one, under its fixed key and with one of its declared values",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "evidence_register_health"
+          ],
+          "label": "the audit measured the health of the register of the evidence, which is a dimension of it and not optional",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "every finding of the audit carries its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "audit_completeness.{0,20}\\bcomplete\\b",
+            "findings_announced.{0,20}\\d",
+            "findings_written.{0,20}\\d"
+          ],
+          "label": "the audit declares itself complete under its fixed key, with how many findings it announced and how many it wrote",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "dimension_grades"
+          ],
+          "label": "the audit carries the grade of every dimension it audited, under its fixed key",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "receipts_reproduced[\\s\\S]{0,60}(reproduces|does_not_reproduce)"
+          ],
+          "label": "the audit reproduced at least one receipt and wrote its verdict, which a receipt that was only read does not have",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
+        },
+        {
+          "path": "docs/AUDIT_*.md",
+          "fresh_days": 60,
+          "must_contain": [
+            "not_audited[\\s\\S]{0,40}(none|with_pending)"
+          ],
+          "label": "the audit declares what it did not audit, and nothing left out of it travels without its pending item",
+          "since_schema": 2,
+          "since_version": "2026.10.14"
         }
       ],
       "verify": [
@@ -712,6 +895,42 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "decision": "D-042"
+        },
+        {
+          "text": "Does the report declare, under auditor_choice, why this auditor and not another one, and does it say so with those words when a limit of the tool chose it?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-079"
+        },
+        {
+          "text": "Does the health of the register of the evidence come with the command that measured each figure, and does a figure that could not be measured say so instead of reading as zero?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
+        },
+        {
+          "text": "Does every finding carry its destination, and was its pending item opened in the register of that destination?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
+        },
+        {
+          "text": "Do findings_announced and findings_written say the same figure, counted by hand against the findings the report actually wrote?",
+          "since_schema": 2,
+          "since_version": "2026.10.14",
+          "decision": "D-081"
+        },
+        {
+          "text": "Does every part the report names as not audited have its pending item open?",
+          "since_schema": 2,
+          "since_version": "2026.10.14",
+          "decision": "D-081"
+        },
+        {
+          "text": "Is there at least one receipt with its verdict, with the command and the output, rather than a receipt that was only read?",
+          "since_schema": 2,
+          "since_version": "2026.10.14",
+          "decision": "D-081"
         }
       ],
       "evaluators": [
@@ -1154,6 +1373,16 @@
           "label": "the retrospective names the model the system was built with",
           "since_schema": 2,
           "since_version": "2026.10.1"
+        },
+        {
+          "path": "docs/RETROSPECTIVE_*.md",
+          "fresh_days": 120,
+          "must_contain": [
+            "findings_by_destination"
+          ],
+          "label": "every finding of the retrospective carries its destination: product, method or tool",
+          "since_schema": 2,
+          "since_version": "2026.10.13"
         }
       ],
       "verify": [
@@ -1170,6 +1399,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "decision": "D-042"
+        },
+        {
+          "text": "Does every finding of the retrospective carry its destination, so that what belongs to the method and to the tool does not end up in the product's register?",
+          "since_schema": 2,
+          "since_version": "2026.10.13",
+          "decision": "D-080"
         }
       ],
       "evaluators": [

@@ -76,6 +76,27 @@ That is enough. Everything else is in the system, and it is the agent that is go
 
 ---
 
+### The prompts of the lessons are the course version, not the contract one
+
+Every lesson carries the prompt you are going to paste to the agent, and it is worth knowing what it
+is and what it is not. The prompt of the lesson is the **course version**: shorter, with a single
+focus, written so that you learn the step without getting everything at once the first time. The
+**complete** prompt of each step lives in its contract (`peldanos/peldano-NN-....md`), and every
+lesson that carries a prompt names it above with its file. Both exist on purpose and they do not say
+the same thing: the one in the contract carries, besides the request, the clauses the method kept
+adding -- the form in which a decision has to be asked of you, the literal reproduction of a
+receipt, the declarations a gate reads -- and the lesson spares you those so they do not cover the
+concept.
+
+And the practical rule, which is the one that matters: **to learn, the lesson's; for a real system,
+the contract's.** If your course project is a system that is going to have users -- and the manual
+recommends that it be one -- when you finish the lesson go back to the contract and paste its
+complete prompt. This is written here because no gate can catch it: the ones that count clauses
+count those of the corpus prompts and not those of the lessons. What `build/prompts_didacticos.mjs`
+does check is that the difference stays **declared**: that every lesson with a prompt names its
+contract, that the file it names exists, and that the eight versions of the manual have the same
+prompts in the same lessons.
+
 ## The normalization stretch: lessons N0 to N7
 
 These eight lessons are the stretch the first part did not have. The first four are reading:
@@ -145,6 +166,9 @@ three small prior projects.
 
 ### Lesson N1 — The working agreement for a legacy system
 
+**The contract of this station:** `EVOLUTIVO_CORRECTIVO.md`, station N1. The prompt below is the
+course version, shorter.
+
 **What you need to understand.** To the eight rules of lesson 1, five are added that exist because a
 model faced with somebody else's code does three things by reflex: it reorders it, it "fixes" it
 wherever it looks wrong, and it assumes that whatever the code does differently from what it would
@@ -203,6 +227,9 @@ this system no real send leaves the test environment: in test, reminders go to a
 contract". The second is the producer/consumer map peeking in early, and that is fine.
 
 ### Lesson N2 — Reading the system: the recovered map and the discrepancies
+
+**The contract of this station:** `EVOLUTIVO_CORRECTIVO.md`, station N2. The prompt below is the
+course version, shorter.
 
 **What you need to understand.** It is the lesson that gives the most value per hour of the whole
 course. In lesson 2 the project file and the tree came out of the survey; here they come out of
@@ -303,6 +330,9 @@ surprises her most, and she decides it in a minute: "that is never deleted again
 
 ### Lesson N3 — The audit as an inventory of the debt
 
+**The contract of this station:** `EVOLUTIVO_CORRECTIVO.md`, station N3. The prompt below is the
+course version, shorter.
+
 **What you need to understand.** Lesson 13, but at the beginning instead of at the end, and with
 one more field per finding: whether it blocks (it has to be fixed before any change), whether it is
 paid when the module is touched, or whether it can wait. Without that field, an audited legacy
@@ -366,6 +396,9 @@ bug). As "can wait": an old dependency with no known vulnerability, and the dupl
 code in three places.
 
 ### Lesson N4 — The safety belt
+
+**The contract of this station:** `EVOLUTIVO_CORRECTIVO.md`, station N4. The prompt below is the
+course version, shorter.
 
 **What you need to understand.** It is the hard gate of this path: until the belt is green, not one
 line of functionality is changed. The belt has five pieces: a test environment with anonymised
@@ -465,6 +498,9 @@ passes.
 
 ### Lesson N5 — Locks and producer/consumer map from the code
 
+**The contract of this station:** `EVOLUTIVO_CORRECTIVO.md`, station N5. The prompt below is the
+course version, shorter.
+
 **What you need to understand.** Lessons 14 and 11, done by inventory over what already exists,
 before changing anything. The agent is going to find more in the code than the business remembers
 the system does outwards: sends, deletions, nightly jobs. The comparison between the two lists is
@@ -526,6 +562,9 @@ somebody changes a column on it, the sheet breaks silently.
 
 ### Lesson N6 — Sizing with real numbers
 
+**The contract of this station:** `EVOLUTIVO_CORRECTIVO.md`, station N6. The prompt below is the
+course version, shorter.
+
 **What you need to understand.** Lesson 3 with one advantage: the primary data are in the database
 and in the logs. They are not asked for, they are measured, with a meter with a test (lesson 7).
 The practice manager supplies only what is nowhere to be found: how much they expect to grow, and
@@ -580,6 +619,9 @@ the appointments. Asymmetric decision: the message-sending interface gets a queu
 is not needed today, because the deposit (lesson R2) is going to use the same channel.
 
 ### Lesson N7 — The normalization backlog, paired with the client's request
+
+**The contract of this station:** `EVOLUTIVO_CORRECTIVO.md`, station N7. The prompt below is the
+course version, shorter.
 
 **What you need to understand.** Lesson 5 with two more columns. A single queue where the debt
 (audit, discrepancies, screens, pending locks, decisions from the sizing) and the client's request
@@ -641,6 +683,9 @@ is said so.
 ## The loop on the legacy system: lessons R1 and R2
 
 ### Lesson R1 — The first block: the bug, in corrective mode
+
+**The contract of this loop:** `EVOLUTIVO_CORRECTIVO.md`, the loop in corrective and evolutive
+mode. The prompt below is the course version, shorter.
 
 **What you need to understand.** A corrective pending item is a known bug. In lesson 8 the red was
 manufactured; here the red is the bug itself: the test that reproduces the failure, driving the

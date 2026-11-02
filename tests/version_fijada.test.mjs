@@ -93,6 +93,53 @@ test('C: el diferencial desde la primera version publicada es la historia medida
     '2026.10.12 CQ-20.2',
     '2026.10.12 Does every instrument this step decides with carry its receipt: which set it expected to walk next to how much of it it walked, what it depends on, and what it reports when it could not look (CQ-19)?',
     '2026.10.12 Does every verification declare the privilege it ran with, and does the probe that exercises a destructive operation run where its statement cannot land, with the state counted before and after (CQ-20)?',
+    // Las diez de 2026.10.13 son D-079 y D-080: tres artefactos del informe de auditoria, uno
+    // de la rutina del reporte, uno de la retrospectiva, y sus cinco preguntas. Tres entradas
+    // comparten el mismo `que` porque son tres exigencias sobre el MISMO archivo, y el
+    // diferencial cuenta entradas y no rutas: una ruta que ya existia con dos exigencias y hoy
+    // tiene cinco le agrega trabajo a un upgrade, y una cuenta por ruta lo esconderia.
+    '2026.10.13 Does every finding carry its destination, and was its pending item opened in the register of that destination?',
+    "2026.10.13 Does every finding of the retrospective carry its destination, so that what belongs to the method and to the tool does not end up in the product's register?",
+    '2026.10.13 Does every finding that is not about the product carry its destination, and was its pending item opened in the register of that destination?',
+    '2026.10.13 Does the health of the register of the evidence come with the command that measured each figure, and does a figure that could not be measured say so instead of reading as zero?',
+    '2026.10.13 Does the report declare, under auditor_choice, why this auditor and not another one, and does it say so with those words when a limit of the tool chose it?',
+    '2026.10.13 docs/AUDIT_*.md',
+    '2026.10.13 docs/AUDIT_*.md',
+    '2026.10.13 docs/AUDIT_*.md',
+    '2026.10.13 docs/RETROSPECTIVE_*.md',
+    '2026.10.13 docs/WORKING_AGREEMENT.md',
+    // Las once de 2026.10.14 son D-081 y D-082, y son las dos mitades del mismo hueco: un
+    // peldano cuyo trabajo esta afuera. Cuatro exigencias mas sobre el informe de auditoria
+    // (la completitud declarada con sus dos cifras, las notas por dimension, el veredicto de un
+    // recibo reproducido, lo no auditado con su pendiente) y tres preguntas; y en el peldano 10,
+    // la deuda de ejecucion sobre el archivo de casos, la recorrida agentica como artefacto
+    // NUEVO -- la unica ruta nueva de este lote -- y sus dos preguntas.
+    '2026.10.14 Do findings_announced and findings_written say the same figure, counted by hand against the findings the report actually wrote?',
+    '2026.10.14 Does cases_executed_by_a_person come from the signed execution tables rather than from the reading of the agent, and does the debt name who owes it and since when?',
+    '2026.10.14 Does every part the report names as not audited have its pending item open?',
+    '2026.10.14 Does the walk count the screens it could not open inside the total, with their reason, instead of leaving them out of the denominator?',
+    '2026.10.14 Is there at least one receipt with its verdict, with the command and the output, rather than a receipt that was only read?',
+    '2026.10.14 docs/AUDIT_*.md',
+    '2026.10.14 docs/AUDIT_*.md',
+    '2026.10.14 docs/AUDIT_*.md',
+    '2026.10.14 docs/AUDIT_*.md',
+    '2026.10.14 docs/MANUAL_TESTS.md',
+    '2026.10.14 docs/SCREEN_WALKTHROUGH.md',
+    // Las siete de 2026.10.15 son D-083 y D-084, y las dos son la misma pregunta sobre un
+    // peldano cuyo veredicto depende de una persona. Del peldano 10 entra UNA pregunta y nada
+    // mas: el requisito ya estaba (el ancla 4), lo que faltaba era que el texto contestara lo
+    // mismo que contesta la compuerta, y eso es prosa. Del peldano 9 entran cuatro exigencias
+    // sobre los dos documentos de cumplimiento -- dos por documento: la cabeza con su
+    // denominador y el verificador por criterio -- y sus dos preguntas. Son los DOS documentos
+    // y no solo el que nombro el hallazgo, porque el dato dice que cuatro reglas de calidad de
+    // codigo tambien las juzga un caso manual.
+    '2026.10.15 Does criteria_total count the rules nobody has looked at yet, rather than only the ones that were verified?',
+    '2026.10.15 If nobody has signed a single case yet, does the text of the step answer the same thing the gate answers -- that the step does not advance -- instead of leaving the reader to deduce it?',
+    '2026.10.15 Take a criterion that reads as met and ask who said so: if its instrument is a manual case, is there a name and a date, instead of a criterion nobody judged reading as one that was verified?',
+    '2026.10.15 docs/CODE_QUALITY.md',
+    '2026.10.15 docs/CODE_QUALITY.md',
+    '2026.10.15 docs/USABILITY.md',
+    '2026.10.15 docs/USABILITY.md',
     '2026.10.4 Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?',
     '2026.10.5 docs/GLOSSARY.md',
     '2026.10.5 docs/PROFILES.md',
@@ -160,8 +207,14 @@ test('E: la comprobacion reviso algo, y lo dice con su cuenta', () => {
   // Treinta y cinco el 2026-10-27 por la manana; la trigesimo sexta es UX-28, la primera REGLA
   // que el metodo agrego despues de que esta maquinaria existiera (D-070); la trigesimo septima es
   // el primer UMBRAL, end_users_outside_the_organisation (D-076). Las diez que siguen son de
-  // D-078: dos reglas, sus seis CARAS y las dos preguntas de verificacion de sus peldanos.
-  assert.equal(arbol.entradas.length, 47, 'las entradas agregadas despues del congelado, medidas el 2026-11-01');
+  // D-078: dos reglas, sus seis CARAS y las dos preguntas de verificacion de sus peldanos. Las
+  // diez ultimas son de D-079 y D-080, y son las primeras que no tocan el Anexo H: cinco
+  // artefactos y cinco preguntas sobre los peldanos 12, 13 y 23, que exigen lo que un control
+  // tiene que DECLARAR al cerrar y no lo que el sistema tiene que ser. Las once de D-081 y
+  // D-082 son las dos mitades de un peldano cuyo trabajo esta afuera; las siete ultimas son de
+  // D-083 y D-084, y la asimetria entre ellas es el dato: del peldano 10 entra una sola
+  // pregunta, porque lo que faltaba ahi era prosa y no un requisito.
+  assert.equal(arbol.entradas.length, 75, 'las entradas agregadas despues del congelado, medidas el 2026-11-02');
   assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['CQ-19', 'CQ-20', 'UX-28'],
     'una regla agregada despues del congelado entra en el diferencial: sin esto un upgrade la omitia en silencio');
   // Y una cara, por el mismo argumento una capa adentro: se puede apagar sola, asi que un

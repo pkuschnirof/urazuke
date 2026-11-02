@@ -172,6 +172,11 @@ o agente:
 > which step is modified, how, and which incident justifies it. Write it to
 > `docs/RETROSPECTIVE_[date].md`.
 >
+> Close with the fixed key `findings_by_destination`: every finding of this retrospective
+> assigned to `product` if the defect is in the system, `method` if it is in the method being
+> followed, `tool` if it is in the tool that runs it, and written into the register of that
+> destination. A finding whose destination nobody assigned leaves the retrospective open.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -190,6 +195,11 @@ o agente:
 > como, e que incidente o justifica. Escreva em `docs/RETROSPECTIVE_[data].md`. Responda no meu
 > idioma.
 >
+> Feche com a chave fixa `findings_by_destination`: cada achado desta retrospectiva atribuído a
+> `product` se o defeito é do sistema, `method` se é do método que se está seguindo, `tool` se é
+> da ferramenta que o roda, e escrito no registro desse destino. Um achado cujo destino ninguém
+> atribuiu deixa a retrospectiva aberta.
+>
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
 > enumerados; um parágrafo de no máximo cinco linhas que os ligue e deixe ver a dúvida; a pergunta
@@ -203,12 +213,18 @@ de completude para os números que ele não tem (pedir ou marcar como estimativa
 uma proposta concreta de mudança à escada**, porque uma retrospectiva que não muda nada não foi
 uma retrospectiva.
 
+E desde D-080, o destino de cada achado. A retrospectiva é o controle que produz mais achados de
+método —é para isso que está—, então é a que paga mais caro que todos terminem no registro do
+produto.
+
 ## 3. Resultado esperado
 
 - `docs/RESIDENT_AGENT.md`: mapa do sistema, escopo escolhido, credencial mapeada a uma pessoa,
   procedimento de aprovação, e a prova de recusa registrada no log.
 - `docs/RETROSPECTIVE_[data].md`: os números com sua fonte, os incidentes mapeados a degraus, e
   pelo menos uma proposta de mudança à escada com sua justificativa.
+- Na retrospectiva, além disso, `findings_by_destination`: cada achado com o seu destino —produto,
+  método ou ferramenta— e escrito no registro desse destino.
 
 ## 4. Verificação de completude
 
@@ -223,6 +239,8 @@ uma retrospectiva.
   foi uma retrospectiva.
 - O modelo que constrói mudou desde a última retrospectiva? Se sim, há uma revisão curta de quais
   contratos continuam rendendo igual e quais não?
+- Cada achado da retrospectiva tem destino? Uma retrospectiva que manda tudo para o registro do
+  produto não melhora o método, e melhorar o método é para o que ela existe.
 
 ## 5. Sinais de alerta
 

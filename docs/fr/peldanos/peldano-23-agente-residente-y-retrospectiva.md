@@ -177,6 +177,11 @@ faites, pas l'agent :
 > which step is modified, how, and which incident justifies it. Write it to
 > `docs/RETROSPECTIVE_[date].md`.
 >
+> Close with the fixed key `findings_by_destination`: every finding of this retrospective
+> assigned to `product` if the defect is in the system, `method` if it is in the method being
+> followed, `tool` if it is in the tool that runs it, and written into the register of that
+> destination. A finding whose destination nobody assigned leaves the retrospective open.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -195,6 +200,11 @@ faites, pas l'agent :
 > l'invente pas. Termine par une proposition concrète de changement de l'échelle : quel échelon est
 > modifié, comment, et quel incident le justifie. Écris-la dans `docs/RETROSPECTIVE_[date].md`.
 >
+> Clos avec la clé fixe `findings_by_destination` : chaque constat de cette rétrospective assigné
+> à `product` si le défaut est dans le système, `method` s'il est dans la méthode suivie, `tool`
+> s'il est dans l'outil qui l'exécute, et écrit dans le registre de cette destination. Un constat
+> dont personne n'a assigné la destination laisse la rétrospective ouverte.
+>
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
 > nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
@@ -210,12 +220,18 @@ tombe dans aucun est un échelon qui manque ; la clause de complétude pour les 
 pas (demander ou marquer comme estimation) ; et **au moins une proposition concrète de changement
 de l'échelle**, parce qu'une rétrospective qui ne change rien n'a pas été une rétrospective.
 
+Et depuis D-080, la destination de chaque constat. La rétrospective est le contrôle qui produit le
+plus de constats sur la méthode — c'est pour cela qu'elle existe —, donc c'est celle qui paie le
+plus cher que tous finissent dans le registre du produit.
+
 ## 3. Résultat attendu
 
 - `docs/RESIDENT_AGENT.md` : carte du système, périmètre choisi, identifiant rattaché à une
   personne, procédure d'approbation, et la preuve du refus consignée dans le journal.
 - `docs/RETROSPECTIVE_[date].md` : les chiffres avec leur source, les incidents rapportés aux
   échelons, et au moins une proposition de changement de l'échelle avec sa justification.
+- Dans la rétrospective, en plus, `findings_by_destination` : chaque constat avec sa destination
+  — produit, méthode ou outil — et écrit dans le registre de cette destination.
 
 ## 4. Vérification de complétude
 
@@ -233,6 +249,9 @@ de l'échelle**, parce qu'une rétrospective qui ne change rien n'a pas été un
   change rien, ce n'était pas une rétrospective.
 - Le modèle qui construit a-t-il changé depuis la dernière rétrospective ? Si oui, y a-t-il une
   courte revue de quels contrats rendent encore pareil et lesquels non ?
+- Chaque constat de la rétrospective a-t-il une destination ? Une rétrospective qui envoie tout
+  dans le registre du produit n'améliore pas la méthode, et améliorer la méthode est ce pour quoi
+  elle existe.
 
 ## 5. Signaux d'alarme
 

@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.12** - schema **2**
-- content fingerprint `91f3ec00a638322f...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.15** - schema **2**
+- content fingerprint `e1b415a8a01ff391...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -25,7 +25,7 @@ What a project pins, and what it costs to change it. A project pins ONE catalog_
 
 For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.12`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.15`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -54,6 +54,9 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.10** (2026-10-27, D-073) -- `280d8745797b66f2...`
 - **2026.10.11** (2026-10-29, D-076) -- `c17a09557a5f216b...`
 - **2026.10.12** (2026-11-01, D-078) -- `91f3ec00a638322f...`
+- **2026.10.13** (2026-11-02, D-079, D-080) -- `b719312dc8eaca97...`
+- **2026.10.14** (2026-11-02, D-081, D-082) -- `f11bfce27e8d82b4...`
+- **2026.10.15** (2026-11-02, D-083, D-084) -- `e1b415a8a01ff391...`
 
 ## Pinning: what a tool that freezes the method owes
 
@@ -77,7 +80,7 @@ and every declared version also has an address of its own: `<canonical base>/<re
 
 - The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.
 - Where it is declared: Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.
-- This version lives at `gates/2026.10.12.json` under the canonical base, and the first version with an address is **2026.10.1**.
+- This version lives at `gates/2026.10.15.json` under the canonical base, and the first version with an address is **2026.10.1**.
 - No purge: Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.
 - What the address promises: The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.
 - Not guaranteed: Byte identity is not promised, only the covered content, for the reason above. And an address on this host is not a substitute for the ledger: if this host is compromised, both the file and its hash can be rewritten together, so the pair (version -> hash) is still checked against the ledger, which lives elsewhere.
@@ -146,16 +149,16 @@ method declares from now on is in English, and it is marked as new.
 | 6 | Las decisiones se escriben junto al codigo | conversation | always | `artifacts` | 1 | 1 | 2 |
 | 7 | Medir antes de construir, con un instrumento que tambien se verifica | one_shot | proportional | `meters` | 0 | 0 | 3 |
 | 8 | Tests como candados, probados en rojo | routine | always | `receipts`, `profile_matrix` (new) | 2 | 1 | 4 |
-| 9 | Calidad del codigo verificada por maquina, con compuerta | routine | minimum | `ci`, `heuristics` (new) | 1 | 4 | 7 |
-| 10 | Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas | routine | always | `artifacts`, `manual_cases_per_profile` (new) | 2 | 1 | 4 |
+| 9 | Calidad del codigo verificada por maquina, con compuerta | routine | minimum | `ci`, `heuristics` (new) | 1 | 8 | 9 |
+| 10 | Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas | routine | always | `artifacts`, `manual_cases_per_profile` (new) | 2 | 3 | 7 |
 | 11 | Simetria entre productor y consumidor, y el registro de anti-patrones | routine | minimum | `artifacts` | 1 | 2 | 2 |
-| 12 | Verificacion honesta y reporte proporcional | routine | always | `reports`, `heuristics` (new) | 1 | 1 | 4 |
+| 12 | Verificacion honesta y reporte proporcional | routine | always | `reports`, `heuristics` (new) | 1 | 2 | 5 |
 
 ### III. Salida a produccion
 
 | # | step | form | demand | evaluators | inputs | artifacts | checks |
 |---|---|---|---|---|---|---|---|
-| 13 | La auditoria periodica como insumo del plan | one_shot | minimum | `artifacts` | 2 | 2 | 5 |
+| 13 | La auditoria periodica como insumo del plan | one_shot | minimum | `artifacts` | 2 | 9 | 11 |
 | 14 | Fail-closed, candados y cero dano silencioso | conversation | minimum | `artifacts` | 2 | 1 | 3 |
 | 15 | Integracion continua, entornos, secretos y despliegue como parte del producto | one_shot | minimum | `ci` | 1 | 2 | 4 |
 | 16 | Observabilidad y trazabilidad totales, con nivel configurable | one_shot | minimum | `artifacts` | 2 | 1 | 2 |
@@ -170,7 +173,7 @@ method declares from now on is in English, and it is marked as new.
 |---|---|---|---|---|---|---|---|
 | 21 | Monitoreo de recursos, funciones y consultas fuera de rango, con reporte ciclico | routine | minimum | `artifacts` | 2 | 2 | 2 |
 | 22 | Monitoreo de errores y reporte ciclico: ningun error sin pendiente | routine | always | `artifacts` | 2 | 2 | 2 |
-| 23 | El agente adentro del sistema, y la retrospectiva con numero | conversation | minimum | `artifacts` | 2 | 4 | 4 |
+| 23 | El agente adentro del sistema, y la retrospectiva con numero | conversation | minimum | `artifacts` | 2 | 5 | 5 |
 
 ### What each step demands, in detail
 
@@ -330,6 +333,10 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/GATES.md` -- la calidad como compuerta; has to say: `quality|calidad|lint`
 - `docs/CODE_QUALITY.md` -- the result per rule, not as a single number; has to say: `CQ-\d\d`; **new in schema 2**
 - `docs/USABILITY.md` -- the result per usability rule, with its declared exceptions; has to say: `UX-\d\d`; **new in schema 2**
+- `docs/CODE_QUALITY.md` -- the compliance document declares its denominator and who verified: how many criteria apply, how many a program verified, how many a person signed, and the debt with its pending verifier; has to say: `criteria_total.{0,20}\d` and `criteria_verified_by_a_program.{0,20}\d` and `criteria_verified_by_a_person.{0,20}\d` and `verification_debt[\s\S]{0,40}(none|pending_verifier)`; **new in schema 2**
+- `docs/CODE_QUALITY.md` -- every criterion declares the instrument that judged it, with the vocabulary the data declares, so that one judged by a person cannot be read as one a program verified; has to say: `verified_by` and `(auto_gate|matrix_query|e2e_per_profile|manual_case)`; **new in schema 2**
+- `docs/USABILITY.md` -- the compliance document declares its denominator and who verified: how many criteria apply, how many a program verified, how many a person signed, and the debt with its pending verifier; has to say: `criteria_total.{0,20}\d` and `criteria_verified_by_a_program.{0,20}\d` and `criteria_verified_by_a_person.{0,20}\d` and `verification_debt[\s\S]{0,40}(none|pending_verifier)`; **new in schema 2**
+- `docs/USABILITY.md` -- every criterion declares the instrument that judged it, with the vocabulary the data declares, so that one judged by a person cannot be read as one a program verified; has to say: `verified_by` and `(auto_gate|matrix_query|e2e_per_profile|manual_case)`; **new in schema 2**
 
 Completeness check, without reading code:
 - La ultima corrida de la cadena tiene la calidad en verde?
@@ -339,6 +346,8 @@ Completeness check, without reading code:
 - Does every switched-off rule have its record with reason, author and review date? **(new in schema 2, anchor 3)**
 - With real users, is the mutation score measured per block, and did every surviving mutant in new code open a pending item? **(new in schema 2, anchor 3)**
 - Does every instrument this step decides with carry its receipt: which set it expected to walk next to how much of it it walked, what it depends on, and what it reports when it could not look (CQ-19)? **(new in schema 2, anchor 3)**
+- Take a criterion that reads as met and ask who said so: if its instrument is a manual case, is there a name and a date, instead of a criterion nobody judged reading as one that was verified? **(new in schema 2, D-084)**
+- Does criteria_total count the rules nobody has looked at yet, rather than only the ones that were verified? **(new in schema 2, D-084)**
 
 **10 - Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas** (`u10-casos-de-prueba-manual`, prompt `peldano-10`)
 
@@ -350,12 +359,17 @@ Inputs the owner has ready before the first prompt:
 
 Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/MANUAL_TESTS.md` -- casos de prueba manual
+- `docs/MANUAL_TESTS.md` -- the manual tests separate the cases that are written from the ones a person executed, and the gap travels as a declared debt with its pending verifier; has to say: `cases_written.{0,20}\d` and `cases_executed_by_a_person.{0,20}\d` and `execution_debt[\s\S]{0,40}(none|pending_verifier)`; **new in schema 2**
+- `docs/SCREEN_WALKTHROUGH.md` -- the agent walked the screens itself to find defects, with the denominator of how many there are, and that walk is not the execution a person owes; has to say: `screens_total.{0,20}\d` and `screens_walked.{0,20}\d` and `walkthrough_findings.{0,20}\d`; **new in schema 2**
 
 Completeness check, without reading code:
 - Cada pendiente cerrado tiene su caso de prueba manual, con pasos y resultado esperado?
 - Los casos se ejecutaron al cierre del bloque, con fecha y quien?
 - Cada fallo abrio un pendiente?
 - Was each case run once per affected profile, derived from the matrix? A case run with a single profile does not count. **(new in schema 2, anchor 4)**
+- Does cases_executed_by_a_person come from the signed execution tables rather than from the reading of the agent, and does the debt name who owes it and since when? **(new in schema 2, D-082)**
+- Does the walk count the screens it could not open inside the total, with their reason, instead of leaving them out of the denominator? **(new in schema 2, D-082)**
+- If nobody has signed a single case yet, does the text of the step answer the same thing the gate answers -- that the step does not advance -- instead of leaving the reader to deduce it? **(new in schema 2, D-083)**
 
 **11 - Simetria entre productor y consumidor, y el registro de anti-patrones** (`u11-simetria-y-antipatrones`, prompt `peldano-11`)
 
@@ -381,12 +395,14 @@ Inputs the owner has ready before the first prompt:
 
 Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/WORKING_AGREEMENT.md` -- la rutina del reporte honesto; has to say: `verif` and `blind|ciego`
+- `docs/WORKING_AGREEMENT.md` -- the routine assigns each finding its destination: product, method or tool; has to say: `findings_by_destination`; **new in schema 2**
 
 Completeness check, without reading code:
 - El ultimo reporte separa verificado / creido / punto ciego?
 - Lo verificado tiene su recibo?
 - Does the report say what was measured, what was left warning and which rule is switched off, with reason, author and review date? **(new in schema 2, anchor 5)**
 - Do the two figures travel with their ruleset fingerprint, and does neither of them close a block? **(new in schema 2, anchor 5)**
+- Does every finding that is not about the product carry its destination, and was its pending item opened in the register of that destination? **(new in schema 2, D-080)**
 
 **13 - La auditoria periodica como insumo del plan** (`u13-auditoria`, prompt `peldano-13`)
 
@@ -399,6 +415,13 @@ Inputs the owner has ready before the first prompt:
 Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/AUDIT_*.md` -- auditoria reciente; should say: `^\s*\**\s*auditor\s*\**\s*:` (if not, it warns and does not block); the newest one, less than 60 days old
 - `docs/AUDIT_*.md` -- the audit reproduces receipts and declares which model performed it; has to say: `recibo|receipt`; should say: `modelo|model` (if not, it warns and does not block); the newest one, less than 60 days old; **new in schema 2**
+- `docs/AUDIT_*.md` -- the audit declares why this auditor and not another one, under its fixed key and with one of its declared values; has to say: `auditor_choice.{0,40}(different_model|same_model_declared|tool_constraint)`; the newest one, less than 60 days old; **new in schema 2**
+- `docs/AUDIT_*.md` -- the audit measured the health of the register of the evidence, which is a dimension of it and not optional; has to say: `evidence_register_health`; the newest one, less than 60 days old; **new in schema 2**
+- `docs/AUDIT_*.md` -- every finding of the audit carries its destination: product, method or tool; has to say: `findings_by_destination`; the newest one, less than 60 days old; **new in schema 2**
+- `docs/AUDIT_*.md` -- the audit declares itself complete under its fixed key, with how many findings it announced and how many it wrote; has to say: `audit_completeness.{0,20}\bcomplete\b` and `findings_announced.{0,20}\d` and `findings_written.{0,20}\d`; the newest one, less than 60 days old; **new in schema 2**
+- `docs/AUDIT_*.md` -- the audit carries the grade of every dimension it audited, under its fixed key; has to say: `dimension_grades`; the newest one, less than 60 days old; **new in schema 2**
+- `docs/AUDIT_*.md` -- the audit reproduced at least one receipt and wrote its verdict, which a receipt that was only read does not have; has to say: `receipts_reproduced[\s\S]{0,60}(reproduces|does_not_reproduce)`; the newest one, less than 60 days old; **new in schema 2**
+- `docs/AUDIT_*.md` -- the audit declares what it did not audit, and nothing left out of it travels without its pending item; has to say: `not_audited[\s\S]{0,40}(none|with_pending)`; the newest one, less than 60 days old; **new in schema 2**
 
 Completeness check, without reading code:
 - La auditoria la hizo una sesion distinta de la que construye?
@@ -406,6 +429,12 @@ Completeness check, without reading code:
 - Vuelve a correr una muestra de los recibos de rojo?
 - Did you literally reproduce two or three receipts of closed pending items (same command, same numbers), rather than just reading them? **(new in schema 2, D-042)**
 - Was the audit done, where possible, by a model other than the one that builds? **(new in schema 2, D-042)**
+- Does the report declare, under auditor_choice, why this auditor and not another one, and does it say so with those words when a limit of the tool chose it? **(new in schema 2, D-079)**
+- Does the health of the register of the evidence come with the command that measured each figure, and does a figure that could not be measured say so instead of reading as zero? **(new in schema 2, D-080)**
+- Does every finding carry its destination, and was its pending item opened in the register of that destination? **(new in schema 2, D-080)**
+- Do findings_announced and findings_written say the same figure, counted by hand against the findings the report actually wrote? **(new in schema 2, D-081)**
+- Does every part the report names as not audited have its pending item open? **(new in schema 2, D-081)**
+- Is there at least one receipt with its verdict, with the command and the output, rather than a receipt that was only read? **(new in schema 2, D-081)**
 
 **14 - Fail-closed, candados y cero dano silencioso** (`u14-fail-closed`, prompt `peldano-14`)
 
@@ -567,12 +596,14 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/RETROSPECTIVE_*.md` -- retrospectiva reciente; the newest one, less than 120 days old
 - `docs/RESIDENT_AGENT.md` -- the injection clause inside the scope of the resident agent; has to say: `inyecc|injection`; **new in schema 2**
 - `docs/RETROSPECTIVE_*.md` -- the retrospective names the model the system was built with; should say: `modelo|model` (if not, it warns and does not block); the newest one, less than 120 days old; **new in schema 2**
+- `docs/RETROSPECTIVE_*.md` -- every finding of the retrospective carries its destination: product, method or tool; has to say: `findings_by_destination`; the newest one, less than 120 days old; **new in schema 2**
 
 Completeness check, without reading code:
 - La retrospectiva tiene numeros, no impresiones?
 - Termina en una propuesta concreta de cambio al metodo, con el incidente que la justifica?
 - Does the scope of the resident agent say that whatever it reads in production is data and never an instruction? **(new in schema 2, D-042)**
 - Was there a short retrospective when the building model changed? **(new in schema 2, D-042)**
+- Does every finding of the retrospective carry its destination, so that what belongs to the method and to the tool does not end up in the product's register? **(new in schema 2, D-080)**
 
 ## The legacy path: eight stations
 

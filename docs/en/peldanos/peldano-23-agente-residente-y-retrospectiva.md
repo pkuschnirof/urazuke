@@ -141,6 +141,11 @@ the agent:
 > which step is modified, how, and which incident justifies it. Write it to
 > `docs/RETROSPECTIVE_[date].md`.
 >
+> Close with the fixed key `findings_by_destination`: every finding of this retrospective
+> assigned to `product` if the defect is in the system, `method` if it is in the method being
+> followed, `tool` if it is in the tool that runs it, and written into the register of that
+> destination. A finding whose destination nobody assigned leaves the retrospective open.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -156,12 +161,18 @@ the completeness clause for the numbers it does not have (ask or mark as an esti
 least one concrete proposal to change the ladder**, because a retrospective that changes nothing
 was not a retrospective.
 
+And since D-080, the destination of every finding. The retrospective is the control that produces
+the most findings about the method -- that is what it is for --, so it is the one that pays the
+highest price for having all of them end up in the product's register.
+
 ## 3. Expected result
 
 - `docs/RESIDENT_AGENT.md`: map of the system, chosen scope, credential mapped to a person,
   approval procedure, and the rejection test recorded in the log.
 - `docs/RETROSPECTIVE_[date].md`: the numbers with their source, the incidents mapped to steps,
   and at least one proposal to change the ladder with its justification.
+- In the retrospective, additionally, `findings_by_destination`: every finding with its destination
+  -- product, method or tool -- and written into the register of that destination.
 
 ## 4. Completeness check
 
@@ -179,6 +190,8 @@ was not a retrospective.
   nothing, it was not a retrospective.
 - Has the model that builds changed since the last retrospective? If so, is there a short review
   of which contracts still perform the same and which do not?
+- Does every finding of the retrospective have a destination? A retrospective that sends everything
+  to the product's register does not improve the method, and improving the method is what it is for.
 
 ## 5. Warning signs
 
