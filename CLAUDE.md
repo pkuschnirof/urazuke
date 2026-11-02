@@ -554,6 +554,31 @@ de estas tres piezas se replica en las otras dos.
   que es más débil. Y la mitad que vale: cuando la forma elegida no es la que el corpus usa, **el
   corpus no se toca de callado** —se registra con su cuenta y lo decide el dueño—, porque es un
   cambio del método y no del portal.
+- **Una cifra escrita en la portada se deriva del dato publicado, y la guarda que lo exige vive en
+  el repositorio del portal** (D-086, PND-100). La trajo el dueño preguntando si todo estaba servido
+  en producción: la interfaz de datos contestó bien y la portada contestó mal. La tabla de material
+  decía «las 45 reglas» en las ocho filas de idioma de las diez portadas —ochenta celdas— cuando el
+  dato publicado declara `counts.rules = 48`. No la rompió nadie: se venció sola, el 2026-10-27 con
+  D-070 y el 2026-11-01 con D-078. Es la familia de D-044, D-067, D-074 y D-077 —dos copias de un
+  hecho, una que se actualiza sola y otra que no— y lo nuevo es **dónde** vivía la copia: en el
+  repositorio del portal, que es el único árbol donde ninguna guarda del método puede mirar, y en la
+  primera página que ve un lector. La regla: el número de una celda tiene que ser el que el catálogo
+  **espejado** en `yujin.app/urazuke/api/gates.json` declara para esa colección, y **qué colección es
+  sale del documento que el enlace nombra**, nunca de una lista de palabras en ocho idiomas. Vive
+  como chequeo 11 de `build/verify-urazuke-homes.mjs`, en el repositorio del portal, que es el
+  programa que su despliegue ya corre desde D-060, con seis mutaciones nuevas en
+  `redproof-urazuke-homes.mjs`; ninguna escribe un número. Tres cosas no se negocian: **no haber
+  podido mirar es rojo** (sin catálogo espejado, ilegible o sin `counts`, cae diciendo eso, que es
+  D-057); una cifra que la guarda **no sabe** comprobar es un fallo y no un permiso —o el documento
+  se mapea a una colección del dato, o entra al registro de exenciones con su razón—; y un registro
+  que ya no aplica también es un fallo, porque un mapa que no empareja con nada imprime un verde sin
+  haber comprobado nada. Consecuencia dicha donde se lee: el día que entre la regla 49, el
+  `gates.json` nuevo que el método commitea en el portal **pone en rojo el despliegue del portal**
+  —el sitio entero— hasta que la cifra se arregle y las portadas se regeneren con
+  `node build/prerender-urazuke.mjs`. Es lo mismo que D-074 registra para el mapa del sitio y es
+  correcto. Lo que la guarda **no** promete: las cifras deletreadas de la prosa de la portada
+  («veinticuatro peldaños», «ocho estaciones», «ocho idiomas») las lee una persona; medidas contra el
+  dato el 2026-11-02 en el catálogo castellano, las tres coinciden.
 - **La portada del protocolo sí tiene fuente, y creer que no la tenía fue un defecto propio de
   medición** (PND-036 refutado el 2026-10-27, PND-052, D-064). `yujin.app/nac-spec/` vive en
   `yujinapp/nac-spec` —otra **organización** de GitHub, distinta de `pkuschnirof/nac-spec`, que es el

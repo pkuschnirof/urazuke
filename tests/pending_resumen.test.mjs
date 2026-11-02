@@ -161,6 +161,12 @@ test('el registro de pendientes es coherente con su resumen', () => {
 // defecto que este archivo vigila --un resumen que no se vuelve a contar--, una capa mas
 // arriba. Asi que mueve una unidad de "cerrados" a "abiertos" en la fila que encuentre,
 // sin nombrar ningun numero.
+// El id que sigue al ultimo que el registro tiene, sin nombrar ninguno.
+function idSiguiente(texto) {
+  const ids = [...texto.matchAll(/^## PND-(\d+)(?: a PND-(\d+))?/gm)].map((m) => Number(m[2] || m[1]));
+  return 'PND-' + String(Math.max(...ids) + 1).padStart(3, '0');
+}
+
 function desincronizarFila(texto, patron) {
   const fila = texto.match(patron);
   if (!fila) return texto;
@@ -184,9 +190,13 @@ const MUTACIONES = [
   // El total escrito a mano que no suma lo que dicen las filas.
   ['el total no coincide', /el total del resumen/,
     (t) => desincronizarFila(t, FILA_TOTAL)],
-  // Una entrada nueva sin tocar el rango declarado.
+  // Una entrada nueva sin tocar el rango declarado. El id se DERIVA del
+  // registro: escrito a mano (era PND-100) dejo de probar lo suyo el dia que
+  // esa entrada existio de verdad --el 2026-11-02-- y paso a caer por "aparece
+  // dos veces", que es otra comprobacion. Es el mismo defecto que este archivo
+  // vigila, una capa mas arriba, y ya habia pasado con las dos filas ancladas.
   ['una entrada mas alla del rango declarado', /declara hasta PND-/,
-    (t) => t.replace('# Resumen del estado', '## PND-100 — entrada de prueba\n\n- **Grupo:** G-API · **Severidad:** avisa · **Estado: abierto**\n\n# Resumen del estado')],
+    (t) => t.replace('# Resumen del estado', '## ' + idSiguiente(t) + ' — entrada de prueba\n\n- **Grupo:** G-API · **Severidad:** avisa · **Estado: abierto**\n\n# Resumen del estado')],
   // Una entrada sin los campos que el peldano 5 pide.
   ['una entrada sin grupo', /grupo no reconocido|sin severidad/,
     (t) => t.replace('- **Grupo:** G-API · **Severidad:** registra · **Repositorio:** método · **Estado: abierto**',
