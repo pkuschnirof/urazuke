@@ -8531,7 +8531,112 @@ herramienta **cumpla** la obligación se mide en el repositorio de esa herramien
 
 **Depende de:** nada. `PND-055` y `PND-056` están cerrados y son sus antecedentes.
 
+## PND-100 — La portada publicada decía «las 45 reglas» y el dato decía 48: una cifra a mano en el único árbol donde las guardas del método no pueden mirar *(salió de la verificación de producción que pidió el dueño al cerrar el lote; destino: método)*
+
+- **Nodo:** `interfaz-publica/portada` [nodo propuesto]
+- **Grupo:** G-PUBLICACION · **Severidad:** avisa · **Quién decide:** el dueño, y decidió: eligió la
+  salida 1 de las tres que se le presentaron —arreglar la cifra **y** agregar la guarda que la
+  derive del dato—, con estas palabras: «Vamos por 1».
+- **Repositorio:** los dos · **Estado: CERRADO** el 2026-11-02, con la cifra derivada del dato en
+  las diez portadas y la guarda corriendo en el despliegue del portal. **Decisión:** D-086.
+- **Origen:** no lo trajo una auditoría ni una compuerta. El dueño, al cerrar el lote de D-079 a
+  D-085, preguntó si todo lo del lote estaba servido en producción y si la documentación y las
+  páginas web estaban actualizadas «si correspondía». La verificación medida contestó que la
+  interfaz de datos estaba entera y en hora —cuatro recursos, 199 comprobaciones, 71 JSON byte a
+  byte— y que **la portada no**.
+
+**Qué estaba mal.** La tabla de material de `yujin.app/urazuke/` —la que lista los diez documentos
+por idioma, y es la primera página que ve un lector— decía «las 45 reglas» en el texto del enlace al
+Anexo H, en las **ocho** filas de idioma y en los **ocho** vocabularios (`Las 45 reglas`,
+`The 45 rules`, `As 45 regras`, `Les 45 règles`, `Die 45 Regeln`, `Le 45 regole`, `45のルール`,
+`45 条规则`). Ochenta celdas: ocho por página, en las diez portadas por idioma, porque las nueve
+traducidas se hornean de la castellana. Y el dato que el método publica, servido y verificado ese
+mismo día, declaraba `counts.rules = 48` (catálogo `2026.10.15`, con `faces: 6`).
+
+**Nadie la rompió: se rompió sola.** La frase era cierta el día que se escribió. Quedó vieja el
+2026-10-27, cuando D-070 metió `UX-28` y el anexo pasó a cuarenta y seis reglas, y quedó más vieja
+el 2026-11-01, cuando D-078 metió `CQ-19` y `CQ-20` y lo llevó a cuarenta y ocho. Es la familia de
+D-044, D-067, D-074 y D-077 —dos copias de un hecho, una que se actualiza sola y otra que no— y lo
+nuevo es **dónde** vivía la copia: en el repositorio del portal. La guarda que el método ya tiene
+para esto, `build/cifras_derivadas.mjs` (D-077), no la podía encontrar, y no por un hueco de su
+universo sino por el **límite de su alcance**, que es un árbol: su universo son las fuentes del
+método, el documento generado y los recursos publicados, todos de este repositorio.
+
+**Qué se hizo.** Las dos mitades de la salida 1.
+
+1. **La cifra, derivada del dato y no corregida a ojo.** `48` en las ocho celdas de
+   `yujin.app/urazuke/index.html`, y las nueve portadas regeneradas con
+   `node build/prerender-urazuke.mjs`, que es el único modo de tocarlas: el arreglo va siempre en el
+   generador y nunca en el verificador (D-074). Medido antes: ochenta celdas con `45`, cero con
+   `48`. Medido después: cero con `45`, ochenta con `48`, y el diff de cada una de las diez páginas
+   son ocho líneas y nada más.
+2. **La guarda, en el programa que el despliegue del portal ya corre** desde D-060
+   (`build/verify-urazuke-homes.mjs`, chequeo 11). El número de una celda tiene que ser el que el
+   catálogo **espejado** en `yujin.app/urazuke/api/gates.json` declara para esa colección, y qué
+   colección es sale del **documento que el enlace nombra**: `ANEXO_HEURISTICAS.html` cuenta
+   `rules`, `CONTRATOS_DE_PELDANO.html` cuenta `steps`. Esa elección es lo que hace que la guarda no
+   necesite una lista de palabras en ocho idiomas y siga funcionando el día que alguien escriba
+   «reglas» donde decía «rules».
+
+**Las tres propiedades de la guarda, y cada una se vio caer.** No haber podido mirar es **rojo y
+nunca verde** —sin catálogo espejado, ilegible o sin `counts`, cae diciendo eso, que es D-057—. Una
+cifra que la guarda **no sabe** comprobar es un fallo y no un permiso: o el documento se mapea a una
+colección del dato, o entra al registro de exenciones **con su razón**, y así un documento nuevo con
+una cifra queda vigilado el día que entra a la tabla. Y un registro que **ya no aplica** también es
+un fallo, porque un mapa que no empareja con nada imprime un verde sin haber comprobado nada
+(D-066). La mutación que importa es la que **cambia la cuenta en el dato** y exige que la portada
+caiga contra el número nuevo: es lo que separa esta guarda de una que comparara contra un `48`
+escrito a mano, que sería el defecto que persigue (D-071).
+
+**La reproducción propia, con las salidas medidas (2026-11-02).**
+
+- El universo de cifras de la tabla, contado antes de escribir una línea: **310** celdas con un
+  número en las diez portadas, de **cuatro** documentos. Dos se derivan del dato (`rules`, `steps`)
+  y dos entran al registro de exenciones con su razón: las veinticinco preguntas al proveedor,
+  porque el dato no declara ninguna colección de preguntas —`counts` tiene `steps`, `stations`,
+  `rules`, `faces` y `evaluators`—, y el «Parte 2» del manual evolutivo, porque es un **ordinal** y
+  no el tamaño de nada.
+- `node build/verify-urazuke-homes.mjs` sobre el árbol arreglado:
+  `PASS -- every page is baked, linked, canonical and reciprocal`, 10 de 10 páginas.
+- `node build/redproof-urazuke-homes.mjs`: **16 mutaciones, 16 rojos** —las diez que ya estaban más
+  las seis nuevas—, cada una nombrando lo suyo. La cuarta nueva, que es la que prueba la derivación,
+  cayó así: *«the link to ANEXO_HEURISTICAS.html reads "Las 48 reglas" and the published data
+  declares counts.rules = 55»*. Ninguna de las seis escribe un número: todas lo sacan del árbol o
+  del dato, por el mismo motivo que `desincronizarFila` en `tests/pending_resumen.test.mjs`.
+- Los otros cuatro programas del paso de guardas del portal, en verde y con su línea:
+  `arbol propio: comprobado`, `eol: comprobado`, `nac-spec indexable: comprobado` (10 mutaciones en
+  rojo) y el verificador del `.htaccess` del despliegue.
+
+**La consecuencia, dicha acá y no cuando aparezca.** El día que el método publique la regla 49, su
+trabajo de publicación commitea el `gates.json` nuevo en el repositorio del portal y **el despliegue
+del portal se pone en rojo** —el sitio entero— hasta que la cifra se arregle y las portadas se
+regeneren. Es lo mismo que D-074 registra para el mapa del sitio, y es correcto: el arreglo es una
+cifra más un comando, y lo que frena —publicar una portada que miente sobre el dato del propio
+método— es peor que un despliegue tarde.
+
+**Lo que la guarda no promete, y queda escrito.** Las cifras **deletreadas** de la prosa de la
+portada —«veinticuatro peldaños», «ocho estaciones», «ocho idiomas»— no las mira ninguna máquina:
+viven en los diez catálogos de la interfaz, en diez idiomas, y una lista de numerales deletreados en
+diez idiomas sería la lista a mano que esta guarda existe para no tener. Medidas hoy contra el dato
+en el catálogo castellano, las tres coinciden: `steps` 24, `stations` 8, `languages.prose_versions`
+8. Eso lo lee una persona, y está dicho en la cabecera del chequeo para que se sepa antes y no
+después.
+
+**Perfiles afectados y criterio por perfil.**
+
+- *P3 (lector humano que llega por la portada):* dada esa persona, lo que la tabla dice que hay en
+  el anexo es lo que el anexo tiene, y lo que el dato publicado cuenta.
+- *P6 (lector humano que entra por el documento principal):* dada esa persona, no se entera por una
+  resta propia de que la portada y el anexo no dicen el mismo número.
+- *P8 (dueño de proyecto que aplica el método):* dado el despliegue del portal, una cifra que se
+  venció sola frena la publicación nombrando la página, el documento, la cifra escrita y la que el
+  dato declara, en vez de salir servida.
+
+**Depende de:** nada. D-077 (`PND-064`) es su antecedente directo y está cerrado; esta entrada es la
+misma regla bajada al único árbol donde aquélla no alcanza.
+
 ---
+
 
 # Resumen del estado
 
@@ -8545,13 +8650,13 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-API | 24 | 6 | 18 | 1 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 16 | 13 | 3 | 3 |
-| G-PUBLICACION | 5 | 0 | 5 | 0 |
+| G-PUBLICACION | 6 | 0 | 6 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 42 | 23 | 19 | 11 |
 | G-TRAZABILIDAD | 4 | 2 | 2 | 0 |
-| **total** | **99** | **44** | **55** | **15** |
+| **total** | **100** | **44** | **56** | **15** |
 
-Noventa y nueve entradas, `PND-001` a `PND-099`. Veintidós vienen de la auditoría externa
+Cien entradas, `PND-001` a `PND-100`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -8850,6 +8955,16 @@ declarado informativo, y ese commit no existe en ninguna rama del repositorio �
 veinticuatro archivos publicados que llevan un sha nombran uno que ningún ref del remoto contiene—.
 Es `D-069` en la forma que la guarda de punteros no sabe ver, y la nota que lo declara informativo es
 cierta y dice menos de lo que el lector completa.
+
+`PND-100` es la centésima y la trajo el dueño preguntando **si estaba todo servido**, que es la
+pregunta que una publicación verificada debería contestar sola. La interfaz de datos contestó bien
+—cuatro recursos, versiones y huellas vivas— y la **portada** contestó mal: decía «las 45 reglas» en
+las ocho filas de su tabla cuando el dato publicado declara cuarenta y ocho. No la rompió nadie: se
+venció sola cuatro días después de escribirse, el 2026-10-27 con D-070 y el 2026-11-01 con D-078. Es
+la familia de D-077 con un agravante de ubicación: vivía en el repositorio del portal, que es el
+único árbol donde ninguna guarda del método puede mirar, y en la primera página que ve un lector.
+Cierra con la cifra derivada del dato y con la guarda que lo exige corriendo en el despliegue del
+portal (D-086).
 
 Un aviso para leer la tabla de arriba, porque la cuenta de bloqueantes pasó de uno a ocho en un día
 y eso no significa lo que parece. En las sesenta y cuatro entradas anteriores *bloquea* quería decir
