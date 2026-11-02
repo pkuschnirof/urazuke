@@ -264,3 +264,38 @@ publicar:  if: github.event_name != 'pull_request' && github.ref == 'refs/heads/
 $ cat .github/CODEOWNERS
 * @pkuschnirof                               <- toda fusion en main la aprueba un propietario
 ```
+
+## Posdata del 2 de noviembre de 2026: qué de esta ficha ya se movió
+
+Esta ficha **no se edita**: es un registro fechado y lleva las palabras de su día, como el método
+pide para una decisión y para un recibo. Pero entró a `main` tres días después de llenarse, y en
+esos tres días se fusionaron cuatro lotes (D-077 a D-086), así que conviene decir qué de lo que
+afirma sigue en pie y qué ya no, medido hoy contra `a0fa7ba` y no supuesto.
+
+**Lo que la ficha encontró y ya está arreglado.** Tres de los cuatro hallazgos de E5 —las cifras
+escritas a mano adentro de un artefacto generado o de una comprobación— los cerró **D-077**
+(`PND-064`), que se fusionó el 1 de noviembre y no salió de esta ficha, sino del mismo
+defecto encontrado en el documento generado. El documento ya no lleva las cifras pegadas a mano
+(`grep "five anchors\|three artifacts" build/gates_doc.mjs` → 0) y la cifra de los evaluadores del
+recurso de textos se deriva del dato (`Cardinal(dato.evaluadores.length)`). Y lo que la ficha
+anticipaba como el costo —«el día que entre una sexta ancla, un cuarto artefacto o un decimotercer
+evaluador, toda la cadena va a seguir en verde»— es justo lo que la guarda nueva impide, porque
+`build/cifras_derivadas.mjs` **deriva** el mapa de colecciones del propio dato y no de una lista a
+mano. El cuarto hallazgo, la versión `2026.10.2` fijada a mano en la prueba de pantalla, vive fuera
+de este repositorio y sigue cayendo, ahora con más distancia: la versión del catálogo es
+`2026.10.15`.
+
+**Lo que la ficha dice y hoy sería otra cifra.** La suite pasó de 412 pruebas a **487**; `build/`
+de 24 programas y 5.102 líneas a **26 y 6.058**; el catálogo de compuertas de `2026.10.11` a
+`2026.10.15`, el de textos de `2026.10.1` a `2026.10.2` y el de prompts de `2026.10.6` a
+`2026.10.10`; las reglas del Anexo H de 46 a **48**, con seis caras, por D-078. Lo que **no** se
+movió es lo que la ficha usa para decidir: 84 pantallas, cuatro recursos publicados, un
+repositorio, un propietario, cero dependencias de terceros en la construcción.
+
+**Lo que sigue exactamente igual, y es lo que el dueño tiene que leer antes de decidir.** El
+prerrequisito 7 sigue en **rojo** por la misma razón: el empujón que publica no tiene modo de
+ensayo (`grep -n "dry" .github/workflows/compuertas.yml` → 0 líneas). La anonimización de los
+clientes sigue **sin guarda** (`grep -rln "anonim" tests/ build/` → ningún archivo). Y el documento
+de funcionalidad recuperada sigue siendo el del 24 de octubre, sin un commit desde `#13`, así que
+la reserva del prerrequisito 3 creció en vez de encogerse. Las tres son las que esta ficha ya había
+anotado como trabajo, y ninguna la cerró ninguno de los cuatro lotes.
