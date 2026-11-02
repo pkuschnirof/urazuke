@@ -8390,6 +8390,149 @@ figurar como verificado: el documento tiene que escribirlo `not_verifiable`, y s
 verificador la compuerta sale roja nombrándolo. Verificado con el evaluador real, en los dos
 estados.
 
+## PND-099 — Un proyecto corre una definición de compuertas más vieja que la publicada y el atraso no se ve desde adentro *(la trajo el dueño al cerrar el lote del experimento; destino: método)*
+
+- **Nodo:** `datos/compuertas` [nodo propuesto]
+- **Origen:** la pidió el dueño el 2026-11-02, al aceptar el lote, por la **reincidencia**: es la
+  cuarta vez que el mismo defecto se registra, y la segunda vez que se mide en un solo lote. Es un
+  hallazgo con **destino método** del mecanismo que D-080 instaló el mismo día.
+- **Grupo:** G-API · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño. Entra **planteado y sin resolver**, por pedido explícito: congelar
+  está bien y no se discute; lo que falta es que el atraso sea visible, y cómo se hace visible
+  cambia lo que el método le exige a un proyecto.
+- **Estado: abierto**
+
+**Qué está mal.** El método manda fijar una versión del catálogo el día que el proyecto empieza y
+mantenerla hasta el final (D-068), y eso está bien: un upgrade en medio de un proyecto **reabre**
+peldaños ya cerrados. Pero fijar y **decir contra qué se fijó** son dos cosas distintas, y el
+método hoy exige la primera y no la segunda. El resultado es que un proyecto puede estar
+midiéndose contra una definición vieja —o contra una que el método no puede nombrar— y **nadie se
+entera desde adentro del proyecto**: el único que ve la diferencia es alguien de afuera que mide
+contra la publicada.
+
+**Los cuatro registros que el dueño contó, y son tres eventos.** Vale la precisión porque dos de
+los cuatro son la entrada y la decisión del mismo día. Y hay una quinta, de este mismo turno, al
+final de la lista.
+
+1. **2026-10-27 — `PND-055` y D-068.** La herramienta que asiste este trabajo ya fijaba, y fijaba
+   bien en sus propios términos, contra un identificador de su **catálogo compilado**
+   (`base-schema-1` con su hash) que no es una `catalog_version` y no figura en ningún registro.
+   Fija, sí, pero a algo que el método no puede nombrar, nadie de afuera puede auditar, y contra lo
+   cual el diferencial de un upgrade no se puede computar.
+2. **2026-11-02, turno 1 del lote — `PND-095`.** El cuerpo del pendiente que el dueño mandó citaba
+   `dist/urazuke/catalog.js`, que es la **copia compilada** dentro de la herramienta y está
+   atrasada: informaba tres chequeos del peldaño 13 y la definición que el método publica tiene
+   cinco, en dos artefactos. Un número que ya había entrado al paper del experimento. El conductor
+   lo registró en su bitácora con la forma exacta del defecto: *leyó la copia compilada y la llamó
+   «la compuerta»*.
+3. **2026-11-02, turno 3 del lote — `PND-097`.** El brazo del experimento fijó
+   `catalog_version: forge-compiled/base-schema-1`, el congelado del esquema 1, donde el único
+   chequeo del peldaño 10 es que el archivo exista. Vio **verde** con trece casos manuales escritos
+   y **cero** ejecutados por una persona. Con el catálogo publicado, el mismo árbol sale **rojo**:
+   `manual_cases_per_profile` es `required` desde `2026.10.1`.
+
+**Y el daño que hizo el tercero es el que convierte esto en pendiente.** El dueño vio ese verde,
+concluyó —razonablemente— que el peldaño 10 avanzaba hueco, y me instruyó a **relajar un
+requisito publicado** para arreglarlo. El requisito ya lo arreglaba. O sea que el atraso invisible
+no sólo deja pasar un peldaño: **produce una instrucción fundada en una premisa falsa**, y la
+premisa falsa viene de una copia congelada y no del método. Quedó escrito así, por el dueño, al
+aceptar el lote: *«relajar un requisito publicado para arreglar algo que el requisito ya arreglaba
+habría sido el peor resultado posible de este lote»*.
+
+**Y una quinta, encontrada mientras se escribía esta entrada, que es la más limpia de las cinco.**
+El recibo de evidencia del propio cierre de este lote (`RCP-082`, `node --test`, 487 de 487) sale
+sellado con `gates_source: compiled` y `gates_version: forge-compiled/base-schema-1`. Universo
+enumerado, que es lo que D-064 exige para una afirmación de este tipo: los **82** recibos del
+almacén de este proyecto; **66** llevan el sello del conjunto de reglas y **los 66** dicen eso
+mismo; los otros 16 son anteriores al sello y no dicen nada. O sea que el instrumento que guarda la
+evidencia del método estampa, en **cada** recibo, una identidad que el propio método **prohíbe**
+fijar —y la estampa en el casillero donde iría una `catalog_version`, así que se lee igual que una
+versión—. Nadie tenía que buscarla: estaba impresa ochenta y dos veces en el registro que D-080
+instaló para auditar a los demás instrumentos.
+
+**Lo que el dato YA tiene, medido, para que el pendiente no vuelva a pedir lo que existe.**
+`gates/schema.json#pinning` declara desde `2026.10.7`: el par que se fija (`catalog_version` +
+`content_hash`), que el consumidor lo **registre** «en lo que escriba para el proyecto», que lo
+**contraste** contra el registro de versiones, que al no coincidir sea **rojo** diciendo cuál de
+los dos se movió, que esté **prohibido** fijar a una identidad compilada que el método no puede
+nombrar, y cómo se **computa el diferencial** sin red (`since_version` de cada entrada agregada
+después del congelado). El diferencial funciona: `node build/version_fijada.mjs` → *«8 idiomas, 16
+textos, 75 entradas agregadas, 0 hallazgos; diferencial 2026.10.1 → 2026.10.15: 43 entradas, 0
+evaluadores requeridos»*. Nada de esto hay que inventarlo.
+
+**Lo que NO tiene, y es el hueco exacto.** Tres mediciones del 2026-11-02:
+
+- **El diferencial se computa cuando alguien decide un upgrade, que es tarde.** El dato lo pide en
+  `upgrade.before_deciding` —*«compute the differential and show it»*— y en ninguna parte pide que
+  el proyecto **diga** dónde está parado mientras no haya ningún upgrade en curso. El atraso se
+  vuelve visible justo en el momento en que ya no importa que haya sido invisible.
+- **Ningún peldaño lo pide.** `grep -o catalog_version gates/steps.json` → **0**; recorriendo los
+  veinticuatro peldaños, **0 de 24** nombran la versión fijada entre sus artefactos o sus preguntas
+  de verificación. En la prosa castellana aparece en **dos** contratos —el 2, que dice qué fijar, y
+  el 10, que desde D-083 manda mirarla cuando un verde sorprende— y en la Parte A. O sea: el método
+  ya sabe que esto importa y lo dice en prosa, y no lo convirtió en artefacto de ningún peldaño.
+- **Y la asimetría productor/consumidor que lo cierra (SQ 14):** el dato declara la forma de la
+  configuración de proyecto que la compuerta lee —`project_config.fields`, **siete** campos:
+  `frontend`, `real_users`, `switches`, `switched_off`, `thresholds`, `tools`,
+  `communication_depth`— y **ninguno es el par fijado**. El método le pide al consumidor que
+  registre el par «en lo que escriba para el proyecto» y el único archivo de proyecto cuya forma
+  el método declara **no tiene dónde ponerlo**. Un requisito que el productor declara y el
+  consumidor no tiene dónde cumplir es la familia de `PND-056` y D-069, en la capa de la
+  configuración.
+
+**La precisión que afina el planteo, y hay que leerla antes de elegir una salida.** El problema
+**no** está entre dos versiones publicadas: el diferencial de `2026.10.1` a `2026.10.15` agrega
+**43 entradas y 0 evaluadores requeridos**, así que ningún salto entre publicadas traba hoy un
+peldaño —D-068 ya lo había medido—. El único caso que traba, y es el que se midió dos veces en
+este lote, es el del proyecto que **nunca fijó una versión publicada**: se quedó en un congelado
+interno del consumidor. Entonces lo que un proyecto necesita saber primero no es «cuántas versiones
+me atrasé» sino **«¿estoy fijado a algo que el método puede nombrar?»**, y la respuesta «no» tiene
+que ser legible sin salir del proyecto.
+
+**Las salidas posibles, sin elegir ninguna.** Son del dueño y se registran para que la decisión sea
+entre opciones escritas y no entre lo que se le ocurra a quien pase:
+
+1. **Sólo la configuración.** El par fijado entra como campo de `project_config.fields`, con la
+   obligación de que sea una `catalog_version` que el registro de versiones contenga. Barato y
+   mecánico; sube una versión del catálogo. No hace nada por el proyecto cuyo consumidor no escribe
+   esa configuración.
+2. **La configuración más un artefacto de peldaño.** Lo anterior, y además el peldaño 2 —que es
+   donde se fija— pide un artefacto del proyecto que declare la versión fijada, su huella, la
+   vigente el día que se miró y el atraso en entradas del diferencial. Es lo único que lo vuelve
+   verificable por máquina desde adentro del proyecto, y es también lo que más le cuesta a un
+   lector que sigue el método con lápiz y papel.
+3. **La configuración más una verificación del dueño.** Lo de (1), y el peldaño 2 suma una
+   pregunta de verificación —«¿contra qué `catalog_version` corre este proyecto, y está en el
+   registro de versiones?»— sin artefacto nuevo. Más liviano que (2) y no atrapa al que no mira.
+
+Y una cuarta, que no es alternativa sino aviso y conviene tenerla al lado: **que el método declare
+qué informa un proyecto fijado a una identidad que el registro no contiene.** Hoy el dato lo
+**prohíbe** y no dice qué se informa cuando pasa, así que pasa en silencio; es `CQ-19.1` —un
+instrumento que no pudo mirar informa que no pudo, nunca cero— aplicado a la propia fijación.
+
+**Criterio de aceptación.** Dado un proyecto que corre las compuertas del método, cuando el dueño
+de ese proyecto pregunta «contra qué definición me estoy midiendo y cuánto me atrasé», entonces la
+respuesta sale del propio proyecto, con la versión fijada, su huella y el atraso medido contra el
+registro de versiones; y si la identidad fijada no está en el registro, el proyecto lo **dice** en
+vez de quedarse callado. Verificable sin leer código: abrir lo que el proyecto declara y
+preguntarle eso. Y lo que desde acá **no** se va a poder verificar, dicho antes de empezar: que una
+herramienta **cumpla** la obligación se mide en el repositorio de esa herramienta, no en éste
+(D-068).
+
+**Perfiles afectados y criterio por perfil.**
+
+- *P1 (herramienta consumidora):* dada una herramienta que fija, esa herramienta tiene un campo
+  declarado dónde escribir el par fijado, y no tiene que inventarse dónde ponerlo.
+- *P4 (dueño de un proyecto que corre el método):* dada esa persona, puede saber, sin preguntarle a
+  nadie y sin salir de su proyecto, contra qué versión se mide y cuánto se atrasó.
+- *P6 (lector humano que entra por el documento principal):* dada esa persona, se entera de que un
+  verde puede venir de una definición vieja **antes** de festejarlo, y no después de que alguien lo
+  mida de afuera.
+
+**Depende de:** nada. `PND-055` y `PND-056` están cerrados y son sus antecedentes.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -8399,16 +8542,16 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 
 | grupo | entradas | abiertos | cerrados | bloqueantes abiertos |
 |---|---:|---:|---:|---:|
-| G-API | 23 | 5 | 18 | 1 |
+| G-API | 24 | 6 | 18 | 1 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 42 | 23 | 19 | 11 |
 | G-TRAZABILIDAD | 4 | 2 | 2 | 0 |
-| **total** | **98** | **43** | **55** | **15** |
+| **total** | **99** | **44** | **55** | **15** |
 
-Noventa y ocho entradas, `PND-001` a `PND-098`. Veintidós vienen de la auditoría externa
+Noventa y nueve entradas, `PND-001` a `PND-099`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,

@@ -186,7 +186,7 @@ const MUTACIONES = [
     (t) => desincronizarFila(t, FILA_TOTAL)],
   // Una entrada nueva sin tocar el rango declarado.
   ['una entrada mas alla del rango declarado', /declara hasta PND-/,
-    (t) => t.replace('# Resumen del estado', '## PND-099 — entrada de prueba\n\n- **Grupo:** G-API · **Severidad:** avisa · **Estado: abierto**\n\n# Resumen del estado')],
+    (t) => t.replace('# Resumen del estado', '## PND-100 — entrada de prueba\n\n- **Grupo:** G-API · **Severidad:** avisa · **Estado: abierto**\n\n# Resumen del estado')],
   // Una entrada sin los campos que el peldano 5 pide.
   ['una entrada sin grupo', /grupo no reconocido|sin severidad/,
     (t) => t.replace('- **Grupo:** G-API · **Severidad:** registra · **Repositorio:** método · **Estado: abierto**',
