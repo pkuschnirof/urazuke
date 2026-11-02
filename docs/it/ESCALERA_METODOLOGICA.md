@@ -926,9 +926,14 @@ grafico del processo mostra.
   sospeso, precondizione, passi con ciò che si fa e ciò che si vede, risultato atteso con
   l'effetto nel backend verificabile da una persona, dati, tabella di esecuzioni); le esecuzioni
   registrate; una voce in sospeso correttiva per ogni fallimento.
+  E `docs/SCREEN_WALKTHROUGH.md` con la percorrenza dell'agente per tutti gli schermi, con il
+  suo denominatore e i suoi rilievi.
 - **Cancello**: nessuna voce in sospeso che tocchi una schermata si chiude senza il suo caso;
   nessuna esecuzione senza data e nome; nessun fallimento senza voce in sospeso con le parole
   della persona.
+  E: la percorrenza agentica degli schermi è un'esigenza propria, distinta dall'esecuzione
+  umana; che una persona abbia eseguito non lo verifica nessuna macchina, quindi si dichiara come
+  debito con il suo nome, e quello che ferma il gradino è l'ancora 4 e non la dichiarazione.
 - **Chi decide**: il proprietario o un utente di fiducia esegue; l'agente scrive i casi e apre le
   voci in sospeso; il modello non marca mai un caso come eseguito.
 - **Fallimento che evita**: la prova umana senza copione che trova cose diverse ogni volta, e il
@@ -1012,6 +1017,9 @@ proprie assunzioni. Basta un'altra sessione del modello, con un altro file di is
   chiuso.
   E: il rapporto dichiara perché è quello l'auditor, misura la salute del registro della
   prova, e non chiude con un rilievo senza destinazione.
+  E il rapporto dichiara la sua completezza con le due cifre che la rendono falsificabile: questo
+  gradino non si verifica per macchina da un capo all'altro, e il cancello legge la traccia del
+  lavoro e non il lavoro.
 - **Chi decide**: il proprietario dà le priorità ai rilievi.
 - **Fallimento che evita**: query che leggono tabelle intere [Ref. 18](REFERENCIAS.md#ref-18); due
   porte di amministratore che nessuno ha visto finché non le ha guardate un altro

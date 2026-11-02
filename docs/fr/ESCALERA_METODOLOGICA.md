@@ -967,9 +967,14 @@ exigence. C'est la fermeture du circuit que montre le graphique du procédé.
   attente, précondition, étapes avec ce qu'on fait et ce qu'on voit, résultat attendu avec l'effet
   côté backend vérifiable par une personne, données, tableau des exécutions) ; les exécutions
   enregistrées ; un élément en attente correctif par échec.
+  Et `docs/SCREEN_WALKTHROUGH.md` avec le parcours de l'agent à travers tous les écrans, avec
+  son dénominateur et ses constats.
 - **Porte** : aucun élément en attente qui touche un écran ne se clos sans son cas ; aucune
   exécution sans date et sans nom ; aucun échec sans élément en attente avec les mots de la
   personne.
+  Et : le parcours agentique des écrans est une exigence propre, distincte de l'exécution
+  humaine ; qu'une personne ait exécuté, aucune machine ne le vérifie, donc cela se déclare comme
+  une dette avec son nom, et ce qui arrête l'échelon est l'ancre 4 et non la déclaration.
 - **Qui décide** : le propriétaire ou un utilisateur de confiance exécute ; l'agent écrit les cas
   et ouvre les éléments en attente ; le modèle ne marque jamais un cas comme exécuté.
 - **Échec évité** : le test humain sans scénario qui trouve des choses différentes à chaque fois,
@@ -1059,6 +1064,9 @@ autre fichier d'instructions, suffit.
   comme clos.
   Et : le rapport déclare pourquoi cet auditeur-là, mesure la santé du registre de la
   preuve, et ne clôt pas avec un constat sans destination.
+  Et le rapport déclare sa complétude avec les deux chiffres qui la rendent falsifiable : cet
+  échelon ne se vérifie pas de bout en bout par une machine, et la porte lit la trace du travail
+  et non le travail.
 - **Qui décide** : le propriétaire priorise les constats.
 - **Échec évité** : des requêtes qui lisent des tables entières [Ref. 18](REFERENCIAS.md#ref-18) ;
   deux portes d'administrateur que personne n'avait vues jusqu'à ce qu'un autre les regarde

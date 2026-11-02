@@ -376,6 +376,54 @@ los cuarenta y ocho llevan la cláusula de la UX-28. Lo más probable es que sea
 didáctica más corta a propósito; el defecto no es la divergencia sino que **no esté declarada**, que
 es la forma de D-076. Lo decide el dueño en `PND-094`.
 
+## Los dos peldaños cuyo trabajo está afuera, y lo que la compuerta puede mirar
+
+D-081 y D-082 (`PND-095` a `PND-098`), y son la misma pregunta mirada en dos peldaños: el 13 tiene
+el trabajo en otra sesión y el 10 lo tiene en una persona, y en los dos la compuerta puede evaluar
+el **rastro** y no el trabajo. Entran en el catálogo `2026.10.14` y en el corpus de prompts
+`2026.10.9`.
+
+**«Completo» es una relación, y el límite se escribe (D-081).** Un `docs/AUDIT_*.md` que decía de sí
+mismo «encontré nueve hallazgos, escribo cuatro, el informe está INCOMPLETO» salía **verde**: del
+peldaño 13 bloqueaban dos cosas —que el archivo exista con doscientos bytes y que tenga menos de
+sesenta días— y la línea `Auditor:` es un `should_contain`, o sea un aviso. Y el informe **no se
+cortó**: la sub-sesión terminó sola, en un turno y 130.525 tokens, emitiendo su marcador de cierre
+por su cuenta, así que más presupuesto no arregla nada y una compuerta no distingue un informe
+cortado de uno abandonado. Entran cuatro exigencias sobre el rastro: `audit_completeness` en
+`complete` con `findings_announced` y `findings_written` en la misma cifra —un informe que se
+declara parcial no cierra el peldaño—, `dimension_grades`, `receipts_reproduced` con el veredicto de
+cada recibo reproducido, y `not_audited` en `none` o en `with_pending`. Ninguna impide mentir: las
+cuatro convierten la mentira en una afirmación escrita que una persona falsifica contando, en vez de
+un silencio. Y **el límite va escrito en la prosa del contrato y en la ficha, en los ocho idiomas**:
+el peldaño 13 no se puede verificar por máquina de punta a punta. Decirlo vale más que simularlo.
+Lo que **no** entra, y la razón importa: un evaluador que compare las dos cifras aritméticamente.
+El vocabulario de evaluadores es append-only y un nombre que una instalación no conoce **detiene el
+peldaño para todos los consumidores**; y dos cifras que escribió la misma mano no se verifican entre
+sí. La comparación contra el cuerpo del informe es del dueño, y se publica como tal.
+
+**El agente recorre, la persona ejecuta (D-082).** Ninguno de los veinticuatro peldaños pedía que el
+agente recorriera las pantallas como una persona —el método pedía capturas y la prueba de punta a
+punta— y, en el ciclo que se midió, la recorrida fue **lo que más defectos de interface encontró**:
+se la pedía el agente a sí mismo. Ahora la pide el peldaño 10, en `docs/SCREEN_WALKTHROUGH.md` y con
+su denominador (`screens_total`, `screens_walked`, `walkthrough_findings`), y una pantalla a la que
+no se pudo entrar se cuenta en el total con su razón, que es `CQ-19.1`. No reemplaza la ejecución
+humana ni es la punta a punta del 8: la punta a punta recorre un camino que alguien eligió, la
+recorrida busca lo que nadie pensó en probar. Y el archivo de casos lleva en su cabeza
+`cases_written`, `cases_executed_by_a_person` —que mueve una ejecución firmada y nunca la lectura
+del agente— y `execution_debt`, con quién debe cada ejecución y desde cuándo.
+
+**Y una corrección propia que conviene leer como método y no como anécdota.** La primera redacción
+de D-082 decía que la deuda «no frena el peldaño», y la medí antes de commitear: es falsa para un
+proyecto que corre el catálogo de hoy. El peldaño 10 declara `manual_cases_per_profile` como
+`required` desde `2026.10.1` —el ancla 4, D-044— y una instalación que lo implementa se pone en rojo
+diciendo que el registro de casos firmados está vacío. El proyecto que avanzó con la tabla vacía
+corría el **congelado del esquema 1**, donde el único chequeo del peldaño 10 es que el archivo
+exista. O sea que lo que faltaba nunca fue un bloqueo: era que la deuda fuera **legible**, con su
+cifra y el nombre de quien la debe. Un párrafo del método que contradice el dato del método es la
+familia de D-044 y D-067, y acá la copia que mentía era la nueva. La tensión que queda —el dueño
+pidió que la ejecución humana **no** sea condición de avance, y el ancla 4 dice que sí— no se
+resuelve de costado: está en `PND-097`, con su medición, y la decide él.
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio

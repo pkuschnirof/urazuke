@@ -43,6 +43,24 @@ su único P0 era falso por leer mal un decimal; el del mismo modelo, apartándos
 declarándolo en su primera línea, entregó diecisiete, y ninguno resultó falso al verificarlos uno
 por uno.)
 
+Y acá va el límite, porque decirlo vale más que simularlo: **el peldaño 13 no se puede verificar
+por máquina de punta a punta**. Su trabajo lo hace un tercero, así que la compuerta no puede
+evaluar el trabajo; puede evaluar su **rastro**. Lo medí el 2026-11-02 y es incómodo: un informe
+que decía de sí mismo, textual, «encontré nueve hallazgos, escribo cuatro, el informe está
+incompleto» salía **verde**, porque «completo» no es una propiedad del archivo —es la relación
+entre lo que el informe anuncia y lo que entrega— y una compuerta que mira el archivo no la ve. Y
+no alcanza con darle más presupuesto al auditor: en esa medición la sesión **no se cortó**, terminó
+sola, en un turno y ciento treinta mil tokens, emitiendo su marcador de cierre por su cuenta. Una
+compuerta no puede distinguir un informe cortado de uno abandonado. Lo que sí puede, y es lo que el
+método le exige desde D-081, es pedirle al informe que **declare** lo que después se puede
+falsificar contando: su completitud bajo `audit_completeness`, con cuántos hallazgos anunció y
+cuántos escribió; la nota de cada dimensión bajo `dimension_grades`; el veredicto de cada recibo
+que volvió a correr bajo `receipts_reproduced`; y lo que no auditó bajo `not_audited`, con su
+pendiente abierto. Ninguna de las cuatro impide mentir. Las cuatro convierten la mentira en una
+afirmación concreta, escrita, con fecha y con firma, en vez de un silencio; y contar los hallazgos
+escritos de un informe y compararlos con su propia cifra cuesta dos minutos y no requiere leer
+código, que es justo la clase de verificación que este método te pide a vos.
+
 ## 1. Contexto requerido
 
 Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
@@ -113,6 +131,20 @@ el agente:
 > method being followed, `tool` if it is in the tool that runs it -- with the register where its
 > pending item goes. A finding whose destination nobody assigned leaves this audit open.
 >
+> Four more declarations, about this report and not about the system, because a gate can read the
+> trace of the work and cannot read the work. `audit_completeness`: `complete` when you wrote down
+> every finding you found, and next to it `findings_announced` and `findings_written` with their
+> figures. Those two figures have to be the same figure: if you announce nine findings and write
+> four, this report is not complete and this step does not close with it -- so do not announce a
+> count you are not going to write, and do not stop halfway and emit your closing marker as if you
+> had finished. `dimension_grades`: the grade of every dimension you audited, each one with the name
+> of its dimension next to it. `receipts_reproduced`: for every receipt you reran, `reproduces` or
+> `does_not_reproduce`, with the command and its output; at least one, and a receipt you only read
+> is not one of them. `not_audited`: `none` when you audited everything in the scope, or
+> `with_pending` and then, part by part, what you did not audit, why, and the pending item that is
+> open for it. A part named as not audited and left without its own pending item leaves this report
+> open; an audit with a smaller scope declared up front is worth more than a wide one with holes.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -153,6 +185,21 @@ el agente:
 > sistema auditado, `method` si es del método que se está siguiendo, `tool` si es de la
 > herramienta que lo corre— con el registro donde va su pendiente. Un hallazgo cuyo destino nadie
 > asignó deja esta auditoría abierta.
+>
+> Cuatro declaraciones más, sobre este informe y no sobre el sistema, porque una compuerta puede leer
+> el rastro del trabajo y no puede leer el trabajo. `audit_completeness`: `complete` cuando
+> escribiste todos los hallazgos que encontraste, y al lado `findings_announced` y
+> `findings_written` con sus cifras. Esas dos cifras tienen que ser la misma cifra: si anunciás nueve
+> hallazgos y escribís cuatro, este informe no está completo y este peldaño no cierra con él —así que
+> no anuncies una cuenta que no vas a escribir, y no te detengas a mitad de camino y emitas tu
+> marcador de cierre como si hubieras terminado—. `dimension_grades`: la nota de cada dimensión que
+> auditaste, cada una con el nombre de su dimensión al lado. `receipts_reproduced`: por cada recibo
+> que volviste a correr, `reproduces` o `does_not_reproduce`, con el comando y su salida; al menos
+> uno, y un recibo que sólo leíste no es uno de ésos. `not_audited`: `none` cuando auditaste todo lo
+> que estaba en el alcance, o `with_pending` y entonces, parte por parte, qué no auditaste, por qué,
+> y el pendiente que quedó abierto por eso. Una parte nombrada como no auditada y dejada sin su
+> pendiente deja este informe abierto; una auditoría con un alcance más chico declarado de entrada
+> vale más que una ancha con agujeros.
 >
 > Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
@@ -240,6 +287,11 @@ producto; un hallazgo que llega sin destino se te pregunta a vos antes de abrir 
   no se pudo medir) y `findings_by_destination` (cada hallazgo con su destino).
 - En el registro de cada destino: un pendiente por cada P0 y P1. Los del producto en el registro
   del producto, los del método en el del método, los de la herramienta en el de la herramienta.
+- En ese mismo informe, las cuatro declaraciones que D-081 agrega a las tres anteriores:
+  `audit_completeness` en `complete`, con `findings_announced` y `findings_written` en la misma
+  cifra; `dimension_grades` con la nota de cada dimensión auditada; `receipts_reproduced` con el
+  veredicto de cada recibo que se volvió a correr; y `not_audited` en `none` o en `with_pending`,
+  y entonces el pendiente abierto de cada parte que quedó afuera.
 
 ## 4. Verificación de completitud
 
@@ -255,6 +307,13 @@ producto; un hallazgo que llega sin destino se te pregunta a vos antes de abrir 
   Una cifra que no se pudo medir dice "no medida"; un cero que no distingue "no hay ninguno" de "no
   pude mirar" no es una cifra (CQ-19, el denominador).
 - ¿Cada hallazgo tiene destino, y su pendiente quedó abierto en el registro de ese destino?
+- ¿`findings_announced` y `findings_written` dicen la misma cifra? Contá a mano los hallazgos
+  escritos y comparalos con la cifra declarada: es la única manera de falsificar la declaración, y
+  es la verificación más barata del peldaño.
+- ¿Cada parte que el informe nombra como no auditada tiene su pendiente abierto? Una parte
+  declarada y sin pendiente es una parte que nadie va a auditar nunca.
+- ¿Hay al menos un recibo con su veredicto, `reproduces` o `does_not_reproduce`, con el comando y
+  la salida pegados? Un recibo leído no tiene veredicto.
 
 ## 5. Señales de alarma
 
@@ -271,3 +330,9 @@ producto; un hallazgo que llega sin destino se te pregunta a vos antes de abrir 
 - Todos los hallazgos salieron con destino `product`. En un control que mira el sistema con el
   método y la herramienta puestos, que ninguno sea del método ni de la herramienta es improbable:
   lo más probable es que nadie se preguntó por el destino.
+- El informe declara `audit_completeness: complete` y la cuenta de hallazgos escritos no da. Es la
+  única de las declaraciones que se puede falsificar en dos minutos, y por eso conviene hacerlo
+  siempre.
+- El informe termina con una frase de cierre impecable y no volvió sobre las partes que había
+  marcado como no auditadas. Un auditor que se queda sin lugar emite su marcador de cierre igual:
+  lo que distingue un informe terminado de uno abandonado no es el final, es `not_audited`.

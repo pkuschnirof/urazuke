@@ -39,6 +39,40 @@ is written so that anyone can follow it the same way, without knowing how the sy
 *precondition* is what has to exist before starting. And to *reinject* means that whatever the
 person found wrong comes back to the list of pending items as a new request, in their words.
 
+Two more things came in with D-082, and they are two and not one. The first: **a person executes in
+order to accept and the agent walks in order to find defects**, and the method asks for both. The
+agentic walk -- the agent opening every screen, looking at what is on it, using it and following
+the flow from one screen to the next, as a person would -- does not replace the human execution,
+and it is not the end-to-end test of step 8 either: the end-to-end test walks a path somebody
+chose, and the walk looks for what nobody thought of testing. I ask for it because I measured it:
+of everything an agent did in a complete cycle, the walk was **what found the most interface
+defects**, and the method did not ask for it; the agent was asking it of itself. It goes to
+`docs/SCREEN_WALKTHROUGH.md`, with its denominator: how many screens the system has, how many it
+walked and how many defects it found. A screen it could not get into is counted in the total and
+named with its reason; taking it out of the denominator so the figure looks nicer is exactly what
+`CQ-19.1` of Annex H forbids.
+
+And the second, which is the limit of this step said to your face: **writing the cases and having a
+person execute them are two different states, and the method cannot compel the second one.** No
+program can verify that a person followed a script with their own hands, and a gate that demanded
+it could only be satisfied by lying. So the step demands what can be verified -- the declaration --
+and the debt stays in plain sight: `cases_written`, `cases_executed_by_a_person` and
+`execution_debt` at the head of `docs/MANUAL_TESTS.md`, and the second figure is moved by a signed
+execution and never by the agent's reading. The declaration **does not add a new gate**: what the step demands on top is that the debt be
+written down, not that the figure be above zero, because compelling a person is the thing the
+method cannot do. What **does** stop it, and was already there since anchor 4 of Annex H, is that a
+case nobody ran per profile is not an executed case: I measured it on 2026-11-02 with the real
+evaluator, and an installation that implements that anchor goes red saying that the register of
+signed cases is empty. So what was missing was not a block: it was that the debt be **legible** --
+its figure and the name of whoever owes it -- instead of an empty register that says "nobody
+signed" without saying who had to sign or since when. And it is worth knowing, in order to read
+this step, where the measurement that opened it came from: the project that advanced with the empty
+table was running the **frozen** schema 1, where the only check of step 10 is that the file
+exists. I measured it on 2026-11-02 in a real project: the thirteen
+cases written, the execution table empty, the step green, and a compliance document claiming six
+criteria as verified whose verifier was a person who never executed them. The agent had done
+exactly what the step said. The hole was the step's.
+
 ## 1. Required context
 
 What follows is the generic list. The concrete files you have to have made before each prompt,
@@ -87,6 +121,28 @@ the agent:
 > compare that with the menu, and the real screenshot of the test
 > environment.
 >
+> `docs/MANUAL_TESTS.md` carries at its head three declarations that a gate reads, each one under
+> its fixed key in English even when the file is in my language, because what this step owes is not
+> the same as what it can prove. `cases_written`: how many cases are written.
+> `cases_executed_by_a_person`: how many of those a person signed in their execution table, with a
+> date and a name; you keep the first figure, and the second one moves only when a person executes
+> -- never from your own reading of the system. `execution_debt`: `none` when the two figures are
+> the same, or `pending_verifier` and then the cases nobody has executed yet, with who owes each
+> execution and since when. That debt is not a gate of its own: what this step asks you for is the
+> declaration and not a figure above zero, because the method cannot make a person execute. But it
+> is never silent either, and a step that advances with its debt declared is honest in a way that a
+> step advancing while it looks complete is not.
+>
+> And walk the screens yourself, which is a different thing from the execution a person owes and
+> never a replacement for it: you walk to find defects, a person executes to accept. Go through
+> every screen the system has as a person would -- open it, look at what is on it, use it, and
+> follow the flow from one screen to the next -- and write `docs/SCREEN_WALKTHROUGH.md` with
+> `screens_total`, how many screens the system has; `screens_walked`, how many of them you actually
+> walked; and `walkthrough_findings`, how many defects the walk found. A screen you could not reach
+> is counted in the total and named with its reason: taking it out of the denominator so that the
+> figure reads better is the one thing this file must never do. For every defect: the screen, what
+> you saw, what you expected instead, and the pending item you opened for it.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -101,6 +157,12 @@ include the backend effect verifiable by a person, so that the manual test also 
 side of the screen; that the cases be maintained in the same commit, just like the documentation;
 and **that the model never execute them**, because executed by the model they are one more test,
 and the whole point is that a person executes them.
+
+And what D-082 adds: that the agent **walks the screens on its own**, which is what finds the most
+interface defects and what the method was not asking for; and that the file of cases carries at its
+head the difference between what is written and what was executed, so that a step advancing with
+debt advances **saying so**. The walk does not replace the human execution: it makes it shorter,
+because the person no longer runs into the defects the agent could have seen by looking.
 
 **For an execution (close of block, acceptance, after a deployment):**
 
@@ -122,6 +184,10 @@ and the whole point is that a person executes them.
 > tell me, flow by flow, how many cases passed and how many failed, compared with the previous
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
 > the case or the system is the problem.
+>
+> Then refresh the three declarations at the head of the file: `cases_written`,
+> `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
+> `execution_debt` with who still owes which execution and since when.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -145,6 +211,12 @@ is wrong", which are two different pending items.
 - The executions recorded, with date and who, in every cycle.
 - One corrective pending item for every failure and for every observation.
 - The routine in the agreement.
+- `docs/SCREEN_WALKTHROUGH.md` with the agent's walk: `screens_total`, `screens_walked` and
+  `walkthrough_findings`, and every defect with its screen, what was seen, what was expected and
+  its pending item.
+- At the head of `docs/MANUAL_TESTS.md`, the three declarations a gate reads: `cases_written`,
+  `cases_executed_by_a_person` -- which only a signed execution moves -- and `execution_debt` at
+  `none` or at `pending_verifier`, with who owes each execution and since when.
 
 ## 4. Completeness check (you do it, without reading code)
 
@@ -157,6 +229,14 @@ is wrong", which are two different pending items.
 - Does the last execution have a date and a name in every case? Is there any "passed" without a
   date?
 - Does every failure of the last execution have its pending item, with the person's words?
+- Does `cases_executed_by_a_person` come from the signed tables and not from the agent's reading?
+  Take a case counted as executed and look for the date and the name in its table.
+- If there is debt, does `execution_debt` say who owes it and since when? A debt with no name is
+  not a debt: it is a lapse with formatting.
+- Does the walk count the screens it could not open inside the total, with their reason? A
+  `screens_walked` equal to the total, in a system with screens behind a profile the agent does not
+  have, is an invented figure.
+- Do the defects of the walk have their pending item, the same as the human failures?
 
 ## 5. Warning signs
 
@@ -168,3 +248,9 @@ is wrong", which are two different pending items.
   are not following the script or the script does not ask them to look.
 - The failures get "fixed" on the spot, without a pending item. The person's words and the trail
   of what repeated get lost.
+- The step shows as fulfilled and `cases_executed_by_a_person` is at zero. That is not an error: it
+  is the debt, and it is in plain sight precisely so that it is not read as fulfilment.
+- The agent's walk found nothing and the system has new screens. Walking is not opening: if there
+  are no findings, most likely it looked at the screen and did not use it.
+- The walk starts being used as an excuse not to execute the cases. They are two things with two
+  purposes, and the one that accepts is the person's.

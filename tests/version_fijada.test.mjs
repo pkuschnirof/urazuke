@@ -108,6 +108,23 @@ test('C: el diferencial desde la primera version publicada es la historia medida
     '2026.10.13 docs/AUDIT_*.md',
     '2026.10.13 docs/RETROSPECTIVE_*.md',
     '2026.10.13 docs/WORKING_AGREEMENT.md',
+    // Las once de 2026.10.14 son D-081 y D-082, y son las dos mitades del mismo hueco: un
+    // peldano cuyo trabajo esta afuera. Cuatro exigencias mas sobre el informe de auditoria
+    // (la completitud declarada con sus dos cifras, las notas por dimension, el veredicto de un
+    // recibo reproducido, lo no auditado con su pendiente) y tres preguntas; y en el peldano 10,
+    // la deuda de ejecucion sobre el archivo de casos, la recorrida agentica como artefacto
+    // NUEVO -- la unica ruta nueva de este lote -- y sus dos preguntas.
+    '2026.10.14 Do findings_announced and findings_written say the same figure, counted by hand against the findings the report actually wrote?',
+    '2026.10.14 Does cases_executed_by_a_person come from the signed execution tables rather than from the reading of the agent, and does the debt name who owes it and since when?',
+    '2026.10.14 Does every part the report names as not audited have its pending item open?',
+    '2026.10.14 Does the walk count the screens it could not open inside the total, with their reason, instead of leaving them out of the denominator?',
+    '2026.10.14 Is there at least one receipt with its verdict, with the command and the output, rather than a receipt that was only read?',
+    '2026.10.14 docs/AUDIT_*.md',
+    '2026.10.14 docs/AUDIT_*.md',
+    '2026.10.14 docs/AUDIT_*.md',
+    '2026.10.14 docs/AUDIT_*.md',
+    '2026.10.14 docs/MANUAL_TESTS.md',
+    '2026.10.14 docs/SCREEN_WALKTHROUGH.md',
     '2026.10.4 Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?',
     '2026.10.5 docs/GLOSSARY.md',
     '2026.10.5 docs/PROFILES.md',
@@ -179,7 +196,7 @@ test('E: la comprobacion reviso algo, y lo dice con su cuenta', () => {
   // diez ultimas son de D-079 y D-080, y son las primeras que no tocan el Anexo H: cinco
   // artefactos y cinco preguntas sobre los peldanos 12, 13 y 23, que exigen lo que un control
   // tiene que DECLARAR al cerrar y no lo que el sistema tiene que ser.
-  assert.equal(arbol.entradas.length, 57, 'las entradas agregadas despues del congelado, medidas el 2026-11-02');
+  assert.equal(arbol.entradas.length, 68, 'las entradas agregadas despues del congelado, medidas el 2026-11-02');
   assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['CQ-19', 'CQ-20', 'UX-28'],
     'una regla agregada despues del congelado entra en el diferencial: sin esto un upgrade la omitia en silencio');
   // Y una cara, por el mismo argumento una capa adentro: se puede apagar sola, asi que un

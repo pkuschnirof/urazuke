@@ -916,8 +916,13 @@ the circuit the process diagram shows.
   precondition, steps with what is done and what is seen, expected result with a backend effect
   verifiable by a person, data, execution table); the executions recorded; one corrective pending
   item per failure.
+  And `docs/SCREEN_WALKTHROUGH.md` with the agent's walk through every screen, with its
+  denominator and its findings.
 - **Gate**: no pending item that touches a screen is closed without its case; no execution
   without a date and a name; no failure without a pending item carrying the person's words.
+  And: the agentic walk through the screens is a requirement of its own, distinct from the human
+  execution; that a person executed is something no machine verifies, so it is declared as a debt
+  with its name on it, and what stops the step is anchor 4 and not the declaration.
 - **Who decides**: the owner or a trusted user executes; the agent writes the cases and opens the
   pending items; the model never marks a case as executed.
 - **Failure it prevents**: the human test without a script that finds different things every
@@ -996,6 +1001,9 @@ assumptions. Another session of the model, with another instructions file, is en
 - **Gate**: every urgent finding has an open pending item before the audit is considered closed.
   And: the report declares why that auditor and not another, measures the health of the
   register of the evidence, and does not close with a finding that has no destination.
+  And the report declares its completeness with the two figures that make it falsifiable: this
+  step is not verified end to end by a machine, and the gate reads the trace of the work and not
+  the work.
 - **Who decides**: the owner prioritises the findings.
 - **Failure it prevents**: queries that read whole tables [Ref. 18](REFERENCIAS.md#ref-18); two
   administrator doors that nobody saw until someone else looked

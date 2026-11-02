@@ -45,6 +45,25 @@ aveva annunciato, e il suo unico P0 era falso per aver letto male una virgola de
 dello stesso modello, scostandosi dalla preferenza e dichiarandolo nella sua prima riga, ne ha
 consegnati diciassette, e nessuno è risultato falso verificandoli uno per uno.)
 
+E qui va il limite, perché dirlo vale più che simularlo: **il gradino 13 non si può verificare per
+macchina da un capo all'altro**. Il suo lavoro lo fa un terzo, quindi il cancello non può valutare
+il lavoro; può valutare la sua **traccia**. L'ho misurato il 2026-11-02 ed è scomodo: un rapporto
+che diceva di se stesso, testuale, «ho trovato nove rilievi, ne scrivo quattro, il rapporto è
+incompleto» usciva **verde**, perché «completo» non è una proprietà del file —è la relazione tra
+quello che il rapporto annuncia e quello che consegna— e un cancello che guarda il file non la vede.
+E non basta dare più budget all'auditor: in quella misura la sessione **non si è tagliata**, è
+finita da sola, in un turno e centotrentamila token, emettendo il suo segnale di chiusura per conto
+suo. Un cancello non può distinguere un rapporto tagliato da uno abbandonato. Quello che può, ed è
+quello che il metodo gli esige da D-081, è chiedere al rapporto che **dichiari** quello che dopo si
+può falsificare contando: la sua completezza sotto `audit_completeness`, con quanti rilievi ha
+annunciato e quanti ne ha scritti; il voto di ogni dimensione sotto `dimension_grades`; il verdetto
+di ogni ricevuta che ha rieseguito sotto `receipts_reproduced`; e quello che non ha controllato
+sotto `not_audited`, con la sua voce in sospeso aperta. Nessuna delle quattro impedisce di mentire.
+Le quattro trasformano la menzogna in un'affermazione concreta, scritta, con data e con firma,
+invece di un silenzio; e contare i rilievi scritti di un rapporto e confrontarli con la sua stessa
+cifra costa due minuti e non richiede di leggere codice, che è proprio il genere di verifica che
+questo metodo chiede a te.
+
 ## 1. Contesto richiesto
 
 Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni
@@ -116,6 +135,20 @@ l'agente:
 > method being followed, `tool` if it is in the tool that runs it -- with the register where its
 > pending item goes. A finding whose destination nobody assigned leaves this audit open.
 >
+> Four more declarations, about this report and not about the system, because a gate can read the
+> trace of the work and cannot read the work. `audit_completeness`: `complete` when you wrote down
+> every finding you found, and next to it `findings_announced` and `findings_written` with their
+> figures. Those two figures have to be the same figure: if you announce nine findings and write
+> four, this report is not complete and this step does not close with it -- so do not announce a
+> count you are not going to write, and do not stop halfway and emit your closing marker as if you
+> had finished. `dimension_grades`: the grade of every dimension you audited, each one with the name
+> of its dimension next to it. `receipts_reproduced`: for every receipt you reran, `reproduces` or
+> `does_not_reproduce`, with the command and its output; at least one, and a receipt you only read
+> is not one of them. `not_audited`: `none` when you audited everything in the scope, or
+> `with_pending` and then, part by part, what you did not audit, why, and the pending item that is
+> open for it. A part named as not audited and left without its own pending item leaves this report
+> open; an audit with a smaller scope declared up front is worth more than a wide one with holes.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -156,6 +189,21 @@ l'agente:
 > del sistema sottoposto ad audit, `method` se è del metodo che si sta seguendo, `tool` se è dello
 > strumento che lo esegue— con il registro dove va la sua voce in sospeso. Un rilievo la cui
 > destinazione nessuno ha assegnato lascia questo audit aperto.
+>
+> Quattro dichiarazioni in più, su questo rapporto e non sul sistema, perché un cancello può leggere
+> la traccia del lavoro e non può leggere il lavoro. `audit_completeness`: `complete` quando hai
+> scritto ogni rilievo che hai trovato, e accanto `findings_announced` e `findings_written` con le
+> loro cifre. Quelle due cifre devono essere la stessa cifra: se annunci nove rilievi e ne scrivi
+> quattro, questo rapporto non è completo e questo gradino non chiude con lui —quindi non annunciare
+> un conteggio che non scriverai, e non fermarti a metà strada emettendo il tuo segnale di chiusura
+> come se avessi finito—. `dimension_grades`: il voto di ogni dimensione che hai sottoposto ad audit,
+> ognuna con il nome della sua dimensione accanto. `receipts_reproduced`: per ogni ricevuta che hai
+> rieseguito, `reproduces` o `does_not_reproduce`, con il comando e la sua uscita; almeno una, e una
+> ricevuta che hai solo letto non è una di quelle. `not_audited`: `none` quando hai sottoposto ad
+> audit tutto quello che era nel perimetro, oppure `with_pending` e allora, parte per parte, cosa non
+> hai controllato, perché, e la voce in sospeso che è aperta per quello. Una parte nominata come non
+> controllata e lasciata senza la sua voce in sospeso lascia questo rapporto aperto; un audit con un
+> perimetro più piccolo dichiarato in apertura vale più di uno ampio con i buchi.
 >
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
@@ -251,6 +299,11 @@ prodotto; un rilievo che arriva senza destinazione si chiede a te prima di aprir
 - Nel registro di ogni destinazione: una voce in sospeso per ogni P0 e P1. Quelle del prodotto nel
   registro del prodotto, quelle del metodo in quello del metodo, quelle dello strumento in quello
   dello strumento.
+- In quello stesso rapporto, le quattro dichiarazioni che D-081 aggiunge alle tre precedenti:
+  `audit_completeness` a `complete`, con `findings_announced` e `findings_written` alla stessa
+  cifra; `dimension_grades` con il voto di ogni dimensione controllata; `receipts_reproduced` con il
+  verdetto di ogni ricevuta che è stata rieseguita; e `not_audited` a `none` o a `with_pending`, e
+  allora la voce in sospeso aperta di ogni parte rimasta fuori.
 
 ## 4. Verifica di completezza
 
@@ -269,6 +322,13 @@ prodotto; un rilievo che arriva senza destinazione si chiede a te prima di aprir
   n'è nessuno" da "non ho potuto guardare" non è una cifra (CQ-19, il denominatore).
 - Ogni rilievo ha destinazione, e la sua voce in sospeso è stata aperta nel registro di quella
   destinazione?
+- `findings_announced` e `findings_written` dicono la stessa cifra? Conta a mano i rilievi scritti e
+  confrontali con la cifra dichiarata: è l'unico modo di falsificare la dichiarazione, ed è la
+  verifica più economica di questo gradino.
+- Ogni parte che il rapporto nomina come non controllata ha la sua voce in sospeso aperta? Una parte
+  dichiarata e senza voce in sospeso è una parte che nessuno controllerà mai.
+- C'è almeno una ricevuta con il suo verdetto, `reproduces` o `does_not_reproduce`, con il comando e
+  l'uscita incollati? Una ricevuta solo letta non ha verdetto.
 
 ## 5. Segnali d'allarme
 
@@ -287,3 +347,10 @@ prodotto; un rilievo che arriva senza destinazione si chiede a te prima di aprir
 - Tutti i rilievi sono usciti con destinazione `product`. In un controllo che guarda il sistema con
   il metodo e lo strumento in uso, che nessuno sia del metodo né dello strumento è improbabile: più
   probabile è che nessuno si sia chiesto la destinazione.
+- Il rapporto dichiara `audit_completeness: complete` e il conto dei rilievi scritti non torna. È
+  l'unica delle dichiarazioni che si può falsificare in due minuti, e per questo conviene farlo
+  sempre.
+- Il rapporto finisce con una frase di chiusura impeccabile e non è tornato sulle parti che aveva
+  segnato come non controllate. Un auditor che rimane senza spazio emette il suo segnale di chiusura
+  comunque: quello che distingue un rapporto finito da uno abbandonato non è il finale, è
+  `not_audited`.

@@ -40,6 +40,40 @@ un caso è seguire la ricetta e annotare se è passato o fallito. *Precondizione
 esistere prima di cominciare. E *reimmettere* vuol dire che ciò che la persona ha trovato sbagliato
 torna nella lista delle voci in sospeso come una richiesta nuova, con le sue parole.
 
+Due cose in più sono entrate con D-082, e sono due e non una. La prima: **la persona esegue per
+accettare e l'agente percorre per trovare difetti**, e il metodo chiede le due. La percorrenza
+agentica —che l'agente apra ogni schermo, guardi quello che c'è sopra, lo usi e segua il flusso da
+uno al successivo, come farebbe una persona— non sostituisce l'esecuzione umana e non è nemmeno la
+prova da un capo all'altro del gradino 8: quella da capo a capo percorre un cammino che qualcuno ha
+scelto, e la percorrenza cerca quello che nessuno ha pensato di provare. La chiedo perché l'ho
+misurata: di tutto quello che un agente ha fatto in un ciclo completo, la percorrenza è stata
+**quello che ha trovato più difetti di interfaccia**, e il metodo non la chiedeva; se la chiedeva
+l'agente a se stesso. Va in `docs/SCREEN_WALKTHROUGH.md`, con il suo denominatore: quanti schermi
+ha il sistema, quanti ne ha percorsi e quanti difetti ha trovato. Uno schermo in cui non è potuto
+entrare si conta nel totale e si nomina con la sua ragione; tirarlo fuori dal denominatore perché il
+numero venga bello è esattamente quello che proibisce `CQ-19.1` dell'Allegato H.
+
+E la seconda, che è il limite di questo gradino detto in faccia: **scrivere i casi e che una persona
+li esegua sono due stati distinti, e il secondo il metodo non lo può obbligare.** Nessun programma
+può verificare che una persona ha seguito un copione con le sue mani, e un cancello che lo esigesse
+si potrebbe soddisfare solo mentendo. Allora il gradino esige quello che si può verificare —la
+dichiarazione— e il debito resta in vista: `cases_written`, `cases_executed_by_a_person` e
+`execution_debt` in testa a `docs/MANUAL_TESTS.md`, e la seconda cifra la muove un'esecuzione
+firmata e mai la lettura dell'agente. La dichiarazione **non aggiunge un cancello nuovo**: quello che il
+gradino esige in più è che il debito sia scritto, non che la cifra sia maggiore di zero, perché
+obbligare una persona è quello che il metodo non può fare. Quello che **ferma**, e c'era già
+dall'ancora 4 dell'Allegato H, è che un caso che nessuno ha corso per profilo non è un caso
+eseguito: l'ho misurato il 2026-11-02 con il valutatore reale e un'installazione che implementa
+quell'ancora va in rosso dicendo che il registro dei casi firmati è vuoto. Quindi quello che mancava
+non era un blocco: era che il debito fosse **leggibile** —la sua cifra e il nome di chi lo deve— al
+posto di un registro vuoto che dice «nessuno ha firmato» senza dire chi doveva firmare né da quando.
+E conviene sapere, per leggere questo gradino, da dove è uscita la misura che l'ha aperto: il
+progetto che è avanzato con la tabella vuota correva il **congelato** dello schema 1, dove l'unico
+controllo del gradino 10 è che il file esista. L'ho misurato il 2026-11-02 in un progetto reale: i tredici casi
+scritti, la tabella di esecuzioni vuota, il gradino in verde, e un documento di conformità che
+affermava sei criteri come verificati il cui verificatore era una persona che non li ha mai
+eseguiti. L'agente aveva fatto esattamente quello che il gradino diceva. Il buco era del gradino.
+
 ## 1. Contesto richiesto
 
 Quello che segue è la lista generica. I file concreti che devi avere pronti prima di ogni prompt,
@@ -88,6 +122,28 @@ l'agente:
 > compare that with the menu, and the real screenshot of the test
 > environment.
 >
+> `docs/MANUAL_TESTS.md` carries at its head three declarations that a gate reads, each one under
+> its fixed key in English even when the file is in my language, because what this step owes is not
+> the same as what it can prove. `cases_written`: how many cases are written.
+> `cases_executed_by_a_person`: how many of those a person signed in their execution table, with a
+> date and a name; you keep the first figure, and the second one moves only when a person executes
+> -- never from your own reading of the system. `execution_debt`: `none` when the two figures are
+> the same, or `pending_verifier` and then the cases nobody has executed yet, with who owes each
+> execution and since when. That debt is not a gate of its own: what this step asks you for is the
+> declaration and not a figure above zero, because the method cannot make a person execute. But it
+> is never silent either, and a step that advances with its debt declared is honest in a way that a
+> step advancing while it looks complete is not.
+>
+> And walk the screens yourself, which is a different thing from the execution a person owes and
+> never a replacement for it: you walk to find defects, a person executes to accept. Go through
+> every screen the system has as a person would -- open it, look at what is on it, use it, and
+> follow the flow from one screen to the next -- and write `docs/SCREEN_WALKTHROUGH.md` with
+> `screens_total`, how many screens the system has; `screens_walked`, how many of them you actually
+> walked; and `walkthrough_findings`, how many defects the walk found. A screen you could not reach
+> is counted in the total and named with its reason: taking it out of the denominator so that the
+> figure reads better is the one thing this file must never do. For every defect: the screen, what
+> you saw, what you expected instead, and the pending item you opened for it.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -114,6 +170,29 @@ l'agente:
 > clic, in cui io nomino il luogo dove cercherei un compito e tu confronti
 > questo con il menu, e la cattura reale dell'ambiente di test.
 >
+> `docs/MANUAL_TESTS.md` porta in testa tre dichiarazioni che un cancello legge, ognuna sotto la sua
+> chiave fissa in inglese anche se il file è nella mia lingua, perché quello che questo gradino deve
+> non è la stessa cosa di quello che può provare. `cases_written`: quanti casi sono scritti.
+> `cases_executed_by_a_person`: quanti di quelli una persona ha firmato nella sua tabella di
+> esecuzioni, con data e con nome; la prima cifra la tieni tu, e la seconda si muove solo quando una
+> persona esegue —mai dalla tua lettura del sistema—. `execution_debt`: `none` quando le due cifre
+> sono la stessa, oppure `pending_verifier` e allora i casi che nessuno ha ancora eseguito, con chi
+> deve ogni esecuzione e da quando. Quel debito non è un cancello a sé: quello che questo gradino ti
+> chiede è la dichiarazione e non una cifra maggiore di zero, perché il metodo non può obbligare una
+> persona a eseguire. Ma non è nemmeno mai silenzioso, e un gradino che avanza con il suo debito
+> dichiarato è onesto in un modo in cui non lo è uno che avanza sembrando completo.
+>
+> E percorri gli schermi tu stesso, che è un'altra cosa rispetto all'esecuzione che dobbiamo a una
+> persona e mai un sostituto di quella: tu percorri per trovare difetti, una persona esegue per
+> accettare. Passa per ogni schermo che il sistema ha come farebbe una persona —aprilo, guarda
+> quello che c'è sopra, usalo, e segui il flusso da uno schermo al successivo— e scrivi
+> `docs/SCREEN_WALKTHROUGH.md` con `screens_total`, quanti schermi ha il sistema; `screens_walked`,
+> quanti di quelli hai percorso davvero; e `walkthrough_findings`, quanti difetti ha trovato la
+> percorrenza. Uno schermo in cui non sei potuto entrare si conta nel totale e si nomina con la sua
+> ragione: tirarlo fuori dal denominatore perché la cifra si legga meglio è l'unica cosa che questo
+> file non può fare mai. Per ogni difetto: lo schermo, cosa hai visto, cosa ti aspettavi invece, e la
+> voce in sospeso che hai aperto per quello.
+>
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
 > elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
@@ -129,6 +208,12 @@ backend verificabile da una persona, perché anche la prova manuale guardi dall'
 schermo; che i casi si mantengano nello stesso commit, come la documentazione; e **che il modello
 non li esegua mai**, perché eseguiti dal modello sono un test in più, e il bello è che li esegua
 una persona.
+
+E quello che aggiunge D-082: che l'agente **percorra gli schermi per conto suo**, che è quello che
+trova più difetti di interfaccia e quello che il metodo non chiedeva; e che il file dei casi porti
+in testa la differenza tra lo scritto e l'eseguito, perché un gradino che avanza con debito avanzi
+**dicendolo**. La percorrenza non sostituisce l'esecuzione umana: la rende più corta, perché la
+persona non incontra più i difetti che l'agente avrebbe potuto vedere guardando.
 
 **Per un'esecuzione (chiusura di blocco, accettazione, dopo un deployment):**
 
@@ -151,6 +236,10 @@ una persona.
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
 > the case or the system is the problem.
 >
+> Then refresh the three declarations at the head of the file: `cases_written`,
+> `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
+> `execution_debt` with who still owes which execution and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -168,6 +257,10 @@ una persona.
 > flusso, quanti casi sono passati e quanti sono falliti, confrontato con l'esecuzione precedente,
 > e quali fallimenti si ripetono. Se un caso non si è potuto eseguire, dimmi perché e se il
 > problema è il caso o il sistema.
+>
+> Poi aggiorna le tre dichiarazioni in testa al file: `cases_written`,
+> `cases_executed_by_a_person` contata dalle tabelle di esecuzione firmate e da nient'altro, e
+> `execution_debt` con chi deve ancora quale esecuzione e da quando.
 >
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
@@ -192,6 +285,12 @@ sbagliato", che sono due voci in sospeso diverse.
 - Le esecuzioni registrate, con data e chi, in ogni ciclo.
 - Una voce in sospeso correttiva per ogni fallimento e per ogni osservazione.
 - La routine nel patto.
+- `docs/SCREEN_WALKTHROUGH.md` con la percorrenza dell'agente: `screens_total`, `screens_walked` e
+  `walkthrough_findings`, e ogni difetto con il suo schermo, quello che si è visto, quello che si
+  aspettava e la sua voce in sospeso.
+- In testa a `docs/MANUAL_TESTS.md`, le tre dichiarazioni che un cancello legge: `cases_written`,
+  `cases_executed_by_a_person` —che muove solo un'esecuzione firmata— e `execution_debt` a `none` o
+  a `pending_verifier`, con chi deve ogni esecuzione e da quando.
 
 ## 4. Verifica di completezza (la fai tu, senza leggere codice)
 
@@ -203,6 +302,14 @@ sbagliato", che sono due voci in sospeso diverse.
   persona?
 - L'ultima esecuzione ha data e nome in ogni caso? Ce n'è qualcuno "passato" senza data?
 - Ogni fallimento dell'ultima esecuzione ha la sua voce in sospeso, con le parole della persona?
+- `cases_executed_by_a_person` esce dalle tabelle firmate e non dalla lettura dell'agente? Prendi un
+  caso contato come eseguito e cerca la data e il nome nella sua tabella.
+- Se c'è debito, `execution_debt` dice chi lo deve e da quando? Un debito senza nome non è un
+  debito: è una dimenticanza con la formattazione.
+- La percorrenza conta gli schermi che non è riuscita ad aprire dentro il totale, con la loro
+  ragione? Uno `screens_walked` uguale al totale, in un sistema con schermi dietro un profilo che
+  l'agente non ha, è una cifra inventata.
+- I difetti della percorrenza hanno la loro voce in sospeso, come i fallimenti umani?
 
 ## 5. Segnali d'allarme
 
@@ -213,3 +320,9 @@ sbagliato", che sono due voci in sospeso diverse.
   niente, non stanno seguendo il copione o il copione non chiede di guardare.
 - I fallimenti si "sistemano" sul momento, senza voce in sospeso. Si perdono le parole della
   persona e la traccia di cosa si è ripetuto.
+- Il gradino figura compiuto e `cases_executed_by_a_person` è a zero. Non è un errore: è il debito,
+  ed è in vista proprio perché non si legga come compimento.
+- La percorrenza dell'agente non ha trovato niente e il sistema ha schermi nuovi. Percorrere non è
+  aprire: se non ci sono rilievi, molto probabilmente ha guardato lo schermo e non l'ha usato.
+- La percorrenza comincia a usarsi come scusa per non eseguire i casi. Sono due cose con due scopi,
+  e quella che accetta è quella della persona.

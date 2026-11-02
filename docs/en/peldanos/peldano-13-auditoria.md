@@ -44,6 +44,25 @@ itself announced, and its only P0 was false because it misread a decimal point; 
 model, departing from the preference and declaring it in its first line, delivered seventeen, and
 not one of them turned out false when they were verified one by one.)
 
+And here is the limit, because saying it is worth more than simulating it: **step 13 cannot be
+verified end to end by a machine**. Its work is done by a third party, so the gate cannot evaluate
+the work; it can evaluate its **trace**. I measured it on 2026-11-02 and it is uncomfortable: a
+report that said of itself, literally, "I found nine findings, I am writing four, this report is
+incomplete" came out **green**, because "complete" is not a property of the file -- it is the
+relation between what the report announces and what it delivers -- and a gate that looks at the
+file cannot see it. And giving the auditor a bigger budget does not fix it: in that measurement the
+session **was not cut off**, it ended on its own, in one turn and a hundred and thirty thousand
+tokens, emitting its closing marker by itself. A gate cannot tell a report that was cut off from
+one that was abandoned. What it can do, and what the method demands of it since D-081, is ask the
+report to **declare** what can afterwards be falsified by counting: its completeness under
+`audit_completeness`, with how many findings it announced and how many it wrote; the grade of every
+dimension under `dimension_grades`; the verdict of every receipt it reran under
+`receipts_reproduced`; and what it did not audit under `not_audited`, with its pending item open.
+None of the four prevents lying. The four turn the lie into a concrete claim, written, with a date
+and a signature, instead of a silence; and counting the findings a report wrote and comparing them
+with its own figure costs two minutes and requires reading no code, which is exactly the kind of
+verification this method asks of you.
+
 ## 1. Required context
 
 What follows is the generic list. The concrete files you have to have made before each prompt,
@@ -113,6 +132,20 @@ the agent:
 > destination -- `product` if the defect is in the audited system, `method` if it is in the
 > method being followed, `tool` if it is in the tool that runs it -- with the register where its
 > pending item goes. A finding whose destination nobody assigned leaves this audit open.
+>
+> Four more declarations, about this report and not about the system, because a gate can read the
+> trace of the work and cannot read the work. `audit_completeness`: `complete` when you wrote down
+> every finding you found, and next to it `findings_announced` and `findings_written` with their
+> figures. Those two figures have to be the same figure: if you announce nine findings and write
+> four, this report is not complete and this step does not close with it -- so do not announce a
+> count you are not going to write, and do not stop halfway and emit your closing marker as if you
+> had finished. `dimension_grades`: the grade of every dimension you audited, each one with the name
+> of its dimension next to it. `receipts_reproduced`: for every receipt you reran, `reproduces` or
+> `does_not_reproduce`, with the command and its output; at least one, and a receipt you only read
+> is not one of them. `not_audited`: `none` when you audited everything in the scope, or
+> `with_pending` and then, part by part, what you did not audit, why, and the pending item that is
+> open for it. A part named as not audited and left without its own pending item leaves this report
+> open; an audit with a smaller scope declared up front is worth more than a wide one with holes.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -188,6 +221,11 @@ opened.
   when it could not be measured) and `findings_by_destination` (every finding with its destination).
 - In the register of each destination: one pending item for every P0 and P1. The product's in the
   product register, the method's in the method's, the tool's in the tool's.
+- In that same report, the four declarations D-081 adds to the previous three:
+  `audit_completeness` at `complete`, with `findings_announced` and `findings_written` at the same
+  figure; `dimension_grades` with the grade of every dimension audited; `receipts_reproduced` with
+  the verdict of every receipt that was rerun; and `not_audited` at `none` or at `with_pending`,
+  and then the open pending item of every part that was left out.
 
 ## 4. Completeness check
 
@@ -206,6 +244,13 @@ opened.
   tell "there are none" from "I could not look" is not a figure (CQ-19, the denominator).
 - Does every finding have a destination, and did its pending item get opened in the register of
   that destination?
+- Do `findings_announced` and `findings_written` say the same figure? Count the findings that were
+  written by hand and compare them with the declared figure: it is the only way to falsify the
+  declaration, and it is the cheapest verification of this step.
+- Does every part the report names as not audited have its pending item open? A part declared with
+  no pending item is a part nobody is ever going to audit.
+- Is there at least one receipt with its verdict, `reproduces` or `does_not_reproduce`, with the
+  command and the output pasted in? A receipt that was only read has no verdict.
 
 ## 5. Warning signs
 
@@ -224,3 +269,9 @@ opened.
 - Every finding came out with destination `product`. In a control that looks at the system with
   the method and the tool in use, none of them being of the method or of the tool is improbable:
   the likelier thing is that nobody asked about the destination.
+- The report declares `audit_completeness: complete` and the count of findings written does not
+  add up. It is the one declaration you can falsify in two minutes, which is why it is worth doing
+  every time.
+- The report ends with an impeccable closing sentence and never came back to the parts it had
+  marked as not audited. An auditor who runs out of room emits its closing marker all the same:
+  what tells a finished report from an abandoned one is not the ending, it is `not_audited`.

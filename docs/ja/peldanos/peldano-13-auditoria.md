@@ -39,6 +39,22 @@
 同じモデルのほうは、好みから外れることを最初の行で宣言して十七を出し、一つずつ検証しても
 偽と判明したものは一つもありませんでした。）
 
+そして、ここに限界があります。偽装するより、言うほうが価値があるからです。**段 13 は端から端まで
+機械で検証することはできません。** その仕事は第三者がするので、ゲートは仕事そのものを評価できず、
+その**痕跡**だけを評価できます。2026-11-02 に測りました。そして、それは不都合です。自分自身について
+「九つの発見を見つけ、四つを書き、この報告書は不完全だ」と文字どおり書いた報告書が**緑**で通って
+いました。「完全」はファイルの性質ではなく——報告書が予告するものと引き渡すものとの関係であり——
+ファイルを見るゲートにはそれが見えないからです。しかも、監査人にもっと予算を与えても足りません。
+その測定では、セッションは**途切れていません**。一ターンと十三万トークンで自分から終わり、
+締めの印を自分の判断で出していました。ゲートは、途切れた報告書と放棄された報告書を区別できません。
+ゲートができること、そして D-081 以降この方法がゲートに求めることは、あとから数えれば反証できる
+ものを報告書に**宣言**させることです。`audit_completeness` の下に完全性を、予告した発見の数と
+書いた数とともに。`dimension_grades` の下に各次元の評点を。`receipts_reproduced` の下に、
+もう一度走らせた領収書ごとの判定を。そして `not_audited` の下に、監査しなかったものを、その
+保留項目とともに。四つのどれも嘘を防ぎません。四つは嘘を、沈黙ではなく、日付と署名のついた、
+書かれた具体的な主張に変えます。そして、報告書に書かれた発見を数えて自分の数字と比べることは、
+二分で済み、コードを読む必要もありません。それはまさに、この方法があなたに求める種類の検証です。
+
 ## 1. 必要な文脈
 
 ここに続くのは一般的なリストです。各プロンプトの前にあなたが作り終えていなければならない具体
@@ -107,6 +123,20 @@
 > method being followed, `tool` if it is in the tool that runs it -- with the register where its
 > pending item goes. A finding whose destination nobody assigned leaves this audit open.
 >
+> Four more declarations, about this report and not about the system, because a gate can read the
+> trace of the work and cannot read the work. `audit_completeness`: `complete` when you wrote down
+> every finding you found, and next to it `findings_announced` and `findings_written` with their
+> figures. Those two figures have to be the same figure: if you announce nine findings and write
+> four, this report is not complete and this step does not close with it -- so do not announce a
+> count you are not going to write, and do not stop halfway and emit your closing marker as if you
+> had finished. `dimension_grades`: the grade of every dimension you audited, each one with the name
+> of its dimension next to it. `receipts_reproduced`: for every receipt you reran, `reproduces` or
+> `does_not_reproduce`, with the command and its output; at least one, and a receipt you only read
+> is not one of them. `not_audited`: `none` when you audited everything in the scope, or
+> `with_pending` and then, part by part, what you did not audit, why, and the pending item that is
+> open for it. A part named as not audited and left without its own pending item leaves this report
+> open; an audit with a smaller scope declared up front is worth more than a wide one with holes.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -145,6 +175,21 @@
 > システムにあるなら `product`、従っている方法にあるなら `method`、それを走らせる道具に
 > あるなら `tool`——そして、その保留項目が入る記録とともに。行き先を誰も割り当てていない
 > 発見は、この監査を開いたままにします。
+>
+> さらに四つの宣言を、システムについてではなくこの報告書について書いてください。ゲートは
+> 仕事の痕跕を読めますが、仕事そのものは読めないからです。`audit_completeness`：見つけた
+> 発見をすべて書き切ったときに `complete`、そしてその隣に `findings_announced` と
+> `findings_written` をそれぞれの数字とともに。この二つの数字は同じ数字でなければなりません。
+> 九つの発見を予告して四つしか書かないなら、この報告書は完全ではなく、この段はそれでは
+> 閉じません——ですから、書くつもりのない数を予告しないでください。そして途中で止めて、
+> 終えたかのように締めの印を出さないでください。`dimension_grades`：监査した各次元の評点を、
+> それぞれの次元の名前を隣に添えて。`receipts_reproduced`：もう一度走らせた領収書ごとに、
+> `reproduces` か `does_not_reproduce` を、コマンドとその出力とともに。少なくとも一つ。
+> 読んだだけの領収書はそのうちに入りません。`not_audited`：範囲のすべてを监査したときは
+> `none`、そうでなければ `with_pending` とし、部分ごとに、何を监査しなかったか、なぜか、
+> そのために開いている保留項目を書いてください。未监査と名指しておきながら自分の保留項目を
+> 持たない部分は、この報告書を開いたままにします。最初から小さい範囲を宣言した监査のほうが、
+> 穴のある広い监査より価値があります。
 >
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
@@ -231,6 +276,11 @@
   行き先）。
 - 各行き先の記録に：P0とP1ごとに保留項目を一つ。製品のものは製品の記録に、方法のものは
   方法の記録に、道具のものは道具の記録に。
+- その同じ報告書に、D-081 が前の三つに加える四つの宣言：`audit_completeness` が `complete`
+  であり、`findings_announced` と `findings_written` が同じ数字であること。`dimension_grades`
+  に監査した各次元の評点。`receipts_reproduced` にもう一度走らせた各領収書の判定。そして
+  `not_audited` が `none` か `with_pending` であり、後者なら、外に残った各部分の開いている
+  保留項目。
 
 ## 4. 完全性の検証
 
@@ -248,6 +298,13 @@
   「未測定」と言います。「一つもない」と「見られなかった」を区別しないゼロは数字では
   ありません（CQ-19、分母）。
 - 各発見に行き先があり、その保留項目はその行き先の記録に開かれましたか。
+- `findings_announced` と `findings_written` は同じ数字を言っていますか。書かれた発見を手で
+  数えて、宣言された数字と比べてください。宣言を反証する唯一の方法であり、この段でもっとも
+  安い検証です。
+- 報告書が未監査と名指した各部分に、その保留項目が開いていますか。宣言されて保留項目のない
+  部分は、誰も永遠に監査しない部分です。
+- 判定のついた領収書が少なくとも一つありますか——`reproduces` か `does_not_reproduce` を、
+  コマンドと出力を貼って。読んだだけの領収書には判定がありません。
 
 ## 5. 警告サイン
 
@@ -264,3 +321,8 @@
 - すべての発見が行き先 `product` で出てきた。方法と道具を使って系を見る統制で、どれも方法の
   ものでも道具のものでもないというのはありそうにありません。もっとありそうなのは、誰も
   行き先を問わなかったということです。
+- 報告書が `audit_completeness: complete` と宣言しているのに、書かれた発見の数が合わない。
+  二分で反証できる唯一の宣言であり、だからこそ毎回やる価値があります。
+- 報告書が申し分のない締めの一文で終わっているのに、未監査と印をつけた部分に戻ってこなかった。
+  場所が足りなくなった監査人も、締めの印は同じように出します。終わった報告書と放棄された
+  報告書を分けるのは終わり方ではなく、`not_audited` です。

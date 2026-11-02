@@ -8069,6 +8069,186 @@ lección y el manual deja de llevar copia, con la cláusula de la UX-28 incluida
 código en las dos salidas: abrir la lección 13 y el contrato del peldaño 13 y ver si dicen lo mismo
 o si el manual dice por qué no.
 
+## PND-095 — La compuerta del peldaño 13 no podía ver que una auditoría estuviera incompleta: dio verde con un informe que se declara incompleto *(del experimento A/B del método; el dueño pidió el lote)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento A/B del método (`C:\urazuke-exp`), peldaño 13 del brazo C1, el
+  2026-11-02, y la frase del dueño: «no debería aceptársele una auditoría abortada». Entrada
+  `PND-058` del registro de la herramienta, que **no es este registro** (la numeración no se
+  corresponde).
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y lo decidió: las cuatro propuestas entran, y el límite que queda se
+  escribe en el texto del método.
+- **Estado: CERRADO** el 2026-11-02, con **D-081**.
+
+**Qué estaba mal.** El método promete que un peldaño cierra cuando la evaluación mecánica da verde,
+y en el peldaño 13 esa promesa era más débil de lo que se lee: «completo» no es una propiedad del
+archivo —es la relación entre lo que el informe **anuncia** y lo que **entrega**— y una compuerta
+que mira el archivo no la puede ver.
+
+**Mi reproducción, el 2026-11-02.** Armé el caso que el pendiente pedía: un `docs/AUDIT_2026-11-02.md`
+que dice de sí mismo, textual, «encontré NUEVE hallazgos. Escribo cuatro ... el informe está
+INCOMPLETO», con su línea `Auditor:` y sus dos insumos, y lo evalué con el evaluador **real** de la
+herramienta. Verde contra el catálogo compilado y verde contra la definición que el método publica.
+Y una tercera medición que el pendiente no traía: **borré la línea `Auditor:` entera y siguió
+verde**, con aviso, porque es un `should_contain`. O sea que del peldaño 13 bloqueaban **dos** cosas
+y no tres: que exista un `docs/AUDIT_*.md` de doscientos bytes y que tenga menos de sesenta días.
+El defecto era peor de lo que la entrada afirmaba. Y hay un dato que lo endurece y que vino del
+experimento: el informe **no se cortó**. La sub-sesión terminó con `status: done`, un turno y 130.525
+tokens, emitiendo su marcador de cierre por su cuenta. No alcanza con darle más presupuesto, y una
+compuerta no puede distinguir un informe cortado de uno abandonado.
+
+**Qué quedó.** Cuatro exigencias nuevas sobre el informe, todas sobre el **rastro** del trabajo:
+`audit_completeness` en `complete` con `findings_announced` y `findings_written` en la misma cifra;
+`dimension_grades` con la nota de cada dimensión; `receipts_reproduced` con el veredicto de cada
+recibo reproducido; y `not_audited` en `none` o en `with_pending`, con el pendiente de cada parte que
+quedó afuera. En el dato: cuatro artefactos y tres preguntas nuevos (`gates/steps.json`,
+`since_version` `2026.10.14`). Y el **límite escrito**, que es la mitad que el dueño pidió aparte: el
+peldaño 13 no se puede verificar por máquina de punta a punta, porque su trabajo lo hace un tercero,
+y eso está en la prosa del contrato y en la ficha, en los ocho idiomas.
+
+**La medición del arreglo, que es lo que lo hace un cierre y no una promesa.** El mismo informe del
+turno 1 pasa de verde a **rojo** nombrando las cuatro que le faltan. Un informe que trae todas las
+declaraciones y dice `audit_completeness: partial` con `findings_announced: 9` y
+`findings_written: 4` sale **rojo**, y el único chequeo que falla es el de la completitud. El mismo
+informe con las nueve escritas y `complete` sale **verde**. Es el criterio de aceptación, medido en
+los tres estados.
+
+**Lo que este cierre NO hizo, dicho porque es el límite.** No agregó un evaluador que compare las
+dos cifras aritméticamente: el vocabulario de evaluadores es append-only y un nombre que una
+instalación no conoce **detiene el peldaño para todos los consumidores**, y dos cifras que escribió
+la misma mano no se verifican entre sí. La comparación contra el cuerpo del informe es la
+verificación del dueño, y quedó publicada como tal en la sección 4 del contrato.
+
+**Criterio de aceptación.** Dado un informe que anuncia N hallazgos y escribe menos de N, cuando se
+evalúa el peldaño 13, entonces la compuerta no da verde y el motivo nombra la incompletitud.
+Verificado con el evaluador real, en los tres casos de arriba.
+
+## PND-096 — La recorrida agéntica de las pantallas no era exigencia de ningún peldaño, y el peldaño 10 no distinguía los casos escritos de los ejecutados *(del experimento A/B del método; el dueño pidió el lote)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento A/B del método, el 2026-11-02, midiendo la procedencia de cada criterio
+  contra el texto de los veinticuatro prompts congelados y no contra sus títulos, y la observación
+  del dueño: «faltan criterios como ... navegabilidad agéntica de las pantallas simulando recorrida
+  humana para detectar bugs de interface y e2e ... son cosas que Forge hace con el método que no
+  tienes evaluadas». Entrada `PND-060` del registro de la herramienta, que no es este registro.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y lo decidió: entran la propuesta (b) y la (a); la (c) queda afuera.
+- **Estado: CERRADO** el 2026-11-02, con **D-082**.
+
+**Qué estaba mal.** Dos cosas distintas que el peldaño 10 mezclaba. La primera: la **recorrida
+agéntica** —que el agente abra cada pantalla, la mire, la use y siga el flujo de una a la siguiente,
+como lo haría una persona— no la pedía **ninguno** de los veinticuatro peldaños, y en el ciclo
+completo que se midió fue lo que más defectos de interface encontró. La hacía el agente por su
+cuenta. La segunda: el peldaño exige escribir los casos y prohíbe explícitamente que el agente los
+marque como ejecutados, pero no distinguía por escrito «casos escritos» de «casos que ejecutó una
+persona», así que la deuda no se veía.
+
+**Mi reproducción, el 2026-11-02.** Las dos mitades se sostienen. La prohibición está textual
+(«Never mark a case as executed yourself: execution is human»). Y la recorrida: corrí diecisiete
+patrones sobre los veinticuatro prompts generados —`navigat`, `walk through`, `browse`, `click`,
+`screenshot`, `every screen`, `as if you were a user`, `accessib` y diez más— y lo que el método
+pide son **capturas** (peldaños 4, 5, 10 y 20) y la prueba de **punta a punta** (8). Lo único
+parecido a una recorrida vive en la estación N0 del camino heredado, que no es uno de los
+veinticuatro y además evalúa testeabilidad en vez de buscar defectos de interface. Cero de
+veinticuatro.
+
+**Qué quedó.** La recorrida entra como exigencia propia del peldaño 10, con artefacto nuevo
+—`docs/SCREEN_WALKTHROUGH.md`, la única ruta nueva de este lote— y con su **denominador**:
+`screens_total`, `screens_walked`, `walkthrough_findings`, y una pantalla a la que no se pudo entrar
+se cuenta en el total con su razón, que es `CQ-19.1`. Y el archivo de casos lleva en su cabeza
+`cases_written`, `cases_executed_by_a_person` —que mueve una ejecución firmada y nunca la lectura del
+agente— y `execution_debt`, con quién debe cada ejecución y desde cuándo.
+
+**La medición del arreglo.** Un árbol con los casos escritos y sin las declaraciones sale **rojo**
+nombrando las dos cosas que le faltan; el mismo árbol con la deuda declarada (`cases_written: 13`,
+`cases_executed_by_a_person: 0`, `execution_debt: pending_verifier` con quién y desde cuándo) y con
+la recorrida escrita pone los dos chequeos nuevos en **verde**.
+
+**Y una corrección que me hice antes de commitear, porque la primera redacción era falsa.** Había
+escrito, en la prosa del contrato y en la ficha, que la deuda «no frena el peldaño». Lo que **entra**
+no frena: lo que se exige es la declaración, no que la cifra sea mayor que cero. Pero el peldaño
+**sí** frena por otra cosa, que ya estaba: `manual_cases_per_profile` es `required: true` desde
+`2026.10.1` (ancla 4 del Anexo H, D-044), y una instalación que lo implementa se pone en rojo
+diciendo que el registro de casos firmados está vacío —lo medí con el evaluador real—. El proyecto
+que avanzó con la tabla de ejecuciones vacía corría el **congelado del esquema 1**, donde el único
+chequeo del peldaño 10 es que el archivo exista. Así que lo que faltaba nunca fue un bloqueo: era que
+la deuda fuera **legible**. El texto quedó corregido en los ocho idiomas antes del commit, y la
+tensión con el ancla 4 quedó registrada aparte, en `PND-097`, porque la decide el dueño.
+
+**Criterio de aceptación.** Dado un proyecto donde nadie ejecutó los casos manuales, cuando se
+evalúa el peldaño 10, entonces el estado distingue escritos de ejecutados y la deuda queda declarada
+con su verificador pendiente. Verificado: las dos cifras y la deuda están en el dato y en los ocho
+contratos, y el chequeo las exige.
+
+## PND-097 — El ancla 4 ya hace de la ejecución humana una condición de avance, y el dueño pidió que no lo sea: la contradicción es del método y no de este lote *(propia, medida al aplicar D-082; destino: método)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** medido al aplicar D-082, el 2026-11-02, con el evaluador real de la herramienta sobre
+  un árbol de prueba y sobre el brazo del experimento. Es un hallazgo con **destino método**, del
+  mecanismo que D-080 instaló.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** **el dueño**, porque las dos salidas tocan una exigencia publicada y son
+  opuestas.
+- **Estado: abierto**
+
+**Qué está mal.** El lote pedía, textual, que la ejecución humana de los casos manuales sea «una
+deuda declarada con su verificador pendiente, **no una condición de avance**». Eso se aplicó en lo
+que este lote controla: la declaración entra y no exige que la cifra sea mayor que cero. Pero el
+peldaño 10 **ya tenía** la ejecución humana como condición de avance, por otra vía:
+`manual_cases_per_profile`, `required: true` desde `2026.10.1`, que es el ancla 4 del Anexo H y
+viene de D-044.
+
+**La evidencia, medida el 2026-11-02 con el evaluador real.** Un árbol con la matriz de perfiles
+bien formada, los casos escritos, la deuda declarada y la recorrida hecha sale **rojo** con un solo
+motivo: «el registro de casos manuales está vacío: nadie firmó ningún caso». Y la razón por la que
+el experimento vio el peldaño en verde es otra, y conviene que quede escrita: ese proyecto fijó
+`catalog_version: forge-compiled/base-schema-1`, o sea el **congelado del esquema 1**, donde el
+peldaño 10 no declara ese evaluador y su único chequeo es que el archivo exista. Es, de paso, la
+cuarta medición de lo que `PND-055` y D-068 ya decían sobre fijar contra una identidad interna que
+el método no puede nombrar.
+
+**Por qué no lo resolví yo.** Relajar el ancla 4 es **editar un requisito publicado**, y eso se hace
+con su propia decisión y no de costado: el ancla es `required: true`, está anclada en el Anexo H,
+tiene su entrada en el diferencial desde `2026.10.1`, y hay proyectos que la fijaron. Y la otra
+salida —dejarla como está— obliga a que la prosa del peldaño 10 **diga** que la ejecución humana es
+condición de avance, que es lo contrario de lo que el lote pidió. Las dos son legítimas; ninguna es
+mía.
+
+**Criterio de aceptación.** Una de estas dos, y la decide el dueño. **(1) El ancla sigue siendo dura:**
+la prosa del peldaño 10 dice, en los ocho idiomas, que un proyecto no avanza del peldaño 10 sin que
+una persona haya firmado al menos un caso, y la deuda declarada es lo que hace legible ese rojo.
+**(2) La ejecución humana deja de ser condición:** entra una decisión que lo escriba, con lo que eso
+le hace al ancla 4 y al diferencial de los proyectos que ya la fijaron. Verificable sin leer código:
+abrir el contrato del peldaño 10 y preguntar «si nadie ejecutó, ¿avanzo?», y que el texto conteste lo
+mismo que contesta la compuerta.
+
+## PND-098 — El documento de cumplimiento no declara quién verifica cada criterio, así que un criterio cuyo verificador es una persona puede figurar como verificado sin su firma *(propuesta (c) de la entrada de origen, que este lote no pidió; destino: método)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** la tercera propuesta de la entrada `PND-060` del registro de la herramienta. El lote
+  pidió aplicar la (b) y la (a); la (c) quedó afuera por alcance (SQ 5) y se registra para que no se
+  pierda.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño.
+- **Estado: abierto**
+
+**Qué está mal.** `docs/USABILITY.md` es el documento de cumplimiento del peldaño 9 y lleva, por
+criterio, si está cumplido. Lo que no lleva es **quién lo verifica**. Y hay criterios cuyo
+verificador es una persona —los que se juzgan mirando, los `human_red` del Anexo H— y criterios que
+verifica un programa. Sin esa columna, los dos se leen igual.
+
+**La evidencia, del experimento.** El documento de cumplimiento de ese proyecto tuvo que corregirse
+el 2026-11-02: **seis** criterios pasaron de «verificado» a «no verificable» y **uno solo** quedó en
+verificado, porque el verificador de los otros era una persona y nadie había ejecutado los trece
+casos manuales. Lo escribió el propio brazo al revisarse. No es un defecto del agente: el documento
+no tenía dónde decir de quién era el criterio.
+
+**Criterio de aceptación.** Dado un documento de cumplimiento con un criterio cuyo verificador es
+una persona y sin firma, cuando se evalúa el peldaño que lo exige, entonces ese criterio no puede
+figurar como verificado. Verificable sin leer código: abrir el documento y preguntar, criterio por
+criterio, quién lo dijo.
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -8083,11 +8263,11 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 5 | 0 | 5 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 38 | 24 | 14 | 11 |
+| G-METODO | 42 | 26 | 16 | 11 |
 | G-TRAZABILIDAD | 4 | 2 | 2 | 0 |
-| **total** | **94** | **44** | **50** | **15** |
+| **total** | **98** | **46** | **52** | **15** |
 
-Noventa y cuatro entradas, `PND-001` a `PND-094`. Veintidós vienen de la auditoría externa
+Noventa y ocho entradas, `PND-001` a `PND-098`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,

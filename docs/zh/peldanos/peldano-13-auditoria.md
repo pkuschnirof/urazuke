@@ -35,6 +35,19 @@
 读错了；用同一个模型的那个，偏离了这个偏好并在第一行就声明了，交出了十七个，一个一个核实
 下来，没有一个是假的。）
 
+下面是那条界线，因为把它说出来比把它装出来更有价值：**第 13 级没法由机器从头到尾验证**。它的
+工作是第三方做的，所以闸门没法评估工作本身，只能评估它的**痕迹**。我在 2026-11-02 测过，而且
+很不舒服：一份报告逐字写着自己「我找到了九个发现，我写四个，这份报告不完整」，却**绿着**通过
+了，因为「完整」不是文件的属性——它是报告预告的东西和它交付的东西之间的关系——而一个只看文件的
+闸门看不见这层关系。而且给审计者更多预算也不够：在那次测量里，会话**并没有被截断**，它自己
+结束了，一个回合、十三万个词元，自作主张打出了收尾标记。闸门分不清一份被截断的报告和一份被
+放弃的报告。它能做的，也是从 D-081 起方法对它的要求，是让报告**声明**那些事后能靠数一数来
+反证的东西：`audit_completeness` 下面的完整性，连同它预告了多少个发现、写了多少个；
+`dimension_grades` 下面每个维度的评分；`receipts_reproduced` 下面每一张重跑过的凭据的裁定；
+以及 `not_audited` 下面它没有审计的部分，带着它开着的待办项。这四条都挡不住说谎。这四条把谎言
+从一片沉默，变成一句具体的、写下来的、带日期带签名的断言；而把一份报告里写出来的发现数一数、
+再和它自己的数字比一比，只花两分钟，也完全不需要读代码——这正是这套方法要求你做的那类验证。
+
 ## 1. 所需上下文
 
 下面这份是通用清单。你在每条提示词之前必须已经做好的具体文件，连同它们的内容和最低状态，在第
@@ -95,6 +108,20 @@
 > method being followed, `tool` if it is in the tool that runs it -- with the register where its
 > pending item goes. A finding whose destination nobody assigned leaves this audit open.
 >
+> Four more declarations, about this report and not about the system, because a gate can read the
+> trace of the work and cannot read the work. `audit_completeness`: `complete` when you wrote down
+> every finding you found, and next to it `findings_announced` and `findings_written` with their
+> figures. Those two figures have to be the same figure: if you announce nine findings and write
+> four, this report is not complete and this step does not close with it -- so do not announce a
+> count you are not going to write, and do not stop halfway and emit your closing marker as if you
+> had finished. `dimension_grades`: the grade of every dimension you audited, each one with the name
+> of its dimension next to it. `receipts_reproduced`: for every receipt you reran, `reproduces` or
+> `does_not_reproduce`, with the command and its output; at least one, and a receipt you only read
+> is not one of them. `not_audited`: `none` when you audited everything in the scope, or
+> `with_pending` and then, part by part, what you did not audit, why, and the pending item that is
+> open for it. A part named as not audited and left without its own pending item leaves this report
+> open; an audit with a smaller scope declared up front is worth more than a wide one with holes.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -126,6 +153,18 @@
 > 的数据上。`findings_by_destination`：每个发现都指派一个去向——缺陷在被审计的系统里就是
 > `product`，在所遵循的方法里就是 `method`，在运行它的工具里就是 `tool`——并写明它的待办项
 > 进哪个登记册。没有人指派去向的发现，会让这次审计一直开着。
+>
+> 再写四条声明，它们关于这份报告而不关于系统，因为闸门能读到工作的痕迹，读不到工作本身。
+> `audit_completeness`：当你把找到的每一个发现都写下来了，就写 `complete`，并在旁边写上
+> `findings_announced` 和 `findings_written` 各自的数字。这两个数字必须是同一个数字：如果你
+> 预告了九个发现却只写了四个，这份报告就不完整，这一级也不会凭它收尾——所以不要预告一个你
+> 不打算写出来的数目，也不要走到一半就停下、像完成了一样打出你的收尾标记。
+> `dimension_grades`：你审计过的每个维度的评分，每个旁边写上它那个维度的名字。
+> `receipts_reproduced`：你重跑过的每一张凭据，写 `reproduces` 或 `does_not_reproduce`，
+> 并附上命令和它的输出；至少一张，而只读过的凭据不算在里面。`not_audited`：范围内的东西都
+> 审计过了就写 `none`，否则写 `with_pending`，然后一部分一部分地说：哪些没有审计、为什么、
+> 以及为它开着的待办项是哪一个。被点名为未审计、却没有自己待办项的那部分，会让这份报告
+> 一直开着；一开始就声明较小范围的审计，比一个带着窟窿的宽范围审计更有价值。
 >
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
@@ -198,6 +237,10 @@
   测量"）和 `findings_by_destination`（每个发现带着它的去向）。
 - 在每个去向的登记册里：每个 P0 和 P1 一个待办项。产品的进产品的登记册，方法的进方法的，
   工具的进工具的。
+- 在同一份报告里，D-081 在前三条之上再加的四条声明：`audit_completeness` 为 `complete`，并且
+  `findings_announced` 和 `findings_written` 是同一个数字；`dimension_grades` 带着每个审计过
+  的维度的评分；`receipts_reproduced` 带着每一张重跑过的凭据的裁定；以及 `not_audited` 为
+  `none` 或 `with_pending`，后者还要带上每个被留在外面的部分的那个开着的待办项。
 
 ## 4. 完整性检验
 
@@ -212,6 +255,12 @@
 - 证据登记册健康的那些数字在吗，每个都附着测它的命令吗？测不到的数字要说"未测量"；一个不能
   区分"一个都没有"和"我没能看"的零，不是一个数字（CQ-19，分母）。
 - 每个发现都有去向吗，它的待办项是不是开在那个去向的登记册里？
+- `findings_announced` 和 `findings_written` 说的是同一个数字吗？把写出来的发现用手数一遍，
+  再和声明的数字比一比：这是反证这条声明的唯一办法，也是这一级里最便宜的验证。
+- 报告点名为未审计的每一部分，都有它开着的待办项吗？声明了却没有待办项的部分，是一个永远不会
+  有人去审计的部分。
+- 至少有一张带裁定的凭据吗——`reproduces` 或 `does_not_reproduce`，并贴上命令和输出？只读过的
+  凭据没有裁定。
 
 ## 5. 警报信号
 
@@ -227,3 +276,8 @@
   "我没能看"。
 - 所有发现出来都带着去向 `product`。在一个带着方法和工具去看系统的控制里，没有一个是方法的、
   也没有一个是工具的，这不太可能：更可能的是没人问过去向。
+- 报告声明了 `audit_completeness: complete`，而写出来的发现的数目对不上。这是唯一一条两分钟
+  就能反证的声明，所以每次都值得去做。
+- 报告以一句无可挑剔的收尾句结束，却再也没有回到它标过「未审计」的那些部分。一个写不下去的
+  审计者照样会打出收尾标记：分开一份写完的报告和一份被放弃的报告的，不是结尾，而是
+  `not_audited`。

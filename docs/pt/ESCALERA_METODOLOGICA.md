@@ -899,8 +899,13 @@ gráfico do processo mostra.
   precondição, passos com o que se faz e o que se vê, resultado esperado com efeito no backend
   verificável por uma pessoa, dados, tabela de execuções); as execuções registradas; uma pendência
   corretiva por falha.
+  E `docs/SCREEN_WALKTHROUGH.md` com a percorrida do agente por todas as telas, com o seu
+  denominador e os seus achados.
 - **Comporta**: nenhuma pendência que toque uma tela se fecha sem o seu caso; nenhuma execução
   sem data e nome; nenhuma falha sem pendência com as palavras da pessoa.
+  E: a percorrida agêntica das telas é uma exigência própria, distinta da execução humana; que
+  uma pessoa tenha executado não o verifica máquina nenhuma, assim que se declara como dívida com
+  o seu nome, e o que freia é a âncora 4 e não a declaração.
 - **Quem decide**: o dono ou um usuário de confiança executa; o agente escreve os casos e abre as
   pendências; o modelo nunca marca um caso como executado.
 - **Falha que evita**: o teste humano sem roteiro que encontra coisas diferentes a cada vez, e o
@@ -979,6 +984,9 @@ pressupostos. Basta outra sessão do modelo, com outro arquivo de instruções.
   fechada.
   E: o relatório declara por que esse é o auditor, mede a saúde do registro da evidência, e
   não fecha com um achado sem destino.
+  E o relatório declara a sua completude com as duas cifras que a tornam falsificável: este
+  degrau não se verifica por máquina de ponta a ponta, e a comporta lê o rastro do trabalho e não
+  o trabalho.
 - **Quem decide**: o dono prioriza os achados.
 - **Falha que evita**: consultas que leem tabelas inteiras [Ref. 18](REFERENCIAS.md#ref-18); duas
   portas de administrador que ninguém viu até que outro as olhou

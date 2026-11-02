@@ -49,6 +49,27 @@ der auf demselben Modell, der von der Vorliebe abwich und es in seiner ersten Ze
 lieferte siebzehn, und keiner erwies sich als falsch, als sie einer nach dem anderen geprüft
 wurden.)
 
+Und hier kommt die Grenze, denn sie zu sagen ist mehr wert, als sie zu simulieren: **Schritt 13
+lässt sich nicht von Anfang bis Ende maschinell verifizieren**. Seine Arbeit macht ein Dritter, und
+darum kann das Tor nicht die Arbeit bewerten; es kann ihre **Spur** bewerten. Ich habe es am
+2026-11-02 gemessen, und es ist unbequem: ein Bericht, der wörtlich von sich selbst sagte „ich habe
+neun Befunde gefunden, ich schreibe vier, der Bericht ist unvollständig“, kam **grün** heraus, denn
+„vollständig“ ist keine Eigenschaft der Datei — es ist die Beziehung zwischen dem, was der Bericht
+ankündigt, und dem, was er liefert — und ein Tor, das die Datei ansieht, sieht sie nicht. Und dem
+Auditor mehr Budget zu geben reicht nicht: in dieser Messung **wurde die Sitzung nicht
+abgeschnitten**, sie endete von selbst, in einem Zug und hundertdreißigtausend Token, und setzte
+ihre Abschlussmarke aus eigenem Antrieb. Ein Tor kann einen abgeschnittenen Bericht nicht von einem
+aufgegebenen unterscheiden. Was es kann, und was die Methode ihm seit D-081 abverlangt, ist, vom
+Bericht zu fordern, dass er **erklärt**, was sich hinterher durch Zählen falsifizieren lässt: seine
+Vollständigkeit unter `audit_completeness`, mit wie vielen Befunden er angekündigt und wie vielen
+er geschrieben hat; die Note jeder Dimension unter `dimension_grades`; das Urteil jedes Belegs, den
+er erneut laufen ließ, unter `receipts_reproduced`; und was er nicht auditiert hat unter
+`not_audited`, mit seinem offenen Posten. Keine der vier verhindert eine Lüge. Alle vier machen aus
+der Lüge eine konkrete, geschriebene Behauptung, mit Datum und Unterschrift, anstatt eines
+Schweigens; und die geschriebenen Befunde eines Berichts zu zählen und sie mit seiner eigenen Zahl
+zu vergleichen kostet zwei Minuten und verlangt keinen Blick in den Code, was genau die Art von
+Verifikation ist, die diese Methode von dir verlangt.
+
 ## 1. Benötigter Kontext
 
 Was folgt, ist die generische Liste. Die konkreten Dateien, die du vor jedem Prompt fertig haben
@@ -120,6 +141,20 @@ machst es, nicht der Agent:
 > method being followed, `tool` if it is in the tool that runs it -- with the register where its
 > pending item goes. A finding whose destination nobody assigned leaves this audit open.
 >
+> Four more declarations, about this report and not about the system, because a gate can read the
+> trace of the work and cannot read the work. `audit_completeness`: `complete` when you wrote down
+> every finding you found, and next to it `findings_announced` and `findings_written` with their
+> figures. Those two figures have to be the same figure: if you announce nine findings and write
+> four, this report is not complete and this step does not close with it -- so do not announce a
+> count you are not going to write, and do not stop halfway and emit your closing marker as if you
+> had finished. `dimension_grades`: the grade of every dimension you audited, each one with the name
+> of its dimension next to it. `receipts_reproduced`: for every receipt you reran, `reproduces` or
+> `does_not_reproduce`, with the command and its output; at least one, and a receipt you only read
+> is not one of them. `not_audited`: `none` when you audited everything in the scope, or
+> `with_pending` and then, part by part, what you did not audit, why, and the pending item that is
+> open for it. A part named as not audited and left without its own pending item leaves this report
+> open; an audit with a smaller scope declared up front is worth more than a wide one with holes.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -163,6 +198,22 @@ machst es, nicht der Agent:
 > wenn der Defekt im auditierten System liegt, `method`, wenn er in der befolgten Methode liegt,
 > `tool`, wenn er im Werkzeug liegt, das sie ausführt — mit dem Register, in das sein offener
 > Posten geht. Ein Befund, dessen Ziel niemand zugeordnet hat, lässt dieses Audit offen.
+>
+> Vier weitere Erklärungen, über diesen Bericht und nicht über das System, denn ein Tor kann die Spur
+> der Arbeit lesen und nicht die Arbeit. `audit_completeness`: `complete`, wenn du jeden Befund
+> aufgeschrieben hast, den du gefunden hast, und daneben `findings_announced` und `findings_written`
+> mit ihren Zahlen. Diese zwei Zahlen müssen dieselbe Zahl sein: wenn du neun Befunde ankündigst und
+> vier schreibst, ist dieser Bericht nicht vollständig und dieser Schritt schließt nicht mit ihm — also
+> kündige keine Zahl an, die du nicht schreiben wirst, und halte nicht auf halbem Weg an und setze
+> deine Abschlussmarke, als wärst du fertig. `dimension_grades`: die Note jeder Dimension, die du
+> auditiert hast, jede mit dem Namen ihrer Dimension daneben. `receipts_reproduced`: für jeden Beleg,
+> den du erneut laufen ließt, `reproduces` oder `does_not_reproduce`, mit dem Befehl und seiner
+> Ausgabe; mindestens einer, und ein Beleg, den du nur gelesen hast, ist keiner davon.
+> `not_audited`: `none`, wenn du alles im Umfang auditiert hast, oder `with_pending` und dann, Teil
+> für Teil, was du nicht auditiert hast, warum, und der offene Posten, der dafür offen ist. Ein als
+> nicht auditiert benannter Teil, der ohne seinen eigenen offenen Posten bleibt, lässt diesen Bericht
+> offen; ein Audit mit einem von vornherein erklärten kleineren Umfang ist mehr wert als ein breites
+> mit Löchern.
 >
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
@@ -258,6 +309,11 @@ schickt; ein Befund, der ohne Ziel ankommt, wird dich gefragt, bevor irgendetwas
   `findings_by_destination` (jeder Befund mit seinem Ziel).
 - Im Register jedes Ziels: ein offener Posten für jeden P0 und P1. Die des Produkts im Register des
   Produkts, die der Methode in dem der Methode, die des Werkzeugs in dem des Werkzeugs.
+- In demselben Bericht die vier Erklärungen, die D-081 zu den drei vorherigen hinzufügt:
+  `audit_completeness` auf `complete`, mit `findings_announced` und `findings_written` auf derselben
+  Zahl; `dimension_grades` mit der Note jeder auditierten Dimension; `receipts_reproduced` mit dem
+  Urteil jedes Belegs, der erneut lief; und `not_audited` auf `none` oder auf `with_pending`, und
+  dann der offene Posten jedes Teils, der draußen blieb.
 
 ## 4. Vollständigkeitsprüfung
 
@@ -277,6 +333,13 @@ schickt; ein Befund, der ohne Ziel ankommt, wird dich gefragt, bevor irgendetwas
   „es gibt keinen“ nicht von „ich konnte nicht hinsehen“ unterscheidet, ist keine Zahl (CQ-19, der
   Nenner).
 - Hat jeder Befund ein Ziel, und wurde sein offener Posten im Register dieses Ziels eröffnet?
+- Sagen `findings_announced` und `findings_written` dieselbe Zahl? Zähl die geschriebenen Befunde
+  von Hand und vergleich sie mit der erklärten Zahl: das ist die einzige Art, die Erklärung zu
+  falsifizieren, und die billigste Verifikation dieses Schritts.
+- Hat jeder Teil, den der Bericht als nicht auditiert benennt, seinen offenen Posten? Ein erklärter
+  Teil ohne offenen Posten ist ein Teil, den niemand jemals auditieren wird.
+- Gibt es mindestens einen Beleg mit seinem Urteil, `reproduces` oder `does_not_reproduce`, mit dem
+  Befehl und der Ausgabe eingeklebt? Ein Beleg, der nur gelesen wurde, hat kein Urteil.
 
 ## 5. Warnsignale
 
@@ -297,3 +360,10 @@ schickt; ein Befund, der ohne Ziel ankommt, wird dich gefragt, bevor irgendetwas
 - Alle Befunde kamen mit dem Ziel `product` heraus. In einer Kontrolle, die das System mit der
   Methode und dem Werkzeug im Einsatz anschaut, ist es unwahrscheinlich, dass keiner von der
   Methode oder vom Werkzeug ist: wahrscheinlicher ist, dass niemand nach dem Ziel gefragt hat.
+- Der Bericht erklärt `audit_completeness: complete` und die Zahl der geschriebenen Befunde geht
+  nicht auf. Es ist die eine Erklärung, die man in zwei Minuten falsifizieren kann, und darum lohnt
+  es sich immer.
+- Der Bericht endet mit einem einwandfreien Schlusssatz und kam nie auf die Teile zurück, die er
+  als nicht auditiert markiert hatte. Ein Auditor, dem der Platz ausgeht, setzt seine
+  Abschlussmarke trotzdem: was einen fertigen Bericht von einem aufgegebenen unterscheidet, ist
+  nicht das Ende, sondern `not_audited`.

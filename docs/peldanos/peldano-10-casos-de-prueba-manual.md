@@ -39,6 +39,40 @@ caso es seguir la receta y anotar si pasó o falló. *Precondición* es lo que t
 antes de empezar. Y *reinyectar* quiere decir que lo que la persona encontró mal vuelve a la lista
 de pendientes como un pedido nuevo, con sus palabras.
 
+Dos cosas más entraron con D-082, y son dos y no una. La primera: **la persona ejecuta para
+aceptar y el agente recorre para encontrar defectos**, y el método pide las dos. La recorrida
+agéntica —que el agente abra cada pantalla, mire lo que hay en ella, la use y siga el flujo de una
+a la siguiente, como lo haría una persona— no reemplaza a la ejecución humana y tampoco es la
+prueba de punta a punta del peldaño 8: la de punta a punta recorre un camino que alguien eligió, y
+la recorrida busca lo que nadie pensó en probar. La pido porque lo medí: de todo lo que un agente
+hizo en un ciclo completo, la recorrida fue **lo que más defectos de interface encontró**, y el
+método no la pedía; se la pedía el agente a sí mismo. Queda en `docs/SCREEN_WALKTHROUGH.md`, con su
+denominador: cuántas pantallas tiene el sistema, cuántas recorrió y cuántos defectos encontró. Una
+pantalla a la que no pudo entrar se cuenta en el total y se nombra con su razón; sacarla del
+denominador para que el número quede lindo es exactamente lo que prohíbe `CQ-19.1` del Anexo H.
+
+Y la segunda, que es el límite de este peldaño dicho de frente: **escribir los casos y que una
+persona los ejecute son dos estados distintos, y el segundo el método no lo puede obligar.** Ningún
+programa puede verificar que una persona siguió un guion con sus propias manos, y una compuerta que
+lo exigiera sólo se podría satisfacer mintiendo. Entonces el peldaño exige lo que sí se puede
+verificar —la declaración— y la deuda queda a la vista: `cases_written`,
+`cases_executed_by_a_person` y `execution_debt` en la cabeza de `docs/MANUAL_TESTS.md`, y la segunda
+cifra la mueve una ejecución firmada y nunca la lectura del agente. La declaración **no agrega una compuerta
+nueva**: lo que el peldaño exige de más es que la deuda esté escrita, no que la cifra sea mayor que
+cero, porque obligar a una persona es lo que el método no puede hacer. Lo que **sí** frena, y ya
+estaba desde el ancla 4 del Anexo H, es que un caso que nadie corrió por perfil no es un caso
+ejecutado: lo medí el 2026-11-02 con el evaluador real y una instalación que implementa esa ancla se
+pone en rojo diciendo que el registro de casos firmados está vacío. Así que lo que faltaba no era un
+bloqueo: era que la deuda fuera **legible** —su cifra y el nombre de quien la debe— en vez de un
+registro vacío que dice «nadie firmó» sin decir quién tenía que firmar ni desde cuándo. Y conviene
+saber, para leer el peldaño, de dónde salió la medición que lo abrió: el proyecto que avanzó con la
+tabla vacía corría el **congelado** del esquema 1, donde el único chequeo del peldaño 10 es que el
+archivo exista. Lo medí el 2026-11-02 en un proyecto real: los
+trece casos escritos, la tabla de ejecuciones vacía, el peldaño en verde, y un documento de
+cumplimiento que afirmaba seis criterios como verificados cuyo verificador era una persona que
+nunca los ejecutó. El agente había hecho exactamente lo que el peldaño decía. El hueco era del
+peldaño.
+
 ## 1. Contexto requerido
 
 Lo que sigue es la lista genérica. Los archivos concretos que tenés que tener hechos antes de cada
@@ -87,6 +121,28 @@ el agente:
 > compare that with the menu, and the real screenshot of the test
 > environment.
 >
+> `docs/MANUAL_TESTS.md` carries at its head three declarations that a gate reads, each one under
+> its fixed key in English even when the file is in my language, because what this step owes is not
+> the same as what it can prove. `cases_written`: how many cases are written.
+> `cases_executed_by_a_person`: how many of those a person signed in their execution table, with a
+> date and a name; you keep the first figure, and the second one moves only when a person executes
+> -- never from your own reading of the system. `execution_debt`: `none` when the two figures are
+> the same, or `pending_verifier` and then the cases nobody has executed yet, with who owes each
+> execution and since when. That debt is not a gate of its own: what this step asks you for is the
+> declaration and not a figure above zero, because the method cannot make a person execute. But it
+> is never silent either, and a step that advances with its debt declared is honest in a way that a
+> step advancing while it looks complete is not.
+>
+> And walk the screens yourself, which is a different thing from the execution a person owes and
+> never a replacement for it: you walk to find defects, a person executes to accept. Go through
+> every screen the system has as a person would -- open it, look at what is on it, use it, and
+> follow the flow from one screen to the next -- and write `docs/SCREEN_WALKTHROUGH.md` with
+> `screens_total`, how many screens the system has; `screens_walked`, how many of them you actually
+> walked; and `walkthrough_findings`, how many defects the walk found. A screen you could not reach
+> is counted in the total and named with its reason: taking it out of the denominator so that the
+> figure reads better is the one thing this file must never do. For every defect: the screen, what
+> you saw, what you expected instead, and the pending item you opened for it.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -113,6 +169,29 @@ el agente:
 > buscaría una tarea y vos comparás eso con el menú, y la captura real del
 > entorno de prueba.
 >
+> `docs/MANUAL_TESTS.md` lleva en su cabeza tres declaraciones que una compuerta lee, cada una con su
+> clave fija en inglés aunque el archivo esté en mi idioma, porque lo que este peldaño debe no es lo
+> mismo que lo que puede probar. `cases_written`: cuántos casos están escritos.
+> `cases_executed_by_a_person`: cuántos de ésos firmó una persona en su tabla de ejecuciones, con
+> fecha y con nombre; la primera cifra la mantenés vos, y la segunda se mueve sólo cuando una persona
+> ejecuta —nunca desde tu propia lectura del sistema—. `execution_debt`: `none` cuando las dos cifras
+> son la misma, o `pending_verifier` y entonces los casos que nadie ejecutó todavía, con quién debe
+> cada ejecución y desde cuándo. Esa deuda no es una compuerta propia: lo que este peldaño te pide
+> es la declaración y no una cifra mayor que cero, porque el método no puede obligar a una persona a
+> ejecutar. Pero tampoco es nunca silenciosa, y un peldaño que avanza con su deuda declarada es
+> honesto de una manera en que no lo es uno que avanza pareciendo completo.
+>
+> Y recordé las pantallas vos mismo, que es otra cosa distinta de la ejecución que le debemos a una
+> persona y nunca un reemplazo de ella: vos recorrés para encontrar defectos, una persona ejecuta
+> para aceptar. Pasá por cada pantalla que el sistema tiene como lo haría una persona —abrila, mirá
+> lo que hay en ella, usala, y seguí el flujo de una pantalla a la siguiente— y escribí
+> `docs/SCREEN_WALKTHROUGH.md` con `screens_total`, cuántas pantallas tiene el sistema;
+> `screens_walked`, cuántas de ésas recorriste de verdad; y `walkthrough_findings`, cuántos defectos
+> encontró la recorrida. Una pantalla a la que no pudiste entrar se cuenta en el total y se nombra
+> con su razón: sacarla del denominador para que la cifra se lea mejor es la única cosa que este
+> archivo no puede hacer nunca. Por cada defecto: la pantalla, qué viste, qué esperabas en cambio, y
+> el pendiente que abriste por eso.
+>
 > Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
 > enumerados; un párrafo de no más de cinco líneas que los enlace y deje ver el interrogante; la
@@ -127,6 +206,12 @@ en el backend verificable por una persona, para que la prueba manual también mi
 de la pantalla; que los casos se mantengan en el mismo commit, igual que la documentación; y
 **que el modelo nunca los ejecute**, porque ejecutados por el modelo son un test más, y la gracia
 es que los ejecute una persona.
+
+Y lo que agrega D-082: que el agente **recorra las pantallas por su cuenta**, que es lo que más
+defectos de interface encuentra y lo que el método no pedía; y que el archivo de casos lleve en su
+cabeza la diferencia entre lo escrito y lo ejecutado, para que un peldaño que avanza con deuda
+avance **diciéndolo**. La recorrida no reemplaza la ejecución humana: la hace más corta, porque la
+persona ya no se encuentra con los defectos que el agente podía haber visto mirando.
 
 **Para una ejecución (cierre de bloque, aceptación, después de un despliegue):**
 
@@ -149,6 +234,10 @@ es que los ejecute una persona.
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
 > the case or the system is the problem.
 >
+> Then refresh the three declarations at the head of the file: `cases_written`,
+> `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
+> `execution_debt` with who still owes which execution and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -165,6 +254,10 @@ es que los ejecute una persona.
 > toca; no arregles nada ahora. Por cada caso que pasó, nada. Después decime, flujo por flujo,
 > cuántos casos pasaron y cuántos fallaron, comparado con la ejecución anterior, y qué fallos se
 > repiten. Si un caso no se pudo ejecutar, decime por qué y si el problema es el caso o el sistema.
+>
+> Después refrescá las tres declaraciones de la cabeza del archivo: `cases_written`,
+> `cases_executed_by_a_person` contada desde las tablas de ejecución firmadas y desde nada más, y
+> `execution_debt` con quién sigue debiendo qué ejecución y desde cuándo.
 >
 > Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
@@ -188,6 +281,12 @@ que son dos pendientes distintos.
 - Las ejecuciones registradas, con fecha y quién, en cada ciclo.
 - Un pendiente correctivo por cada fallo y por cada observación.
 - La rutina en el contrato.
+- `docs/SCREEN_WALKTHROUGH.md` con la recorrida del agente: `screens_total`, `screens_walked` y
+  `walkthrough_findings`, y cada defecto con su pantalla, lo que se vio, lo que se esperaba y su
+  pendiente.
+- En la cabeza de `docs/MANUAL_TESTS.md`, las tres declaraciones que una compuerta lee:
+  `cases_written`, `cases_executed_by_a_person` —que sólo mueve una ejecución firmada— y
+  `execution_debt` en `none` o en `pending_verifier`, con quién debe cada ejecución y desde cuándo.
 
 ## 4. Verificación de completitud (la hacés vos, sin leer código)
 
@@ -198,6 +297,14 @@ que son dos pendientes distintos.
 - ¿El caso dice qué efecto verificar del otro lado de la pantalla, y cómo lo verifica una persona?
 - ¿La última ejecución tiene fecha y nombre en cada caso? ¿Hay alguno "pasó" sin fecha?
 - ¿Cada fallo de la última ejecución tiene su pendiente, con las palabras de la persona?
+- ¿`cases_executed_by_a_person` sale de las tablas firmadas y no de la lectura del agente? Tomá un
+  caso contado como ejecutado y buscá la fecha y el nombre en su tabla.
+- Si hay deuda, ¿`execution_debt` dice quién la debe y desde cuándo? Una deuda sin nombre no es una
+  deuda: es un olvido con formato.
+- ¿La recorrida cuenta las pantallas que no pudo abrir dentro del total, con su razón? Un
+  `screens_walked` igual al total en un sistema con pantallas detrás de un perfil que el agente no
+  tiene es una cifra inventada.
+- ¿Los defectos de la recorrida tienen su pendiente, igual que los fallos humanos?
 
 ## 5. Señales de alarma
 
@@ -208,3 +315,9 @@ que son dos pendientes distintos.
   encuentran nada, no están siguiendo el guion o el guion no pide mirar.
 - Los fallos se "arreglan" en el momento, sin pendiente. Se pierden las palabras de la persona y
   el rastro de qué se repitió.
+- El peldaño figura cumplido y `cases_executed_by_a_person` está en cero. No es un error: es la
+  deuda, y está a la vista justamente para que no se lea como cumplimiento.
+- La recorrida del agente no encontró nada y el sistema tiene pantallas nuevas. Recorrer no es
+  abrir: si no hay hallazgos, lo más probable es que haya mirado la pantalla y no la haya usado.
+- La recorrida se empieza a usar como excusa para no ejecutar los casos. Son dos cosas con dos
+  propósitos, y la que acepta es la de la persona.

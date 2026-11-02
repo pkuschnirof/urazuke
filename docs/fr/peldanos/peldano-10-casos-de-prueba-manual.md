@@ -42,6 +42,42 @@ est fait. *Exécuter* un cas, c'est suivre la recette et noter s'il est passé o
 personne a trouvé de travers revient dans la liste des éléments en attente comme une demande
 nouvelle, avec ses mots à elle.
 
+Deux choses de plus sont entrées avec D-082, et elles sont deux et non une. La première : **la
+personne exécute pour accepter et l'agent parcourt pour trouver des défauts**, et la méthode
+demande les deux. Le parcours agentique — que l'agent ouvre chaque écran, regarde ce qu'il y a
+dessus, l'utilise et suive le flux d'un écran au suivant, comme le ferait une personne — ne
+remplace pas l'exécution humaine et n'est pas non plus le test de bout en bout de l'échelon 8 :
+celui de bout en bout parcourt un chemin que quelqu'un a choisi, et le parcours cherche ce que
+personne n'a pensé à tester. Je le demande parce que je l'ai mesuré : de tout ce qu'un agent a fait
+dans un cycle complet, le parcours a été **ce qui a trouvé le plus de défauts d'interface**, et la
+méthode ne le demandait pas ; c'est l'agent qui se le demandait à lui-même. Il va dans
+`docs/SCREEN_WALKTHROUGH.md`, avec son dénominateur : combien d'écrans le système a, combien il en
+a parcourus et combien de défauts il a trouvés. Un écran dans lequel il n'a pas pu entrer se compte
+dans le total et se nomme avec sa raison ; le sortir du dénominateur pour que le nombre soit joli
+est exactement ce qu'interdit `CQ-19.1` de l'Annexe H.
+
+Et la deuxième, qui est la limite de cet échelon dite en face : **écrire les cas et qu'une personne
+les exécute sont deux états différents, et le second, la méthode ne peut pas l'imposer.** Aucun
+programme ne peut vérifier qu'une personne a suivi un script avec ses propres mains, et une porte
+qui l'exigerait ne pourrait être satisfaite qu'en mentant. Alors l'échelon exige ce qui peut être
+vérifié — la déclaration — et la dette reste en vue : `cases_written`,
+`cases_executed_by_a_person` et `execution_debt` en tête de `docs/MANUAL_TESTS.md`, et le second
+chiffre est déplacé par une exécution signée et jamais par la lecture de l'agent. La déclaration
+**n'ajoute pas une porte nouvelle** : ce que l'échelon exige de plus, c'est que la dette soit
+écrite, non que le chiffre soit supérieur à zéro, parce qu'obliger une personne est ce que la
+méthode ne peut pas faire. Ce qui **arrête**, et qui était déjà là depuis l'ancre 4 de l'Annexe H,
+c'est qu'un cas que personne n'a joué par profil n'est pas un cas exécuté : je l'ai mesuré le
+2026-11-02 avec l'évaluateur réel, et une installation qui implémente cette ancre passe au rouge en
+disant que le registre des cas signés est vide. Donc ce qui manquait n'était pas un blocage :
+c'était que la dette soit **lisible** — son chiffre et le nom de qui la doit — au lieu d'un registre
+vide qui dit « personne n'a signé » sans dire qui devait signer ni depuis quand. Et il vaut la peine
+de savoir, pour lire cet échelon, d'où vient la mesure qui l'a ouvert : le projet qui a avancé avec
+le tableau vide tournait sur le **gelé** du schéma 1, où le seul contrôle de l'échelon 10 est que le
+fichier existe. Je l'ai mesuré le 2026-11-02 dans un projet réel : les treize cas écrits, le tableau
+d'exécution vide, l'échelon au vert, et un document de conformité qui affirmait six critères comme
+vérifiés dont le vérificateur était une personne qui ne les a jamais exécutés. L'agent avait fait
+exactement ce que l'échelon disait. Le trou était celui de l'échelon.
+
 ## 1. Contexte requis
 
 Ce qui suit est la liste générique. Les fichiers concrets que vous devez avoir faits avant chaque
@@ -90,6 +126,28 @@ faites, pas l'agent :
 > compare that with the menu, and the real screenshot of the test
 > environment.
 >
+> `docs/MANUAL_TESTS.md` carries at its head three declarations that a gate reads, each one under
+> its fixed key in English even when the file is in my language, because what this step owes is not
+> the same as what it can prove. `cases_written`: how many cases are written.
+> `cases_executed_by_a_person`: how many of those a person signed in their execution table, with a
+> date and a name; you keep the first figure, and the second one moves only when a person executes
+> -- never from your own reading of the system. `execution_debt`: `none` when the two figures are
+> the same, or `pending_verifier` and then the cases nobody has executed yet, with who owes each
+> execution and since when. That debt is not a gate of its own: what this step asks you for is the
+> declaration and not a figure above zero, because the method cannot make a person execute. But it
+> is never silent either, and a step that advances with its debt declared is honest in a way that a
+> step advancing while it looks complete is not.
+>
+> And walk the screens yourself, which is a different thing from the execution a person owes and
+> never a replacement for it: you walk to find defects, a person executes to accept. Go through
+> every screen the system has as a person would -- open it, look at what is on it, use it, and
+> follow the flow from one screen to the next -- and write `docs/SCREEN_WALKTHROUGH.md` with
+> `screens_total`, how many screens the system has; `screens_walked`, how many of them you actually
+> walked; and `walkthrough_findings`, how many defects the walk found. A screen you could not reach
+> is counted in the total and named with its reason: taking it out of the denominator so that the
+> figure reads better is the one thing this file must never do. For every defect: the screen, what
+> you saw, what you expected instead, and the pending item you opened for it.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -116,6 +174,30 @@ faites, pas l'agent :
 > l'endroit où je chercherais une tâche et vous comparez cela avec le menu,
 > et la capture réelle de l'environnement de test.
 >
+> `docs/MANUAL_TESTS.md` porte en tête trois déclarations qu'une porte lit, chacune sous sa clé fixe
+> en anglais même si le fichier est dans ma langue, parce que ce que cet échelon doit n'est pas la
+> même chose que ce qu'il peut prouver. `cases_written` : combien de cas sont écrits.
+> `cases_executed_by_a_person` : combien d'entre eux une personne a signés dans leur tableau
+> d'exécution, avec une date et un nom ; le premier chiffre, c'est toi qui le tiens, et le second ne
+> bouge que quand une personne exécute — jamais depuis ta propre lecture du système.
+> `execution_debt` : `none` quand les deux chiffres sont le même, ou `pending_verifier` et alors les
+> cas que personne n'a encore exécutés, avec qui doit chaque exécution et depuis quand. Cette dette
+> n'est pas une porte à elle seule : ce que cet échelon te demande, c'est la déclaration et non un
+> chiffre supérieur à zéro, parce que la méthode ne peut pas obliger une personne à exécuter. Mais
+> elle n'est jamais silencieuse non plus, et un échelon qui avance avec sa dette déclarée est honnête
+> d'une manière dont ne l'est pas un échelon qui avance en ayant l'air complet.
+>
+> Et parcours les écrans toi-même, ce qui est autre chose que l'exécution que nous devons à une
+> personne et jamais un remplaçant de celle-ci : toi tu parcours pour trouver des défauts, une
+> personne exécute pour accepter. Passe par chaque écran que le système a comme le ferait une
+> personne — ouvre-le, regarde ce qu'il y a dessus, utilise-le, et suis le flux d'un écran au
+> suivant — et écris `docs/SCREEN_WALKTHROUGH.md` avec `screens_total`, combien d'écrans le système
+> a ; `screens_walked`, combien d'entre eux tu as vraiment parcourus ; et `walkthrough_findings`,
+> combien de défauts le parcours a trouvés. Un écran où tu n'as pas pu entrer se compte dans le
+> total et se nomme avec sa raison : le sortir du dénominateur pour que le chiffre se lise mieux est
+> la seule chose que ce fichier ne peut jamais faire. Pour chaque défaut : l'écran, ce que tu as vu,
+> ce que tu attendais à la place, et l'élément en attente que tu as ouvert pour cela.
+>
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
 > nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
@@ -130,6 +212,13 @@ inclue l'effet côté backend vérifiable par une personne, pour que le test man
 de l'autre côté de l'écran ; que les cas soient tenus à jour dans le même commit, comme la
 documentation ; et **que le modèle ne les exécute jamais**, parce qu'exécutés par le modèle ce
 sont des tests de plus, et tout l'intérêt est qu'une personne les exécute.
+
+Et ce que D-082 ajoute : que l'agent **parcoure les écrans de son propre chef**, ce qui est ce qui
+trouve le plus de défauts d'interface et ce que la méthode ne demandait pas ; et que le fichier des
+cas porte en tête la différence entre ce qui est écrit et ce qui a été exécuté, pour qu'un échelon
+qui avance avec une dette avance **en le disant**. Le parcours ne remplace pas l'exécution humaine :
+il la raccourcit, parce que la personne ne tombe plus sur les défauts que l'agent aurait pu voir en
+regardant.
 
 **Pour une exécution (clôture de bloc, acceptation, après un déploiement) :**
 
@@ -152,6 +241,10 @@ sont des tests de plus, et tout l'intérêt est qu'une personne les exécute.
 > execution, and which failures repeat. If a case could not be executed, tell me why and whether
 > the case or the system is the problem.
 >
+> Then refresh the three declarations at the head of the file: `cases_written`,
+> `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
+> `execution_debt` with who still owes which execution and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -169,6 +262,10 @@ sont des tests de plus, et tout l'intérêt est qu'une personne les exécute.
 > rien. Dis-moi ensuite, flux par flux, combien de cas sont passés et combien ont échoué, comparé
 > à l'exécution précédente, et quels échecs se répètent. Si un cas n'a pas pu être exécuté,
 > dis-moi pourquoi et si le problème est le cas ou le système.
+>
+> Ensuite rafraîchis les trois déclarations de la tête du fichier : `cases_written`,
+> `cases_executed_by_a_person` comptée depuis les tableaux d'exécution signés et depuis rien
+> d'autre, et `execution_debt` avec qui doit encore quelle exécution et depuis quand.
 >
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
@@ -192,6 +289,12 @@ système s'améliore ou se dégrade entre les blocs ; et la distinction entre «
 - Les exécutions enregistrées, avec la date et qui, à chaque cycle.
 - Un élément en attente correctif pour chaque échec et pour chaque observation.
 - La routine dans le contrat.
+- `docs/SCREEN_WALKTHROUGH.md` avec le parcours de l'agent : `screens_total`, `screens_walked` et
+  `walkthrough_findings`, et chaque défaut avec son écran, ce qui a été vu, ce qui était attendu et
+  son élément en attente.
+- En tête de `docs/MANUAL_TESTS.md`, les trois déclarations qu'une porte lit : `cases_written`,
+  `cases_executed_by_a_person` — que seule une exécution signée déplace — et `execution_debt` à
+  `none` ou à `pending_verifier`, avec qui doit chaque exécution et depuis quand.
 
 ## 4. Vérification de complétude (vous la faites vous-même, sans lire de code)
 
@@ -206,6 +309,14 @@ système s'améliore ou se dégrade entre les blocs ; et la distinction entre «
   sans date ?
 - Chaque échec de la dernière exécution a-t-il son élément en attente, avec les mots de la
   personne ?
+- `cases_executed_by_a_person` sort-il des tableaux signés et non de la lecture de l'agent ? Prends
+  un cas compté comme exécuté et cherche la date et le nom dans son tableau.
+- S'il y a une dette, `execution_debt` dit-il qui la doit et depuis quand ? Une dette sans nom
+  n'est pas une dette : c'est un oubli avec de la mise en forme.
+- Le parcours compte-t-il les écrans qu'il n'a pas pu ouvrir dans le total, avec leur raison ? Un
+  `screens_walked` égal au total, dans un système avec des écrans derrière un profil que l'agent
+  n'a pas, est un chiffre inventé.
+- Les défauts du parcours ont-ils leur élément en attente, comme les échecs humains ?
 
 ## 5. Signaux d'alarme
 
@@ -218,3 +329,11 @@ système s'améliore ou se dégrade entre les blocs ; et la distinction entre «
   regarder.
 - Les échecs se « corrigent » sur le moment, sans élément en attente. On perd les mots de la
   personne et la trace de ce qui s'est répété.
+- L'échelon figure comme accompli et `cases_executed_by_a_person` est à zéro. Ce n'est pas une
+  erreur : c'est la dette, et elle est en vue justement pour ne pas être lue comme un
+  accomplissement.
+- Le parcours de l'agent n'a rien trouvé et le système a des écrans nouveaux. Parcourir n'est pas
+  ouvrir : s'il n'y a pas de constats, le plus probable est qu'il ait regardé l'écran sans
+  l'utiliser.
+- Le parcours commence à servir d'excuse pour ne pas exécuter les cas. Ce sont deux choses avec
+  deux buts, et celle qui accepte est celle de la personne.
