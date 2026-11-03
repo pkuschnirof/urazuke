@@ -98,6 +98,14 @@ faites, pas l'agent :
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
 >
+> And for every port you doubled for testing in this item, show me one run that crosses it to the
+> real other side -- the browser, the operating system, the database, the network -- and record it
+> in `docs/PRODUCER_CONSUMER_MAP.md` under `crossing_run`. A test that instantiates the real adapter
+> against a fake environment crossed the real code and still never saw the event, so it does not
+> count: no quantity of faithful doubles replaces the other side (Annex H, CQ-21.1). If you cannot
+> run it, tell me which port is left with no crossing run and write `none` there, which is a
+> declared hole and not a green.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -131,6 +139,14 @@ faites, pas l'agent :
 > ni plus, et chaque route vérifie la permission côté serveur, car masquer
 > le point d'entrée ne protège rien (Annexe H, UX-11, UX-12, UX-15). Une
 > matrice que rien n'exerce est un document que personne ne lit.
+>
+> Et pour chaque port que tu as doublé pour tester dans cet élément, montre-moi une course qui le
+> traverse jusqu'au vrai autre côté —le navigateur, le système d'exploitation, la base, le réseau—
+> et note-la dans `docs/PRODUCER_CONSUMER_MAP.md` sous `crossing_run`. Un test qui instancie
+> l'adaptateur réel contre un environnement mensonger a traversé le code réel et a continué à ne
+> pas voir l'événement, donc il ne compte pas : aucune quantité de doubles fidèles ne remplace
+> l'autre côté (Annexe H, CQ-21.1). Si tu ne peux pas la faire, dis-moi quel port reste sans course
+> qui le traverse et écris `none`, qui est un trou déclaré et non un vert.
 >
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
@@ -256,7 +272,9 @@ le début d'un élément en attente. La non-testabilité est de la dette, et la 
 - Le test d'écran vérifie-t-il aussi l'effet dans le backend ?
 - À la clôture du bloc : tous les flux sont-ils dans la batterie de bout en bout, ou y en a-t-il un
   qui « est couvert par les unitaires » ?
-
+- Chaque port que cet élément a doublé a-t-il sa course qui le traverse, et l'autre côté est-il le
+  vrai ? Un test qui instancie l'adaptateur réel contre un environnement mensonger a traversé le
+  code réel et n'a pas vu l'événement.
 ## 5. Signaux d'alarme
 
 - Tous les nouveaux tests de la semaine sont passés au vert du premier coup, et on n'a jamais
@@ -269,3 +287,6 @@ le début d'un élément en attente. La non-testabilité est de la dette, et la 
   et sans chiffres. Un rouge sans reçu vaut autant qu'aucun rouge.
 - Vous arrivez à la mise en production et la batterie complète de bout en bout tourne pour la
   première fois. Les clôtures de bloc ont manqué.
+- L'élément a touché une vue avec un port doublé et la suite n'a pas une seule course qui appuie
+  sur un contrôle pour de vrai. Quatre-vingt-un fichiers au vert peuvent couvrir quatre contrôles
+  morts.

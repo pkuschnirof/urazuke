@@ -54,6 +54,17 @@
 > the system you cannot access or do not understand, tell me instead of leaving them out of the
 > map.
 >
+> And the map carries one more family, which is the ports you doubled for testing:
+> `ports_with_a_test_double`, with `ports_total`, how many ports of the system have a double, and
+> `ports_with_a_crossing_run`, how many of those have at least one run that crosses them to the real
+> other side; and then, per port, its adapter, its double, and `crossing_run`: the exact command,
+> and what it reached on the other side, which is `browser`, `operating_system`, `database`,
+> `network` or `none`. The other side is whatever the port is doubling, and another double is never
+> the other side (Annex H, CQ-21.1). `none` is a declared hole and it is worth more than silence: a
+> port whose double no run crosses is where four dead controls fit underneath a green suite. Do not
+> write a crossing run you did not run, and count a port with no crossing run inside `ports_total`
+> instead of leaving it out so the figure reads better.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -69,6 +80,17 @@
 > できない、または理解できないシステムの部分があれば、地図から外す代わりに私に教えてくだ
 > さい。
 >
+> そして地図はもう一つの族を持ちます。テストのためにあなたがダブルを置いたポートです。
+> `ports_with_a_test_double`、そして `ports_total`、システムのいくつのポートがダブルを持つか、
+> `ports_with_a_crossing_run`、そのうちいくつが本当の向こう側まで通り抜ける走行を少なくとも一つ
+> 持つか。そのうえでポートごとに、そのアダプタ、そのダブル、そして `crossing_run`、すなわち正確
+> なコマンドと、向こう側で何に届いたか——`browser`、`operating_system`、`database`、`network`、
+> または `none`。向こう側とはそのポートがダブルで置き換えているものであり、別のダブルは決して向
+> こう側ではありません（付録 H、CQ-21.1）。`none` は宣言された穴であり、沈黙より価値があります。
+> どの走行も通り抜けないダブルを持つポートこそ、緑のテスト群の下に死んだ四つのコントロールが収ま
+> る場所です。走らせていない走行を書かないでください。そして通り抜ける走行のないポートは、数字が
+> よく見えるように外に出すのではなく、`ports_total` の中に数えてください。
+>
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
 > 行以内の段落、取りうる答えに番号を振った問いそのもの、そしてあなたの推奨。プロジェクトが `commun
@@ -79,6 +101,14 @@
 
 何を求めているか：二つの側を持つ契約の目録、そしてこの段に合わせた形の完全性の条項：見え
 ないものは宣言され、省略されない。隠れた穴のある地図は、地図がないより悪い。
+
+そして D-087 が加えること。テストのダブルを置いたポートの族である。ダブルを持つポートは、生産者と
+消費者の対称性の最も純粋な形である——アダプタが、ビューが消費するイベントを生産する——そして同時
+に、方法が危険を一点に集める場所でもある。ビューが検証可能になるようにとダブルを置くことを促しなが
+ら、その一点を見る走行を一つも求めていなかったからである。それを通り抜ける走行の列が、穴を**宣言さ
+れた**穴に変える。プログラムが見られるのは、その列があり、向こう側に何があるかを名指していること。
+それが本当かどうかを決めるのは、そのコマンドを読む人である。それは付録 H に書かれていて、ここで模
+擬されているのではない。
 
 **ルーチン（共働の約束に入れる）：**
 
@@ -157,7 +187,8 @@
 - 契約に触れる各コミットに：更新された消費者、メッセージ内で名前付き。
 - `docs/GOTCHAS.md`：アンチパターンごとに一項目、四つの部分（匂い、根本原因、修正、事前の
   検知法）と最初の発生日付き。
-
+- 地図のなかに、テストのダブルを持つポートの族。`ports_total`、`ports_with_a_crossing_run`、そし
+  てポートごとに、そのアダプタ、そのダブル、それを通り抜ける走行と、向こう側で届いたもの。
 ## 4. 完全性の検証
 
 - 地図から契約を一つ選び、エージェントに各消費者がどこでそれを読んでいるか見せるよう求める
@@ -165,7 +196,9 @@
 - 二つの異なる画面に表示される数字があるか？ 比べること：同じか？
 - GOTCHASの各項目に四つの部分があるか？
 - 既にGOTCHASにあった誤りが繰り返されたか？ そうなら、自動検証が欠けている。
-
+- ダブルを持つポートを一つ取り、その走行を読む。そのコマンドはブラウザ、オペレーティングシステ
+  ム、データベース、ネットワークまで通り抜けているか。それとも別のダブルで止まっているか。`none`
+  の `crossing_run` は正直である。別のダブルを名指すものは、嘘をつく緑である。
 ## 5. 警告サイン
 
 - 同じ値が複数のファイルに手書きで現れる（サーバーと画面に「PENDIENTE」「APROBADA」）。
@@ -173,3 +206,5 @@
 - サーバーへの変更がサーバーのテストの緑で閉じられ、誰も画面に触れなかった。
 - GOTCHASに「事前にどう検知するか」の部分のない項目がある。逸話であって、アンチパターン
   ではない。
+- 地図にポートの族がなく、プロジェクトにはテストのダブルがある。ポートは方法が危険を集める場所で
+  ある。地図になければ、誰も見に行かない。

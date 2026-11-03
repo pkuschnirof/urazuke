@@ -1,6 +1,6 @@
 {
   "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green. And about the content hash, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls the host that served the file. The anchors that do not live on that host are the version ledger of each resource, which lives in the method repository and records the pair (version -> hash) append-only, and the transport security of the connection. There is no cryptographic signature: that is a written decision with its cost on the table, not an oversight.",
-  "catalog_version": "2026.10.15",
+  "catalog_version": "2026.10.16",
   "schema_version": 2,
   "content_hash": {
     "algo": "sha256",
@@ -32,19 +32,19 @@
       "license",
       "content_hash"
     ],
-    "value": "e1b415a8a01ff3912c585c69229e7c9df5ddb5469a516edc1d65123891bc51d1",
+    "value": "a3fc6b7b81e780f42ab26e272fec1657a0a170d18335569fa5fe0555596bd74f",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "449942a",
+  "git_commit": "a0fa7ba",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-11-02T19:05:46.008Z",
+  "generated_at": "2026-11-03T13:04:51.952Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
     "steps": 24,
     "stations": 8,
-    "rules": 48,
-    "faces": 6,
+    "rules": 49,
+    "faces": 9,
     "evaluators": 12
   },
   "languages": {
@@ -593,6 +593,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "anchor": 2
+        },
+        {
+          "text": "For every port this item doubled, is there one run that crosses it to the real other side? A test that instantiates the real adapter against a fake environment went through the adapter and still never saw the event (CQ-21.1).",
+          "since_schema": 2,
+          "since_version": "2026.10.16",
+          "decision": "D-087"
         }
       ],
       "evaluators": [
@@ -796,6 +802,15 @@
           "label": "the agent walked the screens itself to find defects, with the denominator of how many there are, and that walk is not the execution a person owes",
           "since_schema": 2,
           "since_version": "2026.10.14"
+        },
+        {
+          "path": "docs/MANUAL_TESTS.md",
+          "must_contain": [
+            "rerun_after_a_fix"
+          ],
+          "label": "a case that failed and whose failure was fixed comes back whole: the file carries the re-run later than the fix, covering every step, and not only the verification of the step that failed",
+          "since_schema": 2,
+          "since_version": "2026.10.16"
         }
       ],
       "verify": [
@@ -825,6 +840,12 @@
           "since_schema": 2,
           "since_version": "2026.10.15",
           "decision": "D-083"
+        },
+        {
+          "text": "Does every case that failed and was fixed have an execution row LATER than the fix covering all of its steps, instead of closing on the row that failed? A row reports how far the person got: the steps it did not reach neither passed nor failed (CQ-21.3).",
+          "since_schema": 2,
+          "since_version": "2026.10.16",
+          "decision": "D-087"
         }
       ],
       "evaluators": [
@@ -864,11 +885,35 @@
           "path": "docs/GOTCHAS.md",
           "min_bytes": 50,
           "label": "registro de anti-patrones"
+        },
+        {
+          "path": "docs/PRODUCER_CONSUMER_MAP.md",
+          "must_contain": [
+            "ports_with_a_test_double",
+            "ports_total.{0,20}\\d",
+            "ports_with_a_crossing_run.{0,20}\\d",
+            "crossing_run[\\s\\S]{0,200}(browser|operating_system|database|network|none)"
+          ],
+          "label": "the map carries the ports that were doubled for testing, with its denominator: how many ports have a double, how many of those have a run that crosses them to the real other side, and what that other side is. A port whose crossing run says none is a declared hole and not an absence nobody wrote down",
+          "since_schema": 2,
+          "since_version": "2026.10.16"
         }
       ],
       "verify": [
         "El mapa nombra cada estructura compartida con sus lectores y escritores?",
-        "Cada golpe de los ultimos bloques esta en GOTCHAS.md con su regla?"
+        "Cada golpe de los ultimos bloques esta en GOTCHAS.md con su regla?",
+        {
+          "text": "Does every port that was doubled for testing carry the run that crosses it to the real other side, and does that other side name what the port is doubling -- a browser, an operating system, a database, the network -- instead of another double?",
+          "since_schema": 2,
+          "since_version": "2026.10.16",
+          "decision": "D-087"
+        },
+        {
+          "text": "Do ports_total and ports_with_a_crossing_run come from the same table they describe, so that a port with no crossing run is visible instead of being left out of the denominator?",
+          "since_schema": 2,
+          "since_version": "2026.10.16",
+          "decision": "D-087"
+        }
       ],
       "evaluators": [
         {
@@ -909,6 +954,17 @@
           "label": "the routine assigns each finding its destination: product, method or tool",
           "since_schema": 2,
           "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "cases_touched",
+            "cases_with_an_execution_row",
+            "executed_by"
+          ],
+          "label": "the honest report declares the reach of the manual cases of this closing: how many it touches, how many of those have a signed execution row, and who signed them -- in the report where decisions are made and not only in the file where the case lives",
+          "since_schema": 2,
+          "since_version": "2026.10.16"
         }
       ],
       "verify": [
@@ -931,6 +987,12 @@
           "since_schema": 2,
           "since_version": "2026.10.13",
           "decision": "D-080"
+        },
+        {
+          "text": "Does the report say how many manual cases this closing touches, how many of them a person signed and who, with all the letters when the answer is none? A figure somebody has to go and look for stops nobody (CQ-21.2).",
+          "since_schema": 2,
+          "since_version": "2026.10.16",
+          "decision": "D-087"
         }
       ],
       "evaluators": [
@@ -1862,11 +1924,11 @@
     "note": "A legacy system enters the Construction Loop at step 5, so from there the five anchors of Annex H rule exactly as they do in a new project (D-023 + D-043). The two prior inputs are recovered by self-discovery with a source mark, like every input of an earlier stage on this path."
   },
   "heuristics": {
-    "what": "The forty-eight rules of Annex H as data: 20 of code quality (CQ-01 to CQ-20) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule and of every face lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
+    "what": "The forty-nine rules of Annex H as data: 21 of code quality (CQ-01 to CQ-21) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule and of every face lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
     "counts": {
-      "code_quality": 20,
+      "code_quality": 21,
       "usability": 28,
-      "total": 48
+      "total": 49
     },
     "decisions": [
       "D-043",
@@ -1877,7 +1939,8 @@
       "D-048",
       "D-049",
       "D-070",
-      "D-078"
+      "D-078",
+      "D-087"
     ],
     "groups": [
       {
@@ -2796,6 +2859,84 @@
         ]
       },
       {
+        "id": "CQ-21",
+        "since_schema": 2,
+        "since_version": "2026.10.16",
+        "group": "code_quality",
+        "family": "reach",
+        "instrument": [
+          "auto_gate",
+          "manual_case"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            8,
+            10,
+            11,
+            12
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-21",
+          "language": "en",
+          "text": "Every verification declares how far its run reached, and whatever was left beyond that point is counted as not verified and never as healthy: a double no run crosses, an artefact nobody ran and a step no execution reached do not say that what lies past them works, they say that nobody looked.",
+          "extracted": true,
+          "family_label": "Reach",
+          "verification_label": "Gate + manual case"
+        },
+        "faces": [
+          {
+            "id": "CQ-21.1",
+            "since_schema": 2,
+            "since_version": "2026.10.16",
+            "statement": {
+              "section": "4",
+              "row": "CQ-21.1",
+              "language": "en",
+              "text": "Every port with a test double has at least one run that crosses it to the real other side, and the other side is whatever the port is doubling: if what is there is a browser, an operating system, a database or the network, there is no way to satisfy this without it, and no quantity of faithful doubles replaces it.",
+              "extracted": true,
+              "face_label": "The real other side"
+            }
+          },
+          {
+            "id": "CQ-21.2",
+            "since_schema": 2,
+            "since_version": "2026.10.16",
+            "statement": {
+              "section": "4",
+              "row": "CQ-21.2",
+              "language": "en",
+              "text": "A verification artefact nobody ran counts zero and not half a verification, and its figure travels to the report where the decision is made and not only to the file where the artefact lives: a figure somebody has to go and look for stops nobody.",
+              "extracted": true,
+              "face_label": "Written is not run"
+            }
+          },
+          {
+            "id": "CQ-21.3",
+            "since_schema": 2,
+            "since_version": "2026.10.16",
+            "statement": {
+              "section": "4",
+              "row": "CQ-21.3",
+              "language": "en",
+              "text": "An execution reports which step it reached, and the steps it did not reach neither passed nor failed: when what failed is fixed, the case runs again whole and leaves a new execution row later than the fix, and a correction does not close with the verification of the step that failed.",
+              "extracted": true,
+              "face_label": "The case comes back whole"
+            }
+          }
+        ]
+      },
+      {
         "id": "UX-01",
         "group": "usability",
         "family": "B1",
@@ -3693,7 +3834,7 @@
       "never_reported_as_fulfilled": "A rule with any face switched off is never reported as fulfilled. The report says \"three of four faces, one switched off with its reason\" and never a percentage alone: a partial compliance whose figure reads like a complete one is the silent damage this whole family is about.",
       "count_is_derived": "How many faces a rule has is derived from this data and is never written next to its name in prose or in a generated document (D-077).",
       "scoreboard": "For a rule that has faces the scoreboard counts faces and not rules, or the two figures of section 12 of the annex stop meaning what they say.",
-      "rules_with_faces_today": "CQ-19 and CQ-20. CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off: giving them ids is adding and not renaming, and it is separate work.",
+      "rules_with_faces_today": "CQ-19, CQ-20 and CQ-21. CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off: giving them ids is adding and not renaming, and it is separate work.",
       "decision": "D-078",
       "since_schema": 2,
       "since_version": "2026.10.12"
@@ -3883,7 +4024,7 @@
       "immutable_url_pattern": "<canonical base>/<resource folder>/<version>.json -- one folder per resource, because each resource declares its own version line and a folder named after one version would be naming the other resource's content with it.",
       "immutable_url_what": "The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.",
       "immutable_url_where": "Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.",
-      "immutable_path": "gates/2026.10.15.json",
+      "immutable_path": "gates/2026.10.16.json",
       "first_version_with_an_address": "2026.10.1",
       "no_purge": "Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.",
       "what_is_promised": "The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.",

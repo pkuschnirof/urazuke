@@ -57,6 +57,17 @@ the agent:
 > the system you cannot access or do not understand, tell me instead of leaving them out of the
 > map.
 >
+> And the map carries one more family, which is the ports you doubled for testing:
+> `ports_with_a_test_double`, with `ports_total`, how many ports of the system have a double, and
+> `ports_with_a_crossing_run`, how many of those have at least one run that crosses them to the real
+> other side; and then, per port, its adapter, its double, and `crossing_run`: the exact command,
+> and what it reached on the other side, which is `browser`, `operating_system`, `database`,
+> `network` or `none`. The other side is whatever the port is doubling, and another double is never
+> the other side (Annex H, CQ-21.1). `none` is a declared hole and it is worth more than silence: a
+> port whose double no run crosses is where four dead controls fit underneath a green suite. Do not
+> write a crossing run you did not run, and count a port with no crossing run inside `ports_total`
+> instead of leaving it out so the figure reads better.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -69,6 +80,14 @@ the agent:
 What I am asking for: the inventory of contracts with their two sides, and the completeness clause
 in its form for this step: what cannot be seen is declared, not omitted. A map with hidden holes is
 worse than no map at all.
+
+And what D-087 adds: the family of the ports with a test double. A port with its double is
+producer/consumer symmetry in its purest form -- the adapter produces the events the view consumes
+-- and it is also the place where the method concentrates the risk, because it pushes you to double
+so that the view is verifiable and then demanded no run that looks at that point. The column of the
+run that crosses it is what turns the hole into a **declared** hole: what a program can look at is
+that the column is there and names what is on the other side; whether that is true is decided by a
+person reading the command, and that is written in Annex H instead of being simulated here.
 
 **Routine (goes in the working agreement):**
 
@@ -128,7 +147,9 @@ automated will repeat itself when the person or the session changes.
 - In every commit that touches a contract: the consumers updated, named in the message.
 - `docs/GOTCHAS.md`: one entry per anti-pattern, with the four parts (smell, root cause, fix,
   how to detect it beforehand), and the date of the first time.
-
+- In the map, the family of the ports with a test double: `ports_total`,
+  `ports_with_a_crossing_run`, and per port its adapter, its double and the run that crosses it
+  with what it reached on the other side.
 ## 4. Completeness check
 
 - Pick a contract from the map and ask the agent to show you where each consumer reads it. If any
@@ -136,7 +157,9 @@ automated will repeat itself when the person or the session changes.
 - Is there a number that is shown on two different screens? Compare: do they match?
 - Does every GOTCHAS entry have the four parts?
 - Did a mistake that was already in GOTCHAS repeat itself? If so, the automatic check is missing.
-
+- Take a port with a double and read its run: does the command cross to a browser, an operating
+  system, a database or the network, or does it stop at another double? A `crossing_run` at `none`
+  is honest; one that names another double is a green that lies.
 ## 5. Warning signs
 
 - The same value appears hand-written in more than one file ("PENDING", "APPROVED" on the server
@@ -144,3 +167,5 @@ automated will repeat itself when the person or the session changes.
 - A change to the server was closed with the server test green and nobody touched the screen.
 - GOTCHAS has entries without the "how to detect it beforehand" part. Those are anecdotes, not
   anti-patterns.
+- The map does not have the family of the ports and the project has test doubles. The port is where
+  the method concentrates the risk: if it is not in the map, nobody is going to look at it.

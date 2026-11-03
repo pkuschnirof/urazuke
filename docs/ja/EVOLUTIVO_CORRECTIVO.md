@@ -1108,6 +1108,13 @@ N7を終えると、道ははしごと合流する：第5段から第12段を保
 > block, each with its own evidence. The commit message says "proved red against [version]" and
 > the test counts.
 >
+> And two things this correction does not close without. If it was born from a manual test case, it
+> does not close with the verification of the step that failed: the case runs again WHOLE, a person
+> signs a new execution row later than the fix, and that row is what closes it (Annex H, CQ-21.3).
+> And for every port you doubled for testing, one run that crosses it to the real other side,
+> recorded in the producer/consumer map under `crossing_run` (CQ-21.1): a test against a fake
+> environment crossed the real adapter and still never saw the event.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -1130,6 +1137,13 @@ N7を終えると、道ははしごと合流する：第5段から第12段を保
 > 副作用ではなく私の決定です。このモジュールの対になった正常化の保留項目を同じブロックで、
 > それぞれ自分の証拠とともに閉じてください。コミットのメッセージには「[バージョン]に対して
 > 赤で証明」とテストの数を書いてください。
+>
+> そしてこの修正がそれなしには閉じない二つのこと。手動のテストケースから生まれたのであれば、落ち
+> た手順の検証では閉じません。そのケースは丸ごと走り直し、人が修正より後の新しい実行の行に署名
+> し、その行がそれを閉じます（付録 H、CQ-21.3）。そしてテストのためにダブルを置いたすべてのポート
+> について、それを本当の向こう側まで通り抜ける走行を一つ、生産者-消費者の地図の `crossing_run` に
+> 記録してください（CQ-21.1）。偽の環境に対するテストは、本物のアダプタを通り抜けながら、イベント
+> をやはり見ていませんでした。
 >
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五

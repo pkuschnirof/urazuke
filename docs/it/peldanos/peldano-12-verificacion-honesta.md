@@ -68,6 +68,13 @@ l'agente:
 > runs it, and written into the register of that destination. A defect of the method or of the
 > tool filed in the product's register is a defect nobody is ever going to fix.
 >
+> And when this closing touches manual test cases, declare its reach with three fixed keys:
+> `cases_touched`, how many cases this closing touches; `cases_with_an_execution_row`, how many of
+> those a person has signed with a date and a name; and `executed_by`, who signed them. When the
+> answer is none, say it in so many words: a case that is written and that nobody ran is not half a
+> verification, it is zero with the appearance of one (Annex H, CQ-21.2). Read the figures from the
+> signed execution tables and from nothing else, never from your own reading of the system.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -99,6 +106,13 @@ l'agente:
 > difetto è del sistema, `method` se è del metodo che si sta seguendo, `tool` se è dello
 > strumento che lo esegue, e scritto nel registro di quella destinazione. Un difetto del metodo o
 > dello strumento annotato nel registro del prodotto è un difetto che nessuno correggerà mai.
+>
+> E quando questa chiusura tocca casi di prova manuale, dichiara la sua portata con tre chiavi
+> fisse: `cases_touched`, quanti casi tocca questa chiusura; `cases_with_an_execution_row`, quanti
+> di quelli ha firmato una persona con data e nome; e `executed_by`, chi li ha firmati. Quando la
+> risposta è nessuno, dillo con tutte le lettere: un caso scritto che nessuno ha corso non è mezza
+> verifica, è zero con l'apparenza di una (Allegato H, CQ-21.2). Le cifre escono dalle tabelle di
+> esecuzione firmate e da nient'altro, mai dalla tua propria lettura del sistema.
 >
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
@@ -172,7 +186,8 @@ Ogni rapporto dell'agente con:
 - E quando il rapporto produce rilievi su come lavoriamo e non su ciò che abbiamo costruito,
   `findings_by_destination`: ogni rilievo con la sua destinazione —prodotto, metodo o strumento— e
   scritto nel registro di quella destinazione.
-
+- E quando la chiusura tocca casi manuali: `cases_touched`, `cases_with_an_execution_row` e
+  `executed_by`, con tutte le lettere quando la risposta è nessuno.
 ## 4. Verifica di completezza
 
 - Ci sono i tre blocchi? Se "creduto" e "punti ciechi" sono sempre vuoti, l'agente non sta essendo
@@ -184,7 +199,9 @@ Ogni rapporto dell'agente con:
 - Ha detto "fatto" secco qualche volta? È una violazione del patto.
 - I rilievi che non sono del sistema sono rimasti con la loro destinazione assegnata, e aperti nel
   registro che gli spetta? Il metodo e lo strumento non si correggono dal registro del prodotto.
-
+- Il rapporto dice quanti casi manuali tocca questa chiusura e quanti ne ha firmati una persona? Se
+  la cifra è solo nel file dei casi, nessuno la legge: una cifra che bisogna andare a cercare non
+  ferma nessuno.
 ## 5. Segnali d'allarme
 
 - Dieci rapporti di fila senza nessun punto cieco. Nessuno vede tutto; il blocco è vuoto per
@@ -192,3 +209,5 @@ Ogni rapporto dell'agente con:
 - Il blocco "verificato" ha frasi come "dovrebbe funzionare". È "creduto" travestito.
 - Il rapporto è più lungo della modifica. Un rapporto proporzionato dice ciò che va detto; uno
   gonfiato sta coprendo qualcosa con il volume.
+- Il rapporto dice che il blocco è verificato e i casi manuali di quel blocco hanno la tabella di
+  esecuzioni vuota. Scritto non è corso.

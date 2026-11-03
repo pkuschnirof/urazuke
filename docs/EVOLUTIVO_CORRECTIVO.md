@@ -1167,6 +1167,13 @@ arregla un síntoma distinto.
 > block, each with its own evidence. The commit message says "proved red against [version]" and
 > the test counts.
 >
+> And two things this correction does not close without. If it was born from a manual test case, it
+> does not close with the verification of the step that failed: the case runs again WHOLE, a person
+> signs a new execution row later than the fix, and that row is what closes it (Annex H, CQ-21.3).
+> And for every port you doubled for testing, one run that crosses it to the real other side,
+> recorded in the producer/consumer map under `crossing_run` (CQ-21.1): a test against a fake
+> environment crossed the real adapter and still never saw the event.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -1190,6 +1197,13 @@ arregla un síntoma distinto.
 > mía, no un efecto secundario. Cerrá los pendientes de normalización emparejados de este módulo en
 > el mismo bloque, cada uno con su propia evidencia. El mensaje del commit dice "probado en rojo
 > contra [versión]" y los números de los tests.
+>
+> Y dos cosas sin las que esta corrección no cierra. Si nació de un caso de prueba manual, no
+> cierra con la verificación del paso que falló: el caso vuelve a correr ENTERO, una persona firma
+> una fila de ejecución nueva posterior al arreglo, y esa fila es la que lo cierra (Anexo H,
+> CQ-21.3). Y por cada puerto que doblaste para probar, una corrida que lo atraviese hasta el otro
+> lado de verdad, anotada en el mapa productor-consumidor bajo `crossing_run` (CQ-21.1): una prueba
+> contra un entorno de mentira atravesó el adaptador real y siguió sin ver el evento.
 >
 > Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,

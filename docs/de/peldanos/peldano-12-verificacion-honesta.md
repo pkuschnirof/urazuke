@@ -70,6 +70,13 @@ machst es, nicht der Agent:
 > runs it, and written into the register of that destination. A defect of the method or of the
 > tool filed in the product's register is a defect nobody is ever going to fix.
 >
+> And when this closing touches manual test cases, declare its reach with three fixed keys:
+> `cases_touched`, how many cases this closing touches; `cases_with_an_execution_row`, how many of
+> those a person has signed with a date and a name; and `executed_by`, who signed them. When the
+> answer is none, say it in so many words: a case that is written and that nobody ran is not half a
+> verification, it is zero with the appearance of one (Annex H, CQ-21.2). Read the figures from the
+> signed execution tables and from nothing else, never from your own reading of the system.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -104,6 +111,14 @@ machst es, nicht der Agent:
 > befolgten Methode liegt, `tool`, wenn er im Werkzeug liegt, das sie ausführt, und geschrieben
 > in das Register dieses Ziels. Ein Defekt der Methode oder des Werkzeugs, der im Register des
 > Produkts eingetragen wird, ist ein Defekt, den niemals jemand behebt.
+>
+> Und wenn dieser Abschluss manuelle Testfälle berührt, erkläre seine Reichweite mit drei festen
+> Schlüsseln: `cases_touched`, wie viele Fälle dieser Abschluss berührt; `cases_with_an_execution_row`,
+> wie viele davon ein Mensch mit Datum und Namen unterschrieben hat; und `executed_by`, wer sie
+> unterschrieben hat. Ist die Antwort keiner, sag es in aller Deutlichkeit: ein geschriebener Fall,
+> den niemand laufen ließ, ist keine halbe Überprüfung, er ist null mit dem Aussehen einer (Anhang
+> H, CQ-21.2). Die Zahlen kommen aus den unterschriebenen Ausführungstabellen und aus nichts
+> anderem, niemals aus deiner eigenen Lesung des Systems.
 >
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
@@ -178,7 +193,8 @@ Jeder Bericht des Agenten mit:
 - Und wenn der Bericht Befunde darüber erzeugt, wie wir arbeiten, und nicht darüber, was wir gebaut
   haben, `findings_by_destination`: jeder Befund mit seinem Ziel —Produkt, Methode oder Werkzeug—
   und geschrieben in das Register dieses Ziels.
-
+- Und wenn der Abschluss manuelle Fälle berührt: `cases_touched`, `cases_with_an_execution_row` und
+  `executed_by`, in aller Deutlichkeit, wenn die Antwort keiner ist.
 ## 4. Vollständigkeitsprüfung
 
 - Sind die drei Blöcke da? Wenn „geglaubt“ und „blinde Flecken“ immer leer sind, ist der Agent
@@ -192,7 +208,9 @@ Jeder Bericht des Agenten mit:
 - Haben die Befunde, die nicht vom System sind, ihr Ziel zugeordnet bekommen und wurden sie im
   Register eröffnet, in das sie gehören? Die Methode und das Werkzeug werden nicht aus dem Register
   des Produkts heraus repariert.
-
+- Sagt der Bericht, wie viele manuelle Fälle dieser Abschluss berührt und wie viele ein Mensch
+  unterschrieben hat? Steht die Zahl nur in der Datei der Fälle, liest sie niemand: eine Zahl, die
+  man suchen gehen muss, hält niemanden auf.
 ## 5. Warnsignale
 
 - Zehn Berichte in Folge ohne einen einzigen blinden Fleck. Niemand sieht alles; der Block ist aus
@@ -201,3 +219,5 @@ Jeder Bericht des Agenten mit:
   „geglaubt“.
 - Der Bericht ist länger als die Änderung. Ein verhältnismäßiger Bericht sagt, was zu sagen ist;
   ein aufgeblähter verdeckt etwas mit Volumen.
+- Der Bericht sagt, der Block sei überprüft, und die manuellen Fälle dieses Blocks haben eine leere
+  Ausführungstabelle. Geschrieben ist nicht gelaufen.

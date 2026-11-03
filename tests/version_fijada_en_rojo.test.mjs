@@ -110,7 +110,8 @@ test('rojo 10: una REGLA agregada sin procedencia sale nombrada, y el diferencia
   assert.deepEqual(sinProcedencia(sinVersion), [donde]);
   assert.match(donde, /^catalog\.rules\[\d+\]$/, 'y el lugar que nombra es la regla en el catalogo');
   const reglas = arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules'));
-  assert.deepEqual(reglas.map((e) => e.que + '@' + e.since_version), ['CQ-19@2026.10.12', 'CQ-20@2026.10.12', 'UX-28@2026.10.8'],
+  assert.deepEqual(reglas.map((e) => e.que + '@' + e.since_version),
+    ['CQ-19@2026.10.12', 'CQ-20@2026.10.12', 'CQ-21@2026.10.16', 'UX-28@2026.10.8'],
     'la regla esta en las entradas agregadas: si no estuviera, un upgrade no la contaria');
   assert.ok(diferencial(arbol.entradas, '2026.10.7', '2026.10.8').some((e) => e.que === 'UX-28'),
     'y el diferencial del salto que la trae la nombra');

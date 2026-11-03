@@ -245,8 +245,8 @@ Jeder Schritt hat acht Teile, immer dieselben, damit sie sich vergleichen lassen
 
 Und es gibt noch einen Teil, der **nur in sechs Schritten** auftaucht und ein querliegendes
 Stück ist, das ändert, was gelesen werden muss: **Anhang H**
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Sechsundvierzig überprüfbare Regeln — achtzehn zur
-Codequalität und achtundzwanzig zur Benutzbarkeit —, jede mit ihrer stabilen Kennung, ihrer
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Neunundvierzig überprüfbare Regeln — einundzwanzig zur Codequalität und achtundzwanzig zur
+Benutzbarkeit —, jede mit ihrer stabilen Kennung, ihrer
 Schwere und dem Instrument, das sie misst. Es ist kein optionaler Anhang: **er ist verpflichtend**,
 und er hängt sich an sechs Punkten in die Leiter ein. In Schritt 2 kommen seine zwei
 **Voreingaben** herein (das Benutzerglossar und die Profilliste: die Wörter, die die Leute
@@ -261,7 +261,7 @@ verpflichtend und in diesem Dokument nicht genannt, und der erste Leser, der die
 anderes Format übertrug, übersprang siebenundzwanzig der fünfundvierzig Regeln, weil er nie wusste,
 dass sie da waren.
 
-Und eine dieser achtundvierzig handelt nicht von dem System, das gebaut wird, sondern davon,
+Und eine dieser neunundvierzig handelt nicht von dem System, das gebaut wird, sondern davon,
 **wie du gefragt wirst**. Es ist **UX-28**, und sie kam am 2026-10-27 hinzu, weil sie fehlte: die
 Methode befiehlt ihren Prompts, dich zu fragen — zweiundzwanzig Mal, in mehr als der Hälfte des
 Korpus — und sagte nirgends, wie man fragt, also blieb die Form der Improvisation überlassen und
@@ -952,9 +952,8 @@ anderes Format, in Teil F mit Quellenangabe.)
   [Ref. 41](REFERENCIAS.md#ref-41); die Qualitätszahl, die schlechter wird, ohne dass es jemand
   sieht [Ref. 35](REFERENCIAS.md#ref-35).
 - **Anhang H**: Anker 3 von [Anhang H](ANEXO_HEURISTICAS.md), und der größte der fünf: hier
-  erweitert sich die Schranke von der Codequalität auf die **Benutzbarkeit**. Der Katalog der
-  achtundvierzig Regeln ist erklärt und pro Gruppe aktiv -- und zwei davon, die des Belegs,
-  werden Facette für Facette gemeldet --; jede aktive Regel hat ihr Instrument,
+  erweitert sich die Schranke von der Codequalität auf die **Benutzbarkeit**. Der Katalog der neunundvierzig Regeln ist erklärt und
+  pro Gruppe aktiv -- und drei davon werden Facette für Facette gemeldet --; jede aktive Regel hat ihr Instrument,
   ihre Schwere und ihren Prüfer; jede **abgeschaltete** Regel hat ihren Eintrag mit Grund, wer es
   genehmigt und Revisionsdatum — abgeschaltet ohne Eintrag ist rot, was nicht dasselbe ist wie die
   fehlende Regel —; jeder Grenzwert, den der Eigentümer nicht erklärt hat, wird als nicht erklärt
@@ -1748,7 +1747,7 @@ seine vollständige detaillierte Spezifikation, und die Summe der offenen Posten
 Spezifikation des Systems. Siehe B.5.
 
 **Anhang H** — Der Heuristik-Anhang der Methode
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): achtundvierzig überprüfbare Regeln, zwanzig zur
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): neunundvierzig überprüfbare Regeln, einundzwanzig zur
 Codequalität und achtundzwanzig zur Benutzbarkeit, jede mit ihrer stabilen Kennung, ihrer Schwere
 und dem Instrument, das sie misst. Er ist verpflichtend und läuft durch alle vier Abschnitte: er
 kommt mit zwei Voreingaben in Schritt 2 und mit fünf Ankern in den Schritten 5, 8, 9, 10 und 12
@@ -1812,6 +1811,17 @@ Schwellenwert oder sehr verschieden von der Basislinie.
 ausgeführt.
 
 **Beförderung (UAT → PROD)** — Etwas kontrolliert von der Testumgebung in die Produktion bringen.
+
+**Port (und sein Test-Double)** — Ein *Port* ist die einzige Stelle, durch die ein Teil des Systems
+mit etwas spricht, das nicht er selbst ist: dem Browser, dem Betriebssystem, der Datenbank, dem
+Netz. Er wird genau deshalb getrennt geschrieben, damit er beim Testen durch ein *Double* ersetzt
+werden kann: eine Nachahmung, die dasselbe antwortet, ohne irgendwohin zu gehen, sodass ein
+Bildschirm ohne Browser geprüft werden kann. Das Problem ist, dass das Double derselbe geschrieben
+hat, der den Port geschrieben hat, also können beide auf dieselbe Weise falsch sein, und die Tests
+erfahren es nie. Darum verlangt Regel CQ-21.1 von Anhang H **mindestens einen Lauf, der den Port bis
+zur echten anderen Seite durchquert**, und „echt" heißt der Browser, das Betriebssystem, die
+Datenbank oder das Netz: ein anderes Double zählt nicht. Das Inventar der Ports mit Double, jeder
+mit dem Lauf, der ihn durchquert, lebt in der Produzent/Konsument-Karte von Stufe 11.
 
 **Beleg** — Seit dem 2026-11-01 benennt das Wort zwei Dinge, und das zweite ist Regel CQ-19 von
 Anhang H: was eine Zahl neben sich mitbringt, um überhaupt lesbar zu sein -- welche Menge sie zu

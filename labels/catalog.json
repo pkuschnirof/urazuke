@@ -1,7 +1,7 @@
 {
   "what": "The header of the catalogue of texts by identifier: the version a project freezes. Declared BY HAND, for the same reason as the gate catalogue (gates/catalog.json) and the prompt corpus (prompts/catalog.json): a project starts and finishes with the same version of the method, so what it froze has to read back the same two years from now.",
-  "labels_version": "2026.10.2",
-  "declared_at": "2026-10-28",
+  "labels_version": "2026.10.3",
+  "declared_at": "2026-11-03",
   "published_as": "docs/html/api/labels.json",
   "extracted_from": {
     "note": "The texts are EXTRACTED from the prose of the method, not written here and not transcribed. This is the list of what each kind is read from, in every language the prose declares; if a text is not there, publication is refused.",
@@ -48,6 +48,13 @@
       "decision": "D-078",
       "content_hash": "a683674f7356e8e3af4d4f4eb7519c3e672fa4154d391a686e83403417577f01",
       "changed": "Two kinds enter, faces and face_titles, and with them the sixty strings of the two rules D-078 added. The gate catalogue now has rules with FACES -- a cut of the statement of a rule with an identifier of its own, so that a single one can be switched off -- and a consumer has to be able to print what it switched off: a report that says CQ-19.2 and nothing else is the opaque id with no catalogue behind it, which is exactly the defect this resource exists to close. A face carries two texts and is therefore two kinds, not one: its statement, like a rule, and its short name, like the title of a step -- the name is what a report prints next to the id, and the statement is what the reader needs in order to understand why. Both are EXTRACTED from Annex H of each language with the same extractor that already resolves the statement of a rule; not one string is written here, and the test that demands every string appear literally in the document it claims to come from covers them from the first day. What the count does: 24 step titles, 8 station titles, 48 rule statements and 6 faces counted twice, which is 92 ids per language and 736 strings over the eight languages the prose declares -- and every one of those figures is derived from the data and from the list of prose versions, not written in this file (D-067, D-077). What this version does NOT do: add a language, change a single text of the twenty-four steps, the eight stations or the forty-six rules that were already published, or widen what the scope leaves out (D-078, PND-065 to PND-068)."
+    },
+    {
+      "labels_version": "2026.10.3",
+      "date": "2026-11-03",
+      "decision": "D-087",
+      "content_hash": "823185814ceb9d80c6b50f66d8812cfdd70fe4ef3c7ea5b6882ef82f89192efc",
+      "changed": "The thirty-two strings of CQ-21 and its three faces (D-087). One rule enters the gate catalogue with three faces, so the text catalogue carries four more statements and three more face titles per language: eight ids, thirty-two strings, extracted from the prose of each language like every other one. Nothing is written here: the test demands that every one of them appear LITERAL in the annex of the language it says it comes from, which is what keeps this resource from becoming a second version of the method. What does NOT change: the kinds, the scope, the exclusions and the derivation of the languages from languages.prose_versions."
     }
   ]
 }

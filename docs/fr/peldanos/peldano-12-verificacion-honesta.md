@@ -66,6 +66,13 @@ faites, pas l'agent :
 > runs it, and written into the register of that destination. A defect of the method or of the
 > tool filed in the product's register is a defect nobody is ever going to fix.
 >
+> And when this closing touches manual test cases, declare its reach with three fixed keys:
+> `cases_touched`, how many cases this closing touches; `cases_with_an_execution_row`, how many of
+> those a person has signed with a date and a name; and `executed_by`, who signed them. When the
+> answer is none, say it in so many words: a case that is written and that nobody ran is not half a
+> verification, it is zero with the appearance of one (Annex H, CQ-21.2). Read the figures from the
+> signed execution tables and from nothing else, never from your own reading of the system.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -100,6 +107,14 @@ faites, pas l'agent :
 > `tool` s'il est dans l'outil qui l'exécute, et écrit dans le registre de cette destination. Un
 > défaut de la méthode ou de l'outil consigné dans le registre du produit est un défaut que
 > personne ne corrigera jamais.
+>
+> Et quand cette fermeture touche des cas de test manuel, déclare sa portée avec trois clés fixes :
+> `cases_touched`, combien de cas cette fermeture touche ; `cases_with_an_execution_row`, combien de
+> ceux-là une personne a signés avec une date et un nom ; et `executed_by`, qui les a signés. Quand
+> la réponse est aucun, dis-le en toutes lettres : un cas écrit que personne n'a fait tourner n'est
+> pas une demi-vérification, c'est zéro avec l'apparence d'une (Annexe H, CQ-21.2). Les chiffres
+> sortent des tableaux d'exécution signés et de rien d'autre, jamais de ta propre lecture du
+> système.
 >
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
@@ -172,7 +187,8 @@ Chaque rapport de l'agent avec :
 - Et quand le rapport produit des constats sur la façon dont nous travaillons et non sur ce que
   nous avons construit, `findings_by_destination` : chaque constat avec sa destination — produit,
   méthode ou outil — et écrit dans le registre de cette destination.
-
+- Et quand la fermeture touche des cas manuels : `cases_touched`, `cases_with_an_execution_row` et
+  `executed_by`, en toutes lettres quand la réponse est aucun.
 ## 4. Vérification de complétude
 
 - Les trois blocs y sont-ils ? Si « cru » et « angles morts » sont toujours vides, l'agent n'est
@@ -185,7 +201,9 @@ Chaque rapport de l'agent avec :
 - Les constats qui ne portent pas sur le système ont-ils reçu leur destination, et ont-ils été
   ouverts dans le registre qui leur revient ? La méthode et l'outil ne se corrigent pas depuis le
   registre du produit.
-
+- Le rapport dit-il combien de cas manuels cette fermeture touche et combien une personne en a
+  signés ? Si le chiffre est seulement dans le fichier des cas, personne ne le lit : un chiffre
+  qu'il faut aller chercher n'arrête personne.
 ## 5. Signaux d'alarme
 
 - Dix rapports d'affilée sans aucun angle mort. Personne ne voit tout ; le bloc est vide par
@@ -194,3 +212,5 @@ Chaque rapport de l'agent avec :
   déguisé.
 - Le rapport est plus long que le changement. Un rapport proportionné dit ce qu'il y a à dire ; un
   rapport gonflé cache quelque chose sous le volume.
+- Le rapport dit que le bloc est vérifié et les cas manuels de ce bloc ont le tableau d'exécutions
+  vide. Écrit n'est pas couru.

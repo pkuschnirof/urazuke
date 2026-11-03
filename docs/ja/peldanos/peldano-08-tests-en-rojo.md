@@ -92,6 +92,14 @@
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
 >
+> And for every port you doubled for testing in this item, show me one run that crosses it to the
+> real other side -- the browser, the operating system, the database, the network -- and record it
+> in `docs/PRODUCER_CONSUMER_MAP.md` under `crossing_run`. A test that instantiates the real adapter
+> against a fake environment crossed the real code and still never saw the event, so it does not
+> count: no quantity of faithful doubles replaces the other side (Annex H, CQ-21.1). If you cannot
+> run it, tell me which port is left with no crossing run and write `none` there, which is a
+> declared hole and not a green.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -123,6 +131,14 @@
 > 多くてもいけません。そして各ルートはサーバー側で権限を検査します。入り口を隠すことは
 > 何も守らないからです（付録H、UX-11、UX-12、UX-15）。何も実行しないマ
 > トリクスは、誰も読まない文書です。
+>
+> そしてこのペンディングでテストのためにダブルを置いたすべてのポートについて、それを本当の向こう
+> 側まで通り抜ける走行を一つ見せてください——ブラウザ、オペレーティングシステム、データベース、
+> ネットワーク——そしてそれを `docs/PRODUCER_CONSUMER_MAP.md` の `crossing_run` に記録してくださ
+> い。本物のアダプタを偽の環境に対して生成するテストは、本物のコードを通り抜けながらイベントをや
+> はり見ていないので、数えません。どれだけ忠実なダブルを並べても向こう側の代わりにはなりません
+> （付録 H、CQ-21.1）。走らせられない場合は、どのポートが通り抜ける走行なしに残るかを教え、そこに
+> `none` と書いてください。それは宣言された穴であり、緑ではありません。
 >
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
@@ -239,7 +255,9 @@
 - 画面のテストはバックエンドでの効果も検証しているか？
 - ブロックの締めに：すべてのフローがエンドツーエンドのテスト群にあるか、それとも「ユニット
   テストでカバーする」ものがあるか？
-
+- このペンディングがダブルを置いたすべてのポートに、それを通り抜ける走行があるか。そして向こう側
+  は本当の向こう側か。本物のアダプタを偽の環境に対して生成するテストは、本物のコードを通り抜けな
+  がらイベントを見なかった。
 ## 5. 警告サイン
 
 - 今週の新しいテストがすべて一発で緑になり、赤が一度も示されなかった。エージェントが手順を
@@ -251,3 +269,5 @@
   ない。レシートのない赤は、ないのと同じ値打ちだ。
 - 本番リリースに至って、完全なエンドツーエンドのテスト群が初めて走る。ブロックの締めが
   欠けていた。
+- そのペンディングはダブルを置いたポートを持つビューに触れたのに、バッテリーには本当にコントロー
+  ルを押す走行が一つもない。八十一の緑のファイルは、死んだ四つのコントロールを覆い隠せる。

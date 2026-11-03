@@ -130,7 +130,7 @@ visto: el Anexo H era obligatorio y el documento principal no lo nombraba.
 
 ## El Anexo H se nombra donde el dato lo exige
 
-D-061 (PND-039, PND-048). El Anexo H es obligatorio —48 reglas desde D-078, 46 desde D-070, 45 cuando se escribió esto—, con dos entradas previas en el
+D-061 (PND-039, PND-048). El Anexo H es obligatorio —49 reglas desde D-087, 48 desde D-078, 46 desde D-070, 45 cuando se escribió esto—, con dos entradas previas en el
 peldaño 2 y cinco anclas en los peldaños 5, 8, 9, 10 y 12, y esas cinco son evaluadores
 `required: true` en el dato publicado— y hasta el 2026-10-26 el documento principal **no lo nombraba
 ni una vez**. Lo descubrió un lector: el autor de la adaptación reprodujo sin error seis cifras de
@@ -512,6 +512,61 @@ Y lo que esta guarda **no** promete, que está escrito en su cabecera y no apare
 el prompt de la lección diga lo mismo que el del contrato. No tiene que decirlo. Lo que una persona
 tiene que poder hacer es abrir la lección y el contrato y ver la diferencia **declarada**.
 
+## El alcance de una corrida: una regla con tres caras, y lo que no promete
+
+D-087 (`PND-101` a `PND-104`), y los tres defectos los midió el dueño en el **segundo lote** del
+experimento A/B. Tenían la misma forma y él la escribió en una línea: **un artefacto correcto que no
+llega al único lugar donde produce efecto.** El caso de prueba escrito que nadie ejecutó. El caso
+corregido que nadie volvió a correr. Y el puerto doblado que ninguna prueba atravesó, que es el que
+vale la mitad del precio: un brazo construyó su vista sobre un puerto con su doble —que es lo que el
+método empuja a hacer para que la vista sea verificable— y ese puerto escuchaba un solo tipo de
+evento mientras cuatro de los cinco controles emitían otro. **Cuatro controles muertos en un
+navegador, con ochenta y un archivos de prueba en verde encima**, uno de los cuales afirmaba
+exactamente lo que estaba roto porque recorría los oyentes del nodo falso y los llamaba a mano; en
+los ochenta y uno no había un solo apretón de botón. Son **una** regla y no tres porque se les hace
+la misma pregunta —*¿hasta dónde llegó esta corrida, y qué parte del artefacto quedó sin
+atravesar?*—, que es la forma de D-078 aplicada otra vez.
+
+Entra **`CQ-21` «El alcance»**, BLOQUEA, con tres caras: `CQ-21.1` el otro lado de verdad,
+`CQ-21.2` escrito no es corrido, `CQ-21.3` el caso vuelve entero. La cuenta del anexo pasó a
+**cuarenta y nueve** (21 de calidad y 28 de usabilidad) y la de caras a nueve.
+
+Cuatro cosas de esta regla no se negocian. **La redacción de `CQ-21.1` no es del método: es del
+brazo**, y hay que decirlo porque la mía era peor. La mía pedía «al menos una prueba que lo
+atraviese de verdad, contra la implementación real», y él la refutó con su propio código: una de
+sus pruebas **ya** corría la implementación real, contra un documento de mentira que invocaba al
+oyente sin mirar el evento, así que atravesaba el adaptador y seguía sin ver el defecto. Lo que
+quedó es que el otro lado tiene que ser **el otro lado de verdad** —el navegador, el sistema
+operativo, la base, la red— y que ninguna cantidad de dobles fieles lo sustituye. **El costo va
+escrito al lado**, porque lo pidió el dueño y porque es la objeción que la cara va a recibir: una
+corrida, 15,6 segundos, cero paquetes nuevos. **`CQ-21.2` no agrega la cifra, agrega el viaje**: las
+tres declaraciones del archivo de casos entraron con D-082 y el peldaño 10 ya sale rojo si nadie
+firmó (el ancla 4, D-083), así que lo que faltaba era que la cifra llegara al **informe honesto**,
+que es lo que el dueño lee en cada cierre; un número que hay que ir a buscar no frena a nadie. Y
+**el límite va escrito**: ninguna compuerta puede verificar que la corrida declarada atraviesa el
+puerto de verdad, ni que la fila nueva cubre todos los pasos. Lo que una máquina mira es la
+declaración —el inventario `ports_with_a_test_double` del peldaño 11, con `ports_total`,
+`ports_with_a_crossing_run` y el `crossing_run` de cada puerto nombrando qué alcanzó— y la verdad de
+la declaración la decide una persona leyendo el comando. Eso está en el Anexo H y en la sección 4
+del contrato, en los ocho idiomas, en vez de simulado.
+
+Y lo que el lote dejó de paso, que es la misma familia que persigue: **la cuenta de reglas estaba
+vencida en veinte lugares de la prosa** (`PND-104`). Tres en el documento principal, en el párrafo que
+presenta el Anexo H: el alemán decía cuarenta y seis y dieciocho de calidad, vencido desde D-078; el
+italiano cuarenta y cinco con dieciocho y veintisiete, desde D-070; y el francés cuarenta y ocho
+igual a veinte más **veintisiete**, que ni suma, publicado así una semana. Y los **nueve** `README`,
+los nueve diciendo «dieciocho reglas de calidad de código y veintisiete de usabilidad» desde el
+2026-10-27. Y las **ocho** hojas de `PREGUNTAS_AL_PROVEEDOR.md`, que cierran su pregunta 15 con «las
+veintisiete reglas de usabilidad» y nacieron el 2026-10-26, un día antes de que UX-28 las venciera.
+Los diecisiete últimos son peores que los tres primeros, no mejores: las tres del documento
+principal son una traducción que se quedó atrás y una simetría podría atraparlas, y las otras son un
+hecho que nunca se volvió a derivar, replicado con disciplina a los ocho idiomas, que ninguna
+simetría puede ver porque los ocho dicen lo mismo. El universo del barrido son los 312 archivos
+`.md` del árbol y está enumerado en `PND-104`, porque afirmar que no hay más desde una búsqueda que
+no dice dónde buscó es D-064. Es D-044, D-077 y D-086 en el único lugar donde
+ninguna de las tres guardas mira: la prosa del método. Lo encontró tener que tocar la cifra, y queda
+dicho que la próxima regla va a volver a pasar por acá.
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio
@@ -733,8 +788,8 @@ existir en cada peldaño, qué tiene que decir, con qué estrategia se verifica)
 `docs/html/api/gates.json`; Yujin-Forge es consumidor, igual que con los prompts. La fuente es
 `gates/`, mantenida **a mano** porque es datos y no prosa: `catalog.json` (la versión declarada),
 `schema.json` (el esquema, que el validador interpreta), `evaluators.json` (el vocabulario cerrado
-y append-only), `steps.json` (24 peldaños), `stations.json` (N0 a N7), `heuristics.json` (las 48
-reglas del Anexo H, dos de ellas con caras) y `adapters.json` (las familias de frontend y los umbrales).
+y append-only), `steps.json` (24 peldaños), `stations.json` (N0 a N7), `heuristics.json` (las 49
+reglas del Anexo H, tres de ellas con caras) y `adapters.json` (las familias de frontend y los umbrales).
 `baseline.json` es el congelado de lo que la herramienta tenía compilado el día del cambio: es la
 referencia del test de diferencia cero y **no se edita** (la única excepción escrita es D-055, y
 fue del dueño). Su cabecera guarda la procedencia —repositorio y commit de origen— y por eso el
@@ -747,7 +802,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   verdad hay que cambiar un requisito existente, es un cambio del método y va con su decisión.
   Pasó una sola vez (D-055, autorizada por el dueño y acotada a dos textos): cuando se edita, se
   edita **en sincronía** con el congelado, para que la diferencia cero siga siendo demostrable.
-- **Una sola copia de cada texto.** El enunciado de las 48 reglas y de las 6 caras vive sólo en el Anexo H;
+- **Una sola copia de cada texto.** El enunciado de las 49 reglas y de las 9 caras vive sólo en el Anexo H;
   `heuristics.json` lleva el puntero (`statement_source` para la ruta, una vez, y `section` +
   `row` por regla) y el build **extrae** el texto de `docs/en/ANEXO_HEURISTICAS.md`, que es la
   versión que se publica. El validador rechaza un enunciado transcrito, una severidad que no
@@ -761,7 +816,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
 - **Nada inventado.** Un umbral que el dueño no declaró se publica con valor nulo y
   `declarado: false`. Los únicos dos que el anexo declara son 300 líneas por archivo y 40 por
   función.
-- **La versión.** `catalog_version` la declara el método a mano (hoy `2026.10.12`); el archivo
+- **La versión.** `catalog_version` la declara el método a mano (hoy `2026.10.16`); el archivo
   publicado viaja con una huella `sha256` del contenido canonicalizado que el consumidor
   **recalcula**. El identificador de git es informativo: se calcula antes de guardar, así que
   siempre nombra al cambio anterior al que lo contiene.
@@ -886,7 +941,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
 
 `prompts/*.en.md` **se genera** desde los contratos castellanos (`build/prompts.mjs`) y no se edita
 a mano; `prompts/catalog.json` se mantiene **a mano**, porque es la identidad de lo publicado y la
-declara el método: `corpus_version` (hoy `2026.10.7`) y el registro de huellas, con las mismas
+declara el método: `corpus_version` (hoy `2026.10.11`) y el registro de huellas, con las mismas
 reglas que el catálogo de compuertas (D-053). `docs/html/api/prompts.json` viaja entonces con
 versión declarada **y** huella recalculable, y conserva el campo `version` con el sha de git, ahora
 explícitamente informativo, para no romper al consumidor que ya lo imprime: el cambio es aditivo y
@@ -903,11 +958,11 @@ sacarlo**: lo único legible por máquina era justo lo que pedía no imprimir, a
 era correcta y no se podía cumplir, y lo que dejaba en la práctica era que cada herramienta se
 escribiera sus propias traducciones de los títulos del método. `docs/html/api/labels.json`
 (`build/labels_api.mjs`) lo cierra: el título de los veinticuatro peldaños, el título de las ocho
-estaciones, el enunciado de las cuarenta y ocho reglas del Anexo H y, desde D-078, el enunciado y
-el nombre corto de cada una de las seis caras, en los ocho idiomas de la prosa. Noventa y dos
-identificadores por idioma, 736 cadenas. `labels/catalog.json` se mantiene
+estaciones, el enunciado de las cuarenta y nueve reglas del Anexo H y, desde D-078, el enunciado y
+el nombre corto de cada una de las nueve caras, en los ocho idiomas de la prosa. Noventa y nueve
+identificadores por idioma, 792 cadenas. `labels/catalog.json` se mantiene
 **a mano**, igual que los otros dos, porque es la identidad de lo publicado: `labels_version` (hoy
-`2026.10.2`) y el registro de huellas, con las mismas reglas que el catálogo de compuertas (D-053).
+`2026.10.3`) y el registro de huellas, con las mismas reglas que el catálogo de compuertas (D-053).
 
 Lo que no se negocia de este recurso. **Ni una cadena se escribe ahí**: se **extrae** de la prosa,
 que es el mismo mecanismo que ya resolvía el enunciado inglés de las reglas, y hay una prueba que
@@ -965,7 +1020,7 @@ generado por extracción y no transcrito (D-068), y las de los punteros del publ
 siete y traen diez rojos deliberados aparte —entre ellos el puntero colgante que las originó, que
 tiene que volver a caer si alguien lo reintroduce (D-069)—, y las del catálogo de textos, que son
 veintitrés: once exigen que a ningún identificador le falte su texto en ningún idioma y que cada
-una de las 736 cadenas aparezca **literal** en el documento del que dice salir, y doce son rojos
+una de las 792 cadenas aparezca **literal** en el documento del que dice salir, y doce son rojos
 deliberados que le dan de comer un árbol mutilado —una ficha arrancada, un encabezado sin su raya,
 una regla que le falta al anexo de un idioma, una que sobra, un documento que no se pudo leer— y
 exigen que caiga nombrando lo suyo (D-074), y las de las claves de configuración, que son

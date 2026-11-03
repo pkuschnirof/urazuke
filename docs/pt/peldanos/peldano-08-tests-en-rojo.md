@@ -97,6 +97,14 @@ o agente:
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
 >
+> And for every port you doubled for testing in this item, show me one run that crosses it to the
+> real other side -- the browser, the operating system, the database, the network -- and record it
+> in `docs/PRODUCER_CONSUMER_MAP.md` under `crossing_run`. A test that instantiates the real adapter
+> against a fake environment crossed the real code and still never saw the event, so it does not
+> count: no quantity of faithful doubles replaces the other side (Annex H, CQ-21.1). If you cannot
+> run it, tell me which port is left with no crossing run and write `none` there, which is a
+> declared hole and not a green.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -128,6 +136,14 @@ o agente:
 > nem mais, e cada rota verifica a permissão no servidor, porque esconder o
 > ponto de entrada não protege nada (Anexo H, UX-11, UX-12, UX-15). Uma
 > matriz que nada exercita é um documento que ninguém lê.
+>
+> E por cada porta que você duplicou para provar neste pendente, mostre-me uma corrida que a
+> atravesse até o outro lado de verdade —o navegador, o sistema operativo, a base, a rede— e
+> anote-a em `docs/PRODUCER_CONSUMER_MAP.md` sob `crossing_run`. Uma prova que instancia o
+> adaptador real contra um ambiente de mentira atravessou o código real e seguiu sem ver o evento,
+> assim que não conta: nenhuma quantidade de duplos fiéis substitui o outro lado (Anexo H,
+> CQ-21.1). Se não a pode correr, diga-me que porta fica sem corrida que a atravesse e escreva
+> `none`, que é um buraco declarado e não um verde.
 >
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
@@ -250,7 +266,9 @@ pendência. A não-testabilidade é dívida, e a dívida se registra.
 - O teste de tela verifica também o efeito no backend?
 - No fechamento do bloco: estão todos os fluxos na bateria de ponta a ponta, ou há algum que "se
   cobre com os unitários"?
-
+- Cada porta que este pendente duplicou tem a sua corrida que a atravessa, e o outro lado é o de
+  verdade? Uma prova que instancia o adaptador real contra um ambiente de mentira atravessou o
+  código real e não viu o evento.
 ## 5. Sinais de alerta
 
 - Todos os testes novos da semana passaram em verde de primeira, e nunca se mostrou um vermelho.
@@ -262,3 +280,5 @@ pendência. A não-testabilidade é dívida, e a dívida se registra.
   sem números. Um vermelho sem recibo vale o mesmo que nenhum.
 - Você chega à saída para produção e a bateria completa de ponta a ponta roda pela primeira vez.
   Faltaram os fechamentos de bloco.
+- O pendente tocou uma vista com uma porta duplicada e a bateria não tem uma só corrida que aperte
+  um controle de verdade. Oitenta e um arquivos em verde podem tapar quatro controles mortos.

@@ -100,6 +100,14 @@ l'agente:
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
 >
+> And for every port you doubled for testing in this item, show me one run that crosses it to the
+> real other side -- the browser, the operating system, the database, the network -- and record it
+> in `docs/PRODUCER_CONSUMER_MAP.md` under `crossing_run`. A test that instantiates the real adapter
+> against a fake environment crossed the real code and still never saw the event, so it does not
+> count: no quantity of faithful doubles replaces the other side (Annex H, CQ-21.1). If you cannot
+> run it, tell me which port is left with no crossing run and write `none` there, which is a
+> declared hole and not a green.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -132,6 +140,14 @@ l'agente:
 > né più, e ogni rotta verifica il permesso sul server, perché nascondere il
 > punto di ingresso non protegge nulla (Allegato H, UX-11, UX-12, UX-15).
 > Una matrice che nulla esercita è un documento che nessuno legge.
+>
+> E per ogni porta che hai doppiato per provare in questa pendenza, mostrami una corsa che la
+> attraversi fino all'altro lato vero —il navigatore, il sistema operativo, la base, la rete— e
+> annotala in `docs/PRODUCER_CONSUMER_MAP.md` sotto `crossing_run`. Una prova che istanzia
+> l'adattatore reale contro un ambiente di bugia ha attraversato il codice reale e ha continuato a
+> non vedere l'evento, quindi non conta: nessuna quantità di doppi fedeli sostituisce l'altro lato
+> (Allegato H, CQ-21.1). Se non puoi correrla, dimmi quale porta resta senza corsa che la
+> attraversi e scrivi `none`, che è un buco dichiarato e non un verde.
 >
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
@@ -258,7 +274,9 @@ di una voce in sospeso. La non testabilità è debito, e il debito si registra.
 - Il test di schermata verifica anche l'effetto nel backend?
 - Alla chiusura del blocco: ci sono tutti i flussi nella batteria end to end, o ce n'è qualcuno
   che "si copre con gli unitari"?
-
+- Ogni porta che questa pendenza ha doppiato ha la sua corsa che la attraversa, e l'altro lato è
+  quello vero? Una prova che istanzia l'adattatore reale contro un ambiente di bugia ha
+  attraversato il codice reale e non ha visto l'evento.
 ## 5. Segnali d'allarme
 
 - Tutti i test nuovi della settimana sono passati in verde al primo colpo, e non si è mai mostrato
@@ -270,3 +288,5 @@ di una voce in sospeso. La non testabilità è debito, e il debito si registra.
   versione e senza numeri. Un rosso senza ricevuta vale quanto nessuno.
 - Arrivi all'uscita in produzione e la batteria completa end to end si esegue per la prima volta.
   Sono mancate le chiusure di blocco.
+- La pendenza ha toccato una vista con una porta doppiata e la batteria non ha una sola corsa che
+  prema un controllo davvero. Ottantuno file in verde possono coprire quattro controlli morti.

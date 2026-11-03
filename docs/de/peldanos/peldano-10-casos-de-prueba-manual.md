@@ -269,6 +269,13 @@ Agent durch Hinsehen hätte finden können.
 > `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
 > `execution_debt` with who still owes which execution and since when.
 >
+> And for every case that failed and whose failure was then fixed, the case does not count as
+> verified again until a person runs it WHOLE and signs a new execution row later than the fix,
+> written `rerun_after_a_fix` with the pending item that caused it. An execution row reports how far
+> the person got: the steps it did not reach neither passed nor failed, so closing on the row that
+> failed confuses not having seen it fail with having seen it work (Annex H, CQ-21.3). List the
+> cases that owe a re-run, with the correction that fixed them and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -291,6 +298,15 @@ Agent durch Hinsehen hätte finden können.
 > Dann aktualisiere die drei Erklärungen am Kopf der Datei: `cases_written`,
 > `cases_executed_by_a_person`, gezählt aus den abgezeichneten Ausführungstabellen und aus nichts
 > sonst, und `execution_debt` mit wem noch welche Ausführung schuldet und seit wann.
+>
+> Und für jeden Fall, der gescheitert ist und dessen Scheitern dann behoben wurde, zählt der Fall
+> nicht wieder als überprüft, bis ein Mensch ihn GANZ durchläuft und eine neue Ausführungszeile
+> nach der Behebung unterschreibt, geschrieben als `rerun_after_a_fix` mit dem offenen Punkt, der
+> sie verursacht hat. Eine Ausführungszeile berichtet, wie weit der Mensch kam: die Schritte, die
+> sie nicht erreichte, sind weder bestanden noch gescheitert, also verwechselt ein Abschluss auf
+> der gescheiterten Zeile ich habe es nicht scheitern sehen mit ich habe es laufen sehen (Anhang H,
+> CQ-21.3). Nenn mir die Fälle, die einen neuen Durchlauf schulden, mit der Korrektur, die sie
+> behoben hat, und seit wann.
 >
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
@@ -322,7 +338,9 @@ schlecht geschrieben“ und „das System ist schlecht“, denn das sind zwei ve
   `cases_executed_by_a_person` — die nur eine abgezeichnete Ausführung bewegt — und
   `execution_debt` auf `none` oder auf `pending_verifier`, mit wem jede Ausführung schuldet und seit
   wann.
-
+- Für jeden Fall, der gescheitert ist und behoben wurde: seine neue Ausführungszeile, nach der
+  Behebung und über alle seine Schritte, geschrieben als `rerun_after_a_fix` mit dem offenen Punkt,
+  der sie verursacht hat.
 ## 4. Vollständigkeitsprüfung (die machst du, ohne Code zu lesen)
 
 - Nimm einen beliebigen Fall und folg ihm selbst in der Testumgebung, ohne den Agenten etwas zu
@@ -348,7 +366,9 @@ schlecht geschrieben“ und „das System ist schlecht“, denn das sind zwei ve
   weiterkommst? Stelle die Frage dem Vertrag und dem Tor -- "wenn niemand ausgeführt hat, komme ich
   weiter?" -- und verlange, dass sie dasselbe antworten. Wenn der Vertrag ja sagt und das Tor nein,
   dann ist der Vertrag der, der falsch liegt.
-
+- Hat jeder Fall, der gescheitert ist und behoben wurde, eine Zeile nach der Behebung, die alle
+  seine Schritte abdeckt? Ist die letzte Zeile die gescheiterte, schloss die Behebung auf einem
+  Schritt und die übrigen sagen nichts.
 ## 5. Warnsignale
 
 - Der Agent hat die Fälle als ausgeführt markiert. Er hat sie ausgeführt, und das ist dasselbe,
@@ -369,3 +389,6 @@ schlecht geschrieben“ und „das System ist schlecht“, denn das sind zwei ve
   benutzt.
 - Der Durchgang fängt an, als Ausrede zu dienen, die Fälle nicht auszuführen. Es sind zwei Dinge
   mit zwei Zwecken, und das, was abnimmt, ist das der Person.
+- Eine geschlossene Korrektur und der Fall, der sie verursachte, ohne neue Zeile. Der ganze Apparat
+  funktionierte —der Fall war geschrieben, er wurde ausgeführt, er scheiterte, er wurde behoben—
+  und die zweite Forderung dieses Schrittes wurde nie überprüft.

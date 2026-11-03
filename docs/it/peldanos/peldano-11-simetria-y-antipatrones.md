@@ -58,6 +58,17 @@ l'agente:
 > the system you cannot access or do not understand, tell me instead of leaving them out of the
 > map.
 >
+> And the map carries one more family, which is the ports you doubled for testing:
+> `ports_with_a_test_double`, with `ports_total`, how many ports of the system have a double, and
+> `ports_with_a_crossing_run`, how many of those have at least one run that crosses them to the real
+> other side; and then, per port, its adapter, its double, and `crossing_run`: the exact command,
+> and what it reached on the other side, which is `browser`, `operating_system`, `database`,
+> `network` or `none`. The other side is whatever the port is doubling, and another double is never
+> the other side (Annex H, CQ-21.1). `none` is a declared hole and it is worth more than silence: a
+> port whose double no run crosses is where four dead controls fit underneath a green suite. Do not
+> write a crossing run you did not run, and count a port with no crossing run inside `ports_total`
+> instead of leaving it out so the figure reads better.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -73,6 +84,18 @@ l'agente:
 > parti del sistema a cui non puoi accedere o che non capisci, dimmelo invece di lasciarle fuori
 > dalla mappa.
 >
+> E la mappa porta una famiglia in più, che sono le porte che hai doppiato per provare:
+> `ports_with_a_test_double`, con `ports_total`, quante porte del sistema hanno un doppio, e
+> `ports_with_a_crossing_run`, quante di quelle hanno almeno una corsa che le attraversa fino
+> all'altro lato vero; e poi, per porta, il suo adattatore, il suo doppio, e `crossing_run`: il
+> comando esatto, e che cosa ha raggiunto dall'altro lato, che è `browser`, `operating_system`,
+> `database`, `network` o `none`. L'altro lato è quello che la porta sta doppiando, e un altro
+> doppio non è mai l'altro lato (Allegato H, CQ-21.1). `none` è un buco dichiarato e vale più del
+> silenzio: una porta il cui doppio nessuna corsa attraversa è dove stanno quattro controlli morti
+> sotto una batteria in verde. Non scrivere una corsa che non hai corso, e conta una porta senza
+> corsa che la attraversi dentro `ports_total` invece di lasciarla fuori perché la cifra si legga
+> meglio.
+>
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
 > elencati; un paragrafo di non più di cinque righe che li colleghi e lasci vedere
@@ -86,6 +109,15 @@ l'agente:
 Cosa gli sto chiedendo: l'inventario dei contratti con i loro due lati, e la clausola di
 completezza nella sua forma per questo gradino: ciò che non si vede si dichiara, non si omette. Una
 mappa con buchi nascosti è peggio di nessuna mappa.
+
+E quello che aggiunge D-087: la famiglia delle porte con doppio di prova. Una porta con il suo
+doppio è simmetria produttore/consumatore nella sua forma più pura —l'adattatore produce gli eventi
+che la vista consuma— ed è anche il posto dove il metodo concentra il rischio, perché spinge a
+doppiare perché la vista sia verificabile e poi non esigeva nessuna corsa che guardasse quel punto.
+La colonna della corsa che la attraversa è quello che converte il buco in un buco **dichiarato**:
+quello che un programma può guardare è che la colonna ci sia e nomini quello che c'è dall'altro
+lato; se è vero lo decide una persona leggendo il comando, e questo è scritto nell'Allegato H e non
+simulato qui.
 
 **Routine (va nel patto di convivenza):**
 
@@ -172,7 +204,9 @@ automatizzato si ripeterà quando cambia la persona o la sessione.
 - In ogni commit che tocca un contratto: i consumatori aggiornati, nominati nel messaggio.
 - `docs/GOTCHAS.md`: una voce per anti-pattern, con le quattro parti (odore, causa radice,
   correzione, come rilevarlo prima), e la data della prima volta.
-
+- Nella mappa, la famiglia delle porte con doppio di prova: `ports_total`,
+  `ports_with_a_crossing_run`, e per porta il suo adattatore, il suo doppio e la corsa che la
+  attraversa con quello che ha raggiunto dall'altro lato.
 ## 4. Verifica di completezza
 
 - Scegli un contratto della mappa e chiedi all'agente di mostrarti dove lo legge ogni consumatore.
@@ -180,7 +214,9 @@ automatizzato si ripeterà quando cambia la persona o la sessione.
 - C'è un numero che si mostra in due schermate diverse? Confronta: danno lo stesso risultato?
 - Ogni voce di GOTCHAS ha le quattro parti?
 - Si è ripetuto un errore che era già in GOTCHAS? Se sì, manca la verifica automatica.
-
+- Prendi una porta con doppio e leggi la sua corsa: il comando attraversa fino a un navigatore, un
+  sistema operativo, una base o la rete, o si ferma a un altro doppio? Un `crossing_run` a `none` è
+  onesto; uno che nomina un altro doppio è un verde che mente.
 ## 5. Segnali d'allarme
 
 - Lo stesso valore compare scritto a mano in più di un file ("IN SOSPESO", "APPROVATA" nel server
@@ -188,3 +224,5 @@ automatizzato si ripeterà quando cambia la persona o la sessione.
 - Una modifica al server si è chiusa con il test del server in verde e nessuno ha toccato la
   schermata.
 - GOTCHAS ha voci senza la parte "come rilevarlo prima". Sono aneddoti, non anti-pattern.
+- La mappa non ha la famiglia delle porte e il progetto ha doppi di prova. La porta è dove il metodo
+  concentra il rischio: se non è nella mappa, nessuno la guarderà.

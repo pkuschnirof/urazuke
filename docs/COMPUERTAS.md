@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.15** - schema **2**
-- content fingerprint `e1b415a8a01ff391...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.16** - schema **2**
+- content fingerprint `a3fc6b7b81e780f4...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -25,7 +25,7 @@ What a project pins, and what it costs to change it. A project pins ONE catalog_
 
 For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.15`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.16`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -57,6 +57,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.13** (2026-11-02, D-079, D-080) -- `b719312dc8eaca97...`
 - **2026.10.14** (2026-11-02, D-081, D-082) -- `f11bfce27e8d82b4...`
 - **2026.10.15** (2026-11-02, D-083, D-084) -- `e1b415a8a01ff391...`
+- **2026.10.16** (2026-11-03, D-087) -- `a3fc6b7b81e780f4...`
 
 ## Pinning: what a tool that freezes the method owes
 
@@ -80,7 +81,7 @@ and every declared version also has an address of its own: `<canonical base>/<re
 
 - The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.
 - Where it is declared: Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.
-- This version lives at `gates/2026.10.15.json` under the canonical base, and the first version with an address is **2026.10.1**.
+- This version lives at `gates/2026.10.16.json` under the canonical base, and the first version with an address is **2026.10.1**.
 - No purge: Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.
 - What the address promises: The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.
 - Not guaranteed: Byte identity is not promised, only the covered content, for the reason above. And an address on this host is not a substitute for the ledger: if this host is compromised, both the file and its hash can be rewritten together, so the pair (version -> hash) is still checked against the ledger, which lives elsewhere.
@@ -148,11 +149,11 @@ method declares from now on is in English, and it is marked as new.
 | 5 | El plan son los pendientes | routine | always | `pendings_spec`, `pendings_profiles` (new) | 2 | 1 | 4 |
 | 6 | Las decisiones se escriben junto al codigo | conversation | always | `artifacts` | 1 | 1 | 2 |
 | 7 | Medir antes de construir, con un instrumento que tambien se verifica | one_shot | proportional | `meters` | 0 | 0 | 3 |
-| 8 | Tests como candados, probados en rojo | routine | always | `receipts`, `profile_matrix` (new) | 2 | 1 | 4 |
+| 8 | Tests como candados, probados en rojo | routine | always | `receipts`, `profile_matrix` (new) | 2 | 1 | 5 |
 | 9 | Calidad del codigo verificada por maquina, con compuerta | routine | minimum | `ci`, `heuristics` (new) | 1 | 8 | 9 |
-| 10 | Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas | routine | always | `artifacts`, `manual_cases_per_profile` (new) | 2 | 3 | 7 |
-| 11 | Simetria entre productor y consumidor, y el registro de anti-patrones | routine | minimum | `artifacts` | 1 | 2 | 2 |
-| 12 | Verificacion honesta y reporte proporcional | routine | always | `reports`, `heuristics` (new) | 1 | 2 | 5 |
+| 10 | Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas | routine | always | `artifacts`, `manual_cases_per_profile` (new) | 2 | 4 | 8 |
+| 11 | Simetria entre productor y consumidor, y el registro de anti-patrones | routine | minimum | `artifacts` | 1 | 3 | 4 |
+| 12 | Verificacion honesta y reporte proporcional | routine | always | `reports`, `heuristics` (new) | 1 | 3 | 6 |
 
 ### III. Salida a produccion
 
@@ -320,6 +321,7 @@ Completeness check, without reading code:
 - La regresion corrio en la misma sesion, con numeros?
 - La prueba de pantalla verifica tambien el efecto en el backend?
 - Was the matrix seen failing first: for each profile, what is reachable against its row, neither less nor more? **(new in schema 2, anchor 2)**
+- For every port this item doubled, is there one run that crosses it to the real other side? A test that instantiates the real adapter against a fake environment went through the adapter and still never saw the event (CQ-21.1). **(new in schema 2, D-087)**
 
 **9 - Calidad del codigo verificada por maquina, con compuerta** (`u09-calidad-de-codigo`, prompt `peldano-09`)
 
@@ -361,6 +363,7 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/MANUAL_TESTS.md` -- casos de prueba manual
 - `docs/MANUAL_TESTS.md` -- the manual tests separate the cases that are written from the ones a person executed, and the gap travels as a declared debt with its pending verifier; has to say: `cases_written.{0,20}\d` and `cases_executed_by_a_person.{0,20}\d` and `execution_debt[\s\S]{0,40}(none|pending_verifier)`; **new in schema 2**
 - `docs/SCREEN_WALKTHROUGH.md` -- the agent walked the screens itself to find defects, with the denominator of how many there are, and that walk is not the execution a person owes; has to say: `screens_total.{0,20}\d` and `screens_walked.{0,20}\d` and `walkthrough_findings.{0,20}\d`; **new in schema 2**
+- `docs/MANUAL_TESTS.md` -- a case that failed and whose failure was fixed comes back whole: the file carries the re-run later than the fix, covering every step, and not only the verification of the step that failed; has to say: `rerun_after_a_fix`; **new in schema 2**
 
 Completeness check, without reading code:
 - Cada pendiente cerrado tiene su caso de prueba manual, con pasos y resultado esperado?
@@ -370,6 +373,7 @@ Completeness check, without reading code:
 - Does cases_executed_by_a_person come from the signed execution tables rather than from the reading of the agent, and does the debt name who owes it and since when? **(new in schema 2, D-082)**
 - Does the walk count the screens it could not open inside the total, with their reason, instead of leaving them out of the denominator? **(new in schema 2, D-082)**
 - If nobody has signed a single case yet, does the text of the step answer the same thing the gate answers -- that the step does not advance -- instead of leaving the reader to deduce it? **(new in schema 2, D-083)**
+- Does every case that failed and was fixed have an execution row LATER than the fix covering all of its steps, instead of closing on the row that failed? A row reports how far the person got: the steps it did not reach neither passed nor failed (CQ-21.3). **(new in schema 2, D-087)**
 
 **11 - Simetria entre productor y consumidor, y el registro de anti-patrones** (`u11-simetria-y-antipatrones`, prompt `peldano-11`)
 
@@ -381,10 +385,13 @@ Inputs the owner has ready before the first prompt:
 Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/PRODUCER_CONSUMER_MAP.md` -- mapa productor-consumidor
 - `docs/GOTCHAS.md` -- registro de anti-patrones; at least 50 bytes, so that a sketch does not count
+- `docs/PRODUCER_CONSUMER_MAP.md` -- the map carries the ports that were doubled for testing, with its denominator: how many ports have a double, how many of those have a run that crosses them to the real other side, and what that other side is. A port whose crossing run says none is a declared hole and not an absence nobody wrote down; has to say: `ports_with_a_test_double` and `ports_total.{0,20}\d` and `ports_with_a_crossing_run.{0,20}\d` and `crossing_run[\s\S]{0,200}(browser|operating_system|database|network|none)`; **new in schema 2**
 
 Completeness check, without reading code:
 - El mapa nombra cada estructura compartida con sus lectores y escritores?
 - Cada golpe de los ultimos bloques esta en GOTCHAS.md con su regla?
+- Does every port that was doubled for testing carry the run that crosses it to the real other side, and does that other side name what the port is doubling -- a browser, an operating system, a database, the network -- instead of another double? **(new in schema 2, D-087)**
+- Do ports_total and ports_with_a_crossing_run come from the same table they describe, so that a port with no crossing run is visible instead of being left out of the denominator? **(new in schema 2, D-087)**
 
 **12 - Verificacion honesta y reporte proporcional** (`u12-verificacion-honesta`, prompt `peldano-12`)
 
@@ -396,6 +403,7 @@ Inputs the owner has ready before the first prompt:
 Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/WORKING_AGREEMENT.md` -- la rutina del reporte honesto; has to say: `verif` and `blind|ciego`
 - `docs/WORKING_AGREEMENT.md` -- the routine assigns each finding its destination: product, method or tool; has to say: `findings_by_destination`; **new in schema 2**
+- `docs/WORKING_AGREEMENT.md` -- the honest report declares the reach of the manual cases of this closing: how many it touches, how many of those have a signed execution row, and who signed them -- in the report where decisions are made and not only in the file where the case lives; has to say: `cases_touched` and `cases_with_an_execution_row` and `executed_by`; **new in schema 2**
 
 Completeness check, without reading code:
 - El ultimo reporte separa verificado / creido / punto ciego?
@@ -403,6 +411,7 @@ Completeness check, without reading code:
 - Does the report say what was measured, what was left warning and which rule is switched off, with reason, author and review date? **(new in schema 2, anchor 5)**
 - Do the two figures travel with their ruleset fingerprint, and does neither of them close a block? **(new in schema 2, anchor 5)**
 - Does every finding that is not about the product carry its destination, and was its pending item opened in the register of that destination? **(new in schema 2, D-080)**
+- Does the report say how many manual cases this closing touches, how many of them a person signed and who, with all the letters when the answer is none? A figure somebody has to go and look for stops nobody (CQ-21.2). **(new in schema 2, D-087)**
 
 **13 - La auditoria periodica como insumo del plan** (`u13-auditoria`, prompt `peldano-13`)
 
@@ -699,13 +708,13 @@ called steps) and only then enters the Construction Loop at step 5.
 
 - Cada pendiente de deuda esta emparejado con el modulo que el pedido toca?
 
-## Annex H: 48 rules
+## Annex H: 49 rules
 
 The statement of every rule lives **only** in Annex H: it is extracted from there on every build,
 never transcribed. The published statement comes from [the English version](en/ANEXO_HEURISTICAS.md); the
 [Spanish one](ANEXO_HEURISTICAS.md) is the source of truth of the method, and the build demands that both carry
 the same rules with the same severities. What this data adds is the mechanical part: the group, the
-instrument, the initial severity, when it is looked at and the step where it hooks. There are 20 of
+instrument, the initial severity, when it is looked at and the step where it hooks. There are 21 of
 code quality and 28 of usability.
 
 The two switches (`code_quality` and `usability`) are turned on and off separately,
@@ -739,6 +748,7 @@ Result per rule in `docs/CODE_QUALITY.md`.
 | CQ-18 | interface | Basic accessibility is verified on its own: contrast, labels on fields, visible focus, keyboard navigation in the main flows, images with alternative text. | automatic gate | on every push and at block close | WARNS | 9 |
 | CQ-19 | receipt | Every instrument the project decides with declares the conditions under which its figure holds: which set it expected to walk and how much of it it walked, what it depends on, and what it reports when it could not look. An instrument whose silence reads like health does not measure: it reassures. | automatic gate + manual case | on every push and at block close | BLOCKS | 9 |
 | CQ-20 | privilege | A verification runs with the least privilege it needs in order to verify and with no more, and that it could do no harm is measured, not promised. | automatic gate + manual case | on every push and at block close | BLOCKS | 14 |
+| CQ-21 | reach | Every verification declares how far its run reached, and whatever was left beyond that point is counted as not verified and never as healthy: a double no run crosses, an artefact nobody ran and a step no execution reached do not say that what lies past them works, they say that nobody looked. | automatic gate + manual case | on every push and at block close | BLOCKS | 8, 10, 11, 12 |
 
 ### Usability (UX-01..UX-28)
 
@@ -779,12 +789,12 @@ The rules marked with `*` in the step column are not anchored by the annex expli
 derived from their instrument (the manual case runs at step 10, the automatic gate runs at step 9)
 and is declared as derived, not as a decision of the method.
 
-A **human red** is carried by five of the forty-eight rules -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- and those are tested by no tool
+A **human red** is carried by five of the forty-nine rules -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- and those are tested by no tool
 at all: they are verified at the close of the pending item, with the manual case in front, and
 never on a commit. Four of them block (CQ-12, CQ-14, UX-22, UX-27) and one warns (UX-28):
 a human red says who verifies a rule, not how hard it hits.
 
-### The six faces, and how a single one is switched off
+### The nine faces, and how a single one is switched off
 
 A face is a cut of the statement of one rule with an identifier of its own (CQ-19.1). Faces exist for a mechanical reason and not a drafting one: without an identifier a single one cannot be switched off, and a rule that can only be switched off whole pushes towards switching off too much. Their statement lives only in Annex H, like the statement of a rule, and the build extracts it (D-044).
 
@@ -796,12 +806,15 @@ A face is a cut of the statement of one rule with an identifier of its own (CQ-1
 | CQ-19.4 | The lax sibling | When a check has a counterpart in the chain, either they are the same instrument with the same configuration or the difference is declared: what each one measures, which one rules, and what can pass one and fail the other. A local check more permissive than the one that decides is a green that lies. | CQ-19 |
 | CQ-20.1 | The undeclared effect | A command presented as read-only runs without permission to write, and the privilege it ran with is declared next to its result. An instrument that writes while saying it does not leaves the owner deciding over a state the instrument itself changed. | CQ-20 |
 | CQ-20.2 | The probe that is only harmless when it fails | A probe that exercises a destructive operation in order to check that it is blocked runs where its statement cannot land, and its report proves the state was left identical by counting it before and after. A probe whose harm depends on the block working does not verify the block: it bets on it. | CQ-20 |
+| CQ-21.1 | The real other side | Every port with a test double has at least one run that crosses it to the real other side, and the other side is whatever the port is doubling: if what is there is a browser, an operating system, a database or the network, there is no way to satisfy this without it, and no quantity of faithful doubles replaces it. | CQ-21 |
+| CQ-21.2 | Written is not run | A verification artefact nobody ran counts zero and not half a verification, and its figure travels to the report where the decision is made and not only to the file where the artefact lives: a figure somebody has to go and look for stops nobody. | CQ-21 |
+| CQ-21.3 | The case comes back whole | An execution reports which step it reached, and the steps it did not reach neither passed nor failed: when what failed is fixed, the case runs again whole and leaves a new execution row later than the fix, and a correction does not close with the verification of the step that failed. | CQ-21 |
 
 Switching one off: The record of project_config.switch_off_record, with the id of a face written in its `rule` field. A record whose id resolves neither to a rule nor to a face is a dangling switch-off: red, by the same criterion as a rule switched off without a record.
 A rule with any face switched off is never reported as fulfilled. The report says "three of four faces, one switched off with its reason" and never a percentage alone: a partial compliance whose figure reads like a complete one is the silent damage this whole family is about.
 On the scoreboard: For a rule that has faces the scoreboard counts faces and not rules, or the two figures of section 12 of the annex stop meaning what they say.
 
-Two of the forty-eight rules have faces (CQ-19: four, CQ-20: two). CQ-19 and CQ-20. CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off: giving them ids is adding and not renaming, and it is separate work.
+Three of the forty-nine rules have faces (CQ-19: four, CQ-20: two, CQ-21: three). CQ-19, CQ-20 and CQ-21. CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off: giving them ids is adding and not renaming, and it is separate work.
 
 ### The five anchors and the two prior inputs
 
@@ -888,5 +901,5 @@ Order in the step 12 report: binary verdict -> the two figures -> what is switch
 ## The decisions that govern this
 
 D-050 (the method owns the definition of the gates), D-051 (the data layer and this document are
-published in English), and the Annex H ones: D-043, D-044, D-045, D-046, D-047, D-048, D-049, D-070, D-078. They are in the
+published in English), and the Annex H ones: D-043, D-044, D-045, D-046, D-047, D-048, D-049, D-070, D-078, D-087. They are in the
 [decision register](DECISIONES.md), written in Spanish, which is the language of the method.

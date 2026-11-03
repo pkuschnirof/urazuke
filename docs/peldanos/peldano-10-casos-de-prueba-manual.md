@@ -255,6 +255,13 @@ persona ya no se encuentra con los defectos que el agente podía haber visto mir
 > `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
 > `execution_debt` with who still owes which execution and since when.
 >
+> And for every case that failed and whose failure was then fixed, the case does not count as
+> verified again until a person runs it WHOLE and signs a new execution row later than the fix,
+> written `rerun_after_a_fix` with the pending item that caused it. An execution row reports how far
+> the person got: the steps it did not reach neither passed nor failed, so closing on the row that
+> failed confuses not having seen it fail with having seen it work (Annex H, CQ-21.3). List the
+> cases that owe a re-run, with the correction that fixed them and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -275,6 +282,13 @@ persona ya no se encuentra con los defectos que el agente podía haber visto mir
 > Después refrescá las tres declaraciones de la cabeza del archivo: `cases_written`,
 > `cases_executed_by_a_person` contada desde las tablas de ejecución firmadas y desde nada más, y
 > `execution_debt` con quién sigue debiendo qué ejecución y desde cuándo.
+>
+> Y por cada caso que falló y cuyo fallo después se arregló, el caso no vuelve a contar como
+> verificado hasta que una persona lo corra ENTERO y firme una fila de ejecución nueva posterior al
+> arreglo, escrita `rerun_after_a_fix` con el pendiente que lo causó. Una fila de ejecución informa
+> hasta dónde llegó la persona: los pasos que no alcanzó no pasaron ni fallaron, así que cerrar
+> sobre la fila que falló es confundir no lo vi fallar con lo vi andar (Anexo H, CQ-21.3). Listame
+> los casos que deben una vuelta a correr, con la corrección que los arregló y desde cuándo.
 >
 > Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
@@ -304,7 +318,8 @@ que son dos pendientes distintos.
 - En la cabeza de `docs/MANUAL_TESTS.md`, las tres declaraciones que una compuerta lee:
   `cases_written`, `cases_executed_by_a_person` —que sólo mueve una ejecución firmada— y
   `execution_debt` en `none` o en `pending_verifier`, con quién debe cada ejecución y desde cuándo.
-
+- Por cada caso que falló y se arregló: su fila de ejecución nueva, posterior al arreglo y sobre
+  todos los pasos, escrita `rerun_after_a_fix` con el pendiente que la causó.
 ## 4. Verificación de completitud (la hacés vos, sin leer código)
 
 - Tomá un caso al azar y seguilo vos en el entorno de prueba sin preguntarle nada al agente:
@@ -326,7 +341,8 @@ que son dos pendientes distintos.
 - Si todavía nadie firmó ni un caso, ¿el texto te dice que no avanzás? Hacele la pregunta al
   contrato y a la compuerta —«si nadie ejecutó, ¿avanzo?»— y exigí que contesten lo mismo. Si el
   contrato dice que sí y la compuerta dice que no, el que está mal es el contrato.
-
+- ¿Cada caso que falló y se arregló tiene una fila posterior al arreglo que cubre todos sus pasos?
+  Si la última fila es la que falló, el arreglo se cerró sobre un paso y los demás no dicen nada.
 ## 5. Señales de alarma
 
 - El agente marcó los casos como ejecutados. Los ejecutó él, que es lo mismo que no ejecutarlos.
@@ -344,3 +360,6 @@ que son dos pendientes distintos.
   abrir: si no hay hallazgos, lo más probable es que haya mirado la pantalla y no la haya usado.
 - La recorrida se empieza a usar como excusa para no ejecutar los casos. Son dos cosas con dos
   propósitos, y la que acepta es la de la persona.
+- Un correctivo cerrado y el caso que lo originó sin fila nueva. Todo el aparato funcionó —el caso
+  estaba escrito, se ejecutó, falló, se arregló— y la segunda exigencia de ese paso nunca se
+  verificó.

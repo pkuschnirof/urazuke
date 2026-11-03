@@ -204,6 +204,13 @@
 > `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
 > `execution_debt` with who still owes which execution and since when.
 >
+> And for every case that failed and whose failure was then fixed, the case does not count as
+> verified again until a person runs it WHOLE and signs a new execution row later than the fix,
+> written `rerun_after_a_fix` with the pending item that caused it. An execution row reports how far
+> the person got: the steps it did not reach neither passed nor failed, so closing on the row that
+> failed confuses not having seen it fail with having seen it work (Annex H, CQ-21.3). List the
+> cases that owe a re-run, with the correction that fixed them and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -223,6 +230,12 @@
 > 然后刷新文件开头的三条声明：`cases_written`、只从签过的执行表里数出来的
 > `cases_executed_by_a_person`，以及带着谁还欠哪一次执行、从什么时候开始欠的
 > `execution_debt`。
+>
+> 而每一个失败过、而其失败之后又被修好的用例，在有人把它整条跑过一遍、并签下一行晚于修复的新执行
+> 记录之前，都不重新算作已验证；那一行写作 `rerun_after_a_fix`，并带上引发它的那个待办项。一行执行
+> 记录报告的是那个人走到了哪里：它没有到达的那些步骤，既没有通过也没有失败，所以在失败的那一行上
+> 收尾，就是把“我没看到它失败”当成“我看到它能用”（附录 H，CQ-21.3）。把欠一次重跑的用例列给我，连
+> 同修好它们的那次纠正，以及从什么时候起。
 >
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
@@ -245,7 +258,8 @@
 - 在 `docs/MANUAL_TESTS.md` 的开头，闸门会读的三条声明：`cases_written`、只有签过名的执行能让
   它动的 `cases_executed_by_a_person`，以及为 `none` 或 `pending_verifier` 的
   `execution_debt`，带上每一次执行是谁欠的、从什么时候开始欠的。
-
+- 每一个失败过又被修好的用例：它那一行晚于修复、覆盖全部步骤的新执行记录，写作
+  `rerun_after_a_fix`，并带上引发它的那个待办项。
 ## 4. 完整性检验（由你来做，不读代码）
 
 - 随便挑一个用例，你自己在测试环境里走一遍，什么都不要问代理：走得通吗？如果你不得不开口问，
@@ -265,7 +279,8 @@
 - 如果到现在还没有人签过任何一个用例，文本有告诉你不能往前走吗？把这个问题同时抛给契约和闸口——
   「没有人执行过，我能往前走吗？」——并且要求两者给同一个答案。如果契约说能、闸口说不能，错的是
   契约。
-
+- 每一个失败过又被修好的用例，都有一行晚于修复、并覆盖它全部步骤的记录吗？如果最后一行就是失败的
+  那一行，那么这次修复是在一个步骤上收尾的，其余的什么都没说。
 ## 5. 警报信号
 
 - 代理把那些用例标成了已执行。是它执行的，那和没执行是一回事。
@@ -280,3 +295,5 @@
 - 智能体的走查什么也没找到，而系统有新画面。走过不等于打开过：如果一个发现都没有，更可能是它
   看了一眼画面，而没有用它。
 - 走查开始被当成不执行用例的借口。这是两件有两个目的的事，能验收的那一件是人的那一件。
+- 一次纠正关闭了，而引发它的那个用例没有新的记录行。整套机制都运转过——用例写好了、执行了、失败
+  了、修好了——而那个步骤的第二项要求，从来没有被验证过。

@@ -59,6 +59,17 @@ machst es, nicht der Agent:
 > the system you cannot access or do not understand, tell me instead of leaving them out of the
 > map.
 >
+> And the map carries one more family, which is the ports you doubled for testing:
+> `ports_with_a_test_double`, with `ports_total`, how many ports of the system have a double, and
+> `ports_with_a_crossing_run`, how many of those have at least one run that crosses them to the real
+> other side; and then, per port, its adapter, its double, and `crossing_run`: the exact command,
+> and what it reached on the other side, which is `browser`, `operating_system`, `database`,
+> `network` or `none`. The other side is whatever the port is doubling, and another double is never
+> the other side (Annex H, CQ-21.1). `none` is a declared hole and it is worth more than silence: a
+> port whose double no run crosses is where four dead controls fit underneath a green suite. Do not
+> write a crossing run you did not run, and count a port with no crossing run inside `ports_total`
+> instead of leaving it out so the figure reads better.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -74,6 +85,18 @@ machst es, nicht der Agent:
 > Systems gibt, auf die du nicht zugreifen kannst oder die du nicht verstehst, sag es mir, statt
 > sie aus der Karte wegzulassen.
 >
+> Und die Karte trägt eine Familie mehr, nämlich die Ports, die du zum Testen gedoppelt hast:
+> `ports_with_a_test_double`, mit `ports_total`, wie viele Ports des Systems ein Double haben, und
+> `ports_with_a_crossing_run`, wie viele davon mindestens einen Lauf haben, der sie bis zur echten
+> anderen Seite durchquert; und dann, pro Port, sein Adapter, sein Double und `crossing_run`: der
+> genaue Befehl und was er auf der anderen Seite erreicht hat, also `browser`, `operating_system`,
+> `database`, `network` oder `none`. Die andere Seite ist das, was der Port doppelt, und ein
+> weiteres Double ist niemals die andere Seite (Anhang H, CQ-21.1). `none` ist ein erklärtes Loch
+> und mehr wert als Schweigen: ein Port, dessen Double kein Lauf durchquert, ist die Stelle, unter
+> die vier tote Steuerelemente unter eine grüne Suite passen. Schreibe keinen Durchquerungslauf, den
+> du nicht gelaufen bist, und zähle einen Port ohne solchen Lauf innerhalb von `ports_total`, statt
+> ihn herauszulassen, damit die Zahl besser aussieht.
+>
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
 > aufgelistet; ein Absatz von höchstens fünf Zeilen, der sie verbindet und die Frage sichtbar
@@ -87,6 +110,15 @@ machst es, nicht der Agent:
 Was ich hier verlange: das Inventar der Verträge mit ihren zwei Seiten, und die
 Vollständigkeitsklausel in ihrer Form für diesen Schritt: was nicht gesehen wird, wird erklärt,
 nicht weggelassen. Eine Karte mit versteckten Löchern ist schlimmer als keine Karte.
+
+Und was D-087 hinzufügt: die Familie der Ports mit Test-Double. Ein Port mit seinem Double ist
+Produzent/Konsument-Symmetrie in reinster Form —der Adapter produziert die Ereignisse, die die
+Ansicht konsumiert— und er ist auch die Stelle, an der die Methode das Risiko bündelt, denn sie
+drängt zum Doppeln, damit die Ansicht überprüfbar ist, und verlangte danach keinen Lauf, der auf
+diese Stelle sieht. Die Spalte des Laufs, der ihn durchquert, macht aus dem Loch ein **erklärtes**
+Loch: was ein Programm ansehen kann, ist, dass die Spalte da ist und benennt, was auf der anderen
+Seite liegt; ob das stimmt, entscheidet ein Mensch, der den Befehl liest, und das steht im Anhang H
+und wird hier nicht simuliert.
 
 **Routine (gehört in die Arbeitsvereinbarung):**
 
@@ -176,7 +208,9 @@ Anti-Muster wird sich wiederholen, wenn die Person oder die Sitzung wechselt.
   benannt.
 - `docs/GOTCHAS.md`: ein Eintrag pro Anti-Muster, mit den vier Teilen (Geruch, Grundursache,
   Behebung, wie man es vorher erkennt), und dem Datum des ersten Mals.
-
+- In der Karte die Familie der Ports mit Test-Double: `ports_total`,
+  `ports_with_a_crossing_run`, und pro Port sein Adapter, sein Double und der Lauf, der ihn
+  durchquert, mit dem, was er auf der anderen Seite erreicht hat.
 ## 4. Vollständigkeitsprüfung
 
 - Wähl einen Vertrag aus der Karte und bitte den Agenten, dir zu zeigen, wo jeder Konsument ihn
@@ -186,7 +220,10 @@ Anti-Muster wird sich wiederholen, wenn die Person oder die Sitzung wechselt.
 - Hat jeder Eintrag in GOTCHAS die vier Teile?
 - Hat sich ein Fehler wiederholt, der schon in GOTCHAS stand? Wenn ja, fehlt die automatische
   Prüfung.
-
+- Nimm einen Port mit Double und lies seinen Lauf: durchquert der Befehl bis zu einem Browser,
+  einem Betriebssystem, einer Datenbank oder dem Netz, oder bleibt er bei einem anderen Double? Ein
+  `crossing_run` auf `none` ist ehrlich; einer, der ein anderes Double nennt, ist ein Grün, das
+  lügt.
 ## 5. Warnsignale
 
 - Derselbe Wert steht von Hand geschrieben in mehr als einer Datei („AUSSTEHEND“, „GENEHMIGT“ im
@@ -195,3 +232,5 @@ Anti-Muster wird sich wiederholen, wenn die Person oder die Sitzung wechselt.
   angefasst.
 - GOTCHAS hat Einträge ohne den Teil „wie man es vorher erkennt“. Das sind Anekdoten, keine
   Anti-Muster.
+- Die Karte hat die Familie der Ports nicht, und das Projekt hat Test-Doubles. Der Port ist die
+  Stelle, an der die Methode das Risiko bündelt: steht er nicht in der Karte, sieht ihn niemand an.
