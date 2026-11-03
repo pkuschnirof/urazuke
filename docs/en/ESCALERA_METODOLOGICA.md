@@ -229,7 +229,7 @@ Each step has eight parts, always the same, so that they can be compared:
 
 And there is one more part, which shows up in **six steps only** and is a transversal piece
 that changes what has to be read: **Annex H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)).
-Forty-eight verifiable rules -- twenty on code quality and twenty-eight on usability -- each one
+Forty-nine verifiable rules -- twenty-one on code quality and twenty-eight on usability -- each one
 with its stable id, its severity and the instrument that measures it. It is not an optional
 appendix: **it is mandatory**, and it hooks into the ladder at six points. At step 2 its two
 **prior inputs** come in (the user glossary and the list of profiles: the words people actually
@@ -243,7 +243,7 @@ late: the annex was mandatory and unnamed in this document, and the first reader
 method to another format skipped twenty-seven of the forty-five rules because he never knew they
 were there.
 
-And one of those forty-eight is not about the system being built but about **how you get asked**.
+And one of those forty-nine is not about the system being built but about **how you get asked**.
 It is **UX-28**, and it came in on 2026-10-27 because it was missing: the method orders its
 prompts to ask you -- twenty-two times, in more than half of the corpus -- and said nowhere how
 one asks, so the form was left to improvisation and you got the question loose. From now on every
@@ -885,9 +885,8 @@ credited in Part F.)
   [Ref. 41](REFERENCIAS.md#ref-41); the quality number that gets worse without anyone seeing it
   [Ref. 35](REFERENCIAS.md#ref-35).
 - **Annex H**: anchor 3 of [Annex H](ANEXO_HEURISTICAS.md), and the biggest of the five: this is
-  where the gate extends from code quality to **usability**. The catalogue of the forty-eight rules
-  is declared and active per group -- and two of them, the ones of the receipt, are reported face by
-  face --; every active rule has its instrument, its severity and its
+  where the gate extends from code quality to **usability**. The catalogue of the forty-nine rules is declared and
+  active per group -- and three of them are reported face by face --; every active rule has its instrument, its severity and its
   checker; every **switched-off** rule has its record with the reason, who authorised it and a
   review date -- switched off without a record is red, which is not the same as the rule being
   absent --; every threshold the owner did not declare is published as undeclared instead of
@@ -1611,7 +1610,7 @@ and 12, and the card of each one names them. It is not a recommendation nor a be
 part of what gets measured.
 
 **Annex H** — The heuristics annex of the method
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): forty-eight verifiable rules, twenty on code
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): forty-nine verifiable rules, twenty-one on code
 quality and twenty-eight on usability, each one with its stable id, its severity and the instrument
 that measures it. It is mandatory and it cuts across the four stretches: it comes in with two prior
 inputs at step 2 and with five anchors at steps 5, 8, 9, 10 and 12. The "H" is for heuristics.
@@ -1987,6 +1986,17 @@ measured and protected by a test.
 
 **Ratchet** — A mechanism that only turns one way. In Kikan, a counter of calls without `await`
 that can only go down: if it goes up, the test fails.
+
+**Port (and its test double)** — A *port* is the single place through which one part of the system
+talks to something that is not itself: the browser, the operating system, the database, the network.
+It is written separately precisely so that it can be replaced, while testing, by a *double*: an
+imitation that answers the same thing without going out to fetch anything, so that a screen can be
+tested without opening a browser. The problem is that the double was written by whoever wrote the
+port, so both can be wrong in the same way and the tests will never find out. That is why rule
+CQ-21.1 of Annex H asks for **at least one run that crosses the port to the real other side**, and
+"real" means the browser, the operating system, the database or the network: another double does not
+count. The inventory of the ports with a double, each one with the run that crosses it, lives in the
+producer/consumer map of step 11.
 
 **Receipt** — The output of a command pasted as it came out, with the exact command, the version
 it ran against, the counts and the exit code, so that the owner can run it again without

@@ -8638,6 +8638,289 @@ misma regla bajada al único árbol donde aquélla no alcanza.
 ---
 
 
+## PND-101 — Un puerto con doble de prueba sin ninguna corrida que lo atraviese: cuatro controles muertos en un navegador con ochenta y un archivos de prueba en verde encima *(del experimento A/B del método, segundo lote; el dueño pidió el lote)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento A/B del método (`C:\urazuke-exp`), el brazo C1, el 2026-11-02, y la
+  redacción es del brazo y no mía. Entrada `PND-070` del registro de la herramienta, que **no es
+  este registro** (la numeración no se corresponde), con prioridad 90.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y lo decidió: entra, con la redacción del brazo y no con la mía.
+- **Estado: CERRADO** el 2026-11-03, con **D-087** (`CQ-21.1`).
+
+**Qué estaba mal.** El método empuja a construir la vista sobre un **puerto** con su doble de
+prueba, y hace bien: es lo que la vuelve verificable sin abrir un navegador. Lo que no hacía era
+exigir una sola corrida que mirara ese punto. El brazo construyó su vista sobre un puerto que
+escuchaba un único tipo de evento —`submit`— mientras cuatro de los cinco controles eran
+`<button type="button">`. **Cuatro controles muertos en un navegador**, con ochenta y un archivos de
+prueba en verde encima, y entre ellos uno que afirmaba exactamente lo que estaba roto:
+
+```js
+it('pasar de pagina pide la siguiente, y volver pide la anterior', ...)
+  l.activar('talleres-siguiente');
+  expect(urls.at(-1)).toBe(BASE + '/workshops?page=2');
+```
+
+Verde, porque `activar` recorría los oyentes del nodo **falso** y los llamaba a mano. En los
+ochenta y un archivos no había un solo `.click()`, `dispatchEvent`, `fireEvent` ni `userEvent`.
+
+**La medición del dueño sobre los tres brazos, que es la que hace que esto sea del método y no de
+la práctica.** Los dos brazos sin escalera enganchan cada control por su cuenta con el evento que
+le corresponde —dos y tres tipos de evento— y el brazo con escalera abstrajo el enganche en un
+puerto, y el puerto concentró los cinco en uno. **Ninguno de los tres aprieta un botón en una
+prueba**: esa ceguera es de la práctica. Lo que es del método es la última columna: **concentró el
+riesgo en un punto y no exigió una prueba que mire ese punto.**
+
+**La redacción, que no es mía, y por qué la mía no alcanzaba.** La mía decía «al menos una prueba
+que lo atraviese de verdad, contra la implementación real». El brazo la aceptó y mostró con su
+propio código que no alcanza: su `lienzo.test.ts` **ya** corría la implementación real, contra un
+documento de mentira que invocaba al oyente sin mirar el evento. Atravesaba el adaptador real y
+seguía sin ver el defecto. La que quedó es la suya: el otro lado tiene que ser **el otro lado de
+verdad** —el navegador, el sistema operativo, la base o la red— y ninguna cantidad de dobles fieles
+lo sustituye.
+
+**El costo, medido por él, que es la objeción que esta cara va a recibir.** Una corrida, **15,6
+segundos, cero paquetes nuevos**: el navegador se maneja con el `WebSocket` que Node 22 ya trae.
+
+**Qué quedó.** `CQ-21.1` en el Anexo H, y su efecto en el peldaño 11: la familia
+`ports_with_a_test_double` en `docs/PRODUCER_CONSUMER_MAP.md`, con `ports_total`,
+`ports_with_a_crossing_run` y, por puerto, su adaptador, su doble y el `crossing_run` nombrando el
+comando y **qué alcanzó del otro lado** —`browser`, `operating_system`, `database`, `network` o
+`none`—. Un puerto en `none` es un hueco **declarado**, que es lo que pidió el brazo. Y en el
+peldaño 8, la corrida que atraviesa entra en la rutina del cierre con evidencia.
+
+**Mi reproducción y el rojo primero, el 2026-11-03.** Armé dos árboles que **sólo** difieren en esa
+familia y los evalué con el evaluador **real** de la herramienta, contra la definición que el método
+publica. Antes (catálogo `2026.10.15`): los dos salen **verde**; la compuerta no los distingue. Con
+`2026.10.16`: el que no tiene la familia sale **rojo** nombrando
+`ports_with_a_test_double`, y el que la tiene sale **verde**. Y el tercer árbol, que es el que
+distingue las dos redacciones —el `crossing_run` que dice «instancia el adaptador REAL contra un
+documento de mentira»— sale **rojo** nombrando `crossing_run`, porque lo que alcanzó no es ninguno
+de los cuatro otros lados que el dato nombra. Con la redacción vieja ese árbol salía verde.
+
+**Lo que este cierre NO hizo, dicho porque es el límite y está publicado como tal.** Ninguna
+compuerta puede verificar que la corrida declarada atraviesa el puerto **de verdad**: lo que una
+máquina mira es la declaración, y si eso es cierto lo decide una persona leyendo el comando. Está
+escrito en la sección de `CQ-21` del Anexo H y en la verificación del contrato del peldaño 11, en
+los ocho idiomas, en vez de simulado.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado el árbol con un puerto doblado y sin corrida que lo atraviese,
+  cuando se evalúa el peldaño 11, entonces la compuerta no da verde y el motivo nombra la familia
+  que falta. Medido en los tres árboles de arriba.
+- *P8 (dueño de proyecto que aplica el método):* dado el mapa productor-consumidor, el dueño toma un
+  puerto, lee su corrida y puede decir si el otro lado es un navegador o es otro doble, sin leer
+  código.
+
+**Depende de:** nada. `PND-102` y `PND-103` son sus hermanas: las tres son la misma forma.
+
+---
+
+## PND-102 — Un peldaño cierra con trece casos manuales escritos y cero ejecutados, y la cifra no llega al informe donde se decide *(del experimento A/B del método, segundo lote; el dueño pidió el lote)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento A/B del método, el brazo C1, el peldaño 10 cerrado el 2026-11-02 con
+  trece casos escritos y ninguno ejecutado; el dueño los ejecutó un día después y **dos fallaron**
+  —la paginación no avanzaba y el formulario perdía el correo tipeado—, los dos incumpliendo
+  criterios que el propio brazo había escrito. Entrada `PND-069` del registro de la herramienta,
+  con prioridad 85.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y lo decidió: la cifra tiene que ser visible, sin bloquear el cierre.
+- **Estado: CERRADO** el 2026-11-03, con **D-087** (`CQ-21.2`).
+
+**Qué estaba mal, y hay que decirlo con lo que ya estaba, porque la entrada pedía más de lo que
+faltaba.** La frase de origen es «el método trata *el caso está escrito* como la evidencia del
+peldaño 10», y eso era verdad hasta el 2026-11-02 y dejó de serlo **ese mismo día**: D-082 puso
+`cases_written`, `cases_executed_by_a_person` y `execution_debt` en la cabeza de
+`docs/MANUAL_TESTS.md`, y D-083 midió con el evaluador real que un peldaño 10 con el registro de
+firmas vacío sale **rojo** por el ancla 4. O sea que la compuerta hoy es **más dura** que lo que
+esta entrada pide, y el brazo salió verde porque corría el **congelado** del esquema 1
+(`catalog_version` `forge-compiled/base-schema-1`, verificado el 2026-11-03 en
+`.forge/urazuke-gates.json` del brazo), que es exactamente lo que `PND-055` y D-068 dicen sobre
+fijar contra una identidad interna que el método no puede nombrar.
+
+**Lo que SÍ faltaba, que es la mitad que este cierre arregla.** La cifra existía **en el archivo
+donde vive el caso** y no en el informe donde se decide. El dueño lee el informe honesto en cada
+cierre; el archivo de casos lo abre cuando sospecha. Un número que hay que ir a buscar no frena a
+nadie, y eso es `CQ-21.2`: el artefacto de verificación que nadie corrió cuenta **cero** —no media
+verificación— y su cifra viaja al informe. Además la entrada pide una cosa que la cabeza del
+archivo no daba: la cuenta **de este cierre**, no la del archivo entero. Un `cases_written: 13` con
+`cases_executed_by_a_person: 0` no dice que este cierre agregó tres casos y ninguno corrió.
+
+**Qué quedó.** En el peldaño 12, las tres claves fijas del alcance en la rutina del informe
+honesto: `cases_touched`, cuántos casos toca este cierre; `cases_with_an_execution_row`, cuántos de
+ésos firmó una persona con fecha y nombre; y `executed_by`, quién los firmó. Con todas las letras
+cuando la respuesta es ninguno, que es lo que la entrada pedía textualmente. Las claves van en
+inglés y en ASCII y la prosa alrededor en el idioma del lector (D-051, D-075), como las tres de
+D-080.
+
+**Mi reproducción y el rojo primero, el 2026-11-03.** Dos árboles que sólo difieren en ese párrafo
+de `docs/WORKING_AGREEMENT.md`, evaluados con el evaluador real. Antes: los dos pasan el artefacto
+del peldaño 12. Con `2026.10.16`: el que no declara el alcance sale **rojo** nombrando
+`cases_touched`, y el que lo declara pasa. Y en la batería del método, el rojo deliberado exige que
+caigan **las tres** claves y no una.
+
+**Lo que este cierre NO hizo.** No bloquea el cierre por una cifra en cero, que es lo que el dueño
+pidió explícitamente: lo que se exige es la **declaración**. Y no toca el ancla 4, que es lo que sí
+frena y lo que `PND-097` tiene abierto a nombre del dueño.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado un contrato de convivencia sin las tres claves del alcance, cuando
+  se evalúa el peldaño 12, entonces la compuerta no da verde y nombra las tres que faltan.
+- *P8 (dueño de proyecto):* dado cualquier informe de cierre que toque casos manuales, el dueño lee
+  «N escritos, 0 ejecutados» en el informe mismo, sin abrir el archivo de los casos.
+
+**Depende de:** nada. D-082 y D-083 (`PND-096`, `PND-097`) son su antecedente directo y están
+cerrados; esta entrada es la cifra viajando al lugar donde se decide.
+
+---
+
+## PND-103 — Un correctivo nacido de un caso manual cierra con la verificación del paso que falló, y la segunda exigencia de ese paso nunca se verifica *(del experimento A/B del método, segundo lote; el dueño pidió el lote)*
+
+- **Nodo:** `corpus/contratos` [nodo propuesto]
+- **Origen:** el experimento A/B del método, reconstruyendo la historia del caso MT-02 del brazo
+  C1. Entrada `PND-071` del registro de la herramienta, con prioridad 88.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, y lo decidió con su redacción: el caso vuelve a correr entero.
+- **Estado: CERRADO** el 2026-11-03, con **D-087** (`CQ-21.3`).
+
+**Qué estaba mal, y es más grave que el anterior porque todo el aparato funcionó.** El paso 5 del
+caso MT-02 pedía **dos** cosas: «el botón Salir tiene que estar y tiene que funcionar». La historia,
+tal como el dueño la escribió:
+
+```
+el caso existe, con sus dos exigencias        <- el metodo
+se ejecuta y falla por la PRIMERA             <- el metodo
+se arregla la ausencia                        <- el brazo
+el peldano cierra                             <- el metodo
+la SEGUNDA nunca se verifica                  <- nadie
+```
+
+El botón apareció. Nadie volvió a correr el caso. Y la segunda exigencia no se cumplía: ese botón
+era uno de los cuatro controles muertos de `PND-101`. No hay ninguna señal en ninguna parte: la
+fila dice «FALLÓ», el correctivo dice «cerrado» y el defecto sigue.
+
+**El motivo, que es preciso y es el que hace de esto una regla y no una advertencia.** Una fila de
+ejecución informa **hasta dónde llegó** quien ejecutó. Si el caso se corta en el paso 3, los pasos
+4 y 5 no dicen «pasaron»: no dicen nada. Cerrar sobre esa fila es confundir *no lo vi fallar* con
+*lo vi andar*.
+
+**Qué quedó.** `CQ-21.3`, y su efecto en dos lugares. En el peldaño 10, `rerun_after_a_fix` en
+`docs/MANUAL_TESTS.md`: un caso que falló y cuyo fallo se arregló no vuelve a contar como
+verificado hasta que una persona lo corra **entero** y firme una fila nueva posterior al arreglo,
+con el pendiente que la causó; el prompt de la ejecución pide además la lista de los casos que
+deben una vuelta a correr, con la corrección que los arregló y desde cuándo. Y en el bucle
+correctivo del camino heredado, la cláusula de que una corrección nacida de un caso manual **no
+cierra** con la verificación del paso que falló. Fue ahí y no en el peldaño 8 porque en un legado
+el rojo es el bug mismo, así que la corrección cierra con su test de reproducción en verde —y eso
+está bien— y el caso manual que la encontró queda atrás.
+
+**Mi reproducción y el rojo primero, el 2026-11-03.** Dos árboles con el caso MT-02 y su tabla de
+ejecuciones: uno con la fila del fallo y el texto «se cerró con la verificación del paso 5», y otro
+con dos filas nuevas posteriores al arreglo sobre los cinco pasos —la primera de las cuales
+encuentra la segunda exigencia incumplida y abre el correctivo siguiente, que es exactamente lo que
+tenía que pasar en el experimento—. Antes: el artefacto del peldaño 10 da **ok** en los dos; la
+compuerta no los distingue. Con `2026.10.16`: el primero sale **rojo** nombrando
+`rerun_after_a_fix` y el segundo pasa.
+
+**Lo que este cierre NO hizo.** No verifica que la fila nueva cubra **todos** los pasos: eso lo
+dice quien ejecutó, no un programa, y está escrito como límite en el Anexo H y en la sección 4 del
+contrato del peldaño 10.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado un archivo de casos donde un caso falló, se arregló y no hay fila
+  posterior al arreglo, cuando se evalúa el peldaño 10, entonces la compuerta no da verde.
+- *P8 (dueño de proyecto):* dado un correctivo cerrado, el dueño mira la tabla del caso que lo
+  originó y ve una fila con fecha posterior al arreglo, o ve que falta y sabe que el correctivo no
+  cierra.
+
+**Depende de:** nada. `PND-101` es su hermana y el defecto que ocultaba era el mismo botón.
+
+---
+
+## PND-104 — La cuenta de reglas del Anexo H estaba vencida en veinte lugares de la prosa: tres versiones del documento principal (una no sumaba), los nueve README y las ocho hojas de preguntas al proveedor *(propia, medida al subir la cuenta a cuarenta y nueve; destino: método)*
+
+- **Nodo:** `corpus/documento-principal` [nodo propuesto]
+- **Origen:** propia, el 2026-11-03, al aplicar D-087: para subir la cuenta de cuarenta y ocho a
+  cuarenta y nueve hubo que leer el párrafo que presenta el Anexo H en los ocho idiomas, y tres no
+  decían lo que el dato declara.
+- **Grupo:** G-TRAZABILIDAD · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** nadie: es un defecto medido contra el dato publicado.
+- **Estado: CERRADO** el 2026-11-03, en el mismo commit que lo encontró.
+
+**Qué estaba mal, medido.** En la Parte A del documento principal, el párrafo que presenta el Anexo
+H dice cuántas reglas son y cómo se reparten. Al 2026-11-03, antes de este lote:
+
+| idioma | decía | el dato declaraba | vencido desde |
+|---|---|---|---|
+| alemán | cuarenta y seis, dieciocho de calidad, veintiocho de usabilidad | cuarenta y ocho, veinte, veintiocho | 2026-11-01 (D-078) |
+| italiano | cuarenta y cinco, dieciocho, veintisiete | cuarenta y ocho, veinte, veintiocho | 2026-10-27 (D-070) |
+| francés | cuarenta y ocho, veinte, **veintisiete** | cuarenta y ocho, veinte, veintiocho | 2026-10-27 (D-070) |
+
+La francesa es la que conviene mirar dos veces: el total estaba bien y el desglose no, así que la
+oración **no sumaba** —cuarenta y ocho igual a veinte más veintisiete— y se publicó así una semana.
+Las otras cinco versiones estaban bien.
+
+**Y hay un segundo lugar, peor, que apareció al revisar el primero: los nueve `README`.** La fila
+del Anexo H de la tabla de material dice, en el `README.md` de la raíz y en los ocho de
+`docs/<idioma>/`, «dieciocho reglas de calidad de código y veintisiete de usabilidad». **Nueve de
+nueve**, las dos cifras mal, vencidas desde el 2026-10-27. Y esa unanimidad es lo que lo hace peor
+que el caso de arriba, no mejor: las tres del documento principal son una traducción que se quedó
+atrás, un defecto de D-013 que una comprobación de simetría podría encontrar; las nueve del README
+son **un hecho que nunca se volvió a derivar**, replicado con disciplina a los ocho idiomas, y
+ninguna comprobación de simetría lo ve porque las nueve dicen lo mismo. Es la primera página del
+repositorio y es la tabla que D-061 arregló por la razón inversa: ahí las siete traducciones
+listaban el anexo y la fuente de verdad no.
+
+**Y un tercer lugar, con la misma forma que el segundo: las ocho hojas de preguntas al proveedor.**
+`docs/PREGUNTAS_AL_PROVEEDOR.md` y sus siete traducciones cierran la pregunta 15 con «(Anexo H, las
+veintisiete reglas de usabilidad.)», **ocho de ocho**, y son veintiocho desde el 2026-10-27. Esa
+hoja se escribió el 2026-10-26 con D-061 y quedó vencida **al día siguiente**, cuando UX-28 entró
+con D-070: no es que nadie la mantuviera, es que nació un día antes del cambio y nada la volvió a
+mirar. Es la hoja que un lector le lleva a un proveedor para hacerle preguntas incómodas, así que la
+cifra viaja fuera del proyecto.
+
+**El universo del barrido, enumerado, porque esta entrada afirma que no hay más (D-064).** Se buscó
+sobre los **312** archivos `.md` del árbol —310 bajo `docs/` sin contar `docs/html/`, que se genera,
+más `README.md` y `CLAUDE.md` de la raíz—, con el texto desenvuelto de los saltos de línea para que
+una cifra partida en dos renglones no se escape, contra trece formas de las cuentas viejas en los
+ocho idiomas. Aparecieron veinte afirmaciones de estado presente, las veinte corregidas, y el resto
+de las ocurrencias son **registros fechados** que no se tocan: las notas apiladas de la cuenta del
+anexo, las filas de la tabla de decisiones de D-044, el defecto del conteo de la sección 13, el
+hecho histórico de las veintisiete reglas que el lector se salteó, y el papel de la taxonomía.
+
+**Por qué importa y de qué familia es.** Es la familia de D-044, D-077 y D-086: dos copias de un
+hecho, una que se actualiza y otra que no. Y el lugar es el peor de los tres que ya se registraron:
+no es un documento generado ni la portada del portal, es **la prosa del método**, en el párrafo que
+le presenta al lector el anexo que D-061 agregó justamente porque el documento principal no lo
+nombraba. La guarda de las cifras derivadas (D-077) no lo ve, y eso está escrito en su cabecera y
+no es un descuido: esa guarda mira el nivel de datos y el documento que se genera de él, y la prosa
+del método la lee una persona.
+
+**Qué quedó.** Las veinte corregidas —tres del documento principal, nueve del README y ocho de la
+hoja de preguntas—, con la cuenta nueva, en el mismo commit que la subió. Y queda
+dicho acá, con su medición, que este chequeo **no tiene guarda**: lo que lo encontró fue tener que
+tocar la cifra, y la próxima vez que una regla entre va a pasar lo mismo. Darle una guarda es
+trabajo aparte y no es gratis —hay que decidir qué frases de la prosa son «una cifra al lado del
+nombre de una colección» en ocho idiomas, que es justo lo que D-077 declaró fuera de su alcance—.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado cualquier archivo del corpus, cuando se lee una cuenta de reglas
+  del Anexo H que afirma el estado presente, entonces el total es el que `heuristics.counts.total`
+  declara y el desglose suma el total. Verificado sobre los 312 archivos del árbol el 2026-11-03,
+  con el universo enumerado arriba.
+- *P5 (lector que adapta el método):* dado el documento principal en su idioma, el lector no se
+  saltea reglas por creer que son menos de las que hay, que es exactamente lo que pasó en
+  `PND-039`.
+
+**Depende de:** nada.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -8652,11 +8935,11 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 6 | 0 | 6 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 42 | 23 | 19 | 11 |
-| G-TRAZABILIDAD | 4 | 2 | 2 | 0 |
-| **total** | **100** | **44** | **56** | **15** |
+| G-METODO | 45 | 23 | 22 | 11 |
+| G-TRAZABILIDAD | 5 | 2 | 3 | 0 |
+| **total** | **104** | **44** | **60** | **15** |
 
-Cien entradas, `PND-001` a `PND-100`. Veintidós vienen de la auditoría externa
+Ciento cuatro entradas, `PND-001` a `PND-104`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -8965,6 +9248,33 @@ la familia de D-077 con un agravante de ubicación: vivía en el repositorio del
 único árbol donde ninguna guarda del método puede mirar, y en la primera página que ve un lector.
 Cierra con la cifra derivada del dato y con la guarda que lo exige corriendo en el despliegue del
 portal (D-086).
+
+`PND-101`, `PND-102` y `PND-103` son las tres del **segundo lote** del experimento A/B, y son una
+sola forma vista desde tres ángulos: *un artefacto correcto que no llega al único lugar donde
+produce efecto*. El caso escrito que nadie ejecutó, el caso corregido que nadie volvió a correr y el
+puerto doblado que ninguna prueba atravesó. Cierran con **una** regla y no con tres —`CQ-21`, con
+tres caras— porque se les hace la misma pregunta, que es la forma que D-078 ya había usado para los
+once fallos del primer lote. Y hay dos cosas de este trío que conviene no perder. La primera: la
+redacción de `CQ-21.1` **la escribió el brazo** y no el método, después de refutar la mía con su
+propio código; es la segunda vez que un lector mejora una regla antes de que se publique. La
+segunda: el dueño contó que él cometió la misma falla en el mismo experimento —ejecutó los casos,
+encontró los dos defectos, escribió el informe con su evidencia y **no se lo mandó al brazo**, que
+se quedó parado cuatro horas—, y lo contó justamente porque si el conductor del experimento pisa la
+trampa que le está marcando al método, la trampa es de la forma y no del que la pisa.
+
+`PND-104` es el quinto desvío propio del registro y apareció **por el lote que lo encontró**: para
+subir la cuenta de reglas de cuarenta y ocho a cuarenta y nueve hubo que leer la cuenta del Anexo H
+en la prosa, y estaba vencida en **veinte** lugares. Tres en el documento principal —el alemán
+cuarenta y seis, el italiano cuarenta y cinco, y el francés cuarenta y ocho igual a veinte más
+veintisiete, que ni suma—, los **nueve** README y las **ocho** hojas de preguntas al proveedor, que
+nacieron el 2026-10-26 y quedaron vencidas al día siguiente. Los diecisiete últimos son peores que
+los tres primeros: no son una traducción que se quedó atrás, son un hecho que nunca se volvió a
+derivar y que está replicado con disciplina en los ocho idiomas, así que ninguna comprobación de
+simetría lo puede ver. El universo del barrido —312 archivos— está enumerado en la entrada, porque
+afirmar que no hay más desde una búsqueda que no dice dónde buscó es `D-064`. Es la familia de D-044, D-077 y D-086 en el único
+lugar donde ninguna de las tres guardas mira: la prosa del método. Queda cerrada con las doce
+corregidas y con lo que no tiene arreglo automático dicho de frente: lo que la encontró fue tener
+que tocar la cifra, y la próxima regla va a volver a pasar por acá.
 
 Un aviso para leer la tabla de arriba, porque la cuenta de bloqueantes pasó de uno a ocho en un día
 y eso no significa lo que parece. En las sesenta y cuatro entradas anteriores *bloquea* quería decir

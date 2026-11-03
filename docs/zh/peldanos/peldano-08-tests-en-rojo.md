@@ -79,6 +79,14 @@
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
 >
+> And for every port you doubled for testing in this item, show me one run that crosses it to the
+> real other side -- the browser, the operating system, the database, the network -- and record it
+> in `docs/PRODUCER_CONSUMER_MAP.md` under `crossing_run`. A test that instantiates the real adapter
+> against a fake environment crossed the real code and still never saw the event, so it does not
+> count: no quantity of faithful doubles replaces the other side (Annex H, CQ-21.1). If you cannot
+> run it, tell me which port is left with no crossing run and write `none` there, which is a
+> declared hole and not a green.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -102,6 +110,12 @@
 > 色能到达的内容正好是它在 `docs/PROFILE_MATRIX.md` 中那一行，
 > 不多不少；每条路由都在服务端校验权限，因为把入口藏起来保护不了任何东西（附录H，UX
 > -11、UX-12、UX-15）。没有任何东西去执行的矩阵，是没人读的文件。
+>
+> 而这个待办项里每一个你为了测试而加了替身的端口，都要给我看一趟穿过它、直到真正另一侧的运行
+> ——浏览器、操作系统、数据库、网络——并把它记在 `docs/PRODUCER_CONSUMER_MAP.md` 的 `crossing_run`
+> 下面。一个把真实适配器实例化、却跑在撒谎环境上的测试，穿过了真实代码，依然没有看见那个事件，所
+> 以它不算：再多再忠实的替身也替代不了另一侧（附录 H，CQ-21.1）。如果你跑不了，就告诉我哪个端口留
+> 着没有穿过它的运行，并在那里写 `none`，那是一个声明出来的洞，不是绿色。
 >
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
@@ -201,7 +215,8 @@
 - 提交是否引用了待办项并写了"先证红"？
 - 界面测试是否也验证了对后端的效果？
 - 功能块收尾时：所有流程都在端到端套件里，还是有哪个"靠单元测试覆盖"？
-
+- 这个待办项加了替身的每一个端口，都有穿过它的那趟运行吗？而另一侧是真正的另一侧吗？一个把真实适
+  配器实例化、却跑在撒谎环境上的测试，穿过了真实代码，却没有看见那个事件。
 ## 5. 警报信号
 
 - 这周所有新测试第一次就全绿，从没展示过红色。要么代理省略了步骤，要么测试什么都不证明。
@@ -210,3 +225,5 @@
 - 红色是用散文讲出来的（"测试如预期失败了"），没有命令、没有版本、没有数字。没有凭据的红
   色和没有红色是一回事。
 - 你到了上线生产，完整的端到端套件第一次运行。功能块的收尾被漏掉了。
+- 这个待办项动了一个带替身端口的视图，而整套测试里没有一趟真的按下过某个控件。八十一个绿色文件，
+  能盖住四个死掉的控件。

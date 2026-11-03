@@ -140,6 +140,23 @@ test('C: el diferencial desde la primera version publicada es la historia medida
     '2026.10.15 docs/CODE_QUALITY.md',
     '2026.10.15 docs/USABILITY.md',
     '2026.10.15 docs/USABILITY.md',
+    // Las doce de 2026.10.16 son D-087, y son UNA regla con sus TRES caras: el alcance de una
+    // corrida. Tres artefactos --el inventario de puertos con doble en el mapa, la vuelta a
+    // correr en el archivo de casos, el alcance de los casos en la rutina del informe-- y cinco
+    // preguntas sobre los peldanos 8, 10, 11 y 12. Ninguna ruta nueva: las tres exigencias caen
+    // sobre archivos que el metodo ya pedia, que es la forma mas barata de agregar un requisito.
+    '2026.10.16 CQ-21',
+    '2026.10.16 CQ-21.1',
+    '2026.10.16 CQ-21.2',
+    '2026.10.16 CQ-21.3',
+    '2026.10.16 Do ports_total and ports_with_a_crossing_run come from the same table they describe, so that a port with no crossing run is visible instead of being left out of the denominator?',
+    '2026.10.16 Does every case that failed and was fixed have an execution row LATER than the fix covering all of its steps, instead of closing on the row that failed? A row reports how far the person got: the steps it did not reach neither passed nor failed (CQ-21.3).',
+    '2026.10.16 Does every port that was doubled for testing carry the run that crosses it to the real other side, and does that other side name what the port is doubling -- a browser, an operating system, a database, the network -- instead of another double?',
+    '2026.10.16 Does the report say how many manual cases this closing touches, how many of them a person signed and who, with all the letters when the answer is none? A figure somebody has to go and look for stops nobody (CQ-21.2).',
+    '2026.10.16 For every port this item doubled, is there one run that crosses it to the real other side? A test that instantiates the real adapter against a fake environment went through the adapter and still never saw the event (CQ-21.1).',
+    '2026.10.16 docs/MANUAL_TESTS.md',
+    '2026.10.16 docs/PRODUCER_CONSUMER_MAP.md',
+    '2026.10.16 docs/WORKING_AGREEMENT.md',
     '2026.10.4 Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?',
     '2026.10.5 docs/GLOSSARY.md',
     '2026.10.5 docs/PROFILES.md',
@@ -211,17 +228,19 @@ test('E: la comprobacion reviso algo, y lo dice con su cuenta', () => {
   // diez ultimas son de D-079 y D-080, y son las primeras que no tocan el Anexo H: cinco
   // artefactos y cinco preguntas sobre los peldanos 12, 13 y 23, que exigen lo que un control
   // tiene que DECLARAR al cerrar y no lo que el sistema tiene que ser. Las once de D-081 y
-  // D-082 son las dos mitades de un peldano cuyo trabajo esta afuera; las siete ultimas son de
+  // D-082 son las dos mitades de un peldano cuyo trabajo esta afuera; las siete que siguen son de
   // D-083 y D-084, y la asimetria entre ellas es el dato: del peldano 10 entra una sola
-  // pregunta, porque lo que faltaba ahi era prosa y no un requisito.
-  assert.equal(arbol.entradas.length, 75, 'las entradas agregadas despues del congelado, medidas el 2026-11-02');
-  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['CQ-19', 'CQ-20', 'UX-28'],
+  // pregunta, porque lo que faltaba ahi era prosa y no un requisito. Las doce ultimas son de
+  // D-087: una regla, sus tres caras, tres artefactos y cinco preguntas, y es el primer lote que
+  // no agrega ninguna RUTA nueva -- las tres exigencias caen sobre archivos que el metodo ya pedia.
+  assert.equal(arbol.entradas.length, 87, 'las entradas agregadas despues del congelado, medidas el 2026-11-03');
+  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['CQ-19', 'CQ-20', 'CQ-21', 'UX-28'],
     'una regla agregada despues del congelado entra en el diferencial: sin esto un upgrade la omitia en silencio');
   // Y una cara, por el mismo argumento una capa adentro: se puede apagar sola, asi que un
   // diferencial que cuenta la regla y no sus caras dice que entra una cosa cuando entran cinco.
   assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.faces')).map((e) => e.que),
-    ['CQ-19.1', 'CQ-19.2', 'CQ-19.3', 'CQ-19.4', 'CQ-20.1', 'CQ-20.2'],
-    'las caras entran en el diferencial con su procedencia (D-078)');
+    ['CQ-19.1', 'CQ-19.2', 'CQ-19.3', 'CQ-19.4', 'CQ-20.1', 'CQ-20.2', 'CQ-21.1', 'CQ-21.2', 'CQ-21.3'],
+    'las caras entran en el diferencial con su procedencia (D-078, D-087)');
   assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.thresholds')).map((e) => e.que), ['end_users_outside_the_organisation'],
     'un umbral agregado despues del congelado entra en el diferencial: declararlo o no cambia la severidad de su regla');
   assert.ok(arbol.versiones.length >= 7, 'el registro de versiones tiene al menos las siete publicadas');

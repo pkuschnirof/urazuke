@@ -207,6 +207,13 @@ because the person no longer runs into the defects the agent could have seen by 
 > `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
 > `execution_debt` with who still owes which execution and since when.
 >
+> And for every case that failed and whose failure was then fixed, the case does not count as
+> verified again until a person runs it WHOLE and signs a new execution row later than the fix,
+> written `rerun_after_a_fix` with the pending item that caused it. An execution row reports how far
+> the person got: the steps it did not reach neither passed nor failed, so closing on the row that
+> failed confuses not having seen it fail with having seen it work (Annex H, CQ-21.3). List the
+> cases that owe a re-run, with the correction that fixed them and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -235,7 +242,8 @@ is wrong", which are two different pending items.
 - At the head of `docs/MANUAL_TESTS.md`, the three declarations a gate reads: `cases_written`,
   `cases_executed_by_a_person` -- which only a signed execution moves -- and `execution_debt` at
   `none` or at `pending_verifier`, with who owes each execution and since when.
-
+- For every case that failed and was fixed: its new execution row, later than the fix and over all
+  of its steps, written `rerun_after_a_fix` with the pending item that caused it.
 ## 4. Completeness check (you do it, without reading code)
 
 - Take a case at random and follow it yourself in the test environment without asking the agent
@@ -260,7 +268,9 @@ is wrong", which are two different pending items.
   question to the contract and to the gate -- "if nobody executed, do I advance?" -- and demand that
   they answer the same. If the contract says yes and the gate says no, the one that is wrong is the
   contract.
-
+- Does every case that failed and was fixed have a row later than the fix covering all of its
+  steps? If the last row is the one that failed, the fix closed on one step and the rest say
+  nothing.
 ## 5. Warning signs
 
 - The agent marked the cases as executed. It executed them, which is the same as not executing
@@ -280,3 +290,6 @@ is wrong", which are two different pending items.
   are no findings, most likely it looked at the screen and did not use it.
 - The walk starts being used as an excuse not to execute the cases. They are two things with two
   purposes, and the one that accepts is the person's.
+- A correction closed and the case that caused it with no new row. The whole apparatus worked --
+  the case was written, it was executed, it failed, it was fixed -- and the second demand of that
+  step was never verified.

@@ -234,7 +234,7 @@ Ogni gradino ha otto parti, sempre le stesse, perché si possano confrontare:
 
 E c'è una parte in più, che compare **solo in sei gradini** ed è un pezzo trasversale che cambia
 cosa bisogna leggere: l'**Allegato H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)).
-Quarantacinque regole verificabili — diciotto di qualità del codice e ventisette di usabilità —,
+Quarantanove regole verificabili — ventuno di qualità del codice e ventotto di usabilità —,
 ciascuna con il suo identificatore stabile, la sua severità e lo strumento che la misura. Non è
 un'appendice opzionale: **è obbligatorio**, e si aggancia alla scala in sei punti. Al gradino 2
 entrano i suoi due **ingressi previi** (il glossario dell'utente e la lista dei profili: le parole
@@ -248,7 +248,7 @@ tardi: l'allegato è stato obbligatorio e non nominato in questo documento, e il
 adattato il metodo a un altro formato ha saltato ventisette delle quarantacinque regole perché non
 ha mai saputo che esistevano.
 
-E una di quelle quarantotto non riguarda il sistema che si costruisce ma **come ti si chiede**. È
+E una di quelle quarantanove non riguarda il sistema che si costruisce ma **come ti si chiede**. È
 la **UX-28**, ed è entrata il 2026-10-27 perché mancava: il metodo ordina ai suoi prompt di
 chiederti — ventidue volte, in più della metà del corpus — e non diceva da nessuna parte come si
 chiede, così la forma restava all'improvvisazione e tu ricevevi la domanda sciolta. Da ora ogni
@@ -894,9 +894,8 @@ nella Parte F.)
   un audit ha trovato perché nessun limite li aveva fermati [Ref. 41](REFERENCIAS.md#ref-41); il
   numero di qualità che peggiora senza che nessuno lo veda [Ref. 35](REFERENCIAS.md#ref-35).
 - **Allegato H**: ancora 3 dell'[Allegato H](ANEXO_HEURISTICAS.md), e la più grande delle cinque:
-  qui la paratia si estende dalla qualità del codice all'**usabilità**. Il catalogo delle
-  quarantotto regole è dichiarato e attivo per gruppo -- e due di esse, quelle della ricevuta, si
-  informano faccia per faccia --; ogni regola attiva ha il suo strumento, la
+  qui la paratia si estende dalla qualità del codice all'**usabilità**. Il catalogo delle quarantanove regole è dichiarato e
+  attivo per gruppo -- e tre di esse si informano faccia per faccia --; ogni regola attiva ha il suo strumento, la
   sua severità e il suo verificatore; ogni regola **spenta** ha il suo registro con il motivo, chi
   lo autorizza e la data di revisione — spenta senza registro è rosso, che non è la stessa cosa
   della regola assente —; ogni soglia che il proprietario non ha dichiarato si pubblica come non
@@ -1633,8 +1632,8 @@ noti (un'injection, una chiave scritta nel codice). È uno dei quattro strati de
 delle vulnerabilità del gradino 18.
 
 **Allegato H** — L'allegato di euristiche del metodo
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): quarantotto regole verificabili, venti di
-qualità del codice e ventotto di usabilità, ciascuna con il suo identificatore stabile, la sua
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): quarantanove regole verificabili, ventuno di qualità del codice e
+ventotto di usabilità, ciascuna con il suo identificatore stabile, la sua
 severità e lo strumento che la misura. È obbligatorio e attraversa i quattro tratti: entra con due
 ingressi previi al gradino 2 e con cinque ancore ai gradini 5, 8, 9, 10 e 12. La "H" è di euristiche.
 
@@ -2068,6 +2067,17 @@ cos'è quel qualcosa (le connessioni al database, la memoria, una coda). Si trov
 carico scalino per scalino (gradino 19), e da lì escono le soglie di allerta del 21.
 
 **Pull / push** — Scaricare e caricare codice sul repository remoto (GitHub).
+
+**Porta (e il suo doppio di prova)** — Una *porta* è l'unico posto attraverso cui una parte del
+sistema parla con qualcosa che non è lei: il navigatore, il sistema operativo, la base di dati, la
+rete. Si scrive a parte proprio per poterla sostituire, mentre si prova, con un *doppio*:
+un'imitazione che risponde la stessa cosa senza uscire a cercare niente, così che una schermata si
+possa provare senza aprire un navigatore. Il problema è che il doppio l'ha scritto lo stesso che ha
+scritto la porta, quindi i due possono sbagliare nello stesso modo e le prove non se ne accorgeranno
+mai. Per questo la regola CQ-21.1 dell'Allegato H chiede **almeno una corsa che attraversi la porta
+fino all'altro lato vero**, e "vero" vuol dire il navigatore, il sistema operativo, la base o la
+rete: un altro doppio non conta. L'inventario delle porte con doppio, ognuna con la corsa che la
+attraversa, vive nella mappa produttore-consumatore del gradino 11.
 
 **Ricevuta** — Dal 2026-11-01 la parola nomina due cose, e la seconda è la regola CQ-19
 dell'Allegato H: quello che una cifra porta accanto a sé per poter essere letta -- quale insieme si

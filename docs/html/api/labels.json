@@ -1,6 +1,6 @@
 {
   "what": "The texts of the Urazuke method by stable identifier, in the languages its prose is published in. It exists because the gate catalogue tells a consumer not to print its texts and to take them from its own catalogue instead, and until this resource there was no catalogue to take them from: the instruction was right and impossible to obey, so every tool ended up writing its own translations of the titles of the method. Nothing here is translated by this file. Every string is EXTRACTED from the prose of the method, which already carries the translations; if a text is not in the prose, publication is refused instead of inventing it. Read the opaque id from the gate catalogue and look it up here under the language you are rendering for. And about the content hash, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls the host that served the file. The anchors that do not live on that host are the version ledger of each resource, which lives in the method repository and records the pair (version -> hash) append-only, and the transport security of the connection. There is no cryptographic signature: that is a written decision with its cost on the table, not an oversight.",
-  "labels_version": "2026.10.2",
+  "labels_version": "2026.10.3",
   "content_hash": {
     "algo": "sha256",
     "encoding": "hex_lower",
@@ -22,22 +22,22 @@
       "license",
       "content_hash"
     ],
-    "value": "a683674f7356e8e3af4d4f4eb7519c3e672fa4154d391a686e83403417577f01",
+    "value": "823185814ceb9d80c6b50f66d8812cfdd70fe4ef3c7ea5b6882ef82f89192efc",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "449942a",
+  "git_commit": "a0fa7ba",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-11-02T19:05:46.262Z",
+  "generated_at": "2026-11-03T13:04:52.347Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "CC BY-SA 4.0",
   "counts": {
     "languages": 8,
-    "ids_per_language": 92,
+    "ids_per_language": 99,
     "steps": 24,
     "stations": 8,
-    "rules": 48,
-    "faces": 6,
-    "strings": 736
+    "rules": 49,
+    "faces": 9,
+    "strings": 792
   },
   "keyed_by": "labels.<language>.<kind>.<id>, where <language> is one of the entries of `languages.published`, <kind> is one of steps, stations, rules, faces or face_titles, and <id> is the opaque identifier the gate catalogue declares for that node. The ids are the key, not the order: they are append-only and never renamed.",
   "scope": {
@@ -153,6 +153,7 @@
         "CQ-18": "La accesibilidad básica se verifica sola: contraste, etiquetas en los campos, foco visible, navegación por teclado en los flujos principales, imágenes con texto alternativo.",
         "CQ-19": "Todo instrumento con el que el proyecto decide declara las condiciones en que su número vale: qué conjunto esperaba recorrer y cuánto recorrió, de qué depende, y qué informa cuando no pudo mirar. Un instrumento cuyo silencio se lee igual que la salud no mide: tranquiliza.",
         "CQ-20": "Una verificación corre con el privilegio mínimo para verificar y con ninguno más, y que no pudo hacer daño se mide, no se promete.",
+        "CQ-21": "Toda verificación declara hasta dónde llegó su corrida, y lo que quedó más allá de ese punto se cuenta como no verificado y nunca como sano: un doble que ninguna corrida atraviesa, un artefacto que nadie corrió y un paso que ninguna ejecución alcanzó no dicen que lo de adelante ande, dicen que nadie lo miró.",
         "UX-01": "Cada grupo del menú se nombra con un trabajo del usuario (en su vocabulario, con el glosario del proyecto), nunca con un módulo técnico ni con una entidad de datos.",
         "UX-02": "Cada funcionalidad tiene exactamente una casa canónica. Si sirve a dos grupos, se elige una casa y desde la otra se enlaza; no se duplica la entrada.",
         "UX-03": "No hay huérfanas: toda funcionalidad declarada es alcanzable desde la pantalla de entrada en no más de tres pasos.",
@@ -188,7 +189,10 @@
         "CQ-19.3": "Todo filtro, búsqueda o selección declara el universo sobre el que corrió: \"no encontré nada\" y \"no corrí\" son dos resultados distintos y no se escriben igual, y un filtro que devolvió de más tampoco se aplicó. Una cifra que decide se mide dos veces, de dos formas distintas, antes de usarse.",
         "CQ-19.4": "Cuando un control tiene contraparte en la cadena, o son el mismo instrumento con la misma configuración, o la diferencia está declarada: qué mide cada uno, cuál manda, y qué puede pasar uno y fallar el otro. Un control local más permisivo que el que decide es un verde que miente.",
         "CQ-20.1": "Un comando que se presenta como de sólo lectura corre sin permiso de escribir, y el privilegio con el que corrió se declara al lado de su resultado. Un instrumento que escribe mientras dice que no deja al dueño decidiendo sobre un estado que el propio instrumento cambió.",
-        "CQ-20.2": "Una sonda que ejerce una operación destructiva para comprobar que está impedida corre donde su sentencia no puede aterrizar, y su informe prueba que el estado quedó idéntico contándolo antes y después. Una sonda cuyo daño depende de que el impedimento funcione no verifica el impedimento: lo apuesta."
+        "CQ-20.2": "Una sonda que ejerce una operación destructiva para comprobar que está impedida corre donde su sentencia no puede aterrizar, y su informe prueba que el estado quedó idéntico contándolo antes y después. Una sonda cuyo daño depende de que el impedimento funcione no verifica el impedimento: lo apuesta.",
+        "CQ-21.1": "Todo puerto con doble de prueba tiene al menos una corrida que lo atraviesa hasta el otro lado de verdad, y el otro lado es lo que el puerto está doblando: si ahí hay un navegador, un sistema operativo, una base o la red, no hay forma de cumplirla sin eso, y ninguna cantidad de dobles fieles la sustituye.",
+        "CQ-21.2": "Un artefacto de verificación que nadie corrió cuenta cero y no media verificación, y su cifra viaja al informe donde se decide y no sólo al archivo donde el artefacto vive: un número que hay que ir a buscar no frena a nadie.",
+        "CQ-21.3": "Una ejecución informa hasta qué paso llegó, y los pasos que no alcanzó no pasaron ni fallaron: cuando se arregla lo que falló, el caso vuelve a correr entero y deja una fila de ejecución nueva posterior al arreglo, y una corrección no se cierra con la verificación del paso que falló."
       },
       "face_titles": {
         "CQ-19.1": "El denominador",
@@ -196,7 +200,10 @@
         "CQ-19.3": "El universo, en las dos direcciones",
         "CQ-19.4": "El hermano laxo",
         "CQ-20.1": "El efecto no declarado",
-        "CQ-20.2": "La sonda que sólo es inofensiva cuando falla"
+        "CQ-20.2": "La sonda que sólo es inofensiva cuando falla",
+        "CQ-21.1": "El otro lado de verdad",
+        "CQ-21.2": "Escrito no es corrido",
+        "CQ-21.3": "El caso vuelve entero"
       }
     },
     "en": {
@@ -257,6 +264,7 @@
         "CQ-18": "Basic accessibility is verified on its own: contrast, labels on fields, visible focus, keyboard navigation in the main flows, images with alternative text.",
         "CQ-19": "Every instrument the project decides with declares the conditions under which its figure holds: which set it expected to walk and how much of it it walked, what it depends on, and what it reports when it could not look. An instrument whose silence reads like health does not measure: it reassures.",
         "CQ-20": "A verification runs with the least privilege it needs in order to verify and with no more, and that it could do no harm is measured, not promised.",
+        "CQ-21": "Every verification declares how far its run reached, and whatever was left beyond that point is counted as not verified and never as healthy: a double no run crosses, an artefact nobody ran and a step no execution reached do not say that what lies past them works, they say that nobody looked.",
         "UX-01": "Every menu group is named with a user job (in their vocabulary, with the project glossary), never with a technical module nor with a data entity.",
         "UX-02": "Every functionality has exactly one canonical home. If it serves two groups, one home is chosen and the other links to it; the entry is not duplicated.",
         "UX-03": "There are no orphans: every declared functionality is reachable from the entry screen in no more than three steps.",
@@ -292,7 +300,10 @@
         "CQ-19.3": "Every filter, search or selection declares the universe it ran over: \"I found nothing\" and \"I did not run\" are two different results and are not written the same way, and a filter that returned too much was not applied either. A figure that decides something is measured twice, in two different ways, before it is used.",
         "CQ-19.4": "When a check has a counterpart in the chain, either they are the same instrument with the same configuration or the difference is declared: what each one measures, which one rules, and what can pass one and fail the other. A local check more permissive than the one that decides is a green that lies.",
         "CQ-20.1": "A command presented as read-only runs without permission to write, and the privilege it ran with is declared next to its result. An instrument that writes while saying it does not leaves the owner deciding over a state the instrument itself changed.",
-        "CQ-20.2": "A probe that exercises a destructive operation in order to check that it is blocked runs where its statement cannot land, and its report proves the state was left identical by counting it before and after. A probe whose harm depends on the block working does not verify the block: it bets on it."
+        "CQ-20.2": "A probe that exercises a destructive operation in order to check that it is blocked runs where its statement cannot land, and its report proves the state was left identical by counting it before and after. A probe whose harm depends on the block working does not verify the block: it bets on it.",
+        "CQ-21.1": "Every port with a test double has at least one run that crosses it to the real other side, and the other side is whatever the port is doubling: if what is there is a browser, an operating system, a database or the network, there is no way to satisfy this without it, and no quantity of faithful doubles replaces it.",
+        "CQ-21.2": "A verification artefact nobody ran counts zero and not half a verification, and its figure travels to the report where the decision is made and not only to the file where the artefact lives: a figure somebody has to go and look for stops nobody.",
+        "CQ-21.3": "An execution reports which step it reached, and the steps it did not reach neither passed nor failed: when what failed is fixed, the case runs again whole and leaves a new execution row later than the fix, and a correction does not close with the verification of the step that failed."
       },
       "face_titles": {
         "CQ-19.1": "The denominator",
@@ -300,7 +311,10 @@
         "CQ-19.3": "The universe, in both directions",
         "CQ-19.4": "The lax sibling",
         "CQ-20.1": "The undeclared effect",
-        "CQ-20.2": "The probe that is only harmless when it fails"
+        "CQ-20.2": "The probe that is only harmless when it fails",
+        "CQ-21.1": "The real other side",
+        "CQ-21.2": "Written is not run",
+        "CQ-21.3": "The case comes back whole"
       }
     },
     "pt": {
@@ -361,6 +375,7 @@
         "CQ-18": "A acessibilidade básica se verifica sozinha: contraste, rótulos nos campos, foco visível, navegação por teclado nos fluxos principais, imagens com texto alternativo.",
         "CQ-19": "Todo instrumento com o qual o projeto decide declara as condições em que o seu número vale: que conjunto esperava percorrer e quanto percorreu, de que depende, e o que informa quando não pôde olhar. Um instrumento cujo silêncio se lê igual à saúde não mede: tranquiliza.",
         "CQ-20": "Uma verificação corre com o privilégio mínimo para verificar e com nenhum mais, e que não pôde fazer dano mede-se, não se promete.",
+        "CQ-21": "Toda verificação declara até onde chegou a sua corrida, e o que ficou além desse ponto conta-se como não verificado e nunca como são: um duplo que nenhuma corrida atravessa, um artefato que ninguém correu e um passo que nenhuma execução alcançou não dizem que o que está adiante funciona, dizem que ninguém olhou.",
         "UX-01": "Todo grupo do menu se nomeia com um trabalho do usuário (no vocabulário dele, com o glossário do projeto), nunca com um módulo técnico nem com uma entidade de dados.",
         "UX-02": "Toda funcionalidade tem exatamente uma casa canônica. Se serve dois grupos, se escolhe uma casa e o outro aponta para ela; não se duplica a entrada.",
         "UX-03": "Não há órfãs: toda funcionalidade declarada é alcançável desde a tela de entrada em no máximo três passos.",
@@ -396,7 +411,10 @@
         "CQ-19.3": "Todo filtro, busca ou seleção declara o universo sobre o qual correu: \"não encontrei nada\" e \"não corri\" são dois resultados distintos e não se escrevem igual, e um filtro que devolveu demais também não se aplicou. Uma cifra que decide mede-se duas vezes, de duas formas distintas, antes de ser usada.",
         "CQ-19.4": "Quando um controle tem contraparte na cadeia, ou são o mesmo instrumento com a mesma configuração, ou a diferença está declarada: o que mede cada um, qual manda, e o que pode passar um e falhar o outro. Um controle local mais permissivo do que o que decide é um verde que mente.",
         "CQ-20.1": "Um comando que se apresenta como de somente leitura corre sem permissão de escrever, e o privilégio com o qual correu declara-se ao lado do seu resultado. Um instrumento que escreve enquanto diz que não deixa o dono decidindo sobre um estado que o próprio instrumento mudou.",
-        "CQ-20.2": "Uma sonda que exerce uma operação destrutiva para comprovar que está impedida corre onde a sua sentença não pode aterrissar, e o seu reporte prova que o estado ficou idêntico contando-o antes e depois. Uma sonda cujo dano depende de que o impedimento funcione não verifica o impedimento: aposta nele."
+        "CQ-20.2": "Uma sonda que exerce uma operação destrutiva para comprovar que está impedida corre onde a sua sentença não pode aterrissar, e o seu reporte prova que o estado ficou idêntico contando-o antes e depois. Uma sonda cujo dano depende de que o impedimento funcione não verifica o impedimento: aposta nele.",
+        "CQ-21.1": "Toda porta com duplo de prova tem ao menos uma corrida que a atravessa até o outro lado de verdade, e o outro lado é aquilo que a porta está duplicando: se ali há um navegador, um sistema operativo, uma base ou a rede, não há forma de cumpri-la sem isso, e nenhuma quantidade de duplos fiéis a substitui.",
+        "CQ-21.2": "Um artefato de verificação que ninguém correu conta zero e não meia verificação, e a sua cifra viaja ao reporte onde se decide e não só ao arquivo onde o artefato vive: um número que há que ir buscar não freia ninguém.",
+        "CQ-21.3": "Uma execução informa até que passo chegou, e os passos que não alcançou não passaram nem falharam: quando se arruma o que falhou, o caso volta a correr inteiro e deixa uma fila de execução nova posterior ao arranjo, e uma correção não se fecha com a verificação do passo que falhou."
       },
       "face_titles": {
         "CQ-19.1": "O denominador",
@@ -404,7 +422,10 @@
         "CQ-19.3": "O universo, nas duas direções",
         "CQ-19.4": "O irmão frouxo",
         "CQ-20.1": "O efeito não declarado",
-        "CQ-20.2": "A sonda que só é inofensiva quando falha"
+        "CQ-20.2": "A sonda que só é inofensiva quando falha",
+        "CQ-21.1": "O outro lado de verdade",
+        "CQ-21.2": "Escrito não é corrido",
+        "CQ-21.3": "O caso volta inteiro"
       }
     },
     "fr": {
@@ -465,6 +486,7 @@
         "CQ-18": "L'accessibilité de base se vérifie toute seule : contraste, etiquettes sur les champs, focus visible, navigation au clavier dans les flux principaux, images avec texte alternatif.",
         "CQ-19": "Tout instrument avec lequel le projet décide déclare les conditions dans lesquelles son chiffre vaut : quel ensemble il s'attendait à parcourir et combien il a parcouru, de quoi il dépend, et ce qu'il rapporte quand il n'a pas pu regarder. Un instrument dont le silence se lit comme la santé ne mesure pas : il rassure.",
         "CQ-20": "Une vérification tourne avec le privilège minimum pour vérifier et avec aucun de plus, et le fait qu'elle n'a pas pu faire de dégât se mesure, il ne se promet pas.",
+        "CQ-21": "Toute vérification déclare jusqu'où sa course est allée, et ce qui est resté au-delà de ce point se compte comme non vérifié et jamais comme sain : un double qu'aucune course ne traverse, un artefact que personne n'a fait tourner et une étape qu'aucune exécution n'a atteinte ne disent pas que ce qui est devant marche, ils disent que personne n'a regardé.",
         "UX-01": "Chaque groupe du menu se nomme par un travail de l'utilisateur (dans son vocabulaire, avec le glossaire du projet), jamais par un module technique ni par une entité de données.",
         "UX-02": "Chaque fonctionnalité a exactement une maison canonique. Si elle sert deux groupes, on choisit une maison et l'autre pointe vers elle ; l'entrée n'est pas dupliquée.",
         "UX-03": "Il n'y a pas d'orphelines : chaque fonctionnalité déclarée est accessible depuis l'écran d'entrée en trois étapes au plus.",
@@ -500,7 +522,10 @@
         "CQ-19.3": "Tout filtre, toute recherche et toute sélection déclare l'univers sur lequel il a tourné : \"je n'ai rien trouvé\" et \"je n'ai pas tourné\" sont deux résultats différents et ne s'écrivent pas pareil, et un filtre qui a rendu de trop ne s'est pas appliqué non plus. Un chiffre qui décide se mesure deux fois, de deux façons différentes, avant d'être utilisé.",
         "CQ-19.4": "Quand un contrôle a une contrepartie dans la chaîne, ou bien ce sont le même instrument avec la même configuration, ou bien la différence est déclarée : ce que mesure chacun, lequel commande, et ce qui peut passer l'un et échouer l'autre. Un contrôle local plus permissif que celui qui décide est un vert qui ment.",
         "CQ-20.1": "Une commande qui se présente comme en lecture seule tourne sans permission d'écrire, et le privilège avec lequel elle a tourné se déclare à côté de son résultat. Un instrument qui écrit en disant qu'il ne le fait pas laisse le propriétaire décider sur un état que l'instrument lui-même a changé.",
-        "CQ-20.2": "Une sonde qui exerce une opération destructrice pour vérifier qu'elle est empêchée tourne là où son instruction ne peut pas atterrir, et son rapport prouve que l'état est resté identique en le comptant avant et après. Une sonde dont le dégât dépend du bon fonctionnement de l'empêchement ne vérifie pas l'empêchement : elle parie dessus."
+        "CQ-20.2": "Une sonde qui exerce une opération destructrice pour vérifier qu'elle est empêchée tourne là où son instruction ne peut pas atterrir, et son rapport prouve que l'état est resté identique en le comptant avant et après. Une sonde dont le dégât dépend du bon fonctionnement de l'empêchement ne vérifie pas l'empêchement : elle parie dessus.",
+        "CQ-21.1": "Tout port avec un double de test a au moins une course qui le traverse jusqu'au vrai autre côté, et l'autre côté est ce que le port double : s'il y a là un navigateur, un système d'exploitation, une base ou le réseau, il n'y a pas moyen de la satisfaire sans cela, et aucune quantité de doubles fidèles ne la remplace.",
+        "CQ-21.2": "Un artefact de vérification que personne n'a fait tourner compte zéro et non une demi-vérification, et son chiffre voyage jusqu'au rapport où l'on décide et pas seulement jusqu'au fichier où vit l'artefact : un chiffre qu'il faut aller chercher n'arrête personne.",
+        "CQ-21.3": "Une exécution rapporte jusqu'à quelle étape elle est allée, et les étapes qu'elle n'a pas atteintes n'ont ni passé ni échoué : quand on répare ce qui a échoué, le cas est refait tourner en entier et laisse une nouvelle ligne d'exécution postérieure à la réparation, et une correction ne se ferme pas avec la vérification de l'étape qui a échoué."
       },
       "face_titles": {
         "CQ-19.1": "Le dénominateur",
@@ -508,7 +533,10 @@
         "CQ-19.3": "L'univers, dans les deux sens",
         "CQ-19.4": "Le frère laxiste",
         "CQ-20.1": "L'effet non déclaré",
-        "CQ-20.2": "La sonde qui n'est inoffensive que quand elle échoue"
+        "CQ-20.2": "La sonde qui n'est inoffensive que quand elle échoue",
+        "CQ-21.1": "Le vrai autre côté",
+        "CQ-21.2": "Écrit n'est pas couru",
+        "CQ-21.3": "Le cas revient entier"
       }
     },
     "de": {
@@ -569,6 +597,7 @@
         "CQ-18": "Die grundlegende Barrierefreiheit wird selbst geprüft: Kontrast, Feldbeschriftungen, sichtbarer Fokus, Tastaturnavigation in den Hauptabläufen, Bilder mit Alternativtext.",
         "CQ-19": "Jedes Instrument, mit dem das Projekt entscheidet, erklärt die Bedingungen, unter denen seine Zahl gilt: welche Menge es zu durchlaufen erwartete und wie viel es durchlief, wovon es abhängt und was es meldet, wenn es nicht hinsehen konnte. Ein Instrument, dessen Schweigen sich wie Gesundheit liest, misst nicht: es beruhigt.",
         "CQ-20": "Eine Überprüfung läuft mit dem geringsten Privileg, das sie zum Überprüfen braucht, und mit keinem mehr, und dass sie keinen Schaden anrichten konnte, wird gemessen und nicht versprochen.",
+        "CQ-21": "Jede Überprüfung erklärt, wie weit ihr Lauf gekommen ist, und was jenseits dieses Punktes blieb, zählt als nicht überprüft und niemals als gesund: ein Double, das kein Lauf durchquert, ein Artefakt, das niemand laufen ließ, und ein Schritt, den keine Ausführung erreichte, sagen nicht, dass das Dahinterliegende funktioniert, sie sagen, dass niemand hingesehen hat.",
         "UX-01": "Jede Menügruppe wird mit einer Arbeit des Nutzers benannt (in seinem Wortschatz, mit dem Glossar des Projekts), niemals mit einem technischen Modul oder einer Datenentität.",
         "UX-02": "Jede Funktionalität hat genau ein kanonisches Zuhause. Dient sie zwei Gruppen, wird ein Zuhause gewählt und aus der anderen verlinkt; der Eintrag wird nicht dupliziert.",
         "UX-03": "Es gibt keine Waisen: jede erklärte Funktionalität ist vom Einstiegsbildschirm aus in nicht mehr als drei Schritten erreichbar.",
@@ -604,7 +633,10 @@
         "CQ-19.3": "Jeder Filter, jede Suche und jede Auswahl erklärt das Universum, über das sie lief: „ich habe nichts gefunden\" und „ich bin nicht gelaufen\" sind zwei verschiedene Ergebnisse und werden nicht gleich geschrieben, und ein Filter, der zu viel zurückgab, wurde ebenfalls nicht angewandt. Eine Zahl, die entscheidet, wird zweimal und auf zwei verschiedene Weisen gemessen, bevor sie benutzt wird.",
         "CQ-19.4": "Wenn eine Prüfung ein Gegenstück in der Kette hat, dann sind es entweder dasselbe Instrument mit derselben Konfiguration, oder der Unterschied ist erklärt: was jede von beiden misst, welche gilt, und was die eine passieren und die andere scheitern lassen kann. Eine lokale Prüfung, die durchlässiger ist als die entscheidende, ist ein Grün, das lügt.",
         "CQ-20.1": "Ein Befehl, der sich als nur lesend ausgibt, läuft ohne Schreibrecht, und das Privileg, mit dem er lief, wird neben seinem Ergebnis erklärt. Ein Instrument, das schreibt, während es sagt, dass es das nicht tut, lässt den Eigentümer über einen Zustand entscheiden, den das Instrument selbst verändert hat.",
-        "CQ-20.2": "Eine Sonde, die einen zerstörenden Vorgang ausführt, um zu prüfen, dass er verhindert wird, läuft dort, wo ihre Anweisung nicht landen kann, und ihr Bericht beweist, dass der Zustand identisch blieb, indem er ihn vorher und nachher zählt. Eine Sonde, deren Schaden davon abhängt, dass die Verhinderung funktioniert, überprüft die Verhinderung nicht: sie wettet auf sie."
+        "CQ-20.2": "Eine Sonde, die einen zerstörenden Vorgang ausführt, um zu prüfen, dass er verhindert wird, läuft dort, wo ihre Anweisung nicht landen kann, und ihr Bericht beweist, dass der Zustand identisch blieb, indem er ihn vorher und nachher zählt. Eine Sonde, deren Schaden davon abhängt, dass die Verhinderung funktioniert, überprüft die Verhinderung nicht: sie wettet auf sie.",
+        "CQ-21.1": "Jeder Port mit einem Test-Double hat mindestens einen Lauf, der ihn bis zur echten anderen Seite durchquert, und die andere Seite ist das, was der Port doppelt: wenn dort ein Browser, ein Betriebssystem, eine Datenbank oder das Netz liegt, gibt es keinen Weg, sie ohne das zu erfüllen, und keine Menge treuer Doubles ersetzt sie.",
+        "CQ-21.2": "Ein Überprüfungsartefakt, das niemand laufen ließ, zählt null und nicht eine halbe Überprüfung, und seine Zahl reist bis in den Bericht, in dem entschieden wird, und nicht nur in die Datei, in der das Artefakt lebt: eine Zahl, die man suchen gehen muss, hält niemanden auf.",
+        "CQ-21.3": "Eine Ausführung berichtet, bis zu welchem Schritt sie kam, und die Schritte, die sie nicht erreichte, sind weder bestanden noch gescheitert: wenn das Gescheiterte behoben ist, läuft der Fall ganz von neuem und lässt eine neue Ausführungszeile nach der Behebung zurück, und eine Korrektur schließt nicht mit der Überprüfung des Schrittes, der gescheitert ist."
       },
       "face_titles": {
         "CQ-19.1": "Der Nenner",
@@ -612,7 +644,10 @@
         "CQ-19.3": "Das Universum, in beiden Richtungen",
         "CQ-19.4": "Der laxe Bruder",
         "CQ-20.1": "Die nicht erklärte Wirkung",
-        "CQ-20.2": "Die Sonde, die nur harmlos ist, wenn sie scheitert"
+        "CQ-20.2": "Die Sonde, die nur harmlos ist, wenn sie scheitert",
+        "CQ-21.1": "Die echte andere Seite",
+        "CQ-21.2": "Geschrieben ist nicht gelaufen",
+        "CQ-21.3": "Der Fall kommt ganz zurück"
       }
     },
     "it": {
@@ -673,6 +708,7 @@
         "CQ-18": "L'accessibilità di base si verifica da sola: contrasto, etichette nei campi, fuoco visibile, navigazione da tastiera nei flussi principali, immagini con testo alternativo.",
         "CQ-19": "Ogni strumento con cui il progetto decide dichiara le condizioni in cui la sua cifra vale: quale insieme si aspettava di percorrere e quanto ne ha percorso, da che cosa dipende, e che cosa informa quando non ha potuto guardare. Uno strumento il cui silenzio si legge come la salute non misura: tranquillizza.",
         "CQ-20": "Una verifica corre con il privilegio minimo per verificare e con nessuno in più, e che non abbia potuto fare danno si misura, non si promette.",
+        "CQ-21": "Ogni verifica dichiara fin dove è arrivata la sua corsa, e quello che è rimasto oltre quel punto si conta come non verificato e mai come sano: un doppio che nessuna corsa attraversa, un artefatto che nessuno ha fatto correre e un passo che nessuna esecuzione ha raggiunto non dicono che quello che sta davanti funziona, dicono che nessuno ha guardato.",
         "UX-01": "Ogni gruppo del menu si nomina con un lavoro dell'utente (nel suo vocabolario, con il glossario del progetto), mai con un modulo tecnico né con un'entità di dati.",
         "UX-02": "Ogni funzionalità ha esattamente una casa canonica. Se serve a due gruppi, si sceglie una casa e dall'altra si collega; la voce non si duplica.",
         "UX-03": "Non ci sono orfane: ogni funzionalità dichiarata è raggiungibile dalla schermata d'ingresso in non più di tre passi.",
@@ -708,7 +744,10 @@
         "CQ-19.3": "Ogni filtro, ricerca o selezione dichiara l'universo su cui ha corso: \"non ho trovato niente\" e \"non ho corso\" sono due risultati diversi e non si scrivono uguale, e un filtro che ha restituito di più non si è applicato nemmeno lui. Una cifra che decide si misura due volte, in due modi diversi, prima di essere usata.",
         "CQ-19.4": "Quando un controllo ha una controparte nella catena, o sono lo stesso strumento con la stessa configurazione, o la differenza è dichiarata: che cosa misura ciascuno, quale comanda, e che cosa può passare l'uno e far cadere l'altro. Un controllo locale più permissivo di quello che decide è un verde che mente.",
         "CQ-20.1": "Un comando che si presenta come di sola lettura corre senza permesso di scrivere, e il privilegio con cui ha corso si dichiara accanto al suo risultato. Uno strumento che scrive mentre dice di non farlo lascia il proprietario a decidere su uno stato che lo strumento stesso ha cambiato.",
-        "CQ-20.2": "Una sonda che esercita un'operazione distruttiva per comprovare che è impedita corre dove la sua istruzione non può atterrare, e il suo rapporto prova che lo stato è rimasto identico contandolo prima e dopo. Una sonda il cui danno dipende dal fatto che l'impedimento funzioni non verifica l'impedimento: ci scommette."
+        "CQ-20.2": "Una sonda che esercita un'operazione distruttiva per comprovare che è impedita corre dove la sua istruzione non può atterrare, e il suo rapporto prova che lo stato è rimasto identico contandolo prima e dopo. Una sonda il cui danno dipende dal fatto che l'impedimento funzioni non verifica l'impedimento: ci scommette.",
+        "CQ-21.1": "Ogni porta con doppio di prova ha almeno una corsa che la attraversa fino all'altro lato vero, e l'altro lato è quello che la porta sta doppiando: se lì c'è un navigatore, un sistema operativo, una base o la rete, non c'è modo di soddisfarla senza quello, e nessuna quantità di doppi fedeli la sostituisce.",
+        "CQ-21.2": "Un artefatto di verifica che nessuno ha fatto correre conta zero e non mezza verifica, e la sua cifra viaggia fino al rapporto dove si decide e non solo fino al file dove vive l'artefatto: una cifra che bisogna andare a cercare non ferma nessuno.",
+        "CQ-21.3": "Un'esecuzione informa fino a quale passo è arrivata, e i passi che non ha raggiunto non sono passati né falliti: quando si ripara quello che è fallito, il caso torna a correre intero e lascia una riga di esecuzione nuova posteriore alla riparazione, e una correzione non si chiude con la verifica del passo che è fallito."
       },
       "face_titles": {
         "CQ-19.1": "Il denominatore",
@@ -716,7 +755,10 @@
         "CQ-19.3": "L'universo, nelle due direzioni",
         "CQ-19.4": "Il fratello lasso",
         "CQ-20.1": "L'effetto non dichiarato",
-        "CQ-20.2": "La sonda che è innocua solo quando falla"
+        "CQ-20.2": "La sonda che è innocua solo quando falla",
+        "CQ-21.1": "L'altro lato vero",
+        "CQ-21.2": "Scritto non è corso",
+        "CQ-21.3": "Il caso torna intero"
       }
     },
     "ja": {
@@ -777,6 +819,7 @@
         "CQ-18": "基本的なアクセシビリティは自動で検証される。コントラスト、欄のラベル、可視のフォーカス、主要なフローでのキーボードナビゲーション、代替テキストを持つ画像である。",
         "CQ-19": "プロジェクトが判断に使うすべての道具は、その数字が有効である条件を宣言する。どの集合を走査する予定でどれだけ走査したか、何に依存しているか、そして見ることができなかったときに何を報告するか。沈黙が健全と同じに読める道具は測っていない。安心させているだけである。",
         "CQ-20": "検証は、検証するために必要な最小の特権で走り、それ以上では走らない。そして害を与えられなかったことは測られるのであり、約束されるのではない。",
+        "CQ-21": "すべての検証は、その走行がどこまで届いたかを宣言する。そしてその地点より先に残ったものは、未検証として数えられ、決して健全として数えられない。どの走行も通り抜けないダブル、誰も走らせなかった成果物、どの実行も届かなかった手順は、その先が動くと言っているのではない。誰も見なかったと言っているのである。",
         "UX-01": "メニューの各グループはユーザーの仕事で名付けられる（その人の語彙で、プロジェクトの用語集を用いて）。技術的なモジュールでもデータのエンティティでも決してない。",
         "UX-02": "各機能はちょうど一つの正規の家を持つ。二つのグループに役立つなら、一つの家を選び、もう一方からはリンクする。入口は複製しない。",
         "UX-03": "孤児はない。宣言されたすべての機能は入口画面から三ステップ以内で到達可能である。",
@@ -812,7 +855,10 @@
         "CQ-19.3": "すべてのフィルタ、検索、選択は、自分が走った母集団を宣言する。「何も見つからなかった」と「走らなかった」は二つの異なる結果であり、同じようには書かれない。そして多く返したフィルタもまた適用されていない。判断を左右する数字は、使う前に二度、異なる二つの方法で測る。",
         "CQ-19.4": "ある検査が連鎖のなかに対応物を持つとき、両者は同じ設定の同じ道具であるか、さもなければ差が宣言されている。それぞれが何を測るか、どちらが決めるか、そして一方を通って他方で落ちうるのは何か。決める側より緩い手元の検査は、嘘をつく緑である。",
         "CQ-20.1": "読み取り専用として提示されるコマンドは、書き込みの許可なしで走り、走った特権はその結果の横に宣言される。そうではないと言いながら書き込む道具は、その道具自身が変えた状態について所有者に判断させることになる。",
-        "CQ-20.2": "破壊的な操作が阻止されていることを確かめるためにそれを行使する探りは、その命令が着地できない場所で走り、その報告は、前と後に数えることで状態が同一のままだったことを証明する。害が阻止の動作にかかっている探りは、阻止を検証していない。賭けているだけである。"
+        "CQ-20.2": "破壊的な操作が阻止されていることを確かめるためにそれを行使する探りは、その命令が着地できない場所で走り、その報告は、前と後に数えることで状態が同一のままだったことを証明する。害が阻止の動作にかかっている探りは、阻止を検証していない。賭けているだけである。",
+        "CQ-21.1": "テストのダブルを持つすべてのポートは、それを本当の向こう側まで通り抜ける走行を少なくとも一つ持つ。そして向こう側とは、そのポートがダブルで置き換えているものである。そこにブラウザ、オペレーティングシステム、データベース、あるいはネットワークがあるなら、それなしでこれを満たす方法はなく、どれだけ忠実なダブルを並べてもこれの代わりにはならない。",
+        "CQ-21.2": "誰も走らせなかった検証の成果物はゼロと数えられ、半分の検証とは数えられない。そしてその数字は、成果物が住むファイルだけでなく、決定が下される報告まで旅をする。探しに行かなければならない数字は、誰も止めない。",
+        "CQ-21.3": "一回の実行は、どの手順まで届いたかを報告する。そして届かなかった手順は、通ったのでも落ちたのでもない。落ちたものが直されたときは、ケースは丸ごと走り直し、修正より後の新しい実行の行を残す。そして修正は、落ちた手順の検証だけで閉じられない。"
       },
       "face_titles": {
         "CQ-19.1": "分母",
@@ -820,7 +866,10 @@
         "CQ-19.3": "母集団、両方向で",
         "CQ-19.4": "甘い兄弟",
         "CQ-20.1": "宣言されない作用",
-        "CQ-20.2": "失敗したときだけ無害な探り"
+        "CQ-20.2": "失敗したときだけ無害な探り",
+        "CQ-21.1": "本当の向こう側",
+        "CQ-21.2": "書かれたことは走ったことではない",
+        "CQ-21.3": "ケースは丸ごと戻る"
       }
     },
     "zh": {
@@ -881,6 +930,7 @@
         "CQ-18": "基本无障碍自行验证：对比度、字段标签、可见焦点、主要流程中的键盘导航、带替代文本的图片。",
         "CQ-19": "项目用来做判断的每一件器具，都声明它的数字在什么条件下成立：它预期要走遍哪个集合、实际走了多少、它依赖什么，以及它看不到的时候报告什么。沉默读起来和健康一样的器具不是在测量：是在安慰。",
         "CQ-20": "一次验证以验证所需的最小特权运行，不多一分；而它没能造成损害这件事是被测量出来的，不是被承诺的。",
+        "CQ-21": "每一次验证都声明它那趟运行走到了哪里；而留在那个点之外的东西，算作未经验证，绝不算作健康：没有任何一趟运行穿过的替身、没有人跑过的产物、没有任何一次执行到达过的步骤，它们说的不是前面那些能用，而是没有人看过。",
         "UX-01": "菜单的每个分组都用一个用户的工作来命名（用他的词汇，用项目的术语表），绝不用技术模块或数据实体命名。",
         "UX-02": "每个功能恰好有一个归口。如果它服务两个分组，就选一个归口，从另一个链接过去；入口不复制。",
         "UX-03": "没有孤儿：每个声明的功能都能从入口页面在三步之内到达。",
@@ -916,7 +966,10 @@
         "CQ-19.3": "每一个过滤、检索或选择，都要声明自己是在哪个全集上跑的：“我什么也没找到”和“我没有跑”是两个不同的结果，不能写成一样；而返回得过多的过滤器，同样是没有被应用上。一个用来做决定的数字，要在被使用之前用两种不同的方式测两次。",
         "CQ-19.4": "当一项检查在链条上另有对应，那么要么两者是同一件器具、同一套配置，要么差异被声明出来：各自测什么、哪一个说话算数、什么情况下能通过一个而在另一个那里不过。比那个做决定的更宽松的本地检查，是一个说谎的绿。",
         "CQ-20.1": "一条自称只读的命令，要在没有写权限的情况下运行，而它运行时所带的特权要声明在它的结果旁边。一件嘴上说不写、手上却在写的器具，等于让所有者去对一个它自己改过的状态做判断。",
-        "CQ-20.2": "为了确认某个破坏性操作已被阻止而去执行它的探针，要跑在它的那条语句落不下来的地方；而它的报告要通过前后各数一次，证明状态保持原样。损害与否取决于阻止机制是否生效的探针，并没有在验证那个阻止：它只是在赌。"
+        "CQ-20.2": "为了确认某个破坏性操作已被阻止而去执行它的探针，要跑在它的那条语句落不下来的地方；而它的报告要通过前后各数一次，证明状态保持原样。损害与否取决于阻止机制是否生效的探针，并没有在验证那个阻止：它只是在赌。",
+        "CQ-21.1": "每一个带测试替身的端口，都至少有一趟穿过它、直到真正另一侧的运行；而另一侧就是这个端口正在替代的那个东西：如果那里是浏览器、操作系统、数据库或者网络，那就没有办法在不动用它的情况下满足这一条，而且再多再忠实的替身也替代不了它。",
+        "CQ-21.2": "没有人跑过的验证产物算零，不算半次验证；而它的数字要走到做决定的那份报告里，而不是只留在产物所住的那个文件里：一个需要人专门去找的数字，拦不住任何人。",
+        "CQ-21.3": "一次执行报告的是它走到了第几步；它没有到达的那些步骤，既没有通过也没有失败：当失败的那件事被修好之后，用例要整条重跑一遍，并留下一行晚于修复的新执行记录；而一次纠正，不以那个失败步骤的验证来关闭。"
       },
       "face_titles": {
         "CQ-19.1": "分母",
@@ -924,7 +977,10 @@
         "CQ-19.3": "全集，在两个方向上",
         "CQ-19.4": "宽松的兄弟",
         "CQ-20.1": "没有被声明的作用",
-        "CQ-20.2": "只在失败时才无害的探针"
+        "CQ-20.2": "只在失败时才无害的探针",
+        "CQ-21.1": "真正的另一侧",
+        "CQ-21.2": "写下来不等于跑过",
+        "CQ-21.3": "用例要整条回来"
       }
     }
   }

@@ -65,6 +65,13 @@ o agente:
 > runs it, and written into the register of that destination. A defect of the method or of the
 > tool filed in the product's register is a defect nobody is ever going to fix.
 >
+> And when this closing touches manual test cases, declare its reach with three fixed keys:
+> `cases_touched`, how many cases this closing touches; `cases_with_an_execution_row`, how many of
+> those a person has signed with a date and a name; and `executed_by`, who signed them. When the
+> answer is none, say it in so many words: a case that is written and that nobody ran is not half a
+> verification, it is zero with the appearance of one (Annex H, CQ-21.2). Read the figures from the
+> signed execution tables and from nothing else, never from your own reading of the system.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -96,6 +103,13 @@ o agente:
 > defeito é do sistema, `method` se é do método que se está seguindo, `tool` se é da ferramenta
 > que o roda, e escrito no registro desse destino. Um defeito do método ou da ferramenta anotado
 > no registro do produto é um defeito que ninguém vai corrigir nunca.
+>
+> E quando este fechamento toca casos de prova manual, declare o seu alcance com três chaves fixas:
+> `cases_touched`, quantos casos toca este fechamento; `cases_with_an_execution_row`, quantos
+> desses assinou uma pessoa com data e nome; e `executed_by`, quem os assinou. Quando a resposta
+> seja nenhum, diga-o com todas as letras: um caso escrito que ninguém correu não é meia
+> verificação, é zero com a aparência de uma (Anexo H, CQ-21.2). As cifras saem das tabelas de
+> execução assinadas e de nada mais, nunca da sua própria leitura do sistema.
 >
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
@@ -167,7 +181,8 @@ Cada relatório do agente com:
 - E quando o relatório produz achados sobre como trabalhamos e não sobre o que construímos,
   `findings_by_destination`: cada achado com o seu destino —produto, método ou ferramenta— e
   escrito no registro desse destino.
-
+- E quando o fechamento toca casos manuais: `cases_touched`, `cases_with_an_execution_row` e
+  `executed_by`, com todas as letras quando a resposta é nenhum.
 ## 4. Verificação de completude
 
 - Estão os três blocos? Se "acreditado" e "pontos cegos" estão sempre vazios, o agente não está
@@ -179,7 +194,8 @@ Cada relatório do agente com:
 - Disse "pronto" seco alguma vez? É uma violação do contrato.
 - Os achados que não são do sistema ficaram com o seu destino atribuído, e abertos no registro que
   lhes toca? O método e a ferramenta não se corrigem a partir do registro do produto.
-
+- O reporte diz quantos casos manuais toca este fechamento e quantos assinou uma pessoa? Se a cifra
+  está só no arquivo dos casos, ninguém a lê: um número que há que ir buscar não freia ninguém.
 ## 5. Sinais de alerta
 
 - Dez relatórios seguidos sem nenhum ponto cego. Ninguém vê tudo; o bloco está vazio por costume,
@@ -187,3 +203,5 @@ Cada relatório do agente com:
 - O bloco "verificado" tem frases como "deveria funcionar". É "acreditado" disfarçado.
 - O relatório é mais longo do que a mudança. Um relatório proporcional diz o que há que dizer; um
   inflado está tapando algo com volume.
+- O reporte diz que o bloco está verificado e os casos manuais desse bloco têm a tabela de
+  execuções vazia. Escrito não é corrido.

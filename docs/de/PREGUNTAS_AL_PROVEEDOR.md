@@ -145,7 +145,7 @@ Was man sehen kann: das Protokoll der Benutzbarkeitsregeln mit ihrem Ergebnis, u
 Ausnahmen mit dem geschriebenen Grund, wer es genehmigt hat und wann es überprüft wird. Ein System
 kann alle technischen Prüfungen bestehen und unbenutzbar sein: alles grün, und die Person findet
 nicht, wo sie abrechnen soll.
-*(Anhang H, die siebenundzwanzig Benutzbarkeitsregeln.)*
+*(Anhang H, die achtundzwanzig Benutzbarkeitsregeln.)*
 
 **16. Bewachen die Tests, die du mir gezeigt hast, wirklich, oder dekorieren sie?**
 Was man sehen kann: der Mutationswert. Es ist ein Programm, das absichtlich Fehler einbaut und zählt,

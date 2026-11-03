@@ -982,6 +982,13 @@ N7 结束之后，这条路和梯子汇合：第 5 到 10 级台阶随每条待�
 > block, each with its own evidence. The commit message says "proved red against [version]" and
 > the test counts.
 >
+> And two things this correction does not close without. If it was born from a manual test case, it
+> does not close with the verification of the step that failed: the case runs again WHOLE, a person
+> signs a new execution row later than the fix, and that row is what closes it (Annex H, CQ-21.3).
+> And for every port you doubled for testing, one run that crosses it to the real other side,
+> recorded in the producer/consumer map under `crossing_run` (CQ-21.1): a test against a fake
+> environment crossed the real adapter and still never saw the event.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -1001,6 +1008,12 @@ N7 结束之后，这条路和梯子汇合：第 5 到 10 级台阶随每条待�
 > 前行为、而可能有人依赖它，明确说出来：那是我的一个决定，不是一个副作用。把这个模块里和它配对
 > 的规范化待办项在同一个功能块里关闭，每一条都带自己的证据。提交信息里写"对着[版本]先证红"以及
 > 测试的数字。
+>
+> 还有两件事，没有它们这次纠正就不关闭。如果它是从一个人工测试用例里生出来的，那它不以那个失败步
+> 骤的验证来关闭：用例要整条重跑一遍，由一个人签下一行晚于修复的新执行记录，而关闭它的正是那一行
+> （附录 H，CQ-21.3）。而每一个你为了测试加了替身的端口，都要有一趟穿过它、直到真正另一侧的运行，
+> 记在生产者-消费者地图的 `crossing_run` 下面（CQ-21.1）：一个针对撒谎环境的测试，穿过了真正的适配
+> 器，却依然没有看见那个事件。
 >
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的

@@ -103,6 +103,14 @@ machst es, nicht der Agent:
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
 >
+> And for every port you doubled for testing in this item, show me one run that crosses it to the
+> real other side -- the browser, the operating system, the database, the network -- and record it
+> in `docs/PRODUCER_CONSUMER_MAP.md` under `crossing_run`. A test that instantiates the real adapter
+> against a fake environment crossed the real code and still never saw the event, so it does not
+> count: no quantity of faithful doubles replaces the other side (Annex H, CQ-21.1). If you cannot
+> run it, tell me which port is left with no crossing run and write `none` there, which is a
+> declared hole and not a green.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -137,6 +145,14 @@ machst es, nicht der Agent:
 > prüft die Berechtigung auf dem Server, denn den Einstiegspunkt zu
 > verstecken schützt nichts (Anhang H, UX-11, UX-12, UX-15). Eine Matrix,
 > die nichts ausübt, ist ein Dokument, das niemand liest.
+>
+> Und für jeden Port, den du in diesem Punkt zum Testen gedoppelt hast, zeig mir einen Lauf, der
+> ihn bis zur echten anderen Seite durchquert —den Browser, das Betriebssystem, die Datenbank, das
+> Netz— und trag ihn in `docs/PRODUCER_CONSUMER_MAP.md` unter `crossing_run` ein. Ein Test, der den
+> echten Adapter gegen eine erlogene Umgebung instanziiert, hat den echten Code durchquert und das
+> Ereignis weiterhin nicht gesehen, also zählt er nicht: keine Menge treuer Doubles ersetzt die
+> andere Seite (Anhang H, CQ-21.1). Kannst du ihn nicht laufen lassen, sag mir, welcher Port ohne
+> durchquerenden Lauf bleibt, und schreib dort `none`, was ein erklärtes Loch ist und kein Grün.
 >
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
@@ -265,7 +281,9 @@ der Anfang eines offenen Postens. Nicht-Testbarkeit ist Schuld, und Schulden wer
 - Prüft der Bildschirmtest auch die Wirkung im Backend?
 - Beim Abschluss des Blocks: sind alle Flüsse in der Ende-zu-Ende-Batterie, oder gibt es einen,
   der „durch die Unit-Tests abgedeckt wird“?
-
+- Hat jeder Port, den dieser Punkt gedoppelt hat, seinen durchquerenden Lauf, und ist die andere
+  Seite die echte? Ein Test, der den echten Adapter gegen eine erlogene Umgebung instanziiert, hat
+  den echten Code durchquert und das Ereignis nicht gesehen.
 ## 5. Warnsignale
 
 - Alle neuen Tests der Woche waren auf Anhieb grün, und nie wurde ein Rot gezeigt. Entweder lässt
@@ -277,3 +295,6 @@ der Anfang eines offenen Postens. Nicht-Testbarkeit ist Schuld, und Schulden wer
   Version und ohne Zahlen. Ein Rot ohne Beleg ist so viel wert wie keines.
 - Du kommst zur Produktionsfreigabe und die vollständige Ende-zu-Ende-Batterie läuft zum ersten
   Mal. Die Blockabschlüsse haben gefehlt.
+- Der Punkt berührte eine Ansicht mit einem gedoppelten Port, und die Suite hat keinen einzigen
+  Lauf, der ein Steuerelement wirklich drückt. Einundachtzig grüne Dateien können vier tote
+  Steuerelemente verdecken.

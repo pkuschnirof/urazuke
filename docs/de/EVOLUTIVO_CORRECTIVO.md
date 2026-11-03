@@ -1252,6 +1252,13 @@ geschriebene Reproduktion jede Runde ein anderes Symptom repariert.
 > block, each with its own evidence. The commit message says "proved red against [version]" and
 > the test counts.
 >
+> And two things this correction does not close without. If it was born from a manual test case, it
+> does not close with the verification of the step that failed: the case runs again WHOLE, a person
+> signs a new execution row later than the fix, and that row is what closes it (Annex H, CQ-21.3).
+> And for every port you doubled for testing, one run that crosses it to the real other side,
+> recorded in the producer/consumer map under `crossing_run` (CQ-21.1): a test against a fake
+> environment crossed the real adapter and still never saw the event.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -1276,6 +1283,14 @@ geschriebene Reproduktion jede Runde ein anderes Symptom repariert.
 > abhängen könnte, sag es ausdrücklich: das ist eine Entscheidung für mich, kein Nebeneffekt.
 > Schließ die gepaarten Normalisierungsposten dieses Moduls im selben Block, jeden mit seinem
 > eigenen Beleg. Die Commit-Nachricht sagt „rot bewiesen gegen [Version]“ und die Testzahlen.
+>
+> Und zwei Dinge, ohne die diese Korrektur nicht schließt. Ist sie aus einem manuellen Testfall
+> geboren, schließt sie nicht mit der Überprüfung des Schrittes, der gescheitert ist: der Fall läuft
+> GANZ von neuem, ein Mensch unterschreibt eine neue Ausführungszeile nach der Behebung, und diese
+> Zeile ist es, die sie schließt (Anhang H, CQ-21.3). Und für jeden Port, den du zum Testen
+> gedoppelt hast, ein Lauf, der ihn bis zur echten anderen Seite durchquert, eingetragen in die
+> Produzent/Konsument-Karte unter `crossing_run` (CQ-21.1): ein Test gegen eine erlogene Umgebung
+> durchquerte den echten Adapter und sah das Ereignis weiterhin nicht.
 >
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,

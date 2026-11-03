@@ -414,6 +414,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "anchor": 2
+        },
+        {
+          "text": "For every port this item doubled, is there one run that crosses it to the real other side? A test that instantiates the real adapter against a fake environment went through the adapter and still never saw the event (CQ-21.1).",
+          "since_schema": 2,
+          "since_version": "2026.10.16",
+          "decision": "D-087"
         }
       ],
       "evaluators": [
@@ -617,6 +623,15 @@
           "label": "the agent walked the screens itself to find defects, with the denominator of how many there are, and that walk is not the execution a person owes",
           "since_schema": 2,
           "since_version": "2026.10.14"
+        },
+        {
+          "path": "docs/MANUAL_TESTS.md",
+          "must_contain": [
+            "rerun_after_a_fix"
+          ],
+          "label": "a case that failed and whose failure was fixed comes back whole: the file carries the re-run later than the fix, covering every step, and not only the verification of the step that failed",
+          "since_schema": 2,
+          "since_version": "2026.10.16"
         }
       ],
       "verify": [
@@ -646,6 +661,12 @@
           "since_schema": 2,
           "since_version": "2026.10.15",
           "decision": "D-083"
+        },
+        {
+          "text": "Does every case that failed and was fixed have an execution row LATER than the fix covering all of its steps, instead of closing on the row that failed? A row reports how far the person got: the steps it did not reach neither passed nor failed (CQ-21.3).",
+          "since_schema": 2,
+          "since_version": "2026.10.16",
+          "decision": "D-087"
         }
       ],
       "evaluators": [
@@ -685,11 +706,35 @@
           "path": "docs/GOTCHAS.md",
           "min_bytes": 50,
           "label": "registro de anti-patrones"
+        },
+        {
+          "path": "docs/PRODUCER_CONSUMER_MAP.md",
+          "must_contain": [
+            "ports_with_a_test_double",
+            "ports_total.{0,20}\\d",
+            "ports_with_a_crossing_run.{0,20}\\d",
+            "crossing_run[\\s\\S]{0,200}(browser|operating_system|database|network|none)"
+          ],
+          "label": "the map carries the ports that were doubled for testing, with its denominator: how many ports have a double, how many of those have a run that crosses them to the real other side, and what that other side is. A port whose crossing run says none is a declared hole and not an absence nobody wrote down",
+          "since_schema": 2,
+          "since_version": "2026.10.16"
         }
       ],
       "verify": [
         "El mapa nombra cada estructura compartida con sus lectores y escritores?",
-        "Cada golpe de los ultimos bloques esta en GOTCHAS.md con su regla?"
+        "Cada golpe de los ultimos bloques esta en GOTCHAS.md con su regla?",
+        {
+          "text": "Does every port that was doubled for testing carry the run that crosses it to the real other side, and does that other side name what the port is doubling -- a browser, an operating system, a database, the network -- instead of another double?",
+          "since_schema": 2,
+          "since_version": "2026.10.16",
+          "decision": "D-087"
+        },
+        {
+          "text": "Do ports_total and ports_with_a_crossing_run come from the same table they describe, so that a port with no crossing run is visible instead of being left out of the denominator?",
+          "since_schema": 2,
+          "since_version": "2026.10.16",
+          "decision": "D-087"
+        }
       ],
       "evaluators": [
         {
@@ -730,6 +775,17 @@
           "label": "the routine assigns each finding its destination: product, method or tool",
           "since_schema": 2,
           "since_version": "2026.10.13"
+        },
+        {
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "cases_touched",
+            "cases_with_an_execution_row",
+            "executed_by"
+          ],
+          "label": "the honest report declares the reach of the manual cases of this closing: how many it touches, how many of those have a signed execution row, and who signed them -- in the report where decisions are made and not only in the file where the case lives",
+          "since_schema": 2,
+          "since_version": "2026.10.16"
         }
       ],
       "verify": [
@@ -752,6 +808,12 @@
           "since_schema": 2,
           "since_version": "2026.10.13",
           "decision": "D-080"
+        },
+        {
+          "text": "Does the report say how many manual cases this closing touches, how many of them a person signed and who, with all the letters when the answer is none? A figure somebody has to go and look for stops nobody (CQ-21.2).",
+          "since_schema": 2,
+          "since_version": "2026.10.16",
+          "decision": "D-087"
         }
       ],
       "evaluators": [

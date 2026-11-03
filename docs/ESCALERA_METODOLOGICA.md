@@ -227,8 +227,7 @@ Cada peldaño tiene ocho partes, siempre las mismas, para que se puedan comparar
   señales de alarma.
 
 Y hay una parte más, que aparece **sólo en seis peldaños** y es una pieza transversal que
-cambia qué hay que leer: el **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Son
-cuarenta y ocho reglas verificables —veinte de calidad del código y veintiocho de
+cambia qué hay que leer: el **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Son cuarenta y nueve reglas verificables —veintiuna de calidad del código y veintiocho de
 usabilidad—, cada una con su identificador estable, su severidad y el instrumento que la mide. No
 es un apéndice opcional: **es obligatorio**, y se engancha a la escalera en seis puntos. En el
 peldaño 2 entran sus dos **entradas previas** (el glosario del usuario y la lista de perfiles: las
@@ -242,7 +241,7 @@ haberlo descubierto tarde: el anexo estuvo obligatorio y sin nombrar en este doc
 primer lector que adaptó el método a otro formato se salteó veintisiete de las cuarenta y cinco
 reglas porque nunca supo que existían.
 
-Y una de esas cuarenta y ocho no es sobre el sistema que se construye, sino sobre **cómo se te
+Y una de esas cuarenta y nueve no es sobre el sistema que se construye, sino sobre **cómo se te
 pregunta**. Es la **UX-28**, y entró el 2026-10-27 porque faltaba: el método les ordena a sus
 prompts preguntarte —veintidós veces, en más de la mitad del corpus— y no decía en ninguna parte
 cómo se pregunta, así que la forma quedaba a la improvisación y vos recibías la pregunta suelta.
@@ -878,9 +877,8 @@ primera adaptación del método a otro formato, acreditada en la Parte F.)
   una auditoría encontró porque ningún límite los había frenado [Ref. 41](REFERENCIAS.md#ref-41);
   el número de calidad que empeora sin que nadie lo vea [Ref. 35](REFERENCIAS.md#ref-35).
 - **Anexo H**: ancla 3 del [Anexo H](ANEXO_HEURISTICAS.md), y es la más grande de las cinco: acá la
-  compuerta se extiende de la calidad del código a la **usabilidad**. El catálogo de las cuarenta y
-  ocho reglas está declarado y activo por grupo —y dos de ellas, las del recibo, se informan
-  cara por cara—; cada regla activa tiene su instrumento, su
+  compuerta se extiende de la calidad del código a la **usabilidad**. El catálogo de las cuarenta y nueve reglas está
+  declarado y activo por grupo —y tres de ellas se informan cara por cara—; cada regla activa tiene su instrumento, su
   severidad y su verificador; cada regla **apagada** tiene su registro con motivo, quién lo autoriza
   y fecha de revisión —apagada sin registro es rojo, que no es lo mismo que la regla ausente—; cada
   umbral que el dueño no declaró se publica como no declarado en vez de inventarse; y el reporte sale
@@ -1601,7 +1599,8 @@ si la pieza no está, la compuerta de ese peldaño no da verde. Hay cinco, en lo
 de lo que se mide.
 
 **Anexo H** — El anexo de heurísticas del método ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)):
-cuarenta y ocho reglas verificables, veinte de calidad del código y veintiocho de usabilidad,
+cuarenta y nueve reglas verificables, veintiuna de calidad del código y veintiocho de
+usabilidad,
 cada una con su identificador estable, su severidad y el instrumento que la mide. Es obligatorio y
 atraviesa los cuatro tramos: entra con dos entradas previas en el peldaño 2 y con cinco anclas en
 los peldaños 5, 8, 9, 10 y 12. La "H" es de heurísticas.
@@ -2022,6 +2021,17 @@ algo (las conexiones a la base, la memoria, una cola). Se encuentra subiendo la 
 escalón (peldaño 19), y de él salen los umbrales de alerta del 21.
 
 **Pull / push** — Bajar y subir código al repositorio remoto (GitHub).
+
+**Puerto (y su doble de prueba)** — Un *puerto* es el único lugar por donde una parte del sistema
+le habla a algo que no es él: el navegador, el sistema operativo, la base de datos, la red. Se
+escribe aparte justamente para poder reemplazarlo, mientras se prueba, por un *doble*: una
+imitación que contesta lo mismo sin salir a buscar nada, de manera que una pantalla se pueda probar
+sin abrir un navegador. El problema es que el doble lo escribió el mismo que escribió el puerto, así
+que los dos pueden estar equivocados de la misma manera y las pruebas no se van a enterar. Por eso
+la regla CQ-21.1 del Anexo H pide **al menos una corrida que atraviese el puerto hasta el otro lado
+de verdad**, y "de verdad" quiere decir el navegador, el sistema operativo, la base o la red: otro
+doble no cuenta. El inventario de los puertos con doble, cada uno con la corrida que lo atraviesa,
+vive en el mapa productor-consumidor del peldaño 11.
 
 **Recibo** — La salida de un comando pegada tal como salió, con el comando exacto, la versión
 contra la que corrió, los números y el código de salida, de manera que el dueño pueda volver a

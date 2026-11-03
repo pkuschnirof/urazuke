@@ -58,6 +58,13 @@
 > runs it, and written into the register of that destination. A defect of the method or of the
 > tool filed in the product's register is a defect nobody is ever going to fix.
 >
+> And when this closing touches manual test cases, declare its reach with three fixed keys:
+> `cases_touched`, how many cases this closing touches; `cases_with_an_execution_row`, how many of
+> those a person has signed with a date and a name; and `executed_by`, who signed them. When the
+> answer is none, say it in so many words: a case that is written and that nobody ran is not half a
+> verification, it is zero with the appearance of one (Annex H, CQ-21.2). Read the figures from the
+> signed execution tables and from nothing else, never from your own reading of the system.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -82,6 +89,12 @@
 > `findings_by_destination` 收尾：每个发现都指派——缺陷在系统里就是 `product`，在所遵循的
 > 方法里就是 `method`，在运行它的工具里就是 `tool`——并写进那个去向的登记册。把方法或工具的
 > 缺陷记在产品的登记册里，是一个永远没人会修的缺陷。
+>
+> 而当这次收尾动到人工测试用例时，用三个固定的键声明它的到达范围：`cases_touched`，这次收尾动到了
+> 多少个用例；`cases_with_an_execution_row`，其中有多少个有人用日期和姓名签过；以及 `executed_by`，
+> 是谁签的。如果答案是一个都没有，就把话说全：一个写好了却没人跑过的用例，不是半次验证，而是看起
+> 来像一次验证的零（附录 H，CQ-21.2）。这些数字出自签过名的执行表格，除此之外别无来处，绝不出自你
+> 自己对系统的阅读。
 >
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
@@ -138,7 +151,8 @@
 - 还有，当报告产出的是关于我们怎么工作、而不是关于我们造了什么的发现时，
   `findings_by_destination`：每个发现带着它的去向——产品、方法或工具——并写进那个去向的
   登记册。
-
+- 而当这次收尾动到人工用例时：`cases_touched`、`cases_with_an_execution_row` 和 `executed_by`；
+  如果答案是一个都没有，就把话说全。
 ## 4. 完整性检验
 
 - 三块都在吗？如果"相信"和"盲点"总是空的，代理没有诚实：总有它没看到的东西。
@@ -148,9 +162,11 @@
 - 它有没有哪次光说"搞定"？那是违反契约。
 - 那些不属于系统的发现，有没有被指派去向、有没有开在该开的登记册里？方法和工具不是从产品的
   登记册里修好的。
-
+- 报告有说这次收尾动到了多少个人工用例、其中有多少个有人签过吗？如果那个数字只在用例所在的文件
+  里，就没有人会读它：一个需要人专门去找的数字，拦不住任何人。
 ## 5. 警报信号
 
 - 连续十份报告没有任何盲点。没有人什么都看得见；那块是出于习惯而空，不是出于真相。
 - "已验证"块里有"应该能用"之类的句子。那是伪装的"相信"。
 - 报告比变更还长。一份相称的报告说该说的；一份膨胀的报告在用篇幅遮盖什么。
+- 报告说这个块已经验证过了，而这个块的人工用例，执行表格是空的。写下来不等于跑过。

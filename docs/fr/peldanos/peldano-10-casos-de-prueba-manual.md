@@ -263,6 +263,13 @@ regardant.
 > `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
 > `execution_debt` with who still owes which execution and since when.
 >
+> And for every case that failed and whose failure was then fixed, the case does not count as
+> verified again until a person runs it WHOLE and signs a new execution row later than the fix,
+> written `rerun_after_a_fix` with the pending item that caused it. An execution row reports how far
+> the person got: the steps it did not reach neither passed nor failed, so closing on the row that
+> failed confuses not having seen it fail with having seen it work (Annex H, CQ-21.3). List the
+> cases that owe a re-run, with the correction that fixed them and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -284,6 +291,14 @@ regardant.
 > Ensuite rafraîchis les trois déclarations de la tête du fichier : `cases_written`,
 > `cases_executed_by_a_person` comptée depuis les tableaux d'exécution signés et depuis rien
 > d'autre, et `execution_debt` avec qui doit encore quelle exécution et depuis quand.
+>
+> Et pour chaque cas qui a échoué et dont l'échec a ensuite été réparé, le cas ne compte pas de
+> nouveau comme vérifié tant qu'une personne ne l'a pas fait tourner EN ENTIER et signé une
+> nouvelle ligne d'exécution postérieure à la réparation, écrite `rerun_after_a_fix` avec l'élément
+> en attente qui l'a causée. Une ligne d'exécution rapporte jusqu'où la personne est allée : les
+> étapes qu'elle n'a pas atteintes n'ont ni passé ni échoué, donc fermer sur la ligne qui a échoué
+> c'est confondre je ne l'ai pas vu échouer avec je l'ai vu marcher (Annexe H, CQ-21.3).
+> Énumère-moi les cas qui doivent une reprise, avec la correction qui les a réparés et depuis quand.
 >
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
@@ -313,7 +328,8 @@ système s'améliore ou se dégrade entre les blocs ; et la distinction entre «
 - En tête de `docs/MANUAL_TESTS.md`, les trois déclarations qu'une porte lit : `cases_written`,
   `cases_executed_by_a_person` — que seule une exécution signée déplace — et `execution_debt` à
   `none` ou à `pending_verifier`, avec qui doit chaque exécution et depuis quand.
-
+- Pour chaque cas qui a échoué et a été réparé : sa nouvelle ligne d'exécution, postérieure à la
+  réparation et sur toutes ses étapes, écrite `rerun_after_a_fix` avec l'élément qui l'a causée.
 ## 4. Vérification de complétude (vous la faites vous-même, sans lire de code)
 
 - Prenez un cas au hasard et suivez-le vous-même dans l'environnement de test sans rien demander
@@ -340,7 +356,9 @@ système s'améliore ou se dégrade entre les blocs ; et la distinction entre «
   question au contrat et à la barrière — « si personne n'a exécuté, est-ce que j'avance ? » — et
   exige qu'ils répondent la même chose. Si le contrat dit oui et la barrière dit non, celui qui a
   tort, c'est le contrat.
-
+- Chaque cas qui a échoué et a été réparé a-t-il une ligne postérieure à la réparation qui couvre
+  toutes ses étapes ? Si la dernière ligne est celle qui a échoué, la réparation s'est fermée sur
+  une étape et les autres ne disent rien.
 ## 5. Signaux d'alarme
 
 - L'agent a marqué les cas comme exécutés. C'est lui qui les a exécutés, ce qui revient à ne pas
@@ -362,3 +380,6 @@ système s'améliore ou se dégrade entre les blocs ; et la distinction entre «
   l'utiliser.
 - Le parcours commence à servir d'excuse pour ne pas exécuter les cas. Ce sont deux choses avec
   deux buts, et celle qui accepte est celle de la personne.
+- Une correction fermée et le cas qui l'a causée sans nouvelle ligne. Tout l'appareil a fonctionné
+  —le cas était écrit, il a été exécuté, il a échoué, il a été réparé— et la deuxième exigence de
+  cette étape n'a jamais été vérifiée.

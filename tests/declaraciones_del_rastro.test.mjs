@@ -66,6 +66,17 @@ const CLAVES = [
   { clave: 'screens_total', num: 10, ruta: 'docs/SCREEN_WALKTHROUGH.md' },
   { clave: 'screens_walked', num: 10, ruta: 'docs/SCREEN_WALKTHROUGH.md' },
   { clave: 'walkthrough_findings', num: 10, ruta: 'docs/SCREEN_WALKTHROUGH.md' },
+  // D-087: las claves del ALCANCE. Misma familia y mismo motivo -- una compuerta que no puede
+  // hacer el trabajo exige el rastro --, con un eje distinto: no cuantos de cuantos, sino hasta
+  // donde llego una corrida.
+  { clave: 'rerun_after_a_fix', num: 10, ruta: 'docs/MANUAL_TESTS.md' },
+  { clave: 'ports_with_a_test_double', num: 11, ruta: 'docs/PRODUCER_CONSUMER_MAP.md' },
+  { clave: 'ports_total', num: 11, ruta: 'docs/PRODUCER_CONSUMER_MAP.md' },
+  { clave: 'ports_with_a_crossing_run', num: 11, ruta: 'docs/PRODUCER_CONSUMER_MAP.md' },
+  { clave: 'crossing_run', num: 11, ruta: 'docs/PRODUCER_CONSUMER_MAP.md' },
+  { clave: 'cases_touched', num: 12, ruta: 'docs/WORKING_AGREEMENT.md' },
+  { clave: 'cases_with_an_execution_row', num: 12, ruta: 'docs/WORKING_AGREEMENT.md' },
+  { clave: 'executed_by', num: 12, ruta: 'docs/WORKING_AGREEMENT.md' },
 ];
 
 test('A: cada clave del rastro esta declarada en el peldano y el archivo que le toca', () => {
@@ -161,6 +172,9 @@ const CASOS_CON_DEUDA = [
   'cases_written: 13',
   'cases_executed_by_a_person: 0',
   'execution_debt: pending_verifier -- los trece los debe ejecutar el dueno, desde el 2026-11-02.',
+  '',
+  'rerun_after_a_fix: el MT-02 volvio a correr entero el 2026-11-03, despues del arreglo del',
+  'PND-501, y dejo su fila nueva sobre los cinco pasos.',
 ].join('\n');
 
 const RECORRIDA = [
@@ -323,4 +337,159 @@ test('D: verification_debt cruza el salto de linea y criteria_total no, por la m
     'una cifra con ventana que cruza el salto de linea toma el numero del renglon de al lado');
   assert.ok(!compilar(una('criteria_total')).test('criteria_total\n\nlas que aplican al proyecto'),
     'criteria_total pasa sin numero');
+});
+
+
+// --- D-087: el alcance de una corrida ----------------------------------------------------
+//
+// La misma familia que las de arriba, con otro eje. Las doce de D-081 y D-082 y las cinco de
+// D-084 miran el ANCHO: de lo que un instrumento tenia que recorrer, cuanto recorrio. Estas
+// miran el FONDO: hasta donde llego UNA corrida. Y el caso que las origino separa los dos ejes
+// solo: ochenta y un archivos de prueba corrieron los ochenta y uno --el denominador estaba
+// perfecto-- y ninguno atraveso el puerto hasta el navegador, asi que cuatro controles estaban
+// muertos abajo de una bateria en verde.
+//
+// El rojo que importa es el ULTIMO de este bloque, y es el que el dueno definio: un puerto cuya
+// prueba instancia el adaptador REAL contra un entorno de mentira. Con la redaccion vieja --"una
+// prueba que lo atraviese de verdad, contra la implementacion real"-- ese arbol sale verde,
+// porque la prueba corre la implementacion real. Con `CQ-21.1` sale rojo, porque el otro lado que
+// alcanzo no es ninguno de los cuatro que el dato nombra.
+
+const MAPA_CON_PUERTOS = [
+  '# Mapa productor-consumidor',
+  '',
+  '| Estructura | Productor | Consumidores |',
+  '|---|---|---|',
+  '| `workshops.page` | `src/dominio/talleres.ts` | `src/vistas/talleres.tsx` |',
+  '',
+  '## ports_with_a_test_double',
+  '',
+  '- `ports_total`: 1',
+  '- `ports_with_a_crossing_run`: 1',
+  '',
+  '| Puerto | adapter | double | crossing_run |',
+  '|---|---|---|---|',
+  '| Lienzo | `src/adapters/lienzo.ts` | `tests/dobles/lienzo_falso.ts` | `npm run e2e:lienzo`, `browser`, 15,6 s |',
+].join('\n');
+
+test('B: el mapa con su familia de puertos y su denominador pasa el peldano 11', () => {
+  assert.ok(pasa(MAPA_CON_PUERTOS, exigencias(11, 'docs/PRODUCER_CONSUMER_MAP.md')),
+    'un mapa con la familia de puertos no pasa: ' +
+    exigencias(11, 'docs/PRODUCER_CONSUMER_MAP.md')
+      .filter((f) => !compilar(f).test(MAPA_CON_PUERTOS)).join(' | '));
+});
+
+test('C: ROJO -- un mapa sin la familia de los puertos no pasa el peldano 11', () => {
+  const sinPuertos = MAPA_CON_PUERTOS.split('## ports_with_a_test_double')[0];
+  assert.ok(!pasa(sinPuertos, exigencias(11, 'docs/PRODUCER_CONSUMER_MAP.md')),
+    'un mapa sin la familia de los puertos pasa, y no deberia');
+});
+
+test('C: ROJO -- la familia de puertos sin su denominador no pasa, que es CQ-19.1 adentro de CQ-21', () => {
+  const fuentes = exigencias(11, 'docs/PRODUCER_CONSUMER_MAP.md');
+  const sinTotal = MAPA_CON_PUERTOS.replace('- `ports_total`: 1\n', '');
+  assert.ok(!pasa(sinTotal, fuentes), 'la familia sin su total pasa, y no deberia');
+  const sinCorridas = MAPA_CON_PUERTOS.replace('- `ports_with_a_crossing_run`: 1\n', '');
+  assert.ok(!pasa(sinCorridas, fuentes), 'la familia sin la cuenta de corridas que atraviesan pasa');
+});
+
+test('C: ROJO -- un hueco DECLARADO pasa, y es la diferencia entre declararlo y callarlo', () => {
+  // `none` tiene que pasar: un puerto sin corrida que lo atraviese es un hueco, y el metodo
+  // pide que se declare, no que no exista. Lo que no puede pasar es el silencio.
+  const fuentes = exigencias(11, 'docs/PRODUCER_CONSUMER_MAP.md');
+  const hueco = MAPA_CON_PUERTOS
+    .replace('- `ports_with_a_crossing_run`: 1', '- `ports_with_a_crossing_run`: 0')
+    .replace('`npm run e2e:lienzo`, `browser`, 15,6 s', '`none`, nadie lo atraviesa todavia');
+  assert.ok(pasa(hueco, fuentes), 'un hueco declarado no pasa, y tiene que pasar');
+  const callado = MAPA_CON_PUERTOS
+    .replace(' | `npm run e2e:lienzo`, `browser`, 15,6 s |', ' | |')
+    .replace('| Puerto | adapter | double | crossing_run |', '| Puerto | adapter | double | corrida |');
+  assert.ok(!pasa(callado, fuentes), 'un puerto sin su columna pasa, y no deberia');
+});
+
+test('C: ROJO -- el adaptador real contra un entorno de mentira: rojo con CQ-21.1, verde con la vieja', () => {
+  // ESTE es el caso que distingue las dos redacciones, y lo escribio el brazo del experimento
+  // con su propio codigo de contraejemplo. La prueba instancia el adaptador REAL --asi que
+  // cumple "contra la implementacion real", que era mi redaccion-- y le pasa un documento de
+  // mentira que invoca al oyente sin mirar el evento. Atraviesa el adaptador y no ve el defecto.
+  const fuentes = exigencias(11, 'docs/PRODUCER_CONSUMER_MAP.md');
+  const deMentira = MAPA_CON_PUERTOS.replace(
+    '`npm run e2e:lienzo`, `browser`, 15,6 s',
+    '`npm test lienzo.test.ts` -- instancia el adaptador real contra un documento de mentira');
+  assert.ok(!pasa(deMentira, fuentes),
+    'una corrida que atraviesa el adaptador real contra un entorno de mentira pasa, y es el verde que CQ-21.1 cierra');
+  const fallan = fuentes.filter((f) => !compilar(f).test(deMentira));
+  assert.deepEqual(fallan.map((f) => f.split(/[[]/)[0]), ['crossing_run'],
+    'el unico chequeo que tiene que caer es el del otro lado, y cayeron: ' + fallan.join(' | '));
+  // Y la otra mitad: la redaccion vieja la habria dado por buena. Lo que la distingue no es
+  // que la corrida exista, es QUE ALCANZO.
+  assert.ok(/adaptador real/.test(deMentira),
+    'el arbol de contraejemplo tiene que declarar que corre el adaptador real: si no lo dice, no es el caso que distingue las dos redacciones');
+});
+
+test('C: ROJO -- los casos sin su vuelta a correr no pasan el peldano 10', () => {
+  const fuentes = exigencias(10, 'docs/MANUAL_TESTS.md');
+  const sinVuelta = CASOS_CON_DEUDA.split('rerun_after_a_fix')[0];
+  assert.ok(!pasa(sinVuelta, fuentes), 'un archivo de casos sin su vuelta a correr pasa, y no deberia');
+  const fallan = fuentes.filter((f) => !compilar(f).test(sinVuelta));
+  assert.deepEqual(fallan, ['rerun_after_a_fix'],
+    'el unico chequeo que tiene que caer es el de la vuelta a correr, y cayeron: ' + fallan.join(' | '));
+});
+
+const CONTRATO_CON_ALCANCE = [
+  '# Contrato de convivencia',
+  '',
+  'El reporte separa lo verificado de lo creido y nombra sus puntos ciegos (blind spots).',
+  'Cada hallazgo lleva su findings_by_destination: product, method o tool.',
+  '',
+  'Y cuando el cierre toca casos manuales, declara su alcance:',
+  '',
+  '- cases_touched: cuantos casos toca este cierre.',
+  '- cases_with_an_execution_row: cuantos de esos firmo una persona.',
+  '- executed_by: quien los firmo, con todas las letras cuando la respuesta es ninguno.',
+].join('\n');
+
+test('B: la rutina del informe honesto con el alcance de los casos pasa el peldano 12', () => {
+  const fuentes = exigencias(12, 'docs/WORKING_AGREEMENT.md');
+  assert.ok(pasa(CONTRATO_CON_ALCANCE, fuentes), 'la rutina con el alcance no pasa: ' +
+    fuentes.filter((f) => !compilar(f).test(CONTRATO_CON_ALCANCE)).join(' | '));
+});
+
+test('C: ROJO -- la rutina sin el alcance de los casos no pasa el peldano 12', () => {
+  const fuentes = exigencias(12, 'docs/WORKING_AGREEMENT.md');
+  const sinAlcance = CONTRATO_CON_ALCANCE.split('Y cuando el cierre toca casos manuales')[0];
+  assert.ok(!pasa(sinAlcance, fuentes), 'la rutina sin el alcance pasa, y no deberia');
+  const fallan = fuentes.filter((f) => !compilar(f).test(sinAlcance));
+  assert.deepEqual(fallan.sort(), ['cases_touched', 'cases_with_an_execution_row', 'executed_by'],
+    'tienen que caer las tres claves del alcance, y cayeron: ' + fallan.join(' | '));
+});
+
+test('A: las exigencias del alcance son NUEVAS, con su procedencia, y no editan la base', () => {
+  const nuevas = [
+    [11, 'docs/PRODUCER_CONSUMER_MAP.md', 'ports_with_a_test_double'],
+    [10, 'docs/MANUAL_TESTS.md', 'rerun_after_a_fix'],
+    [12, 'docs/WORKING_AGREEMENT.md', 'cases_touched'],
+  ];
+  for (const [num, ruta, clave] of nuevas) {
+    const art = paso(num).artifacts.find((a) => a.path === ruta
+      && (a.must_contain ?? []).some((f) => f.startsWith(clave)));
+    assert.ok(art, 'el peldano ' + num + ' no declara ' + clave + ' sobre ' + ruta);
+    assert.equal(art.since_schema, 2, clave + ' no declara su esquema');
+    assert.equal(art.since_version, '2026.10.16', clave + ' no declara la version en la que entro');
+  }
+});
+
+test('A: CQ-21 se ancla en los cuatro peldanos donde produce efecto', () => {
+  const reglas = JSON.parse(readFileSync(join(raiz, 'gates', 'heuristics.json'), 'utf8')).rules;
+  const r = reglas.find((x) => x.id === 'CQ-21');
+  assert.ok(r, 'el dato no declara CQ-21');
+  assert.deepEqual(r.anchor.steps, [8, 10, 11, 12],
+    'una regla que se ancla donde no produce efecto es decoracion');
+  assert.deepEqual(r.faces.map((c) => c.id), ['CQ-21.1', 'CQ-21.2', 'CQ-21.3']);
+  // Cada cara tiene su peldano, y los tres peldanos tienen su pregunta de verificacion.
+  for (const num of [8, 10, 11, 12]) {
+    const preguntas = (paso(num).verify ?? [])
+      .filter((v) => v && typeof v === 'object' && v.decision === 'D-087');
+    assert.ok(preguntas.length, 'el peldano ' + num + ' no trae ninguna pregunta de D-087');
+  }
 });

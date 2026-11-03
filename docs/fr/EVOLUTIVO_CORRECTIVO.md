@@ -1223,6 +1223,13 @@ est celui qui m'a appris que sans reproduction écrite, chaque tour répare un s
 > block, each with its own evidence. The commit message says "proved red against [version]" and
 > the test counts.
 >
+> And two things this correction does not close without. If it was born from a manual test case, it
+> does not close with the verification of the step that failed: the case runs again WHOLE, a person
+> signs a new execution row later than the fix, and that row is what closes it (Annex H, CQ-21.3).
+> And for every port you doubled for testing, one run that crosses it to the real other side,
+> recorded in the producer/consumer map under `crossing_run` (CQ-21.1): a test against a fake
+> environment crossed the real adapter and still never saw the event.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -1248,6 +1255,14 @@ est celui qui m'a appris que sans reproduction écrite, chaque tour répare un s
 > normalisation appariés de ce module dans le même bloc, chacun avec sa propre preuve. Le message
 > du commit dit « prouvé en rouge contre [version] » et les chiffres des tests. Réponds dans ma
 > langue.
+>
+> Et deux choses sans lesquelles cette correction ne ferme pas. Si elle est née d'un cas de test
+> manuel, elle ne ferme pas avec la vérification de l'étape qui a échoué : le cas est refait tourner
+> EN ENTIER, une personne signe une nouvelle ligne d'exécution postérieure à la réparation, et c'est
+> cette ligne qui la ferme (Annexe H, CQ-21.3). Et pour chaque port que tu as doublé pour tester,
+> une course qui le traverse jusqu'au vrai autre côté, notée dans la carte producteur/consommateur
+> sous `crossing_run` (CQ-21.1) : un test contre un environnement mensonger a traversé l'adaptateur
+> réel et a continué à ne pas voir l'événement.
 >
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question

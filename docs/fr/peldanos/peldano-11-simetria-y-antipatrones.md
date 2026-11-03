@@ -56,6 +56,17 @@ faites, pas l'agent :
 > the system you cannot access or do not understand, tell me instead of leaving them out of the
 > map.
 >
+> And the map carries one more family, which is the ports you doubled for testing:
+> `ports_with_a_test_double`, with `ports_total`, how many ports of the system have a double, and
+> `ports_with_a_crossing_run`, how many of those have at least one run that crosses them to the real
+> other side; and then, per port, its adapter, its double, and `crossing_run`: the exact command,
+> and what it reached on the other side, which is `browser`, `operating_system`, `database`,
+> `network` or `none`. The other side is whatever the port is doubling, and another double is never
+> the other side (Annex H, CQ-21.1). `none` is a declared hole and it is worth more than silence: a
+> port whose double no run crosses is where four dead controls fit underneath a green suite. Do not
+> write a crossing run you did not run, and count a port with no crossing run inside `ports_total`
+> instead of leaving it out so the figure reads better.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -71,6 +82,18 @@ faites, pas l'agent :
 > des parties du système auxquelles tu ne peux pas accéder ou que tu ne comprends pas, dis-le-moi
 > au lieu de les laisser hors de la carte.
 >
+> Et la carte porte une famille de plus, à savoir les ports que tu as doublés pour tester :
+> `ports_with_a_test_double`, avec `ports_total`, combien de ports du système ont un double, et
+> `ports_with_a_crossing_run`, combien de ceux-là ont au moins une course qui les traverse jusqu'au
+> vrai autre côté ; et ensuite, par port, son adaptateur, son double, et `crossing_run` : la
+> commande exacte, et ce qu'elle a atteint de l'autre côté, qui est `browser`, `operating_system`,
+> `database`, `network` ou `none`. L'autre côté est ce que le port double, et un autre double n'est
+> jamais l'autre côté (Annexe H, CQ-21.1). `none` est un trou déclaré et il vaut mieux que le
+> silence : un port dont le double n'est traversé par aucune course, c'est là que tiennent quatre
+> contrôles morts sous une suite au vert. N'écris pas une course que tu n'as pas faite, et compte un
+> port sans course qui le traverse dans `ports_total` au lieu de le laisser dehors pour que le
+> chiffre se lise mieux.
+>
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
 > nécessaire, énumérées ; un paragraphe de cinq lignes au plus qui les relie et laisse voir la
@@ -83,6 +106,15 @@ faites, pas l'agent :
 Ce que je lui demande : l'inventaire des contrats avec leurs deux côtés, et la clause de
 complétude sous sa forme pour cet échelon : ce qu'on ne voit pas se déclare, on ne l'omet pas. Une
 carte avec des trous cachés est pire que pas de carte du tout.
+
+Et ce qu'ajoute D-087 : la famille des ports avec un double de test. Un port avec son double, c'est
+la symétrie producteur/consommateur dans sa forme la plus pure —l'adaptateur produit les événements
+que la vue consomme— et c'est aussi l'endroit où la méthode concentre le risque, parce qu'elle
+pousse à doubler pour que la vue soit vérifiable et n'exigeait ensuite aucune course qui regarde ce
+point. La colonne de la course qui le traverse est ce qui transforme le trou en un trou
+**déclaré** : ce qu'un programme peut regarder, c'est que la colonne soit là et nomme ce qu'il y a
+de l'autre côté ; si c'est vrai, c'est une personne qui le décide en lisant la commande, et cela est
+écrit dans l'Annexe H et non simulé ici.
 
 **Routine (va dans le contrat de collaboration) :**
 
@@ -167,7 +199,9 @@ automatisé va se répéter quand la personne ou la session changera.
 - Dans chaque commit qui touche un contrat : les consommateurs mis à jour, nommés dans le message.
 - `docs/GOTCHAS.md` : une entrée par anti-patron, avec les quatre parties (odeur, cause racine,
   correction, comment le détecter avant), et la date de la première fois.
-
+- Dans la carte, la famille des ports avec un double de test : `ports_total`,
+  `ports_with_a_crossing_run`, et par port son adaptateur, son double et la course qui le traverse
+  avec ce qu'elle a atteint de l'autre côté.
 ## 4. Vérification de complétude
 
 - Choisissez un contrat de la carte et demandez à l'agent de vous montrer où chaque consommateur
@@ -176,7 +210,10 @@ automatisé va se répéter quand la personne ou la session changera.
 - Chaque entrée de GOTCHAS a-t-elle les quatre parties ?
 - Une erreur qui était déjà dans GOTCHAS s'est-elle répétée ? Si oui, la vérification automatique
   manque.
-
+- Prends un port avec un double et lis sa course : la commande traverse-t-elle jusqu'à un
+  navigateur, un système d'exploitation, une base ou le réseau, ou s'arrête-t-elle à un autre
+  double ? Un `crossing_run` à `none` est honnête ; un qui nomme un autre double est un vert qui
+  ment.
 ## 5. Signaux d'alarme
 
 - La même valeur apparaît écrite à la main dans plus d'un fichier (« EN ATTENTE », « APPROUVÉE »
@@ -185,3 +222,5 @@ automatisé va se répéter quand la personne ou la session changera.
   l'écran.
 - GOTCHAS a des entrées sans la partie « comment le détecter avant ». Ce sont des anecdotes, pas
   des anti-patrons.
+- La carte n'a pas la famille des ports et le projet a des doubles de test. Le port est l'endroit où
+  la méthode concentre le risque : s'il n'est pas dans la carte, personne ne va le regarder.

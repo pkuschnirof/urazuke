@@ -241,6 +241,13 @@ D-082 でさらに二つのことが入りました。二つであって、一�
 > `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
 > `execution_debt` with who still owes which execution and since when.
 >
+> And for every case that failed and whose failure was then fixed, the case does not count as
+> verified again until a person runs it WHOLE and signs a new execution row later than the fix,
+> written `rerun_after_a_fix` with the pending item that caused it. An execution row reports how far
+> the person got: the steps it did not reach neither passed nor failed, so closing on the row that
+> failed confuses not having seen it fail with having seen it work (Annex H, CQ-21.3). List the
+> cases that owe a re-run, with the correction that fixed them and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -262,6 +269,13 @@ D-082 でさらに二つのことが入りました。二つであって、一�
 > そのあと、ファイルの冒頭の三つの宣言を更新してください：`cases_written`、
 > 署名された実行表からだけ数えた `cases_executed_by_a_person`、そして、誰がどの実行を
 > いつから負ったままなのかを書いた `execution_debt`。
+>
+> そして落ちたのちにその落ちた原因が直されたすべてのケースについて、そのケースは、人が丸ごと走ら
+> せ、修正より後の新しい実行の行に署名するまで、再び検証済みとしては数えません。その行は、原因と
+> なったペンディングとともに `rerun_after_a_fix` と書きます。実行の行は、その人がどこまで届いたか
+> を報告します。届かなかった手順は通ったのでも落ちたのでもないので、落ちた行の上で閉じることは、
+> 落ちるのを見なかったことと動くのを見たことを混同することです（付録 H、CQ-21.3）。走り直しを負っ
+> ているケースを、それを直した修正と、いつからかとともに並べてください。
 >
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
@@ -288,7 +302,8 @@ D-082 でさらに二つのことが入りました。二つであって、一�
 - `docs/MANUAL_TESTS.md` の冒頭に、ゲートが読む三つの宣言：`cases_written`、署名された実行だけが
   動かす `cases_executed_by_a_person`、そして `none` か `pending_verifier` の `execution_debt`
   を、誰がどの実行をいつから負っているかとともに。
-
+- 落ちて直されたすべてのケースについて、修正より後で、そのすべての手順にわたる新しい実行の行。原
+  因となったペンディングとともに `rerun_after_a_fix` と書く。
 ## 4. 完全性の検証（あなたが行う、コードを読まずに）
 
 - ケースを一つ無作為に取り、エージェントに何も聞かずにテスト環境で自分で追ってみること：でき
@@ -309,7 +324,8 @@ D-082 でさらに二つのことが入りました。二つであって、一�
 - まだ誰も一件も署名していないとき、文章は「進めない」と言っていますか。契約と門に同じ問いを投げて
   ください——「誰も実行していないなら、進めるのか」——そして同じ答えを出すことを求めてください。契約
   が「進める」と言い、門が「進めない」と言うなら、間違っているのは契約です。
-
+- 落ちて直されたすべてのケースに、修正より後で、そのすべての手順を覆う行があるか。最後の行が落ち
+  た行なら、その修正は一つの手順の上で閉じられ、残りは何も言っていない。
 ## 5. 警告サイン
 
 - エージェントがケースを実行済みと印した。彼が実行したのであり、それは実行しなかったのと同じ
@@ -327,3 +343,5 @@ D-082 でさらに二つのことが入りました。二つであって、一�
   ありません。発見がないなら、画面を見ただけで使っていない可能性が高いです。
 - 歩きが、ケースを実行しないための口実に使われはじめる。二つの目的を持つ二つのことであり、
   受け入れるほうは人のものです。
+- 修正は閉じられ、それを生んだケースに新しい行がない。装置はすべて働いた——ケースは書かれ、実行さ
+  れ、落ち、直された——そしてその手順の二つめの要求は一度も検証されなかった。

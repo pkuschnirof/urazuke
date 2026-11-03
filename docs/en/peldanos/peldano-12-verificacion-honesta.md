@@ -67,6 +67,13 @@ the agent:
 > runs it, and written into the register of that destination. A defect of the method or of the
 > tool filed in the product's register is a defect nobody is ever going to fix.
 >
+> And when this closing touches manual test cases, declare its reach with three fixed keys:
+> `cases_touched`, how many cases this closing touches; `cases_with_an_execution_row`, how many of
+> those a person has signed with a date and a name; and `executed_by`, who signed them. When the
+> answer is none, say it in so many words: a case that is written and that nobody ran is not half a
+> verification, it is zero with the appearance of one (Annex H, CQ-21.2). Read the figures from the
+> signed execution tables and from nothing else, never from your own reading of the system.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -125,7 +132,8 @@ Every report from the agent with:
 - And when the report produces findings about how we work and not about what we built,
   `findings_by_destination`: every finding with its destination -- product, method or tool -- and
   written into the register of that destination.
-
+- And when the closing touches manual cases: `cases_touched`, `cases_with_an_execution_row` and
+  `executed_by`, in so many words when the answer is none.
 ## 4. Completeness check
 
 - Are the three blocks there? If "believed" and "blind spots" are always empty, the agent is not
@@ -137,7 +145,9 @@ Every report from the agent with:
 - Did it ever say a bare "done"? That is a breach of the agreement.
 - Did the findings that are not about the system get their destination assigned, and get opened in
   the register they belong to? The method and the tool do not get fixed from the product's register.
-
+- Does the report say how many manual cases this closing touches and how many a person signed? If
+  the figure is only in the file of the cases, nobody reads it: a figure somebody has to go and look
+  for stops nobody.
 ## 5. Warning signs
 
 - Ten reports in a row without a single blind spot. Nobody sees everything; the block is empty out
@@ -145,3 +155,5 @@ Every report from the agent with:
 - The "verified" block has phrases like "it should work". That is "believed" in disguise.
 - The report is longer than the change. A proportional report says what needs to be said; an
   inflated one is covering something up with volume.
+- The report says the block is verified and the manual cases of that block have an empty execution
+  table. Written is not run.

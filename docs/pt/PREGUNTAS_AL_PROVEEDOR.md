@@ -134,7 +134,7 @@ arrumar.
 O que se pode ver: o registro das regras de usabilidade com o seu resultado, e as exceções
 desligadas com o motivo escrito, quem autorizou e quando se revisa. Um sistema pode passar todas as
 verificações técnicas e ser inutilizável: tudo verde, e a pessoa não encontra onde cobrar.
-*(Anexo H, as vinte e sete regras de usabilidade.)*
+*(Anexo H, as vinte e oito regras de usabilidade.)*
 
 **16. As provas que você me mostrou vigiam de verdade ou decoram?**
 O que se pode ver: o placar de mutação. É um programa que mete erros de propósito e conta quantos as

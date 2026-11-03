@@ -1160,6 +1160,13 @@ me ensinou que, sem reprodução escrita, cada rodada conserta um sintoma difere
 > block, each with its own evidence. The commit message says "proved red against [version]" and
 > the test counts.
 >
+> And two things this correction does not close without. If it was born from a manual test case, it
+> does not close with the verification of the step that failed: the case runs again WHOLE, a person
+> signs a new execution row later than the fix, and that row is what closes it (Annex H, CQ-21.3).
+> And for every port you doubled for testing, one run that crosses it to the real other side,
+> recorded in the producer/consumer map under `crossing_run` (CQ-21.1): a test against a fake
+> environment crossed the real adapter and still never saw the event.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -1183,6 +1190,13 @@ me ensinou que, sem reprodução escrita, cada rodada conserta um sintoma difere
 > minha, não um efeito colateral. Feche as pendências de normalização emparelhadas deste módulo no
 > mesmo bloco, cada uma com a sua própria evidência. A mensagem do commit diz "provado em vermelho
 > contra [versão]" e os números dos testes.
+>
+> E duas coisas sem as quais esta correção não fecha. Se nasceu de um caso de prova manual, não
+> fecha com a verificação do passo que falhou: o caso volta a correr INTEIRO, uma pessoa assina uma
+> fila de execução nova posterior ao arranjo, e essa fila é a que o fecha (Anexo H, CQ-21.3). E por
+> cada porta que você duplicou para provar, uma corrida que a atravesse até o outro lado de
+> verdade, anotada no mapa produtor-consumidor sob `crossing_run` (CQ-21.1): uma prova contra um
+> ambiente de mentira atravessou o adaptador real e seguiu sem ver o evento.
 >
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,

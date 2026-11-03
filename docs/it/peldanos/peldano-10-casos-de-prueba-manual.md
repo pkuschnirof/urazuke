@@ -258,6 +258,13 @@ persona non incontra più i difetti che l'agente avrebbe potuto vedere guardando
 > `cases_executed_by_a_person` counted from the signed execution tables and from nothing else, and
 > `execution_debt` with who still owes which execution and since when.
 >
+> And for every case that failed and whose failure was then fixed, the case does not count as
+> verified again until a person runs it WHOLE and signs a new execution row later than the fix,
+> written `rerun_after_a_fix` with the pending item that caused it. An execution row reports how far
+> the person got: the steps it did not reach neither passed nor failed, so closing on the row that
+> failed confuses not having seen it fail with having seen it work (Annex H, CQ-21.3). List the
+> cases that owe a re-run, with the correction that fixed them and since when.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -279,6 +286,14 @@ persona non incontra più i difetti che l'agente avrebbe potuto vedere guardando
 > Poi aggiorna le tre dichiarazioni in testa al file: `cases_written`,
 > `cases_executed_by_a_person` contata dalle tabelle di esecuzione firmate e da nient'altro, e
 > `execution_debt` con chi deve ancora quale esecuzione e da quando.
+>
+> E per ogni caso che è fallito e il cui guasto poi si è riparato, il caso non torna a contare come
+> verificato finché una persona non lo corre INTERO e firma una riga di esecuzione nuova posteriore
+> alla riparazione, scritta `rerun_after_a_fix` con la pendenza che l'ha causata. Una riga di
+> esecuzione informa fin dove è arrivata la persona: i passi che non ha raggiunto non sono passati
+> né falliti, quindi chiudere sulla riga che è fallita è confondere non l'ho visto fallire con l'ho
+> visto andare (Allegato H, CQ-21.3). Elencami i casi che devono una ricorsa, con la correzione che
+> li ha riparati e da quando.
 >
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
@@ -309,7 +324,8 @@ sbagliato", che sono due voci in sospeso diverse.
 - In testa a `docs/MANUAL_TESTS.md`, le tre dichiarazioni che un cancello legge: `cases_written`,
   `cases_executed_by_a_person` —che muove solo un'esecuzione firmata— e `execution_debt` a `none` o
   a `pending_verifier`, con chi deve ogni esecuzione e da quando.
-
+- Per ogni caso che è fallito e si è riparato: la sua riga di esecuzione nuova, posteriore alla
+  riparazione e su tutti i passi, scritta `rerun_after_a_fix` con la pendenza che l'ha causata.
 ## 4. Verifica di completezza (la fai tu, senza leggere codice)
 
 - Prendi un caso a caso e seguilo tu nell'ambiente di test senza chiedere niente all'agente: ci
@@ -332,7 +348,9 @@ sbagliato", che sono due voci in sospeso diverse.
 - Se ancora nessuno ha firmato nemmeno un caso, il testo ti dice che non avanzi? Fai la domanda al
   contratto e alla barriera —«se nessuno ha eseguito, avanzo?»— ed esigi che rispondano la stessa
   cosa. Se il contratto dice sì e la barriera dice no, quello che sbaglia è il contratto.
-
+- Ogni caso che è fallito e si è riparato ha una riga posteriore alla riparazione che copre tutti i
+  suoi passi? Se l'ultima riga è quella che è fallita, la riparazione si è chiusa su un passo e gli
+  altri non dicono niente.
 ## 5. Segnali d'allarme
 
 - L'agente ha marcato i casi come eseguiti. Li ha eseguiti lui, che è lo stesso che non eseguirli.
@@ -350,3 +368,6 @@ sbagliato", che sono due voci in sospeso diverse.
   aprire: se non ci sono rilievi, molto probabilmente ha guardato lo schermo e non l'ha usato.
 - La percorrenza comincia a usarsi come scusa per non eseguire i casi. Sono due cose con due scopi,
   e quella che accetta è quella della persona.
+- Una correzione chiusa e il caso che l'ha originata senza riga nuova. Tutto l'apparato ha
+  funzionato —il caso era scritto, si è eseguito, è fallito, si è riparato— e la seconda esigenza
+  di quel passo non si è mai verificata.

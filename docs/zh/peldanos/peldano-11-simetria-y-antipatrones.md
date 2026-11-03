@@ -48,6 +48,17 @@
 > the system you cannot access or do not understand, tell me instead of leaving them out of the
 > map.
 >
+> And the map carries one more family, which is the ports you doubled for testing:
+> `ports_with_a_test_double`, with `ports_total`, how many ports of the system have a double, and
+> `ports_with_a_crossing_run`, how many of those have at least one run that crosses them to the real
+> other side; and then, per port, its adapter, its double, and `crossing_run`: the exact command,
+> and what it reached on the other side, which is `browser`, `operating_system`, `database`,
+> `network` or `none`. The other side is whatever the port is doubling, and another double is never
+> the other side (Annex H, CQ-21.1). `none` is a declared hole and it is worth more than silence: a
+> port whose double no run crosses is where four dead controls fit underneath a green suite. Do not
+> write a crossing run you did not run, and count a port with no crossing run inside `ports_total`
+> instead of leaving it out so the figure reads better.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -62,6 +73,16 @@
 > 式、一张取值列表），谁生产它、谁消费它。如果系统有你无法访问或不理解的部分，告诉我，而
 > 不是把它们排除在地图之外。
 >
+> 而这张地图还多带一个族，就是你为了测试而加了替身的那些端口：
+> `ports_with_a_test_double`，带上 `ports_total`，系统里有多少个端口带替身，以及
+> `ports_with_a_crossing_run`，其中有多少个至少有一趟穿过它们、直到真正另一侧的运行；然后，逐个
+> 端口写下它的适配器、它的替身，以及 `crossing_run`：那条确切的命令，还有它在另一侧到达了什么，
+> 也就是 `browser`、`operating_system`、`database`、`network` 或者 `none`。另一侧就是这个端口正在
+> 替代的那个东西，而另一个替身永远不是另一侧（附录 H，CQ-21.1）。`none` 是一个声明出来的洞，而它
+> 比沉默更有价值：一个替身没有任何运行穿过的端口，正是四个死掉的控件能藏在一整套绿色测试下面的那
+> 个地方。不要写你没有真的跑过的穿过运行；而一个没有穿过运行的端口，要数在 `ports_total` 里面，而
+> 不是把它放到外面让数字好看一些。
+>
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
 > 答案逐一编号；以及你的推荐。用项目在 `communication_depth` 中声明的技术深度来说——`beginner`、`de
@@ -71,6 +92,12 @@
 
 我在要求什么：带两端的契约清单，以及适配这级台阶的完整性条款：看不到的要声明，不省略。一张
 藏着洞的地图比没有地图更糟。
+
+而 D-087 加进来的是：带测试替身的端口这个族。一个带替身的端口，是生产者/消费者对称性最纯粹的形
+态——适配器生产视图所消费的那些事件——同时也是方法把风险集中起来的地方，因为它为了让视图可验证而
+推着人去加替身，之后却没有要求任何一趟运行去看那一点。那一列“穿过它的运行”，就是把洞变成一个**声
+明出来的**洞：程序能看的是那一列在不在、有没有指明另一侧是什么；而这件事是否为真，由一个读那条命令
+的人来决定，这一点写在附录 H 里，而不是在这里被模拟掉。
 
 **例行（放进协作契约）：**
 
@@ -145,7 +172,8 @@
 - 在每次触及契约的提交里：消费者已更新，在提交信息中点名。
 - `docs/GOTCHAS.md`：每个反模式一条，带四个部分（气味、根因、修复、如何提前检测），以及第
   一次发生的日期。
-
+- 地图里带测试替身的端口这一族：`ports_total`、`ports_with_a_crossing_run`，以及逐个端口的适配
+  器、替身，还有穿过它的那趟运行和它在另一侧到达了什么。
 ## 4. 完整性检验
 
 - 从地图里挑一个契约，让代理给你看每个消费者在哪里读它。如果有哪个有自己的列表副本，那是
@@ -153,10 +181,13 @@
 - 有没有一个数字显示在两个不同的界面上？比较：一样吗？
 - GOTCHAS 的每条都有四个部分吗？
 - 已经在 GOTCHAS 里的错误重演了吗？是的话，缺自动检查。
-
+- 挑一个带替身的端口，读它的那趟运行：那条命令是穿到了浏览器、操作系统、数据库或者网络，还是停在
+  了另一个替身上？`crossing_run` 写 `none` 是诚实的；写另一个替身的名字，那是一个撒谎的绿。
 ## 5. 警报信号
 
 - 同一个值在不止一个文件里手写出现（服务器和界面上都有"PENDIENTE"、"APROBADA"）。两份副
   本；总有一份会分叉。
 - 一次对服务器的改动在服务器测试绿色后就关闭了，没人动界面。
 - GOTCHAS 有条目缺"如何提前检测"这部分。那是轶事，不是反模式。
+- 地图里没有端口这一族，而项目里有测试替身。端口正是方法把风险集中起来的地方：它不在地图里，就没
+  有人会去看它。

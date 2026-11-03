@@ -65,6 +65,13 @@
 > runs it, and written into the register of that destination. A defect of the method or of the
 > tool filed in the product's register is a defect nobody is ever going to fix.
 >
+> And when this closing touches manual test cases, declare its reach with three fixed keys:
+> `cases_touched`, how many cases this closing touches; `cases_with_an_execution_row`, how many of
+> those a person has signed with a date and a name; and `executed_by`, who signed them. When the
+> answer is none, say it in so many words: a case that is written and that nobody ran is not half a
+> verification, it is zero with the appearance of one (Annex H, CQ-21.2). Read the figures from the
+> signed execution tables and from nothing else, never from your own reading of the system.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -94,6 +101,13 @@
 > `product`、従っている方法にあるなら `method`、それを走らせる道具にあるなら `tool` に
 > 割り当て、その行き先の記録に書いてください。方法や道具の欠陥を製品の記録に書くことは、
 > 誰も直さない欠陥です。
+>
+> そしてこの閉鎖が手動のテストケースに触れるときは、その到達を三つの固定の鍵で宣言してください。
+> `cases_touched`、この閉鎖がいくつのケースに触れるか。`cases_with_an_execution_row`、そのうちい
+> くつを人が日付と名前つきで署名したか。そして `executed_by`、誰が署名したか。答えが「ゼロ」であ
+> るときは、はっきりそう言ってください。書かれたのに誰も走らせなかったケースは半分の検証ではな
+> く、検証に見えるゼロです（付録 H、CQ-21.2）。数字は署名された実行の表から、そしてそこからだけ出
+> てきます。あなた自身のシステムの読みからは決して出てきません。
 >
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
@@ -160,7 +174,8 @@
 - そして報告が、作ったものについてではなく、どう働いているかについての発見を生むときは、
   `findings_by_destination`：各発見にその行き先——製品、方法、道具——をつけ、その行き先の
   記録に書きます。
-
+- そして閉鎖が手動のケースに触れるとき、`cases_touched`、`cases_with_an_execution_row`、
+  `executed_by`。答えがゼロであるときは、はっきりそう書く。
 ## 4. 完全性の検証
 
 - 三つのブロックはあるか？「信じている」と「盲点」が常に空なら、エージェントは誠実では
@@ -171,10 +186,14 @@
 - そっけなく「完了」と言ったことがあるか？ 約束違反だ。
 - 系のものではない発見に、行き先が割り当てられ、それぞれの記録に開かれましたか。方法と道具は
   製品の記録からは直りません。
-
+- 報告は、この閉鎖がいくつの手動ケースに触れ、そのうちいくつを人が署名したかを言っているか。その
+  数字がケースのファイルにしかないなら、誰も読まない。探しに行かなければならない数字は、誰も止め
+  ない。
 ## 5. 警告サイン
 
 - 盲点が一つもない報告が十連続。誰もすべては見えない。ブロックは真実ではなく習慣で空だ。
 - 「検証済み」ブロックに「動くはず」のような文がある。変装した「信じている」だ。
 - 報告が変更より長い。釣り合った報告は言うべきことを言う。膨らんだ報告は量で何かを覆って
   いる。
+- 報告はそのブロックが検証済みだと言い、そのブロックの手動ケースは実行の表が空である。書かれたこ
+  とは走ったことではない。

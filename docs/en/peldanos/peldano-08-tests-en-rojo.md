@@ -99,6 +99,14 @@ the agent:
 > point protects nothing (Annex H, UX-11, UX-12, UX-15). A matrix that
 > nothing exercises is a document nobody reads.
 >
+> And for every port you doubled for testing in this item, show me one run that crosses it to the
+> real other side -- the browser, the operating system, the database, the network -- and record it
+> in `docs/PRODUCER_CONSUMER_MAP.md` under `crossing_run`. A test that instantiates the real adapter
+> against a fake environment crossed the real code and still never saw the event, so it does not
+> count: no quantity of faithful doubles replaces the other side (Annex H, CQ-21.1). If you cannot
+> run it, tell me which port is left with no crossing run and write `none` there, which is a
+> declared hole and not a green.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -197,7 +205,9 @@ beginning of a pending item. Non-testability is debt, and debt gets recorded.
 - Does the screen test also verify the effect in the backend?
 - At the close of the block: are all the flows in the end-to-end suite, or is there one that "is
   covered by the unit tests"?
-
+- Does every port this item doubled have its crossing run, and is the other side the real one? A
+  test that instantiates the real adapter against a fake environment crossed the real code and did
+  not see the event.
 ## 5. Warning signs
 
 - Every new test of the week passed green on the first try, and no red was ever shown. Either the
@@ -209,3 +219,5 @@ beginning of a pending item. Non-testability is debt, and debt gets recorded.
   counts. A red without a receipt is worth the same as none.
 - You reach go-live and the complete end-to-end suite runs for the first time. The block closings
   were missing.
+- The item touched a view with a doubled port and the suite has not one single run that presses a
+  control for real. Eighty-one green files can cover four dead controls.
