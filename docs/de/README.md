@@ -9,8 +9,9 @@ sie aus drei realen Systemen destilliert, die heute in Produktion sind, gestütz
 Systemtechnik von jeher und auf das, was mir diese Systeme darüber gezeigt haben, wo die Modelle
 sie brüchig anwenden.
 
-Autor: Pablo Kuschniroff, unterstützt von Claude Code. Veröffentlicht unter Creative Commons
-BY-SA 4.0. Öffentliche Präsentation: [yujin.app/urazuke](https://yujin.app/urazuke/).
+Autor: Pablo Kuschniroff, unterstützt von Claude Code. Die Methode wird unter Creative Commons
+BY-SA 4.0 veröffentlicht; was ausgeführt wird und die mechanische Definition der Gates, unter
+Apache-2.0 (die Aufteilung steht in `../../LICENCIA.md`). Öffentliche Präsentation: [yujin.app/urazuke](https://yujin.app/urazuke/).
 
 Dieser Ordner enthält die deutsche Fassung der Methode. Spanisch ist die Quelle der Wahrheit; wenn
 beide Fassungen voneinander abweichen, gilt die spanische, und die deutsche wird korrigiert.
@@ -133,6 +134,16 @@ einem Fork, mit ihrem Beleg, und werden von einem Maintainer nach Prüfung gemer
 schreibt auf `main`. Der Prozess steht in `CONTRIBUTING.md`. Schritt 23 der Methode verlangt, dass
 jede Retrospektive in einem konkreten Änderungsvorschlag für die Leiter endet; das ist die
 erwartete Form, beizutragen.
+
+**Was ausgeführt wird und was eine Maschine konsumiert** --- die Programme in `build/`, ihre Tests
+in `tests/`, die mechanische Definition der Gates in `gates/` und die zwei Teile der
+Datenschnittstelle, die Definition oder Metadaten sind (`../../docs/html/api/gates.json` und
+`../../docs/html/api/index.json`) --- wird unter **Apache-2.0** (`../../LICENSE-CODE`)
+veröffentlicht: ein beliebiges Werkzeug kann die Gates der Methode implementieren oder einen
+Evaluator in seine eigene Auslieferungskette einbauen, ohne über Anwälte zu gehen und ohne das
+Eigene öffnen zu müssen. Die vollständige Aufteilung, mit dem Grund für jede Seite, steht in
+`../../LICENCIA.md`; jede veröffentlichte Ressource deklariert ihre Lizenz in ihrem eigenen Feld
+`license`, und der Index der Schnittstelle liest sie aus jeder einzelnen aus.
 
 Die Kunden der Ursprungssysteme sind anonymisiert („die Krankenkasse“, „der Verein“); die Zahlen,
 die Daten und die Commits sind echt.

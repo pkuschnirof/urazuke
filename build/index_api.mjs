@@ -141,6 +141,13 @@ export function armarIndice(disco = leerDisco(), ahora = new Date()) {
       what: p.what,
       version_field: r.version_field,
       version: p[r.version_field],
+      // La licencia del recurso, EXTRAIDA del propio recurso y no transcripta aca. Desde
+      // que el repositorio tiene dos licencias (LICENSE y LICENSE-CODE) los recursos ya
+      // no coinciden: el catalogo de compuertas es Apache-2.0 porque una herramienta lo
+      // implementa, y los prompts y las etiquetas siguen CC BY-SA 4.0 porque son la prosa
+      // del metodo. Un indice que declarara una sola licencia para los tres le mentiria a
+      // dos de cada tres consumidores.
+      license: p.license,
       content_hash: {
         field: 'content_hash.value',
         algo: h.algo,
@@ -170,7 +177,9 @@ export function armarIndice(disco = leerDisco(), ahora = new Date()) {
     identity: IDENTITY,
     generated_at: ahora.toISOString(),
     source: REPO,
-    license: 'CC BY-SA 4.0',
+    // La del INDICE, que es metadata de publicacion y nada mas. La de cada recurso viaja
+    // en su entrada de resources[], extraida del recurso mismo.
+    license: 'Apache-2.0',
     canonical_base: BASE_CANONICA,
     mirrors: [{ base: BASE_ESPEJO, note: ESPEJO_NOTE }],
     resources: recursos,
@@ -245,6 +254,15 @@ export function verificarIndice(indice, disco = leerDisco()) {
     } else if (r.version !== declaradaVersion) {
       err('E_INDICE_VERSION', 'el indice cita la version ' + r.version + ' de ' + r.name + ' y el archivo declara ' + declaradaVersion,
         'regenera el indice: node build/index_api.mjs');
+    }
+    // La licencia del recurso. El indice la EXTRAE del recurso, asi que una que no coincide
+    // es un indice viejo mintiendo con cara de dato verificado -- y desde que el
+    // repositorio tiene dos licencias (D-088) la equivocacion dejo de ser teorica: los tres
+    // recursos ya no declaran la misma, y de la licencia dependen los permisos con los que
+    // el consumidor se queda.
+    if (r.license !== enDisco.json.license) {
+      err('E_INDICE_LICENCIA', 'el indice dice que ' + r.name + ' esta bajo ' + JSON.stringify(r.license ?? null) + ' y el archivo declara ' + JSON.stringify(enDisco.json.license ?? null),
+        'regenera el indice: node build/index_api.mjs. La licencia de cada recurso se extrae del recurso y no se escribe en el indice.');
     }
     const h = enDisco.json.content_hash ?? {};
     for (const [campo, esperado] of [['algo', h.algo], ['encoding', h.encoding], ['canonical_form', h.canonical_form], ['value', h.value]]) {

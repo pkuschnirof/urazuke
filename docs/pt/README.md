@@ -8,7 +8,9 @@ produção, **sem que o dono do projeto precise ler uma única linha de código*
 três sistemas reais que hoje estão em produção, apoiado na engenharia de sistemas de sempre e no
 que esses sistemas me mostraram sobre onde os modelos a aplicam de maneira frágil.
 
-Autor: Pablo Kuschniroff, assistido por Claude Code. Publicado sob Creative Commons BY-SA 4.0.
+Autor: Pablo Kuschniroff, assistido por Claude Code. O método é publicado sob Creative Commons
+BY-SA 4.0; o que se executa e a definição mecânica dos portões, sob Apache-2.0 (o reparto está em
+`../../LICENCIA.md`).
 Apresentação pública: [yujin.app/urazuke](https://yujin.app/urazuke/).
 
 Esta pasta contém a versão em português do método. O espanhol é a fonte da verdade; se as duas
@@ -125,6 +127,15 @@ melhorias a **este** repositório entram por pull request a partir de um fork, c
 são integradas por um mantenedor depois de revisá-las; ninguém mais escreve em `main`. O processo
 está em `../../CONTRIBUTING.md`. O degrau 23 do método pede que cada retrospectiva termine numa
 proposta concreta de mudança à escada; essa é a forma esperada de contribuir.
+
+**O que se executa e o que uma máquina consome** --- os programas de `build/`, seus testes em
+`tests/`, a definição mecânica dos portões em `gates/` e as duas peças da interface de dados que
+são definição ou metadados (`../../docs/html/api/gates.json` e `../../docs/html/api/index.json`)
+--- é publicado sob **Apache-2.0** (`../../LICENSE-CODE`): qualquer ferramenta pode implementar os
+portões do método, ou colocar um avaliador dentro da sua própria cadeia de entrega, sem passar por
+advogados e sem ter de abrir o que é seu. O reparto completo, com a razão de cada lado, está em
+`../../LICENCIA.md`; cada recurso publicado declara a sua licença no seu próprio campo `license`,
+e o índice da interface extrai-a de cada um.
 
 Os clientes dos sistemas de origem estão anonimizados ("o Plano de Saúde", "a Associação"); os
 números, as datas e os commits são reais.

@@ -37,8 +37,14 @@ cubría" sí.
 ## Lo que no hace falta
 
 No hace falta pedir permiso para traducir el método, usarlo en un curso propio o adaptarlo a tu
-organización: la licencia CC BY-SA 4.0 ya lo permite, con atribución y compartiendo igual. Lo que
-este documento regula es qué entra en **este** repositorio.
+organización: la licencia CC BY-SA 4.0 ya lo permite, con atribución y compartiendo igual. Tampoco
+hace falta para implementar las compuertas en tu herramienta o meter un evaluador adentro de tu
+cadena de entrega: eso está bajo Apache-2.0, que no te obliga a abrir lo tuyo (el reparto, en
+`LICENCIA.md`). Lo que este documento regula es qué entra en **este** repositorio.
+
+Y una consecuencia del reparto para quien contribuye acá: **tu cambio entra bajo la licencia que
+cubre el archivo que tocás** --- Apache-2.0 si es `build/`, `tests/` o `gates/`, CC BY-SA 4.0 si es
+prosa del método. Un pull request que toque las dos mitades lo dice en su descripción.
 
 ## Mantenedores
 

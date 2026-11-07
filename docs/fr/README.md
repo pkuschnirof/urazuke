@@ -10,7 +10,9 @@ l'ai distillée de trois systèmes réels qui sont aujourd'hui en production, en
 l'ingénierie des systèmes de toujours et sur ce que ces systèmes m'ont montré des endroits où les
 modèles l'appliquent de manière fragile.
 
-Auteur : Pablo Kuschniroff, assisté par Claude Code. Publié sous Creative Commons BY-SA 4.0.
+Auteur : Pablo Kuschniroff, assisté par Claude Code. La méthode est publiée sous Creative Commons
+BY-SA 4.0 ; ce qui s'exécute et la définition mécanique des portes, sous Apache-2.0 (le partage
+est dans `../../LICENCIA.md`).
 Présentation publique : [yujin.app/urazuke](https://yujin.app/urazuke/).
 
 Ce dossier (`docs/fr/`) contient la version française de la méthode. L'espagnol (`docs/`) est la
@@ -135,6 +137,16 @@ fork, avec leur preuve, et sont fusionnées par un mainteneur après révision ;
 n'écrit dans `main`. Le processus est dans `CONTRIBUTING.md`. L'échelon 23 de la méthode demande
 que chaque rétrospective se termine par une proposition concrète de changement à l'échelle ; c'est
 la forme attendue de la contribution.
+
+**Ce qui s'exécute et ce qu'une machine consomme** --- les programmes de `build/`, leurs tests
+dans `tests/`, la définition mécanique des portes dans `gates/` et les deux pièces de l'interface
+de données qui sont définition ou métadonnées (`../../docs/html/api/gates.json` et
+`../../docs/html/api/index.json`) --- est publié sous **Apache-2.0** (`../../LICENSE-CODE`) :
+n'importe quel outil peut implémenter les portes de la méthode, ou mettre un évaluateur dans sa
+propre chaîne de livraison, sans passer par des avocats et sans devoir ouvrir ce qui est à lui. Le
+partage complet, avec la raison de chaque côté, est dans `../../LICENCIA.md` ; chaque ressource
+publiée déclare sa licence dans son propre champ `license`, et l'index de l'interface l'extrait de
+chacune.
 
 Les clients des systèmes d'origine sont anonymisés (« la Mutuelle », « l'Association ») ; les
 chiffres, les dates et les commits sont réels.

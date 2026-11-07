@@ -3,8 +3,12 @@
 Este repositorio es el proyecto del método Urazuke: el documento principal (la escalera
 metodológica), las referencias a los casos reales, los contratos de cada peldaño, el manual del
 curso, el registro de decisiones y el plan del curso y el mentoring. El autor es Pablo
-Kuschniroff, asistido por Claude Code. Se publica bajo CC BY-SA 4.0 y se presenta en
-yujin.app/urazuke.
+Kuschniroff, asistido por Claude Code. Se presenta en yujin.app/urazuke y tiene DOS licencias:
+el método (la prosa, los contratos, los manuales, las traducciones, los prompts y las etiquetas)
+bajo CC BY-SA 4.0, y lo que se ejecuta o una máquina consume (`build/`, `tests/`, `gates/`, y en la
+interfaz publicada `docs/html/api/gates.json` y `docs/html/api/index.json`) bajo Apache-2.0. El
+reparto, con la razón de cada lado, está en `LICENCIA.md`; el campo `license` de cada recurso
+publicado lo declara y `tests/licencias_declaradas.test.mjs` lo vigila.
 
 ## Estilo (distinto del resto de los repositorios de Yujin)
 

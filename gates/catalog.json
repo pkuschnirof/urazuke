@@ -6,7 +6,8 @@
   "method": {
     "name": "Urazuke",
     "repo": "https://github.com/pkuschnirof/urazuke",
-    "license": "CC BY-SA 4.0"
+    "license": "Apache-2.0",
+    "license_note": "Apache-2.0 is the licence of what a machine runs or consumes mechanically: the programs of build/, their tests in tests/, this gate definition in gates/ and its published copies (docs/html/api/gates.json and docs/html/api/index.json). The prose of the method -- its documents, its contracts, its manuals, its eight translations, its prompts and the labels extracted from it -- is CC BY-SA 4.0. The split, with the reason for each side, is in LICENCIA.md; the two legal texts are LICENSE-CODE and LICENSE. A rule statement travels on both sides on purpose: the same holder can license his own text twice, and what he cannot do is leave the consumer guessing which one governs."
   },
   "parts": {
     "catalog": "gates/catalog.json",

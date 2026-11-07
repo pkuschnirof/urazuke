@@ -9,7 +9,9 @@ it from three real systems that are in production today, leaning on the systems 
 have always had and on what those systems showed me about where the models apply it in a fragile
 way.
 
-Author: Pablo Kuschniroff, assisted by Claude Code. Published under Creative Commons BY-SA 4.0.
+Author: Pablo Kuschniroff, assisted by Claude Code. The method is published under Creative
+Commons BY-SA 4.0; what is executed and the mechanical definition of the gates, under Apache-2.0
+(the split is in `../../LICENCIA.md`).
 Public presentation: [yujin.app/urazuke](https://yujin.app/urazuke/).
 
 This folder holds the English version of the method. Spanish is the source of truth and this is a
@@ -129,6 +131,15 @@ come in by pull request from a fork, with their evidence, and a maintainer merge
 reviewing them; nobody else writes to `main`. The process is in `CONTRIBUTING.md`. Step 23 of the
 method asks that every retrospective end in a concrete proposal to change the ladder; that is the
 expected way to contribute.
+
+**What is executed and what a machine consumes** -- the programs in `build/`, their tests in
+`tests/`, the mechanical definition of the gates in `gates/` and the two pieces of the data
+interface that are definition or metadata (`../../docs/html/api/gates.json` and
+`../../docs/html/api/index.json`) -- is published under **Apache-2.0** (`../../LICENSE-CODE`): any
+tool can implement the gates of the method, or put an evaluator inside its own delivery pipeline,
+without going through lawyers and without having to open its own code. The full split, with the
+reason for each side, is in `../../LICENCIA.md`; every published resource declares its licence in
+its own `license` field, and the index of the interface extracts it from each one.
 
 The public repository of the method is
 [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke).
