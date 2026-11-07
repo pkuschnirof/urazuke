@@ -119,7 +119,8 @@ solo en castellano porque citan palabras textuales.
 
 ## Licencia y cómo contribuir
 
-El método se publica bajo **Creative Commons Atribución-CompartirIgual 4.0** (`LICENSE`): se puede
+El método se publica bajo **Creative Commons Atribución-CompartirIgual 4.0** (el texto legal
+en `LICENSE`, su lectura en castellano y las notas en `LICENCIA.md`): se puede
 usar, traducir y adaptar, con atribución y compartiendo igual. Las mejoras a **este** repositorio
 entran por pull request desde un fork, con su evidencia, y las fusiona un mantenedor después de
 revisarlas; nadie más escribe en `main`. El proceso está en `CONTRIBUTING.md`. El peldaño 23 del
