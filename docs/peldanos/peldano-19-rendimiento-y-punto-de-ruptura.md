@@ -83,6 +83,14 @@ el agente:
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
 > diagnosis of the first bottleneck.
 >
+> Then contrast, which is the part that decides: write in `docs/PERFORMANCE.md` the
+> `thresholds_total` the project declared, the `thresholds_met` the measurement met, and for
+> each threshold its `threshold_condition` -- at what volume, at what concurrency, in which
+> environment it holds. A figure that does not meet its threshold is RED and not merely
+> measured. If a threshold carries no declared condition, ask me for it instead of assuming
+> one: the same system passes at twenty people and fails at two hundred, so a threshold
+> without its condition cannot be contrasted against anything.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -109,6 +117,13 @@ el agente:
 > si alguno. No optimices nada todavía. Escribí `docs/PERFORMANCE_[fecha].md` con los números, los
 > comandos, el punto de ruptura y tu diagnóstico del primer cuello de botella. Respondé en mi
 > idioma.
+>
+> Después contrastá, que es la parte que decide: escribí en `docs/PERFORMANCE.md` los
+> `thresholds_total` que el proyecto declaró, los `thresholds_met` que la medición cumplió y, por
+> cada umbral, su `threshold_condition`: a qué volumen, a qué concurrencia y en qué entorno vale.
+> Una cifra que no cumple su umbral es ROJA y no «medida». Si un umbral no trae condición declarada,
+> pedímela en vez de suponerla: el mismo sistema pasa a veinte personas y falla a doscientas, así
+> que un umbral sin su condición no se puede contrastar contra nada.
 >
 > Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
@@ -179,6 +194,9 @@ archivada, para que dentro de seis meses se pueda comparar.
   diagnóstico; `docs/PERFORMANCE.md` con los umbrales y la compuerta.
 - Un pendiente por cuello de botella bajo el volumen decidido.
 - La prueba de carga como compuerta antes de los despliegues que la requieren.
+- En `docs/PERFORMANCE.md`: los `thresholds_total` declarados, los `thresholds_met` y la
+  `threshold_condition` de cada umbral. Una cifra que no cumple su umbral queda **roja** y no
+  «medida» (CQ-22.1), y un umbral sin su condición se reporta como no declarado (CQ-22.2).
 
 ## 4. Verificación de completitud
 

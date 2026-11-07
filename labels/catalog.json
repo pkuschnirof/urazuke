@@ -1,7 +1,7 @@
 {
   "what": "The header of the catalogue of texts by identifier: the version a project freezes. Declared BY HAND, for the same reason as the gate catalogue (gates/catalog.json) and the prompt corpus (prompts/catalog.json): a project starts and finishes with the same version of the method, so what it froze has to read back the same two years from now.",
-  "labels_version": "2026.10.3",
-  "declared_at": "2026-11-03",
+  "labels_version": "2026.10.4",
+  "declared_at": "2026-11-07",
   "published_as": "docs/html/api/labels.json",
   "extracted_from": {
     "note": "The texts are EXTRACTED from the prose of the method, not written here and not transcribed. This is the list of what each kind is read from, in every language the prose declares; if a text is not there, publication is refused.",
@@ -55,6 +55,13 @@
       "decision": "D-087",
       "content_hash": "823185814ceb9d80c6b50f66d8812cfdd70fe4ef3c7ea5b6882ef82f89192efc",
       "changed": "The thirty-two strings of CQ-21 and its three faces (D-087). One rule enters the gate catalogue with three faces, so the text catalogue carries four more statements and three more face titles per language: eight ids, thirty-two strings, extracted from the prose of each language like every other one. Nothing is written here: the test demands that every one of them appear LITERAL in the annex of the language it says it comes from, which is what keeps this resource from becoming a second version of the method. What does NOT change: the kinds, the scope, the exclusions and the derivation of the languages from languages.prose_versions."
+    },
+    {
+      "labels_version": "2026.10.4",
+      "date": "2026-11-07",
+      "decision": "D-089",
+      "content_hash": "23ede773ed2b590338de3c00c719c7b3d04b64d4111e6e5bbce18b1749460f32",
+      "changed": "The statements of CQ-22, CQ-23 and CQ-24 come in, plus the ten new faces -- the four of CQ-22, the three of CQ-23, the two of CQ-24 and CQ-21.4, which is the first face a published rule gained after entering -- extracted from the annex of the eight languages the prose declares, like every other string here. Nothing was written in this file and nothing was transcribed: a text that is missing in one language refuses the publication of the whole resource (D-089)."
     }
   ]
 }

@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.16** - schema **2**
-- content fingerprint `a3fc6b7b81e780f4...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.17** - schema **2**
+- content fingerprint `c8aacd1f4e360435...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -25,7 +25,7 @@ What a project pins, and what it costs to change it. A project pins ONE catalog_
 
 For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.16`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.17`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -58,6 +58,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.14** (2026-11-02, D-081, D-082) -- `f11bfce27e8d82b4...`
 - **2026.10.15** (2026-11-02, D-083, D-084) -- `e1b415a8a01ff391...`
 - **2026.10.16** (2026-11-03, D-087) -- `a3fc6b7b81e780f4...`
+- **2026.10.17** (2026-11-07, D-089) -- `c8aacd1f4e360435...`
 
 ## Pinning: what a tool that freezes the method owes
 
@@ -81,7 +82,7 @@ and every declared version also has an address of its own: `<canonical base>/<re
 
 - The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.
 - Where it is declared: Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.
-- This version lives at `gates/2026.10.16.json` under the canonical base, and the first version with an address is **2026.10.1**.
+- This version lives at `gates/2026.10.17.json` under the canonical base, and the first version with an address is **2026.10.1**.
 - No purge: Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.
 - What the address promises: The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.
 - Not guaranteed: Byte identity is not promised, only the covered content, for the reason above. And an address on this host is not a substitute for the ledger: if this host is compromised, both the file and its hash can be rewritten together, so the pair (version -> hash) is still checked against the ledger, which lives elsewhere.
@@ -146,35 +147,35 @@ method declares from now on is in English, and it is marked as new.
 
 | # | step | form | demand | evaluators | inputs | artifacts | checks |
 |---|---|---|---|---|---|---|---|
-| 5 | El plan son los pendientes | routine | always | `pendings_spec`, `pendings_profiles` (new) | 2 | 1 | 4 |
+| 5 | El plan son los pendientes | routine | always | `pendings_spec`, `pendings_profiles` (new) | 2 | 1 | 5 |
 | 6 | Las decisiones se escriben junto al codigo | conversation | always | `artifacts` | 1 | 1 | 2 |
 | 7 | Medir antes de construir, con un instrumento que tambien se verifica | one_shot | proportional | `meters` | 0 | 0 | 3 |
-| 8 | Tests como candados, probados en rojo | routine | always | `receipts`, `profile_matrix` (new) | 2 | 1 | 5 |
-| 9 | Calidad del codigo verificada por maquina, con compuerta | routine | minimum | `ci`, `heuristics` (new) | 1 | 8 | 9 |
+| 8 | Tests como candados, probados en rojo | routine | always | `receipts`, `profile_matrix` (new) | 2 | 1 | 7 |
+| 9 | Calidad del codigo verificada por maquina, con compuerta | routine | minimum | `ci`, `heuristics` (new) | 1 | 9 | 10 |
 | 10 | Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas | routine | always | `artifacts`, `manual_cases_per_profile` (new) | 2 | 4 | 8 |
-| 11 | Simetria entre productor y consumidor, y el registro de anti-patrones | routine | minimum | `artifacts` | 1 | 3 | 4 |
-| 12 | Verificacion honesta y reporte proporcional | routine | always | `reports`, `heuristics` (new) | 1 | 3 | 6 |
+| 11 | Simetria entre productor y consumidor, y el registro de anti-patrones | routine | minimum | `artifacts` | 1 | 4 | 5 |
+| 12 | Verificacion honesta y reporte proporcional | routine | always | `reports`, `heuristics` (new) | 1 | 4 | 7 |
 
 ### III. Salida a produccion
 
 | # | step | form | demand | evaluators | inputs | artifacts | checks |
 |---|---|---|---|---|---|---|---|
 | 13 | La auditoria periodica como insumo del plan | one_shot | minimum | `artifacts` | 2 | 9 | 11 |
-| 14 | Fail-closed, candados y cero dano silencioso | conversation | minimum | `artifacts` | 2 | 1 | 3 |
+| 14 | Fail-closed, candados y cero dano silencioso | conversation | minimum | `artifacts` | 2 | 2 | 5 |
 | 15 | Integracion continua, entornos, secretos y despliegue como parte del producto | one_shot | minimum | `ci` | 1 | 2 | 4 |
-| 16 | Observabilidad y trazabilidad totales, con nivel configurable | one_shot | minimum | `artifacts` | 2 | 1 | 2 |
+| 16 | Observabilidad y trazabilidad totales, con nivel configurable | one_shot | minimum | `artifacts` | 2 | 1 | 3 |
 | 17 | Optimizacion de la capa de persistencia, medida antes y despues | one_shot | proportional | `artifacts` | 2 | 1 | 2 |
 | 18 | Escaneo y solucion de vulnerabilidades, en la cadena y con calendario | one_shot | minimum | `ci` | 2 | 2 | 2 |
-| 19 | Pruebas de rendimiento en volumen y punto de ruptura | one_shot | proportional | `artifacts` | 2 | 2 | 2 |
-| 20 | Documentacion viva y manuales que una persona puede seguir sin IA | routine | minimum | `artifacts` | 3 | 4 | 3 |
+| 19 | Pruebas de rendimiento en volumen y punto de ruptura | one_shot | proportional | `artifacts` | 2 | 3 | 4 |
+| 20 | Documentacion viva y manuales que una persona puede seguir sin IA | routine | minimum | `artifacts` | 3 | 5 | 5 |
 
 ### IV. Operacion
 
 | # | step | form | demand | evaluators | inputs | artifacts | checks |
 |---|---|---|---|---|---|---|---|
 | 21 | Monitoreo de recursos, funciones y consultas fuera de rango, con reporte ciclico | routine | minimum | `artifacts` | 2 | 2 | 2 |
-| 22 | Monitoreo de errores y reporte ciclico: ningun error sin pendiente | routine | always | `artifacts` | 2 | 2 | 2 |
-| 23 | El agente adentro del sistema, y la retrospectiva con numero | conversation | minimum | `artifacts` | 2 | 5 | 5 |
+| 22 | Monitoreo de errores y reporte ciclico: ningun error sin pendiente | routine | always | `artifacts` | 2 | 3 | 3 |
+| 23 | El agente adentro del sistema, y la retrospectiva con numero | conversation | minimum | `artifacts` | 2 | 5 | 6 |
 
 ### What each step demands, in detail
 
@@ -281,6 +282,7 @@ Completeness check, without reading code:
 - Cada pendiente dice como se verifica sin leer codigo?
 - Los pendientes cerrados conservan su especificacion (documentacion del hecho)?
 - Does every pending item that touches a screen declare its convergence group, its profiles and one acceptance criterion per profile? **(new in schema 2, anchor 1)**
+- Does the path by which the owner authorises a forced close WRITE the field the register declares mandatory for it, or does the project declare which record carries the fact and which field is not it? A forced close counted by reading prose is the count the field came in to avoid (CQ-24.1). **(new in schema 2, D-089)**
 
 **6 - Las decisiones se escriben junto al codigo** (`u06-decisiones`, prompt `peldano-06`)
 
@@ -322,6 +324,8 @@ Completeness check, without reading code:
 - La prueba de pantalla verifica tambien el efecto en el backend?
 - Was the matrix seen failing first: for each profile, what is reachable against its row, neither less nor more? **(new in schema 2, anchor 2)**
 - For every port this item doubled, is there one run that crosses it to the real other side? A test that instantiates the real adapter against a fake environment went through the adapter and still never saw the event (CQ-21.1). **(new in schema 2, D-087)**
+- Is the red of every receipt a FAILED ASSERTION and not an exception -- code that does not compile, a file that does not parse, an environment that did not start? A red that never reached its assertion falsified nothing, because the assertion neither passed nor failed (CQ-21.4). **(new in schema 2, D-089)**
+- Did the chain that produced this green run AFTER the last change that affects what it measures, and over the tree that stays? A green that is true and old reads exactly like a current one (CQ-23.1). **(new in schema 2, D-089)**
 
 **9 - Calidad del codigo verificada por maquina, con compuerta** (`u09-calidad-de-codigo`, prompt `peldano-09`)
 
@@ -339,6 +343,7 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/CODE_QUALITY.md` -- every criterion declares the instrument that judged it, with the vocabulary the data declares, so that one judged by a person cannot be read as one a program verified; has to say: `verified_by` and `(auto_gate|matrix_query|e2e_per_profile|manual_case)`; **new in schema 2**
 - `docs/USABILITY.md` -- the compliance document declares its denominator and who verified: how many criteria apply, how many a program verified, how many a person signed, and the debt with its pending verifier; has to say: `criteria_total.{0,20}\d` and `criteria_verified_by_a_program.{0,20}\d` and `criteria_verified_by_a_person.{0,20}\d` and `verification_debt[\s\S]{0,40}(none|pending_verifier)`; **new in schema 2**
 - `docs/USABILITY.md` -- every criterion declares the instrument that judged it, with the vocabulary the data declares, so that one judged by a person cannot be read as one a program verified; has to say: `verified_by` and `(auto_gate|matrix_query|e2e_per_profile|manual_case)`; **new in schema 2**
+- `docs/CODE_QUALITY.md` -- every figure this document decides with carries its verdict next to it -- it passes or it does not -- and not only its measured value (CQ-22.1); has to say: `verdict`; **new in schema 2**
 
 Completeness check, without reading code:
 - La ultima corrida de la cadena tiene la calidad en verde?
@@ -350,6 +355,7 @@ Completeness check, without reading code:
 - Does every instrument this step decides with carry its receipt: which set it expected to walk next to how much of it it walked, what it depends on, and what it reports when it could not look (CQ-19)? **(new in schema 2, anchor 3)**
 - Take a criterion that reads as met and ask who said so: if its instrument is a manual case, is there a name and a date, instead of a criterion nobody judged reading as one that was verified? **(new in schema 2, D-084)**
 - Does criteria_total count the rules nobody has looked at yet, rather than only the ones that were verified? **(new in schema 2, D-084)**
+- Is every mutant declared caught backed by a failed assertion, rather than by a red the mutated code produced before the run reached the assertion (CQ-21.4)? **(new in schema 2, D-089)**
 
 **10 - Los casos de prueba manual se escriben con la funcionalidad y los ejecutan personas** (`u10-casos-de-prueba-manual`, prompt `peldano-10`)
 
@@ -386,12 +392,14 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/PRODUCER_CONSUMER_MAP.md` -- mapa productor-consumidor
 - `docs/GOTCHAS.md` -- registro de anti-patrones; at least 50 bytes, so that a sketch does not count
 - `docs/PRODUCER_CONSUMER_MAP.md` -- the map carries the ports that were doubled for testing, with its denominator: how many ports have a double, how many of those have a run that crosses them to the real other side, and what that other side is. A port whose crossing run says none is a declared hole and not an absence nobody wrote down; has to say: `ports_with_a_test_double` and `ports_total.{0,20}\d` and `ports_with_a_crossing_run.{0,20}\d` and `crossing_run[\s\S]{0,200}(browser|operating_system|database|network|none)`; **new in schema 2**
+- `docs/GOTCHAS.md` -- the anti-pattern register says at which step it was opened and how many of its rows were written looking backwards, so that a stretch with no register is read as not recorded and never as zero incidents (CQ-24.2); has to say: `register_opened_at_step.{0,20}\d` and `rows_written_retroactively.{0,20}\d`; **new in schema 2**
 
 Completeness check, without reading code:
 - El mapa nombra cada estructura compartida con sus lectores y escritores?
 - Cada golpe de los ultimos bloques esta en GOTCHAS.md con su regla?
 - Does every port that was doubled for testing carry the run that crosses it to the real other side, and does that other side name what the port is doubling -- a browser, an operating system, a database, the network -- instead of another double? **(new in schema 2, D-087)**
 - Do ports_total and ports_with_a_crossing_run come from the same table they describe, so that a port with no crossing run is visible instead of being left out of the denominator? **(new in schema 2, D-087)**
+- Does the register say at which step it was opened, and are the rows that describe earlier steps marked as written retroactively? Steps before the register reporting zero incidents means there was no register, not that nothing happened (CQ-24.2). **(new in schema 2, D-089)**
 
 **12 - Verificacion honesta y reporte proporcional** (`u12-verificacion-honesta`, prompt `peldano-12`)
 
@@ -404,6 +412,7 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/WORKING_AGREEMENT.md` -- la rutina del reporte honesto; has to say: `verif` and `blind|ciego`
 - `docs/WORKING_AGREEMENT.md` -- the routine assigns each finding its destination: product, method or tool; has to say: `findings_by_destination`; **new in schema 2**
 - `docs/WORKING_AGREEMENT.md` -- the honest report declares the reach of the manual cases of this closing: how many it touches, how many of those have a signed execution row, and who signed them -- in the report where decisions are made and not only in the file where the case lives; has to say: `cases_touched` and `cases_with_an_execution_row` and `executed_by`; **new in schema 2**
+- `docs/WORKING_AGREEMENT.md` -- the honest report declares the provenance of every verdict it cites: that the run is later than the last change affecting what it measures, and where its output lives -- a verdict that travelled inside a response died with it (CQ-23); has to say: `verdict_after_last_change` and `verdict_output_lives_in`; **new in schema 2**
 
 Completeness check, without reading code:
 - El ultimo reporte separa verificado / creido / punto ciego?
@@ -412,6 +421,7 @@ Completeness check, without reading code:
 - Do the two figures travel with their ruleset fingerprint, and does neither of them close a block? **(new in schema 2, anchor 5)**
 - Does every finding that is not about the product carry its destination, and was its pending item opened in the register of that destination? **(new in schema 2, D-080)**
 - Does the report say how many manual cases this closing touches, how many of them a person signed and who, with all the letters when the answer is none? A figure somebody has to go and look for stops nobody (CQ-21.2). **(new in schema 2, D-087)**
+- For every verdict the report cites: is it later than the last change that affects what it measures, and did its output land somewhere the next turn can read? A verification that can last longer than the turn that launched it is launched with a record (CQ-23.1, CQ-23.2). **(new in schema 2, D-089)**
 
 **13 - La auditoria periodica como insumo del plan** (`u13-auditoria`, prompt `peldano-13`)
 
@@ -455,11 +465,14 @@ Inputs the owner has ready before the first prompt:
 
 Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/LOCKS.md` -- registro de candados
+- `docs/THIRD_PARTY_EXECUTION.md` -- the inventory of the third-party code the system EXECUTES -- not the code it imports: install scripts, binaries put on the path, background processes, hooks that run on an event -- with the privilege each one runs with, and a DECISION per entry. An inventory whose entries nobody resolved is the measurement nobody contrasted (CQ-22.4); has to say: `entries_total.{0,20}\d` and `entries_with_a_decision.{0,20}\d` and `privilege` and `runs_as`; **new in schema 2**
 
 Completeness check, without reading code:
 - Cada accion de tu lista tiene su candado en LOCKS.md, con el test que lo prueba?
 - Ante un dato que falta, el sistema se detiene en vez de inventar?
 - Does every verification declare the privilege it ran with, and does the probe that exercises a destructive operation run where its statement cannot land, with the state counted before and after (CQ-20)? **(new in schema 2)**
+- Does the inventory cover the third-party code that RUNS and not the code that is imported, and does every entry carry its decision -- accepted, narrowed or rejected, with who and when -- rather than the list merely existing (CQ-22.4)? **(new in schema 2, D-089)**
+- Does every entry declare the privilege it runs with, and is there one that runs with more than it needs without a written decision saying why (CQ-20.1)? **(new in schema 2, D-089)**
 
 **15 - Integracion continua, entornos, secretos y despliegue como parte del producto** (`u15-ci-entornos-secretos-deploy`, prompt `peldano-15`)
 
@@ -492,6 +505,7 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 Completeness check, without reading code:
 - Pediste una traza real de una accion y la leiste de punta a punta?
 - El nivel de registro se cambia por configuracion?
+- Take ONE real error and follow it: does it leave a structured line that says what it was, with the same trace on both sides? Counting errors is not seeing them -- a counter can count over something the collector could not read (CQ-19.2). **(new in schema 2, D-089)**
 
 **17 - Optimizacion de la capa de persistencia, medida antes y despues** (`u17-persistencia`, prompt `peldano-17`)
 
@@ -535,10 +549,13 @@ Inputs the owner has ready before the first prompt:
 Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/PERFORMANCE.md` -- umbrales y como se corre la prueba
 - `docs/PERFORMANCE_*.md` -- ultimo resultado; the newest one, less than 90 days old
+- `docs/PERFORMANCE.md` -- the thresholds carry their denominator and their verdict: how many the project declared, how many the measurement met, and the CONDITION under which each one holds -- at what volume, at what concurrency, in which environment. A threshold without its condition is reported as undeclared, because the same system passes at twenty people and fails at two hundred (CQ-22.1, CQ-22.2); has to say: `thresholds_total.{0,20}\d` and `thresholds_met.{0,20}\d` and `threshold_condition`; **new in schema 2**
 
 Completeness check, without reading code:
 - Hay un punto de ruptura escrito, con la pieza que se rompe?
 - Los umbrales estan en la cadena o en el monitoreo?
+- Was every measured figure contrasted against its declared threshold, and is the one that does not pass RED rather than merely measured? A whole ladder can be closed with every non-functional requirement unmet while each gate is right about what it measures (CQ-22.1). **(new in schema 2, D-089)**
+- Does every threshold say at what concurrency, at what volume and in which environment it holds, and did the owner answer that condition instead of the agent assuming it (CQ-22.2)? **(new in schema 2, D-089)**
 
 **20 - Documentacion viva y manuales que una persona puede seguir sin IA** (`u20-documentacion-viva`, prompt `peldano-20`)
 
@@ -554,11 +571,14 @@ Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/MAINTENANCE_MANUAL.md` -- manual de mantenimiento
 - `docs/INFRASTRUCTURE_AND_RECOVERY_MANUAL.md` -- manual de infraestructura y recuperacion
 - `docs/CHANGELOG.md` -- registro de cambios; at least 50 bytes, so that a sketch does not count
+- `docs/RESTORE_DRILL.md` -- the receipt of a real restore drill: the window of data loss the owner declared acceptable, the cadence of the backup contrasted against it, and a run that DESTROYED the database of the system and restored it from the backup -- with the rows counted before and after and the migration the schema was left at. A manual that names the procedure is not a restore that happened, and an honestly declared absence of backups does not close this step (CQ-22.3); has to say: `acceptable_data_loss_window` and `backup_cadence` and `destroyed_and_restored` and `rows_before.{0,20}\d` and `rows_after.{0,20}\d` and `schema_after`; **new in schema 2**
 
 Completeness check, without reading code:
 - Una persona sin IA puede recuperar el sistema siguiendo el manual?
 - Alguien que no sos vos siguio el manual de usuario y llego?
 - Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item? **(new in schema 2)**
+- Is there a receipt of a run that destroyed and restored, with the rows counted before and after and the schema at the migration it was at -- rather than a manual that names the procedure? Restoring onto an empty database proves less, which is why the drill destroys first (CQ-22.3). **(new in schema 2, D-089)**
+- Did the owner declare the acceptable window of data loss, as data and not as prose, and is the cadence of the backup contrasted against it? If the owner says one hour, a daily backup does not pass (CQ-22.2). **(new in schema 2, D-089)**
 
 **21 - Monitoreo de recursos, funciones y consultas fuera de rango, con reporte ciclico** (`u21-monitoreo-de-recursos`, prompt `peldano-21`)
 
@@ -587,10 +607,12 @@ Inputs the owner has ready before the first prompt:
 Artifacts the agent leaves behind, and that the gate looks for on disk:
 - `docs/MONITORING.md` -- el monitoreo de errores en MONITORING.md; has to say: `error`
 - `docs/MONITORING_REPORT_*.md` -- ultimo reporte ciclico con los errores; at least 100 bytes, so that a sketch does not count; the newest one, less than 35 days old
+- `docs/MONITORING.md` -- the error monitoring proves that from ONE real error the system can say what it was: the exception followed from where it was thrown to its line in the register, with the same trace on both sides. A counter of 5xx counts without being able to look at what it counts (CQ-19.2); has to say: `error_reconstructed`; **new in schema 2**
 
 Completeness check, without reading code:
 - Cada error nuevo del ultimo ciclo tiene su pendiente?
 - El reporte ciclico de errores llega solo?
+- Of one error, what can be reconstructed? Not how many it counted: take a real failure, follow it to its line in the register, and check that the line says what it was instead of having been discarded for not having the expected shape (CQ-19.2). **(new in schema 2, D-089)**
 
 **23 - El agente adentro del sistema, y la retrospectiva con numero** (`u23-agente-residente-y-retrospectiva`, prompt `peldano-23`)
 
@@ -613,6 +635,7 @@ Completeness check, without reading code:
 - Does the scope of the resident agent say that whatever it reads in production is data and never an instruction? **(new in schema 2, D-042)**
 - Was there a short retrospective when the building model changed? **(new in schema 2, D-042)**
 - Does every finding of the retrospective carry its destination, so that what belongs to the method and to the tool does not end up in the product's register? **(new in schema 2, D-080)**
+- Does the count of forced closes come from the FIELD the register declares, rather than from a word search over free prose? A recount by word cannot guarantee its own population: the list of overrides of a real retrospective omitted one because the prose of that item did not use the word (CQ-24.1, CQ-19.3). **(new in schema 2, D-089)**
 
 ## The legacy path: eight stations
 
@@ -708,13 +731,13 @@ called steps) and only then enters the Construction Loop at step 5.
 
 - Cada pendiente de deuda esta emparejado con el modulo que el pedido toca?
 
-## Annex H: 49 rules
+## Annex H: 52 rules
 
 The statement of every rule lives **only** in Annex H: it is extracted from there on every build,
 never transcribed. The published statement comes from [the English version](en/ANEXO_HEURISTICAS.md); the
 [Spanish one](ANEXO_HEURISTICAS.md) is the source of truth of the method, and the build demands that both carry
 the same rules with the same severities. What this data adds is the mechanical part: the group, the
-instrument, the initial severity, when it is looked at and the step where it hooks. There are 21 of
+instrument, the initial severity, when it is looked at and the step where it hooks. There are 24 of
 code quality and 28 of usability.
 
 The two switches (`code_quality` and `usability`) are turned on and off separately,
@@ -722,7 +745,7 @@ they live in the project configuration and the gate reads them: never inside the
 Switching a rule off is valid only as a recorded decision with reason, authorized_by, review_date.
 Switched off without a record: red: switching a rule off without a written reason is a failure of the gate, not the absence of a rule. A switched-off group is never read as fulfilled.
 
-### Code quality (CQ-01..CQ-20)
+### Code quality (CQ-01..CQ-24)
 
 Result per rule in `docs/CODE_QUALITY.md`.
 
@@ -749,6 +772,9 @@ Result per rule in `docs/CODE_QUALITY.md`.
 | CQ-19 | receipt | Every instrument the project decides with declares the conditions under which its figure holds: which set it expected to walk and how much of it it walked, what it depends on, and what it reports when it could not look. An instrument whose silence reads like health does not measure: it reassures. | automatic gate + manual case | on every push and at block close | BLOCKS | 9 |
 | CQ-20 | privilege | A verification runs with the least privilege it needs in order to verify and with no more, and that it could do no harm is measured, not promised. | automatic gate + manual case | on every push and at block close | BLOCKS | 14 |
 | CQ-21 | reach | Every verification declares how far its run reached, and whatever was left beyond that point is counted as not verified and never as healthy: a double no run crosses, an artefact nobody ran and a step no execution reached do not say that what lies past them works, they say that nobody looked. | automatic gate + manual case | on every push and at block close | BLOCKS | 8, 10, 11, 12 |
+| CQ-22 | contrast | A figure the project measures against a requirement the project declared gets contrasted, and the result of the contrast is the verdict: a measurement that exists and that nobody compared against its threshold verified nothing. That the measurement exists is the beginning of the verification and not its end. | automatic gate + manual case | on every push and at block close | BLOCKS | 14, 19, 20 |
+| CQ-23 | provenance | A verdict is worth something for where it ran, when it ran and where it was written down: over the tree that stays, after the last change that affects what it measures, over artefacts of this work, and with its output in a place that outlives the run. A green that cannot say those four things is not an old green: it is the green of something else. | automatic gate + manual case | on every push and at block close | BLOCKS | 8, 9, 12 |
+| CQ-24 | register | A register answers the question it exists for, over the whole of its stretch: the fields that answer that question are written by the path that produces the fact, and the stretch that fell outside its scope is reported as outside its scope and never as zero. | automatic gate + manual case | on every push and at block close | BLOCKS | 5, 11, 23 |
 
 ### Usability (UX-01..UX-28)
 
@@ -789,12 +815,12 @@ The rules marked with `*` in the step column are not anchored by the annex expli
 derived from their instrument (the manual case runs at step 10, the automatic gate runs at step 9)
 and is declared as derived, not as a decision of the method.
 
-A **human red** is carried by five of the forty-nine rules -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- and those are tested by no tool
+A **human red** is carried by five of the fifty-two rules -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- and those are tested by no tool
 at all: they are verified at the close of the pending item, with the manual case in front, and
 never on a commit. Four of them block (CQ-12, CQ-14, UX-22, UX-27) and one warns (UX-28):
 a human red says who verifies a rule, not how hard it hits.
 
-### The nine faces, and how a single one is switched off
+### The nineteen faces, and how a single one is switched off
 
 A face is a cut of the statement of one rule with an identifier of its own (CQ-19.1). Faces exist for a mechanical reason and not a drafting one: without an identifier a single one cannot be switched off, and a rule that can only be switched off whole pushes towards switching off too much. Their statement lives only in Annex H, like the statement of a rule, and the build extracts it (D-044).
 
@@ -809,12 +835,22 @@ A face is a cut of the statement of one rule with an identifier of its own (CQ-1
 | CQ-21.1 | The real other side | Every port with a test double has at least one run that crosses it to the real other side, and the other side is whatever the port is doubling: if what is there is a browser, an operating system, a database or the network, there is no way to satisfy this without it, and no quantity of faithful doubles replaces it. | CQ-21 |
 | CQ-21.2 | Written is not run | A verification artefact nobody ran counts zero and not half a verification, and its figure travels to the report where the decision is made and not only to the file where the artefact lives: a figure somebody has to go and look for stops nobody. | CQ-21 |
 | CQ-21.3 | The case comes back whole | An execution reports which step it reached, and the steps it did not reach neither passed nor failed: when what failed is fixed, the case runs again whole and leaves a new execution row later than the fix, and a correction does not close with the verification of the step that failed. | CQ-21 |
+| CQ-21.4 | The red reached its assertion | A red proves what it says it proves only if the run got as far as the assertion: a red that is an exception -- the mutated code does not compile, the file does not parse, the environment did not start -- falsified nothing, because the assertion neither passed nor failed, and declaring a mutation caught on that red is giving a verdict about a step the run never reached. | CQ-21 |
+| CQ-22.1 | The figure against its threshold | Every figure a declared requirement governs arrives with its threshold next to it and with its verdict -- it passes or it does not -- and the one that does not pass is red and not "measured". The written impossibility still counts as an exit; silence does not. | CQ-22 |
+| CQ-22.2 | The threshold with its condition | A threshold declares the condition under which it holds -- at what volume, at what concurrency, in which environment, over what data -- and a threshold without its condition is reported as undeclared: the same system passes at twenty people and fails at two hundred, so without the condition there is nothing to contrast against. The condition is a decision of the owner and is never assumed. | CQ-22 |
+| CQ-22.3 | A declared absence does not close | A safeguard the method requires and that does not exist does not close its step by being honestly declared. The difference from the written impossibility is mechanical: if what is missing is the figure, honesty is enough and the measurement stays pending; if what is missing is the safeguard, no figure is missing -- the way back is -- and that is a red with its prerequisite project. | CQ-22 |
+| CQ-22.4 | Every entry with its decision | An inventory the method requires closes with a decision per entry -- accepted, narrowed or rejected, with who and when -- and not with the list existing. A complete inventory whose entries nobody resolved is the same measurement nobody contrasted, in another shape. | CQ-22 |
+| CQ-23.1 | Later than the last change | A verdict is later than the last change that affects what it measures, and it ran over the tree that stays. A green that is true and old reads exactly like a current one; and a gate that looks at the definitive tree and only runs on publishing leaves a green with an expiry date that nobody revalidates. | CQ-23 |
+| CQ-23.2 | The output outlives the run | Every verification that can last longer than the turn that launched it leaves its verdict where the next turn can read it. An output that travels inside the response dies with it, and what is lost is not the work -- that stayed -- but the verdict, which is the only reason it was run. | CQ-23 |
+| CQ-23.3 | The artefact belongs to this work | Of the artefacts a step closes with, at least one was born in it, and the question that detects this is asked by hand and without tools: which file of this list did not exist before starting? If the answer is "none", the green belongs to another step, and the gate measured the wrong artefact correctly. | CQ-23 |
+| CQ-24.1 | The fact writes the field | A mandatory field whose value is not derived from the fact it says it records can be true of itself and false of the fact: it is written by the path that produces the fact, or the method declares that this field is not the record of the fact and says which one is. A constant field, or one left empty while the fact happens and counted in the prose next to it, leaves a count that has to be made by reading, which is exactly what the field came in to avoid. | CQ-24 |
+| CQ-24.2 | The register is born before the work | A register that starts halfway along the route cannot answer for the stretch before it, and its zero there reads as "nothing happened". It is born before the work it records, or the rows written looking backwards are marked as such and the stretch with no register is reported as not recorded and never as clean. | CQ-24 |
 
 Switching one off: The record of project_config.switch_off_record, with the id of a face written in its `rule` field. A record whose id resolves neither to a rule nor to a face is a dangling switch-off: red, by the same criterion as a rule switched off without a record.
 A rule with any face switched off is never reported as fulfilled. The report says "three of four faces, one switched off with its reason" and never a percentage alone: a partial compliance whose figure reads like a complete one is the silent damage this whole family is about.
 On the scoreboard: For a rule that has faces the scoreboard counts faces and not rules, or the two figures of section 12 of the annex stop meaning what they say.
 
-Three of the forty-nine rules have faces (CQ-19: four, CQ-20: two, CQ-21: three). CQ-19, CQ-20 and CQ-21. CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off: giving them ids is adding and not renaming, and it is separate work.
+Six of the fifty-two rules have faces (CQ-19: four, CQ-20: two, CQ-21: four, CQ-22: four, CQ-23: three, CQ-24: two). WHICH rules have faces is derived from this data and is not written here, by the same argument as the count (D-077): read the faces of each rule. What is written is the exception, because no data carries it: CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off, and giving them ids is adding and not renaming and is separate work.
 
 ### The five anchors and the two prior inputs
 
@@ -856,6 +892,7 @@ Layer 2 of Annex H: per frontend family, with what each rule is measured and wit
 | `minimum_coverage` | CQ-08 | - | **no** | the ratchet, over what is measured |
 | `mutation_target` | CQ-09 | - | **no** | the owner, once the project has real users |
 | `end_users_outside_the_organisation` | CQ-18 | - | **no** | the owner |
+| `acceptable_data_loss_window` | CQ-22 | - | **no** | the owner |
 
 **it is reported as an undeclared threshold. No approximating, no silent inheriting and no inventing: the same rule as the sizing of the architecture step.**
 

@@ -85,6 +85,12 @@ the agent:
 > system: the report lists them in a separate section, and only the system's errors open pending
 > items. Document it in `docs/MONITORING.md`.
 >
+> And prove `error_reconstructed` in that same document: take ONE real error, follow it from
+> where it was thrown to its line in the register, and show me the same trace on both sides.
+> Counting errors is not seeing them: a counter of 5xx counts while the collector discards the
+> line for not having the expected shape, and then the figure is a count over something nobody
+> could look at.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -135,6 +141,9 @@ comes back on its own.
 - The cyclic report with the error rate per flow.
 - `docs/MONITORING.md` complete (together with step 21); the routine in the agreement.
 - One pending item for every open error; none "known" without a pending item.
+- In `docs/MONITORING.md`: the `error_reconstructed`, that is, one real error followed from where it
+  was thrown to its line in the register, with the same trace on both sides. Counting errors is not
+  seeing them (CQ-19.2).
 
 ## 4. Completeness check
 

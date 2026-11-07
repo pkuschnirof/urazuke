@@ -77,6 +77,14 @@
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
 > diagnosis of the first bottleneck.
 >
+> Then contrast, which is the part that decides: write in `docs/PERFORMANCE.md` the
+> `thresholds_total` the project declared, the `thresholds_met` the measurement met, and for
+> each threshold its `threshold_condition` -- at what volume, at what concurrency, in which
+> environment it holds. A figure that does not meet its threshold is RED and not merely
+> measured. If a threshold carries no declared condition, ask me for it instead of assuming
+> one: the same system passes at twenty people and fails at two hundred, so a threshold
+> without its condition cannot be contrasted against anything.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -101,6 +109,14 @@
 > ください。まだ何も最適化しないでください。`docs/PERFORMANCE_[日付].md` に数字、コマンド、
 > 破断点、そして最初のボトルネックについてのあなたの診断を書いてください。私の言語で答えてく
 > ださい。
+>
+> そのあと対照すること。これが決める部分だ。`docs/PERFORMANCE.md`
+> に、プロジェクトが宣言した `thresholds_total`、測定が満たし
+> た `thresholds_met`、そして各しきい値の `threshold_condition`
+> ——どの量で、どの同時数で、どの環境で有効か——を書く。しきい値を満たさない数字
+> は**赤**であり、「測定済み」ではない。しきい値に宣言された条件がなければ、推
+> 測せずに私に尋ねること。同じシステムが二十人で通り二百人で落ちるのだから、条件の
+> ないしきい値は何に対しても対照できない。
 >
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
@@ -165,6 +181,10 @@
   `docs/PERFORMANCE.md`、閾値とゲートとともに。
 - 決めた量より下のボトルネックごとに一つの保留項目。
 - それを必要とするデプロイの前のゲートとしての負荷テスト。
+- `docs/PERFORMANCE.md` に：宣言された `thresholds_total`、
+  `thresholds_met`、そして各しきい値の `threshold_condition`。
+  しきい値を満たさない数字は**赤**であり「測定済み」ではない（CQ-22.1）。
+  条件のないしきい値は未宣言として報告される（CQ-22.2）。
 
 ## 4. 完全性の検証
 

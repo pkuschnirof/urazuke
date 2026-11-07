@@ -228,7 +228,7 @@ Cada degrau tem oito partes, sempre as mesmas, para que se possam comparar:
   sinais de alerta.
 
 E há uma parte mais, que aparece **apenas em seis degraus** e é uma peça transversal que muda
-o que tem de ser lido: o **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). São quarenta e nove regras verificáveis — vinte e uma de qualidade de código e vinte e oito de
+o que tem de ser lido: o **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). São cinquenta e duas regras verificáveis — vinte e quatro de qualidade de código e vinte e oito de
 usabilidade —, cada uma com seu identificador estável, sua severidade e o instrumento que a mede.
 Não é um apêndice opcional: **é obrigatório**, e se engata na escada em seis pontos. No degrau 2
 entram suas duas **entradas prévias** (o glossário do usuário e a lista de perfis: as palavras que
@@ -241,7 +241,7 @@ método que fica vermelha se alguma deixar de dizê-lo. Nasceu de ter descoberto
 esteve obrigatório e sem ser nomeado neste documento, e o primeiro leitor que adaptou o método a
 outro formato pulou vinte e sete das quarenta e cinco regras porque nunca soube que existiam.
 
-E uma dessas quarenta e nove não é sobre o sistema que se constrói, mas sobre **como você é
+E uma dessas cinquenta e duas não é sobre o sistema que se constrói, mas sobre **como você é
 perguntado**. É a **UX-28**, e entrou em 2026-10-27 porque faltava: o método ordena aos seus
 prompts que perguntem a você — vinte e duas vezes, em mais da metade do corpus — e não dizia em
 nenhuma parte como se pergunta, então a forma ficava na improvisação e você recebia a pergunta
@@ -868,8 +868,8 @@ creditada na Parte F.)
   uma auditoria encontrou porque nenhum limite os tinha freado [Ref. 41](REFERENCIAS.md#ref-41);
   o número de qualidade que piora sem que ninguém o veja [Ref. 35](REFERENCIAS.md#ref-35).
 - **Anexo H**: âncora 3 do [Anexo H](ANEXO_HEURISTICAS.md), e a maior das cinco: aqui a comporta
-  se estende da qualidade do código à **usabilidade**. O catálogo das quarenta e nove regras está
-  declarado e ativo por grupo — e três delas informam-se face por face —; cada regra ativa tem seu instrumento, sua severidade e seu
+  se estende da qualidade do código à **usabilidade**. O catálogo das cinquenta e duas regras está
+  declarado e ativo por grupo — e seis delas informam-se face por face —; cada regra ativa tem seu instrumento, sua severidade e seu
   verificador; cada regra **desligada** tem seu registro com motivo, quem autoriza e data de
   revisão — desligada sem registro é vermelho, que não é o mesmo que a regra ausente —; cada limite
   que o dono não declarou se publica como não declarado em vez de inventado; e o relatório sai com
@@ -1577,7 +1577,7 @@ peça não estiver, a comporta daquele degrau não fica verde. São cinco, nos d
 mede.
 
 **Anexo H** — O anexo de heurísticas do método
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): quarenta e nove regras verificáveis, vinte e uma de
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): cinquenta e duas regras verificáveis, vinte e quatro de
 qualidade de código e vinte e oito de usabilidade, cada uma com seu identificador estável, sua
 severidade e o instrumento que a mede. É obrigatório e atravessa os quatro trechos: entra com duas
 entradas prévias no degrau 2 e com cinco âncoras nos degraus 5, 8, 9, 10 e 12. O "H" é de

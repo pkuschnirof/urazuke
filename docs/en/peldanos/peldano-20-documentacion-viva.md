@@ -109,8 +109,18 @@ and the question when it is not clear which manual it goes to.
 > how to restore a backup, what to do if it goes down; written for a person who has to do it by
 > hand, without AI, at three in the morning). If for any section you need something only the
 > business knows (who is responsible for what, which phone number to call), ask me; do not leave
-> a gap and do not invent. Each manual carries a date and the system version. Reply in my
-> language.
+> a gap and do not invent. Each manual carries a date and the system version.
+>
+> Then run a real restore drill and write it to `docs/RESTORE_DRILL.md`. First ask me the
+> `acceptable_data_loss_window` -- how much data loss I accept; I decide it, you do not assume
+> it -- and contrast the `backup_cadence` against it. Then, on a copy of the system and never
+> on production, record `destroyed_and_restored`: DESTROY the database, restore it from the
+> backup, and write the `rows_before` and `rows_after` counted per table and the `schema_after`
+> migration the schema was left at. Restoring onto an empty database proves less, which is why
+> the drill destroys first. A manual that names the procedure is not a restore that happened,
+> and if there is no backup to restore from, tell me so as a red instead of closing the step.
+>
+> Reply in my language.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -138,6 +148,10 @@ which system each manual corresponds to.
   the list of words they did not understand. Plus one pending item opened for each of those words.
   Where it gets written is your choice -- at the end of the recovery manual itself is enough --;
   what is not optional is that it exists.
+- `docs/RESTORE_DRILL.md`: the receipt of a real restore drill, with the
+  `acceptable_data_loss_window` you declared, the `backup_cadence` contrasted against it, and a run
+  that **destroyed and restored** with the `rows_before` and `rows_after` counted and the
+  `schema_after`. That there is no backup, written honestly, does not close this step (CQ-22.3).
 
 ## 4. Completeness check
 

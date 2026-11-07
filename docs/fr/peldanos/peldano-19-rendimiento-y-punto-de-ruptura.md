@@ -90,6 +90,14 @@ faites, pas l'agent :
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
 > diagnosis of the first bottleneck.
 >
+> Then contrast, which is the part that decides: write in `docs/PERFORMANCE.md` the
+> `thresholds_total` the project declared, the `thresholds_met` the measurement met, and for
+> each threshold its `threshold_condition` -- at what volume, at what concurrency, in which
+> environment it holds. A figure that does not meet its threshold is RED and not merely
+> measured. If a threshold carries no declared condition, ask me for it instead of assuming
+> one: the same system passes at twenty people and fails at two hundred, so a threshold
+> without its condition cannot be contrasted against anything.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -116,6 +124,14 @@ faites, pas l'agent :
 > quelle hypothèse était fausse, s'il y en a une. N'optimise rien encore. Écris
 > `docs/PERFORMANCE_[date].md` avec les chiffres, les commandes, le point de rupture et ton
 > diagnostic du premier goulot d'étranglement.
+>
+> Ensuite contraste, qui est la partie qui décide : écris dans `docs/PERFORMANCE.md` les
+> `thresholds_total` que le projet a déclarés, les `thresholds_met` que la mesure a satisfaits et,
+> pour chaque seuil, sa `threshold_condition` : à quel volume, à quelle concurrence et dans quel
+> environnement il vaut. Un chiffre qui ne satisfait pas son seuil est ROUGE et non « mesuré ». Si
+> un seuil n'apporte pas de condition déclarée, demande-la-moi au lieu de la supposer : le même
+> système passe à vingt personnes et échoue à deux cents, donc un seuil sans sa condition ne peut
+> être contrasté contre rien.
 >
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
@@ -189,6 +205,10 @@ charge comme porte archivée, pour que dans six mois on puisse comparer.
   diagnostic ; `docs/PERFORMANCE.md` avec les seuils et la porte.
 - Un élément en attente par goulot d'étranglement sous le volume décidé.
 - Le test de charge comme porte avant les déploiements qui l'exigent.
+- Dans `docs/PERFORMANCE.md` : les `thresholds_total` déclarés, les `thresholds_met` et la
+  `threshold_condition` de chaque seuil. Un chiffre qui ne satisfait pas son seuil reste **rouge**
+  et non « mesuré » (CQ-22.1), et un seuil sans sa condition est signalé comme non déclaré
+  (CQ-22.2).
 
 ## 4. Vérification de complétude
 

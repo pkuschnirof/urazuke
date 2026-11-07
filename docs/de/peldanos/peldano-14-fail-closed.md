@@ -123,6 +123,14 @@ Fail-closed im Prompt ausgeschrieben, damit sie in der Tabelle und im Code bleib
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
 >
+> Then write `docs/THIRD_PARTY_EXECUTION.md`: the inventory of the third-party code this
+> system EXECUTES -- not the code it imports: install scripts that run when a dependency is
+> installed, binaries put on the path, permanent background processes, and hooks that run a
+> command on an event. For each entry: what it runs, when it runs, the privilege it `runs_as`,
+> and MY decision -- accepted, narrowed or rejected, with who and when. Carry `entries_total`
+> and `entries_with_a_decision` at the head: an inventory whose entries nobody resolved
+> verifies nothing. If an entry runs with more privilege than it needs, say so and ask me.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -136,6 +144,15 @@ Fail-closed im Prompt ausgeschrieben, damit sie in der Tabelle und im Code bleib
 > die Version ohne die Sperre). Halte die endgültige Tabelle in `docs/LOCKS.md` fest. Und für jede
 > neue Automatisierung: erst Trockenlauf, mit Protokoll dessen, was sie getan hätte, bis ich sie
 > freischalte.
+>
+> Schreibe danach `docs/THIRD_PARTY_EXECUTION.md`: das Inventar des Fremdcodes, den dieses System
+> AUSFÜHRT —nicht den, den es importiert: Installationsskripte, die beim Installieren einer
+> Abhängigkeit laufen, Binärdateien, die in den PATH gelegt werden, dauerhafte Hintergrundprozesse
+> und Haken, die bei einem Ereignis einen Befehl ausführen—. Pro Eintrag: was läuft, wann es läuft,
+> mit welchem Privileg (`runs_as`) und MEINE Entscheidung: angenommen, eingeschränkt oder abgelehnt,
+> mit wem und wann. Führe `entries_total` und `entries_with_a_decision` oben: ein Inventar, dessen
+> Einträge niemand aufgelöst hat, überprüft nichts. Wenn ein Eintrag mit mehr Privileg läuft, als er
+> braucht, sag es und frag mich.
 >
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
@@ -158,6 +175,10 @@ was sie getan hätte, bevor man sie handeln lässt.
 - Die neuen Automatisierungen, die im Trockenlauf starten, mit dem Protokoll „hätte getan“.
 - Wenn der Agent eingebettet ist: seine Berechtigungen schriftlich (was er lesen darf, was er
   ändern darf, was eine Freigabe erfordert).
+- `docs/THIRD_PARTY_EXECUTION.md`: das Inventar des Fremdcodes, den das System **ausführt**, mit
+  `entries_total`, `entries_with_a_decision`, dem Privileg jedes Eintrags und deiner Entscheidung
+  pro Eintrag. Dass das Inventar existiert, reicht nicht: was den Schritt schließt, ist, dass jeder
+  Eintrag seine Entscheidung hat (CQ-22.4).
 
 ## 4. Vollständigkeitsprüfung
 

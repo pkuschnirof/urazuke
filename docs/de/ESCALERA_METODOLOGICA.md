@@ -245,7 +245,7 @@ Jeder Schritt hat acht Teile, immer dieselben, damit sie sich vergleichen lassen
 
 Und es gibt noch einen Teil, der **nur in sechs Schritten** auftaucht und ein querliegendes
 Stück ist, das ändert, was gelesen werden muss: **Anhang H**
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Neunundvierzig überprüfbare Regeln — einundzwanzig zur Codequalität und achtundzwanzig zur
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Zweiundfünfzig überprüfbare Regeln — vierundzwanzig zur Codequalität und achtundzwanzig zur
 Benutzbarkeit —, jede mit ihrer stabilen Kennung, ihrer
 Schwere und dem Instrument, das sie misst. Es ist kein optionaler Anhang: **er ist verpflichtend**,
 und er hängt sich an sechs Punkten in die Leiter ein. In Schritt 2 kommen seine zwei
@@ -261,7 +261,7 @@ verpflichtend und in diesem Dokument nicht genannt, und der erste Leser, der die
 anderes Format übertrug, übersprang siebenundzwanzig der fünfundvierzig Regeln, weil er nie wusste,
 dass sie da waren.
 
-Und eine dieser neunundvierzig handelt nicht von dem System, das gebaut wird, sondern davon,
+Und eine dieser zweiundfünfzig handelt nicht von dem System, das gebaut wird, sondern davon,
 **wie du gefragt wirst**. Es ist **UX-28**, und sie kam am 2026-10-27 hinzu, weil sie fehlte: die
 Methode befiehlt ihren Prompts, dich zu fragen — zweiundzwanzig Mal, in mehr als der Hälfte des
 Korpus — und sagte nirgends, wie man fragt, also blieb die Form der Improvisation überlassen und
@@ -952,8 +952,8 @@ anderes Format, in Teil F mit Quellenangabe.)
   [Ref. 41](REFERENCIAS.md#ref-41); die Qualitätszahl, die schlechter wird, ohne dass es jemand
   sieht [Ref. 35](REFERENCIAS.md#ref-35).
 - **Anhang H**: Anker 3 von [Anhang H](ANEXO_HEURISTICAS.md), und der größte der fünf: hier
-  erweitert sich die Schranke von der Codequalität auf die **Benutzbarkeit**. Der Katalog der neunundvierzig Regeln ist erklärt und
-  pro Gruppe aktiv -- und drei davon werden Facette für Facette gemeldet --; jede aktive Regel hat ihr Instrument,
+  erweitert sich die Schranke von der Codequalität auf die **Benutzbarkeit**. Der Katalog der zweiundfünfzig Regeln ist erklärt und
+  pro Gruppe aktiv -- und sechs davon werden Facette für Facette gemeldet --; jede aktive Regel hat ihr Instrument,
   ihre Schwere und ihren Prüfer; jede **abgeschaltete** Regel hat ihren Eintrag mit Grund, wer es
   genehmigt und Revisionsdatum — abgeschaltet ohne Eintrag ist rot, was nicht dasselbe ist wie die
   fehlende Regel —; jeder Grenzwert, den der Eigentümer nicht erklärt hat, wird als nicht erklärt
@@ -1747,7 +1747,7 @@ seine vollständige detaillierte Spezifikation, und die Summe der offenen Posten
 Spezifikation des Systems. Siehe B.5.
 
 **Anhang H** — Der Heuristik-Anhang der Methode
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): neunundvierzig überprüfbare Regeln, einundzwanzig zur
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): zweiundfünfzig überprüfbare Regeln, vierundzwanzig zur
 Codequalität und achtundzwanzig zur Benutzbarkeit, jede mit ihrer stabilen Kennung, ihrer Schwere
 und dem Instrument, das sie misst. Er ist verpflichtend und läuft durch alle vier Abschnitte: er
 kommt mit zwei Voreingaben in Schritt 2 und mit fünf Ankern in den Schritten 5, 8, 9, 10 und 12

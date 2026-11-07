@@ -442,6 +442,11 @@ const CONTRATO_CON_ALCANCE = [
   'El reporte separa lo verificado de lo creido y nombra sus puntos ciegos (blind spots).',
   'Cada hallazgo lleva su findings_by_destination: product, method o tool.',
   '',
+  'Y cada veredicto que el reporte cita declara su procedencia:',
+  '',
+  '- verdict_after_last_change: la corrida es posterior al ultimo cambio que afecta lo que mide.',
+  '- verdict_output_lives_in: donde quedo su salida, que el turno siguiente puede leer.',
+  '',
   'Y cuando el cierre toca casos manuales, declara su alcance:',
   '',
   '- cases_touched: cuantos casos toca este cierre.',
@@ -479,13 +484,17 @@ test('A: las exigencias del alcance son NUEVAS, con su procedencia, y no editan 
   }
 });
 
-test('A: CQ-21 se ancla en los cuatro peldanos donde produce efecto', () => {
+test('A: CQ-21 se ancla en los cuatro peldanos donde produce efecto, y tiene cuatro caras', () => {
   const reglas = JSON.parse(readFileSync(join(raiz, 'gates', 'heuristics.json'), 'utf8')).rules;
   const r = reglas.find((x) => x.id === 'CQ-21');
   assert.ok(r, 'el dato no declara CQ-21');
   assert.deepEqual(r.anchor.steps, [8, 10, 11, 12],
     'una regla que se ancla donde no produce efecto es decoracion');
-  assert.deepEqual(r.faces.map((c) => c.id), ['CQ-21.1', 'CQ-21.2', 'CQ-21.3']);
+  assert.deepEqual(r.faces.map((c) => c.id), ['CQ-21.1', 'CQ-21.2', 'CQ-21.3', 'CQ-21.4']);
+  // La cuarta entro despues de publicada la regla (D-089): es una entrada NUEVA con su
+  // procedencia, y el enunciado de CQ-21 no se edito.
+  assert.equal(r.faces.find((c) => c.id === 'CQ-21.4').since_version, '2026.10.17');
+  assert.equal(r.since_version, '2026.10.16', 'la regla conserva la version en la que entro');
   // Cada cara tiene su peldano, y los tres peldanos tienen su pregunta de verificacion.
   for (const num of [8, 10, 11, 12]) {
     const preguntas = (paso(num).verify ?? [])

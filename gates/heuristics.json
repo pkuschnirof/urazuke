@@ -1,9 +1,9 @@
 {
-  "what": "The forty-nine rules of Annex H as data: 21 of code quality (CQ-01 to CQ-21) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule and of every face lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
+  "what": "The fifty-two rules of Annex H as data: 24 of code quality (CQ-01 to CQ-24) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule and of every face lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
   "counts": {
-    "code_quality": 21,
+    "code_quality": 24,
     "usability": 28,
-    "total": 49
+    "total": 52
   },
   "decisions": [
     "D-043",
@@ -20,7 +20,7 @@
   "groups": [
     {
       "id": "code_quality",
-      "range": "CQ-01..CQ-20",
+      "range": "CQ-01..CQ-24",
       "switch": {
         "lives_in": "the project configuration",
         "read_by": "the gate",
@@ -867,6 +867,195 @@
             "section": "4",
             "row": "CQ-21.3"
           }
+        },
+        {
+          "id": "CQ-21.4",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "statement": {
+            "section": "4",
+            "row": "CQ-21.4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CQ-22",
+      "since_schema": 2,
+      "since_version": "2026.10.17",
+      "group": "code_quality",
+      "family": "contrast",
+      "instrument": [
+        "auto_gate",
+        "manual_case"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          14,
+          19,
+          20
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-22"
+      },
+      "faces": [
+        {
+          "id": "CQ-22.1",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "statement": {
+            "section": "4",
+            "row": "CQ-22.1"
+          }
+        },
+        {
+          "id": "CQ-22.2",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "statement": {
+            "section": "4",
+            "row": "CQ-22.2"
+          }
+        },
+        {
+          "id": "CQ-22.3",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "statement": {
+            "section": "4",
+            "row": "CQ-22.3"
+          }
+        },
+        {
+          "id": "CQ-22.4",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "statement": {
+            "section": "4",
+            "row": "CQ-22.4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CQ-23",
+      "since_schema": 2,
+      "since_version": "2026.10.17",
+      "group": "code_quality",
+      "family": "provenance",
+      "instrument": [
+        "auto_gate",
+        "manual_case"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          8,
+          9,
+          12
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-23"
+      },
+      "faces": [
+        {
+          "id": "CQ-23.1",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "statement": {
+            "section": "4",
+            "row": "CQ-23.1"
+          }
+        },
+        {
+          "id": "CQ-23.2",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "statement": {
+            "section": "4",
+            "row": "CQ-23.2"
+          }
+        },
+        {
+          "id": "CQ-23.3",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "statement": {
+            "section": "4",
+            "row": "CQ-23.3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CQ-24",
+      "since_schema": 2,
+      "since_version": "2026.10.17",
+      "group": "code_quality",
+      "family": "register",
+      "instrument": [
+        "auto_gate",
+        "manual_case"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          5,
+          11,
+          23
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-24"
+      },
+      "faces": [
+        {
+          "id": "CQ-24.1",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "statement": {
+            "section": "4",
+            "row": "CQ-24.1"
+          }
+        },
+        {
+          "id": "CQ-24.2",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "statement": {
+            "section": "4",
+            "row": "CQ-24.2"
+          }
         }
       ]
     },
@@ -1628,9 +1817,10 @@
     "never_reported_as_fulfilled": "A rule with any face switched off is never reported as fulfilled. The report says \"three of four faces, one switched off with its reason\" and never a percentage alone: a partial compliance whose figure reads like a complete one is the silent damage this whole family is about.",
     "count_is_derived": "How many faces a rule has is derived from this data and is never written next to its name in prose or in a generated document (D-077).",
     "scoreboard": "For a rule that has faces the scoreboard counts faces and not rules, or the two figures of section 12 of the annex stop meaning what they say.",
-    "rules_with_faces_today": "CQ-19, CQ-20 and CQ-21. CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off: giving them ids is adding and not renaming, and it is separate work.",
+    "rules_with_faces_today": "WHICH rules have faces is derived from this data and is not written here, by the same argument as the count (D-077): read the faces of each rule. What is written is the exception, because no data carries it: CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off, and giving them ids is adding and not renaming and is separate work.",
     "decision": "D-078",
     "since_schema": 2,
-    "since_version": "2026.10.12"
+    "since_version": "2026.10.12",
+    "added_after_publication": "A rule that is already published can gain a face, and CQ-21.4 is the first one: it comes in as a NEW entry with its own since_version, so the differential of an upgrade counts it, and the statement of the rule it hangs from is not edited. What cannot be done is renaming a face, recycling its ordinal or changing what it means (D-089)."
   }
 }

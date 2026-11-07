@@ -8921,6 +8921,549 @@ nombre de una colección» en ocho idiomas, que es justo lo que D-077 declaró f
 
 ---
 
+## PND-105 — Ninguna compuerta de la escalera pregunta si el número PASA: el peldaño 19 cerró en verde con su requisito no funcional incumplido *(del experimento A/B del método, tercer lote; el dueño pidió el lote)*
+
+- **Nodo:** `gates/heuristics.json` [nodo propuesto]
+- **Origen:** el brazo C1 del experimento A/B, al cerrar los veinticuatro peldaños. El dueño lo
+  trajo el 2026-11-07 como el más importante de los diez del lote.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** el dueño pidió el lote y la forma del catálogo la elegí yo.
+- **Estado: CERRADO** el 2026-11-07 con `CQ-22` y sus cuatro caras (D-089).
+
+**Qué estaba mal, medido.** El peldaño 19 del brazo —pruebas de rendimiento en volumen y punto de
+ruptura— cerró **en verde con NFR-01 incumplido**: p95 de 557 a 911 milisegundos contra un techo
+declarado de 300, a doscientos simultáneos, con el pozo de conexiones de un módulo saturado desde
+veinte personas. Y la compuerta del brazo que lo dejó pasar **tiene razón en lo que mide**.
+Palabras suyas, que es el que lo encontró:
+
+> «C-32 está en verde Y TIENE RAZÓN: verifica que el recibo exista, cubra los cuatro flujos y tenga
+> sus umbrales o la imposibilidad escrita. NINGUNA compuerta de la escalera pregunta si el número
+> pasa.»
+
+**Por qué es del método y no del producto.** Una escalera de veinticuatro peldaños se podía cerrar
+**completa**, con todos sus requisitos no funcionales incumplidos, y cada compuerta teniendo razón
+una por una. El instrumento verificaba que la medición EXISTIERA, no que el sistema CUMPLIERA.
+
+**Qué quedó.** `CQ-22` «El contraste», que bloquea, anclada en los peldaños 14, 19 y 20, con cuatro
+caras: el número contra su umbral (`CQ-22.1`), el umbral con su condición (`CQ-22.2`), la ausencia
+declarada que no cierra (`CQ-22.3`) y cada entrada con su decisión (`CQ-22.4`). En el dato, el
+peldaño 19 exige sobre `docs/PERFORMANCE.md` los `thresholds_total`, los `thresholds_met` y la
+`threshold_condition` de cada umbral, con dos preguntas de verificación; y el prompt del peldaño
+pide el contraste con todas las letras, en una sola redacción inglesa idéntica en los ocho idiomas.
+
+**Lo que esto NO promete, y está escrito en el anexo.** Que el número que un proyecto declara sea
+el que midió. Lo que una máquina mira es la declaración —el veredicto al lado de la cifra—; la
+verdad de la declaración la decide una persona leyendo.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado un recibo de rendimiento con una cifra que no cumple su umbral,
+  cuando se corre la compuerta del peldaño 19, entonces el peldaño no cierra. Verificado con el
+  caso del brazo escrito como rojo deliberado en `tests/contraste_y_procedencia.test.mjs`.
+- *P5 (lector que adapta el método):* dado el contrato del peldaño 19, el lector sabe que la
+  medición es el principio de la verificación y no su final, porque el prompt se lo pide.
+
+**Depende de:** nada.
+
+---
+
+## PND-106 — El peldaño 20 cerró en verde sobre un manual que declara, textual, que no hay respaldos: la escalera no exige destruir y restituir *(del experimento A/B del método; el dueño lo pidió antes que los otros ocho)*
+
+- **Nodo:** `gates/steps.json` [nodo propuesto]
+- **Origen:** el brazo C1, y lo declaró él mismo entre sus puntos ciegos. El dueño lo puso primero
+  del lote porque es el único que deja un sistema **sin camino de vuelta**.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** el dueño pidió la exigencia y su forma —«destruir y restituir»— es literal suya.
+- **Estado: CERRADO** el 2026-11-07 con `CQ-22.3`, el artefacto nuevo del peldaño 20 y el umbral
+  `acceptable_data_loss_window` (D-089).
+
+**Qué estaba mal, medido.** El peldaño 20 pide documentación viva y manuales que una persona pueda
+seguir sin IA, e incluye el manual de infraestructura y recuperación. El brazo lo escribió:
+cuatrocientas nueve líneas, *«escrito para las tres de la mañana»*. Su sección 6 dice, textual:
+
+```
+## 6. Restituir un respaldo
+...
+> **No hay respaldos. Ninguno. De nada.**
+
+    grep -rniE "pg_dump|pg_restore|pgbackrest|wal-g|basebackup" ...
+```
+
+Con el comando de verificación transcripto, y listado entre sus puntos ciegos declarados. **El
+peldaño cerró en verde**, y no por descuido del brazo —declaró la ausencia en vez de esconderla,
+que es exactamente lo que el método le pide— sino porque la compuerta verifica que el manual
+EXISTA y declare lo que no sabe, no que el respaldo exista. Consecuencia medida: el propio brazo
+nombró **migrar** como la única acción del sistema sin camino de vuelta, porque restituir la base
+era el único retorno y no había de dónde.
+
+**La mitad estructural, que es la que el dueño pidió explícita.** El período de pérdida aceptable
+es un **insumo del peldaño** y se le consulta al dueño: no lo decide el método ni el agente. Sin
+esa respuesta, un respaldo por hora, uno por día y ninguno son igual de defendibles y ninguna
+compuerta puede decir si la cadencia que hay alcanza. El propio manual del brazo lo dice: la
+ventana *«es lo que decide si PND-141 necesita un respaldo por hora, por día, o ninguno»*.
+
+**Qué quedó.** `CQ-22.3`: una salvaguarda que el método exige y que no existe **no cierra su
+peldaño por estar honestamente declarada**, y la diferencia con la imposibilidad escrita queda
+escrita y no se negocia —si lo que falta es el número, la honestidad alcanza; si lo que falta es el
+camino de vuelta, es un rojo con su proyecto previo—. En el dato entra `docs/RESTORE_DRILL.md` como
+artefacto **nuevo** del peldaño 20, con el `acceptable_data_loss_window` que declara el dueño, el
+`backup_cadence` contrastado contra él, el `destroyed_and_restored` y los `rows_before`,
+`rows_after` y `schema_after` contados; y el umbral entra en `adapters.thresholds` con valor nulo y
+`declared: false`, como cualquier umbral que el método no fija. El prompt del peldaño lo pide, y le
+pide al agente que si no hay respaldo del que restituir lo informe **como un rojo** en vez de
+cerrar el peldaño.
+
+**Lo que NO entró, y la razón importa.** La ventana de una hora que el dueño contestó para el
+sistema del experimento. Es su respuesta para un sistema; el método trae la **pregunta**.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado el árbol del brazo tal como está —con su manual y su sección 6
+  declarando que no hay respaldos—, cuando se corre la compuerta del peldaño 20, entonces da
+  **rojo**. Verificado como rojo deliberado en `tests/contraste_y_procedencia.test.mjs`, con el
+  texto de la sección 6 pegado.
+- *P1 (dueño del método), la mitad estructural:* dado un proyecto con respaldo y restitución
+  probada pero **sin la respuesta del dueño** sobre la ventana aceptable, entonces también da rojo,
+  porque la cadencia no se puede contrastar contra nada.
+- *P5 (lector que adapta el método):* dado el contrato del peldaño 20, el lector entiende que un
+  manual que nombra el procedimiento no es una restitución que ocurrió.
+
+**Depende de:** `PND-105` (es la misma forma, un peldaño más arriba).
+
+---
+
+## PND-107 — Ningún peldaño pregunta qué código de terceros CORRE adentro del sistema y con qué privilegio *(del análisis de plataformas de herramientas que hizo el dueño; destino: método)*
+
+- **Nodo:** `gates/steps.json` [nodo propuesto]
+- **Origen:** no sale del experimento. Sale de un análisis que hizo el dueño el 2026-11-07 sobre
+  qué plataforma de herramientas sumarle a la herramienta, a partir de una colección de extensiones
+  de terceros.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** el dueño trajo el hallazgo; dónde entra lo elegí yo.
+- **Estado: CERRADO** el 2026-11-07 con `CQ-22.4` y el artefacto nuevo del peldaño 14 (D-089).
+
+**Qué estaba mal.** Un paquete de extensión del formato que hoy se usa puede traer tres cosas que
+no son datos sino **ejecución**: binarios que quedan en el camino de búsqueda de la sesión,
+procesos de fondo permanentes, y ganchos que corren un comando ante un evento. El método exige
+privilegio mínimo, candados probados fallando, rastro de auditoría no reescribible y que el sistema
+declare lo que no sabe de sí; y **ningún peldaño pregunta qué código de terceros corre adentro del
+sistema y con qué privilegio**. Un sistema que hoy pasa los veinticuatro peldaños puede tener
+cuarenta dependencias con scripts de instalación, una extensión que pone binarios en el camino y
+tres procesos de fondo que nadie declaró, y la escalera cierra entera. El caso de las extensiones
+sólo lo hace visible; el agujero es más viejo y más ancho.
+
+**El cuidado que el dueño escribió, y que la forma respeta.** Si la exigencia termina siendo *«que
+exista un inventario»*, nace con el defecto que todo este lote viene a arreglar. Lo que tiene que
+verificar es que **cada entrada del inventario tenga una decisión**.
+
+**Qué quedó.** `CQ-22.4`: un inventario que el método exige cierra con una decisión por entrada
+—aceptada, acotada o rechazada, con quién y cuándo— y no con la lista existiendo. En el dato entra
+`docs/THIRD_PARTY_EXECUTION.md` como artefacto **nuevo** del peldaño 14, con `entries_total`,
+`entries_with_a_decision`, el `privilege` de cada entrada y el `runs_as` con el que corre; y dos
+preguntas de verificación, la segunda de las cuales es `CQ-20.1` aplicada —si una entrada corre con
+más privilegio del que necesita, se dice y se pregunta—. Va al 14 y no a un peldaño propio porque
+es ahí donde ya viven las acciones con consecuencia y sus candados.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado un inventario completo cuyas entradas nadie resolvió, cuando se
+  corre la compuerta del peldaño 14, entonces no cierra: cae exactamente la cuenta de entradas con
+  decisión. Verificado como rojo deliberado en `tests/contraste_y_procedencia.test.mjs`.
+- *P5 (lector que adapta el método):* dado el prompt del peldaño 14, el lector sabe que lo que se
+  inventaría es lo que **corre** y no lo que se importa.
+
+**Depende de:** `PND-105`.
+
+---
+
+## PND-108 — La única compuerta que mira el árbol que de verdad queda no corre mientras no se publica: un verde cierto y viejo se lee igual que uno vigente *(del experimento A/B del método, tercer lote; redacción del brazo y mía)*
+
+- **Nodo:** `gates/heuristics.json` [nodo propuesto]
+- **Origen:** el brazo C1, negándose a aceptar su propio verde. El dueño lo marcó como el más
+  importante de los cuatro de su segundo turno.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** la forma del catálogo la elegí yo.
+- **Estado: CERRADO** el 2026-11-07 con `CQ-23.1` (D-089).
+
+**Qué estaba mal, medido.** Palabras del brazo:
+
+> «`cf0ed8a` entró con C-15 en rojo. La regla 7 que ese commit trajo detecta que `docs/STATUS.md`
+> declara cinco filas de la familia `C-`, cuya tabla canónica es `docs/GATES.md`. **Corrí la
+> cadena, dio verde, y después escribí ese documento.** Lo dejó pasar algo estructural: el árbol
+> está **27 commits ahead**, así que el gancho `pre-receive` —lo único que corre la cadena sobre el
+> árbol que de verdad queda— no corrió ninguna de las dos veces.»
+
+El verde era **cierto y era viejo**. Y la causa de fondo no es el descuido: es que la única
+compuerta que mira el árbol definitivo no se ejecuta mientras no se empuja.
+
+**La formulación, y de quién es.** Ésta es mía y el brazo la aceptó: no es «una compuerta ciega»,
+que es lo que ya cubre `CQ-21`. Es **una compuerta que no es ciega y que no corre**. Un verde con
+fecha de vencimiento que nadie revalida. La pregunta mecánica: **¿el veredicto es posterior al
+último cambio que afecta lo que el veredicto mide?**
+
+**Qué quedó.** `CQ-23.1`, primera cara de `CQ-23` «La procedencia del veredicto», anclada en los
+peldaños 8, 9 y 12; una pregunta de verificación en el peldaño 8 y otra en el 12, y en el dato la
+rutina del reporte honesto exige el `verdict_after_last_change`.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado un cierre que cita un verde anterior al último cambio que afecta lo
+  que ese verde mide, entonces el reporte honesto no pasa el peldaño 12.
+- *P5 (lector que adapta el método):* dado el contrato del peldaño 8, el lector sabe que un verde
+  se lee con su fecha y su árbol.
+
+**Depende de:** nada.
+
+---
+
+## PND-109 — Dos corridas de la misma cadena, resultados opuestos, y la diferencia era dónde quedó la salida *(del experimento A/B del método, tercer lote; la mitad que lo vuelve útil es del brazo)*
+
+- **Nodo:** `gates/heuristics.json` [nodo propuesto]
+- **Origen:** el brazo C1. La regla nació a medias del lado del conductor y el brazo la completó.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** la forma del catálogo la elegí yo; la redacción del enunciado también, pero la
+  **idea** es del brazo y queda acreditada.
+- **Estado: CERRADO** el 2026-11-07 con `CQ-23.2` (D-089).
+
+**Qué estaba mal, medido.** Palabras del brazo:
+
+> «El veredicto SÍ sobrevivió, porque la corrida se lanzó como tarea con registro. Quedó en
+> `tools/yfconfig/tasks/c1/task-mw1v9gu6-12.log`, 110 líneas: 37 compuertas, 4 en rojo. Cero
+> re-corridas. El contraste está medido en el mismo proyecto: el peldaño 21 corrió la cadena EN
+> LÍNEA, su salida viajaba en la respuesta HTTP, y ahí sí se perdió todo.»
+
+El conductor había dicho *«no difieras un commit a un aviso que nadie va a escuchar»*. El brazo
+agregó la mitad que la vuelve útil: **el problema no es diferir, es dónde vive la salida.** Una
+corrida en línea muere con el turno; una corrida con registro deja su veredicto en disco y el turno
+siguiente lo lee. Precedente del aparato, que confirma que no es del brazo: el cliente del turno
+del conductor sostiene la petición durante horas y el sistema lo mató tres veces por memoria; el
+trabajo sobrevivió siempre —estaba en disco— y lo que se perdía era **el registro**.
+
+**Qué quedó, y lo que NO entró.** `CQ-23.2`: toda verificación que puede durar más que el turno que
+la lanzó deja su veredicto donde el turno siguiente lo lee. Lo que **no** entró es el mecanismo: el
+hallazgo llegó nombrando «lanzar como tarea con registro», que es una forma de una herramienta, y
+el nivel de datos del método no nombra ninguna herramienta (D-055). Lo que entra es la exigencia
+—que la salida sobreviva a la corrida— y el lugar donde se declara: el reporte honesto del peldaño
+12, con su `verdict_output_lives_in`.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado un cierre que cita un veredicto cuya salida viajó adentro de una
+  respuesta y no quedó en ninguna parte, entonces el reporte honesto no pasa el peldaño 12.
+- *P5 (lector que adapta el método):* dado el enunciado de `CQ-23.2`, el lector entiende que lo que
+  se pierde no es el trabajo sino el veredicto, que es lo único por lo que se corrió.
+
+**Depende de:** `PND-108` (son dos caras de la misma regla).
+
+---
+
+## PND-110 — Un peldaño en verde y sin hacer: sus dos chequeos los resolvían los artefactos del peldaño anterior *(del experimento A/B del método, tercer lote; la pregunta que lo detecta es del brazo)*
+
+- **Nodo:** `gates/heuristics.json` [nodo propuesto]
+- **Origen:** el brazo C1, que se negó a cerrar su propio verde. Ninguna compuerta lo detectó.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** la forma del catálogo la elegí yo; **la redacción de la cara es del brazo**.
+- **Estado: CERRADO** el 2026-11-07 con `CQ-23.3` (D-089).
+
+**Qué estaba mal, medido.** El peldaño 22 del brazo estaba en verde y **no estaba hecho**. Sus dos
+chequeos los resolvían **los mismos dos archivos del peldaño 21**, y `docs/MONITORING.md` nombraba
+la palabra «error» dos veces en 393 líneas, **las dos como el contador de 5xx**. El pendiente del
+peldaño tenía **cero entradas de trabajo**.
+
+**La pregunta que lo detecta, en palabras del brazo, y es la que quedó en el anexo:**
+
+> «La pregunta que lo detecta es una sola y se puede hacer a mano: **¿qué archivo de esta lista NO
+> existía antes de empezar?** Si la respuesta es *ninguno*, el verde es de otro. Si querés pasarlo
+> como compuerta del método, eso es lo que mediría.»
+
+Es la segunda vez que la redacción del brazo queda en el catálogo —`CQ-21.1` también es suya— y por
+eso está acreditada en el anexo y en D-089. La mía habría hablado de «artefactos propios del
+peldaño» y no le habría dado al lector una pregunta que puede hacer sin herramientas.
+
+**Qué quedó.** `CQ-23.3`: de los artefactos con los que un paso cierra, al menos uno nació en él.
+Lo que distingue este defecto de `CQ-21` queda dicho: acá la compuerta **mide bien** y mide el
+artefacto equivocado.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado un peldaño cuyos chequeos los satisfacen sólo archivos anteriores a
+  su inicio, cuando se le hace la pregunta a mano, entonces la respuesta «ninguno» identifica el
+  verde ajeno sin leer código.
+- *P5 (lector que adapta el método):* dado el enunciado, el lector puede hacer la comprobación con
+  la lista de archivos delante y nada más.
+
+**Depende de:** `PND-108`.
+
+---
+
+## PND-111 — `force_reason` es cierto del campo y falso del hecho: cero cierres forzados como campo, diez declarados en la prosa *(del experimento A/B del método, tercer lote; el brazo lo verificó antes de copiarlo)*
+
+- **Nodo:** `gates/heuristics.json` [nodo propuesto]
+- **Origen:** el brazo C1, que fue a verificar el titular del experimento antes de escribirlo en su
+  propio informe. Más una segunda ocurrencia independiente que midió el dueño el mismo día.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** la forma del catálogo la elegí yo.
+- **Estado: CERRADO** el 2026-11-07 con `CQ-24.1` (D-089).
+
+**Qué estaba mal, medido.** El titular del experimento era *«24 peldaños cerrados, cero
+force_reason»*. El conductor lo informó tres veces el mismo día y lo escribió en tres documentos.
+Sobre los 195 elementos del registro del brazo:
+
+```
+items con force_reason / force_kind COMO CAMPO            0
+items que nombran la palabra en su PROSA                 28
+cierres que la prosa declara forzados por el dueño       10, bajo 9 overrides
+de esos, TAREAS DE LA ESCALERA                            2
+```
+
+Los dos son textuales. `PND-006` (peldaño 05): *«Cerrado con el force_reason del dueño, fechado y a
+la vista para la auditoría»*. `PND-007` (peldaño 06): *«Cerrado con el force_reason del dueño, el
+mismo que cubre los dos»*. **Las dos tienen `closed_reason: shipped` y ningún campo de forzado.**
+
+**Por qué es del método.** El esquema de `force_kind` dice, textual, que es obligatorio con
+`force_reason` *«so the retrospective can COUNT forced closes per motive»*. El campo existe para un
+momento exacto —el peldaño 23, la retrospectiva con número— y en el único proyecto que llegó hasta
+ahí **nunca se escribió**. La cuenta hubo que hacerla a mano leyendo prosa, que es precisamente lo
+que el mecanismo vino a evitar.
+
+**Corolario que vale por sí solo.** La lista de nueve overrides de la retrospectiva **omitía
+`PND-007`**, porque se armó con una búsqueda de la palabra «OVERRIDE» y la prosa de ese elemento no
+la usa. Son diez cierres bajo nueve overrides. Un recuento por palabra sobre prosa libre es un
+instrumento que no puede garantizar su propia población, que es `CQ-19.3`.
+
+**La segunda ocurrencia, independiente, y es la que lo volvió familia.** El mismo día, en otro
+sistema escrito por otro autor y sin relación con el doble candado: el programa de arranque de un
+panel escribía en su registro de sólo agregar un campo de motivo **constante** —*«arranque de la
+serie 2: el panel viejo tenía 1.23.5 en memoria»*—, cierto del primer arranque y falso de los tres
+siguientes, que quedaron archivados para siempre con un motivo que no era el suyo. El campo
+existía, se llenaba en cada fila, y mentía. **Dos ocurrencias independientes del mismo patrón son
+una familia y no un descuido.**
+
+**Qué quedó.** `CQ-24.1`, redactada para la familia y no para el campo que la trajo: *un campo
+obligatorio cuyo valor no se deriva del hecho que dice registrar* lo escribe el camino que produce
+el hecho, o el método declara que ese campo no es el registro del hecho y dice cuál lo es. Una
+pregunta de verificación en el peldaño 5 y otra en el 23 —la del 23 exige que la cuenta de cierres
+forzados salga del **campo** y no de una búsqueda por palabra—.
+
+**La causa queda NO ATRIBUIDA**, y así se escribe: o el override del dueño viaja por un camino que
+no escribe el campo —el modal de aprobación, que además estuvo suspendido desde el 2 de noviembre
+por la configuración autónoma—, o el cierre se hizo con «entregado» después de una autorización en
+el hilo y la prosa quedó como único registro. Distinguirlas pide una corrida que no está corrida.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado un registro donde la prosa declara cierres forzados y el campo está
+  vacío, cuando el peldaño 23 cuenta los cierres forzados, entonces la cuenta sale del campo o el
+  peldaño declara qué registro lleva el hecho.
+- *P5 (lector que adapta el método):* dado el enunciado, el lector reconoce la forma en cualquier
+  campo obligatorio de su propio sistema, no sólo en un cierre de pendiente.
+
+**Depende de:** nada.
+
+---
+
+## PND-112 — Un registro que nace a mitad de camino: doce anti-patrones en un commit del peldaño 11, y los peldaños 00 a 04 informando cero incidentes *(del experimento A/B del método, tercer lote; el dueño dejó dos salidas y la decisión era mía)*
+
+- **Nodo:** `gates/heuristics.json` [nodo propuesto]
+- **Origen:** el brazo C1, al escribir su retrospectiva del peldaño 23.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** el dueño ofreció dos salidas y dejó la decisión escrita como mía.
+- **Estado: CERRADO** el 2026-11-07 con `CQ-24.2` (D-089).
+
+**Qué estaba mal, medido.** Los **12** primeros anti-patrones del registro del brazo entraron en
+**un solo commit en el peldaño 11** y describen los peldaños 00 a 11. Los peldaños 00 a 04 informan
+**cero incidentes**. Y eso no significa que no pasó nada: significa que no había registro. Palabras
+del brazo:
+
+> «Tu pregunta —en qué paso cae cada incidente— NO SE PUEDE CONTESTAR BIEN para el primer quinto
+> del recorrido, que es donde se toman las decisiones más caras de deshacer.»
+
+**Las dos salidas que ofreció el dueño, y cuál se tomó.** (1) Que los registros **nazcan en el
+peldaño 01**, antes de que haya trabajo que registrar. (2) Que el método exija que **las filas
+retroactivas se marquen como tales**, para que una retrospectiva no lea un cero como ausencia de
+incidentes. La cara toma **las dos en una**, en ese orden: la primera evita el problema de raíz y la
+segunda es la que se puede cumplir en un legado donde el registro ya nació tarde. Y queda dicho que
+la primera sola no alcanza, porque un registro que existe desde el peldaño 01 y que nadie escribe
+informa cero igual.
+
+**Qué quedó.** `CQ-24.2`, y en el dato el peldaño 11 exige sobre `docs/GOTCHAS.md` el
+`register_opened_at_step` y el `rows_written_retroactively`, con su pregunta de verificación.
+
+**Y por qué lo planteo como el hallazgo peor planteado de los diez.** No porque la medición esté
+mal —es impecable— sino porque la **opción 1 trata el síntoma en el lugar equivocado**: el defecto
+no es cuándo nace el registro, es que su cero no se puede distinguir de «no pude mirar», que es
+`CQ-19.1` un año antes de este lote. Reordenar la escalera para que un archivo exista antes no
+arregla nada si nadie lo escribe; marcar la fila retroactiva sí, porque hace legible el hueco. La
+cara toma las dos porque la primera es gratis cuando el proyecto es nuevo, pero el orden importa y
+está escrito.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado un registro de anti-patrones que describe peldaños anteriores a su
+  apertura, cuando se lee el peldaño 11, entonces el registro dice en qué peldaño nació y cuántas
+  filas se escribieron hacia atrás. Verificado como rojo deliberado en
+  `tests/contraste_y_procedencia.test.mjs`.
+- *P5 (lector que adapta el método):* dado un cero en un tramo sin registro, el lector lo lee como
+  «no registrado» y no como «no pasó nada».
+
+**Depende de:** `PND-111`.
+
+---
+
+## PND-113 — Una mutación declarada cazada porque la prueba se puso en rojo, y el rojo era una excepción y no una afirmación fallada *(del experimento A/B del método, tercer lote; lo encontró una compuerta y no una persona)*
+
+- **Nodo:** `gates/heuristics.json` [nodo propuesto]
+- **Origen:** el verificador de anclas de mutación del brazo C1 (su `C-17`), más un segundo caso
+  del mismo día en la sesión de la herramienta.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** dónde entra lo elegí yo, y entra como **cara de una regla ya publicada**, que
+  es la primera vez que eso pasa.
+- **Estado: CERRADO** el 2026-11-07 con `CQ-21.4` (D-089).
+
+**Qué estaba mal, medido.** El verificador de anclas de mutación del brazo encontró *«dos anclas de
+mutación envejecidas (MUT-70, MUT-109) más una que ponía la prueba en rojo **por el motivo
+equivocado** — un `TypeError`, no una afirmación fallada»*. Una mutación se declara cazada porque la
+prueba se puso en rojo, cuando la prueba se puso en rojo porque el código mutado **explota antes de
+llegar a la afirmación**. El rojo es real y no prueba lo que dice probar.
+
+**Y un segundo caso del mismo día, de otro sistema, que confirma que no es del brazo:** una guarda
+plantaba un mutante con los finales de línea del otro sistema operativo, el corredor no parseaba el
+archivo, y el recibo **le echaba la culpa al mutante**. Las dos primeras versiones de esa guarda
+eran mentirosas por lo mismo.
+
+**Por qué importa para el método.** El método pide el rojo primero y la mutación cazada como
+evidencia. Ésta es la manera de falsear las dos sin mentir. La pregunta mecánica: **¿el rojo es una
+afirmación fallada, o es una excepción?**
+
+**Por qué entra como CARA de `CQ-21` y no como regla propia.** Porque la pregunta que lo detecta es
+la de `CQ-21` palabra por palabra: la corrida no llegó hasta la afirmación, así que la afirmación es
+un paso que la corrida no alcanzó, y el enunciado de `CQ-21` ya dice que un paso que ninguna
+ejecución alcanzó no pasó ni falló. El tie-breaker del propio anexo lo ordena: si la duda es
+*cuántos de cuántos* es `CQ-19.1`, si la duda es *hasta dónde* es `CQ-21`. Y es la pareja exacta de
+la rutina del rojo del peldaño 8: el rojo primero exige que una prueba **pueda** detectar, `CQ-20`
+que al detectar **no rompa**, y `CQ-21.4` que el rojo que se exhibe como prueba **haya llegado hasta
+donde prueba algo**.
+
+**Lo que esto deja dicho del mecanismo, y es nuevo.** Una regla ya publicada **puede ganar una
+cara**: entra como entrada nueva con su propia `since_version`, el diferencial de un upgrade la
+cuenta, y el enunciado de la regla de la que cuelga **no se edita**. Queda declarado en
+`heuristics.faces.added_after_publication`.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado un recibo de rojo cuyo fallo es una excepción y no una afirmación
+  fallada, cuando se cierra el peldaño 8 o el 9, entonces la pregunta de verificación lo nombra.
+- *P5 (lector que adapta el método):* dado un rojo cualquiera, el lector puede preguntar si llegó a
+  la afirmación sin leer el código.
+
+**Depende de:** nada.
+
+---
+
+## PND-114 — Un contador de 5xx que contaba y un error real que no dejaba rastro de qué era: contar errores no es verlos *(del experimento A/B del método, tercer lote; medido antes de escribir el peldaño 22)*
+
+- **Nodo:** `gates/steps.json` [nodo propuesto]
+- **Origen:** el brazo C1, medido antes de escribir una línea del peldaño 22.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** dónde entra lo elegí yo.
+- **Estado: CERRADO** el 2026-11-07 con las exigencias nuevas de los peldaños 16 y 22 (D-089).
+
+**Qué estaba mal, medido.** Palabras del brazo:
+
+> «`failure.ts` escribía `fallo no previsto` a `stderr` **crudo**, con su comentario diciendo *«no
+> hay registrador todavía»*. Un 500 no dejaba renglón estructurado y el recolector del peldaño 21
+> lo **descartaba por no ser JSON**.»
+
+O sea: había un contador de 5xx que contaba, y un error real que **no dejaba rastro de qué era**.
+El instrumento informaba una cantidad sobre algo que no podía mirar.
+
+**Por qué es del método aunque parezca del producto.** Porque el peldaño 22 del catálogo **se puede
+cerrar con un contador**. Si el método pide «monitoreo de errores», la pregunta que lo verifica no
+es *cuántos errores contó* sino **de un error, qué se puede reconstruir**. El brazo lo cerró con la
+falla del navegador seguida hasta el registro: un `TypeError` lanzado dentro de un `setTimeout`
+—para que salga por `window.onerror` y no lo atrape ningún `try`, que es el camino de una excepción
+real—, con la misma traza en el renglón del servidor.
+
+**Qué quedó, y por qué NO es una regla nueva.** No entra al Anexo H: es `CQ-19.2` —la independencia,
+un instrumento que informa sobre algo de lo que depende y que no pudo leer— aplicada a un peldaño
+concreto, y lo que faltaba no era el enunciado sino la **exigencia en el peldaño**. En el dato, el
+peldaño 22 exige sobre `docs/MONITORING.md` el `error_reconstructed` y trae su pregunta; el peldaño
+16 trae la misma pregunta sobre la traza de punta a punta; y el prompt del 22 pide seguir **un**
+error real desde donde se lanzó hasta su renglón en el registro, con la misma traza en los dos
+lados.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado un monitoreo con un contador de 5xx y ningún error reconstruido,
+  cuando se corre la compuerta del peldaño 22, entonces no cierra. Verificado como rojo deliberado
+  en `tests/contraste_y_procedencia.test.mjs`.
+- *P5 (lector que adapta el método):* dado el prompt del peldaño 22, el lector le pide al agente un
+  error seguido y no una cifra.
+
+**Depende de:** nada.
+
+---
+
+## PND-115 — La cuenta de reglas volvió a estar vencida, y el barrido de PND-104 tenía el universo completo y las FORMAS incompletas *(propia, medida al subir la cuenta a cincuenta y dos; destino: método)*
+
+- **Nodo:** `corpus/documento-principal` [nodo propuesto]
+- **Origen:** propia, el 2026-11-07, al aplicar D-089. Es la segunda vez en cinco días que mover una
+  cifra del Anexo H obliga a leer la prosa de los ocho idiomas, y `PND-104` ya había anunciado por
+  escrito que iba a volver a pasar.
+- **Grupo:** G-TRAZABILIDAD · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, si la guarda se escribe o si la cifra se sigue moviendo a mano.
+- **Estado: ABIERTO.** Las afirmaciones están corregidas en este mismo commit; lo que queda abierto
+  es la **guarda**, que `PND-104` declaró trabajo aparte y hoy tiene su segunda medición.
+
+**Qué estaba mal, medido.** Dos cosas, y la segunda es la que importa.
+
+La primera: para subir la cuenta del Anexo H de cuarenta y nueve a cincuenta y dos hubo que mover
+**noventa y seis afirmaciones de estado presente a mano**, en los veinticuatro archivos de prosa del
+corpus que las llevan —los ocho documentos principales, los ocho anexos y los ocho `README`—. No son
+noventa y seis defectos: son el precio de que una cifra que el dato declara viva copiada en la prosa.
+Y el documento generado las deriva solo desde D-077, que es la mitad que ya está resuelta.
+
+La segunda, y es el hallazgo: **ocho de esas noventa y seis ya estaban vencidas antes de este lote**.
+El párrafo del anexo que explica por qué UX-28 es la única regla que entra en el prompt decía *«en
+qué se diferencia de las otras cuarenta y siete»* en los ocho idiomas, y eran cuarenta y ocho desde
+el 2026-11-03, cuando entró CQ-21 con D-087. Lo que lo vuelve interesante es **cuándo** se escribió
+esa cifra: en el lote de D-078, el 2026-11-01, y `PND-104` corrió su barrido el 2026-11-03, **el
+mismo día que la venció**, y no la vio. Su universo estaba bien —los 312 archivos `.md` del árbol,
+enumerados— y sus **formas** no: buscó «N reglas» y esta afirmación no lleva el sustantivo, dice
+«las otras cuarenta y siete». Es `CQ-19.3` —el universo en las dos direcciones, un filtro que
+devolvió de menos tampoco se aplicó— aplicado al barrido del propio método.
+
+**El universo de este barrido, enumerado, porque esta entrada afirma que no quedan más (D-064).**
+Los **341** archivos `.md` rastreados por git sin `docs/html/`, con el texto desenvuelto de los
+saltos de línea, contra veintiuna formas de las cuentas viejas en los ocho idiomas más tres en
+ideogramas, filtrando por contexto de «regla / rule / règle / Regel / regole / 规则 / ルール». Quedan
+**nueve** ocurrencias y las nueve son **registros fechados** que no se tocan: las notas apiladas de
+la cuenta del anexo en cada idioma, la entrada de `PND-104` y los dos párrafos de `CLAUDE.md` que
+registran lo que hizo D-087.
+
+**Lo que hay que decidir, y es del dueño.** La guarda cuesta lo que `PND-104` dijo que cuesta:
+decidir qué frases de la prosa son «una cifra al lado del nombre de una colección» en ocho idiomas,
+que es justo lo que D-077 declaró fuera de su alcance. Hoy hay un dato nuevo que `PND-104` no tenía:
+el barrido a mano falla por las **formas** y no por el universo, así que una guarda que mantenga un
+registro de formas con su razón —y que caiga cuando una forma nueva aparece— es más barata que una
+que intente entender la prosa. Tres salidas: (a) escribir la guarda con su registro de formas;
+(b) dejar la cifra fuera de la prosa y que la prosa remita al dato, que es lo que D-077 hizo con el
+documento generado; (c) seguir moviéndola a mano y aceptar que cada lote de reglas paga noventa y
+seis ediciones y deja algunas vencidas.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado cualquier archivo del corpus, cuando se lee una cuenta de reglas del
+  Anexo H que afirma el estado presente, entonces el total es el que `heuristics.counts.total`
+  declara y el desglose suma el total. Verificado sobre los 341 archivos rastreados el 2026-11-07,
+  con el universo enumerado arriba.
+- *P5 (lector que adapta el método):* el lector no se saltea reglas por creer que son menos de las
+  que hay, que es exactamente lo que pasó en `PND-039`.
+
+**Depende de:** nada. `PND-104` es su antecedente y está cerrado.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -8935,11 +9478,11 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 16 | 13 | 3 | 3 |
 | G-PUBLICACION | 6 | 0 | 6 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 45 | 23 | 22 | 11 |
-| G-TRAZABILIDAD | 5 | 2 | 3 | 0 |
-| **total** | **104** | **44** | **60** | **15** |
+| G-METODO | 55 | 23 | 32 | 11 |
+| G-TRAZABILIDAD | 6 | 3 | 3 | 0 |
+| **total** | **115** | **45** | **70** | **15** |
 
-Ciento cuatro entradas, `PND-001` a `PND-104`. Veintidós vienen de la auditoría externa
+Ciento quince entradas, `PND-001` a `PND-115`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -8958,6 +9501,15 @@ cuatro árboles y ninguno era el que correspondía. Y `PND-056` tiene el origen 
 publicada tendría que tener más seguido: **lo trajo el consumidor**. No una auditoría ni el autor
 releyéndose, sino la herramienta que intentó cumplir la obligación recién publicada y se encontró
 con que, para cumplirla, tenía que adivinar una dirección.
+
+Y las **once últimas** (`PND-105` a `PND-115`) son el tercer lote del experimento A/B del método,
+del 2026-11-07: nueve hallazgos que el brazo C1 dejó al cerrar los veinticuatro peldaños
+—veintidós de veinticuatro sin override, que es la cifra correcta—, uno que no salió del brazo sino
+de un análisis de plataformas de herramientas que hizo el dueño, y el undécimo, que es propio y
+salió de tocar la cifra del anexo por segunda vez en cinco días. Diez cerradas con D-089 —tres
+reglas nuevas, nueve caras, la cuarta cara de `CQ-21` y dos rutas nuevas— y una abierta a propósito:
+la guarda de la cuenta de reglas en la prosa, que `PND-104` había declarado trabajo aparte y que
+ahora tiene su segunda medición.
 
 `PND-059` es el cuarto desvío propio y el más incómodo de los cuatro, porque es la misma familia
 que `PND-056` —un texto publicado que apunta a algo que el publicado no tiene— cometida **un día

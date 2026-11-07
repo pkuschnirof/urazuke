@@ -98,8 +98,18 @@
 > how to restore a backup, what to do if it goes down; written for a person who has to do it by
 > hand, without AI, at three in the morning). If for any section you need something only the
 > business knows (who is responsible for what, which phone number to call), ask me; do not leave
-> a gap and do not invent. Each manual carries a date and the system version. Reply in my
-> language.
+> a gap and do not invent. Each manual carries a date and the system version.
+>
+> Then run a real restore drill and write it to `docs/RESTORE_DRILL.md`. First ask me the
+> `acceptable_data_loss_window` -- how much data loss I accept; I decide it, you do not assume
+> it -- and contrast the `backup_cadence` against it. Then, on a copy of the system and never
+> on production, record `destroyed_and_restored`: DESTROY the database, restore it from the
+> backup, and write the `rows_before` and `rows_after` counted per table and the `schema_after`
+> migration the schema was left at. Restoring onto an empty database proves less, which is why
+> the drill destroys first. A manual that names the procedure is not a restore that happened,
+> and if there is no backup to restore from, tell me so as a red instead of closing the step.
+>
+> Reply in my language.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -115,6 +125,15 @@
 > 一个必须在凌晨三点、没有 AI、手工完成的人）。如果某一节你需要只有业务知道的东西（谁负责
 > 什么、打哪个电话），问我；不要留空，也不要发明。每份手册都带日期和系统版本。用我的语言
 > 回复。
+>
+> 然后做一次真的复原演练，并把它写进 `docs/RESTORE_DRILL.md`。
+> 先问我 `acceptable_data_loss_window`：我接受多少数
+> 据丢失；这由我决定，你不要假定。并把 `backup_cadence` 拿来跟它
+> 对照。然后，在系统的一份副本上、绝不在生产上，记录 `destroyed_and_restored`：
+> **销毁**那个数据库，从备份把它复原回来，并写下按表清点的 `rows_before`
+> 和 `rows_after`，以及 schema 最后停在的迁移 `schema_after`。
+> 往一个空库上恢复证明得更少，所以这次演练先销毁。一份点出步骤的手册不是一次发生过
+> 的复原；而如果根本没有可以复原的备份，就把它当作一个红告诉我，而不是去关掉这一级。
 >
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
@@ -136,6 +155,11 @@
 - **恢复手册试跑的记录**，带四样东西：做这件事的人的日期和名字；端到端的度量时间；他卡住的
   确切步骤，用他的话；以及他没看懂的词的清单。再加上为这些词每一个开的一个待办项。写在哪里
   由你选——写在恢复手册自己的末尾就够——；不可选的是它要存在。
+- `docs/RESTORE_DRILL.md`：一次真的复原演练的收据，带上
+  你声明的 `acceptable_data_loss_window`、拿来跟它对
+  照的 `backup_cadence`，以及一次**销毁并复原**的运行——带清
+  点过的 `rows_before` 和 `rows_after`，以及 `schema_after`。
+  没有备份这件事，哪怕写得诚实，也关不掉这一级（CQ-22.3）。
 
 ## 4. 完整性检验
 

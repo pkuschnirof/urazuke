@@ -110,6 +110,14 @@
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
 >
+> Then write `docs/THIRD_PARTY_EXECUTION.md`: the inventory of the third-party code this
+> system EXECUTES -- not the code it imports: install scripts that run when a dependency is
+> installed, binaries put on the path, permanent background processes, and hooks that run a
+> command on an event. For each entry: what it runs, when it runs, the privilege it `runs_as`,
+> and MY decision -- accepted, narrowed or rejected, with who and when. Carry `entries_total`
+> and `entries_with_a_decision` at the head: an inventory whose entries nobody resolved
+> verifies nothing. If an entry runs with more privilege than it needs, say so and ask me.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -122,6 +130,16 @@
 > さい。疑いの条件下で行動が起き**ない**ことを証明するテストです（錠のないバージョンに対して
 > 赤で証明）。最終の表を `docs/LOCKS.md` に記録してください。そして新しい自動化はすべて：
 > まずドライランモードで、何をしたはずかを記録し、私が有効化するまで。
+>
+> そのあと `docs/THIRD_PARTY_EXECUTION.md` を書く
+> こと。このシステムが**実行する**第三者コードの台帳である——取り込むコードで
+> はない。依存を入れるときに走るインストールスクリプト、PATH に置かれる実行フ
+> ァイル、常駐する背後のプロセス、そしてイベントでコマンドを走らせる留め具だ。各項
+> 目について、何が走るか、いつ走るか、どの権限で走るか（`runs_as`）、そし
+> て**私の決定**——受け入れ、限定、拒否、誰がいつ——を書く。先頭に `entries_total`
+> と `entries_with_a_decision` を置くこと。誰も項目を
+> 解決していない台帳は何も検証しない。必要以上の権限で走る項目があれば、それを言っ
+> て私に尋ねること。
 >
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
@@ -141,6 +159,10 @@
 - 新しい自動化はドライランモードで始まり、「したはず」の記録付き。
 - エージェントが組み込まれているなら：書かれた権限（何を読めるか、何を変えられるか、何に
   承認が要るか）。
+- `docs/THIRD_PARTY_EXECUTION.md`：システムが**
+  実行する**第三者コードの台帳。`entries_total`、`entries_with_a_decision`、
+  各項目の権限、そして項目ごとのあなたの決定を伴う。台帳が存在するだけでは足りない。
+  段を閉じるのは、各項目に決定があることだ（CQ-22.4）。
 
 ## 4. 完全性の検証
 

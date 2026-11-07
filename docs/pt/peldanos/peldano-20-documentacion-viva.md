@@ -119,8 +119,18 @@ e a pergunta quando não está claro a que manual vai.
 > how to restore a backup, what to do if it goes down; written for a person who has to do it by
 > hand, without AI, at three in the morning). If for any section you need something only the
 > business knows (who is responsible for what, which phone number to call), ask me; do not leave
-> a gap and do not invent. Each manual carries a date and the system version. Reply in my
-> language.
+> a gap and do not invent. Each manual carries a date and the system version.
+>
+> Then run a real restore drill and write it to `docs/RESTORE_DRILL.md`. First ask me the
+> `acceptable_data_loss_window` -- how much data loss I accept; I decide it, you do not assume
+> it -- and contrast the `backup_cadence` against it. Then, on a copy of the system and never
+> on production, record `destroyed_and_restored`: DESTROY the database, restore it from the
+> backup, and write the `rows_before` and `rows_after` counted per table and the `schema_after`
+> migration the schema was left at. Restoring onto an empty database proves less, which is why
+> the drill destroys first. A manual that names the procedure is not a restore that happened,
+> and if there is no backup to restore from, tell me so as a red instead of closing the step.
+>
+> Reply in my language.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -138,6 +148,15 @@ e a pergunta quando não está claro a que manual vai.
 > mão, sem IA, às três da manhã). Se para alguma seção você precisar de algo que só o negócio
 > sabe (quem é responsável pelo quê, para que telefone ligar), peça-me; não deixe um buraco nem
 > invente. Cada manual leva data e versão do sistema.
+>
+> Depois corra um ensaio de restituição de verdade e escreva-o em `docs/RESTORE_DRILL.md`. Primeiro
+> peça-me o `acceptable_data_loss_window`: quanta perda de dados aceito; decido-o eu, não o suponha.
+> E contraste o `backup_cadence` contra isso. Depois, sobre uma cópia do sistema e nunca sobre
+> produção, registre `destroyed_and_restored`: DESTRUA a base, restitua-a a partir da cópia de
+> segurança e escreva os `rows_before` e os `rows_after` contados por tabela e a migração
+> `schema_after` em que ficou o esquema. Restaurar sobre uma base vazia prova menos, e por isso o
+> ensaio destrói primeiro. Um manual que nomeia o procedimento não é uma restituição que ocorreu, e
+> se não houver cópia da qual restituir, diga-me isso como um vermelho em vez de fechar o degrau.
 >
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
@@ -167,6 +186,11 @@ manual.
   de palavras que não entendeu. Mais uma pendência aberta por cada uma dessas palavras. Onde se
   escreve é sua escolha — no final do próprio manual de recuperação basta —; o que não é opcional é
   que exista.
+- `docs/RESTORE_DRILL.md`: o recibo de um ensaio de restituição de verdade, com o
+  `acceptable_data_loss_window` que você declarou, o `backup_cadence` contrastado contra ele, e uma
+  corrida que **destruiu e restituiu** com os `rows_before` e `rows_after` contados e o
+  `schema_after`. Que não haja cópia de segurança, escrito com honestidade, não fecha este degrau
+  (CQ-22.3).
 
 ## 4. Verificação de completude
 

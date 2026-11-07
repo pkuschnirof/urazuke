@@ -89,6 +89,12 @@ machst es, nicht der Agent:
 > system: the report lists them in a separate section, and only the system's errors open pending
 > items. Document it in `docs/MONITORING.md`.
 >
+> And prove `error_reconstructed` in that same document: take ONE real error, follow it from
+> where it was thrown to its line in the register, and show me the same trace on both sides.
+> Counting errors is not seeing them: a counter of 5xx counts while the collector discards the
+> line for not having the expected shape, and then the figure is a count over something nobody
+> could look at.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -119,6 +125,12 @@ machst es, nicht der Agent:
 > Agent, das Monitoring selbst), von den Fehlern des Systems getrennt: der Bericht führt sie in
 > einem eigenen Abschnitt auf, und nur die Fehler des Systems öffnen offene Punkte. Dokumentiere es
 > in `docs/MONITORING.md`.
+>
+> Und beweise das `error_reconstructed` in demselben Dokument: nimm EINEN echten Fehler, folge ihm
+> von dort, wo er geworfen wurde, bis zu seiner Zeile im Register, und zeig mir dieselbe Spur auf
+> beiden Seiten. Fehler zu zählen heißt nicht, sie zu sehen: ein Zähler von 5xx zählt, während der
+> Sammler die Zeile verwirft, weil sie nicht die erwartete Form hat, und dann ist die Zahl eine
+> Zählung über etwas, das niemand ansehen konnte.
 >
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
@@ -189,6 +201,9 @@ allein zurück.
 - Der zyklische Bericht mit der Fehlerrate pro Fluss.
 - `docs/MONITORING.md` vollständig (zusammen mit der 21); die Routine in der Vereinbarung.
 - Ein offener Posten für jeden offenen Fehler; keiner „bekannt“ ohne offenen Posten.
+- In `docs/MONITORING.md`: das `error_reconstructed`, also ein echter Fehler, von dort verfolgt, wo
+  er geworfen wurde, bis zu seiner Zeile im Register, mit derselben Spur auf beiden Seiten. Fehler
+  zu zählen heißt nicht, sie zu sehen (CQ-19.2).
 
 ## 4. Vollständigkeitsprüfung
 

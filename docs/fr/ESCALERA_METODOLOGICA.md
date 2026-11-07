@@ -244,7 +244,7 @@ Chaque échelon a huit parties, toujours les mêmes, pour qu'on puisse les compa
 
 Et il y a une partie de plus, qui n'apparaît que dans **six échelons** et qui est une pièce
 transversale qui change ce qu'il faut lire : l'**Annexe H**
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Quarante-neuf règles vérifiables — vingt-et-une de qualité du code et vingt-huit
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Cinquante-deux règles vérifiables — vingt-quatre de qualité du code et vingt-huit
 d'utilisabilité —, chacune avec son identifiant stable, sa sévérité
 et l'instrument qui la mesure. Ce n'est pas une annexe facultative : **elle est obligatoire**, et
 elle s'accroche à l'échelle en six points. À l'échelon 2 entrent ses deux **entrées préalables**
@@ -259,7 +259,7 @@ est née de l'avoir découvert tard : l'annexe a été obligatoire et jamais nom
 et le premier lecteur qui a adapté la méthode à un autre format a sauté vingt-sept des
 quarante-cinq règles parce qu'il n'a jamais su qu'elles existaient.
 
-Et l'une de ces quarante-neuf ne porte pas sur le système qu'on construit mais sur **la manière
+Et l'une de ces cinquante-deux ne porte pas sur le système qu'on construit mais sur **la manière
 dont on te demande**. C'est l'**UX-28**, et elle est entrée le 2026-10-27 parce qu'elle manquait :
 la méthode ordonne à ses prompts de te demander — vingt-deux fois, dans plus de la moitié du
 corpus — et ne disait nulle part comment on demande, donc la forme restait à l'improvisation et tu
@@ -935,8 +935,8 @@ de la méthode à un autre format, créditée en Partie F.)
   [Ref. 41](REFERENCIAS.md#ref-41) ; le chiffre de qualité qui empire sans que personne ne le voie
   [Ref. 35](REFERENCIAS.md#ref-35).
 - **Annexe H** : ancrage 3 de l'[Annexe H](ANEXO_HEURISTICAS.md), et le plus grand des cinq : ici
-  la barrière s'étend de la qualité du code à l'**utilisabilité**. Le catalogue des quarante-neuf règles est déclaré et
-  actif par groupe — et trois d'entre elles se rapportent facette par facette — ; chaque règle active a son instrument, sa sévérité et son
+  la barrière s'étend de la qualité du code à l'**utilisabilité**. Le catalogue des cinquante-deux règles est déclaré et
+  actif par groupe — et six d'entre elles se rapportent facette par facette — ; chaque règle active a son instrument, sa sévérité et son
   vérificateur ; chaque règle **éteinte** a son registre avec le motif, qui l'autorise et une date
   de révision — éteinte sans registre c'est rouge, ce qui n'est pas la même chose que la règle
   absente — ; chaque seuil que le propriétaire n'a pas déclaré se publie comme non déclaré au lieu
@@ -1700,7 +1700,7 @@ si la pièce n'est pas là, la barrière de cet échelon ne passe pas au vert. I
 bonne pratique : ça fait partie de ce qui se mesure.
 
 **Annexe H** — L'annexe d'heuristiques de la méthode
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)) : quarante-neuf règles vérifiables, vingt-et-une de qualité du code et
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)) : cinquante-deux règles vérifiables, vingt-quatre de qualité du code et
 vingt-huit d'utilisabilité, chacune avec son identifiant stable, sa sévérité et
 l'instrument qui la mesure. Elle est obligatoire et traverse les quatre tronçons : elle entre avec
 deux entrées préalables à l'échelon 2 et avec cinq ancrages aux échelons 5, 8, 9, 10 et 12. Le « H »

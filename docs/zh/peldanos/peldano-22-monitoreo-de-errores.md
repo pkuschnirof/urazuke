@@ -70,6 +70,12 @@
 > system: the report lists them in a separate section, and only the system's errors open pending
 > items. Document it in `docs/MONITORING.md`.
 >
+> And prove `error_reconstructed` in that same document: take ONE real error, follow it from
+> where it was thrown to its line in the register, and show me the same trace on both sides.
+> Counting errors is not seeing them: a counter of 5xx counts while the collector discards the
+> line for not having the expected shape, and then the figure is a count over something nobody
+> could look at.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -85,13 +91,18 @@
 > 数据）和调用栈；(2) 按原因对错误分组，使得一个缺陷是一条条目，带它的次数、第一次和最后
 > 一次出现、受影响的版本和它触及的流程；(3) 向 [渠道] 发告警：每一个新类型的错误、一个已
 > 知错误超过每小时 [N] 次、以及 `docs/LOCKS.md` 中某个有后果动作内部的任何错误；(4) 一份
->  [每周] 自动生成的周期报告，内容包括：新错误、复发错误及其趋势、本期修好的错误及其待办
+> [每周] 自动生成的周期报告，内容包括：新错误、复发错误及其趋势、本期修好的错误及其待办
 > 项、按流程的错误率对比上一周期，以及你对每个还开着的错误的提议；(5) 这条规则：每个新类
 > 型的错误都开一个纠正型待办项，用复现它的红色测试来关闭，而且不存在"已知错误"，除非有一
 > 个待办项说明为什么容忍它、容忍到什么时候。给我看一个在测试环境里、在浏览器里故意引发的
 > 错误，被它的标识符一路跟到后端记录、告警和报告。给每个捕获的错误标注来源，并把观测系统的工
 > 具（面板、常驻代理、监控本身）的错误与系统本身的错误分开：报告把它们列在单独一节，只有系统
 > 的错误才会打开待办项。把它记进 `docs/MONITORING.md`。
+>
+> 并且在同一份文档里证明 `error_reconstructed`：拿**一个**
+> 真实的错误，从它被抛出的地方一路跟到它在记录里的那一行，并把两边同样的轨迹给我看。
+> 数错误不等于看见错误：5xx 的计数器在数，而收集器因为那一行不是预期的形状把它
+> 丢掉了——那时候这个数字就是对一件没有人能看的事情的清点。
 >
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
@@ -148,6 +159,9 @@
 - 带按流程错误率的周期报告。
 - `docs/MONITORING.md` 完整（和第 21 级一起）；写进契约的例行。
 - 每个开着的错误一个待办项；没有任何"已知"错误没有待办项。
+- 在 `docs/MONITORING.md` 里：`error_reconstructed`，
+  也就是一个真实的错误，从它被抛出的地方一路跟到它在记录里的那一行，两边是同样的轨
+  迹。数错误不等于看见错误（CQ-19.2）。
 
 ## 4. 完整性检验
 

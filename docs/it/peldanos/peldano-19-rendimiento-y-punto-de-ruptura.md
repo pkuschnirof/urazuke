@@ -87,6 +87,14 @@ l'agente:
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
 > diagnosis of the first bottleneck.
 >
+> Then contrast, which is the part that decides: write in `docs/PERFORMANCE.md` the
+> `thresholds_total` the project declared, the `thresholds_met` the measurement met, and for
+> each threshold its `threshold_condition` -- at what volume, at what concurrency, in which
+> environment it holds. A figure that does not meet its threshold is RED and not merely
+> measured. If a threshold carries no declared condition, ask me for it instead of assuming
+> one: the same system passes at twenty people and fails at two hundred, so a threshold
+> without its condition cannot be contrasted against anything.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -112,6 +120,13 @@ l'agente:
 > usata) e con le ipotesi del dimensionamento, e dimmi quale ipotesi era sbagliata, se ce n'era
 > una. Non ottimizzare ancora nulla. Scrivi `docs/PERFORMANCE_[data].md` con i numeri, i comandi,
 > il punto di rottura e la tua diagnosi del primo collo di bottiglia.
+>
+> Poi contrasta, che è la parte che decide: scrivi in `docs/PERFORMANCE.md` i `thresholds_total` che
+> il progetto ha dichiarato, i `thresholds_met` che la misurazione ha soddisfatto e, per ogni
+> soglia, la sua `threshold_condition`: a quale volume, a quale concorrenza e in quale ambiente
+> vale. Una cifra che non soddisfa la sua soglia è ROSSA e non «misurata». Se una soglia non porta
+> condizione dichiarata, chiedimela invece di supporla: lo stesso sistema passa a venti persone e
+> cade a duecento, così una soglia senza la sua condizione non si può contrastare contro nulla.
 >
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
@@ -187,6 +202,10 @@ archiviato, perché tra sei mesi si possa confrontare.
   `docs/PERFORMANCE.md` con le soglie e il cancello.
 - Una voce in sospeso per ogni collo di bottiglia sotto il volume deciso.
 - La prova di carico come cancello prima dei deployment che la richiedono.
+- In `docs/PERFORMANCE.md`: i `thresholds_total` dichiarati, i `thresholds_met` e la
+  `threshold_condition` di ogni soglia. Una cifra che non soddisfa la sua soglia resta **rossa** e
+  non «misurata» (CQ-22.1), e una soglia senza la sua condizione si riporta come non dichiarata
+  (CQ-22.2).
 
 ## 4. Verifica di completezza
 

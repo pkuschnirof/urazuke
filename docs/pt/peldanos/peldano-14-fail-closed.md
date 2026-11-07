@@ -115,6 +115,14 @@ tabela e no código.
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
 >
+> Then write `docs/THIRD_PARTY_EXECUTION.md`: the inventory of the third-party code this
+> system EXECUTES -- not the code it imports: install scripts that run when a dependency is
+> installed, binaries put on the path, permanent background processes, and hooks that run a
+> command on an event. For each entry: what it runs, when it runs, the privilege it `runs_as`,
+> and MY decision -- accepted, narrowed or rejected, with who and when. Carry `entries_total`
+> and `entries_with_a_decision` at the head: an inventory whose entries nobody resolved
+> verifies nothing. If an entry runs with more privilege than it needs, say so and ask me.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -127,6 +135,15 @@ tabela e no código.
 > prove que, na condição de dúvida, a ação NÃO ocorre (provado em vermelho contra a versão sem o
 > cadeado). Registre a tabela final em `docs/LOCKS.md`. E para toda automação nova: modo de
 > ensaio primeiro, registrando o que teria feito, até que eu a habilite.
+>
+> Depois escreva `docs/THIRD_PARTY_EXECUTION.md`: o inventário do código de terceiros que este
+> sistema EXECUTA —não o que importa: os scripts de instalação que correm ao instalar uma
+> dependência, os binários que ficam no PATH, os processos de fundo permanentes e os ganchos que
+> correm um comando diante de um evento—. Por cada entrada: o que corre, quando corre, com que
+> privilégio (`runs_as`) e A MINHA decisão: aceita, acotada ou rejeitada, com quem e quando. Leve
+> `entries_total` e `entries_with_a_decision` na cabeça: um inventário cujas entradas ninguém
+> resolveu não verifica nada. Se uma entrada corre com mais privilégio do que precisa, diga-o e
+> pergunte-me.
 >
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
@@ -148,6 +165,10 @@ fazer.
 - As automações novas começando em modo de ensaio, com o registro de "teria feito".
 - Se o agente está embarcado: suas permissões escritas (o que pode ler, o que pode mudar, o que
   exige aprovação).
+- `docs/THIRD_PARTY_EXECUTION.md`: o inventário do código de terceiros que o sistema **executa**,
+  com `entries_total`, `entries_with_a_decision`, o privilégio de cada entrada e a sua decisão por
+  entrada. Que o inventário exista não basta: o que fecha o degrau é que cada entrada tenha decisão
+  (CQ-22.4).
 
 ## 4. Verificação de completude
 
