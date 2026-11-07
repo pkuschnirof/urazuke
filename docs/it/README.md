@@ -10,8 +10,9 @@ distillato da tre sistemi reali che oggi sono in produzione, appoggiandomi all'i
 sistemi di sempre e a ciò che quei sistemi mi hanno mostrato su dove i modelli la applicano in modo
 fragile.
 
-Autore: Pablo Kuschniroff, assistito da Claude Code. Pubblicato con licenza Creative Commons BY-SA
-4.0. Presentazione pubblica: [yujin.app/urazuke](https://yujin.app/urazuke/). Repository:
+Autore: Pablo Kuschniroff, assistito da Claude Code. Il metodo è pubblicato con licenza Creative
+Commons BY-SA 4.0; ciò che si esegue e la definizione meccanica dei cancelli, con licenza
+Apache-2.0 (la ripartizione è in `../../LICENCIA.md`). Presentazione pubblica: [yujin.app/urazuke](https://yujin.app/urazuke/). Repository:
 [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke).
 
 Questa cartella contiene la versione italiana del metodo. Lo spagnolo è la fonte della verità; se
@@ -133,6 +134,16 @@ modo. I miglioramenti a **questo** repository entrano tramite pull request da un
 prova, e li integra un manutentore dopo averli revisionati; nessun altro scrive su `main`. Il
 processo è in `CONTRIBUTING.md`. Il gradino 23 del metodo chiede che ogni retrospettiva finisca
 in una proposta concreta di modifica alla scala; questa è la forma attesa di contribuire.
+
+**Ciò che si esegue e ciò che una macchina consuma** --- i programmi di `build/`, i loro test in
+`tests/`, la definizione meccanica dei cancelli in `gates/` e i due pezzi dell'interfaccia di dati
+che sono definizione o metadati (`../../docs/html/api/gates.json` e
+`../../docs/html/api/index.json`) --- è pubblicato con licenza **Apache-2.0**
+(`../../LICENSE-CODE`): qualunque strumento può implementare i cancelli del metodo, o mettere un
+valutatore dentro la propria catena di consegna, senza passare dagli avvocati e senza dover aprire
+il proprio. La ripartizione completa, con la ragione di ogni lato, è in `../../LICENCIA.md`; ogni
+risorsa pubblicata dichiara la sua licenza nel proprio campo `license`, e l'indice
+dell'interfaccia la estrae da ognuna.
 
 I clienti dei sistemi di origine sono anonimizzati ("la Mutua", "l'Associazione"); i numeri, le
 date e i commit sono reali.

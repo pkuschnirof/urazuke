@@ -54,7 +54,13 @@ const salida = {
   git_commit_note: 'Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.',
   generated_at: new Date().toISOString(),
   source: 'https://github.com/pkuschnirof/urazuke',
-  license: 'CC BY-SA 4.0',
+  // Apache-2.0 y no la licencia de la prosa: esto es la definicion mecanica que una
+  // herramienta IMPLEMENTA, o sea que la embute y la transforma, que es exactamente lo
+  // que el compartir-igual alcanza. La prosa del metodo sigue CC BY-SA 4.0 y los otros
+  // dos recursos publicados tambien, porque son prosa extraida. El reparto esta en
+  // LICENCIA.md y gates/catalog.json#method.license declara lo mismo que esta linea:
+  // tests/licencias_declaradas.test.mjs exige que no se separen.
+  license: 'Apache-2.0',
   counts: contenido.counts,
   ...contenido,
 };

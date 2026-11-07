@@ -9,7 +9,9 @@ destilé de tres sistemas reales que hoy están en producción, apoyado en la in
 de siempre y en lo que esos sistemas me mostraron sobre dónde los modelos la aplican de manera
 frágil.
 
-Autor: Pablo Kuschniroff, asistido por Claude Code. Publicado bajo Creative Commons BY-SA 4.0.
+Autor: Pablo Kuschniroff, asistido por Claude Code. El método se publica bajo Creative Commons
+BY-SA 4.0; lo que se ejecuta y la definición mecánica de las compuertas, bajo Apache-2.0 (el
+reparto, en `LICENCIA.md`).
 Repositorio público: [github.com/pkuschnirof/urazuke](https://github.com/pkuschnirof/urazuke).
 Presentación pública: [yujin.app/urazuke](https://yujin.app/urazuke/).
 
@@ -119,11 +121,25 @@ solo en castellano porque citan palabras textuales.
 
 ## Licencia y cómo contribuir
 
-El método se publica bajo **Creative Commons Atribución-CompartirIgual 4.0** (el texto legal
-en `LICENSE`, su lectura en castellano y las notas en `LICENCIA.md`): se puede
-usar, traducir y adaptar, con atribución y compartiendo igual. Las mejoras a **este** repositorio
-entran por pull request desde un fork, con su evidencia, y las fusiona un mantenedor después de
-revisarlas; nadie más escribe en `main`. El proceso está en `CONTRIBUTING.md`. El peldaño 23 del
+Hay dos licencias, y la frontera es una sola idea: **lo que una persona lee se comparte igual;
+lo que una máquina ejecuta o consume no exige nada a cambio.**
+
+**El método** —la escalera, los contratos, las referencias, los manuales, las ocho traducciones,
+los prompts y los textos por identificador— se publica bajo **Creative Commons
+Atribución-CompartirIgual 4.0** (el texto legal en `LICENSE`): se puede usar, traducir y adaptar,
+con atribución y compartiendo igual.
+
+**Lo que se ejecuta y lo que una máquina consume** —los programas de `build/`, sus pruebas en
+`tests/`, la definición mecánica de las compuertas en `gates/` y las dos piezas de la interfaz de
+datos que son definición o metadata (`docs/html/api/gates.json` y `docs/html/api/index.json`)— se
+publica bajo **Apache-2.0** (el texto legal en `LICENSE-CODE`): una herramienta cualquiera puede
+implementar las compuertas del método, o meter un evaluador adentro de su propia cadena, sin
+pasar por abogados y sin tener que abrir lo suyo. El reparto completo, con la razón de cada
+lado, está en `LICENCIA.md`; cada recurso publicado declara además su licencia en su propio
+campo `license`, y el índice de la interfaz la extrae de cada uno.
+
+Las mejoras a **este** repositorio entran por pull request desde un fork, con su evidencia, y
+las fusiona un mantenedor después de revisarlas; nadie más escribe en `main`. El proceso está en `CONTRIBUTING.md`. El peldaño 23 del
 método pide que cada retrospectiva termine en una propuesta concreta de cambio a la escalera; esa
 es la forma esperada de contribuir.
 
