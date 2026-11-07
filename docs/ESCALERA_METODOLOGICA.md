@@ -227,7 +227,7 @@ Cada peldaño tiene ocho partes, siempre las mismas, para que se puedan comparar
   señales de alarma.
 
 Y hay una parte más, que aparece **sólo en seis peldaños** y es una pieza transversal que
-cambia qué hay que leer: el **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Son cincuenta y dos reglas verificables —veinticuatro de calidad del código y veintiocho de
+cambia qué hay que leer: el **Anexo H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)). Son reglas verificables —de calidad del código y de
 usabilidad—, cada una con su identificador estable, su severidad y el instrumento que la mide. No
 es un apéndice opcional: **es obligatorio**, y se engancha a la escalera en seis puntos. En el
 peldaño 2 entran sus dos **entradas previas** (el glosario del usuario y la lista de perfiles: las
@@ -241,7 +241,7 @@ haberlo descubierto tarde: el anexo estuvo obligatorio y sin nombrar en este doc
 primer lector que adaptó el método a otro formato se salteó veintisiete de las cuarenta y cinco
 reglas porque nunca supo que existían.
 
-Y una de esas cincuenta y dos no es sobre el sistema que se construye, sino sobre **cómo se te
+Y una de ellas no es sobre el sistema que se construye, sino sobre **cómo se te
 pregunta**. Es la **UX-28**, y entró el 2026-10-27 porque faltaba: el método les ordena a sus
 prompts preguntarte —veintidós veces, en más de la mitad del corpus— y no decía en ninguna parte
 cómo se pregunta, así que la forma quedaba a la improvisación y vos recibías la pregunta suelta.
@@ -877,7 +877,7 @@ primera adaptación del método a otro formato, acreditada en la Parte F.)
   una auditoría encontró porque ningún límite los había frenado [Ref. 41](REFERENCIAS.md#ref-41);
   el número de calidad que empeora sin que nadie lo vea [Ref. 35](REFERENCIAS.md#ref-35).
 - **Anexo H**: ancla 3 del [Anexo H](ANEXO_HEURISTICAS.md), y es la más grande de las cinco: acá la
-  compuerta se extiende de la calidad del código a la **usabilidad**. El catálogo de las cincuenta y dos reglas está
+  compuerta se extiende de la calidad del código a la **usabilidad**. El catálogo de reglas está
   declarado y activo por grupo —y seis de ellas se informan cara por cara—; cada regla activa tiene su instrumento, su
   severidad y su verificador; cada regla **apagada** tiene su registro con motivo, quién lo autoriza
   y fecha de revisión —apagada sin registro es rojo, que no es lo mismo que la regla ausente—; cada
@@ -1599,7 +1599,7 @@ si la pieza no está, la compuerta de ese peldaño no da verde. Hay cinco, en lo
 de lo que se mide.
 
 **Anexo H** — El anexo de heurísticas del método ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)):
-cincuenta y dos reglas verificables, veinticuatro de calidad del código y veintiocho de
+las reglas verificables del anexo, de calidad del código y de
 usabilidad,
 cada una con su identificador estable, su severidad y el instrumento que la mide. Es obligatorio y
 atraviesa los cuatro tramos: entra con dos entradas previas en el peldaño 2 y con cinco anclas en

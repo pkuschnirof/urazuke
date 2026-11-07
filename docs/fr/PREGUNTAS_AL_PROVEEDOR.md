@@ -146,7 +146,7 @@ Ce qui peut se voir : le registre des règles d'utilisabilité avec leur résult
 éteintes avec le motif écrit, qui l'a autorisé et quand ça se révise. Un système peut passer toutes
 les vérifications techniques et être inutilisable : tout vert, et la personne ne trouve pas où
 encaisser.
-*(Annexe H, les vingt-huit règles d'utilisabilité.)*
+*(Annexe H, les règles d'utilisabilité.)*
 
 **16. Les tests que vous m'avez montrés surveillent-ils vraiment, ou décorent-ils ?**
 Ce qui peut se voir : le score de mutation. C'est un programme qui introduit des erreurs exprès et
