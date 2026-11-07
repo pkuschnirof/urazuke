@@ -7,7 +7,8 @@
 代码**。我从三个如今正在生产环境运行的真实系统中把它提炼出来，一边靠的是一直以来的系统
 工程，一边靠的是那些系统让我看到的、模型在哪些地方把这门工程应用得很脆弱。
 
-作者：Pablo Kuschniroff，由 Claude Code 辅助。以 Creative Commons BY-SA 4.0 发布。
+作者：Pablo Kuschniroff，由 Claude Code 辅助。方法以 Creative Commons BY-SA 4.0 发布；可执行的部分与关卡的机械定义
+以 Apache-2.0 发布（分工见 `../../LICENCIA.md`）。
 公开展示：[yujin.app/urazuke](https://yujin.app/urazuke/)。
 
 本文件夹是方法的中文版。西班牙语是事实来源；若两个版本有出入，以西班牙语版为准，并修正
@@ -110,6 +111,14 @@ preuve*、*die Nachweis-Methode*、*il metodo del riscontro*、裏付けの方�
 改编，只要署名并采用相同许可。对**本**仓库的改进通过从 fork 发起的 pull request 提交，附带
 其证据，经审查后由维护者合并；其他任何人都不写入 `main`。流程见 `../../CONTRIBUTING.md`。
 方法的第 23 级台阶要求每次复盘都以一条对梯子的具体修改提案收尾；那就是预期的贡献方式。
+
+**可执行的部分，以及机器所消费的部分** --- `build/` 里的程序、`tests/` 里它们的测试、
+`gates/` 里关卡的机械定义，以及数据接口中属于定义或元数据的两个文件
+（`../../docs/html/api/gates.json` 与 `../../docs/html/api/index.json`）--- 以
+**Apache-2.0**（`../../LICENSE-CODE`）发布：任何工具都可以实现本方法的关卡，或把一个
+评估器放进自己的交付链，不必经过律师，也不必开放自己的代码。两侧各自的理由与完整分工
+见 `../../LICENCIA.md`；每个发布的资源都在自己的 `license` 字段里声明许可，接口的索引从
+每个资源中提取它。
 
 源系统的客户已匿名化（"互助会"、"协会"）；数字、日期和提交记录是真实的。
 
