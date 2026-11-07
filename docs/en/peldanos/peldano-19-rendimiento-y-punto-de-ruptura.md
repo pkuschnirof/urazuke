@@ -85,6 +85,14 @@ the agent:
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
 > diagnosis of the first bottleneck.
 >
+> Then contrast, which is the part that decides: write in `docs/PERFORMANCE.md` the
+> `thresholds_total` the project declared, the `thresholds_met` the measurement met, and for
+> each threshold its `threshold_condition` -- at what volume, at what concurrency, in which
+> environment it holds. A figure that does not meet its threshold is RED and not merely
+> measured. If a threshold carries no declared condition, ask me for it instead of assuming
+> one: the same system passes at twenty people and fails at two hundred, so a threshold
+> without its condition cannot be contrasted against anything.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -139,6 +147,10 @@ that in six months you can compare.
   diagnosis; `docs/PERFORMANCE.md` with the thresholds and the gate.
 - One pending item per bottleneck below the volume decided.
 - The load test as a gate before the deployments that require it.
+- In `docs/PERFORMANCE.md`: the declared `thresholds_total`, the `thresholds_met` and the
+  `threshold_condition` of each threshold. A figure that does not meet its threshold is **red** and
+  not "measured" (CQ-22.1), and a threshold without its condition is reported as undeclared
+  (CQ-22.2).
 
 ## 4. Completeness check
 

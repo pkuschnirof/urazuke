@@ -93,6 +93,14 @@ machst es, nicht der Agent:
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
 > diagnosis of the first bottleneck.
 >
+> Then contrast, which is the part that decides: write in `docs/PERFORMANCE.md` the
+> `thresholds_total` the project declared, the `thresholds_met` the measurement met, and for
+> each threshold its `threshold_condition` -- at what volume, at what concurrency, in which
+> environment it holds. A figure that does not meet its threshold is RED and not merely
+> measured. If a threshold carries no declared condition, ask me for it instead of assuming
+> one: the same system passes at twenty people and fails at two hundred, so a threshold
+> without its condition cannot be contrasted against anything.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -120,6 +128,14 @@ machst es, nicht der Agent:
 > mir, welche Annahme falsch war, falls eine. Optimiere noch nichts. Schreib
 > `docs/PERFORMANCE_[Datum].md` mit den Zahlen, den Befehlen, dem Bruchpunkt und deiner Diagnose
 > des ersten Flaschenhalses.
+>
+> Kontrastiere danach, und das ist der Teil, der entscheidet: schreibe in `docs/PERFORMANCE.md` die
+> `thresholds_total`, die das Projekt erklärt hat, die `thresholds_met`, die die Messung erfüllt
+> hat, und pro Schwellenwert seine `threshold_condition`: bei welchem Volumen, bei welcher
+> Gleichzeitigkeit und in welcher Umgebung er gilt. Eine Zahl, die ihren Schwellenwert nicht
+> erfüllt, ist ROT und nicht «gemessen». Wenn ein Schwellenwert keine erklärte Bedingung mitbringt,
+> frag mich danach, statt sie anzunehmen: dasselbe System besteht bei zwanzig Personen und fällt bei
+> zweihundert, also kann ein Schwellenwert ohne seine Bedingung gegen nichts kontrastiert werden.
 >
 > Wenn du eine Entscheidung von mir brauchst, stelle die Frage mit den vier Teilen von UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) und in dieser Reihenfolge: die Daten, die die Frage nötig machen,
@@ -196,6 +212,10 @@ archiviertes Tor, damit man in sechs Monaten vergleichen kann.
   Diagnose; `docs/PERFORMANCE.md` mit den Schwellenwerten und dem Tor.
 - Ein offener Posten pro Flaschenhals unterhalb des entschiedenen Volumens.
 - Der Lasttest als Tor vor den Deployments, die ihn verlangen.
+- In `docs/PERFORMANCE.md`: die erklärten `thresholds_total`, die `thresholds_met` und die
+  `threshold_condition` jedes Schwellenwerts. Eine Zahl, die ihren Schwellenwert nicht erfüllt,
+  bleibt **rot** und nicht «gemessen» (CQ-22.1), und ein Schwellenwert ohne seine Bedingung wird als
+  nicht erklärt gemeldet (CQ-22.2).
 
 ## 4. Vollständigkeitsprüfung
 

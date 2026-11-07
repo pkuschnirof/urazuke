@@ -78,8 +78,8 @@ test('las severidades iniciales son las que fijo D-048, regla por regla', () => 
   const ids = (f) => r.filter(f).map((x) => x.id).sort();
   assert.deepEqual(
     ids((x) => x.group === 'code_quality' && x.initial_severity === 'blocks' && !x.applies_if),
-    ['CQ-01', 'CQ-02', 'CQ-03', 'CQ-04', 'CQ-05', 'CQ-06', 'CQ-08', 'CQ-11', 'CQ-12', 'CQ-13', 'CQ-14', 'CQ-15', 'CQ-16', 'CQ-17', 'CQ-19', 'CQ-20', 'CQ-21'],
-    'en calidad bloquean diecisiete desde el dia uno: catorce desde D-048, las dos del recibo desde D-078 y la del alcance desde D-087');
+    ['CQ-01', 'CQ-02', 'CQ-03', 'CQ-04', 'CQ-05', 'CQ-06', 'CQ-08', 'CQ-11', 'CQ-12', 'CQ-13', 'CQ-14', 'CQ-15', 'CQ-16', 'CQ-17', 'CQ-19', 'CQ-20', 'CQ-21', 'CQ-22', 'CQ-23', 'CQ-24'],
+    'en calidad bloquean veinte desde el dia uno: catorce desde D-048, las dos del recibo desde D-078, la del alcance desde D-087 y las tres de D-089');
   assert.deepEqual(ids((x) => x.group === 'code_quality' && x.initial_severity === 'warns'), ['CQ-07', 'CQ-10', 'CQ-18'], 'avisan tres, y solo tres');
   assert.equal(r.find((x) => x.id === 'CQ-09').applies_if, 'real_users', 'CQ-09 bloquea donde hay usuarios reales');
   assert.deepEqual(
@@ -94,15 +94,16 @@ test('las severidades iniciales son las que fijo D-048, regla por regla', () => 
     'UX-28 es la unica que avisa y ademas se verifica a mano: ninguna prueba puede mirar una pregunta concreta');
 });
 
-test('el conteo correcto es cuarenta y nueve: 21 de calidad y 28 de usabilidad', () => {
+test('el conteo correcto es cincuenta y dos: 24 de calidad y 28 de usabilidad', () => {
   // Era cuarenta y cinco hasta el 2026-10-27, cuando entro UX-28 (D-070); cuarenta y seis hasta
-  // el 2026-11-01, cuando entraron CQ-19 y CQ-20 (D-078); y cuarenta y ocho hasta el 2026-11-03,
-  // cuando entro CQ-21 (D-087). La cuenta se congela aca a proposito: es el unico lugar del arbol
+  // el 2026-11-01, cuando entraron CQ-19 y CQ-20 (D-078); cuarenta y ocho hasta el 2026-11-03,
+  // cuando entro CQ-21 (D-087); y cuarenta y nueve hasta el 2026-11-07, cuando entraron CQ-22,
+  // CQ-23 y CQ-24 (D-089). La cuenta se congela aca a proposito: es el unico lugar del arbol
   // que cae si una regla entra o sale sin decision.
-  assert.equal(fuentes.heuristics.rules.length, 49);
-  assert.equal(fuentes.heuristics.rules.filter((r) => r.group === 'code_quality').length, 21);
+  assert.equal(fuentes.heuristics.rules.length, 52);
+  assert.equal(fuentes.heuristics.rules.filter((r) => r.group === 'code_quality').length, 24);
   assert.equal(fuentes.heuristics.rules.filter((r) => r.group === 'usability').length, 28);
-  assert.equal(fuentes.heuristics.counts.total, 49, 'la cuenta declarada es la real');
+  assert.equal(fuentes.heuristics.counts.total, 52, 'la cuenta declarada es la real');
 });
 
 test('todo enunciado se resuelve contra el anexo, y ninguno esta transcrito en los datos', () => {
@@ -113,18 +114,18 @@ test('todo enunciado se resuelve contra el anexo, y ninguno esta transcrito en l
     assert.ok(!('text' in r.statement), 'la regla ' + r.id + ' trae el texto transcrito en los datos');
     assert.ok(!('document' in r.statement), 'la regla ' + r.id + ' repite la ruta del anexo');
   }
-  assert.equal(anexo.reglas.size, 49, 'el anexo declara ' + anexo.reglas.size + ' reglas');
+  assert.equal(anexo.reglas.size, 52, 'el anexo declara ' + anexo.reglas.size + ' reglas');
   assert.deepEqual(anexo.problemas, []);
 });
 
 // Las caras (D-078). Se congelan aca por la misma razon que la cuenta de reglas: una cara que
 // entra o sale sin decision tiene que hacer caer algo, y lo que una cara habilita --apagar una
 // sola comprobacion de una regla-- es justo lo que no se puede dejar aparecer en silencio.
-test('las caras son nueve, cuelgan de su regla y su enunciado se extrae del anexo', () => {
+test('las caras son diecinueve, cuelgan de su regla y su enunciado se extrae del anexo', () => {
   const conCaras = fuentes.heuristics.rules.filter((r) => r.faces);
-  assert.deepEqual(conCaras.map((r) => r.id), ['CQ-19', 'CQ-20', 'CQ-21'], 'las tres reglas con caras');
-  assert.deepEqual(conCaras.map((r) => r.faces.length), [4, 2, 3], 'cuatro caras, dos caras y tres caras');
-  assert.equal(anexo.caras.size, 9, 'el anexo declara ' + anexo.caras.size + ' caras');
+  assert.deepEqual(conCaras.map((r) => r.id), ['CQ-19', 'CQ-20', 'CQ-21', 'CQ-22', 'CQ-23', 'CQ-24'], 'las seis reglas con caras');
+  assert.deepEqual(conCaras.map((r) => r.faces.length), [4, 2, 4, 4, 3, 2], 'cuatro, dos, cuatro, cuatro, tres y dos caras');
+  assert.equal(anexo.caras.size, 19, 'el anexo declara ' + anexo.caras.size + ' caras');
   for (const r of conCaras) {
     for (const c of r.faces) {
       assert.ok(c.id.startsWith(r.id + '.'), 'la cara ' + c.id + ' cuelga de ' + r.id);

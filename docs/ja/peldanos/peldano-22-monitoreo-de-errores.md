@@ -78,6 +78,12 @@
 > system: the report lists them in a separate section, and only the system's errors open pending
 > items. Document it in `docs/MONITORING.md`.
 >
+> And prove `error_reconstructed` in that same document: take ONE real error, follow it from
+> where it was thrown to its line in the register, and show me the same trace on both sides.
+> Counting errors is not seeing them: a counter of 5xx counts while the collector discards the
+> line for not having the expected shape, and then the figure is a count over something nobody
+> could look at.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -104,6 +110,12 @@
 > したすべてのエラーに発生源を付け、システムを観測する道具（パネル、常駐エージェント、監視そ
 > のもの）のエラーをシステムのエラーと分けて保管してください。レポートはそれらを別の節に列挙
 > し、保留項目を開くのはシステムのエラーだけです。`docs/MONITORING.md` に文書化してください。
+>
+> そして同じ文書で `error_reconstructed` を証明すること。**
+> 一つ**の実際の誤りを取り、投げられた場所から記録簿の行まで追い、両側で同じトレ
+> ースを見せる。誤りを数えることは、それを見ることではない。5xx の計数器は数え
+> る一方で、収集器は期待した形をしていないという理由でその行を捨てる。そうなると、
+> その数字は誰も見られなかったものについての数えである。
 >
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
@@ -165,6 +177,9 @@
 - フローごとのエラー率を持つ周期報告。
 - `docs/MONITORING.md` の完成（第21段とともに）。約束の中のルーチン。
 - 開いている各エラーに一つの保留項目。保留項目のない「既知」は一つもない。
+- `docs/MONITORING.md` に：`error_reconstructed`。
+  つまり、実際の誤りを投げられた場所から記録簿の行まで追い、両側で同じトレースを示
+  したもの。誤りを数えることは、それを見ることではない（CQ-19.2）。
 
 ## 4. 完全性の検証
 

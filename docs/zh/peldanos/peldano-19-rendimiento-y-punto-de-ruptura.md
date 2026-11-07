@@ -70,6 +70,14 @@
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
 > diagnosis of the first bottleneck.
 >
+> Then contrast, which is the part that decides: write in `docs/PERFORMANCE.md` the
+> `thresholds_total` the project declared, the `thresholds_met` the measurement met, and for
+> each threshold its `threshold_condition` -- at what volume, at what concurrency, in which
+> environment it holds. A figure that does not meet its threshold is RED and not merely
+> measured. If a threshold carries no declared condition, ask me for it instead of assuming
+> one: the same system passes at twenty people and fails at two hundred, so a threshold
+> without its condition cannot be contrasted against anything.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -91,6 +99,13 @@
 > （最常用界面 [容忍度]）、和容量估算的假设做比较，并告诉我哪个假设错了，如果有的话。先
 > 不要优化任何东西。写出 `docs/PERFORMANCE_[日期].md`，带上数字、命令、断裂点和你对第一
 > 个瓶颈的诊断。
+>
+> 然后去对照，这才是做决定的那一部分：在 `docs/PERFORMANCE.md`
+> 里写上项目声明的 `thresholds_total`、测量达到的 `thresholds_met`，
+> 以及每个阈值的 `threshold_condition`——在哪个量级、哪个并
+> 发、哪种环境下成立。达不到自己阈值的数字是**红**的，不是「已测量」。如果一个
+> 阈值没有带声明出来的条件，来问我，不要去假定它：同一个系统在二十个人时过、在两百
+> 个人时不过，所以没有条件的阈值没有任何东西可以拿来对照。
 >
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
@@ -152,6 +167,10 @@
   和闸门。
 - 每个瓶颈一个待办项，在所决定的量级之下。
 - 负载测试作为那些需要它的部署之前的闸门。
+- 在 `docs/PERFORMANCE.md` 里：声明的 `thresholds_total`、
+  `thresholds_met`，以及每个阈值的 `threshold_condition`。
+  达不到自己阈值的数字是**红**的，不是「已测量」（CQ-22.1）；而没有条件
+  的阈值报告为未声明（CQ-22.2）。
 
 ## 4. 完整性检验
 

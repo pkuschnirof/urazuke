@@ -157,6 +157,50 @@ test('C: el diferencial desde la primera version publicada es la historia medida
     '2026.10.16 docs/MANUAL_TESTS.md',
     '2026.10.16 docs/PRODUCER_CONSUMER_MAP.md',
     '2026.10.16 docs/WORKING_AGREEMENT.md',
+    // Las treinta y seis de 2026.10.17 son D-089, y son el lote mas grande hasta hoy: TRES
+    // reglas con nueve caras --el contraste, la procedencia y el registro contestable--, mas la
+    // CUARTA cara de CQ-21, que es la primera vez que una regla ya publicada gana una cara. Y
+    // con ellas, las primeras DOS rutas nuevas desde 2026.10.14: el recibo del ensayo de
+    // destruccion y restitucion del peldano 20 y el inventario del codigo de terceros que el
+    // sistema EJECUTA del peldano 14. Cinco artefactos mas sobre archivos que ya existian, un
+    // umbral nuevo que declara el dueno y doce preguntas de verificacion sobre los peldanos 5,
+    // 8, 9, 11, 12, 14, 16, 19, 20, 22 y 23.
+    '2026.10.17 CQ-21.4',
+    '2026.10.17 CQ-22',
+    '2026.10.17 CQ-22.1',
+    '2026.10.17 CQ-22.2',
+    '2026.10.17 CQ-22.3',
+    '2026.10.17 CQ-22.4',
+    '2026.10.17 CQ-23',
+    '2026.10.17 CQ-23.1',
+    '2026.10.17 CQ-23.2',
+    '2026.10.17 CQ-23.3',
+    '2026.10.17 CQ-24',
+    '2026.10.17 CQ-24.1',
+    '2026.10.17 CQ-24.2',
+    '2026.10.17 Did the chain that produced this green run AFTER the last change that affects what it measures, and over the tree that stays? A green that is true and old reads exactly like a current one (CQ-23.1).',
+    '2026.10.17 Did the owner declare the acceptable window of data loss, as data and not as prose, and is the cadence of the backup contrasted against it? If the owner says one hour, a daily backup does not pass (CQ-22.2).',
+    '2026.10.17 Does every entry declare the privilege it runs with, and is there one that runs with more than it needs without a written decision saying why (CQ-20.1)?',
+    '2026.10.17 Does every threshold say at what concurrency, at what volume and in which environment it holds, and did the owner answer that condition instead of the agent assuming it (CQ-22.2)?',
+    '2026.10.17 Does the count of forced closes come from the FIELD the register declares, rather than from a word search over free prose? A recount by word cannot guarantee its own population: the list of overrides of a real retrospective omitted one because the prose of that item did not use the word (CQ-24.1, CQ-19.3).',
+    '2026.10.17 Does the inventory cover the third-party code that RUNS and not the code that is imported, and does every entry carry its decision -- accepted, narrowed or rejected, with who and when -- rather than the list merely existing (CQ-22.4)?',
+    '2026.10.17 Does the path by which the owner authorises a forced close WRITE the field the register declares mandatory for it, or does the project declare which record carries the fact and which field is not it? A forced close counted by reading prose is the count the field came in to avoid (CQ-24.1).',
+    '2026.10.17 Does the register say at which step it was opened, and are the rows that describe earlier steps marked as written retroactively? Steps before the register reporting zero incidents means there was no register, not that nothing happened (CQ-24.2).',
+    '2026.10.17 For every verdict the report cites: is it later than the last change that affects what it measures, and did its output land somewhere the next turn can read? A verification that can last longer than the turn that launched it is launched with a record (CQ-23.1, CQ-23.2).',
+    '2026.10.17 Is every mutant declared caught backed by a failed assertion, rather than by a red the mutated code produced before the run reached the assertion (CQ-21.4)?',
+    '2026.10.17 Is the red of every receipt a FAILED ASSERTION and not an exception -- code that does not compile, a file that does not parse, an environment that did not start? A red that never reached its assertion falsified nothing, because the assertion neither passed nor failed (CQ-21.4).',
+    '2026.10.17 Is there a receipt of a run that destroyed and restored, with the rows counted before and after and the schema at the migration it was at -- rather than a manual that names the procedure? Restoring onto an empty database proves less, which is why the drill destroys first (CQ-22.3).',
+    '2026.10.17 Of one error, what can be reconstructed? Not how many it counted: take a real failure, follow it to its line in the register, and check that the line says what it was instead of having been discarded for not having the expected shape (CQ-19.2).',
+    '2026.10.17 Take ONE real error and follow it: does it leave a structured line that says what it was, with the same trace on both sides? Counting errors is not seeing them -- a counter can count over something the collector could not read (CQ-19.2).',
+    '2026.10.17 Was every measured figure contrasted against its declared threshold, and is the one that does not pass RED rather than merely measured? A whole ladder can be closed with every non-functional requirement unmet while each gate is right about what it measures (CQ-22.1).',
+    '2026.10.17 acceptable_data_loss_window',
+    '2026.10.17 docs/CODE_QUALITY.md',
+    '2026.10.17 docs/GOTCHAS.md',
+    '2026.10.17 docs/MONITORING.md',
+    '2026.10.17 docs/PERFORMANCE.md',
+    '2026.10.17 docs/RESTORE_DRILL.md',
+    '2026.10.17 docs/THIRD_PARTY_EXECUTION.md',
+    '2026.10.17 docs/WORKING_AGREEMENT.md',
     '2026.10.4 Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?',
     '2026.10.5 docs/GLOSSARY.md',
     '2026.10.5 docs/PROFILES.md',
@@ -233,15 +277,21 @@ test('E: la comprobacion reviso algo, y lo dice con su cuenta', () => {
   // pregunta, porque lo que faltaba ahi era prosa y no un requisito. Las doce ultimas son de
   // D-087: una regla, sus tres caras, tres artefactos y cinco preguntas, y es el primer lote que
   // no agrega ninguna RUTA nueva -- las tres exigencias caen sobre archivos que el metodo ya pedia.
-  assert.equal(arbol.entradas.length, 87, 'las entradas agregadas despues del congelado, medidas el 2026-11-03');
-  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['CQ-19', 'CQ-20', 'CQ-21', 'UX-28'],
+  // Las treinta y seis ultimas son de D-089, que es el lote mas grande hasta hoy: tres reglas con
+  // nueve caras, la CUARTA cara de CQ-21 --la primera que una regla ya publicada gana despues de
+  // entrar--, un umbral que declara el dueno, siete artefactos (dos de ellos sobre rutas NUEVAS:
+  // el ensayo de restitucion del peldano 20 y el inventario del codigo de terceros que corre del
+  // peldano 14) y doce preguntas de verificacion.
+  assert.equal(arbol.entradas.length, 123, 'las entradas agregadas despues del congelado, medidas el 2026-11-07');
+  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['CQ-19', 'CQ-20', 'CQ-21', 'CQ-22', 'CQ-23', 'CQ-24', 'UX-28'],
     'una regla agregada despues del congelado entra en el diferencial: sin esto un upgrade la omitia en silencio');
   // Y una cara, por el mismo argumento una capa adentro: se puede apagar sola, asi que un
   // diferencial que cuenta la regla y no sus caras dice que entra una cosa cuando entran cinco.
   assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.faces')).map((e) => e.que),
-    ['CQ-19.1', 'CQ-19.2', 'CQ-19.3', 'CQ-19.4', 'CQ-20.1', 'CQ-20.2', 'CQ-21.1', 'CQ-21.2', 'CQ-21.3'],
-    'las caras entran en el diferencial con su procedencia (D-078, D-087)');
-  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.thresholds')).map((e) => e.que), ['end_users_outside_the_organisation'],
+    ['CQ-19.1', 'CQ-19.2', 'CQ-19.3', 'CQ-19.4', 'CQ-20.1', 'CQ-20.2', 'CQ-21.1', 'CQ-21.2', 'CQ-21.3', 'CQ-21.4',
+      'CQ-22.1', 'CQ-22.2', 'CQ-22.3', 'CQ-22.4', 'CQ-23.1', 'CQ-23.2', 'CQ-23.3', 'CQ-24.1', 'CQ-24.2'],
+    'las caras entran en el diferencial con su procedencia (D-078, D-087, D-089)');
+  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.thresholds')).map((e) => e.que), ['end_users_outside_the_organisation', 'acceptable_data_loss_window'],
     'un umbral agregado despues del congelado entra en el diferencial: declararlo o no cambia la severidad de su regla');
   assert.ok(arbol.versiones.length >= 7, 'el registro de versiones tiene al menos las siete publicadas');
 });

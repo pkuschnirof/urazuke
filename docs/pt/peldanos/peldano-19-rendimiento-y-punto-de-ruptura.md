@@ -83,6 +83,14 @@ o agente:
 > `docs/PERFORMANCE_[date].md` with the numbers, the commands, the breaking point and your
 > diagnosis of the first bottleneck.
 >
+> Then contrast, which is the part that decides: write in `docs/PERFORMANCE.md` the
+> `thresholds_total` the project declared, the `thresholds_met` the measurement met, and for
+> each threshold its `threshold_condition` -- at what volume, at what concurrency, in which
+> environment it holds. A figure that does not meet its threshold is RED and not merely
+> measured. If a threshold carries no declared condition, ask me for it instead of assuming
+> one: the same system passes at twenty people and fails at two hundred, so a threshold
+> without its condition cannot be contrasted against anything.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -108,6 +116,13 @@ o agente:
 > dimensionamento, e diga-me que pressuposto estava errado, se algum. Não otimize nada ainda.
 > Escreva `docs/PERFORMANCE_[data].md` com os números, os comandos, o ponto de ruptura e o seu
 > diagnóstico do primeiro gargalo.
+>
+> Depois contraste, que é a parte que decide: escreva em `docs/PERFORMANCE.md` os `thresholds_total`
+> que o projeto declarou, os `thresholds_met` que a medição cumpriu e, por cada limiar, a sua
+> `threshold_condition`: a que volume, a que concorrência e em que ambiente vale. Uma cifra que não
+> cumpre o seu limiar é VERMELHA e não «medida». Se um limiar não trouxer condição declarada,
+> peça-ma em vez de supô-la: o mesmo sistema passa a vinte pessoas e falha a duzentas, então um
+> limiar sem a sua condição não se pode contrastar contra nada.
 >
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
@@ -178,6 +193,9 @@ seis meses se possa comparar.
   diagnóstico; `docs/PERFORMANCE.md` com os limiares e a comporta.
 - Uma pendência por gargalo abaixo do volume decidido.
 - O teste de carga como comporta antes das implantações que o exigem.
+- Em `docs/PERFORMANCE.md`: os `thresholds_total` declarados, os `thresholds_met` e a
+  `threshold_condition` de cada limiar. Uma cifra que não cumpre o seu limiar fica **vermelha** e
+  não «medida» (CQ-22.1), e um limiar sem a sua condição reporta-se como não declarado (CQ-22.2).
 
 ## 4. Verificação de completude
 

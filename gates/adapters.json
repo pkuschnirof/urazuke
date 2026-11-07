@@ -114,6 +114,16 @@
       "note": "the condition of the CQ-18 escalation (D-048): declared true the rule blocks, declared false the escalation is DECLINED with a record, and undeclared is reported as an undeclared threshold, which means the escalation is PENDING and nobody looked at it. Those two are not the same state and before this id there was no key in which to tell them apart: the rule said the escalation is declared through the same mechanism as any threshold and no threshold id existed for it, so the absence of a declaration meant both things at once. The spelling of the id follows the words the rule already uses (outside the organisation), because ids are append-only and are never renamed. It is a boolean and not a number: what a threshold declares is a value, and the value here is whether the condition holds.",
       "since_schema": 2,
       "since_version": "2026.10.11"
+    },
+    {
+      "id": "acceptable_data_loss_window",
+      "rule": "CQ-22",
+      "value": null,
+      "declared": false,
+      "declared_by": "the owner",
+      "note": "The period of data loss the owner declares acceptable, which is the input the destroy-and-restore drill of step 20 is verified against (D-089). It is the owner who answers it, never the method and never the agent: without it the cadence of the backup cannot be contrasted against anything -- one copy an hour, one a day and none at all are equally defensible -- and the gate reports it as an undeclared threshold, which is the state that says nobody looked. It is a duration and not a boolean: what a threshold declares is a value, and the value here is how much loss is acceptable. Its spelling follows the words the rule already uses.",
+      "since_schema": 2,
+      "since_version": "2026.10.17"
     }
   ],
   "undeclared_threshold": "it is reported as an undeclared threshold. No approximating, no silent inheriting and no inventing: the same rule as the sizing of the architecture step.",

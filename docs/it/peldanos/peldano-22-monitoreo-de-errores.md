@@ -87,6 +87,12 @@ l'agente:
 > system: the report lists them in a separate section, and only the system's errors open pending
 > items. Document it in `docs/MONITORING.md`.
 >
+> And prove `error_reconstructed` in that same document: take ONE real error, follow it from
+> where it was thrown to its line in the register, and show me the same trace on both sides.
+> Counting errors is not seeing them: a counter of 5xx counts while the collector discards the
+> line for not having the expected shape, and then the figure is a count over something nobody
+> could look at.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -117,6 +123,12 @@ l'agente:
 > dagli errori del sistema: il report li elenca in una sezione a parte, e solo gli errori del
 > sistema aprono elementi in sospeso. Documentalo in `docs/MONITORING.md`. Rispondi nella mia
 > lingua.
+>
+> E prova l'`error_reconstructed` in quello stesso documento: prendi UN errore reale, seguilo da
+> dove è stato lanciato fino alla sua riga nel registro, e mostrami la stessa traccia dai due lati.
+> Contare errori non è vederli: un contatore di 5xx conta mentre il raccoglitore scarta la riga
+> perché non ha la forma attesa, e allora la cifra è un conto su qualcosa che nessuno ha potuto
+> guardare.
 >
 > Quando hai bisogno di una decisione da parte mia, chiedila con le quattro parti della UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e in questo ordine: i dati che rendono necessaria la domanda,
@@ -182,6 +194,9 @@ più controintuitiva e quella che vale di più: un errore che se n'è andato da 
 - Il rapporto ciclico con il tasso di errore per flusso.
 - `docs/MONITORING.md` completo (con il 21); la routine nel patto.
 - Una voce in sospeso per ogni errore aperto; nessuno "noto" senza voce in sospeso.
+- In `docs/MONITORING.md`: l'`error_reconstructed`, cioè un errore reale seguito da dove è stato
+  lanciato fino alla sua riga nel registro, con la stessa traccia dai due lati. Contare errori non è
+  vederli (CQ-19.2).
 
 ## 4. Verifica di completezza
 

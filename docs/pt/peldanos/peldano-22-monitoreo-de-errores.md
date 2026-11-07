@@ -82,6 +82,12 @@ o agente:
 > system: the report lists them in a separate section, and only the system's errors open pending
 > items. Document it in `docs/MONITORING.md`.
 >
+> And prove `error_reconstructed` in that same document: take ONE real error, follow it from
+> where it was thrown to its line in the register, and show me the same trace on both sides.
+> Counting errors is not seeing them: a counter of 5xx counts while the collector discards the
+> line for not having the expected shape, and then the figure is a count over something nobody
+> could look at.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -110,6 +116,11 @@ o agente:
 > mantenha separados os erros das ferramentas que observam o sistema (o painel, o agente residente,
 > o próprio monitoramento) dos erros do sistema: o relatório os lista numa seção à parte, e só os
 > erros do sistema abrem pendentes. Documente-o em `docs/MONITORING.md`.
+>
+> E prove o `error_reconstructed` nesse mesmo documento: tome UM erro real, siga-o desde onde foi
+> lançado até a sua linha no registro, e mostre-me o mesmo rastro nos dois lados. Contar erros não é
+> vê-los: um contador de 5xx conta enquanto o coletor descarta a linha por não ter a forma esperada,
+> e então a cifra é uma conta sobre algo que ninguém pôde olhar.
 >
 > Quando você precisar de uma decisão minha, peça-a com as quatro partes da UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) e nesta ordem: os dados que tornam a pergunta necessária,
@@ -174,6 +185,9 @@ contraintuitiva e a que mais vale: um erro que foi embora sozinho volta sozinho.
 - O relatório cíclico com a taxa de erro por fluxo.
 - `docs/MONITORING.md` completo (com o 21); a rotina no contrato.
 - Uma pendência para cada erro aberto; nenhum "conhecido" sem pendência.
+- Em `docs/MONITORING.md`: o `error_reconstructed`, ou seja, um erro real seguido desde onde foi
+  lançado até a sua linha no registro, com o mesmo rastro nos dois lados. Contar erros não é vê-los
+  (CQ-19.2).
 
 ## 4. Verificação de completude
 

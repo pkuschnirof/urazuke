@@ -97,6 +97,14 @@ that it ends up in the table and in the code.
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
 >
+> Then write `docs/THIRD_PARTY_EXECUTION.md`: the inventory of the third-party code this
+> system EXECUTES -- not the code it imports: install scripts that run when a dependency is
+> installed, binaries put on the path, permanent background processes, and hooks that run a
+> command on an event. For each entry: what it runs, when it runs, the privilege it `runs_as`,
+> and MY decision -- accepted, narrowed or rejected, with who and when. Carry `entries_total`
+> and `entries_with_a_decision` at the head: an inventory whose entries nobody resolved
+> verifies nothing. If an entry runs with more privilege than it needs, say so and ask me.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -117,6 +125,10 @@ it do it.
 - New automations starting in dry-run mode, with the log of "would have done".
 - If the agent is embedded: its permissions written down (what it can read, what it can change,
   what requires approval).
+- `docs/THIRD_PARTY_EXECUTION.md`: the inventory of the third-party code the system **executes**,
+  with `entries_total`, `entries_with_a_decision`, the privilege of each entry and your decision per
+  entry. That the inventory exists is not enough: what closes the step is that every entry has its
+  decision (CQ-22.4).
 
 ## 4. Completeness check
 

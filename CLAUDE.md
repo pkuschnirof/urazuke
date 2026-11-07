@@ -134,7 +134,7 @@ visto: el Anexo H era obligatorio y el documento principal no lo nombraba.
 
 ## El Anexo H se nombra donde el dato lo exige
 
-D-061 (PND-039, PND-048). El Anexo H es obligatorio —49 reglas desde D-087, 48 desde D-078, 46 desde D-070, 45 cuando se escribió esto—, con dos entradas previas en el
+D-061 (PND-039, PND-048). El Anexo H es obligatorio —52 reglas desde D-089, 49 desde D-087, 48 desde D-078, 46 desde D-070, 45 cuando se escribió esto—, con dos entradas previas en el
 peldaño 2 y cinco anclas en los peldaños 5, 8, 9, 10 y 12, y esas cinco son evaluadores
 `required: true` en el dato publicado— y hasta el 2026-10-26 el documento principal **no lo nombraba
 ni una vez**. Lo descubrió un lector: el autor de la adaptación reprodujo sin error seis cifras de
@@ -571,6 +571,82 @@ no dice dónde buscó es D-064. Es D-044, D-077 y D-086 en el único lugar donde
 ninguna de las tres guardas mira: la prosa del método. Lo encontró tener que tocar la cifra, y queda
 dicho que la próxima regla va a volver a pasar por acá.
 
+## No se acepta «la medición existe» como criterio: el contraste, la procedencia y el registro
+
+D-089 (`PND-105` a `PND-115`), y el lote lo pidió el dueño con una línea que es la que lo ordena:
+**no aceptes «la medición existe» como criterio.** Son diez hallazgos —nueve del brazo C1 del
+experimento A/B al cerrar los veinticuatro peldaños, **veintidós de veinticuatro sin override** (que
+la cifra no sea veinticuatro es, él mismo, uno de los hallazgos), y uno que no sale del brazo sino
+de un análisis de plataformas de herramientas—, y son **tres** reglas porque a cada uno se le hace
+una de tres preguntas: *¿contra qué se contrasta este número, y quién decidió?* es `CQ-22`; *¿este
+veredicto es de este trabajo, y sigue existiendo?* es `CQ-23`; *¿este registro puede contestar la
+pregunta para la que existe, sobre todo su recorrido?* es `CQ-24`. Entran con **nueve caras**, y en
+el mismo cambio `CQ-21` gana su **cuarta**, que es la primera que una regla ya publicada gana
+después de haber entrado. El anexo pasa a **cincuenta y dos** reglas (24 de calidad, 28 de
+usabilidad) y a diecinueve caras; el catálogo, a `2026.10.17`.
+
+**El caso que midió `CQ-22`, y hay que decirlo entero porque es grande.** El peldaño 19 del brazo
+—pruebas de rendimiento en volumen y punto de ruptura— **cerró en verde con su requisito no
+funcional incumplido**: p95 de 557 a 911 ms contra un techo declarado de 300, a doscientos
+simultáneos. Y la compuerta que lo dejó pasar **tiene razón en lo que mide**: verifica que el recibo
+exista, cubra los cuatro flujos y traiga sus umbrales o la imposibilidad escrita. Palabras del
+brazo: *«ninguna compuerta de la escalera pregunta si el número pasa»*. Hasta el 2026-11-07 una
+escalera de veinticuatro peldaños se podía cerrar **completa**, con todos sus requisitos no
+funcionales incumplidos, y cada compuerta teniendo razón una por una.
+
+Tres cosas de este lote no se negocian. **`CQ-22.2`, el umbral con su condición**, es la mitad
+estructural y la pidió el dueño explícita: el requisito decía «p95 < 300 ms» y **no decía a qué
+concurrencia**, así que el mismo sistema pasa a veinte personas y falla a doscientas; la condición
+es una decisión del dueño y no se supone. **`CQ-22.3`, la ausencia declarada que no cierra**, marca
+una diferencia que el dueño pidió marcar: para el p95 la imposibilidad escrita es una salida
+legítima, porque hay sistemas donde la carga no se puede medir, pero *«No hay respaldos. Ninguno. De
+nada.»* —textual en la sección 6 del manual de recuperación del brazo, con el comando de
+verificación transcripto, y con el peldaño 20 cerrando en verde— **no puede cerrar un peldaño**. De
+ahí el ensayo de **destruir y restituir** del peldaño 20 (`docs/RESTORE_DRILL.md`, con los renglones
+contados antes y después y la migración en la que quedó el esquema) y el umbral
+`acceptable_data_loss_window`, que **lo contesta el dueño** y nunca el método ni el agente: sin esa
+respuesta, un respaldo por hora, uno por día y ninguno son igual de defendibles. Y **la redacción de
+`CQ-23.3` es del brazo y no del método**, igual que la de `CQ-21.1` en D-087: *«¿qué archivo de esta
+lista no existía antes de empezar? Si la respuesta es ninguno, el verde es de otro»*. No volver a
+presentarla como propia.
+
+`CQ-24.1` está redactada **para la familia y no para el campo que la trajo**, porque el patrón
+apareció dos veces el mismo día en dos sistemas sin relación: cero de 195 elementos del registro del
+brazo con el campo de cierre forzado escrito, contra veintiocho que lo nombran en su prosa y diez
+cierres que la prosa declara forzados bajo nueve overrides; y un registro de sólo agregar cuyo campo
+de motivo era **constante**, cierto de la primera fila y falso de las tres siguientes. Dos
+ocurrencias independientes son una familia. Su corolario vale solo: la lista de nueve overrides de
+la retrospectiva **omitía uno**, porque se armó con una búsqueda de la palabra y la prosa de ese
+elemento no la usa, que es `CQ-19.3`.
+
+Lo que entra con las tres reglas, como exigencias de su peldaño, y las dos primeras son **rutas
+nuevas**: `docs/RESTORE_DRILL.md` (20) y `docs/THIRD_PARTY_EXECUTION.md` (14, el inventario del
+código de terceros que el sistema **ejecuta** —no el que importa— con el privilegio de cada entrada
+y **una decisión por entrada**, que es el cuidado que el décimo hallazgo trajo escrito); los umbrales
+del 19 con su denominador, su veredicto y la condición de cada uno; el error reconstruido del 22,
+porque **contar errores no es verlos**; el registro de anti-patrones del 11 diciendo en qué peldaño
+nació; y la procedencia del veredicto en el reporte honesto del 12. Los cuatro prompts afectados lo
+piden con todas las letras, en una sola redacción inglesa idéntica en los ocho idiomas.
+
+Y lo que este lote **no** promete, escrito en el anexo y en los contratos en los ocho idiomas: que
+el número que un proyecto declara sea el que midió, que la condición que un umbral declara sea la
+que gobierna el requisito, ni que una fila retroactiva esté marcada con honestidad. Lo que una
+máquina mira es la **declaración**; la verdad de la declaración la decide una persona leyendo. Es la
+misma frontera que `CQ-21` escribió en su sección: la cifra es mecánica, la verdad de la cifra es
+del dueño.
+
+**Y lo que dejó abierto a propósito (`PND-115`), que conviene leer antes del próximo lote de
+reglas.** Subir la cuenta del anexo de cuarenta y nueve a cincuenta y dos obligó a mover **noventa y
+seis afirmaciones de estado presente a mano**, en los veinticuatro archivos de prosa del corpus que
+las llevan, y **ocho ya estaban vencidas**: el párrafo que explica por qué UX-28 es la única regla
+que entra en el prompt decía *«las otras cuarenta y siete»* en los ocho idiomas desde D-087.
+`PND-104` corrió su barrido **el mismo día que las venció** y no las vio, porque su universo estaba
+completo y sus **formas** no —buscó «N reglas» y esta afirmación no lleva el sustantivo—. Es
+`CQ-19.3` aplicado al barrido del propio método, y es el dato que `PND-104` no tenía cuando declaró
+la guarda como trabajo aparte: el barrido a mano falla por las formas, así que una guarda con un
+**registro de formas con su razón** que caiga cuando aparece una forma nueva es más barata que una
+que intente entender la prosa. La decisión es del dueño y está en `PND-115` con sus tres salidas.
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio
@@ -793,7 +869,7 @@ existir en cada peldaño, qué tiene que decir, con qué estrategia se verifica)
 `gates/`, mantenida **a mano** porque es datos y no prosa: `catalog.json` (la versión declarada),
 `schema.json` (el esquema, que el validador interpreta), `evaluators.json` (el vocabulario cerrado
 y append-only), `steps.json` (24 peldaños), `stations.json` (N0 a N7), `heuristics.json` (las 49
-reglas del Anexo H, tres de ellas con caras) y `adapters.json` (las familias de frontend y los umbrales).
+reglas del Anexo H, seis de ellas con caras) y `adapters.json` (las familias de frontend y los umbrales).
 `baseline.json` es el congelado de lo que la herramienta tenía compilado el día del cambio: es la
 referencia del test de diferencia cero y **no se edita** (la única excepción escrita es D-055, y
 fue del dueño). Su cabecera guarda la procedencia —repositorio y commit de origen— y por eso el
@@ -806,7 +882,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   verdad hay que cambiar un requisito existente, es un cambio del método y va con su decisión.
   Pasó una sola vez (D-055, autorizada por el dueño y acotada a dos textos): cuando se edita, se
   edita **en sincronía** con el congelado, para que la diferencia cero siga siendo demostrable.
-- **Una sola copia de cada texto.** El enunciado de las 49 reglas y de las 9 caras vive sólo en el Anexo H;
+- **Una sola copia de cada texto.** El enunciado de las 52 reglas y de las 19 caras vive sólo en el Anexo H;
   `heuristics.json` lleva el puntero (`statement_source` para la ruta, una vez, y `section` +
   `row` por regla) y el build **extrae** el texto de `docs/en/ANEXO_HEURISTICAS.md`, que es la
   versión que se publica. El validador rechaza un enunciado transcrito, una severidad que no
@@ -962,15 +1038,15 @@ sacarlo**: lo único legible por máquina era justo lo que pedía no imprimir, a
 era correcta y no se podía cumplir, y lo que dejaba en la práctica era que cada herramienta se
 escribiera sus propias traducciones de los títulos del método. `docs/html/api/labels.json`
 (`build/labels_api.mjs`) lo cierra: el título de los veinticuatro peldaños, el título de las ocho
-estaciones, el enunciado de las cuarenta y nueve reglas del Anexo H y, desde D-078, el enunciado y
-el nombre corto de cada una de las nueve caras, en los ocho idiomas de la prosa. Noventa y nueve
-identificadores por idioma, 792 cadenas. `labels/catalog.json` se mantiene
+estaciones, el enunciado de las cincuenta y dos reglas del Anexo H y, desde D-078, el enunciado y
+el nombre corto de cada una de las diecinueve caras, en los ocho idiomas de la prosa. Ciento veintidós
+identificadores por idioma, 976 cadenas. `labels/catalog.json` se mantiene
 **a mano**, igual que los otros dos, porque es la identidad de lo publicado: `labels_version` (hoy
 `2026.10.3`) y el registro de huellas, con las mismas reglas que el catálogo de compuertas (D-053).
 
 Lo que no se negocia de este recurso. **Ni una cadena se escribe ahí**: se **extrae** de la prosa,
 que es el mismo mecanismo que ya resolvía el enunciado inglés de las reglas, y hay una prueba que
-exige que cada una de las 736 aparezca **literal** en el documento del idioma del que dice salir. Es
+exige que cada una de las 976 aparezca **literal** en el documento del idioma del que dice salir. Es
 la prueba que importa, porque el riesgo propio de un catálogo de textos es volverse una segunda
 versión del método que divergue de la primera sin que nada caiga; y es la que hace que el archivo no
 se pueda «completar a mano» cuando a un idioma le falta algo: si falta, **no se publica nada**. Es
@@ -1024,7 +1100,7 @@ generado por extracción y no transcrito (D-068), y las de los punteros del publ
 siete y traen diez rojos deliberados aparte —entre ellos el puntero colgante que las originó, que
 tiene que volver a caer si alguien lo reintroduce (D-069)—, y las del catálogo de textos, que son
 veintitrés: once exigen que a ningún identificador le falte su texto en ningún idioma y que cada
-una de las 792 cadenas aparezca **literal** en el documento del que dice salir, y doce son rojos
+una de las 976 cadenas aparezca **literal** en el documento del que dice salir, y doce son rojos
 deliberados que le dan de comer un árbol mutilado —una ficha arrancada, un encabezado sin su raya,
 una regla que le falta al anexo de un idioma, una que sobra, un documento que no se pudo leer— y
 exigen que caiga nombrando lo suyo (D-074), y las de las claves de configuración, que son
@@ -1034,7 +1110,7 @@ deliberados, uno de los cuales reproduce el verde falso que la originó (D-075),
 derivadas, que son treinta y cuatro: veinte verdes —entre ellas la que exige que una colección
 **nueva** del dato quede vigilada sin tocar ninguna lista, que es la que impide que esta guarda sea
 el defecto que persigue— y catorce rojos, doce de ellos mutaciones del árbol, y la primera es la
-frase original con su cuatro y sus cinco identificadores (D-077). Los **trece**
+frase original con su cuatro y sus cinco identificadores (D-077), y las del contraste y la procedencia, que son once: cuatro verdes sobre el dato —las tres reglas ancladas donde producen efecto, sus caras con su procedencia, el umbral que declara el dueño y las catorce claves nuevas en su peldaño—, una que exige que los documentos que los prompts piden PASEN las exigencias, y seis rojos, cada uno con el caso medido que lo originó pegado: el recibo de rendimiento sin el veredicto de sus umbrales, el manual que declara honestamente que no hay respaldos, el inventario sin decisión por entrada, el monitoreo que cuenta sin poder mirar y el registro que no dice en qué peldaño nació (D-089). Los **trece**
 programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
 `index_api`, `portal_orphans`, `version_fijada`, `punteros_publicados`, `labels_api`,
 `forma_de_la_pregunta`, `version_inmutable`, `claves_configuracion`, `cifras_derivadas`,

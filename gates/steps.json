@@ -304,6 +304,12 @@
           "since_schema": 2,
           "since_version": "2026.10.1",
           "anchor": 1
+        },
+        {
+          "text": "Does the path by which the owner authorises a forced close WRITE the field the register declares mandatory for it, or does the project declare which record carries the fact and which field is not it? A forced close counted by reading prose is the count the field came in to avoid (CQ-24.1).",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
         }
       ],
       "evaluators": [
@@ -420,6 +426,18 @@
           "since_schema": 2,
           "since_version": "2026.10.16",
           "decision": "D-087"
+        },
+        {
+          "text": "Is the red of every receipt a FAILED ASSERTION and not an exception -- code that does not compile, a file that does not parse, an environment that did not start? A red that never reached its assertion falsified nothing, because the assertion neither passed nor failed (CQ-21.4).",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
+        },
+        {
+          "text": "Did the chain that produced this green run AFTER the last change that affects what it measures, and over the tree that stays? A green that is true and old reads exactly like a current one (CQ-23.1).",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
         }
       ],
       "evaluators": [
@@ -523,6 +541,15 @@
           "label": "every criterion declares the instrument that judged it, with the vocabulary the data declares, so that one judged by a person cannot be read as one a program verified",
           "since_schema": 2,
           "since_version": "2026.10.15"
+        },
+        {
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "path": "docs/CODE_QUALITY.md",
+          "must_contain": [
+            "verdict"
+          ],
+          "label": "every figure this document decides with carries its verdict next to it -- it passes or it does not -- and not only its measured value (CQ-22.1)"
         }
       ],
       "verify": [
@@ -564,6 +591,12 @@
           "since_schema": 2,
           "since_version": "2026.10.15",
           "decision": "D-084"
+        },
+        {
+          "text": "Is every mutant declared caught backed by a failed assertion, rather than by a red the mutated code produced before the run reached the assertion (CQ-21.4)?",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
         }
       ],
       "evaluators": [
@@ -718,6 +751,16 @@
           "label": "the map carries the ports that were doubled for testing, with its denominator: how many ports have a double, how many of those have a run that crosses them to the real other side, and what that other side is. A port whose crossing run says none is a declared hole and not an absence nobody wrote down",
           "since_schema": 2,
           "since_version": "2026.10.16"
+        },
+        {
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "path": "docs/GOTCHAS.md",
+          "must_contain": [
+            "register_opened_at_step.{0,20}\\d",
+            "rows_written_retroactively.{0,20}\\d"
+          ],
+          "label": "the anti-pattern register says at which step it was opened and how many of its rows were written looking backwards, so that a stretch with no register is read as not recorded and never as zero incidents (CQ-24.2)"
         }
       ],
       "verify": [
@@ -734,6 +777,12 @@
           "since_schema": 2,
           "since_version": "2026.10.16",
           "decision": "D-087"
+        },
+        {
+          "text": "Does the register say at which step it was opened, and are the rows that describe earlier steps marked as written retroactively? Steps before the register reporting zero incidents means there was no register, not that nothing happened (CQ-24.2).",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
         }
       ],
       "evaluators": [
@@ -786,6 +835,16 @@
           "label": "the honest report declares the reach of the manual cases of this closing: how many it touches, how many of those have a signed execution row, and who signed them -- in the report where decisions are made and not only in the file where the case lives",
           "since_schema": 2,
           "since_version": "2026.10.16"
+        },
+        {
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "path": "docs/WORKING_AGREEMENT.md",
+          "must_contain": [
+            "verdict_after_last_change",
+            "verdict_output_lives_in"
+          ],
+          "label": "the honest report declares the provenance of every verdict it cites: that the run is later than the last change affecting what it measures, and where its output lives -- a verdict that travelled inside a response died with it (CQ-23)"
         }
       ],
       "verify": [
@@ -814,6 +873,12 @@
           "since_schema": 2,
           "since_version": "2026.10.16",
           "decision": "D-087"
+        },
+        {
+          "text": "For every verdict the report cites: is it later than the last change that affects what it measures, and did its output land somewhere the next turn can read? A verification that can last longer than the turn that launched it is launched with a record (CQ-23.1, CQ-23.2).",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
         }
       ],
       "evaluators": [
@@ -1026,6 +1091,18 @@
         {
           "path": "docs/LOCKS.md",
           "label": "registro de candados"
+        },
+        {
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "path": "docs/THIRD_PARTY_EXECUTION.md",
+          "must_contain": [
+            "entries_total.{0,20}\\d",
+            "entries_with_a_decision.{0,20}\\d",
+            "privilege",
+            "runs_as"
+          ],
+          "label": "the inventory of the third-party code the system EXECUTES -- not the code it imports: install scripts, binaries put on the path, background processes, hooks that run on an event -- with the privilege each one runs with, and a DECISION per entry. An inventory whose entries nobody resolved is the measurement nobody contrasted (CQ-22.4)"
         }
       ],
       "verify": [
@@ -1035,6 +1112,18 @@
           "text": "Does every verification declare the privilege it ran with, and does the probe that exercises a destructive operation run where its statement cannot land, with the state counted before and after (CQ-20)?",
           "since_schema": 2,
           "since_version": "2026.10.12"
+        },
+        {
+          "text": "Does the inventory cover the third-party code that RUNS and not the code that is imported, and does every entry carry its decision -- accepted, narrowed or rejected, with who and when -- rather than the list merely existing (CQ-22.4)?",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
+        },
+        {
+          "text": "Does every entry declare the privilege it runs with, and is there one that runs with more than it needs without a written decision saying why (CQ-20.1)?",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
         }
       ],
       "evaluators": [
@@ -1122,7 +1211,13 @@
       ],
       "verify": [
         "Pediste una traza real de una accion y la leiste de punta a punta?",
-        "El nivel de registro se cambia por configuracion?"
+        "El nivel de registro se cambia por configuracion?",
+        {
+          "text": "Take ONE real error and follow it: does it leave a structured line that says what it was, with the same trace on both sides? Counting errors is not seeing them -- a counter can count over something the collector could not read (CQ-19.2).",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
+        }
       ],
       "evaluators": [
         {
@@ -1233,11 +1328,34 @@
           "path": "docs/PERFORMANCE_*.md",
           "fresh_days": 90,
           "label": "ultimo resultado"
+        },
+        {
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "path": "docs/PERFORMANCE.md",
+          "must_contain": [
+            "thresholds_total.{0,20}\\d",
+            "thresholds_met.{0,20}\\d",
+            "threshold_condition"
+          ],
+          "label": "the thresholds carry their denominator and their verdict: how many the project declared, how many the measurement met, and the CONDITION under which each one holds -- at what volume, at what concurrency, in which environment. A threshold without its condition is reported as undeclared, because the same system passes at twenty people and fails at two hundred (CQ-22.1, CQ-22.2)"
         }
       ],
       "verify": [
         "Hay un punto de ruptura escrito, con la pieza que se rompe?",
-        "Los umbrales estan en la cadena o en el monitoreo?"
+        "Los umbrales estan en la cadena o en el monitoreo?",
+        {
+          "text": "Was every measured figure contrasted against its declared threshold, and is the one that does not pass RED rather than merely measured? A whole ladder can be closed with every non-functional requirement unmet while each gate is right about what it measures (CQ-22.1).",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
+        },
+        {
+          "text": "Does every threshold say at what concurrency, at what volume and in which environment it holds, and did the owner answer that condition instead of the agent assuming it (CQ-22.2)?",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
+        }
       ],
       "evaluators": [
         {
@@ -1284,6 +1402,20 @@
           "path": "docs/CHANGELOG.md",
           "min_bytes": 50,
           "label": "registro de cambios"
+        },
+        {
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "path": "docs/RESTORE_DRILL.md",
+          "must_contain": [
+            "acceptable_data_loss_window",
+            "backup_cadence",
+            "destroyed_and_restored",
+            "rows_before.{0,20}\\d",
+            "rows_after.{0,20}\\d",
+            "schema_after"
+          ],
+          "label": "the receipt of a real restore drill: the window of data loss the owner declared acceptable, the cadence of the backup contrasted against it, and a run that DESTROYED the database of the system and restored it from the backup -- with the rows counted before and after and the migration the schema was left at. A manual that names the procedure is not a restore that happened, and an honestly declared absence of backups does not close this step (CQ-22.3)"
         }
       ],
       "verify": [
@@ -1293,6 +1425,18 @@
           "text": "Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?",
           "since_schema": 2,
           "since_version": "2026.10.4"
+        },
+        {
+          "text": "Is there a receipt of a run that destroyed and restored, with the rows counted before and after and the schema at the migration it was at -- rather than a manual that names the procedure? Restoring onto an empty database proves less, which is why the drill destroys first (CQ-22.3).",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
+        },
+        {
+          "text": "Did the owner declare the acceptable window of data loss, as data and not as prose, and is the cadence of the backup contrasted against it? If the owner says one hour, a daily backup does not pass (CQ-22.2).",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
         }
       ],
       "evaluators": [
@@ -1374,11 +1518,26 @@
           "fresh_days": 35,
           "min_bytes": 100,
           "label": "ultimo reporte ciclico con los errores"
+        },
+        {
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "path": "docs/MONITORING.md",
+          "must_contain": [
+            "error_reconstructed"
+          ],
+          "label": "the error monitoring proves that from ONE real error the system can say what it was: the exception followed from where it was thrown to its line in the register, with the same trace on both sides. A counter of 5xx counts without being able to look at what it counts (CQ-19.2)"
         }
       ],
       "verify": [
         "Cada error nuevo del ultimo ciclo tiene su pendiente?",
-        "El reporte ciclico de errores llega solo?"
+        "El reporte ciclico de errores llega solo?",
+        {
+          "text": "Of one error, what can be reconstructed? Not how many it counted: take a real failure, follow it to its line in the register, and check that the line says what it was instead of having been discarded for not having the expected shape (CQ-19.2).",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
+        }
       ],
       "evaluators": [
         {
@@ -1467,6 +1626,12 @@
           "since_schema": 2,
           "since_version": "2026.10.13",
           "decision": "D-080"
+        },
+        {
+          "text": "Does the count of forced closes come from the FIELD the register declares, rather than from a word search over free prose? A recount by word cannot guarantee its own population: the list of overrides of a real retrospective omitted one because the prose of that item did not use the word (CQ-24.1, CQ-19.3).",
+          "since_schema": 2,
+          "since_version": "2026.10.17",
+          "decision": "D-089"
         }
       ],
       "evaluators": [

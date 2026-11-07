@@ -93,6 +93,14 @@
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
 >
+> Then write `docs/THIRD_PARTY_EXECUTION.md`: the inventory of the third-party code this
+> system EXECUTES -- not the code it imports: install scripts that run when a dependency is
+> installed, binaries put on the path, permanent background processes, and hooks that run a
+> command on an event. For each entry: what it runs, when it runs, the privilege it `runs_as`,
+> and MY decision -- accepted, narrowed or rejected, with who and when. Carry `entries_total`
+> and `entries_with_a_decision` at the head: an inventory whose entries nobody resolved
+> verifies nothing. If an entry runs with more privilege than it needs, say so and ask me.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -104,6 +112,15 @@
 > 我确认锁 [清单]；把 [X] 改为 [Y]。实现它们，每个锁一个测试，证明在疑问条件下动作不发生
 > （对没有锁的版本先证红）。把最终的表记录到 `docs/LOCKS.md`。对任何新的自动化：先演练模
 > 式，记录它本会做什么，直到我启用它。
+>
+> 然后写 `docs/THIRD_PARTY_EXECUTION.md`：这个系统
+> **执行**的第三方代码的清册——不是它引入的代码：装依赖时会跑的安装脚本、被放
+> 进 PATH 的可执行文件、常驻的后台进程，以及在某个事件上跑一条命令的挂钩。每
+> 一条都要写：跑什么、什么时候跑、用什么权限跑（`runs_as`），以及**我的
+> 决定**——接受、限定还是拒绝，连同是谁、什么时候。把 `entries_total`
+> 和 `entries_with_a_decision` 放在最前面：一份没有人
+> 解决过其中任何一条的清册，什么也没有验证。如果有一条用了比它需要的更多的权限，说
+> 出来并问我。
 >
 > 当你需要我做决定时，用 UX-28（`docs/ANEXO_HEURISTICAS.md`）的四个部分来问，并按这个顺序：让这个
 > 问题成为必要的数据，列举出来；不超过五行的一段话，把这些数据连起来并让问题显现；问题本身，可能的
@@ -119,6 +136,10 @@
 - 每个锁一个先证红的测试，验证面对疑问时动作不发生。
 - 新的自动化从演练模式起步，附"本会做"的记录。
 - 如果代理是嵌入的：它的权限写下来（能读什么、能改什么、什么需要批准）。
+- `docs/THIRD_PARTY_EXECUTION.md`：系统**执行
+  **的第三方代码清册，带 `entries_total`、`entries_with_a_decision`、
+  每一条的权限，以及你对每一条的决定。清册存在还不够：关掉这一级的是每一条都有决定
+  （CQ-22.4）。
 
 ## 4. 完整性检验
 

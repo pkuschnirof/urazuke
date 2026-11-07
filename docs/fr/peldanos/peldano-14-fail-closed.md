@@ -118,6 +118,14 @@ fail-closed écrite dans le prompt, pour qu'elle reste dans le tableau et dans l
 > without the lock). Record the final table in `docs/LOCKS.md`. And for any new automation:
 > dry-run mode first, logging what it would have done, until I enable it.
 >
+> Then write `docs/THIRD_PARTY_EXECUTION.md`: the inventory of the third-party code this
+> system EXECUTES -- not the code it imports: install scripts that run when a dependency is
+> installed, binaries put on the path, permanent background processes, and hooks that run a
+> command on an event. For each entry: what it runs, when it runs, the privilege it `runs_as`,
+> and MY decision -- accepted, narrowed or rejected, with who and when. Carry `entries_total`
+> and `entries_with_a_decision` at the head: an inventory whose entries nobody resolved
+> verifies nothing. If an entry runs with more privilege than it needs, say so and ask me.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -131,6 +139,15 @@ fail-closed écrite dans le prompt, pour qu'elle reste dans le tableau et dans l
 > sans le verrou). Enregistre le tableau final dans `docs/LOCKS.md`. Et pour toute nouvelle
 > automatisation : mode à blanc d'abord, en consignant ce qu'elle aurait fait, jusqu'à ce que je
 > l'active.
+>
+> Ensuite écris `docs/THIRD_PARTY_EXECUTION.md` : l'inventaire du code tiers que ce système EXÉCUTE
+> —et non celui qu'il importe : les scripts d'installation qui tournent à l'installation d'une
+> dépendance, les binaires posés dans le PATH, les processus de fond permanents et les crochets qui
+> lancent une commande sur un événement—. Pour chaque entrée : ce qui tourne, quand ça tourne, avec
+> quel privilège (`runs_as`) et MA décision : acceptée, restreinte ou rejetée, avec qui et quand.
+> Porte `entries_total` et `entries_with_a_decision` en tête : un inventaire dont personne n'a
+> résolu les entrées ne vérifie rien. Si une entrée tourne avec plus de privilège qu'il ne lui en
+> faut, dis-le et demande-moi.
 >
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
@@ -152,6 +169,10 @@ aurait fait avant de la laisser faire.
 - Les nouvelles automatisations démarrant en mode à blanc, avec le journal des « aurait fait ».
 - Si l'agent est embarqué : ses permissions écrites (ce qu'il peut lire, ce qu'il peut changer, ce
   qui requiert une approbation).
+- `docs/THIRD_PARTY_EXECUTION.md` : l'inventaire du code tiers que le système **exécute**, avec
+  `entries_total`, `entries_with_a_decision`, le privilège de chaque entrée et ta décision par
+  entrée. Que l'inventaire existe ne suffit pas : ce qui ferme l'échelon, c'est que chaque entrée
+  ait sa décision (CQ-22.4).
 
 ## 4. Vérification de complétude
 

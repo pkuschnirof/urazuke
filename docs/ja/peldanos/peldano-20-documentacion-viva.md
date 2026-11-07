@@ -113,8 +113,18 @@
 > how to restore a backup, what to do if it goes down; written for a person who has to do it by
 > hand, without AI, at three in the morning). If for any section you need something only the
 > business knows (who is responsible for what, which phone number to call), ask me; do not leave
-> a gap and do not invent. Each manual carries a date and the system version. Reply in my
-> language.
+> a gap and do not invent. Each manual carries a date and the system version.
+>
+> Then run a real restore drill and write it to `docs/RESTORE_DRILL.md`. First ask me the
+> `acceptable_data_loss_window` -- how much data loss I accept; I decide it, you do not assume
+> it -- and contrast the `backup_cadence` against it. Then, on a copy of the system and never
+> on production, record `destroyed_and_restored`: DESTROY the database, restore it from the
+> backup, and write the `rows_before` and `rows_after` counted per table and the `schema_after`
+> migration the schema was left at. Restoring onto an empty database proves less, which is why
+> the drill destroys first. A manual that names the procedure is not a restore that happened,
+> and if there is no backup to restore from, tell me so as a red instead of closing the step.
+>
+> Reply in my language.
 >
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
@@ -132,6 +142,18 @@
 > に書かれたもの）。どこかの節に事業だけが知ること（誰が何の責任者か、どの電話番号にかける
 > か）が必要なら、私に聞いてください。穴を残さず、発明しないでください。各マニュアルは日付
 > とシステムのバージョンを持ちます。
+>
+> そのあと本物の復元試行を走らせ、`docs/RESTORE_DRILL.md`
+> に書くこと。まず `acceptable_data_loss_window` を
+> 私に尋ねる——どれだけのデータ損失を受け入れるか。決めるのは私で、推測してはいけ
+> ない。そして `backup_cadence` をそれに対して対照する。次に、シ
+> ステムの複製の上で、本番では決して行わずに、`destroyed_and_restored`
+> を記録する。データベースを**破壊し**、バックアップから復元し、表ごとに数え
+> た `rows_before` と `rows_after`、そしてスキーマが残
+> った移行 `schema_after` を書く。空のデータベースへの復元は証明が
+> 少ないので、この試行はまず破壊する。手順を名指す手引きは起きた復元ではない。そし
+> て復元する元のバックアップがないなら、段を閉じるのではなく、それを赤として私に言
+> うこと。
 >
 > 私の決定が必要になったら、UX-28（`docs/ANEXO_HEURISTICAS.md`）の四つの部分を、この順で示して聞い
 > てください。その問いを必要にしているデータを箇条書きで、それらをつないで問いが見えるようにする五
@@ -159,6 +181,12 @@
   時間。つまずいた正確な手順を、その人の言葉で。そして理解できなかった語の一覧。加えて、
   それらの語ごとに開いた保留項目。どこに書くかはあなたの選択——復旧マニュアル自体の末尾で
   足りる——。任意でないのは、それが存在することだ。
+- `docs/RESTORE_DRILL.md`：本物の復元試行の受領書。あな
+  たが宣言した `acceptable_data_loss_window`、それに
+  対して対照した `backup_cadence`、そして**破壊して復元した**
+  一回の走行——数えた `rows_before` と `rows_after`、
+  そして `schema_after` を伴う。バックアップがないことを正直に書い
+  ても、この段は閉じない（CQ-22.3）。
 
 ## 4. 完全性の検証
 

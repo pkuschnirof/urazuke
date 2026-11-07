@@ -1,7 +1,7 @@
 {
   "what": "The header of the prompt corpus published as an API: the version a project freezes. Declared BY HAND, for the same reason as the gate catalogue (gates/catalog.json): a project starts and finishes with the same version of the method, so what it froze has to read back the same two years from now.",
-  "corpus_version": "2026.10.11",
-  "declared_at": "2026-11-03",
+  "corpus_version": "2026.10.12",
+  "declared_at": "2026-11-07",
   "published_as": "docs/html/api/prompts.json",
   "version_scheme": {
     "recipe": "gates/schema.json#version_scheme",
@@ -102,6 +102,13 @@
       "decision": "D-087",
       "content_hash": "0ced376fe91ba1e8452ab3c09e4bdf4dc4dd261c414e2273b0663562b2a808b0",
       "changed": "Four prompts gain the clause of reach, and it is one rule with three faces (D-087). Step 11, building the producer-consumer map: the map carries one more family, the ports that were doubled for testing, with ports_total, ports_with_a_crossing_run and, per port, its adapter, its double and the crossing_run -- the exact command and what it reached on the other side, which is a browser, an operating system, a database, the network, or none, which is a declared hole. The other side is whatever the port is doubling and another double is never the other side (CQ-21.1). Step 8, closing with evidence: for every port the item doubled, one run that crosses it to the real other side, because a test that instantiates the real adapter against a fake environment crossed the real code and still never saw the event. Step 10, reading the executions: a case that failed and whose failure was fixed does not count as verified again until a person runs it WHOLE and signs a new execution row later than the fix, under rerun_after_a_fix, because an execution row reports how far the person got and the steps it did not reach neither passed nor failed (CQ-21.3). Step 12, the honest report: when the closing touches manual cases it declares its reach with cases_touched, cases_with_an_execution_row and executed_by, and says it in so many words when the answer is none, because a figure somebody has to go and look for stops nobody (CQ-21.2). And the corrective loop of the inherited path: a correction born from a manual case does not close with the verification of the step that failed. The keys are English and ASCII and the prose around them is in the language of the reader (D-051, D-075). What does NOT change: the clause of completeness, the UX-28 clause, the closing of each prompt and the English piece of every other prompt, which travels identical in the eight versions."
+    },
+    {
+      "corpus_version": "2026.10.12",
+      "date": "2026-11-07",
+      "decision": "D-089",
+      "content_hash": "03e340a3f135f966258824522feb1fb221e05d0f0d4ebf8ee7915d31a100dbc0",
+      "changed": "Four prompts gain what D-089 asks of their steps, and the wording is one English piece identical in the eight languages, like every other prompt. Step 14 asks for the inventory of the third-party code the system EXECUTES -- not the code it imports -- with the privilege of each entry and a DECISION per entry, because an inventory whose entries nobody resolved verifies nothing (CQ-22.4). Step 19 asks for the CONTRAST: the thresholds the project declared, the ones the measurement met, and the condition under which each one holds, with the figure that does not meet its threshold written as red and not as measured, and the missing condition asked of the owner instead of assumed (CQ-22.1, CQ-22.2). Step 20 asks for a real restore drill: the acceptable window of data loss, which the owner answers; the cadence of the backup contrasted against it; and a run that destroyed the database and restored it from the backup, with the rows counted before and after and the migration the schema was left at -- plus the instruction to report the absence of a backup as a red instead of closing the step (CQ-22.3). Step 22 asks to prove that from ONE real error the system can say what it was, followed from where it was thrown to its line in the register, because counting errors is not seeing them (CQ-19.2). No existing prompt lost a line, and the UX-28 clause stays where it was in all four."
     }
   ]
 }

@@ -90,6 +90,12 @@ faites, pas l'agent :
 > system: the report lists them in a separate section, and only the system's errors open pending
 > items. Document it in `docs/MONITORING.md`.
 >
+> And prove `error_reconstructed` in that same document: take ONE real error, follow it from
+> where it was thrown to its line in the register, and show me the same trace on both sides.
+> Counting errors is not seeing them: a counter of 5xx counts while the collector discards the
+> line for not having the expected shape, and then the figure is a count over something nobody
+> could look at.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -121,6 +127,12 @@ faites, pas l'agent :
 > panneau, l'agent résident, la surveillance elle-même) à l'écart des erreurs du système : le
 > rapport les liste dans une section séparée, et seules les erreurs du système ouvrent des éléments
 > en attente. Documente-le dans `docs/MONITORING.md`.
+>
+> Et prouve l'`error_reconstructed` dans ce même document : prends UNE erreur réelle, suis-la depuis
+> l'endroit où elle a été lancée jusqu'à sa ligne dans le registre, et montre-moi la même trace des
+> deux côtés. Compter les erreurs n'est pas les voir : un compteur de 5xx compte pendant que le
+> collecteur jette la ligne parce qu'elle n'a pas la forme attendue, et alors le chiffre est un
+> compte sur quelque chose que personne n'a pu regarder.
 >
 > Quand tu as besoin d'une décision de ma part, demande-la avec les quatre parties de l'UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) et dans cet ordre : les données qui rendent la question
@@ -187,6 +199,9 @@ plus contre-intuitive et celle qui vaut le plus : une erreur partie toute seule 
 - Le rapport cyclique avec le taux d'erreur par flux.
 - `docs/MONITORING.md` complet (avec le 20) ; la routine dans le contrat.
 - Un élément en attente pour chaque erreur ouverte ; aucune « connue » sans élément en attente.
+- Dans `docs/MONITORING.md` : l'`error_reconstructed`, c'est-à-dire une erreur réelle suivie depuis
+  l'endroit où elle a été lancée jusqu'à sa ligne dans le registre, avec la même trace des deux
+  côtés. Compter les erreurs n'est pas les voir (CQ-19.2).
 
 ## 4. Vérification de complétude
 

@@ -85,6 +85,12 @@ el agente:
 > system: the report lists them in a separate section, and only the system's errors open pending
 > items. Document it in `docs/MONITORING.md`.
 >
+> And prove `error_reconstructed` in that same document: take ONE real error, follow it from
+> where it was thrown to its line in the register, and show me the same trace on both sides.
+> Counting errors is not seeing them: a counter of 5xx counts while the collector discards the
+> line for not having the expected shape, and then the figure is a count over something nobody
+> could look at.
+>
 > When you need a decision from me, ask it with the four parts of UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) and in this order: the data that makes the question necessary,
 > listed; one paragraph of at most five lines that links that data and lets the question be seen;
@@ -113,6 +119,11 @@ el agente:
 > mantené separados los errores de las herramientas que observan el sistema (el panel, el agente
 > residente, el propio monitoreo) de los errores del sistema: el reporte los lista en una sección
 > aparte, y solo los errores del sistema abren pendientes. Documentalo en `docs/MONITORING.md`.
+>
+> Y probá el `error_reconstructed` en ese mismo documento: tomá UN error real, seguilo desde donde
+> se lanzó hasta su renglón en el registro, y mostrame la misma traza en los dos lados. Contar
+> errores no es verlos: un contador de 5xx cuenta mientras el recolector descarta el renglón por no
+> tener la forma esperada, y entonces la cifra es una cuenta sobre algo que nadie pudo mirar.
 >
 > Cuando necesites una decisión mía, pedila con las cuatro partes de la UX-28
 > (`docs/ANEXO_HEURISTICAS.md`) y en este orden: los datos que hacen necesaria la pregunta,
@@ -177,6 +188,9 @@ más contraintuitiva y la que más vale: un error que se fue solo vuelve solo.
 - El reporte cíclico con la tasa de error por flujo.
 - `docs/MONITORING.md` completo (con el 21); la rutina en el contrato.
 - Un pendiente por cada error abierto; ninguno "conocido" sin pendiente.
+- En `docs/MONITORING.md`: el `error_reconstructed`, o sea un error real seguido desde donde se
+  lanzó hasta su renglón en el registro, con la misma traza en los dos lados. Contar errores no es
+  verlos (CQ-19.2).
 
 ## 4. Verificación de completitud
 
