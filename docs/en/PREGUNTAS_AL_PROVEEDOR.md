@@ -136,7 +136,7 @@ code, dead code. A "ninety-five per cent quality" does not tell you what to fix.
 What can be seen: the record of the usability rules with their result, and the exceptions switched
 off with the reason written down, who authorised it and when it gets reviewed. A system can pass
 every technical check and be unusable: all green, and the person cannot find where to charge.
-*(Annex H, the twenty-eight usability rules.)*
+*(Annex H, the usability rules.)*
 
 **16. Do the tests you showed me actually watch, or do they decorate?**
 What can be seen: the mutation score. It is a program that introduces errors on purpose and counts

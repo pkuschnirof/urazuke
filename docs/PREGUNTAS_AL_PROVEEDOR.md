@@ -134,7 +134,7 @@ código repetido, código muerto. Un "noventa y cinco por ciento de calidad" no 
 Lo que se puede ver: el registro de las reglas de usabilidad con su resultado, y las excepciones
 apagadas con el motivo escrito, quién lo autorizó y cuándo se revisa. Un sistema puede pasar todas
 las verificaciones técnicas y ser inusable: todo verde, y la persona no encuentra dónde cobrar.
-*(Anexo H, las veintiocho reglas de usabilidad.)*
+*(Anexo H, las reglas de usabilidad.)*
 
 **16. Las pruebas que me mostró, ¿vigilan de verdad o decoran?**
 Lo que se puede ver: el puntaje de mutación. Es un programa que mete errores a propósito y cuenta

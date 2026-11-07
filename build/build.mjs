@@ -55,6 +55,7 @@ execFileSync(process.execPath, [join(raiz, 'build', 'gates_doc.mjs'), '--check']
 // publicados. Una cuenta escrita a mano adentro de algo que se genera se desincroniza sola, y
 // la que lo demostro vivia en un archivo que dice de si mismo "no lo edites".
 execFileSync(process.execPath, [join(raiz, 'build', 'cifras_derivadas.mjs')], { stdio: 'inherit' });
+execFileSync(process.execPath, [join(raiz, 'build', 'cuenta_de_reglas.mjs')], { stdio: 'inherit' });
 const conv = join(raiz, 'build', 'md2html.mjs');
 
 function armar(dirMd, dirHtml, idioma) {

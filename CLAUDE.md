@@ -647,6 +647,25 @@ la guarda como trabajo aparte: el barrido a mano falla por las formas, así que 
 **registro de formas con su razón** que caiga cuando aparece una forma nueva es más barata que una
 que intente entender la prosa. La decisión es del dueño y está en `PND-115` con sus tres salidas.
 
+## La cuenta de una colección no vive en la prosa
+
+D-090 (`PND-115`), y la decidió el dueño. Lo midió dos veces en cinco días: cada vez que la cuenta
+de reglas del Anexo H se mueve, hay que mover las afirmaciones de la prosa a mano —veinte el
+2026-11-03, noventa y seis el 2026-11-07— y algunas quedan vencidas. Desde ahora **la cifra no está
+en la prosa**: el anexo dice una vez de dónde sale (`heuristics.counts`) y el resto habla de «las
+reglas» y de «las demás». La guarda es `build/cuenta_de_reglas.mjs`, con su paso en el flujo, y
+tiene dos comprobaciones por la misma razón que D-077: la forma **con** sustantivo y la forma
+**sin** sustantivo —buscando los valores que el dato declara, derivados y no escritos—, porque la
+que falló fue la segunda. El registro de formas tiene diez exenciones con su razón, y la más
+importante es «una cifra con su fecha al lado es un registro fechado», que es la forma que no se
+vence. Lo que la guarda **no** promete está en su cabecera y hay una prueba verde que lo fija: una
+copia que el dato dejó atrás por más de uno y sin el sustantivo al lado no la ve nadie —`PND-116`
+es la prueba medida de eso— y por eso la salida fue sacar la cifra, no sólo vigilarla.
+
+Esta sección es corta a propósito: `PND-117` mide que este archivo pesa 38.571 tokens contra un tope
+de 8.000, y cada lote que agrega su sección lo paga cada sesión. El relato largo de D-090 vive en
+`docs/DECISIONES.md` y el cierre, en `docs/PENDING.md`.
+
 ## La línea de tiempo
 
 La Parte B del documento principal dice cuándo se sube cada peldaño y qué pasa entre medio
@@ -1110,11 +1129,11 @@ deliberados, uno de los cuales reproduce el verde falso que la originó (D-075),
 derivadas, que son treinta y cuatro: veinte verdes —entre ellas la que exige que una colección
 **nueva** del dato quede vigilada sin tocar ninguna lista, que es la que impide que esta guarda sea
 el defecto que persigue— y catorce rojos, doce de ellos mutaciones del árbol, y la primera es la
-frase original con su cuatro y sus cinco identificadores (D-077), y las del contraste y la procedencia, que son once: cuatro verdes sobre el dato —las tres reglas ancladas donde producen efecto, sus caras con su procedencia, el umbral que declara el dueño y las catorce claves nuevas en su peldaño—, una que exige que los documentos que los prompts piden PASEN las exigencias, y seis rojos, cada uno con el caso medido que lo originó pegado: el recibo de rendimiento sin el veredicto de sus umbrales, el manual que declara honestamente que no hay respaldos, el inventario sin decisión por entrada, el monitoreo que cuenta sin poder mirar y el registro que no dice en qué peldaño nació (D-089). Los **trece**
+frase original con su cuatro y sus cinco identificadores (D-077), y las del contraste y la procedencia, que son once: cuatro verdes sobre el dato —las tres reglas ancladas donde producen efecto, sus caras con su procedencia, el umbral que declara el dueño y las catorce claves nuevas en su peldaño—, una que exige que los documentos que los prompts piden PASEN las exigencias, y seis rojos, cada uno con el caso medido que lo originó pegado: el recibo de rendimiento sin el veredicto de sus umbrales, el manual que declara honestamente que no hay respaldos, el inventario sin decisión por entrada, el monitoreo que cuenta sin poder mirar y el registro que no dice en qué peldaño nació (D-089), y las de la cuenta de reglas en la prosa, que son veintiuna: doce verdes —entre ellas la que **afirma el límite** de la guarda, que reintroduce la cifra vencida sin sustantivo y exige cero hallazgos, para que nadie lea «0 hallazgos» como «no hay cifras vencidas»— y nueve rojos, uno por forma, el primero la frase original tal como estaba commiteada (D-090). Los **catorce**
 programas que tienen modo de línea de comandos (`gates_validate`, `gates_doc`, `prompts_api`,
 `index_api`, `portal_orphans`, `version_fijada`, `punteros_publicados`, `labels_api`,
 `forma_de_la_pregunta`, `version_inmutable`, `claves_configuracion`, `cifras_derivadas`,
-`prompts_didacticos`)
+`prompts_didacticos`, `cuenta_de_reglas`)
 detectan esa invocación con `esLineaDeComandos()` de `build/gates_lib.mjs`, que es portable:
 el idiom de pegar `file:///` adelante de `argv[1]` sólo acierta en Windows y dejaba dos pasos
 de la cadena corriendo en vacío sobre Linux, en verde. Hay una prueba que lo exige en las dos

@@ -9412,8 +9412,12 @@ lados.
   escrito que iba a volver a pasar.
 - **Grupo:** G-TRAZABILIDAD · **Severidad:** avisa · **Repositorio:** método
 - **Quién decide:** el dueño, si la guarda se escribe o si la cifra se sigue moviendo a mano.
-- **Estado: ABIERTO.** Las afirmaciones están corregidas en este mismo commit; lo que queda abierto
-  es la **guarda**, que `PND-104` declaró trabajo aparte y hoy tiene su segunda medición.
+  **Decidió el 2026-11-07, D-090**: la salida (b) primero —la cifra sale de la prosa y la prosa
+  remite al dato— y el registro de formas sólo sobre lo que quede. Descartó (c) con su razón:
+  *«falló dos veces en cinco días y la segunda vez el barrido que tenía que cazarlo no la vio. Una
+  tercera no agrega información.»*
+- **Estado: CERRADO** el 2026-11-07, con D-090, en el commit que sacó la cifra de la prosa y dejó
+  la guarda que lo vigila.
 
 **Qué estaba mal, medido.** Dos cosas, y la segunda es la que importa.
 
@@ -9460,7 +9464,133 @@ seis ediciones y deja algunas vencidas.
 - *P5 (lector que adapta el método):* el lector no se saltea reglas por creer que son menos de las
   que hay, que es exactamente lo que pasó en `PND-039`.
 
+**Cómo se cerró (D-090).** Dos mitades, en el orden que el dueño fijó.
+
+La primera: **la cifra salió de la prosa**, en los diez lugares que la llevaban en estado presente
+—cuatro en el documento principal, cuatro en el anexo, la celda del Anexo H en los nueve `README` y
+la pregunta 15 de las ocho hojas de preguntas al proveedor—, ochenta ediciones en los ocho idiomas.
+Donde la cifra era el argumento no se tocó nada, y eso es el residuo del que habla el punto
+siguiente. En su lugar, el anexo dice **una sola vez** de dónde sale: `heuristics.counts`, que es la
+única copia que no se vence. El párrafo de UX-28 quedó como el dueño lo escribió —«en qué se
+diferencia de **las demás**»—, que es la misma frase sin fecha de vencimiento.
+
+La segunda: **el registro de formas, sobre lo que quedó**, dentro de `build/cuenta_de_reglas.mjs`.
+Son diez exenciones con su razón, y ninguna es una lista de frases: son **formas**. La que más
+saltea es «una cifra con su fecha al lado es un registro fechado», que cubre sola las notas apiladas
+del anexo en los ocho idiomas, y hay un rojo deliberado que le saca la fecha a una y exige que caiga.
+La comprobación C exige que cada exención siga salteando algo real, y al escribirla cayó una: la de
+las severidades iniciales de D-048, que dejó de aplicar cuando esa oración perdió su «veinte». Salió
+del registro en el mismo cambio, que es exactamente lo que esa comprobación existe para provocar.
+
+**Y la guarda dice lo que NO puede ver, con una prueba verde que lo fija.** No lee la prosa: ve la
+cifra el día que se escribe —la comprobación B busca los valores que el dato declara, y el autor
+escribe el número correcto— y la ve cuando la colección se mueve de uno, que es la forma «las otras
+N-1» que esta entrada midió. Una copia que el dato dejó atrás por **tres** y que no lleva el
+sustantivo al lado no la ve ninguna de las dos comprobaciones. Eso no es una limitación que se
+descubra cuando falle: está en la cabecera del programa, en D-090 y en una prueba que **afirma el
+límite** —reintroduce «las otras cuarenta y siete» y exige cero hallazgos—, para que nadie lea «0
+hallazgos» como «no hay cifras vencidas en la prosa». Es la razón por la que la salida elegida fue
+sacar la cifra y no sólo vigilarla.
+
+**Lo que se midió al cerrar:** 276 documentos en el universo, 0 hallazgos, 0 exenciones sin uso, y
+veintiuna pruebas nuevas —doce verdes y nueve rojos deliberados, uno por forma, el primero la frase
+original tal como estaba commiteada—. Y de paso apareció `PND-116`, que es la prueba de que el
+límite de arriba no es teórico.
+
 **Depende de:** nada. `PND-104` es su antecedente y está cerrado.
+
+---
+
+## PND-116 — La corrección de PND-115 se hizo en siete de los ocho idiomas: el inglés siguió diciendo «las otras cuarenta y siete» *(propia, encontrada al escribir la guarda de D-090; destino: método)*
+
+- **Nodo:** `corpus/anexo-h` [nodo propuesto]
+- **Origen:** propia, el 2026-11-07, al escribir las ediciones de D-090 y tener que leer la misma
+  oración en los ocho idiomas. No la trajo la guarda: la guarda **no puede verla**, y eso es lo que
+  la vuelve interesante.
+- **Grupo:** G-IDIOMA · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** nadie: es un defecto medido contra el dato publicado.
+- **Estado: CERRADO** el 2026-11-07, con D-090, en el mismo commit que lo encontró.
+
+**Qué estaba mal, medido.** `PND-115` afirma que el párrafo de UX-28 decía «en qué se diferencia de
+las otras cuarenta y siete» en los ocho idiomas y que quedó corregido en el lote de D-089. La
+primera mitad era cierta; la segunda, en siete de ocho. Medido sobre `main` en `a294700`, con
+`git show a294700 -- docs/en/ANEXO_HEURISTICAS.md`: la línea inglesa aparece como **contexto** del
+diff y no como línea cambiada, así que nunca se tocó. El castellano decía «las otras cincuenta y
+una», y el portugués, el francés, el alemán, el italiano, el japonés y el chino, su equivalente; el
+inglés seguía en **cuarenta y siete**, vencido desde el 2026-11-01 y publicado así seis días, en el
+idioma que un lector de afuera lee primero.
+
+**Por qué ninguna guarda lo vio, y por qué eso importa más que el defecto.** Son tres capas y
+ninguna mira esta forma:
+
+| guarda | qué mira | por qué no la ve |
+|---|---|---|
+| `tests/gates_base.test.mjs` y la extracción del anexo | el enunciado de cada regla, que viaja del anexo al dato | esta frase no es el enunciado de ninguna regla: es la prosa que explica D-070 |
+| `build/cifras_derivadas.mjs` (D-077) | una cifra al lado del nombre de una colección, en el nivel de datos y en el documento generado | declara explícitamente que la prosa del método está fuera de su alcance |
+| `build/cuenta_de_reglas.mjs` (D-090) | la cifra con sustantivo, y los valores que el dato declara | cuarenta y siete no es ninguna cuenta declarada, y «las otras cuarenta y siete» no lleva el sustantivo: es el límite que la guarda escribe en su cabecera |
+
+Así que se corrigió **leyendo**, que es lo que el método dice que hay que seguir haciendo cuando la
+máquina no alcanza, y la corrección quedó junto con las otras ochenta ediciones de D-090: el inglés
+ahora dice «how it differs from **the rest**», sin cifra.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado el párrafo de UX-28 en los ocho idiomas, cuando se lee, entonces
+  ninguno nombra una cantidad de reglas. Verificado el 2026-11-07 sobre los ocho archivos.
+- *P5 (lector que adapta el método):* el lector inglés no cuenta cuarenta y ocho reglas cuando el
+  método declara cincuenta y dos, que es exactamente el fallo de `PND-039`.
+
+**Depende de:** nada. Es un hallazgo de `PND-115` y se cerró con él.
+
+---
+
+## PND-117 — El `CLAUDE.md` de este repositorio mide 38.571 tokens contra un tope de 8.000, y eso se paga en cada llamada de cada sesión *(del producto Forge, medida por su compuerta nueva; destino: método)*
+
+- **Nodo:** `corpus/instruccion-del-repositorio` [nodo propuesto]
+- **Origen:** del dueño, el 2026-11-07, con la medición de una compuerta nueva de Forge
+  (`PND-288` del producto, `yf claude-md check`, 1.29.0): el archivo de instrucciones de este
+  repositorio mide **38.571 tokens** contra el tope de **8.000** que esa compuerta declara, casi
+  cinco veces.
+- **Grupo:** G-TRAZABILIDAD · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, qué se recorta y qué se muda. La cifra no la decide nadie: está medida.
+- **Estado: ABIERTO.** Pedido explícito del dueño: *«no te pido que lo arregles ahora —el lote
+  recién cierra— pero sí que lo midas y abras el pendiente con la cifra, antes de que el próximo
+  lote lo engorde más.»*
+
+**Lo que está medido, y con qué.** Dos mediciones, y conviene separarlas porque no son el mismo
+instrumento (`CQ-19`, el recibo del instrumento):
+
+| qué | cuánto | con qué |
+|---|---|---|
+| tokens | **38.571** contra un tope de 8.000 | `yf claude-md check`, la compuerta de `PND-288` del producto, corrida por el dueño |
+| bytes | 99.976 | `node -e` sobre el archivo, acá, el 2026-11-07 |
+| caracteres | 98.006 | lo mismo |
+| líneas | 1.148 | lo mismo |
+| palabras | 16.445 | lo mismo |
+
+La primera no se pudo reproducir en esta máquina y queda dicho en vez de simulado: el Forge
+instalado acá es **1.28.0** y el comando no existe todavía (`error: unknown command 'claude-md'`).
+Las cuatro de abajo son propias y son las que sostienen el orden de magnitud: con el cociente que
+da la primera, unos 2,54 caracteres por token, las dos mediciones son consistentes.
+
+**Por qué crece, y por qué no es un descuido.** Cada lote de reglas agrega su sección: el archivo
+pasó de las secciones de estilo y publicación a tener, hoy, una sección por decisión grande —D-070,
+D-075, D-077, D-078, D-079/D-080, D-081/D-082, D-083/D-084, D-085, D-087, D-089—. Cada una se
+escribió porque un agente que lee este archivo **como instrucción** tiene que saber lo que no se
+negocia antes de tocar nada; es el mismo argumento de D-061, que nació de una frase vencida justo
+en este archivo. Así que el recorte no es «sacar texto»: es decidir **qué parte de esto es
+instrucción y qué parte es registro**, y el registro ya tiene su lugar (`docs/DECISIONES.md`,
+`docs/PENDING.md`) con la ventaja de que ahí nadie lo paga en cada llamada.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado el repositorio, cuando se corre la compuerta del producto, entonces
+  el archivo está bajo el tope o la diferencia está declarada con su razón y su fecha de revisión.
+- *P6 (agente que trabaja el repositorio):* dado el archivo recortado, cuando el agente arranca una
+  sesión, entonces sigue sabiendo las reglas que no se negocian —qué no se edita, qué se replica en
+  los ocho idiomas, qué no se publica— sin tener que abrir el registro de decisiones.
+
+**Depende de:** nada. Es trabajo del método sobre su propio archivo de instrucciones.
 
 ---
 
@@ -9475,14 +9605,14 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 |---|---:|---:|---:|---:|
 | G-API | 24 | 6 | 18 | 1 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
-| G-IDIOMA | 16 | 13 | 3 | 3 |
+| G-IDIOMA | 17 | 13 | 4 | 3 |
 | G-PUBLICACION | 6 | 0 | 6 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 55 | 23 | 32 | 11 |
-| G-TRAZABILIDAD | 6 | 3 | 3 | 0 |
-| **total** | **115** | **45** | **70** | **15** |
+| G-TRAZABILIDAD | 7 | 3 | 4 | 0 |
+| **total** | **117** | **45** | **72** | **15** |
 
-Ciento quince entradas, `PND-001` a `PND-115`. Veintidós vienen de la auditoría externa
+Ciento diecisiete entradas, `PND-001` a `PND-117`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -9502,14 +9632,18 @@ publicada tendría que tener más seguido: **lo trajo el consumidor**. No una au
 releyéndose, sino la herramienta que intentó cumplir la obligación recién publicada y se encontró
 con que, para cumplirla, tenía que adivinar una dirección.
 
-Y las **once últimas** (`PND-105` a `PND-115`) son el tercer lote del experimento A/B del método,
+Y las **once** de `PND-105` a `PND-115` son el tercer lote del experimento A/B del método,
 del 2026-11-07: nueve hallazgos que el brazo C1 dejó al cerrar los veinticuatro peldaños
 —veintidós de veinticuatro sin override, que es la cifra correcta—, uno que no salió del brazo sino
 de un análisis de plataformas de herramientas que hizo el dueño, y el undécimo, que es propio y
 salió de tocar la cifra del anexo por segunda vez en cinco días. Diez cerradas con D-089 —tres
-reglas nuevas, nueve caras, la cuarta cara de `CQ-21` y dos rutas nuevas— y una abierta a propósito:
-la guarda de la cuenta de reglas en la prosa, que `PND-104` había declarado trabajo aparte y que
-ahora tiene su segunda medición.
+reglas nuevas, nueve caras, la cuarta cara de `CQ-21` y dos rutas nuevas— y la undécima cerrada el
+mismo día con **D-090**, que saco la cuenta de reglas de la prosa y dejo la guarda que lo vigila.
+Las **dos últimas** salieron de ese cierre: `PND-116`, el ingles que se habia quedado en cuarenta y
+siete porque la correccion anterior se hizo en siete de los ocho idiomas —y que ninguna de las tres
+guardas puede ver, por la razon que cada una declara—, y `PND-117`, el único que no es del metodo
+mirandose a si mismo sino del producto midiendolo: el `CLAUDE.md` de este repositorio mide 38.571
+tokens contra un tope de 8.000, y eso se paga en cada llamada de cada sesion.
 
 `PND-059` es el cuarto desvío propio y el más incómodo de los cuatro, porque es la misma familia
 que `PND-056` —un texto publicado que apunta a algo que el publicado no tiene— cometida **un día

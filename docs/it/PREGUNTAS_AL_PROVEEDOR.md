@@ -137,7 +137,7 @@ sistemare.
 Cosa si può vedere: il registro delle regole di usabilità con il loro risultato, e le eccezioni spente
 con il motivo scritto, chi l'ha autorizzato e quando si rivede. Un sistema può passare tutte le
 verifiche tecniche ed essere inusabile: tutto verde, e la persona non trova dove incassare.
-*(Allegato H, le ventotto regole di usabilità.)*
+*(Allegato H, le regole di usabilità.)*
 
 **16. Le prove che mi hai mostrato vigilano davvero o decorano?**
 Cosa si può vedere: il punteggio di mutazione. È un programma che inserisce errori di proposito e

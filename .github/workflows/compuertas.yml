@@ -143,6 +143,14 @@ jobs:
           grep -q '0 hallazgos' cifras.txt || { echo "::error::hay una cifra escrita a mano que el dato no sostiene, o una enumeracion con su cuenta vieja (el detalle, arriba)"; exit 1; }
           rm cifras.txt
 
+      - name: Exigir que la cuenta de reglas del anexo no viva en la prosa
+        run: |
+          set -o pipefail
+          node build/cuenta_de_reglas.mjs | tee cuenta.txt
+          grep -q '^cuenta de reglas en la prosa: comprobado' cuenta.txt || { echo "::error::la guarda de la cuenta de reglas no dijo que comprobo: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          grep -q '0 hallazgos' cuenta.txt || { echo "::error::una cuenta del Anexo H volvio a la prosa, o una exencion del registro dejo de saltear algo (el detalle, arriba)"; exit 1; }
+          rm cuenta.txt
+
       - name: Dejar el arbol limpio (ningun generado sin commitear)
         run: |
           git diff --stat -- docs/html/api/ gates/ labels/ docs/COMPUERTAS.md

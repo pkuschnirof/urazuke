@@ -229,7 +229,7 @@ Each step has eight parts, always the same, so that they can be compared:
 
 And there is one more part, which shows up in **six steps only** and is a transversal piece
 that changes what has to be read: **Annex H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)).
-Fifty-two verifiable rules -- twenty-four on code quality and twenty-eight on usability -- each one
+Verifiable rules -- on code quality and on usability -- each one
 with its stable id, its severity and the instrument that measures it. It is not an optional
 appendix: **it is mandatory**, and it hooks into the ladder at six points. At step 2 its two
 **prior inputs** come in (the user glossary and the list of profiles: the words people actually
@@ -243,7 +243,7 @@ late: the annex was mandatory and unnamed in this document, and the first reader
 method to another format skipped twenty-seven of the forty-five rules because he never knew they
 were there.
 
-And one of those fifty-two is not about the system being built but about **how you get asked**.
+And one of them is not about the system being built but about **how you get asked**.
 It is **UX-28**, and it came in on 2026-10-27 because it was missing: the method orders its
 prompts to ask you -- twenty-two times, in more than half of the corpus -- and said nowhere how
 one asks, so the form was left to improvisation and you got the question loose. From now on every
@@ -885,7 +885,7 @@ credited in Part F.)
   [Ref. 41](REFERENCIAS.md#ref-41); the quality number that gets worse without anyone seeing it
   [Ref. 35](REFERENCIAS.md#ref-35).
 - **Annex H**: anchor 3 of [Annex H](ANEXO_HEURISTICAS.md), and the biggest of the five: this is
-  where the gate extends from code quality to **usability**. The catalogue of the fifty-two rules is declared and
+  where the gate extends from code quality to **usability**. The catalogue of rules is declared and
   active per group -- and six of them are reported face by face --; every active rule has its instrument, its severity and its
   checker; every **switched-off** rule has its record with the reason, who authorised it and a
   review date -- switched off without a record is red, which is not the same as the rule being
@@ -1610,8 +1610,8 @@ and 12, and the card of each one names them. It is not a recommendation nor a be
 part of what gets measured.
 
 **Annex H** — The heuristics annex of the method
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): fifty-two verifiable rules, twenty-four on code
-quality and twenty-eight on usability, each one with its stable id, its severity and the instrument
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): the verifiable rules of the annex, on code
+quality and on usability, each one with its stable id, its severity and the instrument
 that measures it. It is mandatory and it cuts across the four stretches: it comes in with two prior
 inputs at step 2 and with five anchors at steps 5, 8, 9, 10 and 12. The "H" is for heuristics.
 

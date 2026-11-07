@@ -234,7 +234,7 @@ Ogni gradino ha otto parti, sempre le stesse, perché si possano confrontare:
 
 E c'è una parte in più, che compare **solo in sei gradini** ed è un pezzo trasversale che cambia
 cosa bisogna leggere: l'**Allegato H** ([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)).
-Cinquantadue regole verificabili — ventiquattro di qualità del codice e ventotto di usabilità —,
+Regole verificabili — di qualità del codice e di usabilità —,
 ciascuna con il suo identificatore stabile, la sua severità e lo strumento che la misura. Non è
 un'appendice opzionale: **è obbligatorio**, e si aggancia alla scala in sei punti. Al gradino 2
 entrano i suoi due **ingressi previi** (il glossario dell'utente e la lista dei profili: le parole
@@ -248,7 +248,7 @@ tardi: l'allegato è stato obbligatorio e non nominato in questo documento, e il
 adattato il metodo a un altro formato ha saltato ventisette delle quarantacinque regole perché non
 ha mai saputo che esistevano.
 
-E una di quelle cinquantadue non riguarda il sistema che si costruisce ma **come ti si chiede**. È
+E una di esse non riguarda il sistema che si costruisce ma **come ti si chiede**. È
 la **UX-28**, ed è entrata il 2026-10-27 perché mancava: il metodo ordina ai suoi prompt di
 chiederti — ventidue volte, in più della metà del corpus — e non diceva da nessuna parte come si
 chiede, così la forma restava all'improvvisazione e tu ricevevi la domanda sciolta. Da ora ogni
@@ -894,7 +894,7 @@ nella Parte F.)
   un audit ha trovato perché nessun limite li aveva fermati [Ref. 41](REFERENCIAS.md#ref-41); il
   numero di qualità che peggiora senza che nessuno lo veda [Ref. 35](REFERENCIAS.md#ref-35).
 - **Allegato H**: ancora 3 dell'[Allegato H](ANEXO_HEURISTICAS.md), e la più grande delle cinque:
-  qui la paratia si estende dalla qualità del codice all'**usabilità**. Il catalogo delle cinquantadue regole è dichiarato e
+  qui la paratia si estende dalla qualità del codice all'**usabilità**. Il catalogo delle regole è dichiarato e
   attivo per gruppo -- e sei di esse si informano faccia per faccia --; ogni regola attiva ha il suo strumento, la
   sua severità e il suo verificatore; ogni regola **spenta** ha il suo registro con il motivo, chi
   lo autorizza e la data di revisione — spenta senza registro è rosso, che non è la stessa cosa
@@ -1632,8 +1632,8 @@ noti (un'injection, una chiave scritta nel codice). È uno dei quattro strati de
 delle vulnerabilità del gradino 18.
 
 **Allegato H** — L'allegato di euristiche del metodo
-([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): cinquantadue regole verificabili, ventiquattro di qualità del codice e
-ventotto di usabilità, ciascuna con il suo identificatore stabile, la sua
+([`ANEXO_HEURISTICAS.md`](ANEXO_HEURISTICAS.md)): le regole verificabili dell'allegato, di qualità del codice e
+di usabilità, ciascuna con il suo identificatore stabile, la sua
 severità e lo strumento che la misura. È obbligatorio e attraversa i quattro tratti: entra con due
 ingressi previi al gradino 2 e con cinque ancore ai gradini 5, 8, 9, 10 e 12. La "H" è di euristiche.
 
