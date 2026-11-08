@@ -75,6 +75,13 @@ export const TRABAJO_REGISTRADO = new Map([
       'nombra PND-050 y el prompt de la estacion lo pide por su nombre',
   ],
   [
+    'docs/ELIGIBILITY.md',
+    'artefacto de la estacion N0 que el dato declara por ruta en gates/stations.json: la ficha de ' +
+      'elegibilidad de este repositorio con la decision del dueno, su fecha y cada prerrequisito ' +
+      'con su evidencia; voz del autor y del agente que verifico, fuera del corpus traducido ' +
+      '(PND-010, PND-121)',
+  ],
+  [
     'docs/FUNCTIONALITY_RECOVERED.md',
     'artefacto de la estacion N0 que el dato declara por ruta en gates/stations.json; trabajo en ' +
       'curso, lo nombra PND-050',
