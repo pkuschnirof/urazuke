@@ -219,7 +219,10 @@ jobs:
           # version exacta adentro del nombre, y escribirla seria la copia que se vence el dia que
           # se clava otra (D-077, D-093). Un sitio publicado cuyo tercero falta no se cae: muestra
           # el codigo crudo donde habia un diagrama, que es justo lo que nadie mira.
-          TERCEROS=$(node -e "process.stdout.write(require('./vendor/terceros.json').entries.map(e=>e.published_as).join(' '))")
+          # Solo las entradas con archivo publicado: un tercero que el hospedaje inyecta esta
+          # en el inventario y NO en el arbol, y pedirle su archivo seria exigir un archivo
+          # llamado "undefined" (D-094, PND-123).
+          TERCEROS=$(node -e "process.stdout.write(require('./vendor/terceros.json').entries.filter(e=>e.published_as).map(e=>e.published_as).join(' '))")
           for f in docs/html/ESCALERA_METODOLOGICA.html docs/html/COMPUERTAS.html docs/html/api/gates.json docs/html/api/prompts.json docs/html/api/index.json $TERCEROS; do
             [ -s "$f" ] || { echo "::error::falta o esta vacio $f -- no se publica un sitio a medias"; exit 1; }
           done
@@ -401,3 +404,24 @@ jobs:
           else
             echo "::warning::La interfaz de datos esta publicada pero NO se puede consumir del todo (el detalle, arriba). Es configuracion del repositorio del portal (yujin.app/urazuke/.htaccess) y de su transporte, no del metodo. Repetilo a mano con: node build/api_headers.mjs"
           fi
+
+      # Y la pregunta que ninguna de las dos de arriba hace: QUE EJECUTA EL NAVEGADOR DE UN
+      # LECTOR. Las dos anteriores preguntan por la interfaz de datos; esto pide las paginas
+      # publicadas, les resta las inyecciones que el inventario declara y exige que lo que
+      # quede sea byte a byte el arbol (D-094, PND-123). Es la mitad que faltaba: hasta hoy
+      # todas las guardas de terceros leian el ARBOL, y el 2026-11-08 una dijo "0 hallazgos"
+      # -- con razon -- la misma manana en que las 84 paginas SERVIDAS ejecutaban un script
+      # que el hospedaje inyecta.
+      #
+      # Va DESPUES de la verificacion de huellas y es rojo duro, con su suposicion escrita:
+      # las paginas y la interfaz de datos viajan en el mismo commit al portal y las despliega
+      # el mismo enganche, asi que si las huellas de la interfaz ya coinciden, el HTML tambien
+      # es el de esta corrida. Si cae por una demora del portal y no por un tercero, se repite
+      # a mano en un minuto: node build/sonda_publicado.mjs
+      - name: Preguntar a produccion que ejecuta el navegador del lector
+        run: |
+          set -o pipefail
+          node build/sonda_publicado.mjs | tee sonda.txt
+          grep -q '^sonda de lo publicado: comprobado' sonda.txt || { echo "::error::la sonda no dijo que comprobo: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          grep -q '0 hallazgos' sonda.txt || { echo "::error::lo que produccion sirve no es lo que este repositorio publico, o una pagina ejecuta un host que el inventario no declara (el detalle, arriba)"; exit 1; }
+          rm sonda.txt

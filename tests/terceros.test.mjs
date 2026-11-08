@@ -46,12 +46,20 @@ test('el documento del inventario coincide con el dato del que se genera', () =>
   assert.strictEqual(actual, generar(inv), DESTINO + ' se genera: corre node build/terceros_doc.mjs');
 });
 
-test('las dos cifras de la cabecera del documento son las cuentas que el dato da, y no un numero escrito', () => {
+test('TODAS las cifras de la cabecera del documento son las cuentas que el dato da, y no un numero escrito', () => {
   const inv = JSON.parse(readFileSync(join(raiz, 'vendor', 'terceros.json'), 'utf8'));
   const c = cuentas(inv.entries);
   const texto = readFileSync(join(raiz, DESTINO), 'utf8');
-  assert.match(texto, new RegExp('entries_total: ' + c.entries_total + '\\b'));
-  assert.match(texto, new RegExp('entries_with_a_decision: ' + c.entries_with_a_decision + '\\b'));
+  // Todas y no una muestra: se recorre el objeto de cuentas, asi que una cuenta NUEVA queda
+  // vigilada el dia que entra y no el dia que alguien se acuerda de agregarla aca. Es la leccion
+  // de D-071, y esta prueba se reescribio el dia que la cabecera paso de dos cifras a cuatro,
+  // que es exactamente el dia en que la version anterior habria seguido dando verde mirando la
+  // mitad.
+  for (const [clave, valor] of Object.entries(c)) {
+    assert.match(texto, new RegExp(clave + ': ' + valor + '\\b'),
+      'la cabecera no publica ' + clave + ' con la cuenta que el dato da (' + valor + ')');
+  }
+  assert.ok(Object.keys(c).length >= 4, 'se esperaban al menos las cuatro cuentas del inventario');
   // Y la que importa: la segunda alcanza a la primera. Un inventario cuyas entradas nadie
   // resolvio es la medicion que nadie contrasto (CQ-22.4).
   assert.strictEqual(c.entries_with_a_decision, c.entries_total);
@@ -130,4 +138,65 @@ test('ROJO [E]: una copia en vendor que el inventario no declara', () => {
   const h = roto((a) => { a.pages[0].refs.push({ kind: 'script-src', url: '../vendor/mermaid-otra-version.min.js' }); });
   assert.equal(h.length, 1, h.join(' | '));
   assert.match(h[0], /el inventario no declara ese archivo publicado$/);
+});
+
+/* ------------------------------------------------------------------ *
+ * [F] La procedencia, y lo que una entrada IMPUESTA tiene que declarar (D-094, PND-123)
+ * ------------------------------------------------------------------ */
+
+/** La entrada impuesta del arbol real, para romperle una cosa por vez. */
+const impuesta = (a) => a.entries.find((e) => e.provenance === 'imposed_by_the_hosting');
+
+test('el arbol real declara las dos clases, y las cuentas de la cabecera las derivan', () => {
+  const { entries } = leerArbol();
+  const c = cuentas(entries);
+  assert.equal(c.entries_chosen_by_the_method + c.entries_imposed_by_the_hosting, c.entries_total,
+    'una entrada quedo sin clasificar: la suma de las dos clases tiene que dar el total');
+  assert.ok(c.entries_imposed_by_the_hosting > 0,
+    'el inventario no declara ningun tercero impuesto, y el sitio publicado tiene uno medido (PND-123)');
+});
+
+test('ROJO [F]: una entrada sin procedencia declarada', () => {
+  const h = roto((a) => { delete a.entries[0].provenance; });
+  assert.equal(h.length, 1, h.join(' | '));
+  assert.match(h[0], /^\[F\] mermaid: no declara su procedencia/);
+});
+
+test('ROJO [F]: la entrada impuesta sin el bloque transcripto -- sin bloque no hay con que contrastar', () => {
+  const h = roto((a) => { delete impuesta(a).injection.snippet; });
+  assert.equal(h.length, 1, h.join(' | '));
+  assert.match(h[0], /^\[F\] hosting-traffic-script: no transcribe el bloque que el servidor agrega/);
+});
+
+test('ROJO [F]: los bytes declarados no son los del bloque -- la cifra escrita en vez de derivada', () => {
+  const h = roto((a) => { impuesta(a).injection.bytes = 999; });
+  assert.equal(h.length, 1, h.join(' | '));
+  assert.match(h[0], /^\[F\] hosting-traffic-script: declara 999 bytes inyectados y el bloque transcripto tiene \d+/);
+});
+
+test('ROJO [F]: la entrada impuesta que dice que el metodo la escribio o la sirve', () => {
+  const h = roto((a) => { impuesta(a).control.served_by_the_method = true; });
+  assert.equal(h.length, 1, h.join(' | '));
+  assert.match(h[0], /^\[F\] hosting-traffic-script: un tercero impuesto no lo escribe ni lo sirve el metodo/);
+});
+
+test('ROJO [F]: el metodo no puede impedirlo y la decision no nombra ninguna salida', () => {
+  // Es el rojo que vale mas de los seis, porque es el que distingue DECLARAR de ACEPTAR PARA
+  // SIEMPRE. Una entrada que dice "no lo controlamos" y no nombra como se sale es la aceptacion
+  // permanente de un privilegio que nadie decidio, con el campo lleno.
+  const h = roto((a) => { delete impuesta(a).decision.exit; });
+  assert.equal(h.length, 1, h.join(' | '));
+  assert.match(h[0], /^\[F\] hosting-traffic-script: el metodo no puede impedirlo y la decision no nombra una salida elegida/);
+});
+
+test('ROJO [F]: la medicion de la entrada impuesta sin fecha, sin fuente o sin recibos', () => {
+  const h = roto((a) => { delete impuesta(a).measured.receipts; });
+  assert.equal(h.length, 1, h.join(' | '));
+  assert.match(h[0], /^\[F\] hosting-traffic-script: su medicion no dice cuando, con que y con que recibos/);
+});
+
+test('[D] vale para las dos clases: una entrada impuesta sin decidir tambien cae', () => {
+  const h = roto((a) => { impuesta(a).decision.state = 'pending'; });
+  assert.equal(h.length, 1, h.join(' | '));
+  assert.match(h[0], /^\[D\] hosting-traffic-script: su decision no esta resuelta/);
 });

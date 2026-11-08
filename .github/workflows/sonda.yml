@@ -1,0 +1,59 @@
+name: sonda de lo publicado
+
+# Le pregunta a PRODUCCION que recibe el lector y lo contrasta contra el arbol (D-094, PND-123).
+#
+# Por que tiene flujo propio y calendario, y no es un paso mas del otro. Todo lo que este
+# repositorio vigila se dispara con un commit: una fuente cambia, la cadena corre, algo cae. Lo
+# que esta sonda mira CAMBIA SIN UN COMMIT. El 2026-11-08 se midio que el hospedaje inyecta un
+# bloque de script ajeno en todas las paginas publicadas: nadie lo commiteo, no esta en el arbol,
+# y el dia que ese proveedor lo agregue, lo cambie o lo apague no va a haber ningun cambio en este
+# repositorio que dispare ninguna verificacion. Una guarda que solo corre cuando alguien commitea
+# no puede vigilar algo que se mueve por su cuenta.
+#
+# Es, ademas, la unica forma de que una DECLARACION no se venza. El inventario declara ese bloque
+# con su decision; la sonda vuelve a preguntar y cae tambien si el bloque declarado desaparecio,
+# porque una declaracion que dejo de ser cierta es la copia vencida que este repositorio persigue
+# desde D-077. El metodo le llama a esto reporte ciclico, y es lo que piden sus peldanos 21 y 22.
+#
+# Lo que NO hace: no publica, no commitea y no toca el portal. Solo lee produccion.
+
+on:
+  schedule:
+    # Los lunes a las 09:00 UTC. El dia y la hora no importan; lo que importa es que exista una
+    # corrida que nadie tiene que acordarse de lanzar.
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: sonda-de-lo-publicado
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  preguntar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      # El repositorio no tiene dependencias: todo corre con node pelado.
+
+      # Mismo criterio que el resto de la cadena: ademas del codigo de salida se exige la linea
+      # que el programa imprime cuando de verdad corrio. Un paso que no imprimio su linea medida
+      # no corrio, y no es un verde.
+      #
+      # Y corre contra el ARBOL DE main, que es lo que el portal espeja: si esta sonda cae con una
+      # diferencia de bytes que no es una inyeccion, lo primero a mirar es si el portal termino de
+      # desplegar la ultima fusion.
+      - name: Preguntar a produccion que ejecuta el navegador del lector
+        run: |
+          set -o pipefail
+          node build/sonda_publicado.mjs | tee sonda.txt
+          grep -q '^sonda de lo publicado: comprobado' sonda.txt || { echo "::error::la sonda no dijo que comprobo: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          grep -q '0 hallazgos' sonda.txt || { echo "::error::lo que produccion sirve dejo de ser lo que este repositorio publico: un tercero sin declarar, una inyeccion que cambio, o una declarada que ya no esta (el detalle, arriba). Repetilo a mano con: node build/sonda_publicado.mjs"; exit 1; }
+          rm sonda.txt
