@@ -3,6 +3,9 @@
 // continuación), negrita, cursiva, código inline, enlaces, hr, y los bloques de prompt con su
 // traducción opcional. Uso: node md2html.mjs entrada.md salida.html [idioma]
 import { readFileSync, writeFileSync } from 'node:fs';
+import { dirname, relative, join } from 'node:path';
+import { raiz } from './gates_lib.mjs';
+import { leerInventario } from './terceros.mjs';
 
 const [,, origen, destino, idiomaArg] = process.argv;
 const idioma = idiomaArg || 'es';
@@ -244,7 +247,15 @@ pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:8p
 const js = `document.addEventListener('click',function(e){var b=e.target.closest('.trbtn');if(!b)return;var box=b.parentNode;var en=box.querySelector('.prompt:not(.tr)'),tr=box.querySelector('.prompt.tr');var showTr=tr.hidden;tr.hidden=!showTr;en.hidden=showTr;b.textContent=showTr?b.dataset.b:b.dataset.a;});`;
 
 const titulo = (md.find(l => /^# /.test(l)) || '# Documento').slice(2).replace(/</g,'&lt;');
-const mermaidJs = usaMermaid ? `<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad:true,theme:'neutral',flowchart:{curve:'basis'}});</script>` : '';
+// Los diagramas los dibuja mermaid en el navegador del lector, y el archivo lo sirve ESTE sitio:
+// la version es exacta y la ruta sale del inventario de terceros (vendor/terceros.json), no
+// escrita aca, para que clavar otra version sea un solo cambio en el dato (D-093, PND-120).
+const mermaidJs = usaMermaid ? (() => {
+  const entrada = leerInventario().entries.find((e) => e.id === 'mermaid');
+  if (!entrada) throw new Error('vendor/terceros.json no declara la entrada mermaid y hay un diagrama que la necesita');
+  const ruta = relative(dirname(destino), join(raiz, entrada.published_as)).split('\\').join('/');
+  return `<script src="${ruta}"></script><script>mermaid.initialize({startOnLoad:false,theme:'neutral',flowchart:{curve:'basis'}});mermaid.run();</script>`;
+})() : '';
 const html = `<!DOCTYPE html><html lang="${idioma}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${titulo}</title><style>${css}</style></head><body><div class="wrap">
 ${body.replace(/(<h1[^>]*>.*?<\/h1>)/, '$1' + tocHtml)}

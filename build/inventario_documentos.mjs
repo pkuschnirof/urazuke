@@ -75,6 +75,13 @@ export const TRABAJO_REGISTRADO = new Map([
       'nombra PND-050 y el prompt de la estacion lo pide por su nombre',
   ],
   [
+    'docs/ELIGIBILITY.md',
+    'artefacto de la estacion N0 que el dato declara por ruta en gates/stations.json: la ficha de ' +
+      'elegibilidad de este repositorio con la decision del dueno, su fecha y cada prerrequisito ' +
+      'con su evidencia; voz del autor y del agente que verifico, fuera del corpus traducido ' +
+      '(PND-010, PND-121)',
+  ],
+  [
     'docs/FUNCTIONALITY_RECOVERED.md',
     'artefacto de la estacion N0 que el dato declara por ruta en gates/stations.json; trabajo en ' +
       'curso, lo nombra PND-050',
@@ -91,6 +98,13 @@ export const TRABAJO_REGISTRADO = new Map([
       'mudadas verbatim cuando una compuerta del producto midio que el archivo de instrucciones ' +
       'pesaba 42.308 tokens contra un tope de 8.000 y que esos tokens viajan en cada llamada de ' +
       'cada turno; voz del autor, fuera del corpus traducido (PND-117, D-092)',
+  ],
+  [
+    'docs/THIRD_PARTY_EXECUTION.md',
+    'el inventario del codigo de terceros que este sistema EJECUTA, que es el artefacto que el ' +
+      'peldano 14 pide y que este proyecto se debia a si mismo: SE GENERA desde vendor/terceros.json ' +
+      'con build/terceros_doc.mjs, asi que no es prosa que alguien escriba y queda fuera del corpus ' +
+      'traducido (D-093, PND-120)',
   ],
   ['docs/paper/README.md', 'material de trabajo del paper, que es trabajo en curso; lo nombra PND-050'],
   ['docs/paper/metodo-protocolo-herramienta.md', 'la pieza comun del paper, trabajo en curso; lo nombra PND-050'],

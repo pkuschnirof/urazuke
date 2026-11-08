@@ -9800,6 +9800,273 @@ sin leerlas las cuatro contra las cuatro sería la clase de verde que este regis
 vigentes en los dos archivos, y lo que esta entrada persigue es que sigan coincidiendo mañana.
 
 ---
+
+## PND-120 — Ocho páginas publicadas ejecutaban código de terceros desde un host ajeno, con la mayor flotante, sin integridad y sin inventario: el primer sistema que no cumplía `THIRD_PARTY_EXECUTION.md` era el repositorio del método *(propia, medida por el prerrequisito 7 de la estación N0; destino: método)*
+
+- **Nodo:** `corpus/publicacion` [nodo propuesto]
+- **Origen:** propia, el 2026-11-08, del relevamiento de la estación N0 sobre este mismo
+  repositorio. El prerrequisito 7 pide listar cada integración externa y decir si tiene modo de
+  prueba o se puede aislar en el borde. Las del lado de la construcción están aisladas y de hecho
+  lo están a propósito —los dos programas que tocan la red están **fuera** de la cadena, los tres
+  chequeos contra producción son de sólo lectura, el despliegue necesita un secreto de alcance a un
+  solo repositorio—. La que no estaba ni aislada ni declarada era la del lado del **lector**.
+- **Grupo:** G-PUBLICACION · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** el dueño, entre las tres salidas. Decidido el 2026-11-08: la segunda, servirlo
+  desde el propio sitio, con el cuidado que escribió (abajo). D-093.
+- **Estado: CERRADO** el 2026-11-08, con D-093, en el mismo movimiento en que se abrió, porque era
+  el proyecto previo de N0 que el dueño eligió cerrar antes de arrancar la estación.
+
+**Qué estaba mal, medido.** El sitio publicado **ejecuta código de terceros en el navegador de cada
+lector**, y no estaba ni aislado ni inventariado:
+
+| qué | medido el 2026-11-08 |
+|---|---|
+| qué carga | `mermaid` desde `cdn.jsdelivr.net`, como módulo ES |
+| en qué páginas | **8** — el documento principal en los ocho idiomas, que es la página insignia |
+| versión | `mermaid@11`: **mayor flotante**, resuelta en el momento de leer |
+| integridad declarada (SRI) | **ninguna**: 0 apariciones de `integrity=` en el generador y en lo servido |
+| inventario con su privilegio y su decisión | **no existía** |
+
+No es una vulnerabilidad declarada: es un **privilegio no declarado**, que es la forma de `CQ-20`. Y
+es incómodo de una manera útil, que es la razón por la que esta entrada vale más que su arreglo: el
+método **había publicado el día anterior** —con D-089— la exigencia de `docs/THIRD_PARTY_EXECUTION.md`
+como artefacto del peldaño 14, el inventario del código de terceros que un sistema **ejecuta**, con el
+privilegio de cada entrada y **una decisión por entrada**. El primer sistema que no lo cumplía era el
+repositorio del método. Lo encontró el propio relevamiento, un día después, y eso es el método
+funcionando: la estación N0 le hizo a este repositorio la pregunta que el peldaño 14 le hace a los
+demás.
+
+**El rojo, antes del arreglo, pegado tal cual.** La guarda nueva corrida contra el árbol publicado de
+`09e48a8`, que es el que servía producción:
+
+```
+  [B] mermaid: el sitio tendria que servir docs/html/vendor/mermaid-11.17.2.min.js y no esta publicado
+  [E] docs/html/de/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs): lo publicado volvio a depender de alguien que el metodo no controla
+  [E] docs/html/en/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/fr/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/it/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/ja/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/pt/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/zh/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+terceros ejecutados: comprobado -- 1 entradas, 1 con decision, huellas recalculadas sobre 2 archivos del arbol, 84 paginas publicadas revisadas, 8 referencias a un tercero en 8 de ellas, 9 hallazgos
+codigo de salida: 1
+```
+
+Nueve hallazgos y código de salida 1 sobre el árbol que estaba publicado. No es un rojo armado para
+la prueba: es el estado de producción de esa mañana.
+
+**Las tres salidas, y la que eligió el dueño.** (a) clavar la versión exacta y declarar su
+integridad, dejando la dependencia del CDN; (b) servir el archivo desde el propio sitio; (c) sacar
+los diagramas. Decidió la **(b)**, y su razón vale copiada porque corrige la mía: *«Las tres opciones
+cumplirían la regla —(a) con integridad declarada es una decisión legítima por entrada— pero (b) es
+la única en la que lo publicado no depende de que un host ajeno siga arriba.»*
+
+**Y el cuidado que dejó escrito, que es la parte que una máquina ahora hace cumplir.** *«Servir
+mermaid desde el propio sitio **no lo saca del inventario**. El inventario es de lo que el sistema
+**ejecuta**, no de quién lo hospeda. La entrada sigue, cambia su decisión y gana la versión clavada.
+Si al mudarlo desaparece del inventario, la mudanza rompió la regla que vino a cumplir.»* La entrada
+está, con su decisión `narrowed` y su versión exacta.
+
+**Qué entró.**
+
+- `vendor/mermaid-11.17.2.min.js` —la versión exacta a la que `mermaid@11` resolvía ese día, así que
+  lo publicado **no cambió de comportamiento**, cambió de dueño del hospedaje— con el texto de su
+  licencia MIT al lado, que es lo que MIT exige y lo que un repositorio sin terceros nunca había
+  tenido que hacer.
+- `vendor/terceros.json`, el dato, y `docs/THIRD_PARTY_EXECUTION.md`, que **se genera** desde ahí:
+  `entries_total` y `entries_with_a_decision` son cuentas **derivadas** y no escritas, que es D-077 y
+  D-090 aplicados al artefacto nuevo antes de que tenga su primera cifra vencida.
+- `build/terceros.mjs`, la guarda, con sus cinco comprobaciones y su línea medida en la cadena y en
+  la integración continua: la huella del congelado **recalculada**, lo publicado byte a byte igual a
+  lo congelado, la licencia con su texto en el árbol, la decisión resuelta con quién, cuándo y por
+  qué, y —la que cierra el círculo— **todas** las páginas publicadas recorridas juntando lo que
+  ejecutan, donde una dirección absoluta es un hallazgo.
+- Y la prueba de punta a punta en un navegador de verdad (`tests/e2e_terceros.mjs`), porque la guarda
+  lee el texto del HTML y lo que importaba era otra cosa: que el lector siga viendo los diagramas y
+  que el navegador no salga a buscar nada afuera. **Recibo: 5 de 5**, con el `svg` dibujado, 2
+  recursos bajados y **0 de un host ajeno**, la huella `581ed7d74bd9` **recalculada por el propio
+  navegador** sobre los bytes que ejecutó, y su rojo deliberado —la misma página con la etiqueta
+  apuntada a un archivo que no existe— dando 0 de 1 diagramas dibujados.
+
+**Lo que esta entrada no arregla, dicho de frente.** El inventario tiene **una** entrada porque este
+repositorio no tiene dependencias: cero `package.json`, cero `node_modules`, cero binarios. En un
+sistema de verdad este artefacto tiene decenas de entradas y el trabajo es el inventario, no la
+guarda. Lo que acá quedó demostrado es la forma: que la cuenta se derive, que la decisión sea de una
+persona y esté fechada, y que una máquina pueda caer cuando una página vuelve a pedirle código a un
+host ajeno.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado el sitio publicado, cuando se pregunta qué código de terceros
+  ejecuta, entonces hay un inventario con una entrada por tercero, su privilegio y **su decisión con
+  fecha y nombre**, y ninguna página pide nada a un host que el método no controla.
+- *P4 (lector del método):* dado el documento principal en cualquiera de los ocho idiomas, cuando lo
+  abre, entonces ve los diagramas, y los dibujó un archivo que sirve el mismo sitio del que bajó la
+  página. Verificado en un navegador de verdad, 5 de 5.
+- *P6 (agente que trabaja el repositorio):* dado un tercero nuevo, cuando lo agrega, entonces la
+  cadena cae hasta que esté congelado con su huella, publicado, licenciado y decidido.
+
+**Depende de:** nada. Es el proyecto previo de la estación N0 que el dueño eligió cerrar antes de
+arrancar, así que N0 arranca con **un** previo y no con dos (`PND-121`).
+
+---
+
+## PND-121 — La funcionalidad recuperada describe el sistema con dos recursos publicados y hay cuatro: el proyecto previo con el que la estación N0 arranca *(propia, medida por el prerrequisito 3 de la estación N0; destino: método)*
+
+- **Nodo:** `corpus/normalizacion` [nodo propuesto]
+- **Origen:** propia, el 2026-11-08, del relevamiento de la estación N0 sobre este mismo
+  repositorio. El prerrequisito 3 pide que, **desde el código solo**, exista la funcionalidad
+  completa del sistema descrita para un usuario final. El artefacto existe —`docs/FUNCTIONALITY_RECOVERED.md`,
+  18.208 bytes— y la compuerta lo da por bueno, porque es el único de los dos artefactos de N0
+  que **no tiene `must_contain`**: lo único que se mira es que el archivo esté.
+- **Grupo:** G-METODO · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** el dueño, si es previo o pendiente común. Decidido el 2026-11-08: **proyecto
+  previo bloqueante**, con la condición que puso al dar el `go`.
+- **Estado: abierto.**
+
+**Qué está mal, medido el 2026-11-08.**
+
+| qué dice el documento | qué es hoy |
+|---|---|
+| *«el sitio dos archivos JSON — las compuertas y los prompts»* | **cuatro**: compuertas, prompts, textos por identificador y el índice |
+| menciones de los textos por identificador (`labels`) | **cero** |
+| menciones del índice de la interfaz | **cero** |
+| fecha que declara | **24 de octubre de 2026** — quince días y seis decisiones atrás |
+
+Un documento que describe el sistema con dos recursos cuando tiene cuatro no es *«una forma que un
+usuario final reconozca como su sistema»*: le falta la mitad de lo que el sistema publica. Y es, otra
+vez, la familia de D-077 y D-090 —una cuenta de una colección escrita en la prosa— en el único lugar
+donde ninguna de las guardas de este repositorio mira: un artefacto de proyecto que no es corpus.
+
+**Qué peldaño bloquea, y con qué fecha, porque es la condición que el dueño puso.** Su frase, del
+2026-11-08: *«La condición es que un previo no sea una forma de verde (...) cada previo entra **con
+el peldaño que bloquea y con fecha**, no como lista de deseos. Si un previo no bloquea nada, no es un
+previo: es un pendiente común y se dice así.»*
+
+Bloquea la **estación N2**, con fecha de entrada **2026-11-08**. Y no es una afirmación de
+conveniencia: N2 es *«el peldaño 2 hecho por ingeniería inversa»*, su entrada declarada incluye *«el
+relevamiento corto de N0»* y su artefacto es el árbol semántico **más la lista de discrepancias entre
+el código, la base, la documentación y lo que el negocio cree**. Una lista de discrepancias que
+arranca de un mapa que ya se sabe incompleto no mide discrepancias: hereda un error y lo llama
+hallazgo. Mientras este previo esté abierto, N2 no arranca.
+
+**Criterio de aceptación: el prerrequisito verificado en verde.** Y el verde tiene dos partes, porque
+reescribir el documento sin la segunda deja el mismo defecto esperando la próxima vez:
+
+1. La funcionalidad recuperada describe el sistema **de hoy**, pantalla por pantalla y proceso por
+   proceso, con lo inferido marcado: los cuatro recursos publicados, el sitio en ocho idiomas, las
+   copias por versión de la dirección inmutable y la cadena.
+2. Y su vencimiento es **detectable**: el documento **no nombra ninguna cantidad** de recursos
+   publicados, o la que nombra **sale del dato** —`RECURSOS` en `build/index_api.mjs`, que es donde
+   esa colección se declara—. Es D-090 bajado a este artefacto: la salida no es vigilar la cifra, es
+   que la cifra no esté escrita.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dada la funcionalidad recuperada, cuando la lee sin abrir el código,
+  entonces reconoce su sistema completo y no le falta la mitad de lo que publica.
+- *P5 (lector que adapta el método):* dado este artefacto en su propio proyecto, cuando lo escribe,
+  entonces encuentra dicho en el contrato que una cuenta de una colección no va en su prosa.
+- *P6 (agente que trabaja el repositorio):* dado el documento, cuando el sistema publica un recurso
+  nuevo, entonces algo cae —o no hay nada que caerse porque la cifra no está escrita.
+
+**Depende de:** nada. Es el único previo con el que N0 arranca: el otro (`PND-120`, el inventario de
+terceros) se cerró en el mismo movimiento por decisión del dueño.
+
+---
+
+## PND-122 — El dato declara los insumos de cada peldaño y de ninguna estación: en el camino del legado, el insumo que la consigna manda leer no existe para ninguna máquina *(propia, encontrada al verificar qué exige el dato sobre `docs/INITIAL_SURVEY.md`; destino: método)*
+
+- **Nodo:** `corpus/normalizacion` [nodo propuesto]
+- **Origen:** propia, el 2026-11-08. La consigna de la estación N0 manda *«leer el relevamiento
+  inicial en `docs/INITIAL_SURVEY.md`»* y ese archivo no existe en este repositorio. Al ir a abrir el
+  hallazgo —que yo había formulado como *«el prompt nombra una ruta que ningún dato exige»*— fui a
+  comprobarlo contra el dato antes de escribirlo, y **mi formulación era falsa**. Lo que apareció al
+  medir es otra cosa, más chica y más incómoda.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño. Es un cambio de **esquema** del nivel de datos y no se hace sin él.
+- **Estado: abierto.**
+
+**La corrección primero, porque una entrada que nace de una afirmación mía equivocada tiene que
+decirlo.** El dato **sí** declara esa ruta, con su rótulo y todo:
+
+| dónde | qué dice |
+|---|---|
+| `gates/steps.json` → peldaño 0 (`u00-elegibilidad`) | `inputs[0] = { "path": "docs/INITIAL_SURVEY.md", "label": "relevamiento inicial escrito por el dueno" }` |
+| `gates/steps.json` → peldaño 2 (`u02-definicion-y-lectura`) | `inputs[0] = { "path": "docs/INITIAL_SURVEY.md" }` |
+| `gates/baseline.json` | las dos, en el congelado: son entradas **de la base**, no agregadas después |
+
+O sea que el relevamiento inicial **es un artefacto del método**, declarado por el dato desde el
+congelado, y el documento **ya tiene contrato**. La pregunta que le hice al dueño —*«¿lo escribimos o
+la consigna deja de nombrarlo?»*— estaba mal planteada: su criterio (*«primero el dato lo exige y
+después se escribe»*) ya estaba cumplido antes de preguntar.
+
+**Lo que sí falta, medido, y es el hallazgo.** El tipo `station` del esquema **no tiene** campo
+`inputs`, y el tipo está declarado `additional: false`:
+
+| tipo | campos que el esquema declara |
+|---|---|
+| `step` | `num, id, tramo, title, summary, form, mandatory, prompt_key, `**`inputs`**`, artifacts, verify, evaluators` — y `inputs` es `required: true` |
+| `station` | `num, id, title, summary, prompt_key, prompt_indexes, artifacts, verify, evaluators` — **ningún `inputs`**, y `additional: false` |
+
+Entonces, en el camino evolutivo-correctivo, **ningún insumo de ninguna de las ocho estaciones existe
+para una máquina**, y no por olvido: por construcción, porque hoy el validador **rechazaría** una
+estación que declarara sus insumos. Un consumidor que arma la interfaz de N0 desde el dato publicado
+no puede decirle a nadie que esa estación necesita algo para empezar, y la prosa sí lo dice —el bloque
+*«Antes de enviar el prompt»* de N0 pide el relevamiento corto y la ficha de criterios, los dos, con
+quién los escribe—.
+
+**Por qué es `CQ-19.3` y no D-065.** Lo pensé primero como D-065 —*«un archivo que la compuerta busca
+y el prompt no nombra»*— y es al revés: acá el prompt lo nombra y el dato de la estación no lo tiene.
+Es el **universo en una sola dirección**, que es lo que `CQ-19.3` pregunta: las guardas de rutas de
+este repositorio van del dato hacia la prosa —toman cada ruta que el dato declara y exigen que la
+prosa la nombre— y **ninguna va de la prosa hacia el dato**. Por eso una ruta que vive sólo en la
+prosa no la ve nadie, y en el camino del legado eso no es una excepción: es el caso general, porque
+el lado del dato está vacío para las ocho estaciones.
+
+**Lo que esta entrada propone, para que el dueño decida.** Es un cambio del esquema del nivel de
+datos, append-only como manda su propia regla de edición:
+
+1. El tipo `station` gana `inputs` **opcional** (no `required`, porque una estación puede no
+   necesitar nada), con el mismo tipo `artifact` que ya usan los peldaños. Cada estación que su prosa
+   declara con insumos los declara también en el dato, con su `since_schema` y su `since_version`.
+   Sube la versión del catálogo, porque `stations` está bajo la huella.
+2. Y la otra mitad, que es la que impide que vuelva a pasar: una guarda que vaya **de la prosa hacia
+   el dato**. Hoy hay comprobaciones que exigen que la prosa nombre cada ruta que el dato declara; lo
+   que falta es la inversa —toda ruta `docs/*.md` que un prompt o un bloque «antes de enviar» nombre
+   como insumo o artefacto está declarada por el dato de su peldaño o de su estación—. Es la
+   comprobación que habría encontrado esto sin que nadie fuera a buscarlo.
+
+**Lo que esta entrada no promete.** No dice que falte declarar algo en el **peldaño** 0 ni en el 2:
+ahí está declarado y es base congelada. El alcance es el camino del legado, y la cuenta exacta de
+insumos que cada estación tendría que declarar sale de leer los ocho bloques «antes de enviar el
+prompt» de `docs/EVOLUTIVO_CORRECTIVO.md`, que es trabajo del lote que lo arregle y no de esta
+entrada.
+
+**Y lo que esto significa para N0 hoy, dicho para que no se lea como un bloqueo.** El relevamiento
+inicial de **este** repositorio no lo escribe el agente: el propio bloque «antes de enviar el prompt»
+de N0 dice, textual, *«esto tiene que existir, y lo hacés vos (o el negocio con vos), **no el
+agente**»*, y la tabla de insumos recuperados aclara que en el camino evolutivo-correctivo el agente
+lo **completa** desde el sistema en N2, no lo inventa en N0. Así que no lo escribí, y escribirlo para
+que la ruta dejara de faltar era exactamente la trampa que el dueño nombró: *«No escribas el documento
+para que la ruta deje de faltar. Esa es la trampa, y es de la misma familia que "que exista un
+inventario"»*. Queda como el único insumo que N0 tiene pendiente del lado del dueño, dicho en
+`docs/ELIGIBILITY.md` en vez de simulado, y no bloquea la estación porque no es ninguno de sus dos
+artefactos.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado el camino del legado, cuando pregunta qué necesita una estación para
+  empezar, entonces el dato lo declara, igual que para un peldaño.
+- *P2 (herramienta que consume la interfaz):* dada la estación N0, cuando arma su pantalla desde el
+  dato publicado, entonces puede pedirle al usuario los insumos de esa estación sin leer la prosa.
+- *P5 (lector que adapta el método):* dada una ruta que un prompt nombra, cuando quiere saber si el
+  método la exige, entonces el dato contesta; y si no la exige, algo cae.
+
+**Depende de:** nada. El arreglo sube la versión del catálogo y es del dueño.
+
+---
 ---
 
 # Resumen del estado
@@ -9814,13 +10081,13 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-API | 24 | 6 | 18 | 1 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 17 | 13 | 4 | 3 |
-| G-PUBLICACION | 6 | 0 | 6 | 0 |
+| G-PUBLICACION | 7 | 0 | 7 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 56 | 23 | 33 | 11 |
+| G-METODO | 58 | 25 | 33 | 12 |
 | G-TRAZABILIDAD | 8 | 3 | 5 | 0 |
-| **total** | **119** | **45** | **74** | **15** |
+| **total** | **122** | **47** | **75** | **16** |
 
-Ciento diecinueve entradas, `PND-001` a `PND-119`. Veintidós vienen de la auditoría externa
+Ciento veintidos entradas, `PND-001` a `PND-122`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -9875,6 +10142,25 @@ el remedio: una cuenta se deriva del dato y una obligación no sale de ningún d
 de aquélla —sacarla de la prosa— acá no existe. Medido: cuarenta y una oraciones de obligación, once
 idénticas en los dos archivos y **treinta** que dicen lo mismo con otras palabras, que son las que
 ninguna comparación puede emparejar.
+
+Y las **tres** de `PND-120` a `PND-122` las trajo la estación N0 corriendo sobre este mismo
+repositorio, que es la fuente que más conviene tener: el método haciéndose a sí mismo las preguntas
+que les hace a los demás. `PND-120` es la mejor de las tres y la más incómoda: ocho páginas
+publicadas ejecutaban código de terceros desde un host ajeno, con la mayor flotante, sin integridad y
+sin inventario, **un día después** de que el método publicara la exigencia del inventario de terceros
+con D-089. El primer sistema que no cumplía esa regla era el repositorio que la escribió, y lo
+encontró su propio relevamiento. Cerrada con D-093 en el mismo movimiento, porque el dueño eligió
+cerrar ese previo antes de arrancar la estación. `PND-121` es el otro previo y queda **abierto, con
+el peldaño que bloquea y con fecha**, que es la condición que el dueño puso al dar el `go`: una
+funcionalidad recuperada que dice dos recursos publicados cuando hay cuatro no deja arrancar N2, que
+es la estación que compara lo que el negocio cree con lo que el código hace. Y `PND-122` nació de
+**refutar una afirmación mía**: había dicho que la consigna de N0 nombra una ruta que ningún dato
+exige, fui a comprobarlo antes de escribir el hallazgo y el dato sí la exige —en el peldaño 0 y en el
+2, desde el congelado—. Lo que falta es más chico y peor: el tipo `station` del esquema no tiene campo
+`inputs` y está declarado `additional: false`, así que en el camino del legado **ningún insumo de
+ninguna de las ocho estaciones existe para una máquina**, por construcción. Es `CQ-19.3` —el universo
+en una sola dirección— aplicado a las rutas: las guardas de este repositorio van del dato hacia la
+prosa y ninguna va de la prosa hacia el dato.
 
 `PND-059` es el cuarto desvío propio y el más incómodo de los cuatro, porque es la misma familia
 que `PND-056` —un texto publicado que apunta a algo que el publicado no tiene— cometida **un día
