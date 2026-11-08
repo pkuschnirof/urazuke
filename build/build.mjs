@@ -61,8 +61,11 @@ execFileSync(process.execPath, [join(raiz, 'build', 'cuenta_de_reglas.mjs')], { 
 // que la carga, y DESPUES se vuelve a mirar: la comprobacion de que ninguna pagina publicada
 // ejecuta un tercero sin declarar necesita las paginas ya escritas.
 mkdirSync(join(raiz, 'docs', 'html', 'vendor'), { recursive: true });
+// Solo las entradas que el metodo ELIGIO tienen archivo congelado que copiar. Un tercero que el
+// hospedaje inyecta esta en el inventario y no en el arbol --el metodo no lo sirve-- y copiar su
+// `published_as` seria copiar `undefined` (D-094, PND-123).
 for (const entrada of JSON.parse(readFileSync(join(raiz, 'vendor', 'terceros.json'), 'utf8')).entries) {
-  cpSync(join(raiz, entrada.file), join(raiz, entrada.published_as));
+  if (entrada.file && entrada.published_as) cpSync(join(raiz, entrada.file), join(raiz, entrada.published_as));
 }
 execFileSync(process.execPath, [join(raiz, 'build', 'terceros_doc.mjs'), '--check'], { stdio: 'inherit' });
 const conv = join(raiz, 'build', 'md2html.mjs');

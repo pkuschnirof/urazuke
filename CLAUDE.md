@@ -133,7 +133,9 @@ Anexo H o la cadena**; acá queda sólo la obligación. Las decisiones completas
   repositorio (`pkuschnirof/rpaforce`) y **ahí no mira ninguna guarda del método**. Un recurso nuevo
   o una cifra que se mueve **pone en rojo el despliegue del portal** y eso es correcto: se arregla en
   el generador (`node build/prerender-urazuke.mjs`), nunca en el verificador. Servido no es
-  publicado, y **no haber podido mirar es rojo y nunca verde** (D-057).
+  publicado, y **no haber podido mirar es rojo y nunca verde** (D-057). Y lo que se afirme de lo
+  publicado se le pregunta a **producción por red** (`node build/sonda_publicado.mjs`), nunca al
+  árbol: una guarda que lee el árbol no ve lo que un servidor agrega en el camino (D-094).
 - **La cadena.** `node build/build.mjs` y `node --test` **a secas** (el patrón entre comillas corre
   cero pruebas y devuelve éxito). Un paso que no imprimió su línea medida no corrió y no es un verde.
 - **El Anexo H.** Se nombra en la Parte A, en la apertura de la Parte C y en la **ficha** de cada

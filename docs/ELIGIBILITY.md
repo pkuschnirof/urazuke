@@ -159,6 +159,18 @@ día, su licencia al lado, su huella recalculada en cada construcción, el inven
 y **la decisión del dueño con fecha**, y una guarda que recorre todas las páginas publicadas y cae si
 una vuelve a pedirle código a un host ajeno.
 
+**La condición de este verde, y no se borra (`CQ-22.2`).** Lo escribo acá porque el verde de arriba
+se sostiene y está incompleto a la vez, y eso se informa junto: **este prerrequisito cerró sobre una
+verificación que miró el árbol y no la red.** El 2026-11-08, minutos después de fusionar y desplegar,
+la verificación contra **producción** encontró que el hospedaje inyecta un script ajeno en todas las
+páginas publicadas —`PND-123`, con su evidencia medida—: nadie lo commiteó, no está en el árbol, y la
+guarda que dijo «0 hallazgos» esa mañana tenía razón porque mira el lado del cable donde no estaba.
+El dueño decidió **no reabrir N0**, con la misma razón con la que no reabrió los veinticuatro
+peldaños del brazo —*«un registro que se reescribe no es un registro»*—, así que lo que queda escrito
+es la cifra **con su condición** y no un verde corregido a posteriori. Desde ese mismo día hay una
+sonda que le pregunta a producción por red, con su paso en la publicación y su calendario semanal
+(D-094), y lo que falta es la mudanza del hospedaje, que sigue abierta y bloqueante en `PND-123`.
+
 **Y lo que ya estaba bien, medido.** Los dos programas que tocan la red están **fuera** de la cadena a
 propósito; los tres chequeos contra producción son de **sólo lectura**; el despliegue al portal
 necesita un secreto que alcanza a un solo repositorio y se revoca desde sus ajustes; y la compuerta
@@ -188,7 +200,7 @@ pasar por ahí.
 | 4 frontend recorrible | **VERDE**, con recibo de navegador real y su rojo deliberado |
 | 5 construir desde fuentes | **VERDE** |
 | 6 datos copiables y respaldo restituido | **VERDE**, con la restitución ya verificada sobre 33 copias |
-| 7 integraciones aislables | **VERDE** desde el 2026-11-08 (era rojo; `PND-120` cerrado con D-093) |
+| 7 integraciones aislables | **VERDE** desde el 2026-11-08 (era rojo; `PND-120` cerrado con D-093), **con su condición escrita**: la verificación miró el árbol y no la red, y lo que la red mostró es `PND-123` |
 
 **Seis en verde, uno en rojo, y el rojo tiene su proyecto previo con el peldaño que bloquea y con
 fecha.** Los dos rojos del relevamiento eran del mismo tipo —**dos copias de un hecho que el sistema

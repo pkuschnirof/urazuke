@@ -1,5 +1,5 @@
 {
-  "what": "The declared inventory of the third-party code this repository EXECUTES, and the frozen copy of each entry. It is the data layer of docs/THIRD_PARTY_EXECUTION.md, which is GENERATED from here by build/terceros_doc.mjs: the figures of the document are derived and not written (D-077, D-090). Keys are English and ASCII (D-075); the values a person writes -- the reason, the decision -- are in the language of the project.",
+  "what": "The declared inventory of the third-party code this repository EXECUTES, and the frozen copy of each entry. It is the data layer of docs/THIRD_PARTY_EXECUTION.md, which is GENERATED from here by build/terceros_doc.mjs: the figures of the document are derived and not written (D-077, D-090). Each entry declares its PROVENANCE: chosen_by_the_method (the method picked it, froze it and serves it) or imposed_by_the_hosting (something the server adds to what the method publishes, which the method neither wrote nor can prevent). The distinction is a field and not a paragraph because the reader of the inventory has to be able to tell one from the other mechanically. Keys are English and ASCII (D-075); the values a person writes -- the reason, the decision -- are in the language of the project.",
   "entries": [
     {
       "id": "mermaid",
@@ -32,6 +32,64 @@
         "decision_id": "D-093",
         "pending_id": "PND-120",
         "why": "Servirlo desde el propio sitio con la version clavada, en vez de pedirlo a un host ajeno con la mayor flotante. La razon del dueno: las tres salidas cumplirian la regla --clavar la version con su integridad declarada es una decision legitima por entrada-- pero esta es la unica en la que lo publicado no depende de que un host ajeno siga arriba. Y el cuidado que dejo escrito: servirlo desde el propio sitio NO lo saca de este inventario, porque el inventario es de lo que el sistema EJECUTA y no de quien lo hospeda; si al mudarlo desapareciera de aca, la mudanza habria roto la regla que vino a cumplir."
+      },
+      "provenance": "chosen_by_the_method"
+    },
+    {
+      "id": "hosting-traffic-script",
+      "name": "tccl.min.js",
+      "version": "none_declared",
+      "provenance": "imposed_by_the_hosting",
+      "host": "img1.wsimg.com",
+      "url": "https://img1.wsimg.com/traffic-assets/js/tccl.min.js",
+      "what_it_runs": "No se sabe, y eso es parte de la entrada: el metodo no escribio este codigo, no lo sirve y no tiene su copia. El bloque que el servidor agrega carga un script del hospedaje y, antes, le deja preparados los metadatos del alojamiento; el proveedor lo describe en su propio comentario como medicion de rendimiento del sitio.",
+      "when_it_runs": "Al cargar cualquiera de las paginas publicadas: el servidor lo agrega al vuelo, no el conversor.",
+      "runs_as": "browser_of_the_reader",
+      "privilege": "page_dom_same_origin_and_its_own_host",
+      "privilege_note": "Es el privilegio mas alto que este sitio le da a nadie, y es mayor que el del tercero que el metodo si eligio. Corre en el navegador de quien lee, con el privilegio de la pagina --puede leer y escribir el DOM del documento-- y ADEMAS es una pedida a un host que el metodo no controla, asi que ese host ve la direccion IP del lector, la pagina que abrio y el momento en que la abrio. En este sitio no hay sesion, no hay cookie de dominio propia y no hay dato personal cargado, pero si hay lectores: un sitio que publica una regla sobre privilegio no declarado esta entregando su navegacion a un tercero que ninguna decision del metodo puso ahi.",
+      "network_at_runtime": "not_measurable_from_here",
+      "network_note": "No se puede declarar lo que hace en tiempo de ejecucion con la honestidad con la que se declaro el otro: el archivo lo sirve un host ajeno, puede cambiar sin aviso y sin commit, y no hay version ni huella que lo fije. Lo que si esta medido es la pedida: en un navegador real contra la pagina publicada, el bloque agrega una bajada a img1.wsimg.com (RCP-142, el 2026-11-08). Y lo que una corrida si puede decir, con su fecha: el 2026-11-08, en un navegador real contra la pagina publicada, detras de ese script el navegador no bajo nada mas (RCP-145). Es lo que paso ese dia y no una propiedad del archivo: el host puede servir otro contenido manana sin que cambie nada en este arbol, y por eso la sonda vuelve a preguntar.",
+      "injection": {
+        "where": "immediately_after_</body>",
+        "pages": "every_published_page",
+        "bytes": 454,
+        "declares_itself_as": "tccl.baseHost: secureserver.net",
+        "provider_comment": "Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.",
+        "metadata_it_sends": "El bloque no solo carga un script ajeno: deja preparados los metadatos del hospedaje --el host base, el servidor, el centro de datos y el identificador de cuenta-- antes de que el script arranque.",
+        "snippet": "<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'p3plzcpnl505172'},{'dcenter':'p3'},{'cp_id':'10876549'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/traffic-assets/js/tccl.min.js'></script>",
+        "snippet_note": "The 454 bytes the server adds, transcribed from production and not retyped: build/sonda_publicado.mjs SUBTRACTS this block from what production serves and demands that what is left be byte for byte the file in the tree. A block that changes, grows or disappears is a finding."
+      },
+      "control": {
+        "written_by_the_method": false,
+        "served_by_the_method": false,
+        "removable_by_the_method": false,
+        "how_it_could_stop": "Un pedido al soporte del hospedaje --la salida que el propio bloque nombra-- o mudar el hospedaje de la ruta del metodo a uno que sirva los bytes del arbol sin agregar nada.",
+        "note": "Esta es la parte incomoda y es la que tiene que estar escrita. El hospedaje inyecta 454 bytes que el metodo no escribio, no controla y hoy NO PUEDE IMPEDIR. Declarar \"ejecutamos tccl.min.js, decision: aceptado\" seria cierto del campo y falso del hecho. Quien lea este inventario tiene que poder distinguir un tercero que el metodo ELIGIO de uno que le PUSIERON, y para eso esta el campo provenance: sin esa distincion, el inventario cumple la regla por la forma y la incumple por el fondo."
+      },
+      "measured": {
+        "on": "2026-11-08",
+        "pages_with_it": 84,
+        "pages_checked": 84,
+        "source": "node build/sonda_publicado.mjs contra https://yujin.app/urazuke/docs",
+        "receipts": [
+          "RCP-142",
+          "RCP-144",
+          "RCP-145"
+        ],
+        "note": "A dated measurement, not a standing figure: what the probe demands is the SHAPE the inventory declares (every_published_page), recounted on every run, so this number is a receipt and not a copy that can go stale."
+      },
+      "decision": {
+        "state": "narrowed",
+        "by": "Pablo Kuschnirof",
+        "on": "2026-11-08",
+        "decision_id": "D-094",
+        "pending_id": "PND-123",
+        "why": "Declarar primero, para que lo publicado no mienta hoy, y mudar el hospedaje despues: la salida (4) y despues la (2). La razon del dueno, que es la misma con la que eligio la (b) en PND-120: lo publicado no puede depender de que alguien respete un pedido. Por eso NO la salida (1) --pedirle al proveedor que lo apague-- que deja al metodo atado a la buena voluntad del proveedor y sin acuse. Y el borde que el dueno dejo escrito: la mudanza TRASLADA LA CLASE Y NO LA ELIMINA, porque saca a este proveedor y no a cualquier hospedaje que inyecte; asi que el criterio para elegir el nuevo no es \"otro\", es uno que sirva los bytes del arbol sin agregar nada, verificado por esta misma sonda antes y despues de mudar. Esta entrada NO es una aceptacion permanente: es la declaracion de un privilegio que hoy no se puede impedir, con su salida elegida y fechada, y PND-123 sigue abierto y bloqueante hasta que la mudanza pase la sonda.",
+        "exit": {
+          "chosen": "move_the_hosting",
+          "pending_id": "PND-123",
+          "criterion": "El candidato tiene que servir los bytes del arbol sin agregar nada, medido por build/sonda_publicado.mjs contra el candidato ANTES de mudar y contra produccion DESPUES. Si la sonda no corre contra el candidato, la mudanza es un cambio de proveedor con la misma exposicion y un commit de confianza."
+        }
       }
     }
   ]

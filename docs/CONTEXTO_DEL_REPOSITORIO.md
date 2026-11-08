@@ -476,6 +476,33 @@ que intente entender la prosa. La decisión es del dueño y está en `PND-115` c
 
 ## Publicación
 
+- **Lo que se afirma de lo publicado se verifica contra lo SERVIDO, por red, y hay una sonda con
+  calendario propio** (D-094, `PND-123`, `PND-124`). Es la mitad que faltaba y la midieron dos
+  roturas del propio sitio, una por cada cara de «servido no es publicado»: el 2026-10-24, el
+  `.htaccess` del portal **commiteado y desplegado en verde** que el transporte excluía y nunca
+  llegó al servidor; y el 2026-11-08, un script que **el hospedaje inyecta** en 454 bytes después de
+  `</body>` en las ochenta y cuatro páginas publicadas, que nadie commiteó y que `build/terceros.mjs`
+  no podía ver —dijo «0 hallazgos» esa misma mañana, y era verdad, porque lee el **árbol**—. La sonda
+  (`node build/sonda_publicado.mjs`) va **de la red al árbol**: le pide las páginas a producción, les
+  **resta las inyecciones que el inventario declara** y exige que lo que quede sea byte a byte el
+  archivo del árbol; que ninguna página servida ejecute un host que el inventario no declare; y —al
+  revés— que una inyección declarada que **ya no aparezca** también caiga, porque una declaración que
+  dejó de ser cierta es la copia vencida de siempre. No va en `build/build.mjs` y no va a ir: la
+  construcción corre sin red. Va en el paso de publicación y en `.github/workflows/sonda.yml` con
+  **cron semanal**, porque lo que vigila **cambia sin un commit**. Y lo que la sonda no ve —lo que un
+  script agrega en tiempo de ejecución— lo contesta `node tests/e2e_produccion.mjs` en un navegador
+  de verdad (`CQ-21.1`), donde un host ajeno **no** es automáticamente un fallo: lo que se exige es
+  que esté **declarado**.
+- **Un tercero que el hospedaje impone se declara como impuesto, y es una columna del dato**
+  (D-094). `vendor/terceros.json` lleva `provenance` —`chosen_by_the_method` o
+  `imposed_by_the_hosting`—, y la entrada impuesta trae lo que de ella sí se puede declarar: el
+  bloque **transcripto** desde producción y no tipeado, su tamaño **derivado** del bloque, qué
+  metadatos manda, y tres hechos como campos —el método no lo escribió, no lo sirve y no puede
+  impedirlo—. La comprobación `[F]` de `build/terceros.mjs` exige uno más, que es el que distingue
+  **declarar** de **aceptar para siempre**: si el método no puede impedirlo, la decisión tiene que
+  nombrar su **salida** con el criterio para verificarla. Sin esa columna, un inventario cumple la
+  regla por la forma y la incumple por el fondo.
+
 - **La distinción entre el método, el protocolo y la herramienta se escribe arriba, en el README**
   (D-059, D-063, PND-022). El método es qué hacer en qué orden, qué exigirle a quien construye y
   cómo saber que entregó completo, y se sigue con cualquier asistente o con lápiz y papel; el

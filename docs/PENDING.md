@@ -10154,14 +10154,19 @@ el hospedaje agrega **es algo que el sistema ejecuta**.
   una decisión legítima por entrada: lo que la regla prohíbe es el privilegio **no declarado**, no el
   privilegio.
 
-**Criterio de aceptación.** Dos partes, y la segunda es la que importa, porque cualquiera de las tres
-salidas sin ella deja el mismo defecto esperando:
+**Criterio de aceptación.** Dos partes, y **el orden lo corrigió el dueño**: yo había puesto la
+comprobación de red segunda, porque la inyección es lo visible, y su razón para ponerla primera es la
+que manda —*«es lo único que vuelve verificable a cualquiera de las cuatro salidas. Sin ella,
+declarar es una promesa, pedir el apagado es un pedido sin acuse, y mudar es una mudanza que nadie
+vuelve a mirar»*—. Es `CQ-22` aplicada a este caso: lo que falta no es la medición, es el contraste.
 
-1. Las páginas publicadas, **tal como se sirven**, no ejecutan nada de un host ajeno; o el inventario
-   lo declara con su privilegio y su decisión, y `docs/THIRD_PARTY_EXECUTION.md` lo nombra.
-2. Y hay una comprobación que **le pregunta a producción por red** —qué recursos baja un navegador de
-   verdad, no qué dice el árbol— y que cae si aparece un host que el inventario no declara. Sin eso,
-   la salida (a) es un pedido sin recibo y la (c) es una declaración que nadie vuelve a contrastar.
+1. Hay una comprobación que **le pregunta a producción por red** —qué recibe y qué baja un navegador
+   de verdad, no qué dice el árbol— y que cae si aparece un host que el inventario no declara, si lo
+   servido deja de ser lo del árbol, **y también si una inyección declarada ya no está**, porque una
+   declaración que dejó de ser cierta es la copia vencida de siempre.
+2. Y las páginas publicadas, **tal como se sirven**, no ejecutan nada de un host ajeno; o el
+   inventario lo declara con su privilegio, su procedencia y su decisión, y
+   `docs/THIRD_PARTY_EXECUTION.md` lo nombra.
 
 **Criterios de aceptación por perfil (Anexo H, ancla 1).**
 
@@ -10173,17 +10178,158 @@ salidas sin ella deja el mismo defecto esperando:
 - *P6 (agente que trabaja el repositorio):* dado un host nuevo en lo servido, cuando corre la cadena
   o la verificación de publicación, entonces algo cae y nombra el host.
 
-**Qué bloquea, y qué no.** No lo propongo como proyecto previo: la estación N0 ya cerró con `go` el
-2026-11-08 y no voy a reabrirla por mi cuenta. Entra como **pendiente común bloqueante**, y lo que
-bloquea, con fecha de entrada **2026-11-08**, es afirmar que este repositorio cumple
-`docs/THIRD_PARTY_EXECUTION.md`: ninguna evidencia futura puede usar esa frase mientras esto esté
-abierto. Lo que el dueño sí tiene para decidir es si el verde del **prerrequisito 7 de N0** se
-sostiene: su evidencia miró el árbol, y medido contra lo servido estaba incompleta. Si decide que no
-se sostiene, el prerrequisito vuelve a rojo y esta entrada pasa a ser su segundo proyecto previo,
-junto con `PND-121`.
+**La decisión del dueño, el 2026-11-08: la salida (4) y después la (2)**, o sea declarar ahora para
+que lo publicado no mienta hoy, y mudar el hospedaje después. Sus palabras: *«Coincido con tu
+recomendación y con tu razón (...) Y el paralelo que trazás con `PND-120` es exacto y me obliga a ser
+consistente: elegí (b) allá porque lo publicado no depende de que alguien respete un pedido. El mismo
+argumento vale acá, así que (2) y no (1).»* Y tres precisiones que cambian cómo se ejecuta, que son
+las que hacen la diferencia entre esta entrada y una declaración de trámite:
 
-**Depende de:** nada. Las tres salidas son independientes y ninguna necesita a `PND-121`. La parte 2
-del criterio de aceptación es del repositorio del método; la salida que se elija, de los dos.
+1. **La comprobación de red es la parte 1 y no la 2**, por lo que está escrito arriba.
+2. **La (2) traslada la clase, no la elimina.** Mudar el hospedaje saca a *este* proveedor, no a
+   cualquier hospedaje que inyecte, y el próximo puede empezar a hacerlo sin avisar igual que éste.
+   Así que el criterio para elegir el nuevo **no es «otro»**: es uno que sirva los bytes del árbol
+   sin agregar nada, **verificado por la misma sonda antes de mudar y después de mudar**. *«Si la
+   sonda no corre contra el candidato, la mudanza es un cambio de proveedor con la misma exposición y
+   un commit de confianza.»*
+3. **La declaración tiene que decir que no lo controlamos.** *«Declarar "ejecutamos `tccl.min.js`,
+   decisión: aceptado" sería cierto del campo y falso del hecho —y ya sabemos cómo se llama eso—. La
+   entrada tiene que decir la verdad completa: el hospedaje inyecta 454 bytes que el método no
+   escribió, no controla y hoy no puede impedir (...) alguien que lea el inventario tiene que poder
+   distinguir **un tercero que elegimos** de **uno que nos pusieron**. Si el formato del inventario
+   no tiene esa columna, ésa es la deuda que el hallazgo deja, y vale más que el hallazgo.»*
+
+**El dato que el dueño agregó, y sube el precio de demorarlo.** El bloque no sólo carga un script
+ajeno: **manda metadatos del hospedaje** —servidor, centro de datos, identificador de cuenta— y el
+script ve la IP y la navegación de **cada persona que lee la norma**. Un sitio que publica una regla
+sobre privilegio y acceso está entregando a sus lectores a un tercero que ninguna decisión puso ahí.
+
+**Lo hecho el 2026-11-08, con su evidencia medida.** Las dos partes del criterio, en el orden que el
+dueño puso, y la columna que la precisión 3 pedía:
+
+- **La sonda, primero.** `build/sonda_publicado.mjs` le pide a producción las páginas publicadas, les
+  **resta las inyecciones que el inventario declara** y exige que lo que quede sea byte a byte el
+  archivo del árbol; que ninguna página servida ejecute un host sin declarar; que ninguna referencia
+  relativa falte del árbol; que una inyección declarada que desapareció **también** caiga; y que los
+  recursos publicados bajen con la huella que declaran. No haber podido leer una página es rojo y
+  nunca verde (D-057). Su rojo **no es de laboratorio**: contra la misma producción, antes de
+  declarar nada, dio **168 hallazgos y código de salida 1** —84 de `[S2]` y 84 de `[S3]`, recibo
+  `RCP-144`, 84 páginas pedidas por red y 14.228.414 bytes leídos—. Después de declarar, contra la
+  **misma** producción: **0 hallazgos**, con la inyección encontrada en las 84. Y once rojos
+  deliberados, uno por cara, entre ellos **las dos caras de «servido no es publicado»**: la de más
+  bytes (algo que nadie commiteó y llega) y la de menos bytes (algo commiteado que no llega), que es
+  la que nunca había tenido guarda.
+- **La pata del navegador**, que es lo que la sonda no puede ver: `tests/e2e_produccion.mjs`, en un
+  Edge real contra la página publicada. Y con la regla cambiada a propósito: un host ajeno ya **no**
+  es automáticamente un fallo —lo que se exige es que esté declarado con su procedencia y su
+  decisión—, que es la misma regla que el resto del método. **5 de 5**, recibo `RCP-145`, y un dato
+  nuevo adentro: detrás de ese script, el navegador **no bajó nada más** ese día.
+- **El calendario**, que es lo que impide que esto se venza. La sonda corre en el paso de publicación
+  y además en un flujo propio con cron semanal, porque **lo que vigila cambia sin un commit**: el día
+  que el proveedor agregue, cambie o apague su bloque no va a haber nada en el árbol que dispare
+  nada. Es el reporte cíclico de los peldaños 21 y 22 aplicado al propio repositorio.
+- **La columna, que es la deuda que el dueño nombró.** El inventario gana `provenance`
+  —`chosen_by_the_method` o `imposed_by_the_hosting`— y la entrada impuesta lleva lo que de ella
+  **sí** se puede declarar: el bloque de 454 bytes **transcripto** desde producción y no tipeado, su
+  tamaño **derivado** del bloque, dónde y en qué páginas se inyecta, lo que el proveedor dice,
+  qué metadatos manda, y tres hechos escritos como campos: el método **no lo escribió**, **no lo
+  sirve** y **no puede impedirlo**. La guarda `[F]` de `build/terceros.mjs` los exige, y exige uno
+  más que es el que distingue declarar de aceptar para siempre: si el método no puede impedirlo, la
+  decisión **tiene que nombrar su salida** con el criterio para verificarla. Las dos cifras nuevas de
+  la cabecera del documento —cuántas elegidas y cuántas impuestas— son **derivadas** y no escritas.
+- **Y la guarda vieja quedó diciendo lo que no puede ver**, en su propia cabecera y en el documento
+  publicado: `build/terceros.mjs` lee el árbol, y el 2026-11-08 dijo «0 hallazgos» —con razón— la
+  misma mañana en que las 84 páginas servidas ejecutaban el script del hospedaje. Una guarda que no
+  declara su ceguera la hereda el que la lea.
+
+**Lo que falta, y es por qué esto sigue abierto y bloqueante:** la salida **(2)**, la mudanza del
+hospedaje, con el criterio de la precisión 2 —la sonda corrida contra el candidato antes, y contra
+producción después—. Mientras eso no pase, lo publicado sigue ejecutando un tercero que el método no
+eligió; la diferencia con ayer es que ahora **está declarado, con su salida nombrada, y hay una
+máquina que vuelve a preguntar todas las semanas**.
+
+**Qué bloquea, y qué no.** No lo propuse como proyecto previo: la estación N0 ya cerró con `go` el
+2026-11-08 y no la reabrí por mi cuenta. Entra como **pendiente común bloqueante**, y lo que bloquea,
+con fecha de entrada **2026-11-08**, es afirmar que este repositorio cumple
+`docs/THIRD_PARTY_EXECUTION.md` **del lado de lo servido**: ninguna evidencia futura puede usar esa
+frase mientras la mudanza no esté hecha. **Y el dueño decidió no reabrir N0**, con la misma razón con
+la que no reabrió los veinticuatro peldaños del brazo: *«un registro que se reescribe no es un
+registro»*. Lo que se informa es la cifra **con su condición**, que es `CQ-22.2`: **N0 cerró con `go`
+sobre una verificación que miró el árbol y no la red**. Esa condición quedó escrita en
+`docs/ELIGIBILITY.md`, al lado del verde del prerrequisito 7, sin tocar el verde.
+
+**Depende de:** nada. La mudanza no necesita a `PND-121` ni a `PND-124`. La parte 1 del criterio de
+aceptación quedó hecha el 2026-11-08 y es del repositorio del método; la salida que falta es de los
+dos.
+
+---
+
+## PND-124 — «Servido no es publicado» es la regla que sale de esta semana, con sus dos caras medidas, y no existe como regla del método *(propia, del cierre de `PND-123`; la frase es del dueño; destino: método)*
+
+- **Nodo:** `corpus/anexo-h` [nodo propuesto]
+- **Origen:** propia, el 2026-11-08, del cierre de `PND-123`, y el dueño la pidió con estas palabras:
+  *«Eso no es mala suerte: es la regla funcionando. Una norma que no se rompe a sí misma en la primera
+  semana es una norma que nadie probó. Y las dos roturas señalan al mismo hueco, que vos ya nombraste
+  mejor que yo: **servido no es publicado**. (...) Ésa es la regla que sale de esta semana, y me parece
+  más importante que `PND-123` mismo. Si la ves entera, traela.»*
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño. Entra como **regla nueva** del Anexo H con su procedencia y sus caras,
+  así que **sube la versión del catálogo**, y eso es suyo por la misma razón que en `PND-122`.
+- **Estado: abierto.**
+
+**La regla, entera, como la veo.** Toda afirmación sobre lo que un sistema publica se verifica contra
+**lo que se sirve**, por red, y no contra el repositorio. Una comprobación que sólo lee el árbol no la
+puede establecer, **en ninguna de las dos direcciones**, y eso no es una hipótesis: es lo que este
+repositorio midió dos veces en dos semanas, una por cada cara.
+
+| cara | medido | qué falló |
+|---|---|---|
+| algo **commiteado** que no llega al lector | 2026-10-24 | el `.htaccess` del portal estuvo commiteado y desplegado en verde; el transporte del portal lo excluía y nunca llegó al servidor. Lo encontró una persona preguntándose por qué la interfaz de datos no era legible. |
+| algo que **nadie commiteó** y sí llega | 2026-11-08 | el hospedaje inyecta 454 bytes con un script ajeno en las 84 páginas publicadas. `build/terceros.mjs` dijo «0 hallazgos» la misma mañana, y era verdad: lee el árbol. |
+
+Las dos son la misma frase de D-057 leída por sus dos lados, y la segunda es la que **ninguna guarda
+del método podía ver**, porque todas van del dato a la prosa, de la prosa al dato o del árbol a la
+red. La que faltaba va **de la red al árbol**, y es la misma ausencia que `PND-122` nombra para otra
+cosa: hay direcciones del contraste que nadie recorrió.
+
+**Propuesta de enunciado, para que el dueño decida sobre texto y no sobre una idea.** En inglés y
+ASCII, que es como va el nivel de datos (D-051), con cuatro caras porque cada una se puede apagar
+sola y apagarlas juntas sería apagar demasiado:
+
+> **CQ-25 — What a system publishes is verified against WHAT IS SERVED, over the network, not against
+> the repository.** A check that only reads the tree cannot establish it in either direction:
+> something committed may never reach the reader, and something nobody committed may reach them.
+> *.1* The contrast runs over the network against the published endpoint, and compares bytes, not
+> claims. *.2* It runs on a SCHEDULE and not only on a commit, because what the serving side adds
+> changes with no commit. *.3* The contrast runs BOTH ways: a declaration that stopped being true
+> falls too. *.4* Not having been able to look is red and never green.
+
+**Qué entra con ella, y es lo que la hace trabajo y no una línea:** la entrada en
+`gates/heuristics.json` con su `since_schema` y su `since_version` y sus cuatro caras; el enunciado en
+el Anexo H en los **ocho idiomas**, que es la única copia del texto porque el build lo extrae (D-044);
+las dos caras medidas como **referencias propias** en `docs/REFERENCIAS.md`, numeradas, porque los
+casos reales no van en el enunciado; el contrato del peldaño que la ancle diciendo que el inventario
+del peldaño 14 **se verifica contra lo servido** —que es el criterio *P5* que `PND-123` dejó escrito—;
+y la versión del catálogo con su `content_hash` y su línea de changelog append-only.
+
+**Por qué no la escribí yo, además de la versión.** Escribir el enunciado en los ocho idiomas antes de
+que el dueño decida las palabras habría dejado una **tercera copia** del mismo hecho para reconciliar
+—la de `PND-123`, la del Anexo H y la del contrato—, que es exactamente la familia que D-044, D-077 y
+D-090 persiguen. La regla ya está **hecha cumplir por una máquina** en este repositorio desde el
+2026-11-08; lo que falta es que esté **escrita como regla del método** para que la cumplan los demás.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado el Anexo H, cuando busca qué exige el método sobre lo publicado,
+  entonces encuentra la regla con sus caras y con los dos casos que la originaron, fechados.
+- *P5 (lector que adapta el método):* dado su propio sistema, cuando llega al peldaño que la ancla,
+  entonces el contrato le dice que lo verifique **contra lo servido**, y cómo.
+- *P6 (agente que trabaja el repositorio):* dada la regla publicada, cuando una compuerta pregunta
+  por ella, entonces el dato la declara con su identificador y sus caras, y el enunciado tiene **una
+  sola copia**.
+
+**Depende de:** nada. Es independiente de la mudanza de `PND-123`: la sonda que la hace cumplir acá ya
+existe y la regla sigue siendo cierta con cualquier hospedaje.
 
 ---
 ---
@@ -10202,11 +10348,11 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 17 | 13 | 4 | 3 |
 | G-PUBLICACION | 8 | 1 | 7 | 1 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 58 | 25 | 33 | 12 |
+| G-METODO | 59 | 26 | 33 | 12 |
 | G-TRAZABILIDAD | 8 | 3 | 5 | 0 |
-| **total** | **123** | **48** | **75** | **17** |
+| **total** | **124** | **49** | **75** | **17** |
 
-Ciento veintitres entradas, `PND-001` a `PND-123`. Veintidós vienen de la auditoría externa
+Ciento veinticuatro entradas, `PND-001` a `PND-124`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -10280,6 +10426,18 @@ exige, fui a comprobarlo antes de escribir el hallazgo y el dato sí la exige �
 ninguna de las ocho estaciones existe para una máquina**, por construcción. Es `CQ-19.3` —el universo
 en una sola dirección— aplicado a las rutas: las guardas de este repositorio van del dato hacia la
 prosa y ninguna va de la prosa hacia el dato.
+
+Y **las dos últimas son la mejor cosa que pasó esta semana**, aunque leídas de afuera parezcan lo
+contrario. `PND-123` salió de verificar `PND-120` **contra producción** minutos después de fusionar:
+la mudanza del tercero funcionó y, al preguntarle al navegador qué había bajado, apareció **otro**
+—un script que el hospedaje inyecta en las ochenta y cuatro páginas publicadas, que nadie commiteó y
+que ninguna guarda del método podía ver, porque todas leen el árbol—. En dos días, el método publicó
+la exigencia del inventario de terceros y **su propio sitio la incumplió dos veces**. El dueño lo dijo
+mejor que yo: *«eso no es mala suerte, es la regla funcionando; una norma que no se rompe a sí misma
+en la primera semana es una norma que nadie probó»*. Y `PND-124` es lo que queda cuando se mira el
+hueco en vez del defecto: las dos roturas —el `.htaccess` del 24 de octubre y esto— son **las dos
+caras de la misma frase**, servido no es publicado, y la regla que las nombra todavía no existe como
+regla del método. Esa entrada es suya, porque sube la versión del catálogo.
 
 `PND-059` es el cuarto desvío propio y el más incómodo de los cuatro, porque es la misma familia
 que `PND-056` —un texto publicado que apunta a algo que el publicado no tiene— cometida **un día
