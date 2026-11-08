@@ -10066,6 +10066,125 @@ artefactos.
 
 **Depende de:** nada. El arreglo sube la versión del catálogo y es del dueño.
 
+## PND-123 — El hospedaje inyecta un tercero en las ochenta y cuatro páginas publicadas, después de `</body>`: lo que el lector ejecuta tiene 454 bytes que el método no escribió, y la guarda mira el árbol *(propia, medida contra producción al verificar D-093 después de fusionar; destino: los dos)*
+
+- **Nodo:** `corpus/publicacion` [nodo propuesto]
+- **Origen:** propia, el 2026-11-08, de verificar D-093 **contra producción** —no contra el árbol, no
+  contra el log del despliegue— minutos después de fusionar el PR #42 y de que el portal desplegara.
+  La sonda pasó cuatro de sus cinco comprobaciones en un Edge de verdad; la que cayó es exactamente
+  la que D-093 vino a garantizar: que el navegador del lector no sale a ningún host ajeno. Mudar
+  `mermaid` al propio sitio funcionó —ése se sirve de acá, con su huella recalculada por el
+  navegador— y descubrió que había **otro** tercero, que ninguna decisión del método puso ahí.
+- **Grupo:** G-PUBLICACION · **Severidad:** bloquea · **Repositorio:** los dos
+- **Quién decide:** el dueño, entre las tres salidas de abajo. Una es un pedido al proveedor de
+  hospedaje, otra es mudar el hospedaje y la tercera es declarar la inyección en el inventario: las
+  tres son decisiones suyas y ninguna es técnica.
+- **Estado: abierto.**
+
+**Qué está mal, medido el 2026-11-08 contra `https://yujin.app/urazuke/docs/`.**
+
+| qué | medido |
+|---|---|
+| qué ejecuta el lector y el método no escribió | `https://img1.wsimg.com/traffic-assets/js/tccl.min.js` |
+| en cuántas páginas publicadas | **84 de 84** — todas, no sólo la página insignia |
+| bytes que el servidor agrega a cada página | **454**, siempre los mismos |
+| dónde los pone | **después de `</body>`**, antes de `</html>` |
+| menciones de ese host en el árbol commiteado | **cero** en los 84 archivos |
+| quién se declara como origen, en el propio bloque inyectado | `tccl.baseHost: secureserver.net`, `server: p3plzcpnl505172` |
+| integridad declarada (SRI) | **ninguna** |
+| inventario con su privilegio y su decisión | **no existe**: `vendor/terceros.json` tiene una entrada y es `mermaid` |
+| la interfaz de datos (`api/*.json`) | **intacta**: los cuatro recursos bajan byte a byte iguales al árbol |
+
+Que la interfaz de datos esté intacta no es consuelo, es el diagnóstico: la inyección la hace el
+servidor **sobre el HTML**, así que alcanza a todo lo legible y a nada de lo que una máquina pide.
+
+**El rojo, pegado tal cual.** Recibo `RCP-142`, contra `2c322df` —el commit que producción está
+sirviendo—, árbol limpio, código de salida 1:
+
+```
+otro lado: Edge real, navegado a https://yujin.app/urazuke/docs/ESCALERA_METODOLOGICA.html
+  [ok]   la pagina publicada carga -- title = "Urazuke, el método de la evidencia — la escalera metodológica (versión 4)"
+  [ok]   el tercero DIBUJO en produccion -- 1 de 1 bloques con svg
+  [FALLA] el navegador no pidio nada a un host ajeno -- 3 recursos bajados, 1 de un host ajeno: https://img1.wsimg.com/traffic-assets/js/tccl.min.js
+  [ok]   bajo el archivo que el inventario declara -- vendor/mermaid-11.17.2.min.js
+  [ok]   la huella la recalculo el navegador sobre los bytes que ejecuto -- navegador 581ed7d74bd9 / inventario 581ed7d74bd9
+--- produccion: 4 de 5
+```
+
+No es un rojo de laboratorio y no es el árbol: es lo que recibe cualquiera que abra la página ahora
+mismo, preguntándole al propio navegador por los recursos que bajó.
+
+**Y los 454 bytes, pegados tal cual**, como los sirve el servidor al final del documento. La última
+línea del comentario es la que importa, porque es la salida (a) escrita por el propio proveedor:
+
+```html
+</body><script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'p3plzcpnl505172'},{'dcenter':'p3'},{'cp_id':'10876549'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/traffic-assets/js/tccl.min.js'></script></html>
+```
+
+**Por qué ninguna guarda lo vio, y por qué eso es lo que esta entrada vale más que su arreglo.**
+`build/terceros.mjs` lee los 84 archivos **del árbol** y comprueba que ninguno nombre una dirección
+ajena. Esa misma mañana dijo *«84 paginas publicadas revisadas, 8 referencias a un tercero en 8 de
+ellas, 0 hallazgos»*, y era verdad: en el árbol no hay ninguna. La guarda es estructuralmente ciega a
+esto y lo va a seguir siendo por más entradas que se le agreguen, porque mira el lado equivocado del
+cable. Es la familia del `.htaccess` del 2026-10-24 —*«estuvo commiteado y desplegado en verde sin
+llegar nunca al servidor»*— pero **en la dirección contraria**: ahí algo commiteado no llegaba al
+lector; acá algo que nadie commiteó **sí** llega. Las dos caras de la misma frase de D-057: servido
+no es publicado. Y la mitad que falta es la misma que `PND-122` nombra para otra cosa: hay guardas
+que van del dato a la prosa y del árbol a la red, y ninguna que vaya de la red al árbol.
+
+Tampoco es una vulnerabilidad declarada: es un **privilegio no declarado**, la forma de `CQ-20`,
+igual que `PND-120`. Y vuelve a ser incómodo de la manera útil: el método publicó el 2026-11-07 la
+exigencia de `docs/THIRD_PARTY_EXECUTION.md` —el inventario del código de terceros que un sistema
+**ejecuta**, con una decisión por entrada—, el 2026-11-08 mudó el único tercero que conocía para
+cumplirla, y la verificación de esa mudanza encontró que su propio sitio ejecuta un segundo tercero
+en todas sus páginas. El cuidado que el dueño dejó escrito en `PND-120` es exactamente el que acá no
+se cumple: *«El inventario es de lo que el sistema ejecuta, no de quién lo hospeda.»* Un tercero que
+el hospedaje agrega **es algo que el sistema ejecuta**.
+
+**Las tres salidas.**
+
+- **(a) Pedirle al proveedor que lo apague.** El propio bloque inyectado dice cómo: *«If you want to
+  opt-out, please contact web hosting support.»* Es la más barata y la que depende de que un tercero
+  diga sí; y mientras no haya una comprobación que lo mire, apagarlo hoy no impide que vuelva.
+- **(b) Mudar el hospedaje** de la ruta del método a uno que sirva los bytes sin tocarlos. Es la
+  única que hace que lo publicado no dependa de que un proveedor respete un pedido, y es el mismo
+  argumento con el que el dueño eligió la (b) en `PND-120`.
+- **(c) Declarar la inyección en el inventario**, con su privilegio, su host y la decisión
+  `accepted` y la razón del dueño. Cumple la regla sin cambiar nada de lo que el lector recibe, y es
+  una decisión legítima por entrada: lo que la regla prohíbe es el privilegio **no declarado**, no el
+  privilegio.
+
+**Criterio de aceptación.** Dos partes, y la segunda es la que importa, porque cualquiera de las tres
+salidas sin ella deja el mismo defecto esperando:
+
+1. Las páginas publicadas, **tal como se sirven**, no ejecutan nada de un host ajeno; o el inventario
+   lo declara con su privilegio y su decisión, y `docs/THIRD_PARTY_EXECUTION.md` lo nombra.
+2. Y hay una comprobación que **le pregunta a producción por red** —qué recursos baja un navegador de
+   verdad, no qué dice el árbol— y que cae si aparece un host que el inventario no declara. Sin eso,
+   la salida (a) es un pedido sin recibo y la (c) es una declaración que nadie vuelve a contrastar.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado el sitio publicado, cuando pregunta qué código ajeno corre en el
+  navegador de un lector, entonces la lista está completa y cada entrada tiene su decisión suya.
+- *P5 (lector que adapta el método):* dado su propio sistema, cuando hace el inventario del peldaño
+  14, entonces encuentra dicho en el contrato que el hospedaje también inyecta, y que el inventario
+  se verifica **contra lo servido** y no contra el repositorio.
+- *P6 (agente que trabaja el repositorio):* dado un host nuevo en lo servido, cuando corre la cadena
+  o la verificación de publicación, entonces algo cae y nombra el host.
+
+**Qué bloquea, y qué no.** No lo propongo como proyecto previo: la estación N0 ya cerró con `go` el
+2026-11-08 y no voy a reabrirla por mi cuenta. Entra como **pendiente común bloqueante**, y lo que
+bloquea, con fecha de entrada **2026-11-08**, es afirmar que este repositorio cumple
+`docs/THIRD_PARTY_EXECUTION.md`: ninguna evidencia futura puede usar esa frase mientras esto esté
+abierto. Lo que el dueño sí tiene para decidir es si el verde del **prerrequisito 7 de N0** se
+sostiene: su evidencia miró el árbol, y medido contra lo servido estaba incompleta. Si decide que no
+se sostiene, el prerrequisito vuelve a rojo y esta entrada pasa a ser su segundo proyecto previo,
+junto con `PND-121`.
+
+**Depende de:** nada. Las tres salidas son independientes y ninguna necesita a `PND-121`. La parte 2
+del criterio de aceptación es del repositorio del método; la salida que se elija, de los dos.
+
 ---
 ---
 
@@ -10081,13 +10200,13 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-API | 24 | 6 | 18 | 1 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 17 | 13 | 4 | 3 |
-| G-PUBLICACION | 7 | 0 | 7 | 0 |
+| G-PUBLICACION | 8 | 1 | 7 | 1 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 58 | 25 | 33 | 12 |
 | G-TRAZABILIDAD | 8 | 3 | 5 | 0 |
-| **total** | **122** | **47** | **75** | **16** |
+| **total** | **123** | **48** | **75** | **17** |
 
-Ciento veintidos entradas, `PND-001` a `PND-122`. Veintidós vienen de la auditoría externa
+Ciento veintitres entradas, `PND-001` a `PND-123`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
