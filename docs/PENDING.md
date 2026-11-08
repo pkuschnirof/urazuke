@@ -9594,6 +9594,88 @@ instrucción y qué parte es registro**, y el registro ya tiene su lugar (`docs/
 
 ---
 
+## PND-118 — La propiedad estaba definida sobre el pendiente y no sobre la copia de trabajo: dos agentes en una carpeta y un lote entero sin commitear que desapareció *(propia, medida por un incidente del propio proyecto; destino: método)*
+
+- **Nodo:** `corpus/trabajo-colaborativo` [nodo propuesto]
+- **Origen:** propia, el 2026-11-07, de un incidente de este repositorio: dos sesiones de agente
+  abiertas sobre `C:\urazuke` al mismo tiempo, una corrió `reset --hard origin/main` para limpiar su
+  propio estado, y se llevó el lote de D-089 entero, sin commitear, a mitad de la escritura. Se
+  recuperó completo porque el trabajo estaba scriptado, pero costó una hora.
+- **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
+- **Quién decide:** el dueño, si la regla entra y dónde. Decidido el 2026-11-08: entra en
+  `docs/TRABAJO_COLABORATIVO.md`, en los ocho idiomas, y **no** en el Anexo H.
+- **Estado: CERRADO** el 2026-11-08, con D-091.
+
+**Qué estaba mal, y no es el incidente.** El incidente es la medición; el defecto es que el
+documento del trabajo colaborativo **no tenía nada que decir** sobre lo que pasó. Lo leí entero
+después, buscando la regla que se había violado, y lo que encontré fue que no hay ninguna:
+
+| regla | qué dice | por qué no cubre esto |
+|---|---|---|
+| (1) el pendiente es la unidad de propiedad | nadie trabaja sin un pendiente reclamado a su nombre | le da dueño a un *pendiente*, que vive **en el repositorio**. Lo que está en el disco y todavía no quedó en ningún commit no tiene dueño en ningún registro, y el pendiente estaba reclamado: no sirvió de nada |
+| (2) integrar chico y seguido | varias veces por día, nunca al final de la semana | habla de días y de la rama compartida. El árbol se limpió dentro del mismo turno, y un pendiente «bien cortado» de medio día igual se pierde |
+| (3) la integración continua es el árbitro | nadie integra con la cadena en rojo | el trabajo nunca llegó a la cadena |
+| la octava, sin numerar, sobre los agentes | *«cada agente trabaja a nombre de una persona (...) y lo único que comparten es lo que está escrito en el repositorio»* | **es la que falta por la mitad.** Afirma que lo único compartido es el repositorio, y eso sólo es verdad si cada agente tiene su propia copia de trabajo. El documento nunca dice que tenga que tenerla |
+
+O sea que la suposición más fuerte del documento —una copia por agente— estaba **asumida y no
+escrita**, y dos agentes sobre la misma carpeta no figuran en ninguna parte del método. Es la
+familia de `PND-053`: una exigencia que el método tiene sin decir dónde vive.
+
+**Por qué un agente no puede evitarlo solo, que es lo que lo vuelve regla y no descuido.** Un
+`reset --hard`, un `checkout` de todo o un `clean` le sirven a un agente para volver a un estado
+conocido, y es sano que los use. Lo que no puede hacer es **distinguir**: para él, el trabajo de
+media tarde del otro y su propia basura son la misma cosa, archivos sucios que no están en la rama.
+No hay señal en el árbol que los separe. Y avisarse no alcanza, porque un agente no lee la pantalla
+del otro —lo dice la misma octava regla—.
+
+**Qué entró, en los ocho idiomas (D-091).** Cuatro piezas por idioma, y ninguna toca las siete
+reglas numeradas ni el encabezado que dice siete:
+
+1. La regla, como párrafo propio detrás del párrafo que hace la suposición: **la rama se comparte;
+   la copia de trabajo no.** Una copia de trabajo, un agente; y si por la razón que sea dos tienen
+   que compartir una, entonces ninguno corre un comando que tira lo que no escribió, y cada etapa
+   queda en un commit de una rama en el momento en que cierra y no al final, porque lo único que
+   vuelve a existir después de un árbol limpiado es lo que ya estaba en un commit.
+2. El término nuevo, *copia de trabajo*, explicado en lenguaje de todos los días en el párrafo «Si
+   sos principiante», como pide D-025.
+3. Una pregunta para el líder en la verificación de completitud: *¿hay dos agentes trabajando sobre
+   la misma carpeta? Si la respuesta es sí, preguntá cuándo fue el último commit de cada uno.*
+4. Una señal de alarma, con el mecanismo: el trabajo que nunca llegó a un commit no deja rastro en
+   ninguna parte, así que no queda ni el aviso.
+
+**Dónde NO entró, y la razón importa.** No en el Anexo H. Las reglas del anexo son exigencias sobre
+el **sistema que se construye**, medidas sobre artefactos de un proyecto; ésta es una regla sobre
+**cómo trabajamos**, y meterla en el anexo la habría convertido en una compuerta sobre un proyecto
+ajeno que no tiene nada que ver. Y tampoco es `CQ-23`, que fue la primera lectura: `CQ-23` pregunta
+si un veredicto es de este trabajo y si sigue existiendo, y acá no desapareció un veredicto —
+desapareció trabajo que **nunca llegó a una compuerta**.
+
+**Lo que esta regla no promete, y está dicho.** Ninguna compuerta puede verificarla. No hay
+artefacto que mirar, porque lo que se protege es precisamente lo que todavía no existe en ningún
+commit; lo único que la hace cumplir es que esté escrita donde los dos agentes la leen, que es el
+argumento del documento entero desde su primera sección: *«esas reglas ya no las cumplen personas
+que leen el código de los demás: las cumplen agentes que no se ven entre sí, y entonces hay que
+escribirlas donde cada agente las lea»*.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado el documento del trabajo colaborativo en los ocho idiomas, cuando se
+  busca qué dice sobre dos agentes en una misma carpeta, entonces la regla está escrita, con su
+  término explicado, su pregunta de verificación y su señal de alarma. Verificado el 2026-11-08
+  sobre los ocho archivos, 178 líneas insertadas.
+- *P6 (agente que trabaja el repositorio):* dado un árbol que el agente quiere limpiar, cuando lee
+  el documento, entonces sabe que no corre ese comando si otro agente comparte la carpeta, y sabe
+  qué hacer en su lugar: dejar cada etapa en un commit de una rama cuando cierra.
+- *P5 (lector que adapta el método):* dada la octava regla sobre los agentes, cuando la lee, entonces
+  la suposición de una copia por agente está escrita y no asumida.
+
+**Depende de:** nada. El arreglo del aparato que lo haría imposible es otro trabajo y vive en la cola
+del producto (`F-09`): con dos sesiones vivas sobre la misma raíz, un `reset --hard` desde el shell
+del verbo se detiene y dice quién más tiene ese árbol abierto. Esta entrada es la mitad del método y
+no espera a la otra.
+
+---
+
 # Resumen del estado
 
 *Contado por máquina y no a mano: `tests/pending_resumen.test.mjs` cuenta las entradas del propio
@@ -9608,11 +9690,11 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 17 | 13 | 4 | 3 |
 | G-PUBLICACION | 6 | 0 | 6 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 55 | 23 | 32 | 11 |
+| G-METODO | 56 | 23 | 33 | 11 |
 | G-TRAZABILIDAD | 7 | 3 | 4 | 0 |
-| **total** | **117** | **45** | **72** | **15** |
+| **total** | **118** | **45** | **73** | **15** |
 
-Ciento diecisiete entradas, `PND-001` a `PND-117`. Veintidós vienen de la auditoría externa
+Ciento dieciocho entradas, `PND-001` a `PND-118`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -9644,6 +9726,15 @@ siete porque la correccion anterior se hizo en siete de los ocho idiomas —y qu
 guardas puede ver, por la razon que cada una declara—, y `PND-117`, el único que no es del metodo
 mirandose a si mismo sino del producto midiendolo: el `CLAUDE.md` de este repositorio mide 38.571
 tokens contra un tope de 8.000, y eso se paga en cada llamada de cada sesion.
+
+Y `PND-118` no la trajo una auditoria ni una relectura: la trajo un **incidente de este mismo
+repositorio**, el mismo dia, con dos sesiones de agente abiertas sobre la misma carpeta y un `reset
+--hard` que se llevo el lote de D-089 sin commitear. Lo que la vuelve una entrada del metodo y no
+una anecdota del aparato es lo que aparecio al buscar la regla violada: no habia ninguna. La regla
+(1) del trabajo colaborativo define la propiedad de un **pendiente**, que vive en el repositorio, y
+la octava regla afirma que lo unico compartido es lo que esta escrito ahi --lo cual solo es cierto si
+cada agente tiene su propia copia de trabajo, cosa que el documento nunca exigio--. Es la familia de
+`PND-053`: una exigencia que el metodo tiene sin decir donde vive.
 
 `PND-059` es el cuarto desvío propio y el más incómodo de los cuatro, porque es la misma familia
 que `PND-056` —un texto publicado que apunta a algo que el publicado no tiene— cometida **un día
