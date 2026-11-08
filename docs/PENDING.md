@@ -9709,6 +9709,97 @@ del producto (`F-09`): con dos sesiones vivas sobre la misma raíz, un `reset --
 del verbo se detiene y dice quién más tiene ese árbol abierto. Esta entrada es la mitad del método y
 no espera a la otra.
 
+
+## PND-119 — Al recortar cuatro lotes a su obligación, la obligación quedó escrita en dos archivos; y una obligación, al revés que una cifra, no se puede derivar de ningún dato *(propia, declarada en el corte de D-092 y convertida en pendiente por el dueño antes de autorizar la fusión; destino: método)*
+
+- **Nodo:** `corpus/instruccion-del-repositorio` [nodo propuesto]
+- **Origen:** propia, el 2026-11-08, del corte de D-092. De las diecisiete secciones que se movieron
+  a `docs/CONTEXTO_DEL_REPOSITORIO.md`, trece se mudaron **enteras** y en `CLAUDE.md` quedó sólo el
+  puntero; las otras cuatro quedaron **recortadas a su obligación**, y entonces la obligación está en
+  los dos archivos. Lo escribí en el archivo nuevo en vez de dejarlo pasar —*«el costo de esta forma
+  va declarado y no escondido (...) si una obligación cambia, cambia en los dos»*— y el dueño leyó esa
+  frase y la convirtió en pendiente antes de fusionar: *«Eso es `PND-115` otra vez, con otro
+  contenido. Una cuenta copiada en la prosa se vence; una obligación copiada en dos archivos diverge.
+  La diferencia es que la cuenta la podías derivar del dato y la obligación no, así que (b) no está
+  disponible y la salida tiene que ser otra. Lo valioso es que lo declaraste en el archivo en vez de
+  dejarlo pasar, y por eso lo trato como deuda registrada y no como defecto. Que quede con su
+  pendiente y fusiona.»* (2026-11-08)
+- **Grupo:** G-TRAZABILIDAD · **Severidad:** registra · **Repositorio:** método
+- **Quién decide:** el dueño, cuál de las salidas. La medición no la decide nadie: está abajo.
+- **Estado: abierto.**
+
+**Qué está mal, y no es el corte.** El corte estuvo bien y tiene su comprobación: las veinticuatro
+secciones originales están intactas o idénticas, 24 de 24. El defecto es lo que el corte dejó
+atrás en cuatro de ellas. En las trece mudadas enteras hay **una sola copia** de cada hecho y el
+puntero no afirma nada; en estas cuatro hay **dos copias de la misma exigencia**, una compacta en el
+archivo que el agente obedece y una completa en el que consulta, y nada obliga a que digan lo mismo.
+
+**La medición, propia y reproducida el 2026-11-08.** Conté las oraciones de obligación de cada una
+de las cuatro en los dos archivos, y cuántas de las de `CLAUDE.md` aparecen **palabra por palabra**
+en `CONTEXTO_DEL_REPOSITORIO.md`:
+
+| sección recortada | `CLAUDE.md` | `CONTEXTO` | oraciones de obligación | idénticas en los dos |
+|---|---:|---:|---:|---:|
+| El registro de pendientes (`docs/PENDING.md`) | 18 líneas, 264 palabras | 31 líneas, 479 palabras | 11 | **1** |
+| El rojo como recibo, las pruebas de mutación y los trabajos relacionados | 12 líneas, 154 palabras | 21 líneas, 295 palabras | 8 | **1** |
+| La forma de la pregunta (UX-28) | 17 líneas, 239 palabras | 25 líneas, 336 palabras | 10 | **4** |
+| Los prompts del curso son una versión didáctica declarada | 16 líneas, 242 palabras | 32 líneas, 465 palabras | 12 | **5** |
+| **total** | **63 líneas, 899 palabras** | **109 líneas, 1.575 palabras** | **41** | **11** |
+
+**Y el número que importa es el otro: 30.** Las once idénticas son las menos peligrosas, porque una
+comparación byte a byte las puede vigilar. Las **treinta** restantes son la misma obligación dicha de
+otra manera en cada archivo —la compacta es una reescritura, no un recorte literal— y entonces
+ninguna comparación las puede emparejar: si una de las dos cambia, la otra se queda y nadie lo ve.
+Es, exactamente, la forma de `PND-116`: lo que ninguna guarda mira porque no hay dos textos iguales
+que contrastar.
+
+**Por qué la salida de `PND-115` no sirve acá, que es lo que el dueño separó bien.** Aquella se
+cerró sacando la cifra de la prosa y dejando que el dato la declare una vez (`heuristics.counts`),
+porque una cuenta **se deriva**. Una obligación no sale de ningún dato: es prosa normativa, y no hay
+un `obligations.json` del que se pueda calcular «cada commit cita su pendiente y lleva sólo lo que su
+mensaje nombra». Así que la familia es la misma y el remedio no puede serlo.
+
+**Las salidas que veo, con su costo, para que el dueño elija.**
+
+1. **Una sola copia y el build la extrae** —la forma que este repositorio ya usa para el Anexo H, donde
+   el enunciado de cada regla vive una vez y la construcción lo extrae a lo publicado—. Acá sería:
+   marcar en `CONTEXTO_DEL_REPOSITORIO.md` el párrafo de obligación de cada una de las cuatro, y que
+   la sección de `CLAUDE.md` **se genere** desde ahí con su guarda y su línea medida, como se genera
+   `docs/COMPUERTAS.md`. Costo: `CLAUDE.md` deja de escribirse a mano en esas cuatro secciones.
+2. **Una comprobación de contención:** exigir que cada oración de obligación de `CLAUDE.md` sea
+   subcadena literal de `CONTEXTO`. Costo: obliga a que la versión compacta sea un **recorte** y no
+   una reescritura, y las cuatro compactas de hoy son reescrituras porque así se leen mejor; treinta
+   oraciones habría que empeorarlas para que la guarda pueda mirarlas.
+3. **Borrar las cuatro de `CONTEXTO`** y afirmar que su relato ya vive en `DECISIONES.md`. Es cierto
+   —D-033, D-034, D-066, D-070 y D-085 tienen su entrada— pero es una equivalencia que no se puede
+   verificar byte a byte, y entonces «no se perdió nada» dejaría de ser un hecho comprobado para ser
+   una creencia. Esta ya se evaluó y se rechazó en el corte, y queda acá para que la decisión tenga
+   las tres delante.
+
+**Mi recomendación es la 1**, por una razón que no es de gusto: es la única de las tres en la que la
+obligación vuelve a tener **una sola copia**, que es lo que D-044, D-077 y D-090 sostienen cada una en
+su terreno; las otras dos conviven con las dos copias y sólo cambian quién paga el costo.
+
+**Lo que esta entrada no promete.** No promete que las cuatro compactas de hoy **digan** lo mismo que
+sus completas: no lo verifiqué oración por oración y no lo voy a afirmar. Lo medido es la estructura
+—dos copias, 41 oraciones, 11 emparejables— y no la equivalencia de su contenido. Afirmar lo segundo
+sin leerlas las cuatro contra las cuatro sería la clase de verde que este registro no acepta.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado el archivo de instrucciones y el del contexto, cuando se cambia una
+  obligación de las cuatro recortadas, entonces hay **un solo lugar** donde cambiarla, o una guarda
+  con su línea medida que cae si los dos textos se separan.
+- *P6 (agente que trabaja el repositorio):* dada una obligación de las cuatro, cuando el agente la
+  lee en `CLAUDE.md`, entonces no necesita abrir el otro archivo para saber si está vigente.
+- *P5 (lector que adapta el método):* dado el corte de un archivo de instrucciones largo, cuando lee
+  cómo se hizo acá, entonces encuentra declarado el costo de recortar en vez de mudar, y qué se hizo
+  con él.
+
+**Depende de:** nada. Es deuda registrada y no bloquea: las cuatro obligaciones están hoy escritas y
+vigentes en los dos archivos, y lo que esta entrada persigue es que sigan coincidiendo mañana.
+
+---
 ---
 
 # Resumen del estado
@@ -9726,10 +9817,10 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-PUBLICACION | 6 | 0 | 6 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 56 | 23 | 33 | 11 |
-| G-TRAZABILIDAD | 7 | 2 | 5 | 0 |
-| **total** | **118** | **44** | **74** | **15** |
+| G-TRAZABILIDAD | 8 | 3 | 5 | 0 |
+| **total** | **119** | **45** | **74** | **15** |
 
-Ciento dieciocho entradas, `PND-001` a `PND-118`. Veintidós vienen de la auditoría externa
+Ciento diecinueve entradas, `PND-001` a `PND-119`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,
@@ -9774,6 +9865,16 @@ una anecdota del aparato es lo que aparecio al buscar la regla violada: no habia
 la octava regla afirma que lo unico compartido es lo que esta escrito ahi --lo cual solo es cierto si
 cada agente tiene su propia copia de trabajo, cosa que el documento nunca exigio--. Es la familia de
 `PND-053`: una exigencia que el metodo tiene sin decir donde vive.
+
+Y `PND-119` la trajo el **propio corte** de la anterior, que es el origen que más conviene registrar:
+no la encontró una auditoría ni un lector, la declaró el trabajo mientras se hacía. De las diecisiete
+secciones mudadas, cuatro se recortaron a su obligación y entonces esa obligación quedó escrita en
+los dos archivos; lo escribí como costo declarado en el archivo nuevo y el dueño convirtió esa frase
+en pendiente antes de autorizar la fusión. Es la familia de `PND-115` con una diferencia que cambia
+el remedio: una cuenta se deriva del dato y una obligación no sale de ningún dato, así que la salida
+de aquélla —sacarla de la prosa— acá no existe. Medido: cuarenta y una oraciones de obligación, once
+idénticas en los dos archivos y **treinta** que dicen lo mismo con otras palabras, que son las que
+ninguna comparación puede emparejar.
 
 `PND-059` es el cuarto desvío propio y el más incómodo de los cuatro, porque es la misma familia
 que `PND-056` —un texto publicado que apunta a algo que el publicado no tiene— cometida **un día
