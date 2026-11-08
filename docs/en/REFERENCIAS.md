@@ -423,12 +423,53 @@ it, that NAC3 is not mandatory: what is mandatory is testing from the execution 
 
 ---
 
-## E. Complete chronologies
+## E. The method's own repository: Urazuke applied to itself (October and November 2026)
+
+The two cases that follow do not come from a client's system: they come from the repository of this
+method, applying itself to its own publication. They go together because they are **the two
+directions of a single sentence** -- "served is not published" -- and rule `CQ-25` of Annex H came
+out of both.
+
+### Ref. 47 — What was committed and did not reach the server: a green deployment and seven checks in red (24 October)
+
+The configuration file that makes the published data interface legible was committed (`fd1270e`) and
+the portal deployment closed **green** in twenty-one seconds (run `40130433403`). Production still
+had its seven checks in red: the index address answered 403 and none of the three files returned the
+header a browser from another origin needs. The cause was an unanchored pattern in the transport
+-- `--exclude='.htaccess'` instead of `--exclude='/.htaccess'` -- which discarded the three
+configuration files of the repository and not only the one at the root, which was the only one meant
+to be preserved. Measured over a test tree with the same paths: with the loose pattern **zero**
+arrived; with the anchored one, **two**. It was found by a person wondering why what was published
+could not be read, not by a gate, and the reading is what stayed: **the green of a workflow is no
+proof that the configuration arrived; the proof is to ask the server.** Fixed the same day at both
+ends, with a guard that runs before deploying and its own red test (`PND-035`, closed on 2026-10-24;
+D-056).
+
+### Ref. 48 — What nobody committed and did arrive: the hosting injects a third party into the eighty-four published pages (8 November)
+
+Two weeks later, the same sentence from the other side. On 2026-11-03 the method published the
+requirement of the inventory of the third-party code a system **executes** (step 14, `CQ-22.4`); on
+2026-11-07 it moved its only third party to its own hosting in order to comply; and on 2026-11-08,
+measuring against production **over the network** and not against the tree, another one appeared
+that no decision had put there: the hosting adds **four hundred and fifty-four bytes** after the
+close of the body, with a script from a foreign host, into **the eighty-four published pages**, and
+the injected block itself declares it belongs to the hosting provider. In the committed tree there
+are **zero** mentions of that host across the eighty-four files. The guard the method already had
+for third-party code said "0 findings" that same morning, and **it was right**: it reads the tree.
+The new probe, against the same production and before anything was declared, gave **168 findings and
+exit code 1**, with the eighty-four pages asked for over the network; after declaring the injection
+with its provenance, **0 findings**. What is published still executes that third party: what changed
+is that it is declared, with its way out named, and that there is a machine asking again every week
+(`PND-123`, open and blocking; `PND-124`; D-094 and D-095).
+
+---
+
+## F. Complete chronologies
 
 I put them here in case someone wants to see the whole sequence and not a loose case. Each row
 carries the evidence as it is in the repositories.
 
-### E.1 yujin-forge
+### F.1 yujin-forge
 
 | Date | Moment | What changed | Evidence |
 |---|---|---|---|
@@ -448,7 +489,7 @@ carries the evidence as it is in the repositories.
 | 13 October | Asynchronous persistence interface | Asymmetric decision | `7391cc5` |
 | 14 October | Orphan turn of 1 h 43 → 1.18.0 | Silence watchdog, inter-process leash, 28 tests | `b80a659` |
 
-### E.2 Autorizaciones
+### F.2 Autorizaciones
 
 | Date | Moment | What it contributed | Evidence |
 |---|---|---|---|
@@ -466,7 +507,7 @@ carries the evidence as it is in the repositories.
 | 7 August | Panic button, dry-run mode, watchman | Locks | `0954740` |
 | 10 August | Domain rules in the commit | With date and owner | `0ae3ae6` |
 
-### E.3 Kikan
+### F.3 Kikan
 
 | Date | Moment | What it contributed | Evidence |
 |---|---|---|---|
@@ -488,7 +529,7 @@ carries the evidence as it is in the repositories.
 
 ---
 
-## F. Every failure, and the step that covers it
+## G. Every failure, and the step that covers it
 
 This table is, in a way, the proof of the ladder: every blow has to fall into some step. If one
 appeared that falls into none, a step would be missing.

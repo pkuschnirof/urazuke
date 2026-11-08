@@ -437,12 +437,55 @@ maintiens, que NAC3 n'est pas obligatoire : ce qui l'est, c'est de tester depuis
 
 ---
 
-## E. Chronologies complètes
+## E. Le dépôt de la méthode : Urazuke appliquée à elle-même (octobre et novembre 2026)
+
+Les deux cas qui suivent ne sortent pas du système d'un client : ils sortent du dépôt de cette
+méthode, qui s'applique à sa propre publication. Ils vont ensemble parce qu'ils sont **les deux
+directions d'une seule phrase** —«servi n'est pas publié»— et que la règle `CQ-25` de l'Annexe H est
+sortie des deux.
+
+### Ref. 47 — Ce qui était commité et n'arrivait pas au serveur : déploiement au vert et sept vérifications au rouge (24 octobre)
+
+Le fichier de configuration qui rend lisible l'interface de données publiée était commité
+(`fd1270e`) et le déploiement du portail a fermé **au vert** en vingt et une secondes (exécution
+`40130433403`). La production avait toujours ses sept vérifications au rouge : l'adresse de l'index
+répondait 403 et aucun des trois fichiers ne renvoyait l'en-tête dont un navigateur d'une autre
+origine a besoin. La cause était un motif du transport non ancré —`--exclude='.htaccess'` au lieu de
+`--exclude='/.htaccess'`— qui écartait les trois fichiers de configuration du dépôt et non seulement
+celui de la racine, qui était le seul que l'on voulait préserver. Mesuré sur un arbre de test avec
+les mêmes chemins : avec le motif libre il en est arrivé **zéro** ; avec le motif ancré, **deux**.
+C'est une personne qui l'a trouvé en se demandant pourquoi ce qui était publié ne se lisait pas, et
+non une barrière, et c'est la lecture qui est restée : **le vert d'un flux n'est pas la preuve que
+la configuration est arrivée ; la preuve, c'est de demander au serveur.** Réparé le même jour aux
+deux bouts, avec une barrière qui tourne avant de déployer et son propre test au rouge (`PND-035`,
+clos le 2026-10-24 ; D-056).
+
+### Ref. 48 — Ce que personne n'avait commité et qui arrivait : l'hébergement injecte un tiers dans les quatre-vingt-quatre pages publiées (8 novembre)
+
+Deux semaines plus tard, la même phrase par l'autre côté. Le 2026-11-03 la méthode a publié
+l'exigence de l'inventaire du code de tiers qu'un système **exécute** (échelon 14, `CQ-22.4`) ; le
+2026-11-07 elle a déplacé son unique tiers vers son propre hébergement pour s'y conformer ; et le
+2026-11-08, en mesurant contre la production **par le réseau** et non contre l'arbre, un autre est
+apparu que nulle décision n'avait mis là : l'hébergement ajoute **quatre cent cinquante-quatre
+octets** après la fermeture du corps, avec un script d'un hôte étranger, dans **les
+quatre-vingt-quatre pages publiées**, et le bloc injecté se déclare lui-même du fournisseur de
+l'hébergement. Dans l'arbre commité il y a **zéro** mention de cet hôte dans les
+quatre-vingt-quatre fichiers. La barrière que la méthode avait déjà pour le code de tiers a dit
+«0 trouvailles» ce même matin, et **elle avait raison** : elle lit l'arbre. La sonde nouvelle,
+contre la même production et avant toute déclaration, a donné **168 trouvailles et code de sortie
+1**, avec les quatre-vingt-quatre pages demandées par le réseau ; après avoir déclaré l'injection
+avec sa provenance, **0 trouvaille**. Ce qui est publié exécute toujours ce tiers : ce qui a changé,
+c'est qu'il est déclaré, avec sa sortie nommée, et qu'il y a une machine qui redemande chaque
+semaine (`PND-123`, ouvert et bloquant ; `PND-124` ; D-094 et D-095).
+
+---
+
+## F. Chronologies complètes
 
 Je les mets au cas où quelqu'un voudrait voir la séquence entière et non un cas isolé. Chaque
 ligne apporte la preuve telle qu'elle se trouve dans les dépôts.
 
-### E.1 yujin-forge
+### F.1 yujin-forge
 
 | Date | Moment | Ce qui a changé | Preuve |
 |---|---|---|---|
@@ -462,7 +505,7 @@ ligne apporte la preuve telle qu'elle se trouve dans les dépôts.
 | 13 octobre | Interface de persistance asynchrone | Décision asymétrique | `7391cc5` |
 | 14 octobre | Tour orphelin de 1 h 43 → 1.18.0 | Veilleur de silence, laisse entre processus, 28 tests | `b80a659` |
 
-### E.2 Autorizaciones
+### F.2 Autorizaciones
 
 | Date | Moment | Ce que cela a apporté | Preuve |
 |---|---|---|---|
@@ -480,7 +523,7 @@ ligne apporte la preuve telle qu'elle se trouve dans les dépôts.
 | 7 août | Bouton de panique, mode à blanc, veilleur | Verrous | `0954740` |
 | 10 août | Règles de domaine dans le commit | Avec date et propriétaire | `0ae3ae6` |
 
-### E.3 Kikan
+### F.3 Kikan
 
 | Date | Moment | Ce que cela a apporté | Preuve |
 |---|---|---|---|
@@ -502,7 +545,7 @@ ligne apporte la preuve telle qu'elle se trouve dans les dépôts.
 
 ---
 
-## F. Chaque échec, et l'échelon qui le couvre
+## G. Chaque échec, et l'échelon qui le couvre
 
 Cette table est, d'une certaine façon, la preuve de l'échelle : chaque coup dur doit tomber dans un
 échelon. S'il en apparaissait un qui ne tombe dans aucun, il manquerait un échelon.

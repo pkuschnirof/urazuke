@@ -141,7 +141,7 @@ Anexo H o la cadena**; acá queda sólo la obligación. Las decisiones completas
 - **El Anexo H.** Se nombra en la Parte A, en la apertura de la Parte C y en la **ficha** de cada
   peldaño que lo ancla, en los ocho idiomas; una ruta que el dato declara, el contrato de su peldaño
   la nombra; una regla con cualquier cara apagada **no se informa como cumplida**.
-- **Las reglas nuevas (D-070 UX-28, D-078, D-087, D-089).** Entran como reglas **nuevas** con su
+- **Las reglas nuevas (D-070 UX-28, D-078, D-087, D-089, D-095).** Entran como reglas **nuevas** con su
   procedencia y sus caras, y lo que una máquina mira es **la declaración**: la verdad de la
   declaración la decide una persona leyendo. Eso va escrito en el anexo y en el contrato, en los ocho
   idiomas, en vez de simulado. UX-28 es la **única** excepción escrita a D-044 (una regla adentro de

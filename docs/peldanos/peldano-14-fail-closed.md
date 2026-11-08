@@ -169,6 +169,10 @@ hecho antes de dejarla hacer.
   con `entries_total`, `entries_with_a_decision`, el privilegio de cada entrada y tu decisión por
   entrada. Que el inventario exista no alcanza: lo que cierra el peldaño es que cada entrada tenga
   decisión (CQ-22.4).
+- La verificación de ese inventario **contra lo servido**: las páginas que el lector recibe pedidas
+  por red, los bytes contrastados contra los del repositorio una vez restadas las inyecciones que el
+  inventario declara, y la fecha de la última corrida. Una comprobación que sólo lee el repositorio
+  no puede establecer qué ejecuta el lector (CQ-25).
 
 ## 4. Verificación de completitud
 
@@ -184,6 +188,11 @@ hecho antes de dejarla hacer.
 - ¿Con qué privilegio corrió cada verificación? El comando que se presenta como de sólo lectura,
   sin permiso de escribir; y la sonda que ejerce la acción impedida, corriendo donde su sentencia
   no puede aterrizar, con el estado contado antes y después (CQ-20).
+- ¿Lo que afirmás del inventario se lo preguntaste al servidor o al repositorio? Pedí las páginas
+  por red, restale las inyecciones que el inventario declara y exigí que lo que quede sea byte a
+  byte lo del repositorio. ¿Y el contraste corre con calendario y no sólo con un commit? Lo que el
+  lado que sirve agrega o quita cambia sin un commit, así que una corrida ausente o vieja es roja
+  (CQ-25).
 
 ## 5. Señales de alarma
 

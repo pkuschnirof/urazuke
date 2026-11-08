@@ -413,12 +413,52 @@ execução das telas.
 
 ---
 
-## E. Cronologias completas
+## E. O repositório do método: Urazuke aplicado a si mesmo (outubro e novembro de 2026)
+
+Os dois casos que seguem não saem do sistema de um cliente: saem do repositório deste método, que se
+aplica à sua própria publicação. Vão juntos porque são **as duas direções de uma só frase**
+— «servido não é publicado» — e das duas saiu a regra `CQ-25` do Anexo H.
+
+### Ref. 47 — O que estava commitado e não chegava ao servidor: desdobramento em verde e sete comprovações em vermelho (24 de outubro)
+
+O ficheiro de configuração que torna legível a interface de dados publicada estava commitado
+(`fd1270e`) e o desdobramento do portal fechou **em verde** em vinte e um segundos (corrida
+`40130433403`). A produção continuava com as sete comprovações em vermelho: o endereço do índice
+respondia 403 e nenhum dos três ficheiros devolvia o cabeçalho de que um navegador de outra origem
+precisa. A causa era um padrão do transporte sem ancorar — `--exclude='.htaccess'` em vez de
+`--exclude='/.htaccess'` —, que descartava os três ficheiros de configuração do repositório e não só
+o da raiz, que era o único que se queria preservar. Medido sobre uma árvore de teste com os mesmos
+caminhos: com o padrão solto chegaram **zero**; com o ancorado, **dois**. Encontrou-o uma pessoa a
+perguntar-se por que é que o publicado não se lia, não uma comporta, e a leitura é a que ficou: **o
+verde de um fluxo não é prova de que a configuração tenha chegado; a prova é perguntar ao
+servidor.** Arranjado no mesmo dia nas duas pontas, com uma guarda que corre antes de desdobrar e o
+seu próprio teste em vermelho (`PND-035`, fechado em 2026-10-24; D-056).
+
+### Ref. 48 — O que ninguém commitou e sim chegava: o alojamento injeta um terceiro nas oitenta e quatro páginas publicadas (8 de novembro)
+
+Duas semanas depois, a mesma frase pelo outro lado. O método publicou em 2026-11-03 a exigência do
+inventário do código de terceiros que um sistema **executa** (degrau 14, `CQ-22.4`); em 2026-11-07
+mudou o seu único terceiro para o seu próprio alojamento para a cumprir; e em 2026-11-08, medindo
+contra a produção **pela rede** e não contra a árvore, apareceu outro que nenhuma decisão tinha
+posto ali: o alojamento acrescenta **quatrocentos e cinquenta e quatro bytes** depois do fecho do
+corpo, com um script de um host alheio, nas **oitenta e quatro páginas publicadas**, e o próprio
+bloco injetado declara-se do fornecedor do alojamento. Na árvore commitada há **zero** menções desse
+host nos oitenta e quatro ficheiros. A guarda que o método já tinha para o código de terceiros disse
+«0 achados» nessa mesma manhã e **tinha razão**: lê a árvore. A sonda nova, contra a mesma produção
+e antes de declarar nada, deu **168 achados e código de saída 1**, com as oitenta e quatro páginas
+pedidas pela rede; depois de declarar a injeção com a sua proveniência, **0 achados**. O publicado
+continua a executar esse terceiro: o que mudou é que está declarado, com a sua saída nomeada, e que
+há uma máquina que volta a perguntar todas as semanas (`PND-123`, aberto e bloqueante; `PND-124`;
+D-094 e D-095).
+
+---
+
+## F. Cronologias completas
 
 Coloco-as caso alguém queira ver a sequência inteira e não um caso solto. Cada linha traz a
 evidência tal como está nos repositórios.
 
-### E.1 yujin-forge
+### F.1 yujin-forge
 
 | Data | Momento | O que mudou | Evidência |
 |---|---|---|---|
@@ -438,7 +478,7 @@ evidência tal como está nos repositórios.
 | 13 de outubro | Interface de persistência assíncrona | Decisão assimétrica | `7391cc5` |
 | 14 de outubro | Turno órfão de 1 h 43 → 1.18.0 | Vigia de silêncio, correia entre processos, 28 testes | `b80a659` |
 
-### E.2 Autorizaciones
+### F.2 Autorizaciones
 
 | Data | Momento | O que trouxe | Evidência |
 |---|---|---|---|
@@ -456,7 +496,7 @@ evidência tal como está nos repositórios.
 | 7 de agosto | Botão de pânico, modo de ensaio, vigia | Cadeados | `0954740` |
 | 10 de agosto | Regras de domínio no commit | Com data e dono | `0ae3ae6` |
 
-### E.3 Kikan
+### F.3 Kikan
 
 | Data | Momento | O que trouxe | Evidência |
 |---|---|---|---|
@@ -478,7 +518,7 @@ evidência tal como está nos repositórios.
 
 ---
 
-## F. Cada falha, e o degrau que a cobre
+## G. Cada falha, e o degrau que a cobre
 
 Esta tabela é, de certo modo, a prova da escada: cada tropeço tem que cair em algum degrau. Se
 aparecesse um que não cai em nenhum, faltaria um degrau.

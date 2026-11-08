@@ -418,12 +418,52 @@ las pantallas.
 
 ---
 
-## E. Cronologías completas
+## E. El repositorio del método: Urazuke aplicándose a sí mismo (octubre y noviembre de 2026)
+
+Los dos casos que siguen no salen del sistema de un cliente: salen del repositorio de este método,
+que se aplica a su propia publicación. Van juntos porque son **las dos direcciones de una sola
+frase** —«servido no es publicado»— y de las dos salió la regla `CQ-25` del Anexo H.
+
+### Ref. 47 — Lo commiteado que no llegaba al servidor: despliegue en verde y siete comprobaciones en rojo (24 de octubre)
+
+El archivo de configuración que vuelve legible la interfaz de datos publicada estaba commiteado
+(`fd1270e`) y el despliegue del portal cerró **en verde** en veintiún segundos (corrida
+`40130433403`). Producción seguía con las siete comprobaciones en rojo: la dirección del índice
+contestaba 403 y ninguno de los tres archivos devolvía la cabecera que un navegador de otro origen
+necesita. La causa era un patrón del transporte sin anclar —`--exclude='.htaccess'` en vez de
+`--exclude='/.htaccess'`—, que descartaba los tres archivos de configuración del repositorio y no
+sólo el de la raíz, que es el único que se quería preservar. Medido sobre un árbol de prueba con los
+mismos caminos: con el patrón suelto llegaron **cero**; con el anclado, **dos**. Lo encontró una
+persona preguntándose por qué lo publicado no se leía, no una compuerta, y la lectura es la que
+quedó: **el verde de un flujo no es prueba de que la configuración haya llegado; la prueba es
+preguntarle al servidor.** Arreglado el mismo día en las dos puntas, con una guarda que corre antes
+de desplegar y su prueba en rojo propia (`PND-035`, cerrado el 2026-10-24; D-056).
+
+### Ref. 48 — Lo que nadie commiteó y sí llegaba: el hospedaje inyecta un tercero en las ochenta y cuatro páginas publicadas (8 de noviembre)
+
+Dos semanas después, la misma frase por el otro lado. El método publicó el 2026-11-03 la exigencia
+del inventario del código de terceros que un sistema **ejecuta** (peldaño 14, `CQ-22.4`); el
+2026-11-07 mudó su único tercero a su propio alojamiento para cumplirla; y el 2026-11-08, midiendo
+contra producción **por red** y no contra el árbol, apareció otro que ninguna decisión había puesto
+ahí: el hospedaje agrega **cuatrocientos cincuenta y cuatro bytes** después del cierre del cuerpo,
+con un script de un host ajeno, en **las ochenta y cuatro páginas publicadas**, y el propio bloque
+inyectado se declara del proveedor del alojamiento. En el árbol commiteado hay **cero** menciones de
+ese host en los ochenta y cuatro archivos. La guarda que el método ya tenía para el código de
+terceros dijo «0 hallazgos» esa misma mañana y **tenía razón**: lee el árbol. La sonda nueva, contra
+la misma producción y antes de declarar nada, dio **168 hallazgos y código de salida 1**, con las
+ochenta y cuatro páginas pedidas por red; después de declarar la inyección con su procedencia, **0
+hallazgos**. Lo publicado sigue ejecutando ese tercero: lo que cambió es que está declarado, con su
+salida nombrada, y que hay una máquina que vuelve a preguntar todas las semanas (`PND-123`, abierto
+y bloqueante; `PND-124`; D-094 y D-095).
+
+---
+
+## F. Cronologías completas
 
 Las pongo por si alguien quiere ver la secuencia entera y no un caso suelto. Cada fila trae la
 evidencia tal como está en los repositorios.
 
-### E.1 yujin-forge
+### F.1 yujin-forge
 
 | Fecha | Momento | Qué cambió | Evidencia |
 |---|---|---|---|
@@ -443,7 +483,7 @@ evidencia tal como está en los repositorios.
 | 13 de octubre | Interfaz de persistencia asincrónica | Decisión asimétrica | `7391cc5` |
 | 14 de octubre | Turno huérfano de 1 h 43 → 1.18.0 | Vigía de silencio, correa entre procesos, 28 tests | `b80a659` |
 
-### E.2 Autorizaciones
+### F.2 Autorizaciones
 
 | Fecha | Momento | Qué aportó | Evidencia |
 |---|---|---|---|
@@ -461,7 +501,7 @@ evidencia tal como está en los repositorios.
 | 7 de agosto | Botón de pánico, modo de ensayo, vigía | Candados | `0954740` |
 | 10 de agosto | Reglas de dominio en el commit | Con fecha y dueño | `0ae3ae6` |
 
-### E.3 Kikan
+### F.3 Kikan
 
 | Fecha | Momento | Qué aportó | Evidencia |
 |---|---|---|---|
@@ -483,7 +523,7 @@ evidencia tal como está en los repositorios.
 
 ---
 
-## F. Cada fallo, y el peldaño que lo cubre
+## G. Cada fallo, y el peldaño que lo cubre
 
 Esta tabla es, en cierto modo, la prueba de la escalera: cada golpe tiene que caer en algún
 peldaño. Si apareciera uno que no cae en ninguno, faltaría un peldaño.

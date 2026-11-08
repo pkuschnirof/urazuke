@@ -179,6 +179,10 @@ was sie getan hätte, bevor man sie handeln lässt.
   `entries_total`, `entries_with_a_decision`, dem Privileg jedes Eintrags und deiner Entscheidung
   pro Eintrag. Dass das Inventar existiert, reicht nicht: was den Schritt schließt, ist, dass jeder
   Eintrag seine Entscheidung hat (CQ-22.4).
+- Die Prüfung dieses Inventars **gegen das Ausgelieferte**: die Seiten, die der Leser bekommt, über
+  das Netz angefordert, die Bytes gegen die des Repositories abgeglichen, nachdem die Injektionen
+  abgezogen wurden, die das Inventar erklärt, und das Datum des letzten Laufs. Eine Prüfung, die nur
+  das Repository liest, kann nicht feststellen, was der Leser ausführt (CQ-25).
 
 ## 4. Vollständigkeitsprüfung
 
@@ -195,6 +199,11 @@ was sie getan hätte, bevor man sie handeln lässt.
 - Mit welchem Privileg lief jede Überprüfung? Der Befehl, der sich als nur lesend ausgibt, ohne
   Schreibrecht; und die Sonde, die die verhinderte Aktion ausführt, dort laufend, wo ihre Anweisung
   nicht landen kann, mit dem Zustand vorher und nachher gezählt (CQ-20).
+- Was du über das Inventar behauptest -- hast du es dem Server oder dem Repository gestellt? Fordere
+  die Seiten über das Netz an, zieh die Injektionen ab, die das Inventar erklärt, und verlange, dass
+  das Übrige Byte für Byte das des Repositories ist. Und läuft der Abgleich nach Kalender und nicht
+  nur bei einem Commit? Was die ausliefernde Seite hinzufügt oder wegnimmt, ändert sich ohne Commit,
+  also ist ein fehlender oder alter Lauf rot (CQ-25).
 
 ## 5. Warnsignale
 

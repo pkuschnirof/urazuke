@@ -8,8 +8,8 @@ of the translated corpus of the method, and whatever is not translated is publis
 canonical language of the profession. Translating for the comprehension of an end user is the job
 of the consumer tool, not of this document.
 
-Catalog version: **2026.10.17** - schema **2**
-- content fingerprint `c8aacd1f4e360435...` - published at `docs/html/api/gates.json`.
+Catalog version: **2026.10.18** - schema **2**
+- content fingerprint `3efa805d932c73ca...` - published at `docs/html/api/gates.json`.
 
 ## What this is, and why it lives here
 
@@ -25,7 +25,7 @@ What a project pins, and what it costs to change it. A project pins ONE catalog_
 
 For that to be possible, what is published has to be identifiable and stable:
 
-- **`catalog_version`** (`2026.10.17`): declared by hand by the method. It is what a project freezes, and
+- **`catalog_version`** (`2026.10.18`): declared by hand by the method. It is what a project freezes, and
   what has to read back the same two years from now.
 - **`content_hash`** (`sha256`): computed by the build over the enforceable content, with the keys sorted
   and without the publication metadata. The consumer **recomputes it and compares**: if it only read
@@ -59,6 +59,7 @@ The ledger: gates/catalog.json#changelog records, for each catalog_version, the 
 - **2026.10.15** (2026-11-02, D-083, D-084) -- `e1b415a8a01ff391...`
 - **2026.10.16** (2026-11-03, D-087) -- `a3fc6b7b81e780f4...`
 - **2026.10.17** (2026-11-07, D-089) -- `c8aacd1f4e360435...`
+- **2026.10.18** (2026-11-08, D-095) -- `3efa805d932c73ca...`
 
 ## Pinning: what a tool that freezes the method owes
 
@@ -82,7 +83,7 @@ and every declared version also has an address of its own: `<canonical base>/<re
 
 - The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.
 - Where it is declared: Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.
-- This version lives at `gates/2026.10.17.json` under the canonical base, and the first version with an address is **2026.10.1**.
+- This version lives at `gates/2026.10.18.json` under the canonical base, and the first version with an address is **2026.10.1**.
 - No purge: Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.
 - What the address promises: The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.
 - Not guaranteed: Byte identity is not promised, only the covered content, for the reason above. And an address on this host is not a substitute for the ledger: if this host is compromised, both the file and its hash can be rewritten together, so the pair (version -> hash) is still checked against the ledger, which lives elsewhere.
@@ -161,7 +162,7 @@ method declares from now on is in English, and it is marked as new.
 | # | step | form | demand | evaluators | inputs | artifacts | checks |
 |---|---|---|---|---|---|---|---|
 | 13 | La auditoria periodica como insumo del plan | one_shot | minimum | `artifacts` | 2 | 9 | 11 |
-| 14 | Fail-closed, candados y cero dano silencioso | conversation | minimum | `artifacts` | 2 | 2 | 5 |
+| 14 | Fail-closed, candados y cero dano silencioso | conversation | minimum | `artifacts` | 2 | 2 | 6 |
 | 15 | Integracion continua, entornos, secretos y despliegue como parte del producto | one_shot | minimum | `ci` | 1 | 2 | 4 |
 | 16 | Observabilidad y trazabilidad totales, con nivel configurable | one_shot | minimum | `artifacts` | 2 | 1 | 3 |
 | 17 | Optimizacion de la capa de persistencia, medida antes y despues | one_shot | proportional | `artifacts` | 2 | 1 | 2 |
@@ -473,6 +474,7 @@ Completeness check, without reading code:
 - Does every verification declare the privilege it ran with, and does the probe that exercises a destructive operation run where its statement cannot land, with the state counted before and after (CQ-20)? **(new in schema 2)**
 - Does the inventory cover the third-party code that RUNS and not the code that is imported, and does every entry carry its decision -- accepted, narrowed or rejected, with who and when -- rather than the list merely existing (CQ-22.4)? **(new in schema 2, D-089)**
 - Does every entry declare the privilege it runs with, and is there one that runs with more than it needs without a written decision saying why (CQ-20.1)? **(new in schema 2, D-089)**
+- Is the inventory verified against WHAT IS SERVED, over the network, and not against the repository: are the pages a reader receives asked for over the network, do the bytes that come back match the ones the repository holds once the declared injections are subtracted, and does the contrast run on a schedule and not only on a commit (CQ-25)? **(new in schema 2, D-095)**
 
 **15 - Integracion continua, entornos, secretos y despliegue como parte del producto** (`u15-ci-entornos-secretos-deploy`, prompt `peldano-15`)
 
@@ -731,13 +733,13 @@ called steps) and only then enters the Construction Loop at step 5.
 
 - Cada pendiente de deuda esta emparejado con el modulo que el pedido toca?
 
-## Annex H: 52 rules
+## Annex H: 53 rules
 
 The statement of every rule lives **only** in Annex H: it is extracted from there on every build,
 never transcribed. The published statement comes from [the English version](en/ANEXO_HEURISTICAS.md); the
 [Spanish one](ANEXO_HEURISTICAS.md) is the source of truth of the method, and the build demands that both carry
 the same rules with the same severities. What this data adds is the mechanical part: the group, the
-instrument, the initial severity, when it is looked at and the step where it hooks. There are 24 of
+instrument, the initial severity, when it is looked at and the step where it hooks. There are 25 of
 code quality and 28 of usability.
 
 The two switches (`code_quality` and `usability`) are turned on and off separately,
@@ -745,7 +747,7 @@ they live in the project configuration and the gate reads them: never inside the
 Switching a rule off is valid only as a recorded decision with reason, authorized_by, review_date.
 Switched off without a record: red: switching a rule off without a written reason is a failure of the gate, not the absence of a rule. A switched-off group is never read as fulfilled.
 
-### Code quality (CQ-01..CQ-24)
+### Code quality (CQ-01..CQ-25)
 
 Result per rule in `docs/CODE_QUALITY.md`.
 
@@ -775,6 +777,7 @@ Result per rule in `docs/CODE_QUALITY.md`.
 | CQ-22 | contrast | A figure the project measures against a requirement the project declared gets contrasted, and the result of the contrast is the verdict: a measurement that exists and that nobody compared against its threshold verified nothing. That the measurement exists is the beginning of the verification and not its end. | automatic gate + manual case | on every push and at block close | BLOCKS | 14, 19, 20 |
 | CQ-23 | provenance | A verdict is worth something for where it ran, when it ran and where it was written down: over the tree that stays, after the last change that affects what it measures, over artefacts of this work, and with its output in a place that outlives the run. A green that cannot say those four things is not an old green: it is the green of something else. | automatic gate + manual case | on every push and at block close | BLOCKS | 8, 9, 12 |
 | CQ-24 | register | A register answers the question it exists for, over the whole of its stretch: the fields that answer that question are written by the path that produces the fact, and the stretch that fell outside its scope is reported as outside its scope and never as zero. | automatic gate + manual case | on every push and at block close | BLOCKS | 5, 11, 23 |
+| CQ-25 | served | What a system publishes is verified against WHAT IS SERVED, over the network, not against the repository. A check that only reads the tree cannot establish it in either direction: something committed may never reach the reader, and something nobody committed may reach them. | automatic gate + manual case | on every push and at block close | BLOCKS | 14 |
 
 ### Usability (UX-01..UX-28)
 
@@ -815,12 +818,12 @@ The rules marked with `*` in the step column are not anchored by the annex expli
 derived from their instrument (the manual case runs at step 10, the automatic gate runs at step 9)
 and is declared as derived, not as a decision of the method.
 
-A **human red** is carried by five of the fifty-two rules -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- and those are tested by no tool
+A **human red** is carried by five of the fifty-three rules -- CQ-12, CQ-14, UX-22, UX-27, UX-28 -- and those are tested by no tool
 at all: they are verified at the close of the pending item, with the manual case in front, and
 never on a commit. Four of them block (CQ-12, CQ-14, UX-22, UX-27) and one warns (UX-28):
 a human red says who verifies a rule, not how hard it hits.
 
-### The nineteen faces, and how a single one is switched off
+### The twenty-three faces, and how a single one is switched off
 
 A face is a cut of the statement of one rule with an identifier of its own (CQ-19.1). Faces exist for a mechanical reason and not a drafting one: without an identifier a single one cannot be switched off, and a rule that can only be switched off whole pushes towards switching off too much. Their statement lives only in Annex H, like the statement of a rule, and the build extracts it (D-044).
 
@@ -845,12 +848,16 @@ A face is a cut of the statement of one rule with an identifier of its own (CQ-1
 | CQ-23.3 | The artefact belongs to this work | Of the artefacts a step closes with, at least one was born in it, and the question that detects this is asked by hand and without tools: which file of this list did not exist before starting? If the answer is "none", the green belongs to another step, and the gate measured the wrong artefact correctly. | CQ-23 |
 | CQ-24.1 | The fact writes the field | A mandatory field whose value is not derived from the fact it says it records can be true of itself and false of the fact: it is written by the path that produces the fact, or the method declares that this field is not the record of the fact and says which one is. A constant field, or one left empty while the fact happens and counted in the prose next to it, leaves a count that has to be made by reading, which is exactly what the field came in to avoid. | CQ-24 |
 | CQ-24.2 | The register is born before the work | A register that starts halfway along the route cannot answer for the stretch before it, and its zero there reads as "nothing happened". It is born before the work it records, or the rows written looking backwards are marked as such and the stretch with no register is reported as not recorded and never as clean. | CQ-24 |
+| CQ-25.1 | The bytes, and from where they were asked for | The contrast runs over the network against the published endpoint and compares BYTES, not claims. The probe declares from where and as whom it asked, because what is served can differ by client, by region and by moment. | CQ-25 |
+| CQ-25.2 | The schedule that ran | It runs on a schedule and not only on a commit, because what the serving side adds or removes changes with no commit. The last run carries its date, and a run that is missing or stale is red. | CQ-25 |
+| CQ-25.3 | Both ways | The contrast runs both ways: something committed that never arrives falls, and a declared injection that stopped being there falls too. | CQ-25 |
+| CQ-25.4 | Not having been able to look | Not having been able to look is red and never green. It is CQ-19.1 applied to this contrast, named here because "the endpoint did not answer" reads as "nothing was added". | CQ-25 |
 
 Switching one off: The record of project_config.switch_off_record, with the id of a face written in its `rule` field. A record whose id resolves neither to a rule nor to a face is a dangling switch-off: red, by the same criterion as a rule switched off without a record.
 A rule with any face switched off is never reported as fulfilled. The report says "three of four faces, one switched off with its reason" and never a percentage alone: a partial compliance whose figure reads like a complete one is the silent damage this whole family is about.
 On the scoreboard: For a rule that has faces the scoreboard counts faces and not rules, or the two figures of section 12 of the annex stop meaning what they say.
 
-Six of the fifty-two rules have faces (CQ-19: four, CQ-20: two, CQ-21: four, CQ-22: four, CQ-23: three, CQ-24: two). WHICH rules have faces is derived from this data and is not written here, by the same argument as the count (D-077): read the faces of each rule. What is written is the exception, because no data carries it: CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off, and giving them ids is adding and not renaming and is separate work.
+Seven of the fifty-three rules have faces (CQ-19: four, CQ-20: two, CQ-21: four, CQ-22: four, CQ-23: three, CQ-24: two, CQ-25: four). WHICH rules have faces is derived from this data and is not written here, by the same argument as the count (D-077): read the faces of each rule. What is written is the exception, because no data carries it: CQ-18 has five checks with no identifier of their own, so a single one of them cannot be switched off, and giving them ids is adding and not renaming and is separate work.
 
 ### The five anchors and the two prior inputs
 
@@ -938,5 +945,5 @@ Order in the step 12 report: binary verdict -> the two figures -> what is switch
 ## The decisions that govern this
 
 D-050 (the method owns the definition of the gates), D-051 (the data layer and this document are
-published in English), and the Annex H ones: D-043, D-044, D-045, D-046, D-047, D-048, D-049, D-070, D-078, D-087. They are in the
+published in English), and the Annex H ones: D-043, D-044, D-045, D-046, D-047, D-048, D-049, D-070, D-078, D-087, D-089, D-095. They are in the
 [decision register](DECISIONES.md), written in Spanish, which is the language of the method.

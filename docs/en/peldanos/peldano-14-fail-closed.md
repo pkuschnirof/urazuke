@@ -129,6 +129,10 @@ it do it.
   with `entries_total`, `entries_with_a_decision`, the privilege of each entry and your decision per
   entry. That the inventory exists is not enough: what closes the step is that every entry has its
   decision (CQ-22.4).
+- The verification of that inventory **against what is served**: the pages the reader receives asked
+  for over the network, the bytes contrasted against the ones the repository holds once the
+  injections the inventory declares are subtracted, and the date of the last run. A check that only
+  reads the repository cannot establish what the reader executes (CQ-25).
 
 ## 4. Completeness check
 
@@ -145,6 +149,11 @@ it do it.
 - What privilege did each verification run with? The command presented as read-only, without
   permission to write; and the probe that exercises the blocked action, running where its statement
   cannot land, with the state counted before and after (CQ-20).
+- What you claim about the inventory -- did you ask the server or the repository? Ask for the pages
+  over the network, subtract the injections the inventory declares and demand that what is left be
+  byte for byte what the repository holds. And does the contrast run on a schedule and not only on a
+  commit? What the serving side adds or removes changes with no commit, so a run that is missing or
+  stale is red (CQ-25).
 
 ## 5. Warning signs
 

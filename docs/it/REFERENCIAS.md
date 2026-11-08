@@ -427,12 +427,53 @@ testare dall'esecuzione delle schermate.
 
 ---
 
-## E. Cronologie complete
+## E. Il repository del metodo: Urazuke applicato a se stesso (ottobre e novembre 2026)
+
+I due casi che seguono non escono dal sistema di un cliente: escono dal repository di questo metodo,
+che si applica alla propria pubblicazione. Stanno insieme perché sono **le due direzioni di una sola
+frase** —«servito non è pubblicato»— e perché da entrambe è uscita la regola `CQ-25` dell'Allegato H.
+
+### Ref. 47 — Quello che era committato e non arrivava al server: dispiegamento in verde e sette verifiche in rosso (24 ottobre)
+
+Il file di configurazione che rende leggibile l'interfaccia di dati pubblicata era committato
+(`fd1270e`) e il dispiegamento del portale ha chiuso **in verde** in ventuno secondi (corsa
+`40130433403`). La produzione aveva ancora le sue sette verifiche in rosso: l'indirizzo dell'indice
+rispondeva 403 e nessuno dei tre file restituiva l'intestazione di cui ha bisogno un browser di
+un'altra origine. La causa era un modello del trasporto non ancorato —`--exclude='.htaccess'` invece
+di `--exclude='/.htaccess'`—, che scartava i tre file di configurazione del repository e non solo
+quello della radice, che era l'unico che si voleva preservare. Misurato su un albero di prova con
+gli stessi percorsi: con il modello sciolto sono arrivati **zero**; con quello ancorato, **due**.
+L'ha trovato una persona chiedendosi perché quello che era pubblicato non si leggeva, non un
+cancello, e la lettura è quella che è rimasta: **il verde di un flusso non è prova che la
+configurazione sia arrivata; la prova è chiedere al server.** Riparato lo stesso giorno alle due
+estremità, con un cancello che gira prima di dispiegare e la sua propria prova in rosso (`PND-035`,
+chiuso il 2026-10-24; D-056).
+
+### Ref. 48 — Quello che nessuno ha committato e che invece arrivava: l'hosting inietta un terzo nelle ottantaquattro pagine pubblicate (8 novembre)
+
+Due settimane dopo, la stessa frase dall'altro lato. Il 2026-11-03 il metodo ha pubblicato l'esigenza
+dell'inventario del codice di terzi che un sistema **esegue** (gradino 14, `CQ-22.4`); il 2026-11-07
+ha spostato il suo unico terzo sul proprio hosting per rispettarla; e il 2026-11-08, misurando
+contro la produzione **per rete** e non contro l'albero, è apparso un altro che nessuna decisione
+aveva messo lì: l'hosting aggiunge **quattrocentocinquantaquattro byte** dopo la chiusura del corpo,
+con uno script di un host estraneo, nelle **ottantaquattro pagine pubblicate**, e il blocco iniettato
+dichiara da sé di essere del fornitore dell'hosting. Nell'albero committato ci sono **zero** menzioni
+di quell'host negli ottantaquattro file. Il cancello che il metodo aveva già per il codice di terzi
+ha detto «0 ritrovamenti» quella stessa mattina, ed **aveva ragione**: legge l'albero. La sonda
+nuova, contro la stessa produzione e prima di dichiarare nulla, ha dato **168 ritrovamenti e codice
+di uscita 1**, con le ottantaquattro pagine chieste per rete; dopo aver dichiarato l'iniezione con
+la sua provenienza, **0 ritrovamenti**. Quello che è pubblicato continua a eseguire quel terzo: ciò
+che è cambiato è che è dichiarato, con la sua uscita nominata, e che c'è una macchina che torna a
+chiedere ogni settimana (`PND-123`, aperto e bloccante; `PND-124`; D-094 e D-095).
+
+---
+
+## F. Cronologie complete
 
 Le metto nel caso qualcuno voglia vedere la sequenza intera e non un caso isolato. Ogni riga porta
 la prova così com'è nei repository.
 
-### E.1 yujin-forge
+### F.1 yujin-forge
 
 | Data | Momento | Cosa è cambiato | Prova |
 |---|---|---|---|
@@ -452,7 +493,7 @@ la prova così com'è nei repository.
 | 13 ottobre | Interfaccia di persistenza asincrona | Decisione asimmetrica | `7391cc5` |
 | 14 ottobre | Turno orfano di 1 h 43 → 1.18.0 | Sentinella del silenzio, guinzaglio tra processi, 28 test | `b80a659` |
 
-### E.2 Autorizzazioni
+### F.2 Autorizzazioni
 
 | Data | Momento | Cosa ha apportato | Prova |
 |---|---|---|---|
@@ -470,7 +511,7 @@ la prova così com'è nei repository.
 | 7 agosto | Pulsante di emergenza, modalità di prova, sentinella | Lucchetti | `0954740` |
 | 10 agosto | Regole di dominio nel commit | Con data e proprietario | `0ae3ae6` |
 
-### E.3 Kikan
+### F.3 Kikan
 
 | Data | Momento | Cosa ha apportato | Prova |
 |---|---|---|---|
@@ -492,7 +533,7 @@ la prova così com'è nei repository.
 
 ---
 
-## F. Ogni fallimento, e il gradino che lo copre
+## G. Ogni fallimento, e il gradino che lo copre
 
 Questa tabella è, in un certo senso, la prova della scala: ogni colpo deve ricadere in qualche
 gradino. Se ne comparisse uno che non ricade in nessuno, mancherebbe un gradino.
