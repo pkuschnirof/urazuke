@@ -29,6 +29,9 @@ meter tu cambio en esa rama; *conflicto* es cuando dos personas cambiaron la mis
 herramienta no sabe cuál vale. Un *interruptor de funcionalidad* es una llave de configuración que
 deja una funcionalidad apagada aunque el código ya esté, para poder integrar a medias sin que el
 usuario la vea. Y *reclamar* un pendiente es anotar tu nombre en él para que nadie más lo tome.
+Y una *copia de trabajo* es la carpeta de tu máquina donde el código está desplegado, con tus
+cambios a medio hacer: es distinta de la rama, que es lo que ya quedó registrado y se puede
+recuperar.
 
 ## Las siete reglas de la rama compartida
 
@@ -66,6 +69,20 @@ Y una regla sobre los agentes, que es la que de verdad cambia respecto de un equ
 comparten es lo que está escrito en el repositorio. No hay memoria común fuera de los archivos.
 Por eso el estado vivo (`docs/STATUS.md`), los pendientes y las decisiones se escriben al momento,
 no "al final del día": el agente del compañero los va a leer en cinco minutos.
+
+Y la mitad de esa regla que faltaba, que la escribo porque la medí: **la rama se comparte; la
+copia de trabajo no.** Todo lo de arriba da por sentado que cada agente tiene su propia carpeta y
+que el repositorio es lo único en común —está dicho textual dos renglones arriba—, y dos agentes
+sobre **la misma carpeta** no estaban contemplados en ninguna parte. Ahí la regla 1 no protege
+nada: le da dueño a un *pendiente*, que vive en el repositorio, y lo que está en el disco y
+todavía no quedó en ningún commit no tiene dueño en ningún registro. Un agente que limpia «su»
+árbol —un `reset --hard`, un `checkout` de todo, un `clean`— no puede distinguir su propia basura
+del trabajo de media tarde del otro, porque para él son la misma cosa: archivos sucios que no
+están en la rama. Así que la regla es **una copia de trabajo, un agente**, y si por la razón que
+sea dos tienen que compartir una, entonces ninguno de los dos corre un comando que tira lo que no
+escribió, y cada etapa queda en un commit de una rama en el momento en que cierra, no al final: lo
+único que vuelve a existir después de un árbol limpiado es lo que ya estaba en un commit. Avisarse
+no alcanza, porque un agente no lee la pantalla del otro.
 
 ## Cómo se reparten los peldaños en un equipo
 
@@ -264,6 +281,8 @@ agente; y el estado vivo al día.
 - ¿Hubo un conflicto esta semana? ¿Cómo se resolvió, y hay un pendiente del mapa por eso?
 - ¿Hay alguna funcionalidad a medias sin interruptor en la rama compartida?
 - ¿`docs/STATUS.md` dice qué está haciendo cada uno hoy?
+- ¿Hay dos agentes trabajando sobre la misma carpeta? Si la respuesta es sí, preguntá cuándo fue
+  el último commit de cada uno.
 
 ## Señales de alarma
 
@@ -276,6 +295,9 @@ agente; y el estado vivo al día.
   sin que nadie lo decidiera.
 - El agente de una persona cerró un pendiente reclamado por otra. La lectura al empezar la sesión
   no está en el contrato, o el contrato no se lee.
+- Dos sesiones de agente abiertas sobre la misma carpeta. Tarde o temprano una limpia el árbol y
+  se lleva lo que la otra no había dejado en un commit, y no queda ni el aviso: el trabajo que nunca
+  llegó a un commit no deja rastro en ninguna parte.
 
 ## Lo que falta elaborar `[hipótesis]`
 

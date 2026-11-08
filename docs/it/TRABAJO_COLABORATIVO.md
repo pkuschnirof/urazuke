@@ -30,6 +30,9 @@ cambiato la stessa riga e lo strumento non sa quale vale. Un *interruttore di fu
 chiave di configurazione che lascia una funzionalità spenta anche se il codice c'è già, per poter
 integrare a metà senza che l'utente la veda. E *reclamare* una voce in sospeso è scriverci sopra
 il tuo nome perché nessun altro la prenda.
+E una *copia di lavoro* è la cartella della tua macchina dove il codice sta steso, con le tue
+modifiche a metà: è un'altra cosa dal ramo, che è quello che è già rimasto registrato e si può
+recuperare.
 
 ## Le sette regole del ramo condiviso
 
@@ -69,6 +72,21 @@ E una regola sugli agenti, che è quella che cambia davvero rispetto a una squad
 condividono è ciò che sta scritto nel repository. Non c'è memoria comune fuori dai file. Per
 questo lo stato vivo (`docs/STATUS.md`), le voci in sospeso e le decisioni si scrivono sul
 momento, non "a fine giornata": l'agente del collega le leggerà fra cinque minuti.
+
+E la metà di quella regola che mancava, che la scrivo perché l'ho misurata: **il ramo si
+condivide; la copia di lavoro no.** Tutto quello di sopra dà per scontato che ogni agente abbia la
+sua cartella e che il repository sia l'unica cosa in comune —è detto testuale due righe sopra—, e
+due agenti sulla **stessa cartella** non erano contemplati in nessun posto. Lì la regola 1 non
+protegge niente: dà un proprietario a una *voce in sospeso*, che vive nel repository, e quello che
+sta sul disco e non è ancora finito in nessun commit non ha proprietario in nessun registro. Un
+agente che pulisce "il suo" albero —un `reset --hard`, un `checkout` di tutto, un `clean`— non
+riesce a distinguere la sua propria spazzatura dal mezzo pomeriggio di lavoro dell'altro, perché
+per lui sono la stessa cosa: file sporchi che non stanno nel ramo. Quindi la regola è **una copia
+di lavoro, un agente**, e se per la ragione che sia due devono condividerne una, allora nessuno
+dei due lancia un comando che butta via quello che non ha scritto, e ogni tappa finisce in un
+commit di un ramo nel momento in cui chiude, non alla fine: l'unica cosa che torna a esistere dopo
+un albero pulito è quello che stava già in un commit. Avvisarsi non basta, perché un agente non
+legge lo schermo dell'altro.
 
 ## Come si distribuiscono i gradini in una squadra
 
@@ -274,6 +292,8 @@ dell'agente; e lo stato vivo aggiornato.
   mappa per questo?
 - C'è qualche funzionalità a metà senza interruttore nel ramo condiviso?
 - `docs/STATUS.md` dice cosa sta facendo ciascuno oggi?
+- Ci sono due agenti che lavorano sulla stessa cartella? Se la risposta è sì, chiedi quando è
+  stato l'ultimo commit di ciascuno.
 
 ## Segnali d'allarme
 
@@ -286,6 +306,9 @@ dell'agente; e lo stato vivo aggiornato.
   senza che nessuno lo decidesse.
 - L'agente di una persona ha chiuso una voce in sospeso reclamata da un'altra. La lettura
   all'inizio della sessione non è nel patto, oppure il patto non si legge.
+- Due sessioni di agente aperte sulla stessa cartella. Prima o poi una pulisce l'albero e si porta
+  via quello che l'altra non aveva lasciato in un commit, e non resta nemmeno l'avviso: il lavoro
+  che non è mai arrivato a un commit non lascia traccia in nessun posto.
 
 ## Cosa resta da elaborare `[ipotesi]`
 

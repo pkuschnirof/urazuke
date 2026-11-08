@@ -33,6 +33,9 @@ wenn zwei Personen dieselbe Zeile geändert haben und das Werkzeug nicht weiß, 
 obwohl der Code schon da ist, damit man halbfertig integrieren kann, ohne dass der Nutzer sie
 sieht. Und einen offenen Posten zu *beanspruchen* heißt, deinen Namen in ihn zu schreiben, damit
 ihn niemand sonst nimmt.
+Und eine *Arbeitskopie* ist der Ordner auf deiner Maschine, in dem der Code ausgebreitet liegt,
+mit deinen halbfertigen Änderungen darin: etwas anderes als der Branch, der das ist, was schon
+festgehalten wurde und sich wiederherstellen lässt.
 
 ## Die sieben Regeln des geteilten Branches
 
@@ -79,6 +82,22 @@ das Einzige, was sie teilen, ist das, was im Repository geschrieben steht. Es gi
 gemeinsames Gedächtnis außerhalb der Dateien. Deshalb werden der lebende Zustand
 (`docs/STATUS.md`), die offenen Posten und die Entscheidungen im Moment geschrieben, nicht „am Ende
 des Tages“: der Agent des Kollegen wird sie in fünf Minuten lesen.
+
+Und die Hälfte dieser Regel, die fehlte, und die ich schreibe, weil ich sie gemessen habe: **der
+Branch wird geteilt; die Arbeitskopie nicht.** Alles von oben setzt voraus, dass jeder Agent
+seinen eigenen Ordner hat und dass das Repository das Einzige ist, was gemeinsam ist — es steht
+wortwörtlich zwei Zeilen höher —, und zwei Agenten auf **demselben Ordner** waren nirgends
+bedacht. Da schützt Regel 1 nichts: sie gibt einem *offenen Posten* einen Eigentümer, und der lebt
+im Repository, und was auf der Platte liegt und noch in keinem Commit gelandet ist, hat in keinem
+Register einen Eigentümer. Ein Agent, der „seinen“ Baum putzt — ein `reset --hard`, ein `checkout`
+von allem, ein `clean` —, kann seinen eigenen Müll nicht von dem halben Nachmittag Arbeit des
+anderen unterscheiden, denn für ihn ist es dasselbe: schmutzige Dateien, die nicht im Branch sind.
+Also lautet die Regel **eine Arbeitskopie, ein Agent**, und wenn aus welchem Grund auch immer zwei
+eine teilen müssen, dann führt keiner von beiden einen Befehl aus, der wegwirft, was er nicht
+geschrieben hat, und jede Etappe landet in dem Moment, in dem sie schließt, in einem Commit auf
+einem Branch, nicht am Ende: das Einzige, was nach einem geputzten Baum wieder existiert, ist das,
+was schon in einem Commit war. Sich gegenseitig Bescheid zu sagen reicht nicht, denn ein Agent
+liest nicht den Bildschirm des anderen.
 
 ## Wie sich die Schritte in einem Team verteilen
 
@@ -287,6 +306,8 @@ auf der Maschine des Agenten; und den lebenden Zustand auf dem neuesten Stand.
   für die Karte?
 - Gibt es irgendeine halbfertige Funktionalität ohne Schalter im geteilten Branch?
 - Sagt `docs/STATUS.md`, was jeder heute tut?
+- Arbeiten zwei Agenten auf demselben Ordner? Wenn die Antwort ja ist, frage nach, wann der letzte
+  Commit von jedem war.
 
 ## Warnsignale
 
@@ -300,6 +321,9 @@ auf der Maschine des Agenten; und den lebenden Zustand auf dem neuesten Stand.
 - Der Agent einer Person hat einen von einer anderen beanspruchten offenen Posten geschlossen. Die
   Lektüre zu Beginn der Sitzung steht nicht in der Vereinbarung, oder die Vereinbarung wird nicht
   gelesen.
+- Zwei Agenten-Sitzungen offen auf demselben Ordner. Früher oder später putzt eine den Baum und
+  nimmt mit, was die andere nicht in einem Commit gelassen hatte, und es bleibt nicht einmal die
+  Warnung: Arbeit, die nie zu einem Commit gekommen ist, lässt nirgends eine Spur.
 
 ## Was noch auszuarbeiten ist `[Hypothese]`
 
