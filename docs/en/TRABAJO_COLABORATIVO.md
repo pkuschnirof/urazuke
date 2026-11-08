@@ -30,6 +30,9 @@ changed the same line and the tool does not know which one wins. A *feature swit
 configuration key that leaves a feature turned off even though the code is already there, so that
 half-finished work can be integrated without the user seeing it. And to *claim* a pending item is
 to write your name on it so that nobody else takes it.
+And a *working copy* is the folder on your machine where the code is laid out, with your
+half-finished changes in it: it is a different thing from the branch, which is what has already
+been recorded and can be recovered.
 
 ## The seven rules of the shared branch
 
@@ -70,6 +73,21 @@ thing they share is what is written in the repository. There is no common memory
 files. That is why the living state (`docs/STATUS.md`), the pending items and the decisions get
 written at the moment, not "at the end of the day": the colleague's agent is going to read them
 in five minutes.
+
+And the half of that rule that was missing, which I am writing because I measured it: **the
+branch is shared; the working copy is not.** Everything above takes for granted that each agent
+has its own folder and that the repository is the only thing in common (it is said word for word
+two lines up), and two agents on **the same folder** were not contemplated anywhere. There rule
+1 protects nothing: it gives an owner to a *pending item*, which lives in the repository, and
+whatever is on disk and has not landed in any commit yet has no owner in any register. An agent
+that cleans "its" tree, with a `reset --hard`, a `checkout` of everything, a `clean`, cannot
+tell its own rubbish from the other one's half an afternoon of work, because to it they are the
+same thing: dirty files that are not in the branch. So the rule is **one working copy, one
+agent**, and if for whatever reason two of them have to share one, then neither runs a command
+that throws away what it did not write, and every stage lands in a commit on a branch the moment
+it closes, not at the end: the only thing that exists again after a cleaned tree is what was
+already in a commit. Telling each other is not enough, because one agent does not read the other
+one's screen.
 
 ## How the steps are shared out in a team
 
@@ -209,6 +227,8 @@ machine; and the living state up to date.
   because of it?
 - Is there any half-finished feature without a switch on the shared branch?
 - Does `docs/STATUS.md` say what each person is doing today?
+- Are two agents working on the same folder? If the answer is yes, ask when each one's last
+  commit was.
 
 ## Warning signs
 
@@ -221,6 +241,9 @@ machine; and the living state up to date.
   anybody deciding it.
 - One person's agent closed a pending item claimed by another. The reading at the start of the
   session is not in the agreement, or the agreement is not being read.
+- Two agent sessions open on the same folder. Sooner or later one of them cleans the tree and
+  takes away whatever the other had not left in a commit, and not even the warning is left: work
+  that never reached a commit leaves no trace anywhere.
 
 ## What remains to be elaborated `[hypothesis]`
 

@@ -32,6 +32,9 @@ personnes ont changé la même ligne et que l'outil ne sait pas laquelle vaut. U
 fonctionnalité* est une clé de configuration qui laisse une fonctionnalité éteinte même si le code
 est déjà là, pour pouvoir intégrer à moitié sans que l'utilisateur la voie. Et *réclamer* un
 élément en attente, c'est y inscrire votre nom pour que personne d'autre ne le prenne.
+Et une *copie de travail* est le dossier de votre machine où le code est déployé, avec vos
+changements à moitié faits : c'est autre chose que la branche, qui est ce qui a déjà été enregistré
+et que l'on peut récupérer.
 
 ## Les sept règles de la branche partagée
 
@@ -75,6 +78,21 @@ la seule chose qu'ils partagent est ce qui est écrit dans le dépôt. Il n'y a 
 en dehors des fichiers. C'est pourquoi l'état vivant (`docs/STATUS.md`), les éléments en attente et
 les décisions s'écrivent sur le moment, et non « à la fin de la journée » : l'agent du collègue va
 les lire dans cinq minutes.
+
+Et la moitié de cette règle qui manquait, que j'écris parce que je l'ai mesurée : **la branche se
+partage ; la copie de travail, non.** Tout ce qui est au-dessus tient pour acquis que chaque agent a
+son propre dossier et que le dépôt est la seule chose en commun — c'est dit mot pour mot deux lignes
+plus haut — et deux agents sur **le même dossier** n'étaient contemplés nulle part. Là, la règle 1
+ne protège rien : elle donne un propriétaire à un *élément en attente*, qui vit dans le dépôt, et ce
+qui est sur le disque et n'a pas encore atterri dans un commit n'a de propriétaire dans aucun
+registre. Un agent qui nettoie « son » arbre — un `reset --hard`, un `checkout` de tout, un `clean`
+— ne peut pas distinguer ses propres détritus de la demi-après-midi de travail de l'autre, parce que
+pour lui c'est la même chose : des fichiers sales qui ne sont pas dans la branche. Donc la règle est
+**une copie de travail, un agent**, et si pour quelque raison que ce soit deux doivent en partager
+une, alors aucun des deux ne lance une commande qui jette ce qu'il n'a pas écrit, et chaque étape
+atterrit dans un commit d'une branche au moment où elle se ferme, pas à la fin : la seule chose qui
+existe à nouveau après un arbre nettoyé est ce qui était déjà dans un commit. Se prévenir ne suffit
+pas, parce qu'un agent ne lit pas l'écran de l'autre.
 
 ## Comment se répartissent les échelons dans une équipe
 
@@ -280,6 +298,8 @@ machine de l'agent ; et l'état vivant à jour.
   attente de la carte pour cela ?
 - Y a-t-il une fonctionnalité à moitié faite sans interrupteur dans la branche partagée ?
 - `docs/STATUS.md` dit-il ce que chacun est en train de faire aujourd'hui ?
+- Y a-t-il deux agents qui travaillent sur le même dossier ? Si la réponse est oui, demandez quand a
+  eu lieu le dernier commit de chacun.
 
 ## Signaux d'alarme
 
@@ -292,6 +312,9 @@ machine de l'agent ; et l'état vivant à jour.
   sans que personne ne l'ait décidé.
 - L'agent d'une personne a clos un élément en attente réclamé par une autre. La lecture au début de
   la session n'est pas dans le contrat, ou le contrat ne se lit pas.
+- Deux sessions d'agent ouvertes sur le même dossier. Tôt ou tard l'une nettoie l'arbre et emporte
+  ce que l'autre n'avait pas laissé dans un commit, et il ne reste même pas l'avertissement : le
+  travail qui n'est jamais arrivé à un commit ne laisse de trace nulle part.
 
 ## Ce qu'il reste à élaborer `[hypothèse]`
 

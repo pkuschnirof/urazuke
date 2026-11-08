@@ -30,6 +30,9 @@ linha e a ferramenta não sabe qual vale. Um *interruptor de funcionalidade* é 
 configuração que deixa uma funcionalidade apagada mesmo que o código já esteja lá, para poder
 integrar pela metade sem que o usuário a veja. E *reivindicar* uma pendência é anotar o seu nome
 nela para que mais ninguém a pegue.
+E uma *cópia de trabalho* é a pasta da sua máquina onde o código está estendido, com as suas
+mudanças pela metade: é coisa distinta do ramo, que é o que já ficou registrado e se pode
+recuperar.
 
 ## As sete regras do ramo compartilhado
 
@@ -68,6 +71,20 @@ E uma regra sobre os agentes, que é a que de verdade muda em relação a uma eq
 coisa que compartilham é o que está escrito no repositório. Não há memória comum fora dos
 arquivos. Por isso o estado vivo (`docs/STATUS.md`), as pendências e as decisões se escrevem na
 hora, e não "no final do dia": o agente do colega vai lê-los em cinco minutos.
+
+E a metade dessa regra que faltava, que a escrevo porque a medi: **o ramo se compartilha; a cópia
+de trabalho não.** Tudo o de cima dá por certo que cada agente tem a sua própria pasta e que o
+repositório é a única coisa em comum —está dito textual duas linhas acima—, e dois agentes sobre
+**a mesma pasta** não estavam contemplados em parte nenhuma. Ali a regra 1 não protege nada: dá
+dono a uma *pendência*, que vive no repositório, e o que está no disco e ainda não ficou em nenhum
+commit não tem dono em nenhum registro. Um agente que limpa "a sua" árvore —um `reset --hard`, um
+`checkout` de tudo, um `clean`— não pode distinguir o seu próprio lixo do trabalho de meia tarde
+do outro, porque para ele são a mesma coisa: arquivos sujos que não estão no ramo. Então a regra é
+**uma cópia de trabalho, um agente**, e se pela razão que for dois têm que compartilhar uma, então
+nenhum dos dois roda um comando que joga fora o que não escreveu, e cada etapa fica em um commit
+de um ramo no momento em que fecha, não no final: a única coisa que volta a existir depois de uma
+árvore limpa é o que já estava em um commit. Avisarem-se não basta, porque um agente não lê a tela
+do outro.
 
 ## Como se repartem os degraus numa equipe
 
@@ -267,6 +284,8 @@ agente; e o estado vivo em dia.
 - Houve um conflito esta semana? Como se resolveu, e há uma pendência do mapa por causa disso?
 - Há alguma funcionalidade pela metade sem interruptor no ramo compartilhado?
 - `docs/STATUS.md` diz o que cada um está fazendo hoje?
+- Há dois agentes trabalhando sobre a mesma pasta? Se a resposta é sim, pergunte quando foi o
+  último commit de cada um.
 
 ## Sinais de alerta
 
@@ -279,6 +298,9 @@ agente; e o estado vivo em dia.
   que ninguém o decidisse.
 - O agente de uma pessoa fechou uma pendência reivindicada por outra. A leitura ao começar a
   sessão não está no contrato, ou o contrato não se lê.
+- Duas sessões de agente abertas sobre a mesma pasta. Tarde ou cedo uma limpa a árvore e leva o
+  que a outra não tinha deixado em um commit, e não fica nem o aviso: o trabalho que nunca chegou a
+  um commit não deixa rastro em parte nenhuma.
 
 ## O que falta elaborar `[hipótese]`
 
