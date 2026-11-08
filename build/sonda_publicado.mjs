@@ -99,6 +99,20 @@ export function descontar(texto, snippet) {
   return { texto: partes.join(''), veces: partes.length - 1 };
 }
 
+/**
+ * En cuantas paginas servidas aparece cada inyeccion declarada. Vive en un solo lugar porque lo
+ * usan la comprobacion y el informe, y dos cuentas del mismo hecho calculadas aparte es el
+ * defecto que este repositorio persigue en todas las otras capas: la que informa se desincroniza
+ * de la que decide y el log miente sin que nada caiga.
+ */
+export function vistasPorInyeccion(paginas, inyecciones) {
+  const vistas = {};
+  for (const iny of inyecciones) {
+    vistas[iny.id] = paginas.filter((p) => p.servido.texto?.includes(iny.snippet)).length;
+  }
+  return vistas;
+}
+
 /** El primer byte en que dos textos difieren, con su ventana a cada lado. */
 export function divergencia(a, b) {
   let i = 0;
@@ -129,7 +143,7 @@ export function resolver(rutaPagina, url) {
 export function comprobar({ paginas, recursos = [], inyecciones = [], publicados = [] }) {
   const h = [];
   const enElArbol = new Set(publicados);
-  const vistas = new Map(inyecciones.map((i) => [i.id, 0]));
+  const vistas = vistasPorInyeccion(paginas, inyecciones);
 
   for (const p of paginas) {
     // S1. legible. Un fallo de red no es un verde ni un silencio.
@@ -153,11 +167,7 @@ export function comprobar({ paginas, recursos = [], inyecciones = [], publicados
 
     // S2. lo servido, descontadas las inyecciones declaradas, es el arbol.
     let limpio = p.servido.texto;
-    for (const iny of inyecciones) {
-      const r = descontar(limpio, iny.snippet);
-      limpio = r.texto;
-      if (r.veces > 0) vistas.set(iny.id, vistas.get(iny.id) + 1);
-    }
+    for (const iny of inyecciones) limpio = descontar(limpio, iny.snippet).texto;
     if (limpio !== p.arbol) {
       const d = divergencia(limpio, p.arbol);
       const lado = limpio.length > p.arbol.length
@@ -190,7 +200,7 @@ export function comprobar({ paginas, recursos = [], inyecciones = [], publicados
 
   // S5. la declaracion no se vence.
   for (const iny of inyecciones) {
-    const cuantas = vistas.get(iny.id);
+    const cuantas = vistas[iny.id];
     if (cuantas === 0) {
       h.push('[S5] el inventario declara la inyeccion ' + iny.id + ' (' + iny.host
         + ') y no aparecio en ninguna pagina servida: la declaracion quedo vencida');
@@ -301,16 +311,12 @@ async function principal() {
   }
 
   const hallazgos = comprobar({ paginas, recursos, inyecciones, publicados });
-  const vistas = {};
-  for (const iny of inyecciones) {
-    vistas[iny.id] = paginas.filter((p) => p.servido.texto?.includes(iny.snippet)).length;
-  }
   console.log(informe({
     base,
     paginas,
     recursos,
     inyecciones,
-    vistas,
+    vistas: vistasPorInyeccion(paginas, inyecciones),
     bytes,
     legibles: paginas.filter((p) => p.servido.status === 200 && p.servido.texto).length,
   }, hallazgos));
