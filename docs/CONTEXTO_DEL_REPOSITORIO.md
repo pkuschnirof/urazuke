@@ -728,7 +728,7 @@ Reglas que no se negocian, y que el validador hace cumplir (`node build/gates_va
   verdad hay que cambiar un requisito existente, es un cambio del método y va con su decisión.
   Pasó una sola vez (D-055, autorizada por el dueño y acotada a dos textos): cuando se edita, se
   edita **en sincronía** con el congelado, para que la diferencia cero siga siendo demostrable.
-- **Una sola copia de cada texto.** El enunciado de las 52 reglas y de las 19 caras vive sólo en el Anexo H;
+- **Una sola copia de cada texto.** El enunciado de las reglas y de las caras vive sólo en el Anexo H;
   `heuristics.json` lleva el puntero (`statement_source` para la ruta, una vez, y `section` +
   `row` por regla) y el build **extrae** el texto de `docs/en/ANEXO_HEURISTICAS.md`, que es la
   versión que se publica. El validador rechaza un enunciado transcrito, una severidad que no
@@ -1077,6 +1077,42 @@ flujo— y ninguna prueba puede verificar que una pregunta concreta tenga sus cu
 juzga el dueño y queda fuera del porcentaje del tablero. Y **la cláusula y el dato son un solo
 par**: los tres niveles que la cláusula nombra son exactamente los que declara
 `enums.communication_depth`, y la guarda cae si uno cambia sin el otro.
+
+## «Servido no es publicado» es una regla del método: `CQ-25`
+
+D-095 (`PND-124`), y la pidió el dueño. Es la primera regla del Anexo H que **no sale de un sistema
+construido con el método** sino de dos roturas medidas en el sitio donde el método se publica, una
+por cada dirección del contraste: el 2026-10-24, un archivo de configuración **commiteado y
+desplegado en verde** que el transporte de la publicación excluía y que nunca llegó al servidor
+(`Ref. 47`); y el 2026-11-08, un script que el hospedaje **inyecta** en las ochenta y cuatro páginas
+publicadas, que nadie commiteó y que `build/terceros.mjs` no podía ver —dijo «0 hallazgos» esa misma
+mañana y era verdad, porque lee el árbol— (`Ref. 48`). Las dos son D-057 leída por sus dos lados.
+Todas las guardas del método iban del dato a la prosa, de la prosa al dato o del árbol a la red; la
+que faltaba va **de la red al árbol**, y desde D-094 existe: `build/sonda_publicado.mjs`. El anexo
+pasa a **cincuenta y tres** reglas (25 de calidad, 28 de usabilidad) y a veintitrés caras; el
+catálogo, a `2026.10.18`, y el de textos por identificador, a `2026.10.5`.
+
+**El enunciado es del dueño y tres cosas de este lote no se negocian.** Primera: `CQ-25.1` declara
+**desde dónde y como quién** se preguntó, porque un servidor puede contestar distinto por cliente,
+por región y por momento, y una sonda que pregunta desde un solo lugar con un solo cliente verifica
+**una respuesta** y no «lo servido» —sin eso, la regla nacía con el defecto de `CQ-22.2`, un valor
+sin su condición, en la misma semana en que `CQ-22.2` se publicó—. Segunda: `CQ-25.2` exige **que el
+calendario haya corrido**, con la fecha de la última corrida, porque un calendario que falla en
+silencio deja la regla sin efecto y el tablero sigue verde por no haber corrido nada; una corrida
+ausente o vieja es **roja**. Tercera: `CQ-25.4` entra **marcada como aplicación y no como
+invención** —es `CQ-19.1` aplicada a este contraste— y lleva la referencia cruzada escrita, por el
+mismo criterio con el que `AP-29` quedó fuera del anexo: dos reglas diciendo lo mismo divergen el
+día que una se edita, y eso es D-044, D-077 y D-090 adentro del catálogo. Y **no hay cara del
+universo**: que se verifiquen las ochenta y cuatro páginas y no una ya es `CQ-19.3`, anclado por
+referencia.
+
+**Y dónde viven los casos.** Los dos no van en el enunciado —los casos reales nunca van ahí— sino en
+`docs/REFERENCIAS.md`, en una **sección nueva** para el repositorio del propio método, numerados
+`Ref. 47` y `Ref. 48`; las secciones de las cronologías y de la tabla de fallos bajaron una letra.
+El resultado de la semana, que el dueño pidió que quedara escrito porque no es de un pendiente: el
+método publicó la exigencia del inventario del código de terceros un lunes y su propio sitio la
+incumplió **dos veces** antes del viernes, una por un tercero que elegimos (D-093) y otra por uno
+que no elegimos (D-094), y las dos las encontró el método aplicándose a sí mismo.
 
 ## Los prompts del curso son una versión didáctica declarada
 

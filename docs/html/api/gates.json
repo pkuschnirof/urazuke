@@ -1,6 +1,6 @@
 {
   "what": "The mechanical definition of the gates of the Urazuke method, published as data. The method owns it; a tool consumes it. Whatever an installation cannot measure is reported as declared and not measured, never as green. And about the content hash, said plainly: a content hash is self-consistent, so whoever can edit a file can recompute it. It detects truncation, a bad merge and hand editing, which is exactly what its own note promises; it does not protect against an adversary who controls the host that served the file. The anchors that do not live on that host are the version ledger of each resource, which lives in the method repository and records the pair (version -> hash) append-only, and the transport security of the connection. There is no cryptographic signature: that is a written decision with its cost on the table, not an oversight.",
-  "catalog_version": "2026.10.17",
+  "catalog_version": "2026.10.18",
   "schema_version": 2,
   "content_hash": {
     "algo": "sha256",
@@ -32,19 +32,19 @@
       "license",
       "content_hash"
     ],
-    "value": "c8aacd1f4e3604351670f6f56f50a69ddc232be2c107460a697c5886cb523b8a",
+    "value": "3efa805d932c73ca80cb435408f994529fd010efa341239196454f1db15b9bf5",
     "note": "Recompute it over the canonicalised payload and compare. If you only read it, a frozen copy edited by hand or truncated by a merge is undetectable."
   },
-  "git_commit": "a294700",
+  "git_commit": "ac3c521",
   "git_commit_note": "Informative. It is the sha of the change BEFORE the one that contains this file, because it is computed before saving: it is not the identity of what is published and no comparison looks at it.",
-  "generated_at": "2026-11-07T23:41:46.019Z",
+  "generated_at": "2026-11-08T14:03:48.700Z",
   "source": "https://github.com/pkuschnirof/urazuke",
   "license": "Apache-2.0",
   "counts": {
     "steps": 24,
     "stations": 8,
-    "rules": 52,
-    "faces": 19,
+    "rules": 53,
+    "faces": 23,
     "evaluators": 12
   },
   "languages": {
@@ -1303,6 +1303,12 @@
           "since_schema": 2,
           "since_version": "2026.10.17",
           "decision": "D-089"
+        },
+        {
+          "text": "Is the inventory verified against WHAT IS SERVED, over the network, and not against the repository: are the pages a reader receives asked for over the network, do the bytes that come back match the ones the repository holds once the declared injections are subtracted, and does the contrast run on a schedule and not only on a commit (CQ-25)?",
+          "since_schema": 2,
+          "since_version": "2026.10.18",
+          "decision": "D-095"
         }
       ],
       "evaluators": [
@@ -2089,11 +2095,11 @@
     "note": "A legacy system enters the Construction Loop at step 5, so from there the five anchors of Annex H rule exactly as they do in a new project (D-023 + D-043). The two prior inputs are recovered by self-discovery with a source mark, like every input of an earlier stage on this path."
   },
   "heuristics": {
-    "what": "The fifty-two rules of Annex H as data: 24 of code quality (CQ-01 to CQ-24) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule and of every face lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
+    "what": "The fifty-three rules of Annex H as data: 25 of code quality (CQ-01 to CQ-25) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule and of every face lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
     "counts": {
-      "code_quality": 24,
+      "code_quality": 25,
       "usability": 28,
-      "total": 52
+      "total": 53
     },
     "decisions": [
       "D-043",
@@ -2105,12 +2111,14 @@
       "D-049",
       "D-070",
       "D-078",
-      "D-087"
+      "D-087",
+      "D-089",
+      "D-095"
     ],
     "groups": [
       {
         "id": "code_quality",
-        "range": "CQ-01..CQ-24",
+        "range": "CQ-01..CQ-25",
         "switch": {
           "lives_in": "the project configuration",
           "read_by": "the gate",
@@ -3346,6 +3354,94 @@
         ]
       },
       {
+        "id": "CQ-25",
+        "since_schema": 2,
+        "since_version": "2026.10.18",
+        "group": "code_quality",
+        "family": "served",
+        "instrument": [
+          "auto_gate",
+          "manual_case"
+        ],
+        "initial_severity": "blocks",
+        "timing": null,
+        "human_red": false,
+        "checker_declared_by": "adapter",
+        "applies_to": {
+          "declared_by": "project",
+          "value": null
+        },
+        "anchor": {
+          "steps": [
+            14
+          ],
+          "source": "annex"
+        },
+        "statement": {
+          "section": "4",
+          "row": "CQ-25",
+          "language": "en",
+          "text": "What a system publishes is verified against WHAT IS SERVED, over the network, not against the repository. A check that only reads the tree cannot establish it in either direction: something committed may never reach the reader, and something nobody committed may reach them.",
+          "extracted": true,
+          "family_label": "Served",
+          "verification_label": "Gate + manual case"
+        },
+        "faces": [
+          {
+            "id": "CQ-25.1",
+            "since_schema": 2,
+            "since_version": "2026.10.18",
+            "statement": {
+              "section": "4",
+              "row": "CQ-25.1",
+              "language": "en",
+              "text": "The contrast runs over the network against the published endpoint and compares BYTES, not claims. The probe declares from where and as whom it asked, because what is served can differ by client, by region and by moment.",
+              "extracted": true,
+              "face_label": "The bytes, and from where they were asked for"
+            }
+          },
+          {
+            "id": "CQ-25.2",
+            "since_schema": 2,
+            "since_version": "2026.10.18",
+            "statement": {
+              "section": "4",
+              "row": "CQ-25.2",
+              "language": "en",
+              "text": "It runs on a schedule and not only on a commit, because what the serving side adds or removes changes with no commit. The last run carries its date, and a run that is missing or stale is red.",
+              "extracted": true,
+              "face_label": "The schedule that ran"
+            }
+          },
+          {
+            "id": "CQ-25.3",
+            "since_schema": 2,
+            "since_version": "2026.10.18",
+            "statement": {
+              "section": "4",
+              "row": "CQ-25.3",
+              "language": "en",
+              "text": "The contrast runs both ways: something committed that never arrives falls, and a declared injection that stopped being there falls too.",
+              "extracted": true,
+              "face_label": "Both ways"
+            }
+          },
+          {
+            "id": "CQ-25.4",
+            "since_schema": 2,
+            "since_version": "2026.10.18",
+            "statement": {
+              "section": "4",
+              "row": "CQ-25.4",
+              "language": "en",
+              "text": "Not having been able to look is red and never green. It is CQ-19.1 applied to this contrast, named here because \"the endpoint did not answer\" reads as \"nothing was added\".",
+              "extracted": true,
+              "face_label": "Not having been able to look"
+            }
+          }
+        ]
+      },
+      {
         "id": "UX-01",
         "group": "usability",
         "family": "B1",
@@ -4444,7 +4540,7 @@
       "immutable_url_pattern": "<canonical base>/<resource folder>/<version>.json -- one folder per resource, because each resource declares its own version line and a folder named after one version would be naming the other resource's content with it.",
       "immutable_url_what": "The address that returns THIS version and only this version, for as long as the method publishes. The canonical URL keeps serving whatever is current, so a tool that points at it is updated in silence and the hash moves under its feet. A project that pinned a version re-reads that exact version here, by address, instead of having to keep a copy of its own and instead of searching a repository history.",
       "immutable_url_where": "Declared, never derived, and NOT in this file: the index of this data interface declares per resource the base, the address of the current version and the full list of versions that have one, under resources[].immutable. This file declares only its own path relative to that base, in immutable_path. The reason it stops there is measured and not stylistic: the data layer of this method names no tool, no protocol and no host (see the neutrality claim the method publishes with the command that counts the occurrences), and an absolute address carries the host name. A derived address is an invented address (D-069), so the absolute one is declared -- in the one file whose job is to be a directory.",
-      "immutable_path": "gates/2026.10.17.json",
+      "immutable_path": "gates/2026.10.18.json",
       "first_version_with_an_address": "2026.10.1",
       "no_purge": "Versions are never removed. An immutable address that disappears one day is worse than never having published it, because it breaks exactly whoever trusted the promise. The growth is about 165 KB per version, which is not a problem worth solving.",
       "what_is_promised": "The covered payload of THAT version, not the bytes, and not more than that version's own hash covered. The keys a hash excludes are publication metadata and a regeneration can move them, so promising the bytes would be promising something the first regeneration breaks; recompute the hash and compare, which is what a consumer does anyway. And the scope is per version, measured, because the coverage grew: for this catalogue the versions from 2026.10.1 to 2026.10.5 do not cover `what` and `counts`, which 2026.10.6 closed, so for one of those versions an address can only promise what that version could prove. That is a property of a hash already published, which is never edited, and not something a later version can repair backwards.",

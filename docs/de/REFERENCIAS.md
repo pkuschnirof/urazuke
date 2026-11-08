@@ -440,12 +440,55 @@ verpflichtend ist: verpflichtend ist, aus der Ausführung der Bildschirme heraus
 
 ---
 
-## E. Vollständige Chronologien
+## E. Das Repository der Methode: Urazuke, auf sich selbst angewandt (Oktober und November 2026)
+
+Die zwei folgenden Fälle kommen nicht aus dem System eines Kunden: sie kommen aus dem Repository
+dieser Methode, die sich auf ihre eigene Veröffentlichung anwendet. Sie stehen zusammen, weil sie
+**die zwei Richtungen eines einzigen Satzes** sind —«ausgeliefert ist nicht veröffentlicht»— und
+weil die Regel `CQ-25` des Anhangs H aus beiden hervorgegangen ist.
+
+### Ref. 47 — Das Committete, das den Server nicht erreichte: grünes Deployment und sieben Prüfungen im Rot (24. Oktober)
+
+Die Konfigurationsdatei, die die veröffentlichte Datenschnittstelle lesbar macht, war committet
+(`fd1270e`), und das Deployment des Portals schloss **grün** in einundzwanzig Sekunden (Lauf
+`40130433403`). Die Produktion hatte ihre sieben Prüfungen weiterhin im Rot: die Adresse des Index
+antwortete 403, und keine der drei Dateien lieferte den Kopf zurück, den ein Browser anderer
+Herkunft braucht. Die Ursache war ein nicht verankertes Muster im Transport
+—`--exclude='.htaccess'` statt `--exclude='/.htaccess'`—, das die drei Konfigurationsdateien des
+Repositories verwarf und nicht nur die der Wurzel, die als einzige erhalten bleiben sollte. Gemessen
+über einen Testbaum mit denselben Pfaden: mit dem losen Muster kamen **null** an; mit dem
+verankerten **zwei**. Gefunden hat es ein Mensch, der sich fragte, warum das Veröffentlichte nicht
+lesbar war, und keine Wache, und die Lesart ist geblieben: **das Grün eines Ablaufs ist kein Beweis
+dafür, dass die Konfiguration angekommen ist; der Beweis ist, den Server zu fragen.** Am selben Tag
+an beiden Enden behoben, mit einer Wache, die vor dem Ausrollen läuft, und ihrem eigenen roten Test
+(`PND-035`, geschlossen am 2026-10-24; D-056).
+
+### Ref. 48 — Was niemand committet hatte und dennoch ankam: das Hosting injiziert einen Dritten in die vierundachtzig veröffentlichten Seiten (8. November)
+
+Zwei Wochen später derselbe Satz von der anderen Seite. Am 2026-11-03 veröffentlichte die Methode
+die Anforderung des Inventars des Fremdcodes, den ein System **ausführt** (Schritt 14, `CQ-22.4`);
+am 2026-11-07 verlegte sie ihren einzigen Dritten auf ihr eigenes Hosting, um sie zu erfüllen; und
+am 2026-11-08, gemessen gegen die Produktion **über das Netz** und nicht gegen den Baum, erschien
+ein weiterer, den keine Entscheidung dorthin gesetzt hatte: das Hosting fügt **vierhundertvierundfünfzig
+Bytes** nach dem Schluss des Körpers hinzu, mit einem Skript eines fremden Hosts, in **die
+vierundachtzig veröffentlichten Seiten**, und der injizierte Block selbst erklärt sich als vom
+Anbieter des Hostings. Im committeten Baum gibt es **null** Erwähnungen dieses Hosts in den
+vierundachtzig Dateien. Die Wache, die die Methode für Fremdcode schon hatte, sagte an genau diesem
+Morgen «0 Funde», und **sie hatte recht**: sie liest den Baum. Die neue Sonde gab, gegen dieselbe
+Produktion und bevor irgendetwas erklärt war, **168 Funde und Exit-Code 1**, mit den vierundachtzig
+über das Netz angeforderten Seiten; nachdem die Injektion mit ihrer Herkunft erklärt war, **0
+Funde**. Das Veröffentlichte führt diesen Dritten weiterhin aus: geändert hat sich, dass er erklärt
+ist, mit benanntem Ausweg, und dass es eine Maschine gibt, die jede Woche erneut fragt (`PND-123`,
+offen und sperrend; `PND-124`; D-094 und D-095).
+
+---
+
+## F. Vollständige Chronologien
 
 Ich setze sie hierher, falls jemand die ganze Abfolge sehen will und nicht einen losen Fall. Jede
 Zeile bringt den Beleg so, wie er in den Repositories steht.
 
-### E.1 yujin-forge
+### F.1 yujin-forge
 
 | Datum | Moment | Was sich änderte | Beleg |
 |---|---|---|---|
@@ -465,7 +508,7 @@ Zeile bringt den Beleg so, wie er in den Repositories steht.
 | 13. Oktober | Asynchrone Persistenzschnittstelle | Asymmetrische Entscheidung | `7391cc5` |
 | 14. Oktober | Verwaister Zug von 1 h 43 → 1.18.0 | Stille-Wachhund, Leine zwischen Prozessen, 28 Tests | `b80a659` |
 
-### E.2 Autorizaciones
+### F.2 Autorizaciones
 
 | Datum | Moment | Was es beitrug | Beleg |
 |---|---|---|---|
@@ -483,7 +526,7 @@ Zeile bringt den Beleg so, wie er in den Repositories steht.
 | 7. August | Panikknopf, Trockenlauf, Wächter | Sperren | `0954740` |
 | 10. August | Domänenregeln im Commit | Mit Datum und Eigentümer | `0ae3ae6` |
 
-### E.3 Kikan
+### F.3 Kikan
 
 | Datum | Moment | Was es beitrug | Beleg |
 |---|---|---|---|
@@ -505,7 +548,7 @@ Zeile bringt den Beleg so, wie er in den Repositories steht.
 
 ---
 
-## F. Jeder Fehlschlag, und der Schritt, der ihn abdeckt
+## G. Jeder Fehlschlag, und der Schritt, der ihn abdeckt
 
 Diese Tabelle ist in gewisser Weise der Beweis der Leiter: jeder Schlag muss in irgendeinen Schritt
 fallen. Tauchte einer auf, der in keinen fällt, würde ein Schritt fehlen.

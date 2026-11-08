@@ -10275,7 +10275,11 @@ dos.
 - **Grupo:** G-METODO · **Severidad:** avisa · **Repositorio:** método
 - **Quién decide:** el dueño. Entra como **regla nueva** del Anexo H con su procedencia y sus caras,
   así que **sube la versión del catálogo**, y eso es suyo por la misma razón que en `PND-122`.
-- **Estado: abierto.**
+  **Decidió el 2026-11-08, D-095**: la regla entra, con las palabras que él eligió, y la versión
+  sube. Sus palabras al devolver el texto: *«Tu enunciado está bien y lo adopto casi entero. Tres
+  cambios, con el motivo (...) Ahora las palabras están elegidas; escribila.»*
+- **Estado: CERRADO** el 2026-11-08, con D-095, en el commit que escribió `CQ-25` en el dato, en el
+  Anexo H de los ocho idiomas, en el contrato del peldaño 14 y en las dos referencias nuevas.
 
 **La regla, entera, como la veo.** Toda afirmación sobre lo que un sistema publica se verifica contra
 **lo que se sirve**, por red, y no contra el repositorio. Una comprobación que sólo lee el árbol no la
@@ -10328,6 +10332,61 @@ D-090 persiguen. La regla ya está **hecha cumplir por una máquina** en este re
   por ella, entonces el dato la declara con su identificador y sus caras, y el enunciado tiene **una
   sola copia**.
 
+**Lo que el dueño cambió del enunciado propuesto, que es la parte que no era mía.** Adoptó las
+cuatro caras, amplió dos y reclasificó una, con el motivo escrito en cada caso:
+
+| cara | qué le faltaba, en sus palabras |
+|---|---|
+| `CQ-25.1` | **a quién y desde dónde** se le preguntó. *«"Lo servido" no es una cosa: un servidor puede responder distinto por cliente, por región y por momento. Una sonda que pregunta desde un solo lugar con un solo cliente verifica una respuesta, no "lo servido".»* Y el precio de no decirlo: *«sin esa declaración, `CQ-25` nace con el defecto de `CQ-22.2` —un valor sin su condición— en la semana en que publicamos `CQ-22.2`»*. |
+| `CQ-25.2` | **que el calendario haya corrido.** *«Un cron que falla en silencio deja la regla sin efecto y nadie se entera: el tablero sigue verde porque no corrió nada.»* De ahí que la última corrida lleve su fecha y que una corrida ausente o vieja sea **roja** y no silenciosa. |
+| `CQ-25.4` | nada: lo que cambió es **su clase**. Es `CQ-19.1` aplicada a este contraste y queda marcada como **aplicación y no como invención**, con la referencia cruzada, por el mismo criterio con el que `AP-29` quedó fuera del anexo: *«si entra sin la referencia cruzada, el catálogo tiene dos reglas diciendo lo mismo y el día que una se edite van a divergir»*. |
+
+Y una cara que **no** entró, decidida por él con el mismo argumento: la del universo. *«Que se
+verifiquen las 84 y no una ya es `CQ-19.3` —el universo en las dos direcciones— y repetirlo sería el
+mismo defecto que estoy evitando en `.4`. Anclalo por referencia.»*
+
+**Qué se escribió, y es la lista que esta entrada pedía, entera.** La entrada en
+`gates/heuristics.json` con su `since_schema`, su `since_version` y sus cuatro caras, anclada al
+peldaño 14. El enunciado en el Anexo H en los **ocho idiomas**, que es la única copia del texto
+porque el build lo extrae (D-044), con su párrafo de origen, su tabla de caras y la nota fechada
+apilada. La pregunta de verificación del peldaño 14 en el dato y en su contrato en los ocho idiomas,
+diciendo que el inventario del código de terceros **se verifica contra lo servido**, por red, con
+los bytes contrastados contra el árbol una vez restadas las inyecciones declaradas y con el
+contraste corriendo con calendario. Las dos caras medidas como **referencias propias y numeradas**
+—`Ref. 47` y `Ref. 48`—, en una **sección nueva** de `docs/REFERENCIAS.md` para los casos del
+repositorio del propio método, porque los casos reales no van en el enunciado; las dos secciones
+que seguían bajaron una letra. Y la **versión del catálogo** `2026.10.18` con su huella y su línea
+de changelog append-only, más el catálogo de textos en `2026.10.5`.
+
+**Lo que se midió al cerrar.** `node build/gates_validate.mjs`: 24 peldaños, 8 estaciones, **53
+reglas**. `node build/build.mjs` completo en verde, con el documento generado regenerado del dato y
+las cuatro guardas de cifras —derivadas, cuenta de reglas, versiones inmutables y terceros— en 0
+hallazgos. `node --test`: **580 de 580**. El catálogo de textos extrajo **131 ids por 8 idiomas =
+1048 textos**, que es lo que exige que el enunciado y el nombre de cada cara nuevos existan en los
+ocho. Y el diferencial de la fijación cuenta **seis entradas nuevas** —la regla, sus cuatro caras y
+la pregunta del peldaño—, que es lo que un proyecto que suba de `2026.10.17` a `2026.10.18` va a
+recibir.
+
+**Dos defectos propios que aparecieron al escribir esto, arreglados en el mismo cambio.** El
+primero: la nota fechada de D-089 —*«Y desde el 2026-11-07 son cincuenta y dos»*— estaba en siete
+idiomas y **faltaba en el inglés**, que es el que se publica; se escribió junto con la nueva. El
+segundo: `gates/heuristics.json` no nombraba `D-089` ni `D-095` en su lista de decisiones, que es la
+que el documento generado imprime como las decisiones del Anexo H. Ninguna guarda los veía: son dos
+copias de la misma familia que D-044 persigue, en el único lugar donde todavía se mantienen a mano.
+
+**Lo que esta regla no promete, y está escrito en el anexo y en el contrato en vez de simulado.**
+Ninguna compuerta puede verificar que la sonda haya preguntado desde donde dice haber preguntado, ni
+que el calendario que un proyecto declara sea el que de verdad corre. Lo que una máquina mira es la
+**declaración** —a qué dirección se le preguntó, con qué cliente, la fecha de la última corrida y el
+contraste de los bytes contra el árbol— y la verdad de la declaración la decide una persona leyendo.
+Es la misma frontera de `CQ-21` y del tercer lote.
+
+**Y el resultado de la semana, que el dueño pidió que quedara en el expediente porque no es de un
+pendiente:** el método publicó la exigencia del inventario del código de terceros un lunes y su
+propio sitio la incumplió **dos veces** antes del viernes —una por un tercero que elegimos (D-093) y
+otra por uno que no elegimos (D-094)—, y las dos las encontró el método aplicándose a sí mismo.
+*«Una norma que no se rompe sola en la primera semana es una norma que nadie probó.»*
+
 **Depende de:** nada. Es independiente de la mudanza de `PND-123`: la sonda que la hace cumplir acá ya
 existe y la regla sigue siendo cierta con cualquier hospedaje.
 
@@ -10348,9 +10407,9 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-IDIOMA | 17 | 13 | 4 | 3 |
 | G-PUBLICACION | 8 | 1 | 7 | 1 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
-| G-METODO | 59 | 26 | 33 | 12 |
+| G-METODO | 59 | 25 | 34 | 12 |
 | G-TRAZABILIDAD | 8 | 3 | 5 | 0 |
-| **total** | **124** | **49** | **75** | **17** |
+| **total** | **124** | **48** | **76** | **17** |
 
 Ciento veinticuatro entradas, `PND-001` a `PND-124`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,

@@ -61,8 +61,8 @@ const MUTACIONES = [
     /labels\.json.*dice "Twelve evaluator names" y el dato declara 13/,
     (c) => editarJson(c, 'gates/evaluators.json', (j) => j.evaluators.push({ name: 'inventado', checks: 'nada' }))],
 
-  ['una regla nueva, y el documento generado sigue diciendo cincuenta y dos',
-    /dice "fifty-two rules" y el dato declara 53/,
+  ['una regla nueva, y el documento generado sigue diciendo cincuenta y tres',
+    /dice "fifty-three rules" y el dato declara 54/,
     (c) => editarJson(c, 'gates/heuristics.json', (j) => j.rules.push({ id: 'UX-99', group: 'usability', family: 'b6' }))],
 
   // La fuente que se mantiene a mano, que es la otra punta del universo.

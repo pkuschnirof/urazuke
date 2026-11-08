@@ -45,7 +45,7 @@ const MUTACIONES = [
   // formas de una lista dice "0 hallazgos" con razon y no mira lo que importa.
   ['una forma nueva, con otro sustantivo, que ninguna lista preveia',
     { archivo: 'docs/ESCALERA_METODOLOGICA.md', comprobacion: 'B', cuenta: 'total' },
-    (c) => { c['docs/ESCALERA_METODOLOGICA.md'] = c['docs/ESCALERA_METODOLOGICA.md'].replace('Son reglas verificables', 'El anexo tiene cincuenta y dos criterios verificables, y son reglas verificables'); }],
+    (c) => { c['docs/ESCALERA_METODOLOGICA.md'] = c['docs/ESCALERA_METODOLOGICA.md'].replace('Son reglas verificables', 'El anexo tiene cincuenta y tres criterios verificables, y son reglas verificables'); }],
 
   // EL DEFECTO QUE SE MIDIO DOS VECES: el dato crece y la prosa se queda con la cifra de ayer.
   ['el dato sube a cincuenta y tres y la prosa se queda en cincuenta y dos',

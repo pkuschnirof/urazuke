@@ -101,7 +101,7 @@ test('la guarda NO ve una cifra que el dato dejo atras por mas de uno y sin sust
 test('y SI la ve el dia que se escribe, que es la forma en que esa frase nacio', () => {
   const copia = { ...arbol };
   copia['docs/ANEXO_HEURISTICAS.md'] = copia['docs/ANEXO_HEURISTICAS.md']
-    .replace('se diferencia de las demás:', 'se diferencia de las otras cincuenta y una:');
+    .replace('se diferencia de las demás:', 'se diferencia de las otras cincuenta y dos:');
   const r = comprobar(copia, cuentas);
   assert.equal(r.hallazgos.length, 1);
   assert.equal(r.hallazgos[0].comprobacion, 'B');

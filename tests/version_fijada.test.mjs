@@ -201,6 +201,16 @@ test('C: el diferencial desde la primera version publicada es la historia medida
     '2026.10.17 docs/RESTORE_DRILL.md',
     '2026.10.17 docs/THIRD_PARTY_EXECUTION.md',
     '2026.10.17 docs/WORKING_AGREEMENT.md',
+    // Las seis de 2026.10.18 son D-095: una regla con sus cuatro caras y la pregunta de
+    // verificacion de su peldano. Es el primer lote que no sale de un sistema construido con el
+    // metodo, sino de dos roturas del sitio donde el metodo se publica, y tampoco agrega una ruta
+    // nueva: la exigencia cae sobre el inventario que el peldano 14 ya pedia.
+    '2026.10.18 CQ-25',
+    '2026.10.18 CQ-25.1',
+    '2026.10.18 CQ-25.2',
+    '2026.10.18 CQ-25.3',
+    '2026.10.18 CQ-25.4',
+    '2026.10.18 Is the inventory verified against WHAT IS SERVED, over the network, and not against the repository: are the pages a reader receives asked for over the network, do the bytes that come back match the ones the repository holds once the declared injections are subtracted, and does the contrast run on a schedule and not only on a commit (CQ-25)?',
     '2026.10.4 Does the recovery-manual run leave its record -- the measured end-to-end time, the exact point where the person got stuck and every word they did not understand, with a date and the name of whoever ran it -- and did every one of those words open a pending item?',
     '2026.10.5 docs/GLOSSARY.md',
     '2026.10.5 docs/PROFILES.md',
@@ -282,15 +292,17 @@ test('E: la comprobacion reviso algo, y lo dice con su cuenta', () => {
   // entrar--, un umbral que declara el dueno, siete artefactos (dos de ellos sobre rutas NUEVAS:
   // el ensayo de restitucion del peldano 20 y el inventario del codigo de terceros que corre del
   // peldano 14) y doce preguntas de verificacion.
-  assert.equal(arbol.entradas.length, 123, 'las entradas agregadas despues del congelado, medidas el 2026-11-07');
-  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['CQ-19', 'CQ-20', 'CQ-21', 'CQ-22', 'CQ-23', 'CQ-24', 'UX-28'],
+  // Las seis ultimas son de D-095: una regla, sus cuatro caras y una pregunta de verificacion.
+  assert.equal(arbol.entradas.length, 129, 'las entradas agregadas despues del congelado, medidas el 2026-11-08');
+  assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.rules')).map((e) => e.que), ['CQ-19', 'CQ-20', 'CQ-21', 'CQ-22', 'CQ-23', 'CQ-24', 'CQ-25', 'UX-28'],
     'una regla agregada despues del congelado entra en el diferencial: sin esto un upgrade la omitia en silencio');
   // Y una cara, por el mismo argumento una capa adentro: se puede apagar sola, asi que un
   // diferencial que cuenta la regla y no sus caras dice que entra una cosa cuando entran cinco.
   assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.faces')).map((e) => e.que),
     ['CQ-19.1', 'CQ-19.2', 'CQ-19.3', 'CQ-19.4', 'CQ-20.1', 'CQ-20.2', 'CQ-21.1', 'CQ-21.2', 'CQ-21.3', 'CQ-21.4',
-      'CQ-22.1', 'CQ-22.2', 'CQ-22.3', 'CQ-22.4', 'CQ-23.1', 'CQ-23.2', 'CQ-23.3', 'CQ-24.1', 'CQ-24.2'],
-    'las caras entran en el diferencial con su procedencia (D-078, D-087, D-089)');
+      'CQ-22.1', 'CQ-22.2', 'CQ-22.3', 'CQ-22.4', 'CQ-23.1', 'CQ-23.2', 'CQ-23.3', 'CQ-24.1', 'CQ-24.2',
+      'CQ-25.1', 'CQ-25.2', 'CQ-25.3', 'CQ-25.4'],
+    'las caras entran en el diferencial con su procedencia (D-078, D-087, D-089, D-095)');
   assert.deepEqual(arbol.entradas.filter((e) => e.donde.startsWith('catalog.thresholds')).map((e) => e.que), ['end_users_outside_the_organisation', 'acceptable_data_loss_window'],
     'un umbral agregado despues del congelado entra en el diferencial: declararlo o no cambia la severidad de su regla');
   assert.ok(arbol.versiones.length >= 7, 'el registro de versiones tiene al menos las siete publicadas');

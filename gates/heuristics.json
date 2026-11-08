@@ -1,9 +1,9 @@
 {
-  "what": "The fifty-two rules of Annex H as data: 24 of code quality (CQ-01 to CQ-24) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule and of every face lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
+  "what": "The fifty-three rules of Annex H as data: 25 of code quality (CQ-01 to CQ-25) and 28 of usability (UX-01 to UX-28). The mechanical fields live here. The STATEMENT of every rule and of every face lives ONLY in Annex H: this file carries the pointer and the build extracts the text (D-044). Ids are append-only.",
   "counts": {
-    "code_quality": 24,
+    "code_quality": 25,
     "usability": 28,
-    "total": 52
+    "total": 53
   },
   "decisions": [
     "D-043",
@@ -15,12 +15,14 @@
     "D-049",
     "D-070",
     "D-078",
-    "D-087"
+    "D-087",
+    "D-089",
+    "D-095"
   ],
   "groups": [
     {
       "id": "code_quality",
-      "range": "CQ-01..CQ-24",
+      "range": "CQ-01..CQ-25",
       "switch": {
         "lives_in": "the project configuration",
         "read_by": "the gate",
@@ -1055,6 +1057,73 @@
           "statement": {
             "section": "4",
             "row": "CQ-24.2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CQ-25",
+      "since_schema": 2,
+      "since_version": "2026.10.18",
+      "group": "code_quality",
+      "family": "served",
+      "instrument": [
+        "auto_gate",
+        "manual_case"
+      ],
+      "initial_severity": "blocks",
+      "timing": null,
+      "human_red": false,
+      "checker_declared_by": "adapter",
+      "applies_to": {
+        "declared_by": "project",
+        "value": null
+      },
+      "anchor": {
+        "steps": [
+          14
+        ],
+        "source": "annex"
+      },
+      "statement": {
+        "section": "4",
+        "row": "CQ-25"
+      },
+      "faces": [
+        {
+          "id": "CQ-25.1",
+          "since_schema": 2,
+          "since_version": "2026.10.18",
+          "statement": {
+            "section": "4",
+            "row": "CQ-25.1"
+          }
+        },
+        {
+          "id": "CQ-25.2",
+          "since_schema": 2,
+          "since_version": "2026.10.18",
+          "statement": {
+            "section": "4",
+            "row": "CQ-25.2"
+          }
+        },
+        {
+          "id": "CQ-25.3",
+          "since_schema": 2,
+          "since_version": "2026.10.18",
+          "statement": {
+            "section": "4",
+            "row": "CQ-25.3"
+          }
+        },
+        {
+          "id": "CQ-25.4",
+          "since_schema": 2,
+          "since_version": "2026.10.18",
+          "statement": {
+            "section": "4",
+            "row": "CQ-25.4"
           }
         }
       ]

@@ -169,6 +169,10 @@ fazer.
   com `entries_total`, `entries_with_a_decision`, o privilégio de cada entrada e a sua decisão por
   entrada. Que o inventário exista não basta: o que fecha o degrau é que cada entrada tenha decisão
   (CQ-22.4).
+- A verificação desse inventário **contra o servido**: as páginas que o leitor recebe pedidas pela
+  rede, os bytes contrastados contra os do repositório uma vez subtraídas as injeções que o
+  inventário declara, e a data da última corrida. Uma comprovação que só lê o repositório não pode
+  estabelecer o que o leitor executa (CQ-25).
 
 ## 4. Verificação de completude
 
@@ -183,6 +187,11 @@ fazer.
 - Com que privilégio correu cada verificação? O comando que se apresenta como de somente leitura,
   sem permissão de escrever; e a sonda que exerce a ação impedida, correndo onde a sua sentença não
   pode aterrissar, com o estado contado antes e depois (CQ-20).
+- O que afirmas do inventário, perguntaste-o ao servidor ou ao repositório? Pede as páginas pela
+  rede, subtrai-lhes as injeções que o inventário declara e exige que o que fique seja byte a byte o
+  do repositório. E o contraste corre com calendário e não só com um commit? O que o lado que serve
+  acrescenta ou retira muda sem um commit, portanto uma corrida ausente ou velha é vermelha
+  (CQ-25).
 
 ## 5. Sinais de alerta
 

@@ -173,6 +173,10 @@ aurait fait avant de la laisser faire.
   `entries_total`, `entries_with_a_decision`, le privilège de chaque entrée et ta décision par
   entrée. Que l'inventaire existe ne suffit pas : ce qui ferme l'échelon, c'est que chaque entrée
   ait sa décision (CQ-22.4).
+- La vérification de cet inventaire **contre ce qui est servi** : les pages que le lecteur reçoit
+  demandées par le réseau, les octets contrastés contre ceux du dépôt une fois retirées les
+  injections que l'inventaire déclare, et la date de la dernière exécution. Une vérification qui ne
+  lit que le dépôt ne peut pas établir ce que le lecteur exécute (CQ-25).
 
 ## 4. Vérification de complétude
 
@@ -189,6 +193,11 @@ aurait fait avant de la laisser faire.
 - Avec quel privilège a tourné chaque vérification ? La commande qui se présente comme en lecture
   seule, sans permission d'écrire ; et la sonde qui exerce l'action empêchée, tournant là où son
   instruction ne peut pas atterrir, avec l'état compté avant et après (CQ-20).
+- Ce que tu affirmes de l'inventaire, l'as-tu demandé au serveur ou au dépôt ? Demande les pages par
+  le réseau, retire-leur les injections que l'inventaire déclare et exige que ce qui reste soit
+  octet pour octet celui du dépôt. Et le contraste tourne-t-il avec un calendrier et pas seulement
+  avec un commit ? Ce que le côté qui sert ajoute ou retire change sans commit, donc une exécution
+  absente ou vieille est rouge (CQ-25).
 
 ## 5. Signaux d'alarme
 

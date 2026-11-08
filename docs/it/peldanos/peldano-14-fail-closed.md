@@ -171,6 +171,10 @@ avrebbe fatto prima di lasciarla fare.
   `entries_total`, `entries_with_a_decision`, il privilegio di ogni voce e la tua decisione per
   voce. Che l'inventario esista non basta: quello che chiude il gradino è che ogni voce abbia la sua
   decisione (CQ-22.4).
+- La verifica di quell'inventario **contro quello che viene servito**: le pagine che il lettore
+  riceve chieste per rete, i byte contrastati contro quelli del repository una volta sottratte le
+  iniezioni che l'inventario dichiara, e la data dell'ultima corsa. Una verifica che legge soltanto
+  il repository non può stabilire quello che il lettore esegue (CQ-25).
 
 ## 4. Verifica di completezza
 
@@ -187,6 +191,11 @@ avrebbe fatto prima di lasciarla fare.
 - Con quale privilegio è corsa ogni verifica? Il comando che si presenta come di sola lettura,
   senza permesso di scrivere; e la sonda che esercita l'azione impedita, correndo dove la sua
   istruzione non può atterrare, con lo stato contato prima e dopo (CQ-20).
+- Quello che affermi dell'inventario, l'hai chiesto al server o al repository? Chiedi le pagine per
+  rete, sottrai loro le iniezioni che l'inventario dichiara ed esigi che quello che resta sia byte
+  per byte quello del repository. E il contrasto gira con calendario e non soltanto con un commit?
+  Quello che il lato che serve aggiunge o toglie cambia senza un commit, quindi una corsa assente o
+  vecchia è rossa (CQ-25).
 
 ## 5. Segnali d'allarme
 

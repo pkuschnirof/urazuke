@@ -1124,6 +1124,12 @@
           "since_schema": 2,
           "since_version": "2026.10.17",
           "decision": "D-089"
+        },
+        {
+          "text": "Is the inventory verified against WHAT IS SERVED, over the network, and not against the repository: are the pages a reader receives asked for over the network, do the bytes that come back match the ones the repository holds once the declared injections are subtracted, and does the contrast run on a schedule and not only on a commit (CQ-25)?",
+          "since_schema": 2,
+          "since_version": "2026.10.18",
+          "decision": "D-095"
         }
       ],
       "evaluators": [
