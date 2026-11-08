@@ -1,0 +1,38 @@
+{
+  "what": "The declared inventory of the third-party code this repository EXECUTES, and the frozen copy of each entry. It is the data layer of docs/THIRD_PARTY_EXECUTION.md, which is GENERATED from here by build/terceros_doc.mjs: the figures of the document are derived and not written (D-077, D-090). Keys are English and ASCII (D-075); the values a person writes -- the reason, the decision -- are in the language of the project.",
+  "entries": [
+    {
+      "id": "mermaid",
+      "name": "mermaid",
+      "version": "11.17.2",
+      "license": "MIT",
+      "license_file": "vendor/mermaid-11.17.2.LICENSE.txt",
+      "file": "vendor/mermaid-11.17.2.min.js",
+      "published_as": "docs/html/vendor/mermaid-11.17.2.min.js",
+      "upstream": "https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.min.js",
+      "frozen_on": "2026-11-08",
+      "what_it_runs": "Dibuja en el navegador del lector los diagramas escritos en bloques ```mermaid del documento principal: los convierte en SVG dentro de la propia pagina.",
+      "when_it_runs": "Al cargar cualquiera de las paginas publicadas que tienen al menos un diagrama; el conversor incluye la etiqueta solo en esas.",
+      "runs_as": "browser_of_the_reader",
+      "privilege": "page_dom_same_origin",
+      "privilege_note": "Corre en el navegador de quien lee, con el privilegio de la pagina: puede leer y escribir el DOM de ese documento. No hay sesion, no hay cookie de dominio, no hay dato personal en el sitio y no hay nada que escribir del otro lado: el sitio publicado es un documento. No corre en ninguna maquina del metodo, ni en la construccion, ni en la cadena de integracion.",
+      "network_at_runtime": "none",
+      "network_note": "Medido el 2026-11-08 sobre el archivo congelado: 0 importaciones dinamicas y 0 referencias a chunks, asi que el paquete es una sola pieza y no baja nada mas. Las 29 direcciones que aparecen adentro son espacios de nombres XML, enlaces de documentacion y de licencia de sus propias dependencias.",
+      "integrity": {
+        "algo": "sha256",
+        "value": "581ed7d74bd9048d0e3a91363927d72ef22942d7722546b27f7cc29e35390eb8",
+        "note": "Recompute it over the bytes of file and compare. This is what makes the pinned version verifiable without a network: a copy replaced or truncated by a merge is detected by build/terceros.mjs, which recomputes it on every build."
+      },
+      "sri": "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2",
+      "sri_note": "Subresource Integrity attribute, published for a consumer that mirrors this file from somewhere else. The page itself does NOT depend on it: it loads the copy served by this same site, whose identity is the sha256 above.",
+      "decision": {
+        "state": "narrowed",
+        "by": "Pablo Kuschnirof",
+        "on": "2026-11-08",
+        "decision_id": "D-093",
+        "pending_id": "PND-120",
+        "why": "Servirlo desde el propio sitio con la version clavada, en vez de pedirlo a un host ajeno con la mayor flotante. La razon del dueno: las tres salidas cumplirian la regla --clavar la version con su integridad declarada es una decision legitima por entrada-- pero esta es la unica en la que lo publicado no depende de que un host ajeno siga arriba. Y el cuidado que dejo escrito: servirlo desde el propio sitio NO lo saca de este inventario, porque el inventario es de lo que el sistema EJECUTA y no de quien lo hospeda; si al mudarlo desapareciera de aca, la mudanza habria roto la regla que vino a cumplir."
+      }
+    }
+  ]
+}

@@ -56,6 +56,15 @@ execFileSync(process.execPath, [join(raiz, 'build', 'gates_doc.mjs'), '--check']
 // la que lo demostro vivia en un archivo que dice de si mismo "no lo edites".
 execFileSync(process.execPath, [join(raiz, 'build', 'cifras_derivadas.mjs')], { stdio: 'inherit' });
 execFileSync(process.execPath, [join(raiz, 'build', 'cuenta_de_reglas.mjs')], { stdio: 'inherit' });
+// El codigo de terceros que el sitio EJECUTA (D-093). Va ANTES de convertir las paginas, porque
+// la copia que el sitio sirve tiene que estar en su lugar cuando el conversor escribe la etiqueta
+// que la carga, y DESPUES se vuelve a mirar: la comprobacion de que ninguna pagina publicada
+// ejecuta un tercero sin declarar necesita las paginas ya escritas.
+mkdirSync(join(raiz, 'docs', 'html', 'vendor'), { recursive: true });
+for (const entrada of JSON.parse(readFileSync(join(raiz, 'vendor', 'terceros.json'), 'utf8')).entries) {
+  cpSync(join(raiz, entrada.file), join(raiz, entrada.published_as));
+}
+execFileSync(process.execPath, [join(raiz, 'build', 'terceros_doc.mjs'), '--check'], { stdio: 'inherit' });
 const conv = join(raiz, 'build', 'md2html.mjs');
 
 function armar(dirMd, dirHtml, idioma) {
@@ -108,4 +117,9 @@ if (existsSync(dirPr)) {
   }
   console.log('manuales de practica:', m);
 }
+
+// La otra mitad de los terceros: con las paginas ya escritas, se recalcula la huella de cada
+// archivo congelado y se recorre TODO lo publicado juntando lo que ejecuta. Va al final porque es
+// lo unico que puede contestar sobre las paginas que esta misma corrida acaba de generar.
+execFileSync(process.execPath, [join(raiz, 'build', 'terceros.mjs')], { stdio: 'inherit' });
 

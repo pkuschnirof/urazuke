@@ -13,6 +13,15 @@ cambio.** El método se protege, la herramienta que lo implementa no se traba.
 | Los prompts | **CC BY-SA 4.0** (`LICENSE`) | `prompts/`, `docs/html/api/prompts.json` |
 | Los textos del método por identificador, extraídos de la prosa | **CC BY-SA 4.0** (`LICENSE`) | `labels/`, `docs/html/api/labels.json` |
 | El README, la guía para contribuir y las normas del proyecto | **CC BY-SA 4.0** (`LICENSE`) | `README.md`, `CONTRIBUTING.md`, `CLAUDE.md` |
+| **Código de terceros**, que no es mío y viaja con su propia licencia y su propio aviso | la del tercero: hoy **MIT** | `vendor/`, y su copia publicada `docs/html/vendor/` |
+
+**Sobre la última fila, que es nueva (D-093).** El sitio publicado dibuja los diagramas del
+documento principal con `mermaid`, que es de terceros y está bajo MIT. Desde el 2026-11-08 ese
+archivo **lo sirve este sitio** en vez de pedírselo a un host ajeno, así que vive en el árbol: con
+su versión exacta, su huella recalculada en cada construcción y **el texto de su licencia al lado**,
+que es lo que MIT exige. Ni las dos licencias del método lo alcanzan ni él alcanza a nada del
+método: el inventario de lo que el sistema ejecuta, con el privilegio y la decisión de cada
+entrada, está en `docs/THIRD_PARTY_EXECUTION.md`.
 
 **Por qué no está todo bajo la misma.** El "compartir igual" sobre la prosa es exactamente lo
 que quiero: quien se lleve el método, lo extienda y lo publique, lo publica abierto. Sobre un

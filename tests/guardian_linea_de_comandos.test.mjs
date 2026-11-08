@@ -80,6 +80,7 @@ const CON_LINEA_DE_COMANDOS = [
   'portal_orphans.mjs', 'version_fijada.mjs', 'punteros_publicados.mjs', 'labels_api.mjs',
   'forma_de_la_pregunta.mjs', 'version_inmutable.mjs', 'claves_configuracion.mjs',
   'cifras_derivadas.mjs', 'prompts_didacticos.mjs', 'cuenta_de_reglas.mjs',
+  'terceros.mjs', 'terceros_doc.mjs',
 ];
 
 test('los programas con modo de linea de comandos usan el guardian compartido', () => {

@@ -151,10 +151,25 @@ jobs:
           grep -q '0 hallazgos' cuenta.txt || { echo "::error::una cuenta del Anexo H volvio a la prosa, o una exencion del registro dejo de saltear algo (el detalle, arriba)"; exit 1; }
           rm cuenta.txt
 
+      - name: Exigir que el documento del inventario de terceros coincida con su dato
+        run: |
+          set -o pipefail
+          node build/terceros_doc.mjs --check | tee terceros_doc.txt
+          grep -q 'coincide con los datos' terceros_doc.txt || { echo "::error::la comprobacion del inventario de terceros no dijo nada: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          rm terceros_doc.txt
+
+      - name: Exigir que ninguna pagina publicada ejecute un tercero sin declarar
+        run: |
+          set -o pipefail
+          node build/terceros.mjs | tee terceros.txt
+          grep -q '^terceros ejecutados: comprobado' terceros.txt || { echo "::error::la guarda de terceros no dijo que comprobo: no corrio, y un paso que no corrio no es un verde"; exit 1; }
+          grep -q '0 hallazgos' terceros.txt || { echo "::error::una pagina publicada ejecuta un tercero sin declarar, o la copia congelada dejo de ser la que el inventario audito (el detalle, arriba)"; exit 1; }
+          rm terceros.txt
+
       - name: Dejar el arbol limpio (ningun generado sin commitear)
         run: |
-          git diff --stat -- docs/html/api/ gates/ labels/ docs/COMPUERTAS.md
-          if [ -n "$(git status --porcelain -- gates/ labels/ docs/COMPUERTAS.md)" ]; then
+          git diff --stat -- docs/html/api/ gates/ labels/ docs/COMPUERTAS.md docs/THIRD_PARTY_EXECUTION.md
+          if [ -n "$(git status --porcelain -- gates/ labels/ docs/COMPUERTAS.md docs/THIRD_PARTY_EXECUTION.md)" ]; then
             echo "Hay fuentes o documentos generados sin commitear."
             exit 1
           fi
@@ -200,7 +215,12 @@ jobs:
 
       - name: Sanidad de lo generado (que haya sitio para publicar)
         run: |
-          for f in docs/html/ESCALERA_METODOLOGICA.html docs/html/COMPUERTAS.html docs/html/api/gates.json docs/html/api/prompts.json docs/html/api/index.json; do
+          # La lista de terceros se DERIVA del inventario y no se escribe aca: la ruta lleva la
+          # version exacta adentro del nombre, y escribirla seria la copia que se vence el dia que
+          # se clava otra (D-077, D-093). Un sitio publicado cuyo tercero falta no se cae: muestra
+          # el codigo crudo donde habia un diagrama, que es justo lo que nadie mira.
+          TERCEROS=$(node -e "process.stdout.write(require('./vendor/terceros.json').entries.map(e=>e.published_as).join(' '))")
+          for f in docs/html/ESCALERA_METODOLOGICA.html docs/html/COMPUERTAS.html docs/html/api/gates.json docs/html/api/prompts.json docs/html/api/index.json $TERCEROS; do
             [ -s "$f" ] || { echo "::error::falta o esta vacio $f -- no se publica un sitio a medias"; exit 1; }
           done
           echo "archivos a publicar: $(find docs/html -type f | wc -l)"

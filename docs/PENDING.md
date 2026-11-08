@@ -9800,6 +9800,117 @@ sin leerlas las cuatro contra las cuatro sería la clase de verde que este regis
 vigentes en los dos archivos, y lo que esta entrada persigue es que sigan coincidiendo mañana.
 
 ---
+
+## PND-120 — Ocho páginas publicadas ejecutaban código de terceros desde un host ajeno, con la mayor flotante, sin integridad y sin inventario: el primer sistema que no cumplía `THIRD_PARTY_EXECUTION.md` era el repositorio del método *(propia, medida por el prerrequisito 7 de la estación N0; destino: método)*
+
+- **Nodo:** `corpus/publicacion` [nodo propuesto]
+- **Origen:** propia, el 2026-11-08, del relevamiento de la estación N0 sobre este mismo
+  repositorio. El prerrequisito 7 pide listar cada integración externa y decir si tiene modo de
+  prueba o se puede aislar en el borde. Las del lado de la construcción están aisladas y de hecho
+  lo están a propósito —los dos programas que tocan la red están **fuera** de la cadena, los tres
+  chequeos contra producción son de sólo lectura, el despliegue necesita un secreto de alcance a un
+  solo repositorio—. La que no estaba ni aislada ni declarada era la del lado del **lector**.
+- **Grupo:** G-PUBLICACION · **Severidad:** bloquea · **Repositorio:** método
+- **Quién decide:** el dueño, entre las tres salidas. Decidido el 2026-11-08: la segunda, servirlo
+  desde el propio sitio, con el cuidado que escribió (abajo). D-093.
+- **Estado: CERRADO** el 2026-11-08, con D-093, en el mismo movimiento en que se abrió, porque era
+  el proyecto previo de N0 que el dueño eligió cerrar antes de arrancar la estación.
+
+**Qué estaba mal, medido.** El sitio publicado **ejecuta código de terceros en el navegador de cada
+lector**, y no estaba ni aislado ni inventariado:
+
+| qué | medido el 2026-11-08 |
+|---|---|
+| qué carga | `mermaid` desde `cdn.jsdelivr.net`, como módulo ES |
+| en qué páginas | **8** — el documento principal en los ocho idiomas, que es la página insignia |
+| versión | `mermaid@11`: **mayor flotante**, resuelta en el momento de leer |
+| integridad declarada (SRI) | **ninguna**: 0 apariciones de `integrity=` en el generador y en lo servido |
+| inventario con su privilegio y su decisión | **no existía** |
+
+No es una vulnerabilidad declarada: es un **privilegio no declarado**, que es la forma de `CQ-20`. Y
+es incómodo de una manera útil, que es la razón por la que esta entrada vale más que su arreglo: el
+método **había publicado el día anterior** —con D-089— la exigencia de `docs/THIRD_PARTY_EXECUTION.md`
+como artefacto del peldaño 14, el inventario del código de terceros que un sistema **ejecuta**, con el
+privilegio de cada entrada y **una decisión por entrada**. El primer sistema que no lo cumplía era el
+repositorio del método. Lo encontró el propio relevamiento, un día después, y eso es el método
+funcionando: la estación N0 le hizo a este repositorio la pregunta que el peldaño 14 le hace a los
+demás.
+
+**El rojo, antes del arreglo, pegado tal cual.** La guarda nueva corrida contra el árbol publicado de
+`09e48a8`, que es el que servía producción:
+
+```
+  [B] mermaid: el sitio tendria que servir docs/html/vendor/mermaid-11.17.2.min.js y no esta publicado
+  [E] docs/html/de/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs): lo publicado volvio a depender de alguien que el metodo no controla
+  [E] docs/html/en/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/fr/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/it/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/ja/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/pt/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+  [E] docs/html/zh/ESCALERA_METODOLOGICA.html ejecuta codigo de un host ajeno (module-import ...)
+terceros ejecutados: comprobado -- 1 entradas, 1 con decision, huellas recalculadas sobre 2 archivos del arbol, 84 paginas publicadas revisadas, 8 referencias a un tercero en 8 de ellas, 9 hallazgos
+codigo de salida: 1
+```
+
+Nueve hallazgos y código de salida 1 sobre el árbol que estaba publicado. No es un rojo armado para
+la prueba: es el estado de producción de esa mañana.
+
+**Las tres salidas, y la que eligió el dueño.** (a) clavar la versión exacta y declarar su
+integridad, dejando la dependencia del CDN; (b) servir el archivo desde el propio sitio; (c) sacar
+los diagramas. Decidió la **(b)**, y su razón vale copiada porque corrige la mía: *«Las tres opciones
+cumplirían la regla —(a) con integridad declarada es una decisión legítima por entrada— pero (b) es
+la única en la que lo publicado no depende de que un host ajeno siga arriba.»*
+
+**Y el cuidado que dejó escrito, que es la parte que una máquina ahora hace cumplir.** *«Servir
+mermaid desde el propio sitio **no lo saca del inventario**. El inventario es de lo que el sistema
+**ejecuta**, no de quién lo hospeda. La entrada sigue, cambia su decisión y gana la versión clavada.
+Si al mudarlo desaparece del inventario, la mudanza rompió la regla que vino a cumplir.»* La entrada
+está, con su decisión `narrowed` y su versión exacta.
+
+**Qué entró.**
+
+- `vendor/mermaid-11.17.2.min.js` —la versión exacta a la que `mermaid@11` resolvía ese día, así que
+  lo publicado **no cambió de comportamiento**, cambió de dueño del hospedaje— con el texto de su
+  licencia MIT al lado, que es lo que MIT exige y lo que un repositorio sin terceros nunca había
+  tenido que hacer.
+- `vendor/terceros.json`, el dato, y `docs/THIRD_PARTY_EXECUTION.md`, que **se genera** desde ahí:
+  `entries_total` y `entries_with_a_decision` son cuentas **derivadas** y no escritas, que es D-077 y
+  D-090 aplicados al artefacto nuevo antes de que tenga su primera cifra vencida.
+- `build/terceros.mjs`, la guarda, con sus cinco comprobaciones y su línea medida en la cadena y en
+  la integración continua: la huella del congelado **recalculada**, lo publicado byte a byte igual a
+  lo congelado, la licencia con su texto en el árbol, la decisión resuelta con quién, cuándo y por
+  qué, y —la que cierra el círculo— **todas** las páginas publicadas recorridas juntando lo que
+  ejecutan, donde una dirección absoluta es un hallazgo.
+- Y la prueba de punta a punta en un navegador de verdad (`tests/e2e_terceros.mjs`), porque la guarda
+  lee el texto del HTML y lo que importaba era otra cosa: que el lector siga viendo los diagramas y
+  que el navegador no salga a buscar nada afuera. **Recibo: 5 de 5**, con el `svg` dibujado, 2
+  recursos bajados y **0 de un host ajeno**, la huella `581ed7d74bd9` **recalculada por el propio
+  navegador** sobre los bytes que ejecutó, y su rojo deliberado —la misma página con la etiqueta
+  apuntada a un archivo que no existe— dando 0 de 1 diagramas dibujados.
+
+**Lo que esta entrada no arregla, dicho de frente.** El inventario tiene **una** entrada porque este
+repositorio no tiene dependencias: cero `package.json`, cero `node_modules`, cero binarios. En un
+sistema de verdad este artefacto tiene decenas de entradas y el trabajo es el inventario, no la
+guarda. Lo que acá quedó demostrado es la forma: que la cuenta se derive, que la decisión sea de una
+persona y esté fechada, y que una máquina pueda caer cuando una página vuelve a pedirle código a un
+host ajeno.
+
+**Criterios de aceptación por perfil (Anexo H, ancla 1).**
+
+- *P1 (dueño del método):* dado el sitio publicado, cuando se pregunta qué código de terceros
+  ejecuta, entonces hay un inventario con una entrada por tercero, su privilegio y **su decisión con
+  fecha y nombre**, y ninguna página pide nada a un host que el método no controla.
+- *P4 (lector del método):* dado el documento principal en cualquiera de los ocho idiomas, cuando lo
+  abre, entonces ve los diagramas, y los dibujó un archivo que sirve el mismo sitio del que bajó la
+  página. Verificado en un navegador de verdad, 5 de 5.
+- *P6 (agente que trabaja el repositorio):* dado un tercero nuevo, cuando lo agrega, entonces la
+  cadena cae hasta que esté congelado con su huella, publicado, licenciado y decidido.
+
+**Depende de:** nada. Es el proyecto previo de la estación N0 que el dueño eligió cerrar antes de
+arrancar, así que N0 arranca con **un** previo y no con dos (`PND-121`).
+
+---
 ---
 
 # Resumen del estado
@@ -9814,13 +9925,13 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-API | 24 | 6 | 18 | 1 |
 | G-ALCANCE | 5 | 0 | 5 | 0 |
 | G-IDIOMA | 17 | 13 | 4 | 3 |
-| G-PUBLICACION | 6 | 0 | 6 | 0 |
+| G-PUBLICACION | 7 | 0 | 7 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 56 | 23 | 33 | 11 |
 | G-TRAZABILIDAD | 8 | 3 | 5 | 0 |
-| **total** | **119** | **45** | **74** | **15** |
+| **total** | **120** | **45** | **75** | **15** |
 
-Ciento diecinueve entradas, `PND-001` a `PND-119`. Veintidós vienen de la auditoría externa
+Ciento veinte entradas, `PND-001` a `PND-120`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
 PND-037 y PND-038), dieciséis son trabajo derivado —la propuesta de firma, el chequeo de huérfanas, la portada del
 protocolo que se creyó sin fuente y no lo estaba, la hoja nueva que nace sin enlace en la portada,

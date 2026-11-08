@@ -36,6 +36,42 @@ const SALTEAR = new Set(['.git', 'node_modules']);
 const PERMITIDOS = new Set([0x09, 0x0a, 0x0d]);
 
 /**
+ * Los arboles que esta prueba NO lee, cada uno con su razon escrita. El registro vive aca y no
+ * adentro de la comprobacion por lo mismo que los comodines del Anexo H y las exclusiones del
+ * inventario de documentos: una exclusion sin razon escrita es la forma de apagar una regla sin
+ * decirlo (D-066).
+ *
+ * La unica razon que hay hoy es un tercero vendoreado, y conviene leerla entera porque es el
+ * borde de lo que esta prueba defiende. `vendor/mermaid-11.17.2.min.js` es un paquete minificado
+ * de terceros, de 3,5 MB, que este repositorio NO escribe ni edita y que trae un 0x01 adentro de
+ * un literal propio. Exigirle ASCII de control a un bundle ajeno seria pedirle al metodo que lo
+ * reescriba, que es exactamente lo que no se hace con un tercero. Y lo que esta prueba protege
+ * --que un archivo no se vuelva invisible para una busqueda de texto-- ahi no aplica: a ese
+ * archivo nadie lo busca por su texto, su identidad es la huella que `vendor/terceros.json`
+ * declara, y `build/terceros.mjs` la RECALCULA en cada construccion, que es una guarda mas fuerte
+ * que esta (D-093, PND-120).
+ */
+export const EXCLUIDOS_REGISTRADOS = new Map([
+  [
+    'vendor/',
+    'codigo de terceros vendoreado: no es fuente de este repositorio y no se edita aca; su ' +
+      'integridad la vigila build/terceros.mjs recalculando la huella que vendor/terceros.json ' +
+      'declara (D-093)',
+  ],
+  [
+    'docs/html/vendor/',
+    'la copia publicada del mismo tercero, que build/build.mjs copia y build/terceros.mjs exige ' +
+      'byte a byte igual a la congelada (D-093)',
+  ],
+]);
+
+/** Normaliza el separador para que el registro se lea igual en Windows y en POSIX. */
+const estaExcluido = (relativo) => {
+  const r = relativo.split('\\').join('/');
+  return [...EXCLUIDOS_REGISTRADOS.keys()].some((e) => r.startsWith(e));
+};
+
+/**
  * Devuelve { leidos, hallazgos }. Recibe el directorio Y la lista de archivos relativos
  * por argumento -- no la raiz clavada y no un recorrido fijo -- para que el arbol real se
  * pueda enumerar con git y la prueba en rojo pueda ejercitar un arbol de mentira: una
@@ -45,8 +81,10 @@ const PERMITIDOS = new Set([0x09, 0x0a, 0x0d]);
 export function bytesDeControl(dir, archivos = recorrerDisco(dir)) {
   const hallazgos = [];
   let leidos = 0;
+  let exentos = 0;
   for (const relativo of archivos) {
       if (!EXTENSIONES.some((e) => relativo.endsWith(e))) continue;
+      if (estaExcluido(relativo)) { exentos++; continue; }
       const p = join(dir, relativo);
       leidos++;
       const bytes = readFileSync(p);
@@ -59,7 +97,7 @@ export function bytesDeControl(dir, archivos = recorrerDisco(dir)) {
         }
       }
   }
-  return { leidos, hallazgos };
+  return { leidos, hallazgos, exentos };
 }
 
 /** Recorrido del disco, para el arbol de mentira de los rojos. */
@@ -91,6 +129,17 @@ test('ningun archivo de texto versionado lleva bytes de control', () => {
     [],
     'un byte de control deja el archivo invisible para grep, que lo clasifica como binario y lo saltea',
   );
+});
+
+test('cada exclusion del registro sigue salteando algo real', () => {
+  // La leccion de D-086, bajada a este registro: una exclusion que ya no selecciona nada es una
+  // guarda apagada sobre un arbol que cambio de forma, y no se nota nunca porque sigue dando
+  // verde. Si manana el tercero se saca, esta prueba cae y el registro se limpia en el acto.
+  const todos = versionados().map((r) => r.split('\\').join('/'));
+  const sinUso = [...EXCLUIDOS_REGISTRADOS.keys()]
+    .filter((e) => !todos.some((r) => r.startsWith(e) && EXTENSIONES.some((x) => r.endsWith(x))));
+  assert.deepEqual(sinUso, [], 'una exclusion que ya no saltea nada sobra: sacala del registro');
+  assert.ok(bytesDeControl(raiz, versionados()).exentos > 0, 'el registro no salteo un solo archivo');
 });
 
 test('ROJO: un NUL en una fuente sale nombrado, con su archivo y su linea', () => {
