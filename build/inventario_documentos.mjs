@@ -85,6 +85,13 @@ export const TRABAJO_REGISTRADO = new Map([
       'por idioma, con lo medido separado del juicio de traduccion; el arreglo vive en el ' +
       'repositorio del portal (PND-026 a PND-034)',
   ],
+  [
+    'docs/CONTEXTO_DEL_REPOSITORIO.md',
+    'la otra mitad de CLAUDE.md: las diecisiete secciones que eran relato y no instruccion, ' +
+      'mudadas verbatim cuando una compuerta del producto midio que el archivo de instrucciones ' +
+      'pesaba 42.308 tokens contra un tope de 8.000 y que esos tokens viajan en cada llamada de ' +
+      'cada turno; voz del autor, fuera del corpus traducido (PND-117, D-092)',
+  ],
   ['docs/paper/README.md', 'material de trabajo del paper, que es trabajo en curso; lo nombra PND-050'],
   ['docs/paper/metodo-protocolo-herramienta.md', 'la pieza comun del paper, trabajo en curso; lo nombra PND-050'],
   [

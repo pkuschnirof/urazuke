@@ -9544,53 +9544,88 @@ ahora dice «how it differs from **the rest**», sin cifra.
 
 ---
 
-## PND-117 — El `CLAUDE.md` de este repositorio mide 38.571 tokens contra un tope de 8.000, y eso se paga en cada llamada de cada sesión *(del producto Forge, medida por su compuerta nueva; destino: método)*
+## PND-117 — El `CLAUDE.md` de este repositorio medía 42.308 tokens contra un tope de 8.000, y eso se pagaba en cada llamada de cada turno *(del producto Forge, medida por su compuerta nueva; destino: método)*
 
 - **Nodo:** `corpus/instruccion-del-repositorio` [nodo propuesto]
 - **Origen:** del dueño, el 2026-11-07, con la medición de una compuerta nueva de Forge
   (`PND-288` del producto, `yf claude-md check`, 1.29.0): el archivo de instrucciones de este
-  repositorio mide **38.571 tokens** contra el tope de **8.000** que esa compuerta declara, casi
-  cinco veces.
+  repositorio medía ese día **38.571 tokens** contra el tope de **8.000** que esa compuerta
+  declara, casi cinco veces.
 - **Grupo:** G-TRAZABILIDAD · **Severidad:** avisa · **Repositorio:** método
 - **Quién decide:** el dueño, qué se recorta y qué se muda. La cifra no la decide nadie: está medida.
-- **Estado: ABIERTO.** Pedido explícito del dueño: *«no te pido que lo arregles ahora —el lote
-  recién cierra— pero sí que lo midas y abras el pendiente con la cifra, antes de que el próximo
-  lote lo engorde más.»*
+- **Estado: CERRADO** el 2026-11-08, con D-092. Quedó abierto un día: el 2026-11-07 el pedido era
+  *«no te pido que lo arregles ahora —el lote recién cierra— pero sí que lo midas y abras el
+  pendiente con la cifra, antes de que el próximo lote lo engorde más»*, y al día siguiente el dueño
+  corrió la compuerta él mismo y trajo el criterio: *«el comando ya trae el criterio que tu PND-117
+  dejó abierto. Correlo vos por npx y usá esa lista. No hace falta decidir el criterio: ya está
+  decidido por el producto y coincide con tu lectura.»*
 
-**Lo que está medido, y con qué.** Dos mediciones, y conviene separarlas porque no son el mismo
-instrumento (`CQ-19`, el recibo del instrumento):
+**La cifra, corregida y reproducida.** Los 38.571 del título son del 2026-11-07 y eran del dueño; el
+archivo siguió creciendo con D-090. La medición propia, reproducida acá por `npx` el 2026-11-08
+porque el Forge instalado es 1.28.0 y el subcomando entró en 1.29.0:
 
-| qué | cuánto | con qué |
-|---|---|---|
-| tokens | **38.571** contra un tope de 8.000 | `yf claude-md check`, la compuerta de `PND-288` del producto, corrida por el dueño |
-| bytes | 99.976 | `node -e` sobre el archivo, acá, el 2026-11-07 |
-| caracteres | 98.006 | lo mismo |
-| líneas | 1.148 | lo mismo |
-| palabras | 16.445 | lo mismo |
+| cuándo | tokens | tope | con qué |
+|---|---:|---:|---|
+| 2026-11-07, el dueño | 38.571 | 8.000 | `yf claude-md check` |
+| 2026-11-08, antes del corte | **42.308** | 8.000 | lo mismo, por `npx`, reproducido acá |
+| 2026-11-08, después del corte | **7.475** | 8.000 | lo mismo, **dentro del tope** |
 
-La primera no se pudo reproducir en esta máquina y queda dicho en vez de simulado: el Forge
-instalado acá es **1.28.0** y el comando no existe todavía (`error: unknown command 'claude-md'`).
-Las cuatro de abajo son propias y son las que sostienen el orden de magnitud: con el cociente que
-da la primera, unos 2,54 caracteres por token, las dos mediciones son consistentes.
+La compuerta mide a 2,36 caracteres por token, calibrado y no el 4 habitual, y lo dice en su salida.
 
-**Por qué crece, y por qué no es un descuido.** Cada lote de reglas agrega su sección: el archivo
-pasó de las secciones de estilo y publicación a tener, hoy, una sección por decisión grande —D-070,
-D-075, D-077, D-078, D-079/D-080, D-081/D-082, D-083/D-084, D-085, D-087, D-089—. Cada una se
-escribió porque un agente que lee este archivo **como instrucción** tiene que saber lo que no se
-negocia antes de tocar nada; es el mismo argumento de D-061, que nació de una frase vencida justo
-en este archivo. Así que el recorte no es «sacar texto»: es decidir **qué parte de esto es
-instrucción y qué parte es registro**, y el registro ya tiene su lugar (`docs/DECISIONES.md`,
-`docs/PENDING.md`) con la ventaja de que ahí nadie lo paga en cada llamada.
+**Cómo se cortó, y por qué ninguna sección se eligió a mano.** La compuerta no sólo mide: **nombra
+las trece secciones a desprender, con la cifra de cada una**, y suman 34.549 de los 42.308. Ésa fue
+la lista, sin agregarle ni quitarle nada, porque una lista elegida a ojo habría sido la decisión que
+el pendiente decía que no sabía tomar. Las cuatro más caras eran `Publicación` (7.971), `Las
+compuertas como datos` (5.967), `Build` (3.046) y la sección de D-089 (2.681).
+
+Quitadas las trece quedaban **9.095**, y sobraban 1.095. Las cuatro que entraron después **no las
+eligió nadie tampoco**: las nombró la regla de estilo de `CLAUDE.md` aplicada a sí misma. Ese archivo
+dice, desde su primera sección, que *«los casos reales (fechas, commits, pendientes, incidentes) NO
+van en los procedimientos ni en los manuales: van en `docs/REFERENCIAS.md`»*, y el registro de
+pendientes, el rojo como recibo, UX-28 y los prompts didácticos eran procedimiento con el caso
+adentro. Quedó la obligación y el caso se fue.
+
+**Verbatim, y por qué eso es lo que lo hace comprobable.** Las diecisiete secciones se mudaron
+**enteras**, sin reescribir ni resumir. Dos razones y las dos son del método. Un resumen sería una
+**tercera copia** del mismo hecho, que es la familia que D-044, D-077 y D-090 persiguen. Y mudar el
+texto entero convierte «no se perdió nada» en un hecho **comprobado**: una comprobación parte los
+dos archivos en secciones de nivel 2 y exige que cada una de las veinticuatro originales esté o
+intacta donde estaba o **idéntica** donde fue. Dio **24 de 24, cero perdidas, cero alteradas**. La
+alternativa —borrar las cuatro de acá afirmando que su relato ya vive en `DECISIONES.md`, que es
+cierto: D-033, D-034, D-066, D-070 y D-085 tienen su entrada— era una equivalencia que **no se puede
+verificar byte a byte**, y entonces la afirmación pasaba de hecho a creencia. El costo de la forma
+elegida va declarado adentro del archivo nuevo: de esas cuatro, la obligación queda escrita en dos
+lugares.
+
+**Lo que el corte arrastró, y es la parte que casi se escapa.** El universo de la guarda de D-090 es
+`git ls-files '*.md'`, así que el archivo nuevo **entró a la guarda el día que se indexó** y produjo
+**veintitrés hallazgos**: se llevó puestas las cifras fechadas que `CLAUDE.md` tenía exentas («el
+anexo pasa a cincuenta y dos», «las 52 reglas y las 19 caras»). La exención **no se duplicó: se
+mudó**, porque la razón es del texto y no del archivo. Y `CLAUDE.md` **salió del registro en el mismo
+acto, medido**: ya no nombra ninguna cuenta, y una exención que cubre un archivo que no la necesita
+es exactamente el defecto que D-086 registra —un registro que ya no aplica también es un fallo—. La
+comprobación C de esa guarda es por **identificador** y no por archivo, así que no lo habría
+atrapado: lo atrapó medirlo. El universo pasó de 276 a 277 porque `CLAUDE.md` volvió a entrar.
+
+**Y lo que el archivo nuevo paga, dicho porque es el precio real.** `docs/CONTEXTO_DEL_REPOSITORIO.md`
+pesa 95.756 bytes y está en el inventario de documentos con su razón citando este pendiente (D-066).
+No se publica, no se traduce y no se genera: es voz del autor, fuera del corpus (D-051). Un agente
+que necesita el relato lo abre; uno que sólo tiene que no romper nada no lo paga.
 
 **Criterios de aceptación por perfil (Anexo H, ancla 1).**
 
 - *P1 (dueño del método):* dado el repositorio, cuando se corre la compuerta del producto, entonces
-  el archivo está bajo el tope o la diferencia está declarada con su razón y su fecha de revisión.
+  el archivo está bajo el tope. Verificado el 2026-11-08: **7.475 de 8.000**, con la salida
+  *«dentro del tope»* y sin ninguna sección nombrada para desprender.
 - *P6 (agente que trabaja el repositorio):* dado el archivo recortado, cuando el agente arranca una
   sesión, entonces sigue sabiendo las reglas que no se negocian —qué no se edita, qué se replica en
-  los ocho idiomas, qué no se publica— sin tener que abrir el registro de decisiones.
+  los ocho idiomas, qué no se publica, qué se deriva, qué pone en rojo el portal— sin tener que abrir
+  el registro de decisiones; y la sección que las lleva dice en su primera línea dónde está el
+  relato. Verificado leyendo el archivo resultante.
+- *P1, sobre la pérdida:* dado el archivo de antes del corte, cuando se comparan sus secciones contra
+  los dos archivos de después, entonces ninguna falta y ninguna cambió de texto. Verificado: 24 de 24.
 
-**Depende de:** nada. Es trabajo del método sobre su propio archivo de instrucciones.
+**Depende de:** nada.
 
 ---
 
@@ -9691,8 +9726,8 @@ eran ocho—, así que la cuenta ya no depende de que alguien se acuerde de reha
 | G-PUBLICACION | 6 | 0 | 6 | 0 |
 | G-ECOSISTEMA | 3 | 0 | 3 | 0 |
 | G-METODO | 56 | 23 | 33 | 11 |
-| G-TRAZABILIDAD | 7 | 3 | 4 | 0 |
-| **total** | **118** | **45** | **73** | **15** |
+| G-TRAZABILIDAD | 7 | 2 | 5 | 0 |
+| **total** | **118** | **44** | **74** | **15** |
 
 Ciento dieciocho entradas, `PND-001` a `PND-118`. Veintidós vienen de la auditoría externa
 (`U-01` a `U-22`), cuatro del propio método midiendo su cadena y su publicación (PND-001, PND-035,
@@ -9724,8 +9759,12 @@ mismo día con **D-090**, que saco la cuenta de reglas de la prosa y dejo la gua
 Las **dos últimas** salieron de ese cierre: `PND-116`, el ingles que se habia quedado en cuarenta y
 siete porque la correccion anterior se hizo en siete de los ocho idiomas —y que ninguna de las tres
 guardas puede ver, por la razon que cada una declara—, y `PND-117`, el único que no es del metodo
-mirandose a si mismo sino del producto midiendolo: el `CLAUDE.md` de este repositorio mide 38.571
-tokens contra un tope de 8.000, y eso se paga en cada llamada de cada sesion.
+mirandose a si mismo sino del producto midiendolo: el `CLAUDE.md` de este repositorio medía 42.308
+tokens contra un tope de 8.000, y eso se pagaba en cada llamada de cada turno. Cerrado al dia
+siguiente con **D-092**, y con la compuerta del producto contestando **7.475 de 8.000**: las trece
+secciones que ella nombro, mas cuatro que nombro la regla de estilo de ese archivo aplicada a si
+misma, se mudaron **verbatim** a `docs/CONTEXTO_DEL_REPOSITORIO.md`, y hay una comprobacion que
+exige que ninguna de las veinticuatro originales falte ni haya cambiado de texto: dio 24 de 24.
 
 Y `PND-118` no la trajo una auditoria ni una relectura: la trajo un **incidente de este mismo
 repositorio**, el mismo dia, con dos sesiones de agente abiertas sobre la misma carpeta y un `reset
