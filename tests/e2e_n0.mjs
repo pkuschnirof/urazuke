@@ -15,8 +15,10 @@
 // Uso:  node tests/e2e_n0.mjs    (sirve docs/html y maneja el navegador)
 // NO la descubre `node --test`, a proposito: la bateria del repositorio corre con node pelado
 // y sin red, y esto necesita un navegador instalado. Se corre aparte y deja su recibo.
-// Sale 0 si el flujo paso, 1 si no, y escribe el recibo en la salida.
+// Sale 0 si el flujo paso, 1 si no, y sus cuentas las imprime node:test.
 
+import { test, before, after } from 'node:test';
+import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { createConnection } from 'node:net';
 import { readFile, access } from 'node:fs/promises';
@@ -33,8 +35,6 @@ const EDGE = [
 ];
 const TIPOS = { '.html': 'text/html; charset=utf-8', '.json': 'application/json', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml' };
 
-const pasos = [];
-const anotar = (ok, que, detalle) => { pasos.push({ ok, que, detalle }); console.log((ok ? '  ok   ' : '  FALLA') + ' ' + que + (detalle ? ' -- ' + detalle : '')); };
 
 /* ---------- un servidor estatico, que es el "otro lado" del lado del sitio ---------- */
 function servir() {
@@ -124,12 +124,19 @@ async function cual() {
   throw new Error('no encuentro msedge.exe en ninguna de las dos rutas conocidas');
 }
 
-async function main() {
-  console.log('PUNTA A PUNTA -- estacion N0, prerrequisito 4: la pantalla recorrida por programa\n');
+/* ---------- el flujo, como pruebas de node:test ----------
+ * Sobre node:test y no sobre un contador propio, por una razon medida: un rojo
+ * tiene que ser una AFIRMACION FALLADA que una maquina pueda contar (D-037,
+ * CQ-21.4), y un programa que imprime "1 fallas" de su propia cosecha no es eso.
+ * Corrido con `node tests/e2e_n0.mjs` emite sus cuentas; y como el archivo no se
+ * llama *.test.mjs, `node --test` NO lo descubre y la bateria del repositorio
+ * sigue corriendo con node pelado y sin navegador. */
 
+let C = null;   // el contexto vivo: servidor, navegador, websocket
+
+before(async () => {
   const { s, puerto } = await servir();
   const url = `http://127.0.0.1:${puerto}${PAGINA}`;
-  anotar(true, 'sitio servido desde el disco', url);
 
   const bin = await cual();
   const perfil = join(tmpdir(), 'urazuke-n0-' + Date.now());
@@ -143,13 +150,11 @@ async function main() {
   for (let i = 0; i < 40 && !destino; i++) {
     await esperar(500);
     try {
-      const r = await fetch(`http://127.0.0.1:${puertoCDP}/json/list`);
-      const lista = await r.json();
+      const lista = await (await fetch(`http://127.0.0.1:${puertoCDP}/json/list`)).json();
       destino = lista.find((t) => t.type === 'page');
     } catch { /* todavia no levanto */ }
   }
   if (!destino) { edge.kill(); s.close(); throw new Error('el navegador no expuso una pagina en ' + puertoCDP); }
-  anotar(true, 'navegador real levantado', 'Edge, protocolo de depuracion en ' + puertoCDP);
 
   const ws = new WS(destino.webSocketDebuggerUrl);
   await ws.listo;
@@ -158,66 +163,67 @@ async function main() {
   await ws.cmd('Page.navigate', { url });
   await esperar(2500);
 
-  const ev = async (expr) => (await ws.cmd('Runtime.evaluate', { expression: expr, returnByValue: true })).result.value;
+  C = {
+    s, edge, ws, url, puertoCDP,
+    ev: async (expr) => (await ws.cmd('Runtime.evaluate', { expression: expr, returnByValue: true })).result.value,
+  };
+  console.log('# otro lado: Edge real en ' + puertoCDP + ', sitio servido en ' + url);
+});
 
-  const titulo = await ev('document.title');
-  anotar(!!titulo, 'la pagina cargo en el navegador', 'title = ' + JSON.stringify(titulo));
+after(async () => {
+  if (!C) return;
+  await C.ws.cmd('Browser.close').catch(() => {});
+  C.edge.kill();
+  C.s.close();
+});
 
-  const botones = await ev('document.querySelectorAll("button.trbtn").length');
-  anotar(botones > 0, 'los elementos de la pantalla son accesibles por programa', botones + ' botones de traduccion');
+test('la pantalla se ejecuta por programa: la pagina carga en un navegador de verdad', async () => {
+  const titulo = await C.ev('document.title');
+  assert.ok(titulo && titulo.length > 0, 'la pagina no tiene titulo: no cargo');
+});
 
-  /* El flujo: apretar el primer boton "Traducir" y ver que el bloque cambia de idioma.
-   * El click es del navegador --coordenadas reales y Input.dispatchMouseEvent--, no una
-   * llamada al oyente, que es lo que CQ-21.1 exige. */
-  const caja = await ev(`(() => {
+test('cada elemento de la pantalla es accesible por programa', async () => {
+  const n = await C.ev('document.querySelectorAll("button.trbtn").length');
+  assert.ok(n > 0, 'no hay un solo elemento accionable en la pantalla');
+  console.log('#   ' + n + ' botones de traduccion accesibles');
+});
+
+test('un click DEL NAVEGADOR cambia el estado de la pantalla', async () => {
+  /* El click es un Input.dispatchMouseEvent sobre las coordenadas reales del boton.
+   * No es una llamada al oyente: un doble que invoque al oyente a mano atraviesa el
+   * adaptador y no ve el defecto, que es lo que midio el brazo (CQ-21.1). */
+  const caja = await C.ev(`(() => {
     const b = document.querySelector('button.trbtn');
     b.scrollIntoView({block:'center'});
     const r = b.getBoundingClientRect();
     return JSON.stringify({x: r.x + r.width/2, y: r.y + r.height/2, rotulo: b.textContent.trim()});
   })()`);
   const { x, y, rotulo } = JSON.parse(caja);
-  const antes = await ev('document.querySelector("button.trbtn").closest("blockquote,div,section").innerText.slice(0,160)');
 
-  await ws.cmd('Input.dispatchMouseEvent', { type: 'mousePressed', x, y, button: 'left', clickCount: 1 });
-  await ws.cmd('Input.dispatchMouseEvent', { type: 'mouseReleased', x, y, button: 'left', clickCount: 1 });
+  await C.ws.cmd('Input.dispatchMouseEvent', { type: 'mousePressed', x, y, button: 'left', clickCount: 1 });
+  await C.ws.cmd('Input.dispatchMouseEvent', { type: 'mouseReleased', x, y, button: 'left', clickCount: 1 });
   await esperar(600);
 
-  const despues = await ev('document.querySelector("button.trbtn").closest("blockquote,div,section").innerText.slice(0,160)');
-  const rotuloDespues = await ev('document.querySelector("button.trbtn").textContent.trim()');
-  anotar(antes !== despues || rotulo !== rotuloDespues,
-    'un click del navegador cambio el estado de la pantalla',
-    'rotulo ' + JSON.stringify(rotulo) + ' -> ' + JSON.stringify(rotuloDespues));
+  const despues = await C.ev('document.querySelector("button.trbtn").textContent.trim()');
+  console.log('#   rotulo ' + JSON.stringify(rotulo) + ' -> ' + JSON.stringify(despues));
+  assert.notStrictEqual(despues, rotulo,
+    'el click no cambio nada: el boton esta en la pantalla y su oyente no responde');
+});
 
-  /* El otro lado: el "backend" de este sistema es la interfaz de datos publicada. El efecto
-   * verificable no es una escritura --este sistema no tiene ninguna desde la pantalla-- sino
-   * que lo que el sitio sirve es lo que su huella declara. Se verifica contra la RED. */
-  let backend = 'no se pudo leer';
-  let okBackend = false;
-  try {
-    const indice = await (await fetch('https://yujin.app/urazuke/api/index.json')).json();
-    const rec = (indice.resources ?? []).find((r) => /gates\.json$/.test(r.url ?? ''));
-    const crudo = await (await fetch(rec.url)).text();
-    const j = JSON.parse(crudo);
-    const canon = (v) => Array.isArray(v) ? '[' + v.map(canon).join(',') + ']'
-      : (v && typeof v === 'object') ? '{' + Object.keys(v).sort().map((k) => JSON.stringify(k) + ':' + canon(v[k])).join(',') + '}'
-      : JSON.stringify(v);
-    const payload = {};
-    for (const k of j.content_hash.covers) payload[k] = j[k];
-    const h = createHash('sha256').update(canon(payload), 'utf8').digest('hex');
-    okBackend = h === j.content_hash.value;
-    backend = 'version ' + j.corpus_version ?? j.catalog_version;
-    backend = 'catalogo ' + j.catalog_version + ', huella ' + (okBackend ? 'recalculada y coincide' : 'NO coincide');
-  } catch (e) { backend = e.message; }
-  anotar(okBackend, 'el efecto verificable del otro lado: lo publicado es lo que su huella declara', backend);
-
-  await ws.cmd('Browser.close').catch(() => {});
-  edge.kill();
-  s.close();
-
-  const fallas = pasos.filter((p) => !p.ok).length;
-  console.log('\nRECIBO: ' + (pasos.length - fallas) + ' de ' + pasos.length + ' pasos, ' + fallas + ' fallas.');
-  console.log('otro lado: Edge ' + (await (async () => 'real')()) + ' por protocolo de depuracion, y la red para lo publicado. Sin dobles.');
-  process.exit(fallas ? 1 : 0);
-}
-
-main().catch((e) => { console.error('\nFALLA DURA: ' + e.message); process.exit(1); });
+test('el efecto verificable del otro lado: lo publicado es lo que su huella declara', async () => {
+  /* El "backend" de este sistema es la interfaz de datos publicada, y no tiene
+   * ninguna escritura desde la pantalla. Asi que el efecto verificable es que lo
+   * que el otro extremo sirve coincida con la huella que declara, contra la RED. */
+  const indice = await (await fetch('https://yujin.app/urazuke/api/index.json')).json();
+  const rec = (indice.resources ?? []).find((r) => /gates\.json$/.test(r.url ?? ''));
+  assert.ok(rec, 'el indice publicado no declara el recurso de compuertas');
+  const j = JSON.parse(await (await fetch(rec.url)).text());
+  const canon = (v) => Array.isArray(v) ? '[' + v.map(canon).join(',') + ']'
+    : (v && typeof v === 'object') ? '{' + Object.keys(v).sort().map((k) => JSON.stringify(k) + ':' + canon(v[k])).join(',') + '}'
+    : JSON.stringify(v);
+  const payload = {};
+  for (const k of j.content_hash.covers) payload[k] = j[k];
+  const h = createHash('sha256').update(canon(payload), 'utf8').digest('hex');
+  console.log('#   catalogo ' + j.catalog_version + ', huella recalculada');
+  assert.strictEqual(h, j.content_hash.value, 'lo servido no coincide con la huella que declara');
+});
